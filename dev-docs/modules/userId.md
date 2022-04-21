@@ -1713,7 +1713,7 @@ gulp build --modules=identityLinkIdSystem
 
 #### RampID Registration
 
-Please sign up through our [Console](https://launch.liveramp.com) platform and request a `placementId`.
+LiveRamp's RampID is free of charge and only requires a simple registration with Liveramp. Please sign up through our [Console](https://launch.liveramp.com) platform and request a Placement ID, a unique identifier that is used to identify each publisher, to get started.
 
 The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-policy/](https://liveramp.com/privacy/service-privacy-policy/).
 
@@ -1722,14 +1722,25 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | `"identityLink"` | `"identityLink"` |
-| params | Required for Id Link | Object | Details for RampID initialization. | |
-| params.pid | This parameter is required for RampID | String | This is the placementId, value needed for obtaining user’s RampID envelope
-| params.notUse3P | This parameter is not required for RampID | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get RampID envelope
+| name | Required | String | The name of LiveRamp's user ID module. | `"identityLink"` |
+| params | Required | Object | Container of all module params. |  |
+| params.pid | Required | String | This is the Placement ID, a unique identifier that is used to identify each publisher, obtained from registering with LiveRamp. | `999` |
+| params.notUse3P | Not required | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get a RampID envelope (either `true` or `false`). | `true` |
+| storage | Required | Object | This object defines where and for how long the results of the call to get a RampID envelope will be stored. | 
+| storage.type	| Required | String | This parameter defines where the resolved RampID envelope will be stored (either `"cookie"` or `"html5"` localStorage). | `"cookie"` |
+| storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved RampID envelope will be stored. LiveRamp requires `"idl_env"`. | `"idl_env"` |
+| storage.expires | Required | Integer | How long (in days) the RampID envelope information will be stored. To be GDPR and CCPA compliant, we strongly advise to set a 15-day TTL ("Time to Live" / expiration time). If you are not planning to obtain RampID envelopes for EU/EEA or U.S. users, we advise you to change the expiration time to 30 days. | `15` |
+| storage.refreshInSeconds | Required | Integer | The amount of time (in seconds) the RampID envelope should be cached in storage before calling LiveRamp again to retrieve a potentially updated value for the RampID envelope. | `1800`
+
+{: .alert.alert-info :}
+**NOTE:** The RampID envelope that is delivered to Prebid will be encrypted by LiveRamp with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to 30 minutes (1800 seconds) to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
 
 #### RampID Examples
 
-1) Publisher passes a placement ID and elects to store the RampID envelope in a cookie. Make sure that the expiration time of the cookie is similar to what is set in ATS.
+1) Publisher passes a Placement ID and elects to store the RampID envelope in a cookie. 
+
+{: .alert.alert-info :}
+**NOTE:** Make sure that the expiration time of the cookie is similar to what is set in your ATS configuration.
 
 
 {% highlight javascript %}
@@ -1738,21 +1749,25 @@ pbjs.setConfig({
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999',             // Set your real RampID placement ID here
+                pid: '999',                // Set your valid Placement ID here
                 // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
             },
             storage: {
                 type: "cookie",
-                name: "idl_env",       // "idl_env" is the required storage name
-                expires: 15            // RampID envelope can last for 15 days
+                name: "idl_env",           // "idl_env" is the required storage name
+                expires: 15                // Cookie can last for 15 days
+                refreshInSeconds: 1800
             }
         }],
-        syncDelay: 3000              // 3 seconds after the first auction
+        syncDelay: 3000                    // 3 seconds after the first auction
     }
 });
 {% endhighlight %}
 
-2) Publisher passes a placement ID and elects to store the RampID envelope in HTML5 localStorage. Make sure that the expiration time for localstorage is similar to what is set in ATS.
+2) Publisher passes a Placement ID and elects to store the RampID envelope in HTML5 localStorage.
+
+{: .alert.alert-info :}
+**NOTE:** Make sure that the expiration time of the HTML5 localStorage is similar to what is set in your ATS configuration.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -1760,16 +1775,17 @@ pbjs.setConfig({
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999',          // Set your real RampID placement ID here
+                pid: '999',                // Set your valid Placement ID here
                 // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
             },
             storage: {
                 type: "html5",
-                name: "idl_env",    // "idl_env" is the required storage name
-                expires: 15            // RampID envelope can last for 15 days
+                name: "idl_env",           // "idl_env" is the required storage name
+                expires: 15                // HTML5 localStorage can last for 15 days
+                refreshInSeconds: 1800
             }
         }],
-        syncDelay: 3000
+        syncDelay: 3000                    // 3 seconds after the first auction
     }
 });
 {% endhighlight %}
