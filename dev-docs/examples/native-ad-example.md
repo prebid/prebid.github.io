@@ -10,7 +10,7 @@ about:
 - For engineering setup instructions, see <a href="/dev-docs/show-native-ads.html">Show Native Ads</a>
 - For ad ops setup instructions, see <a href="/adops/setting-up-prebid-native-in-dfp.html">Setting up Prebid Native in Google Ad Manager (Alpha)</a>
 
-jsfiddle_link: jsfiddle.net/Prebid_Examples/s5L7p3yd/2/embedded/html,result/
+jsfiddle_link: jsfiddle.net/Prebid_Examples/s5L7p3yd/embedded/html,result/
 
 code_height: 3050
 

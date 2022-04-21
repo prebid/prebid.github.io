@@ -9,14 +9,32 @@ sidebarType: 0
 
 # Prebid Website Maintenance Guide
 
-v 1.1  
-Sept 7, 2019
+v 1.2  
+Sept 24, 2021
 
 ***
 
+## Reviewing Pull Requests and Issues
+
+Being a reviewer means you're in weekly rotation where you keep an eye on pull requests (PRs) and issues opened in this repo.
+
+### PR Review Guidelines
+
+1. Make sure no inappropriate changes are made. This covers obvious things like bad language and content, but we also don't allow overt marketing language on the site. Phrases like "we're the best BLAH" or "number one FOOZIT" need to be toned down.
+2. Make sure competitors aren't messing with each other's docs. This can be hard to tell because we don't know which github handles belong to which companies, but in general, if a destructive or suspicious change is being made to a doc, check on the Prebid Slack channel to confirm that the affected company approves the change.
+3. Make sure the change doesn't break formatting. It's not always necessary to preview locally, but for large changes, it's worthwhile verifying visually because markdown can be cranky.
+4. Help the author with basic readability - if you as a reviewer don't understand a sentence, probably others will have trouble too. Push back and ask questions about what they're really trying to say.
+5. We don't generally merge a docs PR until the related code is released. Prebid.js releases happen on Weds or Thurs, and people really like to have their docs PRs merged shortly after the code is released. For Prebid Server, it's ok to merge the docs after the code is merged.
+6. Fix broken or out-of-date things you run across. At least flag it in the team slack channel so we can fix it someday.
+7. Bid Adapter Guidelines
+    1. Check the front-matter: required fields are title and either pbjs or pbs.
+    2. Every adapter needs a parameters table that contains exactly 5 columns in this order: Name, Scope, Description, Example, Type.
+    3. Discourage full-page HTML examples. Better to have just the bidder-specific logic and a pointer to a standard Prebid.js example.
+    4. All headers must be level 3, 4, or 5.
+
 ## Core Technologies
 
-The Prebid website is developed using [Jekyll](https://jekyllrb.com/), a static site generator which uses the following technology to create and style HTML pages.
+The Prebid website is developed using [GitHub pages](https://pages.github.com/) and [Jekyll](https://jekyllrb.com/), a static site generator which uses the following technology to create and style HTML pages. See the [main README file](https://github.com/prebid/prebid.github.io/blob/master/README.md) for instructions on how to set this up.
 
 **Markdown**: The majority of the content is written in Markdown language. Jekyll transform this into raw HTML.
 
@@ -34,11 +52,18 @@ Learn more about [Liquid](https://help.shopify.com/en/themes/liquid/basics)
 
 **CSS**: The site builds on the base Bootstrap template with custom CSS stored in the style.css file.
 
-***
+### Environment
+
+- prebid.org is built with Wordpress. We call it "the marketing site". We generally use a contracting company to make major updates there so it's pretty. But if you know Wordpress, we may give you permissions to do minor updates there.
+- docs.prebid.org is the Github pages site. We call it "the docs site".
+- dev.prebid.org is served through Netlify from the 'dev' branch of the repo. It's often out of date and only used for major projects or for sharing major docs for external review.
+- stage.prebid.org is also served through Netlify, but from the 'staging' branch. You should assume it's out of date.
+
+On the rare occasions where we need to use the 'dev' or 'stage' sites, we just check with each other to make sure it's not already being used for something.
 
 ## Site Config
 
-The _config.yml file (note underscore prefix) sets the base configuration for the site. Refer to [Jekyll](https://jekyllrb.com/docs/configuration/) documentation on which properties can be set in the _congig.yml file.
+The _config.yml file (note underscore prefix) sets the base configuration for the site. Refer to [Jekyll](https://jekyllrb.com/docs/configuration/) documentation on which properties can be set in the _config.yml file.
 
 ***
 
@@ -75,7 +100,7 @@ The includes directory contains HTML files that can be included within files, su
 
 **_bidders**
 
-The bidders directory is not a standard part of Jekyll; it’s a special use directory specifically for the Prebid.org site. The files in this directory are used to construct the table of partners on the partners/partners.html page.
+The bidders directory is not a standard part of Jekyll; it’s a special use directory specifically to construct the table of bidders on dev-docs/bidders.md and dev-docs/pbs-bidders.md
 
 **_sites**
 
@@ -236,18 +261,14 @@ The attributes in the Jekyll 'front matter' drive various behaviors and dynamic 
 | ----- | ------ | ------ | ------ |
 | layout | yes | bidder | Links this file to the bidder.html layout |
 | title | yes | company name | For display |
+| pbjs | sorta | true or false | defines whether this is a Prebid.js bidder |
+| pbs | sorta | true or false | defines whether this is a Prebid Server bidder |
 | description | no | - | Not used |
-| hide | no | - | Not used |
 | biddercode | yes | preferred bidder code | Used as the default ad server targeting suffix and the default download filename |
 | aliasCode | no | download filename | Overrides the filename used to build the PBJS package on the download page |
 | prevBiddercode | no | secondary bidder code | Adds a note about an alternate code that may have been used. |
-| bidder_supports_deals | no | true or false, whether the adapter supports deals | For display. Defaults to 'true'. |
-| s2s_only | no | true or false, whether the adapter is server-to-server only | Adds a note to the display. Defaults to 'false'. |
-| gdpr_supported | no | true or false, whether the adapter supports GDPR | For display. Defaults to 'false'. |
-| coppa_supported | no | true or false, whether the adapter supports COPPA | For display. Defaults to 'false'. |
-| media_types | no | comma-separated list of: banner, video, native | For display. |
-| userIds | no | comma-separated list of supported user id modules | For display. |
-| prebid_member | no | true or false, whether this company is a prebid.org member | For display. |
+| pbjs_version_notes | no | string | Displays on the download page |
+| ANYTHING ELSE | no | string | There are many pieces of metadata (e.g. GDPR support, user IDs supported) that bid adapters can disclose. They're displayed on the bidder's parameter page. |
 
 The bidderCode, aliasCode, and prevBiddercode parameters bear some description.
 Some adapters have a longer bidderCode and a shorter bidderCode -- their adapter supports both (with the `alias` feature) but

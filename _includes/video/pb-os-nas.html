@@ -2,17 +2,17 @@
 <html lang="en" class="html--no-js">
 
 <head>
-{% include head--common.html %}    
+{% include head--common.html %}
     <!--production version of prebid.js-->
-    <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
-    <script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
-    
-    <!--pbjs and player code -->	
-    
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+
+    <!--pbjs and player code -->
+
 	<script>
 	    var pbjs = pbjs || {};
 	    pbjs.que = pbjs.que || [];
-	
+
 	    var adUnits = [{
 	        code: 'video1',
 	        mediaTypes: {
@@ -45,7 +45,7 @@
         });
 
     </script>
-    
+
 </head>
 
 <body>
