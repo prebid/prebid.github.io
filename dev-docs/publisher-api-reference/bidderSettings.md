@@ -257,6 +257,7 @@ This array will work in conjunction with `allowAlternateBidderCodes`. In this ar
 pbjs.bidderSettings = {
     standard: {
          allowAlternateBidderCodes: false,
+         bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .95; },
          [...]
     },
     pubmatic: {
@@ -267,8 +268,17 @@ pbjs.bidderSettings = {
     appnexus: {
         allowAlternateBidderCodes: true,
         allowedAlternateBidderCodes: ["*"],
+        bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .90; },
+        [...]
+    },
+    groupm:{
+        bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .80; },
         [...]
     }
 }
 {% endhighlight %}
+
+In the above example, `groupm` bid will have a bid adjustment of 80% since the `bidCpmAdjustment` function says so.<br />
+If `appnexus` bids with another bidder code, say `appnexus2`. This bidder code will adjust the bid cpm to 95% because it will apply the `bidCpmAdjustment` function from `standard` setting, since the `bidCpmAdjustment` is missing for given bidder code I.e `appnexus2`
+
 <hr class="full-rule" />
