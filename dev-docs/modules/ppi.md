@@ -27,7 +27,9 @@ Of course, pages can still be built with the original Prebid.js javascript funct
 
 Notes:
 - using PPI means you should not use the PBJS 'Express' module, as PPI covers this functionality. See the [AUPAutoSlots option](/dev-docs/modules/ppi.html#aupautoslots-sub-module).
-- PPI can be used to support all formats: banner, video, outstream-video, and native.
+- All other modules and analytics adapters may be used in conjunction with PPI, as page integration is independent of other functionality.
+- Yes, PPI can be used to support all formats: banner, video, outstream-video, and native.
+- No, there aren't any changes to the line items used by Prebid when you integrate via PPI.
 
 ## Definitions
 
@@ -125,6 +127,16 @@ For those who prefer to see examples rather than reading a crazy-long document, 
 - [PPI Callback Example](/examples/ppi/ppi-callback.html)
 - [PPI Custom Mapping Example](/examples/ppi/ppi-custommapping.html)
 - [PPI No Adserver Example](/examples/ppi/ppi-noadserver.html)
+
+### Quick Start Outline
+
+The high-level process of integrating Prebid.js into your pages is really the same as for the original way. PPI just provides a more powerful toolset for handling advanced scenarios.
+
+1. Create your test site with the PPI calls outlined here, or with a mix of PPI and the [original Prebid.js integration method.](/dev-docs/getting-started.html
+2. PPI is intended to use the same line items as the normal setup, but if you haven't done so already, create your line items as described in the [AdOps guide](/adops/before-you-start.html)
+3. Test
+4. Release
+5. Keep up with Prebid.js by updating quarterly!
 
 ## PPI Transactions
 
@@ -856,6 +868,10 @@ pbjs.ppi.requestBids([
 }]);
 ```
 
+## Support
+
+If you're a [Prebid.org member](https://prebid.org/membership/), you can post a message into the #prebid-js slack channel of the Prebid workspace. Otherwise, see the [support page](/support/index.html).
+
 ## Appendix - Pseudocode
 
 It may be useful to publisher development staff to know exactly
@@ -940,5 +956,5 @@ if dest is 'callback'
 ```
 
 ## Related Reading
-- Compare PPI to the [O.G. way of integrating Prebid.js](/dev-docs/getting-started.html)
+- Compare PPI to the [OG way of integrating Prebid.js](/dev-docs/getting-started.html)
 - Prebid.js [Publisher API](/dev-docs/publisher-api-reference.html)
