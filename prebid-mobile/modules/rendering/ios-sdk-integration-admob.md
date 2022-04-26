@@ -174,31 +174,20 @@ admobAdUnit?.fetchDemand(completion: { [weak self]result in
 })
 ```
 
-The way of displaying **Video Interstitial Ad** is almost the same but you have to customize the ad format.
+In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
 
 ``` swift
-// 1. Create GADRequest
-gadRequest = GADRequest()
+// Make bid request for video ad                                     
+adUnit?.adFormats = [.video]
 
-// 2. Create AdMobMediationInterstitialUtils
-mediationDelegate = AdMobMediationInterstitialUtils(gadRequest: self.gadRequest)
+// Make bid request for both video amd disply ads                                     
+adUnit?.adFormats = [.video, .display]
 
-// 3. Create MediationInterstitialAdUnit
-admobAdUnit = MediationInterstitialAdUnit(configId: configID,
-                                          mediationDelegate: mediationDelegate!)
-                                          
-                                                   admobAdUnit.adFormat = .video
+// Make bid request for disply ad (default behaviour)                                     
+adUnit?.adFormats = [.display]
 
-
-// 4. Make a bid request
-admobAdUnit?.fetchDemand(completion: { [weak self]result in
-    
-    // The same as for display interstitial 
-    // ...
-    
-    }
-})
 ```
+
 
 #### Step 1: Create GADRequest 
 

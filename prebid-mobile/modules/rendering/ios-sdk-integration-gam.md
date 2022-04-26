@@ -146,33 +146,20 @@ if interstitial.isReady {
 
 ```
 
-The way of displaying **Video Interstitial Ad** is almost the same with two differences:
-
-- Need to customize the ad format
-- No need to set up `minSizePercentage`
+In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
 
 ``` swift
- // 1. Create Event Handler
-let eventHandler = GAMInterstitialEventHandler(adUnitID: GAM_AD_UNIT_ID)
-    
-// 2. Create Interstitial Ad Unit
-interstitial = InterstitialRenderingAdUnit(configID: CONFIG_ID,
-                                  eventHandler: eventHandler)
-    
-interstitial.adFormat = .video
-interstitial.delegate = self
-    
-// 3. Load an Ad
-interstitial.loadAd()
+// Make bid request for video ad                                     
+adUnit?.adFormats = [.video]
 
-/// .......
+// Make bid request for both video amd disply ads                                     
+adUnit?.adFormats = [.video, .display]
 
-// 4. Show Ad
-if interstitial.isReady {
-    interstitial.show(from: self)
-}
+// Make bid request for disply ad (default behaviour)                                     
+adUnit?.adFormats = [.display]
 
 ```
+
 
 #### Step 1: Create Event Handler
 

@@ -116,36 +116,18 @@ adUnit?.fetchDemand { [weak self] result in
 })
 ```
 
-The way of displaying **Video Interstitial Ad** is almost the same but you have to customize the ad format.
+In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
 
 ``` swift
-// 1. Create MAInterstitialAd
-interstitial = MAInterstitialAd(adUnitIdentifier: maxAdUnitId)
-interstitial.delegate = self
-
-// 2. Create MAXMediationInterstitialUtils
-mediationDelegate = MAXMediationInterstitialUtils(interstitialAd: interstitial!)
-
-// 3. Create MediationInterstitialAdUnit
-adUnit = MediationInterstitialAdUnit(configId: prebidConfigId,
-                                             minSizePercentage: CGSize(width: 30, height: 30),
-                                             mediationDelegate: mediationDelegate!)
-        
-// Set the ad format                                     
+// Make bid request for video ad                                     
 adUnit?.adFormats = [.video]
 
-// 4. Make a bid request
-adUnit?.fetchDemand { [weak self] result in
-    guard let self = self else { return }
-            
-    guard result == .prebidDemandFetchSuccess else {
-        self.fetchDemandFailedButton.isEnabled = true
-        return
-    }
-    
-    // 5. Make an ad request to MAX
-    self.interstitial?.load()
-})
+// Make bid request for both video amd disply ads                                     
+adUnit?.adFormats = [.video, .display]
+
+// Make bid request for disply ad (default behaviour)                                     
+adUnit?.adFormats = [.display]
+
 ```
 
 #### Step 1: Create MAInterstitialAd 
