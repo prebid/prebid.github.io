@@ -17,8 +17,8 @@ The TrafficGate Bidding adapter requires setup before beginning. Please contact 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description  |  Example  | Type     |
-|---------------|----------|--------------|-----------------|----------|
-| `placementId` | required | Placement ID | `'12345'`       | `string` |
-|---------------|----------|--------------|-----------------|----------|
-| `host`        | required | Host         | `'example.com'` | `string` |
+| Name          | Scope    | Description  | Example     | Type     |
+|---------------|----------|--------------|-------------|----------|
+| `placementId` | required | Placement ID | `'12345'`   | `string` |
+|---------------|----------|--------------|-------------|----------|
+| `host`        | required | Host         | `'example'` | `string` |
