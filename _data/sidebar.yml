@@ -684,6 +684,14 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+    
+- sbSecId: 2
+  title: Customization Controls
+  link: /prebid-mobile/modules/rendering/ios-sdk-customization-controls.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 2
   title: "Android"
