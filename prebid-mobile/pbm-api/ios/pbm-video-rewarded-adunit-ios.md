@@ -17,7 +17,7 @@ Create a new Video Rewarded Ad Unit associated with a Prebid Server configuratio
 
 **Parameters**
 
-`configId(String)`: Prebid Server configuration ID.
+`configId(String)`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 
 
 

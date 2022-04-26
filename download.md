@@ -249,6 +249,9 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="admixerIdSystem" class="bidder-check-box"> Admixer ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="adqueryIdSystem" class="bidder-check-box"> adQuery QiD</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="amxIdSystem" class="bidder-check-box"> AMX RTB ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
@@ -273,7 +276,10 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="flocIdSystem" class="bidder-check-box"> FLoC Cohort ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="haloIdSystem" class="bidder-check-box"> Halo ID</label>
+  <label><input type="checkbox" moduleCode="ftrackIdSystem" class="bidder-check-box"> FTrack ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="hadronIdSystem" class="bidder-check-box"> Hadron ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> ID5 ID</label>
@@ -285,7 +291,13 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="idxIdSystem" class="bidder-check-box"> IDx</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="imuIdSystem" class="bidder-check-box"> IM-UID by Intimate Merger</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="intentIqIdSystem" class="bidder-check-box"> IntentIQ ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="justIdSystem" class="bidder-check-box"> JustId</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="kinessoIdSystem" class="bidder-check-box"> Kinesso ID</label>
@@ -309,7 +321,7 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="nextrollIdSystem" class="bidder-check-box"> NextRoll ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="novatiqIdSystem" class="bidder-check-box"> Novatiq Snowflake ID</label>
+  <label><input type="checkbox" moduleCode="novatiqIdSystem" class="bidder-check-box"> Novatiq Hyper ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> Parrable ID</label>
@@ -320,6 +332,9 @@ These modules may require accounts with a service provider.<br/>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> SharedID (formerly known as PubCommon)</label>
   </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="trustpidSystem" class="bidder-check-box"> Trustpid</label>
+  </div></div>  
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> PubProvided ID</label>
   </div></div>  

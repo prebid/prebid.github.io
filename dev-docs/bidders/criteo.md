@@ -12,6 +12,7 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 prebid_member: true
 floors_supported: false
 fpd_supported: true
+schain_supported: true
 gvl_id: 91
 ---
 ### Notes

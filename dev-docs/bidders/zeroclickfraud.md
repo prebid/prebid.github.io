@@ -12,4 +12,4 @@ biddercode: zeroclickfraud
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
 | sourceId | required | Website Source Id | 111 | integer |
-| host | requird | Network Host to request from | 'host1' | string |
+| host | required | Network Host to request from | 'host1' | string |

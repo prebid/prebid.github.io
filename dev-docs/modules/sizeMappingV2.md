@@ -42,6 +42,8 @@ It's meant for publishers that have complex site designs. You should use this mo
 
 If, on the other hand, the AdUnits, bidders, and mediaTypes all change behavior together at the same viewport width,
 then the built-in [`sizeConfig`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads) feature will work.
+
+Note that the Prebid Server bid adapter does not currently support the scenario where an adUnit has multiple mediaTypes, with different bidders set to different relevantMediaTypes for the same screen size.
 {% endcapture %}
 {% include alerts/alert_tip.html content=tip-choosing %}
 
