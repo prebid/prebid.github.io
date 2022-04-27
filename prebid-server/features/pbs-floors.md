@@ -12,6 +12,9 @@ title: Prebid Server | Features | Price Floors
 
 ## Overview
 
+{: .alert.alert-danger :}
+This feature is in beta. Please post [questions and issues](https://github.com/prebid/prebid-server-java/issues).
+
 {: .alert.alert-warning :}
 The Floors feature is currently only available in PBS-Java.
 
