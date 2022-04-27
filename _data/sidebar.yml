@@ -733,10 +733,26 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
+  
+- sbSecId: 2
+  title: Integration with MAX
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-max.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
 
 - sbSecId: 2
   title: Targeting
   link: /prebid-mobile/modules/rendering/android-sdk-parameters.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Customization Controls
+  link: /prebid-mobile/modules/rendering/android-sdk-customization-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

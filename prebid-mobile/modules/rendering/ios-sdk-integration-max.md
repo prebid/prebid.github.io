@@ -7,7 +7,7 @@ sidebarType: 2
 
 # AppLovin MAX Integration
 
-The integration of Prebid Mobile with AppLovin MAX assumes that publisher has an AdMob account and has already integrated the AppLovin MAX SDK into the app.
+The integration of Prebid Mobile with AppLovin MAX assumes that publisher has MAX account and has already integrated the AppLovin MAX SDK into the app.
 
 See the [AppLovin MAX Documentation](https://dash.applovin.com/documentation/mediation/ios/getting-started/integration) for the MAX integration details.
 
@@ -17,11 +17,11 @@ See the [AppLovin MAX Documentation](https://dash.applovin.com/documentation/med
 
 **Steps 1-2** Prebid SDK makes a bid request. Prebid server runs an auction and returns the winning bid.
 
-**Step 3** MAX SDK makes an ad request. MAX returns the waterfal with respective placements.
+**Step 3** MAX SDK makes an ad request. MAX returns the waterfall with respective placements.
 
 **Step 4** For each prebid's placement, the MAX SDK sequentially instantiates an adapter. 
 
-**Step 5** The adapter verifies the targeting keywords of the winning bid and the custom properties of the given placement. If they match the adapter will render the winning bid. Otherwise, adpater will fail with "no ad" immediately and the next placement will instantiate the same adapter but for another set of server parpams. 
+**Step 5** The adapter verifies the targeting keywords of the winning bid and the custom properties of the given placement. If they match the adapter will render the winning bid. Otherwise, adpater will fail with "no ad" immediately and the next placement will instantiate the same adapter but for another custom properties. 
   
 Prebid Mobile supports these ad formats:
 
@@ -59,23 +59,23 @@ adUnit = MediationBannerAdUnit(configID: prebidConfigId,
 // 4. Make a bid request
 adUnit?.fetchDemand { [weak self] result in
 
-    // 6. Make an ad request to MAX
+    // 5. Make an ad request to MAX
     self?.adBannerView.loadAd()
 }
 ```
 
 #### Step 1: Create MAAdView
 
-This step is totally the same as for pure [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/banners). You don't have to make any modifications here.
+This step is totally the same as for pure [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/banners#loading-a-banner). You don't have to make any modifications here.
 
 
 #### Step 2: Create MAXMediationBannerUtils
 
-The `MAXMediationBannerUtils` is a helper class, wich performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MAXMediationBannerUtils ` is a helper class, wich performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 
-The `MediationBannerAdUnit` is part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.  
+The `MediationBannerAdUnit` is a part of Prebid mediation API. This class is responsible for making bid request and providing the winning bid and targeting keywords to mediating SDKs.  
 
 #### Step 4: Make bid request
 
@@ -111,7 +111,7 @@ adUnit?.fetchDemand { [weak self] result in
         return
     }
     
-    // 6. Make an ad request to MAX
+    // 5. Make an ad request to MAX
     self.interstitial?.load()
 })
 ```
@@ -135,13 +135,13 @@ adUnit?.adFormats = [.display]
 This step is totally the same as for pure [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/interstitials). You don't have to make any modifications here.
 
 
-#### Step 2: Create MAXMediationBannerUtils
+#### Step 2: Create MAXMediationInterstitialUtils
 
-The `MAXMediationBannerUtils` is a helper class, wich performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MAXMediationInterstitialUtils` is a helper class, wich performs certain utilty work for the `MediationInterstitialAdUnit `, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationInterstitialAdUnit
 
-The `MediationInterstitialAdUnit` is part of the prebid mediation API. This class is responsible for making a bid request and providing a winning bid to the mediating SDKs.  
+The `MediationInterstitialAdUnit` is a part of the prebid mediation API. This class is responsible for making a bid request and providing a winning bid to the mediating SDKs.  
 
 #### Step 4: Make bid request
 
@@ -151,7 +151,7 @@ The `fetchDemand` method makes a bid request to prebid server and provides a res
 
 Now you should make a regular MAX's ad request. Everything else will be handled by GMA SDK and prebid adapters.
 
-#### Steps 7: Display an ad
+#### Steps 6: Display an ad
 
 Once you receive the ad it will be ready for display. Folow the [MAX instructions](https://dash.applovin.com/documentation/mediation/ios/getting-started/interstitials#showing-an-interstitial-ad) about how to do it. 
 
@@ -192,9 +192,9 @@ This step is totally the same as for pure [MAX integration](https://dash.applovi
 
 The `MAXMediationRewardedUtils` is a helper class, wich performs certain utilty work for the `MediationRewardedAdUnit`, like passing the targeting keywords to the adapters.
 
-#### Step 3: Create MediationInterstitialAdUnit
+#### Step 3: Create MediationRewardedAdUnit
 
-The `MediationRewardedAdUnit` is part of the prebid mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters.  
+The `MediationRewardedAdUnit` is a part of the prebid mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters.  
 
 #### Step 4: Make bid request
 
@@ -252,7 +252,7 @@ The `MAXMediationNativeUtils` is a helper class, wich performs certain utilty wo
 
 #### Step 3: Create and configure MediationNativeAdUnit
 
-The `MediationNativeAdUnit` is part of the prebid mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters. Fot the better targetting you should provide additional properties like `conteaxtType` and `placemantType`. 
+The `MediationNativeAdUnit` is a part of the prebid mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters. Fot the better targetting you should provide additional properties like `conteaxtType` and `placemantType`. 
  
 #### Step 4: Set up assets for bid request
 
@@ -295,6 +295,6 @@ let eventTrackers = [
 
 The `fetchDemand` method makes a bid request to prebid server and provides a result in a completion handler.
     
-#### Step 7: Load AdMob Native ad
+#### Step 7: Load Native ad
     
 Now just load a native ad from MAX according to the [MAX instructions](https://dash.applovin.com/documentation/mediation/ios/getting-started/native-manual#load-the-native-ad). 
