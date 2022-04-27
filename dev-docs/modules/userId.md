@@ -83,7 +83,7 @@ The table below has the options that are common across ID systems. See the secti
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`, `"qid"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"hadronId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"justId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be: `"33acrossId"`, "admixerId"`, `"qid"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"hadronId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"justId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -148,6 +148,53 @@ The Rubicon bid adapter would then receive
 ```
 
 ## User ID Sub-Modules
+
+### 33Across User ID Module
+
+The 33Across User ID Module is a way for publishers to monetize their cookieless inventory across multiple supply-side platforms via Prebid.JS. The module provides publishers with addressability for their open marketplace cookieless inventory and access to cookieless demand. The 33Across User ID Module enables publishers to match cookieless browser users to demand platforms without any reliance on traditional cookie matching methodologies. 33Across User ID Module utilizes Lexicon technology to connect Publishers to Demand partners via proprietary technologies in a probabilistic and privacy-safe manner.
+
+#### 33Across User ID Module Configuration
+
+Please make sure to add the 33across User ID module to your Prebid.js package with:
+
+```shell
+gulp build --modules=33acrossIdSystem,userId
+```
+
+The following configuration parameters are available:
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module | "33acrossId" |
+| params ||| Details for the module initialization ||
+| params.pid | Required | String | Partner ID (PID) | Please reach out to [PrebidUIM@33across.com](mailto:PrebidUIM@33across.com) and request your PID |
+| storage |||||
+| storage.name | Required | String | The name of the cookie or html5 local storage key | "33acrossId" (recommended) |
+| storage.type | Required | String | This is where the results of the 33across user ID will be stored | "html5" (recommended) or "cookie" |
+| storage.expires | Strongly Recommended | Number | How long (in days) the user ID information will be stored | 90 (recommended) |
+| storage.refreshInSeconds | Strongly Recommended | Number | How many seconds until the ID is refreshed | 28800 (recommended) |
+
+#### 33Across User ID Module Example
+```
+pbjs.setConfig({
+  userSync: {
+    userIds: [{
+      name: "33acrossId",
+    params: {
+        pid: "0010b00002GYU4eBAH" // Example ID
+      },
+      storage: {
+        name: "33acrossId",
+        type: "html5",
+        expires: 90,
+        refreshInSeconds: 8 * 3600
+      }
+    }]
+  }
+});
+```
+
+Please contact [PrebidUIM@33across.com](mailto:PrebidUIM@33across.com) to get your PID authorization process started.
 
 ### AkamaiDAPId
 
