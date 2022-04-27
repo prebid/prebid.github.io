@@ -20,7 +20,7 @@ The following properties allow to customize the rendering of Video Interstitial 
 
 ### Max Video Duration
 
-The `videoParameters.maxDuration` indicates the maximum available playback time in seconds.
+The `maxVideoDuration` indicates the maximum available playback time in seconds.
 If the value in the **Duration** tag is bigger than the given value SDK will fail to load ad, providing a respective error message.
 
 ### Application Muted
@@ -34,7 +34,7 @@ The `closeButtonArea` property indicates the area which the close button should 
 
 ### Close Button Possition
 
-The `closeButtonPosition` property indicates the position of the close button on the screen. The possible values are **TopLeft** and **TopRight**. The default value is **TopRight**.
+The `closeButtonPosition` property indicates the position of the close button on the screen. The possible values are **Position.BOTTOM_LEFT** and **Position.TOP_RIGHT**. The default value is **Position.TOP_RIGHT**.
 
 ### Skip Button Areaa
 
@@ -42,7 +42,7 @@ The `skipButtonArea` property indicates the area which the skip button should oc
 
 ### Skip Button Possition
 
-The `skipButtonPossition` property indicates the position of the close button on the screen. The possible values are **TopLeft** and **TopRight**. The default value is **TopLeft**.
+The `skipButtonPossition` property indicates the position of the close button on the screen. The possible values are **Position.BOTTOM_LEFT** and **Position.TOP_RIGHT**. The default value is **Position.BOTTOM_LEFT**.
 
 ### Skip Delay
 
@@ -50,15 +50,19 @@ The `skipDelay` property indicates the number of seconds which should be passed 
 
 The code sample: 
 
-``` swift
-interstitialController = InterstitialRenderingAdUnit(configID: prebidConfigId,
-                                                       minSizePercentage: CGSize(width: 30, height: 30))
-interstitialController?.delegate = self
-interstitialController?.videoParameters.maxDuration = SingleContainerInt(integerLiteral: 30)
-interstitialController?.closeButtonArea = 0.1
-interstitialController?.skipDelay = 5
-interstitialController?.skipButtonArea = 0.1
-interstitialController?.skipButtonPosition = .topRight
-interstitialController?.closeButtonPosition = .topRight
+``` kotlin
+adUnit = MediationInterstitialAdUnit(
+    activity,
+    configId,
+    EnumSet.of(AdUnitFormat.DISPLAY),
+    mediationUtils
+)
+
+adUnit?.setMaxVideoDuration(30)
+adUnit?.setCloseButtonArea(0.1)
+adUnit?.setSkipDelay(5)
+adUnit?.setSkipButtonArea(0.1)
+adUnit?.setSkipButtonPosition(Position.TOP_RIGHT)
+adUnit?.setCloseButtonPosition(Position.BOTTOM_LEFT)
 ```
 
