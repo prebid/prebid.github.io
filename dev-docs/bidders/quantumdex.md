@@ -11,6 +11,8 @@ schain_supported: true
 usp_supported: true
 userIds: all
 floors_supported: true
+pbs: true
+pbs_app_supported: true
 ---
 
 # Description

@@ -301,7 +301,7 @@ Schema 1 restricts floors providers or publishers to applying only one data grou
 | data.modelTimestamp | integer | Epoch timestamp associated with modelVersion. Can be used to track model creation of floor file for post auction analysis.| - |
 | data.schema | object |allows for flexible definition of how floor data is formatted. | - |
 | data.schema.delimiter | string | Character separating the floor keys. | '\|' |
-| data.schema.fields | array of strings | Supported values are: gptSlot, adUnitCode, mediaType, size | - |
+| data.schema.fields | array of strings | Supported values are: gptSlot, adUnitCode, mediaType, size, domain | - |
 | data.values | key / values | A series of attributes representing a hash of floor data in a format defined by the schema object. | - |
 | data.values."rule key" | string | Delimited field of attribute values that define a floor. | - |
 | data.values."rule floor value" | float | The floor value for this key. | - |
@@ -354,14 +354,14 @@ While some attributes are common in both schema versions, for completeness, all 
 | data.modelGroups[].skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will have access to model version (if defined) when skipped is true to signal the module is in floors mode. | 0 |
 | data.modelGroups[].modelVersion | string | Used by floor providers to train on model version performance. The expectation is a floor provider’s analytics adapter will pass the model verson back for algorithm training. | - |
 | data.modelGroups[].modelWeight | integer | Used by the module to determine when to apply the specific model. All weights will be normalized and applied at runtime. Futher clarification will be provided in examples below. | - |
-| data.schema | object | Allows for flexible definition of how floor data is formatted. | - |
+| data.modelGroups[].schema | object | Allows for flexible definition of how floor data is formatted. | - |
 | data.modelGroups[].schema.delimiter | string | Character separating the floor keys. | '\|' |
 | data.modelGroups[].schema.fields | array of strings | Supported pre-defined values are: gptSlot, adUnitCode, mediaType, size | - |
 | data.modelGroups[].values | key / values | A series of attributes representing a hash of floor data in a format defined by the schema object. | - |
 | data.modelGroups[].values."rule key" | string | Delimited field of attribute values that define a floor. | - |
 | data.modelGroups[].values."rule floor value" | float | The floor value for this key. | - |
 | data.modelGroups[].default | float | Floor used if no matching rules are found. | - |
-| additionalSchemaFields | object | Object contain the lookup function to map custom schema.fields | - |
+| additionalSchemaFields | object | Object contain the lookup function to map custom schema.fields. Not supported by Prebid Server. | - |
 | additionalSchemaFields."custom key" | string | custom key name | - |
 | additionalSchemaFields."key map function" | function | Function used to lookup the value for that particular custom key | - |
 
@@ -601,7 +601,6 @@ Priority order for three column rule sets:
  \_ \| \_ \| \*  
  \_ \| \* \| \_  
  \* \| \_ \| \_  
- \* \| \_ \| \*  
  \_ \| \* \| \*  
  \* \| \_ \| \*  
  \* \| \* \| \_  
@@ -1269,7 +1268,8 @@ If the currency function is unable to derive the correct cpm in any of the scena
 
 {: .table  }
 | Partner | Contact | About |
-| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | [globalsupport@magnite.com](mailto:globalsupport@magnite.com) | Magnite data-science applied to dynamic floors 
-| pubx.ai | [hello@pubx.ai](mailto:hello@pubx.ai) | AI-powered dynamic floor optimization |
+| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | [globalsupport@magnite.com](mailto:globalsupport@magnite.com) | Magnite data-science applied to dynamic floors |
+| <img src="/assets/images/partners/leader/openx.png" style="height:50px;"> | Reach out to OpenX at [apollo@openx.com](mailto:apollo@openx.com) | Dynamic floor optimization and more |
+| <img src="/assets/images/partners/leader/pubmatic.png" style="height:50px;"> | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
 | Assertive Yield | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
-| OpenX | Reach out to OpenX at [apollo@openx.com] | Dynamic floor optimization and more |
+| pubx.ai | [hello@pubx.ai](mailto:hello@pubx.ai) | AI-powered dynamic floor optimization |

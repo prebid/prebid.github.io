@@ -83,6 +83,7 @@ The structure of your module source code inside the modules directory must have 
 +- src/
   +- main/
     +- java/ <- source code
+      +- org.prebid.server.* <- The package path needs to include "org.prebid.server"
     +- resources/ <- required resources
   +- test/
     +- java/ <- tests
@@ -141,6 +142,8 @@ Future.succeededFuture(
     .build()
 );
 ```
+
+Please note that the `InvocationStatus` is only considered when the status is set to `InvocationStatus.success`. That means the `payloadUpdate` is only applied with `InvocationStatus.success` **and** `InvocationAction.update`
 
 2) To **reject** the request in the `RawAuctionRequestHook` you would return:
 ```
