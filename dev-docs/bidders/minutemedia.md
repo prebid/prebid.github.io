@@ -1,10 +1,11 @@
 ---
 layout: bidder
 title: MinuteMedia
-description: Prebid Bidder Adaptor
+description: Prebid MinuteMedia Bidder Adapter
 pbjs: true
 biddercode: minutemedia
 media_types: banner, video
+multiformat_supported: will-bid-on-any
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
