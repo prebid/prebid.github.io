@@ -172,29 +172,14 @@ interstitialAdUnit?.show()
 
 ```
 
-The way of displaying **Video Interstitial Ad** is almost the same with two differences:
+In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
-- Need to customize the ad unit format
-- No need to set up `minSizePercentage`
-
-``` kotlin
-// 1. Create interstitial custom event handler for GAM ad server.
-val eventHandler = GamInterstitialEventHandler(requireContext(), gamAdUnit)
-
-// 2. Create interstitialAdUnit instance and provide GAM event handler
-interstitialAdUnit = InterstitialAdUnit(requireContext(), configId, AdUnitFormat.VIDEO, eventHandler)
-
-// (Optional) set an event listener
-interstitialAdUnit?.setInterstitialAdUnitListener(this)
-
-// 3. Execute ad load
-interstitialAdUnit?.loadAd()
-
-//....
-
-// 4. After ad is loaded you can execute `show` to trigger ad display
-interstitialAdUnit?.show()
-
+```
+interstitialAdUnit = InterstitialAdUnit(
+                        requireContext(), 
+                        configId, 
+                        EnumSet.of(AdUnitFormat.DISPLAY, AdUnitFormat.VIDEO), 
+                        eventHandler)
 ```
 
 

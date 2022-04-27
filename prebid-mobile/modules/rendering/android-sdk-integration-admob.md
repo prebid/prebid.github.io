@@ -190,15 +190,15 @@ The `AdMobInterstitialMediationUtils` is a helper class, wich performs certain u
 
 The `MediationInterstitialAdUnit` is part of the prebid mediation API. This class is responsible for making a bid request and providing the winning bid and targeting keywords to mediating SDKs.  
 
-If you need to make a bid request for `video` ad - provide the respective ad format `AdUnitFormat.VIDEO` to the constructor of `MediationInterstitialAdUnit`:
+In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ```
 adUnit = MediationInterstitialAdUnit(
-    activity,
-    configId,
-    AdUnitFormat.VIDEO,
-    mediationUtils
-)
+            activity,
+            configId,
+            EnumSet.of(AdUnitFormat.DISPLAY, AdUnitFormat.VIDEO),
+            mediationUtils
+        )
 ```
 
 #### Step 4: Make a bid request

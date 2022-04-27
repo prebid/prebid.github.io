@@ -109,25 +109,14 @@ interstitialAdUnit?.loadAd()
 interstitialAdUnit?.show()
 ```
 
-Displaying a **Video Interstitial Ad** is almost the same process as displaying an Interstitial Ad with two differences:
+In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
-- You need to customize the ad unit format.
-- There is no need to set up `minSizePercentage`.
-
-``` kotlin
-// 1. Create an Interstitial Ad Unit
-interstitialAdUnit = InterstitialAdUnit(requireContext(), configId, AdUnitFormat.VIDEO)
-interstitialAdUnit?.setInterstitialAdUnitListener(this)
-
-// 2. Load Ad
-interstitialAdUnit?.loadAd()
-
-// .....
-
-// 3. Show the ad
-interstitialAdUnit?.show()
 ```
-
+interstitialAdUnit = InterstitialAdUnit(
+                        requireContext(), 
+                        configId, 
+                        EnumSet.of(AdUnitFormat.DISPLAY, AdUnitFormat.VIDEO))
+```
 
 #### Step 1: Create an Ad Unit
 

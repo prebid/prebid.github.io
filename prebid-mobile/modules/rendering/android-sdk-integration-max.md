@@ -149,7 +149,7 @@ adUnit?.fetchDemand {
 
 ```
 
-In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
+In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ```
 adUnit = MediationInterstitialAdUnit(
