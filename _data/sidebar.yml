@@ -612,7 +612,7 @@
   subgroup: 0
 
 - sbSecId: 2
-  title: Rendering API (Open Beta)
+  title: Rendering API
   link:
   isHeader: 1
   headerId: rendering
