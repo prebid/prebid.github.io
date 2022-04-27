@@ -8,6 +8,15 @@ biddercode: trafficgate
 media_types: banner, video, native, audio
 gdpr_supported: true
 pbs_app_supported: true
+multiformat_supported: will-bid-on-any
+usp_supported: true
+schain_supported: false
+coppa_supported: true
+dchain_supported: false
+deals_supported: true
+floors_supported: false
+fpd_supported: false
+prebid_member: true
 ---
 
 ### Note:
