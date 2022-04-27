@@ -3,7 +3,7 @@ layout: bidder
 title: TrafficGate
 description: Prebid TrafficGate Bidder Adaptor
 pbs: true
-pbjs: false
+pbjs: true
 biddercode: trafficgate
 media_types: banner, video, native, audio
 gdpr_supported: true
