@@ -281,6 +281,10 @@ The examples above covered several different scenarios where floors can be appli
 
 Schema 1 restricts floors providers or publishers to applying only one data group. To test more than one floor group, floor providers or publishers are required to reset the data set with new rules after each request bids.
 
+{: .alert.alert-info :}
+Note: if you're a dynamic floor provider service, your response must be
+a subset that will be merged under the 'data' object.
+
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
 |---+---+---+---+---|
@@ -330,6 +334,10 @@ The following principles apply to Schema 2:
 - If the data.modelGroups object and the data.values (schema 1 field) are set, the data.floorsSchemaVersion will dictate what schema version is applied
 
 While some attributes are common in both schema versions, for completeness, all valid schema 2 attributes are provided:
+
+{: .alert.alert-info :}
+Note: if you're a dynamic floor provider service, your response must be
+a subset that will be merged under the 'data' object.
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
@@ -844,11 +852,9 @@ Enforced floor: 10.01
 
 ### Floor Data Provider Interface
 
-Floor data providers can supply data to publishers either within the setConfig as part of a Prebid.js Package if the provider is also a host provider of the Prebid library, or via a real-time Dynamic fetch, prior to the auction.
+Floor data can be supplied to publishers either within the setConfig as part of a Prebid.js Package if the provider is also a host provider of the Prebid library, or via a real-time Dynamic fetch, prior to the auction.
 
 Data providers can optionally build Analytics Adapters to ingest bid data within Prebid for algorithm learning and review floor performance. Please refer to the Analytics Interface section for more details.
-
-
 
 {% capture warning_note %}
 As a floor provider, your goal is to provide effective floors, with minimal page impact. If you are performing a Dynamic fetch to retrieve data prior to auctions, the following recommendations are advised to reduce page performance issues:  
@@ -861,8 +867,7 @@ As a floor provider, your goal is to provide effective floors, with minimal page
 {% endcapture %}
 {% include /alerts/alert_important.html content=warning_note %}
 
-For Dynamic fetches, the Price Floors Module will perform a GET request to the supplied endpoint, that must return valid JSON, formatted like the data object in the “setConfig” Package configuration.
-
+For Dynamic fetches, the Price Floors Module will perform a GET request to the supplied endpoint, that must return valid JSON, which will be merged into the data object in the “setConfig” Package configuration. In otherwords, the schema used for dynamic fetches is a subset of the full schema.
 
 On rule creation, we recommend supplying various rules with catch-all \(“\*”\) values with associated floors. This is to accommodate bid adapters who cannot retrieve floors on a per size basis, as well as using various permutations of rules with “\*” values to match auctions that do not have an exact match on a specific rule. Please refer to the Rule Selection Process when determining floors as attribute order and number of “\*”s may have an impact on which rule is selected.
 
@@ -884,9 +889,9 @@ pbjs.setConfig({
 
 {% endhighlight %}
 
-#### Example Response 1
+#### Example Dynamic Response 1 - Schema 1
 
-floor determined by AdUnit code and Media Type:
+In this example, the floor is determined by AdUnit code and Media Type. Note that the response does not contain the 'data' object because everything in the response is merged there.
 
 {% highlight js %}
 
@@ -910,9 +915,9 @@ floor determined by AdUnit code and Media Type:
 
 {% endhighlight %}
 
-#### Example Response 2
+#### Example Response 2 - Schema 1
 
-floor determined by Domain, GPT Slot, Media Type and Size:
+In this example, the floor is determined by Domain, GPT Slot, Media Type and Size:
 
 {% highlight js %}
 
@@ -920,6 +925,7 @@ floor determined by Domain, GPT Slot, Media Type and Size:
     currency: 'EU',
     skipRate: 20,
     modelVersion: ‘High_skip_rate’
+
     schema: {
         fields: [ 'domain', 'gptSlot', 'mediaType', 'size' ]
     },
@@ -938,12 +944,11 @@ floor determined by Domain, GPT Slot, Media Type and Size:
 {% endhighlight %}
 
 
-#### Example Response 3
+#### Example Response 3 - Schema 2
 
-Floors Schema version 2
+In this example, the floor is determined by domain, gptSlot, mediaType, and size. Note again that dynamic floor responses are merged into the 'data' level of the schema.
 
 {% highlight js %}
-
 {
     "currency": "USD",
     "floorsSchemaVersion":2,
