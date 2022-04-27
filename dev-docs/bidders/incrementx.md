@@ -4,6 +4,8 @@ title: IncrementX
 description: Prebid IncrementX Bidder Adaptor
 pbjs: true
 biddercode: incrementx
+media_types: banner
+multiformat_supported: will-bid-on-one
 ---
 
 ### Note:
