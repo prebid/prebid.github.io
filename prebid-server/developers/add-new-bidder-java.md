@@ -773,9 +773,9 @@ public {bidder}Bidder(String endpointUrl, PriceFloorResolver floorResolver, Jack
   private Imp makeImp(Imp imp, BidRequest bidRequest) {
         final PriceFloorResult priceFloorResult = resolvePriceFloors(
                 bidRequest, 
-                imp,                        // imp[].id
-                specificMediatype,          // banner, video, native
-                specificFormat,             // com.iab.openrtb.request.Format (sizes)
+                imp,                        // com.iab.openrtb.request.Imp
+                specificMediatype,          // org.prebid.server.proto.openrtb.ext.request.ImpMediaType
+                specificFormat,             // com.iab.openrtb.request.Format (size)
                 priceFloorsWarnings);
                 
         return imp.toBuilder()
