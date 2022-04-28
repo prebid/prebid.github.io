@@ -6,6 +6,8 @@ pbjs: true
 biddercode: trendqube
 gdpr_supported: true
 media_types: banner, video
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Note:

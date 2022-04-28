@@ -7,7 +7,6 @@ nav_section: reference
 pbjs: true
 biddercode: brightcom
 gdpr_supported: true
-tcf2_supported: true
 ---
 
 ### Note:

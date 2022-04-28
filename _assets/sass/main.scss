@@ -15,6 +15,7 @@
 @import 'vendor/bootstrap';
 @import 'vendor/bourbon';
 @import 'vendor/include-media';
+@import 'vendor/awesomplete';
 
 // Base Styles
 @import 'base/base';
@@ -32,6 +33,10 @@
 @import 'components/pb';
 @import 'components/social-media';
 @import 'components/table';
+@import 'components/download-form';
+@import 'components/autocomplete-filter';
+@import 'components/bidder-list';
+@import 'components/search';
 
 // Pages
 @import 'pages/home';

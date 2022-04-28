@@ -54,7 +54,7 @@ Our recommendation is to start with $1 or 10 cent granularity until you're more 
 
 {% capture dfpNote %}
 
-[Google Ad Manager has a limit](https://support.google.com/admanager/answer/1628457?hl=en#Trafficking) of 450 line items per order, which includes archived line items. If you are designing your own granularity setup, make sure you do not exceed that amount. Refer to our recommended pre-configured granularities in Prebid's API reference under the [Set Config Price Granularity instructions](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity).
+[Google Ad Manager has a limit](https://support.google.com/admanager/answer/1628457?hl=en#Trafficking) of 450 line items per order, which includes archived line items. If you are designing your own granularity setup, make sure you do not exceed that amount. Refer to our recommended pre-configured granularities in Prebid's API reference under the [Set Config Price Granularity instructions](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity).
 {% endcapture %}
 
 {% include alerts/alert_note.html content= dfpNote %}
@@ -126,5 +126,6 @@ Implementing header bidding requires much more collaboration with your dev team 
 ## Related Topics
 
 - [Getting Started with Prebid.js](/overview/getting-started.html): How Prebid.js works at a high level.
+- [Prebid.js and Ad Server Key Values](/features/adServerKvps.html)
 - [What is Prebid?](/overview/intro.html): Overview and history of header bidding and Prebid.js.
 + [Docs by Format](/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).
