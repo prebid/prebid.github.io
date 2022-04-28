@@ -30,7 +30,7 @@ Default value - **false**.
 
 ### Close Button Area
 
-The `closeButtonArea` property indicates the area which the close button should occupy on the screen. The possible values are from **0** to **1**.
+The `closeButtonArea` property indicates the percent of device screen which the close button should occupy. The possible values are from **0** to **1**.
 
 ### Close Button Possition
 
@@ -38,7 +38,7 @@ The `closeButtonPosition` property indicates the position of the close button on
 
 ### Skip Button Areaa
 
-The `skipButtonArea` property indicates the area which the skip button should occupy on the screen. The possible values are from **0** to **1**.
+The `skipButtonArea` property indicates the percent of device screen which the skip button should occupy. The possible values are from **0** to **1**.
 
 ### Skip Button Possition
 

@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: Google Ad Manager Integration
-description: Integration of Prebid Rendering module whith Google Ad Manager  
+title: AppLovin MAX Integration
+description: Integration of Prebid Rendering module whith AppLovin MAX  
 sidebarType: 2
 ---
 
@@ -9,7 +9,7 @@ sidebarType: 2
 
 The integration of Prebid Mobile with AppLovin MAX assumes that publisher has MAX account and has already integrated the AppLovin MAX SDK into the app.
 
-See the [AppLovin MAX Documentation](https://dash.applovin.com/documentation/mediation/ios/getting-started/integration) for the MAX integration details.
+See the [AppLovin MAX Documentation](https://dash.applovin.com/documentation/mediation/android/getting-started/integration) for the MAX integration details.
 
 ## MAX Integration Overview
 
@@ -43,8 +43,8 @@ They can be integrated using these API categories:
 To start running bid requests you should provide the Prebid Server URL and account ID:
 
 ```
-PrebidRenderingSettings.setBidServerHost(HOST)
-PrebidRenderingSettings.setAccountId(YOUR_ACCOUNT_ID)
+PrebidMobile.setPrebidServerHost(HOST)
+PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 ```
 
 The best place to do it is the `onCreate()` method of your Application class. The `account ID` is an identifier of the **Stored Request** on the prebid server.
@@ -218,7 +218,7 @@ To be notified when user earns a reward follow the [MAX intructions](https://das
 
 #### Step 1: Get an instance of MaxRewardedAd
 
-This step is totally the same as for pure [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/rewarded-ads). You don't have to make any modifications here.
+This step is totally the same as for pure [MAX integration](https://dash.applovin.com/documentation/mediation/android/getting-started/rewarded-ads). You don't have to make any modifications here.
 
 #### Step 2: Create MaxMediationRewardedUtils
 

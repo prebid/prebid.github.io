@@ -48,8 +48,8 @@ They can be integrated using these mediation API categories:
 To start running bid requests you should provide the Prebid Server URL and account ID:
 
 ```
-PrebidRenderingSettings.setBidServerHost(HOST)
-PrebidRenderingSettings.setAccountId(YOUR_ACCOUNT_ID)
+PrebidMobile.setPrebidServerHost(HOST)
+PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 ```
 
 The best place to do it is the `onCreate()` method of your Application class. The `account ID` is an identifier of the **Stored Request** on the prebid server.

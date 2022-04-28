@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: Google Ad Manager Integration
-description: Integration of Prebid Rendering module whith Google Ad Manager  
+title: AppLovin MAX Integration
+description: Integration of Prebid Rendering module whith AppLovin MAX 
 sidebarType: 2
 ---
 
@@ -13,7 +13,7 @@ See the [AppLovin MAX Documentation](https://dash.applovin.com/documentation/med
 
 ## MAX Integration Overview
 
-![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/prebid-in-app-bidding-overview-max.png)
+![Rendering with AppLovin MAX as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/prebid-in-app-bidding-overview-max.png)
 
 **Steps 1-2** Prebid SDK makes a bid request. Prebid server runs an auction and returns the winning bid.
 
