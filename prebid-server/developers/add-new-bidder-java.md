@@ -724,6 +724,97 @@ public {bidder}Bidder(String endpointUrl,  CurrencyConversionService currencyCon
 </details>
 <p></p>
 
+### IPF(Intelligent Price Floors) feature
+Prebid server manages floors values(imp.bidfloor and imp.bidfloorcur) on core level using IPF feature, which passes bidRequest to resolve rule fields values.  
+
+If your adapter needs to use more concrete values, we suggest you to use overloaded `getFloor()` function which can use more specific values for `mediaType` and `format` fields.
+
+To do it, follow this instruction:
+
+1) Inject `PriceFloorResolver` to your {bidder}Configuration class and pass it to your bidder constructor.
+
+```java
+BidderDeps {bidder}BidderDeps(BidderConfigurationProperties {bidder}ConfigurationProperties,
+                              @NotBlank @Value("${external-url}") String externalUrl,
+                              PriceFloorResolver floorResolver,
+                              JacksonMapper mapper) {
+
+...
+
+.bidderCreator(() -> new {bidder}Bidder(configProperties.getEndpoint(), floorResolver, mapper))
+```
+
+2) Create additional class variable `private final PriceFloorResolver floorResolver` and update constructor in your {bidder}Bidder class to set this variable.
+
+```java
+private final PriceFloorResolver floorResolver;
+private final String endpointUrl;
+private final JacksonMapper mapper;
+
+public {bidder}Bidder(String endpointUrl, PriceFloorResolver floorResolver, JacksonMapper mapper) {
+        this.endpointUrl = HttpUtil.validateUrl(Objects.requireNonNull(endpointUrl));
+        this.floorResolver = Objects.requireNonNull(floorResolver);
+        this.mapper = Objects.requireNonNull(mapper);
+    }
+```
+
+3) Use `floorResolver.resolve(BidRequest bidRequest,
+   PriceFloorRules floorRules,
+   Imp imp,
+   ImpMediaType mediaType,
+   Format format,
+   List<String> warnings)` for resolving specific floor values in your {bidder}Bidder class.
+
+<details markdown="1">
+  <summary>Example: Updating bidFloor values.</summary>
+
+```java
+  private Imp makeImp(Imp imp, BidRequest bidRequest) {
+        final PriceFloorResult priceFloorResult = resolvePriceFloors(
+                bidRequest, 
+                imp,
+                specificMediatype,
+                specificFormat,  
+                priceFloorsWarnings);
+                
+        return imp.toBuilder()
+                .bidfloor(ObjectUtil.getIfNotNull(priceFloorResult, PriceFloorResult::getFloorValue))
+                .bidfloorcur(ObjectUtil.getIfNotNull(priceFloorResult, PriceFloorResult::getCurrency))
+                .build();
+    }
+    
+  private PriceFloorResult resolvePriceFloors(BidRequest bidRequest,
+                                                Imp imp,
+                                                ImpMediaType mediaType,
+                                                Format format,
+                                                List<String> warnings) {
+
+        return floorResolver.resolve(
+                bidRequest,
+                extractFloorRules(bidRequest),
+                imp,
+                mediaType,
+                format,
+                warnings);
+    }
+```
+</details>
+
+4) Make core IPF functionality informed about your specific floors. To do that enrich BidderBid with `priceFloorInfo`
+
+```java
+private static BidderBid createBidderBid(Bid bid, Imp imp, BidType bidType, String currency) {
+
+        return BidderBid.builder()
+                .bid(bid)
+                .type(bidType)
+                .bidCurrency(currency)
+                .priceFloorInfo(imp != null ? PriceFloorInfo.of(imp.getBidfloor(), imp.getBidfloorcur()) : null)
+                .build();
+    }
+```
+<p></p>
+
 ## Test Your Adapter
 
 This chapter will guide you through the creation of automated unit and integration tests to cover your bid adapter code. We use GitHub Action Workflows to ensure the code you submit passes validation. You can run the same validation locally with this command:
