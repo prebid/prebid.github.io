@@ -27,7 +27,7 @@ pod 'PrebidMobileGAMEventHandlers'
 # + AdMob (optional)
 pod 'PrebidMobileAdMobAdapters'
 
-# + MoPub (optional)
+# + MAX (optional)
 pod 'PrebidMobileMAXAdapters'
 ```
 
