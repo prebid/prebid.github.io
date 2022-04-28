@@ -9,44 +9,27 @@ sidebarType: 2
 
 # Code Integration for iOS
 
-<!---
-## CocoaPods integration
-
-Rendering is an essential part of Prebid SDK, so you just need to integrate it:
-
-```
-pod 'PrebidMobile'
-```
-
-If you need to integrate Prebid with GAM or MoPub add these pods respectively
-
-```
-# + Google Ad Manager (optional)
-pod 'PrebidMobile/GAMEventHandlers'
-
-# + MoPub (optional)
-pod 'PrebidMobile/MoPubAdapters'
-```
--->
 
 ## CocoaPods integration (BETA)
 
 The rendering API is introduced as a beta release. In order to integrate it you have to set the beta version explisitly:
 
 ```
-pod 'PrebidMobile', '1.13.0-beta2'
+pod 'PrebidMobile'
 ```
 
-If you need to integrate Prebid with GAM or MoPub add these pods respectively
+If you need to integrate Prebid with GAM, AdMob or AppLovin MAX add these pods respectively
 
 ```
 # + Google Ad Manager (optional)
-pod 'PrebidMobileGAMEventHandlers', '1.13.0-beta2'
+pod 'PrebidMobileGAMEventHandlers'
+
+# + AdMob (optional)
+pod 'PrebidMobileAdMobAdapters'
 
 # + MoPub (optional)
-pod 'PrebidMobileMoPubAdapters', '1.13.0-beta2'
+pod 'PrebidMobileMAXAdapters'
 ```
-
 
 
 ## Init Prebid Rendering
@@ -60,8 +43,8 @@ import PrebidMobile
 Then set the predefined or costom Prebid Server **host** and provide the **Prebid Account ID**.
  
 ```
-PrebidRenderingConfig.shared.accountID = YOUR_ACCOUNT_ID
-PrebidRenderingConfig.shared.prebidServerHost = HOST
+Prebid.shared.prebidServerHost = HOST
+Prebid.shared.prebidServerAccountId = YOUR_ACCOUNT_ID
 ```
 
 
