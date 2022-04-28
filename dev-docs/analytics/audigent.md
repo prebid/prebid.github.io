@@ -1,7 +1,7 @@
 ---
 layout: analytics
-title: Hadron
-description: Hadron Analytics Adapter
+title: Audigent
+description: Audigent Analytics Adapter
 modulecode: hadronAnalytics
 gdpr_supported: true
 usp_supported: true
