@@ -12,9 +12,10 @@ enable_download: false
 
 #### Use
 
-The Hadron Analytics Adapter can be used by Audigent's clients. You can get more info [https://audigent.com/hadron-id](here).
+The Audigent analytics adapter can be used by all clients after approval. For more information, 
+please visit <a href="https://audigent.com">https://audigent.com</a> or contact our Prebid integration team at prebid@audigent.com.
 
-The ID5 privacy policy is at [https://audigent.com/privacypolicy/](https://audigent.com/privacypolicy/).
+The Audigent privacy policy is at [https://audigent.com/privacypolicy/](https://audigent.com/privacypolicy/).
 
 #### Analytics Options
 
@@ -22,7 +23,7 @@ The ID5 privacy policy is at [https://audigent.com/privacypolicy/](https://audig
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | provider | Required | String | The name of this module: `hadronAnalytics` | `hadronAnalytics` |
-| options.partnerId | Required | Number | This is the Audigent's Partner ID received when signed the contract. | `1234` |
+| options.publisherID | Required | Number | Audigent's PublisherID | `1234` |
 | options.eventsToTrack | Required | Array of strings | Filters the set of tracked events | `['auctionEnd','bidWon']` |
 
 
