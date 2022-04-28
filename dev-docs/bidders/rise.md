@@ -1,7 +1,8 @@
 ---
 layout: bidder
 title: Rise
-description: Prebid Bidder Adaptor
+description: Prebid Rise Bidder Adapter
+multiformat_supported: will-bid-on-any
 pbjs: true
 biddercode: rise
 media_types: banner, video
