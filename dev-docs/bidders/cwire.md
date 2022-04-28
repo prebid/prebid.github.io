@@ -1,4 +1,3 @@
-
 ---
 layout: bidder
 title: C-WIRE
