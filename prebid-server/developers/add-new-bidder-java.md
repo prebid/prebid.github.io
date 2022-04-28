@@ -724,12 +724,13 @@ public {bidder}Bidder(String endpointUrl,  CurrencyConversionService currencyCon
 </details>
 <p></p>
 
-### IPF(Intelligent Price Floors) feature
-Prebid server manages floors values(imp.bidfloor and imp.bidfloorcur) on core level using IPF feature, which passes bidRequest to resolve rule fields values.  
+### Price Floors
 
-If your adapter needs to use more concrete values, we suggest you to use overloaded `getFloor()` function which can use more specific values for `mediaType` and `format` fields.
+Prebid server manages the OpenRTB floors values (imp.bidfloor and imp.bidfloorcur) at the core level using the [Price Floors feature](/features/pbs-floors.html). Minimally, bid adapters are expected to read these values and pass them to the endpoint.
 
-To do it, follow this instruction:
+However, as described in the feature documentation, some adapters may benefit from access to more granular values. The primary use case is for multi-format as [detailed in the document](/prebid-server/features/pbs-floors.html#bid-adapter-floor-interface). To implement this, you may use the overloaded `getFloor()` function which can use more specific values for certain fields.
+
+Here are the instructions:
 
 1) Inject `PriceFloorResolver` to your {bidder}Configuration class and pass it to your bidder constructor.
 
@@ -744,7 +745,7 @@ BidderDeps {bidder}BidderDeps(BidderConfigurationProperties {bidder}Configuratio
 .bidderCreator(() -> new {bidder}Bidder(configProperties.getEndpoint(), floorResolver, mapper))
 ```
 
-2) Create additional class variable `private final PriceFloorResolver floorResolver` and update constructor in your {bidder}Bidder class to set this variable.
+2) Create an additional class variable `private final PriceFloorResolver floorResolver` and update constructor in your {bidder}Bidder class to set this variable.
 
 ```java
 private final PriceFloorResolver floorResolver;
@@ -800,7 +801,7 @@ public {bidder}Bidder(String endpointUrl, PriceFloorResolver floorResolver, Jack
 ```
 </details>
 
-4) Make core IPF functionality informed about your specific floors. To do that enrich BidderBid with `priceFloorInfo`
+4) Let analytics adapters know about the floors you're using. To do that, enrich BidderBid with `priceFloorInfo`
 
 ```java
 private static BidderBid createBidderBid(Bid bid, Imp imp, BidType bidType, String currency) {
