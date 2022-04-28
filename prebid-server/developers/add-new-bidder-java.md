@@ -773,9 +773,9 @@ public {bidder}Bidder(String endpointUrl, PriceFloorResolver floorResolver, Jack
   private Imp makeImp(Imp imp, BidRequest bidRequest) {
         final PriceFloorResult priceFloorResult = resolvePriceFloors(
                 bidRequest, 
-                imp,
-                specificMediatype,
-                specificFormat,  
+                imp,                        // imp[].id
+                specificMediatype,          // banner, video, native
+                specificFormat,             // com.iab.openrtb.request.Format (sizes)
                 priceFloorsWarnings);
                 
         return imp.toBuilder()
@@ -801,7 +801,7 @@ public {bidder}Bidder(String endpointUrl, PriceFloorResolver floorResolver, Jack
 ```
 </details>
 
-4) Let analytics adapters know about the floors you're using. To do that, enrich BidderBid with `priceFloorInfo`
+4) Let the Price Floors feature know about the floors you're using. To do that, enrich BidderBid with `priceFloorInfo`
 
 ```java
 private static BidderBid createBidderBid(Bid bid, Imp imp, BidType bidType, String currency) {
