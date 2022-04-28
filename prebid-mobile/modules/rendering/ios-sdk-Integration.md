@@ -10,9 +10,9 @@ sidebarType: 2
 # Code Integration for iOS
 
 
-## CocoaPods integration (BETA)
+## CocoaPods integration
 
-The rendering API is introduced as a beta release. In order to integrate it you have to set the beta version explisitly:
+Starting with v2.0.0 the Rendering API is a part of Prebid Mobile SDK. Add the following item into your podfile to integrate it:
 
 ```
 pod 'PrebidMobile'
