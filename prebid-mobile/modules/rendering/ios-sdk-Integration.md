@@ -47,5 +47,11 @@ Prebid.shared.prebidServerHost = HOST
 Prebid.shared.prebidServerAccountId = YOUR_ACCOUNT_ID
 ```
 
+And initialize the SDK: 
+
+```
+Prebid.initializeSDK()
+```
+
 
 

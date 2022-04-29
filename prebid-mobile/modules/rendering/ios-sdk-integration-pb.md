@@ -1,13 +1,13 @@
 ---
 
 layout: page_v2
-title: Pure In-App Bidding Integrations
+title: Custom or No mediation
 description: Integration of Prebid SDK without Primary Ad Server SDK
 sidebarType: 2
 
 ---
 
-# Pure In-App Bidding Integration
+# Custom Bidding Integration
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@ sidebarType: 2
 
 ## Mobile API
 
-The Pure In-App Bidding integration is similar to the integration of regular Ad SDK with Prebid in the role of the Ad Server.
+The integration and usage of the Rendering API are similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid. 
 
 ![In-App Bidding with Prebid](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
@@ -102,7 +102,7 @@ if interstitial.isReady {
 
 ```
 
-In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
+The **default** ad format for interstitial is **.display**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
 
 ``` swift
 // Make bid request for video ad                                     

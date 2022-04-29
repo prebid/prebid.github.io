@@ -94,7 +94,7 @@ prebidAdMobMediaitonAdUnit.fetchDemand { [weak self] result in
 
 #### Step 1: Create GADRequest and GADBannerView
 
-This step is totally the same as for pure [AdMob integration](https://developers.google.com/admob/ios/banner). You don't have to make any modifications here.
+This step is totally the same as for original [AdMob integration](https://developers.google.com/admob/ios/banner). You don't have to make any modifications here.
 
 
 #### Step 2: Create AdMobMediationBannerUtils
@@ -174,7 +174,7 @@ admobAdUnit?.fetchDemand(completion: { [weak self]result in
 })
 ```
 
-In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
+The **default** ad format for interstitial is **.display**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
 
 ``` swift
 // Make bid request for video ad                                     
@@ -191,7 +191,7 @@ adUnit?.adFormats = [.display]
 
 #### Step 1: Create GADRequest 
 
-This step is totally the same as for pure [AdMob integration](https://developers.google.com/admob/ios/interstitial#swift). You don't have to make any modifications here.
+This step is totally the same as for original [AdMob integration](https://developers.google.com/admob/ios/interstitial#swift). You don't have to make any modifications here.
 
 
 #### Step 2: Create AdMobMediationInterstitialUtils
@@ -275,7 +275,7 @@ To be notified when user earns a reward follow the [AdMob intructions](https://d
 
 #### Step 1: Create GADRequest 
 
-This step is totally the same as for pure [AdMob integration](https://developers.google.com/admob/ios/rewarded). You don't have to make any modifications here.
+This step is totally the same as for original [AdMob integration](https://developers.google.com/admob/ios/rewarded). You don't have to make any modifications here.
 
 
 #### Step 2: Create MediationRewardedAdUnit

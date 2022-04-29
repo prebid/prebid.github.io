@@ -1,13 +1,13 @@
 ---
 
 layout: page_v2
-title: Prebid Mobile Rendering Pure In-App Bidding
+title: Custom or No mediation
 description: Integration of Prebid SDK withou primaty Ad Server
 sidebarType: 2
 
 ---
 
-# Pure In-App Bidding Integration
+# Custom Integration
 
 ## Table of Contents
 
@@ -42,14 +42,15 @@ The Rendering API ad formats are accessible through the following API classes:
 
 ### Init Prebid Rendering Module
 
-To start running bid requests you have to provide to the SDK a Prebid Server **Account Id** for your organization:
+To start running bid requests you have to set the Prebid Server **Host** and **Account Id** and then initilize the SDK with application context. The best place for this is the `onCreate()` method of your Application class.
 
 ```
-PrebidRenderingSettings.setBidServerHost(HOST)
-PrebidRenderingSettings.setAccountId(YOUR_ACCOUNT_ID)
-```
+PrebidMobile.setBidServerHost(HOST)
+PrebidMobile.setAccountId(YOUR_ACCOUNT_ID)
 
-The best place to to pass the **Account ID** is the `onCreate()` method of your Application class.
+// Init SDK
+PrebidMobile.setApplicationContext(this)
+```
 
 > **NOTE:** The account ID is an identifier of the **Stored Request**.
 
@@ -109,7 +110,7 @@ interstitialAdUnit?.loadAd()
 interstitialAdUnit?.show()
 ```
 
-In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
+The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ```
 interstitialAdUnit = InterstitialAdUnit(

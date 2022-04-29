@@ -66,7 +66,7 @@ adUnit?.fetchDemand { [weak self] result in
 
 #### Step 1: Create MAAdView
 
-This step is totally the same as for pure [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/banners#loading-a-banner). You don't have to make any modifications here.
+This step is totally the same as for original [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/banners#loading-a-banner). You don't have to make any modifications here.
 
 
 #### Step 2: Create MAXMediationBannerUtils
@@ -116,7 +116,7 @@ adUnit?.fetchDemand { [weak self] result in
 })
 ```
 
-In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
+The **default** ad format for interstitial is **.display**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
 
 ``` swift
 // Make bid request for video ad                                     
@@ -132,7 +132,7 @@ adUnit?.adFormats = [.display]
 
 #### Step 1: Create MAInterstitialAd 
 
-This step is totally the same as for pure [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/interstitials). You don't have to make any modifications here.
+This step is totally the same as for original [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/interstitials). You don't have to make any modifications here.
 
 
 #### Step 2: Create MAXMediationInterstitialUtils
@@ -185,7 +185,7 @@ To be notified when user earns a reward follow the [MAX intructions](https://das
 
 #### Step 1: Get an instance of MARewardedAd
 
-This step is totally the same as for pure [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/rewarded-ads). You don't have to make any modifications here.
+This step is totally the same as for original [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/rewarded-ads). You don't have to make any modifications here.
 
 
 #### Step 2: Create MAXMediationRewardedUtils

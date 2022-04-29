@@ -646,7 +646,7 @@
   subgroup: 1
 
 - sbSecId: 2
-  title: Pure In-App Bidding
+  title: Custom or No mediation
   link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
@@ -686,7 +686,7 @@
   subgroup: 1
     
 - sbSecId: 2
-  title: Customization Controls
+  title: Ad Experience Controls
   link: /prebid-mobile/modules/rendering/ios-sdk-customization-controls.html
   isHeader: 0
   isSectionHeader: 0
@@ -711,7 +711,7 @@
   subgroup: 1
 
 - sbSecId: 2
-  title: Pure In-app Bidding
+  title: Custom or No mediation
   link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
@@ -735,7 +735,7 @@
   subgroup: 1
   
 - sbSecId: 2
-  title: Integration with MAX
+  title: Integration with AppLovin MAX
   link: /prebid-mobile/modules/rendering/android-sdk-integration-max.html
   isHeader: 0
   isSectionHeader: 0
@@ -751,7 +751,7 @@
   subgroup: 1
   
 - sbSecId: 2
-  title: Customization Controls
+  title: Ad Experience Controls
   link: /prebid-mobile/modules/rendering/android-sdk-customization-controls.html
   isHeader: 0
   isSectionHeader: 0

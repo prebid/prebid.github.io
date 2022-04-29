@@ -40,14 +40,17 @@ They can be integrated using these API categories:
 
 ## Init Prebid Rendering Module
 
-To start running bid requests you should provide the Prebid Server URL and account ID:
+To start running bid requests you have to set the Prebid Server **Host** and **Account Id** and then initilize the SDK with application context. The best place for this is the `onCreate()` method of your Application class.
 
 ```
-PrebidMobile.setPrebidServerHost(HOST)
-PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
+PrebidMobile.setBidServerHost(HOST)
+PrebidMobile.setAccountId(YOUR_ACCOUNT_ID)
+
+// Init SDK
+PrebidMobile.setApplicationContext(this)
 ```
 
-The best place to do it is the `onCreate()` method of your Application class. The `account ID` is an identifier of the **Stored Request** on the prebid server.
+> **NOTE:** The account ID is an identifier of the **Stored Request**.
 
 ### Prebid Adapters
 
@@ -101,7 +104,7 @@ adUnit?.fetchDemand {
 
 #### Step 1: Create MaxAdView
 
-This step is totally the same as for pure [MAX integration](https://dash.applovin.com/documentation/mediation/android/getting-started/banners#loading-and-showing-banners-programmatically). You don't have to make any modifications here.
+This step is totally the same as for original [MAX integration](https://dash.applovin.com/documentation/mediation/android/getting-started/banners#loading-and-showing-banners-programmatically). You don't have to make any modifications here.
 
 
 #### Step 2: Create MaxMediationBannerUtils
@@ -149,7 +152,7 @@ adUnit?.fetchDemand {
 
 ```
 
-In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
+The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ```
 adUnit = MediationInterstitialAdUnit(
@@ -162,7 +165,7 @@ adUnit = MediationInterstitialAdUnit(
 
 #### Step 1: Create MaxInterstitialAd 
 
-This step is totally the same as for pure [MAX integration](https://dash.applovin.com/documentation/mediation/android/getting-started/interstitials). You don't have to make any modifications here.
+This step is totally the same as for original [MAX integration](https://dash.applovin.com/documentation/mediation/android/getting-started/interstitials). You don't have to make any modifications here.
 
 
 #### Step 2: Create MaxMediationInterstitialUtils
@@ -218,7 +221,7 @@ To be notified when user earns a reward follow the [MAX intructions](https://das
 
 #### Step 1: Get an instance of MaxRewardedAd
 
-This step is totally the same as for pure [MAX integration](https://dash.applovin.com/documentation/mediation/android/getting-started/rewarded-ads). You don't have to make any modifications here.
+This step is totally the same as for original [MAX integration](https://dash.applovin.com/documentation/mediation/android/getting-started/rewarded-ads). You don't have to make any modifications here.
 
 #### Step 2: Create MaxMediationRewardedUtils
 

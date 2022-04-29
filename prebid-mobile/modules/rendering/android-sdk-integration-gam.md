@@ -53,14 +53,15 @@ They can be integrated using these API categories.
 
 ## Init Prebid Rendering Module
 
-To start running bid requests you have to provide an **Account Id** for your organization on Prebid server to the SDK:
+To start running bid requests you have to set the Prebid Server **Host** and **Account Id** and then initilize the SDK with application context. The best place for this is the `onCreate()` method of your Application class.
 
 ```
-PrebidMobile.setPrebidServerHost(HOST)
-PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
-```
+PrebidMobile.setBidServerHost(HOST)
+PrebidMobile.setAccountId(YOUR_ACCOUNT_ID)
 
-The best place to do it is the `onCreate()` method of your Application class.
+// Init SDK
+PrebidMobile.setApplicationContext(this)
+```
 
 > **NOTE:** The account ID is an identifier of the **Stored Request**.
 
@@ -141,12 +142,18 @@ bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other availabl
 
 ### Migration from the original API
 
+GAM setup:
+1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
+2. Create new GAM ad unit.
+3. Setup new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach.
+
+Integration:
 1. Replace the `AdManagerAdView` with `BannerView` in the UI. 
 3. Implement the interface `BannerViewListener`.
 4. Remove usage of `AdManagerAdView`, `AdManagerAdRequest`, and implementation of the `AdListener`.
 5. Remove original `BannerAdUnit`.
-5. Follow the instructions to integrate [Banner API](#banner-api).  
-6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. You can create a new order or just replace the code of creative in the original one and continue to use it for rendering integration.  
+6. Follow the instructions to integrate [Banner API](#banner-api).  
+
 
 ## Interstitial API
 
@@ -172,7 +179,7 @@ interstitialAdUnit?.show()
 
 ```
 
-In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
+The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ```
 interstitialAdUnit = InterstitialAdUnit(
@@ -222,12 +229,17 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 
 ### Migration from the original API
 
+GAM setup:
+1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
+2. Create new GAM ad unit.
+3. Setup new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach. 
+
+Integration:
 1. Replace the `AdManagerInterstitialAd` with `InterstitialRenderingAdUnit`. 
 3. Implement the interface `InterstitialEventListener`.
 4. Remove usage of `AdManagerInterstitialAd`, `AdManagerAdRequest`.
 5. Remove original `InterstitialAdUnit`.
-5. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
-6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. **Pay Attention** that you can replace the code of creative in the original order **only for display** ads. For video interstitial you have to create a special order and remove the original one.
+6. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
 
 
 ## Rewarded API
@@ -306,8 +318,13 @@ override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 
 ### Migration from the original API
 
+GAM setup:
+1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
+2. Create new GAM ad unit.
+3. Setup new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach.
+
+Integration:
 1. Replace the `RewardedAd` with `RewardedAdUnit`. 
-3. Implement the interface `RewardedAdUnitListener`.
-5. Remove original `RewardedVideoAdUnit`.
-5. Follow the instructions to integrate [Rewarded API](#rewarded-api).  
-6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. **Pay Attention** that you have to create a new special order for rewarded video ad and remove the original one.
+2. Implement the interface `RewardedAdUnitListener`.
+3. Remove original `RewardedVideoAdUnit`.
+4. Follow the instructions to integrate [Rewarded API](#rewarded-api).  

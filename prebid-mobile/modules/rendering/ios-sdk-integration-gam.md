@@ -112,12 +112,19 @@ And all the rest code will be the same as for integration of Display Banner.
 
 ### Migration from the original API
 
+GAM setup:
+
+1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
+2. Create new GAM ad unit.
+3. Setup new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach.
+
+Integration:
+
 1. Replace the `GAMBannerView` with `BannerView` in the UI. 
-3. Implement the protocol `BannerViewDelegate` in the View Controller.
-4. Remove usage of `GAMBannerView`, `GAMRequest`, and implementation of the `GADBannerViewDelegate`.
-5. Remove original `BannerAdUnit`.
+2. Implement the protocol `BannerViewDelegate` in the View Controller.
+3. Remove usage of `GAMBannerView`, `GAMRequest`, and implementation of the `GADBannerViewDelegate`.
+4. Remove original `BannerAdUnit`.
 5. Follow the instructions to integrate [Banner API](#banner-api).  
-6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. You can create a new order or just replace the code of creative in the original one and continue to use it for rendering integration.  
 
 ## Interstitial API
 
@@ -146,7 +153,7 @@ if interstitial.isReady {
 
 ```
 
-In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
+The **default** ad format for interstitial is **.display**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
 
 ``` swift
 // Make bid request for video ad                                     
@@ -195,12 +202,20 @@ func interstitialDidReceiveAd(_ interstitial: InterstitialAdUnit) {
 
 ### Migration from the original API
 
+GAM setup:
+
+1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
+2. Create new GAM ad unit.
+3. Setup new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach.
+
+Integration:
+
 1. Replace the `GAMInterstitialAd` with `InterstitialRenderingAdUnit` in the View Controller. 
-3. Implement the protocol `InterstitialAdUnitDelegate` in the View Controller.
-4. Remove usage of `GAMInterstitialAd`, `GAMRequest`.
-5. Remove original `InterstitialAdUnit`.
+2. Implement the protocol `InterstitialAdUnitDelegate` in the View Controller.
+3. Remove usage of `GAMInterstitialAd`, `GAMRequest`.
+4. Remove original `InterstitialAdUnit`.
 5. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
-6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. **Pay Attention** that you can replace the code of creative in the original order **only for display** ads. For video interstitial you have to create a special order and remove the original one.
+
 
 ## Rewarded API
 
@@ -274,9 +289,17 @@ func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
 
 ### Migration from the original API
 
+GAM setup:
+
+1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
+2. Create new GAM ad unit.
+3. Setup new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach.
+
+Integration:
+
 1. Replace the `GADRewardedAd` with `RewardedAdUnit` in the View Controller. 
-3. Implement the protocol `RewardedAdUnitDelegate` in the View Controller.
-4. Remove usage of `GAMRequest`.
-5. Remove original `RewardedVideoAdUnit`.
+2. Implement the protocol `RewardedAdUnitDelegate` in the View Controller.
+3. Remove usage of `GAMRequest`.
+4. Remove original `RewardedVideoAdUnit`.
 5. Follow the instructions to integrate [Rewarded API](#rewarded-api).  
-6. Setup the [GAM Order](rendering-gam-line-item-setup.html) for rendering. **Pay Attention** that you have to create a new special order for rewarded video ad and remove the original one.
+ß

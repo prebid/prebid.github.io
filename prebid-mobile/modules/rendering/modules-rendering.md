@@ -42,12 +42,12 @@ This set of features are not supported in the current release but are designated
 
 Rendering API supports two integration scenarios:
 
-* **Pure In-App Bidding** With in-app bidding, no Primay Ad Server is used. The module renders the winning bid immediately when it is available.
+* **Custom or No mediation** when no Primay Ad Server is used. The SDK renders the winning bid immediately when it is available.
 * **Using a Primary Ad Server** Prebid SDK detects when a Prebid line item wins on the ad server and renders the cached bid in the owned Web view or Video view.
 
 In both scenarios, Prebid SDK leverages Prebid Server for demand. Below are the processes for both In-App and Primary Ad Server modes:
 
-### Pure In-App Bidding
+### Custom In-App Bidding
 
 ![In-App Rendering](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
@@ -74,7 +74,7 @@ In both scenarios, Prebid SDK leverages Prebid Server for demand. Below are the 
 Prebid Mobile rendering supports the following ad formats:
 
 * Display Banner
-* Video Banner (for GAM, pure in-app bidding)
+* Video Banner 
 * Display Interstitial
 * Video Interstitial
 * Rewarded Video
@@ -91,7 +91,7 @@ Follow these steps to integrate the rendering API:
     * [MAX](rendering-max-line-item-setup.html)
 1. [Integrate Prebid SDK](android-sdk-integration.html) into your project.
 1. Add prebid's ad units to your app respectively to the monetization scenario: 
-    * [Pure in-app Bidding](android-sdk-integration-pb.html) integration without primary ad server.
+    * [Custom in-app bidding](android-sdk-integration-pb.html) integration without primary ad server.
     * In-app bidding using [Google Ad Manager (GAM)](android-sdk-integration-gam.html) as a primary ad server
     * In-app bidding using [AdMob](android-sdk-integration-admob) as a primary ad server.
     * In-app bidding using [AppLovin MAX](android-sdk-integration-max.html) as a primary ad server.
@@ -108,7 +108,7 @@ Follow these steps to integrate the rendering API:
     * [MAX](rendering-max-line-item-setup.html)
 1. [Integrate Prebid SDK](ios-sdk-integration.html).
 1.  Add prebid's ad units to your app respectively to the monetization scenario: 
-    * [Pure in-app bidding](ios-sdk-integration-pb.html) integration without a primary ad server.
+    * [Custom in-app bidding](ios-sdk-integration-pb.html) integration without a primary ad server.
     * In-app bidding using [Google Ad Manager (GAM)](ios-sdk-integration-gam.html) as a primary ad server.
     * In-app bidding using [AdMob](ios-sdk-integration-gam.html) as a primary ad server.
     * In-app bidding using [AppLovin MAX](ios-sdk-integration-max.html) as a primary ad server.

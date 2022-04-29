@@ -1,13 +1,13 @@
 ---
 
 layout: page_v2
-title: Prebid Mobile Rendering Modules
-description: Prebid Mobile Rendering Modules architecture
+title: Ad Experience Controls
+description: Customization of ad expirience
 sidebarType: 2
 
 ---
 
-# Customization Controls
+# Ad Experience Controls
 
 Prebid SDK provides an API way to customize its behaviour. 
 
@@ -36,6 +36,10 @@ The `closeButtonArea` property indicates the percent of device screen which the 
 
 The `closeButtonPosition` property indicates the position of the close button on the screen. The possible values are **Position.BOTTOM_LEFT** and **Position.TOP_RIGHT**. The default value is **Position.TOP_RIGHT**.
 
+The example: 
+
+![Close Button Position - Top Right](/assets/images/prebid-mobile/modules/rendering/ad-experience-android-close-button-possition-top-left.png){:width="250px"}
+
 ### Skip Button Areaa
 
 The `skipButtonArea` property indicates the percent of device screen which the skip button should occupy. The possible values are from **0** to **1**.
@@ -43,6 +47,10 @@ The `skipButtonArea` property indicates the percent of device screen which the s
 ### Skip Button Possition
 
 The `skipButtonPossition` property indicates the position of the close button on the screen. The possible values are **Position.BOTTOM_LEFT** and **Position.TOP_RIGHT**. The default value is **Position.BOTTOM_LEFT**.
+
+The example: 
+
+![Close Button Position - Top Right](/assets/images/prebid-mobile/modules/rendering/ad-experience-android-skip-button-possition-top-left.png){:width="250px"}
 
 ### Skip Delay
 
