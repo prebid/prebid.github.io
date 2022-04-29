@@ -12,6 +12,7 @@ pbs_app_supported: true
 usp_supported: true
 schain_supported: true
 pbjs_version_notes: in 6.8+
+userIds: id5Id
 ---
 
 ### Note:
