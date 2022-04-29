@@ -32,7 +32,7 @@ Default value - **false**.
 
 The `closeButtonArea` property indicates the percent of device screen which the close button should occupy. The possible values are from **0** to **1**.
 
-### Close Button Possition
+### Close Button Position
 
 The `closeButtonPosition` property indicates the position of the close button on the screen. The possible values are **Position.BOTTOM_LEFT** and **Position.TOP_RIGHT**. The default value is **Position.TOP_RIGHT**.
 
@@ -40,13 +40,13 @@ The example:
 
 ![Close Button Position - Top Right](/assets/images/prebid-mobile/modules/rendering/ad-experience-android-close-button-possition-top-left.png){:width="250px"}
 
-### Skip Button Areaa
+### Skip Button Area
 
 The `skipButtonArea` property indicates the percent of device screen which the skip button should occupy. The possible values are from **0** to **1**.
 
-### Skip Button Possition
+### Skip Button Position
 
-The `skipButtonPossition` property indicates the position of the close button on the screen. The possible values are **Position.BOTTOM_LEFT** and **Position.TOP_RIGHT**. The default value is **Position.BOTTOM_LEFT**.
+The `skipButtonPosition` property indicates the position of the close button on the screen. The possible values are **Position.BOTTOM_LEFT** and **Position.TOP_RIGHT**. The default value is **Position.BOTTOM_LEFT**.
 
 The example: 
 
