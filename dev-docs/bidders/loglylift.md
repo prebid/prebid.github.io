@@ -8,7 +8,7 @@ usp_supported: false
 coppa_supported: false
 schain_supported: false
 dchain_supported: false
-media_types: no-display, native
+media_types: banner, native
 safeframes_ok: false
 deals_supported: false
 floors_supported: false
