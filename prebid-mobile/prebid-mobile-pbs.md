@@ -80,7 +80,6 @@ After you have the SDK installed, register ad units with the Prebid Mobile frame
 
 Ad ops users configure the primary ad server with Prebid Mobile line items targeted to key/values.
 -   [Set Up Line Items for Google Ad Manager]({{site.github.url}}/prebid-mobile/adops-line-item-setup-dfp.html)
--   [Set Up Line Items for MoPub]({{site.github.url}}/prebid-mobile/adops-line-item-setup-mopub.html)
 
 ## Additional Information
 

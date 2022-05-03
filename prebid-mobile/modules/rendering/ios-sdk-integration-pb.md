@@ -1,13 +1,13 @@
 ---
 
 layout: page_v2
-title: Pure In-App Bidding Integrations
+title: Custom or No mediation
 description: Integration of Prebid SDK without Primary Ad Server SDK
 sidebarType: 2
 
 ---
 
-# Pure In-App Bidding Integration
+# Custom Bidding Integration
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@ sidebarType: 2
 
 ## Mobile API
 
-The Pure In-App Bidding integration is similar to the integration of regular Ad SDK with Prebid in the role of the Ad Server.
+The integration and usage of the Rendering API are similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid. 
 
 ![In-App Bidding with Prebid](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
@@ -102,28 +102,17 @@ if interstitial.isReady {
 
 ```
 
-The way of displaying **Video Interstitial** is almost the same with two differences:
-
-- Need to customize the ad format
-- No need to set up `minSizePercentage`
+The **default** ad format for interstitial is **.display**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
 
 ``` swift
+// Make bid request for video ad                                     
+adUnit?.adFormats = [.video]
 
-// 1. Create an Interstitial Ad Unit
-let interstitial = InterstitialRenderingAdUnit(configID: CONFIG_ID)
-    
-interstitial.adFormat = .video
-interstitial.delegate = self
-    
-// 2. Load an Ad
-interstitial.loadAd()
+// Make bid request for both video amd disply ads                                     
+adUnit?.adFormats = [.video, .display]
 
-// .....
-
-// 3. Show An Ad
-if interstitial.isReady {
-    interstitial.show(from: self)
-}
+// Make bid request for disply ad (default behaviour)                                     
+adUnit?.adFormats = [.display]
 
 ```
 

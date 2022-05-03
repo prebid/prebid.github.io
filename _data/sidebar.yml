@@ -612,7 +612,7 @@
   subgroup: 0
 
 - sbSecId: 2
-  title: Rendering API (Open Beta)
+  title: Rendering API
   link:
   isHeader: 1
   headerId: rendering
@@ -646,7 +646,7 @@
   subgroup: 1
 
 - sbSecId: 2
-  title: Pure In-App Bidding
+  title: Custom or No mediation
   link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
@@ -670,8 +670,8 @@
   subgroup: 1
   
 - sbSecId: 2
-  title: Integration with MoPub
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-mopub.html
+  title: Integration with AppLovin MAX
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-max.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -680,6 +680,14 @@
 - sbSecId: 2
   title: Targeting
   link: /prebid-mobile/modules/rendering/ios-sdk-parameters.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+    
+- sbSecId: 2
+  title: Ad Experience Controls
+  link: /prebid-mobile/modules/rendering/ios-sdk-customization-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -703,7 +711,7 @@
   subgroup: 1
 
 - sbSecId: 2
-  title: Pure In-app Bidding
+  title: Custom or No mediation
   link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
@@ -727,8 +735,8 @@
   subgroup: 1
   
 - sbSecId: 2
-  title: Integration with MoPub
-  link: /prebid-mobile/modules/rendering/android-sdk-integration-mopub.html
+  title: Integration with AppLovin MAX
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-max.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -737,6 +745,14 @@
 - sbSecId: 2
   title: Targeting
   link: /prebid-mobile/modules/rendering/android-sdk-parameters.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+  
+- sbSecId: 2
+  title: Ad Experience Controls
+  link: /prebid-mobile/modules/rendering/android-sdk-customization-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -766,10 +782,10 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-
+  
 - sbSecId: 2
-  title: Rendering Order - MoPub
-  link: /prebid-mobile/modules/rendering/rendering-mopub-line-item-setup.html
+  title: Custom Network - MAX
+  link: /prebid-mobile/modules/rendering/rendering-max-line-item-setup.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1262,30 +1278,6 @@
   isHeader: 0
   isSectionHeader: 0
   isCatHeader: 1
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Setup Line Items For MoPub
-  link: /prebid-mobile/adops-line-item-setup-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Setup Rewarded Video Line Items For MoPub
-  link: /prebid-mobile/adops-setup-rewarded-video-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Setup Full Screen Video Line Items For MoPub
-  link: /prebid-mobile/adops-setup-full-screen-video-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
   sectionTitle:
   subgroup: 0
 
