@@ -5,8 +5,6 @@ description: FAQ on Prebid.js for header bidding.
 sidebarType: 1
 ---
 
-
-
 # Prebid.js FAQ
 {:.no_toc}
 
@@ -172,6 +170,24 @@ that [bid adapters resolve OpenRTB macros](/dev-docs/bidder-adaptor.html#resolve
 
 For historic reasons, Prebid will resolve the AUCTION_PRICE macro, but it will be after currency conversion and any bid adjustments.
 This differs from how OpenRTB defines this value as being the clearing price in the bid currency. Header Bidding is a first-price auction, the best candidate for “clearing price” is the original bid itself.
+
+## How does Prebid interact with the GAM yield group header bidding feature?
+
+Prebid welcomes the help from Google towards making header bidding easier for the community. Here's their [official blog post](https://blog.google/products/admanager/improved-header-bidding-support-in-google-ad-manager/). The creation of thousands of line items is clearly a hassle (or barrier) for publishers who want to utilize header bidding on the open web, so this feature is a great step in the right direction.
+
+Here's what we know about the beta version of the Prebid yield group feature:
+- The beta is limited in which publishers are involved.
+- The feature is limited to premium GAM accounts.
+- The [Prebid Universal Creative](/overview/prebid-universal-creative.html) is not supported. Google has ported some portions of the PUC to an internal creative.
+- GPT reads Prebid.js objects directly from the 'pbjs' global.
+
+What we don't know:
+- Whether all use cases currently work well when using yield groups. e.g. [Native](/formats/native.html), [video](/formats/video.html), [AMP](/formats/amp.html), [Post-Bid](/overview/what-is-post-bid.html).
+- Whether utilizing the feature might cause an impact to some analytics scenarios.
+- Whether GPT can find Prebid at a global other than 'pbjs'.
+- Google's timelines for adding publishers to the beta or making the feature Generally Available.
+
+When we have solid information to share with the community, we will create additional [AdOps pages](/adops/before-you-start.html) and update existing ones.
 
 ## Related Reading
 
