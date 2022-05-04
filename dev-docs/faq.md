@@ -173,10 +173,10 @@ This differs from how OpenRTB defines this value as being the clearing price in 
 
 ## How does Prebid interact with the GAM yield group header bidding feature?
 
-Prebid welcomes the help from Google towards making header bidding easier for the community. Here's their [official blog post](https://blog.google/products/admanager/improved-header-bidding-support-in-google-ad-manager/). The creation of thousands of line items is clearly a hassle (or barrier) for publishers who want to utilize header bidding on the open web, so this feature is a great step in the right direction.
+Google is developing this technology to help publishers create and manage line items in bulk. This should enable more publishers to integrate their sites with header bidding on the open web. Here is Google's [official blog post](https://blog.google/products/admanager/improved-header-bidding-support-in-google-ad-manager/) on yield group. This feature is currently in beta production. 
 
-Here's what we know about the beta version of the Prebid yield group feature:
-- The beta is limited in which publishers are involved.
+What we know about yield group feature:
+- The beta is limited to which publishers are involved.
 - The feature is limited to premium GAM accounts.
 - The [Prebid Universal Creative](/overview/prebid-universal-creative.html) is not supported. Google has ported some portions of the PUC to an internal creative.
 - GPT reads Prebid.js objects directly from the 'pbjs' global.
