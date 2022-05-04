@@ -107,27 +107,33 @@ Each bidRequest for which targeting information was found will conform to the fo
 
 ```json
 {
-   adUnitCode: 'xyz',
-   bidId: 'abc',
-   ...,
-    ortb2: {
-      site: {
-        content: {
-          id: 'jw_abc123',
-          data: [{
-            name: 'jwplayer',
+  adUnitCode: 'xyz',
+  bidId: 'abc',
+  ...,
+  ortb2: {
+    site: {
+      content: {
+        id: 'jw_abc123',
+        data: [
+          {
+            name: 'jwplayer.com',
             ext: {
-              segtax: 502
+              segtax: 502,
+              cids: ['abc123']
             },
-            segment: [{
-              id: '123'
-            }, {
-              id: '456'
-            }]
-          }]
-        }
+            segment: [
+              {
+                id: '123'
+              },
+              {
+                id: '456'
+              }
+            ]
+          }
+        ]
       }
     }
+  }
 }
 ```
 Each bid for which targeting information was found will have a ortb2 param conforming to the [oRTB v2 object structure](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf). The `ortb2` object will contain our proprietaty targeting segments in a format compliant with the [IAB's segment taxonomy structure](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/extensions/community_extensions/segtax.md).
@@ -142,8 +148,9 @@ The content's ID can be obtained in the `bid.ortb2.site.content.id` property pat
 | ortb2.site.content | Object | | |
 | ortb2.site.content.id | String | Unique identifier for the specific media asset | |
 | ortb2.site.content.data | Array | Contains segment taxonomy objects | |
-| ortb2.site.content.data[index].name | String | the `jwplayer` string indicating the provider name | |
+| ortb2.site.content.data[index].name | String | the `jwplayer.com` string indicating the provider name | |
 | ortb2.site.content.data[index].ext.segtax | Integer | the `502` value is the unique identifier for JW Player's proprietary taxonomy | |
+| ortb2.site.content.data[index].ext.cids | Array | List of extended content ids as defined in [oRTB's community extensions](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/extensions/community_extensions/extended-content-ids.md#example---content-id-and-seller-defined-context). | |
 | ortb2.site.content.data[index].segment | Array | Contains the segment taxonomy values as an object | |
 | ortb2.site.content.data[index].segment[index].id | String | String representation of the data segment value | |
 
