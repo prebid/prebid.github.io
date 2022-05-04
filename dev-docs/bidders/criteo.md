@@ -38,6 +38,10 @@ of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381)
 | `nativeCallback`  | optional | (Prebid.js only) Callback to perform render in native integrations. Please reach out your Criteo representative for more details.     | `function(payload) { console.log(payload); }` | `function` |
 | `integrationMode` | optional | (Prebid.js only) Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `'AMP'`                                       | `string`   |
 
+### First Party Data
+
+Criteo supports both `ortb2` (`site` and `user`) and `ortb2Imp` methods to set [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+
 ### Video Object
 
 {: .table .table-bordered .table-striped }
