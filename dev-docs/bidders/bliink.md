@@ -3,7 +3,7 @@ layout: bidder
 title: BLIINK
 description: Prebid BLIINK Bidder Adaptor
 pbjs: true
-pbs: false
+pbs: true
 media_types: video, banner
 biddercode: bliink
 gdpr_supported: true
