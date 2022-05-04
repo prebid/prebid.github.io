@@ -4,7 +4,8 @@ title: AdButler
 description: Prebid AdButler Bidder Adaptor
 pbjs: true
 biddercode: adbutler
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 

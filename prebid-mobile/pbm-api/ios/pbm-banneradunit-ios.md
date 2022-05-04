@@ -25,7 +25,7 @@ See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for
 
 **Parameters**
 
-`configId (String)`: Prebid Server configuration ID.
+`configId (String)`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 
 `size (CGSize)`: Width and height of the banner.
 
@@ -70,7 +70,7 @@ let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", 
 **Add additional ad sizes**
 
 ```
-bannerUnit.addAdditionalSizes(sizes: CGSize(width: 320, height: 50))
+bannerUnit.addAdditionalSize(sizes: [CGSize(width: 320, height: 50), CGSize(width: 300, height: 250)])
 ```
 Once a BannerAdUnit is created use Google Mobile Ads or MoPub to retrieve and display creatives.
 
