@@ -1,10 +1,11 @@
 ---
 layout: bidder
 title: MinuteMedia
-description: Prebid Bidder Adaptor
+description: Prebid MinuteMedia Bidder Adapter
 pbjs: true
 biddercode: minutemedia
-media_types: video
+media_types: banner, video
+multiformat_supported: will-bid-on-any
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
@@ -20,7 +21,7 @@ The MinuteMedia adapter requires setup and approval. Please reach out to hb@minu
 
 ### Bid Parameters
 
-#### Video
+#### Banner ,Video
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Type | Description | Example
@@ -32,27 +33,50 @@ The MinuteMedia adapter requires setup and approval. Please reach out to hb@minu
 
 ## Example
 ```javascript
-var adUnits = [
-       {
-        code: 'dfp-video-div',
-        sizes: [[640, 480]],
-        mediaTypes: {
-          video: {
-            playerSize: [[640, 480]],
-            context: 'instream'
+var adUnits = [{
+      code: 'banner-div',
+      mediaTypes: {
+          banner: {
+              sizes: [
+                  [300, 250],
+                  [728, 90]
+              ]
           }
-        },
-        bids: [{
+      },
+      bids: [{
           bidder: 'minutemedia',
           params: {
-            org: '56f91cd4d3e3660002000033', // Required
-            floorPrice: 5.00, // Optional
-            placementId: '12345678', // Optional
-            testMode: false // Optional
+              org: '56f91cd4d3e3660002000033', // Required
+              floorPrice: 0.05, // Optional
+              placementId: '12345678', // Optional
+              testMode: false // Optional
           }
-        }]
-      }
-   ];
+      }]
+  },
+  {
+      code: 'dfp-video-div',
+      sizes: [
+          [640, 480]
+      ],
+      mediaTypes: {
+          video: {
+              playerSize: [
+                  [640, 480]
+              ],
+              context: 'instream'
+          }
+      },
+      bids: [{
+          bidder: 'minutemedia',
+          params: {
+              org: '56f91cd4d3e3660002000033', // Required
+              floorPrice: 5.00, // Optional
+              placementId: '12345678', // Optional
+              testMode: false // Optional
+          }
+      }]
+  }
+];
 ```
 
 ### Configuration
