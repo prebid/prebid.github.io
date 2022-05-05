@@ -19,7 +19,7 @@ There are several ways to get more debug info from Prebid Server.
 
 If you're invoking Prebid Server directly, add one of these parameters to the OpenRTB:
 - `"test":1`: This will inform bidders that this request should be treated as a test (non-billable), and provides additional debug information in the OpenRTB response.
-- `"debug":1`: Similar to `test`, but just adds  debug info, without declaring the request non-billable.
+- `"ext.prebid.debug":true`: Similar to `test`, but just adds  debug info, without declaring the request non-billable.
 
 {% highlight bash %}
 POST https://prebid-server.rubiconproject.com/openrtb2/auction
@@ -144,7 +144,7 @@ hit these two URLs with the desired parameter values:
 
 Then you can check server logs for output like:
 ```
-http-interaction : Requested URL: "/openrtb2/auction?debug=1", request body: "{ ... }"
+http-interaction : Requested URL: "/openrtb2/auction", request body: "{ ... }"
 ```
 
 ## Related Topics
