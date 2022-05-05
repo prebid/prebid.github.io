@@ -162,6 +162,7 @@ gulp build --modules=33acrossIdSystem,userId
 ```
 
 The following configuration parameters are available:
+
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
