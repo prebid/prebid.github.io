@@ -45,6 +45,8 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | suppressEmptyKeys | standard or adapter-specific | 0.13.0 | false | If custom adserverTargeting functions are specified that may generate empty keys, this can be used to suppress them. |
 | allowZeroCpmBids | standard or adapter-specific | 6.2.0 | false | Would allow bids with a 0 CPM to be accepted by Prebid.js and could be passed to the ad server. |
 | storageAllowed | standard or adapter-specific | 6.13.0 | true | Allow use of cookies and local storage. |  
+| allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | true in v6.x <br /> false from v7.0| Allow adapters to bid with alternate bidder codes. |  
+| allowedAlternateBidderCodes | standard or adapter-specific | 6.23.0 | n/a | Array of bidder names for which an adapter can bid. <br />`undefined` or `['*']` will allow adapter to bid with any bidder code. |  
 
 ##### 2.1. adserverTargeting
 
@@ -233,5 +235,50 @@ By default, bid adapters can access browser cookies and local storage. This can 
 Note that:
  - [Disabling device access](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) will prevent access to storage regardless of this setting;  
  - `storageAllowed` will only affect bid adapters and not any other type of module (such as analytics or RTD).
- 
+
+##### 2.7. allowAlternateBidderCodes
+
+If this flag is set to `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction.
+<br />Default value is `true` in version 6.x
+<br />Default value will be `false` from version 7.0
+
+{: .alert.alert-warning :}
+Note that the `bidResponse.bidderCode` needs to be set as the bidder of the bid.
+<br />i.e: if `pubmatic` is the adapter bidding for `groupm`. `bidResponse.bidderCode` should be `groupm`.
+<br />Another field is introduced in `bidResponse` object i.e:`bidResponse.adapterCode` (this will be set by Prebid). This field indicates the bidder code that was in the adunit. This might be an alias of an underlying bid adapter. In above example, value of `bidResponse.adapterCode` will be `pubmatic`.
+
+
+##### 2.8. allowedAlternateBidderCodes
+
+This array will work in conjunction with `allowAlternateBidderCodes`. In this array, you can specify the names of the bidder for which an adapter can accept the bid. If the value is not specified for the array or `[‘*’]` is specified, Prebid will accept bids of all the bidders for the given adapter.
+
+{% highlight js %}
+
+pbjs.bidderSettings = {
+    standard: {
+         allowAlternateBidderCodes: false,
+         bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .95; },
+         [...]
+    },
+    pubmatic: {
+        allowAlternateBidderCodes: true,
+        allowedAlternateBidderCodes: ["groupm"],
+        [...]
+    },
+    appnexus: {
+        allowAlternateBidderCodes: true,
+        allowedAlternateBidderCodes: ["*"],
+        bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .90; },
+        [...]
+    },
+    groupm:{
+        bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .80; },
+        [...]
+    }
+}
+{% endhighlight %}
+
+In the above example, `groupm` bid will have a bid adjustment of 80% since the `bidCpmAdjustment` function says so.<br />
+If `appnexus` bids with another bidder code, say `appnexus2`. This bidder code will adjust the bid cpm to 95% because it will apply the `bidCpmAdjustment` function from `standard` setting, since the `bidCpmAdjustment` is missing for given bidder code I.e `appnexus2`
+
 <hr class="full-rule" />
