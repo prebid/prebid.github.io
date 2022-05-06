@@ -2,7 +2,7 @@
 layout: analytics
 title: ATS Analytics
 description: ATS Prebid Analytics Adapter
-modulecode: atsAnalyticsAdapter
+modulecode: ats
 gdpr_supported: true
 usp_supported: true
 prebid_member: true
