@@ -15,6 +15,8 @@ gvl_id: 253
 pbs_app_supported: true
 ---
 
+<a name="improvedigital-params"></a>
+
 ### Bid params
 
 {: .table .table-bordered .table-striped }
@@ -24,6 +26,7 @@ pbs_app_supported: true
 | `keyValues`    | optional | Contains one or more key-value pairings for key-value targeting                                                            | `{ testKey1: ['testValueA'], testKey2: ['testValueB', 'testValueC'] }` | `object`  |
 | `bidFloor`  | optional | Bid floor price | `0.01` | `float` |
 | `bidFloorCur`  | optional | Bid floor price currency. Supported values: USD (default), EUR, GBP, AUD, DKK, SEK, CZK, CHF, NOK | `'USD'` | `string` |
+| `rendererConfig`  | optional | Configuration object for JS renderer of the RAZR creatives. Provided by Improve Digital.  | `{ key1: value1 }` | `object` |
 | `video`    | optional | Object with video parameters. See the [Video params](#improvedigital-video) section below for details. | | `object` |
 
 <a name="improvedigital-video"></a>
@@ -46,7 +49,23 @@ pbs_app_supported: true
 By default, the adapter doesn't send Prebid ad unit sizes to Improve Digital's ad server and the sizes defined for each placement in the Polaris platform will be used. If the ad server should only respond with creative sizes as defined in Prebid ad unit configuration, turn on `usePrebidSizes` adapter parameter like this:
 ```
 pbjs.setConfig({
-   improvedigital: {usePrebidSizes: true}
+    improvedigital: { usePrebidSizes: true }
+});
+```
+
+<a name="improvedigital-renderer"></a>
+
+#### Renderer Config
+
+Global configuration for the special creative format renderer. Please use [rendererConfig bid param](#improvedigital-params) for ad slot specific configuration.
+
+```
+pbjs.setConfig({
+    improvedigital: {
+        rendererConfig: {
+            // Global config object provided by Improve Digital
+        }
+    }
 });
 ```
 

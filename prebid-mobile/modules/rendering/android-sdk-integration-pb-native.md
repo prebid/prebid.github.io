@@ -62,7 +62,7 @@ bannerView?.loadAd()
 
 In the Pure In-App Bidding scenario you just need to initialize the Banner Ad View using correct properties:
 
-- **configId** - an ID of Stored Impression on the Prebid server.
+- **configId** - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
 - **size** - the size of the ad unit which will be used in the bid request.
 
 #### Step 2: Create and provide NativeAdConfiguration
