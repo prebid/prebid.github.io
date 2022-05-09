@@ -137,7 +137,7 @@ e.g. for the AppNexus cluster of Prebid Servers:
 <amp-ad width="300" height="250"
     type="doubleclick"
     data-slot="/1111/universal_creative"
-    rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
+    rtc-config='{"vendors": {"prebidappnexuspsp": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
 </amp-ad>
 ```
 
@@ -286,21 +286,11 @@ Or you can specify a full URL to another Prebid Server location (including a QA 
 </amp-iframe>
 ```
 
-The usage of `load-cookie.html` and `load-cookie-with-consent.html` is the same. The arguments available on the query string are:
-
-{: .table .table-bordered .table-striped }
-| Param | Scope | Values | Description |
-| --- | --- | --- | --- |
-| endpoint | recommended | 'appnexus', 'rubicon', or URL | Determines which cluster of prebid servers to load from. Default, for legacy reasons, is appnexus. |
-| source | optional | recommended | Set it to 'amp' to tell Prebid Server to exclude iframe syncs, which don't work on AMP. |
-| max_sync_count | optional | integer | How many sync pixels should be returned from Prebid Server |
-| args | optional | attr1:val1,attr2:val2 | These attribute value pairs will be passed to Prebid Server in the /cookie_sync call. The attribute and value will be quoted by the system when appropriate. |
-| gdpr | optional | 0 or 1 | Defines whether GDPR processing is in scope for this request. 0=no, 1=yes. Leave unknown if not sure. |
-| gdpr_consent | optional | String | IAB CMP-formatted consent string |
+See [manually initiating a sync](/prebid-server/developers/pbs-cookie-sync.html#manually-initiating-a-sync) for more information about the available parameters.
 
 ### AMP RTC and GDPR
 
-The two Prebid Server RTC vendor strings 'prebidappnexus' and 'prebidrubicon'
+The two Prebid Server RTC vendor strings 'prebidappnexuspsp' and 'prebidrubicon'
 support passing GDPR consent to Prebid Server.
 
 The CONSENT_STRING macro will be populated if you've integrated with a CMP
@@ -343,3 +333,4 @@ To review that Prebid on AMP is working properly the following aspects can be lo
 
 [PBS]: /prebid-server/overview/prebid-server-overview.html
 [callout-vendors.js]: https://github.com/ampproject/amphtml/blob/master/src/service/real-time-config/callout-vendors.js
+[RTC-Overview]: https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md

@@ -5,8 +5,6 @@ description: FAQ on Prebid.js for header bidding.
 sidebarType: 1
 ---
 
-
-
 # Prebid.js FAQ
 {:.no_toc}
 
@@ -116,7 +114,7 @@ All prebid adapters that get merged should automatically detect if they're servi
 In other words, you shouldn't have to do anything other than make sure your own page loads Prebid.js securely, e.g.,
 
 ```html
-<script src='https://acdn.adnxs.com/prebid/not-for-prod/prebid.js' async=true />
+<script src='https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js' async=true />
 ```
 
 (Except that you should *never never never* use the copy of Prebid.js at that URL in production, it isn't meant for production use and may break everything at any time.)
@@ -172,6 +170,36 @@ that [bid adapters resolve OpenRTB macros](/dev-docs/bidder-adaptor.html#resolve
 
 For historic reasons, Prebid will resolve the AUCTION_PRICE macro, but it will be after currency conversion and any bid adjustments.
 This differs from how OpenRTB defines this value as being the clearing price in the bid currency. Header Bidding is a first-price auction, the best candidate for “clearing price” is the original bid itself.
+
+## How does Prebid interact with the GAM yield group header bidding feature?
+
+Google is developing this technology to help publishers create and manage line items in bulk. This should enable more publishers to integrate their sites with header bidding on the open web. Here is Google's [official blog post](https://blog.google/products/admanager/improved-header-bidding-support-in-google-ad-manager/) on yield group. This feature is currently in beta production. 
+
+What we know about yield group feature:
+- The beta is limited to which publishers are involved.
+- The feature is limited to premium GAM accounts.
+- The [Prebid Universal Creative](/overview/prebid-universal-creative.html) is not supported. Google has ported some portions of the PUC to an internal creative.
+- GPT reads Prebid.js objects directly from the 'pbjs' global.
+- Not all Prebid bid adapters are supported.
+- While detailed performance testing has not taken place, we hope that the improved auction dynamics from no longer using price bucketing will have beneficial effects on auction outcomes.
+
+What we don't know:
+- Whether all use cases currently work well when using yield groups. e.g. [Native](/formats/native.html), [video](/formats/video.html), [AMP](/formats/amp.html), [Post-Bid](/overview/what-is-post-bid.html).
+- Whether utilizing the feature might cause an impact to some analytics scenarios.
+- Whether GPT can find Prebid at a global other than 'pbjs'.
+- Google's timelines for adding publishers to the beta or making the feature Generally Available.
+
+When we have solid information to share with the community, we will create additional [AdOps pages](/adops/before-you-start.html) and update existing ones.
+
+## I'm a developer - how do I change the name of my module?
+
+Sometimes the owner of a bid adapter or other kind of module wants to rename their module. However, Prebid considers module renames a
+'breaking change' -- publishers' build processes and pages could break as a result of a renaming, so Prebid's policy on renaming is:
+
+1) Create the new Prebid.js module files (js and md)
+2) If they're basically the same code base, change the old file so that it includes the new file. This prevents duplicate maintenance of code. In general we don't approve modules including each other, but we'll approve it to avoid repetition.
+3) The docs repo should contain both names, with the old name referring to the new name. You can add the "enable_download: false" flag to prevent installations of the old name.
+4) At the next major release the old files may be removed.
 
 ## Related Reading
 

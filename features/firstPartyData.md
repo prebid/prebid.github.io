@@ -63,7 +63,10 @@ pbjs.setConfig({
 		userrating: "4",
 		data: [{
           	    name: "www.dataprovider1.com",
-          	    ext: { "segtax": 1 },
+          	    ext: {
+		        segtax: 7,
+			cids: [ "iris_c73g5jq96mwso4d8" ]
+		    },
 		    segment: [
             		{ id: "687" },
             		{ id: "123" }
@@ -83,7 +86,7 @@ pbjs.setConfig({
            keywords: "a,b",
 	   data: [{
 	       name: "dataprovider.com",
-	       ext: { segtax: 3 },
+	       ext: { segtax: 4 },
                segment: [
 		  { id: "1" }
                ]
@@ -177,6 +180,82 @@ pbjs.setBidderConfig({ // different bidders can receive different data
 });
 {% endhighlight %}
 
+### Supplying App Content Data
+
+Occasionally, an app which embeds a webview might run Prebid.js. In this case, the app object is often specified for OpenRTB, and the site object would be invalid. When this happens, one should specify app.content.data in place of site.content.data.
+
+{% highlight js %}
+pbjs.setConfig({
+  ortb2: {
+    app: {
+      name: "myappname",
+      keywords: "power tools, drills",
+      content: {
+        data: [
+          {
+            name: "www.dataprovider1.com",
+            ext: {
+              segtax: 6
+            },
+            segment: [
+              {
+                id: "687"
+              },
+              {
+                id: "123"
+              }
+            ]
+          },
+          {
+            name: "www.dataprovider1.com",
+            ext: {
+              segtax: 7
+            },
+            segment: [
+              {
+                id: "456"
+              },
+              {
+                id: "789"
+              }
+            ]
+          }
+        ]
+     }
+    }
+  }
+)
+
+{% endhighlight %}
+
+### Supplying OpenRTB Content Data
+OpenRTB `content` object describes specific (mostly audio/video) content information, and it is useful for targeting.
+For website ad, the content object should be defined in `ortb2.site.content`, for non-browser ad, it should be defined in `ortb2.app.content`
+
+{% highlight js %}
+pbjs.setConfig({
+    ortb2: {
+        site: {
+            content: {
+                id: "some_id",
+                episode: "1",
+                title: "some title",
+                series: "some series",
+                season: "s1",
+                artist: "John Doe",
+                genre: "some genre",
+                isrc: "CC-XXX-YY-NNNNN",
+                url: "http://foo_url.de",
+                cat: ["IAB1-1", "IAB1-2", "IAB2-10"],
+                context: "7",
+                keywords: ["k1", "k2"],
+                live: "0"
+            }
+        }
+    }
+});
+{% endhighlight %}
+
 ## Segments and Taxonomy
 
 The [IAB](https://iab.com) offers standard content and audience taxonomies for categorizing sites and users. Prebid supports defining these values as first party data in `site.content.data` or `user.data` as shown in the examples above.
@@ -188,7 +267,7 @@ Segment support is still under development. You can follow the [Prebid.js discus
         user: {
 	   data: [{
 	       name: "dataprovider.com", // who resolved the segments
-	       ext: { segtax: 3 },       // taxonomy used to encode the segments
+	       ext: { segtax: 4 },       // taxonomy used to encode the segments
                segment: [
 		  { id: "1" }
                ]

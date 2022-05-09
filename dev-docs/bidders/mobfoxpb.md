@@ -11,7 +11,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 gvl_id: 311
-pbjs_version_notes: not in 5.x
+enable_download: false
 ---
 
 ### Prebid.JS Bid Params

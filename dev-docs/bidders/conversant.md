@@ -9,6 +9,7 @@ media_types: video
 gdpr_supported: true
 userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId, publinkId
 prebid_member: true
+schain_supported: true
 gvl_id: 24
 ---
 
@@ -20,7 +21,7 @@ gvl_id: 24
 
 | Name          | Scope                       | Description                                                                                                               | Example           | Type             |
 |---------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------|-------------------|------------------|
-| `site_id`     | required                    | The site ID from Conversant.                                                                                              | `'87293'`         | `string`         |
+| `site_id`     | optional                    | The site ID from Conversant.                                                                                              | `'87293'`         | `string`         |
 | `secure`      | required (for secure pages) | If impression requires secure HTTPS URL creative assets and markup. 0 for non-secure, 1 for secure. Default is non-secure | `1`               | `integer`        |
 | `bidfloor`    | optional                    | Bid floor                                                                                                                 | `0.50`            | `float`          |
 | `tag_id`      | optional                    | Identifies specific ad placement.                                                                                         | `'cnvr-test-tag'` | `string`         |
@@ -74,3 +75,57 @@ The following values are defined in the [ORTB 2.5 spec](https://www.iab.com/wp-c
 + `8` : VAST 4.0 Wrapper
 + `9` : DAAST 1.0
 + `10` : DAAST 1.0 Wrapper
+
+### First Party Data
+Publishers should use the `ortb2` method of setting for setting First Party Data.
+Example first party data configuration that is available to all adUnits
+```
+pbjs.setConfig({
+    debug: true,
+    cache: {
+    url: 'https://prebid.adnxs.com/pbc/v1/cache'
+    },
+    ortb2: { 
+        site: { 
+            content: { 
+                series: 'MySeries', 
+                season: 'My Season', 
+                episode: 3, 
+                title: 'My Title' 
+            } 
+        } 
+    }
+});
+``` 
+
+Example AdUnit specific data using the `ortb2Imp` object
+```
+        var videoAdUnit = {
+            code: 'video1',
+            mediaTypes: {
+                video: {
+                    playerSize: [[640, 480]]
+                }
+            },
+            ortb2Imp: {
+                instl: 1,
+                ext: {
+                    data: {
+                        adUnitSpecificAttribute: "123"
+                    }
+                }
+            },
+            bids: [{
+                bidder: 'conversant',
+                params: {
+                    site_id: '108060',
+                    mimes: ['video/mp4', 'video/webm']
+                }
+            }]
+        }
+
+        pbjs.que.push(function(){
+            pbjs.addAdUnits(videoAdUnits);
+        }
+```
+

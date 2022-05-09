@@ -10,21 +10,25 @@ prebid_member: true
 pbjs: true
 pbs: true
 schain_supported: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, sharedId, unifiedId
+userIds: all
 gvl_id: 50
 prevBiddercode: adformOpenRTB
+floors_supported: true
+fpd_supported: true
 ---
 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description          | Example            | Type      |
-|-------------|----------|----------------------|--------------------|-----------|
-| `mid`       | required |                      | `12345`            | `integer` |
-| `adxDomain` | optional | The Adform domain    | `'adx.adform.net'` | `string`  |
-| `priceType` | optional | Price type           | `'gross'`          | `string`  |
+| Name        | Scope                      | Description          | Example            | Type      |
+|-------------|----------------------------|----------------------|--------------------|-----------|
+| `mid`       | required, if `inv` and `nmane` not set | Placement ID | `12345`        | `integer` |
+| `inv`       | required, if `mid` not set | Inventory source ID  | `1234`             | `integer` |
+| `mname`     | required, if `mid` not set | Placement name       | `"Leaderboard"`    | `string`  |
+| `adxDomain` | optional, Prebid.js only   | The Adform domain    | `"adx.adform.net"` | `string`  |
+| `priceType` | optional                   | Price type           | `"gross"`          | `string`  |
 
-Note: prebid-server adapter supports only `mid` parameter - other params could be set by adjusting prebid-server openRTB request.
+Note: Bid placement should be defined using the `mid` parameter or `inv` and `mname` parameters (dynamic master tag) but not both.
 
 ### OpenRTB request config
 
@@ -39,7 +43,3 @@ pbjs.setConfig({
   }
 });
 ```
-
-### Multi-format ads
-
-Adform bid adapter does not support multi-format ad unit setup. Please use [twin ad unit codes]({{site.baseurl}}/dev-docs/adunit-reference.html#twin-adunit-codes) to enable multi-format auctions.
