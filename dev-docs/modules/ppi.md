@@ -160,7 +160,6 @@ Here's a summary of the values that can be part of a transaction object. See the
 | hbInventory.type | required | Defines the inventory sub-module to use. Values: AUPSlotPath, AUPDivID, AUPSlotObject, AUPAutoSlots | string |
 | hbInventory.values.name | required when type=AUPSlotPath or AUPDivID | Defines the string to be matched against the AUP list | string |
 | hbInventory.values.slot | required when type=AUPSlotObject | defines the GPT slot object to be matched against the AUP list | slot object |
-| hbInventory.values.adUnitPatterns | optional | A list of AUPs to use instead of the global set | object |
 | hbInventory.sizes | optional | Constrains the sizes used in the final PBJS AdUnit. e.g. [[300,250],[300,600]] | array of integer arrays |
 | hbSource.type | required | Defines the source sub-module to use. Values auction, cache | string |
 | hbDestination.type | required | Defines the destination sub-module to use. Values: gpt, page, cache and callback | string |
@@ -281,7 +280,6 @@ See the [AUP Matching Algorithm](/dev-docs/modules/ppi.html#matching-algorithm) 
 | Parameter  | Scope     | Description | Type |
 |---------+----+-------+---------|
 | hbInventory. values.name | required | value or regex matching the AUP slotPattern | string | 
-| hbInventory. values.adUnitPatterns | optional | list of AUPs to use instead of the global set | array of objects |
 | hbinventory. sizes | optional | constraints which banner sizes end up in the PBJS AdUnit | array of string arrays |
 
 #### hbInventory AUPDivID Sub-Module
@@ -294,7 +292,6 @@ This option is very similar to AUPSlotPath as described above, except it scans d
 | Parameter  | Scope     | Description | Type |
 |---------+----+-------+---------|
 | hbInventory. values.name | required | value or regex matching the AUP divPattern | string |
-| hbInventory. values.adUnitPatterns | optional | list of AUPs to use instead of the global set | array of objects |
 | hbInventory. sizes | optional | constrains which banner sizes end up in the PBJS AdUnit | array of string arrays |
 
 #### hbInventory AUPSlotObject Sub-Module
@@ -309,7 +306,6 @@ The approach used is similar to the ones described above, except it scans down t
 | Parameter  | Scope     | Description | Type |
 |---------+----+-------+---------|
 | hbInventory. values.slot | required | defines the slotName and div ID used to match the AUP slotPattern and divPattern | GPT slot object |
-| hbInventory. values.adUnitPatterns | optional | list of AUPs to use instead of the global set | array of objects |
 
 #### hbInventory AUPAutoSlots Sub-Module
 
@@ -332,10 +328,7 @@ See the AUP Matching Algorithm below for more information.
 
 ##### Transaction parameters for hbInventory=AUPAutoSlots
 
-{: .table .table-bordered .table-striped }
-| Parameter  | Scope     | Description | Type |
-|---------+----+-------+---------|
-| hbInventory. values.adUnitPatterns | optional | list of AUPs to use instead of the global set | array of objects |
+None.
 
 #### Ad Unit Pattern Details
 
