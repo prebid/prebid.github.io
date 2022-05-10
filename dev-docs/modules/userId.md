@@ -485,6 +485,32 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Czech Publisher Exchange ID (CPExID)
+
+CPExID is provided by [Czech Publisher Exchange](https://www.cpex.cz/), or CPEx. It is a user ID for ad targeting by using first party cookie, or localStorage mechanism. Please contact CPEx before using this ID.
+
+{: .alert.alert-info :}
+gulp build --modules=cpexIdSystem
+
+#### CPExId Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module | `"cpexId"` |
+
+#### CPExId Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'cpexId'
+        }]
+    }
+});
+{% endhighlight %}
+
 ### DAC ID by DAC
 
 DAC ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.

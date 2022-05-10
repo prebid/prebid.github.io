@@ -267,6 +267,9 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> Criteo ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="cpexIdSystem" class="bidder-check-box"> CPEx ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="deepintentDpesIdSystem" class="bidder-check-box"> Deepintent DPES ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
