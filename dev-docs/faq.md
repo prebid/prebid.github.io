@@ -168,8 +168,8 @@ and filtering. See the [list of bid response metadata](/dev-docs/bidder-adaptor.
 Yes, but in a way that could cause discrepancies in reporting. It's recommended
 that [bid adapters resolve OpenRTB macros](/dev-docs/bidder-adaptor.html#resolve-openrtb-macros-in-the-creatives) themselves before giving them to Prebid.js.
 
-For historic reasons, Prebid will resolve the AUCTION_PRICE macro, but it will be after currency conversion and any bid adjustments.
-This differs from how OpenRTB defines this value as being the clearing price in the bid currency. Header Bidding is a first-price auction, the best candidate for “clearing price” is the original bid itself.
+For historic reasons, Prebid will resolve the AUCTION_PRICE macro.
+ Header Bidding is a first-price auction, the best candidate for “clearing price” is the original bid itself. Prebid may deprecate this resolution; it is not recommended to be resolved client-side, as it opens opportunities for abuse. 
 
 ## How does Prebid interact with the GAM yield group header bidding feature?
 
