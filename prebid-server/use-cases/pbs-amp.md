@@ -52,7 +52,7 @@ There are two basic ways of invoking AMP RTC:
 ```
 
 {: .alert.alert-info :}
-**Note:** the `prebidrubicon` and `prebidappnexus` AMP vendor strings define slightly different parameters; AppNexus uses "PLACEMENT_ID" as the argument to rtc-config while Rubicon uses "REQUEST_ID". They both translate to `tag_id` when passed to Prebid Server.
+**Note:** the `prebidrubicon` and `prebidappnexuspsp` AMP vendor strings define slightly different parameters; AppNexus uses "PLACEMENT_ID" as the argument to rtc-config while Rubicon uses "REQUEST_ID". They both translate to `tag_id` when passed to Prebid Server.
 
 - The other option is to construct a direct URL from component pieces: w, h, slot, targeting, gdpr_consent, account, page url (purl), etc.
 
