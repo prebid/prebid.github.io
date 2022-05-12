@@ -246,7 +246,7 @@ These modules may require accounts with a service provider.<br/>
 <h4>User ID Modules</h4>
 <div class="row">  
   <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="33acrossIdSystem" class="bidder-check-box"> 33Across</label>
+  <label><input type="checkbox" moduleCode="33acrossIdSystem" class="bidder-check-box"> 33Across ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="admixerIdSystem" class="bidder-check-box"> Admixer ID</label>
