@@ -18,6 +18,9 @@ pbs_app_supported: true
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                              | Example    | Type      |
 |----------------|----------|----------------------------------------------------------|------------|-----------|
-| `TagID` | required | Placement Id will be generated on Colossus SSP Platform. | `'0'`        | `string` |
+| `TagID` | optional | Placement Id will be generated on Colossus SSP Platform. | `'0'`        | `string` |
+| `groupId` | optional | Group Id will be generated on Colossus SSP Platform. | `'0'`        | `string` |
+
+You only need to use one parameter: either TagID or groupId
 
 *For prebidJS parametres, look into colossusssp.md*
