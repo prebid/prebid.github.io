@@ -288,7 +288,7 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> ID5 ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> IdentityLink ID</label>
+  <label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> RampID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="idxIdSystem" class="bidder-check-box"> IDx</label>
