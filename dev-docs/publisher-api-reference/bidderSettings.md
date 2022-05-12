@@ -45,7 +45,7 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | suppressEmptyKeys | standard or adapter-specific | 0.13.0 | false | If custom adserverTargeting functions are specified that may generate empty keys, this can be used to suppress them. |
 | allowZeroCpmBids | standard or adapter-specific | 6.2.0 | false | Would allow bids with a 0 CPM to be accepted by Prebid.js and could be passed to the ad server. |
 | storageAllowed | standard or adapter-specific | 6.13.0 | true | Allow use of cookies and local storage. |  
-| allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | false | Allow adapters to bid with alternate bidder codes. |  
+| allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | true in v6.x <br /> false from v7.0| Allow adapters to bid with alternate bidder codes. |  
 | allowedAlternateBidderCodes | standard or adapter-specific | 6.23.0 | n/a | Array of bidder codes for which an adapter can bid. <br />`undefined` or `['*']` will allow adapter to bid with any bidder code. |  
 
 ##### 2.1. adserverTargeting
@@ -240,6 +240,9 @@ Note that:
 ##### 2.7. allowAlternateBidderCodes
 
 If this flag is set to `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction.
+<br />Default value is `true` in version 6.x
+<br />Default value will be `false` from version 7.0
+
 
 ##### 2.8. allowedAlternateBidderCodes
 
