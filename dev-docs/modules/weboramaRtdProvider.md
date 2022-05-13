@@ -60,7 +60,7 @@ pbjs.que.push(function () {
 });
 ```
 
-The module configuration has 3 independent sections (`weboCtxConf`, `weboUserDataConf` and `weboLiteDataConf`), each one mapped to a single product (`contextual`, `wam` and `lite`). No section is enabled by default, we must be explicit like in the minimal example below:
+The module configuration has 3 independent sections (`weboCtxConf`, `weboUserDataConf` and `sfbxLiteDataConf`), each one mapped to a single product (`contextual`, `wam` and `lite`). No section is enabled by default, we must be explicit like in the minimal example below:
 
 ```javascript
 pbjs.setConfig({
@@ -77,7 +77,7 @@ pbjs.setConfig({
                 weboUserDataConf: { // wam user-centric configuration, *omit if not needed*
                     enabled: true,
                 },
-                weboLiteDataConf: { // webo-lite site-centric configuration, *omit if not needed*
+                sfbxLiteDataConf: { // sfbx-lite site-centric configuration, *omit if not needed*
                     enabled: true, 
                 },
             }
@@ -103,12 +103,12 @@ This is the main configuration section
 | name | String | Real time data module name | Mandatory. Always 'Weborama' |
 | waitForIt | Boolean | Mandatory. Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false but recommended to true |
 | params | Object | | Optional |
-| params.setPrebidTargeting | Boolean | If true, may use the profile to set the prebid (GPT/GAM or AST) targeting of all adunits managed by prebid.js | Optional. Affects the `weboCtxConf`, `weboUserDataConf` and `weboLiteDataConf` sections |
-| params.sendToBidders | Boolean or Array | If true, may send the profile to all bidders. If an array, will specify the bidders to send data | Optional. Affects the `weboCtxConf`, `weboUserDataConf` and `weboLiteDataConf` sections |
+| params.setPrebidTargeting | Boolean | If true, may use the profile to set the prebid (GPT/GAM or AST) targeting of all adunits managed by prebid.js | Optional. Affects the `weboCtxConf`, `weboUserDataConf` and `sfbxLiteDataConf` sections |
+| params.sendToBidders | Boolean or Array | If true, may send the profile to all bidders. If an array, will specify the bidders to send data | Optional. Affects the `weboCtxConf`, `weboUserDataConf` and `sfbxLiteDataConf` sections |
 | params.weboCtxConf | Object | Weborama Contextual Site-Centric Configuration | Optional |
 | params.weboUserDataConf | Object | Weborama WAM User-Centric Configuration | Optional |
-| params.weboLiteDataConf | Object | Weborama LiTE Site-Centric Configuration | Optional |
-| params.onData | Callback | If set, will receive the profile and metadata | Optional. Affects the `weboCtxConf`, `weboUserDataConf` and `weboLiteDataConf` sections |
+| params.sfbxLiteDataConf | Object | Sfbx LiTE Site-Centric Configuration | Optional |
+| params.onData | Callback | If set, will receive the profile and metadata | Optional. Affects the `weboCtxConf`, `weboUserDataConf` and `sfbxLiteDataConf` sections |
 
 #### Contextual Site-Centric Configuration
 
@@ -144,11 +144,11 @@ On this section we will explain the `params.weboUserDataConf` subconfiguration:
 | localStorageProfileKey| String | can be used to customize the local storage key | Optional |
 | enabled | Boolean| if false, will ignore this configuration| Default is `true` if this section is present|
 
-#### Webo LiTE Site-Centric Configuration
+#### Sfbx LiTE Site-Centric Configuration
 
-To be possible use the integration between Weborama and LiTE you should also contact SFBX® to setup this product.
+To be possible use the integration between Weborama and Sfbx LiTE you should also contact SFBX® to setup this product.
 
-On this section we will explain the `params.weboLiteDataConf` subconfiguration:
+On this section we will explain the `params.sfbxLiteDataConf` subconfiguration:
 
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
@@ -379,7 +379,7 @@ pbjs.que.push(function () {
                         },
                         enabled: true,
                     },
-                    weboLiteDataConf: {
+                    sfbxLiteDataConf: {
                         setPrebidTargeting: true, // override param.setPrebidTargeting. default is true
                         sendToBidders: true,      // override param.sendToBidders. default is true
                         defaultProfile: {           // optional, used if nothing is found
@@ -426,7 +426,7 @@ pbjs.que.push(function () {
                         sendToBidders: true,      // override param.sendToBidders. default is true
                         enabled: true,
                     },
-                    weboLiteDataConf: {
+                    sfbxLiteDataConf: {
                         setPrebidTargeting: true, // override param.setPrebidTargeting. default is true
                         sendToBidders: true,      // override param.sendToBidders. default is true
                         enabled: true,
@@ -465,7 +465,7 @@ pbjs.que.push(function () {
                         sendToBidders: ['rubicon',...], // overide, send to only some bidders
                         enabled: true,
                     },
-                    weboLiteDataConf: {
+                    sfbxLiteDataConf: {
                         setPrebidTargeting: ['adUnitCode3',...], // set target only on certain adunits 
                         sendToBidders: ['smartadserver',...], // overide, send to only some bidders
                         enabled: true,
@@ -530,7 +530,7 @@ pbjs.que.push(function () {
                         enabled: true,
                         //, onData: function (data, ...) { ...}
                     },
-                    weboLiteDataConf: {
+                    sfbxLiteDataConf: {
                         setPrebidTargeting: function(adUnitCode){ // specify set target via callback
                             return adUnitCode == 'adUnitCode1';
                         },
