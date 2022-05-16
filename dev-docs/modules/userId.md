@@ -486,6 +486,32 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Czech Publisher Exchange ID (CPExID)
+
+CPExID is provided by [Czech Publisher Exchange](https://www.cpex.cz/), or CPEx. It is a user ID for ad targeting by using first party cookie, or localStorage mechanism. Please contact CPEx before using this ID.
+
+{: .alert.alert-info :}
+gulp build --modules=cpexIdSystem
+
+#### CPExId Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module | `"cpexId"` |
+
+#### CPExId Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'cpexId'
+        }]
+    }
+});
+{% endhighlight %}
+
 ### DAC ID by DAC
 
 DAC ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
@@ -2381,6 +2407,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | DAC ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
 | DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
 | DMD ID | DMD | dmdId | hcn.health | "1111" |
+| CpexID | CPEx | cpexId | cpex.cz | "1111" |
 | CriteoID | Criteo | criteoId | criteo.com | "1111" |
 | Fabrick ID | Neustar | fabrickId | neustar.biz | "1111" |
 | FLoC ID | n/a | flocId | | |
