@@ -65,7 +65,7 @@ An undocumented feature "Stored Auction Response" has been deprecated.
 
 In the Prebid 5 release notes, it was noted that publishers should no longer use publisherDomain as a setConfig parameter, and instead prefer PageURL. Adapters no longer read from this location. 
 
-The Prebid Server committee moved the ortb2 location of bidder parameters from imp[].ext.BIDDER to imp[].ext.prebid.bidder.BIDDER.
+The Prebid Server committee moved the ortb2 location of bidder parameters from imp[].ext.BIDDER to imp[].ext.prebid.bidder.BIDDER. PBS versions before [insert version number here], released on [insert release date or year here], are not compatible with Prebid 7+.
 
 If you load Prebid.js twice on a page using the same global, the second load is now prevented unless you take steps to override this behavior. 
 
