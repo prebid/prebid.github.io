@@ -32,6 +32,7 @@ OneVideo Bid Adapter (replaced by YahooSSP)
 UserId Targeting Module
 Sortable Adapters (replaced by Freestar)
 TrustX Bid Adapter (now an alias of Grid)
+Vertoz Bid Adapter (replaced by IncrementX)
 
 
 
