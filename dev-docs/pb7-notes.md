@@ -22,10 +22,17 @@ This document describes the changes included for Prebid.js version 7.0.
 
 The following modules have been removed from Prebid.js as part of the 7.0 release
 
+Akamai ID Submodule (rearchitected to use RTD module)
+AppNexus Analytics Adapter
 DistrictM DMX Bid Adapter (replaced by Sharethrough)
-Halo ID submodule (replaced by Hadron)
-Halo RTD submodule (replaced by Hadron)
+FLOC ID submodule
+Halo ID & RTD submodules (replaced by Hadron)
+NextRoll ID submodule
 OneVideo Bid Adapter (replaced by YahooSSP)
+UserId Targeting Module
+Sortable Adapters (replaced by Freestar)
+TrustX Bid Adapter (now an alias of Grid)
+
 
 
 ## Further Reading
