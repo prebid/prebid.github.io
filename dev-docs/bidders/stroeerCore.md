@@ -11,9 +11,11 @@ usp_supported: false
 safeframes_ok: true
 prebid_member: false
 pbjs: true
-pbs: false
+pbs: true
 gvl_id: 136
+pbs_app_supported: true
 deals_supported: true
+userIds: criteo, id5Id, netId, pubCommonId, sharedId
 ---
 
 ### Bid Params
