@@ -20,7 +20,7 @@ This document describes the changes included for Prebid.js version 7.0.
 
 ## Removed Modules
 
-The following modules have been removed from Prebid.js as part of the 7.0 release
+The following modules have been removed from Prebid.js as part of the 7.0 release. Publishers building with one of them will need to point to its replacement or remove the module from their build. 
 
 Akamai ID Submodule (rearchitected to use RTD module)
 AppNexus Analytics Adapter
