@@ -51,7 +51,7 @@ Finally, adapters known to use http1 bidding endpoints may now have notices appe
 
 ## Regulatory and consent strings
 
-TCF1 is no longer supported by the Consent Management (GDPR) module. The Consent Management USP module now defaults to framework 'iab' and will work without configuration if installed. 
+TCF1 is no longer supported by the Consent Management (GDPR) module. The Consent Management USP module now defaults to framework 'iab' and will work without configuration if installed and a functioning __uspapi() exists on the page. 
 
 ## First Party Data
 
