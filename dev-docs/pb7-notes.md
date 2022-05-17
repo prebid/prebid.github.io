@@ -53,7 +53,7 @@ Finally, adapters known to use http1 bidding endpoints may now have notices appe
 
 ## Regulatory and consent strings
 
-TCF1 is no longer supported by the Consent Management (GDPR) module. The Consent Management USP module now defaults to framework 'iab' and will work without configuration if installed and a functioning __uspapi() exists on the page. 
+TCF1 is no longer supported by the Consent Management (GDPR) module. The Consent Management USP module now defaults to framework 'iab' and will work without configuration if installed and a functioning __uspapi() exists on the page. It will also set ortb2.regs.ext.gpc to 1 if GPC headers indicate the user has opted out, and the third character of the [US Privacy string](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md) will be set to 'Y'.
 
 ## First Party Data
 
