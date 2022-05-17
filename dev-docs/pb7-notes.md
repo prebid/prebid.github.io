@@ -36,12 +36,7 @@ UserId Targeting Module
 
 ## Adapter Interface
 
-Following the precedent on Prebid 5, bidders should read additional fields from the ad unit, global config, or the ortb2 object. Bidders may still take these as parameters, but should also consider or support the more standard interface. Publishers do not want to set these multiple times, one for each bid parter. Publishers can now rely on certain parameters no longer needing to be set in bidder configuration. 
-These include:
-
-The instl flag on an ad unit
-The position parameter
-The banned categories (bcat)
+Following the precedent on Prebid 5, bidders should read additional fields from the ad unit, global config, or the ortb2 object. Bidders may still take these as parameters, but should also consider or support the more standard interface. Publishers do not want to set these multiple times, one for each bid parter. Publishers can now rely on certain parameters no longer needing to be set in bidder configuration, including the instl flag on an ad unit, the position parameter, and the banned categories (bcats).
 
 In the Prebid 5 release notes, it was noted that publishers should no longer use publisherDomain as a setConfig parameter, and instead prefer PageURL. Adapters no longer read from this location. Also, the object presented to bidders with the page url and that page's referring page url is essentially redone, and our goal is that adapters can rely on ortb2.site.page and ortb2.site.ref, with flags for when top is not reached, the canoncical link is used, setConfig('pageUrl') is used, or when window.location.href is used for ortb2.site.page. Many bidders had disparate logic for this and the refererInfo.referer seemed to have different meanings in different contexts.
 
