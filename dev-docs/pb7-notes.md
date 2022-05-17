@@ -22,6 +22,7 @@ This document describes the changes included for Prebid.js version 7.0.
 
 The following modules have been removed from Prebid.js as part of the 7.0 release. Publishers building with one of them will need to point to its replacement or remove the module from their build. 
 
+AdLive Bid Adapter
 Akamai ID Submodule (rearchitected to use RTD module)
 AppNexus Analytics Adapter
 DistrictM DMX Bid Adapter (replaced by Sharethrough)
@@ -33,6 +34,43 @@ Sortable Adapters (replaced by Freestar)
 TrustX Bid Adapter (now an alias of Grid)
 UserId Targeting Module
 
+## Adapter Rules
+
+Following the precedent on Prebid 5, bidders should read additional fields from the ad unit, global config, or the ortb2 object. Bidders may still take these as parameters, but should also consider or support the more standard interface. Publishers do not want to set these multiple times, one for each bid parter. Publishers can now rely on certain parameters no longer needing to be set in bidder configuration. 
+These include:
+
+The instl flag on an ad unit
+The position parameter
+The banned categories (bcat)
+
+Also, Bid Adapters (not all adapters) no longer have access to storage manager unless explicitly whitelisted by the publisher. We believe bidding functionality should rarely if ever need this access and that this extra functionality included in bid adapters must be consented to by the installer in their configuration. The following bid adapters' unit tests were affected by this change: Adagio, Adnuntius, AP Stream, Concert, Conversant, Craft, Criteo, E-Planning, Invibes, Kargo, Quantcast, Trion, Unicorn, and Vidazoo. Adapters simply setting a random identifier in the first party local storage or cookie should consider if the popular shared id user id submodule can fully achieve this functionality for them. See storageAllowed in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html) 
+
+Adapters are also now not allowed to return alternate bidder codes unless whitelisted by the publisher. See allowAlternateBidderCodes in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html).
+
+Finally, adapters known to use http1 bidding endpoints may now have notices appended to their documentation. 
+
+## Regulatory and consent strings
+
+TCF1 is no longer supported by the Consent Management (GDPR) module. The Consent Management USP module now defaults to framework 'iab' and will work without configuration if installed. 
+
+## First Party Data
+
+Support has been removed for setConfig('fpd'), config.getLegacyFpd, config.convertAdUnitFpd and related relics of legacy first party data. Publishers should use the methods described in [First Party Data]({{site.baseurl}}/features/firstPartyData.html).
+
+First party data can also now be set on a specific auction. This is useful for example on infinite scroll pages when contextual segments change, or when the publisher wishes to express the context of an instream video ad but not the display advertising.
+
+## Misc changes
+
+An undocumented feature "Stored Auction Response" has been deprecated. 
+
+In the Prebid 5 release notes, it was noted that publishers should no longer use publisherDomain as a setConfig parameter, and instead prefer PageURL. Adapters no longer read from this location. 
+
+The Prebid Server committee moved the ortb2 location of bidder parameters from imp[].ext.BIDDER to imp[].ext.prebid.bidder.BIDDER.
+
+If you load Prebid.js twice on a page using the same global, the second load is now prevented unless you take steps to override this behavior. 
+
+
 ## Further Reading
 
 + [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html)
++ [First Party Data]({{site.baseurl}}/features/firstPartyData.html)
