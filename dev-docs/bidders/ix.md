@@ -5,14 +5,15 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: true
-userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2
+userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
 gdpr_supported: true
-getFloor: true
+floors_supported: true
 usp_supported: true
 media_types: banner, video
+fpd_supported: true
 gvl_id: 10
 prebid_member: yes
 ---
@@ -461,10 +462,8 @@ to `'ix'` across all ad units that bids are being requested for does not exceed 
 
 ### Time-To-Live (TTL)
 
-Banner bids from IX have a TTL of 300 seconds while video bids have a TTL of 1 hour, after which time they become invalid.
-
-If an invalid bid wins, and its associated ad is rendered, it will not count
-towards total impressions on IX's side.
+Banner bids from Index have a TTL of 600 seconds while video bids have a TTL of 3 hours, after which time they become invalid.
+**Note:** Index supports the `bid.exp` attribute in the bid response which allows our adapter to specify the maximum number of seconds allowed between the auction and billing notice. In the absence of the `bid.exp` attribute, the TTL provided above applies.
 
 ## FAQs
 

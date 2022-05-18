@@ -5,6 +5,7 @@ description: Automatad OpenRTB Bid Adapter
 biddercode: automatad 
 pbjs: true
 media_types: banner
+fpd_supported: false
 ---
 
 #### Bid Params
@@ -14,4 +15,4 @@ media_types: banner
 | Name      | Scope    | Description               | Example    | Type     |
 |-----------|----------|---------------------------|------------|----------|
 | `siteId`    | required | The site ID from automatad.  | `"12adf45c"` | `string` |
-| `placementId`    | required | The placement ID from automatad.  | `"a34gh6d"` | `string` |
+| `placementId`    | optional | The placement ID from automatad.  | `"a34gh6d"` | `string` |
