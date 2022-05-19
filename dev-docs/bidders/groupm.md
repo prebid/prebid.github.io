@@ -18,8 +18,11 @@ pbs: true
 pbs_app_supported: true
 fpd_supported: true
 gvl_id: 98
+pbjs_version_notes: not supported in 6.24+
 ---
 
+{: .alert.alert-warning :}
+This bidder is not available in PBJS 6.24 and later.
 
 ### Bid Params
 
