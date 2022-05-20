@@ -291,6 +291,7 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
 | includebidderkeys | no | Whether to include targeting for the best bid from each bidder in response.seatbid[].bid[]. ext.prebid.targeting. Defaults to false. | true | boolean |
 | includeformat | no | Whether to include the "hb_format" targeting key. Defaults to false. | false | boolean |
 | preferdeals | no | If targeting is returned and this is true, PBS will choose the highest value deal before choosing the highest value non-deal. Defaults to false. | true | boolean |
+| alwaysincludedeals | no | (PBS-Java only) If true, generate hb_ATTR_BIDDER values for all bids that have a dealid | true | boolean |
 
 **Request format** (optional param `request.ext.prebid.targeting`)
 
@@ -311,6 +312,7 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
         "includebidderkeys": false, // Optional param defaulting to false
         "includeformat": false,     // Optional param defaulting to false
         "preferdeals": true         // Optional param defaulting to false
+        "alwaysincludedeals": true  // Optional param defaulting to false
       }
     }
   }
@@ -528,21 +530,89 @@ Bids can be temporarily cached on the server by sending instructions in `request
 Both `bids` and `vastxml` are optional, but one of the two is required if you want to cache bids. This property will have no effect
 unless `request.ext.prebid.targeting` is also set in the request.
 
-If `bids` is present, Prebid Server will make a _best effort_ to include these extra
-`bid.ext.prebid.targeting` keys:
+{: .table .table-bordered .table-striped }
+| Attribute | Required? | Description | Example | Type |
+| --- | --- | --- | --- | --- |
+| ext.prebid.cache. bids | no | If present, cache the bid and respond with cache location | | object |
+| ext.prebid.cache. bids.ttlseconds | no | How long to cache the bid. Default is set by PBS host config. | 300 | integer |
+| ext.prebid.cache. bids.returnCreative | no | If false, suppress the body of the creative to save network bandwidth. Default is true. | false | boolean |
+| ext.prebid.cache. vastxml | no | If present, cache the bid and respond with cache location | | object |
+| ext.prebid.cache. vastxml.ttlseconds | no | How long to cache the bid. Default is set by PBS host config. | 300 | integer |
+| ext.prebid.cache. vastxml.returnCreative | no | If false, suppress the body of the creative to save network bandwidth. Default is true. | false | boolean |
 
-- `hb_cache_id`: On the highest overall Bid in each Imp.
-- `hb_cache_id_{bidderName}`: On the highest Bid from {bidderName} in each Imp.
+###### Caching the entire bid
 
-Clients _should not assume_ that these keys will exist, just because they were requested, though.
-If they exist, the value will be a UUID which can be used to fetch Bid JSON from [Prebid Cache](https://github.com/prebid/prebid-cache).
-They may not exist if the host company's cache is full, having connection problems, or other issues like that.
+If the `ext.prebid.cache.bids` object is present, Prebid Server will make a best effort to cache the entire bid object server-side and return the cache location in two places:
 
-If `vastxml` is present, PBS will try to add analogous keys `hb_uuid` and `hb_uuid_{bidderName}`.
-In addition to the caveats above, these will exist _only if the relevant Bids are for Video_.
-If they exist, the values can be used to fetch the bid's VAST XML from Prebid Cache directly.
+1) OpenRTB seatbid.bid.ext.prebid.cache.bids
+```
+    {
+      "seatbid": [
+        "bid": [
+          ...
+          "ext": {
+            "prebid": {
+              "cache": {
+                "bids": {
+                  "url": "https://pg-prebid-server-aws-use1.rubiconproject.com:443/cache?uuid=385b283c-22cb-49a0-8c0b-8b88c49d9fe9",
+                  "cacheId": "385b283c-22cb-49a0-8c0b-8b88c49d9fe9"
+                }
+              }
+            }
+          }
+        ]
+      ]
+    }
+```
 
-These options are mainly intended for certain limited Prebid Mobile setups, where bids cannot be cached client-side.
+2) Extra `bid.ext.prebid.targeting` keys:
+
+- `hb_cache_id`: the cache ID for the highest overall bid in each imp.
+- `hb_cache_host`: the hostname where the cacheId may be retrieved.
+- `hb_cache_path`: the path where the cacheId may be retrieved. https://hb_cache_host/hb_cache_path?uuid=hb_cacheId
+- `hb_cache_id_{bidderName}`: the cache ID for the highest bid from {bidderName} in each imp.
+
+If caching succeeded, the value will be a UUID which can be used to fetch Bid JSON from [Prebid Cache](https://github.com/prebid/prebid-cache).
+The keys may not exist if the host company's cache is full, having connection problems, etc.
+
+This option is mainly intended for Prebid Mobile setups where bids aren't cached client-side.
+
+###### Caching just the VAST XML
+
+This option is mainly intended for video players that need a URL that returns a VAST XML body.
+
+If the `ext.prebid.cache.vastxml` object is present, Prebid Server will make a best effort to cache just the VAST XML server-side and return the cache location in two places:
+
+1) OpenRTB seatbid.bid.ext.prebid.cache.vastXml
+```
+    {
+      "seatbid": [
+        "bid": [
+          ...
+          "ext": {
+            "prebid": {
+              "cache": {
+                "bids": {
+                  "url": "https://pg-prebid-server-aws-use1.rubiconproject.com:443/cache?uuid=385b283c-22cb-49a0-8c0b-8b88c49d9fe9",
+                  "cacheId": "385b283c-22cb-49a0-8c0b-8b88c49d9fe9"
+                }
+              }
+            }
+          }
+        ]
+      ]
+    }
+```
+
+2) Extra `bid.ext.prebid.targeting` keys:
+
+- `hb_uuid`: the cache ID for the highest overall video bid in each imp.
+- `hb_cache_host`: the hostname where the UUID may be retrieved.
+- `hb_cache_path`: the path where the UUID may be retrieved. https://hb_cache_host/hb_cache_path?uuid=hb_uuid
+- `hb_uuid_{bidderName}`: the cache ID for the highest video bid from {bidderName} in each imp.
+
+In addition to the caveats noted for cache.bids, these will exist _only if the relevant Bids are for Video_.
+If the keys exist, the values can be used to fetch the bid's VAST XML from Prebid Cache directly.
 
 ##### GDPR
 
