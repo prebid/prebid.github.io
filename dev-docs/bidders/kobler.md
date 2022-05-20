@@ -46,7 +46,7 @@ Kobler identifies the placement using the combination of the page URL and the al
 
 In order to see a sample bid from Kobler (without a proper setup), you have to also do the following:
 - Set the `test` parameter to `true`.
-- Set config.pageUrl to `'https://www.tv2.no/mening-og-analyse/14555348/'`. This is necessary because Kobler only bids on recognized articles.
+- Set `config.pageUrl` to `'https://www.tv2.no/mening-og-analyse/14555348/'`. This is necessary because Kobler only bids on recognized articles. Kobler runs its own test campaign to make sure there is always a bid for this specific page URL.
 
 ### Example With Optional Parameters
 
