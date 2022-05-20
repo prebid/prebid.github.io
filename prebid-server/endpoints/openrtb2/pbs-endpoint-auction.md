@@ -554,7 +554,7 @@ If the `ext.prebid.cache.bids` object is present, Prebid Server will make a best
             "prebid": {
               "cache": {
                 "bids": {
-                  "url": "https://pg-prebid-server-aws-use1.rubiconproject.com:443/cache?uuid=385b283c-22cb-49a0-8c0b-8b88c49d9fe9",
+                  "url": "https://example.com:443/cache?uuid=385b283c-22cb-49a0-8c0b-8b88c49d9fe9",
                   "cacheId": "385b283c-22cb-49a0-8c0b-8b88c49d9fe9"
                 }
               }
@@ -593,7 +593,7 @@ If the `ext.prebid.cache.vastxml` object is present, Prebid Server will make a b
             "prebid": {
               "cache": {
                 "bids": {
-                  "url": "https://pg-prebid-server-aws-use1.rubiconproject.com:443/cache?uuid=385b283c-22cb-49a0-8c0b-8b88c49d9fe9",
+                  "url": "https://example.com:443/cache?uuid=385b283c-22cb-49a0-8c0b-8b88c49d9fe9",
                   "cacheId": "385b283c-22cb-49a0-8c0b-8b88c49d9fe9"
                 }
               }
@@ -611,7 +611,7 @@ If the `ext.prebid.cache.vastxml` object is present, Prebid Server will make a b
 - `hb_cache_path`: the path where the UUID may be retrieved. https://hb_cache_host/hb_cache_path?uuid=hb_uuid
 - `hb_uuid_{bidderName}`: the cache ID for the highest video bid from {bidderName} in each imp.
 
-In addition to the caveats noted for cache.bids, these will exist _only if the relevant Bids are for Video_.
+In addition to the caveats noted for cache.bids, these will exist only if there are video bids.
 If the keys exist, the values can be used to fetch the bid's VAST XML from Prebid Cache directly.
 
 ##### GDPR
@@ -1441,7 +1441,7 @@ The Prebid SDK version comes from:
 | req | app.ext.version | defined by Prebid SDK | string | "1.6" | yes |
 | req | ext.prebid.bidadjustmentfactors | Adjust the CPM value of bidrequests | object | See [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bid-adjustments) | no |
 | req | ext.prebid.bidderparams | Publishers can specify any adapter-specific cross-impression attributes. | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#global-bid-adapter-parameters) | no |
-| req | ext.prebid.targeting | defines the targeting values PBS-core places in seatbid.bid.ext.prebid.targeting | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) | no |
+| req | ext.prebid.targeting | defines the key-value pairs that PBS-core places in seatbid.bid.ext.prebid.targeting | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) | no |
 | req | ext.prebid.adservertargeting | advanced targeting value rules | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#custom-targeting-pbs-java-only) | no |
 | req | ext.prebid.integration | host-dependent integration type passed through to events and analytics | string | "managed" | yes |
 | req | ext.prebid.channel | Generally "pbjs", "amp", or "app". Passed through to events and analytics | object | {name: "pbjs", version: "4.39"} | yes |
@@ -1460,8 +1460,8 @@ The Prebid SDK version comes from:
 | req | ext.prebid.buyeruids | An alternate to [/cookie_sync](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), the request can supply bidder ID values | object | See [doc](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#buyer-uid) | no |
 | resp | seatbid[].bid[].ext. prebid.targeting | ad server targeting values. Related to req ext.prebid.targeting. | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#ad-server-targeting) | n/a |
 | resp | seatbid[].bid[].ext.prebid. type | "banner", "video", "native" | string | "banner" | n/a |
-| resp | seatbid[].bid[].ext.prebid. cache.bids.url | URL location of the bid or VAST | string | URL | n/a |
-| resp | seatbid[].bid[].ext.prebid. cache.bids.cacheId | ID of the bid or VAST | string | "1234" | n/a |
+| resp | seatbid[].bid[].ext.prebid. cache.bids/vastXml.url | URL location of the cached object | string | See [docs](#cache-bids). | n/a |
+| resp | seatbid[].bid[].ext.prebid. cache.bids/vastXml.cacheId | ID of the cached object | string | See [docs](#cache-bids). | n/a |
 | resp | seatbid[].bid[].ext.prebid. events.win | URL for registering a BIDS_WON event for this bid | string | URL | n/a |
 | resp | seatbid[].bid[].ext.prebid. events.imp | URL for registering an impression event for this bid | string | URL | n/a |
 | resp | seatbid[].bid[].ext.prebid. bidid | defines a Prebid-generated id for this bid in case the bidder's ID isn't unique | string | UUID | n/a |
