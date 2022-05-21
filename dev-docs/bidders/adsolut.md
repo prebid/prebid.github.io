@@ -2,7 +2,7 @@
 layout: bidder
 title: adsolut
 description: Prebid adsolut Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: adsolut
 aliasCode: adkernel
 ---

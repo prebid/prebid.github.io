@@ -2,9 +2,11 @@
 layout: bidder
 title: BidPhysics
 description: Prebid BidPhysics Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: bidphysics
 gdpr_supported: true
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Note:

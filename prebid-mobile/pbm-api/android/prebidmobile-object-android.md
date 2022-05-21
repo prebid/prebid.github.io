@@ -131,6 +131,19 @@ none
 boolean isShareGeoLocation()
 ```
 
+### setCustomHeaders
+
+The following methods enable the customization of the HTTP call to the Prebid server:
+
+```
+public static void setCustomHeaders(HashMap<String, String> customHeaders)
+```
+
+You can also inspect the current custon headers using: 
+
+```
+public static HashMap<String, String> getCustomHeaders()
+```
 
 ### setApplicationContext
 
@@ -212,6 +225,15 @@ none
 void clearStoredBidResponses()
 ```
 
+### pbsDebug
+
+`pbsDebug`: adds the debug flag ("test":1) on the outbound http call to Prebid Server. The test:1 flag will signal to Prebid Server to emit the full resolved request (resolving any Stored Request IDs) as well as the full Bid Request and Bid Response to and from each bidder.
+```java
+pbsDebug(Boolean)
+```
+
+Example:
+PrebidMobile.setPbsDebug(true);
 
 ## Related Topics
 

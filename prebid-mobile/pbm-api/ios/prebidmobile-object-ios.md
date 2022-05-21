@@ -8,6 +8,7 @@ sidebarType: 2
 ---
 
 # Prebid: NSObject
+
 {: .notoc}
 
 The Prebid class is a singleton that enables the user to apply global settings.
@@ -17,11 +18,7 @@ The Prebid class is a singleton that enables the user to apply global settings.
 
 ---
 
-## Object
-
-### Prebid
-
-**Properties**
+## Properties
 
 `prebidServerAccountId`: String containing the Prebid Server account ID.
 
@@ -72,6 +69,10 @@ var timeoutMillis: Int
 var storedAuctionResponse: String
 ```
 
+## Methods
+
+### Stored Response
+
 `addStoredBidResponse`: Function containing two properties:
 
 * `bidder`: Bidder name as defined by Prebid Server bid adapter of type string.
@@ -89,9 +90,24 @@ func addStoredBidResponse(bidder: String, responseId: String)
 func clearStoredBidResponses()
 ```
 
+`pbsDebug`: adds the debug flag ("test":1) on the outbound http call to Prebid Server. The test:1 flag will signal to Prebid Server to emit the full resolved request (resolving any Stored Request IDs) as well as the full Bid Request and Bid Response to and from each bidder.
+```swift
+pbsDebug = BOOL
+```
 
+### Custom headers
 
-## Examples
+The following methods enables the customization of the HTTP call to the prebid server:
+
+```
+func addCustomHeader(name: String, value: String) 
+```
+
+```
+func clearCustomHeaders() 
+```
+
+# Examples
 
 *SWIFT*
 ```swift
@@ -110,8 +126,15 @@ Prebid.shared.prebidServerAccountId = "1234"
 
 //Geolocation
 Prebid.shared.shareGeoLocation = true
+
+//Log level data
 Prebid.shared.logLevel = .verbose
+
+//set Prebid timeout in milliseconds
 Prebid.shared.timeoutMillis = 3000
+
+//Enable Prebid Server debug respones
+Prebid.shared.pbsDebug = true
 
 //Stored responses  can be one of storedAuction response or storedBidResponse
 Prebid.shared.storedAuctionResponse = "111122223333"
@@ -146,14 +169,16 @@ Prebid.shared.timeoutMillis = 3000;
 //Stored responses  can be one of storedAuction response or storedBidResponse
 Prebid.shared.storedAuctionResponse = @"111122223333";
 
+//Enable Prebid Server debug respones
+Prebid.shared.pbsDebug = true;
+
 //or
 [Prebid.shared addStoredBidResponseWithBidder:@"appnexus" responseId:@"221144"];
 [Prebid.shared addStoredBidResponseWithBidder:@"rubicon" responseId:@"221155"];
 ```
 
 
-
-## Related Topics
+# Related Topics
 
 - [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
 - [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)

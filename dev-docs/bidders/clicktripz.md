@@ -2,9 +2,11 @@
 layout: bidder
 title: Clicktripz
 description: Prebid Clicktripz Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: clicktripz
 media_types: banner
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Bid Params

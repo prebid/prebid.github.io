@@ -2,9 +2,11 @@
 layout: bidder
 title: Beintoo
 description: Prebid Beintoo Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: beintoo
 aliasCode : appnexus
+gvl_id: 618
 ---
 
 ### Bid Params

@@ -4,7 +4,7 @@ title: Enable Deals
 head_title: Enable Deals in Prebid for Header Bidding
 description: Enable Deals in Prebid for Header Bidding Analysis.
 pid: 4
-hide: false
+
 sidebarType: 3
 ---
 
@@ -48,7 +48,7 @@ hb_deal_appnexus = APN_456
 We recommend confirming with your development team that the page is set up to send all deal targeting to the ad server. There are two ways to do this:  
 - Set the `enableSendAllBids` to **true**.  
 - Set `enableSendAllBids` to **false** and `alwaysIncludeDeals` to **true**. This option will minimize the number of targeting variables sent to the ad server.  
-See the [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) documentation for details.
+See the [enableSendAllBids](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids) documentation for details.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=noteAlert %}
@@ -57,7 +57,7 @@ See the [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Sen
 
 ### Step 2: Create Key-values
 
-For each header bidding partner you work with, create a keyword in the format of `hb_deal_BIDDERCODE`, e.g., `hb_deal_pubmatic`. For more examples of the keyword format, see the [API Reference for `pbjs.getAdserverTargeting`]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.getAdserverTargeting).
+For each header bidding partner you work with, create a keyword in the format of `hb_deal_BIDDERCODE`, e.g., `hb_deal_pubmatic`. For more examples of the keyword format, see the [API Reference for `pbjs.getAdserverTargeting`](/dev-docs/publisher-api-reference/getAdserverTargeting.html).
 
 <br>
 
