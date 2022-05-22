@@ -11,6 +11,8 @@ safeframes_ok: false
 prebid_member: true
 pbjs: true
 pbs: true
+schain_supported: true
+floors_supported: true
 ---
 
 ### Bid Params
