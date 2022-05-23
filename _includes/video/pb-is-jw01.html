@@ -1,114 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="html--no-js">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="_SMhyxJ4MnU9eTUQQNMUwU5W18T5tjNF7A6mumIci-A" />
-    <meta name="keywords" content="Header Bidding, Advanced Bidding, Header Bid, Pre-bid">
-    <meta name="description" content="{{page.description}}" />
-    
-   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    
-        
-    {% if page.head_title %}
-        <title>{{page.head_title}}</title>
-    {% else %}
-        <title>{{page.title}} for Header Bidding</title>
-    {% endif %}
-
-<!-- OneTrust Cookies Consent Notice start -->
-
-<script src="https://cdn.cookielaw.org/consent/53783db5-1614-43d4-bb1a-148e68e8c87b.js" type="text/javascript" charset="UTF-8"></script>
-<script type="text/javascript">
-function OptanonWrapper() { }
-</script>
-<!-- OneTrust Cookies Consent Notice end -->
-
-    
-    <!--<link href="{{site.baseurl}}/assets/css/bootstrap.min.css" rel="stylesheet">-->
-    <!-- Latest compiled and minified Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="{{site.baseurl}}/assets/css/docs.min.css" rel="stylesheet">
-        
-    <link rel="stylesheet" href="/assets/css/prism.css">
-	<link href="{{site.baseurl}}/assets/css/style.css" rel="stylesheet">
-
-	    
-	<!-- Favicons -->
-	<link href="{{site.baseurl}}/assets/images/favicon.png" rel="icon">
-	<link href="{{site.baseurl}}/assets/images/apple-touch-icon.png" rel="apple-touch-icon">
-	
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,300i,400,400i,700,700i>
-	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans+Condensed" />
-	<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-		
-    <style>
-        #content {
-            background:{{site.header.color1}};
-            background:linear-gradient(135deg, {{site.header.color1}}, {{site.header.color2}});
-        }
-    </style>
-
-	<script src="{{site.baseurl}}/assets/js/prism.js"></script>
-    <script src="{{site.baseurl}}/assets/js/jquery.min.js"></script>
-    <script src="{{site.baseurl}}/assets/js/bootstrap.js"></script>
-    <script src="{{site.baseurl}}/assets/js/bootbox.min.js"></script>
-    <script src="{{site.baseurl}}/assets/js/docs.min.js"></script>
-    <script src="{{site.baseurl}}/assets/js/easing.min.js"></script>
-    <script src="{{site.baseurl}}/assets/js/main.js"></script>
-    <script type="text/javascript" src="{{site.baseurl}}/assets/js/pbjs_home.js"></script>
-    
+{% include head--common.html %}
     <!--production version of prebid.js-->
-    <script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
-    
-    <!--pbjs and player code -->	
-    
-    	    
+    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+
+    <!--pbjs and player code -->
+
+
     <script type="text/javascript">
-	    
+
       	var pbjs = pbjs || {};
 	    pbjs.que = pbjs.que || [];
-	
+
 	    // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
 	    var tempTag = false;
 	    var invokeVideoPlayer = function(url) {
 	        tempTag = url;
 	    }
-	
+
 	    var videoAdUnit = {
 	        code: 'video1',
 	        mediaTypes: {
 	            video: {
-	                playerSize: [640, 480],
-	                context: 'instream'
+			context: 'instream',
+			playerSize: [640, 480],
+			mimes: ['video/mp4'],
+			protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+			playbackmethod: [2],
+			skip: 1
 	            }
 	        },
 	        bids: [{
 	            bidder: 'appnexus',
 	            params: {
-	                placementId: 13232361, // Add your own placement id here
-	                video: {
-	                    skipppable: true,
-	                    playback_method: ['auto_play_sound_off']
-	                }
+	                placementId: 13232361  // Add your own placement id here
 	            }
 	        }]
 	    };
-	
+
 	    pbjs.que.push(function() {
 	        pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
-	
+
 	        pbjs.setConfig({
 	            debug: true,
 	            cache: {
 	                url: 'https://prebid.adnxs.com/pbc/v1/cache'
 	            }
 	        });
-	
+
 	        pbjs.requestBids({
 	            bidsBackHandler: function(bids) {
 	                var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
@@ -125,9 +66,9 @@ function OptanonWrapper() { }
 	                invokeVideoPlayer(videoUrl);
 	            }
 	        });
-	    });			     
+	    });
 	</script>
-    
+
 </head>
 
 <body>

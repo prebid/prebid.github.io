@@ -18,30 +18,72 @@ Create a new Interstitial Ad Unit associated with a Prebid Server configuration 
 
 See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
 
-As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process. App developers can speicify a minimun width and minimum height percentage an ad can occupy of a devices real state, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction.
+As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process to monetize sizes smaller than full screen ads. App developers can speicify a minimun width and minimum height percentage an ad can occupy of a devices real state, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction.
 
-PBS will take the AdUnit's size (width and height) as the max size for the interstitial as size. If that size is 1x1, it will look up the device's size and use that as the max size. If the wdith and height are not present, it will also use the device size as the max size. (1x1 support so that you don't have to omit size as a parameter to use the device size).
-
-PBS with interstitial support will come preconfigured with a list of common ad sizes, preferentially organized by weighing the larger and more common sizes first. No guarantees to the ordering will be made. PBS will generate a list of ad sizes, selecting the first 10 sizes that fall within the imp's max size and minimum percentage size. All the interstitial parameters will still be passed to the bidders, allowing them to use their own size matching algorithms if they prefer.
+PBS will take the AdUnit's size (width and height) as the max size for the interstitial as size, generating a list of ad sizes, selecting the first 10 sizes that fall within the imp's max size and minimum percentage size. All the interstitial parameters will still be passed to the bidders, allowing them to use their own size matching algorithms if they prefer.
 
 Prebid Server will send the eligible size list to each bidder to solicit a bid. For a full description of the Prebid Server logic, please refer to the [Prebid Server PR 797](https://github.com/prebid/prebid-server/pull/797/files).
 
 ```
-init(configId: String, minWidthPerc: Int, minHeightPerc: Int)
+BannerInterstitialAdUnit(configId: String, minWidthPerc: Int, minHeightPerc: Int)
 ```
 
 **Parameters**
 
-`configId`: Prebid Server configuration ID.
+`configId`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 
 `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occuy of a device's real estate. Support in SDK version 1.2+
 
 `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occuy of a device's real estate. Support in SDK version 1.2+
 
+#### Parameters
+
+
+Parameters is a sub class of BannerAdUnit. Create a new Parameters class to define the parameters of the video ad unit. Parameters contain the OpenRTB video attributes.
+
+`api: [int]`: OpenRTB placement
+
+**Parameters**
+
+Array of integers or a predefined constant representing the supported [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) Frameworks. While OpenRTB allows additional API Frameworks, they were intentionally left out as constants since they do not make sense in a banner context. If there is a desire to pass API Frameworks that are not represented as a constants within Parameters, they can be passed an integer, where Prebid SDK will pass Prebid Server whatever is present:
+
+* `3` or `Signals.Api.MRAID_1` : MRAID-1 support signal
+* `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
+* `6` or `Signals.Api.MRAID_3` : MRAID-3 support signal
+* `7` or `Signals.Api.OMID_1` :  signals OMSDK support
+
+
 
 ## Examples
 
 **Create an InterstitialAdUnit**
+
+```
+let adUnit = InterstitialAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45")
+```
+
+With optional minWidthPerc and minHeightPerc parameters.
+```        
+let adUnit = InterstitialAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", minWidthPerc: 50, minHeightPerc: 70)
+```
+
+
+** Define any appropriate API Frameworks **
+
+Swift
+```swift
+let parameters = BannerAdUnit.Parameters()
+parameters.api = [Signals.Api.MRAID_2] //parameters.api = [Signals.Api(5)]
+adUnit.setParameters(parameters);
+```
+
+Objective C
+```
+PBBannerAdUnitParameters* parameters = [[PBBannerAdUnitParameters alloc] init];
+parameters.api = @[PBApi.MRAID_2];
+//parameters.api = @[[[PBApi alloc] initWithIntegerLiteral:5]];
+bannerAdUnit.parameters = parameters;
+```
 
 **Google Mobile Ads**
 

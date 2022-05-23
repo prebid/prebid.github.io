@@ -2,10 +2,12 @@
 layout: bidder
 title: Mobsmart
 description: Prebid Mobsmart SSP Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: mobsmart
 media_types: banner
 userIds: pubCommonId
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Note:

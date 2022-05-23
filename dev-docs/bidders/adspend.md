@@ -2,10 +2,12 @@
 layout: bidder
 title: AdSpend
 description: Prebid AdSpend Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: adspend
 media_types: banner
 gdpr_supported: false
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 
