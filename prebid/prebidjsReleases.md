@@ -16,6 +16,16 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
+| 5.9 | Support numeric ad targeting keys |
+| 5.8 | [GPT Pre-Auction module](/dev-docs/modules/gpt-pre-auction.html) supports mcmEnabled flag |
+| 5.3 | add AD_RENDER_SUCCEEDED event |
+| 5.0 | See [Prebid.js 5.0 blog](https://prebid.org/blog/prebid-5-0-release/) |
+| 4.43 | Support [allowSendAllBidsTargetingKeys](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) option for control over which keys are sent to the ad server |
+| 4.41 | Support [suppressStaleRender](/dev-docs/publisher-api-reference/setConfig.html#auction-options) option |
+| 4.40 | First Party Data [enrichment](/dev-docs/modules/enrichmentFpdModule.html) and [validation](/dev-docs/modules/validationFpdModule.html) modules are introduced |
+| 4.39 | Prebid Core: removed size check on native icons and image assets |
+| 4.38 | PBS Bid Adapter allows stored impression configuration |
+| 4.37 | PBS bid adapter adds support for non-purpose1 consent domains |
 | 4.36 | Introduced pbjs.installedModules array |
 | 4.35 | Introduced pbjs.pbjs.getHighestUnusedBidResponseForAdUnitCode function |
 | 4.34 | Bug fix: canBidderRegisterSync ignoring iframe sync disabled by default |

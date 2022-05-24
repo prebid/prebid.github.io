@@ -39,7 +39,7 @@ sidebarType: 4
         <div style="width:60vw;">
             <h4>Place this code in the page header.</h4>
             <pre class="pb-code-hl" style="width:60vw;">
-&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"&gt;&lt;/script&gt;<br>
+&lt;script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"&gt;&lt;/script&gt;<br>
 &lt;script type="text/javascript" src="https://amp.akamaized.net/hosted/1.x/player?apikey=sample"&gt;&lt;/script&gt;
 &lt;script&gt;
 	var pbjs = pbjs || {};
@@ -53,18 +53,18 @@ sidebarType: 4
 	    code: 'video1',
 	    mediaTypes: {
 	        video: {
-	            playerSize: [640, 480],
-	            context: 'instream'
+                  context: 'instream',
+                  playerSize: [640, 480],
+                  mimes: ['video/mp4'],
+                  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                  playbackmethod: [2],
+                  skip: 1
 	        }
 	    },
 	    bids: [{
 	        bidder: 'appnexus',
 	        params: {
-	            placementId: 13232361, /* Add own placement id */
-	            video: {
-	                skipppable: true,
-	                playback_method: ['auto_play_sound_off']
-	            }
+	            placementId: 13232361 /* Add own placement id */
 	        }
 	    }]
 	};
@@ -151,7 +151,7 @@ sidebarType: 4
 
     </div>
 
-  
+
 </div>
 
 <div style="width:60vw;">
@@ -175,7 +175,7 @@ sidebarType: 4
                   name: "dfp"
                 },
                 resources: [
-                  { src: "https://acdn.adnxs.com/prebid/not-for-prod/1/prebid.js", type: "text/javascript", async: true },
+                  { src: "https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js", type: "text/javascript", async: true },
                   { src: "${paths.plugins}prebid/Prebid.min.js", type: "text/javascript", async: true }
                 ],
                 adUnits: {
@@ -193,11 +193,7 @@ sidebarType: 4
                     {
                       bidder: "appnexus",
                       params: {
-                        placementId: 13232361, /* Test placementId not for prod */
-                        video: {
-                          skippable: true,
-                          playback_method: ["auto_play_sound_off"]
-                        }
+                        placementId: 13232361 /* Test placementId not for prod */
                       }
                     }
                   ]

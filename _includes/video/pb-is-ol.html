@@ -2,12 +2,12 @@
 <html lang="en" class="html--no-js">
 
 <head>
-{% include head--common.html %}    
+{% include head--common.html %}
     <!--production version of prebid.js-->
-    <script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
-    
-    <!--pbjs and player code -->	
-    	    
+    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+
+    <!--pbjs and player code -->
+
 	<!-- LOAD OOYALA PLUGINS
 
      Load the Ooyala player scripts you plan to use.
@@ -66,18 +66,18 @@
             code: 'video1',
             mediaTypes: {
                 video: {
-                    playerSize: [640, 480],
-                    context: 'instream'
+                  context: 'instream',
+                  playerSize: [640, 480],
+                  mimes: ['video/mp4'],
+                  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                  playbackmethod: [2],
+                  skip: 1
                 }
             },
             bids: [{
                 bidder: 'appnexus',
                 params: {
-                    placementId: iosDevice ? 13239390 : 13232361, 
-                    video: {
-                        skippable: true,
-                        playback_method: ['auto_play_sound_off']
-                    }
+                    placementId: iosDevice ? 13239390 : 13232361
                 }
             }]
         };
@@ -115,8 +115,8 @@
             });
         });
 
-    </script>      
-    
+    </script>
+
 </head>
 
 <body>

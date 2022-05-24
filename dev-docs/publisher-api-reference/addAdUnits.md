@@ -21,7 +21,7 @@ See the table below for the list of properties on the ad unit.  For example ad u
 |--------------+----------+---------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `code`       | Required | String                                | Unique identifier that you create and assign to this ad unit.  Used to set query string targeting on the ad. If using GPT, we recommend setting this to slot element ID.          |
 | `sizes`      | Required | Array[Number] or Array[Array[Number]] | All the sizes that this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, prefer [`mediaTypes.banner.sizes`](#adUnit-banner).          |
-| `bids`       | Required | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#addAdUnits-Bids) below.                                                                         |
+| `bids`       | Optional | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#addAdUnits-Bids) below.                                                                         |
 | `mediaTypes` | Optional | Object                                | Defines one or multiple media types the ad unit supports.  For a list of properties, see [Media Types](#addAdUnits-MediaTypes) below.                                                                     |
 | `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
 | `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
@@ -31,6 +31,8 @@ See the table below for the list of properties on the ad unit.  For example ad u
 ##### Bids
 
 See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
+
+Note that `bids` is optional only for [Prebid Server stored impressions](/dev-docs/modules/prebidServer.html#stored-imp), and required in all other cases. 
 
 {: .table .table-bordered .table-striped }
 
@@ -123,17 +125,17 @@ pbjs.addAdUnits({
     mediaTypes: {
         video: {
             context: 'instream',
-            playerSize: [640, 480]
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
         },
     },
     bids: [{
         bidder: 'appnexus',
         params: {
-            placementId: 13232361,
-            video: {
-                skippable: true,
-                playback_methods: ['auto_play_sound_off']
-            }
+            placementId: 13232361
         }
     }]
 });
@@ -147,7 +149,11 @@ pbjs.addAdUnit({
     mediaTypes: {
         video: {
             context: 'outstream',
-            playerSize: [640, 480]
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
         }
     },
     renderer: {
@@ -209,7 +215,11 @@ pbjs.addAdUnits({
     },
     video: {
         context: 'outstream',
-        playerSize: [400, 600],
+        playerSize: [640, 480],
+	mimes: ['video/mp4'],
+	protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+	playbackmethod: [2],
+	skip: 1
     },
   },
   bids: [

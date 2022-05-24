@@ -43,6 +43,10 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | bidCpmAdjustment | standard or adapter-specific | all | n/a | Could, for example, adjust a bidder's gross-price bid to net price. |
 | sendStandardTargeting | adapter-specific | 0.13.0 | true | If adapter-specific targeting is specified, can be used to suppress the standard targeting for that adapter. |
 | suppressEmptyKeys | standard or adapter-specific | 0.13.0 | false | If custom adserverTargeting functions are specified that may generate empty keys, this can be used to suppress them. |
+| allowZeroCpmBids | standard or adapter-specific | 6.2.0 | false | Would allow bids with a 0 CPM to be accepted by Prebid.js and could be passed to the ad server. |
+| storageAllowed | standard or adapter-specific | 6.13.0 | true | Allow use of cookies and local storage. |  
+| allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | true in v6.x <br /> false from v7.0| Allow adapters to bid with alternate bidder codes. |  
+| allowedAlternateBidderCodes | standard or adapter-specific | 6.23.0 | n/a | Array of bidder names for which an adapter can bid. <br />`undefined` or `['*']` will allow adapter to bid with any bidder code. |  
 
 ##### 2.1. adserverTargeting
 
@@ -58,8 +62,8 @@ you'll need to fully manage the targeting -- the default `hb_` targeting variabl
 **Keyword targeting for all bidders**
 
 The below code snippet is the *default* setting for ad server targeting. For each bidder's bid,
-Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_source`, `hb_format`) with their corresponding values.
-In addition, video will receive additional keys: `hb_cache_id`, `hb_uuid`, and `hb_cache_host`.
+Prebid.js will set 6 keys (`hb_bidder`, `hb_adid`, `hb_pb`, `hb_size`, `hb_format`) with their corresponding values.
+In addition, video will receive additional keys: `hb_cache_id` and `hb_cache_host`.
 The key value pair targeting is applied to the bid's corresponding ad unit. Your ad ops team will have the ad server's line items and creatives to utilize these keys.
 
 If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](/adops/before-you-start.html) documentation for more information.
@@ -110,7 +114,7 @@ pbjs.bidderSettings = {
 {% endhighlight %}
 
 {: .alert.alert-warning :}
-Note that the existence of `bidderSettings.adserverTargeting.standard` will prevent the system from adding the standard display targeting values: hb_bidder, hb_adid, hb_pb, hb_size, hb_source, and hb_format. However, if the mediaType is video and `bidderSettings.adserverTargeting.standard` does not specify hb_uuid, hb_cache_id, or hb_cache_host, they will be added unless `bidderSettings.sendStandardTargeting` is set to false.
+Note that the existence of `bidderSettings.adserverTargeting.standard` will prevent the system from adding the standard display targeting values: hb_bidder, hb_adid, hb_pb, hb_size, and hb_format. However, if the mediaType is video and `bidderSettings.adserverTargeting.standard` does not specify hb_uuid, hb_cache_id, or hb_cache_host, they will be added unless `bidderSettings.sendStandardTargeting` is set to false.
 
 <a name="key-targeting-specific-bidder"></a>
 **Keyword targeting for a specific bidder**
@@ -217,5 +221,64 @@ See the [example above](#key-targeting-specific-bidder) for example usage.
 ##### 2.4. suppressEmptyKeys
 
 If a custom adServerTargeting function can return an empty value, this boolean flag can be used to avoid sending those empty values to the ad server.
+
+##### 2.5. allowZeroCpmBids
+
+By default, 0 CPM bids are ignored by Prebid.js entirely.  However if there's a valid business reason to allow these bids, this setting can be enabled to allow
+either specific bid adapter(s) or all bid adapters the permission for these bids to be processed by Prebid.js and potentially sent to the respective ad server 
+(depending on the Prebid.js auction results).
+
+##### 2.6. storageAllowed
+
+By default, bid adapters can access browser cookies and local storage. This can be disabled by setting `storageAllowed` to `false`.
+
+Note that:
+ - [Disabling device access](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) will prevent access to storage regardless of this setting;  
+ - `storageAllowed` will only affect bid adapters and not any other type of module (such as analytics or RTD).
+
+##### 2.7. allowAlternateBidderCodes
+
+If this flag is set to `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction.
+<br />Default value is `true` in version 6.x
+<br />Default value will be `false` from version 7.0
+
+{: .alert.alert-warning :}
+Note that the `bidResponse.bidderCode` needs to be set as the bidder of the bid.
+<br />i.e: if `pubmatic` is the adapter bidding for `groupm`. `bidResponse.bidderCode` should be `groupm`.
+<br />Another field is introduced in `bidResponse` object i.e:`bidResponse.adapterCode` (this will be set by Prebid). This field indicates the bidder code that was in the adunit. This might be an alias of an underlying bid adapter. In above example, value of `bidResponse.adapterCode` will be `pubmatic`.
+
+
+##### 2.8. allowedAlternateBidderCodes
+
+This array will work in conjunction with `allowAlternateBidderCodes`. In this array, you can specify the names of the bidder for which an adapter can accept the bid. If the value is not specified for the array or `[‘*’]` is specified, Prebid will accept bids of all the bidders for the given adapter.
+
+{% highlight js %}
+
+pbjs.bidderSettings = {
+    standard: {
+         allowAlternateBidderCodes: false,
+         bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .95; },
+         [...]
+    },
+    pubmatic: {
+        allowAlternateBidderCodes: true,
+        allowedAlternateBidderCodes: ["groupm"],
+        [...]
+    },
+    appnexus: {
+        allowAlternateBidderCodes: true,
+        allowedAlternateBidderCodes: ["*"],
+        bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .90; },
+        [...]
+    },
+    groupm:{
+        bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .80; },
+        [...]
+    }
+}
+{% endhighlight %}
+
+In the above example, `groupm` bid will have a bid adjustment of 80% since the `bidCpmAdjustment` function says so.<br />
+If `appnexus` bids with another bidder code, say `appnexus2`. This bidder code will adjust the bid cpm to 95% because it will apply the `bidCpmAdjustment` function from `standard` setting, since the `bidCpmAdjustment` is missing for given bidder code I.e `appnexus2`
 
 <hr class="full-rule" />

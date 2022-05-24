@@ -8,6 +8,8 @@ media_types: display
 gdpr_supported: true
 schain_supported: true
 usp_supported: true
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Note:

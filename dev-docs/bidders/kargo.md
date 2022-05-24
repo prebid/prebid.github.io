@@ -4,6 +4,7 @@ title: Kargo
 description: Prebid Kargo Bidder Adaptor
 pbjs: true
 biddercode: kargo
+media_types: banner, video
 gdpr_supported: true
 userIds: unifiedId
 usp_supported: true

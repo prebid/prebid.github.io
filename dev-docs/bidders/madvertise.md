@@ -17,7 +17,8 @@ pbs_app_supported: true
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Description                                                                                             | Example                                 | Type      |
 |--------------|----------|---------------------------------------------------------------------------------------------------------|-----------------------------------------|-----------|
-| `s`          | required | Zone code. This parameter should be the unique Publisher ID of your mobile application or website.      | `'/4543756/prebidadaptor/madvertiseHB'` | `string`  |
+| `zoneId`     | required Prebid version 5.x+| Zone code. This parameter should be the unique Publisher ID of your mobile application or website.      | `/1111111/banner`                       | `string`  |
+| `s`          | required in-scope only for 4.x | Zone code. This parameter should be the unique Publisher ID of your mobile application or website. Replace by zoneId starting 5.x      | `/1111111/banner`                       | `string`  |
 | `lat`        | optional | Latitude                                                                                                | `48.866667`                             | `float`   |
 | `long`       | optional | Longitude                                                                                               | `2.333333`                              | `float`   |
 | `age`        | optional | Age                                                                                                     | `19`                                    | `integer` |
@@ -31,7 +32,7 @@ pbs_app_supported: true
 {
     bidder: 'madvertise',
     params: { 
-            s: "/4543756/prebidadaptor/madvertiseHB",
+            zoneId: "/4543756/prebidadaptor/madvertiseHB",
             tgt:'aa=a;bb=b'
     }
 }
@@ -78,3 +79,4 @@ pbs_app_supported: true
     "tmax": 1000
 }
 ```
+

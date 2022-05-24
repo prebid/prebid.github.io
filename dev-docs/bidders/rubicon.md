@@ -7,16 +7,18 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
-getFloor: true
-media_types: video
+floors_supported: true
+media_types: banner, video
 userIds: all
 prebid_member: true
 safeframes_ok: true
-bidder_supports_deals: true
+deals_supported: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
+fpd_supported: true
 gvl_id: 52
+multiformat_supported: will-bid-on-one
 ---
 
 ### Registration
@@ -42,32 +44,16 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 
 #### First Party Data
 
-Rubicon Project requires that first party data be split into two categories: "inventory" and "visitor".
+In release 4.30 and later, publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
+- ortb2.site.ext.data.*
+- ortb2.site.keywords
+- ortb2.site.content.data[]
+- ortb2.user.ext.data.*
+- ortb2.user.data[]
 
-For Prebid.js 4.29 and before, use the bidder specific AdUnit parameters noted above:
-```
-var adUnit = {
-    ...
-    bids: [{
-        bidder: 'rubicon',
-        params: {
-            accountId: 7780,                     // replace account/site/zone params
-            siteId: 87184,
-            zoneId: 413290,
-            inventory: {
-                prodtype: ["tech","mobile"]
-            },
-            visitor: {
-                ucat:["new"]
-            }
-        }
-    }]
-};
-```
+With regards to Contextual and Audience segments, the Magnite exchange supports the IAB standard taxonomies. See [the segment management user guide](https://resources.rubiconproject.com/resource/publisher-resources/segment-management-user-guide/) for more information.
 
-In release 4.30 and later, we recommend using the ortb2 method of setting First Party Data. This can be done in two ways: global (cross-bidder) or bidder-specific.  For Inventory, you will need to use site.ext.data, and For Visitor, you will need to use the user.ext.data. For More information about Audience Segments in Magnite: https://resources.rubiconproject.com/resource/publisher-resources/segment-management-user-guide/
-
-Example first party data available to all bidders and all adunits:
+Example first party data that's available to all bidders and all adunits:
 ```
 pbjs.setConfig({
   ortb2: {
@@ -116,6 +102,27 @@ pbjs.setBidderConfig({
 };
 ```
 
+For Prebid.js 4.29 and before, use the bidder specific AdUnit parameters noted above:
+```
+var adUnit = {
+    ...
+    bids: [{
+        bidder: 'rubicon',
+        params: {
+            accountId: 7780,                     // replace account/site/zone params
+            siteId: 87184,
+            zoneId: 413290,
+            inventory: {
+                prodtype: ["tech","mobile"]
+            },
+            visitor: {
+                ucat:["new"]
+            }
+        }
+    }]
+};
+```
+
 #### mediaTypes.video
 
 The following video parameters are supported here so publishers may fully declare their video inventory:
@@ -128,6 +135,7 @@ The following video parameters are supported here so publishers may fully declar
 | mimes | required | List of content MIME types supported by the player (see openRTB v2.5 for options) | ["video/mp4"]| array<string>|
 | protocols | required | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | [2,3,5,6] | array<integers>|
 | api | required | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2 | [2] |  array<integers> |
+| linearity | required | OpenRTB2 linearity. 1: linear (in-stream ad), 2: non-linear (overlay ad) | 1 | integer |
 | maxduration | recommended | Maximum video ad duration in seconds. | 30 | integer |
 | minduration | recommended | Minimum video ad duration in seconds | 6 | integer |
 | playbackmethod | recommended | Playback methods that may be in use. Only one method is typically used in practice. (see openRTB v2.5 section 5.10 for options)| [2]| array<integers> |
@@ -214,6 +222,12 @@ pbjs.setConfig({
 
 * The Rubicon Project adapter does not make concurrent banner and video requests. Instead, the adapter will send a video request if bids[].params.video is supplied, else a banner request will be made.
 
+### Setting up the Prebid Server Adapter
+  
+If you're a Prebid Server host company looking to enable the Rubicon server-side adapter, you'll need to contact globalsupport@magnite.com. They will provide:
+- a Magnite DV+ XAPI login and password that you'll place in the PBS config
+- a partner code you can use for cookie-syncing with Magnite's service
+  
 ### Configuration
 
 #### Single-Request
