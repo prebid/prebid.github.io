@@ -6,6 +6,7 @@ pbjs: true
 pbs: true
 biddercode: grid
 media_types: banner, video
+multiformat_supported: will-bid-on-any
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
