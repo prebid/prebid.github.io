@@ -7,9 +7,16 @@ pbs: true
 biddercode: trustx
 aliasCode: grid
 media_types: banner, video
+multiformat_supported: will-bid-on-any
 gdpr_supported: true
 usp_supported: true
+schain_supported: true
+floors_supported: true
+userIds: all
+tcf2_supported: true
+coppa_supported: true
 fpd_supported: true
+pbjs_version_notes: 7.0 and after
 ---
 
 ### Table of Contents
