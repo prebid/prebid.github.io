@@ -35,6 +35,7 @@ gulp build --modules=akamaiDapRtdProvider,...
 ```
 pbjs.setConfig({
   realTimeData: {
+    auctionDelay: 2000,
     dataProviders: [
       {
         name: "dap",
@@ -45,7 +46,8 @@ pbjs.setConfig({
           domain: 'your-domain.com',
           identityType: 'email' | 'mobile' | ... | 'dap-signature:1.3.0',
           segtax: 504,
-          tokenTtl: 5,
+          dapFpUrl: 'https://dap-dist.akamaized.net/dapfingerprinting.js',
+          dapFpTimeout: 1500
         }
       }
     ]
@@ -68,7 +70,8 @@ Please reach out to your Akamai account representative(Prebid@akamai.com) to get
 | domain | String | the domain name | |
 | identityType | String | Something like this email' | 'mobile' | ... | 'dap-signature:1.3.0' | |
 | segtax | Integer | the taxonomy for Akamai | The value will be 504 |
-| tokenTtl | Integer | time to live | |
+| dapFpUrl | String | URL to dap fingerprinting script | Optional if the script is directly included on the webpage. Contact your Akamai account rep for more details|
+| dapFpTimeout | Integer | Maximum time alloted for the entropy calculation to happen | |
 
 ### Testing
 To view an example of available segments returned by dap:
