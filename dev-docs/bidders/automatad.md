@@ -23,8 +23,7 @@ fpd_supported: false
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
-| `position` | required | Position field from automatad | `22390678` | `string` |
-| `siteId`    | required | The site ID from automatad.  | `"12adf45c"` | `string` |
+| `position` | optional | Position field from automatad | `22390678` | `string` |
 | `placementId`    | optional | The placement ID from automatad.  | `"a34gh6d"` | `string` |
 
 
