@@ -58,7 +58,7 @@ TCF1 is no longer supported by the Consent Management (GDPR) module. The Consent
 
 ## First Party Data
 
-Support has been removed for setConfig('fpd'), config.getLegacyFpd, config.convertAdUnitFpd and related relics of legacy first party data. Publishers should use the methods described in [First Party Data]({{site.baseurl}}/features/firstPartyData.html).
+Support has been removed for `setConfig('fpd')`, `config.getLegacyFpd`, `config.convertAdUnitFpd` and related relics of legacy first party data. Publishers should use the methods described in [First Party Data]({{site.baseurl}}/features/firstPartyData.html).
 
 First party data can also now be set on a specific auction. This is useful for example on infinite scroll pages when contextual segments change, or when the publisher wishes to express the context of an instream video ad but not the display advertising. As part of this change the ortb2 object is now made a part of bid requests, instead of necesitating a getConfig call by an adapter. This has led to slight changes in many dozens of bid adapters and substantial changes to all of the RTD adapters. 
 
