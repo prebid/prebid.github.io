@@ -48,7 +48,7 @@ In the Prebid 5 release notes, it was noted that publishers should no longer use
 
 Also, Bid Adapters (not all adapters) no longer have access to storage manager unless explicitly whitelisted by the publisher. We believe bidding functionality should rarely if ever need this access and that this extra functionality included in bid adapters must be consented to by the installer in their configuration. The following bid adapters' unit tests were affected by this change: Adagio, Adnuntius, AP Stream, Concert, Conversant, Craft, Criteo, E-Planning, Invibes, Kargo, Quantcast, Trion, Unicorn, and Vidazoo. Adapters simply setting a random identifier in the first party local storage or cookie should consider if the popular shared id user id submodule can fully achieve this functionality for them. See storageAllowed in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html) 
 
-Adapters are also now not allowed to return alternate bidder codes unless whitelisted by the publisher. See allowAlternateBidderCodes in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html).
+Adapters are also now not allowed to return alternate bidder codes unless allowed by the publisher. See allowAlternateBidderCodes in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html).
 
 Finally, adapters known to use http1 bidding endpoints may now have notices appended to their documentation. 
 
