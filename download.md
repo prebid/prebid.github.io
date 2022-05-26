@@ -365,6 +365,9 @@ These modules may require accounts with a service provider.<br/>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> PubCommon ID<div style="font-size:80%"> (not in 5.x)</div></label>
   </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="gravitoIdSystem" class="bidder-check-box"> Gravito ID</label>
+  </div></div>
 </div>
 
 <br>
