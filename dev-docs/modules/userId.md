@@ -512,24 +512,24 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### DAC ID by DAC
+### AudienceOne ID by DAC
 
-DAC ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
+AudienceOne ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
 Please contact D.A.Consortium Inc. before using this ID.
 
-Add the DAC ID to your Prebid.js Package with:
+Add the AudienceOne ID to your Prebid.js Package with:
 
 {: .alert.alert-info :}
 gulp build --modules=dacIdSystem
 
-#### DAC ID Configuration
+#### AudienceOne ID Configuration
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module | `"dacId"` |
 
-#### DAC ID Example
+#### AudienceOne ID Example
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -2434,7 +2434,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Akamai DAP ID | Akamai DAP | dapId | akamai.com | "eyJhbGciOiJka....YIsj7"|
 | AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
-| DAC ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
+| AudienceOne ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
 | DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
 | DMD ID | DMD | dmdId | hcn.health | "1111" |
 | CpexID | CPEx | cpexId | cpex.cz | "1111" |
