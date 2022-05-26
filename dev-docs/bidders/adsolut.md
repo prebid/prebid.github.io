@@ -3,6 +3,9 @@ layout: bidder
 title: adsolut
 description: Prebid adsolut Bidder Adaptor
 pbjs: true
+media_types: banner, native, video
+gdpr_supported: true
+usp_supported: true
 biddercode: adsolut
 aliasCode: adkernel
 ---
