@@ -1838,7 +1838,7 @@ pbjs.setConfig({
             storage: {
                 type: "cookie",
                 name: "idl_env",           // "idl_env" is the required storage name
-                expires: 15                // Cookie can last for 15 days
+                expires: 15,               // Cookie can last for 15 days
                 refreshInSeconds: 1800
             }
         }],
@@ -1864,7 +1864,7 @@ pbjs.setConfig({
             storage: {
                 type: "html5",
                 name: "idl_env",           // "idl_env" is the required storage name
-                expires: 15                // HTML5 localStorage can last for 15 days
+                expires: 15,               // HTML5 localStorage can last for 15 days
                 refreshInSeconds: 1800
             }
         }],
