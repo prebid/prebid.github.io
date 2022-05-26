@@ -1458,6 +1458,7 @@ The Prebid SDK version comes from:
 | req | ext.prebid.options. echovideoattrs | causes PBS-core to [echo video attributes](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#echo-storedrequest-video-attributes-pbs-java-only) on seatbid[].bid[].ext.prebid.storedrequestattributes so the player has access to them | boolean | true | yes |
 | req | ext.prebid.multibid | allows bidders to respond with more than one bid | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only) | yes, but only their value |
 | req | ext.prebid.buyeruids | An alternate to [/cookie_sync](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), the request can supply bidder ID values | object | See [doc](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#buyer-uid) | no |
+| req | ext.prebid.targeting | (PBS-Java) Global targeting values applied to AMP targeting output. | object | { "attr1": "val1" } | no |
 | resp | seatbid[].bid[].ext. prebid.targeting | ad server targeting values. Related to req ext.prebid.targeting. | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#ad-server-targeting) | n/a |
 | resp | seatbid[].bid[].ext.prebid. type | "banner", "video", "native" | string | "banner" | n/a |
 | resp | seatbid[].bid[].ext.prebid. cache.bids/vastXml.url | URL location of the cached object | string | See [docs](#cache-bids). | n/a |
