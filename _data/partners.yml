@@ -2,33 +2,33 @@
   link: https://www.indexexchange.com/
   imgURL: /assets/images/partners/leader/IX-logo.png
   type: leader
-  
+
 - company: Magnite
   link: https://www.magnite.com/
   imgURL: /assets/images/partners/leader/Magnite_logo.png
   type: leader
-  
-- company: MediaMath 
+
+- company: MediaMath
   link: https://www.mediamath.com/
   imgURL: /assets/images/partners/leader/MediaMath-wordmark.png
   type: leader
-  
-- company: OpenX 
+
+- company: OpenX
   link: https://www.openx.com/
   imgURL: /assets/images/partners/leader/openx.png
   type: leader
-  
-- company: Pubmatic 
+
+- company: Pubmatic
   link: https://pubmatic.com/products/header-bidding/
   imgURL: /assets/images/partners/leader/pubmatic.png
   type: leader
 
-- company: SpotX 
+- company: SpotX
   link: https://spotx.tv
   imgURL: /assets/images/partners/leader/spotx_logo.png
   type: leader
 
-- company: theTradeDesk 
+- company: theTradeDesk
   link: https://www.thetradedesk.com/
   imgURL: /assets/images/partners/leader/TTD_logo.png
   type: leader
@@ -37,38 +37,38 @@
   link: https://www.xandr.com/platform/
   imgURL: /assets/images/partners/founders/xandr.png
   type: leader
-  
+
 - company: Beachfront Media
   link: https://www.beachfront.com/
   imgURL: /assets/images/partners/tech/beachfront_logo.png
   type: technology
-  
-- company: Conversant 
+
+- company: Conversant
   link: https://www.conversantmedia.com/
   imgURL: /assets/images/partners/tech/conversant_logo.png
   type: technology
-  
-- company: Criteo 
+
+- company: Criteo
   link: https://www.criteo.com/for-publishers/products/criteo-direct-bidder/
   imgURL: /assets/images/partners/tech/criteo.png
   type: technology
-  
-- company: Datablocks 
+
+- company: Datablocks
   link: https://datablocks.net/
   imgURL: /assets/images/partners/tech/datablocks_logo.png
   type: technology
-  
-- company: LiveRamp 
+
+- company: LiveRamp
   link: https://liveramp.com/
   imgURL: /assets/images/partners/tech/LiveRamp-Logo.png
   type: technology
-  
-- company: Marfeel 
+
+- company: Marfeel
   link: https://www.marfeel.com/
   imgURL: /assets/images/partners/tech/marfeel.png
   type: technology
-  
-- company: PubNative 
+
+- company: PubNative
   link: https://pubnative.net/
   imgURL: /assets/images/partners/tech/Pubnative-RGB-Logo.png
   type: technology
@@ -78,27 +78,27 @@
   imgURL: /assets/images/partners/tech/rakuten_logo.png
   type: technology
 
-- company: StreamAMP 
+- company: StreamAMP
   link: https://streamamp.com/
   imgURL: /assets/images/partners/tech/StreamAMP_logo.png
   type: technology
 
-- company: Tapad 
+- company: Tapad
   link: https://tapad.com/
   imgURL: /assets/images/partners/tech/tapad_logo.png
   type: technology
 
-- company: Verizon Media 
+- company: Verizon Media
   link: https://www.verizonmedia.com/advertising
   imgURL: /assets/images/partners/tech/verizon_logo.png
   type: technology
-  
-- company: Advance Local Media 
+
+- company: Advance Local Media
   link: https://advancelocal.com
   imgURL: /assets/images/partners/publisher/advancelocal_logo.png
   type: publisher
 
-- company: CafeMedia 
+- company: CafeMedia
   link: https://www.cafemedia.com/
   imgURL: /assets/images/partners/publisher/cafemedia.png
   type: publisher
@@ -107,28 +107,28 @@
   link: https://www.chegg.com/
   imgURL: /assets/images/partners/publisher/chegg.png
   type: publisher
-  
+
 - company: diDNA
   link: https://didna.io/
   imgURL: /assets/images/partners/publisher/didna-logo.png
   type: publisher
-  
+
 - company: Freestar
   link: https://freestar.com/
   imgURL: /assets/images/partners/publisher/freestar-logo.png
   type: publisher
-  
+
 - company: Glewed TV
   link: https://www.glewed.tv/
   imgURL: /assets/images/partners/publisher/glewed_logo.png
   type: publisher
-  
+
 - company: Hive Media
   link: https://www.hivemedia.com
   imgURL: /assets/images/partners/publisher/Hive-Media-Group-Stacked-Color-web.png
   type: publisher
-  
-- company: Insider, Inc. 
+
+- company: Insider, Inc.
   link: https://www.insider-inc.com/
   imgURL: /assets/images/partners/publisher/Insider_Inc_logo.png
   type: publisher
@@ -163,12 +163,7 @@
   imgURL: /assets/images/partners/publisher/SHE_Media_Logo.png
   type: publisher
 
-- company: Sortable 
-  link: https://www.sortable.com/
-  imgURL: /assets/images/partners/publisher/sortable.png
-  type: publisher
-
-- company: Havas 
+- company: Havas
   link: https://havasmedia.com/
   imgURL: /assets/images/partners/buyer/Havas_Media_Logo.png
   type: buyer
