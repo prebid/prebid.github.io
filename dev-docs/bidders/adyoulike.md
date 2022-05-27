@@ -11,6 +11,7 @@ gdpr_supported: true
 gvl_id: 259
 usp_supported: true
 floors_supported: true
+schain_supported: true
 ---
 
 ### Note:
