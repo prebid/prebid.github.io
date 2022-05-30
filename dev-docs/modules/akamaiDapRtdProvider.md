@@ -65,11 +65,11 @@ Please reach out to your Akamai account representative(Prebid@akamai.com) to get
 | :------------ | :------------ | :------------ |:------------ |
 | name | String | Akamai Dap Rtd module name | 'dap' always|
 | waitForIt | Boolean | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
-| apiHostname | String | host name | Please reach out to your Akamai account representative(Prebid@akamai.com) for this value|
-| apiVersion | String | this holds the API version| It will be "x1" always |
-| domain | String | the domain name | |
-| identityType | String | Something like this email' | 'mobile' | ... | 'dap-signature:1.3.0' | |
-| segtax | Integer | the taxonomy for Akamai | The value will be 504 |
+| apiHostname | String | Hostname provided by Akamai | Please reach out to your Akamai account representative(Prebid@akamai.com) for this value|
+| apiVersion | String | This holds the API version | It should be "x1" always |
+| domain | String | The domain name of your webpage | |
+| identityType | String | Something like this 'email', 'mobile',  ... 'dap-signature:1.3.0' | |
+| segtax | Integer | The taxonomy for Akamai | The value should be 504 |
 | dapEntropyUrl | String | URL to dap entropy script | Optional if the script is directly included on the webpage. Contact your Akamai account rep for more details |
 | dapEntropyTimeout | Integer | Maximum time allotted for the entropy calculation to happen | |
 
