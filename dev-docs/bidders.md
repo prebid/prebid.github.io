@@ -23,6 +23,9 @@ You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV 
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "pbjs", true | sort_natural: "title" %}
 
+{: .alert.alert-warning :}
+Publishers are advised to check with legal counsel before doing business with any particular bidder.
+
 ### Search a bidder
 
 <input type="text" id="autocomplete-filter" class="autocomplete-filter">
