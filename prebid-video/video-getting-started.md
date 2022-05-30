@@ -86,6 +86,8 @@ The mediaTypes.video.playerSize field is where you define the player size that w
   <p>If you’re using Prebid Server, you must also include the mediaTypes.video.mimes field, as this is required by OpenRTB.</p>
 </div>
 
+For full details on video ad unit parameters, see [Ad Unit Reference for Video]({{site.baseurl}}/dev-docs/adunit-reference.html#adunitmediatypesvideo)
+
 In your ad unit you also need to define your list of bidders. For example, including AppNexus as a bidder would look something like this:
 
 ```
