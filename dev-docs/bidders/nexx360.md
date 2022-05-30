@@ -21,5 +21,5 @@ glv_id: 965
 | `account`     | required | Nexx360 account ID    | `'1067'`                             | `string`  |
 | `tagId`       | required | Nexx360 tag ID        | `'luvxjvgn'`                         | `string`  |
 | `bidfloor`       | optional | Bidfloor applied to auction (default: 0)        | `0.8`                         | `float`  |
-| `bidfloorCurrency`       | optional | Bidfloor currency (default: `USD`) - Can be `'USD'` or `'EUR'`       | `'USD'`                         | `string`  |
+| `bidfloorCurrency`       | optional | Bidfloor currency (default: `'USD'`) - Can be `'USD'` or `'EUR'`       | `'USD'`                         | `string`  |
 | `keywords`       | optional | Keywords used for targeting       | `{ 'interest': ['cars', 'sports']}`                         | `object`  |
