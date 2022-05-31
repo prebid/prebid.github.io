@@ -26,6 +26,7 @@ pbs_app_supported: true
 | `keyValues`    | optional | Contains one or more key-value pairings for key-value targeting                                                            | `{ testKey1: ['testValueA'], testKey2: ['testValueB', 'testValueC'] }` | `object`  |
 | `bidFloor`  | optional | Bid floor price | `0.01` | `float` |
 | `bidFloorCur`  | optional | Bid floor price currency. Supported values: USD (default), EUR, GBP, AUD, DKK, SEK, CZK, CHF, NOK | `'USD'` | `string` |
+| `extend`  | optional | See the [Extend mode section](#improvedigital-extend)  | `true` | `boolean` |
 | `rendererConfig`  | optional | Configuration object for JS renderer of the RAZR creatives. Provided by Improve Digital.  | `{ key1: value1 }` | `object` |
 | `video`    | optional | Object with video parameters. See the [Video params](#improvedigital-video) section below for details. | | `object` |
 
@@ -65,6 +66,23 @@ pbjs.setConfig({
         rendererConfig: {
             // Global config object provided by Improve Digital
         }
+    }
+});
+```
+
+<a name="improvedigital-extend"></a>
+
+#### Extend Mode
+
+Improve Digital Extend mode provides publishers with access to additional demand from other SSPs. Before enabling please contact our team for more information.
+The Extend mode can be enabled:
+* per ad unit via the `extend` [bid param](#improvedigital-params)
+* for all ad units via `setConfig()`:
+
+```
+pbjs.setConfig({
+    improvedigital: {
+        extend: true
     }
 });
 ```
