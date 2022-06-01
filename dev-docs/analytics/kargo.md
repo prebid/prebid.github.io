@@ -8,7 +8,7 @@ enable_download: false
 
 #### Registration
 
-Please visit [https://kargo.com/](https://kargo.com/) or contact your Kargo account maanger for more information.
+Please visit [https://kargo.com/](https://kargo.com/) or contact your Kargo account manager for more information.
 
 
 #### Example Configuration
