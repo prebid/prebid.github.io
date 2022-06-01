@@ -61,9 +61,9 @@ pbjs.setConfig(
 }
 ```
 
-## Parameter Descriptions for the Blueconic Configuration Section
-{: .table .table-bordered .table-striped }
+## BlueConic Configuration Parameters
 
+{: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | name | String | Real time data module name | Always 'blueconic' |
