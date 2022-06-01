@@ -8,5 +8,16 @@ enable_download: false
 
 #### Registration
 
-Please visit [https://kargo.com/](https://kargo.com/) for more information.
+Please visit [https://kargo.com/](https://kargo.com/) or contact your Kargo account maanger for more information.
 
+
+#### Example Configuration
+
+```
+  pbjs.enableAnalytics({
+    provider: 'kargo',
+    options: {
+        sampling: 100 // value out of 100
+    }
+  });
+```
