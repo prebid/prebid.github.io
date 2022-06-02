@@ -13,11 +13,10 @@ Please visit [https://kargo.com/](https://kargo.com/) or contact your Kargo acco
 
 #### Example Configuration
 
-```
-  pbjs.enableAnalytics({
-    provider: 'kargo',
-    options: {
-        sampling: 100 // value out of 100
-    }
-  });
-```
+```js
+pbjs.enableAnalytics({
+  provider: 'kargo',
+  options: {
+      sampling: 100 // value out of 100
+  }
+});
