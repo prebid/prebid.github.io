@@ -2,10 +2,19 @@
 layout: bidder
 title: Lasso
 description: Prebid Lasso Bidder Adaptor
+biddercode: lasso
 pbjs: true
 pbs: false
 media_types: banner
-biddercode: lasso
+gdpr_supported: false
+gvl_id: none
+usp_supported: false
+coppa_supported: false
+safeframes_ok: false
+deals_supported: false
+floors_supported: false
+fpd_supported: true/false
+multiformat_supported: will-not-bid
 ---
 
 ### Note:
@@ -16,4 +25,4 @@ The Lasso Bidding adapter requires setup before beginning. Please contact us at 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                      | Example                              | Type     |
 |-------------|----------|----------------------------------|--------------------------------------|----------|
-| `adUnitId`      | required | Unique adUnitId from Lasso         | `'11111'`    | `string` |
+| `adUnitId`      | required | Unique adUnitId from Lasso         | `'12345'`    | `string` |
