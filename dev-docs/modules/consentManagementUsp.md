@@ -59,7 +59,7 @@ To utilize this module, software that provides the [USP-API](https://github.com/
 
 Though implementation details for the USP-API are not covered by Prebid.org, we do recommend to that you place the code before the Prebid.js code in the head of the page in order to ensure the framework is loaded before the Prebid code executes. Many publishers who ensure the prior availability of the `__uspapi` set the timeout parameter to zero. 
 
-Once the USP-API is implemented, simply include this module into your build and add a `consentManagement` object in the `setConfig()` call. Without configuration, Prebid will throw a warning that the module is unconfigured, but will assume the configuration parameter cmpApi is set to 'iab' and proceed. Adapters that support this feature will then be able to retrieve the notice and opt-out status information and incorporate it in their requests.
+Once the USP-API is implemented, simply include this module into your build and add a `consentManagement` object in the `setConfig()` call. Without configuration, Prebid will throw a warning that the module is unconfigured, and will proceed with the default configuration parameter `cmpApi` as 'iab'. Adapters that support this feature will then be able to retrieve the notice and opt-out status information and incorporate it in their requests.
 
 Here are the parameters supported in the `consentManagement` object:
 
