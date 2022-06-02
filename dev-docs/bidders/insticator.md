@@ -7,6 +7,7 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 media_types: banner, video
+multiformat_supported: will-bid-on-any
 pbjs: true
 gvl_id: 910
 ---
