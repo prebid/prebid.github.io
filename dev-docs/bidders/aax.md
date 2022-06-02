@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Aax
+title: AAX
 description: Prebid Aax Bidder Adaptor
 biddercode: aax
 gdpr_supported: true  
