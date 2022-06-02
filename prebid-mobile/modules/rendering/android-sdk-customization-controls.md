@@ -38,7 +38,7 @@ The `closeButtonPosition` property indicates the position of the close button on
 
 The example: 
 
-![Close Button Position - Top Right](/assets/images/prebid-mobile/modules/rendering/ad-experience-android-close-button-possition-top-left.png){:width="250px"}
+![Close Button Position - Top Right](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-close-button-possition-top-left.png){:width="250px"}
 
 ### Skip Button Area
 
@@ -50,7 +50,7 @@ The `skipButtonPosition` property indicates the position of the close button on 
 
 The example: 
 
-![Close Button Position - Top Right](/assets/images/prebid-mobile/modules/rendering/ad-experience-android-skip-button-possition-top-left.png){:width="250px"}
+![Close Button Position - Top Right](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-skip-button-possition-top-left.png){:width="250px"}
 
 ### Skip Delay
 
