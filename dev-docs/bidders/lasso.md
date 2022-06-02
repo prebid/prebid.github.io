@@ -13,7 +13,7 @@ coppa_supported: false
 safeframes_ok: false
 deals_supported: false
 floors_supported: false
-fpd_supported: true/false
+fpd_supported: false
 multiformat_supported: will-not-bid
 ---
 
