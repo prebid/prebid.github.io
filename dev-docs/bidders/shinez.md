@@ -11,6 +11,7 @@ usp_supported: true
 floors_supported: true
 userIds: all
 fpd_supported: true
+safeframes_ok: false
 ---
 
 ### Note
@@ -25,7 +26,7 @@ The Shinez adapter requires setup and approval. Please reach out to tech-team@sh
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  Shinez publisher Id provided by your Shinez representative  | "56f91cd4d3e3660002000033"
-| `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
+| `floorPrice` | optional | Number |  Minimum price in USD.  | 2.00
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 
