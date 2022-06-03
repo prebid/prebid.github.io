@@ -7,7 +7,7 @@ media_types: banner, video
 userIds: identityLink, imuid, AudienceOne ID
 pbjs: true
 pbs: true
-
+multiformat_supported: will-bid-on-any
 ---
 
 ### Note:
