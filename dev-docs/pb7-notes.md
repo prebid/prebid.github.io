@@ -36,7 +36,7 @@ The following modules have been removed from Prebid.js as part of the 7.0 releas
 | Halo ID & RTD submodules | replaced by Hadron
 | NextRoll ID submodule
 | OneVideo Bid Adapter | replaced by YahooSSP
-| Sortable Adapters | replaced by Freestar
+| Sortable Adapters
 | TrustX Bid Adapter | now an alias of Grid
 | UserId Targeting Module
 
@@ -54,7 +54,7 @@ Finally, adapters known to use http1 bidding endpoints may now have notices appe
 
 ## Regulatory and consent strings
 
-TCF1 is no longer supported by the Consent Management (GDPR) module. The Consent Management USP module now defaults to framework 'iab' and will work without configuration if installed and a functioning `__uspapi()` exists on the page. It will also set ortb2.regs.ext.gpc to 1 if GPC headers indicate the user has opted out, and the third character of the [US Privacy string](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md) will not be changed, but publishers may choose to have the string Prebid.js sees affected by GPC headers.
+TCF1 is no longer supported by the Consent Management (GDPR) module. The Consent Management USP module now defaults to framework 'iab' and will work without configuration if installed and a functioning `__uspapi()` exists on the page.
 
 ## First Party Data
 
@@ -62,13 +62,15 @@ Support has been removed for `setConfig('fpd')`, `config.getLegacyFpd`, `config.
 
 First party data can also now be set on a specific auction. This is useful for example on infinite scroll pages when contextual segments change, or when the publisher wishes to express the context of an instream video ad but not the display advertising. As part of this change the ortb2 object is now made a part of bid requests, instead of necesitating a getConfig call by an adapter. This has led to slight changes in many dozens of bid adapters and substantial changes to all of the RTD adapters. 
 
-## Misc changes
+## Prebid Server Adapter
 
 An undocumented feature "Stored Auction Response" has been deprecated. 
 
 The Prebid Server committee moved the ortb2 location of bidder parameters from `imp[].ext.BIDDER` to `imp[].ext.prebid.bidder.BIDDER`. PBS versions before [insert version number here], released on [insert release date or year here], are not compatible with Prebid 7+.
 
-If you load Prebid.js twice on a page using the same global, the second load is now prevented unless you take steps to override this behavior. 
+## Build changes
+
+In later 6.x versions, an improvement in the build process introduced some undesirable behavior for users loading the library twice on the same pageview to the same global library name. If you load Prebid.js twice on a page using the same global, the second load is now prevented. If your goal is to load a module late or on demand, it is possible to load it in isolation.
 
 
 ## Further Reading
