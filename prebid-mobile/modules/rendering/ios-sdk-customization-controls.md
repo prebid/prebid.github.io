@@ -33,7 +33,7 @@ This control allows setting the maximum available video duration in seconds. Pre
 |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
 |**Ad Unit Property**   | `adUnit.videoParameters.maxDuration`|
 |**Server Property**    | `maxvideoduration` *(pending for PBS implementation)*|
-|**Deafault Value**     | `3600 seconds`|
+|**Default Value**     | `3600 seconds`|
 
 ### Application Muted
 
@@ -44,7 +44,7 @@ This control allows to run playback with sound or not.
 |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
 |**Ad Unit Property**   | `adUnit.isMuted`|
 |**Server Property**    | `ismuted` *(pending for PBS implementation)*|
-|**Deafault Value**     | `false`|
+|**Default Value**     | `false`|
 
 ### Close Button Area
 
@@ -56,13 +56,13 @@ This control allows to set the percent of device screen which the close button s
 |**Ad Unit Property**   | `adUnit.closeButtonArea `|
 |**Server Property**    | `closebuttonarea` *(pending for PBS implementation)*|
 |**Allowed Values**     | `0..1`|
-|**Deafault Value**     | `0.1`|
+|**Default Value**     | `0.1`|
 
 Customization Example
 
 {: .table .table-bordered .table-striped }
 
-|**Defalt**|**Custom**|
+|**Default**|**Custom**|
 |![Close Button Area - Default](/assets/images/prebid-mobile/modules/rendering/ad-experience/ios-close-button-area-010.png){:width="250px"}|![Close Button Area - Custom](/assets/images/prebid-mobile/modules/rendering/ad-experience/ios-close-button-area-020.png){:width="250px"}|
 
 
@@ -76,14 +76,14 @@ This control allows to set the position of the close button on the screen.
 |**Ad Unit Property**   | `adUnit.closeButtonPosition`|
 |**Server Property**    | `closebuttonposition` *(pending for PBS implementation)*|
 |**Allowed Values**     | `topLeft, topRight`|
-|**Deafault Value**     | `topRight`|
+|**Default Value**     | `topRight`|
 
 
 Customization Example
 
 {: .table .table-bordered .table-striped }
 
-|**Defalt**|**Custom**|
+|**Default**|**Custom**|
 |![Close Button Position - Default](/assets/images/prebid-mobile/modules/rendering/ad-experience/ios-close-button-area-010.png){:width="250px"}|![Close Button Position - Custom](/assets/images/prebid-mobile/modules/rendering/ad-experience/ios-close-button-possition-top-left.png){:width="250px"}| 
 
 
@@ -97,7 +97,7 @@ This control allows to set the percent of device screen which the skip button sh
 |**Ad Unit Property**   | `adUnit.skipButtonArea`|
 |**Server Property**    | `skipbuttonarea` *(pending for PBS implementation)*|
 |**Allowed Values**     | `0..1`|
-|**Deafault Value**     | `0.1`|
+|**Default Value**     | `0.1`|
 
 ### Skip Button Position
 
@@ -109,13 +109,13 @@ This control allows to set the position of the skip button on the screen.
 |**Ad Unit Property**   | `adUnit. skipButtonPosition`|
 |**Server Property**    | `skipbuttonposition` *(pending for PBS implementation)*|
 |**Allowed Values**     | `topLeft, topRight`|
-|**Deafault Value**     | `topLeft`|
+|**Default Value**     | `topLeft`|
 
 Customization Example
 
 {: .table .table-bordered .table-striped }
 
-|**Defalt**|**Custom**|
+|**Default**|**Custom**|
 |![Close Button Position - Default](/assets/images/prebid-mobile/modules/rendering/ad-experience/ios-skip-button-possition-top-left.png){:width="250px"}|![Close Button Position - Custom](/assets/images/prebid-mobile/modules/rendering/ad-experience/ios-skip-button-possition-top-right.png){:width="250px"}| 
 
 ### Skip Delay
@@ -127,7 +127,7 @@ This control allows to set number of seconds which should be passed from the sta
 |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
 |**Ad Unit Property**   | `adUnit.skipDelay`|
 |**Server Property**    | `skipdelay` *(pending for PBS implementation)*|
-|**Deafault Value**     | `10 seconds`|
+|**Default Value**     | `10 seconds`|
 
 ### Sound Button
 
@@ -140,13 +140,13 @@ This control allows to display or hide the sound/mute button to users.
 |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
 |**Ad Unit Property**   | `adUnit.isSoundButtonVisible`|
 |**Server Property**    | *not supported*|
-|**Deafault Value**     | `false`|
+|**Default Value**     | `false`|
 
 Customization Example
 
 {: .table .table-bordered .table-striped }
 
-|**Defalt**|**Custom**|
+|**Default**|**Custom**|
 |![Close Button Area - Default](/assets/images/prebid-mobile/modules/rendering/ad-experience/ios-close-button-area-010.png){:width="250px"}|![Close Button Area - Custom](/assets/images/prebid-mobile/modules/rendering/ad-experience/ios-mute-button-visible.png){:width="250px"}|
 
 ### Customization examples
