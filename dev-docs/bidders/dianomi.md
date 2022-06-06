@@ -3,7 +3,7 @@ layout: bidder
 title: Dianomi
 description: Prebid Dianomi Bidder Adaptor
 biddercode: dianomi
-media_types: banner, native,
+media_types: banner, native
 coppa_supported: false
 gdpr_supported: true
 usp_supported: true
