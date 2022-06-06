@@ -46,7 +46,7 @@ Following the precedent on Prebid 5, bidders should read additional values from 
 
 In the Prebid 5 release notes, it was noted that publishers should no longer use publisherDomain as a setConfig parameter, and instead prefer PageURL. Adapters no longer read from this location. Also, the object presented to bidders with the page url and that page's referring page url is essentially redone, and our goal is that adapters can rely on ortb2.site.page and ortb2.site.ref, with flags for when top is not reached, the canoncical link is used, setConfig('pageUrl') is used, or when window.location.href is used for ortb2.site.page. Many bidders had disparate logic for this and the refererInfo.referer seemed to have different meanings in different contexts.
 
-Also, Bid Adapters (not all adapters) no longer have access to storage manager unless explicitly allowed by the publisher. We believe bidding functionality should rarely if ever need this access and that this extra functionality included in bid adapters must be consented to by the installer in their configuration. The following bid adapters' unit tests were affected by this change: Adagio, Adnuntius, AP Stream, Concert, Conversant, Craft, Criteo, E-Planning, Invibes, Kargo, Quantcast, Trion, Unicorn, and Vidazoo. Adapters simply setting a random identifier in the first party local storage or cookie should consider if the popular shared id user id submodule can fully achieve this functionality for them. See storageAllowed in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html) 
+Also, Bid Adapters (not all adapters) no longer have access to the storage manager unless explicitly allowed by the publisher. We believe bidding functionality should rarely if ever need this access and that this extra functionality included in bid adapters must be consented to by the installer in their configuration. The following bid adapters' unit tests were affected by this change: Adagio, Adnuntius, AP Stream, Concert, Conversant, Craft, Criteo, E-Planning, Invibes, Kargo, Quantcast, Trion, Unicorn, and Vidazoo. Adapters simply setting a random identifier in the first party local storage or cookie should consider if the popular shared id user id submodule can fully achieve this functionality for them. See storageAllowed in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html) 
 
 Adapters are also now not allowed to return alternate bidder codes unless allowed by the publisher. See allowAlternateBidderCodes in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html).
 
@@ -70,7 +70,7 @@ The Prebid Server committee moved the ortb2 location of bidder parameters from `
 
 ## Build changes
 
-In later 6.x versions, an improvement in the build process introduced some undesirable behavior for users loading the library twice on the same pageview to the same global library name. If you load Prebid.js twice on a page using the same global, the second load is now prevented. If your goal is to load a module late or on demand, it is possible to load it in isolation.
+In later 6.x versions, an improvement in the build process introduced some undesirable behavior for users loading the library twice on the same pageview to the same global library name. If you load Prebid.js twice on a page using the same global, the second load is now prevented.
 
 
 ## Further Reading
