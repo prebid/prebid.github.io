@@ -11,7 +11,6 @@ usp_supported: true
 coppa_supported: true
 userIds: all
 prebid_member: true
-fpd_supported: true
 gvl_id: 833
 ---
 
