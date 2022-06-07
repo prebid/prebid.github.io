@@ -185,7 +185,7 @@ keywords: {
 
 #### First Party Data
 
-Publisher's should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
 
 At this time however, the `appnexus` bidder only reads the First Party Data when using the Prebid Server and Prebid Server Premium endpoints.  The client-side version of the `appnexus` bidder does not use the values from the First Party Data fields.
 
