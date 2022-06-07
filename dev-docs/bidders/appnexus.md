@@ -189,6 +189,8 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 
 At this time however, the `appnexus` bidder only reads the First Party Data when using the Prebid Server and Prebid Server Premium endpoints.  The client-side version of the `appnexus` bidder does not use the values from the First Party Data fields.
 
+PBS/PSP supports all first party data fields: site, user, segments, and imp-level first party data.
+
 
 <a name="appnexus-amp" />
 
