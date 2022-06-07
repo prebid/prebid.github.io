@@ -201,8 +201,8 @@ The `ortb2Fragments` parameter is an object containing two properties:
 Your module may modify either or both with additional data. If adding bidder-specific data in `ortb2Fragments.bidder`, it should also support a parameter to allow the publisher to define which bidders are to receive the data.
 
 {: .alert.alert-warning :}
-Before version 7, the pattern for first party data inspection and enrichment by RTD modules was `getConfig({ortb2])` / `mergeConfig({ortb2})`. With the introduction of [auction-specific data](/features/firstPartyData.html#supplying-auction-specific-data) in 7, the global `getConfig({ortb2})` is "frozen"
-at the time `requestBids` is called, and RTD submodules that need to modify it are required to work on `ortb2Fragments` instead - as any additional call to `mergeConfig` will only take effect on the *next* auction.  
+Before version 7, the pattern for first party data inspection and enrichment by RTD modules was `getConfig({ortb2])` / `mergeConfig({ortb2})`. With the introduction of [auction-specific data](/features/firstPartyData.html#supplying-auction-specific-data) in 7, the global `getConfig('ortb2')` is "frozen"
+at the time `requestBids` is called, and RTD submodules that wish to modify it are required to work on `ortb2Fragments` instead - as any additional call to `mergeConfig` will only take effect on the *next* auction.  
 
 **Code Example**
 
