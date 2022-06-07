@@ -176,7 +176,7 @@ submodule('realTimeData', subModuleObj);
 This is the function that will allow RTD sub-modules to modify the AdUnit object for each auction. It's called as part of the requestBids hook.
 
 1. RTD-core will call this function with:
-    - reqBidsConfigObj: a sligtly modified version of the object that's passed to `pbjs.requestBids` (see [below](#reqBidsConfigObj)). Note that several auctions can happen concurrently, so the sub-module must be ready to support this.
+    - reqBidsConfigObj: a slightly modified version of the object that's passed to `pbjs.requestBids` (see [below](#reqBidsConfigObj)). Note that several auctions can happen concurrently, so the sub-module must be ready to support this.
     - callback: lets RTD-core know which auction the sub-module is done with.
     - config: the sub-module's config params provided by the publisher
     - userConsent object (see above)
@@ -185,7 +185,7 @@ This is the function that will allow RTD sub-modules to modify the AdUnit object
         - For AdUnit-specific first party data, set AdUnit.ortb2Imp.ext.data.ATTRIBUTES
         - For global first party data, including bidder-specific data, modify the `reqBidsConfigObj` as shown [below](#reqBidsConfigObj) 
     - Not recommended: Place your data in bidRequest.rtd.RTDPROVIDERCODE.ATTRIBUTES and then get individual adapters to specifically read that location. Note that this method won't pass data to Prebid Server adapters.
-    
+
 <a id="reqBidsConfigObj" />
 
 The `reqBidsConfigObj` parameter is a copy of the object passed to [`requestBids`](/dev-docs/publisher-api-reference/requestBids.html), except for:
