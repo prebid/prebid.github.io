@@ -12,7 +12,7 @@ coppa_supported: true
 gdpr_supported: true
 floors_supported: true
 usp_supported: true
-media_types: banner, video
+media_types: banner, video, native
 fpd_supported: true
 gvl_id: 10
 prebid_member: yes
@@ -63,7 +63,7 @@ var adUnits = [{
 |---|---|
 | `banner` | Fully supported for all IX approved sizes |
 | `video`  | Fully supported for all IX approved sizes |
-| `native` | Not supported |
+| `native` | Supported |
 
 ### Supported Media Types (Prebid Server)
 
@@ -107,6 +107,9 @@ In Prebid.js versions 5.0 and above, mediaType and sizes are not required to be 
 | `video.minduration` | Required | Integer | Minimum video ad duration in seconds.|
 | `video.maxduration` | Required | Integer | Maximum video ad duration in seconds.|
 | `video.protocol` / `video.protocols` | Required | Integer / Integer[] | Either a single protocol provided as an integer, or protocols provided as a list of integers. `2` - VAST 2.0, `3` - VAST 3.0, `5` - VAST 2.0 Wrapper, `6` - VAST 3.0 Wrapper|
+
+### Native
+Index supports the native assets that Prebid.js recognizes. For the list of native assets, see [Prebid.js Native Implementation Guide on the Prebid site.](https://docs.prebid.org/prebid/native-implementation.html#3-prebidjs-native-adunit-overview)
 
 ## Setup Guide
 
@@ -271,6 +274,50 @@ pbjs.setConfig({
     cache: {
         url: 'https://prebid.adnxs.com/pbc/v1/cache'
     }
+});
+```
+
+#### Native
+We support the three native template rendering options that are provided in the [Prebid.js Native Implementation Guide on the Prebid site.](https://docs.prebid.org/prebid/native-implementation.html#3-prebidjs-native-adunit-overview) The following code is an example of a Prebid native set up using Google Ad Manager, but the concept and implementation should be similar for other ad servers.
+
+```
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        native: {
+            image: {
+                required: true,
+                sizes: [150, 50]
+            },
+            title: {
+                required: true,
+                len: 80
+            },
+            sponsoredBy: {
+                required: true
+            },
+            clickUrl: {
+                required: true
+            },
+            privacyLink: {
+                required: false
+            },
+            body: {
+                required: true
+                len: 90
+            },
+            icon: {
+                required: true,
+                sizes: [50, 50]
+            }
+        }
+    },
+    bids: [{
+        bidder: 'ix',
+        params: {
+            siteId: '715966'
+        }
+    }]
 });
 ```
 
