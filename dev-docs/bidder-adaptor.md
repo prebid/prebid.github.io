@@ -275,10 +275,14 @@ Here is a sample bidderRequest object:
   bids: [{...}],
   gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true},
   refererInfo: {
-    canonicalUrl: undefined,
+    canonicalUrl: null,
+    page: "http://mypage.org?pbjs_debug=true",
+    domain: "mypage.org",
+    ref: null,
     numIframes: 0,
     reachedTop: true,
-    referer: "http://mypage?pbjs_debug=true"
+    isAmp: false,
+    stack: ["http://mypage.org?pbjs_debug=true"]
   }
 }
 {% endhighlight %}
@@ -303,23 +307,26 @@ There are a number of important values that a publisher expects to be handled in
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
 | First Party Data | The publisher may provide [first party data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) (e.g. page type). | config.getConfig('fpd'); |
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
-| Page Referrer | Intead of building your own function to find the page referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.referer |
-| Publisher Domain | The page may declare its domain, useful in cross-iframe scenarios. | config.getConfig('publisherDomain') |
+| Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
 | Video Parameters | Video params must be read from AdUnit.mediaType.video when available; however bidder config can override the ad unit. | AdUnit.mediaType.video |
 
-#### Referrers
+#### Location and referrers
 
 Referrer information should be passed to your endpoint in contexts where the original page referrer isn't available directly to the adapter. Use the `bidderRequest.refererInfo` property to pass in referrer information. This property contains the following parameters:
 
-- `referer`: a string containing the detected top-level URL.
+- `location`: a string containing the detected top-level URL, or null when the top window is inaccessible.
+- `topmostLocation`: a string containing the URL of the topmost accessible frame.
+- `canonicalUrl`: a string containing the canonical (search engine friendly) URL, as set by the publisher.
+- `page`: the best candidate for the top level URL - or null when the top window is inaccessible. Equivalent to `canonicalUrl` || `location`.
+- `domain`: the domain (hostname and port) portion of `page`.
+- `ref`: referrer to the top window (`window.top.document.referrer`), or null when the top window is inaccessible. 
 - `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
 - `numIframes`: the number of iFrames.
 - `stack`: an array of URLs of all windows from the top window down to the current window.
-- `canonicalUrl`: a string containing the canonical (search engine friendly) URL defined in top-most window.
 - `isAmp`: a boolean specifying whether the detected referer was determined based on AMP page information.
 
-The URL returned by `refererInfo` is in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
+The URLs returned by `refererInfo` are in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
 
 #### The output of buildRequests: ServerRequest Objects
 
@@ -584,10 +591,14 @@ Sample data received by this function:
             bids: [{...}],
             gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true},
             refererInfo: {
-                canonicalUrl: undefined,
+                canonicalUrl: null,
+                page: "http://mypage.org?pbjs_debug=true",
+                domain: "mypage.org",
+                ref: null,
                 numIframes: 0,
                 reachedTop: true,
-                referer: "http://mypage?pbjs_debug=true"
+                isAmp: false,
+                stack: ["http://mypage.org?pbjs_debug=true"]
             }
         }
     }
