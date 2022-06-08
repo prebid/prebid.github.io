@@ -16,7 +16,7 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 - TOC
  {:toc}
 
-## Pacakge Managers
+## Package Managers
 
 ### Cocoapods
 
