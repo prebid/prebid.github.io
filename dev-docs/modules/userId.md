@@ -1443,10 +1443,8 @@ pbjs.setConfig({
         userIds: [{
         name: 'merkleId',
         params: {
-          vendor:'example_vendor',
-          sv_cid:'example_cid',
           sv_pubid:'example_pubid',
-          sv_domain:'example.com'
+          ssp_ids: ['example_sspid_1', 'example_sspid_2']
         },
         storage: {
           type: 'html5',
