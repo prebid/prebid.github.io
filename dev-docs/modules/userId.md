@@ -512,24 +512,24 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### DAC ID by DAC
+### AudienceOne ID by DAC
 
-DAC ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
+AudienceOne ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
 Please contact D.A.Consortium Inc. before using this ID.
 
-Add the DAC ID to your Prebid.js Package with:
+Add the AudienceOne ID to your Prebid.js Package with:
 
 {: .alert.alert-info :}
 gulp build --modules=dacIdSystem
 
-#### DAC ID Configuration
+#### AudienceOne ID Configuration
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module | `"dacId"` |
 
-#### DAC ID Example
+#### AudienceOne ID Example
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -1392,7 +1392,7 @@ pbjs.setConfig({
 
 Lotame’s Panorama ID module sends information from the request to its identity graph in order to successfully generate a Panorama ID. For more information on how the Panorama ID works, please visit [https://www.lotame.com/panorama/id/](https://www.lotame.com/panorama/id/).
 
-**Ease of Implementation**: Deployment of the Lotame Panorama ID module has been optimized for ease by not requiring any registration to utilize. Simply add the generic module to start producing the Panorama ID across your inventory. Clients who would like the advantage of additional options can register to receive their own client ID. Reach out to [PanoramaID@lotame.com](mailto:PanoramaID@lotame.com) to learn more about the optional registration.
+**Ease of Implementation**: Deployment of the Lotame Panorama ID module has been optimized for ease by not requiring any registration to utilize. Simply add the generic module to start producing the Panorama ID across your inventory.
 
 Lotame's privacy policy related to the Panorama ID and the collection of data and how data is used is available at [https://www.lotame.com/about-lotame/privacy/lotames-products-services-privacy-policy/](https://www.lotame.com/about-lotame/privacy/lotames-products-services-privacy-policy/). Consult with your legal counsel to determine the appropriate user disclosures with respect to use of the Lotame Panorama ID module.
 
@@ -1416,17 +1416,12 @@ NOTE: For optimal performance, the Lotame Panorama Id module should be called at
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of the module | "lotamePanoramaId" |
-| params | Optional | Object | Configuration options for the Lotame Panorama ID Module | |
-| params.clientId | Optional | String | The Lotame Panorama Client ID | "1001" |
 
 {% highlight javascript %}
 pbjs.setConfig({
     userSync: {
         userIds: [{
             name: "lotamePanoramaId",
-            params: {
-                clientId: "Optional - See your Lotame Representative"
-            }
         }]
     }
 });
@@ -1838,7 +1833,7 @@ pbjs.setConfig({
             storage: {
                 type: "cookie",
                 name: "idl_env",           // "idl_env" is the required storage name
-                expires: 15                // Cookie can last for 15 days
+                expires: 15,               // Cookie can last for 15 days
                 refreshInSeconds: 1800
             }
         }],
@@ -1864,7 +1859,7 @@ pbjs.setConfig({
             storage: {
                 type: "html5",
                 name: "idl_env",           // "idl_env" is the required storage name
-                expires: 15                // HTML5 localStorage can last for 15 days
+                expires: 15,               // HTML5 localStorage can last for 15 days
                 refreshInSeconds: 1800
             }
         }],
@@ -2375,6 +2370,36 @@ pbjs.setConfig({
 })
 ```
 
+### GRAVITO ID by Gravito Ltd.
+
+Gravito ID, provided by [Gravito Ltd.](https://gravito.net), is ID for ad targeting by using 1st party cookie.
+Please contact Gravito Ltd. for using this ID.
+
+Add the Gravito ID to your Prebid.js Package with:
+
+{: .alert.alert-info :}
+gulp build --modules=gravitoIdSystem
+
+#### Gravito ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module | `"gravitompId"` |
+
+#### Gravito ID Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'gravitompId'
+        }]
+    }
+});
+{% endhighlight %}
+
+
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
@@ -2404,7 +2429,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | Akamai DAP ID | Akamai DAP | dapId | akamai.com | "eyJhbGciOiJka....YIsj7"|
 | AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
-| DAC ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
+| AudienceOne ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
 | DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
 | DMD ID | DMD | dmdId | hcn.health | "1111" |
 | CpexID | CPEx | cpexId | cpex.cz | "1111" |
