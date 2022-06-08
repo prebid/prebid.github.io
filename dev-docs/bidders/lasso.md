@@ -9,7 +9,8 @@ media_types: banner
 gdpr_supported: false
 gvl_id: none
 usp_supported: false
-coppa_supported: false
+coppa_supported: true
+ccpa_supported: true
 safeframes_ok: false
 deals_supported: false
 floors_supported: false
