@@ -24,7 +24,6 @@ Core config:
 + [Bid cache](#setConfig-Use-Bid-Cache)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the page URL](#setConfig-Page-URL)
-+ [Set the publisher's domain](#setConfig-Publisher-Domain)
 + [Set price granularity](#setConfig-Price-Granularity)
 + [Set media type price granularity](#setConfig-MediaType-Price-Granularity)
 + [Configure server-to-server header bidding](#setConfig-Server-to-Server)
@@ -280,18 +279,6 @@ Override the Prebid.js page referrer for some bidders.
 pbjs.setConfig({ pageUrl: "https://example.com/index.html" })
 {% endhighlight %}
 
-<a name="setConfig-Publisher-Domain" />
-
-#### Publisher Domain
-
-{: .alert.alert-warning :}
-This API is deprecated. Please use 'pageUrl' instead.
-
-Set the publisher's domain where Prebid is running, for cross-domain iframe communication:
-
-{% highlight js %}
-pbjs.setConfig({ publisherDomain: "https://www.theverge.com" )
-{% endhighlight %}
 
 <a name="setConfig-Price-Granularity" />
 
