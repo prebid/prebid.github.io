@@ -3,7 +3,7 @@ layout: bidder
 title: IncrementX
 description: Prebid IncrementX Bidder Adaptor
 pbjs: true
-biddercode: incrementx
+biddercode: incrx
 media_types: banner
 gdpr_supported: true
 multiformat_supported: will-bid-on-one
