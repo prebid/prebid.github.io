@@ -171,7 +171,7 @@ function get_form_data() {
     return form_data;
 }
 
-
+  window.pbjs = {};
 </script>
 
 <style>
