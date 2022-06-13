@@ -278,7 +278,7 @@ pbjs.setConfig({
 ```
 
 #### Native
-We support the three native template rendering options that are provided in the [Prebid.js Native Implementation Guide on the Prebid site.](https://docs.prebid.org/prebid/native-implementation.html#3-prebidjs-native-adunit-overview) The following code is an example of a Prebid native set up using Google Ad Manager, but the concept and implementation should be similar for other ad servers.
+We support the three native template rendering options that are provided in the [Setting up Prebid Native in Google Ad Manager](https://docs.prebid.org/adops/gam-native.html). The following code is an example of a Prebid native set up using Google Ad Manager, but the concept and implementation should be similar for other ad servers.
 
 ```
 pbjs.addAdUnits({
@@ -509,7 +509,7 @@ to `'ix'` across all ad units that bids are being requested for does not exceed 
 
 ### Time-To-Live (TTL)
 
-Banner bids from Index have a TTL of 600 seconds while video bids have a TTL of 3 hours, after which time they become invalid.
+Banner bids from Index have a TTL of 600 seconds while video bids have a TTL of 3 hours, after which time they become invalid.</br>
 **Note:** Index supports the `bid.exp` attribute in the bid response which allows our adapter to specify the maximum number of seconds allowed between the auction and billing notice. In the absence of the `bid.exp` attribute, the TTL provided above applies.
 
 ## FAQs
