@@ -107,7 +107,7 @@ function submit_download() {
     $.ajax({
         type: "POST",
         url: "https://js-download.prebid.org/download",
-        //dataType: 'json',
+        dataType: 'text',
         data: form_data
     })
     .success(function(data, textStatus, jqXHR) {
@@ -170,7 +170,6 @@ function get_form_data() {
 
     return form_data;
 }
-
 
 </script>
 
