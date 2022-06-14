@@ -16,6 +16,8 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
+| 7.0 | Cleanup of deprecated 'publisherDomain' and 'fpd' config. See the [PBJS 7 release notes](/dev-docs/pb7-notes.html) |
+| 6.0 | Removed transpiling for the MSIE 11 browser. [Blog post](https://prebid.org/blog/prebid-6-0-release/) |
 | 5.9 | Support numeric ad targeting keys |
 | 5.8 | [GPT Pre-Auction module](/dev-docs/modules/gpt-pre-auction.html) supports mcmEnabled flag |
 | 5.3 | add AD_RENDER_SUCCEEDED event |
