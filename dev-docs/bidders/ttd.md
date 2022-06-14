@@ -18,6 +18,10 @@ pbs: false
 prebid_member: true
 ---
 
+### Disclosure:
+
+This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
+
 {: .alert.alert-danger :}
 Note: The Trade Desk Header Bidding adapter requires setup and approval before beginning. Please reach out to OpenPathPublishers@thetradedesk.com for more details.
 
