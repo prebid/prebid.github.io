@@ -15,10 +15,10 @@ This document describes the changes included for Prebid.js version 7.0.
 
 ## Publisher Summary
 
-1) Be aware that a number of modules have been removed. See below for the list.
-2) setConfig of 'publisherDomain' is no longer supported. Use setConfig({pageUrl: "URL"}) instead.
-3) setConfig of 'fpd' is no longer supported. Use setConfig({ortb2: ...}) instead.
-4) Please ensure your Prebid Server provider is running a relatively recent version of Prebid Server. Prebid.js 7 will not work with PBS-Go before 0.66 or PBS-Java before 1.55.
+1. Be aware that a number of modules have been removed. See below for the list.
+2. setConfig of 'publisherDomain' is no longer supported. Use setConfig({pageUrl: "URL"}) instead.
+3. setConfig of 'fpd' is no longer supported. Use setConfig({ortb2: ...}) instead.
+4. Please ensure your Prebid Server provider is running a relatively recent version of Prebid Server. Prebid.js 7 will not work with PBS-Go before 0.66 or PBS-Java before 1.55.
 
 Details on all of these below.
 
