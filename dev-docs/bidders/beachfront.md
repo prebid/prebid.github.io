@@ -80,11 +80,9 @@ For further information, please contact adops@beachfront.com.
 ### First Party Data
 
 Publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
-- ortb2.site.ext.data.*
-- ortb2.site.keywords
-- ortb2.site.content.data[]
-- ortb2.user.ext.data.*
-- ortb2.user.data[]
+- ortb2.site.*
+- ortb2.app.*
+- ortb2.user.*
 
 The IAB standard taxonomies are not supported.
 
