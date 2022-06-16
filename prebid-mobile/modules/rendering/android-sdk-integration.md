@@ -12,7 +12,7 @@ sidebarType: 2
 ## Gradle Integration
 
 
-To add the dependency, open your project and update the app module’s build.gradle to have the following repositories and dependencies (note that rendering module is in the beta stage):
+To add the dependency, open your project and update the app module’s build.gradle to have the following repositories and dependencies:
 
 ```
 allprojects {
@@ -28,7 +28,7 @@ allprojects {
 
 dependencies {
     ...
-    implementation('org.prebid:prebid-mobile-sdk:1.13.0-beta+')
+    implementation('org.prebid:prebid-mobile-sdk:2.0.0')
     ...
 }
 ```

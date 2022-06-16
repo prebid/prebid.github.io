@@ -18,7 +18,11 @@ pbs: true
 pbs_app_supported: true
 fpd_supported: true
 gvl_id: 52
+multiformat_supported: will-bid-on-one
 ---
+### Disclosure:
+
+This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
 
 ### Registration
 
@@ -221,6 +225,12 @@ pbjs.setConfig({
 
 * The Rubicon Project adapter does not make concurrent banner and video requests. Instead, the adapter will send a video request if bids[].params.video is supplied, else a banner request will be made.
 
+### Setting up the Prebid Server Adapter
+  
+If you're a Prebid Server host company looking to enable the Rubicon server-side adapter, you'll need to contact globalsupport@magnite.com. They will provide:
+- a Magnite DV+ XAPI login and password that you'll place in the PBS config
+- a partner code you can use for cookie-syncing with Magnite's service
+  
 ### Configuration
 
 #### Single-Request

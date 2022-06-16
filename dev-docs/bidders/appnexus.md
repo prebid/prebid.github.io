@@ -6,7 +6,7 @@ biddercode: appnexus
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
-userIds: criteo, unifiedId, netId, identityLink, flocId, uid2
+userIds: criteo, flocId, identityLink, netId, pubProvidedId, uid2, unifiedId,
 schain_supported: true
 coppa_supported: true
 usp_supported: true
@@ -17,6 +17,10 @@ pbs: true
 gvl_id: 32
 ---
 
+### Disclosure:
+
+This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
+
 ### Table of Contents
 
 - [Bid Params](#appnexus-bid-params)
@@ -26,6 +30,7 @@ gvl_id: 32
 - [Custom Targeting keys](#custom-targeting-keys)
 - [Auction Level Keywords](#appnexus-auction-keywords)
 - [Passing Keys Without Values](#appnexus-no-value)
+- [First Party Data](#appnexus-fpd)
 - [User Sync in AMP](#appnexus-amp)
 - [Debug Auction](#appnexus-debug-auction)
 
@@ -179,6 +184,17 @@ keywords: {
   otherKeyword: ['']
 }
 ```
+
+<a name="appnexus-fpd" />
+
+#### First Party Data
+
+Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+
+At this time however, the `appnexus` bidder only reads the First Party Data when using the Prebid Server and Prebid Server Premium endpoints.  The client-side version of the `appnexus` bidder does not use the values from the First Party Data fields.
+
+PBS/PSP supports all first party data fields: site, user, segments, and imp-level first party data.
+
 
 <a name="appnexus-amp" />
 

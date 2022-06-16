@@ -205,10 +205,14 @@ endpoint: "https://{host}.example.com/path"
 
 ## Did the location of the bidder parameters change?
 
-Why yes, glad you noticed. The original OpenRTB extension where bidders
-and parameters were placed was imp[].ext. Now the recommended location
-is imp[].ext.prebid.bidder. This change was driven by the existence of
+Why yes, glad you noticed. The original 2017 OpenRTB extension where bidders
+and parameters were placed was imp[].ext.BIDDER. Since 2020, the recommended location
+is imp[].ext.prebid.bidder.BIDDER. This change was driven by the existence of
 other fields in imp[].ext that aren't bidders, like `skadn`, `data`, etc.
 
 Bidders are copied from imp[].ext to imp[].ext.prebid.bidder, and they will be copied for years to come, but we would ask that new implementations of stored requests
 utilize the new location.
+
+## Does PBS support SSL?
+
+No, Prebid Server is intended to run behind a load balancer or proxy, so it does not currently support defining a security certificate.
