@@ -85,8 +85,6 @@ Publishers should use the `ortb2` method of setting First Party Data. The follow
 - ortb2.app.\*
 - ortb2.user.\*
 
-The IAB standard taxonomies are not supported.
-
 Example first party data that's available to all bidders and all adunits:
 
 ```
