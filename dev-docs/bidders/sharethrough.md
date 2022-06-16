@@ -11,7 +11,6 @@ safeframes_ok: true
 schain_supported: true
 userIds: all
 usp_supported: true
-fpd_supported: true
 pbjs: true
 pbs: true
 ---

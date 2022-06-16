@@ -12,7 +12,6 @@ floors_supported: true
 userIds: unifiedId, identityLink
 gdpr_supported: true
 usp_supported: true
-fpd_supported: true
 ---
 
 ### Note:

@@ -8,7 +8,6 @@ gdpr_supported: true
 prebid_member: false
 coppa_supported: true
 usp_supported: true
-fpd_supported: true
 userIds: flocId, criteoId, unifiedId, id5Id, sharedId, identityLink, liveIntentId, fabrickId
 pbs: false
 pbjs: true

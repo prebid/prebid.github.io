@@ -13,7 +13,6 @@ schain_supported: true
 coppa_supported: true
 userId: criteo, unifiedId, id5Id
 safeframes_ok: true
-fpd_supported: true
 ---
 
 ### Bid Params
