@@ -107,7 +107,7 @@ function submit_download() {
     $.ajax({
         type: "POST",
         url: "https://js-download.prebid.org/download",
-        //dataType: 'json',
+        dataType: 'text',
         data: form_data
     })
     .success(function(data, textStatus, jqXHR) {
@@ -170,7 +170,6 @@ function get_form_data() {
 
     return form_data;
 }
-
 
 </script>
 
@@ -364,6 +363,9 @@ These modules may require accounts with a service provider.<br/>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> PubCommon ID<div style="font-size:80%"> (not in 5.x)</div></label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="gravitoIdSystem" class="bidder-check-box"> Gravito ID</label>
   </div></div>
 </div>
 
