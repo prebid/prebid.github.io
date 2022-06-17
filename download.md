@@ -323,9 +323,6 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> NetID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="nextrollIdSystem" class="bidder-check-box"> NextRoll ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="novatiqIdSystem" class="bidder-check-box"> Novatiq Hyper ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
