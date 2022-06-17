@@ -1497,36 +1497,6 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### NextRoll ID
-
-NextRoll is an industry-leading marketing technology and data stack that fuels growth for businesses of all kinds. Our technology powers two multi-million dollar high-growth businesses: AdRoll and RollWorks. The NextRoll ID is a cookieless identifier built from NextRoll’s proprietary identity graph. Publishers, ad tech platforms, and NextRoll’s brands (AdRoll and RollWorks) leverage the NextRoll ID to access unique demand in cookieless environments. The NextRoll ID respects user privacy preferences and enables users to opt out through multiple web based mechanisms found in [Section 8 of NextRoll’s Privacy Policy](https://nextroll.com/privacy#service-8).
-
-#### NextRoll ID Registration
-
-To sign up for a Partner ID please contact your NextRoll representative or send an email to [publishers@nextroll.com](mailto:publishers@nextroll.com).
-
-#### NextRoll ID Configuration
-
-Add it to your Prebid.js package with:
-
-{: .alert.alert-info :}
-gulp build --modules=nextrollIdSystem
-
-Enable the module in configuration, with your Partner ID:
-
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "nextrollId",
-            params: {
-                partnerId: 'YOUR_PARTNER_ID'
-            }
-        }]
-    }
-});
-{% endhighlight %}
-
 ### Novatiq Hyper ID
 
 The [Novatiq](https://www.novatiq.com) proprietary dynamic Hyper ID is a unique, non sequential and single use identifier for marketing activation. Our in network solution matches verification requests to telco network IDs safely and securely inside telecom infrastructure. The Novatiq Hyper ID can be used for identity validation and as a secured 1st party data delivery mechanism.
@@ -2404,7 +2374,6 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | merkleID | Merkle | merkleId | merkleinc.com | "1111" |
 | naveggId | Navegg | naveggId | navegg.com | "1111" |
 | netID | netID | netId | netid.de | "fH5A..." |
-| NextRoll ID | NextRoll | nextrollId | nextroll.com | "bf3Ka.../SjP/zpVGr09voA" |
 | Novatiq ID | Novatiq | novatiqId | novatiq.com | "1111" |
 | Parrable ID | Parrable | parrableId | parrable.com | {"eid":"01.15946..."} |
 | Publisher Link ID | n/a | publinkId | epsilon.com | |
