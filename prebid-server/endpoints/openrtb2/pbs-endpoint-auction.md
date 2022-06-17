@@ -684,6 +684,8 @@ define ext.prebid.currency.rates.
 If it exists, a rate defined in ext.prebid.currency.rates has the highest priority.
 If a currency rate doesn't exist in the request, the external file will be used.
 
+An additional option is `usepbsrates`. When `true`, this flag indicates that dynamic currency exchange rates should be preferred over any supplied static rates. When `false`, it indicates that dynamic exchange rates should not be used. The default is 'true'.
+
 ##### Supply Chain Support
 
 
@@ -1445,19 +1447,24 @@ The Prebid SDK version comes from:
 | req | ext.prebid.adservertargeting | advanced targeting value rules | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#custom-targeting-pbs-java-only) | no |
 | req | ext.prebid.integration | host-dependent integration type passed through to events and analytics | string | "managed" | yes |
 | req | ext.prebid.channel | Generally "pbjs", "amp", or "app". Passed through to events and analytics | object | {name: "pbjs", version: "4.39"} | yes |
-| req | ext.prebid.aliases | defines alternate names for bidders | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bidder-aliases) | yes |
+| req | ext.prebid.aliases | defines alternate names for bidders | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bidder-aliases) | no |
+| req | ext.prebid.aliasgvlids | defines the global vendor list IDs for aliases | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bidder-aliases) | no |
 | req | ext.prebid.debug | provides debug output in response | boolean | true | yes |
 | req | ext.prebid.cache | defines whether to put bid results in Prebid Cache | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#cache-bids) | no |
 | req | ext.prebid.schains | bidder-specific supply chains | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#supply-chain-support) | no |
 | req | ext.prebid.data.bidders | bidders in scope for bidder-specific first party data | array of strings | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#first-party-data-support-pbs-java-only) | no |
 | req | ext.prebid.bidderconfig | bidder-specific first party data | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#first-party-data-support-pbs-java-only) | no |
-| req | ext.prebid.currency | publisher-defined currency conversions | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#currency-support) | yes |
+| req | ext.prebid.currency.rates | publisher-defined currency conversions | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#currency-support) | yes |
+| req | ext.prebid.currency.usepbsrates | if true, currency.rates is used as a backup if dynamic rates aren't found. If false, dynamic rates are not used. | object | true | yes |
 | req | ext.prebid.no-sale | turns off CCPA processing for the named bidder(s) | array of strings | ["bidderA"] | no |
 | req | ext.prebid.interstitial | PBS-core will adjust the sizes on a request for interstitials | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#interstitial-support) | yes |
 | req | ext.prebid.auctiontimestamp | timestamp for use in correlating PBJS and PBS events | long int | 123456789 | yes |
 | req | ext.prebid.options. echovideoattrs | causes PBS-core to [echo video attributes](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#echo-storedrequest-video-attributes-pbs-java-only) on seatbid[].bid[].ext.prebid.storedrequestattributes so the player has access to them | boolean | true | yes |
 | req | ext.prebid.multibid | allows bidders to respond with more than one bid | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only) | yes, but only their value |
-| req | ext.prebid.buyeruids | An alternate to [/cookie_sync](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), the request can supply bidder ID values | object | See [doc](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#buyer-uid) | no |
+| req | user.ext.prebid.buyeruids | An alternate to [/cookie_sync](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), the request can supply bidder ID values | object | See [doc](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#buyer-uid) | no |
+| req | ext.prebid. data.eidpermissions | Allows publishers to define which bidders are allowed to see which extended IDs. | object | See [doc](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#eid-permissions) | no |
+| req | imp[].ext.prebid. bidder.BIDDER.dealsonly | PG: suppress bid responses that arent deals | boolean | See [doc](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#pg-deals-extensions-pbs-java-only) | yes |
+| req | imp[].ext.prebid. bidder.BIDDER.pgdealsonly | PG: don't even call the adapter if there aren't line items ready to deliver | boolean | See [doc](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#pg-deals-extensions-pbs-java-only) | yes |
 | resp | seatbid[].bid[].ext. prebid.targeting | ad server targeting values. Related to req ext.prebid.targeting. | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#ad-server-targeting) | n/a |
 | resp | seatbid[].bid[].ext.prebid. type | "banner", "video", "native" | string | "banner" | n/a |
 | resp | seatbid[].bid[].ext.prebid. cache.bids/vastXml.url | URL location of the cached object | string | See [docs](#cache-bids). | n/a |
