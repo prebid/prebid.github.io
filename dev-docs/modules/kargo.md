@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: Kargo
+title: kargo
 description: Prebid Kargo Bidder Adapter
-biddercode: Kargo
+biddercode: kargo
 gdpr_supported: true
 gvl_id: 972
 usp_supported: true
@@ -13,7 +13,7 @@ media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
 floors_supported: true
-fpd_supported: true
+fpd_supported: false
 pbjs: true
 pbs: true
 pbs_app_supported: false
