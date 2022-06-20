@@ -72,7 +72,7 @@ var adUnits = [{
 |------|-------|
 | `banner` | Fully supported |
 | `video`  | Fully supported, including ad pods for OTT |
-| `native` | Not supported |
+| `native` | Supported |
 
 # Ad Unit or Bidder Parameters
 
@@ -107,6 +107,9 @@ In Prebid.js versions 5.0 and above, mediaType and sizes are not required to be 
 | `video.minduration` | Required | Integer | Minimum video ad duration in seconds.|
 | `video.maxduration` | Required | Integer | Maximum video ad duration in seconds.|
 | `video.protocol` / `video.protocols` | Required | Integer / Integer[] | Either a single protocol provided as an integer, or protocols provided as a list of integers. `2` - VAST 2.0, `3` - VAST 3.0, `5` - VAST 2.0 Wrapper, `6` - VAST 3.0 Wrapper|
+| `video.playerConfig` | Optional | Hash | The Index specific outstream player configurations.
+| `video.playerConfig.floatOnScroll` | Optional | Boolean | A boolean specifying whether you want to use the player’s floating capabilities, where: <br /> - `true`: Use the Index player’s float capabilities.<br /> **Note**: If you set `floatOnScroll` to `true`, Index updates the `placement` value to `5`. <br />**Note:** We do not recommend using the player's default float capabilities if you have more than one outstream ad unit per page. <br />- `false`: Do not use the Index player's float capabilities (default). |
+| `video.playerConfig.floatSize` | Optional | Integer[] | The height and width of the floating player in pixels. If you do not specify a float size, the player adjusts to the aspect ratio of the player size that is defined when it is not floating. Index recommends that you review and test the float size to your user experience preference.|
 
 ## Setup Guide
 
@@ -231,7 +234,7 @@ Publishers have two options to receive outstream video demand from Index:
 **Index’s outstream video player**
 Publishers who are using Index as a bidding adapter in Prebid.js can show outstream video ads on their site from us by using Index’s outstream video player. This allows a video ad to display inside of a video player and can be placed anywhere on a publisher’s site, such as in-article, in-feed, and more.
 
-Define a new `video` object for our outstream video player at either the adUnit level or the `bidder` level. If you are setting it at the bidder level, define the size of the video player using the parameters `video.h` and `video.w`. If you are setting it at the `adUnit` level, define the size using video.playerSize.
+Define a new `video` object for our outstream video player at either the adUnit level or the `bidder` level. If you are setting it at the bidder level, define the size of the video player using the parameters `video.h` and `video.w`. If you are setting it at the `adUnit` level, define the size using `video.playerSize`.</br>**Note:** The bidder level video configurations override the adunit level configurations. The `playerConfig` is only a bidder level configuration.
 
 For more information on how to structure the `video` object, refer to the following code example:
 
@@ -248,13 +251,19 @@ var adUnits = [{
             minduration: 5,
             maxduration: 30,
             mimes: ['video/mp4', 'application/javascript'],
-            placement: 3
+            placement: 5
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
             siteId: '715964'
+            video: {
+                playerConfig: {
+                    floatOnScroll: true,
+                    floatSize: [300,250]
+                }
+            }
         }
     }]
 }];
