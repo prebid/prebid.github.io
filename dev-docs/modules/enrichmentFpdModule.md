@@ -32,13 +32,7 @@ pbjs.setConfig({
 
 ## How it works
 
-When the first auction on the page is run, this module merges a number of values into the `ortb2` object. Specific details below.
-
-If the publisher needs to refresh the enriched FPD after the first auction, this can be done using a function provided by this module:
-
-```
-pbjs.refreshFpd();
-```
+At the beginning of each auction, this module merges a number of values into the `ortb2` [requestBids parameter](/dev-docs/publisher-api-reference/requestBids.html). Specific details below.
 
 ## Enrichments
 

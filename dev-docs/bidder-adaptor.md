@@ -225,7 +225,7 @@ buildRequests: function(validBidRequests, bidderRequest) {
 Building the request will use data from several places:
 
 * **Ad Unit Params**: The arguments provided by the page are in `validBidRequests[]`.
-* **BidRequest Params**: Several important parameters such as userId, GDPR, USP, and supply chain values are on the `bidderRequest` object.
+* **BidRequest Params**: Several important parameters such as first-party data, userId, GDPR, USP, and supply chain values are on the `bidderRequest` object.
 * **Prebid Config**: Publishers can set a number of config values that bid adapters should consider reading.
 
 
@@ -235,19 +235,20 @@ Here is a sample array entry for `validBidRequests[]`:
 
 {% highlight js %}
 [{
-  adUnitCode: "test-div"
-  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917"
-  bidId: "22c4871113f461"
-  bidder: "rubicon"
-  bidderRequestId: "15246a574e859f"
-  bidRequestsCount: 1
-  bidderRequestsCount: 1
-  bidderWinsCount: 0
-  userId: {...}
-  schain: {...}
-  mediaTypes: {banner: {...}}
-  params: {...}
-  src: "client"
+  adUnitCode: "test-div",
+  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917",
+  bidId: "22c4871113f461",
+  bidder: "rubicon",
+  bidderRequestId: "15246a574e859f",
+  bidRequestsCount: 1,
+  bidderRequestsCount: 1,
+  bidderWinsCount: 0,
+  userId: {...},
+  userIdAsEid: {...},
+  schain: {...},
+  mediaTypes: {banner: {...}},
+  params: {...},
+  src: "client",
   transactionId: "54a58774-7a41-494e-9aaf-fa7b79164f0c"
 }]
 {% endhighlight %}
@@ -260,6 +261,8 @@ Other notes:
 - **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
 - **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
 - **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
+- **userIdAsEid** is the EID-formatted version of `userId`.
+- **ortb2** a copy of `bidderRequest.ortb2` (see below), provided here for convenience.
 - **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
 
 #### bidderRequest Parameters
@@ -274,6 +277,7 @@ Here is a sample bidderRequest object:
   bidderRequestId: "15246a574e859f",
   bids: [{...}],
   gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true},
+  ortb2: {...},
   refererInfo: {
     canonicalUrl: null,
     page: "http://mypage.org?pbjs_debug=true",
@@ -291,7 +295,8 @@ Notes on parameters in the bidderRequest object:
 - **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
 - **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
 - **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
-- **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module
+- **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module.
+- **ortb2** is the global (not specific to any adUnit) [first party data](/features/firstPartyData.html) to use for all requests in this auction. Note that Prebid allows any standard ORTB field or extension as first party data - including items that typically wouldn't be considered as such, for example user agent client hints (`device.sua`) or information on the regulatory environment (`regs.ext.gpc`).
 
 <a name="std-param-location"></a>
 
@@ -305,7 +310,7 @@ There are a number of important values that a publisher expects to be handled in
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
-| First Party Data | The publisher may provide [first party data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) (e.g. page type). | config.getConfig('fpd'); |
+| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
