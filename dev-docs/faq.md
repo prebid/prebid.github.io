@@ -184,7 +184,7 @@ What we know about yield group feature:
 1. Not all Prebid bid adapters are supported.
 1. Aliases are not currently supported, but Google aims to support aliases that are commonly used. There may be future updates to support custom aliases.
 1. GPT determines bid values using pbjs events, specifically creating auctionEnd, bidTimeout, bidRequested, and noBid event handlers.
-1. If a yield group matches, it takes precedence over any price-priority line items that may match. In other words, there's no need to deactivate existing line items.
+1. The Yield Group should win when the adjusted bid price is higher than the header bidding price bucket (hp_pb), which should typically occur if the publisher is rounding bids down, as is the Prebid default.
 1. While detailed performance testing has not taken place, we hope that the improved auction dynamics from no longer using price bucketing will have beneficial effects on auction outcomes.
 
 ## I'm a developer - how do I change the name of my module?
