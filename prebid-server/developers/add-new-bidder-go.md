@@ -1150,8 +1150,8 @@ If you are having issues finding the root cause of user sync errors, please [sub
 
 Human readable documentation for bid adapters is required in the separate [prebid.github.io](https://github.com/prebid/prebid.github.io) repository. We will not merge your bid adapter until you've at least opened a documentation PR and comment with a link to it.
 
-1. If you already have a Prebid.js bid adapter, update your existing bidder file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/modules to add the `pbs: true` variable in the header section. If your Prebid Server bidding parameters are different from your Prebid.js parameters, please include the differences in this document for publishers to be aware.
-1. If you don't have a Prebid.js bid adapter, create a new file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/modules using this template:
+1. If you already have a Prebid.js bid adapter, update your existing bidder file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders to add the `pbs: true` variable in the header section. If your Prebid Server bidding parameters are different from your Prebid.js parameters, please include the differences in this document for publishers to be aware.
+1. If you don't have a Prebid.js bid adapter, create a new file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders using this template:
 
 ```
 ---
