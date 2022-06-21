@@ -7,7 +7,6 @@ pbs: true
 biddercode: adnuntius
 media_types: banner
 gdpr_supported: true
-fpd_supported: true
 gvl_id: 855
 ---
 
@@ -73,6 +72,22 @@ pbjs.setBidderConfig({
     }
 });
 ```
+
+### Disable cookies for adnuntius
+
+You have the option to tell adnuntius not to set cookies in your browser. This does not mean that third party ads being served through the ad server will not set cookies. Just that Adnuintius will not set it for internal ads.
+
+```
+
+pbjs.setBidderConfig({
+    bidders: ['adnuntius'],
+    config: {
+        useCookie: false
+    }
+});
+```
+
+Use cookie will always be set to true by default. Changing it to false will disable cookies.
 
 ### Prebid Server Test Request
 

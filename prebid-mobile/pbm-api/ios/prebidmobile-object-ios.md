@@ -8,6 +8,7 @@ sidebarType: 2
 ---
 
 # Prebid: NSObject
+
 {: .notoc}
 
 The Prebid class is a singleton that enables the user to apply global settings.
@@ -17,11 +18,7 @@ The Prebid class is a singleton that enables the user to apply global settings.
 
 ---
 
-## Object
-
-### Prebid
-
-**Properties**
+## Properties
 
 `prebidServerAccountId`: String containing the Prebid Server account ID.
 
@@ -72,6 +69,10 @@ var timeoutMillis: Int
 var storedAuctionResponse: String
 ```
 
+## Methods
+
+### Stored Response
+
 `addStoredBidResponse`: Function containing two properties:
 
 * `bidder`: Bidder name as defined by Prebid Server bid adapter of type string.
@@ -94,8 +95,19 @@ func clearStoredBidResponses()
 pbsDebug = BOOL
 ```
 
+### Custom headers
 
-## Examples
+The following methods enables the customization of the HTTP call to the prebid server:
+
+```
+func addCustomHeader(name: String, value: String) 
+```
+
+```
+func clearCustomHeaders() 
+```
+
+# Examples
 
 *SWIFT*
 ```swift
@@ -166,8 +178,7 @@ Prebid.shared.pbsDebug = true;
 ```
 
 
-
-## Related Topics
+# Related Topics
 
 - [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
 - [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)

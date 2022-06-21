@@ -12,6 +12,7 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 prebid_member: true
 floors_supported: false
 fpd_supported: true
+schain_supported: true
 gvl_id: 91
 ---
 ### Notes
@@ -36,6 +37,11 @@ of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381)
 | `networkId`       | required | The network ID from Criteo. Please reach out your Criteo representative for more details.                             | `456456`                                      | `integer`  |
 | `nativeCallback`  | optional | (Prebid.js only) Callback to perform render in native integrations. Please reach out your Criteo representative for more details.     | `function(payload) { console.log(payload); }` | `function` |
 | `integrationMode` | optional | (Prebid.js only) Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `'AMP'`                                       | `string`   |
+| `publisherSubId` | optional | Custom identifier for reporting. Please reach out your Criteo representative for more details. | `'adunit-1'` |  `string` |
+
+### First Party Data
+
+Criteo supports both `ortb2` (`site` and `user`) and `ortb2Imp` methods to set [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
 
 ### Video Object
 

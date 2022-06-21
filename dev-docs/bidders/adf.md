@@ -4,17 +4,18 @@ title: AdformOpenRTB
 description: Prebid Adform Bidder Adaptor
 biddercode: adf
 media_types: banner, native, video
+coppa_supported: true
 gdpr_supported: true
 usp_supported: true
 prebid_member: true
 pbjs: true
 pbs: true
 schain_supported: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, sharedId, unifiedId
+userIds: all
 gvl_id: 50
 prevBiddercode: adformOpenRTB
 floors_supported: true
-fpd_supported: true
+multiformat_supported: will-bid-on-one
 ---
 
 ### Bid params
@@ -26,7 +27,7 @@ fpd_supported: true
 | `inv`       | required, if `mid` not set | Inventory source ID  | `1234`             | `integer` |
 | `mname`     | required, if `mid` not set | Placement name       | `"Leaderboard"`    | `string`  |
 | `adxDomain` | optional, Prebid.js only   | The Adform domain    | `"adx.adform.net"` | `string`  |
-| `priceType` | optional, Prebid.js only   | Price type           | `"gross"`          | `string`  |
+| `priceType` | optional                   | Price type           | `"gross"`          | `string`  |
 
 Note: Bid placement should be defined using the `mid` parameter or `inv` and `mname` parameters (dynamic master tag) but not both.
 

@@ -37,7 +37,7 @@ Throughout the rest of this document, substitute `{bidder}` with the name you've
 
 ### Respect The Rules
 
-We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://docs.prebid.org/wrapper_code_of_conduct.html) and [module rules](https://docs.prebid.org/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
+We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://prebid.org/code-of-conduct/) and [module rules](/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
 
 **Please take the time to read our rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
   - Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
@@ -172,11 +172,10 @@ Prebid Server offers a federated [user sync](https://docs.prebid.org/prebid-serv
 
 The Bidder Info template above demonstrates configuration of a `redirect` user sync. The `url` points to an endpoint on your bidding server which will honor the privacy policies, replace the `userMacro` in the redirect url with the user's tracking id, and respond with an HTTP 302 redirect to that url. You may also specify an `iframe` endpoint which will return an HTML document to be rendered in an `iframe` on the user's device and use JavaScript to perform the redirect. You may omit the `{%raw%}{{.GDPR}}{%endraw%}`, `{%raw%}{{.GDPRConsent}}{%endraw%}`, and/or `{%raw%}{{.USPrivacy}}{%endraw%}` macros if they are not applicable to your legal situation.
 
-If both `iframe` and `redirect` endpoints are provided, you must specify a `default` field with a value of either `iframe` or `redirect`, based on your preference.
+If both `iframe` and `redirect` endpoints are provided, the `iframe` endpoint will be used by default.
 
 ```yaml
 userSync:
-  default: iframe
   iframe:
     url: https://foo.com/iframe/sync?gdpr={%raw%}{{.GDPR}}{%endraw%}&consent={%raw%}{{.GDPRConsent}}{%endraw%}&us_privacy={%raw%}{{.USPrivacy}}{%endraw%}&redirect={%raw%}{{.RedirectURL}}{%endraw%}
     userMacro: $UID
@@ -185,7 +184,7 @@ userSync:
     userMacro: $UID
 ```
 
-If your bid adapter supports user sync and doesn't have a good default, you may optionally specify a `supports` array with the items `iframe` and/or `redirect` to inform Prebid Server hosts. Hosts will receive a warning on startup if a bid adapter supports user sync and isn't configured. Expect hosts to contact you at the maintainer email address in this file for instructions.
+If your bid adapter supports user sync and doesn't have a good default endpoint, you may optionally specify a `supports` array with the items `iframe` and/or `redirect` to inform Prebid Server hosts. Hosts will receive a warning on startup if a bid adapter supports user sync and isn't configured. Expect hosts to contact you at the maintainer email address for instructions.
 
 ```yaml
 userSync:
@@ -501,7 +500,7 @@ This method may be called multiple times if the host has configured aliases of y
 The first argument, `bidderName`, is the name of the bidder being built. This may be the bidder name you've chosen or it may be an alias. Most adapters don't make use of the `bidderName`, but its provided by the core framework for situations where the adapter might need to do something special for aliases.
 
 The second argument, `config`, is all the configuration values set for your adapter. However, not all of this information is intended for use by the `Builder` method. The only two fields relevant here are `config.Endpoint` and `config.ExtraAdapterInfo`:
-- `config.Endpoint` is the base url of your bidding server and may be interpreted as either a literal address or as a templated macro to support dynamic domains or dynamic paths.
+- `config.Endpoint` is the base url of your bidding server and may be interpreted as either a literal address or as a templated macro to support dynamic paths.
 - `config.ExtraAdapterInfo` is an optional setting may be used for any other values your adapter may need, such as an application token or publisher allow/deny list. You may interpret this string however you like, although JSON is a common choice.
 
 The `Builder` method is expected to return an error if either the `config.Endpoint` or the `config.ExtraAdapterInfo` values are invalid or cannot be parsed. Errors will be surfaced to the host during application startup as a fatal error.
@@ -781,6 +780,7 @@ Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.
 | `.AdvertiserName` | Bidder-specific advertiser name.
 | `.BrandID` | Bidder-specific brand id for advertisers with multiple brands.
 | `.BrandName` | Bidder-specific brand name.
+| `.DemandSource` | Bidder-specific demand source. Some adapters may functionally serve multiple SSPs or exchanges, and this specifies which.
 | `.DChain` | Demand chain object.
 | `.PrimaryCategoryID` | Primary IAB category id.
 | `.SecondaryCategoryIDs` | Secondary IAB category ids.
@@ -1175,6 +1175,7 @@ pbjs: true/false
 pbs: true/false
 pbs_app_supported: true/false
 prebid_member: true/false
+multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ---
 
 ### Note:

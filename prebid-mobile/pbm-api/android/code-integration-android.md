@@ -10,23 +10,28 @@ sidebarType: 2
 
 # Code Integration for Android
 
-Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Maven or by [cloning the repo](https://github.com/prebid/prebid-mobile-android) and using our included script to build the SDK.
+Get started with Prebid Mobile by getting access to a [Prebid Server](/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Maven or by [cloning the repo](https://github.com/prebid/prebid-mobile-android) and using our included script to build the SDK.
 
 ### Include with Maven
 
 If you are not familar with using Maven for build management visit the [Maven website](https://maven.apache.org/index.html).
 
-To include the Prebid Mobile SDK simply add this line to your gradle dependencies:
+To include the Prebid Mobile SDK simply add this line to your gradle dependencies to get the lastest stable release:
+
+```
+implementation 'org.prebid:prebid-mobile-sdk:1.12.2'
+```
+
+{% capture warning_note %}  
+Prebid is going to release beta versions of SDK from time to time. So if you don't want to update to beta versions - avoid Maven's range notation for the dependency versions.
+If you still use the range notation like this:
 
 ```
 implementation 'org.prebid:prebid-mobile-sdk:[1,2)'
 ```
 
-If you wish to explicitly state the lastest stable release, please use the following:
-
-```
-implementation 'org.prebid:prebid-mobile-sdk:1.3'
-```
+please change it to the strict version.  {% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
 
 
 ### Build framework from source
