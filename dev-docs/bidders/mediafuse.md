@@ -96,7 +96,7 @@ All MediaFuse (Xandr) placements included in a single call to `requestBids` must
 
 #### App Object
 
-MediaFuse supports using prebid within a mobile app's webview. If you are interested in using an SDK, please see [Prebid Mobile]({{site.baseurl}}/prebid-mobile/prebid-mobile.html) instead.
+MediaFuse supports using Prebid within a mobile app's webview. If you are interested in using an SDK, please see [Prebid Mobile]({{site.baseurl}}/prebid-mobile/prebid-mobile.html) instead.
 
 {: .table .table-bordered .table-striped }
 | Name              | Description                                                                                                                     | Example                                                                  | Type             |
