@@ -137,7 +137,7 @@ e.g. for the AppNexus cluster of Prebid Servers:
 <amp-ad width="300" height="250"
     type="doubleclick"
     data-slot="/1111/universal_creative"
-    rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
+    rtc-config='{"vendors": {"prebidappnexuspsp": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
 </amp-ad>
 ```
 
@@ -290,7 +290,7 @@ See [manually initiating a sync](/prebid-server/developers/pbs-cookie-sync.html#
 
 ### AMP RTC and GDPR
 
-The two Prebid Server RTC vendor strings 'prebidappnexus' and 'prebidrubicon'
+The two Prebid Server RTC vendor strings 'prebidappnexuspsp' and 'prebidrubicon'
 support passing GDPR consent to Prebid Server.
 
 The CONSENT_STRING macro will be populated if you've integrated with a CMP
@@ -333,3 +333,4 @@ To review that Prebid on AMP is working properly the following aspects can be lo
 
 [PBS]: /prebid-server/overview/prebid-server-overview.html
 [callout-vendors.js]: https://github.com/ampproject/amphtml/blob/master/src/service/real-time-config/callout-vendors.js
+[RTC-Overview]: https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md

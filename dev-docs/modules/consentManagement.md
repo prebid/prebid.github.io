@@ -76,22 +76,14 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
 | gdpr.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
 | gdpr.defaultGdprScope | `boolean` | Defines what the `gdprApplies` flag should be when the CMP doesn't respond in time or the static data doesn't supply. Defaults to `false`. | `true` |
-| gdpr.allowAuctionWithoutConsent | `boolean` | (TCF v1.1 only) Determines what will happen if obtaining consent information from the CMP fails; either allow the auction to proceed (`true`) or cancel the auction (`false`). Default is `true` | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
-| gdpr.consentData.getTCData.tcString | `string` | (TCF v2.0 only) Base64url-encoded TCF v2.0 string with segments. | |
-| gdpr.consentData.getTCData.addtlConsent | `string` | (TCF v2.0 only) Additional consent string if available from the cmp TCData object | |
-| gdpr.consentData.getTCData.gdprApplies | `boolean` | (TCF v2.0 only) Defines whether or not this pageview is in GDPR scope. | |
-| gdpr.consentData.getTCData.purpose.consents | `Object` | (TCF v2.0 only) An object representing the user's consent status for specific purpose IDs. | |
-| gdpr.consentData.getTCData.purpose.legitimateInterests | `Object` | (TCF v2.0 only) An object representing the user's legitimate interest status for specific purpose IDs. | |
-| gdpr.consentData.getTCData.vendor.consents | `Object` | (TCF v2.0 only) An object representing the user's consent status for specific vendor IDs. | |
-| gdpr.consentData.getTCData.vendor.legitimateInterests | `Object` | (TCF v2.0 only) An object representing the user's legitimate interest status for specific vendors IDs. | |
-| gdpr.consentData.getConsentData.gdprApplies | `boolean` | (TCF v1.1 only) Defines whether or not this pageview is in GDPR scope. | |
-| gdpr.consentData.getConsentData.hasGlobalScope | `boolean` | (TCF v1.1 only) True if consent data is global, false if it's publisher specific. | |
-| gdpr.consentData.getConsentData.consentData | `string` | (TCF v1.1 only) Encoded TCF v1.1 string. | |
-| gdpr.consentData.getVendorConsents.metadata | `string` | (TCF v1.1 only) Encoded TCF v1.1 string. | |
-
-{: .alert.alert-info :}
-NOTE: The `allowAuctionWithoutConsent` parameter supported for TCF v1.1 refers to the entire consent string, not to any individual consent option. Prebid.js does not parse the GDPR consent string, so it doesn't know if the user has consented to any particular action.
+| gdpr.consentData.getTCData.tcString | `string` | Base64url-encoded TCF v2.0 string with segments. | |
+| gdpr.consentData.getTCData.addtlConsent | `string` | Additional consent string if available from the cmp TCData object | |
+| gdpr.consentData.getTCData.gdprApplies | `boolean` | Defines whether or not this pageview is in GDPR scope. | |
+| gdpr.consentData.getTCData.purpose.consents | `Object` | An object representing the user's consent status for specific purpose IDs. | |
+| gdpr.consentData.getTCData.purpose.legitimateInterests | `Object` | An object representing the user's legitimate interest status for specific purpose IDs. | |
+| gdpr.consentData.getTCData.vendor.consents | `Object` | An object representing the user's consent status for specific vendor IDs. | |
+| gdpr.consentData.getTCData.vendor.legitimateInterests | `Object` | An object representing the user's legitimate interest status for specific vendors IDs. | |
 
 {: .alert.alert-info :}
 NOTE: The `purpose` and `vendor` objects are required if you are using the `gdprEnforcement` module.  If the data is not included, your bid adpaters, analytics adapters, and/or userId systems will likely be excluded from the auction as Prebid will assume the user has not given consent for these entities.
@@ -179,7 +171,6 @@ Example 1: IAB CMP using custom timeout and cancel-auction options.
             gdpr: {
               cmpApi: 'iab',
               timeout: 8000,
-              allowAuctionWithoutConsent: false
             }
           }
         });
@@ -196,17 +187,38 @@ Example 2: Static CMP using custom data passing.
           consentManagement: {
             gdpr: {
               cmpApi: 'static',
-              allowAuctionWithoutConsent: false,
               consentData: {
-                getConsentData: {
+                getTCData: {
+                  'eventStatus': 'tcloaded',
                   'gdprApplies': true,
-                  'hasGlobalScope': false,
-                  'consentData': 'BOOgjO9OOgjO9APABAENAi-AAAAWd7_______9____7_9uz_Gv_r_ff_3nW0739P1A_r_Oz_rm_-zzV44_lpQQRCEA'
+                  'tcString': 'BOOgjO9OOgjO9APABAENAi-AAAAWd7_______9____7_9uz_Gv_r_ff_3nW0739P1A_r_Oz_rm_-zzV44_lpQQRCEA',
+                  'purpose': {
+                    'consents': {
+                      '1': true,
+                      '2': true,
+                      '3': true
+                    },
+                    'legitimateInterests': {
+                      '1': false,
+                      '2': false,
+                      '3': false
+                    }
+                  },
+                  'vendor': {
+                    'consents': {
+                      '1': false,
+                      '2': true,
+                      '3': false
+                    },
+                    'legitimateInterests': {
+                      '1': false,
+                      '2': true,
+                      '3': false,
+                      '4': false,
+                      '5': false
+                    }
+                  },
                 },
-                getVendorConsents: {
-                  'metadata': 'BOOgjO9OOgjO9APABAENAi-AAAAWd7_______9____7_9uz_Gv_r_ff_3nW0739P1A_r_Oz_rm_-zzV44_lpQQRCEA',
-                ...
-                }
               }
             }
           }
@@ -255,7 +267,7 @@ Here is a sample of how the data is structured in the `bidderRequest` object:
 
 **_consentString_**
 
-This field contains the user's choices on consent, represented as an encoded string value.  In certain scenarios, this field might come to you with an `undefined` value; normally this happens when there was an error during the CMP interaction and the publisher had the config option `allowAuctionWithoutConsent` set to `true`.  If you don't want to pass `undefined` to your system, you can check for this value and replace it with a valid consent string.  See the *consent_required* code in the example below (under "gdprApplies") for a possible approach to checking and replacing values.
+This field contains the user's choices on consent, represented as an encoded string value.  In certain scenarios, this field might come to you with an `undefined` value; normally this happens when there was an error (or timeout) during the CMP interaction and the publisher turned off GDPR enforcement.  If you don't want to pass `undefined` to your system, you can check for this value and replace it with a valid consent string.  See the *consent_required* code in the example below (under "gdprApplies") for a possible approach to checking and replacing values.
 
 **_addtlConsent_**
 
@@ -331,7 +343,7 @@ Here are some things that publishers can do to control various activities:
 Prebid.js and much of the ad industry rely on the IAB CMP standard for GDPR support, but there might be some publishers who have implemented a different approach to meeting the privacy rules. Those publishers can utilize Prebid.js and the whole header bidding ecosystem by building a translation layer between their consent method and the IAB method.
 
 At a high level, this could be done as follows:  
-1. Build a `window.__cmp()` function, which will be seen by Prebid.
+1. Build a `window.__tcfapi()` function, which will be seen by Prebid.
 2. If SafeFrames are in use, build a message receiver function.
 3. Format consent data in a string according to the [IAB standard](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework).
 
@@ -340,17 +352,15 @@ Below is sample code for implementing the stub functions. Sample code for format
 {% highlight js %}
 var iabConsentData;  // build the IAB consent string
 var gdprApplies;     // true if gdpr applies to the user, else false
-var hasGlobalScope;  // true if consent data was retrieved globally
 var responseCode;    // false if there was an error, else true
-var cmpLoaded;       // true if iabConsentData was loaded and processed
 (function(window, document) {
     function addFrame() {
-        if (window.frames['__cmpLocator'])
+        if (window.frames['____tcfapiLocator'])
             return;
         if ( document.body ) {
             var body = document.body,
                 iframe = document.createElement('iframe');
-            iframe.name = '__cmpLocator';
+            iframe.name = '____tcfapiLocator';
             iframe.style.display = 'none';
             body.appendChild(iframe);
         } else {
@@ -365,11 +375,11 @@ var cmpLoaded;       // true if iabConsentData was loaded and processed
             if ( msgIsString ) {
                 json = JSON.parse(json);
             }
-            var call = json.__cmpCall;
+            var call = json.__tcfapiCall;
             if (call) {
-                window.__cmp(call.command, call.parameter, function(retValue, success) {
+                window.__tcfapi(call.command, call.parameter, function(retValue, success) {
                     var returnMsg = {
-                        __cmpReturn: {
+                        __tcfapiReturn: {
                             returnValue: retValue, success: success, callId: call.callId
                         }
                     };
@@ -379,19 +389,15 @@ var cmpLoaded;       // true if iabConsentData was loaded and processed
         } catch (e) {}  // do nothing
     }
     var cmpFunc = function(command, version, callback) {
-        if (command === 'ping') {
-            callback({gdprAppliesGlobally: gdprApplies, cmpLoaded: cmpLoaded}, responseCode);
-        } else if (command === 'getConsentData') {
-            callback({consentData: iabConsentData, gdprApplies: gdprApplies, hasGlobalScope: hasGlobalScope}, responseCode);
-        } else if (command === 'getVendorConsents') {
-            callback({metadata: iabConsentData, gdprApplies: gdprApplies, hasGlobalScope: hasGlobalScope}, responseCode);
+        if (command === 'addEventListener') {
+           callback({eventStatus: 'tcloaded', tcString: iabConsentData, gdprApplies}, responseCode)
         } else {
-            callback(undefined, false);
+           callback(undefined, false);
         }
     };
-    if ( typeof (__cmp) !== 'function' ) {
-        window.__cmp = cmpFunc;
-        window.__cmp.msgHandler = cmpMsgHandler;
+    if ( typeof (__tcfapi) !== 'function' ) {
+        window.__tcfapi = cmpFunc;
+        window.__tcfapi.msgHandler = cmpMsgHandler;
         if ( window.addEventListener ) {
             window.addEventListener('message', cmpMsgHandler, false);
         } else {
@@ -404,7 +410,7 @@ var cmpLoaded;       // true if iabConsentData was loaded and processed
 #### Explanation of Parameters
 
 **_iabConsentData_**  
-For instructions on how to generate the IAB consent string see the [IAB CMP 1.1 Spec](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework) and [IAB Consent String SDK](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/tree/master/Consent%20String%20SDK).
+For instructions on how to generate the IAB consent string see the [IAB CMP 2 Spec](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework) and [IAB Consent String SDK](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/tree/master/Consent%20String%20SDK).
 
 **_gdprApplies_**  
 Use the following values in the _gdprApplies_ field:
@@ -412,14 +418,8 @@ Use the following values in the _gdprApplies_ field:
 - False: It's known that the user is outside the EEA.
 - Leave the attribute unspecified if user's location is unknown.
 
-**_hasGlobalScope_**  
-This should be set to true if consent data was retrieved from global "euconsent" cookie, or it was publisher-specific. For general purpose, set this to false.
-
 **_responseCode_**  
 This should be false if there was some error in the consent data; otherwise set to true. False is the same as calling the callback with no parameters.
-
-**_cmpLoaded_**  
-This should be be set to true once the parameters listed above are processed.
 
 ## Adapters Supporting GDPR
 
