@@ -9,6 +9,9 @@ gdpr_supported: true
 userIds: all
 schain_supported: true
 gvl_id: 919
+usp_supported: true
+coppa_supported: true
+safeframes_ok: true
 ---
 
 ### Note:

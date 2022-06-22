@@ -5,6 +5,8 @@ description: Prebid dgads Bidder Adapter
 pbjs: true
 biddercode: dgads
 media_types: native
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 

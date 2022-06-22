@@ -4,6 +4,8 @@ title: advertly
 description: Prebid ADVERTLY Bidder Adapter
 pbjs: true
 biddercode: advertly
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 

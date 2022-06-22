@@ -5,14 +5,19 @@ description: Prebid SpotX Bidder Adaptor
 biddercode: spotx
 media_types: no-display, video
 gdpr_supported: true
-userIds: id5Id, pubCommonId, unifiedId
+userIds: id5Id, sharedId, unifiedId
 prebid_member: true
 schain_supported: true
 usp_supported: true
 safeframes_ok: false
 pbjs: true
 gvl_id: 165
+floors_supported: true
 ---
+
+### Registration
+
+The SpotX adapter requires setup and approval from your Magnite account manager. Please reach out to them for more information.  
 
 ### Bid Params
 
@@ -26,7 +31,7 @@ gvl_id: 165
 | `secure`             | optional | Boolean identifying whether the requests should be https or not (used to override the protocol if the page isn't secure).                                      | `true`                                                                                                                                                                                               | `boolean`   |
 | `mimes`              | optional | List of MIME types to allow in ad.                                                                                                                             | `['application/javascript', 'video/mp4', 'video/webm']`                                                                                                                                               | `array`     |
 | `ad_volume`          | optional | Value between 0 and 1 to denote the volume the ad should start at                                                                                             |    `0.7`                                                                                                                                                                                                  | `float`     |
-| `price_floor`        | optional | Set the current channel price floor in real time.                                                                                                             | `10`                                                                                                                                                                                                   | `integer`   |
+| `price_floor`        | optional | Set the current channel price floor in real time.                                                                                                             | `10`                                                                                                                                                                                                   | `float`   |
 | `hide_skin`          | optional | Set to true to hide the SpotX skin                                                                                                                            |                                                                                                                                                                                                      | `boolean`   |
 | `custom`             | optional | An object containing key-value pairs for reporting. See SpotX documentation [here](https://developer.spotxchange.com/content/local/docs/sdkDocs/DirectSdk/dsdk-custom-configs.md#custom-key-value-pair-reporting) |                                                                                                                                                                                                      | `object`    |
 | `min_duration`       | optional | Minimum video ad duration in seconds                                                                                                                            |                                                                                                                                                                                                      | `integer`   |

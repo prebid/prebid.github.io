@@ -5,8 +5,6 @@ description: FAQ on Prebid.js for header bidding.
 sidebarType: 1
 ---
 
-
-
 # Prebid.js FAQ
 {:.no_toc}
 
@@ -50,11 +48,11 @@ In both scenarios, your goal should be to see your inventory fill at the highest
 
 There is an analysis from the Prebid team here which may be useful:
 
-[How many bidders should I work with?]({{site.baseurl}}/blog/how-many-bidders-for-header-bidding)
+[How many bidders should I work with?](https://prebid.org/blog/how-many-bidders-for-header-bidding)
 
 ## Does Prebid.js cache bids?
 
-It can. Versions 1.x of Prebid.js would re-consider previous bids under limited circumstances. In Prebid.js 2.0 and later, the [`useBidCache`](/dev-docs/publisher-api-reference.html#setConfig-Use-Bid-Cache) option can be used to enable this functionality.
+It can. Versions 1.x of Prebid.js would re-consider previous bids under limited circumstances. In Prebid.js 2.0 and later, the [`useBidCache`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Use-Bid-Cache) option can be used to enable this functionality.
 
 The "limited bid caching" feature applies only:
 
@@ -66,7 +64,7 @@ The "limited bid caching" feature applies only:
 Since the storage is in the browser, cached bids only apply to a single page context. If the user refreshes the page, the bid is lost.
 
 Each bid adapter defines the amount of time their bids can be cached and reconsidered.
-This setting is called “Time to Live” (TTL), documented in the <code>pbjs.getBidResponse</code> [parameter table here]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.getBidResponses).
+This setting is called “Time to Live” (TTL), documented in the <code>pbjs.getBidResponse</code> [parameter table here](/dev-docs/publisher-api-reference/getBidResponses.html).
 
 Examples of scenarios where a bid may be reconsidered in Prebid.js:
 
@@ -81,13 +79,13 @@ Here's how it works:
 1. When all the new bids are back or the timeout is reached, Prebid.js considers both the new bids on that AdUnit and previously cached bids.
 1. Previously cached bids will be discarded if they've reached their TTL or if they have status `targetingSet` or `rendered`.
 1. A cached bid may be used if its CPM beats the new bids.
-1. Bids that win are removed from the pool. This is automatic for display and native ads, and can be done manually by the publisher for video ads by using the [markWinningBidAsUsed]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.markWinningBidAsUsed) function.
+1. Bids that win are removed from the pool. This is automatic for display and native ads, and can be done manually by the publisher for video ads by using the [markWinningBidAsUsed](/dev-docs/publisher-api-reference/markWinningBidAsUsed.html) function.
 
 ## Some of my demand partners send gross bids while others send net bids; how can I account for this difference?
 
 You will want to adjust the gross bids so that they compete fairly with the rest of your demand, so that you are seeing the most revenue possible.
 
-In Prebid.js, you can use a `bidCpmAdjustment` function in [the `bidderSettings` object]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings) to adjust any bidder that sends gross bids.
+In Prebid.js, you can use a `bidCpmAdjustment` function in [the `bidderSettings` object](/dev-docs/publisher-api-reference/bidderSettings.html) to adjust any bidder that sends gross bids.
 
 ## Does Prebid.js support synchronous ad server tags?
 
@@ -116,7 +114,7 @@ All prebid adapters that get merged should automatically detect if they're servi
 In other words, you shouldn't have to do anything other than make sure your own page loads Prebid.js securely, e.g.,
 
 ```html
-<script src='https://acdn.adnxs.com/prebid/not-for-prod/prebid.js' async=true />
+<script src='https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js' async=true />
 ```
 
 (Except that you should *never never never* use the copy of Prebid.js at that URL in production, it isn't meant for production use and may break everything at any time.)
@@ -131,7 +129,7 @@ Prebid.org does not support any version of Prebid.js prior to the previous versi
 
 ## How can I change the price granularity for different ad units?
 
-If you need different [price granularities]({{site.baseurl}}/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity) for different AdUnits (e.g. video and display), the only way for now is to make sure the auctions don't run at the same time. e.g. Run one of them first, then kick off the other in the bidsBackHandler. e.g. here's one approach:
+If you need different [price granularities](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity) for different AdUnits (e.g. video and display), the only way for now is to make sure the auctions don't run at the same time. e.g. Run one of them first, then kick off the other in the bidsBackHandler. e.g. here's one approach:
 
 1. Call `setConfig` to define the priceGranularity for the first set of AdUnits
 1. Initiate the first auction with `requestBids`
@@ -144,11 +142,11 @@ The handling of this scenario will be improved in a future release.
 
 ## How can I control how many targeting variables are sent to my ad server?
 
-One way to limit the number of bytes sent to the ad server is to send only the winning bid by disabling the [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) option. However, there are optimization and reporting
+One way to limit the number of bytes sent to the ad server is to send only the winning bid by disabling the [enableSendAllBids](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids) option. However, there are optimization and reporting
 benefits for sending more than one bid.
 
 Once you find the right balance for your application, you can specify
-what's sent to the ad server with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference.html#setConfig-targetingControls) and/or [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference.html#setConfig-Send-Bids-Control)
+what's sent to the ad server with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) and/or [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control)
 
 ## Can I run multiple different versions of Prebid.js concurrently?
 
@@ -160,8 +158,47 @@ It's technically possible, but we don't recommend doing this:
 
 If all this wasn't enough to warn you away from trying, it should work if you name the PBJS global differently for each instance (https://github.com/prebid/Prebid.js/blob/master/package.json#L20)
 
+## Can I filter bid responses that don't meet my criteria?
+
+Yes. Many bidders provide metadata about the bid that can be used in troubleshooting
+and filtering. See the [list of bid response metadata](/dev-docs/bidder-adaptor.html#interpreting-the-response) and the [filtering example](/dev-docs/examples/meta-bid-filtering.html).
+
+## Does Prebid.js resolve the AUCTION_PRICE macro?
+
+Yes, but in a way that could cause discrepancies in reporting. It's recommended
+that [bid adapters resolve OpenRTB macros](/dev-docs/bidder-adaptor.html#resolve-openrtb-macros-in-the-creatives) themselves before giving them to Prebid.js.
+
+For historic reasons, Prebid will resolve the AUCTION_PRICE macro.
+ Header Bidding is a first-price auction, the best candidate for “clearing price” is the original bid itself. Prebid may deprecate this resolution; it is not recommended to be resolved client-side, as it opens opportunities for abuse. 
+
+## How does Prebid interact with the GAM yield group header bidding feature?
+
+Google is developing this technology to help publishers create and manage line items in bulk. This should enable more publishers to integrate their sites with header bidding on the open web. Here is Google's [official blog post](https://blog.google/products/admanager/improved-header-bidding-support-in-google-ad-manager/) on yield group. This feature is currently in beta production. 
+
+What we know about yield group feature:
+1. The feature is limited to premium GAM accounts.
+1. The beta is limited to which publishers are involved.
+1. These use cases currently don't work with yield groups: [Native](/formats/native.html), [video](/formats/video.html), [AMP](/formats/amp.html), [Post-Bid](/overview/what-is-post-bid.html). Google is open to feedback from the community about these scenarios.
+1. The [Prebid Universal Creative](/overview/prebid-universal-creative.html) is not utilized. Google has ported some portions of the PUC to an internal creative. For safeframes, the special creative calls postMessage, or if not a safeframe, it calls pbjs.renderAd() in the parent frame.
+1. The in-page Google Publisher Toolkit (GPT) reads Prebid.js objects directly from the 'pbjs' global. If window.pbjs does not exist, it attempts to locate a non-standard Prebid global via window._pbjsGlobals; looking for the first instance that exists with the required functionality.
+1. Not all Prebid bid adapters are supported.
+1. Aliases are not currently supported, but Google aims to support aliases that are commonly used. There may be future updates to support custom aliases.
+1. GPT determines bid values using pbjs events, specifically creating auctionEnd, bidTimeout, bidRequested, and noBid event handlers.
+1. The Yield Group should win when the adjusted bid price is higher than the header bidding price bucket (hp_pb), which should typically occur if the publisher is rounding bids down, as is the Prebid default.
+1. While detailed performance testing has not taken place, we hope that the improved auction dynamics from no longer using price bucketing will have beneficial effects on auction outcomes.
+
+## I'm a developer - how do I change the name of my module?
+
+Sometimes the owner of a bid adapter or other kind of module wants to rename their module. However, Prebid considers module renames a
+'breaking change' -- publishers' build processes and pages could break as a result of a renaming, so Prebid's policy on renaming is:
+
+1) Create the new Prebid.js module files (js and md)
+2) If they're basically the same code base, change the old file so that it includes the new file. This prevents duplicate maintenance of code. In general we don't approve modules including each other, but we'll approve it to avoid repetition.
+3) The docs repo should contain both names, with the old name referring to the new name. You can add the "enable_download: false" flag to prevent installations of the old name.
+4) At the next major release the old files may be removed.
+
 ## Related Reading
 
-+ [Prebid.js Dev Tips]({{site.baseurl}}/dev-docs/troubleshooting-tips.html)
-+ [Prebid.js Common Issues]({{site.baseurl}}/dev-docs/common-issues.html)
++ [Prebid.js Troubleshooting Guide](/troubleshooting/troubleshooting-guide.html)
++ [Prebid.js Common Issues](/dev-docs/common-issues.html)
 + [Prebid.js issues tagged 'question'](https://github.com/prebid/Prebid.js/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3Aquestion%20)
