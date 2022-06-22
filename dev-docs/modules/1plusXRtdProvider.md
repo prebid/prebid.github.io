@@ -17,6 +17,12 @@ sidebarType : 1
 * TOC
 {:toc}
 
+## Description
+
+RTD provider for 1plusX. 
+Enriches the bidding object with Audience & Targeting data
+Contact dev@1plusx.com for information.
+
 ## Integration
 
 1) Compile the Digital Garage Keyword Module along with your bid adapter and other modules into your Prebid build:  
@@ -24,7 +30,7 @@ sidebarType : 1
 Currently only `appnexusBidAdapter` and `rubiconBidAdapter` are supported
 
 ```
-gulp build --modules="1plusXRtdProvider,appnexusBidAdapter,..."  
+gulp build --modules="rtdModule,1plusXRtdProvider,appnexusBidAdapter,..."  
 ```
 
 2) Use `setConfig` to instruct Prebid.js to initilize the 1plusX RTD module, as specified below. 
@@ -51,7 +57,7 @@ pbjs.setConfig({
 });
 ```
 
-Syntax details:
+## Parameters
 
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
@@ -62,4 +68,13 @@ Syntax details:
 | params.customerId  | Integer | Your 1plusX customer id  |  |
 | params.biders  | Array<string> | List of bidders for which you would like data to be set | To this date only `appnexus` and `rubicon` are supported |
 | params.timeout  | Integer | timeout (ms) | 1000 |
+
+## Supported Bidders
+At the moment only Appnexus (`appnexus`) and Magnite (`rubicon`) are supported
+
+
+| Bidder  | ID (for `bidders` parameter) | Module name (for `gulp build`) |
+| ------- | ---------------------------- | ------------------------------ |
+| Xandr   | `appnexus`                   | `appnexusBidAdapter`           |
+| Magnite | `rubicon`                    | `rubiconBidAdapter`            |
 
