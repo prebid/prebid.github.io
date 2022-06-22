@@ -107,7 +107,7 @@ function submit_download() {
     $.ajax({
         type: "POST",
         url: "https://js-download.prebid.org/download",
-        //dataType: 'json',
+        dataType: 'text',
         data: form_data
     })
     .success(function(data, textStatus, jqXHR) {
@@ -170,7 +170,6 @@ function get_form_data() {
 
     return form_data;
 }
-
 
 </script>
 
@@ -246,6 +245,9 @@ These modules may require accounts with a service provider.<br/>
 <h4>User ID Modules</h4>
 <div class="row">  
   <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="33acrossIdSystem" class="bidder-check-box"> 33Across ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="admixerIdSystem" class="bidder-check-box"> Admixer ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
@@ -262,6 +264,9 @@ These modules may require accounts with a service provider.<br/>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> Criteo ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="cpexIdSystem" class="bidder-check-box"> CPEx ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="deepintentDpesIdSystem" class="bidder-check-box"> Deepintent DPES ID</label>
@@ -285,7 +290,7 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> ID5 ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> IdentityLink ID</label>
+  <label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> RampID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="idxIdSystem" class="bidder-check-box"> IDx</label>
@@ -316,9 +321,6 @@ These modules may require accounts with a service provider.<br/>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> NetID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="nextrollIdSystem" class="bidder-check-box"> NextRoll ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="novatiqIdSystem" class="bidder-check-box"> Novatiq Hyper ID</label>
@@ -358,6 +360,9 @@ These modules may require accounts with a service provider.<br/>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> PubCommon ID<div style="font-size:80%"> (not in 5.x)</div></label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="gravitoIdSystem" class="bidder-check-box"> Gravito ID</label>
   </div></div>
 </div>
 

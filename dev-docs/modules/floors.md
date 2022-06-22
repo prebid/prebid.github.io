@@ -23,7 +23,6 @@ A ‘floor’ is defined as the lowest CPM price a bid will need to meet for eac
 
 The module provides several ways for Prebid floors to be defined, that are used by bidder adapters to read floors and enforced on bid responses in any supported currency. The floors utilized by the Price Floors Module are defined by one or more set of rules containing any or all of the following dimensions:
 
-
 - AdUnit
 - GPT Slot Name
 - MediaType
@@ -39,10 +38,13 @@ The entire set of floors selected by the Price Floors Module for a given auction
 2. Within setConfig  (Package)
 3. Retrieved from a real-time data service (Dynamic)
 
-
 {: .alert.alert-info :}
 Even though floors are defined with five pre-configured dimensions, it’s possible to extend the list of dimensions to attributes of the page, user, auction or other data by supplying a dimension matching function. For example, a publisher can provide a matching function that returns the device type to allow the Floor module to use device type as an attribute within a prebid floor rules file.
 
+Note that Prebid Server also supports a [floors feature](/prebid-server/features/pbs-floors.html) that is very similar to the Prebid.js module. They both share Schema 2, and there are PBS-specific notes below.
+The expectation with the Prebid Server floors feature is that
+Publishers will use it mainly for mobile app and AMP scenarios.
+Web sites running Prebid.js will utilize this client-side module.
 
 ## How it Works
 There are several places where the Floor module changes the behavior of the Prebid.js auction process. Below is a diagram describing the general flow of the Price Floors Module:
@@ -279,6 +281,10 @@ The examples above covered several different scenarios where floors can be appli
 
 Schema 1 restricts floors providers or publishers to applying only one data group. To test more than one floor group, floor providers or publishers are required to reset the data set with new rules after each request bids.
 
+{: .alert.alert-info :}
+Note: if you're a dynamic floor provider service, your response must be
+a subset that will be merged under the 'data' object.
+
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
 |---+---+---+---+---|
@@ -290,7 +296,7 @@ Schema 1 restricts floors providers or publishers to applying only one data grou
 | enforcement.enforcePBS | boolean | If set to true, the Price Floors Module will signal to Prebid Server to pass floors to it’s bid adapters and enforce floors. If set to false, the pbjs should still pass matched bid request floor data to PBS, however no enforcement will take place. | false |
 | enforcement.floorDeals | boolean | Enforce floors for deal bid requests. | false |
 | enforcement.bidAdjustment | boolean | If true, the Price Floors Module will use the bidAdjustment function to adjust the floor per bidder. If false (or no bidAdjustment function is provided), floors will not be adjusted. Note: Setting this parameter to false may have unexpected results, such as signaling a gross floor when expecting net or vice versa. | true |
-| endpoint | object | Controls behavior for dynamically retrieving floors.  | - |
+| endpoint | object | Prebid.js only: controls behavior for dynamically retrieving floors.  | - |
 | endpoint.url | string | URL of endpoint to retrieve dynamic floor data.  | - |
 | data | object (required) | Floor data used by the Price Floors Module to pass floor data to bidders and floor enforcement. | - |
 | data.floorProvider | string | Optional atribute (as of prebid version 4.2) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
@@ -316,31 +322,40 @@ Schema 1 restricts floors providers or publishers to applying only one data grou
 
 Schema 2 allows floors providers to A/B-test one or more floor groups, determined at auction time.
 
-The following principles apply to schema 2:
-- The below attributes are required:
+The following principles apply to Schema 2:
+- These attributes are required:
     - data.floorsSchemaVersion to be set to 2
     - A valid modelGroups object must be set
     - The field modelGroups.modelWeight is required for each model group
         - If one of the model weights is missing, no schema 2 floor will be set and the Price Floors Module will look in other locations for floor definitions
 - If common attributes are set in both the modelGroups and root level of the data object, modelGroups attributes prevail
 - The Schema 2 data model can only be applied in Package level (i.e. directly in setConfig) or Dynamic level
-- Sampling weights are applied at the auction level. Each new auction the dice will be rolled
+- Sampling weights are applied at the auction level. Each new auction the dice will be rolled.
 - If the data.modelGroups object and the data.values (schema 1 field) are set, the data.floorsSchemaVersion will dictate what schema version is applied
 
-
 While some attributes are common in both schema versions, for completeness, all valid schema 2 attributes are provided:
+
+{: .alert.alert-info :}
+Note: if you're a dynamic floor provider service, your response must be
+a subset that will be merged under the 'data' object.
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
 |---+---+---+---+---|
 | floorMin | float | The mimimum CPM floor used by the module (as of 4.13). The module will take the greater of floorMin and the matched rule CPM when evaluating getFloor() and enforcing floors. | - |
+| floorMinCur | float | Prebid Server only: the currency used for the floorMin value. | - |
 | floorProvider | string | Optional atribute (as of prebid version 4.1) used to signal to the Floor Provider's Analytics adapter their floors are being applied. They can opt to log only floors that are applied when they are the provider. If floorProvider is supplied in both the top level of the floors object and within the data object, the data object's configuration shall prevail.| - |
-| enforcement | object | Controls the enforcement behavior within the module.| - |
 | skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail. | 0 |
+| enabled | boolean | Prebid Server only: provides a request level override to disable server-side floor activity. If there's server-side floor config, it must also be true in order for floor activity to take place.  | true |
+| fetchStatus | string | Prebid Server only: this is a read-only field set by the Prebid-Server floors feature to let analytics adapters know whether the floors data used was dynamically fetched. | n/a |
+| skipped | boolean | Prebid Server only: this is a read-only field set by the Prebid-Server floors feature to let analytics adapters know whether the 'skipRate' feature was invoked. i.e. this value is 'true' when the floor activity has been turned off by the skipRate, and 'false' otherwise. | n/a |
+| location | string | Prebid Server only: this is a read-only field set by the Prebid-Server floors feature to let analytics adapters know where the floors data came from. Possible values are: 'request', 'fetch' or 'noData'. | n/a |
+| enforcement | object | Controls the enforcement behavior within the module.| - |
 | enforcement.enforceJS | boolean | If set to true, the module will provide floors to bid adapters for bid request matched rules and suppress any bids not exceeding a matching floor. If set to false, the module will still provide floors for bid adapters, but there will be no floor enforcement.| true |
 | enforcement.enforcePBS | boolean | If set to true, the module will signal to Prebid Server to pass floors to it’s bid adapters and enforce floors. If set to false, Prebid.js should still pass matched bid request floor data to Prebid Server, however no enforcement will take place. | false |
 | enforcement.floorDeals | boolean | Enforce floors for deal bid requests. | false |
 | enforcement.bidAdjustment | boolean | If true, the module will use the bidAdjustment function to adjust the floor per bidder. If false (or no bidAdjustment function is provided), floors will not be adjusted. Note: Setting this parameter to false may have unexpected results, such as signaling a gross floor when expecting net or vice versa. | true |
+| enforcement.enforceRate | integer | Prebid Server only: Defines a percentage for how often bid response enforcement activity should take place given that the floors feature is active. If the floors feature is skipped due to skipRate, this has no affect. For every non-skipped auction, this percent of them should be enforced: i.e. bids discarded. This feature lets publishers ease into enforcement in case bidders aren't adhering to floor rules. | 100 |
 | endpoint | object | Controls behavior for dynamically retrieving floors.  | - |
 | endpoint.url | string | URL of endpoint to retrieve dynamic floor data.  | - |
 | data | object (required) | Floor data used by the module to pass floor data to bidders and floor enforcement. | - |
@@ -837,11 +852,9 @@ Enforced floor: 10.01
 
 ### Floor Data Provider Interface
 
-Floor data providers can supply data to publishers either within the setConfig as part of a Prebid.js Package if the provider is also a host provider of the Prebid library, or via a real-time Dynamic fetch, prior to the auction.
+Floor data can be supplied to publishers either within the setConfig as part of a Prebid.js Package if the provider is also a host provider of the Prebid library, or via a real-time Dynamic fetch, prior to the auction.
 
 Data providers can optionally build Analytics Adapters to ingest bid data within Prebid for algorithm learning and review floor performance. Please refer to the Analytics Interface section for more details.
-
-
 
 {% capture warning_note %}
 As a floor provider, your goal is to provide effective floors, with minimal page impact. If you are performing a Dynamic fetch to retrieve data prior to auctions, the following recommendations are advised to reduce page performance issues:  
@@ -854,8 +867,7 @@ As a floor provider, your goal is to provide effective floors, with minimal page
 {% endcapture %}
 {% include /alerts/alert_important.html content=warning_note %}
 
-For Dynamic fetches, the Price Floors Module will perform a GET request to the supplied endpoint, that must return valid JSON, formatted like the data object in the “setConfig” Package configuration.
-
+For Dynamic fetches, the Price Floors Module will perform a GET request to the supplied endpoint, that must return valid JSON, which will be merged into the data object in the “setConfig” Package configuration. In otherwords, the schema used for dynamic fetches is a subset of the full schema.
 
 On rule creation, we recommend supplying various rules with catch-all \(“\*”\) values with associated floors. This is to accommodate bid adapters who cannot retrieve floors on a per size basis, as well as using various permutations of rules with “\*” values to match auctions that do not have an exact match on a specific rule. Please refer to the Rule Selection Process when determining floors as attribute order and number of “\*”s may have an impact on which rule is selected.
 
@@ -877,9 +889,9 @@ pbjs.setConfig({
 
 {% endhighlight %}
 
-#### Example Response 1
+#### Example Dynamic Response 1 - Schema 1
 
-floor determined by AdUnit code and Media Type:
+In this example, the floor is determined by AdUnit code and Media Type. Note that the response does not contain the 'data' object because everything in the response is merged there.
 
 {% highlight js %}
 
@@ -903,9 +915,9 @@ floor determined by AdUnit code and Media Type:
 
 {% endhighlight %}
 
-#### Example Response 2
+#### Example Response 2 - Schema 1
 
-floor determined by Domain, GPT Slot, Media Type and Size:
+In this example, the floor is determined by Domain, GPT Slot, Media Type and Size:
 
 {% highlight js %}
 
@@ -913,6 +925,7 @@ floor determined by Domain, GPT Slot, Media Type and Size:
     currency: 'EU',
     skipRate: 20,
     modelVersion: ‘High_skip_rate’
+
     schema: {
         fields: [ 'domain', 'gptSlot', 'mediaType', 'size' ]
     },
@@ -931,12 +944,11 @@ floor determined by Domain, GPT Slot, Media Type and Size:
 {% endhighlight %}
 
 
-#### Example Response 3
+#### Example Response 3 - Schema 2
 
-Floors Schema version 2
+In this example, the floor is determined by domain, gptSlot, mediaType, and size. Note again that dynamic floor responses are merged into the 'data' level of the schema.
 
 {% highlight js %}
-
 {
     "currency": "USD",
     "floorsSchemaVersion":2,
