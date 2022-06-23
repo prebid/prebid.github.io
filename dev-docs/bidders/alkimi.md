@@ -6,6 +6,13 @@ biddercode: alkimi
 media_types: banner, video
 pbjs: true
 pbs: true
+schain_supported: true
+gdpr_supported: true
+usp_supported: true
+coppa_supported: true
+userIds: all
+floors_supported: true
+multiformat_supported: will-bid-on-any
 ---
 
 
