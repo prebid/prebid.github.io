@@ -11,7 +11,7 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 floors_supported: true
-userIds: admixerId, adtelligentId, amxId, britepoolId, criteo, dapId, deepintentId, dmdId, fabrickId, flocId, hadronId, id5Id, identityLink, idxId, imuId, intentIqId, kinessoId, liveIntentId, lotamePanoramaId, merkleId, mwOpenLinkId, naveggId, netId, nextrollId, novatiq, parrableId, pubCommonId, publinkId, quantcastId, sharedId, tapadId, uid2, unifiedId, verizonMediaId, zeotapIdPlus
+userIds: admixerId, adtelligentId, amxId, britepoolId, criteo, dapId, deepintentId, dmdId, fabrickId, flocId, hadronId, id5Id, identityLink, idxId, imuId, intentIqId, kinessoId, liveIntentId, lotamePanoramaId, merkleId, mwOpenLinkId, naveggId, netId, novatiq, parrableId, pubCommonId, publinkId, quantcastId, sharedId, tapadId, uid2, unifiedId, verizonMediaId, zeotapIdPlus
 prebid_member: true
 fpd_supported: true
 gvl_id: 69

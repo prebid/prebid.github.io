@@ -12,7 +12,6 @@ pbjs: true
 gvl_id: 142
 schain_supported: true
 floors_supported: true
-fpd_supported: true
 pbs: true
 ---
 

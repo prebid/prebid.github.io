@@ -172,11 +172,10 @@ Prebid Server offers a federated [user sync](https://docs.prebid.org/prebid-serv
 
 The Bidder Info template above demonstrates configuration of a `redirect` user sync. The `url` points to an endpoint on your bidding server which will honor the privacy policies, replace the `userMacro` in the redirect url with the user's tracking id, and respond with an HTTP 302 redirect to that url. You may also specify an `iframe` endpoint which will return an HTML document to be rendered in an `iframe` on the user's device and use JavaScript to perform the redirect. You may omit the `{%raw%}{{.GDPR}}{%endraw%}`, `{%raw%}{{.GDPRConsent}}{%endraw%}`, and/or `{%raw%}{{.USPrivacy}}{%endraw%}` macros if they are not applicable to your legal situation.
 
-If both `iframe` and `redirect` endpoints are provided, you must specify a `default` field with a value of either `iframe` or `redirect`, based on your preference.
+If both `iframe` and `redirect` endpoints are provided, the `iframe` endpoint will be used by default.
 
 ```yaml
 userSync:
-  default: iframe
   iframe:
     url: https://foo.com/iframe/sync?gdpr={%raw%}{{.GDPR}}{%endraw%}&consent={%raw%}{{.GDPRConsent}}{%endraw%}&us_privacy={%raw%}{{.USPrivacy}}{%endraw%}&redirect={%raw%}{{.RedirectURL}}{%endraw%}
     userMacro: $UID
@@ -185,7 +184,7 @@ userSync:
     userMacro: $UID
 ```
 
-If your bid adapter supports user sync and doesn't have a good default, you may optionally specify a `supports` array with the items `iframe` and/or `redirect` to inform Prebid Server hosts. Hosts will receive a warning on startup if a bid adapter supports user sync and isn't configured. Expect hosts to contact you at the maintainer email address in this file for instructions.
+If your bid adapter supports user sync and doesn't have a good default endpoint, you may optionally specify a `supports` array with the items `iframe` and/or `redirect` to inform Prebid Server hosts. Hosts will receive a warning on startup if a bid adapter supports user sync and isn't configured. Expect hosts to contact you at the maintainer email address for instructions.
 
 ```yaml
 userSync:
@@ -501,7 +500,7 @@ This method may be called multiple times if the host has configured aliases of y
 The first argument, `bidderName`, is the name of the bidder being built. This may be the bidder name you've chosen or it may be an alias. Most adapters don't make use of the `bidderName`, but its provided by the core framework for situations where the adapter might need to do something special for aliases.
 
 The second argument, `config`, is all the configuration values set for your adapter. However, not all of this information is intended for use by the `Builder` method. The only two fields relevant here are `config.Endpoint` and `config.ExtraAdapterInfo`:
-- `config.Endpoint` is the base url of your bidding server and may be interpreted as either a literal address or as a templated macro to support dynamic domains or dynamic paths.
+- `config.Endpoint` is the base url of your bidding server and may be interpreted as either a literal address or as a templated macro to support dynamic paths.
 - `config.ExtraAdapterInfo` is an optional setting may be used for any other values your adapter may need, such as an application token or publisher allow/deny list. You may interpret this string however you like, although JSON is a common choice.
 
 The `Builder` method is expected to return an error if either the `config.Endpoint` or the `config.ExtraAdapterInfo` values are invalid or cannot be parsed. Errors will be surfaced to the host during application startup as a fatal error.
@@ -1151,8 +1150,8 @@ If you are having issues finding the root cause of user sync errors, please [sub
 
 Human readable documentation for bid adapters is required in the separate [prebid.github.io](https://github.com/prebid/prebid.github.io) repository. We will not merge your bid adapter until you've at least opened a documentation PR and comment with a link to it.
 
-1. If you already have a Prebid.js bid adapter, update your existing bidder file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/modules to add the `pbs: true` variable in the header section. If your Prebid Server bidding parameters are different from your Prebid.js parameters, please include the differences in this document for publishers to be aware.
-1. If you don't have a Prebid.js bid adapter, create a new file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/modules using this template:
+1. If you already have a Prebid.js bid adapter, update your existing bidder file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders to add the `pbs: true` variable in the header section. If your Prebid Server bidding parameters are different from your Prebid.js parameters, please include the differences in this document for publishers to be aware.
+1. If you don't have a Prebid.js bid adapter, create a new file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders using this template:
 
 ```
 ---
@@ -1176,6 +1175,7 @@ pbjs: true/false
 pbs: true/false
 pbs_app_supported: true/false
 prebid_member: true/false
+multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ---
 
 ### Note:
