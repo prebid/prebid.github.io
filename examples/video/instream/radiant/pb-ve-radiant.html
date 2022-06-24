@@ -15,7 +15,7 @@ sidebarType: 4
 		</div>
 
 		<!--video warning-->
-		<div class="pb-alert pb-alert-important" style="width:60vw;">
+		<div class="pb-alert pb-alert-important" >
 			<p style="color:#85720f"><b>Important:</b>
 			This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
 		</div>
@@ -26,168 +26,165 @@ sidebarType: 4
 		<!--video code fencing-->
 
 		<!--header code example-->
-		<div class="pb-alert pb-alert-warning" style="width:60vw;">
+		<div class="pb-alert pb-alert-warning" >
 			<p style="color:#a94443"><b>Warning:</b>
 			Do not forget to exchange the placementId in the code examples with your own placementId!</p>
 		</div>
 
-		<div style="width:60vw;">
-			<h4>Place this code in the page header.</h4>
-		</div>
-
-<pre class="pb-code-hl" style="width:60vw; display:block; overflow:normal; overflow-x:auto;"><code>
+    <h4>Place this code in the page header.</h4>
+    <div class="pb-code-hl-wrap">
+      <pre class="pb-code-hl">
 <!--put javascript code here-->
 &lt;!--production version of prebid.js--&gt;
 &lt;script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"&gt;&lt;/script&gt;
 
 &lt;!-- Radiant Media Player core library - debug browser console mode (use rmp.min.js for production) --&gt;
 &lt;script src="https://cdn.radiantmediatechs.com/rmp/5.5.6/js/rmp.debug.js"&gt;&lt;/script&gt;
+      </pre>
+    </div>
 
-</code></pre>
 
-
-		<!--body code example-->
-		<div style="width:60vw;">
-			<h4>Place this code in the page body.</h4>
-<pre class="pb-code-hl" style="width:60vw;">
+    <h4>Place this code in the page body.</h4>
+    <div class="pb-code-hl-wrap">
+      <!--body code example-->
+      <pre class="pb-code-hl">
 <!--put body html and javascript here-->
 &lt;script&gt;
-		/* our app where we run player
-			 our app variables */
-		var pbApp = {};
-		pbApp.playerSetup = false;
-		pbApp.prebidTempTag = false;
-		pbApp.debug = true;
-		/* in case pre-bidding takes too long or fails we provide a playerSetupTimeout and fallbackAdTagUrl
-			 to insure player setup happens - this is optional */
-		pbApp.playerSetupTimeout = 5000;
-		pbApp.fallbackAdTagUrl = 'https://www.radiantmediaplayer.com/vast/tags/inline-linear-1.xml';
-		/* no console - no logs */
-		if (typeof window.console === 'undefined' || typeof window.console.log === 'undefined' || typeof window.console.dir === 'undefined') {
-			pbApp.debug = false;
-		}
+  /* our app where we run player
+     our app variables */
+  var pbApp = {};
+  pbApp.playerSetup = false;
+  pbApp.prebidTempTag = false;
+  pbApp.debug = true;
+  /* in case pre-bidding takes too long or fails we provide a playerSetupTimeout and fallbackAdTagUrl
+     to insure player setup happens - this is optional */
+  pbApp.playerSetupTimeout = 5000;
+  pbApp.fallbackAdTagUrl = 'https://www.radiantmediaplayer.com/vast/tags/inline-linear-1.xml';
+  /* no console - no logs */
+  if (typeof window.console === 'undefined' || typeof window.console.log === 'undefined' || typeof window.console.dir === 'undefined') {
+    pbApp.debug = false;
+  }
 
-		/* invokeVideoPlayer may not be defined when bidsBackHandler runs
-			 we pre-defined it here so as to capture the returned adTagUrl to be passed to the player */
-		pbApp.invokeVideoPlayer = function (adTagUrl) {
-			pbApp.prebidTempTag = adTagUrl;
-		};
+  /* invokeVideoPlayer may not be defined when bidsBackHandler runs
+     we pre-defined it here so as to capture the returned adTagUrl to be passed to the player */
+  pbApp.invokeVideoPlayer = function (adTagUrl) {
+    pbApp.prebidTempTag = adTagUrl;
+  };
 
-		/* prebid.js variables */
-		var pbjs;
-		pbjs = pbjs || {};
-		pbjs.que = pbjs.que || [];
+  /* prebid.js variables */
+  var pbjs;
+  pbjs = pbjs || {};
+  pbjs.que = pbjs.que || [];
 
-		/* Prebid video ad unit
-			 This is a working example but you must use your own settings/bidders for production
-			 More docs at https://prebid.org/prebid-video/video-overview.html */
-		var videoAdUnit = {
-			code: 'video1',
-			mediaTypes: {
-				video: {
-				  context: 'instream',
-				  playerSize: [640, 480],
-				  mimes: ['video/mp4'],
-				  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-				  playbackmethod: [2],
-				  skip: 1
-				}
-			},
-			bids: [{
-				bidder: 'appnexus',
-				params: {
-					placementId: 13232361
-				}
-			}]
-		};
+  /* Prebid video ad unit
+     This is a working example but you must use your own settings/bidders for production
+     More docs at https://prebid.org/prebid-video/video-overview.html */
+  var videoAdUnit = {
+    code: 'video1',
+    mediaTypes: {
+      video: {
+        context: 'instream',
+        playerSize: [640, 480],
+        mimes: ['video/mp4'],
+        protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+        playbackmethod: [2],
+        skip: 1
+      }
+    },
+    bids: [{
+      bidder: 'appnexus',
+      params: {
+        placementId: 13232361
+      }
+    }]
+  };
 
-		pbjs.que.push(function () {
-			pbjs.addAdUnits(videoAdUnit);
+  pbjs.que.push(function () {
+    pbjs.addAdUnits(videoAdUnit);
 
-			pbjs.setConfig({
-				debug: true,
-				cache: {
-					url: 'https://prebid.adnxs.com/pbc/v1/cache'
-				}
-			});
+    pbjs.setConfig({
+      debug: true,
+      cache: {
+        url: 'https://prebid.adnxs.com/pbc/v1/cache'
+      }
+    });
 
-			pbjs.requestBids({
-				bidsBackHandler: function (bids) {
-					if (pbApp.debug) {
-						window.console.dir(bids);
-					}
-					var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-						adUnit: videoAdUnit,
-						params: {
-							iu: '/19968336/prebid_cache_video_adunit',
-							cust_params: {
-								section: 'blog',
-								anotherKey: 'anotherValue'
-							},
-							output: 'vast'
-						}
-					});
-					pbApp.invokeVideoPlayer(videoUrl);
-				}
-			});
-		});
+    pbjs.requestBids({
+      bidsBackHandler: function (bids) {
+        if (pbApp.debug) {
+          window.console.dir(bids);
+        }
+        var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+          adUnit: videoAdUnit,
+          params: {
+            iu: '/19968336/prebid_cache_video_adunit',
+            cust_params: {
+              section: 'blog',
+              anotherKey: 'anotherValue'
+            },
+            output: 'vast'
+          }
+        });
+        pbApp.invokeVideoPlayer(videoUrl);
+      }
+    });
+  });
 
-		/* here we re-define invokeVideoPlayer with Radiant Media Player set-up */
-		pbApp.invokeVideoPlayer = function (adTagUrl) {
-			if (pbApp.playerSetup) {
-				return;
-			}
-			pbApp.playerSetup = true;
-			if (pbApp.debug) {
-				window.console.log('invokeVideoPlayer with Prebid VAST url = ' + adTagUrl);
-			}
-			var src = {
-				mp4: [
-					'https://www.rmp-streaming.com/media/bbb-360p.mp4'
-				]
-			};
-			var settings = {
-				licenseKey: 'Kl8lZ292K3N6MmVvZD9yb201ZGFzaXMzMGRiMEElXyo=',
-				src: src,
-				width: 640,
-				height: 360,
-				/*we enabled ads for our player
-				 note that we requested a winning bid for skippable auto_play_sound_off so player starts muted autoplay*/
-				ads: true,
-				autoplay: true,
-				muted: true,
-				// we use Google IMA in this demo, but you can use rmp-vast as well depending on your requirements<br>
-				adParser: 'ima',
-				// since we may request a skippable ads we set adDisableCustomPlaybackForIOS10Plus: true to allow rendering of skippable ads on iOS<br>
-				adDisableCustomPlaybackForIOS10Plus: true,
-				// here is our winner VAST adTagUrl<br>
-				adTagUrl: adTagUrl,
-				poster: 'https://www.radiantmediaplayer.com/images/poster-rmp-showcase.jpg'
-			};
-			var elementID = 'rmpPlayer';
-			var rmp = new RadiantMP(elementID);
-			rmp.init(settings);
+  /* here we re-define invokeVideoPlayer with Radiant Media Player set-up */
+  pbApp.invokeVideoPlayer = function (adTagUrl) {
+    if (pbApp.playerSetup) {
+      return;
+    }
+    pbApp.playerSetup = true;
+    if (pbApp.debug) {
+      window.console.log('invokeVideoPlayer with Prebid VAST url = ' + adTagUrl);
+    }
+    var src = {
+      mp4: [
+        'https://www.rmp-streaming.com/media/bbb-360p.mp4'
+      ]
+    };
+    var settings = {
+      licenseKey: 'Kl8lZ292K3N6MmVvZD9yb201ZGFzaXMzMGRiMEElXyo=',
+      src: src,
+      width: 640,
+      height: 360,
+      /*we enabled ads for our player
+       note that we requested a winning bid for skippable auto_play_sound_off so player starts muted autoplay*/
+      ads: true,
+      autoplay: true,
+      muted: true,
+      // we use Google IMA in this demo, but you can use rmp-vast as well depending on your requirements<br>
+      adParser: 'ima',
+      // since we may request a skippable ads we set adDisableCustomPlaybackForIOS10Plus: true to allow rendering of skippable ads on iOS<br>
+      adDisableCustomPlaybackForIOS10Plus: true,
+      // here is our winner VAST adTagUrl<br>
+      adTagUrl: adTagUrl,
+      poster: 'https://www.radiantmediaplayer.com/images/poster-rmp-showcase.jpg'
+    };
+    var elementID = 'rmpPlayer';
+    var rmp = new RadiantMP(elementID);
+    rmp.init(settings);
 
-		};
+  };
 
-		/* in case we already have a winning bid let's use the returned adTagUrl to run player */
-		if (pbApp.prebidTempTag) {
-			pbApp.invokeVideoPlayer(pbApp.prebidTempTag);
-			pbApp.prebidTempTag = false;
-		}
+  /* in case we already have a winning bid let's use the returned adTagUrl to run player */
+  if (pbApp.prebidTempTag) {
+    pbApp.invokeVideoPlayer(pbApp.prebidTempTag);
+    pbApp.prebidTempTag = false;
+  }
 
-		/* in case something went wrong (latency, network errors, bid issues ...) and we have no winning bid we still need to run the player
-			 this is done after pbApp.playerSetupTimeout ms and we use fallbackAdTagUrl as adTagUrl to pass to the player */
-		setTimeout(function () {
-			if (pbApp.playerSetup) {
-				return;
-			}
-			pbApp.invokeVideoPlayer(pbApp.fallbackAdTagUrl);
-		}, pbApp.playerSetupTimeout);
-	&lt;/script&gt;
-</pre>
-		</div>
-
+  /* in case something went wrong (latency, network errors, bid issues ...) and we have no winning bid we still need to run the player
+     this is done after pbApp.playerSetupTimeout ms and we use fallbackAdTagUrl as adTagUrl to pass to the player */
+  setTimeout(function () {
+    if (pbApp.playerSetup) {
+      return;
+    }
+    pbApp.invokeVideoPlayer(pbApp.fallbackAdTagUrl);
+  }, pbApp.playerSetupTimeout);
+  &lt;/script&gt;
+      </pre>
+    </div>
 	</div>
 </div>
 
