@@ -16,9 +16,12 @@ schain_supported: true
 gvl_id: 91
 ---
 ### Notes
-{: .alert.alert-warning :}
-*Criteo currently only supports getFloor if floors are in USD and if the publisher is enabling the Criteo Publisher Tag external js call.
 
+{: .alert.alert-warning :}
+This bidder adapter automatically includes the Criteo User ID module and performs iFrame syncs.
+
+{: .alert.alert-warning :}
+Criteo currently only supports getFloor if floors are in USD and if the publisher is enabling the Criteo Publisher Tag external js call. The collected floors will only be used for logging purposes and won't bid taken into account when bidding.
 
 {: .alert.alert-warning :}
 Prebid-Server support is on alpha test and is currently a non-finished product. Activation requires setup and approval before beginning. Please reach out to your account manager or publishers@criteo.com for more details.
