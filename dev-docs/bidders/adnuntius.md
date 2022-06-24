@@ -7,7 +7,6 @@ pbs: true
 biddercode: adnuntius
 media_types: banner
 gdpr_supported: true
-fpd_supported: true
 gvl_id: 855
 ---
 
