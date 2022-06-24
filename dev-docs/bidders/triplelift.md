@@ -87,7 +87,7 @@ var adUnits = [
     bids: [{
         bidder: 'triplelift',
         params: {
-            inv_code: 'pubname_topbanner'
+            inventoryCode: 'pubname_top_banner'
         }
     }]
 }];
@@ -108,7 +108,7 @@ var videoAdUnit = {
     bids: [{
         bidder: 'triplelift',
         params: {
-            inv_code: 'pubname_instream1',
+            inventoryCode: 'pubname_instream1',
             video: {
                 w: 640,
                 h: 480
