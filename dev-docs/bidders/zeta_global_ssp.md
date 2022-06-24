@@ -18,6 +18,8 @@ gvl_id: 833
 
 All references to the OpenRTB spec refer to OpenRtb v2.5 (https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)
 
+The Zeta Global SSP adapter requires setup and approval from the Zeta Global SSP team. Please reach out to your account team or rcomolli@zetaglobal.com for more information.
+
 
 ### Bid Params
 
