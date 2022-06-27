@@ -305,7 +305,7 @@ None
 
 **Example:**
 
-`options.prebidConfigOptions = { publisherDomain: "https://www.theverge.com"};`
+`options.prebidConfigOptions = { pageUrl: "https://www.theverge.com"};`
 
 <a name="dfpParameters"></a>
 ### dfpParameters
