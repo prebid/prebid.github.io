@@ -9,7 +9,7 @@ gdpr_supported: true
 usp_supported: true
 prebid_member: true
 pbjs: true
-pbs: false
+pbs: true
 schain_supported: true
 userIds: all
 gvl_id: 885
