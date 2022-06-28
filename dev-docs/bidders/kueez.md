@@ -1,22 +1,22 @@
 ---
 layout: bidder
-title: Rise
-description: Prebid Rise Bidder Adapter
+title: Kueez
+description: Prebid Kueez Bidder Adapter
 multiformat_supported: will-bid-on-any
 pbjs: true
-biddercode: rise
+biddercode: kueez
 media_types: banner, video
 schain_supported: true
 gdpr_supported: true
 usp_supported: true
 floors_supported: true
 userIds: all
-gvl_id: 1043
+fpd_supported: true
 ---
 
 ### Note
 
-The Rise adapter requires setup and approval. Please reach out to prebid-rise-engage@risecodes.com to setup an Rise account.
+The Kueez adapter requires setup and approval. Please reach out to prebid@kueez.com.
 
 ### Bid Parameters
 
@@ -25,13 +25,13 @@ The Rise adapter requires setup and approval. Please reach out to prebid-rise-en
 {: .table .table-bordered .table-striped }
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
-| `org` | required | String |  Rise publisher Id provided by your Rise representative  | "56f91cd4d3e3660002000033"
-| `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
+| `org` | required | String |  the organization Id provided by your Kueez representative    | "test-org-id"
+| `floorPrice` | optional | Number |  Minimum price in USD. Misuse of this parameter can impact revenue | 1.5
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 
 ## Example
-```javascript
+  ```javascript
 var adUnits = [{
         code: 'banner-div',
         mediaTypes: {
@@ -43,12 +43,12 @@ var adUnits = [{
             }
         },
         bids: [{
-            bidder: 'rise',
+            bidder: 'kueez',
             params: {
-                org: '56f91cd4d3e3660002000033', // Required
-                floorPrice: 0.05, // Optional
+                org: 'test-org-id', // Required
+                floorPrice: 1.2, // Optional
                 placementId: '12345678', // Optional
-                testMode: false // Optional
+                testMode: true // Optional
             }
         }]
     },
@@ -66,12 +66,12 @@ var adUnits = [{
             }
         },
         bids: [{
-            bidder: 'rise',
+            bidder: 'kueez',
             params: {
-                org: '56f91cd4d3e3660002000033', // Required
-                floorPrice: 5.00, // Optional
+                org: 'test-org-id', // Required
+                floorPrice: 1.50, // Optional
                 placementId: '12345678', // Optional
-                testMode: false // Optional
+                testMode: true // Optional
             }
         }]
     }
@@ -79,8 +79,4 @@ var adUnits = [{
 ```
 
 ### Configuration
-Rise recommends setting UserSync by iframe for monetization.
-
-### Versions
-Prebid versions 5.0-5.3 are not supported
-Banner >= 6.14.0
+Kueez recommends setting UserSync by iframe for monetization.

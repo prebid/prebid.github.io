@@ -24,7 +24,6 @@ Core config:
 + [Bid cache](#setConfig-Use-Bid-Cache)
 + [Set the order in which bidders are called](#setConfig-Bidder-Order)
 + [Set the page URL](#setConfig-Page-URL)
-+ [Set the publisher's domain](#setConfig-Publisher-Domain)
 + [Set price granularity](#setConfig-Price-Granularity)
 + [Set media type price granularity](#setConfig-MediaType-Price-Granularity)
 + [Configure server-to-server header bidding](#setConfig-Server-to-Server)
@@ -280,18 +279,6 @@ Override the Prebid.js page referrer for some bidders.
 pbjs.setConfig({ pageUrl: "https://example.com/index.html" })
 {% endhighlight %}
 
-<a name="setConfig-Publisher-Domain" />
-
-#### Publisher Domain
-
-{: .alert.alert-warning :}
-This API is deprecated. Please use 'pageUrl' instead.
-
-Set the publisher's domain where Prebid is running, for cross-domain iframe communication:
-
-{% highlight js %}
-pbjs.setConfig({ publisherDomain: "https://www.theverge.com" )
-{% endhighlight %}
 
 <a name="setConfig-Price-Granularity" />
 
@@ -1052,11 +1039,15 @@ The `ortb2` JSON structure reflects the OpenRTB standard:
 - Segments should go in site.content.data[] or user.data[].
 - Any other OpenRTB 2.5 field could be added here as well, e.g. site.content.language.
 
-**Scenario 2** - Global (cross-adunit) First Party Data open only to a subset of bidders
+**Scenario 2** - Auction (cross-adunit) First Party Data open to all bidders
+
+If a page needs to specify multiple different sets of top-level data (`site`, `user`, or `app`), use the `ortb2` parameter of [`requestBids`](/dev-docs/publisher-api-reference/setConfig.html) ([example](/features/firstPartyData.html#supplying-auction-specific-data)  
+
+**Scenario 3** - Global (cross-adunit) First Party Data open only to a subset of bidders
 
 If a publisher only wants certain bidders to receive the data, use the [setBidderConfig](/dev-docs/publisher-api-reference/setBidderConfig.html) function.
 
-**Scenario 3** - AdUnit-specific First Party Data
+**Scenario 4** - AdUnit-specific First Party Data
 
 See the [AdUnit Reference](/dev-docs/adunit-reference.html) for AdUnit-specific first party data.
 

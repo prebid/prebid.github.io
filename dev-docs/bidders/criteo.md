@@ -16,9 +16,12 @@ schain_supported: true
 gvl_id: 91
 ---
 ### Notes
-{: .alert.alert-warning :}
-*Criteo currently only supports getFloor if floors are in USD and if the publisher is enabling the Criteo Publisher Tag external js call.
 
+{: .alert.alert-warning :}
+This bidder adapter automatically includes the Criteo User ID module and performs iFrame syncs.
+
+{: .alert.alert-warning :}
+Criteo currently only supports getFloor if floors are in USD and if the publisher is enabling the Criteo Publisher Tag external js call. The collected floors will only be used for logging purposes and won't bid taken into account when bidding.
 
 {: .alert.alert-warning :}
 Prebid-Server support is on alpha test and is currently a non-finished product. Activation requires setup and approval before beginning. Please reach out to your account manager or publishers@criteo.com for more details.
@@ -37,6 +40,7 @@ of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381)
 | `networkId`       | required | The network ID from Criteo. Please reach out your Criteo representative for more details.                             | `456456`                                      | `integer`  |
 | `nativeCallback`  | optional | (Prebid.js only) Callback to perform render in native integrations. Please reach out your Criteo representative for more details.     | `function(payload) { console.log(payload); }` | `function` |
 | `integrationMode` | optional | (Prebid.js only) Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `'AMP'`                                       | `string`   |
+| `publisherSubId` | optional | Custom identifier for reporting. Please reach out your Criteo representative for more details. | `'adunit-1'` |  `string` |
 
 ### First Party Data
 
