@@ -155,18 +155,26 @@ When defining your HTTP headers it is important to consider what does and does n
 
 A Simple Request Meets **All** The Following Conditions:
 
-- One of 3 following allowed methods
+- Must be one of 3 following allowed methods
     - GET
     - HEAD
     - POST
 
 - Only headers that are allowed to be manually set apart from the headers automatically set by the user-agent
-    - Accept
-    - Accept-Language
-    - Content-Language
-    - Content-Type
-    - Range
+    - `Accept`
+    - `Accept-Language`
+    - `Content-Language`
+    - `Content-Type`
+    - `Range`
 
+- For the `Content-Type` header the only type/subtype combinations allowed are the following
+    - application/x-www-form-urlencoded
+    - multipart/form-data
+    - text/plain
+
+- If the request is made using `XMLHttpRequest` object, no event listeners are registered on the object returned by the `XMLHttpRequest.upload` property used in the request
+
+- No `ReadableStream` object is used in the request
 
 ## Creating the Adapter
 
