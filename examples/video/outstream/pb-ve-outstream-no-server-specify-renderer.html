@@ -1,7 +1,7 @@
 ---
 layout: video_sample
 title: Prebid Video | Video Outstream Example with No Ad Server using Specified Renderer
-description: An example of an outstream video with a pre-roll ad using Prebid.js and no ad server but with a specified renderer.
+description: An example of an outstream video ad using Prebid.js and no ad server but with a specified renderer.
 videoType: pb-os-nas-renderer
 isVideo: true
 sidebarType: 4
@@ -57,7 +57,48 @@ sidebarType: 4
     var pbjs = pbjs || {};
     pbjs.que = pbjs.que || [];
 
-    var adUnits = [{
+    function callANRenderer(bid, ad) {
+      const adResponse = {
+          ad: {
+              video: {
+                  content: ad,
+                  player_width: 640,
+                  player_height: 480,
+              }
+          }
+      }
+
+      bid.renderer.push(() => {
+          window.ANOutstreamVideo.renderAd({
+              targetId: bid.adUnitCode,
+              adResponse,
+          });
+      });
+    }
+
+    function render(bid) {
+        let ad = bid.ad || bid.vastXml;
+
+        if (ad) {
+            callANRenderer(bid, ad)
+        } else {
+            if (bid.vastUrl) {
+              (async () => {
+                  ad = await fetch(resp).then(resp => resp.text());
+
+                  if (typeof ad === 'string') {
+                      callANRenderer(bid, ad);
+                  } else {
+                      console.log('Invalid VAST');
+                  }
+              })();
+            } else {
+                console.log('Invalid ad');
+            }
+        }
+    }
+
+    const adUnits = [{
         code: 'video1',
         mediaTypes: {
             video: {
@@ -68,12 +109,7 @@ sidebarType: 4
                 playbackmethod: [2],
                 skip: 1,
                 renderer: {
-                    render: function (bid) {
-                        ANOutstreamVideo.renderAd({
-                            targetId: bid.adUnitCode,
-                            adResponse: bid.adResponse,
-                        });
-                    },
+                    render,
                     url: "https://acdn.adnxs.com/video/outstream/ANOutstreamVideo.js"
                 },
             }
@@ -91,12 +127,11 @@ sidebarType: 4
         pbjs.requestBids({
             timeout: 1000,
             bidsBackHandler: function(bids) {
-                var highestCpmBids = pbjs.getHighestCpmBids('video1');
+                const highestCpmBids = pbjs.getHighestCpmBids('video1');
                 pbjs.renderAd(document, highestCpmBids[0].adId);
             }
         });
     });
-
 &lt;/script&gt;
 
       </pre>
@@ -113,11 +148,6 @@ sidebarType: 4
         </pre>
 		</div>
 	</div>
-</div>
-
-<!--video player code-->
-<div id='video1'>
-	<p>Prebid Outstream Video Ad<p>
 </div>
 
 <script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
