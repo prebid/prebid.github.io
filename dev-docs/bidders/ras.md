@@ -30,7 +30,6 @@ fpd_supported: false
 | `pageContext.dv` | optional | Document virtual address as slash-separated path that may consist of any number of parts (case-insensitive alphanumeric with underscores and hyphens); first part should be the same as `site` value and second as `area` value; next parts may reflect website navigation | `'example_com/sport/football'`              | `string` |
 | `pageContext.keyWords	` | optional | List of keywords associated with this ad unit; only case-insensitive alphanumeric with underscores and hyphens are allowed | `['euro', 'lewandowski']` | `string[]` |
 | `pageContext.keyValues` | optional | Key-values associated with this ad unit (case-insensitive); following characters are not allowed in the values: `" ' = ! + # * ~ ; ^ ( ) < > ] [ & @` | `{}`                    | `object` |
-| `pageContext.keyValues.pos` | optional | Ad unit position (integer greather than zero)                                              | `1`                                        | `number` |
 | `pageContext.keyValues.ci`    | optional | Content unique identifier                                                                | `'932016a5-02fc-4d5c-b643-fafc2f270f06'`                                        | `object` |
 | `pageContext.keyValues.adunit	` | optional | Ad unit name                                                                           | `'example_com/sport'`                    | `string` |
 
