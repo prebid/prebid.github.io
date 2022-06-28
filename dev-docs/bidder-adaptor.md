@@ -151,6 +151,21 @@ For more information about the kinds of information that can be passed using the
 
 ### HTTP simple requests
 
+When defining your HTTP headers it is important to consider what does and does not initiate a [CORS preflight request](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request). These are defined as simple requests. We encourage learning more about [Simple Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests) & [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) as it relates to your specific development configuration.
+
+A Simple Request Meets **All** The Following Conditions:
+
+- One of 3 following allowed methods
+    - GET
+    - HEAD
+    - POST
+
+- Only headers that are allowed to be manually set apart from the headers automatically set by the user-agent
+    - Accept
+    - Accept-Language
+    - Content-Language
+    - Content-Type
+    - Range
 
 
 ## Creating the Adapter
