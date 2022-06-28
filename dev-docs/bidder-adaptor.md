@@ -27,6 +27,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 + [Required Adapter Rules](#bidder-adaptor-Required-Adapter-Conventions)
 + [Required Files](#bidder-adaptor-Required-Files)
 + [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
++ [HTTP simple requests](#bidder-adaptor-HTTP-simple-requests)
 
 <a name="bidder-adaptor-Required-Adapter-Conventions" />
 
@@ -145,6 +146,12 @@ For more information about the kinds of information that can be passed using the
     }];
 
 {% endhighlight %}
+
+<a name="bidder-adaptor-HTTP-simple-requests" />
+
+### HTTP simple requests
+
+
 
 ## Creating the Adapter
 
