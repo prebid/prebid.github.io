@@ -176,7 +176,7 @@ A 'Simple Request' meets **all** of the following conditions:
 
 - No `ReadableStream` object is used in the request
 
-Prebid recommends keeping module HTTP requests 'simple' if at all possible.
+Prebid recommends keeping module HTTP requests 'simple' if at all possible. The default content-type used by Prebid.js is text/plain.
 
 ## Creating the Adapter
 
