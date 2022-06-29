@@ -27,7 +27,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 + [Required Adapter Rules](#bidder-adaptor-Required-Adapter-Conventions)
 + [Required Files](#bidder-adaptor-Required-Files)
 + [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
-+ [HTTP simple requests](#bidder-adaptor-HTTP-simple-requests)
++ [HTTP Simple Requests](#bidder-adaptor-HTTP-simple-requests)
 
 <a name="bidder-adaptor-Required-Adapter-Conventions" />
 
@@ -149,11 +149,11 @@ For more information about the kinds of information that can be passed using the
 
 <a name="bidder-adaptor-HTTP-simple-requests" />
 
-### HTTP simple requests
+### HTTP Simple Requests
 
-When defining your HTTP headers it is important to consider what does and does not initiate a [CORS preflight request](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request). These are defined as simple requests. We encourage learning more about [Simple Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests) & [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) as it relates to your specific development configuration.
+When defining the HTTP headers for your endpoint, it is important from a performance perspective to consider what forces the browser to initiate a [CORS preflight request](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request). We encourage learning more about [Simple Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests) & [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) as it relates to your specific development configuration.
 
-A Simple Request Meets **All** The Following Conditions:
+A 'Simple Request' meets **all** of the following conditions:
 
 - Must be one of 3 following allowed methods
     - GET
@@ -175,6 +175,8 @@ A Simple Request Meets **All** The Following Conditions:
 - If the request is made using `XMLHttpRequest` object, no event listeners are registered on the object returned by the `XMLHttpRequest.upload` property used in the request
 
 - No `ReadableStream` object is used in the request
+
+Prebid recommends keeping module HTTP requests 'simple' if at all possible.
 
 ## Creating the Adapter
 
