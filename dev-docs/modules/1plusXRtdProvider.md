@@ -21,7 +21,7 @@ sidebarType : 1
 
 RTD provider for 1plusX. 
 Enriches the bidding object with Audience & Targeting data
-Contact dev@1plusx.com for information.
+Contact dc-team-1px@triplelift.com for information.
 
 ## Integration
 
@@ -66,13 +66,13 @@ pbjs.setConfig({
 | waitForIt | Boolean | Should be `true` if there's an `auctionDelay` defined (optional) | `false` |
 | params  | Object |   |   |
 | params.customerId  | Integer | Your 1plusX customer id  |  |
-| params.biders  | Array<string> | List of bidders for which you would like data to be set | To this date only `appnexus` and `rubicon` are supported |
+| params.bidders  | Array<string> | List of bidders for which you would like data to be set | To this date only `appnexus` and `rubicon` are supported |
 | params.timeout  | Integer | timeout (ms) | 1000 |
 
 ## Supported Bidders
 At the moment only Appnexus (`appnexus`) and Magnite (`rubicon`) are supported
 
-
+{: .table .table-bordered .table-striped }
 | Bidder  | ID (for `bidders` parameter) | Module name (for `gulp build`) |
 | ------- | ---------------------------- | ------------------------------ |
 | Xandr   | `appnexus`                   | `appnexusBidAdapter`           |
