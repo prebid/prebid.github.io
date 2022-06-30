@@ -25,7 +25,7 @@ Contact dc-team-1px@triplelift.com for information.
 
 ## Integration
 
-1) Compile the Digital Garage Keyword Module along with your bid adapter and other modules into your Prebid build:  
+1) Compile the 1plusX RTD Module along with your bid adapter and other modules into your Prebid build:  
 
 Currently only `appnexusBidAdapter` and `rubiconBidAdapter` are supported
 
