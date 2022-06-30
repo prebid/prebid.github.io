@@ -3,8 +3,10 @@ layout: bidder
 title: Vidazoo
 description: Prebid Vidazoo Bidder Adaptor
 biddercode: vidazoo
-hide: true
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 gdpr_supported: true
+usp_supported: true
+pbjs: true
 ---
 
 ### Bid Params
@@ -12,6 +14,7 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                                                                              | Example                      | Type     |
 |------------|----------|------------------------------------------------------------------------------------------|------------------------------|----------|
-| `cId`      | required | The connection ID from Vidazoo.                                                          | `'5a3a543645ea6b0004869360'` | `string` |
+| `cId`      | required | The connection ID from Vidazoo.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
 | `pId`      | required | The publisher ID from Vidazoo.                                                           | `'59ac17c192832d0011283fe3'` | `string` |
 | `bidFloor` | required | The minimum bid value desired. Vidazoo will not respond with bids lower than this value. | `0.90`                       | `float`  |
+| `subDomain`| optional | Sets the server subdomain, default: 'prebid'.                                            | `'prebid'`                     | `string` |

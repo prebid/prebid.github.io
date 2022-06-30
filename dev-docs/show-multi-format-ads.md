@@ -9,8 +9,6 @@ nav_section: prebid-multi-format
 sidebarType: 1
 ---
 
-
-
 # Show Multi-Format Ads with Prebid.js
 {: .no_toc }
 
@@ -36,7 +34,7 @@ Prebid multi-format ad units allow direct competition between banner, native, an
 
 At a high level, Prebid.js supports multi-format ads as follows:
 
-1. An ad unit may define a [`mediaTypes`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#addAdUnits-MediaTypes) object to specify one or more supported formats and their respective properties.
+1. An ad unit may define a [`mediaTypes`](/dev-docs/publisher-api-reference/addAdUnits.html#addAdUnits-MediaTypes) object to specify one or more supported formats and their respective properties.
 2. Each bidder specified on a given ad unit will be eligible to bid if the bidder supports at least one of the media types specified via `adUnit.mediaTypes`.
 3. Prebid.js sends bid requests to each eligible bidder.
 
@@ -78,7 +76,11 @@ The ad unit below supports the banner, native, and video media types.
             },
             video: {
                 context: 'outstream',
-                playerSize: [640, 480]
+                playerSize: [640, 480],
+                mimes: ['video/mp4'],
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2],
+                skip: 1
             },
         },
         bids: [
@@ -125,10 +127,8 @@ Add a tag like the following to your page.  Depending on who wins the auction, a
 
 ## Working Examples
 
-+ [Multi-Format Example]({{site.baseurl}}/examples/multi_format_example.html)
++ [Multi-Format Example](/dev-docs/examples/multi-format-example.html)
 
 ## Related Topics
 
 + [Setting up Prebid Multi-Format in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html)
-
-

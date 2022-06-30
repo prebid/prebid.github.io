@@ -2,7 +2,7 @@
 layout: bidder
 title: REXRTB
 description: Prebid REXRTB Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: rexrtb
 ---
 

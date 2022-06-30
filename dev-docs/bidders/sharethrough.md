@@ -1,15 +1,23 @@
 ---
 layout: bidder
 title: Sharethrough
-description: Prebid Sharethrough Adaptor
-hide: true
 biddercode: sharethrough
-media_types: native
+description: Prebid Sharethrough Adaptor
 gdpr_supported: true
-usp_supported: true
-userIds: unifiedId/tradedesk
+coppa_supported: true
+floors_supported: true
+media_types: banner, video
+safeframes_ok: true
 schain_supported: true
+userIds: all
+usp_supported: true
+pbjs: true
+pbs: true
 ---
+
+### Disclosure:
+
+This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
 
 ### Note:
 The Sharethrough bidder adapter requires additional setup and approval from the Sharethrough Integrations team. Please reach out to your account manager for more information to start using it.
@@ -17,9 +25,8 @@ The Sharethrough bidder adapter requires additional setup and approval from the 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name | Scope | Description | Example | Type
-| ---- | ----- | ----------- | ------- | ----
-| `pkey` | required | The placement key | `'DfFKxpkRGPMS7A9f71CquBgZ'` | `string`
-| `iframe` | optional | If `true`, the ad will render in an iframe. Defaults to `false`. | `true` | `boolean`
-| `iframeSize` | optional | `[width, height]` If provided, use this size for the iframe size. Only applicable if `iframe` is `true`. If omitted, the largest size from the ad unit sizes array will be used. | `[300, 250]` | `[integer]`
-| `bidfloor` | optional | The floor price, or minimum amount, a publisher will accept for an impression, given in CPM in USD. | `1.00` | `float`
+| Name        | Scope    | Description                                                                                                                                                                      | Example                      | Type                 |
+|-------------|----------|-----------------------------------------------|------------------------------|----------------------|
+| `pkey`      | required | The placement key                             | `'DfFKxpkRGPMS7A9f71CquBgZ'` | `string`             |
+| `bcat`      | optional | Array of blocked IAB Categories               | `['IAB1-2', 'IAB1-3']`       | `string[]`           |
+| `badv`      | optional | Array of blocked Advertisers by their domains | `['ford.com', 'pepsi.com']`  | `string[]`           |

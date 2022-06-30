@@ -13,7 +13,7 @@ sidebarType : 1
 
 # Prebid JS Module: Server-to-Server Testing
 
-This module allows publishers the chance to ramp-up on [Prebid Server](/dev-docs/get-started-with-prebid-server.html),
+This module allows publishers the chance to ramp-up on [Prebid Server](/prebid-server/overview/prebid-server-overview.html),
 testing the impact of server-side header bidding before fully switching.
 Without this module, the s2sConfig settings direct all requests to
 Prebid Server. By including this module in the PrebidJS build, there are
@@ -246,6 +246,6 @@ The test KVP hb_source_rubicon on this page will always sent with the value "cli
 
 ## Further Reading
 
-+ [Prebid Server](/dev-docs/get-started-with-prebid-server.html)
++ [Prebid Server](/prebid-server/overview/prebid-server-overview.html)
 
 

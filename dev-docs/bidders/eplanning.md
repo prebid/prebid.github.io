@@ -2,10 +2,13 @@
 layout: bidder
 title: E-Planning
 description: Prebid E-Planning Bidder Adapter
-hide: true
+pbjs: true
+pbs: true
 biddercode: eplanning
 usp_supported: true
 gdpr_supported: true
+pbs_app_supported: true
+gvl_id: 90
 ---
 
 
@@ -22,3 +25,5 @@ The E-Planning Header Bidding adaptor requires setup and approval from the E-Pla
 | `sv`  | optional | Indicates a bidder URL different than default | `'ads.us.e-planning.net'` | `string`  |
 | `isv` | optional | Indicates a CDN URL different than default    | `'us.img.e-planning.net'` | `string`  |
 | `t`   | optional | Indicates bidding for testing purposes        | `1`                       | `integer` |
+| `ml`  | optional | Uses placement names as ad unit names instead of sizes | `1`              | `integer` |
+| `sn`  | optional | Uses space name instead of sizes              | `adunitName`              | `string`  |

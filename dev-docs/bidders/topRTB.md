@@ -2,8 +2,10 @@
 layout: bidder
 title: TOPRTB
 description: Prebid topRTB Bidder Adapter
-hide: true
+pbjs: true
 biddercode: topRTB
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 

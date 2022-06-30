@@ -114,7 +114,6 @@ The following test parameters can be used to verify that Prebid Server is workin
 }]
 ```
 
-
 ### First Party Data
 
 publishers can use the `ortb2` configuration parameter to provide First Party Data. We accept all standard OpenRTB fields for both:
