@@ -1492,6 +1492,7 @@ The Prebid SDK version comes from:
 | req | ext.prebid.auctiontimestamp | timestamp for use in correlating PBJS and PBS events | long int | 123456789 | yes |
 | req | ext.prebid.options. echovideoattrs | causes PBS-core to [echo video attributes](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#echo-storedrequest-video-attributes) on seatbid[].bid[].ext.prebid.storedrequestattributes so the player has access to them | boolean | true | yes |
 | req | ext.prebid.multibid | allows bidders to respond with more than one bid | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid) | yes, but only their value |
+| req | ext.prebid.targeting | (PBS-Java) Global targeting values applied to AMP targeting output. | object | { "attr1": "val1" } | no |
 | req | user.ext.prebid.buyeruids | An alternate to [/cookie_sync](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), the request can supply bidder ID values | object | See [doc](#buyer-uid) | no |
 | req | ext.prebid. data.eidpermissions | Allows publishers to define which bidders are allowed to see which extended IDs. | object | See [doc](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#eid-permissions) | no |
 | req | ext.prebid. passthrough | Allows an application to pass a value through to the response. | object | See [doc](#request-passthrough) | no |
