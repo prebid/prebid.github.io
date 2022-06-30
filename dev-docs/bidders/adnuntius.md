@@ -7,6 +7,7 @@ pbs: true
 biddercode: adnuntius
 media_types: banner
 gdpr_supported: true
+fpd_supported: true
 gvl_id: 855
 ---
 
@@ -112,3 +113,12 @@ The following test parameters can be used to verify that Prebid Server is workin
     }
 }]
 ```
+
+### First Party Data
+
+publishers can use the `ortb2` configuration parameter to provide First Party Data. We accept all standard OpenRTB fields for both:
+
+- `ortb2.site`
+- `ortb2.user`
+
+These fields are optional and only needed for user identification and contextual targeting. How to use it can be read here: [Prebid ortb2](https://docs.prebid.org/features/firstPartyData.html). Currently we only support this for our prebid server bidder, but will add it to the client bidder in the future.
