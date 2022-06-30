@@ -1,6 +1,6 @@
 This repository contains the source files for the Prebid.js documentation site at [Prebid.org](https://prebid.org).
 
-Please see the sections below for more information.
+Please see the sections below for more information:
 
 + [Contributing](#contributing)
 + [License](#license)
@@ -53,9 +53,10 @@ Before submitting a pull request, you should run the site locally to make sure y
 
 To get started editing the site and seeing your changes, clone this repo and enter the following commands in your terminal:
 
-- `cd path/to/prebid.github.io`
-- `export JEKYLL_ENV=production`
-- `bundle exec jekyll serve`
+```bash
+$ JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental
+```
+
 
 You should see output that looks something like this:
 

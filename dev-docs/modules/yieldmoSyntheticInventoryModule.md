@@ -7,6 +7,7 @@ module_code : yieldmoSyntheticInventoryModule
 display_name : Synthetic Inventory Module
 enable_download : true
 sidebarType : 1
+vendor_specific: true
 ---
 
 # Yieldmo Synthetic Inventory Module

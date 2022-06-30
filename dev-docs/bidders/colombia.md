@@ -4,7 +4,8 @@ title: COLOMBIA
 description: Prebid COLOMBIA Bidder Adaptor
 pbjs: true
 biddercode: colombia
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 
