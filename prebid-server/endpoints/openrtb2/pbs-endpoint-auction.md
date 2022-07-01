@@ -874,7 +874,7 @@ an array of ortb2 seatbid objects. e.g.
 ```
 **Multiple Stored Bid Response IDs**
 
-In contrast to the feature above, using `storedbidresponse` (instead of stored**auction**response) lets real auctions take place while the actual bidder response is overridden in such a way that it still exercises adapter code.
+In contrast to the feature above, using `, sponse` (instead of stored**auction**response) lets real auctions take place while the actual bidder response is overridden in such a way that it still exercises adapter code.
 
 PBS removes imp.ext.prebid.bidder parameters for those 
 bidders specified in storedbidresponse but if there's a bidder present
@@ -904,8 +904,8 @@ For example, this request:
             "bidderB": { ... params ... }
           },
           "storedbidresponse": [
-            { "bidder": "BidderA", "id": "333333" },
-            { "bidder": "BidderB", "id": "444444" },
+            { "bidder": "BidderA", "id": "333333", "replaceimpid":true },
+            { "bidder": "BidderB", "id": "444444", "replaceimpid":true },
           ]
         }
       }
@@ -919,7 +919,7 @@ For example, this request:
             "bidderB": { ... params ... }
           },
           "storedbidresponse": [
-            { "bidder": "BidderA", "id": "5555555" }
+            { "bidder": "BidderA", "id": "5555555", "replaceimpid":true }
             // note: no storedbidrespose for bidderB
           ]
         }
@@ -954,10 +954,9 @@ Could result in this response:
 }
 ```
 
-Note that the storedresponse DB entries for this scenario are very different:
-they're whatever format the bid adapter's endpoint responds with. i.e. the host company will
-need to capture an actual bid response from the specific bidders and enter it
-into the DB table.
+Notes: 
+- the storedresponse DB entries for this scenario are very different: they need to be in whatever format the bid adapter's endpoint responds with. i.e. the host company will need to capture an actual bid response from the specific bidders and enter it into the DB table.
+- the `replaceimpid` parameter tells PBS to ignore the impid supplied in the DB and instead create/overwrite seatbid.bid.impid with the value that matches the incoming request. This simplifies debugging.
 
 See Prebid.org troubleshooting pages for how to utilize this feature within the context of the browser.
 
