@@ -56,7 +56,7 @@ Not required but recommended.
 
 **Default Value:**
 
-https://acdn.adnxs.com/prebid/not-for-prod/prebid.js
+https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js
 
 **Example:**
 
@@ -305,7 +305,7 @@ None
 
 **Example:**
 
-`options.prebidConfigOptions = { publisherDomain: "https://www.theverge.com"};`
+`options.prebidConfigOptions = { pageUrl: "https://www.theverge.com"};`
 
 <a name="dfpParameters"></a>
 ### dfpParameters

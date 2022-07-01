@@ -41,11 +41,10 @@ Save your line item and add a creative.
 
 ## Creative Setup
 
-On the new creative screen, select the **Third party** creative type.
-
-Ensure that the **Serve into a SafeFrame** box is checked.
-
-Enter the below code snippet in the **Code snippet** text area.
+1. On the new creative screen, select the **Third party** creative type.
+2. Choose the "Standard" Code Type radio button. The "AMP" option is for AMPHTML hosted by a 3rd party.
+3. Ensure that the **Serve into a SafeFrame** box is checked.
+4. Enter the below code snippet in the **Code snippet** text area.
 
 {% capture sendAllBidsAlert %}
 If you're using the `Send All Bids` scenario (where every bidder has a separate
