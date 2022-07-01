@@ -874,7 +874,7 @@ an array of ortb2 seatbid objects. e.g.
 ```
 **Multiple Stored Bid Response IDs**
 
-In contrast to the feature above, using `, sponse` (instead of stored**auction**response) lets real auctions take place while the actual bidder response is overridden in such a way that it still exercises adapter code.
+In contrast to the feature above, using `storedbidresponse` (instead of stored**auction**response) lets real auctions take place while the actual bidder response is overridden in such a way that it still exercises adapter code.
 
 PBS removes imp.ext.prebid.bidder parameters for those 
 bidders specified in storedbidresponse but if there's a bidder present
