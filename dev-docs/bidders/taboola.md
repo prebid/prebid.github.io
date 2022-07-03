@@ -29,11 +29,11 @@ The Taboola Adapter requires setup before beginning. Please contact us at prebid
 
 | Name           | Scope    | Description                                             | Example                    | Type         |
 |----------------|----------|---------------------------------------------------------|----------------------------|--------------|
-| `tagId`        | required | Tag ID / Placement Name <br>(as provided by Taboola)    | `'Below The Article'`      | `String`     |
-| `publisherId`  | required | Alphabetic Publisher ID <br>(as provided by Taboola)    | `'acme-publishing'`        | `String`     |
+| `tagId`        | required | Tag ID / Placement Name <br>                            | `'Below The Article'`      | `String`     |
+| `publisherId`  | required | Numeric Publisher ID <br>(as provided by Taboola)       | `'1234567'`                | `String`     |
 | `bcat`         | optional | List of blocked advertiser categories (IAB)             | `['IAB1-1']`               | `Array`      |
 | `badv`         | optional | Blocked Advertiser Domains                              | `'example.com'`            | `String Url` |
-| `bidfloor`     | optional | CPM bid floor                                           | `0.25`                     | `Integer`    |
+| `bidfloor`     | optional | CPM bid floor                                           | `0.25`                     | `Float`      |
 
 
 ### Example Ad Unit
