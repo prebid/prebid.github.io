@@ -1,7 +1,4 @@
-	
-# Overview
-
-```
+---
 Module Name: NewspassId Bidder Adapter
 Module Type: Bidder Adapter
 Maintainer: techsupport@newspassid.com
@@ -25,7 +22,7 @@ pbjs: true
 pbs: false
 prebid_member: false
 multiformat_supported: will-bid-on-any
-```
+---
 
 # Description
 
