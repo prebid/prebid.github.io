@@ -12,7 +12,7 @@ usp_supported: true
 coppa_supported: false
 schain_supported: true
 dchain_supported: false
-userId: criteo, id5Id, tdid, identityLink, liveIntentId, parrableId, pubCommonId, lotamePanoramaId, sharedId, fabrickId
+userIds: criteo, id5Id, tdid, identityLink, liveIntentId, parrableId, pubCommonId, lotamePanoramaId, sharedId, fabrickId
 media_types: banner
 safeframes_ok: true
 deals_supported: true
