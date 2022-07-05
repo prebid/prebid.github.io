@@ -10,6 +10,8 @@ schain_supported: true
 userIds: id5Id
 media_types: banner, video
 glv_id: 965
+pbs: false
+
 ---
 
 
@@ -23,3 +25,44 @@ glv_id: 965
 | `bidfloor`       | optional | Bidfloor applied to auction (default: 0)        | `0.8`                         | `float`  |
 | `bidfloorCurrency`       | optional | Bidfloor currency (default: `'USD'`) - Can be `'USD'` or `'EUR'`       | `'USD'`                         | `string`  |
 | `keywords`       | optional | Keywords used for targeting       | `{ 'interest': ['cars', 'sports']}`                         | `object`  |
+
+### Test Parameters
+
+```
+var adUnits = [
+   // Banner adUnit
+   {
+      code: 'banner-div',
+      mediaTypes: {
+        banner: {
+          sizes: [[300, 250], [300,600]]
+        }
+      },
+      bids: [{
+         bidder: 'nexx360',
+         params: {
+            account: '1067',
+            tagId: 'luvxjvgn'
+         }
+       }]
+   },
+   // Video adUnit
+   {
+        code: 'video1',
+        mediaTypes: {
+            video: {
+                playerSize: [640, 480],
+                context: 'instream'
+            }
+        },
+        bids: [{
+            bidder: 'nexx360',
+            params: {
+               account: '1067',
+               tagId: 'luvxjvgn'
+            }
+        }]
+    };
+
+];
+```
