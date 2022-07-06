@@ -27,7 +27,6 @@ Contact dc-team-1px@triplelift.com for information.
 
 1) Compile the 1plusX RTD Module along with your bid adapter and other modules into your Prebid build:  
 
-Currently only `appnexusBidAdapter` and `rubiconBidAdapter` are supported
 
 ```
 gulp build --modules="rtdModule,1plusXRtdProvider,appnexusBidAdapter,..."  
@@ -66,15 +65,5 @@ pbjs.setConfig({
 | waitForIt         | Boolean       | Should be `true` if there's an `auctionDelay` defined (optional) | `false`                                                  |
 | params            | Object        |                                                                  |                                                          |
 | params.customerId | String        | Your 1plusX customer id                                          |                                                          |
-| params.bidders    | Array<string> | List of bidders for which you would like data to be set          | To this date only `appnexus` and `rubicon` are supported |
+| params.bidders    | Array<string> | List of bidders for which you would like data to be set          |                                                          |
 | params.timeout    | Integer       | timeout (ms)                                                     | 1000ms                                                   |
-
-## Supported Bidders
-At the moment only Appnexus (`appnexus`) and Magnite (`rubicon`) are supported
-
-{: .table .table-bordered .table-striped }
-| Bidder  | ID (for `bidders` parameter) | Module name (for `gulp build`) |
-| ------- | ---------------------------- | ------------------------------ |
-| Xandr   | `appnexus`                   | `appnexusBidAdapter`           |
-| Magnite | `rubicon`                    | `rubiconBidAdapter`            |
-
