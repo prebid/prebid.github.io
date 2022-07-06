@@ -8,7 +8,6 @@ pbs: false
 media_types: banner
 gdpr_supported: false
 gvl_id: none
-usp_supported: false
 coppa_supported: true
 usp_supported: true
 safeframes_ok: false
