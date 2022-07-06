@@ -4,7 +4,7 @@ title: Talkads
 description: Talkads Prebid Bidder Adapter
 biddercode: talkads
 gdpr_supported: true
-gvl_id: 
+gvl_id: 1074
 usp_supported: false
 coppa_supported: false
 media_types: banner, native

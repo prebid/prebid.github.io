@@ -12,7 +12,6 @@ usp_supported: true
 floors_supported: true
 pbjs: true
 safeframes_ok: false
-fpd_supported: true
 ---
 
 ### Note:

@@ -1,13 +1,13 @@
 ---
 
 layout: page_v2
-title: Prebid Mobile Rendering Pure In-App Bidding
+title: Custom or No mediation
 description: Integration of Prebid SDK withou primaty Ad Server
 sidebarType: 2
 
 ---
 
-# Pure In-App Bidding Integration
+# Custom Integration
 
 ## Table of Contents
 
@@ -42,14 +42,15 @@ The Rendering API ad formats are accessible through the following API classes:
 
 ### Init Prebid Rendering Module
 
-To start running bid requests you have to provide to the SDK a Prebid Server **Account Id** for your organization:
+To start running bid requests you have to set the Prebid Server **Host** and **Account Id** and then initilize the SDK with application context. The best place for this is the `onCreate()` method of your Application class.
 
 ```
-PrebidRenderingSettings.setBidServerHost(HOST)
-PrebidRenderingSettings.setAccountId(YOUR_ACCOUNT_ID)
-```
+PrebidMobile.setBidServerHost(HOST)
+PrebidMobile.setAccountId(YOUR_ACCOUNT_ID)
 
-The best place to to pass the **Account ID** is the `onCreate()` method of your Application class.
+// Init SDK
+PrebidMobile.setApplicationContext(this)
+```
 
 > **NOTE:** The account ID is an identifier of the **Stored Request**.
 
@@ -74,7 +75,7 @@ bannerView?.loadAd()
 
 Initialize the `BannerAdView` with properties:
 
-- `configId` - an ID of Stored Impression on the Prebid server.
+- `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
 - `size` - the size of the ad unit which will be used in the bid request.
 
 #### Step 2: Load the Ad
@@ -109,31 +110,20 @@ interstitialAdUnit?.loadAd()
 interstitialAdUnit?.show()
 ```
 
-Displaying a **Video Interstitial Ad** is almost the same process as displaying an Interstitial Ad with two differences:
+The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
-- You need to customize the ad unit format.
-- There is no need to set up `minSizePercentage`.
-
-``` kotlin
-// 1. Create an Interstitial Ad Unit
-interstitialAdUnit = InterstitialAdUnit(requireContext(), configId, AdUnitFormat.VIDEO)
-interstitialAdUnit?.setInterstitialAdUnitListener(this)
-
-// 2. Load Ad
-interstitialAdUnit?.loadAd()
-
-// .....
-
-// 3. Show the ad
-interstitialAdUnit?.show()
 ```
-
+interstitialAdUnit = InterstitialAdUnit(
+                        requireContext(), 
+                        configId, 
+                        EnumSet.of(AdUnitFormat.DISPLAY, AdUnitFormat.VIDEO))
+```
 
 #### Step 1: Create an Ad Unit
 
 Initialize the `InterstitialAdUnit ` with properties:
 
-- `configId` - an ID of Stored Impression on the Prebid server
+- `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
 - `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
 
 You can also assign the listener for processing ad events.

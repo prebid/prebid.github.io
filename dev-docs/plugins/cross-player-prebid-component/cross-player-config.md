@@ -193,7 +193,7 @@ None
 
 **Example:**
 
-`options.prebidConfigOptions = { publisherDomain: "https://www.mydomain.com"};`
+`options.prebidConfigOptions = { pageUrl: "https://www.mydomain.com"};`
 
 <a name="dfpParameters"></a>
 ## dfpParameters

@@ -11,7 +11,7 @@ about:
 - For engineering setup instructions, see <a href="/dev-docs/show-multi-format-ads.html">Show Multi-Format Ads</a>
 - For ad ops setup instructions, see <a href="/adops/setting-up-prebid-multi-format-in-dfp.html">Setting up Prebid Multi-Format in Google Ad Manager</a>
 
-jsfiddle_link: jsfiddle.net/Prebid_Examples/yxsgcj71/2/embedded/html,result
+jsfiddle_link: jsfiddle.net/Prebid_Examples/yxsgcj71/embedded/html,result
 
 code_height: 3050
 

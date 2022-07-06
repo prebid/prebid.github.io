@@ -6,7 +6,7 @@ Please give a short description and check the matching checkboxes to help us rev
 - [ ] new bid adapter
 - [ ] update bid adapter
 - [ ] new feature
-- [ ] enhancement (wording, typos)
+- [ ] text edit only (wording, typos)
 - [ ] bugfix (code examples)
 - [ ] new examples
 

@@ -9,13 +9,11 @@ gdpr_supported: true
 userIds: criteo, id5Id, tdid, identityLink, liveIntentId, parrableId, pubCommonId, lotamePanoramaId, sharedId, fabrickId
 gvl_id: 524
 deals_supported: true
-fpd_supported: true
 schain_supported: true
 coppa_supported: true
 usp_supported: true
 floors_supported: true
 prebid_member: true
-
 
 ---
 
