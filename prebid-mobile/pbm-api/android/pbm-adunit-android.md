@@ -23,12 +23,12 @@ The `AdUnit` object is an abstract object that cannot be instantiated. Use the [
 
 **Parameters**
 
-- `configId`: String containing the Prebid Server configuration ID.
+- `configId`: String containing the Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 - `adType`: `BANNER` or `INTERSITIAL`. This value will be set by the object based on which type of ad unit object you create.
 
 **Properties**
 
-- `configId`: Prebid Server configuration ID.
+- `configId`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 - `adType`: `BANNER` or `INTERSITIAL`.
 - `periodMillis`: Integer defining the refresh time in milliseconds. Default = 0, meaning no auto refresh.
 - `keywords`: ArrayList containing keys and values.

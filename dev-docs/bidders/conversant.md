@@ -9,6 +9,7 @@ media_types: video
 gdpr_supported: true
 userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId, publinkId
 prebid_member: true
+schain_supported: true
 gvl_id: 24
 ---
 

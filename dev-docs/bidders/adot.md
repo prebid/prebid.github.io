@@ -74,7 +74,7 @@ pbjs.setBidderConfig({
 |---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|------------------|
 | `placementId`       | optional | An ID which identifies this placement of the impression.                                   | `'adot_placement_224521'`                                            | `string`         |
 | `parallax`          | optional (only for prebid-server) | Specify if the wanted advertising's creative is a parallax.                                                                        | `true/false` | `boolean`         |
-| `placementPath`          | optional | Specific to each integration. Do not use until asked by someone from adot.                                                                      | `/hubvisor` | `string`         |
+| `publisherPath`          | optional | Specific to each integration. Do not use until asked by someone from adot.                                                                      | `/hubvisor` | `string`         |
 
 #### Testing Bid Request
 

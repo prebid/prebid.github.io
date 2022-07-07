@@ -83,6 +83,7 @@ Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with th
 adapters:
   yourBidderCode:
     endpoint: http://possible.endpoint
+    endpoint-compression: gzip (or none)
     meta-info:
       maintainer-email: maintainer@email.com
       app-media-types:
@@ -112,6 +113,7 @@ Modify this template for your bid adapter:
 - Change the `vendor-id` value to id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/). Leave this as `0` if you are not registered with IAB Europe.
 - Choose the `supported-vendors` constants: These constants should be unique. The list of existing vendor constants can be found [here](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/bidder/ViewabilityVendors.java).
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
+- If your auction endpoint supports gzip compression, setting 'endpoint-compression' to 'gzip' will save on network fees.
 - Change the `cookie-family-name` to the name which will be used for storing your user sync id within the federated cookie. Please keep this the same as your bidder name.
   If you implemented a user syncer, you'll need to provide a default endpoint.
   The user sync endpoint is composed of two main parts, the url of your user syncer and a redirect back(redirect-url) to Prebid Server. The url of your user syncer is responsible for reading the user id from the client's cookie and redirecting to Prebid Server with a user id macro resolved.
@@ -724,6 +726,98 @@ public {bidder}Bidder(String endpointUrl,  CurrencyConversionService currencyCon
 </details>
 <p></p>
 
+### Price Floors
+
+Prebid server manages the OpenRTB floors values (imp.bidfloor and imp.bidfloorcur) at the core level using the [Price Floors feature](/features/pbs-floors.html). Minimally, bid adapters are expected to read these values and pass them to the endpoint.
+
+However, as described in the feature documentation, some adapters may benefit from access to more granular values. The primary use case is for multi-format as [detailed in the document](/prebid-server/features/pbs-floors.html#bid-adapter-floor-interface). To implement this, you may use the overloaded `getFloor()` function which can use more specific values for certain fields.
+
+Here are the instructions:
+
+1) Inject `PriceFloorResolver` to your {bidder}Configuration class and pass it to your bidder constructor.
+
+```java
+BidderDeps {bidder}BidderDeps(BidderConfigurationProperties {bidder}ConfigurationProperties,
+                              @NotBlank @Value("${external-url}") String externalUrl,
+                              PriceFloorResolver floorResolver,
+                              JacksonMapper mapper) {
+
+...
+
+.bidderCreator(() -> new {bidder}Bidder(configProperties.getEndpoint(), floorResolver, mapper))
+```
+
+2) Create an additional class variable `private final PriceFloorResolver floorResolver` and update constructor in your {bidder}Bidder class to set this variable.
+
+```java
+private final PriceFloorResolver floorResolver;
+private final String endpointUrl;
+private final JacksonMapper mapper;
+
+public {bidder}Bidder(String endpointUrl, PriceFloorResolver floorResolver, JacksonMapper mapper) {
+        this.endpointUrl = HttpUtil.validateUrl(Objects.requireNonNull(endpointUrl));
+        this.floorResolver = Objects.requireNonNull(floorResolver);
+        this.mapper = Objects.requireNonNull(mapper);
+    }
+```
+
+3) Use `floorResolver.resolve(BidRequest bidRequest,
+   PriceFloorRules floorRules,
+   Imp imp,
+   ImpMediaType mediaType,
+   Format format,
+   List<String> warnings)` for resolving specific floor values in your {bidder}Bidder class.
+
+<details markdown="1">
+  <summary>Example: Updating bidFloor values.</summary>
+
+```java
+  private Imp makeImp(Imp imp, BidRequest bidRequest) {
+        final PriceFloorResult priceFloorResult = resolvePriceFloors(
+                bidRequest, 
+                imp,                        // com.iab.openrtb.request.Imp
+                specificMediatype,          // org.prebid.server.proto.openrtb.ext.request.ImpMediaType
+                specificFormat,             // com.iab.openrtb.request.Format (size)
+                priceFloorsWarnings);
+                
+        return imp.toBuilder()
+                .bidfloor(ObjectUtil.getIfNotNull(priceFloorResult, PriceFloorResult::getFloorValue))
+                .bidfloorcur(ObjectUtil.getIfNotNull(priceFloorResult, PriceFloorResult::getCurrency))
+                .build();
+    }
+    
+  private PriceFloorResult resolvePriceFloors(BidRequest bidRequest,
+                                                Imp imp,
+                                                ImpMediaType mediaType,
+                                                Format format,
+                                                List<String> warnings) {
+
+        return floorResolver.resolve(
+                bidRequest,
+                extractFloorRules(bidRequest),
+                imp,
+                mediaType,
+                format,
+                warnings);
+    }
+```
+</details>
+
+4) Let the Price Floors feature know about the floors you're using. To do that, enrich BidderBid with `priceFloorInfo`
+
+```java
+private static BidderBid createBidderBid(Bid bid, Imp imp, BidType bidType, String currency) {
+
+        return BidderBid.builder()
+                .bid(bid)
+                .type(bidType)
+                .bidCurrency(currency)
+                .priceFloorInfo(imp != null ? PriceFloorInfo.of(imp.getBidfloor(), imp.getBidfloorcur()) : null)
+                .build();
+    }
+```
+<p></p>
+
 ## Test Your Adapter
 
 This chapter will guide you through the creation of automated unit and integration tests to cover your bid adapter code. We use GitHub Action Workflows to ensure the code you submit passes validation. You can run the same validation locally with this command:
@@ -1119,8 +1213,8 @@ The next time you use `/openrtb2/auction`, the OpenRTB request sent to your Bidd
 
 Human readable documentation for bid adapters is required in the separate [prebid.github.io](https://github.com/prebid/prebid.github.io) repository. We will not merge your bid adapter until you've at least opened a documentation PR and comment with a link to it.
 
-1. If you already have a Prebid.js bid adapter, update your existing bidder file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/modules to add the `pbs: true` variable in the header section. If your Prebid Server bidding parameters are different from your Prebid.js parameters, please include the differences in this document for publishers to be aware.
-1. If you don't have a Prebid.js bid adapter, create a new file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/modules using this template:
+1. If you already have a Prebid.js bid adapter, update your existing bidder file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders to add the `pbs: true` variable in the header section. If your Prebid Server bidding parameters are different from your Prebid.js parameters, please include the differences in this document for publishers to be aware.
+1. If you don't have a Prebid.js bid adapter, create a new file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders using this template:
 
 ```
 ---
@@ -1144,6 +1238,7 @@ pbjs: true/false
 pbs: true/false
 pbs_app_supported: true/false
 prebid_member: true/false
+multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ---
 
 ### Note:
