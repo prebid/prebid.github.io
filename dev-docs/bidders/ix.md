@@ -332,6 +332,7 @@ pbjs.addAdUnits({
 
 #### User Sync
 Add the following code to enable user sync. IX strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the IX bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
+**Note**: While we recommend iframe-based user syncing, we also support image-based user syncing. If both are enabled, we will default to using iframe, because it allows us more flexibility to optimize the frequency, timing, and coverage for syncing.
 
 ```
 pbjs.setConfig({
