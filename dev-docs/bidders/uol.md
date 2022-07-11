@@ -2,10 +2,12 @@
 layout: bidder
 title: UOL
 description: Prebid UOL Bidder Adaptor
-
+pbjs: true
 biddercode: uol
 gdpr_supported: false
 media_types: banner
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 

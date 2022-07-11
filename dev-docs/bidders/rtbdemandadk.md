@@ -2,7 +2,7 @@
 layout: bidder
 title: Rtbdemandadk
 description: Prebid RtbdemandAdk Bidder Adaptor
-
+pbjs: true
 biddercode: rtbdemandadk
 ---
 

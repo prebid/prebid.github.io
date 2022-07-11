@@ -2,8 +2,10 @@
 layout: bidder
 title: Reload
 description: Reload Prebid Adaptor
-
+pbjs: true
 biddercode: reload
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 

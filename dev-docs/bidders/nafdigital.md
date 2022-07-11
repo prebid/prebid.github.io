@@ -4,8 +4,10 @@ title: NAF Digital
 description: Prebid NAF Digital Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
-
+pbjs: true
 biddercode: nafdigital
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Note:

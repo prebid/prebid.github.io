@@ -2,10 +2,12 @@
 layout: bidder
 title: Stv
 description: Prebid Stv Bidder Adaptor
-
+pbjs: true
 biddercode: stv
 media_types: banner,video
 gdpr_supported: false
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 

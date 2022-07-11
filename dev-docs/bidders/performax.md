@@ -2,9 +2,11 @@
 layout: bidder
 title: Performax
 description: Prebid Performax Bidder Adaptor
-
+pbjs: true
 biddercode: performax
 media_types: banner
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Note:

@@ -4,6 +4,7 @@ title: TrueReach
 description: Prebid TrueReach Bidder Adapter
 biddercode: truereach
 media_types: banner
+pbjs: true
 ---
 
 ### Note:

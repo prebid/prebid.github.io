@@ -151,6 +151,77 @@ Targeting.shared.itunesID
 Targeting.shared.itunesID = itunesID
 ```
 
+### Open Measurement SDK (OMSDK)
+
+OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+
+There three components to signaling support for OMSDK:
+* Partner Name
+* Partner Version
+* API code
+
+**Partner Name**
+
+This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. See below for configuration and examples
+
+#### omidPartnerName
+Open Measurement partner name. 
+
+```
+Targeting.shared.omidPartnerName
+```
+
+Examples:
+
+Swift
+```swift
+Targeting.shared.omidPartnerName = "Google"
+```
+
+Objective C
+```objective_c
+Targeting.shared.omidPartnerName = @"Google";
+```
+
+
+**Partner Version**
+
+The OMSDK version number the partner integrated with. See below for configuration and examples.
+
+
+#### omidPartnerVersion
+Partner's OMSDK version number implementation
+```
+Targeting.shared.omidPartnerVersion
+```
+
+Examples:
+
+Swift
+```swift
+Targeting.shared.omidPartnerVersion = "1.0"
+```
+
+Objective C
+```objective_c
+Targeting.shared.omidPartnerVersion = @"1.0";
+```
+
+**API Code**
+
+Per OpenRTB 2.5, support for OMSDK is signaled using the imp.[media type].api field represented in Prebid SDK withing each ad format type under the parameters object. Refer to the documentation of the respective ad unit class.
+
+Example:
+```
+let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
+let parameters = BannerAdUnit.Parameters()
+parameters.api = [Signals.Api(7)]
+adUnit.setParameters(parameters);
+```
+
+Note that the OMID value for imp.banner/video/native.api field should be 7, as defined by the IAB in the [OMSDK v1.2 document](https://s3-us-west-2.amazonaws.com/omsdk-files/docs/Open+Measurement+SDK+Onboarding_version_1.2.pdf).
+
+
 ## Inventory (Context) Keywords
 
 Context Keywords are a list of keywords about the app as referenced in OpenRTB 2.5 as app.keywords. Any keyword passed in the context keyword field may be passed to the buyer for targeting.
@@ -207,7 +278,7 @@ Data is broken up into two different data types:
     * Global scope
     * Ad Unit grain
 
- The below first party user and inventory context will apply to all ad units. For ad unit level first party data, refer to [First Partay Data section in the Ad Unit](pbm-adunit-ios#first-party-data) page.
+ The below first party user and inventory context will apply to all ad units. For ad unit level first party data, refer to [First Party Data section in the Ad Unit](pbm-adunit-ios#first-party-data) page.
 
 ### First Party User Data
 
@@ -421,6 +492,149 @@ Objective C
 ```
 Targeting.shared.subjectToCOPPA = true;
 ```
+
+## User Identity
+
+Prebid SDK supports two interfaces to pass / maintain User IDs and ID vendor details:
+* Real-time in Prebid SDK's API field externalUserIdArray
+* Store User Id(s) in local storage
+
+Any identity vendor's details in local storage will be sent over to Prebid Server as is, unadulterated. If data is sent in the API and entered into local storage, the API detail will prevail.
+
+### Prebid SDK API Access
+
+Prebid SDK supports passing an array of UserID(s) at auction time in the field externalUserIdArray, that is globably scopped. It is sufficient enough to set the externalUserIdArray object once per user session, as these values would be used in all consecutive ad auctions in the same session.
+
+
+```swift
+public var externalUserIdArray = [ExternalUserId]()
+```
+
+
+**Exmaples**
+
+SWIFT
+```swift
+// User Id from External Third Party Sources
+var externalUserIdArray = [ExternalUserId]()
+externalUserIdArray.append(ExternalUserId(source: "adserver.org", identifier: "111111111111", ext: ["rtiPartner" : "TDID"]))
+externalUserIdArray.append(ExternalUserId(source: "netid.de", identifier: "999888777")) 
+externalUserIdArray.append(ExternalUserId(source: "criteo.com", identifier: "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N")) 
+externalUserIdArray.append(ExternalUserId(source: "liveramp.com", identifier: "AjfowMv4ZHZQJFM8TpiUnYEyA81Vdgg"))
+externalUserIdArray.append(ExternalUserId(source: "sharedid.org", identifier: "111111111111", atype: 1, ext: ["third" : "01ERJWE5FS4RAZKG6SKQ3ZYSKV"]))
+Prebid.shared.externalUserIdArray = externalUserIdArray
+```
+
+
+Objective-C
+```objective_c
+// User Id from External Third Party Sources
+NSMutableArray<ExternalUserId *> *externalUserIdArray = [[NSMutableArray<ExternalUserId *> alloc] init];
+[externalUserIdArray addObject:[[ExternalUserId alloc]initWithSource:@"adserver.org" identifier:@"111111111111" atype:nil ext:@{@"rtiPartner" : @"TDID"}]];
+[externalUserIdArray addObject:[[ExternalUserId alloc]initWithSource:@"netid.de" identifier:@"999888777" atype: nil ext:nil]];
+[externalUserIdArray addObject:[[ExternalUserId alloc]initWithSource:@"criteo.com" identifier:@" _fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N" atype:nil ext:nil]];
+[externalUserIdArray addObject:[[ExternalUserId alloc]initWithSource:@"liveramp.com" identifier:@" AjfowMv4ZHZQJFM8TpiUnYEyA81Vdgg" atype:nil ext:nil]];
+[externalUserIdArray addObject:[[ExternalUserId alloc]initWithSource:@"sharedid.org" identifier:@"111111111111" atype:[NSNumber numberWithInt:1] ext:@{@"third" : @"01ERJWE5FS4RAZKG6SKQ3ZYSKV"}]];
+Prebid.shared.externalUserIdArray = externalUserIdArray;
+```
+
+### Local Storage
+
+Prebid SDK provides a local storage interface to set, retrieve or update an array of user IDs with associated identity vendor details. Prebid SDK will retrieve and pass User IDs and ID vendor details to PBS if values are present in local storage. The main difference between the Prebid API interface and the local storage interface is the persistence of storage of data. Local Storage data will persist across user sessions whereas the Prebid API interface (externalUserIdArray) persists only for the user session. If a vendor's details are passed both in local storage and the Prebid API at the same time, the Prebid  API data (externalUserIdArray) will prevail.
+
+Prebid SDK Provides five functions to handle User ID details:
+* storeExternalUserId
+* fetchStoredExternalUserIds
+* fetchStoredExternalUserId
+* removeStoredExternalUserId
+* removeStoredExternalUserIds
+
+
+```swift
+/**
+* This method allows to save External User Id in the User Defaults
+*/
+public func storeExternalUserId(_ externalUserId: ExternalUserId) {
+    if let index = externalUserIds.firstIndex(where: {
+        $0.source == externalUserId.source
+    })
+
+    {
+        externalUserIds[index] = externalUserId
+    }
+
+    else{
+        externalUserIds.append(externalUserId)
+    }
+
+    StorageUtils.setExternalUserIds(value: externalUserIds)
+}
+/**
+* This method allows to get All External User Ids from User Defaults
+*/
+public func fetchStoredExternalUserIds()->[ExternalUserId]? {
+    return StorageUtils.getExternalUserIds()
+}
+/**
+* This method allows to get External User Id from User Defaults by passing respective 'source' string as
+param */
+public func fetchStoredExternalUserId(_ source : String)->ExternalUserId? {
+    guard let array = StorageUtils.getExternalUserIds(), let externalUserId = array.first(where: {
+        $0.source
+        == source
+    })
+
+    else{
+        return nil
+    }
+
+    return externalUserId
+}
+/**
+* This method allows to remove specific External User Id from User Defaults by passing respective 'source'
+string as param
+*/
+public func removeStoredExternalUserId(_ source : String) {
+    if let index = externalUserIds.firstIndex(where: {
+        $0.source == source
+    })
+
+    {
+        externalUserIds.remove(at: index)
+        StorageUtils.setExternalUserIds(value: externalUserIds)
+    }
+
+}
+/**
+* This method allows to remove all the External User Ids from User Defaults
+*/
+public func removeStoredExternalUserIds() {
+    if var arrayExternalUserIds = StorageUtils.getExternalUserIds(){
+        arrayExternalUserIds.removeAll() StorageUtils.setExternalUserIds(value: arrayExternalUserIds)
+    }
+
+}
+```
+
+**Examples**
+
+```swift
+//Set External User ID
+Targeting.shared.storeExternalUserId(ExternalUserId(source: "sharedid.org", identifier: "111111111111", atype: 1, ext: ["third" : "01ERJWE5FS4RAZKG6SKQ3ZYSKV"]))
+
+//Get External User ID
+let externalUserIdSharedId = Targeting.shared.fetchStoredExternalUserId("sharedid.org")
+
+//Get All External User IDs
+let externalUserIdsArray = Targeting.shared.fetchStoredExternalUserIds()
+
+//Remove External UserID
+Targeting.shared.removeStoredExternalUserId("sharedid.org")
+
+//Remove All External UserID
+Targeting.shared.removeStoredExternalUserIds()
+```
+
 
 ## Further Reading
 

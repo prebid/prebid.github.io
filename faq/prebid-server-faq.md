@@ -17,10 +17,10 @@ This page has answers to some frequently asked questions about Prebid Server. If
 
 Nope. The only approval process is a code review. There are separate instructions for:
 
-- [Prebid Server - Go](https://github.com/prebid/prebid-server/blob/master/docs/developers/add-new-bidder.md)
-- [Prebid Server - Java](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/developers/add-new-bidder.md)
+- [Prebid Server - Go](/prebid-server/developers/add-new-bidder-go.html)
+- [Prebid Server - Java](/prebid-server/developers/add-new-bidder-java.html)
 
-As for [membership](/partners/partners.html) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
+As for [membership](https://prebid.org/membership/) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
 but it's not necessary for contributing code as a community member.
 
 ## How can I debug Prebid Server requests?
@@ -35,10 +35,10 @@ The original version of Prebid Server was the Go-Lang version. Rubicon Project
 ported it to Java because they had more Java talent than Go.
 
 + [Prebid Server - Go](https://github.com/prebid/prebid-server)
-+ [Prebid Server - Java](https://github.com/rubicon-project/prebid-server-java)
++ [Prebid Server - Java](https://github.com/prebid/prebid-server-java)
 
 Both versions are live in production, and they are kept identical in external APIs
-and reasonably close in functionality. See [https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/differenceBetweenPBSGo-and-Java.md) for the list of differences.
+and reasonably close in functionality. See the [Prebid Server feature list](/prebid-server/features/pbs-feature-idx.html) for the list of differences.
 
 For demand partners, we recommend building new bid adapters in Go - the team will port it to Java for you within a couple of months.
 
@@ -70,108 +70,149 @@ pbjs.setConfig({
 ```
 ## How do user ID cookies and ID syncing work in Prebid Server?
 
-There are 3 answers here. The easy answer is for requests coming into Prebid Server from the Prebid SDK - there's no concept of cookies there, so no syncing takes place in that scenario. ID in mobile is based on IDFA.
+For Prebid SDK there's no concept of cookies, so no syncing takes place in that scenario. ID in mobile is based on IDFA.
 
-For other scenarios, Prebid Server sets up and manages a multi-vendor ID match table in the `uids` cookie in the host company's 
-domain. i.e. adnxs.com, rubiconproject.com, or whichever Prebid Server vendor you're utilizing. When the user has a `uids` cookie, 
-Prebid Server parses it and passes the vendor-specific IDs to the relevant server-side bid adapters.
+For Prebid.js and AMP, see [Prebid Server User ID sync](/prebid-server/developers/pbs-cookie-sync.html)
 
-Syncing in the AMP scenario uses the [load-cookie.html](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) file that's part of 
-the Prebid Universal Creative package. When placed into an AMP-iframe, this file will call /cookie-sync and initiate a sync that 
-creates or updates the `uids` cookie.
+## How does Prebid Server support privacy signals?
 
-The most common source of requests for Prebid Server is from Prebid.js in a scenario where the user doesn't have any cookies for the Prebid Server domain.
-1. The user loads a page with Prebid.js that's going to call Prebid Server -- i.e. the pub has set up s2sConfig.
-2. Immediately after confirming that s2sConfig is setup, Prebid.js calls Prebid Server's /cookie-sync endpoint to initiate syncing
-3. Prebid Server determines there is no `uids` cookie and responds to the browser with a list of pixel syncs for bidders that need to be synced.
-4. Prebid.js places all of the pixels on the page and initiates the auction.
-5. Because the syncs haven't completed, the auction call to Prebid Server will not contain the uids cookie.
-6. The first auction occurs without IDs
-7. At some point later, the pixels come back to Prebid Server through a /setuid redirect, setting (or updating) the uids cookie.
-8. The second page view will have the IDs available.
+See the [Prebid Server Privacy Feature Page](/prebid-server/features/pbs-privacy.html)
 
+## Do you have any best practices and/or tips to increase the user-match rate?
 
+For Prebid.js-initated server requests, we've found that cookie match rates are about what can be expected given the constraints:
 
-{: .alert.alert-info :}
-Note: the company that's hosting Prebid Server can configure it to read and utilize their exchange's 
-native cookie. i.e. if you're using Rubicon Project's Prebid Server, it can read their 'khaos' cookie, and if you're using 
-AppNexus' Prebid Server, it can read their 'uuid2' cookie. In other words, if the host company is an exchange and the user 
-has the exchange cookie, the host company will have an ID one page-view sooner than the other bidders. This gives a slight edge to
-the hosting company in some scenarios, but it's technically unavoidable and better for both buyers and sellers to have one ID available rather than zero.
+- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) process is initiated by Prebid.js the moment the [s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) is parsed.
+- A limited number of bidders will be synced at once. PBS-Go will sync all the bidders listed in the `bidders` array. PBS-Java will sync all of them and possibly additional bidders. Publishers can change the number of syncs by specifying `userSyncLimit` on the s2sConfig.
+- Privacy settings (e.g. GDPR) can affect sync rate. e.g. If a lot of your traffic is in the EEA, it's going to be harder to set cookies.
 
-## How does Prebid Server support privay signals?
+[AMP](/prebid-server/use-cases/pbs-amp.html) is a different story. There are several things you should check:
 
-### Mobile 'Limit Ad Tracking' flag
+- First, the page has to include the [usersync amp-iframe](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync). This amp-iframe loads `load-cookie.html` or `load-cookie-with-consent.html`.
+- Then AMP has to run this iframe. There are limitations as to where this amp-iframe can be on the page and possible how many amp-iframes there are on the page.
+- The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) call is initiated from `load-cookie.html`, but there are many adapters on the server side, and a limited number of them will be synced at once. Consider setting `max_sync_count` higher to get all bidders synced faster,
+- In a GDPR context, AMP doesn't supply the `gdprApplies` field. Prebid Server will determine for itself whether it can sync cookies, but it will not tell bidders whether the request is in GDPR-scope, so each bidder will have to determine scope for itself.
 
-If PBS receives 'device.lmt' flag in the OpenRTB request, it does the following anonymization:
+## How does the Notice URL work for Prebid Server?
 
-- Mask take off the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
-- Removes user.id and user.buyeruid
-- Removes the request.device.ifa attribute
-- Rounds the request.device.geo. {lat,lon} to two decimal places
+**Banner**
 
-### GDPR
+If a bidder adapter supplies 'nurl' in the bidResponse object, there are two paths:
 
-Prebid Server host companies and publishers have the ability to control the enforcement
-activities that take place.
+1) If it's cached in Prebid Cache (e.g. AMP and App), then the 'nurl' is cached along with the 'adm' and utilized by the Prebid Universal Creative.
+2) If it's not cached, the Prebid.js PrebidServerBidAdapter will append the 'nurl' to the bottom of the creative in a new div.
 
-The enforcement strategy changed significantly between TCF 1.1 and TCF 2.0. [TCF2](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) is a 
-more nuanced and stricter policy.
+**Video**
 
-#### TCF 1.1
+If a bidder adapter supplies 'nurl' in the bidResponse object instead of 'adm',
+this URL will be treated as the location of the VAST XML.
 
-If Prebid Server determines that the user is in GDPR scope and doesn't consent
-to *all* of the vendor's 'purposes' as declared in the Global Vendor List, it 'anonymizes'
-the request to the adapters:
+## How does ad server targeting work in Prebid Server?
 
-- Mask take off the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
-- Removes user.id and user.buyeruid
-- Removes the request.device.ifa attribute
-- Rounds the request.device.geo. {lat,lon} to two decimal places
+For OpenRTB responses, Prebid Server is always in "send all bids" mode -- it will return the top bid on each requested imp from each bidder.
 
-Full details are available [here](https://github.com/rubicon-project/prebid-server-java/blob/master/docs/developers/PrebidServerJava_GDPR_Requirements.pdf).
+It will return ad server targeting in seatbid.bid.ext.prebid.targeting depending on the input scenario:
 
-#### TCF 2.0
+- if request.ext.prebid.includewinner:true and this bid was declared the "winner" by Prebid Server, then seatbid.bid.ext.prebid.targeting will contain hb_pb, hb_size, and hb_bidder. If the bid was cached, there will also be hb_uuid and/or hb_cache_id
+- if request.ext.prebid.includebidderkeys:true, seatbid.bid.ext.prebid.targeting will contain hb_pb_BIDDER, hb_size_BIDDER, and hb_bidder_BIDDER. If the bid was cached, there will also be hb_uuid_BIDDER and/or hb_cache_id_BIDDER.
 
-If Prebid server determines the user is in GDPR scope, then consent is independently tested
-for each 'Purpose' with different consequences for each:
+The AMP endpoint is somewhat different because it doesn't receive the openrtb - just the targeting. PBS basically resolves the OpenRTB, and then merges all the seatbid.bid.ext.prebid.targeting sections.
 
-{: .table .table-bordered .table-striped }
-| TCF Purpose | Consequence of Not Obtaining Consent |
-| ----------- | ------------------------------------ |
-| 1 - Device Access | Prevents one or more usersync activities for one or more vendors. |
-| 2 - Basic Ads | May result in skipping one or more bid adapters in the auction. |
-| 4 - Personalized Ads | May result in removing the userIds before calling one or more bid adapters. |
-| 7 - Measure Ad Performance | May result in skipping one or more analytics adapters. |
-| Special Feature 1 - Use precise geolocation data | May result in rounding lat/long values and IP address before sending to server-side adapters. |
+## How does Prebid Server determine the winner of a given impression?
 
-{: .alert.alert-danger :}
-Note: Support for TCF purposes other than Device Access is still under development and is
-expected to be released in May 2020.
+Prebid Server doesn't decide the overall winner... that's the job of the
+ad server. However, there are two decisions it does make that influence
+which bids are submitted to the ad server.
 
-More details are available [here](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#).
+**Decision 1**: best bid from each bidder on each impression
 
-### COPPA
+Prebid Server returns one bid from each bidder for each impression object. If there
+are multiple bids from a given bidder for a given imp[], here how it chooses:
 
-The [Children's Online Privacy Protection Act (COPPA)](https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule) is a law in the US which imposes certain requirements on operators of websites or online services directed to children under 13 years of age, and on operators of other websites or online services that have actual knowledge that they are collecting personal information online from a child under 13 years of age.
-If `regs.coppa` is set to '1' on the OpenRTB request, the following anonymization actions take place before going to the adapters:
+- highest ranked Programmatic Guaranteed bid (PBS-Java only)
+- highest CPM deal (only when the ext.targeting.preferdeals is specified)
+- highest CPM
+- random tiebreaker
 
-- Removes all ID fields: device.ifa, device.macsha1, device.macmd5, device.dpidsha1, device.dpidmd5, device.didsha1, device.didmd5
-- Truncate ip field - remove lowest 8 bits.
-- Truncate ipv6 field - remove lowest 32 bits.
-- Remove geo.lat, geo.lon. geo.metro, geo.city, and geo.zip
-- Remove user.id, user.buyeruid, user.yob, and user.gender
+Note: if the request allows [multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only), then several bid responses from the same bidder may
+be returned to the client.
 
-### CCPA / US-Privacy
+**Decision 2**: which bidder for each imp[] object gets the hb_pb, hb_size, and hb_bidder targeting values
 
-The [California Consumer Privacy Act (CCPA)](https://oag.ca.gov/privacy/ccpa) is a law in the US. which covers consumer rights relating to the access to, deletion of, and sharing of personal information that is collected by businesses.
-The IAB has generalized
-this state-specific rule into a [US Privacy](https://iabtechlab.com/standards/ccpa/) compliance framework.
-If `regs.ext.us_privacy` is parsed to find that the user has opted-out of a "sale",
-the following anonymization steps are taken:
+This is only done when ext.prebid.targeting is specified.
+This is most important for AMP, but other clients (e.g. app) may rely on Prebid Server
+choosing the "winner" header bid. That decision is made with the same process as the
+first decision:
 
-- Mask the last byte of the IPv4 address and the last 2 bytes of IPv6 addresses
-- Removes user.id and user.buyeruid
-- Removes the request.device.ifa attribute
-- Rounds the request.device.geo. {lat,lon} to two decimal places
+- highest ranked Programmatic Guaranteed bid (PBS-Java only)
+- highest CPM deal (only when the ext.targeting.preferdeals is specified)
+- highest CPM
+- random tiebreaker
 
+## Can I host Prebid Server for myself or others?
+
+Yes. See the [PBS Hosting](/prebid-server/hosting/pbs-hosting.html) page to get started.
+
+You don't need to be a [Prebid.org member](https://prebid.org/membership/), but joining would help in case you need extra
+support with any technical hurdles.
+
+## I'm hosting Prebid Server - how can I get in the loop?
+
+The best way would be to [join Prebid.org](https://prebid.org/membership/) and
+participate in the [Prebid Server PMC](https://prebid.org/project-management-committees/).
+
+Another way is to [register for our host company mailing list](/prebid-server/hosting/pbs-hosting.html#optional-registration).
+
+## Why doesn't Prebid Server resolve OpenRTB macros?
+
+Prebid Server is not a full-fledged SSP. Any DSP bid adapters should keep this in mind when it comes to assuming SSP functionality like resolving OpenRTB macros. We debated building this functionality into PBS, but realized it would take precious milliseconds away from the overall header bidding auction to scan kilobytes of bidder creatives for the 9 different OpenRTB macros. Since so few bidders require this functionality, it makes sense to have those adapters do it themselves.
+
+If an adapter doesn't resolve its own macros, AUCTION_PRICE will eventually get resolved by the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative), but by then the bid price will be in the ad server currency and quantized by the price granularity. This will likely cause reporting discrepancies.
+
+## Does Prebid Server support region-specific endpoints for bidders?
+
+Yes. This is handled by the PBS host company in their datacenter config.
+Bidders that want to make use of region-specific endpoints will need to work
+with each PBS host company:
+
+- determine which regions the host company supports
+- map the regions to the bidder's endpoints
+- the host company overrides the bidder's default auction endpoint when they deploy the configuration for each region.
+
+We recognize that it's inconvenient for bidders to be required to have this
+conversation with each host company, but there's really not a better way
+in an open source project. Any number of companies may choose to host
+PBS and we cannot constrain them into a defined set of regions.
+
+## Can bidder endpoints differ by publisher?
+
+You may not use an endpoint domain as a bidder parameter. Prebid Server is not
+an open proxy. If absolutely necessary, you may specify a portion of the
+domain as a parameter to support geo regions or account specific servers.
+However, this is discouraged and may degrade the performance of your adapter
+since the server needs to maintain more outgoing connections. Host companies
+may choose to disable your adapter if it uses a dynamically configured domain.
+
+e.g. this config is not allowed because the entire domain name is a variable:
+
+```
+endpoint: "https://{host}/path"
+```
+but this would be ok:
+```
+endpoint: "https://{host}.example.com/path"
+```
+
+## Did the location of the bidder parameters change?
+
+Why yes, glad you noticed. The original 2017 OpenRTB extension where bidders
+and parameters were placed was imp[].ext.BIDDER. Since 2020, the recommended location
+is imp[].ext.prebid.bidder.BIDDER. This change was driven by the existence of
+other fields in imp[].ext that aren't bidders, like `skadn`, `data`, etc.
+
+Bidders are copied from imp[].ext to imp[].ext.prebid.bidder, and they will be copied for years to come, but we would ask that new implementations of stored requests
+utilize the new location.
+
+## Does PBS support SSL?
+
+No, Prebid Server is intended to run behind a load balancer or proxy, so it does not currently support defining a security certificate.

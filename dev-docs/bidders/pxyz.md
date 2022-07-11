@@ -4,10 +4,9 @@ title: Playground XYZ
 description: Prebid Playground XYZ Bidder Adapter
 gdpr_supported: true
 usp_supported: true
-
+pbjs: true
 biddercode: pxyz
 prevBiddercode: playgroundxyz
-aliasBiddercode: playgroundxyz
 ---
 
 ### Bid Params

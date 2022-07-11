@@ -1,14 +1,16 @@
 ---
 layout: page_v2
-title: VideoAdUnit AdUnit
-description: VideoAdUnit AdUnit
+title: VideoAdUnit AdUnit:Outstream
+description: VideoAdUnit AdUnit:Outstream
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
 sidebarType: 2
 ---
 
-# VideoAdUnit: AdUnit
+# Outstream VideoAdUnit: AdUnit
 {: .notoc}
+
+This page describes how to implement a `VideoAdUnit` for the display of outstream videos.
 
 The VideoAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) class. Use the VideoAdUnit object to create and configure a video outstream ad unit in your app.
 
@@ -18,11 +20,9 @@ Video Outstream is only supported with Google Ad Manager.
 - TOC
  {:toc}
 
+## VideoAdUnit
 
-
-
-Create a new Video Outstream Ad Unit associated with a Prebid Server configuration ID and a video size.
-
+Create a new Video Outstream Ad Unit associated with a Prebid Server configuration ID and a video size.  
 
 See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for additional parameters and methods.
 
@@ -30,17 +30,13 @@ See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for
 
 **Parameters**
 
-`configId(String)`: Prebid Server configuration ID.
+`configId(String)`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 
 `size(CGSize)`: Width and height of the video ad unit.
 
 `type:Enum`: OpenRTB Placement Type. This field is being deprecated in favor of parameters.type
 
-
-
-
-
-## CGSize
+### CGSize
 
 Size of video ad unit.
 
@@ -51,7 +47,7 @@ Size of video ad unit.
 `height`: Height of video ad unit in DIPs.
 
 
-## type
+### type
 
 {% capture deprecate %}
 VideoAdUnit type will be deprecated in future releases. Use parameters.placement below for future usage of type.
@@ -65,9 +61,9 @@ OpenRTB Placement Type represented as an enumeration of values:
 * inFeed is transformed into OpenRTB value 4 to bid adapters
 
 
-## Paramaters
+### Parameters
 
-Parameters is a sub class of videoAdUnit.Create new Parameters class to define the parameters of the video ad unit. Parameters contain the OpenRTB video attributes.
+Parameters is a sub class of videoAdUnit. Create new Parameters class to define the parameters of the video ad unit. Parameters contain the OpenRTB video attributes.
 
 
 **Parameters**
@@ -115,7 +111,7 @@ Array of integers or enum representing the supported [OpenRTB 2.5](https://www.i
 
 #### maxBitrate
 
-Integer representing the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) maximum bit rate in Kbps. 
+Integer representing the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) maximum bit rate in Kbps.
 
 
 #### minBitrate
@@ -152,7 +148,7 @@ Array of [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-AP
 
 #### protocols
 
-Array or enum of [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) supported Protocols. Values can be one of: 
+Array or enum of [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) supported Protocols. Values can be one of:
 
 * `1` or `Signals.Protocols.VAST_1_0` : VAST 1.0
 * `2` or `Signals.Protocols.VAST_2_0` : VAST 2.0
