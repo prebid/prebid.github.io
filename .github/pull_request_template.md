@@ -1,5 +1,7 @@
+<!--
 Thanks for improving the documentation 😃
 Please give a short description and check the matching checkboxes to help us review this as quick as possible.
+-->
 
 ## 🏷 Type of documentation
 
