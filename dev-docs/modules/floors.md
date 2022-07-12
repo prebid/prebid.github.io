@@ -1182,9 +1182,9 @@ The module will do this by leveraging the already-existing implementation for an
 The PrebidServerBidAdapter calls `getFloor()` like any other bid adapter
 and passes it to the server side as imp.bidfloor and imp.bidfloorcur.
 
-### Publisher Interface
+### In-Page Interface
 
-Obviously if a publisher is defining their own floors, then all of the fields in the floors schema are part of the publisher interface.
+If a publisher is defining their own floors, then all of the fields in the floors schema may be defined in the page.
 
 Even if a publisher is using a floors provider, they may wish to provide additional data:
 1. default floor data if dynamic data fails to load on time
@@ -1204,7 +1204,16 @@ pbjs.setConfig({
             url: 'https://floorprovider.com/a1001-mysite.json'
           },
           data: {
-	     ... default floors data here ...
+            currency: 'USD',
+            skipRate: 10,
+            modelVersion: 'some setconfig model version',
+            schema: {
+                fields: [ 'gptSlot', 'mediaType' ]
+            },
+            values: {
+                '*|banner': 0.98,
+                '*|video': 1.74
+            }
 	  }
       }
 });
