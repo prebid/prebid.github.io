@@ -20,12 +20,11 @@ Prebid SDK provides an API way to customize its behaviour.
 
 ## Rendering Controls
 
-
-The following properties allow to customize the rendering of Video Interstitial Ads.
+The following properties enable rendering customization of Video Interstitial Ads.
 
 ### Max Video Duration
 
-This control allows setting the maximum available video duration in seconds. Prebid SDK sends the value of this property in the  `imp.video.maxduration` object of the bid request. And, in addition, if the value in the received VAST tag `<Duration>` is bigger than the given number then SDK doesn't load a media file and fails the ad loading, providing a respective error message.
+This control sets the maximum available video duration in seconds. Prebid SDK sends the value of this property in the  `imp.video.maxduration` object of the bid request. If the value in the received VAST tag `<Duration>` is larger than the given number the SDK will not load the media file, the ad load will fail and an error message will be generated.
 
 
 {: .table .table-bordered .table-striped }
@@ -37,7 +36,7 @@ This control allows setting the maximum available video duration in seconds. Pre
 
 ### Application Muted
 
-This control allows to run playback with sound or not.
+This control enables playback to toggle sound on or off.
 
 {: .table .table-bordered .table-striped }
 
@@ -48,7 +47,7 @@ This control allows to run playback with sound or not.
 
 ### Close Button Area
 
-This control allows to set the percent of device screen which the close button should occupy. 
+This control sets the percent of device screen which the close button should occupy.
 
 {: .table .table-bordered .table-striped }
 
@@ -68,7 +67,7 @@ Customization Example
 
 ### Close Button Position
 
-This control allows to set the position of the close button on the screen. 
+This control sets the position of the close button on the screen. 
 
 {: .table .table-bordered .table-striped }
 
@@ -89,7 +88,7 @@ Customization Example
 
 ### Skip Button Area
 
-This control allows to set the percent of device screen which the skip button should occupy. 
+This control set the percent of device screen which the skip button should occupy. 
 
 {: .table .table-bordered .table-striped }
 
@@ -101,7 +100,7 @@ This control allows to set the percent of device screen which the skip button sh
 
 ### Skip Button Position
 
-This control allows to set the position of the skip button on the screen. 
+This control sets the position of the skip button on the screen. 
 
 {: .table .table-bordered .table-striped }
 
@@ -120,7 +119,7 @@ Customization Example
 
 ### Skip Delay
 
-This control allows to set number of seconds which should be passed from the start of playback until the skip or close button should be shown. 
+This control sets number of seconds which should be passed from the start of playback until the skip or close button should be shown. 
 
 {: .table .table-bordered .table-striped }
 
@@ -133,7 +132,7 @@ This control allows to set number of seconds which should be passed from the sta
 
 isSoundButtonVisible
 
-This control allows to display or hide the sound/mute button to users.
+This control toggles the display of the sound/mute button to users.
 
 {: .table .table-bordered .table-striped }
 
