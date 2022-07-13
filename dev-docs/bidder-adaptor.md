@@ -921,7 +921,8 @@ In order for your bidder to support the native media type:
 1. Your (server-side) bidder needs to return a response that contains native assets.
 2. Your (client-side) bidder adapter needs to unpack the server's response into a Prebid-compatible bid response populated with the required native assets.
 3. Your bidder adapter must be capable of ingesting the required and optional native assets specified on the `adUnit.mediaTypes.native` object, as described in [Show Native Ads](/prebid/native-implementation.html).
-4. Your spec must declare NATIVE in the supportedMediaTypes array.
+4. Your code, including tests, should check whether native support is enabled (through the global flag `FEATURES.NATIVE`) before doing #2 or #3. This allows users not interested in native to build your adapter without any native-specific code.
+5. Your spec must declare NATIVE in the supportedMediaTypes array.
 
 The adapter code samples below fulfills requirement #2, unpacking the server's reponse and:
 
@@ -931,7 +932,7 @@ The adapter code samples below fulfills requirement #2, unpacking the server's r
 {% highlight js %}
 
 /* Does the bidder respond with native assets? */
-else if (rtbBid.rtb.native) {
+else if (FEATURES.NATIVE && rtbBid.rtb.native) {
 
     /* If yes, let's populate our response with native assets */
 
@@ -958,7 +959,7 @@ Here's an example of returning image sizes:
 
 ```javascript
     /* Does the bidder respond with native assets? */
-    else if (rtbBid.rtb.native) {
+    else if (FEATURES.NATIVE && rtbBid.rtb.native) {
 
         const nativeResponse = rtbBid.rtb.native;
 
