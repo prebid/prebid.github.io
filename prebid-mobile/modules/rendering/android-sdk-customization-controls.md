@@ -21,7 +21,7 @@ Prebid SDK provides an API way to customize its behaviour.
 ## Rendering Controls
 
 
-The following properties enable customization Video Interstitial Ads rendering.
+The following properties enable rendering customization of Video Interstitial Ads.
 
 ### Max Video Duration
 
