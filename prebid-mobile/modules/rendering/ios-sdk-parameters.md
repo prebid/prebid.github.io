@@ -9,9 +9,10 @@ sidebarType: 2
 
 # Request parameters
 
-The tables below list methods and properties that PrebidMobile allows to customize in order to enrich the bid requests with actual data. The more info is provided about the user, the app, and the device the more chances to win a bid. 
+The tables below list the methods and properties that the Prebid Rendering API uses for customization.
+The more data about the user, app, and device that can be provided the more chances to win an impression.
 
-Please strictly follow the recommendations in the below tables and provide all ❗ **Required** and **Highly Recommended** values.
+It is advised that you strictly follow the recommendations in the tables below. Any field marked with an ❗is required and recommended. 
 
 
 1. [Targeting Properties](#prebidrenderingtargeting-variables)
