@@ -24,14 +24,26 @@ prebid_member: false
 multiformat_supported: will-bid-on-any
 ---
 
-# Description
+### Description
 
 LMC Newspass ID Prebid JS Bidder Adapter that connects to the NewspassId demand source(s).
 
 The Newspass bid adapter supports Banner mediaTypes ONLY.
 This is intended for USA audiences only, and does not support GDPR
+
+
+### Bid Params
+
+{: .table .table-bordered .table-striped }
+
+| Name      | Scope    | Description               | Example    | Type     |
+|-----------|----------|---------------------------|------------|----------|
+| `siteId`    | required | The site ID.  		   | `"NPID0000001"` | `string` |
+| `publisherId`    | required | The publisher ID.  | `"4204204201"` | `string` |
+| `placementId`    | required | The placement ID.  | `"0420420421"` | `string` |
+| `customData`     | optional | publisher key-values used for targeting | `[{"settings":{},"targeting":{"key1": "value1", "key2": "value2"}}], ` | `array` |
  
-# Test Parameters
+### Test Parameters
 
 
 A test ad unit that will consistently return test creatives:
@@ -62,14 +74,3 @@ adUnits = [{
 ### Note:
 
 Please contact us at techsupport@newspassid.com for any assistance testing your implementation before going live into production.
-
-### Bid Params
-
-{: .table .table-bordered .table-striped }
-
-| Name      | Scope    | Description               | Example    | Type     |
-|-----------|----------|---------------------------|------------|----------|
-| `siteId`    | required | The site ID.  		   | `"NPID0000001"` | `string` |
-| `publisherId`    | required | The publisher ID.  | `"4204204201"` | `string` |
-| `placementId`    | required | The placement ID.  | `"0420420421"` | `string` |
-| `customData`     | optional | publisher key-values used for targeting | `[{"settings":{},"targeting":{"key1": "value1", "key2": "value2"}}], ` | `array` |
