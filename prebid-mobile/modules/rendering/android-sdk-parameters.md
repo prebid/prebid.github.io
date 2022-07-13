@@ -9,11 +9,10 @@ sidebarType: 2
 
 # Parameters
 
-The tables below list the methods and properties that the Prebid Rendering API allows to customize.
-The more actual info about the user, the app, and the device you provide the more chances to win an impression.
+The tables below list the methods and properties that the Prebid Rendering API uses for customization.
+The more data about the user, app, and device that can be provided the more chances to win an impression.
 
-Please strictly follow the recommendations in the below tables and provide all ❗ **Required** and **Highly Recommended** values.
-
+It is advised that you strictly follow the recommendations in the tables below. Any field marked with an ❗is required and recommended. 
 
 1. [Targeting Params](#targeting)
 2. [SDK Settings](#prebidrenderingsettings)
