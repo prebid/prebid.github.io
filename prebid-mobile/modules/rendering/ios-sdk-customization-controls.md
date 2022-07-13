@@ -12,7 +12,7 @@ sidebarType: 2
 
 Prebid SDK provides an API way to customize its behaviour. 
 
-> NOTE: In the nearest future the Server Side Configuration will be supported as well. Follow this [feature request](https://github.com/prebid/prebid-server/issues/2186) for the details. 
+>NOTE: Planned future enhancements will support Server Side Configuration. Follow this [feature request](https://github.com/prebid/prebid-server/issues/2186) for the details. 
 
 * TOC
 {:toc}
