@@ -11,7 +11,6 @@ gdpr_supported: true
 usp_supported: true
 floors_supported: true
 userIds: all
-fpd_supported: true
 gvl_id: 1043
 ---
 
