@@ -795,6 +795,9 @@ pbjs.setConfig({
             storage: {
                 name: 'hadronId',
                 type: 'html5'
+            },
+            params: {
+                partnerId: 1234
             }
         }]
     }
@@ -816,6 +819,7 @@ The following configuration parameters are available:
 | params | Optional | Object | Used to store params for the HadronId system |
 | params.url | Optional | String | Set an alternate GET url for HadronId with this parameter |
 | params.urlArg | Optional | Object | Optional url parameter for params.url |
+| params.partnerId | Required | Number | This is the Audigent Partner ID obtained from Audigent. |
 
 ### ID+
 
