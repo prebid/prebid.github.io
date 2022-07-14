@@ -5,7 +5,7 @@ description: Prebid Adnuntius Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: adnuntius
-media_types: banner
+media_types: banner, video
 gdpr_supported: true
 fpd_supported: true
 gvl_id: 855
@@ -122,3 +122,30 @@ publishers can use the `ortb2` configuration parameter to provide First Party Da
 - `ortb2.user`
 
 These fields are optional and only needed for user identification and contextual targeting. How to use it can be read here: [Prebid ortb2](https://docs.prebid.org/features/firstPartyData.html). Currently we only support this for our prebid server bidder, but will add it to the client bidder in the future.
+
+### Video requests
+Currently we only support client requests and instream context. An example request would look like this:
+
+```
+{
+    code: 'video1',
+    mediaTypes: {
+        video: {
+            playerSize: [640, 480],
+            context: 'instream'
+        }
+    },
+    bids: [{
+        bidder: 'adnuntius',
+        params: {
+            auId: '00000000001cd429', //put your placement id here
+
+            video: {
+                skippable: true,
+                playback_method: ['auto_play_sound_off']
+            }
+        }
+    }]
+};
+```
+
