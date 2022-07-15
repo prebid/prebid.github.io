@@ -169,7 +169,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 
 {: .alert.alert-info :}
 
-If you are submitting changes to an adapter to support this TCF2, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gdpr_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GDPR.**
+If you are submitting changes to an adapter to support TCF v2.0, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gdpr_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GDPR.**
 
 ### Bidder Adapter GDPR Integration
 
