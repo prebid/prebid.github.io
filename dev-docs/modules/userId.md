@@ -1734,7 +1734,7 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 | name | Required | String | The name of LiveRamp's user ID module. | `"identityLink"` |
 | params | Required | Object | Container of all module params. |  |
 | params.pid | Required | String | This is the Placement ID, a unique identifier that is used to identify each publisher, obtained from registering with LiveRamp. | `999` |
-| params.notUse3P | Not required | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get a RampID envelope (either `true` or `false`). | `true` |
+| params.notUse3P | Not required | Boolean | Property for choosing if a cookieable envelope should be set and stored until the user authenticates and a RampID envelope can be created (either `true` or `false`). | `false` |
 | storage | Required | Object | This object defines where and for how long the results of the call to get a RampID envelope will be stored. | 
 | storage.type	| Required | String | This parameter defines where the resolved RampID envelope will be stored (either `"cookie"` or `"html5"` localStorage). | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved RampID envelope will be stored. LiveRamp requires `"idl_env"`. | `"idl_env"` |
@@ -1759,7 +1759,7 @@ pbjs.setConfig({
             name: "identityLink",
             params: {
                 pid: '999',                // Set your valid Placement ID here
-                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
+                // notUse3P: true/false    // If you do not want to use cookieable envelopes until the user authenticates set this property to true
             },
             storage: {
                 type: "cookie",
@@ -1785,7 +1785,7 @@ pbjs.setConfig({
             name: "identityLink",
             params: {
                 pid: '999',                // Set your valid Placement ID here
-                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
+                // notUse3P: true/false    // If you do not want to use cookieable envelopes until the user authenticates set this property to true
             },
             storage: {
                 type: "html5",
