@@ -2,6 +2,8 @@
 layout: bidder
 title: Consumable
 description: Prebid Consumable Bidder Adaptor
+userIds: all
+usp_supported: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
