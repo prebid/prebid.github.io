@@ -114,6 +114,18 @@ The following test parameters can be used to verify that Prebid Server is workin
 }]
 ```
 
+### Passing no Cookie in Prebid Server request
+
+As a publisher you have the option to set no cookie in the device request to let Adnunntius adserver know not to set cookies in the client's browser. In order to fo that you just need to pass this in the request:
+
+```
+"device": {  
+    "ext": {
+        "noCookies": true
+    }
+},
+```
+
 ### First Party Data
 
 publishers can use the `ortb2` configuration parameter to provide First Party Data. We accept all standard OpenRTB fields for both:
