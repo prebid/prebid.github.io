@@ -22,9 +22,6 @@ sidebarType : 1
 
 {% include /alerts/alert_important.html content=legalNotice %}
 
-{: .alert.alert-warning :}
-Prebid.org is working on updates that will enable support for reading and parsing TCF 2.0 consent strings. See the [blog post](https://prebid.org/blog/tcf2) for timelines.
-
 ## Overview
 
 This consent management module is designed to support the EU General Data Protection Regulation ([GDPR](https://www.iab.com/topics/consumer-privacy/gdpr/))
@@ -57,7 +54,7 @@ If the timeout period expires or an error from the CMP is thrown, one of these a
 
 Please start by understanding the IAB's [TCF Implementation Guide](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md).
 
-To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB TCF v1.1 spec](https://iabeurope.eu/all-news/the-iab-europe-transparency-consent-framework-tcf-steering-group-votes-to-extend-technical-support-for-tcf-v1-1/) or [IAB TCF v2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices. It's important to understand the details of how the CMP works before integrating it with Prebid.js
+To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB TCF v2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices. It's important to understand the details of how the CMP works before integrating it with Prebid.js
 
 In general, implementation details for CMPs are not covered by Prebid.org, but we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes. In addition, the community is collecting a set of [CMP best practices](/dev-docs/cmp-best-practices.html).
 
@@ -158,74 +155,6 @@ Example 2: Static CMP using custom data passing.
      });
 {% endhighlight %}
 
-### TCF v1.1 Examples
-
-Example 1: IAB CMP using custom timeout and cancel-auction options.
-
-{% highlight js %}
-     var pbjs = pbjs || {};
-     pbjs.que = pbjs.que || [];
-     pbjs.que.push(function() {
-        pbjs.setConfig({
-          consentManagement: {
-            gdpr: {
-              cmpApi: 'iab',
-              timeout: 8000,
-            }
-          }
-        });
-     });
-{% endhighlight %}
-
-Example 2: Static CMP using custom data passing.
-
-{% highlight js %}
-     var pbjs = pbjs || {};
-     pbjs.que = pbjs.que || [];
-     pbjs.que.push(function() {
-        pbjs.setConfig({
-          consentManagement: {
-            gdpr: {
-              cmpApi: 'static',
-              consentData: {
-                getTCData: {
-                  'eventStatus': 'tcloaded',
-                  'gdprApplies': true,
-                  'tcString': 'BOOgjO9OOgjO9APABAENAi-AAAAWd7_______9____7_9uz_Gv_r_ff_3nW0739P1A_r_Oz_rm_-zzV44_lpQQRCEA',
-                  'purpose': {
-                    'consents': {
-                      '1': true,
-                      '2': true,
-                      '3': true
-                    },
-                    'legitimateInterests': {
-                      '1': false,
-                      '2': false,
-                      '3': false
-                    }
-                  },
-                  'vendor': {
-                    'consents': {
-                      '1': false,
-                      '2': true,
-                      '3': false
-                    },
-                    'legitimateInterests': {
-                      '1': false,
-                      '2': true,
-                      '3': false,
-                      '4': false,
-                      '5': false
-                    }
-                  },
-                },
-              }
-            }
-          }
-        });
-     });
-{% endhighlight %}
-
 ## Build the Package
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the **gulp build** command:
@@ -239,9 +168,8 @@ You can also use the [Prebid.js Download](/download.html) page.
 ## Adapter Integration
 
 {: .alert.alert-info :}
-Prebid.js adapters don't need to change to support TCF v2.0 if they already support TCF 1.1 -- the consent string is passed through the same bidrequest location. The bidder's endpoint, however, will need to change to support TCF v2.0. Once the endpoint supports TCF2, you can update the documentation.md file as described below above the table showing the list of TCF2-compliant bidders.
 
-If you are submitting changes to an adapter to support this approach, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gdpr_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GDPR.**
+If you are submitting changes to an adapter to support TCF v2.0, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gdpr_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GDPR.**
 
 ### Bidder Adapter GDPR Integration
 
