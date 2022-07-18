@@ -1156,7 +1156,8 @@ registerBidder(spec);
     - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
     - If you support deals, set `deals_supported: true`. No default value..
     - If you support floors, set `floors_supported: true`. No default value..
-    - If you support first party data, set `fpd_supported: true`. No default value..
+    - If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
+    - If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to 'true','partial', or 'false'. No default value. In order to set 'true', you must support: bcat, badv, battr, and bapp.
     - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 - Submit both the code and docs pull requests
 
@@ -1184,6 +1185,7 @@ pbjs: true/false
 pbs: true/false
 prebid_member: true/false
 multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
+ortb_blocking_supported: true/partial/false
 ---
 ### Note:
 
