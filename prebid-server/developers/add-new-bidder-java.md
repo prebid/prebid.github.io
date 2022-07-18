@@ -1239,6 +1239,7 @@ pbs: true/false
 pbs_app_supported: true/false
 prebid_member: true/false
 multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
+ortb_blocking_supported: true/partial/false
 ---
 
 ### Note:
@@ -1266,7 +1267,8 @@ Notes on the metadata fields:
 - If your bidder supports mobile apps, set `pbs_app_supported`: true. No default value.
 - If your bidder supports deals, set `deals_supported: true`. No default value.
 - If your bidder supports floors, set `floors_supported: true`. No default value.
-- If your bidder supports first party data, set `fpd_supported: true`. No default value.
+- If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
+- If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to ‘true’,’partial’, or ‘false’. No default value. In order to set ‘true’, you must support: bcat, badv, battr, and bapp.
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
 
