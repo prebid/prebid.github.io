@@ -19,7 +19,5 @@ The BLIINK Header Bidding adaptor requires setup and approval from the BLIINK te
 | Name        | Scope    | Description                      | Example                              | Type     |
 |-------------|----------|----------------------------------|--------------------------------------|----------|
 | `tagId` | required | The TagID from BLIINK. | `'32'` | `string` |
-| `placement` | required | The placement from BLIINK. | `'video'` | `string` |
 
 
-Same 'placement' parameter can be used from either prebid JS or prebid server.
