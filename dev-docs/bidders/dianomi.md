@@ -3,7 +3,7 @@ layout: bidder
 title: Dianomi
 description: Prebid Dianomi Bidder Adaptor
 biddercode: dianomi
-media_types: banner, native
+media_types: banner, native, video
 coppa_supported: false
 gdpr_supported: true
 usp_supported: true
@@ -83,6 +83,24 @@ var adUnits = [
     mediaTypes: {
       banner: {
         sizes: [[300, 250]]
+      } 
+    },
+    bids: [{
+        bidder: 'dianomi',
+        params: {
+            smartadId: 9607
+        }
+    }]
+];
+```
+
+#### Video example
+```js
+var adUnits = [
+    code: 'your-video-container-id',
+    mediaTypes: {
+      video: {
+        playerSize: [[640, 480]]
       } 
     },
     bids: [{
