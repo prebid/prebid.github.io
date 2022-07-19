@@ -904,8 +904,8 @@ For example, this request:
             "bidderB": { ... params ... }
           },
           "storedbidresponse": [
-            { "bidder": "BidderA", "id": "333333" },
-            { "bidder": "BidderB", "id": "444444" },
+            { "bidder": "BidderA", "id": "333333", "replaceimpid":true },
+            { "bidder": "BidderB", "id": "444444", "replaceimpid":true },
           ]
         }
       }
@@ -919,7 +919,7 @@ For example, this request:
             "bidderB": { ... params ... }
           },
           "storedbidresponse": [
-            { "bidder": "BidderA", "id": "5555555" }
+            { "bidder": "BidderA", "id": "5555555", "replaceimpid":true }
             // note: no storedbidrespose for bidderB
           ]
         }
@@ -954,10 +954,9 @@ Could result in this response:
 }
 ```
 
-Note that the storedresponse DB entries for this scenario are very different:
-they're whatever format the bid adapter's endpoint responds with. i.e. the host company will
-need to capture an actual bid response from the specific bidders and enter it
-into the DB table.
+Notes: 
+- the DB entries for this stored-response scenario are quite different: they need to be in whatever format the bid adapter's endpoint responds with. i.e. the host company will need to capture an actual bid response from the specific bidders and enter it into the DB table.
+- the `replaceimpid` parameter tells PBS to ignore the impid supplied in the DB and instead create/overwrite seatbid.bid.impid with the value that matches the incoming request. This simplifies debugging.
 
 See Prebid.org troubleshooting pages for how to utilize this feature within the context of the browser.
 
@@ -1492,6 +1491,7 @@ The Prebid SDK version comes from:
 | req | ext.prebid.auctiontimestamp | timestamp for use in correlating PBJS and PBS events | long int | 123456789 | yes |
 | req | ext.prebid.options. echovideoattrs | causes PBS-core to [echo video attributes](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#echo-storedrequest-video-attributes) on seatbid[].bid[].ext.prebid.storedrequestattributes so the player has access to them | boolean | true | yes |
 | req | ext.prebid.multibid | allows bidders to respond with more than one bid | object | see [docs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid) | yes, but only their value |
+| req | ext.prebid.targeting | (PBS-Java) Global targeting values applied to AMP targeting output. | object | { "attr1": "val1" } | no |
 | req | user.ext.prebid.buyeruids | An alternate to [/cookie_sync](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), the request can supply bidder ID values | object | See [doc](#buyer-uid) | no |
 | req | ext.prebid. data.eidpermissions | Allows publishers to define which bidders are allowed to see which extended IDs. | object | See [doc](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#eid-permissions) | no |
 | req | ext.prebid. passthrough | Allows an application to pass a value through to the response. | object | See [doc](#request-passthrough) | no |

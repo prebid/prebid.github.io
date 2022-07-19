@@ -96,3 +96,9 @@ var adUnits = [
     }]
 }];
 ```
+
+### Additional Config (Optional)
+
+Criteo Bid Adapter supports the collection of the user's hashed email, if available.
+
+Please consider passing it to the adapter, following [these guidelines](https://publisherdocs.criteotilt.com/prebid/#hashed-emails).

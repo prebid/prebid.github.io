@@ -20,8 +20,11 @@ pbs: false
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example                              | Type      |
 |---------------|----------|-----------------------|--------------------------------------|-----------|
-| `account`     | required | Nexx360 account       | `'1067'`                             | `string`  |
+| `account`     | required | Nexx360 account ID    | `'1067'`                             | `string`  |
 | `tagId`       | required | Nexx360 tag ID        | `'luvxjvgn'`                         | `string`  |
+| `bidfloor`       | optional | Bidfloor applied to auction (default: 0)        | `0.8`                         | `float`  |
+| `bidfloorCurrency`       | optional | Bidfloor currency (default: `'USD'`) - Can be `'USD'` or `'EUR'`       | `'USD'`                         | `string`  |
+| `keywords`       | optional | Keywords used for targeting       | `{ 'interest': ['cars', 'sports']}`                         | `object`  |
 
 ### Test Parameters
 

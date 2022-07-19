@@ -210,7 +210,7 @@ This attribute is related to the 'badv' of the request, and the 'adomain' of the
 |---+---+---+---|
 | blocked-adomain | List of adomains not allowed to display on this inventory | array of strings | bidders (array of strings), media-types (array of strings). |
 | enforce-blocks | Whether to enforce adomains in responses | boolean | bidders (array of strings), media-types (array of strings) |
-| block-unknown-adomain | Whether to block responses not specifying adomain. Only active if enforce-blocks is true. | bidders (array of strings), media-types (array of strings) |
+| block-unknown-adomain | Whether to block responses not specifying adomain. Only active if enforce-blocks is true. | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-adomain-for-deals | List of adomains allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global. |
 
 Here's an example account config with several scenarios:
@@ -283,7 +283,7 @@ This attribute is related to the 'bcat' of the request and 'cat' of the response
 |---+---+---+---|
 | blocked-adv-cat | List of IAB categories not allowed to display on this inventory | array of strings | bidders (array of strings), media-types (array of strings) |
 | enforce-blocks | Whether to enforce cat in responses | boolean | bidders (array of strings), media-types (array of strings) |
-| block-unknown-adv-cat | Whether to block responses not specifying cat. Only active if enforce-blocks is true. | bidders (array of strings), media-types (array of strings) |
+| block-unknown-adv-cat | Whether to block responses not specifying cat. Only active if enforce-blocks is true. | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-adv-cat-for-deals | List of adomains allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global.|
 
 Here's an example account config with several scenarios:

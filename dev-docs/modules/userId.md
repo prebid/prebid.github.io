@@ -795,6 +795,9 @@ pbjs.setConfig({
             storage: {
                 name: 'hadronId',
                 type: 'html5'
+            },
+            params: {
+                partnerId: 1234
             }
         }]
     }
@@ -816,6 +819,7 @@ The following configuration parameters are available:
 | params | Optional | Object | Used to store params for the HadronId system |
 | params.url | Optional | String | Set an alternate GET url for HadronId with this parameter |
 | params.urlArg | Optional | Object | Optional url parameter for params.url |
+| params.partnerId | Required | Number | This is the Audigent Partner ID obtained from Audigent. |
 
 ### ID+
 
@@ -1730,7 +1734,7 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 | name | Required | String | The name of LiveRamp's user ID module. | `"identityLink"` |
 | params | Required | Object | Container of all module params. |  |
 | params.pid | Required | String | This is the Placement ID, a unique identifier that is used to identify each publisher, obtained from registering with LiveRamp. | `999` |
-| params.notUse3P | Not required | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get a RampID envelope (either `true` or `false`). | `true` |
+| params.notUse3P | Not required | Boolean | Property for choosing if a cookieable envelope should be set and stored until the user authenticates and a RampID envelope can be created (either `true` or `false`). | `false` |
 | storage | Required | Object | This object defines where and for how long the results of the call to get a RampID envelope will be stored. | 
 | storage.type	| Required | String | This parameter defines where the resolved RampID envelope will be stored (either `"cookie"` or `"html5"` localStorage). | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved RampID envelope will be stored. LiveRamp requires `"idl_env"`. | `"idl_env"` |
@@ -1755,7 +1759,7 @@ pbjs.setConfig({
             name: "identityLink",
             params: {
                 pid: '999',                // Set your valid Placement ID here
-                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
+                // notUse3P: true/false    // If you do not want to use cookieable envelopes until the user authenticates set this property to true
             },
             storage: {
                 type: "cookie",
@@ -1781,7 +1785,7 @@ pbjs.setConfig({
             name: "identityLink",
             params: {
                 pid: '999',                // Set your valid Placement ID here
-                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
+                // notUse3P: true/false    // If you do not want to use cookieable envelopes until the user authenticates set this property to true
             },
             storage: {
                 type: "html5",
@@ -2486,7 +2490,7 @@ Please find more details [Share encrypted signals with bidders (Beta)](https://s
 | encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
 | encryptedSignalSources.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
 | encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
-| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in seconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
+| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in milliseconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
 
 {: .alert.alert-info :}
 **NOTE:**
