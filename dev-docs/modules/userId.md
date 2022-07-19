@@ -83,7 +83,7 @@ The table below has the options that are common across ID systems. See the secti
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"admixerId"`, `"qid"`, `"adtelligentId"`, `"akamaiDAPId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"hadronId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"justId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be: `"33acrossId"`, `"admixerId"`, `"qid"`, `"adtelligentId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"flocId"`, `"hadronId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"justId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -149,46 +149,51 @@ The Rubicon bid adapter would then receive
 
 ## User ID Sub-Modules
 
-### AkamaiDAPId
+### 33Across ID
 
-The Akamai Data Activation Platform (DAP) is a privacy-first system that protects end-user privacy by only allowing them to be targeted as part of a larger cohort.  DAP views hiding individuals in large cohorts as the best mechanism to prevent unauthorized tracking.
+The 33Across User ID sub-module is a way for publishers to monetize their cookieless inventory across multiple supply-side platforms via Prebid.JS. The sub-module provides publishers with addressability for their open marketplace cookieless inventory and access to cookieless demand. The 33Across User ID sub-module utilizes Lexicon technology to connect Publishers to Demand partners via proprietary technologies in a probabilistic and privacy-safe manner. Please contact [PrebidUIM@33across.com](mailto:PrebidUIM@33across.com) to get your authorization process started.
 
-The integration of DAP into Prebid.JS consists of creating a UserID plugin that interacts with the DAP API.  The UserID module tokenizes the end-user identity into an ephemeral, secure pseudonymization called a dapId.  The dapId is then supplied to the bid-stream where the SSP partner looks up cohort membership for that token, and supplies the cohorts to the rest of the bid-stream.
+#### 33Across ID Configuration
 
-In this system, no end-user identifier is supplied to the bid-stream, only cohorts.  This is a foundational privacy principal DAP is built upon.
+Please make sure to add the 33across user ID sub-module to your Prebid.js package with:
 
-#### AkamaiDAPId Configuration
-
-First, make sure to add the DAP submodule to your Prebid.js package with:
-
-```
-gulp build --modules=akamaiDAPIdSystem,userId
+```shell
+gulp build --modules=33acrossIdSystem,userId
 ```
 
 The following configuration parameters are available:
 
-```javascript
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this sub-module | `"33acrossId"` |
+| params ||| Details for the sub-module initialization ||
+| params.pid | Required | String | Partner ID (PID) | Please reach out to [PrebidUIM@33across.com](mailto:PrebidUIM@33across.com) and request your PID |
+| storage |||||
+| storage.name | Required | String | The name of the cookie or html5 local storage key | `"33acrossId"` (recommended) |
+| storage.type | Required | String | This is where the 33across user ID will be stored | `"html5"` (recommended) or `"cookie"` |
+| storage.expires | Strongly Recommended | Number | How long (in days) the user ID information will be stored | `90` (recommended) |
+| storage.refreshInSeconds | Strongly Recommended | Number | How many seconds until the ID is refreshed | `8 * 3600` (recommended) |
+
+#### 33Across ID Example
+```
 pbjs.setConfig({
   userSync: {
     userIds: [{
-      name: 'akamaiDAPId',
+      name: "33acrossId",
       params: {
-        apiHostname: '<see your Akamai account rep>',
-        domain: 'your-domain.com',
-        type: 'email' | 'mobile' | ... | 'dap-signature:1.0.0',
-        identity: ‘your@email.com’ | ‘6175551234' | ...,
-        apiVersion: 'v1' | 'x1',
-        attributes: '{ "cohorts": [ "3:14400", "5:14400", "7:0" ],"first_name": "...","last_name": "..." }'
+        pid: "0010b00002GYU4eBAH" // Example ID
       },
-    }],
-    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
+      storage: {
+        name: "33acrossId",
+        type: "html5",
+        expires: 90,
+        refreshInSeconds: 8 * 3600
+      }
+    }]
   }
 });
 ```
-In order to make use of v1 APIs, "apiVersion" needs to explicitly mention 'v1'. The "apiVersion" defaults to x1 if not specified.
-"attributes" can be configured in x1 API only and not v1 APIs. Please ensure that the "attributes" value is in same format as shown above.
-
-Contact Prebid@akamai.com(Akamai account rep) for apiHostname.
 
 
 ### AdmixerID
@@ -440,24 +445,50 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
-### DAC ID by DAC
+### Czech Publisher Exchange ID (CPExID)
 
-DAC ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
+CPExID is provided by [Czech Publisher Exchange](https://www.cpex.cz/), or CPEx. It is a user ID for ad targeting by using first party cookie, or localStorage mechanism. Please contact CPEx before using this ID.
+
+{: .alert.alert-info :}
+gulp build --modules=cpexIdSystem
+
+#### CPExId Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module | `"cpexId"` |
+
+#### CPExId Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'cpexId'
+        }]
+    }
+});
+{% endhighlight %}
+
+### AudienceOne ID by DAC
+
+AudienceOne ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
 Please contact D.A.Consortium Inc. before using this ID.
 
-Add the DAC ID to your Prebid.js Package with:
+Add the AudienceOne ID to your Prebid.js Package with:
 
 {: .alert.alert-info :}
 gulp build --modules=dacIdSystem
 
-#### DAC ID Configuration
+#### AudienceOne ID Configuration
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module | `"dacId"` |
 
-#### DAC ID Example
+#### AudienceOne ID Example
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -764,6 +795,9 @@ pbjs.setConfig({
             storage: {
                 name: 'hadronId',
                 type: 'html5'
+            },
+            params: {
+                partnerId: 1234
             }
         }]
     }
@@ -785,6 +819,7 @@ The following configuration parameters are available:
 | params | Optional | Object | Used to store params for the HadronId system |
 | params.url | Optional | String | Set an alternate GET url for HadronId with this parameter |
 | params.urlArg | Optional | Object | Optional url parameter for params.url |
+| params.partnerId | Required | Number | This is the Audigent Partner ID obtained from Audigent. |
 
 ### ID+
 
@@ -1320,7 +1355,7 @@ pbjs.setConfig({
 
 Lotame’s Panorama ID module sends information from the request to its identity graph in order to successfully generate a Panorama ID. For more information on how the Panorama ID works, please visit [https://www.lotame.com/panorama/id/](https://www.lotame.com/panorama/id/).
 
-**Ease of Implementation**: Deployment of the Lotame Panorama ID module has been optimized for ease by not requiring any registration to utilize. Simply add the generic module to start producing the Panorama ID across your inventory. Clients who would like the advantage of additional options can register to receive their own client ID. Reach out to [PanoramaID@lotame.com](mailto:PanoramaID@lotame.com) to learn more about the optional registration.
+**Ease of Implementation**: Deployment of the Lotame Panorama ID module has been optimized for ease by not requiring any registration to utilize. Simply add the generic module to start producing the Panorama ID across your inventory.
 
 Lotame's privacy policy related to the Panorama ID and the collection of data and how data is used is available at [https://www.lotame.com/about-lotame/privacy/lotames-products-services-privacy-policy/](https://www.lotame.com/about-lotame/privacy/lotames-products-services-privacy-policy/). Consult with your legal counsel to determine the appropriate user disclosures with respect to use of the Lotame Panorama ID module.
 
@@ -1344,17 +1379,12 @@ NOTE: For optimal performance, the Lotame Panorama Id module should be called at
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of the module | "lotamePanoramaId" |
-| params | Optional | Object | Configuration options for the Lotame Panorama ID Module | |
-| params.clientId | Optional | String | The Lotame Panorama Client ID | "1001" |
 
 {% highlight javascript %}
 pbjs.setConfig({
     userSync: {
         userIds: [{
             name: "lotamePanoramaId",
-            params: {
-                clientId: "Optional - See your Lotame Representative"
-            }
         }]
     }
 });
@@ -1417,10 +1447,8 @@ pbjs.setConfig({
         userIds: [{
         name: 'merkleId',
         params: {
-          vendor:'example_vendor',
-          sv_cid:'example_cid',
           sv_pubid:'example_pubid',
-          sv_domain:'example.com'
+          ssp_ids: ['example_sspid_1', 'example_sspid_2']
         },
         storage: {
           type: 'html5',
@@ -1467,36 +1495,6 @@ pbjs.setConfig({
             name: "netId",
             value: {
                "netId":"fH5A3n2O8_CZZyPoJVD-eabc6ECb7jhxCicsds7qSg"
-            }
-        }]
-    }
-});
-{% endhighlight %}
-
-### NextRoll ID
-
-NextRoll is an industry-leading marketing technology and data stack that fuels growth for businesses of all kinds. Our technology powers two multi-million dollar high-growth businesses: AdRoll and RollWorks. The NextRoll ID is a cookieless identifier built from NextRoll’s proprietary identity graph. Publishers, ad tech platforms, and NextRoll’s brands (AdRoll and RollWorks) leverage the NextRoll ID to access unique demand in cookieless environments. The NextRoll ID respects user privacy preferences and enables users to opt out through multiple web based mechanisms found in [Section 8 of NextRoll’s Privacy Policy](https://nextroll.com/privacy#service-8).
-
-#### NextRoll ID Registration
-
-To sign up for a Partner ID please contact your NextRoll representative or send an email to [publishers@nextroll.com](mailto:publishers@nextroll.com).
-
-#### NextRoll ID Configuration
-
-Add it to your Prebid.js package with:
-
-{: .alert.alert-info :}
-gulp build --modules=nextrollIdSystem
-
-Enable the module in configuration, with your Partner ID:
-
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "nextrollId",
-            params: {
-                partnerId: 'YOUR_PARTNER_ID'
             }
         }]
     }
@@ -1736,7 +1734,7 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 | name | Required | String | The name of LiveRamp's user ID module. | `"identityLink"` |
 | params | Required | Object | Container of all module params. |  |
 | params.pid | Required | String | This is the Placement ID, a unique identifier that is used to identify each publisher, obtained from registering with LiveRamp. | `999` |
-| params.notUse3P | Not required | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get a RampID envelope (either `true` or `false`). | `true` |
+| params.notUse3P | Not required | Boolean | Property for choosing if a cookieable envelope should be set and stored until the user authenticates and a RampID envelope can be created (either `true` or `false`). | `false` |
 | storage | Required | Object | This object defines where and for how long the results of the call to get a RampID envelope will be stored. | 
 | storage.type	| Required | String | This parameter defines where the resolved RampID envelope will be stored (either `"cookie"` or `"html5"` localStorage). | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved RampID envelope will be stored. LiveRamp requires `"idl_env"`. | `"idl_env"` |
@@ -1761,12 +1759,12 @@ pbjs.setConfig({
             name: "identityLink",
             params: {
                 pid: '999',                // Set your valid Placement ID here
-                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
+                // notUse3P: true/false    // If you do not want to use cookieable envelopes until the user authenticates set this property to true
             },
             storage: {
                 type: "cookie",
                 name: "idl_env",           // "idl_env" is the required storage name
-                expires: 15                // Cookie can last for 15 days
+                expires: 15,               // Cookie can last for 15 days
                 refreshInSeconds: 1800
             }
         }],
@@ -1787,12 +1785,12 @@ pbjs.setConfig({
             name: "identityLink",
             params: {
                 pid: '999',                // Set your valid Placement ID here
-                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
+                // notUse3P: true/false    // If you do not want to use cookieable envelopes until the user authenticates set this property to true
             },
             storage: {
                 type: "html5",
                 name: "idl_env",           // "idl_env" is the required storage name
-                expires: 15                // HTML5 localStorage can last for 15 days
+                expires: 15,               // HTML5 localStorage can last for 15 days
                 refreshInSeconds: 1800
             }
         }],
@@ -2303,6 +2301,36 @@ pbjs.setConfig({
 })
 ```
 
+### GRAVITO ID by Gravito Ltd.
+
+Gravito ID, provided by [Gravito Ltd.](https://gravito.net), is ID for ad targeting by using 1st party cookie.
+Please contact Gravito Ltd. for using this ID.
+
+Add the Gravito ID to your Prebid.js Package with:
+
+{: .alert.alert-info :}
+gulp build --modules=gravitoIdSystem
+
+#### Gravito ID Configuration
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | The name of this module | `"gravitompId"` |
+
+#### Gravito ID Example
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'gravitompId'
+        }]
+    }
+});
+{% endhighlight %}
+
+
 ## Adapters Supporting the User ID Sub-Modules
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
@@ -2325,15 +2353,16 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr: bidRequest.userId. | EID Source | Example Value |
 | --- | --- | --- | --- | --- | --- | --- |
+| 33Across ID | 33Across | 33acrossId | 33across.com | "1111" |
 | Admixer ID | Admixer | admixerId | admixer.net | "1111" |
 | adQuery QiD | adQuery | qid | adquery.io | "p9v2dpnuckkzhuc..." |
 | Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
-| Akamai DAP ID | Akamai DAP | dapId | akamai.com | "eyJhbGciOiJka....YIsj7"|
 | AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
-| DAC ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
+| AudienceOne ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
 | DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
 | DMD ID | DMD | dmdId | hcn.health | "1111" |
+| CpexID | CPEx | cpexId | cpex.cz | "1111" |
 | CriteoID | Criteo | criteoId | criteo.com | "1111" |
 | Fabrick ID | Neustar | fabrickId | neustar.biz | "1111" |
 | FLoC ID | n/a | flocId | | |
@@ -2349,7 +2378,6 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | merkleID | Merkle | merkleId | merkleinc.com | "1111" |
 | naveggId | Navegg | naveggId | navegg.com | "1111" |
 | netID | netID | netId | netid.de | "fH5A..." |
-| NextRoll ID | NextRoll | nextrollId | nextroll.com | "bf3Ka.../SjP/zpVGr09voA" |
 | Novatiq ID | Novatiq | novatiqId | novatiq.com | "1111" |
 | Parrable ID | Parrable | parrableId | parrable.com | {"eid":"01.15946..."} |
 | Publisher Link ID | n/a | publinkId | epsilon.com | |
@@ -2462,7 +2490,7 @@ Please find more details [Share encrypted signals with bidders (Beta)](https://s
 | encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
 | encryptedSignalSources.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
 | encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
-| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in seconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
+| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in milliseconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
 
 {: .alert.alert-info :}
 **NOTE:**

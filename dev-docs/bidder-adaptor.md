@@ -225,7 +225,7 @@ buildRequests: function(validBidRequests, bidderRequest) {
 Building the request will use data from several places:
 
 * **Ad Unit Params**: The arguments provided by the page are in `validBidRequests[]`.
-* **BidRequest Params**: Several important parameters such as userId, GDPR, USP, and supply chain values are on the `bidderRequest` object.
+* **BidRequest Params**: Several important parameters such as first-party data, userId, GDPR, USP, and supply chain values are on the `bidderRequest` object.
 * **Prebid Config**: Publishers can set a number of config values that bid adapters should consider reading.
 
 
@@ -235,19 +235,20 @@ Here is a sample array entry for `validBidRequests[]`:
 
 {% highlight js %}
 [{
-  adUnitCode: "test-div"
-  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917"
-  bidId: "22c4871113f461"
-  bidder: "rubicon"
-  bidderRequestId: "15246a574e859f"
-  bidRequestsCount: 1
-  bidderRequestsCount: 1
-  bidderWinsCount: 0
-  userId: {...}
-  schain: {...}
-  mediaTypes: {banner: {...}}
-  params: {...}
-  src: "client"
+  adUnitCode: "test-div",
+  auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917",
+  bidId: "22c4871113f461",
+  bidder: "rubicon",
+  bidderRequestId: "15246a574e859f",
+  bidRequestsCount: 1,
+  bidderRequestsCount: 1,
+  bidderWinsCount: 0,
+  userId: {...},
+  userIdAsEid: {...},
+  schain: {...},
+  mediaTypes: {banner: {...}},
+  params: {...},
+  src: "client",
   transactionId: "54a58774-7a41-494e-9aaf-fa7b79164f0c"
 }]
 {% endhighlight %}
@@ -260,6 +261,8 @@ Other notes:
 - **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
 - **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
 - **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
+- **userIdAsEid** is the EID-formatted version of `userId`.
+- **ortb2** a copy of `bidderRequest.ortb2` (see below), provided here for convenience.
 - **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
 
 #### bidderRequest Parameters
@@ -274,11 +277,16 @@ Here is a sample bidderRequest object:
   bidderRequestId: "15246a574e859f",
   bids: [{...}],
   gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true},
+  ortb2: {...},
   refererInfo: {
-    canonicalUrl: undefined,
+    canonicalUrl: null,
+    page: "http://mypage.org?pbjs_debug=true",
+    domain: "mypage.org",
+    ref: null,
     numIframes: 0,
     reachedTop: true,
-    referer: "http://mypage?pbjs_debug=true"
+    isAmp: false,
+    stack: ["http://mypage.org?pbjs_debug=true"]
   }
 }
 {% endhighlight %}
@@ -287,7 +295,8 @@ Notes on parameters in the bidderRequest object:
 - **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
 - **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
 - **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
-- **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module
+- **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module.
+- **ortb2** is the global (not specific to any adUnit) [first party data](/features/firstPartyData.html) to use for all requests in this auction. Note that Prebid allows any standard ORTB field or extension as first party data - including items that typically wouldn't be considered as such, for example user agent client hints (`device.sua`) or information on the regulatory environment (`regs.ext.gpc`).
 
 <a name="std-param-location"></a>
 
@@ -301,25 +310,28 @@ There are a number of important values that a publisher expects to be handled in
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
-| First Party Data | The publisher may provide [first party data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) (e.g. page type). | config.getConfig('fpd'); |
+| First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
-| Page Referrer | Intead of building your own function to find the page referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.referer |
-| Publisher Domain | The page may declare its domain, useful in cross-iframe scenarios. | config.getConfig('publisherDomain') |
+| Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
 | Video Parameters | Video params must be read from AdUnit.mediaType.video when available; however bidder config can override the ad unit. | AdUnit.mediaType.video |
 
-#### Referrers
+#### Location and referrers
 
 Referrer information should be passed to your endpoint in contexts where the original page referrer isn't available directly to the adapter. Use the `bidderRequest.refererInfo` property to pass in referrer information. This property contains the following parameters:
 
-- `referer`: a string containing the detected top-level URL.
+- `location`: a string containing the detected top-level URL, or null when the top window is inaccessible.
+- `topmostLocation`: a string containing the URL of the topmost accessible frame.
+- `canonicalUrl`: a string containing the canonical (search engine friendly) URL, as set by the publisher.
+- `page`: the best candidate for the top level URL - or null when the top window is inaccessible. Equivalent to `canonicalUrl` || `location`.
+- `domain`: the domain (hostname and port) portion of `page`.
+- `ref`: referrer to the top window (`window.top.document.referrer`), or null when the top window is inaccessible. 
 - `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
 - `numIframes`: the number of iFrames.
 - `stack`: an array of URLs of all windows from the top window down to the current window.
-- `canonicalUrl`: a string containing the canonical (search engine friendly) URL defined in top-most window.
 - `isAmp`: a boolean specifying whether the detected referer was determined based on AMP page information.
 
-The URL returned by `refererInfo` is in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
+The URLs returned by `refererInfo` are in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
 
 #### The output of buildRequests: ServerRequest Objects
 
@@ -417,6 +429,7 @@ The parameters of the `bidResponse` object are:
 | `vastUrl`    | Either this or `vastXml` required for video | URL where the VAST document can be retrieved when ready for display.                                                                          | `"https://vid.example.com/9876`       |
 | `vastImpUrl` | Optional; only usable with `vastUrl` and requires prebid cache to be enabled | An impression tracking URL to serve with video Ad                                                                                             | `"https://vid.exmpale.com/imp/134"`   |
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
+| `bidderCode` | Optional                                    | Bidder code to use for the response - for adapters that wish to reply on behalf of other bidders. Defaults to the code registered with [`registerBidder`](#bidder-adaptor-Overview); note that any other code will need to be [explicitly allowed by the publisher](/dev-docs/publisher-api-reference/bidderSettings.html#allowAlternateBidderCodes). | 'exampleBidder' |  
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
 | `meta`     | Optional                                    | Object containing metadata about the bid                                                                                                                                       |                           |
 | `meta.networkId`     | Optional                                    | Bidder-specific Network/DSP Id               | 1111             |
@@ -584,10 +597,14 @@ Sample data received by this function:
             bids: [{...}],
             gdprConsent: {consentString: "BOtmiBKOtmiBKABABAENAFAAAAACeAAA", vendorData: {...}, gdprApplies: true},
             refererInfo: {
-                canonicalUrl: undefined,
+                canonicalUrl: null,
+                page: "http://mypage.org?pbjs_debug=true",
+                domain: "mypage.org",
+                ref: null,
                 numIframes: 0,
                 reachedTop: true,
-                referer: "http://mypage?pbjs_debug=true"
+                isAmp: false,
+                stack: ["http://mypage.org?pbjs_debug=true"]
             }
         }
     }
@@ -904,7 +921,8 @@ In order for your bidder to support the native media type:
 1. Your (server-side) bidder needs to return a response that contains native assets.
 2. Your (client-side) bidder adapter needs to unpack the server's response into a Prebid-compatible bid response populated with the required native assets.
 3. Your bidder adapter must be capable of ingesting the required and optional native assets specified on the `adUnit.mediaTypes.native` object, as described in [Show Native Ads](/prebid/native-implementation.html).
-4. Your spec must declare NATIVE in the supportedMediaTypes array.
+4. Your code, including tests, should check whether native support is enabled (through the global flag `FEATURES.NATIVE`) before doing #2 or #3. This allows users not interested in native to build your adapter without any native-specific code.
+5. Your spec must declare NATIVE in the supportedMediaTypes array.
 
 The adapter code samples below fulfills requirement #2, unpacking the server's reponse and:
 
@@ -914,7 +932,7 @@ The adapter code samples below fulfills requirement #2, unpacking the server's r
 {% highlight js %}
 
 /* Does the bidder respond with native assets? */
-else if (rtbBid.rtb.native) {
+else if (FEATURES.NATIVE && rtbBid.rtb.native) {
 
     /* If yes, let's populate our response with native assets */
 
@@ -941,7 +959,7 @@ Here's an example of returning image sizes:
 
 ```javascript
     /* Does the bidder respond with native assets? */
-    else if (rtbBid.rtb.native) {
+    else if (FEATURES.NATIVE && rtbBid.rtb.native) {
 
         const nativeResponse = rtbBid.rtb.native;
 
@@ -1138,7 +1156,8 @@ registerBidder(spec);
     - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
     - If you support deals, set `deals_supported: true`. No default value..
     - If you support floors, set `floors_supported: true`. No default value..
-    - If you support first party data, set `fpd_supported: true`. No default value..
+    - If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
+    - If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to 'true','partial', or 'false'. No default value. In order to set 'true', you must support: bcat, badv, battr, and bapp.
     - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 - Submit both the code and docs pull requests
 
@@ -1166,6 +1185,7 @@ pbjs: true/false
 pbs: true/false
 prebid_member: true/false
 multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
+ortb_blocking_supported: true/partial/false
 ---
 ### Note:
 

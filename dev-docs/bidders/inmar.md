@@ -2,14 +2,12 @@
 layout: bidder
 title: Inmar
 description: Prebid Inmar Bidder Adapter
-
 biddercode: inmar
 usp_supported: true
 userIds: identityLink, liveIntentId, unifiedId, pubCommonId, pubProvidedId, sharedId
 media_types: banner, video
 safeframes_ok: false
 deals_supported: true
-fpd_supported: true
 pbjs: true
 ---
 ### Note:
