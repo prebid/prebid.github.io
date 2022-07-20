@@ -21,10 +21,10 @@ description: NextMillennium bid adapter
 ### bid params
 
 {: .table .table-bordered .table-striped }
-| Name           | Description                              | Example   | Type    |
-|----------------+------------------------------------------+-----------|---------|
-| `placement_id` | Placement ID, provided by nextMillennium | `'12345'` | String  |
-| `group_id`     | Group ID, provided by nextMillennium     | `'12345'` | String  |
+| Name           | Scope | Description                              | Example   | Type    |
+|----------------+-------+-----------------------------------+-----------+---------|
+| `placement_id` | required | Placement ID, provided by nextMillennium | `'12345'` | String  |
+| `group_id`     | optional | Group ID, provided by nextMillennium     | `'12345'` | String  |
 
 Required one of the two parameters placement_id or group_id.
 
