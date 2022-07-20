@@ -16,7 +16,7 @@ sidebarType : 1
 * TOC
 {:toc}
 
-This module reads segments from [[Intimate Merger]] audience data platform and attaches them as targeting keys to bid requests.
+This module reads segments from [Intimate Merger](https://corp.intimatemerger.com/) audience data platform and attaches them as targeting keys to bid requests.
 
 The audience data platform performs segmentation even in environments where 3rd party cookies are not available, but curretly only available in Japan.
 
