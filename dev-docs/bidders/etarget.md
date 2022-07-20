@@ -2,9 +2,6 @@
 layout: bidder
 title: Etarget
 description: Prebid Etarget Bidder Adaptor 
-dev_docs
-nav_section: reference
-hide: true
 biddercode: etarget
 media_types: banner, video
 gdpr_supported: true
@@ -13,17 +10,6 @@ pbjs: true
 fpd_supported: true
 gvl_id: 29
 ---
-
-
-### bid params
-=======
-pbjs: true
-biddercode: etarget
-media_types: banner, video
-gdpr_supported: true
-fpd_supported: true
----
-
 
 ### Bid Params
 
@@ -44,7 +30,7 @@ In release 5.0 and later, publishers should use the `ortb2` method of setting Fi
 - ortb2.user.ext.data.*
 - ortb2.user.data[]
 
-With regards to Contextual and Audience segments, the Magnite exchange supports the IAB standard taxonomies. See [the segment management user guide](https://resources.rubiconproject.com/resource/publisher-resources/segment-management-user-guide/) for more information.
+The ETARGET exchange supports the IAB standard Audience Taxonomy v1.1 and Content Taxonomy v2.2.
 
 Example first party data that's available to all bidders and all adunits:
 ```

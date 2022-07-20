@@ -93,12 +93,10 @@ An example Stored Request is given below:
 Note that other ext.prebid extensions can be specified in the stored request such as:
 - [ext.prebid.currency](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#currency-support)
 - [ext.prebid.aliases](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bidder-aliases)
-- [ext.prebid.multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only)
+- [ext.prebid.multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid)
 - etc.
 
 #### First Party Data
-
-(Currently only supported in PBS-Java)
 
 The nature of AMP is that user-level FPD is difficult or impossible. All of the pages are cached on a CDN and page javascript that can modify RTC calls is severely limited.
 
@@ -218,7 +216,7 @@ Specifically:
 
 ## Configuration Options
 
-- settings.generate-storedrequest-bidrequest-id: replace the stored request `id` with a UUID (PBS-Java only)
+- settings.generate-storedrequest-bidrequest-id: replace the stored request `id` with a UUID
 - amp.default-timeout-ms: default operation timeout for AMP requests
 - amp.timeout-adjustment-ms: reduces timeout value passed in AMP request. Can be used to account for estimated latency so that Prebid Server can respond to the AMP RTC request before it times out.
 - amp.max-timeout-ms: maximum operation timeout for AMP requests

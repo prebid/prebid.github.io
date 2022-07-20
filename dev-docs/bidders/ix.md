@@ -5,14 +5,14 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: true
-userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, haloId, pubcid
+userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
 gdpr_supported: true
 floors_supported: true
 usp_supported: true
-media_types: banner, video
+media_types: banner, video, native
 fpd_supported: true
 gvl_id: 10
 prebid_member: yes
@@ -63,7 +63,7 @@ var adUnits = [{
 |---|---|
 | `banner` | Fully supported for all IX approved sizes |
 | `video`  | Fully supported for all IX approved sizes |
-| `native` | Not supported |
+| `native` | Supported |
 
 ### Supported Media Types (Prebid Server)
 
@@ -72,7 +72,7 @@ var adUnits = [{
 |------|-------|
 | `banner` | Fully supported |
 | `video`  | Fully supported, including ad pods for OTT |
-| `native` | Not supported |
+| `native` | Supported |
 
 # Ad Unit or Bidder Parameters
 
@@ -100,13 +100,19 @@ In Prebid.js versions 5.0 and above, mediaType and sizes are not required to be 
 | `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. It will be associated to the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
 | `size` | Optional | Number[] | The single size that is associated with the site ID, as listed in the ad unit under `adUnits[].sizes` or `adUnits[].mediaTypes.video.playerSize`. For example, [300, 250], [300, 600]. <BR><BR>This parameter is optional in Prebid.js versions 5.0 and above. Versions prior to 5.0 will still require a size parameter.|
 | `video` | Optional | Hash | The video object will serve as the properties of the video ad. You can create any field under the video object that is mentioned in the `OpenRTB Spec v2.5`. Some fields like `mimes, protocols, minduration, maxduration` are required. Properties not defined at this level, will be pulled from the Adunit level.|
-| `video.w` | Required | Integer | The video player size width in pixels that will be passed to demand partners.|
-| `video.h` | Required | Integer | The video player size height in pixels that will be passed to demand partners.|
-| `video.playerSize` | Optional* | Integer | The video player size that will be passed to demand partners. * In the absence of `video.w` and `video.h`, this field is required.|
-| `video.mimes` | Required | String[] | Array list of content MIME types supported. Popular MIME types include, but are not limited to, `"video/x-ms- wmv"` for Windows Media and `"video/x-flv"` for Flash Video.|
+| `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. <br /> *If you are using Index’s outstream player and have placed the video object at the `bidder` level, this is a required field. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of 300 x 250.|
+| `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. <br /> *If you are using Index’s outstream player and have placed the video object at the `bidder` level, this is a required field. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of 300 x 250.|
+| `video.playerSize` | Optional* | Integer | The video player size that will be passed to demand partners.<br /> *If you are using Index’s outstream player and have placed the video object at the `adUnit` level, this is a required field. You must define the size of the video player using this parameter, with a minimum `video` player size of 300 x 250. |
+| `video.mimes` | Required | String[] | If you are using Index’s outstream video player and want to learn more about what is supported, see [List of supported OpenRTB bid request fields for Sellers.](https://kb.indexexchange.com/publishers/openrtb_integration/list_of_supported_openrtb_bid_request_fields_for_sellers.htm#Video) |
 | `video.minduration` | Required | Integer | Minimum video ad duration in seconds.|
 | `video.maxduration` | Required | Integer | Maximum video ad duration in seconds.|
 | `video.protocol` / `video.protocols` | Required | Integer / Integer[] | Either a single protocol provided as an integer, or protocols provided as a list of integers. `2` - VAST 2.0, `3` - VAST 3.0, `5` - VAST 2.0 Wrapper, `6` - VAST 3.0 Wrapper|
+| `video.playerConfig` | Optional | Hash | The Index specific outstream player configurations.
+| `video.playerConfig.floatOnScroll` | Optional | Boolean | A boolean specifying whether you want to use the player’s floating capabilities, where: <br /> - `true`: Use the Index player’s float capabilities.<br /> **Note**: If you set `floatOnScroll` to `true`, Index updates the `placement` value to `5`. <br />**Note:** We do not recommend using the player's default float capabilities if you have more than one outstream ad unit per page. <br />- `false`: Do not use the Index player's float capabilities (default). |
+| `video.playerConfig.floatSize` | Optional | Integer[] | The height and width of the floating player in pixels. If you do not specify a float size, the player adjusts to the aspect ratio of the player size that is defined when it is not floating. Index recommends that you review and test the float size to your user experience preference.|
+
+### Native
+Index supports the native assets that Prebid.js recognizes. For the list of native assets, see [Prebid.js Native Implementation Guide on the Prebid site.](https://docs.prebid.org/prebid/native-implementation.html#3-prebidjs-native-adunit-overview)
 
 ## Setup Guide
 
@@ -115,7 +121,7 @@ integration.
 
 The examples in this guide assume the following starting configuration (you may remove banner or video, if either does not apply).
 
-In regards to video, `context` can either be `'instream'` or `'outstream'`. Note that `outstream` requires additional configuration on the adUnit.
+In regards to video, `context` can either be `'instream'` or `'outstream'`.
 
 ```javascript
 var adUnits = [{
@@ -195,13 +201,12 @@ var adUnits = [{
             // Preferred location for openrtb v2.5 compatible video obj
             context: 'instream',
             playerSize: [300, 250],
-            mimes: [
-                    'video/mp4',
-                    'video/webm'
-                ],
-            minduration: 0,
-            maxduration: 60,
-            protocols: [6]
+            api: [2],
+            protocols: [2, 3, 5, 6],
+            minduration: 5,
+            maxduration: 30,
+            mimes: ['video/mp4', 'application/javascript'],
+            placement: 3
         }
     },
     bids: [{
@@ -225,45 +230,52 @@ Please note that you can re-use the existing `siteId` within the same flex
 position.
 
 **Video (Outstream):**
-Note that currently, outstream video rendering must be configured by the publisher. In the adUnit, a `renderer` object must be defined, which includes a `url` pointing to the video rendering script, and a `render` function for creating the video player. See http://prebid.org/dev-docs/show-outstream-video-ads.html for more information.
+Publishers have two options to receive outstream video demand from Index:
+* Using Index’s outstream video player
+* In an outstream video configuration set up by the publisher. For more information, see [Prebid’s documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
+
+**Index’s outstream video player**
+Publishers who are using Index as a bidding adapter in Prebid.js can show outstream video ads on their site from us by using Index’s outstream video player. This allows a video ad to display inside of a video player and can be placed anywhere on a publisher’s site, such as in-article, in-feed, and more.
+
+Define a new `video` object for our outstream video player at either the adUnit level or the `bidder` level. If you are setting it at the bidder level, define the size of the video player using the parameters `video.h` and `video.w`. If you are setting it at the `adUnit` level, define the size using `video.playerSize`.</br>**Note:** The bidder level video configurations override the adunit level configurations. The `playerConfig` is only a bidder level configuration.
+
+For more information on how to structure the `video` object, refer to the following code example:
+
 
 ```javascript
 var adUnits = [{
-    code: 'video-div-a',
+    code: 'div-gpt-ad-1571167646410-1',
     mediaTypes: {
         video: {
+            playerSize: [640, 360],
             context: 'outstream',
-            playerSize: [300, 250],
-            mimes: [
-                    'video/mp4',
-                    'video/webm'
-                ],
-            minduration: 0,
-            maxduration: 60,
-            protocols: [6]
-        }
-    },
-    renderer: {
-        url: 'https://test.com/my-video-player.js',
-        render: function (bid) {
-            ...
+            api: [2],
+            protocols: [2, 3, 5, 6],
+            minduration: 5,
+            maxduration: 30,
+            mimes: ['video/mp4', 'application/javascript'],
+            placement: 5
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '12345',
+            siteId: '715964'
             video: {
-                // If required, use this to override mediaTypes.video.XX properties   
+                playerConfig: {
+                    floatOnScroll: true,
+                    floatSize: [300,250]
+                }
             }
         }
     }]
 }];
 ```
+<em>Please note that your use of the outstream video player will be governed by and subject to the terms and conditions of i) any master services or license agreement entered into by you and Index Exchange; ii) the information provided on our knowledge base linked [here](https://kb.indexexchange.com/publishers/prebid_integration/outstream_video_prebidjs.htm) and [here](https://kb.indexexchange.com/publishers/guidelines/standard_contractual_clauses.htm), and iii) our [Privacy Policy](https://www.indexexchange.com/privacy/). Your use of Index’s outstream video player constitutes your acknowledgement and acceptance of the foregoing. </em>
 
 #### Video Caching
 
-Note that the IX adapter expects a client-side Prebid Cache to be enabled for video bidding.
+Note that the IX adapter expects a client-side Prebid Cache to be enabled for instream video bidding.
 
 ```
 pbjs.setConfig({
@@ -274,8 +286,53 @@ pbjs.setConfig({
 });
 ```
 
+#### Native
+We support the three native template rendering options that are provided in the [Setting up Prebid Native in Google Ad Manager](https://docs.prebid.org/adops/gam-native.html). The following code is an example of a Prebid native set up using Google Ad Manager, but the concept and implementation should be similar for other ad servers.
+
+```
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        native: {
+            image: {
+                required: true,
+                sizes: [150, 50]
+            },
+            title: {
+                required: true,
+                len: 80
+            },
+            sponsoredBy: {
+                required: true
+            },
+            clickUrl: {
+                required: true
+            },
+            privacyLink: {
+                required: false
+            },
+            body: {
+                required: true
+                len: 90
+            },
+            icon: {
+                required: true,
+                sizes: [50, 50]
+            }
+        }
+    },
+    bids: [{
+        bidder: 'ix',
+        params: {
+            siteId: '715966'
+        }
+    }]
+});
+```
+
 #### User Sync
 Add the following code to enable user sync. IX strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the IX bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
+**Note**: While we recommend iframe-based user syncing, we also support image-based user syncing. If both are enabled, we will default to using iframe, because it allows us more flexibility to optimize the frequency, timing, and coverage for syncing.
 
 ```
 pbjs.setConfig({
@@ -462,10 +519,8 @@ to `'ix'` across all ad units that bids are being requested for does not exceed 
 
 ### Time-To-Live (TTL)
 
-Banner bids from IX have a TTL of 300 seconds while video bids have a TTL of 1 hour, after which time they become invalid.
-
-If an invalid bid wins, and its associated ad is rendered, it will not count
-towards total impressions on IX's side.
+Banner bids from Index have a TTL of 600 seconds while video bids have a TTL of 3 hours, after which time they become invalid.</br>
+**Note:** Index supports the `bid.exp` attribute in the bid response which allows our adapter to specify the maximum number of seconds allowed between the auction and billing notice. In the absence of the `bid.exp` attribute, the TTL provided above applies.
 
 ## FAQs
 
