@@ -22,8 +22,6 @@ pbs: false
 |---------------|----------|-----------------------|--------------------------------------|-----------|
 | `account`     | required | Prisma account ID    | `'1067'`                             | `string`  |
 | `tagId`       | required | Prisma tag ID        | `'luvxjvgn'`                         | `string`  |
-| `bidfloor`       | optional | Bidfloor applied to auction (default: 0)        | `0.8`                         | `float`  |
-| `bidfloorCurrency`       | optional | Bidfloor currency (default: `'USD'`) - Can be `'USD'` or `'EUR'`       | `'USD'`                         | `string`  |
 
 ### Test Parameters
 
