@@ -4,7 +4,7 @@ title: YieldOne
 description: Prebid YieldOne Bidder Adaptor
 biddercode: yieldone
 media_types: banner, video
-userIds: identityLink, imuid, AudienceOne ID
+userIds: identityLink, imuid, AudienceOne ID, ID5
 pbjs: true
 pbs: true
 multiformat_supported: will-bid-on-any
