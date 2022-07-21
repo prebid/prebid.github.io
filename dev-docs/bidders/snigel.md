@@ -15,6 +15,11 @@ floors_supported: false
 pbjs: true
 ---
 
+#### Note:
+
+This bid adapter requires our ad operation experts to create an optimized setup for the desired placements on your property.
+Please reach out to us at https://snigel.com/get-in-touch.
+
 #### Prebid.js Bid Params
 
 {: .table .table-bordered .table-striped }
