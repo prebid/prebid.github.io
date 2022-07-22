@@ -3,7 +3,7 @@ layout: bidder
 title: Smart AdServer
 description: Prebid Smart AdServer Bidder Adaptor
 biddercode: smartadserver
-media_types: display, video
+media_types: display, video, native
 gdpr_supported: true
 schain_supported: true
 usp_supported: true
@@ -46,6 +46,24 @@ The Smart AdServer bidder adaptor requires setup and approval from the Smart AdS
 |--------------|----------|-------------------------------------------------------------------------------------------------------------------------|------------------------|-----------|
 | `protocol`   | optional | Maximum open RTB video protocol supported                                                                               | `8` (VAST 4.0 wrapper) | `integer` |
 | `startDelay` | optional | Allowed values: 1 (generic pre-roll, default), 2 (generic mid-roll), 3 (generic post-roll)                               | `1`                    | `integer` |
+
+### Supported Media Types (Prebid.js)
+
+{: .table .table-bordered .table-striped }
+| Type | Support |
+|---|---|
+| `banner` | Supported |
+| `video`  | Supported |
+| `native` | Not currently supported |
+
+### Supported Media Types (Prebid Server)
+
+{: .table .table-bordered .table-striped }
+| Type   | Support |
+|------|-------|
+| `banner` | Supported |
+| `video`  | Supported |
+| `native` | Supported |
 
 ### Examples 
 
