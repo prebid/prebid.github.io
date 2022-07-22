@@ -6,7 +6,7 @@ gdpr_supported: true
 pbjs: true
 pbs: true
 biddercode: blue
-prebid_member: true
+prebid_member: false
 floors_supported: true
 safeframes_ok: true
 media_types: banner
