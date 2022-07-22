@@ -7,10 +7,10 @@ gdpr_supported: true
 usp_supported: true
 media_types: video
 safeframes_ok: true
-bidder_supports_deals: false
+deals_supported: false
 pbjs: true
 pbs: false
-getFloor: true
+floors_supported: true
 ---
 ### Note:
 

@@ -7,17 +7,23 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
-getFloor: true
-media_types: video
+floors_supported: true
+media_types: banner, video
 userIds: all
 prebid_member: true
 safeframes_ok: true
-bidder_supports_deals: true
+deals_supported: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
+fpd_supported: true
+ortb_blocking_supported: partial
 gvl_id: 52
+multiformat_supported: will-bid-on-one
 ---
+### Disclosure:
+
+This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
 
 ### Registration
 
@@ -42,32 +48,16 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 
 #### First Party Data
 
-Rubicon Project requires that first party data be split into two categories: "inventory" and "visitor".
+In release 4.30 and later, publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
+- ortb2.site.ext.data.*
+- ortb2.site.keywords
+- ortb2.site.content.data[]
+- ortb2.user.ext.data.*
+- ortb2.user.data[]
 
-For Prebid.js 4.29 and before, use the bidder specific AdUnit parameters noted above:
-```
-var adUnit = {
-    ...
-    bids: [{
-        bidder: 'rubicon',
-        params: {
-            accountId: 7780,                     // replace account/site/zone params
-            siteId: 87184,
-            zoneId: 413290,
-            inventory: {
-                prodtype: ["tech","mobile"]
-            },
-            visitor: {
-                ucat:["new"]
-            }
-        }
-    }]
-};
-```
+With regards to Contextual and Audience segments, the Magnite exchange supports the IAB standard taxonomies. See [the segment management user guide](https://resources.rubiconproject.com/resource/publisher-resources/segment-management-user-guide/) for more information.
 
-In release 4.30 and later, we recommend using the ortb2 method of setting First Party Data. This can be done in two ways: global (cross-bidder) or bidder-specific.  For Inventory, you will need to use site.ext.data, and For Visitor, you will need to use the user.ext.data. For More information about Audience Segments in Magnite: https://resources.rubiconproject.com/resource/publisher-resources/segment-management-user-guide/
-
-Example first party data available to all bidders and all adunits:
+Example first party data that's available to all bidders and all adunits:
 ```
 pbjs.setConfig({
   ortb2: {
@@ -114,6 +104,45 @@ pbjs.setBidderConfig({
     }
   }
 };
+```
+
+For Prebid.js 4.29 and before, use the bidder specific AdUnit parameters noted above:
+```
+var adUnit = {
+    ...
+    bids: [{
+        bidder: 'rubicon',
+        params: {
+            accountId: 7780,                     // replace account/site/zone params
+            siteId: 87184,
+            zoneId: 413290,
+            inventory: {
+                prodtype: ["tech","mobile"]
+            },
+            visitor: {
+                ucat:["new"]
+            }
+        }
+    }]
+};
+```
+
+#### ORTB Blocking
+
+Rubicon supports passing up to 50 domains in `badv` for anything hitting Prebid Server, which includes these scenarios:
+
+1. client-side video
+2. s2sConfig
+3. App
+4. AMP
+
+For example:
+```
+pbjs.setConfig({
+  ortb2: {
+    badv: ["domain1.com", "domain2.com"]
+  }
+)};
 ```
 
 #### mediaTypes.video
@@ -215,6 +244,12 @@ pbjs.setConfig({
 
 * The Rubicon Project adapter does not make concurrent banner and video requests. Instead, the adapter will send a video request if bids[].params.video is supplied, else a banner request will be made.
 
+### Setting up the Prebid Server Adapter
+  
+If you're a Prebid Server host company looking to enable the Rubicon server-side adapter, you'll need to contact globalsupport@magnite.com. They will provide:
+- a Magnite DV+ XAPI login and password that you'll place in the PBS config
+- a partner code you can use for cookie-syncing with Magnite's service
+  
 ### Configuration
 
 #### Single-Request

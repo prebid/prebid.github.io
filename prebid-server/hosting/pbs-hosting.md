@@ -40,6 +40,8 @@ Other services you may want to run alongside Prebid Server are:
 - Geographic lookup (for GDPR scope determination)
 - Device lookup service (future: for Programmatic Guaranteed targeting)
 
+Note that neither Prebid Server nor Prebid Cache supports configuring an SSL certificate. It's intended that they run behind a load balancer or proxy server (e.g. nginx) that provides SSL.
+
 ## Prebid Cache Servers
 
 The PBC servers consume very little CPU or memory - they just translate
@@ -68,7 +70,7 @@ populating data from their internal systems.
 You'll want to hook both Prebid Server and Prebid Cache up to an
 operational monitoring system.
 
-- PBS-Go currently supports Influx and Promotheus
+- PBS-Go currently supports Influx and Prometheus
 - PBS-Java currently supports Influx and Graphite
 
 ## Installing the Software

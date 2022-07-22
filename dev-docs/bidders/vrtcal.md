@@ -4,9 +4,12 @@ title: VRTCAL Markets, Inc.
 description: VRTCAL Markets, Inc. Bid Adapter
 pbjs: true
 pbs: true
-media_ytpes: banner
-gdpr_supported: false
+media_types: banner, video
 biddercode: vrtcal
+gdpr_supported: true
+usp_supported: true
+schain_supported: true
+coppa_supported: true
 gvl_id: 706
 ---
 

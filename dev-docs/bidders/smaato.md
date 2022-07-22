@@ -13,19 +13,32 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 prebid_member: true
+floors_supported: true
+fpd_supported: true
+schain_supported: true
 ---
 
 ### Table of Contents
 
+- [Registration](#smaato-registration)
+- [Note](#smaato-note)
 - [Bid Params](#smaato-bid-params)
 - [App Object](#smaato-app-object)
 - [Example Ad Units](#smaato-example-ad-units)
 - [First Party Data](#smaato-first-party)
 - [Test Parameters](#smaato-test-parameters)
 
+<a name="smaato-registration" />
+
 ### Registration
 
 The Smaato adapter requires setup and approval from the Smaato team, even for existing Smaato publishers. Please reach out to your account team or prebid@smaato.com for more information.
+
+<a name="smaato-note" />
+
+### Note
+
+The Smaato adapter will convert bidfloors to 'USD' currency as needed.
 
 <a name="smaato-bid-params" />
 
@@ -139,18 +152,31 @@ var adUnit = {
 <a name="smaato-first-party" />
 
 ### First Party Data
+Publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
+- ortb2.site.keywords
+- ortb2.site.content
+- ortb2.user.keywords
+- ortb2.user.yob
+- ortb2.user.gender
+- ortb2.user.ext.eids
 
-The Smaato adapter supports passing through first party data configured in your prebid integration.
+The IAB standard taxonomies are not supported.
+
+Example first party data that's available to all bidders and all adunits:
 
 ```javascript
 pbjs.setConfig({
-    fpd: {
-        context: {
-            keywords: "power tools"
-        },
+    ortb2: {
+        site: {
+            keywords: "kw1,kw2", 
+            content: {
+                title: "title1",
+                series: "series1"
+                }
+            }, 
         user: {
-            keywords: "a,b",
-            gender: "M",
+            keywords: "a,b", 
+            gender: "M", 
             yob: 1984
         }
     }
