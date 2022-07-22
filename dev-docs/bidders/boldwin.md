@@ -3,6 +3,7 @@ layout: bidder
 title: Boldwin
 description: Prebid Boldwin Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: boldwin
 gdpr_supported: true
 media_types: banner, video, native
