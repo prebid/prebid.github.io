@@ -3,6 +3,9 @@ layout: bidder
 title: seedtag
 description: Prebid Seedtag Bidder Adapter
 pbjs: true
+gdpr_supported: true
+usp_supported: true
+gvl_id: 157
 media_types: banner, video
 biddercode: seedtag
 ---
@@ -19,7 +22,7 @@ The publisher id 0000-0000-01 returns demo responses.
 | Name              | Scope               | Description                                                                    | Example               | Type     |
 |-------------------|---------------------|--------------------------------------------------------------------------------|-----------------------|----------|
 | `publisherId`     | required            | The publisher id.                                                              | 0000-0000-01          | `string` |
-| `adunitId`        | required            | The adunit id.                                                                 | 00000                 | `string` |
+| `adUnitId`        | required            | The adunit id.                                                                 | 00000                 | `string` |
 | `placement`       | required            | Adunit placement, posibles values: banner, video, inImage, inScreen, inArticle | banner                | `string` |
 | `adPosition`      | optional            | 0 - Below the Fold, 1 - Above the Fold                                         | 0                     | `number` |
 | `video`           | optional for video  | Video targeting parameters. See the video section below.                       | {}                    | `object` |

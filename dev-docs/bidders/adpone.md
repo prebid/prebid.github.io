@@ -5,7 +5,7 @@ description: Prebid Adpone Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: adpone
-bidder_supports_deals: false
+deals_supported: false
 media_types: banner
 gvl_id: 799
 ---

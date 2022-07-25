@@ -4,7 +4,8 @@ title: LEMMA
 description: Prebid Lemma Bidder Adapter
 pbjs: true
 biddercode: lemma
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Integration Note:
