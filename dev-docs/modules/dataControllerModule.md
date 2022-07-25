@@ -33,8 +33,8 @@ Based on the configuration either EIDs or SDA are filtered/supressed.
 {: .table .table-bordered .table-striped }
 |  param name | type  | Scope | Description |
  | :------------ | :------------ | :------ | :------ | 
- |  filterEIDwhenSDA  | param | required | Filters user EIDs based on SDA |  
- |  filterSDAwhenEID  | param | required | Filters SDA based on configured EIDs |   
+ |  filterEIDwhenSDA  | param | required | Filters user EIDs based on SDA. To supress all EID, use '*' as param value. |  
+ |  filterSDAwhenEID  | param | required | Filters SDA based on configured EIDs. To supress all SDA, use '*' as param value. |   
 
 
 ## Example
