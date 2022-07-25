@@ -17,7 +17,7 @@ sidebarType : 1
 * TOC
 {:toc}
 
-## Prebid Config for Permutive RTD Module
+## Prebid Config for Permutive RTD Module\
 
 This module reads cohorts from Permutive and attaches them as targeting keys to bid requests.
 
