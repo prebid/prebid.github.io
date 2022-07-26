@@ -81,8 +81,8 @@ This array contains configurations for transformations we'll apply to the Permut
 #### Context
 
 Permutive is not listed as a TCF vendor as all data collection is on behalf of the publisher and based on consent the publisher has received from the user.
-This consent is provided to Permutive on the SDK level, rather than through the TCF framework.
-This means that if user consent isn’t given for Permutive to fire, no cohorts will populate.
+Rather than through the TCF framework, this consent is provided to Permutive when the user gives the relevant permissions on the publisher website which allow the Permutive SDK to run.
+This means that if GDPR enforcement is configured _and_ the user consent isn’t given for Permutive to fire, no cohorts will populate.
 As Prebid utilizes TCF vendor consent, for the Permutive RTD module to load, Permutive needs to be labeled within the Vendor Exceptions
 
 #### Instructions
@@ -155,7 +155,7 @@ Acbidders can be added or removed from the list using this feature, however, thi
 As a secondary option, new demand partner bidders may be added manually.
 
 To do so, a Publisher may define which bidders should receive Standard Cohorts by
-Including the _ID_ of any bidder in the `acBidders` array.
+including the _bidder code_ of any bidder in the `acBidders` array.
 
 **Note:** If a Publisher ever needs to remove a manually-added bidder, the bidder will also need to be removed manually.
 
@@ -164,7 +164,7 @@ Including the _ID_ of any bidder in the `acBidders` array.
 Separately from Standard Cohorts - The Permutive RTD module also supports passing any of the **custom** cohorts created in the dashboard to some SSP partners for targeting
 e.g. setting up publisher deals. For these activations, cohort IDs are set in bidder-specific locations per ad unit (custom parameters).
 
-Currently, the supported bidders for custom cohort targeting are:
+Currently, bidders with known support for custom cohort targeting are:
 
 - Xandr
 - Magnite
