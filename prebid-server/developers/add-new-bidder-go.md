@@ -29,7 +29,7 @@ An OpenRTB 2.5 Bid Request contains one or more Impressions, each representing a
 
 ### Choose A Name
 
-You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `data`, `general`, `prebid`, or `skadn` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go#L37).
+You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `data`, `general`, `prebid`, `skadn` or `tid` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go#L37).
 
 We ask that the first 6 letters of the name you choose be unique among the existing bid adapters. This consideration helps with generating targeting keys for use by some ad exchanges, such as Google Ad Manager. There's no need to manually check, as this constraint is enforced by the [`TestBidderUniquenessGatekeeping`](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders_validate_test.go#L45) test.
 
@@ -1176,6 +1176,7 @@ pbs: true/false
 pbs_app_supported: true/false
 prebid_member: true/false
 multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
+ortb_blocking_supported: true/partial/false
 ---
 
 ### Note:
@@ -1203,7 +1204,8 @@ Notes on the metadata fields:
 - If your bidder supports mobile apps, set `pbs_app_supported: true`. No default value.
 - If your bidder supports deals, set `deals_supported: true`. No default value.
 - If your bidder supports floors, set `floors_supported: true`. No default value.
-- If your bidder supports first party data, set `fpd_supported: true`. No default value.
+- If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
+- If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to ‘true’,’partial’, or ‘false’. No default value. In order to set ‘true’, you must support: bcat, badv, battr, and bapp.
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
 

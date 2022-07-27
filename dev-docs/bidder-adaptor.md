@@ -921,7 +921,8 @@ In order for your bidder to support the native media type:
 1. Your (server-side) bidder needs to return a response that contains native assets.
 2. Your (client-side) bidder adapter needs to unpack the server's response into a Prebid-compatible bid response populated with the required native assets.
 3. Your bidder adapter must be capable of ingesting the required and optional native assets specified on the `adUnit.mediaTypes.native` object, as described in [Show Native Ads](/prebid/native-implementation.html).
-4. Your spec must declare NATIVE in the supportedMediaTypes array.
+4. Your code, including tests, should check whether native support is enabled (through the global flag `FEATURES.NATIVE`) before doing #2 or #3. This allows users not interested in native to build your adapter without any native-specific code.
+5. Your spec must declare NATIVE in the supportedMediaTypes array.
 
 The adapter code samples below fulfills requirement #2, unpacking the server's reponse and:
 
@@ -931,7 +932,7 @@ The adapter code samples below fulfills requirement #2, unpacking the server's r
 {% highlight js %}
 
 /* Does the bidder respond with native assets? */
-else if (rtbBid.rtb.native) {
+else if (FEATURES.NATIVE && rtbBid.rtb.native) {
 
     /* If yes, let's populate our response with native assets */
 
@@ -958,7 +959,7 @@ Here's an example of returning image sizes:
 
 ```javascript
     /* Does the bidder respond with native assets? */
-    else if (rtbBid.rtb.native) {
+    else if (FEATURES.NATIVE && rtbBid.rtb.native) {
 
         const nativeResponse = rtbBid.rtb.native;
 
@@ -1155,7 +1156,8 @@ registerBidder(spec);
     - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
     - If you support deals, set `deals_supported: true`. No default value..
     - If you support floors, set `floors_supported: true`. No default value..
-    - If you support first party data, set `fpd_supported: true`. No default value..
+    - If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
+    - If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to 'true','partial', or 'false'. No default value. In order to set 'true', you must support: bcat, badv, battr, and bapp.
     - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 - Submit both the code and docs pull requests
 
@@ -1183,6 +1185,7 @@ pbjs: true/false
 pbs: true/false
 prebid_member: true/false
 multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
+ortb_blocking_supported: true/partial/false
 ---
 ### Note:
 
