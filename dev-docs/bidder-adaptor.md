@@ -27,6 +27,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 + [Required Adapter Rules](#bidder-adaptor-Required-Adapter-Conventions)
 + [Required Files](#bidder-adaptor-Required-Files)
 + [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
++ [HTTP Simple Requests](#bidder-adaptor-HTTP-simple-requests)
 
 <a name="bidder-adaptor-Required-Adapter-Conventions" />
 
@@ -145,6 +146,37 @@ For more information about the kinds of information that can be passed using the
     }];
 
 {% endhighlight %}
+
+<a name="bidder-adaptor-HTTP-simple-requests" />
+
+### HTTP Simple Requests
+
+When defining the HTTP headers for your endpoint, it is important from a performance perspective to consider what forces the browser to initiate a [CORS preflight request](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request). We encourage learning more about [Simple Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests) & [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) as it relates to your specific development configuration.
+
+A 'Simple Request' meets **all** of the following conditions:
+
+- Must be one of 3 following allowed methods
+    - GET
+    - HEAD
+    - POST
+
+- Only headers that are allowed to be manually set apart from the headers automatically set by the user-agent
+    - `Accept`
+    - `Accept-Language`
+    - `Content-Language`
+    - `Content-Type`
+    - `Range`
+
+- For the `Content-Type` header the only type/subtype combinations allowed are the following
+    - application/x-www-form-urlencoded
+    - multipart/form-data
+    - text/plain
+
+- If the request is made using `XMLHttpRequest` object, no event listeners are registered on the object returned by the `XMLHttpRequest.upload` property used in the request
+
+- No `ReadableStream` object is used in the request
+
+Prebid recommends keeping module HTTP requests 'simple' if at all possible. The default content-type used by Prebid.js is text/plain.
 
 ## Creating the Adapter
 
