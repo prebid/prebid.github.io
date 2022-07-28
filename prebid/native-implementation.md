@@ -695,11 +695,6 @@ There are detailed [instructions for setting up native in GAM](/adops/gam-native
 1. Otherwise, renderNativeAd() will look for the existence of a "rendererUrl" value in the AdUnit. If it finds one, it loads the script then calls window.renderAd() and appends the results to the iframe's body.
 1. Otherwise renderNativeAd() scans the iframe body and resolves ##macros##.
 
-## Further Reading
-
-- [Prebid Native Format](/formats/native.html)
-- [Setting Up Prebid Native in GAM](/adops/gam-native.html)
-
 ## 8. I am a bid adapter maintaner; what should I do to support OpenRTB? 
 
 For some time, the Prebid native team will try to ensure that legacy-style request definitions will continue to work. However, Prebid.JS is internally converting everything to OpenRTB. So, OpenRTB is the way to go if you want to ensure your native adapter will continue to work for the long run. 
@@ -711,3 +706,9 @@ We assume that in the first times all adapters will only understand legacy-style
 - `toOrtNativeRequest(legacyNativeAssets)` - In the future, you should convert your bid adapter to assume that OpenRTB is the standard. If, however, you encounter a native bid without the `ortb` property, you can call this function to convert legacy assets to OpenRTB. 
 
 For the bid response, Prebid expects to find your OpenRTB bid response under `bid.native.ortb` property.
+
+## Further Reading
+
+- [Prebid Native Format](/formats/native.html)
+- [Setting Up Prebid Native in GAM](/adops/gam-native.html)
+
