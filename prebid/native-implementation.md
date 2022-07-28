@@ -650,7 +650,8 @@ Steps what to do to enable Prebid viewability tracking for native ads:
 - in your renderer in `window.renderAd` function add following piece of code:
 
 ``` javascript
-window.renderAd = (ortb) => {
+window.renderAd = (bid) => {
+    const {ortb} = bid;
     let template = template.replace(macro, value);
     // code that is generating native ad based on template and ortb response should remain the same
 
@@ -698,3 +699,15 @@ There are detailed [instructions for setting up native in GAM](/adops/gam-native
 
 - [Prebid Native Format](/formats/native.html)
 - [Setting Up Prebid Native in GAM](/adops/gam-native.html)
+
+## 8. I am a bid adapter maintaner; what should I do to support OpenRTB? 
+
+For some time, the Prebid native team will try to ensure that legacy-style request definitions will continue to work. However, Prebid.JS is internally converting everything to OpenRTB. So, OpenRTB is the way to go if you want to ensure your native adapter will continue to work for the long run. 
+
+We assume that in the first times all adapters will only understand legacy-style native, so we expose two functions in `native.js`: 
+
+- `convertOrtbRequestToProprietaryNative(bidRequests)` - this function will convert OpenRTB-style native requests to legacy format. Actually, we've already added this conversion to all adapters so they will not fail when an OpenRTB definition is used by publisher.
+
+- `toOrtNativeRequest(legacyNativeAssets)` - In the future, you should convert your bid adapter to assume that OpenRTB is the standard. If, however, you encounter a native bid without the `ortb` property, you can call this function to convert legacy assets to OpenRTB. 
+
+For the bid response, Prebid expects to find your OpenRTB bid response under `bid.native.ortb` property.
