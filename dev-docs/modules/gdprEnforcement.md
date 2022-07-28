@@ -61,7 +61,7 @@ To turn on Prebid.js enforcement you must:
 1) Include the gdprEnforcement module in the Prebid.js build
 and 2) setConfig `consentManagement.gdpr.cmp` to either 'iab' or 'static'
 
-The following fields related to GDPR enforcement are supported in the [`consentManagement.gdpr`](/dev-docs/modules/consentManagement.html) object:
+The following fields related to GDPR enforcement are supported in the [`consentManagement`](/dev-docs/modules/consentManagement.html) object:
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
@@ -71,9 +71,11 @@ The following fields related to GDPR enforcement are supported in the [`consentM
 | gdpr.rules[].enforcePurpose | `Boolean` | Determines whether to enforce the purpose consent. The default in Prebid.js 3.x is not to enforce purposes. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].enforceVendor | `Boolean` | Determines whether to enforce vendor signals for this purpose. The default in Prebid.js 3.x is not to enforce vendor signals. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of this Purpose. | ["bidderA", "userID-module-B"] |
+| strictStorageEnforcement | `Boolean` | If false (the default), allows some use of storage regardless of purpose 1 consent - see [note](#strictStorageEnforcement) below | true |
 
 Notes:
 
+- <a id="strictStorageEnforcement" /> By default, Prebid allows some limited use of storage even when purpose 1 consent was not given: this is limited to non-PII, such as [category translation mappings](/dev-docs/modules/categoryTranslation.html), or temporary test data used to probe the browser's storage features. If `strictStorageEnforcement` is true, purpose 1 consent will always be enforced for any access to storage.      
 - To accomodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345").
 - An alternate way of establishing a GVL mapping is to define a 'gvlMapping' object:
 
@@ -85,6 +87,7 @@ pbjs.setConfig({
     }
 });
 ````
+
 
 ### Examples
 
