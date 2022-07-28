@@ -29,7 +29,13 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
    1. If GDPR applies, the consent signal from the CMP is hashed and stored in a cookie called `_pbjs_userid_consent_data`. This is required so that ID sub-modules may be called to refresh their ID if the user's consent preferences have changed from the previous page, and ensures cached IDs are no longer used if consent is withdrawn.
 1. An object containing one or more IDs (`bidRequest.userId`) is made available to Prebid.js adapters and Prebid Server S2S adapters.
 1. In addition to `bidRequest.userId`, `bidRequest.userIdAsEids` is made available to Prebid.js adapters and Prebid Server S2S adapters. `bidRequest.userIdAsEids` has userIds in ORTB EIDS format.
-1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html), [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html), or [pbjs.getUserIdsAsync()](/dev-docs/publisher-api-reference/getUserIdsAsync.html).
+1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html), [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html), or [pbjs.getUserIdsAsync()](/dev-docs/publisher-api-reference/getUserIdsAsync.html). 
+
+{: .alert.alert-info :}
+Note: If your ID structure is complicated, it is helpful to add tests for pbjs.getUserIds(), pbjs.getUserIdsAsEids() and pbjs.getUserIdsAsync().
+
+{: .alert.alert-info :}
+Note: To add a custom data type for the response of pbjs.getUserIdsAsEids(), see other examples within the createEidsArray method in /modules/userId/eid.js
 
 {: .alert.alert-info :}
 Note that User IDs aren't needed in the mobile app world because device ID is available in those ad serving scenarios.
