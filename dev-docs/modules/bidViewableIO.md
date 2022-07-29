@@ -36,6 +36,11 @@ This feature is not intended to be a perfect measure of viewability. It is howev
 2. Only works on browsers that support or on sites that have [polyfilled the IntersectionObserver API](https://github.com/w3c/IntersectionObserver/tree/main/polyfill)
 3. Results can only be trusted if both the publisher and winning bidder are assumed to be acting in good faith.
 
+Note that there are other viewability modules in Prebid.js:
+- [Generic Viewability](/dev-docs/modules/viewability.html)
+- [Bid Viewability - GAM](/dev-docs/modules/bidViewable.html)
+- [Browsi Viewability](/dev-docs/modules/browsiRtdProvider.html)
+
 ## Configuration
 
 {: .table .table-bordered .table-striped }
@@ -62,5 +67,4 @@ This feature is not intended to be a perfect measure of viewability. It is howev
 
 ## Related Reading
 
-- [Building a PBJS analytics adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html)
-- [Building a PBJS bidder adapter](/dev-docs/bidder-adaptor.html)
+- Alternate module: [Generic Viewability](/dev-docs/modules/viewability.html)
