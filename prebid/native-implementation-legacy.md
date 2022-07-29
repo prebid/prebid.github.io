@@ -1,24 +1,17 @@
 ---
 
 layout: page_v2
-title: Prebid.js Native Implementation Guide
-description: Prebid.js Native Implementation Guide
+title: Prebid.js Legacy Native Implementation Guide
+description: Prebid.js Legacy Native Implementation Guide
 sidebarType: 1
 
 ---
 
-# Prebid.js Native Implementation Guide
+# Prebid.js Legacy Native Implementation Guide
 {: .no_toc}
 
 {% capture version2 %}
-This document replaces the [original native documentation](/dev-docs/show-native-ads.html) that described how Prebid.js supported native creatives. That documentation is still valid, but the approach described here is better in every way, so we recommend that all new and revised implementations should follow this approach. Here are the key differences between the original approach and the new, preferred approach:
-{::nomarkdown}
-<ul>
-<li>The macro format is different: instead of using AdServer-defined macros, Prebid.js now has its own macro format.
-<li>Targeting variables aren't sent from Prebid.js to the AdServer. Rather, they're queried at display time.
-<li>A different rendering library is used.
-</ol>
-{:/}
+Prebid recommends new native implementations use the [OpenRTB method of defining native ads](/prebid/native-implementation.html).
 {% endcapture %}
 {% include alerts/alert_important.html content=version2 %}
 

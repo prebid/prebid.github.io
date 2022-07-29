@@ -14,14 +14,14 @@ sidebarType: 1
 This document replaces the [previous native documentation](/prebid/native-implementation-legacy.html) that described how Prebid.js supported native creatives. That documentation is still valid, but the approach described here is better in every way, so we recommend that all new and revised implementations should follow this approach. Here are the key differences between the original approach and the new, preferred approach:
 {::nomarkdown}
 <ul>
-<li>The native effort tries to be compliant with Native OpenRTB spec, version 1.2, with the notable exception of video support.</li>
+<li>The native approach is compliant with the Native OpenRTB spec, version 1.2, with the notable exception of video support.</li>
 <li>The request object specified in the Media Type Object is the plain OpenRTB request.</li>
-<li>The macro format is different: instead of using AdServer-defined macros, Prebid.js now uses openRTB-request based format.</li>
+<li>The macro format is different: instead of using AdServer-defined macros, Prebid.js now uses OpenRTB-request based format.</li>
 <li>The ortb response is also passed to ad units in `bid.ortb`.</li>
 </ol>
 {:/}
 {% endcapture %}
-{% include alerts/alert_important.html content=version2 %}
+{% include alerts/alert_tip.html content=version2 %}
 
 * TOC
 {:toc}
@@ -29,11 +29,11 @@ This document replaces the [previous native documentation](/prebid/native-implem
 
 ## Overview
 
-A native ad is made up of assets such as a title, description, and image URL that are plugged into a publisher-defined HTML template. The template includes placeholder macros for those assets, and may be styled to match the form of the surrounding page.
+A native ad is a collection of 'assets' such as title, description, and image that are plugged into a publisher-defined HTML template. The template includes placeholder macros for those assets, and may be styled to match the form of the surrounding page.
 
-At a high level, Prebid.js’ support for native ads works like this:
+At a high level, here's now native ads work in Prebid.js:
 
-- The publisher establishes one or more native rendering templates and sets up the ad server.
+- The publisher establishes one or more native rendering templates
 - The publisher defines which AdUnits are eligible for native ads and the bidders participating in the auction.
 - Prebid.js requests native demand from bidder adapters that support the “native” mediatype.
 - Native bids are stored in the Prebid.js memory space.
@@ -46,6 +46,9 @@ To determine whether a bidder can supply native demand, check the [bidder parame
 ## 1. Set up your ad server ad slot and HTML div
 
 Create your ad server in-page implementation as usual. See [Setting Up Prebid Native in GAM](/adops/gam-native.html) for instructions for how to do this with Google Ad Manager.
+
+There's no reason you couldn't use Prebid native ads with other ad servers, but we don't
+have any instructions handy. Ad server vendors are welcome to submit documentation.
 
 ## 2. Determine where the native template will be defined
 
@@ -70,23 +73,24 @@ This table summarizes how the 3 approaches work:
 
 ## 3. Prebid.js Native AdUnit Overview
 
-The Prebid.js AdUnit needs to define a native mediatype object to tell bidders which assets are required. This table defines all attributes that could be included in AdUnit.mediatypes.native. Specific examples of the three different scenarios follow.
+The Prebid.js AdUnit needs to define a native mediatype object to tell bidders which assets are required. This table defines all attributes that could be included in AdUnit.mediatypes.native.
 
 **Table 2: Prebid.js AdUnit Native MediaType Options**
 
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Description | Example | Type |
 | --- | --- | --- | --- | --- |
-| sendTargetingKeys | optional | Defines whether or not to send the hb_native_ASSET targeting keys to the ad server. Defaults to `true` for now, though we recommend setting this to `false` and utilizing one of the ways to define a native template. | `false` | boolean |
 | adTemplate | optional | Used in the ‘AdUnit-Defined Creative Scenario’, this value will contain the Native template right in the page. | See [example](#42-implementing-adunit-defined-template) below. | escaped ES5 string |
 | rendererUrl | optional | Used in the ‘Custom Renderer Scenario’, this points to javascript code that will produce the Native template. | 'https://host/path.js' | string |
-| type | optional | A “type” is like a macro that defines a group of assets. The only value currently supported is `image`, which implies the following assets: `image`, `title`, `sponsoredBy`, `clickUrl`, `body`, `icon`, and `cta`. The first 4 are required attributes. | `image` | string |
-| ortb | optional | OpenRTB configuration of adUnit. Specification can be found [here](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) | { assets: [], eventtrackers: [] } | object |
+| ortb | recommended | OpenRTB configuration of the Native assets. The Native 1.2 specification can be found [here](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) | { assets: [], eventtrackers: [] } | object |
+| sendTargetingKeys | deprecated | Defines whether or not to send the hb_native_ASSET targeting keys to the ad server. Defaults to `false`. | `false` | boolean |
 
 
-**Native Assets Recognized by Prebid.js**
+### 3.1. Prebid.js and the ORTB asset fields
 
-Prebid.js supports all assets that are supported by the openRTB native 1.2 specification.
+Prebid.js supports most assets defined by the OpenRTB native 1.2 specification. The
+exception is 'video', which could be passed through to bidders, but cannot currently
+be rendered.
 
 As a gentle introduction to the OpenRTB in Prebid: a request object is a javascript object that contains some well-defined properties, like
 
@@ -102,11 +106,13 @@ As a gentle introduction to the OpenRTB in Prebid: a request object is a javascr
 }
 ```
 
-`assets` contains the publisher definition of requested assets. An asset must have an `id`, used for matching the request with the response. It will be also important in defining the display macros. Also, an asset can specify if a field is `required`.
+`assets` are the components of the ad that will assembled using the template. An asset must have an `id`, used for matching the request with the response.
 
-Each asset can have one of the following properties:
+Each asset should have one of the following properties:
 
-- `title` - This is a regular title and the most important property is `len`, to specify the length. Here's an example: 
+#### 3.1.1. Title Asset
+
+This is a regular title and the most important property is `len`, to specify the length. Here's an example: 
 
 ```javascript
 {
@@ -117,7 +123,10 @@ Each asset can have one of the following properties:
     }
 },
 ```
-- `img` - Contains an image request. Images can be of type `1` - Main image - or `3` - Icon. There are many ways to specify the image size or aspect ratio; the OpenRTB spec contains all the possibilities. Here's an example: 
+
+#### 3.1.2. Image Asset
+
+Contains an image request. Images can be of type `1` (Icon) or `3` (Main image). There are several ways to specify the image size or aspect ratio; the OpenRTB spec contains all the possibilities. Here's an example: 
 
 ```javascript
 {
@@ -130,7 +139,10 @@ Each asset can have one of the following properties:
     }
 }
 ```
-- `data` - A data asset may contain some fields that have been standardized across the industry. Each field has a `type`, and based on that type the bidders will respond with the appropriate data. For example, you can request for the name of the sponsoring company by using the type `1`. 
+
+#### 3.1.3. Data Asset
+
+A 'data' asset is a 'misc' component like "sponsored by", "rating", likes", or other fields that have been standardized in OpenRTB 1.2. Each data asset has a `type`, and based on that type the bidders will respond with the appropriate data. For example, you can request for the name of the sponsoring company by using the type `1`. 
 
 Here's an example: 
 
@@ -163,13 +175,11 @@ For reference, this is the table that specifies all data types:
 | 12 | ctatext | 
 | 500+ | Reserved for exchange specific usage | 
 
-Again, to understand their meanings and their properties, consult the OpenRTB Native spec.
+Please consult the [OpenRTB Native spec](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) for more details.
 
-- `video` - currently not supported at the moment. 
+### 3.2. Custom native assets
 
-### 3.1 Custom native assets
-
-In order to fit special bidder requirements, publisher can utilize various `ext` objects provided by openRTB specs.
+In order to fit special bidder requirements, publisher can utilize various `ext` objects provided by OpenRTB specs.
 
 Bid adapters will declare which custom assets they support in their documentation.
 
@@ -192,11 +202,11 @@ In the native template, simply access the custom value with the normal Prebid `#
 - If you’d prefer to manage your creative within the Prebid.js AdUnit, follow the instructions for [AdUnit-Defined Creative](#42-implementing-adunit-defined-template).
 - If you’d prefer to manage your creative from a separate piece of JavaScript, follow the instructions for the [Custom Renderer](#43-implementing-the-custom-renderer-scenario).
 
-### 4.1. Implementing AdServer-Defined Template
+### 4.1. Implementing an AdServer-Defined Template
 
 In this scenario, the body of the native creative template is managed within the ad server and includes special Prebid.js macros.
 
-#### Turn Targeting Keys off in Prebid.js
+#### 4.1.1. Turn Targeting Keys off in Prebid.js
 
 When the native AdUnit is defined in the page, declare `sendTargetingKeys: false` in the native Object. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
 
@@ -256,23 +266,7 @@ pbjs.addAdUnits({
 });
 ```
 
-Here’s an example native AdUnit using the ‘type’ feature, which implies a number of required and optional attributes.
-
-```javascript
-const adUnits = [{
-    code: 'adUnit-code',
-    mediaTypes: {
-	    sendTargetingKeys: false,
-        native: {
-            type: 'image'
-        }
-    }
-    bids: [{
-        ...
-    }]
-}];
-```
-#### Native Template in AdServer
+#### 4.1.2. Create the Native Template in the Ad Server
 
 There are three key aspects of the native template:
 
@@ -355,11 +349,11 @@ p {
     padding: 4px;
 }
 ```
-### 4.2 Implementing AdUnit-Defined Template
+### 4.2. Implementing an AdUnit-Defined Template
 
 In this scenario, the body of the native creative template is managed within the Prebid.js AdUnit and includes special Prebid.js macros.
 
-#### Prebid.js AdUnit Setup
+#### 4.2.1. Prebid.js AdUnit Setup
 
 When the Native AdUnit is defined in the page:
 
@@ -422,7 +416,7 @@ var adUnits = [{
     }
 }];
 ```
-#### Native Template in the AdServer
+#### 4.2.2. Define the AdServer Creative
 
 Even though the body of the native creative is defined in the AdUnit, an AdServer creative is still needed. There are two key aspects of the native creative in this scenario:
 
@@ -448,11 +442,11 @@ Example Creative HTML
 {: .alert.alert-warning :}
 When using 'Send All Bids' mode you should update `pbNativeTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` for each bidder’s creative.
 
-### 4.3 Implementing the Custom Renderer Scenario
+### 4.3. Implementing the Custom Renderer Scenario
 
 In this scenario, the body of the native creative is managed from an external JavaScript file. 
 
-#### Prebid.js AdUnit Setup
+#### 4.3.1. Prebid.js AdUnit Setup
 
 When the Native AdUnit is defined in the page:
 
@@ -465,7 +459,7 @@ var adUnits = [{
       code: 'native-div',
       mediaTypes: {
           native: {
-	        sendTargetingKeys: false,
+	    sendTargetingKeys: false,
             rendererUrl: "https://files.prebid.org/creatives/nativeRenderFunction.js",
             ortb: {
                 assets: [{
@@ -506,7 +500,7 @@ var adUnits = [{
 }];
 ```
 
-#### Native Template in the AdServer
+#### 4.3.2. Define the AdServer Creative
 
 Even though the body of the native creative is defined in the external JavaScript, an AdServer creative is still needed. There are two key aspects of the native creative in this scenario:
 
@@ -532,7 +526,7 @@ Example creative HTML:
 {: .alert.alert-warning :}
 When using `Send All Bids` you should update `pbNativeTagData.adId = "%%PATTERN:hb_adid_biddercode%%";` for each bidder’s creative
 
-#### The Render JavaScript
+#### 4.3.3. Define the Render JavaScript
 
 Requirements for a native rendering function:
 
@@ -592,15 +586,15 @@ window.postRenderAd(bid) {
 ```
 
 {: .alert.alert-info :}
-Note that the format of any macros in external render JavaScript is totally up to you. The data object coming is in openRTB format.
+Note that the format of any macros in external render JavaScript is totally up to you. The data object coming is in OpenRTB format.
 
 ## 5. Technical Details
 
 A few details that may help understand and debug your setup:
 
 1. The system assumes that native creatives will be wrapped in an iframe.
-1. The native assets are stored in the Prebid.js memory space as the original openRTB response.
-2. When the `window.pbNativeTag.renderNativeAd()` function is called, an HTML5 postmessage is made. Prebid.js is listening for this message, and responds with the openRTB response.
+1. The native assets are stored in the Prebid.js memory space as the original OpenRTB response.
+2. When the `window.pbNativeTag.renderNativeAd()` function is called, an HTML5 postmessage is made. Prebid.js is listening for this message, and responds with the bidder's OpenRTB assets.
 3. If the template was defined in the AdServer, the body of the iframe will be replaced. Otherwise, if the template was defined in the AdUnit or external JavaScript, the body of the iframe will be appended with resolved creative HTML.
 4. If the AdServer supports it, CSS styles can be defined in the iframe head. Otherwise, they must be defined in the body of the template, for example with <style> tags.
 5. Note that native iframes will be resized to the height of the creative after render.
@@ -611,24 +605,31 @@ Native ads support 3 different types of event tracking:
 - click tracking
 - viewability tracking
 
-### 6.1 Impression tracking
-Prebid supports both methods (`img` and `js`) for impression tracking. Publishers just needs to specify which method is support for which adUnit. This is configured in `adUnit.mediaTypes.native.ortb.eventtrackers`.  
-For more details take a look at openRTB specs.  
+### 6.1. Impression Tracking
+Prebid supports both methods (`img` and `js`) for impression tracking. Publishers just need to specify which method is support for which adUnit. This is configured in `adUnit.mediaTypes.native.ortb.eventtrackers`. For more details take a look at OpenRTB specs.  
+
 How impression tracking works step by step:
-- When the `window.pbNativeTag.renderNativeAd()` is called, prebid universal creative will request openRTB response from Prebid.js (via postmessage).
-- Prebid.js responds with openRTB response that contains `eventtrackers`
-- When prebid universal creative renders the native ad, it will gather all impression trackers from the response and for each tracker it will:
-  - if tracker is `img` method, prebid universal creative will fire pixel provided in the `url` property
-  - if tracker is `js` method, prebid universal creative will load the script in the same iframe where native ad is rendered
+- When the `window.pbNativeTag.renderNativeAd()` is called, the Prebid Universal Creative will request OpenRTB response from Prebid.js (via postmessage).
+- Prebid.js responds with OpenRTB response that contains `eventtrackers`
+- When the Prebid Universal Creative renders the native ad, it will gather all impression trackers from the response and for each tracker it will:
+  - if tracker is `img` method, Prebid Universal Creative will fire pixel provided in the `url` property
+  - if tracker is `js` method, Prebid Universal Creative will load the script in the same iframe where native ad is rendered
 
-Publisher doesn't need to implement anything for impression tracking to work, all that is needed is proper configuration of openRTB request on adUnit level. Prebid.js + prebid universal creative will automatically take care of the impression tracking.
+The publisher doesn't need to implement anything for impression tracking to work, all that is needed is proper configuration of OpenRTB request on adUnit level. Prebid.js + Prebid Universal Creative will automatically take care of the impression tracking.
 
-### 6.2 Click tracking
-According to the openRTB specs, click trackers can be found in `link` objects. There is 'master' `link` object for the entire native ad and also each asset in the response can have it's own separate `link` object.
-When native ad is rendered prebid universal creative will attach `click` listeners on all DOM elements that have class `pb-click`. Which means it's up to the publisher to decide which DOM objects are 'clickable'.
-Furthermore, prebid universal creative can also track if some specific asset is clicked. To enable this, publisher needs to assign custom attribute to associated DOM element: `hb_native_asset_id = "5"`. In that case if user clicks on asset with `id: 5` prebid universal creative will take `link` object from that asset and fire all click trackers. If asset doesn't have `link` object, prebid universal creative will fire all click trackers associated with 'master' `link` object (as described in openRTB specs).
+### 6.2. Click Tracking
+According to the OpenRTB spec, click trackers can be found in `link` objects. There is a 'master' `link` object for the entire native ad and also each asset in the response can have its own separate `link` object.
 
-Example how to configure your template so that prebid universal creative can properly fire click trackers:
+When a native ad is rendered, the Prebid Universal Creative will attach click listeners on all DOM elements that have class `pb-click`. Which means it's up to the publisher to decide which DOM objects are 'clickable'.
+
+By default, only the 'master' `link` URLs will be fired, but, the Prebid Universal Creative can also fire click tracking for specific assets. To enable this, publisher assigns a custom attribute to the associated DOM element.
+
+```html
+<div class="pb-click" hb_native_asset_id = "5">
+```
+If the user clicks on this div, the Prebid Universal Creative will take the `link` object from the identified asset and fire any click trackers. If the asset doesn't have a `link` object, it will just fire the click trackers associated with 'master' `link` object.
+
+Example of how to configure a template so that the Prebid Universal Creative can fire click trackers:
 ``` html
 <div class="sponsored-post">
   <div class="thumbnail" style="background-image: url(##hb_native_asset_id_1##);"></div>
@@ -640,20 +641,20 @@ Example how to configure your template so that prebid universal creative can pro
 </div>
 ```
 
-### 6.3 Viewability tracking
-In order for viewability tracking to properly work, there needs to be a script on `window.top` that is tracking if the iframe (where ad is rendered) is viewable or not. Also, this script needs to communicate with Prebid.js so that appropriate trackers are fired when ad is viewable.
+### 6.3. Viewability Tracking
+In order for viewability tracking to work, there needs to be a script on `window.top` that is tracking if the ad's iframe is viewable or not. Also, this script needs to communicate with Prebid.js so that appropriate trackers are fired when the ad is viewable.
 
-To minimize needed work on publisher side there is [Prebid.js module](https://github.com/prebid/Prebid.js/blob/master/modules/viewability.md) that is tracking viewability and is firing trackers.
+To minimize needed work on the publisher side, we recommend using the [Prebid.js Viewability module](https://github.com/prebid/Prebid.js/blob/master/modules/viewability.md).
 
-Steps what to do to enable Prebid viewability tracking for native ads:
-- build your Prebid.js bundle with `viewability` module
-- in your renderer in `window.renderAd` function add following piece of code:
+Enabling viewability tracking for native ads:
+- Build your Prebid.js bundle with the `viewability` module
+- Use the [Custom Renderer scenario](#43-implementing-the-custom-renderer-scenario) and add the following code to the `window.renderAd` function:
 
 ``` javascript
 window.renderAd = (bid) => {
     const {ortb} = bid;
-    let template = template.replace(macro, value);
-    // code that is generating native ad based on template and ortb response should remain the same
+    // code that generates the native ad based on a template and ortb response should remain the same
+    ...
 
     // send post message for viewability module to track and fire appropriate trackers
     if (ortb.eventtrackers) {
@@ -682,7 +683,7 @@ window.renderAd = (bid) => {
 }
 ```
 
-## 7. AdServer Implementation Details
+## 7. Ad Server Implementation Details
 
 There are detailed [instructions for setting up native in GAM](/adops/gam-native.html), but none of the Prebid functionality is specific to GAM. The requirements to use any of these approaches in a different ad server are:
 
@@ -691,24 +692,11 @@ There are detailed [instructions for setting up native in GAM](/adops/gam-native
     1. pbNativeTagData.pubUrl = "PAGE URL";
     1. pbNativeTagData.adId = "PREBID ADID";
     1. pbNativeTagData.requestAllAssets = true;
-1. renderNativeAd() will look for the existence of an "adTemplate" value in the AdUnit. If it finds one, it will resolve ##macros## and append it to the iframe's body.
+1. renderNativeAd() will look for the existence of an "adTemplate" value in the AdUnit. If it finds one, it will resolve macros and append it to the iframe's body.
 1. Otherwise, renderNativeAd() will look for the existence of a "rendererUrl" value in the AdUnit. If it finds one, it loads the script then calls window.renderAd() and appends the results to the iframe's body.
-1. Otherwise renderNativeAd() scans the iframe body and resolves ##macros##.
-
-## 8. I am a bid adapter maintaner; what should I do to support OpenRTB? 
-
-For some time, the Prebid native team will try to ensure that legacy-style request definitions will continue to work. However, Prebid.JS is internally converting everything to OpenRTB. So, OpenRTB is the way to go if you want to ensure your native adapter will continue to work for the long run. 
-
-We assume that in the first times all adapters will only understand legacy-style native, so we expose two functions in `native.js`: 
-
-- `convertOrtbRequestToProprietaryNative(bidRequests)` - this function will convert OpenRTB-style native requests to legacy format. Actually, we've already added this conversion to all adapters so they will not fail when an OpenRTB definition is used by publisher.
-
-- `toOrtNativeRequest(legacyNativeAssets)` - In the future, you should convert your bid adapter to assume that OpenRTB is the standard. If, however, you encounter a native bid without the `ortb` property, you can call this function to convert legacy assets to OpenRTB. 
-
-For the bid response, Prebid expects to find your OpenRTB bid response under `bid.native.ortb` property.
+1. Otherwise renderNativeAd() scans the iframe body and resolves macros.
 
 ## Further Reading
 
 - [Prebid Native Format](/formats/native.html)
 - [Setting Up Prebid Native in GAM](/adops/gam-native.html)
-
