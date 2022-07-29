@@ -2,9 +2,9 @@
 layout: bidder
 title: Integral Ad Science (IAS)
 description: Prebid Integral Ad Science Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: ias
-biddercode_longer_than_12: false
+pbjs_version_notes: for 5.x, use the module
 ---
 
 ### Note:
@@ -12,7 +12,7 @@ biddercode_longer_than_12: false
 This module is an integration with prebid.js with an IAS product, pet.js. It is not a bidder per se but works in a similar way: retrieve data that publishers might be interested in setting keyword targeting, like predicted viewability and brand safety words. Please reach out to your account manager or check out [our publisher solutions](https://integralads.com/solutions/publishers/) for more
 information.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Description                                | Example             | Type     |

@@ -2,15 +2,22 @@
 layout: bidder
 title: Consumable
 description: Prebid Consumable Bidder Adaptor
-hide: true
+userIds: all
+usp_supported: true
+pbjs: true
+pbs: true
+pbs_app_supported: true
 biddercode: consumable
-biddercode_longer_than_12: false
+gdpr_supported: true
+schain_supported: true
+coppa_supported: true
+gvl_id: 591
 ---
 
 ### Note:
 The Consumable adaptor requires setup and approval from your Consumable account manager, even for existing Consumable publishers. Please reach out to your account manager to enable Prebid.js for your account.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                    | Example | Type      |

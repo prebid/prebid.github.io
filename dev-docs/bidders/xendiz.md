@@ -2,9 +2,8 @@
 layout: bidder
 title: Xendiz
 description: Prebid Xendiz Bidder Adaptor
-hide: true
-biddercode: xenidz
-biddercode_longer_than_12: false
+pbjs: true
+biddercode: xendiz
 ---
 
 ### Bid params

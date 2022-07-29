@@ -2,14 +2,13 @@
 layout: bidder
 title: Kumma
 description: Prebid Kumma Bidder Adapter
-hide: true
+pbjs: true
 biddercode: kumma
-biddercode_longer_than_12: false
 media_types: banner, native, video
 gdpr_supported: true
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                      | Example        | Type     |

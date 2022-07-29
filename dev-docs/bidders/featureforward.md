@@ -2,18 +2,13 @@
 layout: bidder
 title: Feature Forward
 description: Prebid Feature Forward Bidder Adapter
-
 top_nav_section: dev_docs
 nav_section: reference
-
-hide: true
-
+pbjs: true
 biddercode: featureforward
-
-biddercode_longer_than_12: true
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                                         | Example | Type      |

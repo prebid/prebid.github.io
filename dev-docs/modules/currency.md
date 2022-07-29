@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Currency
-description: Converts bids to the ad server currency
+description: Converts bid currency into ad server currency based on data in a supplied exchange rate file.
 module_code : currency
 display_name : Currency
 enable_download : true
@@ -17,11 +17,11 @@ sidebarType : 1
 
 This module supports the conversion of multiple bidder currencies into a single currency
 used by the publisher's ad server. In previous versions of Prebid, this was accomplished
-by using [BidderSettings.bidCpmAdjustment]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.bidderSettings), but that's a static value not changed except when
+by using [BidderSettings.bidCpmAdjustment]({{site.baseurl}}/dev-docs/publisher-api-reference/bidderSettings.html), but that's a static value not changed except when
 the web development team makes a manual update.
 
 Publishers may continue to use the bidCpmAdjustment approach, or may begin using this optional module, gaining automatic updates as currency exchange rates fluctuate. Here's how it works at a high level:
- 
+
 1. A Prebid.js package is built that contains the extra currency module code
 1. Config in the page defines the currency used by the Publisher's ad server and other configuration parameters.
 1. The existence of this configuration causes the Prebid platform to load a
@@ -58,7 +58,7 @@ pbjs.setConfig({
     "priceGranularity": "low",
     "currency": {
        "adServerCurrency": "JPY",
-       "granularityMultiplier": 108
+       "granularityMultiplier": 108,
        "defaultRates": { "USD": { "JPY": 110 }}
     }
 });
@@ -126,7 +126,7 @@ low granularity bucket hb_pb=162.
 ### 5. Ad Request and Decision
 
 Finally, the scaled and quantized bids are sent to the ad server, where they will match
-the line items set up initially. 
+the line items set up initially.
 
 {: .alert.alert-success :}
 No other part of the Prebid process has changed due to currency support: creation of AdUnits, creative display, analytics, etc.
@@ -176,13 +176,14 @@ more parameters. The simplest recommended implementation would be:
 pbjs.setConfig({
     "currency": {
        "adServerCurrency": "JPY",
-       "granularityMultiplier": 108
+       "granularityMultiplier": 108,
        "defaultRates": { "USD": { "JPY": 110 }}
     }
 });
 {% endhighlight %}
-Note that the `defaultRates` attribute is optional, but recommended in case
-there's an issue loading the currency file.
+
+{: .alert.alert-warning :}
+Note that the `defaultRates` attribute is optional, but recommended in case there's an issue loading the currency file.
 
 In this example, the publisher is providing their own `conversionRateFile`:
 {% highlight js %}
@@ -216,18 +217,18 @@ pbjs.setConfig({
 ### Step 1: Bundle the module code
 
 Follow the basic build instructions on the Gihub repo's main README. To include the module, an additional option must be added to the the gulp build command:
- 
+
 {% highlight js %}
 gulp build --modules=currency,exampleBidAdapter
 {% endhighlight %}
- 
+
 This command will build the following files:
- 
+
 - build/dist/prebid-core.js - the base Prebid code
 - build/dist/currency.js - additional code for the currency feature
 - build/dist/exampleBidAdapter.js - a specified bidder adapter
 - build/dist/prebid.js - a combined file with the base Prebid core code, bidder adapter code, and the currency module code.
- 
+
 ### Step 2: Publish the package(s) to the CDN
 
 After testing, get your javascript file(s) out to your Content Delivery Network (CDN) as normal.
@@ -246,9 +247,9 @@ a currency object that may contain several parameters:
 | --- | --- | --- | --- |
 | adServerCurrency | `string` | ISO 4217 3-letter currency code. If this value is present, the currency conversion feature is activated. | "EUR" |
 | granularityMultiplier | `decimal` | How much to scale the price granularity calculations. Defaults to 1. | 108 |
-| conversionRateFile | `URL` | Optional path to a file containing currency conversion data. See below for the format. Prebid.org hosts a file as described in the next section. | `http://example.com/rates.json` |
+| conversionRateFile | `URL` | Optional path to a file containing currency conversion data. See below for the format. Prebid.org hosts a file as described in the next section. | `https://example.com/rates.json` |
 | rates | object | This optional argument allows you to specify the rates with a JSON object, subverting the need for the conversionRateFile parameter.  If this argument is specified, the conversion rate file will not be loaded. | { 'USD': { 'CNY': 6.8842, 'GBP': 0.7798, 'JPY': 110.49 } } |
-| defaultRates | `object` | An optional parameter that defines a default rate that can be used if the currency file cannot be loaded. This option isn't used when the `rates` parameter is supplied. | { 'USD': { 'GPB': 0.75 }} |
+| defaultRates | `object` | An optional **but highly recommended** parameter that defines a default rate that can be used if the currency file cannot be loaded. This option isn't used when the `rates` parameter is supplied. | { 'USD': { 'GPB': 0.75 }} |
 | bidderCurrencyDefault | `object` | This is an optional argument to provide publishers a way to define which currency is used by a particular bidder. This option was provided as a transition until such a time that most bidder adapters define currency on bid response and is kept for legacy 0.x integrations. | { "bidderXYZ": "GBP" } |
 
 ## Currency Rate Conversion File
@@ -304,7 +305,7 @@ If the Prebid timeout occurs while bids are still on the queue, they will be ski
 A bid is also skipped if the file (or `defaultRates`) doesn't contain a conversion from the bid currency
 to the ad server currency.
 
-**Can I use the DFP Secondary Currency Feature instead?**
+**Can I use the Google Ad Manager Secondary Currency Feature instead?**
 
 Of course, use of Prebid currency feature is optional.
 
@@ -317,5 +318,3 @@ If there's a currency conversion you need that's not included, there are several
 1. Use the 'defaultRates` feature
 1. Build and host a currency conversion file that includes the desired currencies
 1. Find a reliable, free, no-strings source of conversation data that we can integrate into our hosted file, then post an issue on the github forum.
-
-

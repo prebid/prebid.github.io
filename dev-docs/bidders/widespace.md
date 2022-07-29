@@ -2,9 +2,8 @@
 layout: bidder
 title: Widespace
 description: Prebid Widespace Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: widespace
-biddercode_longer_than_12: false
 gdpr_supported: true
 ---
 

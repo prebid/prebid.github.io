@@ -2,13 +2,14 @@
 layout: bidder
 title: Piximedia
 description: Piximedia Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: piximedia
-biddercode_longer_than_12: false
 media_types: banner
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description        | Example       | Type     |

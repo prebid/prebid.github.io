@@ -2,17 +2,23 @@
 layout: bidder
 title: Adhese 
 description: Prebid Adhese Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: adhese
-biddercode_longer_than_12: false
 media_types: banner, video 
 gdpr_supported: true
+userIds: id5Id
+gvl_id: 553
+pbs_app_supported: true
 ---
 
-### Note
+### Registration
+
 The Adhese bid adapter may require an additional setup from the Adhese team, even for existing Adhese customers. Please reach out to your support team or info@adhese.com for more information.
+
+Prebid Server host companies need to work with Adhese for each additional publisher.
  
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description        | Example                      | Type     |

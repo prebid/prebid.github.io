@@ -2,16 +2,15 @@
 layout: bidder
 title: Polymorph
 description: Polymorph Prebid Adaptor
-hide: true
+pbjs: true
 biddercode: polymorph
-biddercode_longer_than_12: false
 media_types: native, video, banner
 ---
 
 ### Note:
 Polymorph adapter requires setup and approval from the Polymorph team. Please reach out to your account team or support@getpolymorph.com for more information.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |

@@ -1,0 +1,5 @@
+- api
+  - element: getAdserverTargeting
+    - endpoint: .getAdserverTargeting()
+  - element: getAdserverTargetingForAdUnitCode
+    - endpoint: .getAdserverTargetingForAdUnitCode(adUnitCode)

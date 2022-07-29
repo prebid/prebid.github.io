@@ -6,5 +6,5 @@ description: Documentation on how to add video support to an existing bidder ada
 pid: 27
 top_nav_section: dev_docs
 nav_section: adapters
-hide: true
+
 ---

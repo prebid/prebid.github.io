@@ -2,18 +2,19 @@
 layout: bidder
 title: UOL
 description: Prebid UOL Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: uol
-biddercode_longer_than_12: false
 gdpr_supported: false
 media_types: banner
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 
 ### Note:
 The UOL Project adapter requires setup and approval from the UOL Project team, even for existing UOL Project publishers. Please reach out to your account team or l-prebid@uolinc.com for more information.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name            | Scope    | Description                                                      | Example                |

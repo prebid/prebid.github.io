@@ -2,9 +2,8 @@
 layout: bidder
 title: myTarget
 description: Prebid myTarget Bidder Adapter
-hide: true
+pbjs: true
 biddercode: mytarget
-biddercode_longer_than_12: false
 ---
 
 

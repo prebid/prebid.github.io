@@ -23,7 +23,7 @@ For questions about how an adapter works, it's best to reach out to the company 
 For Prebid news or general questions, we recommend the Ad Ops Slack Channel, Quora, or Twitter.
 
 {: .alert.alert-success :}
-There are serveral Prebid.org members that will install & maintain Prebid on a publisher's behalf. See the list of [Managed Prebid Solutions](/prebid/managed.html).
+There are serveral Prebid.org members that will install & maintain Prebid on a publisher's behalf. See the list of [Managed Prebid Solutions](https://prebid.org/product-suite/managed-services/).
 
 ## GitHub
 
@@ -39,7 +39,7 @@ For more information about how to contribute, see the *Contribute* section of th
 
 ## Stack Overflow
 
-If you ask questions on [Stack Overflow](http://stackoverflow.com/), please use the following tags:
+If you ask questions on [Stack Overflow](https://stackoverflow.com/), please use the following tags:
 
 + `prebid`
 + `prebid.js`

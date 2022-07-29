@@ -32,6 +32,7 @@ header:
   #color1: "#080331"
   #color2: "#673051"
   trianglify: false
+  
 
 # google analytics
 analytics:
@@ -58,6 +59,25 @@ facebook:
 # Build settings
 markdown: kramdown
 
+highlighter: rouge
+
+kramdown:
+  input:          GFM
+  # https://github.com/jekyll/jekyll/pull/4090
+  syntax_highlighter: rouge
+
+  # Rouge Highlighter in Kramdown › http://kramdown.gettalong.org/syntax_highlighter/rouge.html
+  # span, block element options fall back to global
+  syntax_highlighter_opts:
+    # Rouge Options › https://github.com/jneen/rouge#full-options
+    css_class: 'highlight'
+    #line_numbers: true # bad idea, spans don't need linenos and would inherit this option
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+      start_line: 1
+
 # Collections
 collections:
   - bidders
@@ -65,7 +85,11 @@ collections:
 
 port: 8080
 
-exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile', 'vendor']
+exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile', 'vendor', 'node_modules', '_assets', 'mix-manifest.json', 'webpack.mix.js', 'find-ungrouped-bidders.sh' ]
+
+keep_files:
+  - assets/css/main-bundle.css
+  - assets/js/main-bundle.js
 
 plugins:
   - jekyll-mentions

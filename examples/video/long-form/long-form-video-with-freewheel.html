@@ -3,7 +3,7 @@
   <head>
     <title>Prebid Freewheel Integration Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script async src="http://acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -78,7 +78,7 @@
 
       pbjs.que.push(function(){
         pbjs.addAdUnits(videoAdUnit);
-        pbjs.setConfig({ 
+        pbjs.setConfig({
           debug: true,
           cache: {
             url: 'https://prebid.adnxs.com/pbc/v1/cache'
@@ -136,7 +136,7 @@
           }
         }
         return industry;
-      } 
+      }
     }
 
     function loadKv(targetingArr) {
@@ -148,7 +148,7 @@
             html += '<tr id='+targeting[key]+'><td>'+key+'</td><td>'+targeting[key]+'</td></tr>'
           });
         });
-      });  
+      });
       html += '</tbody></table>';
       div.innerHTML = html;
     }
@@ -174,7 +174,7 @@
             }
           });
         });
-      });  
+      });
       html += '</tbody></table>';
       div.innerHTML = html;
     }
@@ -267,7 +267,7 @@
         comBreak++;
       }
     }
-    
+
     function skipAd() {
       clearInterval(timerId);
       if (!adCount) {

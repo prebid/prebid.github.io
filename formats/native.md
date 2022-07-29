@@ -5,20 +5,33 @@ description: Prebid Native
 sidebarType: 6
 ---
 
+<script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
+
 # Prebid Native Ads
 {:.no_toc}
 
-Native ads are supported by Prebid.js for mobile web. Prebid Server support is coming soon.
+## Prebid Server
+
+At a high level, Prebid Server just passes native parameters through to
+bid adapters. See [Prebid Server Native](/prebid-server/features/pbs-native.html) for more information.
+
+## Prebid SDK
+
+See the separate pages for
+- [iOS](/prebid-mobile/pbm-api/ios/pbm-nativeadunit-ios.html)
+- [Android](/prebid-mobile/pbm-api/android/pbm-nativeadunit-android.html)
 
 ## Prebid.js
 
+Native ads are supported by Prebid.js for mobile web.
+
 ### Adops
 
-- [Setting up Prebid Native in DFP](/adops/setting-up-prebid-native-in-dfp.html)
+- [Setting up Prebid Native in Google Ad Manager](/adops/gam-native.html)
 
 ### Developers
 
-- [Setting up Prebid Native](/dev-docs/show-native-ads.html)
+- [Prebid Native Implementation](/prebid/native-implementation.html)
 
 ### Prebid.js bid adapters that support the Native format
 
@@ -39,4 +52,6 @@ var dynamicTableContents=[];
 {% endif %}
 {% endfor %}
 </script>
-<script src="/assets/js/dynamicTable.js" type="text/javascript" data-div="dynamicTable" data-array="dynamicTableContents"></script>
+<script>
+  writeDynamicTable({div:"dynamicTable", data:"dynamicTableContents"});
+</script>

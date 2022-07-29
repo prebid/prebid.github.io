@@ -2,14 +2,15 @@
 layout: bidder
 title: dgads
 description: Prebid dgads Bidder Adapter
-hide: true
+pbjs: true
 biddercode: dgads
-biddercode_longer_than_12: false
 media_types: native
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description  | Example | Type     |

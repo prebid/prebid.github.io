@@ -2,14 +2,15 @@
 layout: bidder
 title: Ad Generation
 description: Prebid Ad Generation Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: adgeneration
-biddercode_longer_than_12: false
+userIds: novatiq, criteo, id5Id
 media_types: native
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope    | Description | Example  | Type     |

@@ -2,10 +2,11 @@
 layout: bidder
 title: BidPhysics
 description: Prebid BidPhysics Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: bidphysics
-biddercode_longer_than_12: false
 gdpr_supported: true
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Note:
@@ -13,7 +14,7 @@ gdpr_supported: true
 The BidPhysics Header Bidding adaptor requires approval from the BidPhysics team. Please reach out to  <info@bidphysics.com> for more information.
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope    | Description        | Example     | Type      |

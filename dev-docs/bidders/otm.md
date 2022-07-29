@@ -2,15 +2,17 @@
 layout: bidder
 title: OTM
 description: OTM Bidder Adapter
-hide: true
+pbjs: true
 biddercode: otm
-biddercode_longer_than_12: false
+floors_supported: true
+media_types: banner
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                            | Example     | Type     |
 |---------------|----------|----------------------------------------|-------------|----------|
 | `tid`         | required | A tag id                               | `'99'`      | `string` |
 | `bidfloor`    | optional | Floor price                            | `20`        | `integer`|
+| `domain`      | optional | Custom domain                          | `domain.tld`| `string` |

@@ -86,7 +86,7 @@ Once the Brightcove Player has loaded, then publisher needs to call `renderAd()`
         };
     window.bc_plugin_pbjs.plugin_prebid_options.biddersSpec = params;
 
-    // set the DFP parameters (if you want to use DFP as your ad server)
+    // set the Google Ad Manager parameters (if you want to use Google Ad Manager as your ad server)
     // otherwise, remove this option
     var dfpParams = {
         params : {
@@ -192,7 +192,7 @@ To do this, the publisher must add code in the body of the document where the Br
         };
     plugin_options.biddersSpec = params;
 
-    // set the DFP Parameters (if want to use DFP as your ad server)
+    // set the Google Ad Manager Parameters (if want to use Google Ad Manager as your ad server)
     // otherwise, remove this option
     var dfpParams = {
         params : {

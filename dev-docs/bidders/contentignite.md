@@ -2,13 +2,12 @@
 layout: bidder
 title: Content Ignite
 description: Prebid Contnent Ignite Adaptor
-hide: true
+pbjs: true
 biddercode: contentignite
-biddercode_longer_than_12: true
 ---
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                          | Example      | Type     |

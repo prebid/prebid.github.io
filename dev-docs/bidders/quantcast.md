@@ -2,14 +2,16 @@
 layout: bidder
 title: Quantcast
 description: Prebid Quantcast Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: quantcast
-biddercode_longer_than_12: false
 media_types: video
 gdpr_supported: true
+usp_supported: true
+coppa_supported: true
+prebid_member: true
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                                       | Example        | Type             |

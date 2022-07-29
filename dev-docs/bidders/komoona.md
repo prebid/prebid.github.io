@@ -2,14 +2,15 @@
 layout: bidder
 title: Komoona
 description: Prebid Komoona Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: komoona
-biddercode_longer_than_12: false
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                    | Example                              | Type     |

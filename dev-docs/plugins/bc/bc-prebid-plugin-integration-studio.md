@@ -2,9 +2,6 @@
 layout: page_v2
 title: Plugin Integration with Brightcove Player Using Brightcove Player Studio
 description: Ad Unit Reference
-top_nav_section: dev_docs
-nav_section: pugins
-pid: 10
 ---
 
 
@@ -51,11 +48,11 @@ There are two ways to register the Brightcove Prebid Plugin in Brightcove Studio
 - **General Integration**
     - Adds the plugin to the Brightcove Player when the player is embedded on the page, without calling prebid
     - Publisher needs to add the prebid options and render options on the page and pass them into `renderAd()` as described in the **[Brightcove Prebid Plugin API]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-api.html)**.
-    - Publisher may use this method when they want to use a third-party ad server other than DFP as their primary ad server
+    - Publisher may use this method when they want to use a third-party ad server other than Google Ad Manager as their primary ad server
 
 - **Configured Integration**
     - In addition to adding the plugin to the Brightcove Player when the player is embedded on the page, it also invokes the plugin to execute prebid and render the ad based on the prebid options and render options defined in the Studio.
-    - Publisher may use this method when using a third-party ad server other than DFP as their primary ad server by specifying the `adServerCallback` function by name.
+    - Publisher may use this method when using a third-party ad server other than Google Ad Manager as their primary ad server by specifying the `adServerCallback` function by name.
 
 Details for each option are provided below.
 
@@ -131,13 +128,13 @@ Example:
     ```
     // create the options object
     var adOptions =
-    {"prebidPath": "//files.prebid.org/prebid-org.js",
+    {"prebidPath": "//files.prebid.org/prebid-org.js",  // not for production use
         "biddersSpec": {
             ”code": "my-video-tag",
-            "sizes": [640,480],
             "mediaTypes": {
                 "video": {
                     "context": "instream",
+		    "playerSize": [640,480],
                     "mimes": ["video/mp4","application/javascript"],
                     "protocols": [1,2,3,4,5,6,7,8],
                     "playbackmethod": [1,2],
@@ -147,11 +144,7 @@ Example:
             "bids": [{
                 "bidder": "appnexus",
                 "params": {
-                    "placementId": 8845778,
-                    "video": {"skippable": true,
-                    "playback_method":
-                        ["auto_play_sound_off"]
-                    }
+                    "placementId": 8845778
                 }
             }]
         },
@@ -253,7 +246,7 @@ None
 
 ```
 {
-    "prebidPath": "//files.prebid.org/prebid-org.js",
+    "prebidPath": "//files.prebid.org/prebid-org.js",   // not for production use
     "bidderAliases": [
         {
             "name": "alias1",
@@ -262,10 +255,10 @@ None
     ],
     "biddersSpec": {
         "code": "my-video-tag",
-        "sizes": [640,480],
         "mediaTypes": {
             "video": {
                 "context": "instream",
+		"playerSize": [640,480],
                 "mimes": ["video/mp4","application/javascript"],
                 "protocols": [1,2,3,4,5,6,7,8],
                 "playbackmethod": [1,2],

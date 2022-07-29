@@ -2,15 +2,16 @@
 layout: bidder
 title: TapHype
 description: Prebid TapHype Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: taphype
-biddercode_longer_than_12: false
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Note:
 The TapHype adaptor requires setup and approval from your TapHype account manager. Please reach out to your account manager to enable Prebid.js for your account.
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                        | Example | Type      |

@@ -2,15 +2,26 @@
 layout: bidder
 title: ONE by AOL Mobile
 description: Prebid AOL Bidder Adaptor aliase
-hide: true
+pbjs: true
 biddercode: onemobile
 aliasCode : aol
-biddercode_longer_than_12: false
 ---
 
+### IMPORTANT NOTICE!
+**TL;DR**
+1. The `onemobile` adapter is scheduled to be depreciated.
+2. Our New `yahoossp` is available for early adoption.
+3. Please contact your Account Manager/Executive for migration details.
 
+Dear Publishers & Partners,
+As part of our platform consolidation process to simplify your integrations moving forward
+We invite you to switch from the `onemobile` Adapter to our NEW `yahoossp` bid adapter for both Display & Video inventory.
+FYI - The oneVideo adapter is scheduled for depreciation in the upcoming months.
 
-### bid params
+Thanks in advance,
+Yahoo SSP
+
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                                                 | Example                              | Type     |

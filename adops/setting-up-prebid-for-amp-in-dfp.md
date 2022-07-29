@@ -1,27 +1,27 @@
 ---
 layout: page_v2
-title: Setting up Prebid for AMP in DFP
-head_title: Setting up Prebid for AMP in DFP
-description: Setting up Prebid for AMP in DFP
-pid: 3
-hide: false
-top_nav_section: adops
-nav_section: tutorials
+title: Setting up Prebid for AMP in Google Ad Manager
+head_title: Setting up Prebid for AMP in Google Ad Manager
+description: Setting up Prebid for AMP in Google Ad Manager
 sidebarType: 3
 ---
 
 
 
-# Setting up Prebid for AMP in DFP
+# Setting up Prebid for AMP in Google Ad Manager
 {: .no_toc}
 
 This page describes how to set up a line item and creative to serve on AMP pages with Prebid.js.
 
-{: .alert.alert-success :}
-For engineering setup instructions, see [Show Prebid Ads on AMP Pages]({{site.github.url}}/dev-docs/show-prebid-ads-on-amp-pages.html).
-
 * TOC
 {:toc}
+
+{: .alert.alert-info :}
+Manually configuring GAM for Prebid can be a fair amount of work.
+Consider using our official command line tool, [Prebid Line Item Manager](/tools/line-item-manager.html), to create the setup. Using this tool may save you time and help you avoid mistakes.
+ 
+{: .alert.alert-success :}
+For engineering setup instructions, see [Show Prebid Ads on AMP Pages]({{site.github.url}}/dev-docs/show-prebid-ads-on-amp-pages.html).
 
 ## Line Item Setup
 
@@ -41,16 +41,19 @@ Save your line item and add a creative.
 
 ## Creative Setup
 
-On the new creative screen, select the **Third party** creative type.
+1. On the new creative screen, select the **Third party** creative type.
+2. Choose the "Standard" Code Type radio button. The "AMP" option is for AMPHTML hosted by a 3rd party.
+3. Ensure that the **Serve into a SafeFrame** box is checked.
+4. Enter the below code snippet in the **Code snippet** text area.
 
-Ensure that the **Serve into a SafeFrame** box is checked.
+{% capture sendAllBidsAlert %}
+If you're using the `Send All Bids` scenario (where every bidder has a separate
+order), the creative and targeting will be different from the example shown here. See [Send All Bids](/adops/send-all-bids-adops.html) for details.
+{% endcapture %}
 
-Enter the below code snippet in the **Code snippet** text area.
+{% include alerts/alert_important.html content=sendAllBidsAlert %}
 
-{: .alert.alert-success :}
-You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
-
-{% highlight javascript %}
+{% highlight html %}
 
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
 <script>
@@ -58,6 +61,7 @@ You can always get the latest version of the creative code below from [the AMP e
   ucTagData.adServerDomain = "";
   ucTagData.pubUrl = "%%PATTERN:url%%";
   ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
+  ucTagData.hbPb = "%%PATTERN:hb_pb%%";
 
   try {
     ucTag.renderAd(document, ucTagData);
@@ -65,9 +69,12 @@ You can always get the latest version of the creative code below from [the AMP e
     console.log(e);
   }
 </script>
-
 {% endhighlight %}
 
+{: .alert.alert-success :}
+You can always get the latest version of the creative code from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
+
+{% include adops/adops-creative-declaration.html %}
 
 ## Further Reading
 

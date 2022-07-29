@@ -2,13 +2,14 @@
 layout: bidder
 title: OPEN8
 description: Prebid OPEN8 Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: open8
-biddercode_longer_than_12: false
 media_types: video, banner
+enable_download: true
+pbjs_version_notes: added version 6.16
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name      | Scope    | Description         | Example      | Type     |
