@@ -4,6 +4,7 @@ title: seedtag
 description: Prebid Seedtag Bidder Adapter
 pbjs: true
 gdpr_supported: true
+usp_supported: true
 gvl_id: 157
 media_types: banner, video
 biddercode: seedtag

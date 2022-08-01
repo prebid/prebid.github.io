@@ -1731,6 +1731,14 @@
   subgroup: 1
 
 - sbSecId: 4
+  title: 'No Server (Specify Renderer)'
+  link: /examples/video/outstream/pb-ve-outstream-no-server-specify-renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 4
   title: "Long-Form (Ad Pods)"
   link:
   isHeader: 0
@@ -2282,7 +2290,15 @@
   sectionTitle:
   subgroup: 0
 
-#-------------- Prebid Identity --------------|
+- sbSecId: 8
+  title: Professor Prebid
+  link: /tools/professor-prebid.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+ #-------------- Prebid Identity --------------|
 
 - sbSecId: 9
   title:
