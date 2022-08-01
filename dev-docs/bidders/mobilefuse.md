@@ -4,6 +4,7 @@ title: MobileFuse
 pbs: true
 pbjs: false
 media_types: banner, video
+gdpr_supported: true
 schain_supported: true
 usp_supported: true
 coppa_supported: true
@@ -11,6 +12,9 @@ biddercode: mobilefuse
 ccpa_supported: true
 prebid_member: true
 pbs_app_supported: true
+floors_supported: true
+gvl_id: 909
+ortb_blocking_supported: true
 ---
 
 ### Bid Params
