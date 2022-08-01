@@ -19,7 +19,6 @@ pbjs: true
 pbs: true
 pbs_app_supported: false
 prebid_member: false
-multiformat_supported: check with bidder
 ---
 
 ### Bid params
