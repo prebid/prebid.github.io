@@ -14,7 +14,7 @@ sidebarType: 1
 This document replaces the [previous native documentation](/prebid/native-implementation-legacy.html) that described how Prebid.js supported native creatives. That documentation is still valid, but the approach described here is better in every way, so we recommend that all new and revised implementations should follow this approach. Here are the key differences between the original approach and the new, preferred approach:
 {::nomarkdown}
 <ul>
-<li>The native approach is compliant with the Native OpenRTB spec, version 1.2, with the notable exception of video support.</li>
+<li>The native approach is compliant with [the Native OpenRTB spec, version 1.2](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf), with the notable exception of video support.</li>
 <li>The request object specified in the Media Type Object is the plain OpenRTB request.</li>
 <li>The macro format is different: instead of using AdServer-defined macros, Prebid.js now uses OpenRTB-request based format.</li>
 <li>The ortb response is also passed to ad units in `bid.ortb`.</li>
