@@ -86,6 +86,6 @@ title: Prebid Server | Features
 | [Programmatic Guaranteed](/prebid-server/features/pg/pbs-pg-idx.html) | Integration and Targeting | Ability to load, target, and report PG line items | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 | Metadata | [x-prebid header](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#http-headers) | Put version information in outgoing HTTP headers. | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 | Modules | [ortb2-blocking](/prebid-server/pbs-modules/ortb2-blocking.html) | Configure per-account OpenRTB blocking details. | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
-| Anti-Fraud | Ads.Cert 2.0 Authenticated Connections | Includes authentication connection signing header on outgoing bid requests to supported adapters.*  | <img src="/assets/images/icons/icon-check-green.png" width="30"> | |
+| Anti-Fraud | Ads.Cert 2.0 Authenticated Connections | Includes authenticated connection signing header on outgoing bid requests to supported adapters. *  | <img src="/assets/images/icons/icon-check-green.png" width="30"> | |
 
 * Experimental feature not yet recommended for production.
