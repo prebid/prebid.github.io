@@ -7,11 +7,11 @@ gvl_id: 1076
 media_types: banner
 gdpr_supported: true
 prebid_member: false
-schain_supported: false
+schain_supported: true
 coppa_supported: true
 usp_supported: true
 deals_supported: false
-floors_supported: false
+floors_supported: true
 pbjs: true
 ---
 
