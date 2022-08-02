@@ -1484,7 +1484,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.targeting | defines the key-value pairs that PBS-core places in seatbid.bid.ext.prebid.targeting, see [ad server targeting](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) | object | no |
 | ext<wbr>.prebid<wbr>.no-sale | turns off CCPA processing for the named bidder(s).<br>ex: `["bidderA"]` | array of strings | no |
 
-## Response
+#### Response
 {:.no_toc}
 
 {: .table .table-bordered .table-striped }
