@@ -54,7 +54,6 @@ The Triplelift Prebid Server bidding adapter and user sync endpoint require setu
 
 #### Video
 
-The following parameters are supported for instream inventory only.
 
 {: .table .table-bordered .table-striped }
 
@@ -62,9 +61,10 @@ The following parameters are supported for instream inventory only.
 |-----------------|------------------------------|--------------------------------------------------------------------------------------|---------------------------------------------|----------|
 | `inventoryCode` | required                     | TripleLift inventory code for this ad unit (provided to you by your partner manager) | `'pubname_instream_1'`                      | `string` |
 | `video`         | required                     | oRTB video object                                                                    | `{ mimes: ['video/mp4'], w: 640, h: 480 }`     | `object`  |
-| `video.context`         | required             | Instream or outstream - TripleLift only supports instream.                           | `instream`                                      | `string`  |
+| `video.context`         | required             | Instream or Outstream (v7.8+ for all Outstream)                           | `instream`                                      | `string`  |
 | `video.w`         | required                   | oRTB video object width dimension                                                    | `640`                                      | `int`  |
 | `video.h`         | required                   | oRTB video object height dimension                                                   | `480`                                      | `int`  |
+| `video.placement`         | optional                   | Instream: 1;      Outstream: 3, 4, 5.                                                   | `3`                                      | `int`  |
 
 <a name="triplelift-config" />
 
@@ -102,6 +102,7 @@ var videoAdUnit = {
         video: {
             playerSize: [640, 480],
             context: 'instream',
+            placement: 1,
             mimes: ['video/mp4']
         }
     },
@@ -109,6 +110,32 @@ var videoAdUnit = {
         bidder: 'triplelift',
         params: {
             inventoryCode: 'pubname_instream1',
+            video: {
+                w: 640,
+                h: 480
+            }
+        }
+    }]
+};
+```
+
+#### Video (Outstream)
+
+```
+var videoAdUnit = {
+    code: 'video1',
+    mediaTypes: {
+        video: {
+            playerSize: [640, 480],
+            context: 'outstream',
+            placement: 3,
+            mimes: ['video/mp4']
+        }
+    },
+    bids: [{
+        bidder: 'triplelift',
+        params: {
+            inventoryCode: 'pubname_outstream',
             video: {
                 w: 640,
                 h: 480
