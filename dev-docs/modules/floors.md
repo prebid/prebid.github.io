@@ -1182,6 +1182,65 @@ The module will do this by leveraging the already-existing implementation for an
 The PrebidServerBidAdapter calls `getFloor()` like any other bid adapter
 and passes it to the server side as imp.bidfloor and imp.bidfloorcur.
 
+### In-Page Interface
+
+If a publisher is defining their own floors, then all of the fields in the floors schema may be defined in the page.
+
+Even if a publisher is using a floors provider, they may wish to provide additional data:
+1. default floor data if dynamic data fails to load on time
+2. global floorMin: allows the publisher to constrain dynamic floors with a global min
+3. impression-level floor min (PBJS 6.24+): allows the publisher to constrain dynamic floors with an adunit-specific value
+
+Here's an example covering the first two scenarios:
+```
+pbjs.setConfig({
+      floors: {
+          enforcement: {
+             floorDeals: false //default to false
+          },
+          floorMin: 0.05,      // global default
+	  auctionDelay: 100,   // in milliseconds
+          endpoint: {          // where to get the dynamic floors
+            url: 'https://floorprovider.com/a1001-mysite.json'
+          },
+          data: {
+            currency: 'USD',
+            skipRate: 10,
+            modelVersion: 'some setconfig model version',
+            schema: {
+                fields: [ 'gptSlot', 'mediaType' ]
+            },
+            values: {
+                '*|banner': 0.98,
+                '*|video': 1.74
+            }
+	  }
+      }
+});
+```
+
+And here's an example of imp-level floorMin, which is like a form of imp-level [first party data](/features/firstPartyData.html#supplying-adunit-specific-data):
+```
+pbjs.addAdUnits({
+    code: "test-div",
+    mediaTypes: {
+        banner: {
+            sizes: [[300,250]]
+        }
+    },
+    ortb2Imp: {
+        ext: {
+	    prebid: {
+                data: {
+		    floorMin: 0.25,
+		    floorMinCur: "USD"
+		}
+            }
+        }
+    },
+    ...
+});
+```
 
 ## Currency
 

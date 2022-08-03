@@ -8,7 +8,7 @@ aliasCode : appnexus
 gdpr_supported: true
 coppa_supported: true
 usp_supported: true
-pbs: true
+pbs: false
 schain_supported: true
 media_types: banner, video, native
 prebid_member: true

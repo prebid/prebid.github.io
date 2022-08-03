@@ -12,7 +12,7 @@ coppa_supported: true
 gdpr_supported: true
 floors_supported: true
 usp_supported: true
-media_types: banner, video
+media_types: banner, video, native
 fpd_supported: true
 gvl_id: 10
 prebid_member: yes
@@ -63,7 +63,7 @@ var adUnits = [{
 |---|---|
 | `banner` | Fully supported for all IX approved sizes |
 | `video`  | Fully supported for all IX approved sizes |
-| `native` | Not supported |
+| `native` | Supported |
 
 ### Supported Media Types (Prebid Server)
 
@@ -72,7 +72,7 @@ var adUnits = [{
 |------|-------|
 | `banner` | Fully supported |
 | `video`  | Fully supported, including ad pods for OTT |
-| `native` | Not supported |
+| `native` | Supported |
 
 # Ad Unit or Bidder Parameters
 
@@ -107,6 +107,12 @@ In Prebid.js versions 5.0 and above, mediaType and sizes are not required to be 
 | `video.minduration` | Required | Integer | Minimum video ad duration in seconds.|
 | `video.maxduration` | Required | Integer | Maximum video ad duration in seconds.|
 | `video.protocol` / `video.protocols` | Required | Integer / Integer[] | Either a single protocol provided as an integer, or protocols provided as a list of integers. `2` - VAST 2.0, `3` - VAST 3.0, `5` - VAST 2.0 Wrapper, `6` - VAST 3.0 Wrapper|
+| `video.playerConfig` | Optional | Hash | The Index specific outstream player configurations.
+| `video.playerConfig.floatOnScroll` | Optional | Boolean | A boolean specifying whether you want to use the player’s floating capabilities, where: <br /> - `true`: Use the Index player’s float capabilities.<br /> **Note**: If you set `floatOnScroll` to `true`, Index updates the `placement` value to `5`. <br />**Note:** We do not recommend using the player's default float capabilities if you have more than one outstream ad unit per page. <br />- `false`: Do not use the Index player's float capabilities (default). |
+| `video.playerConfig.floatSize` | Optional | Integer[] | The height and width of the floating player in pixels. If you do not specify a float size, the player adjusts to the aspect ratio of the player size that is defined when it is not floating. Index recommends that you review and test the float size to your user experience preference.|
+
+### Native
+Index supports the native assets that Prebid.js recognizes. For the list of native assets, see [Prebid.js Native Implementation Guide on the Prebid site.](https://docs.prebid.org/prebid/native-implementation.html#3-prebidjs-native-adunit-overview)
 
 ## Setup Guide
 
@@ -231,7 +237,7 @@ Publishers have two options to receive outstream video demand from Index:
 **Index’s outstream video player**
 Publishers who are using Index as a bidding adapter in Prebid.js can show outstream video ads on their site from us by using Index’s outstream video player. This allows a video ad to display inside of a video player and can be placed anywhere on a publisher’s site, such as in-article, in-feed, and more.
 
-Define a new `video` object for our outstream video player at either the adUnit level or the `bidder` level. If you are setting it at the bidder level, define the size of the video player using the parameters `video.h` and `video.w`. If you are setting it at the `adUnit` level, define the size using video.playerSize.
+Define a new `video` object for our outstream video player at either the adUnit level or the `bidder` level. If you are setting it at the bidder level, define the size of the video player using the parameters `video.h` and `video.w`. If you are setting it at the `adUnit` level, define the size using `video.playerSize`.</br>**Note:** The bidder level video configurations override the adunit level configurations. The `playerConfig` is only a bidder level configuration.
 
 For more information on how to structure the `video` object, refer to the following code example:
 
@@ -248,13 +254,19 @@ var adUnits = [{
             minduration: 5,
             maxduration: 30,
             mimes: ['video/mp4', 'application/javascript'],
-            placement: 3
+            placement: 5
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
             siteId: '715964'
+            video: {
+                playerConfig: {
+                    floatOnScroll: true,
+                    floatSize: [300,250]
+                }
+            }
         }
     }]
 }];
@@ -274,8 +286,53 @@ pbjs.setConfig({
 });
 ```
 
+#### Native
+We support the three native template rendering options that are provided in the [Setting up Prebid Native in Google Ad Manager](https://docs.prebid.org/adops/gam-native.html). The following code is an example of a Prebid native set up using Google Ad Manager, but the concept and implementation should be similar for other ad servers.
+
+```
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        native: {
+            image: {
+                required: true,
+                sizes: [150, 50]
+            },
+            title: {
+                required: true,
+                len: 80
+            },
+            sponsoredBy: {
+                required: true
+            },
+            clickUrl: {
+                required: true
+            },
+            privacyLink: {
+                required: false
+            },
+            body: {
+                required: true
+                len: 90
+            },
+            icon: {
+                required: true,
+                sizes: [50, 50]
+            }
+        }
+    },
+    bids: [{
+        bidder: 'ix',
+        params: {
+            siteId: '715966'
+        }
+    }]
+});
+```
+
 #### User Sync
 Add the following code to enable user sync. IX strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the IX bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
+**Note**: While we recommend iframe-based user syncing, we also support image-based user syncing. If both are enabled, we will default to using iframe, because it allows us more flexibility to optimize the frequency, timing, and coverage for syncing.
 
 ```
 pbjs.setConfig({
@@ -462,7 +519,7 @@ to `'ix'` across all ad units that bids are being requested for does not exceed 
 
 ### Time-To-Live (TTL)
 
-Banner bids from Index have a TTL of 600 seconds while video bids have a TTL of 3 hours, after which time they become invalid.
+Banner bids from Index have a TTL of 600 seconds while video bids have a TTL of 3 hours, after which time they become invalid.</br>
 **Note:** Index supports the `bid.exp` attribute in the bid response which allows our adapter to specify the maximum number of seconds allowed between the auction and billing notice. In the absence of the `bid.exp` attribute, the TTL provided above applies.
 
 ## FAQs

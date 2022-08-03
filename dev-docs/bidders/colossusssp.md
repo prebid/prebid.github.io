@@ -8,7 +8,6 @@ schain_supported: true
 media_types: banner, video, native
 userIds: britepoolid, identityLink, unifiedId, id5Id, uid2
 gdpr: true
-fpd_supported: true
 pbjs: true
 pbs: false
 ---
