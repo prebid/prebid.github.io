@@ -26,11 +26,6 @@ Criteo currently only supports getFloor if floors are in USD and if the publishe
 {: .alert.alert-warning :}
 Prebid-Server support is on alpha test and is currently a non-finished product. Activation requires setup and approval before beginning. Please reach out to your account manager or publishers@criteo.com for more details.
 
-### Disclosure
-
-This bidder sets `adId` on the bid response and hasn't responded to the Prebid.js team to confirm uniqueness
-of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381).
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
