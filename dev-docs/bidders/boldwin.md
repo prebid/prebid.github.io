@@ -18,4 +18,5 @@ The Boldwin Bidding adapter requires setup before beginning. Please contact us a
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placementId`      | required | Boldwin placement id         | `'1234asdf'`    | `'string'` |
+| `placementId` | optional | Placement Id | `'0'`        | `string` |
+| `endpointId` | optional | Endpoint Id | `'0'`        | `string` |
