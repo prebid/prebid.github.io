@@ -16,7 +16,7 @@
     "domains": [
         {
             "domain": "*.sharedid.org",
-            "use": "Cross-domain ID"
+            "use": "Cross-domain ID, deprecated in Prebid 5.x"
         }
     ]
 }
