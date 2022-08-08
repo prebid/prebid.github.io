@@ -9,6 +9,11 @@ media_types: banner, video
 gdpr_supported: true
 fpd_supported: true
 gvl_id: 855
+safeframes_ok: false
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: false
+floors_supported: false
+
 ---
 
 ### Bid Params
