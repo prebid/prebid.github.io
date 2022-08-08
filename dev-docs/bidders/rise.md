@@ -50,7 +50,7 @@ var adUnits = [{
                 floorPrice: 0.05, // Optional
                 placementId: '12345678', // Optional
                 testMode: false // Optional,
-                rtbDomain: "www.test.com" //Optional
+                rtbDomain: 'www.test.com' //Optional
             }
         }]
     },
@@ -74,7 +74,7 @@ var adUnits = [{
                 floorPrice: 5.00, // Optional
                 placementId: '12345678', // Optional
                 testMode: false // Optional,
-                rtbDomain: "www.test.com" //Optional
+                rtbDomain: 'www.test.com' //Optional
             }
         }]
     }
