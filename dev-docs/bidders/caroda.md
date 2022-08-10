@@ -15,16 +15,22 @@ userIds: all
 gvl_id: 954
 floors_supported: true
 multiformat_supported: will-bid-on-any, will-bid-on-one
+fpd_supported: true
+safeframes_ok: true
+ortb_blocking_supported: false
+deals_supported: false
 ---
 
 ### Bid params
+
+The Caroda Bidding adapter requires setup before beginning. Please contact us on https://caroda.io/
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope                      | Description                                                     | Example           | Type      |
 |---------------|----------------------------|-----------------------------------------------------------------|-------------------|-----------|
 | `ctok`        | required                   | id unique to a customer                                         | `"abcdef"`        | `string` |
 | `placementId` | optional                   | used when there are multiple placements configured per domain   | `"opzabc123"`     | `string` |
-| `priceType`   | optional                   | Price type                                                      | `"gross"`         | `string`  |
+| `priceType`   | optional                   | price type                                                      | `"gross"`         | `string`  |
 
 
 
