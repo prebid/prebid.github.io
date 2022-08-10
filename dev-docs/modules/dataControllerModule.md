@@ -17,7 +17,7 @@ Maintainer: eng-dmp@magnite.com
 
 The module attempts to filter/supress the EIDs/SDA being transmitted to bid stream.
 
-Add it to the Prebid.js build with this command:
+The module can be added to the Prebid.js build with this command:
 
 ```
 gulp build --modules=dataControllerModule
