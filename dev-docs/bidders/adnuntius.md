@@ -9,6 +9,11 @@ media_types: banner, video
 gdpr_supported: true
 fpd_supported: true
 gvl_id: 855
+safeframes_ok: false
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: false
+floors_supported: false
+
 ---
 
 ### Bid Params
@@ -112,6 +117,18 @@ The following test parameters can be used to verify that Prebid Server is workin
         }
     }
 }]
+```
+
+### Passing no Cookie in Prebid Server request
+
+As a publisher you have the option to set no cookie in the device request to let Adnuntius adserver know not to set cookies in the client's browser. In order to do that you just need to pass this in the request:
+
+```
+"device": {  
+    "ext": {
+        "noCookies": true
+    }
+},
 ```
 
 ### First Party Data
