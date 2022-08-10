@@ -3,7 +3,7 @@ layout: bidder
 title: Adrino
 description: Prebid Adrino Bidder Adapter
 pbjs: true
-pbs: false
+pbs: true
 biddercode: adrino
 media_types: no-display, native
 gdpr_supported: true
