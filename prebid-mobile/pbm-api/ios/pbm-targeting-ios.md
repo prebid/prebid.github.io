@@ -21,55 +21,40 @@ Prebid Mobile supports the following global targeting parameters. These targetin
 ### Gender
 
 ```
-public var gender:Gender
+public var userGender: Gender 
 ```
 
-gender is an enum with the following values:
+Gender is an enum with the following values:
 
 ```
-
-public enum Gender: String {
+@objc public enum Gender : Int {
     case unknown
     case male
     case female
+    case other
 }
 ```
 
 You can retrieve and set the gender for targeting:
 
 ```
-let gender = Targeting.shared.gender
-
-//do something with gender
+let gender = Targeting.shared.userGender
 ```
 
 ```
-Targeting.shared.gender = .unknown;
+Targeting.shared.userGender = .unknown;
 ```
 
 ### Year of Birth
 
 ```
-public var yearofbirth:Int?
+public var yearOfBirth: Int
 ```
 
 You can retrieve and set the year of birth for targeting:
 
 ```
-if let yob = Targeting.shared.yearofbirth {
-    //do something with yob
-};
-
-guard let yob = Targeting.shared.yearofbirth else {
-    print("There was an error retrieving year of birth)
-    return
-}
-
-//do something with yob
-```
-
-```
-Targeting.shared.yearofbirth = 1990;
+Targeting.shared.yearOfBirth = 1990;
 ```
 
 ### User Keywords
@@ -108,12 +93,6 @@ Targeting.shared.addUserKeyword("globalUserKeywordValue2")
 Targeting.shared.addUserKeyword("globalUserKeywordValue3")
 ```
 
-```objective_c
-[Targeting.shared addUserKeyword:@"globalUserKeywordValue1"];
-[Targeting.shared addUserKeyword:@"globalUserKeywordValue2"];
-[Targeting.shared addUserKeyword:@"globalUserKeywordValue3"];
-```
-
 ## Global Application Targeting
 
 
@@ -122,18 +101,11 @@ Targeting.shared.addUserKeyword("globalUserKeywordValue3")
 Retrieve and set the domain of your app with the following commands:
 
 ```
-Targeting.shared.domain
-```
-```
 Targeting.shared.domain = domain
 ```
 ### Store URL
 
 Retrieve and set the domain of your store URL with the following command:
-
-```
-Targeting.shared.storeURL
-```
 
 ```
 Targeting.shared.storeURL = "itunes store URL string"
@@ -144,79 +116,47 @@ Targeting.shared.storeURL = "itunes store URL string"
 Retrieve and set the domain of your iTunes ID with the below command. This field will be transmitted to buyers as the bundle ID as recommended in OpenRTB 2.5. Failure to supply this value can have a negative monetary impact.
 
 ```
-Targeting.shared.itunesID
-```
-
-```
 Targeting.shared.itunesID = itunesID
 ```
 
 ### Open Measurement SDK (OMSDK)
 
-OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is eligible for OMSDK support. Original API of prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
 
 There three components to signaling support for OMSDK:
 * Partner Name
 * Partner Version
 * API code
 
-**Partner Name**
+#### Partner Name
 
 This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. See below for configuration and examples
 
-#### omidPartnerName
-Open Measurement partner name. 
-
-```
-Targeting.shared.omidPartnerName
-```
-
-Examples:
-
-Swift
 ```swift
 Targeting.shared.omidPartnerName = "Google"
 ```
 
-Objective C
-```objective_c
-Targeting.shared.omidPartnerName = @"Google";
-```
 
-
-**Partner Version**
+#### Partner Version
 
 The OMSDK version number the partner integrated with. See below for configuration and examples.
 
-
-#### omidPartnerVersion
-Partner's OMSDK version number implementation
-```
-Targeting.shared.omidPartnerVersion
-```
-
-Examples:
-
-Swift
 ```swift
 Targeting.shared.omidPartnerVersion = "1.0"
 ```
 
-Objective C
-```objective_c
-Targeting.shared.omidPartnerVersion = @"1.0";
-```
-
-**API Code**
+#### API Code
 
 Per OpenRTB 2.5, support for OMSDK is signaled using the imp.[media type].api field represented in Prebid SDK withing each ad format type under the parameters object. Refer to the documentation of the respective ad unit class.
 
-Example:
+
 ```
 let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
-let parameters = BannerAdUnit.Parameters()
+
+let parameters = BannerParameters()
 parameters.api = [Signals.Api(7)]
-adUnit.setParameters(parameters);
+
+bannerUnit.parameters = parameters
 ```
 
 Note that the OMID value for imp.banner/video/native.api field should be 7, as defined by the IAB in the [OMSDK v1.2 document](https://s3-us-west-2.amazonaws.com/omsdk-files/docs/Open+Measurement+SDK+Onboarding_version_1.2.pdf).
@@ -224,47 +164,27 @@ Note that the OMID value for imp.banner/video/native.api field should be 7, as d
 
 ## Inventory (Context) Keywords
 
-Context Keywords are a list of keywords about the app as referenced in OpenRTB 2.5 as app.keywords. Any keyword passed in the context keyword field may be passed to the buyer for targeting.
+Context Keywords are a list of keywords about the app as referenced in OpenRTB 2.5 as app.keywords. Any keyword passed in the context keyword field may be passed to the buyer for targeting. Prebid provides following functions to manage context keywords:
 
-### Add Context Keyword
 
 ```
 func addContextKeyword(_ newElement: String)
-```
 
-### Add Context Keywords
-
-```
 func addContextKeywords(_ newElements: Set<String>)
-```
 
-### Remove Context Keywords
-
-```
 func removeContextKeyword(_ element: String)
-```
 
-### Clear Context Keywords
-
-```
 func clearContextKeywords()
 ```
 
-Examples:
+Example:
 
-Swift
 ```swift
 Targeting.shared.addContextKeyword("globalContextKeywordValue1")
 Targeting.shared.addContextKeyword("globalContextKeywordValue2")
 Targeting.shared.addContextKeyword("globalContextKeywordValue3")
 ```
 
-Objective C
-```objective_c
-[Targeting.shared addContextKeyword:@"globalContextKeywordValue1"];
-[Targeting.shared addContextKeyword:@"globalContextKeywordValue2"];
-[Targeting.shared addContextKeyword:@"globalContextKeywordValue3"];
-```
 
 ## First Party Data
 
@@ -282,117 +202,68 @@ Data is broken up into two different data types:
 
 ### First Party User Data
 
-#### Add User Data
+Prebid provides following functions to manage First Party User Data:
 
 ```
 func addUserData(key: String, value: String)
-```
 
-#### Update User Data
-
-```
 func updateUserData(key: String, value: Set<String>)
-```
 
-#### Remove User Data
-
-```
 func removeUserData(forKey: String)
-```
 
-#### Clear User Data
-
-```
 func clearUserData()
 ```
 
-Examples:
+Example:
 
-Swift
 ```swift
 Targeting.shared.addUserData(key: "globalUserDataKey1", value: "globalUserDataValue1")
 ```
 
-Object C
-```objective_c
-[Targeting.shared addUserDataWithKey:@"globalUserDataKey1" value:@"globalUserDataValue1"];
-```
-
 ### First Party Inventory (Context) Data
 
-#### Add Context Data
+Prebid provides following functions to manage First Party Inventory Data:
+
 
 ```
 func addContextData(key: String, value: String)
-```
 
-#### Update Context Data
-
-```
 func updateContextData(key: String, value: Set<String>)
-```
 
-#### Remove Context Data
-
-```
 func removeContextData(forKey: String)
-```
 
-#### Clear Context Data
-
-```
 func clearContextData()
 ```
 
-Examples:
+Example:
 
-Swift
 ```swift
 Targeting.shared.addContextData(key: "globalContextDataKey1", value: "globalContextDataValue1")
 ```
 
-Objective C
-```objective_c
-[Targeting.shared addContextDataWithKey:@"globalContextDataKey1" value:@"globalContextDataValue1"];
-```
 
 #### Ad Unit Context Data
+
 For ad unit context data, please refer to the [ad unit](pbm-adunit-ios.html) section.
 
 ### Access Control
-The First Party Data Access Control List provides a method to restrict access to first party data to a supplied list of bidders.
 
-#### addBidderToAccessControlList
+The First Party Data Access Control List provides a methods to restrict access to first party data to a supplied list of bidders.
+
 
 ```
 func addBidderToAccessControlList(_ bidderName: String)
-```
 
-#### removeBidderFromAccessControlList
-
-```
 func removeBidderFromAccessControlList(_ bidderName: String)
-```
 
-#### clearAccessControlList
-
-```
 func clearAccessControlList()
 ```
 
-Examples:
+Example:
 
-Swift
 ```swift
 Targeting.shared.addBidderToAccessControlList(Prebid.bidderNameRubiconProject)
 ```
-
-Objective C
-```objective_c
-[Targeting.shared addBidderToAccessControlList: Prebid.bidderNameRubiconProject];
-```
-
-
 
 ## GPDR
 
@@ -407,17 +278,10 @@ public var subjectToGDPR:Bool?
 You can retrieve and set the subjectToGDPR for targeting:
 
 ```
-if let subjectToGDPR = Targeting.shared.subjectToGDPR {
-    //do something with subjectToGDPR
-};
-
 guard let subjectToGDPR = Targeting.shared.subjectToGDPR else {
     print("There was an error retrieving subjectToGDPR)
     return
 }
-
-//do something with subjectToGDPR
-
 ```
 
 ```
@@ -433,17 +297,10 @@ public var gdprConsentString?
 You can retrieve and set the subjectToGDPR for targeting:
 
 ```
-if let gdprConsentString = Targeting.shared.gdprConsentString {
-    //do something with gdprConsentString
-};
-
 guard let gdprConsentString = Targeting.shared.gdprConsentString else {
-    print("There was an error retrieving gdprConsentString)
+    print("There was an error retrieving gdprConsentString")
     return
 }
-
-//do something with gdprConsentString
-
 ```
 
 ```
@@ -459,19 +316,8 @@ public var purposeConsents: String?
 You can retrieve and set the purposeConsents for targeting:
 
 ```
-//given
-
 Targeting.shared.purposeConsents = "100000000000000000000000"
 
-defer {
-
-  Targeting.shared.purposeConsents = nil
-
-}
-
-//when
-
-let deviceAccessConsent = Targeting.shared.getDeviceAccessConsent()
 ```
 ### Subject to COPPA
 
@@ -483,14 +329,8 @@ var subjectToCOPPA: Bool
 
 Example:
 
-SWIFT
 ```
 Targeting.shared.subjectToCOPPA = true
-```
-
-Objective C
-```
-Targeting.shared.subjectToCOPPA = true;
 ```
 
 ## User Identity
@@ -513,29 +353,17 @@ public var externalUserIdArray = [ExternalUserId]()
 
 **Exmaples**
 
-SWIFT
 ```swift
 // User Id from External Third Party Sources
 var externalUserIdArray = [ExternalUserId]()
+
 externalUserIdArray.append(ExternalUserId(source: "adserver.org", identifier: "111111111111", ext: ["rtiPartner" : "TDID"]))
 externalUserIdArray.append(ExternalUserId(source: "netid.de", identifier: "999888777")) 
 externalUserIdArray.append(ExternalUserId(source: "criteo.com", identifier: "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N")) 
 externalUserIdArray.append(ExternalUserId(source: "liveramp.com", identifier: "AjfowMv4ZHZQJFM8TpiUnYEyA81Vdgg"))
 externalUserIdArray.append(ExternalUserId(source: "sharedid.org", identifier: "111111111111", atype: 1, ext: ["third" : "01ERJWE5FS4RAZKG6SKQ3ZYSKV"]))
+
 Prebid.shared.externalUserIdArray = externalUserIdArray
-```
-
-
-Objective-C
-```objective_c
-// User Id from External Third Party Sources
-NSMutableArray<ExternalUserId *> *externalUserIdArray = [[NSMutableArray<ExternalUserId *> alloc] init];
-[externalUserIdArray addObject:[[ExternalUserId alloc]initWithSource:@"adserver.org" identifier:@"111111111111" atype:nil ext:@{@"rtiPartner" : @"TDID"}]];
-[externalUserIdArray addObject:[[ExternalUserId alloc]initWithSource:@"netid.de" identifier:@"999888777" atype: nil ext:nil]];
-[externalUserIdArray addObject:[[ExternalUserId alloc]initWithSource:@"criteo.com" identifier:@" _fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N" atype:nil ext:nil]];
-[externalUserIdArray addObject:[[ExternalUserId alloc]initWithSource:@"liveramp.com" identifier:@" AjfowMv4ZHZQJFM8TpiUnYEyA81Vdgg" atype:nil ext:nil]];
-[externalUserIdArray addObject:[[ExternalUserId alloc]initWithSource:@"sharedid.org" identifier:@"111111111111" atype:[NSNumber numberWithInt:1] ext:@{@"third" : @"01ERJWE5FS4RAZKG6SKQ3ZYSKV"}]];
-Prebid.shared.externalUserIdArray = externalUserIdArray;
 ```
 
 ### Local Storage
@@ -543,77 +371,17 @@ Prebid.shared.externalUserIdArray = externalUserIdArray;
 Prebid SDK provides a local storage interface to set, retrieve or update an array of user IDs with associated identity vendor details. Prebid SDK will retrieve and pass User IDs and ID vendor details to PBS if values are present in local storage. The main difference between the Prebid API interface and the local storage interface is the persistence of storage of data. Local Storage data will persist across user sessions whereas the Prebid API interface (externalUserIdArray) persists only for the user session. If a vendor's details are passed both in local storage and the Prebid API at the same time, the Prebid  API data (externalUserIdArray) will prevail.
 
 Prebid SDK Provides five functions to handle User ID details:
-* storeExternalUserId
-* fetchStoredExternalUserIds
-* fetchStoredExternalUserId
-* removeStoredExternalUserId
-* removeStoredExternalUserIds
 
+```
+public func storeExternalUserId(_ externalUserId: ExternalUserId)
 
-```swift
-/**
-* This method allows to save External User Id in the User Defaults
-*/
-public func storeExternalUserId(_ externalUserId: ExternalUserId) {
-    if let index = externalUserIds.firstIndex(where: {
-        $0.source == externalUserId.source
-    })
+public func fetchStoredExternalUserIds() -> [ExternalUserId]?
 
-    {
-        externalUserIds[index] = externalUserId
-    }
+public func fetchStoredExternalUserId(_ source : String) -> ExternalUserId?
 
-    else{
-        externalUserIds.append(externalUserId)
-    }
+public func removeStoredExternalUserId(_ source : String)
 
-    StorageUtils.setExternalUserIds(value: externalUserIds)
-}
-/**
-* This method allows to get All External User Ids from User Defaults
-*/
-public func fetchStoredExternalUserIds()->[ExternalUserId]? {
-    return StorageUtils.getExternalUserIds()
-}
-/**
-* This method allows to get External User Id from User Defaults by passing respective 'source' string as
-param */
-public func fetchStoredExternalUserId(_ source : String)->ExternalUserId? {
-    guard let array = StorageUtils.getExternalUserIds(), let externalUserId = array.first(where: {
-        $0.source
-        == source
-    })
-
-    else{
-        return nil
-    }
-
-    return externalUserId
-}
-/**
-* This method allows to remove specific External User Id from User Defaults by passing respective 'source'
-string as param
-*/
-public func removeStoredExternalUserId(_ source : String) {
-    if let index = externalUserIds.firstIndex(where: {
-        $0.source == source
-    })
-
-    {
-        externalUserIds.remove(at: index)
-        StorageUtils.setExternalUserIds(value: externalUserIds)
-    }
-
-}
-/**
-* This method allows to remove all the External User Ids from User Defaults
-*/
-public func removeStoredExternalUserIds() {
-    if var arrayExternalUserIds = StorageUtils.getExternalUserIds(){
-        arrayExternalUserIds.removeAll() StorageUtils.setExternalUserIds(value: arrayExternalUserIds)
-    }
-
-}
+public func removeStoredExternalUserIds()
 ```
 
 **Examples**
