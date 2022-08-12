@@ -9,7 +9,7 @@ gdpr_supported: true
 media_types: banner, video, native
 ---
 
-### Note:
+### Note
 
 The Boldwin Bidding adapter requires setup before beginning. Please contact us at wls_team@smartyads.com
 
@@ -20,3 +20,5 @@ The Boldwin Bidding adapter requires setup before beginning. Please contact us a
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId` | optional | Placement Id | `'0'`        | `string` |
 | `endpointId` | optional | Endpoint Id | `'0'`        | `string` |
+
+For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
