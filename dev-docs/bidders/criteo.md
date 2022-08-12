@@ -10,7 +10,7 @@ gdpr_supported: true
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
 prebid_member: true
-floors_supported: false
+floors_supported: true
 fpd_supported: true
 schain_supported: true
 gvl_id: 91
@@ -20,8 +20,6 @@ gvl_id: 91
 {: .alert.alert-warning :}
 This bidder adapter automatically includes the Criteo User ID module and performs iFrame syncs.
 
-{: .alert.alert-warning :}
-Criteo currently only supports getFloor if floors are in USD and if the publisher is enabling the Criteo Publisher Tag external js call. The collected floors will only be used for logging purposes and won't bid taken into account when bidding.
 
 {: .alert.alert-warning :}
 Prebid-Server support is on alpha test and is currently a non-finished product. Activation requires setup and approval before beginning. Please reach out to your account manager or publishers@criteo.com for more details.
