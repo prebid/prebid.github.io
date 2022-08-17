@@ -14,6 +14,7 @@ floors_supported: true
 fpd_supported: true
 schain_supported: true
 gvl_id: 91
+coppa_supported: true
 ---
 ### Notes
 
