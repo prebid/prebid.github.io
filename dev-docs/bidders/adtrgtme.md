@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: Adtargetme
-description: Prebid Adtargetme Bidder Adapter
-biddercode: adtargetme
+title: Adtarget.me
+description: Prebid Adtarget.me bidder adapter
+biddercode: adtrgtme
 gdpr_supported: false
 usp_supported: false
 coppa_supported: false
@@ -22,4 +22,4 @@ multiformat_supported: will-bid-on-one
 
 ### Note:
 
-The Adtargetme Bidding adapter requires setup before beginning. Please contact us at info@adtarget.me
+The Adtrgtme bidding adapter requires setup before beginning. Please contact us at info@adtarget.me
