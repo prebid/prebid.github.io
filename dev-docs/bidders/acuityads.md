@@ -20,15 +20,15 @@ pbs: true
 The Example Bidding adapter requires setup before beginning. Please contact us at rafi.babler@acuityads.com
 
 ### Prebid.JS Bid Params
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description           | Example   | Type      |
+|---------------|----------|-----------------------|-----------|-----------|
+| `placementId` | required | Placement ID          | `'123'`     | `string`  |
+
+### Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `host`      | required | Region id               | `'ep1'`    | `string` |
 | `accountid`      | required | Endpoint id | `'hash'`    | `string` |
-
-### Prebid Server Bid Params
-{: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `placementId` | required | Placement ID          | `123`     | `string`  |
