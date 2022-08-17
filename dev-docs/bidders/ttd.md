@@ -31,9 +31,8 @@ Note: The Trade Desk Header Bidding adapter requires setup and approval before b
 Name | Scope | Description | Example | Type
 --- | --- | --- | --- | ----
 `supplySourceId` | required | The TTD-provided supply source name. | `'supplier'` | `String`
-`publisherId` | required | The publisher ID. This should be the same as the seller_id in the sellers.json for the site being trafficked. | `'1427ab10f2e448057ed3b422'` | `String`
-`siteId` | required | The publisher defined site ID. This should be unique per site. Can be any string that is under 50 characters. | `'site_123'` | `String`
-`placementId` | required | The publisher defined placement ID. Can be any string that is under 128 characters. | `'side-Bar_1/123'` | `String`
+`publisherId` | required | The publisher ID. If there is a sellers.json, this should be the same as the seller_id in the sellers.json for the site being trafficked. If there is no sellers.json, this should be hardcoded to "1". | `'1427ab10f2e448057ed3b422'` | `String`
+`placementId` | optional | This field is optional if GPID is passed through the GPT module https://docs.prebid.org/dev-docs/modules/gpt-pre-auction.html. If that module isn't used, the GPID value should be passed in this field. | `'/1111/home#header'` | `String`
 `banner` | optional | Display banner targeting parameters. See the banner section below. | `{}` | `object`
 
 ### Banner Object
