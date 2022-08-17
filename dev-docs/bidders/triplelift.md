@@ -61,7 +61,7 @@ The Triplelift Prebid Server bidding adapter and user sync endpoint require setu
 |-----------------|------------------------------|--------------------------------------------------------------------------------------|---------------------------------------------|----------|
 | `inventoryCode` | required                     | TripleLift inventory code for this ad unit (provided to you by your partner manager) | `'pubname_instream_1'`                      | `string` |
 | `video`         | required                     | oRTB video object                                                                    | `{ mimes: ['video/mp4'], w: 640, h: 480 }`     | `object`  |
-| `video.context`         | required             | Instream or Outstream (v7.8+ for all Outstream)                           | `instream`                                      | `string`  |
+| `video.context`         | required             | Instream or Outstream (v7.9+ for all Outstream)                           | `instream`                                      | `string`  |
 | `video.w`         | required                   | oRTB video object width dimension                                                    | `640`                                      | `int`  |
 | `video.h`         | required                   | oRTB video object height dimension                                                   | `480`                                      | `int`  |
 | `video.placement`         | optional                   | Instream: 1;      Outstream: 3, 4, 5.                                                   | `3`                                      | `int`  |
