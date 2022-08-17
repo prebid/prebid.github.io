@@ -8,7 +8,7 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
-media_types: banner, video
+media_types: banner, video, native
 userIds: all
 prebid_member: true
 safeframes_ok: true
@@ -242,7 +242,7 @@ pbjs.setConfig({
 ```
 
 
-* The Rubicon Project adapter does not make concurrent banner and video requests. Instead, the adapter will send a video request if bids[].params.video is supplied, else a banner request will be made.
+* The Rubicon Project adapter does not make concurrent banner, video or native requests. Instead, the adapter will send a video request if bids[].params.video is supplied, a banner request will be made if imp[].banner object exist, else a native request will be made.
 
 ### Setting up the Prebid Server Adapter
   
