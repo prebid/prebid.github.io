@@ -2508,7 +2508,7 @@ Publishers enabling passing eids/signal through ESP should reach out to SSPs int
 
 ESP Configuration Example:
 
-```
+```javascript
 pbjs.setConfig({
     userSync: {
         ...,
@@ -2536,6 +2536,10 @@ pbjs.setConfig({
 })
 
 ```
+
+This will have no effect until you call the `registerSignalSources` API. This method must be called
+**after** the `pbjs.setConfig` and `gpt.js` has loaded. See [API reference for `registerSignalSources`](/dev-docs/publisher-api-reference/registerSignalSources.html)
+
 
 ## Further Reading
 
