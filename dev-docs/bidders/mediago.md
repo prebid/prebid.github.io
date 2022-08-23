@@ -23,4 +23,4 @@ The MediaGo Bidding adapter requires setup before beginning. Please contact us a
 |---------------|----------|-----------------------|-----------|-----------|
 | `token`      | required | publisher token        | `'1e100887dd614b7f69fdd1360437'`    | `string` |
 | bidfloor | recommend | Sets a floor price for the bid | 0.05 | float |
-| placementId | recommend |  |  |  |
+| placementId | recommend | The AD placement ID | 12341234 | string |
