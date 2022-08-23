@@ -56,14 +56,15 @@ adapters:
 
 {: .table .table-bordered .table-striped }
 
-| Name               | Scope    | Description                                                    | Example            | Type           |
-|--------------------|----------|----------------------------------------------------------------|--------------------|----------------|
-| `publisher.id`     | required | The publisher account ID                                       | `'2706'`           | `string`       |
-| `publisher.name`   | optional | The publisher name                                             | `'Publisher Name'` | `string`       |
-| `publisher.domain` | optional | The publisher domain                                           | `'publisher.com'`  | `string`       |
-| `tagid`            | optional | Identifier for specific ad placement or ad tag                 | `'tag-id'`         | `string`       |
-| `bcat`             | optional | Blocked advertiser categories using the IAB content categories | `['IAB1-1']`       | `string array` |
-| `badv`             | optional | Block list of advertisers by their domains                     | `['example.com']`  | `string array` |
+| Name               | Scope    | Description                                                                                               | Example            | Type           |
+|--------------------|----------|-----------------------------------------------------------------------------------------------------------|--------------------|----------------|
+| `publisher.id`     | required | The publisher account ID                                                                                  | `'2706'`           | `string`       |
+| `publisher.name`   | optional | The publisher name                                                                                        | `'Publisher Name'` | `string`       |
+| `publisher.domain` | optional | The publisher domain                                                                                      | `'publisher.com'`  | `string`       |
+| `tagid`            | optional | Identifier for specific ad placement or ad tag                                                            | `'tag-id'`         | `string`       |
+| `bcat`             | optional | Blocked advertiser categories using the IAB content categories                                            | `['IAB1-1']`       | `string array` |
+| `badv`             | optional | Block list of advertisers by their domains                                                                | `['example.com']`  | `string array` |
+| `wlang`            | optional | Allow list of languages for creatives using ISO-639-1-alpha-2. Omission implies no specific restrictions. | `['en', 'de']`     | `string array` |
 
 #### Native example
 
@@ -105,7 +106,8 @@ var adUnits = [
             },
             tagid: 'tag-id',
             bcat: ['IAB1-1'],
-            badv: ['example.com']
+            badv: ['example.com'],
+            wlang: ['en', 'de']
         }
     }]
 ];
@@ -130,7 +132,8 @@ var adUnits = [
             },
             tagid: 'tag-id',
             bcat: ['IAB1-1'],
-            badv: ['example.com']
+            badv: ['example.com'],
+            wlang: ['en', 'de']
         }
     }]
 ];
