@@ -70,9 +70,9 @@ Example configuration:
 ```
 pbjs.setConfig({
     ortb2: {
-      bcat: ['IAB1', 'IAB2-1'],
-      badv: ['domain1.com', 'domain2.com'],
-      wlang: ['en']
+      bcat: ['IAB1-1'],
+      badv: ['example.com'],
+      wlang: ['en', 'de']
     }
 });
 ```
