@@ -14,7 +14,7 @@ pbs_app_supported: false
 pbjs: true
 pbs: true
 biddercode: nextMillennium
-media_types: banner
+media_types: banner, video
 description: NextMillennium bid adapter
 ---
 
