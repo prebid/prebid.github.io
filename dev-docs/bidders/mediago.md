@@ -7,6 +7,7 @@ media_types: banner
 pbjs: true
 enable_download: false
 floors_supported: true
+pbjs_version_notes: not ported to 5.x, added back 7.13
 ---
 ### Modules
 
