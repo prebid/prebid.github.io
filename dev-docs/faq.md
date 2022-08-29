@@ -156,7 +156,7 @@ It's technically possible, but we don't recommend doing this:
 - We don't test concurrent versions
 - We won't specifically support debugging problems caused by running two concurrent versions. But will take take PRs if someone finds an issue.
 
-If all this wasn't enough to warn you away from trying, it should work if you name the PBJS global differently for each instance (https://github.com/prebid/Prebid.js/blob/master/package.json#L20)
+If all this wasn't enough to warn you away from trying, it should work if you name the PBJS global differently for each instance (https://github.com/prebid/Prebid.js/blob/fb8c62fd37d6992dbb4b1d9035adfbc943ddf293/package.json#L30)
 
 ## Can I filter bid responses that don't meet my criteria?
 
