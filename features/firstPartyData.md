@@ -279,7 +279,7 @@ pbjs.setConfig({
                 url: "http://foo_url.de",
                 cat: ["IAB1-1", "IAB1-2", "IAB2-10"],
                 context: "7",
-                keywords: ["k1", "k2"],
+                keywords: "k1,k2",
                 live: "0"
             }
         }
