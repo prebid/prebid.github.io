@@ -32,7 +32,7 @@ The integration for Seedtag uses banner mediaTypes for all types of creatives (d
 ```js
 const adUnits = [
   {
-    code: '/21804003197/prebid_test_300x250',
+    code: '/21804003197/prebid_test_320x100',
     mediaTypes: {
       banner: {
         sizes: [[320, 100]]
