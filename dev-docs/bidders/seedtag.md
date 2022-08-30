@@ -22,7 +22,7 @@ The publisher id 0000-0000-01 returns demo responses.
 |-------------------|---------------------|--------------------------------------------------------------------------------|-----------------------|----------|
 | `publisherId`     | required            | The publisher id.                                                              | 0000-0000-01          | `string` |
 | `adUnitId`        | required            | The adunit id.                                                                 | 00000                 | `string` |
-| `placement`       | required            | Adunit placement, posibles values: inImage, inScreen, inArticle              | `string` |
+| `placement`       | required            | Adunit placement, posibles values: inScreen, inArticle              | `string` |
 
 
 ### InScreen example
