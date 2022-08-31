@@ -75,9 +75,10 @@ Here's a description of the Stages of a PBS request that modules can tap into fo
 | Bidder Request | The request has been customized for a particular bidder in the auction | auction, amp, video | Bidder-specific bcat/badv, Bidder-specific deals |
 | Raw Bidder Response | Hook functions can get access to the unprocessed bidder response | auction, amp, video | Response validations |
 | Processed Bidder Response | PBS has done its own validations on an individual bidder's response | auction, amp, video | Advanced CPM adjustments, Custom VAST macros |
+| All Processed Bid Responses | All bids are back and PBS-core bid validations are done. | auction, amp, video | Creative validation, advanced bid validations. (PBS-Java 1.97+) |
 | Auction Response | Last step before the response goes back to the client | auction, amp, video | Inject ad server targeting, alternate auction winner logic |
 
-### 3. Figure out which Stages You're going to Hook Into
+### 3. Figure Out Which Stages You're Going to Hook Into
 
 A module may be comprised of:
 
@@ -86,7 +87,7 @@ A module may be comprised of:
 - optional external connections to data sources or other services
 
 Some modules may plug into only one endpoint and one stage of processing. Others may coordinate activity across multiple stages. For example,
-this diagram illustrates the design of a module that's configured to plug into two stages of
+this diagram illustrates the design of a module that's rather extremely configured to plug into all of the stages of
 the processing workflow:
 
 ![Prebid Server Modularity Architecture](/assets/images/prebid-server/module-example.png){:class="pb-xlg-img"}
