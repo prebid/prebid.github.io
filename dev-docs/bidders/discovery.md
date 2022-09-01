@@ -2,7 +2,7 @@
 layout: bidder
 title: DiscoveryDsp
 description: DiscoveryDsp Prebid Bidder Adapter
-biddercode: discoveryDsp
+biddercode: discovery
 media_types: banner,native
 pbjs: true
 enable_download: false
@@ -33,7 +33,7 @@ var adUnits = [
         },
         bids: [
           {
-            bidder: "DiscoveryDSP",
+            bidder: "discovery",
             params: {
               token: "a4e66b955e3b19b88a357b4ace01ac31",
               media: 'example.com'
@@ -61,7 +61,7 @@ var adUnits = [
         },
         bids: [
           {
-            bidder: "DiscoveryDSP",
+            bidder: "discovery",
             params: {
               token: "03d467db07075683b0c373b6b3d3113c",
               media: 'ppnews.com'
