@@ -5,7 +5,7 @@ title: Module - Viewability
 description: Generic Viewability module, tracks element viewability based on given criteria
 module_code: viewability
 display_name: Viewability
-enable_download: true
+enable_download: false
 sidebarType: 1
 ---
 
