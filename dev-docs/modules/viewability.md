@@ -10,12 +10,15 @@ sidebarType: 1
 ---
 
 # Generic Viewability
+
 {:.no_toc}
 
 * TOC
 {:toc}
 
 ## Overview
+
+Disclaimer: A potential security risk has been identified in this module, out of an abundance of caution, we're adding this warning during investigation.
 
 This module will trigger a viewability pixel when a given HTML element becomes viewable according to custom viewability criteria.
 
