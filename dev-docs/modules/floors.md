@@ -28,18 +28,18 @@ The module provides several ways for Prebid floors to be defined, that are used 
 - MediaType
 - Ad Size
 - Domain
-- "custom dimensions"
+- "custom dimensions" (Prebid.js only)
 
 {: .alert.alert-warning :}
 When using GPT Slot name, the GPT library is required to load first. Failing to do so may yield unexpected results and could impact revenue performance.
 
 The entire set of floors selected by the Price Floors Module for a given auction is called a "Rule Location". A Rule Location can be any one of:
-1. Within the AdUnit (AdUnit)
-2. Within setConfig  (Package)
-3. Retrieved from a real-time data service (Dynamic)
+1. Retrieved from a real-time data service (Dynamic)
+2. Within setConfig (Package)
+3. Within the AdUnit (AdUnit)
 
 {: .alert.alert-info :}
-Even though floors are defined with five pre-configured dimensions, it’s possible to extend the list of dimensions to attributes of the page, user, auction or other data by supplying a dimension matching function. For example, a publisher can provide a matching function that returns the device type to allow the Floor module to use device type as an attribute within a prebid floor rules file.
+Even though floors are defined with five pre-configured dimensions, it’s possible (in Prebid.js) to extend the list of dimensions to attributes of the page, user, auction or other data by supplying a dimension matching function. For example, a publisher can provide a matching function that returns the device type to allow the Floor module to use device type as an attribute within a prebid floor rules file.
 
 Note that Prebid Server also supports a [floors feature](/prebid-server/features/pbs-floors.html) that is very similar to the Prebid.js module. They both share Schema 2, and there are PBS-specific notes below.
 The expectation with the Prebid Server floors feature is that
@@ -47,7 +47,7 @@ Publishers will use it mainly for mobile app and AMP scenarios.
 Web sites running Prebid.js will utilize this client-side module.
 
 ## How it Works
-There are several places where the Floor module changes the behavior of the Prebid.js auction process. Below is a diagram describing the general flow of the Price Floors Module:
+There are several places where the Floor module changes the behavior of the Prebid.js auction process. Below is a diagram describing the general flow of the client-side Price Floors Module:
 
 ![Floors Module Flow](/assets/images/floors/floors_flow.png)
 
@@ -509,7 +509,18 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Impression-Level Floor Min
+
+An extension supported on Prebid Server only is the ability to define impression (adunit) level minimums for the floor. This allows publishers to put fences around
+the results from a dynamic floors provider.
+
+The Prebid Server OpenRTB fields are imp.ext.prebid.floors.floorMin and floorMinCur. It's expected that these values will be placed in the App or AMP stored request and not supplied on a web page. (Though they could be supplied as AdUnit.ortb2Imp).
+
+
 ## Custom Schema Fields
+
+{: .alert.alert-info :}
+Only supported in Prebid.js, not Prebid Server
 
 Out of the box, the Price Floors Module only supports looking up floors by AdUnit, GPT Slot, MediaType, ad size, and domain. Custom schema fields can be added to support other lookup dimensions. Here are the steps:
 
@@ -1344,3 +1355,6 @@ If the currency function is unable to derive the correct cpm in any of the scena
 | <img src="/assets/images/partners/leader/pubmatic.png" style="height:50px;"> | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
 | Assertive Yield | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
 | pubx.ai | [hello@pubx.ai](mailto:hello@pubx.ai) | AI-powered dynamic floor optimization |
+
+## Further Reading
+- [Prebid Server Price Floors](/prebid-server/features/pbs-floors.html)
