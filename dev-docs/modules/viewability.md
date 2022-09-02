@@ -18,7 +18,9 @@ sidebarType: 1
 
 ## Overview
 
-Disclaimer: A potential security risk has been identified in this module, out of an abundance of caution, we're adding this warning during investigation.
+{: .alert.alert-danger :}
+Disclaimer: A potential security risk has been identified in this module. We do not recommend its usage unless you're confident about
+the source of all code running on the page.
 
 This module will trigger a viewability pixel when a given HTML element becomes viewable according to custom viewability criteria.
 
