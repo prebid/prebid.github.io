@@ -188,6 +188,7 @@ The `native` object contains the following properties that correspond to the ass
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `pos`  | Optional | Integer                                | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen   |
 | `context`        | Recommended    | String                 | The video context, either `'instream'`, `'outstream'`, or `'adpod'` (for long-form videos).  Example: `context: 'outstream'`. Defaults to 'instream'. |
+| `useCacheKey`        | Optional    | Boolean                 | Defaults to `false`. While context `'instream'` always will return an vastUrl in bidResponse, `'outstream'` will not. Setting this `true` will use cache url defined in global options also for outstream responses. |
 | `placement`        | Recommended    | Integer                 | 1=in-stream, 2=in-banner, 3=in-article, 4=in-feed, 5=interstitial/floating. **Highly recommended** because some bidders require more than context=outstream. |
 | `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                                                                  |
 | `api`            | Recommended | Array[Integer]         | List of supported API frameworks for this impression.  If an API is not explicitly listed, it is assumed not to be supported.  For list, see [OpenRTB spec][openRTB].  If your video player or video ads SDK supports [Open Measurement][OpenMeasurement], **recommended** to set `7` for OMID-1|
@@ -309,6 +310,7 @@ pbjs.addAdUnits({
     mediaTypes: {
         video: {
             context: 'outstream',
+            useCacheKey: false,
             playerSize: [640, 480]
         }
     },
@@ -318,6 +320,32 @@ pbjs.addAdUnits({
             ANOutstreamVideo.renderAd({
                 targetId: bid.adUnitCode,
                 adResponse: bid.adResponse,
+            });
+        }
+    },
+    ...
+});
+```
+
+An example of an outstream video ad unit using useCacheKey:
+
+```javascript
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        video: {
+            context: 'outstream',
+            useCacheKey: true,
+            playerSize: [640, 480]
+        }
+    },
+    renderer: {
+        url: 'https://example.com/myVastVideoPlayer.js',
+        render: function(bid) {
+            let vastUrl = bid.vastUrl;
+            myVastVideoPlayer.setSrc({
+                src: vastUrl,
+                ...
             });
         }
     },
