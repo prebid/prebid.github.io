@@ -17,6 +17,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 fpd_supported: true
+ortb_blocking_supported: partial
 gvl_id: 52
 multiformat_supported: will-bid-on-one
 ---
@@ -34,8 +35,8 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
 | `accountId`    | required           | The publisher account ID                                                                                                    | `4934`                                                                            | `integer`         |
-| `siteId`       | required           | The site ID                                                                                                                 | `13945`                                                                           | `integer`         |
-| `zoneId`       | required           | The zone ID                                                                                                                 | `23948`                                                                           | `integer`         |
+| `siteId`       | required           | A unique ID for your site                                                                                                                 | `13945`                                                                           | `integer`         |
+| `zoneId`       | required           | A unique ID for your site's ad placements                                                                                                                 | `23948`                                                                           | `integer`         |
 | `position`     | optional           | Set the page position. Valid values are "atf" and "btf".                                                                    | `'atf'`                                                                             | `string`         |
 | `userId`       | optional           | Site-specific user ID may be reflected back in creatives for analysis. Note that userId needs to be the same for all slots. | `'12345abc'`                                                                        | `string`         |
 | `floor`       | optional           | Sets the global floor -- no bids will be made under this value.                                                             | `0.50`                                                                              | `float`          |
@@ -124,6 +125,24 @@ var adUnit = {
         }
     }]
 };
+```
+
+#### ORTB Blocking
+
+Rubicon supports passing up to 50 domains in `badv` for anything hitting Prebid Server, which includes these scenarios:
+
+1. client-side video
+2. s2sConfig
+3. App
+4. AMP
+
+For example:
+```
+pbjs.setConfig({
+  ortb2: {
+    badv: ["domain1.com", "domain2.com"]
+  }
+)};
 ```
 
 #### mediaTypes.video
