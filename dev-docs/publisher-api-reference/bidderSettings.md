@@ -230,13 +230,16 @@ either specific bid adapter(s) or all bid adapters the permission for these bids
 
 ##### 2.6. storageAllowed
 
-By default, bid adapters can access browser cookies and local storage. This can be disabled by setting `storageAllowed` to `false`.
+This flag defines if the bid adapter can access browser cookies and local storage.
+<br />Default value is `true` in version 6.x
+<br />Default value is `false` in version 7.x
 
 Note that:
  - [Disabling device access](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) will prevent access to storage regardless of this setting;  
  - `storageAllowed` will only affect bid adapters and not any other type of module (such as analytics or RTD).
 
 <a id="allowAlternateBidderCodes" />
+
 ##### 2.7. allowAlternateBidderCodes
 
 If this flag is set to `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction.
