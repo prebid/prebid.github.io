@@ -18,7 +18,20 @@ fpd_supported: false
 
 ### Note
 
-The Adagio bidder adaptor requires setup and approval from the Adagio team. Please reach out to [contact@adagio.io](mailto:contact@adagio.io) for more information.
+The Adagio bidder adapter requires setup and approval from the Adagio team. Please reach out to [contact@adagio.io](mailto:contact@adagio.io) for more information.
+
+### Bidder Settings
+
+The Adagio bid adapter uses browser local storage. Since Prebid.js 7.x, the access to it must be explicitly set.
+
+```js
+// https://docs.prebid.org/dev-docs/publisher-api-reference/bidderSettings.html
+pbjs.bidderSettings = {
+  adagio: {
+    storageAllowed: true
+  }
+}
+```
 
 ### Bid Params
 
