@@ -3,7 +3,7 @@ layout: bidder
 title: StroeerCore
 description: Stroeer Bidder Adapter
 biddercode: stroeerCore
-media_types: banner
+media_types: banner, video
 gdpr_supported: true
 schain_supported: true
 coppa_supported: false
