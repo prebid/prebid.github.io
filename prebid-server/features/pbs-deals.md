@@ -14,8 +14,10 @@ Prebid Server supports Private MarketPlace deals in this way:
     2. If the deal is the highest bid for a particular bidder and the [`ext.prebid.targeting.includebidderkeys`](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) is on, then the `hb_deal_BIDDER` targeting value will contain that deal ID
     2. If the [`ext.prebid.targeting.preferdeals`](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) flag is true, then PBS will choose the highest value deal as the overall winner before choosing the highest value non-deal.
 
-Ad server line items should be targeted to `hb_deal_BIDDER` (for sendAllBids)
-or `hb_deal` (for sendTopBid).
+Note that is PBS is called from Prebid.js, the javascript code will make sure that hb_deal_BIDDER is present in the KVPs.
+
+However, if Prebid.js is not present, PBS KVP responses are used by the adserver. 
+So for app and AMP, if line items are targeted to `hb_deal`, only winning bids will be seen. If instead, line items are targeted to `hb_deal_BIDDER`, all deals will be seen if `ext.prebid.targeting.includebidderkeys` is defined to be true.
 
 ## Related Reading
 

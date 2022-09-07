@@ -5,15 +5,20 @@ description: Stroeer Bidder Adapter
 biddercode: stroeerCore
 media_types: banner
 gdpr_supported: true
-schain_supported: false
+schain_supported: true
 coppa_supported: false
 usp_supported: false
 safeframes_ok: true
 prebid_member: false
 pbjs: true
-pbs: false
+pbs: true
 gvl_id: 136
+pbs_app_supported: true
 deals_supported: true
+userIds: criteo, id5Id, netId, pubCommonId, sharedId
+multiformat_supported: will-bid-on-one
+floors_supported: false
+fpd_supported: false
 ---
 
 ### Bid Params
