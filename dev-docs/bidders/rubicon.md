@@ -8,7 +8,7 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
-media_types: banner, video
+media_types: banner, video, native
 userIds: all
 prebid_member: true
 safeframes_ok: true
@@ -242,7 +242,8 @@ pbjs.setConfig({
 ```
 
 
-* The Rubicon Project adapter does not make concurrent banner and video requests. Instead, the adapter will send a video request if bids[].params.video is supplied, else a banner request will be made.
+* The Rubicon Project exchange does not make multi-format requests. If multiple mediatypes are defined, we bid on banner first, then video. Native bids will only be made if it's the only mediatype present.
+* Note that only the Prebid-Server-side rubicon adapter currently supports native.
 
 ### Setting up the Prebid Server Adapter
   
