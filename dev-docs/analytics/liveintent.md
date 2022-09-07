@@ -18,8 +18,8 @@ pbjs.enableAnalytics(
   {
     provider: 'liveintent',
     options: {
-    bidWonTimeout: 2000,
-    sampling: 0.5 // the tracked event percentage, a number between 0 to 1.
+      bidWonTimeout: 2000,
+      sampling: 0.5 // the tracked event percentage, a number between 0 to 1.
     }
   }
 )
