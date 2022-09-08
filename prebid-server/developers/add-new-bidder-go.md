@@ -71,11 +71,12 @@ Our project is written in the [Go programming language](https://golang.org/). We
 
 ### Bidder Info
 
-Let's begin with your adapter's bidder information YAML file. This file is required and contains your bid adapter's maintainer email address, [GDPR Global Vendor List (GVL) ID](https://iabeurope.eu/vendor-list-tcf-v2-0/), supported ad formats, user sync endpoints, and allows you to opt-out of video impression tracking.
+Let's begin with your adapter's bidder information YAML file. This file is required and contains your bid adapter's endpoint, maintainer email address, [GDPR Global Vendor List (GVL) ID](https://iabeurope.eu/vendor-list-tcf-v2-0/), supported ad formats, user sync endpoints, and allows you to opt-out of video impression tracking.
 
 Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with the following template:
 
 ```yaml
+endpoint: "http://foo.com/openrtb2"
 maintainer:
   email: prebid-maintainer@example.com
 gvlVendorID: 42
@@ -104,12 +105,15 @@ Modify this template for your bid adapter:
 - Change the `gvlVendorID` from the sample value of `42` to the id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/), or remove this line entirely if your bidding server is not registered with IAB Europe.
 - Change the `modifyingVastXmlAllowed` value to `false` if you'd like to opt-out of [video impression tracking](https://github.com/prebid/prebid-server/issues/1015), or remove this line entirely if your adapter doesn't support VAST video ads.
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
+- Add the `extra_info` if you'd like to pass extra value adapter may need.
+- Add the `disabled` flag and set it to true if you would like to unregister adapter from the core. It's enabled by default.
 - Follow the [User Sync Configuration](#user-sync-configuration) documentation below to configure the endpoints for your bid adapter, or remove the `userSync` section if not supported.
 
 <details markdown="1">
   <summary>Example: Website with banner ads only.</summary>
 
 ```yaml
+endpoint: "http://foo.com/openrtb2"
 maintainer:
   email: foo@foo.com
 gvlVendorID: 42
@@ -128,6 +132,7 @@ userSync:
   <summary>Example: Website with banner ads only and not registered with IAB Europe.</summary>
 
 ```yaml
+endpoint: "http://foo.com/openrtb2"
 maintainer:
   email: foo@foo.com
 capabilities:
@@ -145,6 +150,7 @@ userSync:
   <summary>Example: Website or app with banner or video ads and video impression tracking.</summary>
 
 ```yaml
+endpoint: "http://foo.com/openrtb2"
 maintainer:
   email: foo@foo.com
 gvlVendorID: 42
@@ -162,6 +168,35 @@ userSync:
   redirect:
     url: https://foo.com/sync?gdpr={%raw%}{{.GDPR}}{%endraw%}&consent={%raw%}{{.GDPRConsent}}{%endraw%}&us_privacy={%raw%}{{.USPrivacy}}{%endraw%}&redirect={%raw%}{{.RedirectURL}}{%endraw%}
     userMacro: $UID
+```
+</details>
+
+<details markdown="1">
+  <summary>Example: Extra info with video endpoint url.</summary>
+
+```yaml
+endpoint: "http://foo.com/openrtb2"
+extra_info: "{\"video_endpoint\":\"https://foo.com/video\"}"
+maintainer:
+  email: foo@foo.com
+gvlVendorID: 42
+capabilities:
+  site:
+    mediaTypes:
+      - banner
+userSync:
+  redirect:
+    url: https://foo.com/sync?gdpr={%raw%}{{.GDPR}}{%endraw%}&consent={%raw%}{{.GDPRConsent}}{%endraw%}&us_privacy={%raw%}{{.USPrivacy}}{%endraw%}&redirect={%raw%}{{.RedirectURL}}{%endraw%}
+    userMacro: $UID
+```
+</details>
+
+<details markdown="1">
+  <summary>Example: Disable the adapter.</summary>
+
+```yaml
+endpoint: "http://foo.com/openrtb2"
+disabled: true
 ```
 </details>
 <p></p>
@@ -880,31 +915,6 @@ You need to provide default settings for your bid adapter. You can decide if you
 
 {: .alert.alert-warning :}
 **HOST SPECIFIC INFO:** The default endpoint must not be specific to any particular host, such as Xandr/AppNexus. We may ask you about suspicious looking ids during the review process. Please reach out to individual hosts if you need to set specialized configuration.
-
-#### Enabled By Default
-
-Edit the file `config/config.go` to register your default endpoint within the `SetupViper` method. If your bid adapter makes use of extra adapter info and you'd like to provide a good default value, you can do that here too.
-
-```go
-func SetupViper(v *viper.Viper, filename string) {
-  ...
-  v.SetDefault("adapters.{bidder}.endpoint", "https://your.url/any/path")
-  v.SetDefault("adapters.{bidder}.extra_info", `{"your": "extra info"}`)
-  ...
-}
-```
-
-#### Disabled By Default
-
-Edit the file `config/config.go` to register your default endpoint within the `SetupViper` method. You may still provide a default endpoint or extra adapter info.
-
-```go
-func SetupViper(v *viper.Viper, filename string) {
-  ...
-  v.SetDefault("adapters.{bidder}.disabled", "true")
-  ...
-}
-```
 
 ## Test Your Adapter
 
