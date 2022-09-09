@@ -1755,53 +1755,46 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 
 1) Publisher passes a Placement ID and elects to store the RampID envelope in a cookie. 
 
-{: .alert.alert-info :}
-**NOTE:** Make sure that the expiration time of the cookie is similar to what is set in your ATS configuration.
-
-
 {% highlight javascript %}
 pbjs.setConfig({
     userSync: {
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999',                // Set your valid Placement ID here
-                // notUse3P: true/false    // If you do not want to use cookieable envelopes until the user authenticates set this property to true
+                pid: '999',             // Set your Placement ID here
+                notUse3P: true/false    // If you want to generate and use a RampID based on a LiveRamp 3p cookie (from a previous authentication) until ATS can generate a new RampID, set this property to false
             },
             storage: {
                 type: "cookie",
-                name: "idl_env",           // "idl_env" is the required storage name
-                expires: 15,               // Cookie can last for 15 days
-                refreshInSeconds: 1800
+                name: "idl_env",        // "idl_env" is the required storage name
+                expires: 15,            // RampID envelope can last for 15 days
+                refreshInSeconds: 1800  // RampID envelope will be updated every 30 minutes
             }
         }],
-        syncDelay: 3000                    // 3 seconds after the first auction
+        syncDelay: 3000                 // 3 seconds after the first auction
     }
 });
 {% endhighlight %}
 
 2) Publisher passes a Placement ID and elects to store the RampID envelope in HTML5 localStorage.
 
-{: .alert.alert-info :}
-**NOTE:** Make sure that the expiration time of the HTML5 localStorage is similar to what is set in your ATS configuration.
-
 {% highlight javascript %}
 pbjs.setConfig({
     userSync: {
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999',                // Set your valid Placement ID here
-                // notUse3P: true/false    // If you do not want to use cookieable envelopes until the user authenticates set this property to true
+                pid: '999',             // Set your Placement ID here
+                notUse3P: true/false    // If you want to generate and use a RampID based on a LiveRamp 3p cookie (from a previous authentication) until ATS can generate a new RampID, set this property to false
             },
             storage: {
                 type: "html5",
-                name: "idl_env",           // "idl_env" is the required storage name
-                expires: 15,               // HTML5 localStorage can last for 15 days
-                refreshInSeconds: 1800
+                name: "idl_env",        // "idl_env" is the required storage name
+                expires: 15,            // RampID envelope can last for 15 days
+                refreshInSeconds: 1800  // RampID envelope will be updated every 30 minutes
             }
         }],
-        syncDelay: 3000                    // 3 seconds after the first auction
+        syncDelay: 3000                 // 3 seconds after the first auction
     }
 });
 {% endhighlight %}
