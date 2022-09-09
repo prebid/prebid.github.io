@@ -99,11 +99,15 @@ adapters:
       supported-vendors:
       vendor-id: your_vendor_id
     usersync:
-      url: your_bid_adapter_usersync_url
-      redirect-url: /setuid?bidder=yourBidderCode&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
       cookie-family-name: yourBidderCode
-      type: redirect
-      support-cors: false
+      iframe:
+        url: https://some-bidder-domain.com/usersync-url?gdpr={{gdpr}}&consent={{gdpr_consent}}&us_privacy={{us_privacy}}&redirect={{redirect_url}}
+        uid-macro: 'YOURMACRO'
+        support-cors: false
+      redirect:
+        url: https://some-bidder-domain.com/usersync-url?gdpr={{gdpr}}&consent={{gdpr_consent}}&us_privacy={{us_privacy}}&redirect={{redirect_url}}
+        uid-macro: 'YOURMACRO'
+        support-cors: false
 ```
 
 Modify this template for your bid adapter:
@@ -114,16 +118,21 @@ Modify this template for your bid adapter:
 - Choose the `supported-vendors` constants: These constants should be unique. The list of existing vendor constants can be found [here](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/bidder/ViewabilityVendors.java).
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
 - If your auction endpoint supports gzip compression, setting 'endpoint-compression' to 'gzip' will save on network fees.
-- Change the `cookie-family-name` to the name which will be used for storing your user sync id within the federated cookie. Please keep this the same as your bidder name.
-  If you implemented a user syncer, you'll need to provide a default endpoint.
-  The user sync endpoint is composed of two main parts, the url of your user syncer and a redirect back(redirect-url) to Prebid Server. The url of your user syncer is responsible for reading the user id from the client's cookie and redirecting to Prebid Server with a user id macro resolved.
 
-The url of your user syncer can make use of the following privacy policy macros which will be resolved by Prebid Server before sending the url to your server:
+If you does not support user syncing, you can remove `usersync` section of configuration.
+- Change the `cookie-family-name` to the name which will be used for storing your user sync id within the federated cookie. Please keep this the same as your bidder name.
+- Choose appropriate section for your usersync type(iframe/redirect). If both iframe and redirect endpoints are provided, the iframe endpoint will be used by default.
+
+In appropriate usersync section:
+- Change the `url` to url of your usersync endpoint
+- Change the `uid-macro` to macro that will be placed in callback endpoint, to be resolved by your usersyncer. Defaults to empty string. 
+- Change the `support-cors` to true if your endpoint supports cors.
+
+The url of your user syncer can make use of the following macros which will be resolved by Prebid Server before sending the url to your server:
 - `{%raw%}{{us_privacy}}{%endraw%}`: Client's CCPA consent string.
 - `{%raw%}{{gdpr}}{%endraw%}`: Client's GDPR TCF enforcement flag.
 - `{%raw%}{{gdpr_consent}}{%endraw%}`: Client's GDPR TCF consent string.
-
-- Change the `usersync:type` value to `redirect` or `iframe` specific to your bidder.
+- `{%raw%}{{redirect_url}}{%endraw%}`: Url to redirect back to Prebid Server.
 
 ### Default bidder configuration
 
