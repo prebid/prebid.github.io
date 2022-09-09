@@ -71,13 +71,14 @@ Our project is written in the [Go programming language](https://golang.org/). We
 
 ### Bidder Info
 
-Let's begin with your adapter's bidder information YAML file. This file is required and contains your bid adapter's maintainer email address, [GDPR Global Vendor List (GVL) ID](https://iabeurope.eu/vendor-list-tcf-v2-0/), supported ad formats, user sync endpoints, and allows you to opt-out of video impression tracking.
+Let's begin with your adapter's bidder information YAML file. This file is required and contains your bid adapter's maintainer email address, outgoing compression support, [GDPR Global Vendor List (GVL) ID](https://iabeurope.eu/vendor-list-tcf-v2-0/), supported ad formats, user sync endpoints, and allows you to opt-out of video impression tracking.
 
 Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with the following template:
 
 ```yaml
 maintainer:
   email: prebid-maintainer@example.com
+endpointCompression: gzip
 gvlVendorID: 42
 modifyingVastXmlAllowed: true
 capabilities:
@@ -101,6 +102,7 @@ userSync:
 
 Modify this template for your bid adapter:
 - Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
+- Remove the `endpointCompression` value if your bidding server does not accept gzip compressed bid requests. Setting this value to `gzip` will save on network bandwidth at the expense of slightly increased cpu and memory usage for the host.
 - Change the `gvlVendorID` from the sample value of `42` to the id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/), or remove this line entirely if your bidding server is not registered with IAB Europe.
 - Change the `modifyingVastXmlAllowed` value to `false` if you'd like to opt-out of [video impression tracking](https://github.com/prebid/prebid-server/issues/1015), or remove this line entirely if your adapter doesn't support VAST video ads.
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
