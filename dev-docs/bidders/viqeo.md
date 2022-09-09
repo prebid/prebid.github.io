@@ -18,6 +18,7 @@ Please reach out to <info@viqeo.tv> for more information.
 
 
 ### Bid params
+
 {: .table .table-bordered .table-striped }
 | Name                        | Scope    | Description                                                                                                                | Example                  | Type      |
 |-----------------------------|----------|----------------------------------------------------------------------------------------------------------------------------|--------------------------|-----------|
