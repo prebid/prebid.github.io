@@ -13,6 +13,7 @@ media_types: banner, native, video
 schain_supported: true
 gvl_id: 253
 pbs_app_supported: true
+floors_supported: true
 ---
 
 <a name="improvedigital-params"></a>
