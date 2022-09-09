@@ -15,6 +15,7 @@ prebid_member: true
 pbjs: true
 pbs: false
 deals_supported: false
+gvl_id: 1148
 ---
 
 ### Bid params
