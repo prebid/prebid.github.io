@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Compass
+title: AndBeyond.Media
 description: Prebid AndBeyond.Media Bidder Adapter
 biddercode: beyondmedia
 usp_supported: true
