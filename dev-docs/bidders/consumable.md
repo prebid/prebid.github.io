@@ -2,12 +2,18 @@
 layout: bidder
 title: Consumable
 description: Prebid Consumable Bidder Adaptor
+userIds: all
+usp_supported: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
 biddercode: consumable
 gdpr_supported: true
+schain_supported: true
+coppa_supported: true
+media_types: banner, video
 gvl_id: 591
+floors_supported: true
 ---
 
 ### Note:

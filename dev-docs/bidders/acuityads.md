@@ -11,7 +11,7 @@ userId: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableI
 media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
-pbjs: false
+pbjs: true
 pbs: true
 ---
 
@@ -19,7 +19,14 @@ pbs: true
 
 The Example Bidding adapter requires setup before beginning. Please contact us at rafi.babler@acuityads.com
 
-### Bid Params
+### Prebid.JS Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description           | Example   | Type      |
+|---------------|----------|-----------------------|-----------|-----------|
+| `placementId` | required | Placement ID          | `'123'`     | `string`  |
+
+### Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |

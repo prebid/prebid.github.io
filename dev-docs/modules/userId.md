@@ -29,7 +29,13 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
    1. If GDPR applies, the consent signal from the CMP is hashed and stored in a cookie called `_pbjs_userid_consent_data`. This is required so that ID sub-modules may be called to refresh their ID if the user's consent preferences have changed from the previous page, and ensures cached IDs are no longer used if consent is withdrawn.
 1. An object containing one or more IDs (`bidRequest.userId`) is made available to Prebid.js adapters and Prebid Server S2S adapters.
 1. In addition to `bidRequest.userId`, `bidRequest.userIdAsEids` is made available to Prebid.js adapters and Prebid Server S2S adapters. `bidRequest.userIdAsEids` has userIds in ORTB EIDS format.
-1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html), [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html), or [pbjs.getUserIdsAsync()](/dev-docs/publisher-api-reference/getUserIdsAsync.html).
+1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html), [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html), or [pbjs.getUserIdsAsync()](/dev-docs/publisher-api-reference/getUserIdsAsync.html). 
+
+{: .alert.alert-info :}
+Note: If your ID structure is complicated, it is helpful to add tests for pbjs.getUserIds(), pbjs.getUserIdsAsEids() and pbjs.getUserIdsAsync().
+
+{: .alert.alert-info :}
+Note: To add a custom data type for the response of pbjs.getUserIdsAsEids(), see other examples within the createEidsArray method in /modules/userId/eid.js
 
 {: .alert.alert-info :}
 Note that User IDs aren't needed in the mobile app world because device ID is available in those ad serving scenarios.
@@ -71,7 +77,7 @@ under the `userSync` object as attributes of the `userIds` array
 of sub-objects. 
 
 Publishers using Google AdManager may want to sync one of the identifiers as their Google PPID for frequency capping or reporting. 
-The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rules; refer to [Google AdManager documentation](https://support.google.com/admanager/answer/2880055?hl=en) for them. Please note, Prebid uses a [GPT command] (https://developers.google.com/publisher-tag/reference#googletag.PubAdsService) to sync identifiers for publisher convenience. It doesn't currently work for instream video requests, as Prebid typically interacts with the player, which in turn may interact with IMA. IMA does has a [similar method] (https://developers.google.com/interactive-media-ads/docs/sdks/html5/client-side/reference/js/google.ima.ImaSdkSettings#setPpid) as GPT, but IMA does not gather this ID from GPT.
+The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rules; refer to [Google AdManager documentation](https://support.google.com/admanager/answer/2880055?hl=en) for them. Please note, Prebid uses a [GPT command](https://developers.google.com/publisher-tag/reference#googletag.PubAdsService) to sync identifiers for publisher convenience. It doesn't currently work for instream video requests, as Prebid typically interacts with the player, which in turn may interact with IMA. IMA does has a [similar method](https://developers.google.com/interactive-media-ads/docs/sdks/html5/client-side/reference/js/google.ima.ImaSdkSettings#setPpid) as GPT, but IMA does not gather this ID from GPT.
 
 {: .table .table-bordered .table-striped }
 | Param under userSync | Scope | Type | Description | Example |
@@ -198,7 +204,7 @@ pbjs.setConfig({
 
 ### AdmixerID
 
-Admixer ID, provided by [Admixer] (https://admixer.com/), is a universal ID solution that doesn't rely on 3rd party cookies and helps publishers and advertisers to recognize users across various browsers and environments.  Our sub adapter takes deterministic signals like email and phone as input and returns an anonymous id that unlocks access to a wide range of Admixer's demand sources, amplifying audience segmentation, targeting and measurement.
+Admixer ID, provided by [Admixer](https://admixer.com/), is a universal ID solution that doesn't rely on 3rd party cookies and helps publishers and advertisers to recognize users across various browsers and environments.  Our sub adapter takes deterministic signals like email and phone as input and returns an anonymous id that unlocks access to a wide range of Admixer's demand sources, amplifying audience segmentation, targeting and measurement.
 
 The Admixer privacy policy is at https://admixer.com/privacy/
 
@@ -795,6 +801,9 @@ pbjs.setConfig({
             storage: {
                 name: 'hadronId',
                 type: 'html5'
+            },
+            params: {
+                partnerId: 1234
             }
         }]
     }
@@ -816,6 +825,7 @@ The following configuration parameters are available:
 | params | Optional | Object | Used to store params for the HadronId system |
 | params.url | Optional | String | Set an alternate GET url for HadronId with this parameter |
 | params.urlArg | Optional | Object | Optional url parameter for params.url |
+| params.partnerId | Required | Number | This is the Audigent Partner ID obtained from Audigent. |
 
 ### ID+
 
@@ -879,6 +889,7 @@ The following configuration parameters are available:
 | params.abTesting | Optional | Object | Allows publishers to easily run an A/B Test. If enabled and the user is in the Control Group, the ID5 ID will NOT be exposed to bid adapters for that request | Disabled by default |
 | params.abTesting.enabled | Optional | Boolean | Set this to `true` to turn on this feature | `true` or `false` |
 | params.abTesting.controlGroupPct | Optional | Number | Must be a number between `0.0` and `1.0` (inclusive) and is used to determine the percentage of requests that fall into the control group (and thus not exposing the ID5 ID). For example, a value of `0.20` will result in 20% of requests without an ID5 ID and 80% with an ID. | `0.1` |
+| params.disableExtensions | Optional | Boolean | Set this to `true` to force turn off extensions call. Default `false` | `true` or `false` |
 
 {: .alert.alert-info :}
 **NOTE:** The ID5 ID that is delivered to Prebid will be encrypted by ID5 with a rotating key to avoid unauthorized usage and to enforce privacy requirements. Therefore, we strongly recommend setting `storage.refreshInSeconds` to `8` hours (`8*3600` seconds) or less to ensure all demand partners receive an ID that has been encrypted with the latest key, has up-to-date privacy signals, and allows them to transact against it.
@@ -1730,7 +1741,7 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 | name | Required | String | The name of LiveRamp's user ID module. | `"identityLink"` |
 | params | Required | Object | Container of all module params. |  |
 | params.pid | Required | String | This is the Placement ID, a unique identifier that is used to identify each publisher, obtained from registering with LiveRamp. | `999` |
-| params.notUse3P | Not required | Boolean | Property for choosing should 3P Liveramp envelope endpoint be fired or not, in order to get a RampID envelope (either `true` or `false`). | `true` |
+| params.notUse3P | Not required | Boolean | Property for choosing if a cookieable envelope should be set and stored until the user authenticates and a RampID envelope can be created (either `true` or `false`). | `false` |
 | storage | Required | Object | This object defines where and for how long the results of the call to get a RampID envelope will be stored. | 
 | storage.type	| Required | String | This parameter defines where the resolved RampID envelope will be stored (either `"cookie"` or `"html5"` localStorage). | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved RampID envelope will be stored. LiveRamp requires `"idl_env"`. | `"idl_env"` |
@@ -1744,53 +1755,46 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 
 1) Publisher passes a Placement ID and elects to store the RampID envelope in a cookie. 
 
-{: .alert.alert-info :}
-**NOTE:** Make sure that the expiration time of the cookie is similar to what is set in your ATS configuration.
-
-
 {% highlight javascript %}
 pbjs.setConfig({
     userSync: {
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999',                // Set your valid Placement ID here
-                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
+                pid: '999',             // Set your Placement ID here
+                notUse3P: true/false    // If you want to generate and use a RampID based on a LiveRamp 3p cookie (from a previous authentication) until ATS can generate a new RampID, set this property to false
             },
             storage: {
                 type: "cookie",
-                name: "idl_env",           // "idl_env" is the required storage name
-                expires: 15,               // Cookie can last for 15 days
-                refreshInSeconds: 1800
+                name: "idl_env",        // "idl_env" is the required storage name
+                expires: 15,            // RampID envelope can last for 15 days
+                refreshInSeconds: 1800  // RampID envelope will be updated every 30 minutes
             }
         }],
-        syncDelay: 3000                    // 3 seconds after the first auction
+        syncDelay: 3000                 // 3 seconds after the first auction
     }
 });
 {% endhighlight %}
 
 2) Publisher passes a Placement ID and elects to store the RampID envelope in HTML5 localStorage.
 
-{: .alert.alert-info :}
-**NOTE:** Make sure that the expiration time of the HTML5 localStorage is similar to what is set in your ATS configuration.
-
 {% highlight javascript %}
 pbjs.setConfig({
     userSync: {
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999',                // Set your valid Placement ID here
-                // notUse3P: true/false    // If you do not want to use 3P endpoint to retrieve the envelope. If you do not set this property to true, 3P endpoint will be fired. By default this property is undefined and 3P request will be fired.
+                pid: '999',             // Set your Placement ID here
+                notUse3P: true/false    // If you want to generate and use a RampID based on a LiveRamp 3p cookie (from a previous authentication) until ATS can generate a new RampID, set this property to false
             },
             storage: {
                 type: "html5",
-                name: "idl_env",           // "idl_env" is the required storage name
-                expires: 15,               // HTML5 localStorage can last for 15 days
-                refreshInSeconds: 1800
+                name: "idl_env",        // "idl_env" is the required storage name
+                expires: 15,            // RampID envelope can last for 15 days
+                refreshInSeconds: 1800  // RampID envelope will be updated every 30 minutes
             }
         }],
-        syncDelay: 3000                    // 3 seconds after the first auction
+        syncDelay: 3000                 // 3 seconds after the first auction
     }
 });
 {% endhighlight %}
@@ -2486,7 +2490,7 @@ Please find more details [Share encrypted signals with bidders (Beta)](https://s
 | encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
 | encryptedSignalSources.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
 | encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
-| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in seconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
+| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in milliseconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
 
 {: .alert.alert-info :}
 **NOTE:**
@@ -2498,7 +2502,7 @@ Publishers enabling passing eids/signal through ESP should reach out to SSPs int
 
 ESP Configuration Example:
 
-```
+```javascript
 pbjs.setConfig({
     userSync: {
         ...,
@@ -2526,6 +2530,10 @@ pbjs.setConfig({
 })
 
 ```
+
+This will have no effect until you call the `registerSignalSources` API. This method must be called
+**after** the `pbjs.setConfig` and `gpt.js` has loaded. See [API reference for `registerSignalSources`](/dev-docs/publisher-api-reference/registerSignalSources.html)
+
 
 ## Further Reading
 

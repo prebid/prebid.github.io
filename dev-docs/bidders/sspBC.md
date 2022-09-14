@@ -3,6 +3,7 @@ layout: bidder
 title: sspBC
 description: Prebid sspBC Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: sspBC
 media_types: banner, video, native
 floors_supported: true

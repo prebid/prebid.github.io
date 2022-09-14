@@ -1039,11 +1039,15 @@ The `ortb2` JSON structure reflects the OpenRTB standard:
 - Segments should go in site.content.data[] or user.data[].
 - Any other OpenRTB 2.5 field could be added here as well, e.g. site.content.language.
 
-**Scenario 2** - Global (cross-adunit) First Party Data open only to a subset of bidders
+**Scenario 2** - Auction (cross-adunit) First Party Data open to all bidders
+
+If a page needs to specify multiple different sets of top-level data (`site`, `user`, or `app`), use the `ortb2` parameter of [`requestBids`](/dev-docs/publisher-api-reference/setConfig.html) ([example](/features/firstPartyData.html#supplying-auction-specific-data)  
+
+**Scenario 3** - Global (cross-adunit) First Party Data open only to a subset of bidders
 
 If a publisher only wants certain bidders to receive the data, use the [setBidderConfig](/dev-docs/publisher-api-reference/setBidderConfig.html) function.
 
-**Scenario 3** - AdUnit-specific First Party Data
+**Scenario 4** - AdUnit-specific First Party Data
 
 See the [AdUnit Reference](/dev-docs/adunit-reference.html) for AdUnit-specific first party data.
 

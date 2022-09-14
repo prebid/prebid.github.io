@@ -29,6 +29,7 @@ The Rise adapter requires setup and approval. Please reach out to prebid-rise-en
 | `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
+| `rtbDomain` | optional | String |  Sets the seller end point	| "www.test.com"
 
 ## Example
 ```javascript
@@ -48,7 +49,8 @@ var adUnits = [{
                 org: '56f91cd4d3e3660002000033', // Required
                 floorPrice: 0.05, // Optional
                 placementId: '12345678', // Optional
-                testMode: false // Optional
+                testMode: false // Optional,
+                rtbDomain: 'www.test.com' //Optional
             }
         }]
     },
@@ -71,7 +73,8 @@ var adUnits = [{
                 org: '56f91cd4d3e3660002000033', // Required
                 floorPrice: 5.00, // Optional
                 placementId: '12345678', // Optional
-                testMode: false // Optional
+                testMode: false // Optional,
+                rtbDomain: 'www.test.com' //Optional
             }
         }]
     }
