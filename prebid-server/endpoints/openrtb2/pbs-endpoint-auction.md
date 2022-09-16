@@ -1267,6 +1267,26 @@ These flags can be used separately or together. For example:
   }]
 }
 ```
+##### Floors
+
+{: .alert.alert-info :}
+PBS-Java only
+
+See the [Prebid Server Floors Feature](/prebid-server/features/pbs-floors.html) for more info.
+
+##### Server Metadata
+
+{: .alert.alert-info :}
+PBS-Java only
+
+PBS-core creates this block before sending to bid adapters. They receive additional metadata about the PBS calling them. e.g.
+```
+            "server": {
+                "externalurl": "https://prebid-server.rubiconproject.com",
+                "gvlid": 52,
+                "datacenter": "us-east-1"
+            }
+```
 
 #### OpenRTB Response Extensions
 
@@ -1483,6 +1503,8 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.schains | Bidder-specific supply chains, see [supply chain support](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#supply-chain-support) | object | no |
 | ext<wbr>.prebid<wbr>.targeting | defines the key-value pairs that PBS-core places in seatbid.bid.ext.prebid.targeting, see [ad server targeting](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) | object | no |
 | ext<wbr>.prebid<wbr>.no-sale | turns off CCPA processing for the named bidder(s).<br>ex: `["bidderA"]` | array of strings | no |
+| ext<wbr>.prebid<wbr>.server | additional Prebid Server metadata | object | yes |
+| ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
 
 #### Response
 {:.no_toc}
