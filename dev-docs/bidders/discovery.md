@@ -5,7 +5,7 @@ description: DiscoveryDsp Prebid Bidder Adapter
 biddercode: discovery
 media_types: banner,native
 pbjs: true
-enable_download: false
+enable_download: true
 ---
 ### Note:
 
