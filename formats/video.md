@@ -23,7 +23,7 @@ Instream ads are for short-form video content within a player generally has simp
 
 ## Outstream
 
-'Outstream' ads are packaged with a separate player, or the publisher provides a special player for them. They aren't embedded within video content, but rather exist as standalone video players someone on the page.
+'Outstream' ads are packaged with a separate player, or the publisher provides a special player for them. They aren't embedded within video content, but rather exist as standalone video players somewhere on the page.
 
 1. [Prebid.js outstream video overview](/prebid-video/video-overview.html#outstream-video)
 1. [Prebid.js: Getting started with Prebid video](/prebid-video/video-getting-started.html)
