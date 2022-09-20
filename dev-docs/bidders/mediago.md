@@ -10,7 +10,7 @@ pbjs_version_notes: not ported to 5.x, added back 7.13
 ---
 ### Modules
 
-pubCommonId.js: We need you to include pubCommonId.js module,which is used to get prebid user commonid.It can better differentiating users to bid on ads.
+SharedID: We need you to include SharedID module,which is used to get prebid user commonid.It can better differentiating users to bid on ads.
 
 ### Note:
 
