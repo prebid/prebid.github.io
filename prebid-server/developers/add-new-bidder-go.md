@@ -174,11 +174,11 @@ userSync:
 </details>
 
 <details markdown="1">
-  <summary>Example: Extra info with video endpoint url.</summary>
+  <summary>Example: Extra info with json data.</summary>
 
 ```yaml
 endpoint: "http://foo.com/openrtb2"
-extra_info: "{\"video_endpoint\":\"https://foo.com/video\"}"
+extra_info: "{\"foo\":\"bar\"}"
 maintainer:
   email: foo@foo.com
 gvlVendorID: 42
@@ -1237,8 +1237,6 @@ Notes on the metadata fields:
 - Register With The Core
   - `openrtb_ext/bidders.go`
   - `exchange/adapter_builders.go`
-- Defaults
-  - `config/config.go`
 
 ## Contribute
 
