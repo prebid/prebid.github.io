@@ -763,6 +763,17 @@ The OpenRTB `test` flag has a special meaning that bidders may react to: they ma
 
 You can turn on the extra Prebid Server debug log without the formal `test` behavior by instead setting `ext.prebid.debug: true`.
 
+##### Trace Flag
+
+{: .alert.alert-info :}
+PBS-Java only
+
+You can turn on additional Prebid Server tracing by setting `ext.prebid.trace` to either "verbose" or "basic". 
+This provides additional information for certain scenarios:
+
+- for [modules](/prebid-server/pbs-modules/), look in response ext.prebid.modules.trace
+- for [PG](/prebid-server/features/pg/pbs-pg-idx.html), look in response ext.debug.trace
+
 ##### Stored Responses
 
 While testing SDK and video integrations, it's important, but often difficult, to get consistent responses back from bidders that cover a range of scenarios like different CPM values, deals, etc. Prebid Server supports a debugging workflow in two ways:
@@ -1494,7 +1505,8 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.currency<wbr>.usepbsrates | if true, currency.rates is used as a backup if dynamic rates aren't found. If false, dynamic rates are not used.<br>ex: `true` | boolean | yes |
 | ext<wbr>.prebid<wbr>.data.<wbr>bidders | bidders in scope for bidder-specific first party data, see [first party data](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#first-party-data-support). | array of strings | no |
 | ext<wbr>.prebid<wbr>.data.<wbr>eidpermissions | Allows publishers to define which bidders are allowed to see which extended IDs, see [eid permissions](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#eid-permissions) | object  | no |
-| ext<wbr>.prebid<wbr>.debug | Provides debug output in response.<br>ex: `true` | boolean | yes |
+| ext<wbr>.prebid<wbr>.debug | Provides debug output in response. | boolean | yes |
+| ext<wbr>.prebid<wbr>.trace | Provides trace output in response. | "verbose" or "basic" | yes |
 | ext<wbr>.prebid<wbr>.events | Enables VAST impression tracking injection for the request when an empty object is provided. This is an alernative method from using account configuration. | object | no
 | ext<wbr>.prebid<wbr>.experiment<wbr>adscert<wbr>.enabled | Enabled Ads.Cert 2.0 Authenticated Connections on supported outgoing bidder requests. | boolean | no |
 | ext<wbr>.prebid<wbr>.integration | host-dependent integration type passed through to events and analytics.<br>ex: `"managed"` | string | yes |
