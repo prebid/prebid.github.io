@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: Orangeclickmedia
-description: Prebid OCM Bidder Adapter
-biddercode: ocm
+title: VidCrunch LLC
+description: VidCrunch Bidder Adapter
+biddercode: vidcrunchllc
 aliasCode: adtelligent
 media_types: video,banner
 gdpr_supported: true
@@ -15,7 +15,6 @@ prebid_member: true
 pbjs: true
 pbs: false
 deals_supported: false
-gvl_id: 1148
 ---
 
 ### Bid params
@@ -23,10 +22,10 @@ gvl_id: 1148
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                     | Example  | Type      |
 |-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The source ID from OCM.   | `529814` | `integer` |
+| `aid` | required | The source ID from VidCrunch.   | `529814` | `integer` |
 
 ### Description
-OCM header bidding adapter connects with OCM demand sources in order to fetch bids.
+VidCrunch header bidding adapter connects with VidCrunch demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
 
@@ -44,7 +43,7 @@ This adapter provides a solution for accessing Video demand and display demand.
           }
         },
         bids: [{
-          bidder: 'ocm',
+          bidder: 'vidcrunchllc',
           params: {
             aid: 472386
           }
@@ -61,7 +60,7 @@ This adapter provides a solution for accessing Video demand and display demand.
           }
         },
         bids: [{
-          bidder: 'ocm',
+          bidder: 'vidcrunchllc',
           params: {
             aid: 472386
           }
@@ -79,7 +78,7 @@ This adapter provides a solution for accessing Video demand and display demand.
           }
         },
         bids: [{
-          bidder: 'ocm',
+          bidder: 'vidcrunchllc',
           params: {
             aid: 472386
           }
@@ -95,7 +94,7 @@ This adapter provides a solution for accessing Video demand and display demand.
             }
         }
         bids: [{
-          bidder: 'ocm',
+          bidder: 'vidcrunchllc',
           params: {
             aid: 529814
           }
