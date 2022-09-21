@@ -13,6 +13,7 @@ usp_supported: true
 floors_supported: true
 fpd_supported: true
 pbjs: true
+pbjs_version_notes: please avoid using v7.15 and v7.16
 pbs: true
 gvl_id: 32
 ---
