@@ -15,6 +15,7 @@ fpd_supported: true
 pbjs: true
 pbs: true
 gvl_id: 32
+pbjs_version_notes: avoid 7.15 and 7.16
 ---
 
 ### Disclosure:
