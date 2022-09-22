@@ -296,7 +296,7 @@ Example creative HTML:
     ucTag.adId = "%%PATTERN:hb_adid%%";   // GAM specific
     // if you're using 'Send All Bids' mode, you should use %%PATTERN:hb_adid_BIDDER%%
     ucTag.requestAllAssets = true;
-    window.ucTag.renderAd(ucTag);
+    window.ucTag.renderAd(document, ucTag);
 </script>
 ```
 
@@ -437,7 +437,7 @@ Example Creative HTML
     ucTag.requestAllAssets = true;
     // if you want to track clicks in GAM, add the following variable
     ucTag.clickUrlUnesc = "%%CLICK_URL_UNESC%%";
-    window.pbNativeTag.renderNativeAd(ucTag);
+    window.ucTag.renderAd(document, ucTag);
 </script>
 ```
 
@@ -524,7 +524,7 @@ Example creative HTML:
     ucTag.adId = "%%PATTERN:hb_adid%%";  // GAM specific
     // if you're using 'Send All Bids' mode, you should use %%PATTERN:hb_adid_BIDDER%%
     ucTag.requestAllAssets = true;
-    window.pbNativeTag.renderNativeAd(ucTag);
+    window.ucTag.renderAd(document, ucTag);
 </script>
 ```
 

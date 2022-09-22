@@ -103,7 +103,7 @@ Example creative HTML:
     pbNativeTagData.adId = "%%PATTERN:hb_adid%%";
     // if you're using 'Send All Bids' mode, you should use %%PATTERN:hb_adid_BIDDERCODE%%;
     pbNativeTagData.requestAllAssets = true;
-    window.pbNativeTag.renderNativeAd(pbNativeTagData);
+    window.ucTag.renderAd(document, pbNativeTagData);
 </script>
 ```
 
