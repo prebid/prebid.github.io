@@ -111,12 +111,10 @@ Next, add a creative to this $0.50 line item; we will duplicate the creative lat
     </script>
 ```
 
-{% capture noteAlert %}
-Replace the *BIDDERCODE* placeholders in the above template with the appropriate bidder your line item is targeting.  For example, if you're targeting the bidder *appnexus*, the macro variable for `adId` would look like `ucTagData.adId = "%%PATTERN:hb_adid_appnexus%%";`. IMPORTANT: Make sure that none of the values are
-longer than 20 characters. e.g. you'll need to truncate hb_cache_host_triplelift to hb_cache_host_triple. GAM doesn't support attributes longer than 20 chars, so all Prebid software truncates attributes to that length.
-{% endcapture %}
+{: .alert.alert-info :}
+- Replace the *BIDDERCODE* placeholders in the above template with the appropriate bidder your line item is targeting.  For example, if you're targeting the bidder *appnexus*, the macro variable for `adId` would look like `ucTagData.adId = "%%PATTERN:hb_adid_appnexus%%";`. IMPORTANT: Make sure that none of the values are longer than 20 characters. e.g. you'll need to truncate hb_cache_host_triplelift to hb_cache_host_triple. GAM doesn't support attributes longer than 20 chars, so all Prebid software truncates attributes to that length.
+- The attribute name of `mobileResize` isn't important, just the value. The Prebid SDK scans this code explicitly for "hb_size".
 
-{% include alerts/alert_note.html content=noteAlert %}
 
 ![New creative]({{ site.github.url }}/assets/images/demo-setup/new-creative.png){: .pb-lg-img :}
 
