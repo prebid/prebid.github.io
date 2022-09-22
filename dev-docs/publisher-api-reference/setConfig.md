@@ -1283,7 +1283,7 @@ Notes:
 <a id="setConfig-performanceMetrics" />
 #### Disable performance metrics
 
-Since version 7.17, Prebid collects fine-grained performance metrics and attaches them to several events for the purpose of analytics. If you find that this generates much data for your analytics provider you may disable this feature with: 
+Since version 7.17, Prebid collects fine-grained performance metrics and attaches them to several events for the purpose of analytics. If you find that this generates too much data for your analytics provider you may disable this feature with: 
 
 ```
 pbjs.setConfig({performanceMetrics: false})
