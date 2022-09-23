@@ -12,7 +12,6 @@ dchain_supported: false
 userIds: unifiedId, uid2
 media_types: banner, video
 floors_supported: true
-fpd_supported: true
 pbjs: true
 pbs: false
 prebid_member: true
