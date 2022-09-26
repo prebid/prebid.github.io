@@ -480,7 +480,7 @@ pbjs.setConfig({
 ### AudienceOne ID by DAC
 
 AudienceOne ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
-Please contact D.A.Consortium Inc. before using this ID.
+Please visit [https://solutions.dac.co.jp/audienceone](https://solutions.dac.co.jp/audienceone) and request your Owner ID to get started.
 
 Add the AudienceOne ID to your Prebid.js Package with:
 
@@ -493,6 +493,8 @@ gulp build --modules=dacIdSystem
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module | `"dacId"` |
+| params | Required | Object | Details of module params. | |
+| params.oid | Required | String | This is the Owner ID value obtained via D.A.Consortium Inc. | `"55h67qm4ck37vyz5"` |
 
 #### AudienceOne ID Example
 
@@ -500,7 +502,10 @@ gulp build --modules=dacIdSystem
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: 'dacId'
+            name: 'dacId',
+            params: {
+                'oid': '55h67qm4ck37vyz5'
+            }
         }]
     }
 });
