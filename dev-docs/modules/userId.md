@@ -1288,6 +1288,9 @@ pbjs.setConfig({
 
 #### LiveIntent ID configuration
 
+{: .alert.alert-info :}
+NOTE: For optimal performance, the LiveIntent ID module should be called at every opportunity. It is best not to use `params.storage` with this module as the module has its own optimal caching mechanism.
+
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
