@@ -9,7 +9,6 @@ usp_supported: true
 media_types: banner, video, native
 safeframes_ok: false
 pbjs: true
-pbjs_version_notes: 6.4.0 and later
 ---
 
 ### Preliminaries

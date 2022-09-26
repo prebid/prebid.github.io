@@ -12,7 +12,6 @@ usp_supported: true
 coppa_supported: true
 pbs_app_supported: true
 schain_supported: true
-pbjs_version_notes: v5.18+
 safeframes_ok: true
 ---
 
