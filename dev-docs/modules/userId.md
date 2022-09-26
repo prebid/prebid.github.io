@@ -704,31 +704,6 @@ JmZWF0dXJlIjoiSW50ZXJlc3RDb2hvcnRBUEkiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU
 3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9
 
 
-#### FLoC ID Configuration
-
-{: .table .table-bordered .table-striped }
-| Param under userSync.userIds[] | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | The name of this module. | `"flocId"` |
-| params | Required | Object | Container of all module params. | |
-| params.token | Required | String | This is your apiKey as provided by Chrome. This value is required during the origin trial phase but will be optional once the origin trial ends. Publishers may use sharedid's registered token if they choose. | `A3dHTSo...`|
-
-#### FLoC Example
-
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "flocId",
-            params: {
-              "token": "Registered token" // see above for sharedId's FLoC token
-            }
-        }],
-        syncDelay: 3000              // 3 seconds after the first auction
-    }
-});
-{% endhighlight %}
-
 ### FTrack ID from Flashtalking By Mediaocean
 
 The FTrack Identity Framework (["FTrack"](https://www.flashtalking.com/identity-framework#FTrack)) User ID Module allows publishers to take advantage of Flashtalking's FTrack ID during the bidding process.
