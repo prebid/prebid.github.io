@@ -504,7 +504,7 @@ pbjs.setConfig({
         userIds: [{
             name: 'dacId',
             params: {
-                'oid': '55h67qm4ck37vyz5'
+                'oid': '55h67qm4ck37vyz5' // Set your AudienceOne Owner ID here
             }
         }]
     }
