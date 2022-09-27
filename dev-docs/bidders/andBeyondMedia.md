@@ -2,7 +2,7 @@
 layout: bidder
 title: AndBeyond.Media
 description: Prebid AndBeyond.Media Bidder Adapter
-biddercode: andbeyond.media
+biddercode: andbeyond
 usp_supported: true
 gdpr_supported: true
 coppa_supported: true
