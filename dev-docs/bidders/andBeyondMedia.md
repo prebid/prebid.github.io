@@ -2,7 +2,7 @@
 layout: bidder
 title: AndBeyond.Media
 description: Prebid AndBeyond.Media Bidder Adapter
-biddercode: andbeyond
+biddercode: andbeyondmedia
 usp_supported: true
 gdpr_supported: true
 coppa_supported: true
@@ -13,7 +13,7 @@ pbjs: true
 pbs: true
 ---
 
-### Prebid.JS Bid Params
+### Prebid Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
