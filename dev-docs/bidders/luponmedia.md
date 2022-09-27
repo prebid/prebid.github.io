@@ -9,7 +9,6 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 userIds: digitrust, identityLink, liveIntentId, pubCommonId
-pbjs_version_notes: not in 5.x, in 6.2+
 ---
 
 ### Note:

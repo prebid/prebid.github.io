@@ -12,7 +12,6 @@ safeframes_ok: false
 pbjs: true
 pbs: false
 prebid_member: false
-pbjs_version_notes: v4.35 and later
 ---
 
 ### Registration

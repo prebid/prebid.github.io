@@ -6,7 +6,6 @@ biddercode: iprom
 media_types: banner
 pbjs: true
 enable_download: true
-pbjs_version_notes: not in 5.x, in 6.2+
 ---
 
 ### Prebid Server Note:
