@@ -34,6 +34,7 @@ Core config:
 + [First Party Data](#setConfig-fpd)
 + [Caching VAST XML](#setConfig-vast-cache)
 + [Site Metadata](#setConfig-site)
++ [Disable performance metrics](#setConfig-performanceMetrics)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
 
@@ -1277,8 +1278,18 @@ Notes:
 - The only time `waitForIt` means anything is if some modules are flagged as true and others as false. If all modules are the same (true or false), it has no effect.
 - Likewise, `waitForIt` doesn't mean anything without an auctionDelay specified.
 
-<a name="setConfig-Generic-Configuration" />
 
+
+<a id="setConfig-performanceMetrics" />
+#### Disable performance metrics
+
+Since version 7.17, Prebid collects fine-grained performance metrics and attaches them to several events for the purpose of analytics. If you find that this generates too much data for your analytics provider you may disable this feature with: 
+
+```
+pbjs.setConfig({performanceMetrics: false})
+```
+
+<a name="setConfig-Generic-Configuration" />
 #### Generic setConfig Configuration
 
 Some adapters may support other options, as defined in their documentation. To set arbitrary configuration values:

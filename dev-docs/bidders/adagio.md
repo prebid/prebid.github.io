@@ -63,4 +63,10 @@ pbjs.bidderSettings = {
 
 ### First Party Data
 
-Adagio does not support FPD for now. It will be added soon.
+Adagio will use FPD data as fallback for the params below:
+- pagetype
+- environment
+- category
+- subcategory
+
+If the FPD value is an array, the 1st value of this array will be used.

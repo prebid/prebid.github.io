@@ -11,6 +11,10 @@ sidebarType: 4
 
 
 # Prebid.js for Video Overview
+{:.no_toc}
+
+* TOC
+{:toc}
 
 Prebid.js provides tools that allow header bidding video demand to compete with your ad server video demand. Prebid video demand can be incorporated for both instream, outstream, and long-form video slots.
 
