@@ -6,7 +6,7 @@ biddercode: goldbach
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
-userIds: criteo, unifiedId, netId, identityLink, flocId, uid2
+userIds: criteo, unifiedId, netId, identityLink, uid2
 schain_supported: true
 coppa_supported: true
 usp_supported: true

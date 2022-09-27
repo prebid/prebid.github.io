@@ -6,7 +6,7 @@ biddercode: appnexus
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
-userIds: criteo, flocId, identityLink, netId, pubProvidedId, uid2, unifiedId,
+userIds: criteo, identityLink, netId, pubProvidedId, uid2, unifiedId,
 schain_supported: true
 coppa_supported: true
 usp_supported: true
