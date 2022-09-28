@@ -1264,7 +1264,7 @@ The LiveIntent ID sub-module follows the standard Prebid.js initialization based
 
 #### Resolving uid2
 
-Attributes other than the nonID can be requested using the extraRequestedAttributes configuration option.
+Attributes other than the nonID can be requested using the requestedAttributesOverrides configuration option.
 
 One attribute that requires special mention here is 'uid2'. If this attribute is resolved by the id module
 it will be exposed in the same format as from the Unified ID 2.0 userid module. If both the LiveIntent module
