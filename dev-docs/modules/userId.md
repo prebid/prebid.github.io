@@ -29,7 +29,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
    1. If GDPR applies, the consent signal from the CMP is hashed and stored in a cookie called `_pbjs_userid_consent_data`. This is required so that ID sub-modules may be called to refresh their ID if the user's consent preferences have changed from the previous page, and ensures cached IDs are no longer used if consent is withdrawn.
 1. An object containing one or more IDs (`bidRequest.userId`) is made available to Prebid.js adapters and Prebid Server S2S adapters.
 1. In addition to `bidRequest.userId`, `bidRequest.userIdAsEids` is made available to Prebid.js adapters and Prebid Server S2S adapters. `bidRequest.userIdAsEids` has userIds in ORTB EIDS format.
-1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html), [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html), or [pbjs.getUserIdsAsync()](/dev-docs/publisher-api-reference/getUserIdsAsync.html). 
+1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html), [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html), or [pbjs.getUserIdsAsync()](/dev-docs/publisher-api-reference/getUserIdsAsync.html).
 
 {: .alert.alert-info :}
 Note: If your ID structure is complicated, it is helpful to add tests for pbjs.getUserIds(), pbjs.getUserIdsAsEids() and pbjs.getUserIdsAsync().
@@ -74,9 +74,9 @@ Publishers that want to do this should design their workflow and then set `_pbjs
 
 By including this module and one or more of the sub-modules, a number of new options become available in `setConfig()`,
 under the `userSync` object as attributes of the `userIds` array
-of sub-objects. 
+of sub-objects.
 
-Publishers using Google AdManager may want to sync one of the identifiers as their Google PPID for frequency capping or reporting. 
+Publishers using Google AdManager may want to sync one of the identifiers as their Google PPID for frequency capping or reporting.
 The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rules; refer to [Google AdManager documentation](https://support.google.com/admanager/answer/2880055?hl=en) for them. Please note, Prebid uses a [GPT command](https://developers.google.com/publisher-tag/reference#googletag.PubAdsService) to sync identifiers for publisher convenience. It doesn't currently work for instream video requests, as Prebid typically interacts with the player, which in turn may interact with IMA. IMA does has a [similar method](https://developers.google.com/interactive-media-ads/docs/sdks/html5/client-side/reference/js/google.ima.ImaSdkSettings#setPpid) as GPT, but IMA does not gather this ID from GPT.
 
 {: .table .table-bordered .table-striped }
@@ -1237,8 +1237,34 @@ The first-party cookie generation and identity resolution functionality is provi
 
 The LiveIntent ID sub-module follows the standard Prebid.js initialization based on the GDPR consumer opt-out choices. With regard to CCPA, the LiveConnect JS receives a us_privacy string from the Prebid US Privacy Consent Management Module and respects opt-outs.
 
+#### Resolving uid2
+
+Attributes other than the nonID can be requested using the requestedAttributesOverrides configuration option.
+
+One attribute that requires special mention here is 'uid2'. If this attribute is resolved by the id module
+it will be exposed in the same format as from the Unified ID 2.0 userid module. If both the LiveIntent module
+and the uid2 module manage to resolve an uid2, the one from the uid2 module will be used.
+Enabling this option in addition to the uid2 module is an easy way to increase your uid2 resolution rates.
+Example configuration to enable uid2 resolution:
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            "name": "liveIntentId",
+            "params": {
+                "publisherId": "12432415",
+                "requestedAttributesOverrides": {'uid2': true},
+            },
+        }]
+    }
+});
+{% endhighlight %}
 
 #### LiveIntent ID configuration
+
+{: .alert.alert-info :}
+NOTE: For optimal performance, the LiveIntent ID module should be called at every opportunity. It is best not to use `params.storage` with this module as the module has its own optimal caching mechanism.
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
@@ -1249,6 +1275,7 @@ The LiveIntent ID sub-module follows the standard Prebid.js initialization based
 | params.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the IdentityResolution endpoint. By default, 1000 milliseconds.|`1000`|
 | params.partner | Optional| String |The name of the partner whose data will be returned in the response.|`'prebid'`|
 | params.identifiersToResolve |Optional| Array[String] |Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
+| params.requestedAttributesOverrides | Optional | Object | Object containing booleans used to override the default resolution. Attributes set to true will be added to the resolve list, while attributes set to false will be removed | `{'uid2': true}` |
 | params.emailHash |Optional| String |The hashed email address of a user. We can accept the hashes, which use the following hashing algorithms: md5, sha1, sha2.|`1a79a4d60de6718e8e5b326e338ae533`|
 | params.url | Optional| String |Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`'https://idx.my-domain.com'`|
 | params.liCollectConfig |Optional| Object |Container of all collector params.||
@@ -1504,12 +1531,12 @@ pbjs.setConfig({
       name: 'novatiq',
       params: {
         // change to the Partner Number you received from Novatiq
-        sourceid '1a3'            
+        sourceid '1a3'
         }
       }
     }],
     // 50ms maximum auction delay, applies to all userId modules
-    auctionDelay: 50             
+    auctionDelay: 50
   }
 });
 {% endhighlight %}
@@ -1535,7 +1562,7 @@ pbjs.setConfig({
 
 
 ### Novatiq Hyper ID with Prebid SharedID support
-You can make use of the Prebid.js SharedId module as follows. 
+You can make use of the Prebid.js SharedId module as follows.
 
 #### Novatiq Hyper ID Configuration
 
@@ -1549,7 +1576,7 @@ Module activation and configuration:
 {% highlight javascript %}
 pbjs.setConfig({
   userSync: {
-    userIds: [                                          
+    userIds: [
       {
       name: 'novatiq',
       params: {
@@ -1559,14 +1586,14 @@ pbjs.setConfig({
         // Use the sharedID module
         useSharedId: true,
 
-        // optional: will default to _pubcid if left blank. 
+        // optional: will default to _pubcid if left blank.
         // If not left blank must match "name" in the the module above
-        sharedIdName: 'demo_pubcid'   
+        sharedIdName: 'demo_pubcid'
         }
       }
     }],
     // 50ms maximum auction delay, applies to all userId modules
-    auctionDelay: 50             
+    auctionDelay: 50
   }
 });
 {% endhighlight %}
@@ -1717,7 +1744,7 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 | params | Required | Object | Container of all module params. |  |
 | params.pid | Required | String | This is the Placement ID, a unique identifier that is used to identify each publisher, obtained from registering with LiveRamp. | `999` |
 | params.notUse3P | Not required | Boolean | Property for choosing if a cookieable envelope should be set and stored until the user authenticates and a RampID envelope can be created (either `true` or `false`). | `false` |
-| storage | Required | Object | This object defines where and for how long the results of the call to get a RampID envelope will be stored. | 
+| storage | Required | Object | This object defines where and for how long the results of the call to get a RampID envelope will be stored. |
 | storage.type	| Required | String | This parameter defines where the resolved RampID envelope will be stored (either `"cookie"` or `"html5"` localStorage). | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved RampID envelope will be stored. LiveRamp requires `"idl_env"`. | `"idl_env"` |
 | storage.expires | Required | Integer | How long (in days) the RampID envelope information will be stored. To be GDPR and CCPA compliant, we strongly advise to set a 15-day TTL ("Time to Live" / expiration time). If you are not planning to obtain RampID envelopes for EU/EEA or U.S. users, we advise you to change the expiration time to 30 days. | `15` |
@@ -1728,7 +1755,7 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 
 #### RampID Examples
 
-1) Publisher passes a Placement ID and elects to store the RampID envelope in a cookie. 
+1) Publisher passes a Placement ID and elects to store the RampID envelope in a cookie.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -1918,7 +1945,7 @@ pbjs.setConfig({
 
 #### Truspid onboarding
 
-If you wish to find out more about Trustpid, please contact onboarding@trustpid.com 
+If you wish to find out more about Trustpid, please contact onboarding@trustpid.com
 
 ### PubProvided ID
 
@@ -2435,7 +2462,7 @@ To access the complete set of IDs, you may use `getUserIdsAsync`, which returns 
 pbjs.getUserIdsAsync().then(function (userIds) {
    // all IDs are available here:
    pbjs.getUserIds()       // same as the `userIds` argument
-   pbjs.getUserIdsAsEids() 
+   pbjs.getUserIdsAsEids()
 });
 ```
 
