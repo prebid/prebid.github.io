@@ -24,12 +24,12 @@ The `AdUnit` object is an abstract object that cannot be instantiated. Use the [
 **Parameters**
 
 - `configId`: String containing the Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
-- `adType`: `BANNER` or `INTERSITIAL`. This value will be set by the object based on which type of ad unit object you create.
+- `adType`: `BANNER` or `INTERSTITIAL`. This value will be set by the object based on which type of ad unit object you create.
 
 **Properties**
 
 - `configId`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
-- `adType`: `BANNER` or `INTERSITIAL`.
+- `adType`: `BANNER` or `INTERSTITIAL`.
 - `periodMillis`: Integer defining the refresh time in milliseconds. Default = 0, meaning no auto refresh.
 - `keywords`: ArrayList containing keys and values.
 
@@ -326,7 +326,7 @@ adUnit.fetchDemand(builder, new OnCompleteListener() {
 
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
 - [Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
-- [Intersitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
+- [Interstitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)

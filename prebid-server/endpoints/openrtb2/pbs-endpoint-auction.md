@@ -619,7 +619,7 @@ These fields will be forwarded to each Bidder, so they can decide how to process
 
 ##### Interstitial support
 Additional support for interstitials is enabled through the addition of two fields to the request:
-device.ext.prebid.interstitial.minwidthperc and device.ext.interstial.minheightperc
+device.ext.prebid.interstitial.minwidthperc and device.ext.interstitial.minheightperc
 The values will be numbers that indicate the minimum allowed size for the ad, as a percentage of the base side. For example, a width of 600 and "minwidthperc": 60 would allow ads with widths from 360 to 600 pixels inclusive.
 
 Example:
