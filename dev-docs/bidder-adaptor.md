@@ -184,6 +184,7 @@ Prebid recommends keeping module HTTP requests 'simple' if at all possible. The 
 If you're the type that likes to skip to the answer instead of going through a tutorial, see the <a href="#bidder-example">Full Bid Adapter Example</a> below.
 
 + [Overview](#bidder-adaptor-Overview)
++ [Note on ORTB adapters](#ortb-adapters)
 + [Building the Request](#bidder-adaptor-Building-the-Request)
 + [Interpreting the Response](#bidder-adaptor-Interpreting-the-Response)
 + [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs)
@@ -237,6 +238,12 @@ export const spec = {
 registerBidder(spec);
 
 {% endhighlight %}
+
+<a id="ortb-adapters" />
+
+### Note on ORTB adapters
+
+If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`. 
 
 <a name="bidder-adaptor-Building-the-Request" />
 
