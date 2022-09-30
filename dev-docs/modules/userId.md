@@ -29,7 +29,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
    1. If GDPR applies, the consent signal from the CMP is hashed and stored in a cookie called `_pbjs_userid_consent_data`. This is required so that ID sub-modules may be called to refresh their ID if the user's consent preferences have changed from the previous page, and ensures cached IDs are no longer used if consent is withdrawn.
 1. An object containing one or more IDs (`bidRequest.userId`) is made available to Prebid.js adapters and Prebid Server S2S adapters.
 1. In addition to `bidRequest.userId`, `bidRequest.userIdAsEids` is made available to Prebid.js adapters and Prebid Server S2S adapters. `bidRequest.userIdAsEids` has userIds in ORTB EIDS format.
-1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html), [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html), or [pbjs.getUserIdsAsync()](/dev-docs/publisher-api-reference/getUserIdsAsync.html). 
+1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html), [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html), or [pbjs.getUserIdsAsync()](/dev-docs/publisher-api-reference/getUserIdsAsync.html).
 
 {: .alert.alert-info :}
 Note: If your ID structure is complicated, it is helpful to add tests for pbjs.getUserIds(), pbjs.getUserIdsAsEids() and pbjs.getUserIdsAsync().
@@ -74,9 +74,9 @@ Publishers that want to do this should design their workflow and then set `_pbjs
 
 By including this module and one or more of the sub-modules, a number of new options become available in `setConfig()`,
 under the `userSync` object as attributes of the `userIds` array
-of sub-objects. 
+of sub-objects.
 
-Publishers using Google AdManager may want to sync one of the identifiers as their Google PPID for frequency capping or reporting. 
+Publishers using Google AdManager may want to sync one of the identifiers as their Google PPID for frequency capping or reporting.
 The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rules; refer to [Google AdManager documentation](https://support.google.com/admanager/answer/2880055?hl=en) for them. Please note, Prebid uses a [GPT command](https://developers.google.com/publisher-tag/reference#googletag.PubAdsService) to sync identifiers for publisher convenience. It doesn't currently work for instream video requests, as Prebid typically interacts with the player, which in turn may interact with IMA. IMA does has a [similar method](https://developers.google.com/interactive-media-ads/docs/sdks/html5/client-side/reference/js/google.ima.ImaSdkSettings#setPpid) as GPT, but IMA does not gather this ID from GPT.
 
 {: .table .table-bordered .table-striped }
@@ -1504,12 +1504,12 @@ pbjs.setConfig({
       name: 'novatiq',
       params: {
         // change to the Partner Number you received from Novatiq
-        sourceid '1a3'            
+        sourceid '1a3'
         }
       }
     }],
     // 50ms maximum auction delay, applies to all userId modules
-    auctionDelay: 50             
+    auctionDelay: 50
   }
 });
 {% endhighlight %}
@@ -1535,7 +1535,7 @@ pbjs.setConfig({
 
 
 ### Novatiq Hyper ID with Prebid SharedID support
-You can make use of the Prebid.js SharedId module as follows. 
+You can make use of the Prebid.js SharedId module as follows.
 
 #### Novatiq Hyper ID Configuration
 
@@ -1549,7 +1549,7 @@ Module activation and configuration:
 {% highlight javascript %}
 pbjs.setConfig({
   userSync: {
-    userIds: [                                          
+    userIds: [
       {
       name: 'novatiq',
       params: {
@@ -1559,14 +1559,14 @@ pbjs.setConfig({
         // Use the sharedID module
         useSharedId: true,
 
-        // optional: will default to _pubcid if left blank. 
+        // optional: will default to _pubcid if left blank.
         // If not left blank must match "name" in the the module above
-        sharedIdName: 'demo_pubcid'   
+        sharedIdName: 'demo_pubcid'
         }
       }
     }],
     // 50ms maximum auction delay, applies to all userId modules
-    auctionDelay: 50             
+    auctionDelay: 50
   }
 });
 {% endhighlight %}
@@ -1717,7 +1717,7 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 | params | Required | Object | Container of all module params. |  |
 | params.pid | Required | String | This is the Placement ID, a unique identifier that is used to identify each publisher, obtained from registering with LiveRamp. | `999` |
 | params.notUse3P | Not required | Boolean | Property for choosing if a cookieable envelope should be set and stored until the user authenticates and a RampID envelope can be created (either `true` or `false`). | `false` |
-| storage | Required | Object | This object defines where and for how long the results of the call to get a RampID envelope will be stored. | 
+| storage | Required | Object | This object defines where and for how long the results of the call to get a RampID envelope will be stored. |
 | storage.type	| Required | String | This parameter defines where the resolved RampID envelope will be stored (either `"cookie"` or `"html5"` localStorage). | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved RampID envelope will be stored. LiveRamp requires `"idl_env"`. | `"idl_env"` |
 | storage.expires | Required | Integer | How long (in days) the RampID envelope information will be stored. To be GDPR and CCPA compliant, we strongly advise to set a 15-day TTL ("Time to Live" / expiration time). If you are not planning to obtain RampID envelopes for EU/EEA or U.S. users, we advise you to change the expiration time to 30 days. | `15` |
@@ -1728,7 +1728,7 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 
 #### RampID Examples
 
-1) Publisher passes a Placement ID and elects to store the RampID envelope in a cookie. 
+1) Publisher passes a Placement ID and elects to store the RampID envelope in a cookie.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -1918,7 +1918,7 @@ pbjs.setConfig({
 
 #### Truspid onboarding
 
-If you wish to find out more about Trustpid, please contact onboarding@trustpid.com 
+If you wish to find out more about Trustpid, please contact onboarding@trustpid.com
 
 ### PubProvided ID
 
@@ -2228,16 +2228,24 @@ pbjs.setConfig({
 
 Yahoo ConnectID is a person based ID and does not depend on 3rd party cookies. It enables ad tech platforms to recognize and match users consistently across the open web. Built on top of Yahoo’s robust and proprietary ID Graph it delivers a higher find rate of audiences on publishers’ sites user targeting that respects privacy.
 
-Yahoo ConnectID honors privacy choices from the [Yahoo Privacy Dashboard](https://legal.yahoo.com/us/en/yahoo/privacy/dashboard/index.html) as well as global privacy acts.
+#### Honoring Privacy Choices
+
+Yahoo ConnectID provides multiple mechanisms for users to manage their privacy choices. Users can manage their choices via [ConnectID Control Portal](http://connectid.yahoo.com), on the [Yahoo Privacy Dashboard](https://legal.yahoo.com/us/en/yahoo/privacy/dashboard/index.html) and [NAI’s Audience Matched Opt Out page](https://optout.networkadvertising.org/optout/email).  No further actions are required by Publishers as Yahoo will ensure that privacy choices selected by users via one of these methods are honored. We will automatically stop generating ConnectIDs for users who have opted-out.
+
+When desired, additional privacy control can be provided to your users. Within your privacy policy or website privacy settings, [Create an Easy Opt-in Opt-out Toggle](https://documentation.help.yahooinc.com/platform/SSP/Sellers/Integrate/Create-an-Easy-OptIn-Optout-Toggle.htm) for ConnectID.
+
+Finally, ConnectID follows all global privacy laws (such as the CCPA) and industry frameworks (such as NAI, DAA and IAB). Yahoo will auto-detect most privacy signals present on the page (including those set by prebid libraries) and not generate a ConnectID for users that have opted-out.
+
+
+#### Yahoo ConnectID Registration
+
+A Yahoo supplied publisher specific pixel Id is required. Please reach out to your account manager for assistance with setup.
 
 Add support for Yahoo ConnectID to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=userId,connectIdSystem
 
-#### Yahoo ConnectID Registration
-
-A Yahoo supplied publisher specific pixel Id is required. Please reach out to your account manager for assistance with setup.
 
 #### Yahoo ConnectID Configuration
 
@@ -2254,6 +2262,7 @@ A Yahoo supplied publisher specific pixel Id is required. Please reach out to yo
 | storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `15` | `15` |
 {: .table .table-bordered .table-striped }
 </div>
+
 
 #### Yahoo ConnectID Examples
 
@@ -2435,7 +2444,7 @@ To access the complete set of IDs, you may use `getUserIdsAsync`, which returns 
 pbjs.getUserIdsAsync().then(function (userIds) {
    // all IDs are available here:
    pbjs.getUserIds()       // same as the `userIds` argument
-   pbjs.getUserIdsAsEids() 
+   pbjs.getUserIdsAsEids()
 });
 ```
 
