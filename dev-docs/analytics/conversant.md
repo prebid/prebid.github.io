@@ -8,7 +8,7 @@ usp_supported: true
 coppa_supported: false
 prebid_member: true
 gvl_id: 24
-enable_download: false
+enable_download: true
 ---
 
 #### Registration
