@@ -1251,7 +1251,7 @@ multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ortb_blocking_supported: true/partial/false
 ---
 
-### Note:
+### Registration
 
 The Example Bidding adapter requires setup before beginning. Please contact us at setup@example.com
 
