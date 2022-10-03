@@ -1251,7 +1251,7 @@ multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ortb_blocking_supported: true/partial/false
 ---
 
-### Note:
+### Registration
 
 The Example Bidding adapter requires setup before beginning. Please contact us at setup@example.com
 
@@ -1278,6 +1278,7 @@ Notes on the metadata fields:
 - If your bidder supports floors, set `floors_supported: true`. No default value.
 - If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
 - If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to ‘true’,’partial’, or ‘false’. No default value. In order to set ‘true’, you must support: bcat, badv, battr, and bapp.
+- Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
 
