@@ -301,7 +301,9 @@ var responseCode;    // false if there was an error, else true
             var json = event.data;
             var msgIsString = typeof json === "string";
             if ( msgIsString ) {
-                json = JSON.parse(json);
+                try {
+                    json = JSON.parse(json);
+                } catch (error) { }
             }
             var call = json.__tcfapiCall;
             if (call) {
