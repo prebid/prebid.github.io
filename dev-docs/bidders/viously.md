@@ -15,7 +15,7 @@ schain_supported: false
 ---
 
 ### Note:
-The Viously adapter requires setup and approval from the Viously team, even for existing Viously publishers. Please reach out to your account team, or contact us through this form for more information : https://corporate.viously.com/contact-publishers
+Viously Header Bidding adapter requires setup and approval. Please reach out to prebid@viously.com for more details.
 
 ### Bid params
 
@@ -23,8 +23,6 @@ The Viously adapter requires setup and approval from the Viously team, even for 
 | Name        | Scope    | Description                                                                                 | Example    | Type      |
 |-------------|----------|---------------------------------------------------------------------------------------------|------------|-----------|
 | `pid`       | required | Your publisher ID. This information will be given to you by the Viously team.               | `1234`     | `integer` |
-| `mute`      | required | Indicate if the player is muted or not.                                                     | `true`     | `boolean` |
-| `play_type` | required | The play type of your player. It must be either `autoplay`, `scrolltoplay` or `clicktoplay` | `autoplay` | `string`  |
 
 ### Example
 
@@ -34,16 +32,16 @@ var adUnits = [
         code: 'test-viously',
         mediaTypes: {
             video: {
-                context: 'instream'
+                playerSize: [640, 360],
+                context: 'instream',
+                playbackmethod: [1, 2, 3, 4, 5, 6]
             }
         },
         bids: [
             {
                 bidder: 'viously',
                 params: {
-                    pid: 1234,
-                    mute: true,
-                    play_type: 'autoplay'
+                    pid: '20d30b78-43ec-11ed-b878-0242ac120002'
                 }
             }
         ]
