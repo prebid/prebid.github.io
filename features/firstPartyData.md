@@ -155,7 +155,7 @@ pbjs.addAdUnits({
     },
     ortb2Imp: {
         ext: {
-	    data: {
+	        data: {
                 pbadslot: "homepage-top-rect",
                 adUnitSpecificAttribute: "123"
             }
@@ -163,6 +163,24 @@ pbjs.addAdUnits({
     },
     ...
 });
+{% endhighlight %}
+
+You may also specify adUnit-specific transaction IDs using `ortb2Imp.ext.tid`, and Prebid will use them instead of generating random new ones. This is useful if you are auctioning the same slots through multiple header bidding libraries. Note that you should take care to not re-use the same transaction IDs across different ad units or auctions. For example:  
+
+{% highlight js %}
+const tid = crypto.randomUUID();
+pbjs.requestBids({
+   adUnits: [{
+    code: 'test-div',
+    // ...
+    ortb2Imp: {
+        ext: {
+          tid
+        }
+    }
+   }]
+});
+// reuse `tid` when auctioning `test-div` through some other header bidding wrapper   
 {% endhighlight %}
 
 {: .alert.alert-info :}
