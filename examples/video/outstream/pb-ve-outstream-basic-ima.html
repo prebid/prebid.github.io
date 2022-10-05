@@ -5,10 +5,10 @@ description: An example of an outstream video ad using Prebid.js and the Google 
 videoType: pb-os-basic-ima
 isVideo: true
 sidebarType: 4
-jsfiddle_link: jsfiddle.net/Prebid_Examples/94jt62b8/embedded/html,result
 code_height: 2300
 ---
 
+<script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
 <div class="container">
     <div class="row">
         <div class="vidHeader" style="width:75vw;">
@@ -28,25 +28,73 @@ code_height: 2300
             Do not forget to exchange the placementId in the code examples with your own placementId!</p>
         </div>
 
-        <div>
-            On the JSFiddle example below:
-            <p></p>
-            <ul>
-                <li>click 'Result' to see the output of the page.</li>
-                <li>Click 'Edit in JSFiddle' to open the example in a new tab.</li>
-            </ul>
-        </div>
+        <div id='adContainer'></div>
 
         <div class="row">
-          <!-- JSFiddle -->
-          <div id="jsfiddle" class="col-md-12">
-            <h2>(Sorry, jsfiddle code examples aren't available with your cookie privacy settings.)</h2>
-            <p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
-          </div>
+           <div class="pb-code-hl-wrap">
+             <pre id='codeExample' class="pb-code-hl"></pre>
+           </div>
         </div>
     </div>
 </div>
 
-<script type="text/javascript">
-  Optanon.InsertHtml('<iframe width="100%" height="{{page.code_height}}" src="//{{page.jsfiddle_link}}" allowfullscreen="allowfullscreen" frameborder="0"></iframe>', 'jsfiddle', null, {deleteSelectorContent: true}, 3);
+<script id='adCode' type="text/javascript">
+  var pbjs = pbjs || {};
+  pbjs.que = pbjs.que || [];
+
+  function render(bid) {
+    const adContainer = document.getElementById('adContainer');
+    const adDisplayContainer = new google.ima.AdDisplayContainer(adContainer);
+
+    /* Prebid video ad unit */
+    const adsRequest = new google.ima.AdsRequest();
+    adsRequest.adTagUrl = '';
+    adsRequest.adsResponse = bid.vastXml;
+
+    adsLoader = new google.ima.AdsLoader(adDisplayContainer);
+    adsLoader.requestAds(adsRequest)
+  }
+
+  /* Prebid video ad unit */
+  const videoAdUnit = {
+    code: 'adContainer',
+    renderer: {
+      render,
+      url: "https://imasdk.googleapis.com/js/sdkloader/ima3.js"
+    },
+    mediaTypes: {
+      video: {
+        context: 'outstream',
+        playerSize: [640, 480],
+        mimes: ['video/mp4'],
+        protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+        playbackmethod: [2],
+        skip: 1,
+      }
+    },
+    bids: [{
+      bidder: 'appnexus',
+      params: {
+        placementId: 13232385
+      }
+    }]
+  };
+
+  pbjs.que.push(() => {
+    pbjs.addAdUnits(videoAdUnit);
+
+    pbjs.requestBids({
+      bidsBackHandler: (bids) => {
+        const highestCpmBids = pbjs.getHighestCpmBids('adContainer');
+        pbjs.renderAd(document, highestCpmBids[0].adId);
+      }
+    });
+  });
 </script>
+<script>
+  /* Display ad code as example on page. */
+  const codeExample = document.getElementById('codeExample');
+  const adCode = document.getElementById('adCode');
+  codeExample.innerHTML = `&lt;script&gt;${adCode.innerHTML}&lt;/script&gt;`
+</script>
+<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
