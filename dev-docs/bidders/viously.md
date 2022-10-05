@@ -24,6 +24,15 @@ Viously Header Bidding adapter requires setup and approval. Please reach out to 
 |-------------|----------|---------------------------------------------------------------------------------------------|------------|-----------|
 | `pid`       | required | Your publisher ID. This information will be given to you by the Viously team.               | `1234`     | `integer` |
 
+### Video Object
+
+{: .table .table-bordered .table-striped }
+| Name             | Scope    | Description                                                              | Example      | Type             |
+|------------------|----------|--------------------------------------------------------------------------|--------------|------------------|
+| `context`        | required | The video context, either 'instream', 'outstream'.                       | `instream`   | `String`         |
+| `playerSize`     | required | The size (width, height) of the video player on the page, in pixels.     | `[640, 480]` | `Array<integer>` |
+| `playbackmethod` | required | Defines how the video inventory is initiated following the OpenRTB spec. | `[4, 5]`     | `Array<integer>` |
+
 ### Example
 
 ```
