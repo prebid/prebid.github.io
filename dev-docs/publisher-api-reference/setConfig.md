@@ -26,6 +26,7 @@ Core config:
 + [Set the page URL](#setConfig-Page-URL)
 + [Set price granularity](#setConfig-Price-Granularity)
 + [Set media type price granularity](#setConfig-MediaType-Price-Granularity)
++ [Set custom cpm rounding](#setConfig-Cpm-Rounding)
 + [Configure server-to-server header bidding](#setConfig-Server-to-Server)
 + [Configure user syncing](#setConfig-Configure-User-Syncing)
 + [Configure targeting controls](#setConfig-targetingControls)
@@ -419,6 +420,37 @@ Note that mediaTypePriceGranularity is the only place that 'video-outstream' or 
 are recognized. This was driven by the recognition that outstream often shares line items with banner.
 If the mediatype is video, the price bucketing code further looks at the context (e.g. outstream) to see if there's
 a price granularity override. If it doesn't find 'video-outstream' defined, it will then look for just 'video'.
+
+<a name="setConfig-Cpm-Rounding" />
+
+#### Custom CPM Rounding
+
+Prebid defaults to rounding down all bids to the nearest increment, which may cause lower CPM ads to be selected. 
+While this can be addressed through higher [price granularity](#setConfig-Price-Granularity), Prebid also allows setting a custom rounding function. 
+This function will be used by Prebid to determine what increment a bid will round to. 
+<br/>
+<br/>
+You can set a simple rounding function:
+```javascript
+// Standard rounding
+pbjs.setConfig({'cpmRoundingFunction': Math.round});
+```
+
+Or you can round according to more complex considerations:
+
+```javascript
+// Custom rounding function
+const roundToNearestEvenIncrement = function (number) {
+  let ceiling = Math.ceil(number);
+  let ceilingIsEven = ceiling % 2 === 0;
+  if (ceilingIsEven) {
+    return ceiling;
+  } else {
+    return Math.floor(number);
+  }
+}
+pbjs.setConfig({'cpmRoundingFunction': roundToNearestEvenIncrement});
+```
 
 <a name="setConfig-Server-to-Server" />
 
