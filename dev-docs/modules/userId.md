@@ -2297,16 +2297,24 @@ pbjs.setConfig({
 
 Yahoo ConnectID is a person based ID and does not depend on 3rd party cookies. It enables ad tech platforms to recognize and match users consistently across the open web. Built on top of Yahoo’s robust and proprietary ID Graph it delivers a higher find rate of audiences on publishers’ sites user targeting that respects privacy.
 
-Yahoo ConnectID honors privacy choices from the [Yahoo Privacy Dashboard](https://legal.yahoo.com/us/en/yahoo/privacy/dashboard/index.html) as well as global privacy acts.
+#### Honoring Privacy Choices
+
+Yahoo ConnectID provides multiple mechanisms for users to manage their privacy choices. Users can manage their choices via [ConnectID Control Portal](http://connectid.yahoo.com), on the [Yahoo Privacy Dashboard](https://legal.yahoo.com/us/en/yahoo/privacy/dashboard/index.html) and [NAI’s Audience Matched Opt Out page](https://optout.networkadvertising.org/optout/email).  No further actions are required by Publishers as Yahoo will ensure that privacy choices selected by users via one of these methods are honored. We will automatically stop generating ConnectIDs for users who have opted-out.
+
+When desired, additional privacy control can be provided to your users. Within your privacy policy or website privacy settings, [Create an Easy Opt-in Opt-out Toggle](https://documentation.help.yahooinc.com/platform/SSP/Sellers/Integrate/Create-an-Easy-OptIn-Optout-Toggle.htm) for ConnectID.
+
+Finally, ConnectID follows all global privacy laws (such as the CCPA) and industry frameworks (such as NAI, DAA and IAB). Yahoo will auto-detect most privacy signals present on the page (including those set by prebid libraries) and not generate a ConnectID for users that have opted-out.
+
+
+#### Yahoo ConnectID Registration
+
+A Yahoo supplied publisher specific pixel Id is required. Please reach out to your account manager for assistance with setup.
 
 Add support for Yahoo ConnectID to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=userId,connectIdSystem
 
-#### Yahoo ConnectID Registration
-
-A Yahoo supplied publisher specific pixel Id is required. Please reach out to your account manager for assistance with setup.
 
 #### Yahoo ConnectID Configuration
 
@@ -2323,6 +2331,7 @@ A Yahoo supplied publisher specific pixel Id is required. Please reach out to yo
 | storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `15` | `15` |
 {: .table .table-bordered .table-striped }
 </div>
+
 
 #### Yahoo ConnectID Examples
 
