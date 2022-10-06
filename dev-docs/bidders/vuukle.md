@@ -4,6 +4,12 @@ title: Vuukle
 description: vuukle bid adapter
 pbjs: true
 biddercode: vuukle
+gdpr_supported: true
+gvl_id: 1004
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+prebid_member: true
 ---
 
 ### Bid Params
