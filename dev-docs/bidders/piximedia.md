@@ -3,6 +3,10 @@ layout: bidder
 title: Piximedia
 description: Piximedia Bidder Adaptor
 pbjs: true
+gdpr_supported: true
+usp_supported: true
+coppa_supported: true
+schain_supported: true
 biddercode: piximedia
 media_types: banner
 enable_download: false
