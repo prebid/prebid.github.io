@@ -756,6 +756,48 @@ pbjs.setConfig({
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. FTrack recommends `90`. | `90` |
 | storage.refreshInSeconds | Optional | Integer | How many seconds until the FTrack ID will be refreshed. FTrack strongly recommends 8 hours between refreshes | `8*3600` |
 
+### GrowthCode
+
+[GrowthCode](https://growthcode.io/) offers scaled infrastructure-as-a-service 
+to empower independent publishers to harness data and take control of 
+identity and audience while rapidly aligning to industry changes and 
+margin pressure.
+
+#### GrowthCode Configuration
+
+First, make sure to add the GrowthCode submodule to your Prebid.js package with:
+
+{: .alert.alert-info :}
+gulp build --modules=growthCodeIdSystem,userId
+
+The following configuration parameters are available:
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    userIds: [{
+      name: 'growthCodeId',
+      params: {
+          pid: 'TEST01', // Set your Partner ID here for production (obtained from Growthcode)
+          publisher_id: '_sharedID',
+          publisher_id_storage: 'html5'
+      }
+    }]
+  }
+});
+```
+The following configuration parameters are available:
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope    | Type   | Description | Example         |
+|--------------------------------|----------|--------| --- |-----------------|
+| name                           | Required | String | The name of this module. | `"growthCodeId"` |
+| params                         | Required | Object | Details of module params. |                 |
+| params.pid                     | Required | String | This is the Partner ID value obtained from GrowthCode | `"TEST01"`        |
+| params.url | Optional | String | Custom URL for server | |
+| params.publisher_id | Optional | String | Name if the variable that holds your publisher ID | `"_sharedID"` |
+| params.publisher_id_storage | Optional | String | Publisher ID storage (cookie, html5) | `"html5"` |
+
 ### Hadron ID from Audigent
 
 Audigent is a next-generation data management platform and a first-of-a-kind "data agency" containing some of the most exclusive content-consuming audiences across desktop, mobile and social platforms. Our HadronId module allows for user id resolution and Audigent user data segmentation to be retrieved for users across the web.  For assistance setting up your module please contact us at [prebid@audigent.com](mailto:prebid@audigent.com).
@@ -2368,6 +2410,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | CriteoID | Criteo | criteoId | criteo.com | "1111" |
 | Fabrick ID | Neustar | fabrickId | neustar.biz | "1111" |
 | FLoC ID | n/a | flocId | | |
+| GrowthCode ID | GrowthCode | growthCodeId | growthcode.io | "1111" |
 | Hadron ID | Audigent | hadronId | audigent.com | {"hadronId":"user-hadron-id", "auSeg":["segment1", "segment2"]} |
 | ID+ | Zeotap | IDP | zeotap.com | "1111" |
 | ID5 ID | ID5 | id5id | id5-sync.com | {uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } } |
