@@ -5,6 +5,7 @@ description: Prebid Clickonometrics Bidder Adaptor
 pbjs: true
 biddercode: ccx
 media_types: video
+gvl_id: 773
 gdpr_supported: true
 ---
 
@@ -16,7 +17,7 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                  | Example | Type      |
 |---------------|----------|------------------------------|---------|-----------|
-| `placementId` | required | Clickonometrics placement ID | `12345` | `integer` |
+| `pid` | required | Clickonometrics placement ID | `12345` | `integer` |
 
 #### Video params
 
