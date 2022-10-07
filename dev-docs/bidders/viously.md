@@ -3,15 +3,22 @@ layout: bidder
 title: Viously
 description: Prebid Viously Bidder Adaptor
 pbjs: true
-pbs: true
+pbs: false
 biddercode: viously
 media_types: video
 gdpr_supported: true
+gvl_id: none
 usp_supported: true
 prebid_member: false
 floors_supported: false
 fpd_supported: false
 schain_supported: false
+safeframes_ok: true
+deals_supported: false
+floors_supported: false
+fpd_supported: false
+ortb_blocking_supported: false
+multiformat_supported: will-bid-on-one
 ---
 
 ### Note:
