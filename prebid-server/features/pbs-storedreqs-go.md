@@ -36,8 +36,12 @@ Add the file `stored_requests/data/by_id/stored_imps/{id}.json` and populate it 
     ]
   },
   "ext": {
-    "appnexus": {
-      "placementId": 12883451
+    "prebid": {
+      "bidder": {
+        "appnexus": {
+          "placement_id": 12883451
+        }
+      }
     }
   }
 }
@@ -50,7 +54,7 @@ go build .
 ./prebid-server
 ```
 
-And then `POST` to [`/openrtb2/auction`](../endpoints/openrtb2/auction.md) with your chosen ID.
+And then `POST` to [`/openrtb2/auction`](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) with your chosen ID.
 
 ```json
 {
@@ -90,8 +94,12 @@ You can also store _part_ of the Imp on the server. For example:
     ]
   },
   "ext": {
-    "appnexus": {
-      "placementId": 12883451
+    "prebid": {
+      "bidder": {
+        "appnexus": {
+          "placement_id": 12883451
+        }
+      }
     }
   }
 }

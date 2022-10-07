@@ -187,7 +187,7 @@ Create the ad units and add sizes for banner ad units.   Replace `PREBID-SERVER-
 Prebid.shared.prebidServerAccountId = "`PREBID-SERVER-ACCOUNT-ID"
 Prebid.shared.shareGeoLocation = true
 
-let bannerUnit = BannerAdUnit(configId: "PREBID-SERVER-CONFIGURATION-ID", size: CGSize(width: 300, height: 250))
+let bannerUnit = BannerAdUnit(configId: "PREBID-SERVER-IMPLEVEL-STOREDREQUEST-ID", size: CGSize(width: 300, height: 250))
  bannerUnit.setAutoRefreshMillis(time: 35000)
 ```
 **Google Ad Manager Example**  

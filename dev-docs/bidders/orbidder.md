@@ -7,6 +7,7 @@ pbjs: true
 pbs: true
 media_types: banner
 gdpr_supported: true
+floors_supported: true
 ---
 
 ### Bid Params

@@ -9,6 +9,8 @@ media_types: banner
 gdpr_supported: true
 usp_supported: true
 gvl_id: 408
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 ### Bid Params

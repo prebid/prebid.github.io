@@ -5,7 +5,7 @@ description: Prebid pubGENIUS Bidder Adaptor
 pbjs: true
 biddercode: pubgenius
 media_types: banner
-getFloor: true
+floors_supported: true
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
@@ -25,6 +25,7 @@ userIds: unifiedId
 
 #### Video
 
+Video parameters are read from the ad unit as in `mediaTypes.video`, and can be overridden in bid params.
 The following properties are required in `mediaTypes.video` of the ad unit:
 
 {: .table .table-bordered .table-striped }

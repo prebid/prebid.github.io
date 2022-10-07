@@ -56,7 +56,7 @@ Not required but recommended.
 
 **Default Value:**
 
-https://acdn.adnxs.com/prebid/not-for-prod/prebid.js
+https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js
 
 **Example:**
 
@@ -293,7 +293,7 @@ Additional options that are passed in to the prebid.js `setConfig()` method.
 
 JSON object.
 
-Supported fields are documented in the [Prebid.org Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig)
+Supported fields are documented in the [Prebid.org Publisher API Reference](/dev-docs/publisher-api-reference/setConfig.html)
 
 **Required?**
 
@@ -305,7 +305,7 @@ None
 
 **Example:**
 
-`options.prebidConfigOptions = { publisherDomain: "https://www.theverge.com"};`
+`options.prebidConfigOptions = { pageUrl: "https://www.theverge.com"};`
 
 <a name="dfpParameters"></a>
 ### dfpParameters
@@ -314,7 +314,7 @@ None
 
 Parameters used when using Google Ad Manager as the ad server.
 
-See prebid.org documentation for [buildVideoUrl]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl)
+See prebid.org documentation for [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html)
 
 **Acceptable Values:**
 

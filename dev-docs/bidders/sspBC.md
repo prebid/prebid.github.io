@@ -3,8 +3,10 @@ layout: bidder
 title: sspBC
 description: Prebid sspBC Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: sspBC
-media_types: banner
+media_types: banner, video, native
+floors_supported: true
 gdpr_supported: true
 gvl_id: 676
 ---
