@@ -2,14 +2,22 @@
 layout: bidder
 title: RtbDemand.com
 description: Prebid RtbDemand.com Bidder Adaptor
+biddercode: rtbdemand_com
 pbjs: true
 pbs: true
-biddercode: rtbdemand_com
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
+coppa_supported: true
+pbs_app_supported: true
 schain_supported: true
-aliasCode : adkernel
+userIds: all
+fpd_supported: true
+prebid_member: false
+ortb_blocking_supported: true
+multiformat_supported: will-bid-on-one
+floors_supported: true
+aliasCode: adkernel
 ---
 
 ### Note:
