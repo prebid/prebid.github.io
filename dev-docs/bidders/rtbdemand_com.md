@@ -29,5 +29,5 @@ The RtbDemand.com bidding adaptor requires setup and approval before beginning. 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
-| `host`   | required | Our Host | `'cpm.andbeyond.media'` | `string` |
+| `host`   | required | Our Host | `' cpm.rtbdemand.com'` | `string` |
 | `zoneId` | required | Example RTB zone id           | `'12345'`                 | `string` |
