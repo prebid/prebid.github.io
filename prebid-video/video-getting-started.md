@@ -57,9 +57,17 @@ If you already have a Prebid integration for banner, you don’t need to do anyt
 
 Your first step to implementing header bidding for video is to [download Prebid.js]({{site.github.url}}/download.html). Before downloading, select the adapters you want to include. (You can add more adapters later.)
 
--	Include at least one video adapter. Find a list of available video adapters [here]({{site.github.url}}/dev-docs/bidders.html#bidder-video-native).
--	If Google Ad Manager is your ad server, you must include the [Google Ad Manager Video module](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html).
--	If you’ll be integrating with Prebid Server, be sure to include “Prebid Server” in the list of adapters.
+- Include at least one bid adapter that supports video. Find a list of eligible adapters [here]({{site.github.url}}/dev-docs/bidders.html#bidder-video-native).
+- If Google Ad Manager is your ad server, you must include the [Google Ad Manager Video module](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html).
+- If you’ll be integrating with Prebid Server, be sure to include “Prebid Server” in the list of adapters.
+
+### How to integrate
+
+To integrate Prebid with a video player, we recommend using the Video Module. The Video Module will automatically:
+- render bids in your desired video player
+- mark used bids as won
+- trigger player and media events
+- fill the oRTB Video Impression and Content params in the bid request
 
 ### Define Prebid Ad Units
 
