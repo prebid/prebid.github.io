@@ -39,7 +39,7 @@ pbjs.setConfig(
           waitForIt: true,
           params: {
             domain: "test.endpoint",
-            contexts: ["instream"],
+            contexts: ["instream", "outstream"],
           }
        }
     ]
