@@ -2,7 +2,7 @@
 layout: page_v2
 title: oxxion Real Time Data Provider
 display_name: oxxion Rtd
-description: clean.io Real-time Vast Impression Tracking
+description: oxxion Real-time Vast Impression Tracking
 page_type: module
 module_type: rtd
 module_code : oxxionRtdProvider
