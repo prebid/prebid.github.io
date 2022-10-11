@@ -24,7 +24,7 @@ Make sure to have the following modules listed while building prebid : `rtdModul
 `rtbModule` is required to activate real-time-data submodules.
 For example :
 ```
-gulp build --modules=schain,priceFloors,currency,consentManagement,appnexusBidAdapter,rubiconBidAdapter,rtdModule,oxxionRtdProvider
+gulp build --modules=rtdModule,oxxionRtdProvider
 ```
 
 Then add the oxxion Rtd module to your prebid configuration :
