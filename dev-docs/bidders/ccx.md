@@ -17,7 +17,7 @@ gdpr_supported: true
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                  | Example | Type      |
 |---------------|----------|------------------------------|---------|-----------|
-| `pid` | required | Clickonometrics placement ID | `12345` | `integer` |
+| `placementId` | required | Clickonometrics placement ID | `12345` | `integer` |
 
 #### Video params
 
