@@ -4,7 +4,7 @@ title: HouseOfPubs
 description: House of Pubs Bid Adapter
 biddercode: houseofpubs
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
