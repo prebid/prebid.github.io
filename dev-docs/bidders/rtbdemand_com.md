@@ -4,7 +4,7 @@ title: RtbDemand.com
 description: Prebid RtbDemand.com Bidder Adaptor
 biddercode: rtbdemand_com
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
