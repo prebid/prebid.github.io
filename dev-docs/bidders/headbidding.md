@@ -7,7 +7,7 @@ top_nav_section: dev_docs
 nav_section: reference
 
 pbjs: true
-pbs: true
+pbs: false
 biddercode: headbidding
 media_types: banner, native, video
 gdpr_supported: true
