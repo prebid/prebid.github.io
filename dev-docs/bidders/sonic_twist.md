@@ -4,7 +4,7 @@ title: Sonic Twist Media
 description: Sonic Twist Media
 biddercode: sonic_twist
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
