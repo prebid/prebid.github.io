@@ -4,7 +4,7 @@ title: Converge-Digital
 description: Converge-Digital Bidder Adaptor
 biddercode: converge
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 gvl_id: 248
