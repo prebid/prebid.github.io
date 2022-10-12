@@ -4,7 +4,7 @@ title: CatapultX
 description: CatapultX Bidder Adaptor
 biddercode: catapultx
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
