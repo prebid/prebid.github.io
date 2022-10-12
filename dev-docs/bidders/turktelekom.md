@@ -4,7 +4,7 @@ title: Türk Telekom
 description: Türk Telekom Bidder Adaptor
 biddercode: turktelekom
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
