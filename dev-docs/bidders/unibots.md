@@ -4,7 +4,7 @@ title: Unibots
 description: Unibots Bidder Adaptor
 biddercode: unibots
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
