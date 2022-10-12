@@ -4,7 +4,7 @@ title: RtbAnalytica
 description: RtbAnalytica Bidder Adaptor
 biddercode: rtbanalytica
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
