@@ -4,7 +4,7 @@ title: WaardeX
 description: Prebid WaardeX Bidder Adaptor
 biddercode: waardex_ak
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
