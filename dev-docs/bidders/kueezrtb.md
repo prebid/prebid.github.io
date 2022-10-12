@@ -6,6 +6,18 @@ biddercode: kueezrtb
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 gdpr_supported: false
 usp_supported: true
+coppa_supported: false
+schain_supported: true
+floors_supported: true
+media_types: banner
+prebid_member: false
+safeframes_ok: false
+deals_supported: false
+pbs_app_supported: false
+fpd_supported: false
+ortb_blocking_supported: false
+multiformat_supported: will-bid-on-one
+gvl_id: none
 pbjs: true
 ---
 
