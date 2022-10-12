@@ -4,7 +4,7 @@ title: Denakop
 description: Denakop Bidder Adaptor
 biddercode: denakop
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
