@@ -741,6 +741,7 @@ pbjs.setConfig({
 });
 ```
 
+{: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | :-- | :-- | :-- | :-- | :-- |
 | name | Required | String | The name of this module: `"FTrack"` | `"FTrack"` |
@@ -1950,6 +1951,7 @@ Trustpid is also the brand name of the service, which is provided by Vodafone Sa
 
 #### Trustpid configuration
 
+{: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of the module | `"trustpid"`
@@ -2270,9 +2272,9 @@ Each publisher’s privacy policy should take UnifiedId 2 into account
 
 #### Unified ID 2 Configuration
 
-{: .table .table-bordered .table-striped }
 The below parameters apply only to the UID 2.0 User ID Module integration.
 
+{: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the UID20 module - `"uid2"` | `"uid2"` |
