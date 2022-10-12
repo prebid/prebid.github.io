@@ -4,7 +4,7 @@ title: Motionspots
 description: Motionspots Bidder Adaptor
 biddercode: motionspots
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
