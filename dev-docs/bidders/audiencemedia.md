@@ -4,7 +4,7 @@ title: Audience Media
 description: Prebid Audience Media Bidder Adaptor
 biddercode: audiencemedia
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
