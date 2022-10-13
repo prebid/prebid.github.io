@@ -65,6 +65,9 @@ Your first step to implementing header bidding for video is to [download Prebid.
 
 #### Prebid Video Module
 
+{: .alert.alert-warning :}
+The Video Module is a new way of handling Video in Prebid.
+
 To integrate Prebid with a video player, we recommend using the Video Module. The Video Module will automatically:
 - render bids in your desired video player
 - mark used bids as won
