@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: WaardeX
-description: Prebid WaardeX Bidder Adaptor
-biddercode: waardex_ak
+title: RtbDemand.com
+description: Prebid RtbDemand.com Bidder Adaptor
+biddercode: rtbdemand_com
 pbjs: true
 pbs: false
 media_types: banner, native, video
@@ -22,12 +22,12 @@ aliasCode: adkernel
 
 ### Note:
 
-The WaardeX Bidding adaptor requires setup and approval before beginning. Please reach out to <welcome@waardex.com> for more details
+The RtbDemand.com bidding adaptor requires setup and approval before beginning. Please reach out to <shreyanschopra@rtbdemand.com> for more details
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
-| `host`   | required | Ad network's RTB host | `'cpm.webtradingspot.com'` | `string` |
-| `zoneId` | required | RTB zone id           | `'30164'`                 | `string` |
+| `host`   | required | Our Host | `' cpm.rtbdemand.com'` | `string` |
+| `zoneId` | required | Example RTB zone id           | `'12345'`                 | `string` |
