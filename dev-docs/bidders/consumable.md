@@ -19,6 +19,9 @@ floors_supported: true
 ### Note:
 The Consumable adaptor requires setup and approval from your Consumable account manager, even for existing Consumable publishers. Please reach out to your account manager to enable Prebid.js for your account.
 
+### Disclosure:
+The Consumable bid adapter may cycle the ad initially shown with a new one at various intervals. This means the advertiser meta-data accompanying the bid response may be incomplete at the time of response. 
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
