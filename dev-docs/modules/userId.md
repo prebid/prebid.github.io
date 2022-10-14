@@ -759,9 +759,9 @@ pbjs.setConfig({
 
 ### GrowthCode
 
-[GrowthCode](https://growthcode.io/) offers scaled infrastructure-as-a-service 
-to empower independent publishers to harness data and take control of 
-identity and audience while rapidly aligning to industry changes and 
+[GrowthCode](https://growthcode.io/) offers scaled infrastructure-as-a-service
+to empower independent publishers to harness data and take control of
+identity and audience while rapidly aligning to industry changes and
 margin pressure.
 
 #### GrowthCode Configuration
@@ -2326,7 +2326,8 @@ gulp build --modules=userId,connectIdSystem
 | name | Required | String | The name of this module. | `'connectId'` |
 | params | Required | Object | Container of all module params. ||
 | params.pixelId | Required | Number | The Yahoo supplied publisher specific pixel Id  | `8976` |
-| params.he | Required | String | The SHA-256 hashed user email address |`'ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4'`|
+| params.he | Optional | String | The SHA-256 hashed user email address. One of either the `he` parameter or the `puid` parameter must be supplied. |`'ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4'`|
+| params.puid | Optional | String | The publisher-supplied user identifier. One of either the `he` parameter or the `puid` parameter must be supplied. | `"P-975484817"` |
 | storage | Required | Object | Defines where and for how long the results of the call to get a user ID will be stored. | |
 | storage.type | Required | String | Defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'html5'` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'connectId'` |
@@ -2338,6 +2339,7 @@ gulp build --modules=userId,connectIdSystem
 #### Yahoo ConnectID Examples
 
 ```
+// [Sample #1]: Using a hashed email.
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -2345,6 +2347,47 @@ pbjs.setConfig({
             params: {
               pixelId: 8976,
               he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"
+            },
+            storage: {
+              type: "html5",
+              name: "connectId",
+              expires: 15
+            }
+        }]
+    }
+})
+```
+
+```
+// [Sample #2]: Using a publisher-supplied user identifier.
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "connectId",
+            params: {
+              pixelId: 8976,
+              puid: "P-975484817"
+            },
+            storage: {
+              type: "html5",
+              name: "connectId",
+              expires: 15
+            }
+        }]
+    }
+})
+```
+
+```
+// [Sample #3]: Using a hashed email and a publisher-supplied user identifier.
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "connectId",
+            params: {
+              pixelId: 8976,
+              he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4",
+              puid: "P-975484817"
             },
             storage: {
               type: "html5",
