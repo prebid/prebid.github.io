@@ -34,3 +34,4 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 | `keyid` | required | Key Id | `'2'` | `string` |
 | `slotid` | required | Slot Id | `'u42ohmaufh'` | `string` |
 | `adtype` | required | Ad Type | `'native'` | `string` |
+| `testRequest` | optional | To request test ad | `'true'` | `string` |
