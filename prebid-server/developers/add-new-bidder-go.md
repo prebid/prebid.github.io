@@ -29,7 +29,7 @@ An OpenRTB 2.5 Bid Request contains one or more Impressions, each representing a
 
 ### Choose A Name
 
-You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `data`, `general`, `prebid`, or `skadn` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go#L37).
+You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `data`, `general`, `prebid`, `skadn` or `tid` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go#L37).
 
 We ask that the first 6 letters of the name you choose be unique among the existing bid adapters. This consideration helps with generating targeting keys for use by some ad exchanges, such as Google Ad Manager. There's no need to manually check, as this constraint is enforced by the [`TestBidderUniquenessGatekeeping`](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders_validate_test.go#L45) test.
 
@@ -71,13 +71,15 @@ Our project is written in the [Go programming language](https://golang.org/). We
 
 ### Bidder Info
 
-Let's begin with your adapter's bidder information YAML file. This file is required and contains your bid adapter's maintainer email address, [GDPR Global Vendor List (GVL) ID](https://iabeurope.eu/vendor-list-tcf-v2-0/), supported ad formats, user sync endpoints, and allows you to opt-out of video impression tracking.
+Let's begin with your adapter's bidder information YAML file. This file is required and contains your bid adapter's maintainer email address, outgoing compression support, [GDPR Global Vendor List (GVL) ID](https://iabeurope.eu/vendor-list-tcf-v2-0/), supported ad formats, user sync endpoints, and allows you to opt-out of video impression tracking.
 
 Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with the following template:
 
 ```yaml
+endpoint: "http://foo.com/openrtb2"
 maintainer:
   email: prebid-maintainer@example.com
+endpointCompression: gzip
 gvlVendorID: 42
 modifyingVastXmlAllowed: true
 capabilities:
@@ -101,15 +103,19 @@ userSync:
 
 Modify this template for your bid adapter:
 - Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
+- Remove the `endpointCompression` value if your bidding server does not accept gzip compressed bid requests. Setting this value to `gzip` will save on network bandwidth at the expense of slightly increased cpu and memory usage for the host.
 - Change the `gvlVendorID` from the sample value of `42` to the id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/), or remove this line entirely if your bidding server is not registered with IAB Europe.
 - Change the `modifyingVastXmlAllowed` value to `false` if you'd like to opt-out of [video impression tracking](https://github.com/prebid/prebid-server/issues/1015), or remove this line entirely if your adapter doesn't support VAST video ads.
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
+- Add the `extra_info` if you'd like to pass extra value adapter may need.
+- Add the `disabled` flag and set it to true if you would like to unregister adapter from the core. It's enabled by default.
 - Follow the [User Sync Configuration](#user-sync-configuration) documentation below to configure the endpoints for your bid adapter, or remove the `userSync` section if not supported.
 
 <details markdown="1">
   <summary>Example: Website with banner ads only.</summary>
 
 ```yaml
+endpoint: "http://foo.com/openrtb2"
 maintainer:
   email: foo@foo.com
 gvlVendorID: 42
@@ -128,6 +134,7 @@ userSync:
   <summary>Example: Website with banner ads only and not registered with IAB Europe.</summary>
 
 ```yaml
+endpoint: "http://foo.com/openrtb2"
 maintainer:
   email: foo@foo.com
 capabilities:
@@ -145,6 +152,7 @@ userSync:
   <summary>Example: Website or app with banner or video ads and video impression tracking.</summary>
 
 ```yaml
+endpoint: "http://foo.com/openrtb2"
 maintainer:
   email: foo@foo.com
 gvlVendorID: 42
@@ -162,6 +170,35 @@ userSync:
   redirect:
     url: https://foo.com/sync?gdpr={%raw%}{{.GDPR}}{%endraw%}&consent={%raw%}{{.GDPRConsent}}{%endraw%}&us_privacy={%raw%}{{.USPrivacy}}{%endraw%}&redirect={%raw%}{{.RedirectURL}}{%endraw%}
     userMacro: $UID
+```
+</details>
+
+<details markdown="1">
+  <summary>Example: Extra info with json data.</summary>
+
+```yaml
+endpoint: "http://foo.com/openrtb2"
+extra_info: "{\"foo\":\"bar\"}"
+maintainer:
+  email: foo@foo.com
+gvlVendorID: 42
+capabilities:
+  site:
+    mediaTypes:
+      - banner
+userSync:
+  redirect:
+    url: https://foo.com/sync?gdpr={%raw%}{{.GDPR}}{%endraw%}&consent={%raw%}{{.GDPRConsent}}{%endraw%}&us_privacy={%raw%}{{.USPrivacy}}{%endraw%}&redirect={%raw%}{{.RedirectURL}}{%endraw%}
+    userMacro: $UID
+```
+</details>
+
+<details markdown="1">
+  <summary>Example: Disable the adapter.</summary>
+
+```yaml
+endpoint: "http://foo.com/openrtb2"
+disabled: true
 ```
 </details>
 <p></p>
@@ -881,31 +918,6 @@ You need to provide default settings for your bid adapter. You can decide if you
 {: .alert.alert-warning :}
 **HOST SPECIFIC INFO:** The default endpoint must not be specific to any particular host, such as Xandr/AppNexus. We may ask you about suspicious looking ids during the review process. Please reach out to individual hosts if you need to set specialized configuration.
 
-#### Enabled By Default
-
-Edit the file `config/config.go` to register your default endpoint within the `SetupViper` method. If your bid adapter makes use of extra adapter info and you'd like to provide a good default value, you can do that here too.
-
-```go
-func SetupViper(v *viper.Viper, filename string) {
-  ...
-  v.SetDefault("adapters.{bidder}.endpoint", "https://your.url/any/path")
-  v.SetDefault("adapters.{bidder}.extra_info", `{"your": "extra info"}`)
-  ...
-}
-```
-
-#### Disabled By Default
-
-Edit the file `config/config.go` to register your default endpoint within the `SetupViper` method. You may still provide a default endpoint or extra adapter info.
-
-```go
-func SetupViper(v *viper.Viper, filename string) {
-  ...
-  v.SetDefault("adapters.{bidder}.disabled", "true")
-  ...
-}
-```
-
 ## Test Your Adapter
 
 This section will guide you through the creation of automated unit tests to cover your bid adapter code and bidder parameters JSON Schema. We use GitHub Action Workflows to ensure the code you submit passes validation. You can run the same validation locally with this command:
@@ -1150,8 +1162,8 @@ If you are having issues finding the root cause of user sync errors, please [sub
 
 Human readable documentation for bid adapters is required in the separate [prebid.github.io](https://github.com/prebid/prebid.github.io) repository. We will not merge your bid adapter until you've at least opened a documentation PR and comment with a link to it.
 
-1. If you already have a Prebid.js bid adapter, update your existing bidder file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/modules to add the `pbs: true` variable in the header section. If your Prebid Server bidding parameters are different from your Prebid.js parameters, please include the differences in this document for publishers to be aware.
-1. If you don't have a Prebid.js bid adapter, create a new file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/modules using this template:
+1. If you already have a Prebid.js bid adapter, update your existing bidder file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders to add the `pbs: true` variable in the header section. If your Prebid Server bidding parameters are different from your Prebid.js parameters, please include the differences in this document for publishers to be aware.
+1. If you don't have a Prebid.js bid adapter, create a new file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders using this template:
 
 ```
 ---
@@ -1172,13 +1184,14 @@ deals_supported: true/false
 floors_supported: true/false
 fpd_supported: true/false
 pbjs: true/false
-pbs: true/false
+pbs: true
 pbs_app_supported: true/false
 prebid_member: true/false
 multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
+ortb_blocking_supported: true/partial/false
 ---
 
-### Note:
+### Registration
 
 The Example Bidding adapter requires setup before beginning. Please contact us at setup@example.com
 
@@ -1203,7 +1216,9 @@ Notes on the metadata fields:
 - If your bidder supports mobile apps, set `pbs_app_supported: true`. No default value.
 - If your bidder supports deals, set `deals_supported: true`. No default value.
 - If your bidder supports floors, set `floors_supported: true`. No default value.
-- If your bidder supports first party data, set `fpd_supported: true`. No default value.
+- If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
+- If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to ‘true’,’partial’, or ‘false’. No default value. In order to set ‘true’, you must support: bcat, badv, battr, and bapp.
+- Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
 
@@ -1223,8 +1238,6 @@ Notes on the metadata fields:
 - Register With The Core
   - `openrtb_ext/bidders.go`
   - `exchange/adapter_builders.go`
-- Defaults
-  - `config/config.go`
 
 ## Contribute
 

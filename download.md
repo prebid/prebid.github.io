@@ -278,9 +278,6 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="fabrickIdSystem" class="bidder-check-box"> Neustar Fabrick ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="flocIdSystem" class="bidder-check-box"> FLoC Cohort ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="ftrackIdSystem" class="bidder-check-box"> FTrack ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
@@ -321,9 +318,6 @@ These modules may require accounts with a service provider.<br/>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> NetID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="nextrollIdSystem" class="bidder-check-box"> NextRoll ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="novatiqIdSystem" class="bidder-check-box"> Novatiq Hyper ID</label>
