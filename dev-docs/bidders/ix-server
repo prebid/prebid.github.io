@@ -107,7 +107,7 @@ To add Index as a bidder:
 
 To request bids from Index:
 
-* In requests that you make to your Prebid Server host, add `imp.ext.ix` and include the `siteID `that Index provides to you at the time of integration. \
+* In requests that you make to your Prebid Server host, add `imp.ext.ix` and include the `siteID `that Index provides to you at the time of integration. <br />
 **Example:**
 
 ```javascript
