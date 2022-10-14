@@ -118,8 +118,7 @@ To request bids from Index:
               }
         }
       }],
-
-    ```
+```
 
 
 <a name="bid-request-parameters" />
@@ -145,7 +144,7 @@ You must include these parameters at the bidder level.
 {: .table .table-bordered .table-striped }
 | Key | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.
+| `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.
 |
 
 If you are using Index’s outstream player and have placed the video object at the bidder level, you must include the Index required parameters at the bidder level. You can include the optional parameters to specify the outstream player configurations.
@@ -158,9 +157,8 @@ If you are using Index’s outstream player and have placed the video object at 
 | `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
 | `video.playerSize` | Required | Integer[] | The video player size that will be passed to demand partners. |
 | `video.playerConfig` | Optional | Hash | The Index-specific outstream player configurations. |
-| `video.playerConfig.floatOnScroll` | Optional | Boolean | A boolean specifying whether you want to use the player's floating capabilities, where:<br>
-- `true`: Use the Index player's float capabilities.<br> **Note:** If you set `floatOnScroll` to `true`, Index updates the placement value to ``5.<br>**Note:** We do not recommend using the player's default float capabilities if you have more than one outstream ad unit per page.
-- `false`: Do not use the Index player's float capabilities (default). |
+| `video.playerConfig.floatOnScroll` | Optional | Boolean | A boolean specifying whether you want to use the player's floating capabilities, where:<br />
+- `true`: Use the Index player's float capabilities.<br /> **Note:** If you set `floatOnScroll` to `true`, Index updates the placement value to ``5.<br /> **Note:** We do not recommend using the player's default float capabilities if you have more than one outstream ad unit per page. <br /> -`false`: Do not use the Index player's float capabilities (default). |
 | `video.playerConfig.floatSize` | Optional | Integer[] | The height and width of the floating player in pixels. If you do not specify a float size, the player adjusts to the aspect ratio of the player size that is defined when it is not floating. Index recommends that you review and test the float size to your user experience preference. |
 
 <a name="examples" />
