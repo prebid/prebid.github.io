@@ -344,6 +344,9 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="tapadIdSystem" class="bidder-check-box"> Tapad ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="teadsIdSystem" class="bidder-check-box"> Teads ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> Unified ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">

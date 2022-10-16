@@ -89,7 +89,7 @@ The table below has the options that are common across ID systems. See the secti
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"33acrossId"`, `"admixerId"`, `"qid"`, `"adtelligentId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"hadronId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"justId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be: `"33acrossId"`, `"admixerId"`, `"qid"`, `"adtelligentId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"hadronId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"justId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"teadsId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -2162,6 +2162,53 @@ pbjs.setConfig({
 });
 {% endhighlight %}
 
+### Teads ID
+
+The Teads ID is a first-party identifier designed for publishers using the Teads adapter. For more information please contact [innov-ssp@teads.com](innov-ssp@teads.com)
+
+#### Teads ID Configuration
+
+First, add the Teads ID module to your Prebid.js build:
+
+```shell
+gulp build --modules=userId,teadsIdSystem
+```
+
+Then configure the teadsId in your `userSync` configuration.  
+
+{: .table .table-bordered .table-striped }
+| Param under userSync.userIds[] | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| name | Required | String | `"teadsId"` | `"teadsId"` |
+| params | Required | Object | Details for Teads initialization. | |
+| params.pubId | Required | Number | Teads Publisher Id provided by Teads | 1234 |
+
+Replace the `pubId` value by your Publisher Teads Id that you will find in TODO
+
+#### Teads ID Example
+
+```javascript
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'teadsId',
+            params: {
+                pubId: 1234
+            }
+        }]
+    }
+});
+```
+
+This will add a `userId.teadsId` property to all bidRequests. This will be read by the Teads bid adapter, and any other adapters that support EIDs:
+
+```javascript
+{
+  teadsId: '2e3a00de-3800-11ed-a261-0242ac120002'
+}
+```
+
+
 ### Unified ID
 
 The Unified ID solution is provided by adsrvr.org and the Trade Desk.
@@ -2484,6 +2531,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | PubProvided ID | n/a | pubProvidedId | publisher domain | "1111" |
 | Quantcast ID | n/a | quantcastId | quantcast.com | "1111" |
 | Tapad ID | Tapad | tapadId | tapad.com | "1111" |
+| Teads ID | Teads | teadsId | teads.com | "1111" |
 | SharedID (PBJS 5.x) | n/a | pubcid | pubcid.org | "1111" |
 | SharedID (PBJS 4.x)| Prebid | sharedid | sharedid.org | {"id":"01EAJWWN...", "third":"01EAJ..."} |
 | Unified ID | Trade Desk | tdid | adserver.org | "1111" |
