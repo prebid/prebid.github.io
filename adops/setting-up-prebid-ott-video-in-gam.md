@@ -16,7 +16,7 @@ POP delivers programmatic advertising to video publisher’s OTT inventory. Util
 
 Configuring Google Ad Manager (GAM) for `POP` delivery follows the same Prebid configuration process for video with the additional requirements of adding a custom keyword for targeting and including the VAST URL for the video redirect.  
 
-The process for bidding on long-form video with `POP` requires a GAM account with a `Network` that contains at least one `Advertiser`. If you do not have a GAM account, visit [Google](ads.google.com/home/tools/manager-accounts/). If a GAM account exists or has been created, log in.  
+The process for bidding on long-form video with `POP` requires a GAM account with a `Network` that contains at least one `Advertiser`. If you do not have a GAM account, visit [Google](https://ads.google.com/home/tools/manager-accounts/). If a GAM account exists or has been created, log in.  
 1. Log into your GAM account.  
 2. Ensure a `Network` is set up. (For information on setting up a `Network` review this [Google support document.](https://support.google.com/admanager/answer/6013048?hl=en))  
 3. Within the `Network`, select or add an `Advertiser`. The Ad Manager 360 screen will load.
@@ -58,7 +58,7 @@ This section provides initial settings for a `Line Item`. Enter the following in
 
 **Inventory sizes**: For `POP`, select `Video VAST`. Selecting this option will display the `Master` input section. This section is where the size of the `Creative`, accompanying creatives and additional targeting can be added. To enter the size of the `Creative`, click in the first text field (with the movie clip icon), a drop down menu will display with options for standard video sizes along with the option to enter a custom video size.  
 
-Information on the `Creative` targeting option can be found reviewed at [Google support:](support.google.com/admanager/answer/6222493?hl=en).
+Information on the `Creative` targeting option can be found reviewed at [Google support:](https://support.google.com/admanager/answer/6222493?hl=en).
 
 ![Google Ad Manager Video Size]({{site.baseurl}}/assets/images/ad-ops/gam_pop/gam_lineitem_video_size.png){: .pb-lg-img :}
 
@@ -170,7 +170,7 @@ The `Line Item` is now prepared for bidding on publisher’s inventory.
 
 
 ## Further Reading
-[Video Solutions advertising overview:]( https://support.google.com/admanager/answer/1711021?hl=en)  
+[GAM Video Solutions advertising overview](https://support.google.com/admanager/answer/1711021?hl=en)  
 [Traffic in-stream video redirects](
 https://support.google.com/dcm/answer/6286181?hl=en)  
 [Media Planner for in-stream video creatives. A best practice guide:](https://support.google.com/dcm/answer/4348108)  

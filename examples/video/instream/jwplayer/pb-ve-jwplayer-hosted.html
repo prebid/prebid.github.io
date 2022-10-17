@@ -1,351 +1,178 @@
-<!DOCTYPE html>
-<html>
+---
+layout: video_sample
+title: Prebid Video | Instream Example with JW Player (Self-Hosted)
+description: An example of an instream pre-roll ad using Prebid.js and JW Player (Hosted).
+videoType: pb-is-jw02
+isVideo: true
+sidebarType: 4
+---
 
-    <head>
-		    
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="google-site-verification" content="_SMhyxJ4MnU9eTUQQNMUwU5W18T5tjNF7A6mumIci-A" />
-		<meta name="keywords" content="Header Bidding, Advanced Bidding, Header Bid, Pre-bid">
-		<meta name="description" content="{{page.description}}" />
-		
-		<link rel="shortcut icon" type="image/png" href="/favicon.png" />
-		<title>Prebid Video Example : JWPlayer (Hosted)</title>
-		
-		
-		<!-- OneTrust Cookies Consent Notice start -->
-		
-		<script src="https://cdn.cookielaw.org/consent/53783db5-1614-43d4-bb1a-148e68e8c87b.js" type="text/javascript" charset="UTF-8"></script>
-		<script type="text/javascript">
-		function OptanonWrapper() { }
-		</script>
-		<!-- OneTrust Cookies Consent Notice end -->
-		
-		
-		<!--<link href="http://www.prebid.org/assets/css/bootstrap.min.css" rel="stylesheet">-->
-		<!-- Latest compiled and minified Bootstrap CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link href="/assets/css/docs.min.css" rel="stylesheet">
-		<link href="/assets/css/style.css" rel="stylesheet">
-		
-		
-		<!-- Favicons -->
-		<link href="/assets/images/favicon.png" rel="icon">
-		<link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon">
-		
-		<!-- Google Fonts -->
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,300i,400,400i,700,700i>
-		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans+Condensed" />
-		<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-	
 
-		<script src="/assets/js/prism.js"></script>
-		<script src="/assets/js/jquery.min.js"></script>
-		<script src="/assets/js/bootstrap.js"></script>
-		<script src="/assets/js/bootbox.min.js"></script>
-		<script src="/assets/js/docs.min.js"></script>
-		<script src="/assets/js/easing.min.js"></script>
-		<script src="/assets/js/main.js"></script>
-		<script type="text/javascript" src="/assets/js/pbjs_home.js"></script>
-		
-		<!--Prebid.js and video player code-->
-		<script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"></script>
-		<script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/7.2.4/jwplayer.js"></script>
-		<script type="text/javascript">
-		 jwplayer.key = "YEUwUA9wRFeDcydr"; //Test Key - replace this with your own valid JWPlayer license key
-		</script>
-		<script>
-		    var pbjs = pbjs || {};
-		    pbjs.que = pbjs.que || [];
-		
-		    // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
-		    var tempTag = false;
-		    var invokeVideoPlayer = function(url) {
-		        tempTag = url;
-		    }
-		
-		    var videoAdUnit = {
-		        code: 'video1',
-		        mediaTypes: {
-		            video: {
-		                playerSize: [640, 480],
-		                context: 'instream'
-		            }
-		        },
-		        bids: [{
-		            bidder: 'appnexus',
-		            params: {
-		                placementId: 13232361, // Add your own placement id here
-		                video: {
-		                    skipppable: true,
-		                    playback_method: ['auto_play_sound_off']
-		                }
-		            }
-		        }]
-		    };
-		
-		    pbjs.que.push(function() {
-		        pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
-		        pbjs.setConfig({
-		            debug: true,
-		            cache: {
-		                url: 'https://prebid.adnxs.com/pbc/v1/cache'
-		            }
-		        });
-		
-		        pbjs.requestBids({
-		            bidsBackHandler: function(bids) {
-		                var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-		                    adUnit: videoAdUnit,
-		                    params: {
-		                        iu: '/19968336/prebid_cache_video_adunit',
-		                        cust_params: {
-		                            section: 'blog',
-		                            anotherKey: 'anotherValue'
-		                        },
-		                        output: 'vast'
-		                    }
-		                });
-		                invokeVideoPlayer(videoUrl);
-		            }
-		        });
-		    });
-		
-		</script>	
-</head>
-<body>
-    
-    	<div style="margin:0; padding:0;">
-			<div style="margin-top: 20px; padding-left: 10px;"><a href="http://www.prebid.org"><img src="http://www.prebid.org/assets/images/logos/prebid_final.png" width="200" height="33"></a></div>
-			
-			<div style="margin:0; padding:0;">
-			
-				<!--left nav-->
-				<div class="col-sm-2 sidebar-expanded d-none d-md-block sidebar" id="sidebar">
-					<h4>Prebid Video Examples
-					<p class="pb-video-list-title">Instream</p>
-					<ul class="pb-video-list" style="list-style-type:none">
-						<li><a href="/examples/video/instream/brid/pb-ve-brid.html">Brid</a></li>
-						<li><a href="/examples/video/instream/brightcove/pb-ve-brightcove.html">Brightcove</a></li>	
-						<li><a href="/examples/video/instream/flowplayer/pb-ve-flowplayer.html">Flowplayer</a></li>
-						<li><a href="/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html">JW Player (Platform)</a></li>
-						<li><a href="/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html">JW Player (Self Hosted)</a></li>
-						<li><a href="/examples/video/instream/jwplayer/pb-ve-jwplayer-playlist.html">JW Player (Playlist)</a></li>
-						<li><a href="/examples/video/instream/kaltura/pb-ve-kaltura.html">Kaltura</a></li>
-						<li><a href="/examples/video/instream/ooyala/pb-ve-ooyala.html">Ooyala</a></li>
-						<li><a href="/examples/video/instream/videojs/pb-ve-videojs.html">VideoJS</a></li> 
-					</ul>
-					<hr>
-					<p>Outstream</p>
-					<hr>
-					<p>Server</p>
-					<ul class="pb-video-list" style="list-style-type:none">
-						<li><a href="/examples/video/server/brid/pbs-ve-brid.html">Brid</a></li>
-						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html">JW PLayer (Platform)</a></li>
-						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html">JW PLayer (Hosted)</a></li>
-						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-jwplayer7.html">JW PLayer (V7 Player)</a></li>
-						<li><a href="/examples/video/server/jwplayer/pbs-ve-jwplayer-playlist.html">JW PLayer (Playlist)</a></li>
-						<li><a href="/examples/video/server/kaltura/pbs-ve-kaltura.html">Kaltura</a></li>
-						<li><a href="/examples/video/server/ooyala/pbs-ve-ooyala.html">Ooyala</a></li>
-						<li><a href="/examples/video/server/videojs/pbs-ve-videojs.html">Video.js</a></li>
-					</ul>
-					<hr>
-					<p>Long Form</p>				
-				</div>
-				
-				<!--content-->
-				<div class="col-sm-9 pb-content" markdown="1">
-					<h1>Prebid Video | JW Player (Hosted) Example</h1>
-					
-					<!--video example explanation-->
-					<div>An example of instream video using Prebid.js and a self-hosted version of JW Player.</div> 
-					
-					<!--video warning-->
-					<div markdown="span" class="pb-alert pb-alert-important" role="alert">
-						<i class="fa fa-exclamation-circle"></i>
-						<p style="color:#85720f"><b>Important:</b>
-						This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
-					</div>
-					
-					<!--video placeholder | this should be formatted per the needs of each player-->
-					<div id="playerContainerJW" style='width:640px; height:480px; border:1px solid black;'></div>
-					
-					<!--video code fencing-->
-					
-					<!--header code example-->
-					<div markdown="span" class="pb-alert pb-alert-warning" role="alert">
-						<i class="fa fa-exclamation-circle"></i>
-						<p style="color:#a94443"><b>Warning:</b>
-						Do not forget to exchange the placementId in the code examples with your own placementId!</p>
-					</div>
-					<div>
-					<h4>Place this code in the page header.</h4>
-<pre class="pb-code-hl">
+
+<div class="container">
+	<div class="row">
+		<div class="vidHeader" style="width:75vw;">
+			<h1>{{ page.title }}</h1>
+			<p>{{page.description }}</p>
+		</div>
+
+		<!--video warning-->
+		<div class="pb-alert pb-alert-important" >
+			<p style="color:#85720f"><b>Important:</b>
+			This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
+		</div>
+
+		<!--video placeholder | this should be formatted per the needs of each player-->
+		<div id="playerContainerJW" style='width:640px; height:480px; border:1px solid black;'></div>
+
+		<!--video code fencing-->
+
+		<!--header code example-->
+		<div class="pb-alert pb-alert-warning" >
+			<p style="color:#a94443"><b>Warning:</b>
+			Do not forget to exchange the placementId in the code examples with your own placementId!</p>
+		</div>
+
+    <h4>Place this code in the page header.</h4>
+    <div class="pb-code-hl-wrap">
+      <pre class="pb-code-hl" >
+
 <!--put javascript code here-->
-&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/7.2.4/jwplayer.js"&gt;&lt;/script&gt;
+&lt;script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="https://ssl.p.jwpcdn.com/player/v/7.2.4/jwplayer.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript"&gt;
-	jwplayer.key = "YEUwUA9wRFeDcydr"; //Test Key - replace this with your own valid JWPlayer license key
+  jwplayer.key = "YOUR_JW_PLAYER_KEY"; //Test Key - replace this with your own valid JWPlayer license key<br>
 &lt;/script&gt;
 &lt;script&gt;
-	var pbjs = pbjs || {};
-	pbjs.que = pbjs.que || [];
-	
-	// define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
-	var tempTag = false;
-	var invokeVideoPlayer = function(url) {
-	    tempTag = url;
-	}
-	
-	var videoAdUnit = {
-	    code: 'video1',
-	    mediaTypes: {
-	        video: {
-	            playerSize: [640, 480],
-	            context: 'instream'
-	        }
-	    },
-	    bids: [{
-	        bidder: 'appnexus',
-	        params: {
-	            placementId: 13232361, // Add your own placement id here
-	            video: {
-	                skipppable: true,
-	                playback_method: ['auto_play_sound_off']
-	            }
-	        }
-	    }]
-	};
-	
-	pbjs.que.push(function() {
-	    pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
-	    pbjs.setConfig({
-	        debug: true,
-	        cache: {
-	            url: 'https://prebid.adnxs.com/pbc/v1/cache'
-	        }
-	    });
-	
-	    pbjs.requestBids({
-	        bidsBackHandler: function(bids) {
-	            var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-	                adUnit: videoAdUnit,
-	                params: {
-	                    iu: '/19968336/prebid_cache_video_adunit',
-	                    cust_params: {
-	                        section: 'blog',
-	                        anotherKey: 'anotherValue'
-	                    },
-	                    output: 'vast'
-	                }
-	            });
-	            invokeVideoPlayer(videoUrl);
-	        }
-	    });
-	});
+  var pbjs = pbjs || {};
+  pbjs.que = pbjs.que || [];
 
-&lt;/script&gt;	
+  // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads<br>
+  var tempTag = false;
+  var invokeVideoPlayer = function(url) {
+      tempTag = url;
+  }
 
-</pre>
-					</div>
-					
-					<!--body code example-->
-					<div>
-					<h4>Place this code in the page body.</h4>
-<pre class="pb-code-hl">
+  var videoAdUnit = {
+      code: 'video1',
+      mediaTypes: {
+          video: {
+                  context: 'instream',
+                  playerSize: [640, 480],
+                  mimes: ['video/mp4'],
+                  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                  playbackmethod: [2],
+                  skip: 1
+          }
+      },
+      bids: [{
+          bidder: 'appnexus',
+          params: {
+              placementId: 13232361  // Add your own placement id here<br>
+          }
+      }]
+  };
+
+  pbjs.que.push(function() {
+      pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request<br>
+      pbjs.setConfig({
+          debug: true,
+          cache: {
+              url: 'https://prebid.adnxs.com/pbc/v1/cache'
+          }
+      });
+
+      pbjs.requestBids({
+          bidsBackHandler: function(bids) {
+              var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+                  adUnit: videoAdUnit,
+                  params: {
+                      iu: '/19968336/prebid_cache_video_adunit',
+                      cust_params: {
+                          section: 'blog',
+                          anotherKey: 'anotherValue'
+                      },
+                      output: 'vast'
+                  }
+              });
+              invokeVideoPlayer(videoUrl);
+          }
+      });
+  });
+
+&lt;/script&gt;
+      </pre>
+    </div>
+
+    <h4>Place this code in the page body.</h4>
+    <div class="pb-code-hl-wrap">
+
+      <!--body code example-->
+      <pre class="pb-code-hl" >
+
 <!--put body html and javascript here-->
 &lt;!--player div--&gt;
 &lt;div id="playerContainerJW" style='width:640px; height:480px; border:1px solid black;'&gt;&lt;/div&gt;
 &lt;script&gt;
-	var jwPlayerInstance = jwplayer("playerContainerJW");
-	
-	invokeVideoPlayer = function(url) {
-	    jwPlayerInstance.setup({
-	        "file": "http://video-demo.appnexus.com/pbjs/JWPlayerDemo/AppNexus_Summit_Video_HighRes.mp4",
-	        "width": 640,
-	        "height": 480,
-	        "autostart": true,
-	        "mute": true,
-	        "advertising": {
-	            client: "vast",
-	        }
-	    });
-	
-	    jwPlayerInstance.on('beforePlay', function() {
-	        jwPlayerInstance.playAd(url);
-	    })
-	}
-	
-	if (tempTag) {
-	    invokeVideoPlayer(tempTag);
-	    tempTag = false;
-	}
+  var jwPlayerInstance = jwplayer("playerContainerJW");
+
+  invokeVideoPlayer = function(url) {
+      jwPlayerInstance.setup({
+          "file": "https://vjs.zencdn.net/v/oceans.mp4",
+          "width": 640,
+          "height": 480,
+          "autostart": true,
+          "mute": false,
+          "advertising": {
+              client: "vast",
+          }
+      });
+
+      jwPlayerInstance.on('beforePlay', function() {
+          jwPlayerInstance.playAd(url);
+      })
+  }
+
+  if (tempTag) {
+      invokeVideoPlayer(tempTag);
+      tempTag = false;
+  }
 
 &lt;/script&gt;
 
-</pre>
-					</div>
-					
-				</div><!--end content-->
-					
-			</div><!--end main container-->
-			
-			<!--footer-->
-			<div class="container">
-				 <div class="pb_footer">
-			    	All demos, instructions, documentation and code included on the Prebid.org website are released<br /> under the <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License</a>. | <a href="http://www.prebid.org/credits.html">Credits</a>
-			    	<p></p>
-			    </div>
-			</div>
-						
-		</div> <!--end of opening div-->
-		
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130832561-1"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-		
-		  gtag('config', 'UA-130832561-1', {'anonymize_ip': true});
-		</script>
-		
-		<script>
-			$(document).ready(function() {
-				$( 'a[href^="http://"]' ).attr( 'target','_blank' );
-			});
-		</script>
-		
-		<!--video player code-->
-		 <script>
-            var jwPlayerInstance = jwplayer("playerContainerJW");
 
-            invokeVideoPlayer = function(url) {
-                jwPlayerInstance.setup({
-                    "file": "http://video-demo.appnexus.com/pbjs/JWPlayerDemo/AppNexus_Summit_Video_HighRes.mp4",
-                    "width": 640,
-                    "height": 480,
-                    "autostart": true,
-                    "mute": true,
-                    "advertising": {
-                        client: "vast",
-                    }
-                });
+      </pre>
+		</div>
+	</div>
+</div>
 
-                jwPlayerInstance.on('beforePlay', function() {
-                    jwPlayerInstance.playAd(url);
-                })
-            }
+<!--video player code-->
+	<script>
+	    var jwPlayerInstance = jwplayer("playerContainerJW");
 
-            if (tempTag) {
-                invokeVideoPlayer(tempTag);
-                tempTag = false;
-            }
+	    invokeVideoPlayer = function(url) {
+	        jwPlayerInstance.setup({
+	            "file": "https://vjs.zencdn.net/v/oceans.mp4",
+	            "width": 640,
+	            "height": 480,
+	            "autostart": true,
+	            "mute": true,
+	            "advertising": {
+	                client: "vast",
+	            }
+	        });
 
-        </script>
-          
-		<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
+	        jwPlayerInstance.on('beforePlay', function() {
+	            jwPlayerInstance.playAd(url);
+	        })
+	    }
 
-    </body>
+	    if (tempTag) {
+	        invokeVideoPlayer(tempTag);
+	        tempTag = false;
+	    }
+
+	</script>
+
+
+	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>

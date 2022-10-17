@@ -2,7 +2,7 @@
 layout: page_v2
 title: Questions & FAQ
 description: 
-hide: true
+
 ---
 
 <div class="bs-docs-section" markdown="1">
@@ -28,7 +28,7 @@ hide: true
   <div class="form-group">
     <label class="col-sm-2 control-label">Site Link</label>
     <div class="col-sm-10">
-      <input class="form-control" id="site-field" placeholder="http://" autofocus required>
+      <input class="form-control" id="site-field" placeholder="https://" autofocus required>
     </div>
   </div>
 

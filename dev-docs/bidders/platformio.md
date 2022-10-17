@@ -2,11 +2,18 @@
 layout: bidder
 title: Platform.io
 description: Prebid Platform.io Bidder Adapter
-hide: true
+pbjs: true
 biddercode: platformio
 media_types: native, video
 gdpr_supported: true
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
+
+### Disclosure
+
+This bidder sets `adId` on the bid response and hasn't responded to the Prebid.js team to confirm uniqueness
+of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381).
 
 ### Bid Params
 
@@ -15,7 +22,6 @@ gdpr_supported: true
 |---------------|----------|----------------------------------|----------------|----------|
 | `pubId`       | required | The publisher account ID         | `'28082'`      | `string` |
 | `siteId`      | required | The publisher site ID            | `'26047'`      | `string` |
-| `size`        | required | Ad size identifier               | `'300X250'`    | `string` |
 | `placementId` | required | Identifies specific ad placement | `'17394'`      | `string` |
 | `bidFloor`    | optional | The bid floor                    | `'0.001'`      | `string` |
 | `ifa`         | optional | IFA ID                           | `'XXX-XXX'`    | `string` |
@@ -25,9 +31,8 @@ gdpr_supported: true
 ### test params
 
 ```
-  var adUnits = [{
+ var adUnits = [{
           code: 'dfp-native-div',
-          mediaType: 'native',
           mediaTypes: {
               native: {
                   title: {
@@ -48,9 +53,13 @@ gdpr_supported: true
           bids: [{
               bidder: 'platformio',
               params: {
-                  pubId: '29521',
+                  pubId: '29521', 
                   siteId: '26048',
                   placementId: '123',
+                  bidFloor: '0.001', // optional
+                  ifa: 'XXX-XXX', // optional
+                  latitude: '40.712775', // optional
+                  longitude: '-74.005973', // optional
               }
           }]
       },
@@ -59,7 +68,7 @@ gdpr_supported: true
           mediaTypes: {
               banner: {
                   sizes: [
-                      [300, 250]
+                      [300, 250],[300,600]
                   ],
               }
           },
@@ -68,16 +77,15 @@ gdpr_supported: true
               params: {
                   pubId: '29521',
                   siteId: '26049',
-                  size: '300X250',
                   placementId: '123',
               }
           }]
       },
       {
           code: 'dfp-video-div',
-          sizes: [640, 480],
           mediaTypes: {
               video: {
+                  playerSize: [[640, 480]],
                   context: "instream"
               }
           },
@@ -86,7 +94,6 @@ gdpr_supported: true
               params: {
                   pubId: '29521',
                   siteId: '26049',
-                  size: '640X480',
                   placementId: '123',
                   video: {
                       skippable: true,

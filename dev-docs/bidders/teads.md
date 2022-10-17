@@ -2,10 +2,15 @@
 layout: bidder
 title: Teads
 description: Prebid Teads Bidder Adapter
-hide: true
+pbjs: true
 biddercode: teads
 gdpr_supported: true
+usp_supported: true
+schain_supported: true
+userIds: uid2Id, identityLinkId, lotamePanoramaId, id5Id, criteoId, connectId, quantcastId, publinkId, sharedId, merkleId, kinessoId
 media_types: banner, video
+gvl_id: 132
+deals_supported: true
 ---
 
 ### Note:

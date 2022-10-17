@@ -2,7 +2,7 @@
 layout: bidder
 title: SARA
 description: SARA Bidder Adapter
-hide: true
+pbjs: true
 biddercode: sara
 ---
 

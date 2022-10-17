@@ -187,7 +187,7 @@ Create the ad units and add sizes for banner ad units.   Replace `PREBID-SERVER-
 Prebid.shared.prebidServerAccountId = "`PREBID-SERVER-ACCOUNT-ID"
 Prebid.shared.shareGeoLocation = true
 
-let bannerUnit = BannerAdUnit(configId: "PREBID-SERVER-CONFIGURATION-ID", size: CGSize(width: 300, height: 250))
+let bannerUnit = BannerAdUnit(configId: "PREBID-SERVER-IMPLEVEL-STOREDREQUEST-ID", size: CGSize(width: 300, height: 250))
  bannerUnit.setAutoRefreshMillis(time: 35000)
 ```
 **Google Ad Manager Example**  
@@ -257,4 +257,4 @@ Use the table below to see which ad objects are supported currently.
 ## Further Reading
 
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)

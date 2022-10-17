@@ -11,7 +11,7 @@ sidebarType: 4
 {: .no_toc}
 
 In this tutorial, we'll show how to set up Prebid to show a video ad
-from Google Ad Manager.  We'll use the [Video.js](http://videojs.com/) player and
+from Google Ad Manager.  We'll use the [Video.js](https://videojs.com/) player and
 the AppNexus bidder, but the principles are the same across
 different video players and video-enabled bidders.
 
@@ -22,7 +22,7 @@ different video players and video-enabled bidders.
 
 The code example below was built using the following libraries:
 
-+ [video.js](http://videojs.com/) version 5.9.2
++ [video.js](https://videojs.com/) version 5.9.2
 + MailOnline's [videojs-vast-vpaid plugin](https://github.com/MailOnline/videojs-vast-vpaid) version 2.0.2
 
 Also, you need to make sure to build Prebid.js with:
@@ -59,25 +59,27 @@ var videoAdUnit = {
     mediaTypes: {
         video: {
             context: 'instream',
-            playerSize: [640, 480]
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
         },
     },
     bids: [{
         bidder: 'appnexus',
         params: {
-            placementId: 13232361,
-            video: {
-                skippable: true,
-                playback_methods: ['auto_play_sound_off']
-            }
+            placementId: 13232361
         }
     }]
 };
 ```
 
+For full details on video ad unit parameters, see [Ad Unit Reference for Video]({{site.baseurl}}/dev-docs/adunit-reference.html#adunitmediatypesvideo)
+
 ### 2. Implement Custom Price Buckets
 
-By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs over $20.  In order to receive those bids, you'll need to implement custom price buckets setting the [priceGranularity](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity) object in the `setConfig` method.
+By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs over $20.  In order to receive those bids, you'll need to implement custom price buckets setting the [priceGranularity](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity) object in the `setConfig` method.
 
 For instructions and sample code, see [Custom Price Granularity Buckets
 ](/dev-docs/examples/custom-price-buckets.html).
@@ -88,7 +90,7 @@ Next, we need to do the standard Prebid "add ad units and request bids" dance.
 
 In the example below, our callback builds the video URL the player needs using the `buildVideoUrl` method from the Google Ad Manager ad server module that we built into our copy of Prebid.js in the **Prerequisites** section.
 
-For more information, see the API documentation for [pbjs.adServers.dfp.buildVideoUrl]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl).  Understanding the arguments to this method is *especially* important if you plan to pass any custom parameters to Google Ad Manager.  The `params` key in the argument to `buildVideoUrl` supports all parameters from the [Google Ad Manager API](https://support.google.com/admanager/answer/1068325).
+For more information, see the API documentation for [pbjs.adServers.dfp.buildVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html).  Understanding the arguments to this method is *especially* important if you plan to pass any custom parameters to Google Ad Manager.  The `params` key in the argument to `buildVideoUrl` supports all parameters from the [Google Ad Manager API](https://support.google.com/admanager/answer/1068325).
 
 ```javascript
 pbjs.que.push(function() {
@@ -120,9 +122,9 @@ pbjs.que.push(function() {
 The VAST XML has to be cached somewhere because most video players can only work with a URL that returns VAST XML, not VAST directly. Some bidders cache the VAST XML on the server side, while others depend on Prebid.js to perform the caching.
 
 + In general, video-enabled bidders must supply `bid.videoCacheKey`, `bid.vastXml`, or `bid.vastUrl` on their responses, and can provide any combination of the three.
-+ If `pbjs.setConfig({cache: {URL}})` isn't set and the bidder supplies only `bid.vastXml` in its bid response, [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl) will not be able to generate a videoCacheKey, and it will be dropped from the auction.
++ If `pbjs.setConfig({cache: {URL}})` isn't set and the bidder supplies only `bid.vastXml` in its bid response, [`pbjs.adServers.dfp.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html) will not be able to generate a videoCacheKey, and it will be dropped from the auction.
 + If `pbjs.setConfig({cache: {URL}})` is defined and the bidder responds with `bid.videoCacheKey`, Prebid.js will not re-cache the VAST XML.
-+ If `options.url` is passed as an argument to [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl):
++ If `options.url` is passed as an argument to [`pbjs.adServers.dfp.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html):
     + If Prebid Cache is disabled, Prebid sets `description_url` field to the bid response's `bid.vastUrl`.
     + If Prebid Cache is enabled, Prebid sets `description_url` field to the cache URL.
 
@@ -161,9 +163,9 @@ In the body of the page, the following HTML and JS will show the ad:
     data-setup='{}'
     width='640'
     height='480'>
-    <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
-    <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm'/>
-    <source src="http://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/>
+    <source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
+    <source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm'/>
+    <source src="https://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/>
   </video>
 </div>
 
@@ -184,7 +186,7 @@ In the body of the page, the following HTML and JS will show the ad:
 </script>
 ```
 
-If you have [set up your ad server line items and creatives correctly]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html), you should see an instream pre-roll video ad followed by the oceans video from the [video.js homepage](http://videojs.com/).
+If you have [set up your ad server line items and creatives correctly]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html), you should see an instream pre-roll video ad followed by the oceans video from the [video.js homepage](https://videojs.com/).
 
 ## Working Examples
 
@@ -193,23 +195,26 @@ If you have [set up your ad server line items and creatives correctly]({{site.ba
 Below, find links to end-to-end "working examples" integrating Prebid.js demand with various video players:
 
 ### Using client-side adapters
-
-+ [video.js]({{site.github.url}}/examples/video/videojs-demo.html)
-+ [JWPlayer]({{site.github.url}}/examples/video/jwPlayerPrebid.html)
-+ [Brightcove]({{site.github.url}}/examples/video/bc-demo.html)
-+ [Kaltura]({{site.github.url}}/examples/video/klt-demo.html)
-+ [Ooyala]({{site.github.url}}/examples/video/ooyala-demo.html)
++ [Akamai AMP]({{site.github.url}}/examples/video/instream/akamai/pb-ve-amp.html)
++ [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
++ [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
++ [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
++ [JWPlayer - Platform]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
++ [JWPlayer - Hosted]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
++ [Kaltura]({{site.github.url}}/examples/video/instream/kaltura/pb-ve-kaltura.html)
++ [Ooyala]({{site.github.url}}/examples/video/instream/ooyala/pb-ve-ooyala.html)
++ [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
++ [Instream and Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
 
 ### Using Prebid Server Video
 
-+ [JW Player]({{site.baseurl}}/examples/video/jwplayer-pbserver-demo.html)
-+ [Kaltura]({{site.baseurl}}/examples/video/kaltura-pbserver-demo.html)
-+ [VideoJS]({{site.baseurl}}/examples/video/videojs-pbserver-demo.html)
-+ [Ooyala]({{site.baseurl}}/examples/video/ooyala-pbserver-demo.html)
++ [Brid]({{site.baseurl}}/examples/video/server/brid/pbs-ve-brid.html)
++ [JW Player - Platform]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
++ [JW Player - Hosted]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
++ [Kaltura]({{site.baseurl}}/examples/video/server/kaltura/pbs-ve-kaltura.html)
++ [Ooyala]({{site.baseurl}}/examples/video/server/ooyala/pbs-ve-ooyala.html)
++ [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)
 
-### All examples in one place
-
-+ [Prebid Video Examples]({{site.github.url}}/examples/video)
 
 ## Related Topics
 

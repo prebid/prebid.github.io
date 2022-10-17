@@ -83,7 +83,7 @@ Host getPrebidServerHost()
 
 **Parameters**
 
-`timoeoutMillis`: The Prebid timeout (accessible to Prebid SDK 1.2+), set in milliseconds, will return control to the ad server SDK to fetch an ad once the expiration period is achieved. Because Prebid SDK solicits bids from Prebid Server in one payload, setting Prebid timeout too low can stymie all demand resulting in a potential negative revenue impact. 
+`timoeoutMillis`: The Prebid timeout (accessible to Prebid SDK 1.2+), set in milliseconds, will return control to the ad server SDK to fetch an ad once the expiration period is achieved. Because Prebid SDK solicits bids from Prebid Server in one payload, setting Prebid timeout too low can stymie all demand resulting in a potential negative revenue impact.
 
 ### Set Prebid Timeout
 
@@ -131,6 +131,19 @@ none
 boolean isShareGeoLocation()
 ```
 
+### setCustomHeaders
+
+The following methods enable the customization of the HTTP call to the Prebid server:
+
+```
+public static void setCustomHeaders(HashMap<String, String> customHeaders)
+```
+
+You can also inspect the current custon headers using: 
+
+```
+public static HashMap<String, String> getCustomHeaders()
+```
 
 ### setApplicationContext
 
@@ -212,13 +225,22 @@ none
 void clearStoredBidResponses()
 ```
 
+### pbsDebug
+
+`pbsDebug`: adds the debug flag ("test":1) on the outbound http call to Prebid Server. The test:1 flag will signal to Prebid Server to emit the full resolved request (resolving any Stored Request IDs) as well as the full Bid Request and Bid Response to and from each bidder.
+```java
+pbsDebug(Boolean)
+```
+
+Example:
+PrebidMobile.setPbsDebug(true);
 
 ## Related Topics
 
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/adunit-android.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/banneradunit-android.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/interstitialadunit-android.html)
+- [Ad Unit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html)
+- [Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
+- [Interstitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 - [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)

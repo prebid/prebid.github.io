@@ -10,7 +10,7 @@ sidebarType: 2
 # BannerAdUnit: AdUnit
 {: .notoc}
 
-The BannerAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) class. Use the BannerAdUnit object to create and configure a banner ad unit in your app.  '
+The BannerAdUnit is a subclass of the [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) class. Use the BannerAdUnit object to create and configure a banner ad unit in your app.  
 
 - TOC
  {:toc}
@@ -25,9 +25,27 @@ See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for
 
 **Parameters**
 
-`configId (String)`: Prebid Server configuration ID.
+`configId (String)`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 
 `size (CGSize)`: Width and height of the banner.
+
+
+#### Parameters
+
+
+Parameters is a sub class of BannerAdUnit. Create a new Parameters class to define the parameters of the video ad unit. Parameters contain the OpenRTB video attributes.
+
+`api: [int]`: OpenRTB placement
+
+**Parameters**
+
+Array of integers or a predefined constant representing the supported [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) Frameworks. While OpenRTB allows additional API Frameworks, they were intentionally left out as constants since they do not make sense in a banner context. If there is a desire to pass API Frameworks that are not represented as a constants within Parameters, they can be passed an integer, where Prebid SDK will pass Prebid Server whatever is present:
+
+* `3` or `Signals.Api.MRAID_1` : MRAID-1 support signal
+* `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
+* `6` or `Signals.Api.MRAID_3` : MRAID-3 support signal
+* `7` or `Signals.Api.OMID_1` :  signals OMSDK support
+
 
 ## Methods
 
@@ -52,9 +70,26 @@ let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", 
 **Add additional ad sizes**
 
 ```
-bannerUnit.addAdditionalSizes(sizes: CGSize(width: 320, height: 50))
+bannerUnit.addAdditionalSize(sizes: [CGSize(width: 320, height: 50), CGSize(width: 300, height: 250)])
 ```
 Once a BannerAdUnit is created use Google Mobile Ads or MoPub to retrieve and display creatives.
+
+** Define any appropriate API Frameworks **
+
+Swift
+```swift
+let parameters = BannerAdUnit.Parameters()
+parameters.api = [Signals.Api.MRAID_2] //parameters.api = [Signals.Api(5)]
+adUnit.setParameters(parameters);
+```
+
+Objective C
+```
+PBBannerAdUnitParameters* parameters = [[PBBannerAdUnitParameters alloc] init];
+parameters.api = @[PBApi.MRAID_2];
+//parameters.api = @[[[PBApi alloc] initWithIntegerLiteral:5]];
+bannerAdUnit.parameters = parameters;
+```
 
 **Google Mobile Ads**
 
@@ -160,9 +195,9 @@ func loadMoPubBanner(bannerUnit: AdUnit){
 
 ## Related Topics
 
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-iOS.html)
+- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
 - [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-interstitial-ad-ios.html)
+- [Interstitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
