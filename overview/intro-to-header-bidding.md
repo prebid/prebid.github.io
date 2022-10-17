@@ -40,7 +40,7 @@ Header bidding changed all that. With header bidding, publishers decide which su
 
 We mentioned at the start of this introduction that “header bidding” doesn’t really fit the process anymore. When header bidding began, it was targeted for display ads on web pages. The code required to implement header bidding was placed in the header section (between the `<head>` tags) of the HTML page. Thus, the term “header bidding” was adopted.
 
-The code for bidding on display ads still resides in the header, but with the ongoing addition of more formats, header bidding itself now encompasses much more. For example, video ad auctions happen in the video player; mobile apps call out to a server; and web pages can utilize server-side bidding. None of these processes involve code in the header. And with continual growth into additional areas such as DOOH (digital out-of-home), CTV (connected TV) and audio, the term “header bidding” becomes less and less applicable.
+The code for bidding on web display ads still resides in the header, but with the ongoing addition of more formats, header bidding itself now encompasses much more. For example, video ad auctions happen in the video player; mobile apps call out to a server; and web pages can utilize server-side bidding. None of these processes involve code in the header. And with continual growth into additional areas such as DOOH (digital out-of-home), CTV (connected TV) and audio, the term “header bidding” becomes less and less applicable.
 
 Today header bidding might more appropriately be referred to as pre-ad server bidding. But in the same way that people in the U.S. insist on calling a game played mostly with your hands “football,” people in the ad industry are going to continue to call this header bidding.
 
