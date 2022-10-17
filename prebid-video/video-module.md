@@ -70,6 +70,8 @@ To register a video player with Prebid, you must use `setConfig` to set a `video
 | video.providers[].adServer.vendorCode | yes | string | The identifier of the AdServer vendor (i.e. gam, etc) |
 | video.providers[].adServer.baseAdTagUrl | yes | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. Required when `video.providers[].adServer.params` is absent. |
 | video.providers[].adServer.params | yes | object | Querystring parameters that will be used to construct the video ad tag URL. Required when `video.providers[].adServer.baseAdTagUrl` is absent. |
+| video.contentEnrichmentEnabled | no | boolean | Defaults to true. Set to false to prevent the Video Module from enriching the `site.content` params in the bidder request. | 
+| video.mainContentDivId | no | string | Div Id of the video player intended to populate the `bidderRequest.site.content` params. Used when multiple video players are registered with the Video Module to indicate which player is rendering the main content. The `bidderRequest.site.content` params will be populated by said video player for all auctions where a Video Player is registered with an Ad Unit in the auction. |
 
 **Note:** You can integrate with different Player vendors. For this to work, you must ensure that the right Video Submodules are included in your build, and that the providers have the right `vendorCode`s and `divId`s.
 
@@ -155,18 +157,34 @@ The remaining Payload params are listed in the following table.
 When an impression or error from an ad originating from a winning bid occurs, the bid will be automatically marked as used.
 Limitations: the mechanism used to determine when an error occurred for an ad originating from a winning might fail at times when the ad server is GAM because of a limitation in GAM. 
 
+#### Bid request Enrichment
+
+For your convenience, when an auction begins, the Video Module will update oRTB params in the auction for SSPs to consume and include in their bid requests.
+
+##### adUnit.mediaTypes.video
+
+The params in `adUnit.mediaTypes.video` are populated with information extracted from the player. Any params already filled by the publisher will remain unchanged.
+Some params such as `battr`, `minduration`, `maxduration` are specific to a publisher's preferences and should therefore be populated by the Publisher.
+
+##### bidderRequest.ortb2.site.content
+
+The params in `bidderRequest.ortb2.site.content` are populated with information extracted from the video player. Any params already filled by the publisher will remain unchanged.
+This feature can be disabled by setting `video.contentEnrichmentEnabled` to `false` in the Prebid config.
+In the case where multiple video players are registered with the Video Module, the `bidderRequest.ortb2.site.content` params will be updated by the video player registered to the ad unit in the auction. If one of the Video Players is responsible for rendering the main content on the page, it may be appropriate for the `site.content` params to be populated with metadata from that player. In that case, you should populate `video.mainContentDivId` in the Prebid config with the video player's div id. |
+
 ## SSPs 
 
 Before bids are requested, the Video Module automatically enriches the auction. SSPs can benefit from this by reading from the proper params.
+Given that the video player is the source of truth for most video params, SSPs and DSPs can rely on the accuracy of the information.
 
 ### mediaTypes.video
 
 Before bids are requested, all ad units configured to be handled by the Video Module will be enriched. The adUnit's `mediaTypes.video` param will be populated automatically.
 SSPs wishing to benefit from this enrichment should read from `mediaTypes.video`.
 
-### ortb2.site.content
+### bidderRequest.ortb2.site.content
 
-Similarly, before bids are requested, the `ortb2.site.content` param is populated in the `bidderRequest` argument of the `buildRequests` function with contextual information from the video player and its media.
+Similarly, before bids are requested, the `bidderRequest.ortb2.site.content` param is populated in the `bidderRequest` argument of the `buildRequests` function with content metadata from the video player and its media.
 SSPs wishing to benefit from this enrichment should read from `bidderRequest.ortb2.site.content`.
 
 <a name="Video-Module-Contributing" />
