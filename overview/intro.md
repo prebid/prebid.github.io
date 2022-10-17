@@ -58,11 +58,11 @@ See [What is Prebid.js?](/prebid/prebidjs.html) for more information.
 
 ### Prebid Server
 
-Prebid Server (PBS) provides a server-side solution to header bidding. Built on the same core principles as Prebid.js, our server solution can reduce latency and improve page load time. A server-side solution to header bidding is required in environments that don’t have HTML header sections in which to put JavaScript, such as mobiles apps and Accelerated Mobile Pages (AMP) sites.
+Prebid Server (PBS) provides a powerful framework for a server-side solution to header bidding. Built on the same core principles as Prebid.js, our server solution can reduce latency and improve page load time. A server-side solution to header bidding is required in environments that don’t have HTML header sections in which to put JavaScript, such as mobiles apps and Accelerated Mobile Pages (AMP) sites.
 
-When a publisher chooses to push auctions to the server side, they’re doing it to lighten the load that header bidding has on the browser. For instance, if five bidders are moved from the client side to the server side, the browser just makes one request to PBS, which fans out the actual five auctions across server-to-server connections.
+When a publisher chooses to push auctions to the server side, they’re doing it to lighten the load that header bidding has on the browser. For instance, if five bidders are moved from the client side to the server side, the browser just makes one request to PBS, which delegates the actual auctions to the server, lightening the load on the user's device.
 
-Several Prebid.org members provide hosted solutions, enabling publishers to receive the benefits of server-side header bidding without the need to implement and manage the process themselves.
+Several Prebid.org members provide [managed solutions](https://prebid.org/product-suite/managed-services/), enabling publishers to receive the benefits of server-side header bidding without the need to implement and manage the process themselves.
 
 If a publisher would prefer to implement their own solution, source code in Go and Java is available from our Github page and instructions for configuring, deploying and testing your implementation can be found in the Prebid Server section of this site.
 
@@ -80,9 +80,9 @@ SharedId is a first party identifier. For more information, see [Prebid SharedID
 
 ### Modules
 
-Along with our suite of products, Prebid comes with modules that enable you to implement the header bidding solution that’s right for you. A module is add-on code that is outside the core Prebid.js functionality, all of which have been provided by a thriving ecosystem of contributors. There are many different types of modules, including bidder adapters, analytics adapters, real-time data modules, user ID modules, and many others.
+Along with our suite of products, Prebid comes with modules that enable you to implement the header bidding solution that’s right for you. A module is add-on code that is outside the core Prebid.js functionality, all of which have been provided by a thriving ecosystem of contributors. There are many different types of modules, including bid adapters, analytics adapters, real-time data modules, user ID modules, and others.
 
-Bidder adapter modules are used to communicate with the bidders (SSPs, DSPs, and exchanges) that will be participating in the header bidding auction. Bidders create these adapters and submit them to Prebid, where they’re reviewed and tested before being made publicly available. You choose your adapters when you download Prebid.js. (You can also add them in later.) To help you determine the adapters that are available and decide which are right for you, Prebid provides a spreadsheet that lists all Prebid bidder adapters and information about them, including media formats, regulatory compliance, etc. <a href="/dev-docs/bidder-data.csv" download>Download the CSV spreadsheet.</a>
+Bid adapter modules are used to communicate with the bidders (SSPs, DSPs, and exchanges) that will be participating in the header bidding auction. Bidders create these adapters and submit them to Prebid, where they’re reviewed and tested before being made publicly available. You choose your adapters when you build or download Prebid.js. (You can also add them in later.) To help you determine the adapters that are available and decide which are right for you, Prebid provides a spreadsheet that lists all Prebid bid adapters and information about them, including media formats, regulatory compliance, etc. <a href="/dev-docs/bidder-data.csv" download>Download the CSV spreadsheet.</a>
 
 Analytics adapter modules allow you to gather analytics from Prebid.js and send them to your analytics provider (such as Google Analytics). See [Prebid.js Analytics Adapters](/overview/analytics.html) for more information.
 
@@ -130,22 +130,23 @@ If you decide to use in-house resources to implement Prebid, keep in mind that r
 <a name="latency"></a>
 ## Prebid and Latency
 
-With header bidding, the publisher creates a short delay in their ad serving to obtain bids from SSPs and ad exchanges. Often a major concern with this process is the latency caused by this delay. By delaying the ad serving, you may lose impressions from users who bounce very quickly. Prebid provides several options for minimizing this issue.
+With header bidding, the publisher creates a short delay in their ad serving to obtain bids that might be used in the ad decisioning. Often a major concern with this process is the latency caused by this delay. By delaying the ad serving, you may lose impressions from users who bounce very quickly. Prebid provides several options for minimizing this issue.
 
 - Minimize the number of bidders that will be allowed to participate in the header bidding auction. The fewer demand partners that have the opportunity to bid, the fewer the bids, and therefore the faster the processing. But fewer demand partners also means fewer chances for an optimal bid. It might require some time and experimentation to determine the optimal number. Client-side implementations typically use 5 – 15 demand partners. Because of the faster processing speeds, server-side will often have more.
 - Use Prebid Server to do the processing rather than the client browser. Passing the load of running auctions to the server can be faster than running them client-side from the browser. You can also use a combination of client and server processing to optimize your yield while still reducing latency.
 - Set a time limit for receiving bids. Prebid provides the option for you to set a time limit. Any demand partner who hasn’t responded with a bid within the time allotted will not be included in the auction. See [Timeouts](/features/timeouts.html) for more information.
 - Asynchronous Processing. Requests are sent to all bidders at once, rather than one at a time. See [How to reduce the latency of header bidding with Prebid.js](/overview/how-to-reduce-latency-of-header-bidding.html#asynchronous-call-scenario-with-prebidjs) for more information.
 
+We recommend that publishers do A/B testing on the number of bidders, timeout values, and client-vs-server for their specific pages. If your org doesn't do a lot of A/B testing, several of the managed services can help in this area.
 
 ## Community Support
 
-Prebid has a thriving community. If you ever need support, simply raise an issue on [one of our Github repositories](https://github.com/prebid). We also provide extensive documentation not only on our products but on how to integrate them with various ad servers.
+If you ever need support, simply raise an issue on [one of our Github repositories](https://github.com/prebid). We also provide extensive documentation not only on our products but on how to integrate them with various ad servers.
 
 Prebid also has an active member community that ensures Prebid will continue to grow and evolve in a way that is beneficial to the header bidding ecosystem. Through a variety of committees, Prebid.org members continually decide on and prioritizes new features, updates, and fixes.
 
 ## Prebid Membership
 
-You know that the ad server you’re working with makes their money by taking a cut of the winning bid price, so you might be wondering if Prebid also takes a cut. The answer is NO. Prebid is free to anyone who wants to use it. So how does Prebid continue to evolve as a quality set of products (not to mention provide events and great documentation) without taking in fees? Through dedicated volunteers from member companies, alongside a small handful of employees and an occasional contractor paid through Prebid.org membership dues. All dues go into serving the Prebid community and providing a voice for our members in the world of header bidding.
+The ad server you’re working with makes their money by taking a cut of the winning bid price, so you might be wondering if Prebid also takes a cut. The answer is NO. Prebid is free to anyone who wants to use it. So how does Prebid continue to evolve as a quality set of products (not to mention provide events and great documentation) without taking in fees? Through dedicated volunteers from member companies, alongside a small handful of employees and an occasional contractor paid through Prebid.org membership dues. All dues go into serving the Prebid community and providing a voice for our members in the world of header bidding.
 
 You don’t have to be a Prebid.org member to use Prebid. However, we do highly encourage you to explore the benefits of membership and consider joining. No matter the size of your company, Prebid has membership options available that will provide value to anyone interested in header bidding today and in the future. For more information on Prebid.org membership, see [Prebid.org Membership Overview](https://prebid.org/membership/).
