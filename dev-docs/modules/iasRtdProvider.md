@@ -49,6 +49,7 @@ Configuration example for using RTD module with the `ias` provider:
             adUnitPath: {
               'one-div-id': '/012345/ad/unit/path'
             }
+          }
         }
       ]
     }
