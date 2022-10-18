@@ -202,5 +202,6 @@ To add a submodule please follow the instructions in [How to add a video submodu
 
 // TODO: Examples
 
-// TODO: Adding an adapter
+// TODO: Linking to other docs - setCOnfig addAdUnit events
+// TODO: list event and param details
 
