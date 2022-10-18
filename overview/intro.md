@@ -22,6 +22,12 @@ The Prebid.org suite of products leads the industry in providing header bidding 
 
 ![Top Header Bidding Providers](/assets/images/intros/top-header-providers.png)
 
+<div style="width:650px;">
+<p align=right>
+<a href="https://app.sincera.io/">Data by Sincera</a>
+</p>
+</div>
+
 Prebid is more than a product; it’s a product suite, a community, and an independent organization.
 
 - **Product Suite:** A free and open source suite of software products that enables publishers to implement header bidding on websites and mobile apps.
@@ -96,6 +102,13 @@ Additional modules are available that support identity, price floors, testing, c
     allowtransparency>
 </iframe>
 
+<div style="width:800px;">
+<p align=right>
+<a href="https://app.sincera.io/">Data by Sincera</a>
+</p>
+</div>
+
+
 ## Benefits of Using Prebid Products
 
 The Prebid product suite offers publishers multiple benefits designed to foster a better header bidding experience, including:
@@ -126,6 +139,11 @@ If you decide to use in-house resources to implement Prebid, keep in mind that r
   allowtransparency>
 </iframe>
 
+<div style="width:800px;">
+<p align=right>
+<a href="https://app.sincera.io/">Data by Sincera</a>
+</p>
+</div>
 
 <a name="latency"></a>
 ## Prebid and Latency
