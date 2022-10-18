@@ -29,6 +29,7 @@ The available events are:
 | beforeBidderHttp | bidder network request is about be triggered | Array of Bid request objects |
 | bidRequested  | A bid was requested from a specific bidder | Bid request object |
 | bidResponse   | A bid response has arrived              | Bid response object |
+| bidRejected   | A bid was rejected                      | Bid response object |
 | bidAdjustment | A bid was adjusted                      | Bid response object |
 | bidWon        | A bid has won                           | Bid response object |
 | bidTimeout    | A bid timed out                         | Array of objects with timed out bids |
