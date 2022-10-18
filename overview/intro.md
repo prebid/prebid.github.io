@@ -28,7 +28,7 @@ Prebid is more than a product; it’s a product suite, a community, and an indep
 - **Community:** Our community is comprised of developers from companies across the ad tech industry who maintain and improve our products.
 - **Organization:** Prebid.org is an active membership of leaders within the ad tech industry that promotes Prebid products and works with the ad tech community to define and implement enhanced solutions. For more about the organization, see Prebid.org.
 
-![Prebid organization](/assets/images/intros/prebid-intro.png)
+![Prebid organization](/assets/images/intros/prebid-intro.png){: .center-image }
 
 {: .alert.alert-info :}
 Our flagship product, Prebid.js, is sometimes referred to as simply Prebid, but the Prebid product line supports header bidding for web, AMP, and mobile apps, using both client- and server-side components.
@@ -110,7 +110,7 @@ The Prebid product suite offers publishers multiple benefits designed to foster 
 - A well established and helpful community that can advise on best practices and, if needed, provide professional setup and services.
 - Troubleshooting and support, where members answer questions through issues raised in Github.
 
-![Prebid Benefits](/assets/images/intros/prebid-benefits.png)
+![Prebid Benefits](/assets/images/intros/prebid-benefits.png){: .center-image }
 
 ## Prebid Integration and Maintenance
 

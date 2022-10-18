@@ -32,7 +32,7 @@ Think for a moment about the amount of power an ad server has over auctions for 
 
 Did the publisher get the best price possible for the ad? Did they get the most appropriate ad for the spot? Well, historically no one actually knew that for sure, the whole process was mostly invisible to the publisher (and also the buyer).
 
-![Ad Server Black Box](/assets/images/intros/ad-server-black-box.png)
+![Ad Server Black Box](/assets/images/intros/ad-server-black-box.png){: .center-image :}
 
 Header bidding changed all that. With header bidding, publishers decide which suppliers can bid on their impressions, then send one or more of those bids to the ad server to compete with the ad server’s bidders. This gives publishers much more transparency and control in the process.
 
@@ -56,7 +56,7 @@ This is a very simplified version of how header bidding works with display ads o
 5. 	The ad server considers all available ads that could be displayed, including the header bid(s).
 6. 	The ad server displays the winner for each ad unit (which may or may not be one of the bids that resulted from the header bidding).
 
-![Header Bidding](/assets/images/intros/header-bidding-intro.png)
+![Header Bidding](/assets/images/intros/header-bidding-intro.png){: .center-image :}
 
 Again, this is very simplified. The details of this process vary depending on whether you’re working with mobile apps, working server-side rather than client-side, or working with video rather than display.
 
