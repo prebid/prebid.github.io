@@ -174,7 +174,7 @@ pbjs.setConfig({
 
 
 9. (Optional) If you want to monetize outstream video, you can choose among the following options. Outstream video is available from Prebid.js version 6.25 or higher.
-    * Use Index’s outstream video player. For more information, see the [Index's outstream video player ](#index’s-outstream-video-player) section below. 
+    * Use Index's outstream video player. For more information, see the [Index's outstream video player ](#index’s-outstream-video-player) section below. 
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
 10. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher. 
 
@@ -213,7 +213,7 @@ You can set up FPD using the Index bidder-specific setting or the Prebid FPD mod
 
 This module allows you to specify key-value pairs that will be included in your query string when targeting Private Marketplace Deals. For example, if a user visits a news page, you can pass  that information by submitting a key-value pair for `category = news`. You can then create a deal in the Index UI and activate the deal only on pages that contain `category = news` key-value pair.
 
-To include the FPD in a bid request, in the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> object, in the bidder level for <code>ix</code>, provide the key-values in the <code>firstPartyData </code>parameter. Make sure that you set it before the <code>pbjs.requestBids</code> configuration. 
+To include the FPD in a bid request, in the `[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)` object, in the bidder level for `ix`, provide the key-values in the `firstPartyData` parameter. Make sure that you set it before the `pbjs.requestBids` configuration. 
 
 If you want to change the values, you can update the `pbjs.setConfig` once again. The change will reflect in all ongoing bid requests. 
 
@@ -234,7 +234,7 @@ If you want to change the values, you can update the `pbjs.setConfig` once again
 ### Prebid FPD module 
 
 This module allows all bid adapters to have access to first party data that might be useful in ad targeting. This is available from Prebid.js version 4.30 and above.  
-To supply data that is accessible to all bidders, use the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> object as illustrated below. Use the <code>[setBidderConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setBidderConfig.html)</code> function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation. 
+To supply data that is accessible to all bidders, use the `[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)` object as illustrated below. Use the `[setBidderConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setBidderConfig.html)` function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation. 
 
 ```javascript
 pbjs.setConfig({
@@ -258,9 +258,9 @@ Publishers who are using Index as a bidding adapter in Prebid.js can show outstr
 To use Index’s outstream video player, in your Prebid.js configuration:<br />
 
 1. Define a new video object in any of the following ways:
-    * At the** <code>adUnit</code> </strong>level: Define the size using <code>video.playerSize</code>.
-    * At the<strong> <code>bidder </code></strong>level: Define the size of the video player using the <code>video.h</code> and <code>video.w </code>parameters.  <br />
-**Note:** The `bidder` level video configurations override the <code>adUnit</code> level configurations. The <code>playerConfig</code> is only a bidder level configuration.
+    * At the `adUnit` level: Define the size using `video.playerSize`.
+    * At the `bidder` level: Define the size of the video player using the `video.h` and `video.w` parameters.  <br />
+**Note:** The `bidder` level video configurations override the `adUnit` level configurations. The `playerConfig` is only a bidder level configuration.
 2. Configure the player according to the options in the [Bid request parameters](#bid-request-parameters) section below. <br />
 For more information on how to structure the video object, refer to the following code example:<br />
 
