@@ -46,11 +46,11 @@ Publishers can use Prebid.js to call Index Exchange (Index) in any of the follow
 
 **Notes:** 
 * **Bid request limit**: You can send up to 20 ad slots in a single bid request to Index. If a single bid request contains more than 20 ad slots, only the first 20 are accepted and the rest are ignored.
-* **How to view bid requests sent to Index:** To view bid requests that you send to Index:
-    * In your browser open a new tab.
-    * Open the **Developer tools**. 
-    * In **Developer tools**, click the **Network** tab. 
-    * In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index. 
+* **How to view bid requests sent to Index:** 
+    1. In your browser, open a new tab.
+    2. Open the **Developer tools**. 
+    3. In **Developer tools**, click the **Network** tab. 
+    4. In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index. 
 
 
 <a name="supported-media-types" />
@@ -208,7 +208,7 @@ If you are using a JSON file to specify modules, add `ixBidAdapter` and `dfpAdSe
 
 ## Set up First Party Data (FPD)
  
-You can set up FPD using the Index bidder-specific setting or the Prebid FPD module. The preferred method is passing the Index bidder-specific setting, while we are building support to ingest ortb values through the Prebid FPD module. 
+You can set up FPD using the Index bidder-specific module (recommended) or the Prebid FPD module. 
 
 **Notes:**
 
@@ -219,9 +219,9 @@ You can set up FPD using the Index bidder-specific setting or the Prebid FPD mod
 
 ### Index bidder-specific FPD module 
 
-This module allows you to specify key-value pairs that will be included in your query string when targeting Private Marketplace deals. For example, if a user visits a news page, you can pass  that information by submitting a key-value pair for `category = news`. You can then create a deal in the Index UI and activate the deal only on pages that contain `category = news` as the key-value pair.
+This module allows you to specify key-value pairs that will be included in your query string when targeting deals. For example, if a user visits a news page, you can pass that information by submitting a key-value pair for `category = news`. You can then create a deal in the Index UI and activate the deal only on pages that contain `category = news` as the key-value pair.
 
-To include the FPD in a bid request, in the `[pbjs.setConfig()]` object, at the `ix` bidder level, provide the key-values in the `firstPartyData` parameter. Make sure that you set it before the `pbjs.requestBids` configuration. If you want to change the values, you can update the `pbjs.setConfig` once again. The change will reflect in all ongoing bid requests. 
+To include the FPD in a bid request, in the `[pbjs.setConfig()]` object at the `ix` bidder level, provide the key-values in the `firstPartyData` parameter. Make sure that you set it before the `pbjs.requestBids` configuration. If you want to change the values, you can update the `pbjs.setConfig` once again. The change will be reflected in all future bid requests. 
 
 ```javascript
  pbjs.setConfig({
@@ -308,7 +308,7 @@ var adUnits = [{
 
 ## Prebid Native configuration
 
-Prebid Native is available from Prebid.js version 7.4.0 or higher. We support the three native template rendering options that are provided in [Setting up Prebid Native in Google Ad Manager](https://docs.prebid.org/adops/gam-native.html). The following code is an example of a Prebid native set-up using Google Ad Manager, but the concept and implementation should be similar for other ad servers.<br />
+Prebid Native is available from Prebid.js version 7.4.0 or higher. We support the three native template rendering options that are provided in [Setting up Prebid Native in Google Ad Manager](https://docs.prebid.org/adops/gam-native.html). The following code is an example of a Prebid native setup using Google Ad Manager, but the concept and implementation should be similar for other ad servers.<br />
 
 ```javascript
 pbjs.addAdUnits({
@@ -356,7 +356,7 @@ pbjs.addAdUnits({
 
 ## Bid request parameters 
 
-For a list of the OpenRTB fields that Index supports on bid requests, see [List of supported OpenRTB bid request fields for sellers](https://kb.indexexchange.com/publishers/openrtb_integration/list_of_supported_openrtb_bid_request_fields_for_sellers.htm#List_of_supported_OpenRTB_bid_request_fields_for_sellers). The following are the required fields for the various supported media types.
+For a list of the OpenRTB fields that Index supports in bid requests, see [List of supported OpenRTB bid request fields for sellers](https://kb.indexexchange.com/publishers/openrtb_integration/list_of_supported_openrtb_bid_request_fields_for_sellers.htm#List_of_supported_OpenRTB_bid_request_fields_for_sellers). The following are the required fields for the various supported media types.
 
 
 ### Banner 
