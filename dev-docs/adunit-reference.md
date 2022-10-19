@@ -306,7 +306,7 @@ pbjs.addAdUnits({
     video: {
         divId: 'playerDiv',
         adServer: {
-            vendorCode: 'gam',
+            vendorCode: GAM_VENDOR,
             baseAdTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?iu=/12345/'
         }
     },
