@@ -7,7 +7,7 @@ biddercode: lkqd
 media_types: video
 gdpr_supported: true
 schain_supported: true
-pbjs_version_notes: not ported to 5.x
+enable_download : false
 ---
 
 ### Note:

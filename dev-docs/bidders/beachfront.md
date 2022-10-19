@@ -30,7 +30,7 @@ For further information, please contact adops@beachfront.com.
 | Name | Scope | Description | Example | Type |
 |------------|----------|---------------------------------------------------------------------------------------------|------------------------------------------|----------|
 | `appId` | required | Beachfront Exchange ID | `'11bc5dd5-7421-4dd8-c926-40fa653bec76'` | `string` |
-| `bidfloor` | required | Bid floor | `0.01` | `float` |
+| `bidfloor` | required | Bid floor. The floor price module will take priority over this value. | `0.01` | `float` |
 | `video` | optional | Object with video parameters. See the [video section below](#beachfront-video) for details. | | `object` |
 | `banner` | optional | Object with banner parameters. See the [banner section below](#beachfront-banner) for details. | | `object` |
 | `player` | optional | Object with outstream player parameters. See the [player section below](#beachfront-player) for details. | | `object` |

@@ -10,62 +10,28 @@ sidebarType: 6
 # Prebid Video Ads
 {:.no_toc}
 
-Video ads are supported by both Prebid.js and Prebid Server.
+Welcome to Prebid video ad support. This is a collection of resources covering
+how Prebid can help you monetize video.
 
-## Prebid.js
+## Instream
 
-### Adops
+Instream ads are for short-form video content within a player generally has simple video ad requirements, e.g. a single pre-roll ad.
 
-- [Prebid.js video overview](/prebid-video/video-overview.html)
-- [Show video ads in Google Ad Manager](/dev-docs/show-video-with-a-dfp-video-tag.html)
+1. [Prebid.js instream video overview](/prebid-video/video-overview.html#instream-video)
+1. [Prebid.js: Getting started with Prebid video](/prebid-video/video-getting-started.html)
+1. [Prebid Server video ad support](/prebid-server/use-cases/pbs-pbjs.html)
 
-### Developers
+## Outstream
 
-- [Getting started with video](/prebid-video/video-getting-started.html)
-- [Outstream video ads](/dev-docs/show-outstream-video-ads.html)
-- [Prebid Server video ads](/prebid-server/use-cases/pbs-pbjs.html)
-- [Prebid Server Long Form Video](/prebid-server/use-cases/pbs-lfv.html)
+'Outstream' ads are packaged with a separate player, or the publisher provides a special player for them. They aren't embedded within video content, but rather exist as standalone video players somewhere on the page.
 
-### Prebid.js bid adapters that support instream and outstream video ads
+1. [Prebid.js outstream video overview](/prebid-video/video-overview.html#outstream-video)
+1. [Prebid.js: Getting started with Prebid video](/prebid-video/video-getting-started.html)
+1. [Prebid Server video ad support](/prebid-server/use-cases/pbs-pbjs.html)
 
-<div id="dynamicTable"></div>
+## CTV-OTT
 
-<script type="text/javascript">
-var dynamicTableContents=[];
+Connected TV and 'Over-The-Top' video ads are for long-form video content. They have stronger requirements for ad-podding and category exclusion.
 
-{% assign numVideo = 0 %}
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-{% for page in bidder_pages %}
-{% if page.media_types contains 'video' %}
-   dynamicTableContents[{{numVideo}}]={};
-   dynamicTableContents[{{numVideo}}].href="/dev-docs/bidders.html#{{page.biddercode}}";
-   dynamicTableContents[{{numVideo}}].text="{{page.title}}";
-   {% assign numVideo = numVideo | plus: 1 %}
-{% endif %}
-{% endfor %}
-</script>
-<script>
-  writeDynamicTable({div: "dynamicTable", data:"dynamicTableContents"});
-</script>
-
-
-### Prebid.js bid adapters that support only outstream video ads
-
-<div id="dynamicTable-outstream"></div>
-<script type="text/javascript">
-var outstreamTableContents=[];
-
-{% assign numOutstream = 0 %}
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-{% for page in bidder_pages %}
-{% if page.media_types contains 'outstream' %}
-   outstreamTableContents[{{numOutstream}}]={};
-   outstreamTableContents[{{numOutstream}}].href="/dev-docs/bidders.html#{{page.biddercode}}";
-   outstreamTableContents[{{numOutstream}}].text="{{page.title}}";
-   {% assign numOutstream = numOutstream | plus: 1 %}
-{% endif %}
-{% endfor %}
-</script>
-<script>
-  writeDynamicTable({div: "dynamicTable-outstream", data:"outstreamTableContents"});
-</script>
+1. [Prebid CTV+OTT white paper](https://files.prebid.org/docs/Prebid_for_CTV-OTT.pdf)
+1. [Prebid Server long-form video ad support](/prebid-server/use-cases/pbs-lfv.html)
