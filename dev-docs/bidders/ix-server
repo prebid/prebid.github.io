@@ -283,7 +283,7 @@ If you are using Index's outstream player and have placed the video object at th
     }
   },
   "device": {
-    "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
+    "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E18",
     "ip": "10.20.30.40",
     "ifa": "2E2E2E2E-3B3B-4141-8A8A-181818181818"
   },
