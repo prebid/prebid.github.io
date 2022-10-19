@@ -89,7 +89,7 @@ In this configuration Prebid.js calls Index directly from the browser using our 
 ```
 
 3. Define your ad units in the `adUnit` object. This includes the details about the ad slots such as the media types, ad size, and ad code. For more information about this object, see Prebid's [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html) documentation.
-4. Enable user syncing by adding the following code in the `[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)` function. Index strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Make  sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.  <br />
+4. Enable user syncing by adding the following code in the [pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Make  sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.  <br />
 **Note:** While we recommend iFrame-based user syncing, we also support image-based user syncing. If both are enabled, we will default to using iFrame, because it allows us more flexibility to optimize the frequency, timing, and coverage for syncing.
 
 ```javascript
@@ -139,7 +139,7 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
 2. In the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/modules/prebidServer.html)</code> function, within the <code>s2sConfig</code> property, add `ix` to the <code>bidders</code> attribute. 
 3. Define the Index-specific parameters at the bidder level. For Index’s bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 4. Define your ad units in the <code>adUnit</code> object. For more information about this object, see Prebid’s documentation on [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html). 
-5. Set a server-side timeout to control the maximum time taken to connect to the server. The timeout value must be a positive whole number in milliseconds. If you do not specify the time, the default value is 50ms. You can specify the <code>timeout</code> value in the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> function as follows: <br />
+5. Set a server-side timeout to control the maximum time taken to connect to the server. The timeout value must be a positive whole number in milliseconds. If you do not specify the time, the default value is 50ms. You can specify the `timeout` value in the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> function as follows: <br />
 ```javascript
 pbjs.setConfig({     
     ix: {
