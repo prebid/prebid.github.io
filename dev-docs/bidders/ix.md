@@ -44,19 +44,17 @@ Publishers can use Prebid.js to call Index Exchange (Index) in any of the follow
 
 **Notes:** 
 * **Bid request limit**: You can send up to 20 ad slots in a single bid request to Index. If a single bid request contains more than 20 ad slots, only the first 20 are accepted and the rest are ignored.
-* **How to view bid requests sent to Index: **To view bid requests that you send to Index:
+* **How to view bid requests sent to Index:** To view bid requests that you send to Index:
     * In your browser open a new tab.
     * Open the **Developer tools**. 
     * In **Developer tools**, click the **Network **tab. 
-    * In the **Network** tab, search for requests sent to casalemedia.com/cygnus (from version 6.28.0 and earlier) or casalemedia.com/openrtb/pbjs (from version 6.29.0 and later). These are the bid requests sent to Index. 
+    * In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index. 
 
 
 <a name="supported-media-types" />
 ## Supported media types 
 
-The following table lists the media types that Index supports. 
-
-**Note about the Time-To-Live (TTL):** For information about how Index counts impressions, see [How Index counts impressions](https://kb.indexexchange.com/publishers/billing/how_Index_counts_impressions.htm) in our Knowledge Base.
+The following table lists the media types that Index supports. For information about the the Time-To-Live (TTL) for each media type, see [How Index counts impressions](https://kb.indexexchange.com/publishers/billing/how_Index_counts_impressions.htm) in our Knowledge Base.
 
 {: .table .table-bordered .table-striped }
 | Type      | Prebid Server support |
@@ -72,9 +70,9 @@ In this configuration Prebid.js calls Index directly from the browser using our 
 
 
 1. Build the binary in one of the following ways:
-    1. [Download Prebid.js](https://docs.prebid.org/download.html) from the Prebid site to use the standard compiled binary that Prebid includes in the download process. Select** Index Exchange** as an adapter.
-    2. Build it on your own from the source code by following the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). If you use this method, you will need to include several modules in your build process. See the [Index modules to include in your build process](#modules-to-include-in-your-build-process) section below.
-2. Define the Index-specific parameters at the bidder level which include adding `ix` as the bidder and the `siteID`. For Index’s bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below. <br />
+   * [Download Prebid.js](https://docs.prebid.org/download.html) from the Prebid site to use the standard compiled binary that Prebid includes in the download process and select **Index Exchange** as an adapter.
+    * Build it on your own from the source code by following the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). If you use this method, you will need to include several modules in your build process. See the [Index modules to include in your build process](#modules-to-include-in-your-build-process) section below.
+2. Define the Index-specific parameters at the bidder level which include adding `ix` as the bidder and the `siteId`. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below. <br />
 **Example:** 
 ```javascript
 {
@@ -83,14 +81,12 @@ In this configuration Prebid.js calls Index directly from the browser using our 
             siteId: '123456'
         }
     }
-    ```
-
+```
 
 3. Define your ad units in the `adUnit` object. This includes the details about the ad slots such as the media types, ad size, and ad code. For more information about this object, see Prebid's [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html) documentation.
-4. Enable user syncing by adding the following code in the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> function. Index strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Be sure to call <code>pbjs.setConfig() </code>only once. This configuration is optional in Prebid, but required by Index.  <br />
+4. Enable user syncing by adding the following code in the `[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)` function. Index strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Make  sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.  <br />
 **Note:** While we recommend iFrame-based user syncing, we also support image-based user syncing. If both are enabled, we will default to using iFrame, because it allows us more flexibility to optimize the frequency, timing, and coverage for syncing.
 
-     <br />
 ```javascript
 pbjs.setConfig({
 
