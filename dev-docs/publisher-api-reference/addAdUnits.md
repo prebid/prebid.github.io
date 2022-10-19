@@ -25,7 +25,7 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | `mediaTypes` | Optional | Object                                | Defines one or multiple media types the ad unit supports.  For a list of properties, see [Media Types](#addAdUnits-MediaTypes) below.                                                                     |
 | `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
 | `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
-| `video`      | Optional | Object                                | Used to link an Ad Unit to the [Video Module][videoModule]. For allowed params see the [adUnit.video reference](#adUnit-video). |
+| `video`      | Optional | Object                                | Used to link an Ad Unit to the [Video Module]({{site.github.url}}/prebid-video/video-module.html). For allowed params see the [adUnit.video reference](#adUnit-video). |
 
 <a name="addAdUnits-Bids" />
 
@@ -122,7 +122,7 @@ pbjs.addAdUnits({
 
 ##### Video
 
-If using the Video Module, see below. For more information on the Video Module, see the [Video Module docs]('{{site.github.url}}/prebid-video/video-module.html'). 
+If using the Video Module, see below. For more information on the Video Module, see the [Video Module docs]({{site.github.url}}/prebid-video/video-module.html). 
 
 ```javascript
 pbjs.addAdUnits({
@@ -133,7 +133,7 @@ pbjs.addAdUnits({
     video: {
         divId: 'playerDiv',
         adServer: {
-            vendorCode: 'gam',
+            vendorCode: GAM_VENDOR,
             baseAdTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?iu=/12345/'
         }
     },

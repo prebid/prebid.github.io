@@ -52,28 +52,7 @@ Optionally, if you are using an Ad Server, you can configure the Video Module to
 
 #### Configure Prebid
 
-To register a video player with Prebid, you must use `setConfig` to set a `video` config compliant with the following structure:
-
-{: .table .table-bordered .table-striped }
-| Field | Required? | Type | Description |
-|---|---|---|---|
-| video.providers[] | yes | array of objects | List of Provider configurations. You must defined a provider configuration for each player instance that you would like integrate with. |
-| video.providers[].vendorCode | yes | number | The identifier of the Video Provider vendor (i.e. 1 for JW Player, 2 for videojs, etc). Allows Prebid to know which submodule to instantiate. |
-| video.providers[].divId | yes | string | The HTML element id of the player or its placeholder div. All analytics events for that player will reference this ID. Additionally, used to indicate where the Video Player instance will be placed when instantiated. |
-| video.providers[].playerConfig.autoStart | no | boolean | Defaults to false |
-| video.providers[].playerConfig.mute | no | boolean | Defaults to false |
-| video.providers[].playerConfig.licenseKey | no | boolean | The license key or account key. Required by most commercial video players. |
-| video.providers[].playerConfig.setupAds | no | boolean | Defaults to true. Setting to false will prevent Prebid from setting up the ads components for the player. Disable when you wish to setup the player's ad components. |
-| video.providers[].playerConfig.params.vendorConfig | no | object | The configuration block specific to a video player. Use this when setting configuration options not available in `video.providers[].playerConfig`. Its properties supersede the equivalents in `video.providers[].playerConfig`. |
-| video.providers[].playerConfig.params.adPluginConfig | no | object | The configuration block specific to the video player's ad plugin. Use this to customize the ad experience. The configuration spec is defined by your video player's ad plugin. |
-| video.providers[].adServer | no | object | Configuration for ad server integration. Applies to all Ad Units linked to a video provider. Superseded by `video.adServer` configurations defined at the Ad Unit level. |
-| video.providers[].adServer.vendorCode | yes | string | The identifier of the AdServer vendor (i.e. gam, etc) |
-| video.providers[].adServer.baseAdTagUrl | yes | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. Required when `video.providers[].adServer.params` is absent. |
-| video.providers[].adServer.params | yes | object | Querystring parameters that will be used to construct the video ad tag URL. Required when `video.providers[].adServer.baseAdTagUrl` is absent. |
-| video.contentEnrichmentEnabled | no | boolean | Defaults to true. Set to false to prevent the Video Module from enriching the `site.content` params in the bidder request. | 
-| video.mainContentDivId | no | string | Div Id of the video player intended to populate the `bidderRequest.site.content` params. Used when multiple video players are registered with the Video Module to indicate which player is rendering the main content. The `bidderRequest.site.content` params will be populated by said video player for all auctions where a Video Player is registered with an Ad Unit in the auction. |
-
-**Note:** You can integrate with different Player vendors. For this to work, you must ensure that the right Video Submodules are included in your build, and that the providers have the right `vendorCode`s and `divId`s.
+To register a video player with Prebid, you must use `setConfig` to set a `video` config compliant with the structure described in the [setConfig reference]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#video-module).
 
 #### Configure Ad Units
 
@@ -184,13 +163,7 @@ The Prebid Video Module acts as a simple Video interface which Prebid can connec
 To add a submodule please follow the instructions in [How to add a video submodule]({{site.github.url}}/dev-docs/add-video-submodule.html).
 //TODO https://docs.prebid.org/dev-docs/add-rtd-submodule.html
 
-// TODO : add jwplayer and videojs docs to https://docs.prebid.org/dev-docs/modules/ -
- - ask prebid community to add videojs docs
 
-// TODO: add https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData
-
-// TODO: Examples
-
-// TODO: Linking to other docs - setCOnfig addAdUnit events
 // TODO: list event and param details
+// TODO: Linking to other docs - ~~setCOnfig~~ ~~addAdUnit~~ events
 
