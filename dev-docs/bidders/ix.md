@@ -137,8 +137,8 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
 
 
 2. In the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/modules/prebidServer.html)</code> function, within the <code>s2sConfig</code> property, add `ix` to the <code>bidders</code> attribute. 
-3. Define the Index-specific parameters at the bidder level. For Index’s bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
-4. Define your ad units in the <code>adUnit</code> object. For more information about this object, see Prebid’s documentation on [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html). 
+3. Define the Index-specific parameters at the bidder level. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
+4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html) documentation. 
 5. Set a server-side timeout to control the maximum time taken to connect to the server. The timeout value must be a positive whole number in milliseconds. If you do not specify the time, the default value is 50ms. You can specify the `timeout` value in the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> function as follows: <br />
 ```javascript
 pbjs.setConfig({     
