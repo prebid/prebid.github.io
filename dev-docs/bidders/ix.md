@@ -118,8 +118,8 @@ pbjs.setConfig({
 ```
 
 7. (Optional) If you want to monetize outstream video, you can choose among the following options. Outstream video is available from Prebid.js version 6.25 or higher.
-    * Use Index’s outstream video player. For more information, see the [Index’s outstream video player ](#index’s-outstream-video-player)section below. 
-    * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
+    * Use Index’s outstream video player. For more information, see the [Index's outstream video player ](#indexs-outstream-video-player)section below. 
+    * Use your own outstream video player. For more information, see [Prebid's documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
 8. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher. 
 
 <a name="server-side-adapter" />
@@ -149,8 +149,8 @@ pbjs.setConfig({
 ```
 
 
-6. Enable user syncing by adding the following code in the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> function. Index strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Be sure to call <code>pbjs.setConfig() </code>only once. This configuration is optional in Prebid, but required by Index.  \
-<strong>Note</strong>: While we recommend iFrame-based user syncing, we also support image-based user syncing. If both are enabled, we will default to using iFrame, because it allows us more flexibility to optimize the frequency, timing, and coverage for syncing.     <br />
+6. Enable user syncing by adding the following code in the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> function. Index strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.   <br />
+**Note:** While we recommend iFrame-based user syncing, we also support image-based user syncing. If both are enabled, we will default to using iFrame, because it allows us more flexibility to optimize the frequency, timing, and coverage for syncing.     <br />
 ```javascript
 pbjs.setConfig({
     userSync: {
@@ -179,7 +179,7 @@ pbjs.setConfig({
 
 
 9. (Optional) If you want to monetize outstream video, you can choose among the following options. Outstream video is available from Prebid.js version 6.25 or higher.
-    * Use Index's outstream video player. For more information, see the [Index's outstream video player ](#index’s-outstream-video-player) section below. 
+    * Use Index's outstream video player. For more information, see the [Index's outstream video player ](#indexs-outstream-video-player) section below. 
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
 10. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher. 
 
