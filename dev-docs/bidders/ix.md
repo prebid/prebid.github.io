@@ -128,7 +128,6 @@ pbjs.setConfig({
 
 In this configuration, Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Index. Complete the following steps to complete the Index-specific configuration:
 
-
 1. In your PrebidServer adapter configuration Prebid.js, you must enable the Index adapter as follows:
 ```javascript
     adapters.ix.enabled=true 
