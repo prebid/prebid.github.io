@@ -89,17 +89,16 @@ In this configuration Prebid.js calls Index directly from the browser using our 
 
 ```javascript
 pbjs.setConfig({
-
-                    userSync: {
-                        iframeEnabled: true,
-                        filterSettings: {
-                            iframe: {
-                                bidders: ['ix'],
-                                filter: 'include'
-                            }
-                        }
-                    }
-                });
+    userSync: {
+        iframeEnabled: true,
+        filterSettings: {
+            iframe: {
+                bidders: ['ix'],
+                filter: 'include'
+            }
+        }
+    }
+});
 ```
 
 
@@ -107,12 +106,10 @@ pbjs.setConfig({
 6. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> function as follows: <br />
 ```javascript
 pbjs.setConfig({
-           cache: {
-
-                  url: 'https://prebid.adnxs.com/pbc/v1/cache'
-                     }
-             });
-
+    cache: {
+        url: 'https://prebid.adnxs.com/pbc/v1/cache'
+    }
+});
 ```
 
 7. (Optional) If you want to monetize outstream video, you can choose among the following options. Outstream video is available from Prebid.js version 6.25 or higher.
@@ -138,13 +135,11 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
 4. Define your ad units in the <code>adUnit</code> object. For more information about this object, see Prebid’s documentation on [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html). 
 5. Set a server-side timeout to control the maximum time taken to connect to the server. The timeout value must be a positive whole number in milliseconds. If you do not specify the time, the default value is 50ms. You can specify the <code>timeout</code> value in the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> function as follows: <br />
 ```javascript
-pbjs.setConfig({
-
-       
-            ix: {
-                timeout: 50
-            }
-        });
+pbjs.setConfig({     
+    ix: {
+        timeout: 50
+    }
+});
 ```
 
 
@@ -152,31 +147,28 @@ pbjs.setConfig({
 <strong>Note</strong>: While we recommend iFrame-based user syncing, we also support image-based user syncing. If both are enabled, we will default to using iFrame, because it allows us more flexibility to optimize the frequency, timing, and coverage for syncing.     <br />
 ```javascript
 pbjs.setConfig({
-                   userSync: {
-                        iframeEnabled: true,
-                        filterSettings: {
-                            iframe: {
-                                bidders: ['ix'],
-                                filter: 'include'
-                            }
-                        }
-                    }
-                });
+    userSync: {
+         iframeEnabled: true,
+         filterSettings: {
+             iframe: {
+                 bidders: ['ix'],
+                 filter: 'include'
+             }
+         }
+     }
+ });
 ```
 
 
 7. (Optional) Set up First Party Data (FPD) using the Index bidder-specific FPD (preferred method) setting or the Prebid FPD module. For more information, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
-8. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> function as follows: <br />
-<code>pbjs.setConfig({</code>
-
-    ```
-           cache: {
-
-                  url: 'https://prebid.adnxs.com/pbc/v1/cache'
-                     }
-             });
-
-    ```
+8. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> function as follows:
+```javascript
+pbjs.setConfig({
+    cache: {
+           url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        }
+});
+```
 
 
 
@@ -193,20 +185,17 @@ pbjs.setConfig({
 If you are building the JS binary on your own from source code, follow the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). You will need to include the `ixBidAdapter.` If you want to show video ads with Google Ad Manager, also include the `dfpAdServerVideo` module. We highly recommend adding the `gptPreAuction` module as well, which improves DSPs’ ability to bid accurately on your supply. The following is an example build command including these modules: <br />
 `gulp build --modules=ixBidAdapter,dfpAdServerVideo,gptPreAuction,fooBidAdapter,bazBidAdapter`
 
-If you are using a JSON file to specify modules, add `"ixBidAdapter"` and `"dfpAdServerVideo" `to the modules array as follows: <br />
-`[`
-
-
+If you are using a JSON file to specify modules, add `ixBidAdapter` and `dfpAdServerVideo `to the modules array as follows: 
+```javascript
+[
+    "ixBidAdapter",
+    "dfpAdServerVideo",
+    "gptPreAuction",
+    "fooBidAdapter",
+    "bazBidAdapter"
+]
 ```
-        "ixBidAdapter",
-        "dfpAdServerVideo",
-        "gptPreAuction",
-        "fooBidAdapter",
-        "bazBidAdapter"
-```
-
-
-`]` 
+ 
 
 <a name="set-up-first-party-data-fpd" />
 ## Set up First Party Data (FPD)
@@ -225,19 +214,18 @@ This module allows you to specify key-value pairs that will be included in your 
 
 To include the FPD in a bid request, in the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> object, in the bidder level for <code>ix</code>, provide the key-values in the <code>firstPartyData </code>parameter. Make sure that you set it before the <code>pbjs.requestBids</code> configuration. 
 
-If you want to change the values, you can update the `pbjs.setConfig` once again. The change will reflect in all ongoing bid requests. <br />
+If you want to change the values, you can update the `pbjs.setConfig` once again. The change will reflect in all ongoing bid requests. 
 
-
-```
-    pbjs.setConfig({
-        ix: {
-            firstPartyData: {
-                '<key name>': '<key value>',
-                '<key name>': '<key value>',
-                // ...
-            }
+```javascript
+ pbjs.setConfig({
+    ix: {
+        firstPartyData: {
+            '<key name>': '<key value>',
+            '<key name>': '<key value>',
+            // ...
         }
-    });
+    }
+});
 ```
 
 
@@ -245,20 +233,19 @@ If you want to change the values, you can update the `pbjs.setConfig` once again
 ### Prebid FPD module 
 
 This module allows all bid adapters to have access to first party data that might be useful in ad targeting. This is available from Prebid.js version 4.30 and above.  
-To supply data that is accessible to all bidders, use the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> object as illustrated below. Use the <code>[setBidderConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setBidderConfig.html)</code> function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation. <br />
-<code>pbjs.setConfig({</code>
+To supply data that is accessible to all bidders, use the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> object as illustrated below. Use the <code>[setBidderConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setBidderConfig.html)</code> function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation. 
 
-
-```
-           ortb2: {
-               site: {
+```javascript
+pbjs.setConfig({
+    ortb2: {
+        site: {
                     ...
                },
-               user: {
+        user: {
                     ...
                }
             }
-        });
+});
 ```
 
 <a name="index-outstream-video-player" />
@@ -276,7 +263,7 @@ To use Index’s outstream video player, in your Prebid.js configuration:<br />
 2. Configure the player according to the options in the [Bid request parameters](#bid-request-parameters) section below. <br />
 For more information on how to structure the video object, refer to the following code example:<br />
 
-```
+```javascript
 var adUnits = [{
     code: 'div-gpt-ad-1571167646410-1',
     mediaTypes: {
@@ -313,8 +300,7 @@ var adUnits = [{
 
 Prebid Native is available from Prebid.js version 7.4.0 or higher. We support the three native template rendering options that are provided in [Setting up Prebid Native in Google Ad Manager](https://docs.prebid.org/adops/gam-native.html). The following code is an example of a Prebid native set-up using Google Ad Manager, but the concept and implementation should be similar for other ad servers.<br />
 
-
-```
+```javascript
 pbjs.addAdUnits({
     code: slot.code,
     mediaTypes: {
