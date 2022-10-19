@@ -37,6 +37,7 @@ multiformat_supported: yes
 
 
 <a name="introduction" />
+
 ## Introduction
 
 Publishers can use Prebid Server in any of the following ways with Index Exchange (Index). Index's adapter supports all of the following methods:
@@ -49,6 +50,7 @@ Publishers can use Prebid Server in any of the following ways with Index Exchang
 **Note about the bid request limit:** You can send up to 20 ad slots in a single bid request to Index. If a single bid request contains more than 20 ad slots, only the first 20 are accepted and the rest are ignored.
 
 <a name="supported-media-types" />
+
 ## Supported media types 
 
 The following table lists the media types that Index supports. For information about the the Time-To-Live (TTL) for each media type, see [How Index counts impressions](https://kb.indexexchange.com/publishers/billing/how_Index_counts_impressions.htm) in our Knowledge Base.
@@ -69,12 +71,14 @@ If you are using an existing Prebid Server instance that is already configured t
 
 
 <a name="call-index-from-a-web-browser" />
+
 ### Call Index from a web browser 
 
 If you want to call Index from a web environment, you can use Prebid.js to call Prebid Server and then Prebid Server uses our server-side adapter to call Index. For setup instructions, see the Index-specific configuration steps in [Set up instructions for Prebid.js](https://docs.prebid.org/dev-docs/bidders/ix.html) in our Prebid.js documentation on the Prebid site. 
 
 
 <a name="call-index-from-prebid-mobile-sdk" />
+
 ### Call Index from Prebid Mobile SDK 
 
 **Before you begin:** Contact your Index Exchange representative to get your `siteId`. You must provide this site ID to your Prebid Server host company.
@@ -88,6 +92,7 @@ To add Index as a bidder to your mobile app:
 3. Include any ad unit level required or optional parameters provided in Prebid's [Prebid Mobile API - iOS](https://docs.prebid.org/prebid-mobile/pbm-api/ios/pbm-api-ios.html) and [Prebid Mobile API - Android](https://docs.prebid.org/prebid-mobile/pbm-api/android/pbm-api-android.html) documentation.
 
 <a name="call-index-from-ctv-long-form-video-environment" />
+
 ### Call Index from CTV/long-form video environment
  
 **Before you begin:** Contact your Index Exchange Representative to get the `siteId`. You must provide this site ID to your Prebid Server host company.
@@ -101,6 +106,7 @@ To add Index as a bidder:
 3. Include any ad unit level required or optional parameters provided in Prebid's [/openrtb2/video](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-video.html) documentation.
 
 <a name="call-index-from-ortb" />
+
 ### Call Index from any other server-to-server OpenRTB environment 
 
 To request bids from Index:
@@ -120,6 +126,7 @@ To request bids from Index:
 
 
 <a name="bid-request-parameters" />
+
 ## Bid request parameters 
 
 For a list of the OpenRTB fields that Index supports in bid requests, see [List of supported OpenRTB bid request fields for sellers](https://kb.indexexchange.com/publishers/openrtb_integration/list_of_supported_openrtb_bid_request_fields_for_sellers.htm#List_of_supported_OpenRTB_bid_request_fields_for_sellers). The following are the required fields for the various supported media types.
@@ -158,6 +165,7 @@ If you are using Index's outstream player and have placed the video object at th
 | `video.playerConfig.floatSize` | Optional | Integer[] | The height and width of the floating player in pixels. If you do not specify a float size, the player adjusts to the aspect ratio of the player size that is defined when it is not floating. Index recommends that you review and test the float size to your user experience preference. |
 
 <a name="examples" />
+
 ## Examples 
 
 **Banner**
