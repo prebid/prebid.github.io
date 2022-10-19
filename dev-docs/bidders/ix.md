@@ -219,11 +219,9 @@ You can set up FPD using the Index bidder-specific setting or the Prebid FPD mod
 
 ### Index bidder-specific FPD module 
 
-This module allows you to specify key-value pairs that will be included in your query string when targeting Private Marketplace Deals. For example, if a user visits a news page, you can pass  that information by submitting a key-value pair for `category = news`. You can then create a deal in the Index UI and activate the deal only on pages that contain `category = news` key-value pair.
+This module allows you to specify key-value pairs that will be included in your query string when targeting Private Marketplace deals. For example, if a user visits a news page, you can pass  that information by submitting a key-value pair for `category = news`. You can then create a deal in the Index UI and activate the deal only on pages that contain `category = news` as the key-value pair.
 
-To include the FPD in a bid request, in the `[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)` object, in the bidder level for `ix`, provide the key-values in the `firstPartyData` parameter. Make sure that you set it before the `pbjs.requestBids` configuration. 
-
-If you want to change the values, you can update the `pbjs.setConfig` once again. The change will reflect in all ongoing bid requests. 
+To include the FPD in a bid request, in the `[pbjs.setConfig()]` object, at the `ix` bidder level, provide the key-values in the `firstPartyData` parameter. Make sure that you set it before the `pbjs.requestBids` configuration. If you want to change the values, you can update the `pbjs.setConfig` once again. The change will reflect in all ongoing bid requests. 
 
 ```javascript
  pbjs.setConfig({
@@ -243,7 +241,7 @@ If you want to change the values, you can update the `pbjs.setConfig` once again
 ### Prebid FPD module 
 
 This module allows all bid adapters to have access to first party data that might be useful in ad targeting. This is available from Prebid.js version 4.30 and above.  
-To supply data that is accessible to all bidders, use the `[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)` object as illustrated below. Use the `[setBidderConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setBidderConfig.html)` function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation. 
+To supply data that is accessible to all bidders, use the <code>[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)</code> object as illustrated below. Use the <code>[setBidderConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setBidderConfig.html)</code> function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation. 
 
 ```javascript
 pbjs.setConfig({
