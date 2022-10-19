@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Index Exchange Prebid.js Documentation
+title: Index Exchange (Prebid.js)
 description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
