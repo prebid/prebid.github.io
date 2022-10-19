@@ -210,7 +210,7 @@ If you are using a JSON file to specify modules, add `ixBidAdapter` and `dfpAdSe
  
 You can set up FPD using the Index bidder-specific setting or the Prebid FPD module. The preferred method is passing the Index bidder-specific setting, while we are building support to ingest ortb values through the Prebid FPD module. 
 
-**Notes: **
+**Notes:**
 
 * Index does not support ad unit-specific FPD and `ortb2.imp`.
 * To target deals with Index, you must use the Index bidder-specific FPD module. The Prebid FPD module does not support deals targeting. If you have any questions or need help setting up the configuration, contact your Index Representative.
