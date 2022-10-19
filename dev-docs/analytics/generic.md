@@ -6,7 +6,7 @@ modulecode: generic
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
-prebid_member: true
+gvl_id: N/A
 enable_download: true
 ---
 
@@ -191,7 +191,7 @@ pbjs.enableAnalytics({
     options: {
         handler(data) {
             // `data` is an array of length `batchSize`. If `events` is provided, the elements are the values returned
-            // the format functions defined therein; otherwise, they have the format {eventType, args}.
+            // by the format functions defined therein; otherwise, they have the format {eventType, args}.
             fetch('https://example.com', {
                 method: 'POST',
                 body: JSON.stringify({
