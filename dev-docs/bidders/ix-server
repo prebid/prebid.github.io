@@ -59,7 +59,7 @@ The following table lists the media types that Index supports. For information a
 | Type      | Prebid Server support |
 | ----------- | ----------- |
 | banner      | Supported       |
-| video   | Supported, including ad pods for OTT        |
+| video   | Supported, including ad pods for OTT    |
 | native      | Supported       |
 
 <a name="call-index" />
