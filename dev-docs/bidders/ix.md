@@ -25,11 +25,12 @@ multiformat_supported: yes
 
 - [Introduction](#introduction)
 - [Supported media types](#supported-media-types)
-- [Set up instructions to call Index through Prebid Server](#call-index)
-    - [Call Index from a web browser](#call-index-from-a-web-browser)
-    - [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk)
-    - [Call Index from CTV/long-form video environment](#call-index-from-ctv-long-form-video-environment)
-    - [Call Index from any other server-to-server OpenRTB environment](#call-index-from-ortb)
+- [Set up Prebid.js to call Index directly from the browser](#client-side-adapter)
+- [Set up Prebid.js to call Index through Prebid Server](#server-side-adapter)
+- [Modules to include in your build process](#modules-to-include-in-your-build-process)
+- [Set up First Party Data (FPD)](#set-up-first-party-data-fpd)
+- [Index's outstream video player](#index-outstream-video-player)
+- [Prebid Native configuration](#prebid-native-configuration)
 - [Bid request parameters](#bid-request-parameters)
 - [Examples](#examples)
 
@@ -180,7 +181,7 @@ pbjs.setConfig({
 
 
 <a name="modules-to-include-in-your-build-process" />
-### Modules to include in your build process 
+## Modules to include in your build process 
 
 If you are building the JS binary on your own from source code, follow the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). You will need to include the `ixBidAdapter.` If you want to show video ads with Google Ad Manager, also include the `dfpAdServerVideo` module. We highly recommend adding the `gptPreAuction` module as well, which improves DSPs’ ability to bid accurately on your supply. The following is an example build command including these modules: <br />
 `gulp build --modules=ixBidAdapter,dfpAdServerVideo,gptPreAuction,fooBidAdapter,bazBidAdapter`
@@ -365,8 +366,7 @@ You must include these parameters at the bidder level.
 {: .table .table-bordered .table-striped }
 | Key | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.
-|
+| `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
 
 If you are using Index's outstream player and have placed the video object at the bidder level, you must include the Index required parameters at the bidder level. You can include the optional parameters to specify the outstream player configurations.
 
@@ -382,7 +382,7 @@ If you are using Index's outstream player and have placed the video object at th
 | `video.playerConfig.floatSize` | Optional | Integer[] | The height and width of the floating player in pixels. If you do not specify a float size, the player adjusts to the aspect ratio of the player size that is defined when it is not floating. Index recommends that you review and test the float size to your user experience preference. |
 
 
-### Native {#native}
+### Native
 
 Index supports the same set of native assets that Prebid.js recognizes. For the list of native assets, see [Prebid.js Native Implementation Guide on the Prebid site.](https://docs.prebid.org/prebid/native-implementation.html#3-prebidjs-native-adunit-overview)
 
@@ -417,7 +417,7 @@ var adUnits = [{
 ```
 
 
-**Video (instream): **
+**Video (instream):** <br />
 **Note**: `context` can either be `'instream'` or `'outstream'`.	
 
 
