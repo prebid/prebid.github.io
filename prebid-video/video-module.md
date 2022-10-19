@@ -78,18 +78,7 @@ To register a video player with Prebid, you must use `setConfig` to set a `video
 #### Configure Ad Units
 
 In order for Prebid to know which Ad Unit relates to which Video Player, you must include a `video` configuration in your Ad Unit. This allows Prebid to render the ad in the proper Video Player and obtain the Ortb data from the Video Player that will render the ad.
-**Note:** your Ad Unit must have `mediaTypes.video` defined.
-
-See the table below for the list of properties in the `video` object of the ad unit.
-
-{: .table .table-bordered .table-striped }
-| Field     | Scope                                                        | Type   | Description                                                                                                        |
-|----------+--------------------------------------------------------------+--------+--------------------------------------------------------------------------------------------------------------------|
-| `divId` | required | string | Unique identifier of the player provider, used to specify which player should be used to render the ad. Equivalent to the HTML Div Id of the player.                  |
-| `adServer` | optional | object | Configuration for ad server integration. Supersedes `video.providers[].adServer` configurations defined in the Prebid Config. |
-| `adServer.vendorCode` | required if `adServer` is defined | string | The identifier of the AdServer vendor (i.e. gam, etc). |
-| `adServer.baseAdTagUrl` | required if `adServer.params` is not defined | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. |
-| `adServer.params` | required if `adServer.baseAdTagUrl` is not defined | object | Querystring parameters that will be used to construct the video ad tag URL. |
+For the list of properties in the `video` object of the ad unit please visit the [adUnit.video reference]({{site.baseurl}}/dev-docs/adunit-reference.html#adUnit.video).
 
 ### Features for Publishers
 
