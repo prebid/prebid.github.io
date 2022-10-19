@@ -49,7 +49,7 @@ Publishers can use Prebid.js to call Index Exchange (Index) in any of the follow
 * **How to view bid requests sent to Index:** To view bid requests that you send to Index:
     * In your browser open a new tab.
     * Open the **Developer tools**. 
-    * In **Developer tools**, click the **Network **tab. 
+    * In **Developer tools**, click the **Network** tab. 
     * In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index. 
 
 
