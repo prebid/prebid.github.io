@@ -36,6 +36,7 @@ multiformat_supported: yes
 
 
 <a name="introduction" />
+
 ## Introduction
 
 Publishers can use Prebid.js to call Index Exchange (Index) in any of the following ways:
@@ -53,11 +54,13 @@ Publishers can use Prebid.js to call Index Exchange (Index) in any of the follow
 
 
 <a name="supported-media-types" />
+
 ## Supported media types 
 
 The following table lists the media types that Index supports. For information about the the Time-To-Live (TTL) for each media type, see [How Index counts impressions](https://kb.indexexchange.com/publishers/billing/how_Index_counts_impressions.htm) in our Knowledge Base.
 
 {: .table .table-bordered .table-striped }
+
 | Type      | Prebid Server support |
 | ----------- | ----------- |
 | banner      | Supported       |
@@ -65,6 +68,7 @@ The following table lists the media types that Index supports. For information a
 | native      | Supported       |
 
 <a name="client-side-adapter" />
+
 ## Set up Prebid.js to call Index directly from the browser (client-side adapter)
 
 In this configuration Prebid.js calls Index directly from the browser using our client-side adapter. Follow the quick start instructions provided in Prebid's [Getting Started for Developers](https://docs.prebid.org/dev-docs/getting-started.html) documentation. Complete the following steps to complete the Index-specific configuration:
@@ -119,6 +123,7 @@ pbjs.setConfig({
 8. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher. 
 
 <a name="server-side-adapter" />
+
 ## Set up Prebid.js to call Index through Prebid Server (server-side adapter)
 
 In this configuration, Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Index. Complete the following steps to complete the Index-specific configuration:
@@ -181,6 +186,7 @@ pbjs.setConfig({
 
 
 <a name="modules-to-include-in-your-build-process" />
+
 ## Modules to include in your build process 
 
 If you are building the JS binary on your own from source code, follow the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). You will need to include the `ixBidAdapter.` If you want to show video ads with Google Ad Manager, also include the `dfpAdServerVideo` module. We highly recommend adding the `gptPreAuction` module as well, which improves DSPs’ ability to bid accurately on your supply. The following is an example build command including these modules: <br />
@@ -199,6 +205,7 @@ If you are using a JSON file to specify modules, add `ixBidAdapter` and `dfpAdSe
  
 
 <a name="set-up-first-party-data-fpd" />
+
 ## Set up First Party Data (FPD)
  
 You can set up FPD using the Index bidder-specific setting or the Prebid FPD module. The preferred method is passing the Index bidder-specific setting, while we are building support to ingest ortb values through the Prebid FPD module. 
@@ -209,6 +216,7 @@ You can set up FPD using the Index bidder-specific setting or the Prebid FPD mod
 * To target deals with Index, you must use the Index bidder-specific FPD module. The Prebid FPD module does not support deals targeting. If you have any questions or need help setting up the configuration, contact your Index Representative.
 
 <a name="index-bidder-specific-fpd-module" />
+
 ### Index bidder-specific FPD module 
 
 This module allows you to specify key-value pairs that will be included in your query string when targeting Private Marketplace Deals. For example, if a user visits a news page, you can pass  that information by submitting a key-value pair for `category = news`. You can then create a deal in the Index UI and activate the deal only on pages that contain `category = news` key-value pair.
@@ -231,6 +239,7 @@ If you want to change the values, you can update the `pbjs.setConfig` once again
 
 
 <a name="prebid-fpd-module" />
+
 ### Prebid FPD module 
 
 This module allows all bid adapters to have access to first party data that might be useful in ad targeting. This is available from Prebid.js version 4.30 and above.  
@@ -250,6 +259,7 @@ pbjs.setConfig({
 ```
 
 <a name="index-outstream-video-player" />
+
 ## Index's outstream video player
 
 Publishers who are using Index as a bidding adapter in Prebid.js can show outstream video ads on their site using Index's outstream video player. This allows a video ad to be placed anywhere on a publisher’s site, such as in-article, in-feed, and more. Outstream video is available from Prebid.js version 6.25 or higher. <br />
@@ -297,6 +307,7 @@ var adUnits = [{
 *Please note that your use of the outstream video player will be governed by and subject to the terms and conditions of i) any master services or license agreement entered into by you and Index Exchange; ii) the information provided on our knowledge base linked [here](https://kb.indexexchange.com/publishers/prebid_integration/outstream_video_prebidjs.htm) and [here](https://kb.indexexchange.com/publishers/guidelines/standard_contractual_clauses.htm), and iii) our [Privacy Policy](https://www.indexexchange.com/privacy/). Your use of Index's outstream video player constitutes your acknowledgement and acceptance of the foregoing.*
 
 <a name="prebid-native-configuration" />
+
 ## Prebid Native configuration
 
 Prebid Native is available from Prebid.js version 7.4.0 or higher. We support the three native template rendering options that are provided in [Setting up Prebid Native in Google Ad Manager](https://docs.prebid.org/adops/gam-native.html). The following code is an example of a Prebid native set-up using Google Ad Manager, but the concept and implementation should be similar for other ad servers.<br />
@@ -355,6 +366,7 @@ For a list of the OpenRTB fields that Index supports on bid requests, see [List 
 You must include these parameters at the bidder level. 
 
 {: .table .table-bordered .table-striped }
+
 | Key | Scope | Type | Description |
 |---|---|---|---|
 | `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
@@ -365,6 +377,7 @@ You must include these parameters at the bidder level.
 
 
 {: .table .table-bordered .table-striped }
+
 | Key | Scope | Type | Description |
 |---|---|---|---|
 | `siteId` | Required | String | An IX-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
@@ -373,6 +386,7 @@ If you are using Index's outstream player and have placed the video object at th
 
 
 {: .table .table-bordered .table-striped }
+
 | Key | Scope | Type | Description |
 |---|---|---|---|
 | `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
@@ -389,6 +403,7 @@ Index supports the same set of native assets that Prebid.js recognizes. For the 
 
 
 <a name="examples" />
+
 ## Examples 
 
 
