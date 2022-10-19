@@ -344,6 +344,7 @@ pbjs.addAdUnits({
 
 
 <a name="bid-request-parameters" />
+
 ## Bid request parameters 
 
 For a list of the OpenRTB fields that Index supports on bid requests, see [List of supported OpenRTB bid request fields for sellers](https://kb.indexexchange.com/publishers/openrtb_integration/list_of_supported_openrtb_bid_request_fields_for_sellers.htm#List_of_supported_OpenRTB_bid_request_fields_for_sellers). The following are the required fields for the various supported media types.
