@@ -19,6 +19,7 @@ Core config:
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 + [Set Timeout Buffer](#setConfig-timeoutBuffer)
++ [Set TTL Buffer](#setConfig-ttlBuffer)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
 + [Configure send bids control](#setConfig-Send-Bids-Control)
 + [Bid cache](#setConfig-Use-Bid-Cache)
@@ -129,6 +130,18 @@ Prebid core adds a timeout buffer to extend the time that bidders have to return
 
 {% highlight js %}
 pbjs.setConfig({ timeoutBuffer: 300 });
+{% endhighlight %}
+
+#### Set TTL Buffer
+
+<a id="setConfig-ttlBuffer" />
+
+When an adapter bids, it provides a TTL (time-to-live); the bid is considered expired and unusuable after that time has elapsed. Core subtracts from it a buffer of 1 second; that is, a bid with TTL of 30 seconds is considered expired after 29 seconds. You can adjust this buffer with:
+
+{% highlight js %}
+pbjs.setConfig({ 
+  ttlBuffer: 10  // TTL buffer in seconds 
+});
 {% endhighlight %}
 
 #### Send All Bids
