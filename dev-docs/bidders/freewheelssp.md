@@ -1,11 +1,11 @@
 ---
 layout: bidder
-title: FreeWheel-ssp
+title: freeWheelssp
 description: Freewheel Bidder Adaptor
 pbjs: true
 pbs: true
-biddercode: freewheel-ssp
-aliasCode: freewheelssp
+biddercode: freewheelssp
+aliasCode: freewheel-ssp
 gvl_id: 285
 gdpr_supported: true
 usp_supported: true
