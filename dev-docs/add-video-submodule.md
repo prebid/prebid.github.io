@@ -27,10 +27,10 @@ Publishers who use players from different vendors on the same page can use multi
 
 ## Requirements
 
-The Video Module only supports integration with Video Players that mmet the following requirements:
+The Video Module only supports integration with Video Players that meet the following requirements:
 - Must support parsing and reproduction of VAST ads
   - Input can be an ad tag URL or the actual Vast XML.
-- Must expose an API that allows the obtention of [Open RTB params](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for Video (section 3.2.7) and Content (section 3.2.16).
+- Must expose an API that allows the procurement of [Open RTB params](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for Video (section 3.2.7) and Content (section 3.2.16).
 - Must emit javascript events for Ads and Media
   - see [Event Registration](#event-registration)
 
@@ -46,7 +46,7 @@ Working with any Prebid project requires using Github. In general, we recommend 
 
 ### Step 1: Add a markdown file describing the submodule
 
-Create a markdown file under `modules` with the name of the module suffixed with 'VideoProvider', e.g., `exampleVideoProvider.md`
+Create a markdown file under `modules` with the name of the module suffixed with 'VideoProvider', i.e. `exampleVideoProvider.md`.
 
 Example markdown file:
 {% highlight text %}
@@ -68,6 +68,7 @@ Video provider for Example Player. Contact someone@example.com for information.
 
 Vendor codes are required to indicate which submodule type to instantiate. Add your vendor code constant to an export const in `vendorCodes.js` in Prebid.js under `libraries/video/constants/vendorCodes.js`.
 i.e. in `vendorCodes.js`:
+
 {% highlight text %}
 export const EXAMPLE_PLAYER_VENDOR = 3;
 {% endhighlight %}
@@ -104,7 +105,7 @@ submodule('video', exampleSubmoduleFactory);
 The submodule object must adhere to the following interface:
 {: .table .table-bordered .table-striped }
 |  param name | type  | Scope | Description | Arguments | Return type |
-| :------------ | :------------ | :------ | :------ | :------ |
+| :---------- | :---- | :---- | :---------- | :-------- | :---------- |
 | init | function | required | Initializes the submodule and the video player, if not already instantiated. | n/a | void |
 | getId | function | required | Returns the divId (unique identifier) of the associated video player. | n/a | string |
 | getOrtbVideo | function | required | Returns the oRTB Video object for the associated video player. See [oRTB spec’s](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) video section 3.2.7. | n/a | object |

@@ -10,7 +10,7 @@ sidebarType: 4
 
 The Prebid Video Module allows Prebid to directly integrate with a Video Player.
 
-The Video Module will automatically:
+The Video Module will allow Prebid.js to automatically:
 - render bids in the desired video player
 - mark used bids as won
 - trigger player and media events
@@ -19,9 +19,11 @@ The Video Module will automatically:
 ## Publishers
 
 Publishers benefit the most from the Video Module since it allows integrating with a Video Player by simply configuring Prebid.
-Publishers can follow these steps to integrate:
 
 ### Setting up
+
+{: .alert.alert-warning :}
+The Video Module does not load the Video Player source files on the page. The publisher must have the Video Player's build on the page.
 
 #### Include submodule in build
 
@@ -48,6 +50,7 @@ Optionally, if you are using an Ad Server, you can configure the Video Module to
 |--------------|----------------|-------------|
 | [Google Ad Manager](https://admanager.google.com/)  | dfpAdServerVideo | 'gam' |
 
+{: .alert.alert-warning :}
 **Note:** You must include the Ad Server's module in your build. 
 
 #### Configure Prebid
@@ -78,47 +81,47 @@ The event payload includes metadata which can be used for analytics, error handl
 {: .table .table-bordered .table-striped }
 | Event Constant | Event String | Description |
 |----------------|--------------|-------------|
-| SETUP_COMPLETE | 'setupComplete' | Fried when the player is instantiated and the integration is complete. At this point the API is ready to be used. |
-| SETUP_FAILED | 'setupFailed' | Fired when the integration was unsuccessful. |
-| DESTROYED | 'destroyed' | Fired when the player instance has been destroyed. |
-| AD_REQUEST | 'adRequest' | Fried when the player is asked to load an ad. |
-| AD_BREAK_START | 'adBreakStart' | Fired when an ad break begins. An ad break consists of an ad, or a sequence of subsequent ads. |
-| AD_LOADED | 'adLoaded' | Fired when the player has finished loading the ad's VAST response. |
-| AD_STARTED | 'adStarted' | Fired when the ad playback has started. |
-| AD_IMPRESSION | 'adImpression' | Fired when an ad has played for 2 consecutive seconds while the player is at least 50% viewable, as defined by the IAB standards for video ad impressions. |
-| AD_PLAY | 'adPlay' | Fired when ad playback starts and is resumed after a pause. |
-| AD_TIME | 'adTime' | Fired as the ad playback progresses. Frequency depends on the player. |
-| AD_PAUSE | 'adPause' | Fired when the ad is paused. |
-| AD_CLICK | 'adClick' | Fired when the ad is clicked or tapped. |
-| AD_SKIPPED | 'adSkipped' | Fired when the ad is skipped. |
-| AD_ERROR | 'adError' | Fired when an error occurred while attempting to load or render the ad. |
-| AD_COMPLETE | 'adComplete' | Fired when the ad has reached its end. |
-| AD_BREAK_END | 'adBreakEnd' | Fired when the sequence of ads in the break has ended. |
-| PLAYLIST | 'playlist' | Fired when a media playlist has been loaded into the player. |
-| PLAYBACK_REQUEST | 'playbackRequest' | Fired when an attempt to start the media playback has been made i.e. the viewer has tapped the play icon. |
-| AUTOSTART_BLOCKED | 'autostartBlocked' | Fired when autostart has been prevented. Generally, autostart is prevented by the browser. |
-| PLAY_ATTEMPT_FAILED | 'playAttemptFailed' | Fired when the user's attempt to begin playback is unsuccessful. |
-| CONTENT_LOADED | 'contentLoaded' | Fired when the content media is loaded into the player. |
-| PLAY | 'play' | Fired when the content playback begins or is resumed. |
-| PAUSE | 'pause' | Fired when the content playback is paused. |
-| BUFFER | 'buffer' | Fired when the player enters a buffer state. Usually caused by a delay in loading video segments to continue playback. |
-| TIME | 'time' | Fired as the content playback progresses. Frequency depends on the player. |
-| SEEK_START | 'seekStart' | Fired when the viewer begins seeking in content. |
-| SEEK_END | 'seekEnd' | Fired when the viewer seeking in the content has ended. |
-| MUTE | 'mute' | Fired when the player is muted. |
-| VOLUME | 'volume' | Fired when the player's volume has changed. |
-| RENDITION_UPDATE | 'renditionUpdate' | Fired when a change occurred in the video's encoded width, encoded height, reported video bitrate, reported audio bitrate or video framerate. |
-| ERROR | 'error' | Fired when a player experiences an unrecoverable playback error while player or attempting to play content. |
-| COMPLETE | 'complete' | Fired when a media content has reached its end. |
-| PLAYLIST_COMPLETE | 'playlistComplete' | Fired when the last piece of content in a media playlist has ended. |
-| FULLSCREEN | 'fullscreen' | Fired when the player enters or exits fullscreen mode. |
-| PLAYER_RESIZE | 'playerResize' | Fired when the player's size is modified. |
-| VIEWABLE | 'viewable' | Fired when the player's viewability is changed. Viewability is a percentage of the player's size currently in view. The granularity at which this event is triggered depends on the player. |
-| CAST | 'cast' | Fired when casting to an external device begins or ends. |
-| AUCTION_AD_LOAD_ATTEMPT | 'auctionAdLoadAttempt' | Fired when Prebid attempts to load the winning ad from a Prebid auction into the player. |
-| AUCTION_AD_LOAD_ABORT | 'auctionAdLoadAbort' | Fired when the attempt to load the winning ad from a Prebid auction into the player is prevented. |
-| BID_IMPRESSION | 'bidImpression' | Fired when the ad from a bid resulted in an impression. |
-| BID_ERROR | 'bidError' | Fired when the ad from a bid resulted in an error. |
+| SETUP_COMPLETE | 'video_setupComplete' | Fired when the player is instantiated and the integration is complete. At this point the API is ready to be used. |
+| SETUP_FAILED | 'video_setupFailed' | Fired when the integration was unsuccessful. |
+| DESTROYED | 'video_destroyed' | Fired when the player instance has been destroyed. |
+| AD_REQUEST | 'video_adRequest' | Fired when the player is asked to load an ad. |
+| AD_BREAK_START | 'video_adBreakStart' | Fired when an ad break begins. An ad break consists of an ad, or a sequence of subsequent ads. |
+| AD_LOADED | 'video_adLoaded' | Fired when the player has finished loading the ad's VAST response. |
+| AD_STARTED | 'video_adStarted' | Fired when the ad playback has started. |
+| AD_IMPRESSION | 'video_adImpression' | Fired when an ad has been played for 2 consecutive seconds while the player is at least 50% viewable, as defined by the IAB standards for video ad impressions. |
+| AD_PLAY | 'video_adPlay' | Fired when ad playback starts and is resumed after a pause. |
+| AD_TIME | 'video_adTime' | Fired as the ad playback progresses. Frequency depends on the player. |
+| AD_PAUSE | 'video_adPause' | Fired when the ad is paused. |
+| AD_CLICK | 'video_adClick' | Fired when the ad is clicked or tapped. |
+| AD_SKIPPED | 'video_adSkipped' | Fired when the ad is skipped. |
+| AD_ERROR | 'video_adError' | Fired when an error occurred while attempting to load or render the ad. |
+| AD_COMPLETE | 'video_adComplete' | Fired when the ad has reached its end. |
+| AD_BREAK_END | 'video_adBreakEnd' | Fired when the sequence of ads in the break has ended. |
+| PLAYLIST | 'video_playlist' | Fired when a media playlist has been loaded into the player. |
+| PLAYBACK_REQUEST | 'video_playbackRequest' | Fired when an attempt to start the media playback has been made i.e. the viewer has tapped the play icon. |
+| AUTOSTART_BLOCKED | 'video_autostartBlocked' | Fired when autostart has been prevented. Generally, autostart is prevented by the browser. |
+| PLAY_ATTEMPT_FAILED | 'video_playAttemptFailed' | Fired when the user's attempt to begin playback is unsuccessful. |
+| CONTENT_LOADED | 'video_contentLoaded' | Fired when the content media is loaded into the player. |
+| PLAY | 'video_play' | Fired when the content playback begins or is resumed. |
+| PAUSE | 'video_pause' | Fired when the content playback is paused. |
+| BUFFER | 'video_buffer' | Fired when the player enters a buffer state. Usually caused by a delay in loading video segments to continue playback. |
+| TIME | 'video_time' | Fired as the content playback progresses. Frequency depends on the player. |
+| SEEK_START | 'video_seekStart' | Fired when the viewer begins seeking in content. |
+| SEEK_END | 'video_seekEnd' | Fired when the viewer has finished seeking in the content. |
+| MUTE | 'video_mute' | Fired when the player is muted. |
+| VOLUME | 'video_volume' | Fired when the player's volume has changed. |
+| RENDITION_UPDATE | 'video_renditionUpdate' | Fired when a change occurred in the video's encoded width, encoded height, reported video bitrate, reported audio bitrate or video framerate. |
+| ERROR | 'video_error' | Fired when a player experiences an unrecoverable playback error while playing or attempting to play content. |
+| COMPLETE | 'video_complete' | Fired when a media content has reached its end. |
+| PLAYLIST_COMPLETE | 'video_playlistComplete' | Fired when the last piece of content in a media playlist has ended. |
+| FULLSCREEN | 'video_fullscreen' | Fired when the player enters or exits fullscreen mode. |
+| PLAYER_RESIZE | 'video_playerResize' | Fired when the player's size is modified. |
+| VIEWABLE | 'video_viewable' | Fired when the player's viewability is changed. Viewability is a percentage of the player's size currently in view. The granularity at which this event is triggered depends on the player. |
+| CAST | 'video_cast' | Fired when casting to an external device begins or ends. |
+| AUCTION_AD_LOAD_ATTEMPT | 'video_auctionAdLoadAttempt' | Fired when Prebid attempts to load the winning ad from a Prebid auction into the player. |
+| AUCTION_AD_LOAD_ABORT | 'video_auctionAdLoadAbort' | Fired when the attempt to load the winning ad from a Prebid auction into the player is prevented. |
+| BID_IMPRESSION | 'video_bidImpression' | Fired when the ad from a bid resulted in an impression. |
+| BID_ERROR | 'video_bidError' | Fired when the ad from a bid resulted in an error. |
 
 ##### Event params
 
@@ -134,14 +137,14 @@ The remaining Payload params are listed in the following:
 | viewable | boolean | Is the player currently viewable? |
 | viewabilityPercentage | number | The percentage of the video that is currently viewable on the user's screen. |
 | mute | boolean | Whether or not the player is currently muted. |
-| volumePercentage | number | What is the volume of the player set to as a percentage |
+| volumePercentage | number | The volume of the player, as a percentage |
 
 ###### SETUP_FAILED
 
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
 | playerVersion | string | The version of the player on the page |
-| errorCode | number | The identifier of error preventing the media from rendering |
+| errorCode | number | The identifier of the error preventing the media from rendering |
 | errorMessage | string | Developer friendly description of the reason the error occurred. |
 | sourceError | object | The underlying root Error which prevented the playback. |
 
@@ -247,7 +250,7 @@ No additional params.
 | adPodCount | number | the total number of ads in the pod |
 | adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
-| time | number | The current video time during an ad when an event occurs in seconds |
+| time | number | The playback time in the ad when the event occurs, in seconds. |
 | duration | number | Total duration of an ad in seconds |
 
 ###### AD_PLAY
@@ -261,7 +264,7 @@ No additional params.
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
 | adTagUrl | string | The URL for the ad tag associated with the given ad event |
-| time | number | The current video time during an ad when an event occurs in seconds |
+| time | number | The current poisition in the ad timeline |
 | duration | number | Total duration of an ad in seconds |
 
 ###### AD_PAUSE
@@ -298,14 +301,14 @@ No additional params.
 | adPodCount | number | the total number of ads in the pod |
 | adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
-| time | number | The current video time during an ad when an event occurs in seconds |
+| time | number | The playback time in the ad when the event occurs, in seconds. |
 | duration | number | Total duration of an ad in seconds |
 
 ###### AD_SKIPPED
 
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
-| time | number | The current video time during an ad when an event occurs in seconds |
+| time | number | The playback time in the ad when the event occurs, in seconds. |
 | duration | number | Total duration of an ad in seconds |
 
 <a name="ad-error-params" />
@@ -342,7 +345,7 @@ No additional params.
 | adPodCount | number | the total number of ads in the pod |
 | adPodIndex | number | The index of the currently playing ad within an ad pod |
 | wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
-| time | number | The current video time during an ad when an event occurs in seconds |
+| time | number | The playback time in the ad when the event occurs, in seconds. |
 | duration | number | Total duration of an ad in seconds |
 
 ###### AD_COMPLETE
@@ -368,7 +371,7 @@ No additional params.
 
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
-| playReason | string | why the play originated. Options: ‘Unknown’ (Unknown reason:we cannot tell), ‘Interaction’ (A viewer interacts with the UI), ‘Auto’ (Autoplay based on the configuration of the player - autoStart), ‘autoOnViewable’ (autoStart when viewable), ‘autoRepeat’ (media automatically restarted after completion, without any user interaction), ‘Api’ (caused by a call on the player’s API), ‘Internal’ (started because of an internal mechanism i.e. playlist progressed to a recommended item) |
+| playReason | string | wWy the play attempt originated. Options: ‘Unknown’ (Unknown reason:we cannot tell), ‘Interaction’ (A viewer interacts with the UI), ‘Auto’ (Autoplay based on the configuration of the player - autoStart), ‘autoOnViewable’ (autoStart when viewable), ‘autoRepeat’ (media automatically restarted after completion, without any user interaction), ‘Api’ (caused by a call on the player’s API), ‘Internal’ (started because of an internal mechanism i.e. playlist progressed to a recommended item) |
 
 ###### AUTOSTART_BLOCKED
 
@@ -382,7 +385,7 @@ No additional params.
 
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
-| playReason | string | why the play originated. Options: ‘Unknown’ (Unknown reason:we cannot tell), ‘Interaction’ (A viewer interacts with the UI), ‘Auto’ (Autoplay based on the configuration of the player - autoStart), ‘autoOnViewable’ (autoStart when viewable), ‘autoRepeat’ (media automatically restarted after completion, without any user interaction), ‘Api’ (caused by a call on the player’s API), ‘Internal’ (started because of an internal mechanism i.e. playlist progressed to a recommended item) |
+| playReason | string | Why the play attempt originated. Options: ‘Unknown’ (Unknown reason:we cannot tell), ‘Interaction’ (A viewer interacts with the UI), ‘Auto’ (Autoplay based on the configuration of the player - autoStart), ‘autoOnViewable’ (autoStart when viewable), ‘autoRepeat’ (media automatically restarted after completion, without any user interaction), ‘Api’ (caused by a call on the player’s API), ‘Internal’ (started because of an internal mechanism i.e. playlist progressed to a recommended item) |
 | errorCode | number | The identifier of error preventing the media from rendering |
 | errorMessage | string | Developer friendly description of the reason the error occurred. |
 | sourceError | object | The underlying root Error which prevented the playback. |
@@ -396,7 +399,7 @@ No additional params.
 | title | string | The title of the content; not meant to be used as a unique identifier. Nullable when not provided by Publisher, or unknown. |
 | description | string | The description of the content. Nullable when not provided by Publisher, or unknown. |
 | playlistIndex | number | The currently playing media item's index in the playlist. |
-| contentTags | array[string] | Customer media levelt tags describing the content. Nullable when not provided by Publisher, or unknown. |
+| contentTags | array[string] | Customer media level tags describing the content. Nullable when not provided by Publisher, or unknown. |
 
 ###### PLAY
 
@@ -446,7 +449,7 @@ No additional params.
 
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
-| volumePercentage | number | What is the volume of the player set to as a percentage. |
+| volumePercentage | number | The volume of the player, as a percentage |
 
 ###### RENDITION_UPDATE
 
@@ -462,7 +465,7 @@ No additional params.
 
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
-| errorCode | number | The identifier of error preventing the media from rendering |
+| errorCode | number | The identifier of the error preventing the media from rendering |
 | errorMessage | string | Developer friendly description of the reason the error occurred. |
 | sourceError | object | The underlying root Error which prevented the playback. |
 
@@ -530,6 +533,8 @@ No additional params.
 #### Bids marked as won
 
 When an impression or error from an ad originating from a winning bid occurs, the bid will be automatically marked as used.
+
+{: .alert.alert-warning :}
 Limitations: the mechanism used to determine when an error occurred for an ad originating from a winning might fail at times when the ad server is GAM because of a limitation in GAM. 
 
 #### Bid request Enrichment
@@ -538,14 +543,14 @@ For your convenience, when an auction begins, the Video Module will update oRTB 
 
 ##### adUnit.mediaTypes.video
 
-The params in `adUnit.mediaTypes.video` are populated with information extracted from the player. Any params already filled by the publisher will remain unchanged.
+The params in `adUnit.mediaTypes.video` are populated with information extracted from the player. Any param already filled by the publisher will remain unchanged.
 Some params such as `battr`, `minduration`, `maxduration` are specific to a publisher's preferences and should therefore be populated by the Publisher.
 
 ##### bidderRequest.ortb2.site.content
 
 The params in `bidderRequest.ortb2.site.content` are populated with information extracted from the video player. Any params already filled by the publisher will remain unchanged.
 This feature can be disabled by setting `video.contentEnrichmentEnabled` to `false` in the Prebid config.
-In the case where multiple video players are registered with the Video Module, the `bidderRequest.ortb2.site.content` params will be updated by the video player registered to the ad unit in the auction. If one of the Video Players is responsible for rendering the main content on the page, it may be appropriate for the `site.content` params to be populated with metadata from that player. In that case, you should populate `video.mainContentDivId` in the Prebid config with the video player's div id. |
+In the case where multiple video players are registered with the Video Module, the `bidderRequest.ortb2.site.content` params will be updated by the video player registered to the ad unit in the auction. If one of the Video Players is responsible for rendering the main content on the page, it may be appropriate for the `site.content` params to be populated with metadata from that player; in such case, you should populate `video.mainContentDivId` in the Prebid config with the video player's div id. |
 
 ## SSPs 
 
