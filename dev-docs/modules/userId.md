@@ -25,7 +25,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 1. The publisher builds Prebid.js by specifying one or more ID sub-modules they would like to include. e.g. "gulp build --modules=____IdSystem". You also need to add the `userId` module to your Prebid.js distribution.
 1. The page defines User ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
-   1. If the relevant local storage is present, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into `bidRequest.userId`.
+   1. If the relevant local storage is present or the value of the id is specified in the configuration, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into `bidRequest.userId`.
    1. If GDPR applies, the consent signal from the CMP is hashed and stored in a cookie called `_pbjs_userid_consent_data`. This is required so that ID sub-modules may be called to refresh their ID if the user's consent preferences have changed from the previous page, and ensures cached IDs are no longer used if consent is withdrawn.
 1. An object containing one or more IDs (`bidRequest.userId`) is made available to Prebid.js adapters and Prebid Server S2S adapters.
 1. In addition to `bidRequest.userId`, `bidRequest.userIdAsEids` is made available to Prebid.js adapters and Prebid Server S2S adapters. `bidRequest.userIdAsEids` has userIds in ORTB EIDS format.
@@ -38,7 +38,7 @@ Note: If your ID structure is complicated, it is helpful to add tests for pbjs.g
 Note: To add a custom data type for the response of pbjs.getUserIdsAsEids(), see other examples within the createEidsArray method in /modules/userId/eid.js
 
 {: .alert.alert-info :}
-Note that User IDs aren't needed in the mobile app world because device ID is available in those ad serving scenarios.
+Note that User IDs aren't as popular in the mobile app world because device ID is available in those ad serving scenarios.
 
 {: .alert.alert-info :}
 Note that not all bidder adapters support all forms of user ID. See the tables below for a list of which bidders support which ID schemes.
@@ -73,8 +73,9 @@ Publishers that want to do this should design their workflow and then set `_pbjs
 ## Basic Configuration
 
 By including this module and one or more of the sub-modules, a number of new options become available in `setConfig()`,
-under the `userSync` object as attributes of the `userIds` array
-of sub-objects.
+under the `userSync` object as attributes of the `userIds` array of sub-objects.
+
+The `value` parameter can be used to indicate an identifier the publisher has obtained via a direct integration with that identity provider that the publisher wishes to make available to Prebid.js bidders. 
 
 Publishers using Google AdManager may want to sync one of the identifiers as their Google PPID for frequency capping or reporting.
 The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rules; refer to [Google AdManager documentation](https://support.google.com/admanager/answer/2880055?hl=en) for them. Please note, Prebid uses a [GPT command](https://developers.google.com/publisher-tag/reference#googletag.PubAdsService) to sync identifiers for publisher convenience. It doesn't currently work for instream video requests, as Prebid typically interacts with the player, which in turn may interact with IMA. IMA does has a [similar method](https://developers.google.com/interactive-media-ads/docs/sdks/html5/client-side/reference/js/google.ima.ImaSdkSettings#setPpid) as GPT, but IMA does not gather this ID from GPT.
