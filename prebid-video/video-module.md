@@ -68,6 +68,8 @@ Integrating with the Video Module gives publishers access to the following featu
 Prebid can load the ad directly into the player when the auction is complete.
 This feature happens automatically as long as you do **not** define a `bidsBackHandler` when calling `requestBids`.
 
+<a name="events" />
+
 #### Events
 
 Media, ad and Player events are added when using the Video Module. 
@@ -185,67 +187,68 @@ No additional params.
 | waterfallCount | number |  The count of items in a given ad waterfall |
 | adPodCount | number | the total number of ads in the pod |
 | adPodIndex | number | The index of the currently playing ad within an ad pod |
-| wrapperAdIds | array[string] | 
-
+| wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 
 ###### AD_STARTED
 
 {: .table .table-bordered .table-striped }
-| argument name | type | description |
 | adTagUrl | string | The URL for the ad tag associated with the given ad event |
-| offset | string |
-| loadTime | number |
-| vastAdId | string |
-| adDescription | string |
-| adServer | string |
-| adTitle | string |
-| advertiserId | string |
-| advertiserName | string |
-| dealId | string |
-| linear | boolean |
-| vastVersion | string |
-| creativeUrl | string |
-| adId | string |
-| universalAdId | string |
-| creativeId | string |
-| creativeType | string |
-| redirectUrl | string |
-| adPlacementType | number | waterfallIndex | number |
-| waterfallCount | number |
-| adPodCount | number |
-| adPodIndex | number |
-| wrapperAdIds | array[string] |
+| offset | string | Scheduled position in the video for the ad to play. For mid-rolls, will be the position in seconds as string. Other options: 'pre' (pre-roll), 'post' (post-roll), 'api' (ad was not scheduled) |
+| loadTime | number | Time the ad took to load in milliseconds |
+| vastAdId | string | The ID given to the ad within the ad tag's XML. Nullable when absent from the VAST xml. |
+| adDescription | string | Description of the ad pulled from the ad tag's XML. Nullable when absent from the VAST xml. |
+| adServer | string | Ad server used (e.g. dart or mediamind) from the vast tag. Nullable when absent from the VAST xml. |
+| adTitle | string | Title of the ad pulled from the ad tag's XML. Nullable when absent from the VAST xml. |
+| advertiserId | string | Optional identifier for the advertiser, provided by the ad server. Nullable when absent from the VAST xml. |
+| advertiserName | string | Name of the advertiser as defined by the ad serving party, from the vast XML. Nullable when absent from the VAST xml. |
+| dealId | string | The ID of the Ads deal. Generally relates to Direct Sold Ad Campaigns. Nullable when absent from the VAST xml. |
+| linear | boolean | Is the ad linear or not? |
+| vastVersion | string | Version of VAST being reported from the tag |
+| creativeUrl | string | The URL representing the VPAID or MP4 ad that is run |
+| adId | string | Unique Ad ID - refers to the 'attribute' of the <Ad> node within the VAST. Nullable when absent from the VAST xml. |
+| universalAdId | string | Unique identifier for an ad in VAST4. Nullable when absent from the VAST xml. |
+| creativeId | string | Ad server's unique ID for the creative pulled from the ad tag's XML. Should be used to specify the ad server’s unique identifier as opposed to  the Universal Ad Id which is used for maintaining a creative id for the ad across multiple systems. Nullable when absent from the VAST xml. |
+| creativeType | string | The MIME type of the ad creative currently being displayed |
+| redirectUrl | string | the url to which the viewer is being redirected after clicking the ad. Nullable when absent from the VAST xml. |
+| adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
+| waterfallIndex | number | Index of the current item in the ad waterfall |
+| waterfallCount | number |  The count of items in a given ad waterfall |
+| adPodCount | number | the total number of ads in the pod |
+| adPodIndex | number | The index of the currently playing ad within an ad pod |
+| wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
+
+<a name="ad-impression-params" />
 
 ###### AD_IMPRESSION
 
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
 | adTagUrl | string | The URL for the ad tag associated with the given ad event |
-| offset | string |
-| loadTime | number |
-| vastAdId | string |
-| adDescription | string |
-| adServer | string |
-| adTitle | string |
-| advertiserId | string |
-| advertiserName | string |
-| dealId | string |
-| linear | boolean |
-| vastVersion | string |
-| creativeUrl | string |
-| adId | string |
-| universalAdId | string |
-| creativeId | string |
-| creativeType | string |
-| redirectUrl | string |
-| adPlacementType | number | waterfallIndex | number |
-| waterfallCount | number |
-| adPodCount | number |
-| adPodIndex | number |
-| wrapperAdIds | array[string] |
+| offset | string | Scheduled position in the video for the ad to play. For mid-rolls, will be the position in seconds as string. Other options: 'pre' (pre-roll), 'post' (post-roll), 'api' (ad was not scheduled) |
+| loadTime | number | Time the ad took to load in milliseconds |
+| vastAdId | string | The ID given to the ad within the ad tag's XML. Nullable when absent from the VAST xml. |
+| adDescription | string | Description of the ad pulled from the ad tag's XML. Nullable when absent from the VAST xml. |
+| adServer | string | Ad server used (e.g. dart or mediamind) from the vast tag. Nullable when absent from the VAST xml. |
+| adTitle | string | Title of the ad pulled from the ad tag's XML. Nullable when absent from the VAST xml. |
+| advertiserId | string | Optional identifier for the advertiser, provided by the ad server. Nullable when absent from the VAST xml. |
+| advertiserName | string | Name of the advertiser as defined by the ad serving party, from the vast XML. Nullable when absent from the VAST xml. |
+| dealId | string | The ID of the Ads deal. Generally relates to Direct Sold Ad Campaigns. Nullable when absent from the VAST xml. |
+| linear | boolean | Is the ad linear or not? |
+| vastVersion | string | Version of VAST being reported from the tag |
+| creativeUrl | string | The URL representing the VPAID or MP4 ad that is run |
+| adId | string | Unique Ad ID - refers to the 'attribute' of the <Ad> node within the VAST. Nullable when absent from the VAST xml. |
+| universalAdId | string | Unique identifier for an ad in VAST4. Nullable when absent from the VAST xml. |
+| creativeId | string | Ad server's unique ID for the creative pulled from the ad tag's XML. Should be used to specify the ad server’s unique identifier as opposed to  the Universal Ad Id which is used for maintaining a creative id for the ad across multiple systems. Nullable when absent from the VAST xml. |
+| creativeType | string | The MIME type of the ad creative currently being displayed |
+| redirectUrl | string | the url to which the viewer is being redirected after clicking the ad. Nullable when absent from the VAST xml. |
+| adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
+| waterfallIndex | number | Index of the current item in the ad waterfall |
+| waterfallCount | number |  The count of items in a given ad waterfall |
+| adPodCount | number | the total number of ads in the pod |
+| adPodIndex | number | The index of the currently playing ad within an ad pod |
+| wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
 | time | number | The current video time during an ad when an event occurs in seconds |
 | duration | number | Total duration of an ad in seconds |
-| playbackMode | number |
 
 ###### AD_PLAY
 
@@ -258,8 +261,8 @@ No additional params.
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
 | adTagUrl | string | The URL for the ad tag associated with the given ad event |
-| time | number |
-| duration | number |
+| time | number | The current video time during an ad when an event occurs in seconds |
+| duration | number | Total duration of an ad in seconds |
 
 ###### AD_PAUSE
 
@@ -272,38 +275,40 @@ No additional params.
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
 | adTagUrl | string | The URL for the ad tag associated with the given ad event |
-| offset | string |
-| loadTime | number |
-| vastAdId | string |
-| adDescription | string |
-| adServer | string |
-| adTitle | string |
-| advertiserId | string |
-| advertiserName | string |
-| dealId | string |
-| linear | boolean |
-| vastVersion | string |
-| creativeUrl | string |
-| adId | string |
-| universalAdId | string |
-| creativeId | string |
-| creativeType | string |
-| redirectUrl | string |
-| adPlacementType | number | waterfallIndex | number |
-| waterfallCount | number |
-| adPodCount | number |
-| adPodIndex | number |
-| wrapperAdIds | array[string] |
-| time | number |
-| duration | number |
-| playbackMode | number |
+| offset | string | Scheduled position in the video for the ad to play. For mid-rolls, will be the position in seconds as string. Other options: 'pre' (pre-roll), 'post' (post-roll), 'api' (ad was not scheduled) |
+| loadTime | number | Time the ad took to load in milliseconds |
+| vastAdId | string | The ID given to the ad within the ad tag's XML. Nullable when absent from the VAST xml. |
+| adDescription | string | Description of the ad pulled from the ad tag's XML. Nullable when absent from the VAST xml. |
+| adServer | string | Ad server used (e.g. dart or mediamind) from the vast tag. Nullable when absent from the VAST xml. |
+| adTitle | string | Title of the ad pulled from the ad tag's XML. Nullable when absent from the VAST xml. |
+| advertiserId | string | Optional identifier for the advertiser, provided by the ad server. Nullable when absent from the VAST xml. |
+| advertiserName | string | Name of the advertiser as defined by the ad serving party, from the vast XML. Nullable when absent from the VAST xml. |
+| dealId | string | The ID of the Ads deal. Generally relates to Direct Sold Ad Campaigns. Nullable when absent from the VAST xml. |
+| linear | boolean | Is the ad linear or not? |
+| vastVersion | string | Version of VAST being reported from the tag |
+| creativeUrl | string | The URL representing the VPAID or MP4 ad that is run |
+| adId | string | Unique Ad ID - refers to the 'attribute' of the <Ad> node within the VAST. Nullable when absent from the VAST xml. |
+| universalAdId | string | Unique identifier for an ad in VAST4. Nullable when absent from the VAST xml. |
+| creativeId | string | Ad server's unique ID for the creative pulled from the ad tag's XML. Should be used to specify the ad server’s unique identifier as opposed to  the Universal Ad Id which is used for maintaining a creative id for the ad across multiple systems. Nullable when absent from the VAST xml. |
+| creativeType | string | The MIME type of the ad creative currently being displayed |
+| redirectUrl | string | the url to which the viewer is being redirected after clicking the ad. Nullable when absent from the VAST xml. |
+| adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
+| waterfallIndex | number | Index of the current item in the ad waterfall |
+| waterfallCount | number |  The count of items in a given ad waterfall |
+| adPodCount | number | the total number of ads in the pod |
+| adPodIndex | number | The index of the currently playing ad within an ad pod |
+| wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
+| time | number | The current video time during an ad when an event occurs in seconds |
+| duration | number | Total duration of an ad in seconds |
 
 ###### AD_SKIPPED
 
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
-| time | number |
-| duration | number |
+| time | number | The current video time during an ad when an event occurs in seconds |
+| duration | number | Total duration of an ad in seconds |
+
+<a name="ad-error-params" />
 
 ###### AD_ERROR
 
@@ -314,31 +319,31 @@ No additional params.
 | errorMessage | string | Developer friendly description of the reason the error occurred. |
 | sourceError | object | The underlying root Error which prevented the playback. |
 | adTagUrl | string | The URL for the ad tag associated with the given ad event |
-| offset | string |
-| loadTime | number |
-| vastAdId | string |
-| adDescription | string |
-| adServer | string |
-| adTitle | string |
-| advertiserId | string |
-| advertiserName | string |
-| dealId | string |
-| linear | boolean |
-| vastVersion | string |
-| creativeUrl | string |
-| adId | string |
-| universalAdId | string |
-| creativeId | string |
-| creativeType | string |
-| redirectUrl | string |
-| adPlacementType | number | waterfallIndex | number |
-| waterfallCount | number |
-| adPodCount | number |
-| adPodIndex | number |
-| wrapperAdIds | array[string] |
-| time | number |
-| duration | number |
-| playbackMode | number |
+| offset | string | Scheduled position in the video for the ad to play. For mid-rolls, will be the position in seconds as string. Other options: 'pre' (pre-roll), 'post' (post-roll), 'api' (ad was not scheduled) |
+| loadTime | number | Time the ad took to load in milliseconds |
+| vastAdId | string | The ID given to the ad within the ad tag's XML. Nullable when absent from the VAST xml. |
+| adDescription | string | Description of the ad pulled from the ad tag's XML. Nullable when absent from the VAST xml. |
+| adServer | string | Ad server used (e.g. dart or mediamind) from the vast tag. Nullable when absent from the VAST xml. |
+| adTitle | string | Title of the ad pulled from the ad tag's XML. Nullable when absent from the VAST xml. |
+| advertiserId | string | Optional identifier for the advertiser, provided by the ad server. Nullable when absent from the VAST xml. |
+| advertiserName | string | Name of the advertiser as defined by the ad serving party, from the vast XML. Nullable when absent from the VAST xml. |
+| dealId | string | The ID of the Ads deal. Generally relates to Direct Sold Ad Campaigns. Nullable when absent from the VAST xml. |
+| linear | boolean | Is the ad linear or not? |
+| vastVersion | string | Version of VAST being reported from the tag |
+| creativeUrl | string | The URL representing the VPAID or MP4 ad that is run |
+| adId | string | Unique Ad ID - refers to the 'attribute' of the <Ad> node within the VAST. Nullable when absent from the VAST xml. |
+| universalAdId | string | Unique identifier for an ad in VAST4. Nullable when absent from the VAST xml. |
+| creativeId | string | Ad server's unique ID for the creative pulled from the ad tag's XML. Should be used to specify the ad server’s unique identifier as opposed to  the Universal Ad Id which is used for maintaining a creative id for the ad across multiple systems. Nullable when absent from the VAST xml. |
+| creativeType | string | The MIME type of the ad creative currently being displayed |
+| redirectUrl | string | the url to which the viewer is being redirected after clicking the ad. Nullable when absent from the VAST xml. |
+| adPlacementType | number | The video placements per IAB guidelines. Enum list: In-Stream: 1, In-Banner: 2, In-Article: 3, In-Feed: 4, Interstitial/Slider/Floating: 5 |
+| waterfallIndex | number | Index of the current item in the ad waterfall |
+| waterfallCount | number |  The count of items in a given ad waterfall |
+| adPodCount | number | the total number of ads in the pod |
+| adPodIndex | number | The index of the currently playing ad within an ad pod |
+| wrapperAdIds | array[string] | Ad IDs of the VAST Wrappers that were loaded while loading the Ad tag. The list returned starts at the inline ad (innermost) and traverses to the outermost wrapper ad. An empty array is returned if there are no wrapper ads. |
+| time | number | The current video time during an ad when an event occurs in seconds |
+| duration | number | Total duration of an ad in seconds |
 
 ###### AD_COMPLETE
 
@@ -350,7 +355,7 @@ No additional params.
 
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
-| offset | string |
+| offset | string | Scheduled position in the video for the ad to play. For mid-rolls, will be the position in seconds as string. Other options: 'pre' (pre-roll), 'post' (post-roll), 'api' (ad was not scheduled) |
 
 ###### PLAYLIST
 
@@ -500,27 +505,27 @@ No additional params.
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
 | adTagUrl | string | The URL for the ad tag associated with the given ad event |
-| adUnitCode | string | 
+| adUnitCode | string | Unique identifier that was used when creating the ad unit. |
 
 ###### AUCTION_AD_LOAD_ABORT
 
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
-| adUnitCode | string |
+| adUnitCode | string | Unique identifier that was used when creating the ad unit. |
 
 ###### BID_IMPRESSION
 
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
-| bid | object |
-| adEvent | object |
+| bid | object |  Information about the Bid which resulted in the Ad Impression |
+| adEvent | object | Event payload from the [Ad Impression](#ad-impression-params) |
 
 ###### BID_ERROR
 
 {: .table .table-bordered .table-striped }
 | argument name | type | description |
-| bid | object |
-| adEvent | object |
+| bid | object | Information about the Bid which resulted in the Ad Error |
+| adEvent | object | Event payload from the [Ad Error](#ad-error-params) |
 
 #### Bids marked as won
 
@@ -563,8 +568,3 @@ SSPs wishing to benefit from this enrichment should read from `bidderRequest.ort
 
 The Prebid Video Module acts as a simple Video interface which Prebid can connect to. In order for the Video Module to plug into a Video Player, a video submodule must be implemented. The Video Submodule acts as a bridge between the Video Module and the Video Player.
 To add a submodule please follow the instructions in [How to add a video submodule]({{site.github.url}}/dev-docs/add-video-submodule.html).
-//TODO https://docs.prebid.org/dev-docs/add-rtd-submodule.html
-
-
-// TODO: list event and param details and link
-

@@ -132,7 +132,7 @@ const exampleSubmodule =  {
 
 #### Event registration
 
-Submodules must support attaching and detaching event listeners on the video player. The list of events is defined and their params are listed in (TODO add link).
+Submodules must support attaching and detaching event listeners on the video player. The list of events and their respective params are defined in the [Video Module docs's Events section]({{site.github.url}}/prebid-video/video-module.html#events).
 
 ##### onEvent
 
