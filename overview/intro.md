@@ -24,7 +24,7 @@ The Prebid.org suite of products leads the industry in providing header bidding 
 
 <div style="width:650px;">
 <p align=right>
-<a href="https://app.sincera.io/">Data by Sincera</a>
+<a href="https://app.sincera.io/">Data by <img border="0" alt="Sincera" src="/assets/images/intros/Sincera_Logo_Black_Green-small.png"></a>
 </p>
 </div>
 
@@ -104,7 +104,7 @@ Additional modules are available that support identity, price floors, testing, c
 
 <div style="width:800px;">
 <p align=right>
-<a href="https://app.sincera.io/">Data by Sincera</a>
+<a href="https://app.sincera.io/">Data by <img border="0" alt="Sincera" src="/assets/images/intros/Sincera_Logo_Black_Green-small.png"></a>
 </p>
 </div>
 
@@ -141,7 +141,7 @@ If you decide to use in-house resources to implement Prebid, keep in mind that r
 
 <div style="width:800px;">
 <p align=right>
-<a href="https://app.sincera.io/">Data by Sincera</a>
+<a href="https://app.sincera.io/">Data by <img border="0" alt="Sincera" style="vertical-align:center" src="/assets/images/intros/Sincera_Logo_Black_Green-small.png"></a>
 </p>
 </div>
 
