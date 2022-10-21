@@ -23,6 +23,9 @@ The module enables publishers to measure traffic coming from visitors using adbl
 
 AAX can also help publishers monetize this traffic by allowing them to serve [acceptable ads](https://acceptableads.com/about/) to these adblock visitors and recover their lost revenue. [Reach out to us](https://www.aax.media/try-blockmeter/) to know more.
 
+{: .alert.alert-warning :}
+Disclosure: This module loads external code that is not open source and has not been reviewed by Prebid.org.
+
 ## Configuration
 
 This module is configured as part of the `realTimeData.dataProviders` object.
@@ -33,6 +36,7 @@ This module is configured as part of the `realTimeData.dataProviders` object.
 | `name `     | required | Real time data module name | `'aaxBlockmeter'`   | `string` |
 | `params`      | required |  | | `Object` |
 | `params.pub`      | required | AAX to share pub ID, [Reach out to us](https://www.aax.media/try-blockmeter/) to know more! | `'AAX000000'` | `string` |
+| `params.url `     | optional | AAX Blockmeter Script Url. Defaults to `'c.aaxads.com/aax.js?ver=1.2'` | `'c.aaxads.com/aax.js?ver=1.2'`   | `string` |
 
 ### Basic Example
 
@@ -42,7 +46,8 @@ pbjs.setConfig({
         dataProviders: [{
             name: 'aaxBlockmeter',
             params: {
-                pub: 'AAX000000'
+                pub: 'AAX000000',
+                url: 'c.aaxads.com/aax.js?ver=1.2',
             }
         }]
     }
