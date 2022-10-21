@@ -37,6 +37,7 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                    |
 | `labelAll`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                     |
 | `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit. The ortb2Imp object currently supports [first party data](#adUnit-fpd-example) including the [Prebid Ad Slot](/features/pbAdSlot.html) and the [interstitial](#adUnit-interstitial-example) signal. |
+| `renderer`   | Optional | Object                         | Custom renderer, typically used for [outstream video](/dev-docs/show-outstream-video-ads.html) |
 
 <a name="adUnit.bids" />
 
@@ -53,6 +54,7 @@ Note that `bids` is optional only for [Prebid Server stored impressions](/dev-do
 | `params`   | Required | Object        | Bid request parameters for a given bidder. For allowed params, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html). |
 | `labelAny` | Optional | Array[String] | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                  |
 | `labelAll` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                   |
+| `renderer` | Optional | Object        | Custom renderer. Takes precedence over `adUnit.renderer`, but applies only to this bidder. |
 
 <a name="adUnit.mediaTypes" />
 
