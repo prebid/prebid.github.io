@@ -53,7 +53,7 @@ Example markdown file:
 # Overview
 
 Module Name: Example Video Provider
-Module Type: Video Provider
+Module Type: Video Submodule
 Video Player: Example player
 Player website: example-player.com
 Maintainer: someone@example.com
@@ -61,6 +61,10 @@ Maintainer: someone@example.com
 # Description
 
 Video provider for Example Player. Contact someone@example.com for information.
+
+# Requirements
+
+Your page must link the Example Player build from our CDN. Alternatively yu can use npm to load the build.
 
 {% endhighlight %}
 
@@ -113,7 +117,7 @@ The submodule object must adhere to the following interface:
 | setAdTagUrl | function | required | Requests that the video player load and begin playing the given ad tag url. | adTagUrl: string | void |
 | onEvent | function | required | Registers event listeners for the given event strings to the player instance. | externalEventName: string, callback: function, basePayload: object | void |
 | offEvent | function | required | Removes event listeners for the given event strings to the player instance. | event: string, callback: function | void |
-| destroy | function | required | Deallocates the submodule and destroys the associated video player. n/a | void |
+| destroy | function | required | Deallocates the submodule and destroys the associated video player. n/a | void | void |
 
 For example:
 {% highlight text %}
