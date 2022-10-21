@@ -135,10 +135,10 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
 ```
 
 
-2. In the `[pbjs.setConfig()](https://docs.prebid.org/dev-docs/modules/prebidServer.html)` function, within the <code>s2sConfig</code> property, add `ix` to the <code>bidders</code> attribute. 
+2. In the `[pbjs.setConfig()]` function, within the `s2sConfig` property, add `ix` to the `bidders` attribute. 
 3. Define the Index-specific parameters at the bidder level. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html) documentation. 
-5. Set a server-side timeout to control the maximum time taken to connect to the server. The timeout value must be a positive whole number in milliseconds. If you do not specify the time, the default value is 50ms. You can specify the `timeout` value in the `[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)` function as follows: <br />
+5. Set a server-side timeout to control the maximum time taken to connect to the server. The timeout value must be a positive whole number in milliseconds. If you do not specify the time, the default value is 50ms. You can specify the `timeout` value in the `[pbjs.setConfig()]` function as follows: <br />
 ```javascript
 pbjs.setConfig({     
     ix: {
@@ -240,7 +240,7 @@ To include the FPD in a bid request, in the `[pbjs.setConfig()]` object at the `
 ### Prebid FPD module 
 
 This module allows all bid adapters to have access to first party data that might be useful in ad targeting. This is available from Prebid.js version 4.30 and above.  
-To supply data that is accessible to all bidders, use the `[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)` object as illustrated below. Use the `[setBidderConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setBidderConfig.html)` function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation. 
+To supply data that is accessible to all bidders, use the `[pbjs.setConfig()]` object as illustrated below. Use the `[setBidderConfig()]` function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation. 
 
 ```javascript
 pbjs.setConfig({
