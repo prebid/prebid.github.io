@@ -20,7 +20,15 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: What is Prebid?
+  title: Intro to Header Bidding
+  link: /overview/intro-to-header-bidding.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 0
+  title: Intro to Prebid
   link: /overview/intro.html
   isHeader: 0
   isSectionHeader: 0
@@ -668,7 +676,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: Integration with AppLovin MAX
   link: /prebid-mobile/modules/rendering/ios-sdk-integration-max.html
@@ -684,7 +692,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-    
+
 - sbSecId: 2
   title: Ad Experience Controls
   link: /prebid-mobile/modules/rendering/ios-sdk-customization-controls.html
@@ -733,7 +741,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: Integration with AppLovin MAX
   link: /prebid-mobile/modules/rendering/android-sdk-integration-max.html
@@ -749,7 +757,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: Ad Experience Controls
   link: /prebid-mobile/modules/rendering/android-sdk-customization-controls.html
@@ -774,7 +782,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: Mediation Group - AdMob
   link: /prebid-mobile/modules/rendering/rendering-admob-line-item-setup.html
@@ -782,7 +790,7 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 2
   title: Custom Network - MAX
   link: /prebid-mobile/modules/rendering/rendering-max-line-item-setup.html
@@ -2334,4 +2342,3 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-
