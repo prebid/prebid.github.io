@@ -195,6 +195,7 @@ No additional params.
 ###### AD_STARTED
 
 {: .table .table-bordered .table-striped }
+| argument name | type | description |
 | adTagUrl | string | The URL for the ad tag associated with the given ad event |
 | offset | string | Scheduled position in the video for the ad to play. For mid-rolls, will be the position in seconds as string. Other options: 'pre' (pre-roll), 'post' (post-roll), 'api' (ad was not scheduled) |
 | loadTime | number | Time the ad took to load in milliseconds |
