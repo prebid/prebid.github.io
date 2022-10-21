@@ -16,3 +16,5 @@ config option. For eample, in `pbs.yaml`:
 ```yaml
 status_response: "ok"
 ```
+
+NOTE: this endpoint cannot currently be relied upon to return the same results for different PBS host companies. The results are configurable so that host companies can integrate their servers into their existing monitoring services.
