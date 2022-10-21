@@ -47,10 +47,10 @@ Publishers can use Prebid.js to call Index Exchange (Index) in any of the follow
 **Notes:** 
 * **Bid request limit**: You can send up to 20 ad slots in a single bid request to Index. If a single bid request contains more than 20 ad slots, only the first 20 are accepted and the rest are ignored.
 * **How to view bid requests sent to Index:** 
-    1. In your browser, open a new tab.
-    2. Open the **Developer tools**. 
-    3. In **Developer tools**, click the **Network** tab. 
-    4. In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index. 
+    * In your browser, open a new tab.
+    * Open the **Developer tools**. 
+    * In **Developer tools**, click the **Network** tab. 
+    * In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index. 
 
 
 <a name="supported-media-types" />
@@ -90,8 +90,8 @@ In this configuration Prebid.js calls Index directly from the browser using our 
 
 3. Define your ad units in the `adUnit` object. This includes the details about the ad slots such as the media types, ad size, and ad code. For more information about this object, see Prebid's [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html) documentation.
 4. Enable user syncing by adding the following code in the [pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Make  sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.  <br />
-**Note:** While we recommend iFrame-based user syncing, we also support image-based user syncing. If both are enabled, we will default to using iFrame, because it allows us more flexibility to optimize the frequency, timing, and coverage for syncing.
-
+**Note:** While we recommend iFrame-based user syncing, we also support image-based user syncing. If both are enabled, we will default to using iFrame, because it allows us more flexibility to optimize the frequency, timing, and coverage for syncing.<br />
+**Example:** 
 ```javascript
 pbjs.setConfig({
     userSync: {
