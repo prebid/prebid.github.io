@@ -8,7 +8,7 @@ media_types: banner,native,video
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: false
-pbjs: false
+pbjs: true
 gvl_id: 720
 schain_supported: true
 floors_supported: true
