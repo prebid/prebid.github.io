@@ -7,7 +7,27 @@ isVideo: true
 sidebarType: 4
 code_height: 2300
 ---
+<style>
+  #mainContainer {
+    position: relative;
+    width: 640px;
+    height: 360px;
+  }
 
+  #adContainer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 640px;
+    height: 360px;
+  }
+
+  #contentElement {
+    width: 640px;
+    height: 360px;
+    overflow: hidden;
+  }
+</style>
 <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
 <div class="container">
     <div class="row">
@@ -28,7 +48,12 @@ code_height: 2300
             Do not forget to exchange the placementId in the code examples with your own placementId!</p>
         </div>
 
-        <div id='adContainer'></div>
+        <div id='mainContainer'>
+          <video id='contentElement' muted>
+            <source src="https://storage.googleapis.com/gvabox/media/samples/stock.mp4"></source>
+          </video>
+          <div id='adContainer'></div>
+        </div>
 
         <div class="row">
            <div class="pb-code-hl-wrap">
@@ -43,15 +68,34 @@ code_height: 2300
   pbjs.que = pbjs.que || [];
 
   function render(bid) {
+    const videoContent = document.getElementById('contentElement');
     const adContainer = document.getElementById('adContainer');
-    const adDisplayContainer = new google.ima.AdDisplayContainer(adContainer);
+    const adDisplayContainer = new google.ima.AdDisplayContainer(adContainer, videoContent);
 
     const adsRequest = new google.ima.AdsRequest();
     adsRequest.adTagUrl = '';
     adsRequest.adsResponse = bid.vastXml;
 
     adsLoader = new google.ima.AdsLoader(adDisplayContainer);
-    adsLoader.requestAds(adsRequest)
+    adsLoader.requestAds(adsRequest);
+
+    adsLoader.addEventListener(google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED, (adsManagerLoadedEvent) => {
+      const adsRenderingSettings = new google.ima.AdsRenderingSettings();
+      adsRenderingSettings.restoreCustomPlaybackStateOnAdBreakComplete = true;
+      /* videoContent should be set to the video DOM element. */
+      const adsManager = adsManagerLoadedEvent.getAdsManager(videoContent, adsRenderingSettings);
+
+      /* Ad event listeners */
+      adsManager.addEventListener(google.ima.AdEvent.Type.LOADED, () => videoContent.play());
+      adsManager.addEventListener(google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED, () => videoContent.pause());
+      adsManager.addEventListener(google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED, () => videoContent.play());
+
+      /* Play the ad */
+      videoContent.load();
+      adDisplayContainer.initialize();
+      adsManager.init(640, 360, google.ima.ViewMode.NORMAL);
+      adsManager.start();
+    }, false);
   }
 
   /* Prebid video ad unit */
@@ -59,7 +103,7 @@ code_height: 2300
     code: 'adContainer',
     renderer: {
       render,
-      url: "https://imasdk.googleapis.com/js/sdkloader/ima3.js"
+      url: 'https://imasdk.googleapis.com/js/sdkloader/ima3.js'
     },
     mediaTypes: {
       video: {

@@ -1700,7 +1700,7 @@
 
 - sbSecId: 4
   title: 'Basic IMA'
-  link: /examples/video/outstream/pb-ve-outstream-basic-ima.html
+  link: /examples/video/outstream/basic-ima.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
