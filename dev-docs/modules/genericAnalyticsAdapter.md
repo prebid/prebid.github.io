@@ -23,7 +23,30 @@ This is an analytics adapter that can interface with any backend, meant for publ
 | `batchSize`  | optional | Number   | Number of events to collect into a single call to `handler` or `url`. Defaults to `1`                                                                                                             |
 | `batchDelay` | optional | Number   | Time (in milliseconds) to wait before calling `handler` or `url` with an incomplete batch (when fewer than `batchSize` events have been collected). Defaults to `100`                             |
 | `events`     | optional | Object   | Map from event name to a custom format function. When provided, only events in this map will be collected, using the data returned by their corresponding function - [example](#event-formatters) |
+| `gvlid`      | optional | Number   | Global vendor list ID to use for the purpose of GDPR purpose 7 enforcement - see [note](#gdpr) |
 | `sampling`   | optional | Number   | Sampling rate, expressed as a number between 0 and 1. Data is collected only on this ratio of browser sessions. Defaults to `1`                                                               |
+
+<a id="gdpr" />
+
+### Note on GDPR enforcement
+
+If you are using the [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) to enforce purpose 7, by default this module will be blocked when GDPR is in scope.
+To enable it, you may either specify the `gvlid` option (if you are interfacing with a partner) or declare a `softVendorException` if you deem that vendor consent is not required for compliance:
+
+```javascript
+pbjs.setConfig({
+    consentManagement: {
+        gdpr: {
+            rules: [{
+                purpose: "measurement",
+                enforcePurpose: true,
+                enforceVendor: true,
+                softVendorExceptions: ["generic"]
+            }]
+        }
+    }
+})
+```
 
 
 ### Examples
