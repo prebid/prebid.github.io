@@ -1,3 +1,14 @@
+---
+layout: page_v2
+page_type: module
+title: Module - fledgeForGpt
+description: how to use fledge with GPT
+module_code : fledgeForGpt
+display_name : Fledge for GPT
+enable_download : true
+sidebarType : 1
+---
+
 # Overview
 This module allows Prebid.js to support FLEDGE by integrating it with GPT's [experimental FLEDGE
 support](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing).
