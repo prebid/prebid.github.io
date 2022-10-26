@@ -9,10 +9,10 @@ sidebarType: 1
 {:.no_toc}
 
 Video submodules interact with the Video Module to integrate Prebid with Video Players, allowing Prebid to automatically:
-- render bids in the desired video player
-- mark used bids as won
-- trigger player and media events
-- populate the oRTB Video Impression and Content params in the bid request
+- render bids in the desired video player.
+- mark used bids as won.
+- trigger player and media events.
+- populate the oRTB Video Impression and Content params in the bid request.
 
 * TOC
   {:toc }
@@ -28,18 +28,18 @@ Publishers who use players from different vendors on the same page can use multi
 ## Requirements
 
 The Video Module only supports integration with Video Players that meet the following requirements:
-- Must support parsing and reproduction of VAST ads
+- Must support parsing and reproduction of VAST ads.
   - Input can be an ad tag URL or the actual Vast XML.
 - Must expose an API that allows the procurement of [Open RTB params](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for Video (section 3.2.7) and Content (section 3.2.16).
-- Must emit javascript events for Ads and Media
-  - see [Event Registration](#event-registration)
+- Must emit javascript events for Ads and Media.
+  - see [Event Registration](#event-registration).
 
 ## Creating a Submodule
 
 Working with any Prebid project requires using Github. In general, we recommend the same basic workflow for any project:
 
 1. Fork the appropriate Prebid repository (e.g. [Prebid.js](https://github.com/prebid/Prebid.js)).
-2. Create a branch in your fork for your proposed code change. (e.g. feature/exampleVideoProvider)
+2. Create a branch in your fork for your proposed code change (e.g. feature/exampleVideoProvider).
 3. Build and test your feature/bug fix in the branch.
 4. Open a [pull request](https://help.github.com/en/desktop/contributing-to-projects/creating-a-pull-request) to the appropriate repository's master branch with a good description of the feature/bug fix.
 5. If there's something that needs to change on the prebid.org website, follow the above steps for the [website repo](https://github.com/prebid/prebid.github.io).
