@@ -1,11 +1,11 @@
 ---
 layout: bidder
 title: viqeo
-description: Prebid Viqeo Bidder Adaptor
+description: Prebid Outstream Viqeo Bidder Adaptor
 biddercode: viqeo
 pbjs: true
 floors_supported: true
-media_types: banner
+media_types: video
 ---
 
 ### Note
@@ -36,3 +36,4 @@ Please reach out to <info@viqeo.tv> for more information.
 | `test`                      | optional | Flag which will induce a sample bid response when true; only set to true for testing purposes (1 = true, 0 = false)        | `1`                      | `integer` |
 | `sspId`                     | optional | For debug, request id                                                                                                      | `1`                      | `number`  |
 | `renderUrl`                 | optional | For debug, script player url                                                                                               | `"https://viqeo.tv"`     | `string`  |
+| `endpointUrl`               | optional | For debug, api endpoint                                                                                                    | `"https://viqeo.tv"`     | `string`  |
