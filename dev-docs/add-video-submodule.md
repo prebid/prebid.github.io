@@ -64,7 +64,7 @@ Video provider for Example Player. Contact someone@example.com for information.
 
 # Requirements
 
-Your page must link the Example Player build from our CDN. Alternatively yu can use npm to load the build.
+Your page must link the Example Player build from our CDN. Alternatively you can use npm to load the build.
 
 {% endhighlight %}
 
