@@ -47,10 +47,10 @@ Publishers can use Prebid.js to call Index Exchange (Index) in any of the follow
 **Notes:** 
 * **Bid request limit**: You can send up to 20 ad slots in a single bid request to Index. If a single bid request contains more than 20 ad slots, only the first 20 are accepted and the rest are ignored.
 * **How to view bid requests sent to Index:** 
-    1. In your browser, open a new tab.
-    2. Open the **Developer tools**. 
-    3. In **Developer tools**, click the **Network** tab. 
-    4. In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index. 
+    * In your browser, open a new tab.
+    * Open the **Developer tools**. 
+    * In **Developer tools**, click the **Network** tab. 
+    * In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index. 
 
 
 <a name="supported-media-types" />
@@ -89,9 +89,9 @@ In this configuration Prebid.js calls Index directly from the browser using our 
 ```
 
 3. Define your ad units in the `adUnit` object. This includes the details about the ad slots such as the media types, ad size, and ad code. For more information about this object, see Prebid's [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html) documentation.
-4. Enable user syncing by adding the following code in the [pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Make  sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.  <br />
-**Note:** While we recommend iFrame-based user syncing, we also support image-based user syncing. If both are enabled, we will default to using iFrame, because it allows us more flexibility to optimize the frequency, timing, and coverage for syncing.
+4. Enable user syncing by adding the following code in the [pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Make  sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.  <br />
 
+**Example:** 
 ```javascript
 pbjs.setConfig({
     userSync: {
@@ -135,21 +135,11 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
 ```
 
 
-2. In the `[pbjs.setConfig()](https://docs.prebid.org/dev-docs/modules/prebidServer.html)` function, within the <code>s2sConfig</code> property, add `ix` to the <code>bidders</code> attribute. 
+2. In the `[pbjs.setConfig()]` function, within the `s2sConfig` property, add `ix` to the `bidders` attribute. 
 3. Define the Index-specific parameters at the bidder level. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html) documentation. 
-5. Set a server-side timeout to control the maximum time taken to connect to the server. The timeout value must be a positive whole number in milliseconds. If you do not specify the time, the default value is 50ms. You can specify the `timeout` value in the `[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)` function as follows: <br />
-```javascript
-pbjs.setConfig({     
-    ix: {
-        timeout: 50
-    }
-});
-```
+5. Enable user syncing by adding the following code in the [pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.   <br />
 
-
-6. Enable user syncing by adding the following code in the `[pbjs.setConfig()]` function. Index strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.   <br />
-**Note:** While we recommend iFrame-based user syncing, we also support image-based user syncing. If both are enabled, we will default to using iFrame, because it allows us more flexibility to optimize the frequency, timing, and coverage for syncing.     <br />
 ```javascript
 pbjs.setConfig({
     userSync: {
@@ -165,8 +155,8 @@ pbjs.setConfig({
 ```
 
 
-7. (Optional) Set up First Party Data (FPD) using the Index bidder-specific FPD (preferred method) setting or the Prebid FPD module. For more information, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
-8. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
+6. (Optional) Set up First Party Data (FPD) using the Index bidder-specific FPD (preferred method) setting or the Prebid FPD module. For more information, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
+7. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
 ```javascript
 pbjs.setConfig({
     cache: {
@@ -177,10 +167,10 @@ pbjs.setConfig({
 
 
 
-9. (Optional) If you want to monetize outstream video, you can choose among the following options. Outstream video is available from Prebid.js version 6.25 or higher.
+8. (Optional) If you want to monetize outstream video, you can choose among the following options. Outstream video is available from Prebid.js version 6.25 or higher.
     * Use Index's outstream video player. For more information, see the [Index's outstream video player ](#indexs-outstream-video-player) section below. 
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
-10. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher. 
+9. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher. 
 
 
 
@@ -240,7 +230,7 @@ To include the FPD in a bid request, in the `[pbjs.setConfig()]` object at the `
 ### Prebid FPD module 
 
 This module allows all bid adapters to have access to first party data that might be useful in ad targeting. This is available from Prebid.js version 4.30 and above.  
-To supply data that is accessible to all bidders, use the `[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)` object as illustrated below. Use the `[setBidderConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setBidderConfig.html)` function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation. 
+To supply data that is accessible to all bidders, use the `[pbjs.setConfig()]` object as illustrated below. Use the `[setBidderConfig()]` function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation. 
 
 ```javascript
 pbjs.setConfig({
