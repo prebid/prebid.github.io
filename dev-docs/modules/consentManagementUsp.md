@@ -56,7 +56,7 @@ If the timeout period expires or an error from the USP-API is thrown, the auctio
 
 As of January 1st 2023, CCPA will require that requests to "delete my personal information" (right to delete) must be propagated to all 3rd parties user data is being shared with. US Privacy Consent Management Module will support this feature in 7.23.0 and above. 
 
-Prebid Modules that receive user data (bid adapters, analytics adapters), or set user data (UserId, RTD) must define a new method called `onDataDeletionRequest`. The US Privacy Consent Management Module will attach a `registerDeletion` event handler with the CMP, when triggered it will: 
+Prebid Modules that receive user data (bid adapters, analytics adapters), or set user data (UserId, RTD) may define a new method called `onDataDeletionRequest`. The US Privacy Consent Management Module will attach a `registerDeletion` event handler with the CMP, when triggered it will: 
 
 The USP module attaches a 'registerDeletion' event handler with the CMP; when triggered, it will:
 - invoke the methods above on all adapters
