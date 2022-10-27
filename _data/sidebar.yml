@@ -261,6 +261,15 @@
   subgroup: 1
 
 - sbSecId: 1
+  title: Synchronize Transaction Ids With Another Library
+  link: /dev-docs/examples/sync-tid.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
   title: Troubleshooting
   link:
   isHeader: 1
