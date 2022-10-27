@@ -1126,13 +1126,13 @@ Assuming your page has 2 JW Player video players, 1 video.js video player, and y
 pbjs.setConfig({
     video: {
         providers: [{
-            vendorCode: JWPLAYER_VENDOR,
+            vendorCode: 1, // constant variable is JWPLAYER_VENDOR - see vendorCodes.js in the video library
             divId: 'jwplayer-div-1',
             playerConfig: {
                 autoStart: true,
             }
         }, {
-            vendorCode: VIDEO_JS_VENDOR,
+            vendorCode: 2, // constant variable is VIDEO_JS_VENDOR - see vendorCodes.js in the video library
             divId: 'videojs-div',
             playerConfig: {
                 params : {
@@ -1146,14 +1146,14 @@ pbjs.setConfig({
                 }
             }
         }, {
-            vendorCode: JWPLAYER_VENDOR,
+            vendorCode: 1, // constant variable is JWPLAYER_VENDOR - see vendorCodes.js in the video library
             divId: 'jwplayer-div-2',
             playerConfig: {
                 mute: true
             }
         }],
         adServer: {
-            vendorCode: GAM_VENDOR,
+            vendorCode: 'gam', // constant variable is GAM_VENDOR - see vendorCodes.js in the video library
             baseAdTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?iu=/12345/'
         }
     }
