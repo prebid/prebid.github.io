@@ -32,6 +32,7 @@ multiformat_supported: yes
 - [Index's outstream video player](#index-outstream-video-player)
 - [Prebid Native configuration](#prebid-native-configuration)
 - [Bid request parameters](#bid-request-parameters)
+- [Multi-format Adunits](#multi-format-ad-units)
 - [Examples](#examples)
 
 
@@ -389,6 +390,21 @@ If you are using Index's outstream player and have placed the video object at th
 Index supports the same set of native assets that Prebid.js recognizes. For the list of native assets, see [Prebid.js Native Implementation Guide on the Prebid site.](https://docs.prebid.org/prebid/native-implementation.html#3-prebidjs-native-adunit-overview)
 
 
+<a name="multi-format-ad-units" /></a>
+## Multi-Format Adunits
+Index supports Multi-format adunits, see [Show Multi-Format Ads with Prebid.js](https://docs.prebid.org/dev-docs/show-multi-format-ads.html). For multi-format adunits, you can optionally specify a different siteId for each multi-format type at the params level. This can be beneficial if you have deals set up with Index at the siteId level. See multi-format examples [here](#multi-format-example).
+
+{: .table .table-bordered .table-striped }
+
+| Key | Scope | Type | Description |
+|---|---|---|---|
+| `siteId` | Required | Integer | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`. <b>Note: </b> This will also act as the default siteID for multi-format adunits if a format specific siteId are not provided. |
+| `banner.siteId` | Optional | Integer | SiteId An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `banner` format in the multi-format adunit.    |
+| `video.siteId` | Optional | Integer | SiteId An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `video` format in the multi-format adunit. |
+`native.siteId` | Optional | Integer | SiteId An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `native` format in the multi-format adunit.
+
+
+
 <a name="examples" />
 
 ## Examples 
@@ -540,3 +556,103 @@ pbjs.addAdUnits({
 });
 
 ```
+<a name="multi-format-example" /></a>
+**Multi-format (with siteId overrides)**
+```javascript
+var adUnits = [{
+    code: slot.code,
+    mediaTypes: {
+        
+        banner: {
+            sizes: [300,250]
+        },
+        native: {
+            title: {
+                required: false
+            },
+            image: {
+                required: true
+            },
+            sponsoredBy: {
+                required: false
+            },
+            body: {
+                required: false
+            }
+        },
+        
+        video: {
+            playerSize: sizes,
+            context: 'outstream',
+            api:[2],
+            protocols: [2, 3, 5, 6],
+            minduration: 5,
+            maxduration: 30,
+            mimes: ['video/mp4','application/javascript']
+        }
+    },
+    bids: [
+    {
+        bidder: 'ix',
+        params: {
+            siteId: '1111',
+            video: {
+                siteId: '2222'
+            },
+            native: {
+                siteId: '3333'
+            },
+            banner: {
+                siteId: '4444'
+            }
+        }
+    },
+]
+}];
+
+```
+
+**Multi-format (without siteId overrides)**
+
+```javascript
+var adUnits = [{
+    code: slot.code,
+    mediaTypes: {
+        
+        banner: {
+            sizes: [300,250]
+        },
+        native: {
+            title: {
+                required: false
+            },
+            image: {
+                required: true
+            },
+            sponsoredBy: {
+                required: false
+            },
+            body: {
+                required: false
+            }
+        },
+        
+        video: {
+            playerSize: sizes,
+            context: 'outstream',
+            api:[2],
+            protocols: [2, 3, 5, 6],
+            minduration: 5,
+            maxduration: 30,
+            mimes: ['video/mp4','application/javascript']
+        }
+    },
+    bids: [
+    {
+        bidder: 'ix',
+        params: {
+            siteId: '1111'
+        }
+    }
+]
+}];
