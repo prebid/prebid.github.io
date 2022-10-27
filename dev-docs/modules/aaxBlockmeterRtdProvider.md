@@ -19,7 +19,7 @@ sidebarType : 1
 
 ## Overview
 
-The module enables publishers to measure traffic coming from visitors using adblockers. 
+The module enables publishers with an AAX relationship to measure traffic coming from visitors using adblockers. 
 
 AAX can also help publishers monetize this traffic by allowing them to serve [acceptable ads](https://acceptableads.com/about/) to these adblock visitors and recover their lost revenue. [Reach out to us](https://www.aax.media/try-blockmeter/) to know more.
 
