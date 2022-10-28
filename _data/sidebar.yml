@@ -395,6 +395,14 @@
   subgroup: 4
 
 - sbSecId: 1
+  title: How to Add a Prebid.js Video submodule
+  link: /dev-docs/add-video-submodule.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 1
   title: Vendor Billing in Prebid.js
   link: /dev-docs/vendor-billing.html
   isHeader: 0
@@ -1494,13 +1502,38 @@
   subgroup: 0
 
 - sbSecId: 4
+  title: Prebid.js Video Module
+  link:
+  isHeader: 1
+  headerId: pbjsVideoModule
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 4
+  title: Prebid Video Module
+  link: /prebid-video/video-module.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 4
+  title: Integrating Prebid.js with video on your own 
+  link: /prebid-video/video-integrating-solo.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 4
   title: Examples
   link:
   isHeader: 1
   headerId: videxamples
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: "Instream"
@@ -1509,7 +1542,7 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Akamai AMP'
@@ -1517,7 +1550,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'AdPlayer.Pro'
@@ -1525,7 +1558,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Brid'
@@ -1533,7 +1566,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Brightcove'
@@ -1541,7 +1574,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Flowplayer'
@@ -1550,7 +1583,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'JW Player (Platform)'
@@ -1558,7 +1591,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'JW Player (Self-Hosted)'
@@ -1566,7 +1599,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Kaltura'
@@ -1574,7 +1607,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Ooyala'
@@ -1582,7 +1615,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Radiant'
@@ -1590,7 +1623,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'VideoJS'
@@ -1598,7 +1631,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: "Prebid Server"
@@ -1607,7 +1640,7 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Brid'
@@ -1615,7 +1648,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'JW Player (Platform)'
@@ -1623,7 +1656,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'JW Player (Self-Hosted)'
@@ -1631,7 +1664,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Kaltura'
@@ -1639,7 +1672,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Ooyala'
@@ -1647,7 +1680,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Radiant'
@@ -1655,7 +1688,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'VideoJS'
@@ -1663,7 +1696,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: "Cross Player"
@@ -1672,7 +1705,7 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Flowplayer'
@@ -1680,7 +1713,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'JW Player'
@@ -1688,7 +1721,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Kaltura'
@@ -1696,7 +1729,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'VideoJS'
@@ -1704,7 +1737,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: "Outstream"
@@ -1713,7 +1746,7 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Basic IMA'
@@ -1721,7 +1754,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Google Ad Manager'
@@ -1729,7 +1762,15 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
+
+- sbSecId: 4
+  title: 'Radiant'
+  link: /examples/video/outstream/pb-ve-outstream-radiant.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
 
 - sbSecId: 4
   title: 'No Server'
@@ -1737,7 +1778,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'No Server (Specify Renderer)'
@@ -1745,7 +1786,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: "Long-Form (Ad Pods)"
@@ -1754,7 +1795,7 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Freewheel'
@@ -1762,7 +1803,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 
 #--------------Prebid Server--------------|
