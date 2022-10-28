@@ -11,13 +11,13 @@ media_types: banner,video
 
 One of the easiest way to gain access to AdMatic demand sources  - AdMatic header bidding adapter.
 
-AdMatic header bidding adapter connects with AdMatic demand sources to fetch bids for banner placements. Please reach out to your account manager or <prebid@admatic.com.tr> for more information.
+AdMatic header bidding adapter connects with AdMatic demand sources to fetch bids for banner network ID. Please reach out to your account manager or <prebid@admatic.com.tr> for more information.
 
 ### Bid params
 
 | Name         | Scope    | Description                        | Example    | Type     |
 |--------------|----------|------------------------------------|------------|----------|
-| `placementId`  | required | The placement ID from AdMatic           | `12345`    | `number` |
+| `networkId`  | required | The network ID from AdMatic           | `12345`    | `number` |
 | `floor`| optional | Bid floor         | `0.5` | `float` |
 
 ### Test Parameters
@@ -30,7 +30,7 @@ var adUnits = [{
   bids: [{
       bidder: 'admatic',
       params: { 
-          placementId: 12345,
+          networkId: 12345,
           floor: 0.5
       }
   }]
@@ -40,7 +40,7 @@ var adUnits = [{
   bids: [{
       bidder: 'admatic',
       params: { 
-          placementId: 12345,
+          networkId: 12345,
           floor: 0.5
       }
   }]
