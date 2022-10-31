@@ -18,7 +18,7 @@ See the [Google Integration Documentation](https://developers.google.com/admob/i
 To avoid the error add the following line to your app right after initialization of GMA SDK:
 
 ```
-GAMUtils.shared.initializeGAM()
+AdMobUtils.initializeGAD()
 ```
 
 Prebid is integrated into the AdMob monetization via adapters.
@@ -77,17 +77,7 @@ prebidAdMobMediaitonAdUnit = MediationBannerAdUnit(configID: configID,
 // 4. Make a bid request
 prebidAdMobMediaitonAdUnit.fetchDemand { [weak self] result in
     
-    // 5. Store the winning bid in the GADRequest extras
-    // You must provide a winning bid via extras to the GADRequest here.
-    // Prebid SDK can't do it internally.
-    // Otherwise, the Prebid adapter won't be able to retrieve and render the winning bid.
-    let extras = GADCustomEventExtras()
-    extras.setExtras(self?.mediationDelegate.getEventExtras(), 
-                     forLabel: AdMobConstants.PrebidAdMobEventExtrasLabel)
-    
-    self?.gadRequest.register(extras)
-    
-    // 6. Make an ad request to AdMob
+    // 5. Make an ad request to AdMob
     self?.gadBanner.load(self?.gadRequest)
 }
 ```
@@ -109,24 +99,7 @@ The `MediationBannerAdUnit` is part of Prebid mediation API. This class is respo
 
 The `fetchDemand` method makes a bid request to prebid server and provides a result in a completion handler.
 
-#### Step 5: Store the winning bid in the GADRequest extras
-
-GMA SDK doesn't provide extras to the adapter which were set not in the app scope. 
-
-That is why you must add the code for dispatching the winning bid to the adapters. In the most cases you will just need to copy and paste the following lines inside the completion closure of the `fetchDemand()` method: 
-
-```
-let extras = GADCustomEventExtras()
-
-extras.setExtras(self?.mediationDelegate.getEventExtras(), 
-                 forLabel: AdMobConstants.PrebidAdMobEventExtrasLabel)
-    
-self?.gadRequest.register(extras)
-```
-Everything
-Make sure that you use the proper label for extras - `AdMobConstants.PrebidAdMobEventExtrasLabel`. Prebid adapters will extract the winnig bid by this key.
-
-#### Step 6: Make an Ad Reuest
+#### Step 5: Make an Ad Reuest
 
 Now you should make a regular AdMob's ad request. Everything else will be handled by prebid adapters.
 
@@ -148,17 +121,7 @@ admobAdUnit = MediationInterstitialAdUnit(configId: configID,
 // 4. Make a bid request
 admobAdUnit?.fetchDemand(completion: { [weak self]result in
     
-    // 5. Store the winning bid in the GADRequest extras
-    // You must provide a winning bid via extras to the GADRequest here.
-    // Prebid SDK can't do it internally.
-    // Otherwise, the Prebid adapter won't be able to retrieve and render the winning bid.
-    let extras = GADCustomEventExtras()
-    let prebidExtras = self?.mediationDelegate!.getEventExtras()
-    extras.setExtras(prebidExtras, forLabel: AdMobConstants.PrebidAdMobEventExtrasLabel)
-    
-    self?.gadRequest.register(extras)
-    
-    // 6. Make an ad request to AdMob
+    // 5. Make an ad request to AdMob
     GADInterstitialAd.load(withAdUnitID: adUnitID, request: self?.gadRequest) { [weak self] ad, error in
         guard let self = self else { return }
         if let error = error {
@@ -166,7 +129,7 @@ admobAdUnit?.fetchDemand(completion: { [weak self]result in
             return
         }
         
-        // 7. Present the interstitial ad
+        // 6. Present the interstitial ad
         self.interstitial = ad
         self.interstitial?.fullScreenContentDelegate = self
         self.interstitial?.present(fromRootViewController: self)
@@ -188,7 +151,6 @@ adUnit?.adFormats = [.display]
 
 ```
 
-
 #### Step 1: Create GADRequest 
 
 This step is totally the same as for original [AdMob integration](https://developers.google.com/admob/ios/interstitial#swift). You don't have to make any modifications here.
@@ -206,28 +168,11 @@ The `MediationInterstitialAdUnit` is part of the prebid mediation API. This clas
 
 The `fetchDemand` method makes a bid request to prebid server and provides a result in a completion handler.
 
-#### Step 5: Store the winning bid in the GADRequest extras
-
-GMA SDK doesn't provide extras to the adapter which were set not in the app scope. 
-
-That is why you must add the code for dispatching the winning bid to the adapters. In the most cases you will just need to copy and paste the following lines inside the completion closure of the `fetchDemand()` method: 
-
-
-```
-let extras = GADCustomEventExtras()
-let prebidExtras = self?.mediationDelegate!.getEventExtras()
-extras.setExtras(prebidExtras, forLabel: AdMobConstants.PrebidAdMobEventExtrasLabel)
-
-self?.gadRequest.register(extras)
-```
-
-Make sure that you use the proper label for extras - `AdMobConstants.PrebidAdMobEventExtrasLabel`. Prebid adapters will extract the winnig bid by this key.
-
-#### Step 6: Make an Ad Reuest
+#### Step 5: Make an Ad Reuest
 
 Now you should make a regular AdMob's ad request. Everything else will be handled by GMA SDK and prebid adapters.
 
-#### Steps 7: Display an ad
+#### Steps 6: Display an ad
 
 Once you receive the ad it will be ready for display. Folow the [AdMob instructions](https://developers.google.com/admob/ios/interstitial#swift) about how to do it. 
 
@@ -276,7 +221,6 @@ To be notified when user earns a reward follow the [AdMob intructions](https://d
 #### Step 1: Create GADRequest 
 
 This step is totally the same as for original [AdMob integration](https://developers.google.com/admob/ios/rewarded). You don't have to make any modifications here.
-
 
 #### Step 2: Create MediationRewardedAdUnit
 
@@ -328,18 +272,9 @@ nativeAdUnit.addNativeAssets(nativeAssets)
 // 5. Set up event tracker for bid request
 nativeAdUnit.addEventTracker(eventTrackers)
 
-// 5. Make a bid request
+// 6. Make a bid request
 nativeAdUnit.fetchDemand { [weak self] result in
     guard let self = self else { return }
-    
-    // 6. Store the winning bid in the GADRequest extras
-    // You must provide a winning bid via extras to the GADRequest here.
-    // Prebid SDK can't do it internally.
-    // Otherwise, the Prebid adapter won't be able to retrieve and render the winning bid
-    let extras = GADCustomEventExtras()
-    let prebidExtras = self.mediationDelegate?.getEventExtras()
-    extras.setExtras(prebidExtras, forLabel: AdMobConstants.PrebidAdMobEventExtrasLabel)
-    self.gadRequest.register(extras)
     
     // 7. Load AdMob Native ad
     self.adLoader = GADAdLoader(adUnitID: self.adMobAdUnitId!,
@@ -349,7 +284,6 @@ nativeAdUnit.fetchDemand { [weak self] result in
     
     self.adLoader?.delegate = self
     
-    // 8. Make an ad request
     self.adLoader?.load(self.gadRequest)
 }
 ```
@@ -407,22 +341,7 @@ let eventTrackers = [
 
 The `fetchDemand` method makes a bid request to prebid server and provides a result in a completion handler.
     
-#### Step 7: Store the winning bid in the GADRequest extras
-
-GMA SDK doesn't provide extras to the adapter if they were set not in the app scope.
-
-That is why you must add the code for dispatching the winning bid to the adapters. In the most cases you will just need to copy and paste the following lines inside the completion closure of the `fetchDemand()` method:
-
-```
-let extras = GADCustomEventExtras()
-let prebidExtras = self?.mediationDelegate!.getEventExtras()
-extras.setExtras(prebidExtras, forLabel: AdMobConstants.PrebidAdMobEventExtrasLabel)
-
-self?.gadRequest.register(extras)
-```
-
-Make sure that you use the proper label for extras - `AdMobConstants.PrebidAdMobEventExtrasLabel`. Prebid adapters will extract the winnig bid by this key.
     
-#### Step 8: Load AdMob Native ad
+#### Step 7: Load AdMob Native ad
     
 Now just load a native ad from AdMob according to the [AdMob instructions](https://developers.google.com/admob/ios/native/start). 
