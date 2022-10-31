@@ -5,6 +5,7 @@ description: Prebid Clickonometrics Bidder Adaptor
 pbjs: true
 biddercode: ccx
 media_types: video
+gvl_id: 773
 gdpr_supported: true
 ---
 
