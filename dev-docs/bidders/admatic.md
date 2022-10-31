@@ -5,11 +5,18 @@ description: Prebid AdMatica Bidder Adapter.
 pbjs: true
 biddercode: admatic
 media_types: banner,video
+gdpr_supported: false
+usp_supported: false
+coppa_supported: false
+schain_supported: false
+dchain_supported: false
+userIds: criteo, id5Id, sharedId, unifiedId
+safeframes_ok: true
+floors_supported: true
+multiformat_supported: will-bid-on-any
 ---
 
 ### Description
-
-One of the easiest way to gain access to AdMatic demand sources  - AdMatic header bidding adapter.
 
 AdMatic header bidding adapter connects with AdMatic demand sources to fetch bids for banner network ID. Please reach out to your account manager or <prebid@admatic.com.tr> for more information.
 
@@ -17,8 +24,7 @@ AdMatic header bidding adapter connects with AdMatic demand sources to fetch bid
 
 | Name         | Scope    | Description                        | Example    | Type     |
 |--------------|----------|------------------------------------|------------|----------|
-| `networkId`  | required | The network ID from AdMatic           | `12345`    | `number` |
-| `floor`| optional | Bid floor         | `0.5` | `float` |
+| `networkId` | required | The network ID from AdMatic | `12345` | `number` |
 
 ### Test Parameters
 
@@ -30,8 +36,7 @@ var adUnits = [{
   bids: [{
       bidder: 'admatic',
       params: { 
-          networkId: 12345,
-          floor: 0.5
+          networkId: 12345
       }
   }]
 },{
@@ -40,8 +45,7 @@ var adUnits = [{
   bids: [{
       bidder: 'admatic',
       params: { 
-          networkId: 12345,
-          floor: 0.5
+          networkId: 12345
       }
   }]
 }];
