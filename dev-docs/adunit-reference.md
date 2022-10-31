@@ -36,8 +36,10 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | `mediaTypes` | Optional | Object                                | Defines one or more media types that can serve into the ad unit.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                           |
 | `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                    |
 | `labelAll`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                     |
-| `ortb2Imp`   | Optional | Object                                | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit. The ortb2Imp object currently supports [first party data](#adUnit-fpd-example) including the [Prebid Ad Slot](/features/pbAdSlot.html) and the [interstitial](#adUnit-interstitial-example) signal. | 
+| `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit. The ortb2Imp object currently supports [first party data](#adUnit-fpd-example) including the [Prebid Ad Slot](/features/pbAdSlot.html) and the [interstitial](#adUnit-interstitial-example) signal. |
 | `ttlBuffer`  | Optional | Number                                | TTL buffer override for this adUnit. See [setConfig({ttlBuffer})](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ttlBuffer) |
+| `renderer`   | Optional | Object                         | Custom renderer, typically used for [outstream video](/dev-docs/show-outstream-video-ads.html) |
+| `video`      | Optional | Object                                | Used to link an Ad Unit to the [Video Module][videoModule]. For allowed params see the [adUnit.video reference](#adUnit-video). |
 
 <a name="adUnit.bids" />
 
@@ -54,6 +56,7 @@ Note that `bids` is optional only for [Prebid Server stored impressions](/dev-do
 | `params`   | Required | Object        | Bid request parameters for a given bidder. For allowed params, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html). |
 | `labelAny` | Optional | Array[String] | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                  |
 | `labelAll` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                   |
+| `renderer` | Optional | Object        | Custom renderer. Takes precedence over `adUnit.renderer`, but applies only to this bidder. |
 
 <a name="adUnit.mediaTypes" />
 
@@ -230,10 +233,29 @@ If `'video.context'` is set to `'adpod'` then the following parameters are also 
 
 <a name="adUnit-examples" />
 
+<a name="adUnit.video" />
+
+### adUnit.video
+
+See the table below for the list of properties in the `video` object of the ad unit. For example ad units, see the [Example](#adUnit-video-module-example) below.
+
+**Note:** your Ad Unit must have `mediaTypes.video` defined and your prebid instance should be configured to use the [Video Module][videoModule].
+When using the Video Module, the mediaTypes.video properties get filled out automatically. Any values already set by the Publisher will not be replaced by the Video Module.
+
+{: .table .table-bordered .table-striped }
+| Field     | Scope                                                        | Type   | Description                                                                                                        |
+|----------+--------------------------------------------------------------+--------+--------------------------------------------------------------------------------------------------------------------|
+| `divId` | required | string | Unique identifier of the player provider, used to specify which player should be used to render the ad. Equivalent to the HTML Div Id of the player.                  |
+| `adServer` | optional | object | Configuration for ad server integration. Supersedes `video.adServer` configurations defined in the Prebid Config. |
+| `adServer.vendorCode` | required if `adServer` is defined | string | The identifier of the AdServer vendor (i.e. gam, etc). |
+| `adServer.baseAdTagUrl` | required if `adServer.params` is not defined | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. |
+| `adServer.params` | required if `adServer.baseAdTagUrl` is not defined | object | Querystring parameters that will be used to construct the video ad tag URL. |
+
 ## Examples
 
 + [Banner](#adUnit-banner-example)
 + [Video](#adUnit-video-example)  
+  - [With the Video Module](#adUnit-video-module-example)
   - [Instream](#adUnit-video-example-instream)  
   - [Outstream](#adUnit-video-example-outstream)  
   - [Adpod (Long-Form)](#adUnit-video-example-adpod)
@@ -271,11 +293,38 @@ pbjs.addAdUnits({
 
 ### Video
 
+<a name="adUnit-video-module-example">
+
+#### With the Video Module
+
+For an example of a video ad unit linked to the Video Module, see below. For more detailed instructions see the [Video Module docs][videoModule].
+```javascript
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        video: {},
+    },
+    video: {
+        divId: 'playerDiv',
+        adServer: {
+            vendorCode: 'gam', // constant variable is GAM_VENDOR - see vendorCodes.js in the video library
+            baseAdTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?iu=/12345/'
+        }
+    },
+    bids: [{
+        bidder: 'appnexus',
+        params: {
+            placementId: 13232361
+        }
+    }]
+});
+```
+
 <a name="adUnit-video-example-instream">
 
 #### Instream
 
-For an example of an instream video ad unit, see below.  For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+For an example of an instream video ad unit that you handle on your own, see below. For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
 
 ```javascript
 pbjs.addAdUnits({
@@ -303,7 +352,7 @@ pbjs.addAdUnits({
 
 #### Outstream
 
-For an example of an outstream video ad unit, see below.  For more detailed instructions, see [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html).
+For an example of an outstream video ad unit that you handle on your own, see below.  For more detailed instructions, see [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html).
 
 ```javascript
 pbjs.addAdUnits({
@@ -357,7 +406,7 @@ pbjs.addAdUnits({
 
 #### Adpod (Long-Form)
 
-For an example of an adpod video ad unit, see below.  For more detailed instructions, see [Show Long-Form Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html).
+For an example of an adpod video ad unit that you handle on your own, see below.  For more detailed instructions, see [Show Long-Form Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html).
 
 ```javascript
 var longFormatAdUnit = {
@@ -639,3 +688,4 @@ For more information on Interstitial ads, reference the [Interstitial feature pa
 [openRTB]: https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf
 [pbServer]: {{site.baseurl}}/prebid-server/overview/prebid-server-overview.html
 [OpenMeasurement]: https://iabtechlab.com/standards/open-measurement-sdk/
+[videoModule]: {{site.github.url}}/prebid-video/video-module.html
