@@ -11,7 +11,6 @@ The integration of Prebid Mobile with Google AdMob assumes that publisher has an
 
 See the [Google Integration Documentation](https://developers.google.com/admob/ios/quick-start) for the AdMob integration details.
 
-
 {: .alert.alert-warning :}
 **Warning:** The `GADMobileAds.sharedInstance().start()` should be called in the adapters bundle, otherwise, GMA SDK won't load the ads with error: `adView:didFailToReceiveAdWithError: SDK tried to perform a networking task before being initialized.`
 
