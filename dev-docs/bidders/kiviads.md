@@ -3,14 +3,14 @@ layout: bidder
 title: Kivi
 description: Prebid Kivi Bidder Adapter
 biddercode: kiviads
-usp_supported: true
-gdpr_supported: true
-coppa_supported: true
-schain_supported: true
-floors_supported: true
 media_types: banner, video, native
 pbjs: false
 pbs: true
+safeframes_ok: true
+floors_supported: true
+fpd_supported: false
+multiformat_supported: will-not-bid
+ortb_blocking_supported: partial
 ---
 
 ### Bid Params
