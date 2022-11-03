@@ -5,7 +5,7 @@ description: Prebid TheMediaGrid Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: grid
-media_types: banner, video
+media_types: banner, video, native (s2s only)
 multiformat_supported: will-bid-on-any
 gdpr_supported: true
 usp_supported: true
@@ -22,6 +22,7 @@ fpd_supported: true
 - [Bid Params](#grid-bid-params)
 - [Bidder Config](#grid-bidder-config)
 - [First Party Data](#grid-first-party)
+- [Native setup example (s2s only)](#grid-native-example)
 
 <a name="grid-bid-params" />
 
@@ -92,3 +93,46 @@ AdUnit-specific data using `AdUnit.ortb2Imp` supports following fields:
 
 - `ortb2.imp[].ext.data.*`
 - `ortb2.imp[].instl`
+
+<a name="grid-native-example" />
+
+### Native setup example (s2s only)
+
+Setup native in adUnit mediaTypes, for example:
+```
+...
+mediaTypes: {
+  native: {
+    ortb: {
+      ver: '1.2',
+      "assets": [
+        {
+          "id": 1,
+          "img": {
+            "hmin": 180,
+            "wmin": 216,
+            "type": 3
+          },
+          "required": 1
+        },
+        {
+          "title": {
+            "len": 140
+          },
+          "id": 2,
+          "required": 1
+        },
+        {
+          "id": 3,
+          "data": {
+            "len": 25,
+            "type": 1
+          },
+          "required": 1
+        }
+      ],
+    }
+  }
+},
+...
+```
