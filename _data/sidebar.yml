@@ -1942,6 +1942,14 @@
   subgroup: 3
 
 - sbSecId: 5
+  title: Audio
+  link: /prebid-server/features/pbs-audio.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
   title: Caching
   link: /prebid-server/features/pbs-caching.html
   isHeader: 0

@@ -8,17 +8,17 @@ sidebarType: 5
 # Prebid Server Overview
 {:.no_toc}
 
-Prebid Server is an open-source solution for server-to-server header bidding. It supports a number of key use cases: [mobile app](/prebid-server/use-cases/pbs-sdk.html), [AMP](/prebid-server/use-cases/pbs-amp.html), [server-side web with Prebid.js](/prebid-server/use-cases/pbs-pbjs.html), and [long-form video](/prebid-server/use-cases/pbs-lfv.html).
+Prebid Server is an open-source solution for server-to-server header bidding. It supports a number of key use cases: [mobile app](/prebid-server/use-cases/pbs-sdk.html), [AMP](/prebid-server/use-cases/pbs-amp.html), [server-side web with Prebid.js](/prebid-server/use-cases/pbs-pbjs.html), and server-side ad inclusion scenarios such as [long-form video](/prebid-server/use-cases/pbs-lfv.html) and audio.
 
 ![Prebid Server Architecture](/assets/images/flowcharts/prebid-server/pbs-basic-flow.png){:class="pb-xlg-img"}
 
 Prebid Server is a header bidding server with a growing list of features. At a high level, it works like this:
 
-1. Prebid Server completes and validates incoming requests
+1. Prebid Server validates and enhances incoming requests
   - Resolves dynamic stored requests
   - Enforces privacy regulations
 2. Next, it calls server-side bid adapters
-  - There are currently 100+ server-side bid adapters available
+  - There are 140+ server-side bid adapters available
 3. After everyone's responded (or the timeout period has expired), it formulates an appropriate response
   - Handles currency conversion
   - Quantizes bids
@@ -42,7 +42,13 @@ The simplest route to working with Prebid Server is to sign up for a hosted solu
 
 But of course this is open source, so you're welcome to do this on your own. If you decide to implement your own Prebid Server solution, first check out the general [Prebid Server host company overview](/prebid-server/hosting/pbs-hosting.html).
 
-Then you need to decide which of the two implementations to utilize:
+Note that Prebid Server is not a turn-key solution. Whoever takes on hosting a Prebid Server also needs to take on:
+- Setting up production-quality servers, networking, monitors, etc.
+- Populating backend data such as stored requests and account-level configuration
+- Responsibility for understanding the legal implications of ad tech in your marketplace. PBS has built-in configurable support for [several privacy regulations](/prebid-server/features/pbs-privacy.html), but you need to understand and configure them with help from your lawyers.
+- Regular updates. Please don't download Prebid Server and just run the same version forever. You need to commit to checking **at least** quarterly for updates. There are new releases most every week.
+
+You'll need to decide which of the two implementations to utilize:
 
 - [Prebid Server (Go)](/prebid-server/versions/pbs-versions-go.html) - the original Prebid Server is written in the Go language.
 - [Prebid Server (Java)](/prebid-server/versions/pbs-versions-java.html) - Prebid Server with a Java language port.
