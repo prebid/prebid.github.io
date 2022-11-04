@@ -2,7 +2,7 @@
 layout: analytics
 title: Oolo
 description: Oolo Analytics Adapter
-modulecode: ooloAnalyticsAdapter
+modulecode: oolo
 prebid_member: true
 ---
 

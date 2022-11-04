@@ -32,7 +32,7 @@ sidebarType: 4
 			<p style="color:#a94443"><b>Warning:</b>
 			Do not forget to exchange the placementId in the code examples with your own placementId!</p>
 			<p style="color:#a94443">
-			To allow the Cross-Player plugin to load your custom build of Prebid.js ensure that the option key `prebidPath` is set to the custom build's location. If `prebidPath` is not set, the plugin will point to `//acdn.adnxs.com/prebid/not-for-prod/prebid.js`.</p>
+			To allow the Cross-Player plugin to load your custom build of Prebid.js ensure that the option key `prebidPath` is set to the custom build's location. If `prebidPath` is not set, the plugin will point to `//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js`.</p>
 		</div>
 
 		<div style="width:60vw;">
@@ -46,18 +46,19 @@ var options = {
     sizes: [640,480],
     mediaTypes: {
       video: {
-        context: "instream"
+	context: 'instream',
+	playerSize: [640, 480],
+	mimes: ['video/mp4'],
+	protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+	playbackmethod: [2],
+	skip: 1
       }
     },
     bids: [
       {
         bidder: 'appnexus',
         params: {
-          placementId: '13232361', // Add your own placement id here<br>
-          video: {
-            skipppable: true,
-            playback_method: ['auto_play_sound_off']
-          }
+          placementId: '13232361'  // Add your own placement id here<br>
         }
       }
     ]
@@ -99,7 +100,7 @@ function doHeaderBidding() {
 Add the script for your Kaltura player. This will be part of
 the code you will copy-paste from Kaltura. --&gt;
 
-&lt;script src="http://cdnapi.kaltura.com/p/2222001/sp/222200100/embedIframeJs/uiconf_id/37440401/partner_id/2222001"&gt;&lt;/script&gt;
+&lt;script src="https://cdnapi.kaltura.com/p/2222001/sp/222200100/embedIframeJs/uiconf_id/37440401/partner_id/2222001"&gt;&lt;/script&gt;
 
     &lt;script type="text/javascript"&gt;
      invokeVideoPlayer = function(url) {
@@ -111,7 +112,7 @@ the code you will copy-paste from Kaltura. --&gt;
          the code you will copy paste from Kaltura.
 
          Documentation for kWidget available here:
-         http://player.kaltura.com/docs/kwidget */
+         https://player.kaltura.com/docs/kwidget */
 
          kWidget.embed({
              "targetId": "myPlayer",
@@ -157,7 +158,10 @@ the code you will copy-paste from Kaltura. --&gt;
          return new Promise(function(resolve) {
            var listener = function(event) {
              if (event && event.data) {
-               var data = JSON.parse(event.data);
+               var data = {};
+               try {
+                   data = JSON.parse(event.data);
+               } catch (error) { }
                if (data.command === 'PPCP:prebidResponse' && data.messageId === messageId) {
                  window.removeEventListener('message', listener);
                  if (data.url && data.url != 'failed') {
@@ -196,7 +200,7 @@ the code you will copy-paste from Kaltura. --&gt;
      Add the script for your Kaltura player. This will be part of
      the code you will copy-paste from Kaltura. -->
 
-    <script src="http://cdnapi.kaltura.com/p/2222001/sp/222200100/embedIframeJs/uiconf_id/37440401/partner_id/2222001"></script>
+    <script src="https://cdnapi.kaltura.com/p/2222001/sp/222200100/embedIframeJs/uiconf_id/37440401/partner_id/2222001"></script>
 
     <script>
         invokeVideoPlayer = function(url) {
@@ -205,7 +209,7 @@ the code you will copy-paste from Kaltura. --&gt;
                player settings. Most of this JSON object will be part of
                the code you will copy paste from Kaltura.
                Documentation for kWidget available here:
-               http://player.kaltura.com/docs/kwidget */
+               https://player.kaltura.com/docs/kwidget */
             kWidget.embed({
                 "targetId": "myPlayer",
                 "wid": "_2222001",
@@ -242,7 +246,10 @@ the code you will copy-paste from Kaltura. --&gt;
               return new Promise(function(resolve) {
                 var listener = function(event) {
                   if (event && event.data) {
-                    var data = JSON.parse(event.data);
+                    var data = {};
+                    try {
+                        data = JSON.parse(event.data);
+                    } catch (error) { }
                     if (data.command === 'PPCP:prebidResponse' && data.messageId === messageId) {
                       window.removeEventListener('message', listener);
                       if (data.url && data.url != 'failed') {

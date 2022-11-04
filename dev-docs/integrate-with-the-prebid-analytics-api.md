@@ -71,7 +71,7 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 
 1. Create a JS file under `modules` with the name of the bidder suffixed with 'AnalyticsAdapter', e.g., `exAnalyticsAdapter.js`
 
-2. Create an analytics adapter to listen for [Prebid events](/dev-docs/publisher-api-reference.html#module_pbjs.onEvent) and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
+2. Create an analytics adapter to listen for [Prebid events](/dev-docs/publisher-api-reference/onEvent.html) and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
 
 3. There are two types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.js](https://github.com/prebid/Prebid.js/blob/master/src/AnalyticsAdapter.js) for more info on the 'bundle' type.
 
@@ -91,10 +91,10 @@ The best way to get started is to look at some of the existing AnalyticsAdapter.
 Here's a skeleton outline:
 
 {% highlight js %}
-import {ajax} from 'src/ajax';
-import adapter from 'src/AnalyticsAdapter';
-import CONSTANTS from 'src/constants.json';
-import adaptermanager from 'src/adaptermanager';
+import {ajax} from '../src/ajax.js';
+import adapter from '../libraries/analyticsAdapter/AnalyticsAdapter.js';
+import CONSTANTS from '../src/constants.json';
+import adaptermanager from '../src/adaptermanager.js';
 
 const analyticsType = 'endpoint';
 const url = 'URL_TO_SERVER_ENDPOINT';
@@ -134,6 +134,9 @@ The callback will receive an object with the following attributes:
   analyticsBlocked: ['moduleC']
 }
 ```
+
+Note that analytics adapters can read the TCF string directly from the auction object -- look for the gdprConsent object, which contains three attributes:
+gdprApplies, consentString, and apiVersion
 
 #### Listening for errors
 

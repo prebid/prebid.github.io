@@ -2,7 +2,7 @@
 layout: analytics
 title: DataBlocks
 description: DataBlocks Analytics Adapter
-modulecode: datablocksAnalyticsAdapter
+modulecode: datablocks
 prebid_member: true
 ---
 

@@ -5,7 +5,6 @@ description: Prebid Sublime Bidder Adapter
 pbjs: true
 biddercode: sublime
 gdpr_supported: true
-tcf2_supported: true
 gvl_id: 114
 ---
 

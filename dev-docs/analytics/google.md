@@ -2,10 +2,10 @@
 layout: analytics
 title: Google
 description: Google Analytics Adapter
-modulecode: googleAnalyticsAdapter
+modulecode: google
 ---
 
 #### Registration
 
-Please visit []() for more information.
+Please visit [Prebid Analytics with GA](/overview/ga-analytics.html) for more information.
 

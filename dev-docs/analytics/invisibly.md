@@ -2,7 +2,7 @@
 layout: analytics
 title: Invisibly
 description: Invisibly Analytics Adapter
-modulecode: invisiblyAnalyticsAdapter
+modulecode: invisibly
 ---
 
 #### Registration

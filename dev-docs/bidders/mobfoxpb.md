@@ -6,10 +6,12 @@ biddercode: mobfoxpb
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-gdpr: true
+gdpr_supported: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
+gvl_id: 311
+enable_download: true
 ---
 
 ### Prebid.JS Bid Params

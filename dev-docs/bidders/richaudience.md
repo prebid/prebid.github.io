@@ -6,9 +6,13 @@ biddercode: richaudience
 userIds: criteo, id5Id, identityLink, liveIntentId, pubCommonId, unifiedId
 media_types: banner, video
 gdpr_supported: true
-tcf2_supported: true
-pbjs: true
 gvl_id: 108
+safeframes_ok: false
+prebid_member: true
+pbjs: true
+pbs: true
+schain_supported: true
+floors_supported: true
 ---
 
 ### Bid Params

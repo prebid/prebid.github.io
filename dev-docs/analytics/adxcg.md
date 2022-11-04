@@ -2,7 +2,7 @@
 layout: analytics
 title: Adxcg
 description: Adxcg Analytics Adapter
-modulecode: adxcgAnalyticsAdapter
+modulecode: adxcg
 ---
 
 #### Registration

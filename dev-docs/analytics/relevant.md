@@ -2,7 +2,7 @@
 layout: analytics
 title: Relevant
 description: Relevant Analytics Adapter
-modulecode: relevantAnalyticsAdapter
+modulecode: relevant
 ---
 
 #### Registration

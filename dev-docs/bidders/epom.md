@@ -4,14 +4,13 @@ title: Epom
 description: Prebid Epom Bidder Adapter
 biddercode: epom
 gdpr_supported: false
-tcf2_supported: false
 gvl_id: 849
 usp_supported: false
 coppa_supported: true
 schain_supported: false
 media_types: banner, video, native
 safeframes_ok: true
-bidder_supports_deals: true
+deals_supported: true
 pbjs: false
 pbs: true
 pbs_app_supported: true

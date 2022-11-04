@@ -20,37 +20,37 @@ These conventions aren't implemented by all adapters. Please
 check with each of your bidders to make sure they're reading first
 party data from the standard Prebid locations.
 
+{: .alert.alert-warning :}
+This document covers the method of specifying First Party Data as of Prebid.js 4.30, which
+we recommend all publishers use. In previous versions of Prebid.js, the interface was
+to set `fpd` values. We now use the more generic `ortb2` interface,
+which can be used for more than just First Party Data.
+
 ## How It Works
 
-Here's a summary of how first party data (FPD) works:
+Publishers supply First Party Data (FPD) by specifying attributes as
+configuration or on a Prebid.js AdUnit:
 
-![First Party Data Summary](/assets/images/flowcharts/FirstPartyData-Summary.png){: .pb-lg-img :}
-
-This diagram shows a page that can provide:
-
-- Global context (site) data that applies to all AdUnits and all bidders
-- Global user data that applies to all AdUnits and all bidders
-- AdUnit-specific data that applies to all bidders
-- Bidder-specific context data that applies to all AdUnits
-- Bidder-specific user data that applies to all AdUnits
+- Global site or user data that applies to all AdUnits, bidders, and auctions. Use [`setConfig()`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd)
+- Auction-specific site or user data that applies to all AdUnits and bidders in that auction. Use the `ortb2` parameter of [`requestBids()`](/dev-docs/publisher-api-reference/requestBids.html)
+- AdUnit-specific data that applies to all bidders and auctions. Define [AdUnit.ortb2Imp](/dev-docs/adunit-reference.html#first-party-data)
+- Bidder-specific site or user data that applies to all AdUnits and auctions. Use [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html)
 
 ## In-Page Examples
 
 The Prebid First Party Data JSON structure reflects the OpenRTB standard.
-Arbitrary values should go in fpd.context.data or fpd.user.data. Fields
-that are meant to be standard [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) values should be in fpd.context or fpd.user. Specfically, the standard values for `site` are: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. For `user` these are: yob, gender, keywords.
-
-{: .alert.alert-info :}
-'Context' corresponds to the OpenRTB 'site' object.
+- Arbitrary attributes should go in `ortb2.site.ext.data` or `ortb2.user.data`.
+- Fields that are meant to be standard [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) should be in `ortb2.site` or `ortb2.user`. Specfically, the standard values for 'site' are: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. For 'user' these are: yob, gender, keywords.
+- Segment taxonomy values go in `ortb2.site.content.data` or `ortb2.user.data` using the IAB standard representation.
 
 ### Supplying Global Data
 
 Here's how a publisher can let all bid adapters have access
-to first party data that might be useful in ad targeting:
+to first party data that might be useful in ad targeting that's good in PBJS 4.30 and later:
 {% highlight js %}
 pbjs.setConfig({
-   fpd: {
-       context: {
+   ortb2: {
+       site: {
            name: "example",
            domain: "page.example.com",
            cat: ["IAB2"],
@@ -60,19 +60,43 @@ pbjs.setConfig({
            ref: "https://ref.example.com",
            keywords: "power tools, drills",
            search: "drill",
-           content: { userrating: 4 },
-           data: {   // fields that aren't part of openrtb 2.5
-               pageType: "article",
-               category: "repair"
-           }
+           content: {
+		userrating: "4",
+		data: [{
+          	    name: "www.dataprovider1.com",
+          	    ext: {
+		        segtax: 7,
+			cids: [ "iris_c73g5jq96mwso4d8" ]
+		    },
+		    segment: [
+            		{ id: "687" },
+            		{ id: "123" }
+		    ]
+                }]
+	   },
+	   ext: {
+               data: {   // fields that aren't part of openrtb 2.5
+                   pageType: "article",
+                   category: "repair"
+               }
+	   }
         },
         user: {
            yob: 1985,
            gender: "m",
            keywords: "a,b",
-           data: {
-              registered: true,
-              interests: ["cars"]
+	   data: [{
+	       name: "dataprovider.com",
+	       ext: { segtax: 4 },
+               segment: [
+		  { id: "1" }
+               ]
+	   }],
+	   ext: {
+               data: {
+                  registered: true,
+                  interests: ["cars"]
+	       }
            }
         }
     }
@@ -81,8 +105,41 @@ pbjs.setConfig({
 
 {: .alert.alert-warning :}
 Note that supplying first party **user** data may require special
-consent in certain regions. Prebid does **not** police the passing
+consent in certain regions. Prebid.js does **not** police the passing
 of user data as part of its GDPR or CCPA modules.
+
+{: .alert.alert-warning :}
+If you're using PBJS version 4.29 or before, replace the following in the example above: 'ortb' with 'fpd', 'site' with 'context' and 'site.ext.data' with 'context.data'.
+
+### Supplying Auction-Specific Data
+
+In some situations the same page may wish to supply different `site` data for some of its sections, 
+for example in infinite scroll or instream video scenarios where multiple pieces of content that would benefit from different contexts are served together.
+
+To support this use case, Prebid version 7 and above accepts auction-specific first-party data as a parameter to `requestBids`. For example: 
+
+{% highlight js %}
+pbjs.requestBids({
+    ortb2: {
+        site: {
+            content: {
+                data: [{
+                    name: 'www.iris.com',
+                    ext: {
+                        segtax: 500,
+                        cids: ['iris_c73g5jq96mwso4d8']
+                    },
+                    segment: [
+                        {id: '687'},
+                        {id: '123'}
+                    ]
+                }]
+            }
+        }
+    }
+});
+{% endhighlight %}
+
 
 ### Supplying AdUnit-Specific Data
 
@@ -96,66 +153,201 @@ pbjs.addAdUnits({
             sizes: [[300,250]]
         }
     },
-    fpd: {
-        context: {
-            pbAdSlot: "homepage-top-rect",
-            data: {
+    ortb2Imp: {
+        ext: {
+	        data: {
+                pbadslot: "homepage-top-rect",
                 adUnitSpecificAttribute: "123"
             }
-         }
+        }
     },
     ...
 });
 {% endhighlight %}
 
+You may also specify adUnit-specific transaction IDs using `ortb2Imp.ext.tid`, and Prebid will use them instead of generating random new ones. This is useful if you are auctioning the same slots through multiple header bidding libraries. Note: you must take care to not re-use the same transaction IDs across different ad units or auctions. Here's a simplified example passing a tid through the [requestBids](/dev-docs/publisher-api-reference/requestBids.html) function:
+
+{% highlight js %}
+const tid = crypto.randomUUID();
+pbjs.requestBids({
+   adUnits: [{
+    code: 'test-div',
+    // ...
+    ortb2Imp: {
+        ext: {
+          tid: tid
+        }
+    }
+   }]
+});
+// reuse `tid` when auctioning `test-div` through some other header bidding wrapper   
+{% endhighlight %}
+
 {: .alert.alert-info :}
-Prebid does not support AdUnit-Specific **user** data.
+Prebid does not support AdUnit-specific **user** data, nor does it support
+bidder-specific AdUnit First Party Data. You could implement either of
+these scenarios with a publisher-specific callback on the [`requestBids` event](/dev-docs/publisher-api-reference/onEvent.html)
+
+{: .alert.alert-warning :}
+If you're using PBJS version 4.29 or before, replace the following in the example above: 'ortb2Imp.ext.data' with 'fpd.context.data'.
 
 ### Supplying Bidder-Specific Data
 
-Use the [`setBidderConfig()`](/dev-docs/publisher-api-reference.html#module_pbjs.setBidderConfig) function to supply bidder-specific data. In this example, only bidderA and bidderB will get access to the supplied
+Use the [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html) function to supply bidder-specific data. In this example, only bidderA and bidderB will get access to the supplied
 global data.
 
 {% highlight js %}
 pbjs.setBidderConfig({
    bidders: ['bidderA', 'bidderB'],
    config: {
-       fpd: {
-           context: {
-               data: {
-                  pageType: "article",
-                  category: "tools"
+       ortb2: {
+           site: {
+               ext: {
+                   data: {
+                      pageType: "article",
+                      category: "tools"
+                   }
                }
             },
             user: {
-               data: {
-                  registered: true,
-                  interests: ["cars"]
+               ext: {
+                   data: {
+                      registered: true,
+                      interests: ["cars"]
+                   }
                }
-          }
-      }
+           }
+       }
    }
 });
 
 pbjs.setBidderConfig({ // different bidders can receive different data
    bidders: ['bidderC'],
    config: {
-     fpd: { ... }
+     ortb2: { ... }
    }
 });
 {% endhighlight %}
 
+### Supplying App Content Data
+
+Occasionally, an app which embeds a webview might run Prebid.js. In this case, the app object is often specified for OpenRTB, and the site object would be invalid. When this happens, one should specify app.content.data in place of site.content.data.
+
+{% highlight js %}
+pbjs.setConfig({
+  ortb2: {
+    app: {
+      name: "myappname",
+      keywords: "power tools, drills",
+      content: {
+        data: [
+          {
+            name: "www.dataprovider1.com",
+            ext: {
+              segtax: 6
+            },
+            segment: [
+              {
+                id: "687"
+              },
+              {
+                id: "123"
+              }
+            ]
+          },
+          {
+            name: "www.dataprovider1.com",
+            ext: {
+              segtax: 7
+            },
+            segment: [
+              {
+                id: "456"
+              },
+              {
+                id: "789"
+              }
+            ]
+          }
+        ]
+     }
+    }
+  }
+)
+
+{% endhighlight %}
+
+### Supplying OpenRTB Content Data
+OpenRTB `content` object describes specific (mostly audio/video) content information, and it is useful for targeting.
+For website ad, the content object should be defined in `ortb2.site.content`, for non-browser ad, it should be defined in `ortb2.app.content`
+
+{% highlight js %}
+pbjs.setConfig({
+    ortb2: {
+        site: {
+            content: {
+                id: "some_id",
+                episode: "1",
+                title: "some title",
+                series: "some series",
+                season: "s1",
+                artist: "John Doe",
+                genre: "some genre",
+                isrc: "CC-XXX-YY-NNNNN",
+                url: "http://foo_url.de",
+                cat: ["IAB1-1", "IAB1-2", "IAB2-10"],
+                context: "7",
+                keywords: "k1,k2",
+                live: "0"
+            }
+        }
+    }
+});
+{% endhighlight %}
+
+## Segments and Taxonomy
+
+The [IAB](https://iab.com) offers standard content and audience taxonomies for categorizing sites and users. Prebid supports defining these values as first party data in `site.content.data` or `user.data` as shown in the examples above.
+
+{: .alert.alert-warning :}
+Segment support is still under development. You can follow the [Prebid.js discussion](https://github.com/prebid/Prebid.js/issues/6057) if you'd like.
+
+```
+        user: {
+	   data: [{
+	       name: "dataprovider.com", // who resolved the segments
+	       ext: { segtax: 4 },       // taxonomy used to encode the segments
+               segment: [
+		  { id: "1" }
+               ]
+	   }],
+```
+
+The new extension is `segtax`, which identifies the specific taxonomy used to
+determine the provided segments. This model supports using taxonomies other
+than IAB taxonomies, but all taxonomies must be registered with the IAB to be
+assigned a number. Once the IAB finalizes the process, we'll place a link
+here to their page. For now, here's the beta table defining the segtax values:
+
+{: .table .table-bordered .table-striped }
+| Segtax ID | Taxonomy Type | Version | Description |
+|-----------+---------------+---------+-------------|
+| 1 | Content | 1.x | IAB - Content Taxonomy version 1 |
+| 2 | Content | 2.x | [IAB - Content Taxonomy version 2](https://iabtechlab.com/wp-content/uploads/2020/12/IABTechLab_Content_Taxonomy_2-2_Final.xlsx) |
+| 4 | Audience | 1.1 | [IAB - Audience Taxonomy version 1.1](https://iabtechlab.com/wp-content/uploads/2020/07/IABTL-Audience-Taxonomy-1.1-Final.xlsx) |
+
 {: .alert.alert-info :}
-Applying permissions to AdUnit-specific First Party Data has
-to be done manually by using an event handler -- [pbjs.onEvent('beforeRequestBids', function())](/dev-docs/publisher-api-reference.html#module_pbjs.onEvent)
+The [IAB version of this table](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md#list--category-taxonomies-) is associated with ADCOM. Publishers should check with their SSPs and DSPs to confirm which
+segment taxonomies they support.
 
 ## How Bid Adapters Should Read First Party Data
 
-To access global data, a Prebid.js bid adapter needs only to call [`getConfig()`](/dev-docs/publisher-api-reference.html#module_pbjs.getConfig), like this:
+Prebid.js bid adapters are supplied global data in the `ortb2` property of [bid requests](/dev-docs/bidder-adaptor.html#building-the-request):
 
 {% highlight js %}
-config.getConfig('fpd.context'))
-config.getConfig('fpd.user'))
+buildRequests: function(validBidRequests, bidderRequest) {
+   const firstPartyData = bidderRequest.ortb2;
+}
 {% endhighlight %}
 
 AdUnit-specific values must be parsed out of the AdUnit object.
@@ -164,7 +356,7 @@ The assumption is that bid adapters will copy the values to the appropriate prot
 
 See [Prebid Server First Party Data](/prebid-server/features/pbs-fpd.html) for a discussion of this feature for Prebid Server bid adapters.
 
-## Further Reading
+## Related Topics
 
 - The [Prebid.js Publisher API](/dev-docs/publisher-api-reference.html)
 - The [AdUnit Reference](/dev-docs/adunit-reference.html)

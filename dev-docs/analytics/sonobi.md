@@ -2,7 +2,7 @@
 layout: analytics
 title: Sonobi
 description: Sonobi Analytics Adapter
-modulecode: sonobiAnalyticsAdapter
+modulecode: sonobi
 enable_download: false
 ---
 

@@ -2,7 +2,7 @@
 layout: analytics
 title: Appier
 description: Appier Analytics Adapter
-modulecode: appierAnalyticsAdapter
+modulecode: appier
 ---
 
 #### Registration

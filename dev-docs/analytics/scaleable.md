@@ -2,7 +2,7 @@
 layout: analytics
 title: Scaleable
 description: Scaleable Analytics Adapter
-modulecode: scaleableAnalyticsAdapter
+modulecode: scaleable
 ---
 
 #### Registration
