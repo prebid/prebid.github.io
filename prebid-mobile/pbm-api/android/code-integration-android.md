@@ -54,6 +54,23 @@ Integrating **Google** with your application
 
 Go to Google's developer site and follow the instructions for integrating their [Mobile Ads SDK](https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start) into your app.
 
+### Initialize SDK
+
+Call the following method at the start of the app: 
+
+```
+PrebidMobile.initializeSdk(requireContext(), null)
+```
+
+If you integrate Prebid SDK with GMA SDK using Original API, add the following check right after initialization. It will help to monitor the compatibility of the Prebid and Google SDKs and avoid silent loosing of revenue. 
+
+```
+PrebidMobile.checkGoogleMobileAdsCompatibility()
+```
+
+Check the logs, and if there is no warning message, then SDKs are compatible. 
+
+
 ### Set Targeting Parameters (Optional)
 
 Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
