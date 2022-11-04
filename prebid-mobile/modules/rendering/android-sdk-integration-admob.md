@@ -93,7 +93,7 @@ bannerView?.adUnitId = adUnitId
 val extras = Bundle()
 val request = AdRequest
         .Builder()
-        .addCustomEventExtrasBundle(PrebidBannerAdapter::class.java, extras)
+        .addNetworkExtrasBundle(PrebidInterstitialAdapter::class.java, extras)
         .build()
 
 // 2. Create AdMobBannerMediationUtils
@@ -147,7 +147,7 @@ Integration example:
 val extras = Bundle()
 val request = AdRequest
     .Builder()
-    .addCustomEventExtrasBundle(PrebidInterstitialAdapter::class.java, extras)
+    .addNetworkExtrasBundle(PrebidInterstitialAdapter::class.java, extras)
     .build()
 
 // 2. Create AdMobInterstitialMediationUtils
@@ -312,7 +312,7 @@ val adLoader = AdLoader
 val extras = Bundle()
 val adRequest = AdRequest
     .Builder()
-    .addCustomEventExtrasBundle(PrebidNativeAdapter::class.java, extras)
+    .addNetworkExtrasBundle(PrebidInterstitialAdapter::class.java, extras)
     .build()
 
 // 2. Create Native AdUnit
