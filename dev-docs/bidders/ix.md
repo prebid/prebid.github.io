@@ -54,11 +54,11 @@ Publishers can use Prebid.js to call Index Exchange (Index) in any of the follow
     * In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index. 
 * **Recommended Global Bidder settings:** For our adapter, Index recommends enabling local storage. As of Prebid.js 7.x, local storage access must be explicitly specified. By leveraging local storage, Index is able to take advantage of the latest features our exchange has to offer. For instructions on enabling local storage, see Prebid’s [pbjs.bidderSettings](https://docs.prebid.org/dev-docs/publisher-api-reference/bidderSettings.html) documentation.
 <b>Example:</b>
-```Javascript
- pbjs.bidderSettings = { 
-  ix: { 
-      storageAllowed: true 
-  } 
+```javascript
+pbjs.bidderSettings = { 
+    ix: { 
+        storageAllowed: true 
+    } 
 };
 ```
 
@@ -403,6 +403,9 @@ Index supports the same set of native assets that Prebid.js recognizes. For the 
 Index supports multi-format ad units, see [Show Multi-Format Ads with Prebid.js](https://docs.prebid.org/dev-docs/show-multi-format-ads.html). For multi-format ad units, you can optionally specify a different siteId for each multi-format type at the bidder  level. This is useful  if you have deals set up with Index at the siteId level. See multi-format examples [here](#examples).
 
 The following are the parameters that you can specify for each multi-format type at the bidder level.
+
+{: .table .table-bordered .table-striped }
+
 | Key | Scope | Type | Description |
 |---|---|---|---|
 | `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`. <br><br><b>Note:</b> This will also act as the default siteID for multi-format adunits if a format specific siteId is not provided.|
