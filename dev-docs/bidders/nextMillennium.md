@@ -1,6 +1,7 @@
 ---
 layout: bidder
 title: NextMillennium
+description: NextMillennium bid adapter
 gdpr_supported: true
 usp_supported: true
 coppa_supported: false
@@ -14,11 +15,11 @@ pbs_app_supported: false
 pbjs: true
 pbs: true
 biddercode: nextMillennium
-media_types: banner
-description: NextMillennium bid adapter
+media_types: banner, video
+prebid_member: true
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope | Description                              | Example   | Type    |

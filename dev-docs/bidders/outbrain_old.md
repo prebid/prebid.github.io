@@ -14,7 +14,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 prebid_member: true
-pbjs_version_notes: for versions 4.20-4.34
+enable_download : false
 ortb_blocking_supported: partial
 ---
 
