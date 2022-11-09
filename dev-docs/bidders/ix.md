@@ -32,6 +32,7 @@ multiformat_supported: yes
 - [Index's outstream video player](#index-outstream-video-player)
 - [Prebid Native configuration](#prebid-native-configuration)
 - [Bid request parameters](#bid-request-parameters)
+- [Multi-format ad units](#multi-format-ad-units)
 - [Examples](#examples)
 
 
@@ -51,7 +52,15 @@ Publishers can use Prebid.js to call Index Exchange (Index) in any of the follow
     * Open the **Developer tools**. 
     * In **Developer tools**, click the **Network** tab. 
     * In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index. 
-
+* **Recommended Global Bidder settings:** For our adapter, Index recommends enabling local storage. As of Prebid.js 7.x, local storage access must be explicitly specified. By leveraging local storage, Index is able to take advantage of the latest features our exchange has to offer. For instructions on enabling local storage, see Prebid’s [pbjs.bidderSettings](https://docs.prebid.org/dev-docs/publisher-api-reference/bidderSettings.html) documentation.
+<b>Example:</b>
+```javascript
+pbjs.bidderSettings = { 
+    ix: { 
+        storageAllowed: true 
+    } 
+};
+```
 
 <a name="supported-media-types" />
 
@@ -108,7 +117,7 @@ pbjs.setConfig({
 
 
 5. (Optional) Set up First Party Data (FPD) using the Index bidder-specific FPD (preferred method) setting or the Prebid FPD module. For more information, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
-6. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the `[pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html)` function as follows: <br />
+6. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the [pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) function as follows: <br />
 ```javascript
 pbjs.setConfig({
     cache: {
@@ -389,6 +398,22 @@ If you are using Index's outstream player and have placed the video object at th
 Index supports the same set of native assets that Prebid.js recognizes. For the list of native assets, see [Prebid.js Native Implementation Guide on the Prebid site.](https://docs.prebid.org/prebid/native-implementation.html#3-prebidjs-native-adunit-overview)
 
 
+<a name="multi-format-ad-units"></a>
+## Multi-format ad units
+Index supports multi-format ad units, see [Show Multi-Format Ads with Prebid.js](https://docs.prebid.org/dev-docs/show-multi-format-ads.html). For multi-format ad units, you can optionally specify a different siteId for each multi-format type at the bidder  level. This is useful  if you have deals set up with Index at the siteId level. See multi-format examples [here](#examples).
+
+The following are the parameters that you can specify for each multi-format type at the bidder level.
+
+{: .table .table-bordered .table-striped }
+
+| Key | Scope | Type | Description |
+|---|---|---|---|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`. <br><br><b>Note:</b> This will also act as the default siteID for multi-format adunits if a format specific siteId is not provided.|
+| `banner.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `banner` format in the multi-format ad unit.|
+| `video.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `video` format in the multi-format ad unit.|
+| `native.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `native` format in the multi-format ad unit.|
+
+
 <a name="examples" />
 
 ## Examples 
@@ -538,5 +563,60 @@ pbjs.addAdUnits({
         }
     }]
 });
+
+```
+
+**Multi-format SiteId Overrides**
+```javascript
+var adUnits = [{
+   code: slot.code,
+   mediaTypes: {
+      
+       banner: {
+           sizes: [300,250]
+       },
+       native: {
+           title: {
+               required: false
+           },
+           image: {
+               required: true
+           },
+           sponsoredBy: {
+               required: false
+           },
+           body: {
+               required: false
+           }
+       },
+      
+       video: {
+           playerSize: sizes,
+           context: 'outstream',
+           api:[2],
+           protocols: [2, 3, 5, 6],
+           minduration: 5,
+           maxduration: 30,
+           mimes: ['video/mp4','application/javascript']
+       }
+   },
+   bids: [
+   {
+       bidder: 'ix',
+       params: {
+           siteId: '1111',
+           video: {
+               siteId: '2222'
+           },
+           native: {
+               siteId: '3333'
+           },
+           banner: {
+               siteId: '4444'
+           }
+       }
+   },
+]
+}];
 
 ```
