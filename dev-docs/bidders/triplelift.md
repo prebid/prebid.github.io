@@ -54,17 +54,15 @@ The Triplelift Prebid Server bidding adapter and user sync endpoint require setu
 
 #### Video
 
+Triplelift bid params for video mediaTypes are identical, but be sure to include the appropriate video.placement value to indicate instream/outstream format. Speak with your partner manager about which value to place here based on what formats are enabled.
+
+See the [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html#adunitmediatypesvideo) for more info.
 
 {: .table .table-bordered .table-striped }
 
 | Name            | Scope                        | Description                                                                          | Example                                     | Type     |
 |-----------------|------------------------------|--------------------------------------------------------------------------------------|---------------------------------------------|----------|
-| `inventoryCode` | required                     | TripleLift inventory code for this ad unit (provided to you by your partner manager) | `'pubname_instream_1'`                      | `string` |
-| `video`         | required                     | oRTB video object                                                                    | `{ mimes: ['video/mp4'], w: 640, h: 480 }`     | `object`  |
-| `video.context`         | required             | Instream or Outstream (v7.9+ for all Outstream)                           | `instream`                                      | `string`  |
-| `video.w`         | required                   | oRTB video object width dimension                                                    | `640`                                      | `int`  |
-| `video.h`         | required                   | oRTB video object height dimension                                                   | `480`                                      | `int`  |
-| `video.placement`         | optional                   | Instream: 1;      Outstream: 3, 4, 5.                                                   | `3`                                      | `int`  |
+| `adUnit.mediaTypes.video.placement`         | required                   | Instream: 1;      Outstream: 3, 4, 5.                      | `3`                                         | `int`  |
 
 <a name="triplelift-config" />
 
@@ -109,11 +107,7 @@ var videoAdUnit = {
     bids: [{
         bidder: 'triplelift',
         params: {
-            inventoryCode: 'pubname_instream1',
-            video: {
-                w: 640,
-                h: 480
-            }
+            inventoryCode: 'pubname_instream1'
         }
     }]
 };
@@ -136,10 +130,6 @@ var videoAdUnit = {
         bidder: 'triplelift',
         params: {
             inventoryCode: 'pubname_outstream',
-            video: {
-                w: 640,
-                h: 480
-            }
         }
     }]
 };

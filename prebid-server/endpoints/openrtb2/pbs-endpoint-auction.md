@@ -619,7 +619,7 @@ These fields will be forwarded to each Bidder, so they can decide how to process
 
 ##### Interstitial support
 Additional support for interstitials is enabled through the addition of two fields to the request:
-device.ext.prebid.interstitial.minwidthperc and device.ext.interstial.minheightperc
+device.ext.prebid.interstitial.minwidthperc and device.ext.interstitial.minheightperc
 The values will be numbers that indicate the minimum allowed size for the ad, as a percentage of the base side. For example, a width of 600 and "minwidthperc": 60 would allow ads with widths from 360 to 600 pixels inclusive.
 
 Example:
@@ -762,6 +762,17 @@ client can declare a given adunit as eligible for rewards by declaring `imp.ext.
 The OpenRTB `test` flag has a special meaning that bidders may react to: they may not perform a normal auction, or may not pay for test requests.
 
 You can turn on the extra Prebid Server debug log without the formal `test` behavior by instead setting `ext.prebid.debug: true`.
+
+##### Trace Flag
+
+{: .alert.alert-info :}
+PBS-Java only
+
+You can turn on additional Prebid Server tracing by setting `ext.prebid.trace` to either "verbose" or "basic". 
+This provides additional information for certain scenarios:
+
+- for [modules](/prebid-server/pbs-modules/), look in response ext.prebid.modules.trace
+- for [PG](/prebid-server/features/pg/pbs-pg-idx.html), look in response ext.debug.trace
 
 ##### Stored Responses
 
@@ -1267,6 +1278,26 @@ These flags can be used separately or together. For example:
   }]
 }
 ```
+##### Floors
+
+{: .alert.alert-info :}
+PBS-Java only
+
+See the [Prebid Server Floors Feature](/prebid-server/features/pbs-floors.html) for more info.
+
+##### Server Metadata
+
+{: .alert.alert-info :}
+PBS-Java only
+
+PBS-core creates this block before sending to bid adapters. They receive additional metadata about the PBS calling them. e.g.
+```
+            "server": {
+                "externalurl": "https://prebid-server.rubiconproject.com",
+                "gvlid": 52,
+                "datacenter": "us-east-1"
+            }
+```
 
 #### OpenRTB Response Extensions
 
@@ -1474,7 +1505,8 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.currency<wbr>.usepbsrates | if true, currency.rates is used as a backup if dynamic rates aren't found. If false, dynamic rates are not used.<br>ex: `true` | boolean | yes |
 | ext<wbr>.prebid<wbr>.data.<wbr>bidders | bidders in scope for bidder-specific first party data, see [first party data](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#first-party-data-support). | array of strings | no |
 | ext<wbr>.prebid<wbr>.data.<wbr>eidpermissions | Allows publishers to define which bidders are allowed to see which extended IDs, see [eid permissions](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#eid-permissions) | object  | no |
-| ext<wbr>.prebid<wbr>.debug | Provides debug output in response.<br>ex: `true` | boolean | yes |
+| ext<wbr>.prebid<wbr>.debug | Provides debug output in response. | boolean | yes |
+| ext<wbr>.prebid<wbr>.trace | Provides trace output in response. | "verbose" or "basic" | yes |
 | ext<wbr>.prebid<wbr>.events | Enables VAST impression tracking injection for the request when an empty object is provided. This is an alernative method from using account configuration. | object | no
 | ext<wbr>.prebid<wbr>.experiment<wbr>adscert<wbr>.enabled | Enabled Ads.Cert 2.0 Authenticated Connections on supported outgoing bidder requests. | boolean | no |
 | ext<wbr>.prebid<wbr>.integration | host-dependent integration type passed through to events and analytics.<br>ex: `"managed"` | string | yes |
@@ -1483,6 +1515,11 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.schains | Bidder-specific supply chains, see [supply chain support](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#supply-chain-support) | object | no |
 | ext<wbr>.prebid<wbr>.targeting | defines the key-value pairs that PBS-core places in seatbid.bid.ext.prebid.targeting, see [ad server targeting](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) | object | no |
 | ext<wbr>.prebid<wbr>.no-sale | turns off CCPA processing for the named bidder(s).<br>ex: `["bidderA"]` | array of strings | no |
+| ext<wbr>.prebid<wbr>.server | additional Prebid Server metadata | object | yes |
+| ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
+| imp<wbr>.ext<wbr>.prebid<wbr>.adunitcode | Prebid.js adunit code | string | yes |
+| app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
+| app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
 
 #### Response
 {:.no_toc}

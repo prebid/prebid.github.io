@@ -18,7 +18,7 @@ pbs: true
 pbs_app_supported: true
 fpd_supported: true
 gvl_id: 98
-pbjs_version_notes: not supported in 6.24+
+enable_download : false
 ---
 
 {: .alert.alert-warning :}

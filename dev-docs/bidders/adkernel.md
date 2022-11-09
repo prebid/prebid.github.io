@@ -13,6 +13,11 @@ pbs_app_supported: true
 gvl_id: 14
 schain_supported: true
 userIds: all
+fpd_supported: true
+prebid_member: false
+ortb_blocking_supported: true
+multiformat_supported: will-bid-on-one
+floors_supported: true
 ---
 
 ### Note:
