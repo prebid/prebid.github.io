@@ -23,6 +23,31 @@ Nope. The only approval process is a code review. There are separate instruction
 As for [membership](https://prebid.org/membership/) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
 but it's not necessary for contributing code as a community member.
 
+## How does Prebid support privacy regulations?
+
+Prebid cannot give legal advice. Our aim is to provide a toolkit that supports publishers in their efforts to comply with the laws that apply to them. Here's the process we recommend:
+
+1. Talk to your lawyers and decide what actions you need to take for various scenarios. You might, for instance, want to run a Consent Management Platform when your users are in a privacy-sensitive jurisdiction.
+2. Look over the controls provided by Prebid (list below).
+3. If there's a missing control, please open an issue in the appropriate repository: [PBJS](https://github.com/prebid/Prebid.js/issues), [PBS](https://github.com/prebid/prebid-server/issues), [SDK](https://github.com/prebid/prebid-mobile-ios/issues)
+
+Here are some controls at your disposal. The page can determine what actions are needed based on its interpretation of the user's consent and the company's policies:
+- Turn off Prebid.js usersync:
+    - [for client-side adapters](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) - either completely or for certain bidders.
+    - [for server-side adapters](/dev-docs/modules/prebidServer.html) - override the s2sConfig.syncEndpoint
+- [Disable User ID modules](/dev-docs/modules/userId.html) - there are controls for different ID modules and which bidders can get which IDs.
+- [Disable device access](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) - no adapter or module will be able to create a cookie or HTML5 localstorage object.
+- For GDPR:
+    - consider the [GDPR](/dev-docs/modules/consentManagement.html) and [GDPR Enforcement](/dev-docs/modules/gdprEnforcement.html) modules, which flexibly support various actions like cancelling usersyncs, auctions, and analytics. Using these modules, bid adapters will receive the IAB TCF string from the CMP.
+    - or the page can just avoid turning on certain bidders or modules. Or just skip header bidding altogether.
+- For CCPA / US-Privacy:
+    - consider the [US-Privacy](/dev-docs/modules/consentManagementUsp.html) module. This passes the IAB USP string through to bid adapters and supports data deletion events for User ID modules and other interested adapters and modules.
+- Set the [COPPA flag](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa), which passes this value through to modules and bid adapters.
+- Avoid adding certain bidders or modules to the AdUnit.
+- Turn off header bidding altogether.
+
+For all other regulations (LGPD, CPRA, GPP, etc), Prebid relies on the IAB and community members to determine whether additional tools are needed to support the publisher workflow. As noted above, open an issue in the appropriate repository, or join the org and help us improve the system!
+
 ## What should my timeouts be?
 
 Below is a set of recommended best practice starting points for your timeout settings:
