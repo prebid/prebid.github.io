@@ -9,11 +9,10 @@ sidebarType: 2
 ---
 
 
-
-# Add an Ad Server Adapter
+# For Contributors
 {:.no_toc}
 
-We are looking for contributors to add ad server adapters so that Prebid Mobile can be used with more ad server SDKs.
+We are looking for contributors to determine and implement features needed to improve the monetization of publishers' applications.
 
 Contributors should visit GitHub to learn how to contribute to Prebid Mobile.
 

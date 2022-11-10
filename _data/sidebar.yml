@@ -651,6 +651,14 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+  
+- sbSecId: 2
+  title: For Contributors
+  link: /prebid-mobile/for-contributors.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
 
 - sbSecId: 2
   title: Rendering API
@@ -1117,23 +1125,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
-
-- sbSecId: 2
-  title: For Contributors
-  link:
-  isHeader: 1
-  headerId: forcontributors
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
-
-- sbSecId: 2
-  title: Add an Ad Server Adapter
-  link: /prebid-mobile/add-an-ad-server-adapter.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
 
 #--------------Ad Ops--------------|
 
