@@ -269,6 +269,10 @@ Targeting.shared.addBidderToAccessControlList(Prebid.bidderNameRubiconProject)
 
 Prebid Mobile supports the [IAB GDPR recommendations](https://www.iab.com/topics/consumer-privacy/gdpr/). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice](/prebid-mobile/privacy-regulation.html)
 
+Prebid SDK doesn't modify values for IAB-defined keys in the `UserDefaults`. Instead, SDK will keep the provided value in the in-memory property.
+
+The values provided via targeting API will be included in the bid request according to the `TCF v2` framework.
+
 ### Subject To GPDR
 
 ```
@@ -287,6 +291,7 @@ guard let subjectToGDPR = Targeting.shared.subjectToGDPR else {
 ```
 Targeting.shared.subjectToGDPR = false
 ```
+ 
 
 ### GDPR Consent String
 
