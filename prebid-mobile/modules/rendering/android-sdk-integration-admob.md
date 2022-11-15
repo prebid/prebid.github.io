@@ -134,7 +134,7 @@ The `MediationBannerAdUnit` is part of the prebid mediation API. This class is r
 
 The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
 
-#### Step 5: Make an Ad Reuest
+#### Step 5: Make an Ad Request
 
 Now you should just make a regular AdMob's ad request. Evetything else will be handled by GMA SDK and prebid adapters.
 
