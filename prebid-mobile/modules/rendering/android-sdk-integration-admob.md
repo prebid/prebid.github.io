@@ -208,7 +208,7 @@ adUnit = MediationInterstitialAdUnit(
 
 The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
 
-#### Step 5: Make an ad reuest
+#### Step 5: Make an ad request
 
 Now you should just make a regular AdMob's ad request. Evetything else will be handled by GMA SDK and prebid adapters.
 
