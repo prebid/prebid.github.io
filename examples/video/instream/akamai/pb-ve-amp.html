@@ -16,7 +16,7 @@ sidebarType: 4
         </div>
 
         <!--video warning-->
-        <div class="pb-alert pb-alert-important" style="width:60vw;">
+        <div class="pb-alert pb-alert-important" >
             <p style="color:#85720f"><b>Important:</b>
                 This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production
                 use. It includes all available adapters. Production implementations should build from source or
@@ -31,91 +31,91 @@ sidebarType: 4
         <!--video code fencing-->
 
         <!--header code example-->
-        <div class="pb-alert pb-alert-warning" style="width:60vw;">
+        <div class="pb-alert pb-alert-warning" >
             <p style="color:#a94443"><b>Warning:</b>
                 Do not forget to exchange the placementId in the code examples with your own placementId!</p>
         </div>
 
-        <div style="width:60vw;">
-            <h4>Place this code in the page header.</h4>
-            <pre class="pb-code-hl" style="width:60vw;">
-&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"&gt;&lt;/script&gt;<br>
+        <h4>Place this code in the page header.</h4>
+        <div class="pb-code-hl-wrap">
+          <pre class="pb-code-hl" >
+&lt;script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"&gt;&lt;/script&gt;<br>
 &lt;script type="text/javascript" src="https://amp.akamaized.net/hosted/1.x/player?apikey=sample"&gt;&lt;/script&gt;
 &lt;script&gt;
-	var pbjs = pbjs || {};
-	pbjs.que = pbjs.que || [];
-	var tempTag = false;
-	var invokeVideoPlayer = function(url) {
-	    tempTag = url;
-	}
+  var pbjs = pbjs || {};
+  pbjs.que = pbjs.que || [];
+  var tempTag = false;
+  var invokeVideoPlayer = function(url) {
+      tempTag = url;
+  }
 
-	var videoAdUnit = {
-	    code: 'video1',
-	    mediaTypes: {
-	        video: {
+  var videoAdUnit = {
+      code: 'video1',
+      mediaTypes: {
+          video: {
                   context: 'instream',
                   playerSize: [640, 480],
                   mimes: ['video/mp4'],
                   protocols: [1, 2, 3, 4, 5, 6, 7, 8],
                   playbackmethod: [2],
                   skip: 1
-	        }
-	    },
-	    bids: [{
-	        bidder: 'appnexus',
-	        params: {
-	            placementId: 13232361 /* Add own placement id */
-	        }
-	    }]
-	};
+          }
+      },
+      bids: [{
+          bidder: 'appnexus',
+          params: {
+              placementId: 13232361 /* Add own placement id */
+          }
+      }]
+  };
 
-	pbjs.que.push(function() {
-	    pbjs.addAdUnits(videoAdUnit);
-	    pbjs.setConfig({
-	        debug: true,
-	        cache: {
-	            url: 'https://prebid.adnxs.com/pbc/v1/cache'
-	        }
-	    });
+  pbjs.que.push(function() {
+      pbjs.addAdUnits(videoAdUnit);
+      pbjs.setConfig({
+          debug: true,
+          cache: {
+              url: 'https://prebid.adnxs.com/pbc/v1/cache'
+          }
+      });
 
-	    pbjs.requestBids({
-	        bidsBackHandler: function(bids) {
-	            var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-	                adUnit: videoAdUnit,
-	                params: {
-	                    iu: '/19968336/prebid_cache_video_adunit',
-	                    cust_params: {
-	                        section: 'blog',
-	                        anotherKey: 'anotherValue'
-	                    },
-	                    output: 'vast'
-	                }
-	            });
-	            invokeVideoPlayer(videoUrl);
-	        }
-	    });
-	});
+      pbjs.requestBids({
+          bidsBackHandler: function(bids) {
+              var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+                  adUnit: videoAdUnit,
+                  params: {
+                      iu: '/19968336/prebid_cache_video_adunit',
+                      cust_params: {
+                          section: 'blog',
+                          anotherKey: 'anotherValue'
+                      },
+                      output: 'vast'
+                  }
+              });
+              invokeVideoPlayer(videoUrl);
+          }
+      });
+  });
 
 &lt;/script&gt;
-</pre>
-<style>
-  .sample-player {
-    width: 604px;
-    height: 340px;
-  }
+          </pre>
+          <style>
+            .sample-player {
+              width: 604px;
+              height: 340px;
+            }
 
-  @media (max-width: 600px) {
-  .sample-player {
-    height: 227px;
-  }
-}
-</style>
-</div>
+            @media (max-width: 600px) {
+              .sample-player {
+                height: 227px;
+              }
+            }
+          </style>
+        </div>
 
         <!--body code example-->
-        <div style="width:60vw;">
+        <div class="pb-code-hl-wrap">
             <h4>Place this code in the page body.</h4>
-            <pre class="pb-code-hl" style="width:60vw;">
+            <pre class="pb-code-hl" >
 &lt;!--player container--&gt;
 &lt;div style="width:604px; height:341px;"&gt;
     &lt;div id="akamai-player" &lt;/div&gt;
@@ -146,19 +146,15 @@ sidebarType: 4
     tempTag = false;
   }
   &lt;/script&gt;
-</pre>
+            </pre>
         </div>
-
     </div>
 
-  
-</div>
-
-<div style="width:60vw;">
     <h4>Using Prebid Plugin for AMP</h4>
     <p>As an alternative an <code>adUnit</code> can be passed within the built-int prebid plugin for AMP. The prebid bid request will be handled by prebid plugin automatically just before the ad request takes place.</p>
     <p>The plugin can be implemented by providing a prebid object to the player config as follows</p>
-    <pre class="pb-code-hl" style="width:60vw;">
+    <div class="pb-code-hl-wrap">
+      <pre class="pb-code-hl" >
     &lt;head&gt;
         &lt;script type="text/javascript" src="https://amp.akamaized.net/hosted/1.x/player?apikey=sample"&gt;&lt;/script&gt;
     &lt;/head&gt;
@@ -175,7 +171,7 @@ sidebarType: 4
                   name: "dfp"
                 },
                 resources: [
-                  { src: "https://acdn.adnxs.com/prebid/not-for-prod/1/prebid.js", type: "text/javascript", async: true },
+                  { src: "https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js", type: "text/javascript", async: true },
                   { src: "${paths.plugins}prebid/Prebid.min.js", type: "text/javascript", async: true }
                 ],
                 adUnits: {
@@ -229,10 +225,11 @@ sidebarType: 4
         akamai.amp.AMP.create('#akamai-player', config)
       &lt;/script&gt;
     &lt;/body&gt;
-  </pre>
+      </pre>
+    </div>
 </div>
-<!--video player code-->
 
+<!--video player code-->
 <script type="text/javascript">
     invokeVideoPlayer = function (url) {
         var config = {

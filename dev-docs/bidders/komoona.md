@@ -4,7 +4,8 @@ title: Komoona
 description: Prebid Komoona Bidder Adaptor
 pbjs: true
 biddercode: komoona
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
 ---
 
 

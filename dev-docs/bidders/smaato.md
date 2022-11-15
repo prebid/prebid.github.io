@@ -7,7 +7,7 @@ gdpr_supported: true
 gvl_id: 82
 usp_supported: true
 coppa_supported: true
-media_types: banner, video
+media_types: banner, video, native
 userId: criteo, pubCommonId, unifiedId
 pbjs: true
 pbs: true
@@ -118,6 +118,51 @@ var adUnit = {
     }]
 };
 ```
+
+#### Example Native Ad Unit
+
+```javascript
+var adUnit = {
+    "code": "native unit",
+    "mediaTypes": {
+        native: {
+            sendTargetingKeys: false,
+            image: {
+                required: true,
+                sizes: [150, 50]
+            },
+            icon: {
+                required: true,
+                sizes: [50, 50]
+            },
+            title: {
+                required: true,
+                len: 80
+            },
+            sponsoredBy: {
+                required: true
+            },
+            body: {
+                required: true
+            },
+            cta: {
+                required: false
+            },
+            rating: {
+                required: false
+            }
+        }
+    },
+    "bids": [{
+        "bidder": "smaato",
+        "params": {
+            "publisherId": "1100012345",
+            "adspaceId": "11002234"
+        }
+    }]
+};
+```
+
 #### Example AdPod (long-form) Video Ad Unit
 
 ```javascript
@@ -152,18 +197,31 @@ var adUnit = {
 <a name="smaato-first-party" />
 
 ### First Party Data
+Publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
+- ortb2.site.keywords
+- ortb2.site.content
+- ortb2.user.keywords
+- ortb2.user.yob
+- ortb2.user.gender
+- ortb2.user.ext.eids
 
-The Smaato adapter supports passing through first party data configured in your prebid integration.
+The IAB standard taxonomies are not supported.
+
+Example first party data that's available to all bidders and all adunits:
 
 ```javascript
 pbjs.setConfig({
-    fpd: {
-        context: {
-            keywords: "power tools"
-        },
+    ortb2: {
+        site: {
+            keywords: "kw1,kw2", 
+            content: {
+                title: "title1",
+                series: "series1"
+                }
+            }, 
         user: {
-            keywords: "a,b",
-            gender: "M",
+            keywords: "a,b", 
+            gender: "M", 
             yob: 1984
         }
     }
