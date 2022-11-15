@@ -468,7 +468,7 @@ type adapter struct {
 }
 
 // Builder builds a new instance of the Foo adapter for the given bidder with the given config.
-func Builder(bidderName openrtb_ext.BidderName, config config.Adapter) (adapters.Bidder, error) {
+func Builder(bidderName openrtb_ext.BidderName, config config.Adapter, server config.Server) (adapters.Bidder, error) {
   bidder := &adapter{
     endpoint: config.Endpoint,
   }
@@ -540,6 +540,8 @@ The second argument, `config`, is all the configuration values set for your adap
 - `config.Endpoint` is the base url of your bidding server and may be interpreted as either a literal address or as a templated macro to support dynamic paths.
 - `config.ExtraAdapterInfo` is an optional setting may be used for any other values your adapter may need, such as an application token or publisher allow/deny list. You may interpret this string however you like, although JSON is a common choice.
 
+The third argument, `server`, is a set of host configs. It can be passed in two different ways. One way is to pass this info in the auction request itself at the path `ext.prebid.server` (i.e. `ext.prebid.server.datacenter`). The second way is to pass this info as a configuration data structure.
+
 The `Builder` method is expected to return an error if either the `config.Endpoint` or the `config.ExtraAdapterInfo` values are invalid or cannot be parsed. Errors will be surfaced to the host during application startup as a fatal error.
 
 <details markdown="1">
@@ -551,7 +553,7 @@ type adapter struct {
 }
 
 // Builder builds a new instance of the Foo adapter for the given bidder with the given config.
-func Builder(bidderName openrtb_ext.BidderName, config config.Adapter) (adapters.Bidder, error) {
+func Builder(bidderName openrtb_ext.BidderName, config config.Adapter, server config.Server) (adapters.Bidder, error) {
   template, err := template.New("endpointTemplate").Parse(config.Endpoint)
   if err != nil {
     return nil, fmt.Errorf("unable to parse endpoint url template: %v", err)
@@ -574,7 +576,7 @@ type extraInfo struct {
 }
 
 // Builder builds a new instance of the Foo adapter for the given bidder with the given config.
-func Builder(bidderName openrtb_ext.BidderName, config config.Adapter) (adapters.Bidder, error) {
+func Builder(bidderName openrtb_ext.BidderName, config config.Adapter, server config.Server) (adapters.Bidder, error) {
   info, err := parseExtraInfo(config.ExtraAdapterInfo)
   if err != nil {
     return nil, err
@@ -947,7 +949,8 @@ import (
 
 func TestJsonSamples(t *testing.T) {
   bidder, buildErr := Builder(openrtb_ext.Bidder{Bidder}, config.Adapter{
-    Endpoint: "http://whatever.url"})
+    Endpoint: "http://whatever.url"},
+    config.Server{ExternalUrl: "http://hosturl.com", GvlID: 1, DataCenter: "2"})
 
   if buildErr != nil {
     t.Fatalf("Builder returned unexpected error %v", buildErr)
@@ -1018,7 +1021,8 @@ If your adapter supports template parsing, we recommend adding this failure test
 ```go
 func TestEndpointTemplateMalformed(t *testing.T) {
   _, buildErr := Builder(openrtb_ext.Bidder{Bidder}, config.Adapter{
-    Endpoint: "{%raw%}{{Malformed}}{%endraw%}"})
+    Endpoint: "{%raw%}{{Malformed}}{%endraw%}"},
+    config.Server{ExternalUrl: "http://hosturl.com", GvlID: 1, DataCenter: "2"})
 
   assert.Error(t, buildErr)
 }
@@ -1031,7 +1035,8 @@ func TestBadConfig(t *testing.T) {
   _, buildErr := Builder(openrtb_ext.Bidder{Bidder}, config.Adapter{
     Endpoint:         `http://it.doesnt.matter/bid`,
     ExtraAdapterInfo: `{foo:42}`,
-  })
+  },
+  config.Server{ExternalUrl: "http://hosturl.com", GvlID: 1, DataCenter: "2"})
 
   assert.Error(t, buildErr)
 }
@@ -1040,7 +1045,8 @@ func TestEmptyConfig(t *testing.T) {
   bidder, buildErr := Builder(openrtb_ext.Bidder{Bidder}, config.Adapter{
     Endpoint:         `http://it.doesnt.matter/bid`,
     ExtraAdapterInfo: ``,
-  })
+  },
+  config.Server{ExternalUrl: "http://hosturl.com", GvlID: 1, DataCenter: "2"})
 
   bidder{Bidder} := bidder.(*adapter)
 
@@ -1208,7 +1214,7 @@ Notes on the metadata fields:
 - If you support the GDPR and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
 - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
-- If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
+- If you support video, native, or audio mediaTypes add `media_types: video, native, audio`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 - If you support COPPA, add `coppa_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
