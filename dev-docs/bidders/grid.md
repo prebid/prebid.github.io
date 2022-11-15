@@ -32,31 +32,7 @@ fpd_supported: true
 | Name           | Scope    | Description                                                                                                 | Example                                   | Type      |
 |----------------|----------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------|-----------|
 | `uid`          | required | Represents the MediaGrid bidder system Ad Slot ID associated with the respective div id from the site page. | `1`                                       | `integer` |
-| `keywords`     | optional | A set of key-value pairs applied to all ad slots on the page. Values can be empty.                          | `keywords: { topic: ['stress', 'fear'] }` | `object`  |
 | `bidFloor`     | optional | Floor of the impression opportunity. If present in the request overrides XML info.                          | `0.8`                                     | `float`   |
-
-Parameter `keywords` must have following format:
-```
-{
-   "site":{
-      "publisher1":[
-         {
-            "name":"SomeKeywordsBlockName",
-            "segment1Name":[
-               "segment2Value"
-            ],
-            "segment2Name":[
-               "segment2Value1",
-               "segment2Value2",
-               ...
-            ],
-            ...
-         }
-      ],
-      ...
-   }
-}
-```
 
 <a name="grid-bidder-config" />
 
