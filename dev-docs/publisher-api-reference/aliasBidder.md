@@ -9,7 +9,7 @@ To define an alias for a bidder adapter, call this method at runtime:
 
 {% highlight js %}
 
-pbjs.aliasBidder('appnexus', 'newAlias', options: { gvlid: 111111} );
+pbjs.aliasBidder('appnexus', 'newAlias', optionsObject );
 
 {% endhighlight %}
 

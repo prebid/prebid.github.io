@@ -14,6 +14,9 @@ This routine allows the page (or module) to create a callback function that's in
 
 See the [getEvents](/dev-docs/publisher-api-reference/getEvents.html) function for the full list of eventTypes supported.
 
+{: .alert.alert-info :}
+The `adRenderSucceeded` event indicates that the render function did not generate an error, it does not guarantee that tracking for this event has occurred yet.
+
 The optional `id` parameter provides more finely-grained event
 callback registration.  This makes it possible to register callback
 events for a specific item in the event context.

@@ -827,6 +827,8 @@ private static BidderBid createBidderBid(Bid bid, Imp imp, BidType bidType, Stri
 ```
 <p></p>
 
+2. Test: 
+
 ## Test Your Adapter
 
 This chapter will guide you through the creation of automated unit and integration tests to cover your bid adapter code. We use GitHub Action Workflows to ensure the code you submit passes validation. You can run the same validation locally with this command:
@@ -1251,7 +1253,7 @@ multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ortb_blocking_supported: true/partial/false
 ---
 
-### Note:
+### Registration
 
 The Example Bidding adapter requires setup before beginning. Please contact us at setup@example.com
 
@@ -1268,7 +1270,7 @@ Notes on the metadata fields:
 - If you support GDPR and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
 - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
-- If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
+- If you support video, native, or audio mediaTypes add `media_types: video, native, audio`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 - If you support COPPA, add `coppa_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
@@ -1278,6 +1280,7 @@ Notes on the metadata fields:
 - If your bidder supports floors, set `floors_supported: true`. No default value.
 - If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
 - If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to ‘true’,’partial’, or ‘false’. No default value. In order to set ‘true’, you must support: bcat, badv, battr, and bapp.
+- Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
 

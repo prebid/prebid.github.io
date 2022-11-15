@@ -11,7 +11,6 @@ schain_supported: false
 usp_supported: true
 safeframes_ok: false
 pbjs: true
-pbjs_version_notes: avoid 4.31-4.39
 floors_supported: true
 ---
 

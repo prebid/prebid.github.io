@@ -33,7 +33,7 @@ There are multiple ways to integrate SharedId on your site. See the table below 
 The SharedID ID system sets a user id cookie in the publisher’s domain.
 Since the cookie is set in the publisher's first party domain it does not fall in scope of browser restrictions on third party cookies. Safari has restrictions on first party cookies set via document.cookie. For this reason we recommend considering a server endpoint installation for maximum effect. See the "Alternate Implementations" section below.
 
-### Prebid.js 5.x
+### Prebid.js 5 and later
 
 The SharedId module reads and/or sets a random ID in
 the cookie name defined by the publisher when initializing
