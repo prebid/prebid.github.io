@@ -3,6 +3,7 @@ layout: bidder
 title: Taboola
 description: Prebid Taboola Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: taboola
 gdpr_supported: true
 usp_supported: true
@@ -27,13 +28,14 @@ The Taboola Adapter requires setup before beginning. Please contact us at prebid
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description                                             | Example                    | Type         |
-|---------------|----------|---------------------------------------------------------|----------------------------|--------------|
-| `tagId`       | required | Tag ID / Placement Name <br>                            | `'Below The Article'`      | `String`     |
-| `publisherId` | required | Numeric Publisher ID <br>(as provided by Taboola)       | `'1234567'`                | `String`     |
-| `bcat`        | optional | List of blocked advertiser categories (IAB)             | `['IAB1-1']`               | `Array`      |
-| `badv`        | optional | Blocked Advertiser Domains                              | `'example.com'`            | `String Url` |
-| `bidfloor`    | optional | CPM bid floor                                           | `0.25`                     | `Float`      |
+| Name              | Scope    | Description                                       | Example               | Type         |
+|-------------------|----------|---------------------------------------------------|-----------------------|--------------|
+| `tagId`           | required | Tag ID / Placement Name <br>                      | `'Below The Article'` | `String`     |
+| `publisherId`     | required | Numeric Publisher ID <br>(as provided by Taboola) | `'1234567'`           | `String`     |
+| `publisherDomain` | optional | Publisher Domain                                  | `'example.com'`       | `String`     |
+| `bcat`            | optional | List of blocked advertiser categories (IAB)       | `['IAB1-1']`          | `Array`      |
+| `badv`            | optional | Blocked Advertiser Domains                        | `'example.com'`       | `String Url` |
+| `bidfloor`        | optional | CPM bid floor                                     | `0.25`                | `Float`      |
 
 
 ### Example Ad Unit
@@ -50,6 +52,7 @@ The Taboola Adapter requires setup before beginning. Please contact us at prebid
     params: {
       tagId: 'Placement Name',
       publisherId: 'your-publisher-id',
+      publisherDomain: 'example.com' // Optional 
       bidfloor: 0.25, // Optional - default is null
       bcat: ['IAB1-1'], // Optional - default is []
       badv: ['example.com']  // Optional - default is []
