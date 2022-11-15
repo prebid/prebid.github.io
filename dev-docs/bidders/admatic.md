@@ -23,11 +23,9 @@ AdMatic header bidding adapter connects with AdMatic demand sources to fetch bid
 
 ### Bid params
 
-{: .table .table-bordered .table-striped }
 | Name         | Scope    | Description                        | Example    | Type     |
 |--------------|----------|------------------------------------|------------|----------|
 | `networkId` | required | The network ID from AdMatic | `12345` | `number` |
-| `host` | required | RTB Host | `layer.serve.admatic.com.tr` | `string` |
 
 ### Test Parameters
 
