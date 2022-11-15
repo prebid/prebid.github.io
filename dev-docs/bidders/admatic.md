@@ -1,9 +1,8 @@
 ---
 layout: bidder
 title: AdMatic
-description: Prebid AdMatic Bidder Adapter.
+description: Prebid AdMatica Bidder Adapter.
 pbjs: true
-pbs: false
 biddercode: admatic
 media_types: banner,video
 gdpr_supported: false
@@ -37,8 +36,7 @@ var adUnits = [{
   bids: [{
       bidder: 'admatic',
       params: { 
-          networkId: 12345,
-          host: 'layer.serve.admatic.com.tr'
+          networkId: 12345
       }
   }]
 },{
@@ -47,8 +45,7 @@ var adUnits = [{
   bids: [{
       bidder: 'admatic',
       params: { 
-          networkId: 12345,
-          host: 'layer.serve.admatic.com.tr'
+          networkId: 12345
       }
   }]
 }];
