@@ -6,7 +6,6 @@ sidebarType: 2
 ---
 
 
-
 # Getting Started with Prebid Mobile
 {:.no_toc}
 
@@ -17,7 +16,6 @@ If this is your first time working with header bidding, we recommend that you re
 {% endcapture %}
 
 {% include alerts/alert_note.html content=alertNote %}
-
 
 * TOC
 {:toc}
@@ -31,16 +29,16 @@ Before you begin using Prebid Mobile in your apps, you need to prepare your end-
 
 ### Implement Your Own Prebid Server Host
 
-Prebid Server is an open source project. This allows you to host your own implementation of Prebid Server, though it's not as easy as downloading Prebid.js, because it needs to be hosted. The source code is available for [Prebid-Server GoLang](https://github.com/prebid/prebid-server) and [Prebid Server-Java](https://github.com/prebid/prebid-server-java).
+Prebid Server is an open source project. This allows you to host your own implementation of Prebid Server, though it's not as easy as downloading Prebid.js, because it needs to be hosted. The source code is available for [Prebid Server Go](https://github.com/prebid/prebid-server) and [Prebid Server Java](https://github.com/prebid/prebid-server-java).
 
 See the [Prebid Server documentation](/prebid-server/overview/prebid-server-overview.html) for more information on [setting up your own server host](/prebid-server/hosting/pbs-hosting.html).
 
-### A Note on 'Accounts'
+### A note on Accounts  
 
-Several pages and examples in the mobile documentation refer to entering
-your "Prebid Server Account ID".
+Several pages and examples in the mobile documentation refer to entering your "Prebid Server Account ID".
 
-In actuality, an “account ID” is just the name of the “top-level” stored request as described on the [Prebid Server Stored Request page](/prebid-server/features/pbs-storedreqs.html).
+In actuality, an `account ID` is just the name of the “top-level” stored request as described on the [Prebid Server Stored Request page](/prebid-server/features/pbs-storedreqs.html).
+
 By convention, most Prebid Server host companies define the top level stored request ID as the account ID they assign to the publisher.
 This is a convenient convention since publishers generally set the same timeout and price granularity across all apps.
 But it may not be the case for your Prebid Server host company, so please check with them.
@@ -66,20 +64,17 @@ The preceding is an example "impression-level stored request" using AppNexus as 
 Each block of JSON like this is called a "stored request" and gets an ID called a "stored request ID". This ID is then programmed into an adslot using the iOS or Android SDKs. Doing it this way allows the publisher to change bidders and parameters without
 having to change the app.
 
-## Developers - Using the SDK
-
-To begin using Prebid Mobile, download the Prebid Mobile SDK:
--   [SDK for iOS](https://github.com/prebid/prebid-mobile-ios)
--   [SDK for Android](https://github.com/prebid/prebid-mobile-android)
-
-After you have the SDK installed, register ad units with the Prebid Mobile framework.
--   [iOS Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/ios/code-integration-ios.html)
--   [Android Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/android/code-integration-android.html)
-
 ## Ad Ops - Setting Up the Ad Server
 
 Ad ops users configure the primary ad server with Prebid Mobile line items targeted to key/values.
 -   [Set Up Line Items for Google Ad Manager](/adops/step-by-step.html)
+
+## Developers - Using the SDK
+
+To begin using Prebid Mobile follow the instructions for the respective platforms and integration approach:
+-   [iOS Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/ios/code-integration-ios.html)
+-   [Android Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/android/code-integration-android.html)
+
 
 ## Additional Information
 
@@ -87,28 +82,21 @@ The following resources are available for further information on working with Pr
 
 ### Ad Ops
 
--   [Price Granularity](/adops/price-granularity.html)
-    Additional details to help you ensure your line items are set up to target bid prices at an appropriate level of granularity.
+-   [Price Granularity](/adops/price-granularity.html) Additional details to help you ensure your line items are set up to target bid prices at an appropriate level of granularity.
+
 
 ### Mobile Developers
 
-**iOS**
+#### Targeting Parameters
 
--   [Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
-    Learn about the parameters available in the iOS Prebid Mobile SDK.
+Learn about the parameters available in the Prebid SDK
+- [iOS Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html) Learn about the parameters available in the iOS Prebid Mobile SDK.
+- [Android  Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html) Learn about the parameters available in the Android Prebid Mobile SDK.
 
-
-**Android**
-
--   [Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
-    Learn about the parameters available in the Android Prebid Mobile SDK.
-
-### GDPR
+#### GDPR
 
 Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Transparency & Consent Framework](https://www.iab.com/topics/consumer-privacy/gdpr/).
 
-For general information on these APIs see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice]({{site.baseurl}}/prebid-mobile/privacy-regulation.html).
+For general information on these APIs see [Prebid Mobile Guide to Privacy Regulation]({{site.baseurl}}/prebid-mobile/prebid-mobile-privacy-regulation.html).
 
-For specific implementation details, see the "GDPR Consent" section here:
--   [iOS - Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
--   [Android - Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
+

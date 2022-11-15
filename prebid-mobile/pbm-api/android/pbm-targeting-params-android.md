@@ -233,7 +233,7 @@ TargetingParams.addBidderToAccessControlList(TargetingParams.BIDDER_NAME_RUBICON
 
 ## Global GDPR Targeting
 
-Prebid Mobile supports the [IAB GDPR recommendations](https://www.iab.com/topics/consumer-privacy/gdpr/). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice](/prebid-mobile/privacy-regulation.html)
+Prebid Mobile supports the [IAB GDPR recommendations](https://www.iab.com/topics/consumer-privacy/gdpr/). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice](/prebid-mobile/prebid-mobile-privacy-regulation.html)
 
 Prebid SDK doesn't modify values for IAB-defined keys in the `SharedPreferences`. Instead, SDK will keep the provided value in the in-memory property.
 

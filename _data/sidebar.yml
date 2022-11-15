@@ -614,7 +614,7 @@
 
 - sbSecId: 2
   title: Overview
-  link: /prebid-mobile/prebid-mobile.html
+  link: /prebid-mobile/prebid-mobile-overview.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -622,7 +622,7 @@
 
 - sbSecId: 2
   title: Getting Started With Prebid Mobile
-  link: /prebid-mobile/prebid-mobile-pbs.html
+  link: /prebid-mobile/prebid-mobile-getting-started.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -638,7 +638,7 @@
 
 - sbSecId: 2
   title: Privacy Regulation
-  link: /prebid-mobile/privacy-regulation.html
+  link: /prebid-mobile/prebid-mobile-privacy-regulation.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -646,7 +646,7 @@
 
 - sbSecId: 2
   title: Download
-  link: /prebid-mobile/download.html
+  link: /prebid-mobile/prebid-mobile-download.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -654,7 +654,7 @@
   
 - sbSecId: 2
   title: For Contributors
-  link: /prebid-mobile/for-contributors.html
+  link: /prebid-mobile/prebid-mobile-for-contributors.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

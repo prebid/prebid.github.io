@@ -11,7 +11,7 @@ sidebarType: 2
 # Code Integration for iOS
 {: .notoc}
 
-Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Cocoapods or by [cloning the repo](https://github.com/prebid/prebid-mobile-ios) and using our included script to build the SDK.
+Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-getting-started.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Cocoapods or by [cloning the repo](https://github.com/prebid/prebid-mobile-ios) and using our included script to build the SDK.
 
 - TOC
  {:toc}
@@ -96,7 +96,7 @@ This will output the PrebidMobile.framework.
 
 ### Setup Prebid Server
 
-In order to conduct header bidding within your app you will need a Prebid Server hosted account. There are two options available for publishers described at [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-pbs.html).
+In order to conduct header bidding within your app you will need a Prebid Server hosted account. There are two options available for publishers described at [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-getting-started.html).
 
 Once you have a Prebid Server, you will add 'account' info to the app. For
 example, if you're using the AppNexus Prebid Server:

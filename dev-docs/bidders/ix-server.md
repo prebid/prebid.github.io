@@ -87,7 +87,7 @@ If you want to call Index from a web environment, you can use Prebid.js to call 
 
 **Before you begin:** Contact your Index Exchange representative to get your `siteId`. You must provide this site ID to your Prebid Server host company.
 
-**Note:** To implement Prebid Mobile SDK, follow Prebid's [Getting Started with Prebid Mobile](https://docs.prebid.org/prebid-mobile/prebid-mobile-pbs.html) documentation. 
+**Note:** To implement Prebid Mobile SDK, follow Prebid's [Getting Started with Prebid Mobile](https://docs.prebid.org/prebid-mobile/prebid-mobile-getting-started.html) documentation. 
 
 To add Index as a bidder to your mobile app:
 

@@ -13,7 +13,7 @@ sidebarType: 2
 
 # Code Integration for iOS
 
-Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html).
+Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-getting-started.html).
 
 ### Use Cocoapods?
 
