@@ -23,9 +23,11 @@ Pixad header bidding adapter connects with Pixad demand sources to fetch bids fo
 
 ### Bid params
 
-| Name         | Scope    | Description                        | Example    | Type     |
-|--------------|----------|------------------------------------|------------|----------|
+{: .table .table-bordered .table-striped }
+| Name        | Scope    | Description                         | Example  | Type     |
+|-------------|----------|-------------------------------------|----------|----------|
 | `networkId` | required | The network ID from Pixad | `12345` | `number` |
+| `host` | required | RTB Host | `rtb.network.pixad.com.tr` | `string` |
 
 ### Test Parameters
 
@@ -38,7 +40,7 @@ var adUnits = [{
       bidder: 'pixad',
       params: { 
           networkId: 12345,
-          host: 'layer.serve.admatic.com.tr'
+          host: 'rtb.network.pixad.com.tr'
       }
   }]
 },{
@@ -48,7 +50,7 @@ var adUnits = [{
       bidder: 'pixad',
       params: { 
           networkId: 12345,
-          host: 'layer.serve.admatic.com.tr'
+          host: 'rtb.network.pixad.com.tr'
       }
   }]
 }];
