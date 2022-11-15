@@ -1,10 +1,10 @@
 ---
 layout: bidder
-title: AdMatic
-description: Prebid AdMatic Bidder Adapter.
+title: Pixad
+description: Prebid Pixad Bidder Adapter.
 pbjs: true
 pbs: false
-biddercode: admatic
+biddercode: pixad
 media_types: banner,video
 gdpr_supported: false
 usp_supported: false
@@ -19,13 +19,13 @@ multiformat_supported: will-bid-on-any
 
 ### Description
 
-AdMatic header bidding adapter connects with AdMatic demand sources to fetch bids for banner network ID. Please reach out to your account manager or <prebid@admatic.com.tr> for more information.
+Pixad header bidding adapter connects with Pixad demand sources to fetch bids for banner network ID. Please reach out to your account manager or <prebid@pixad.com.tr> for more information.
 
 ### Bid params
 
 | Name         | Scope    | Description                        | Example    | Type     |
 |--------------|----------|------------------------------------|------------|----------|
-| `networkId` | required | The network ID from AdMatic | `12345` | `number` |
+| `networkId` | required | The network ID from Pixad | `12345` | `number` |
 
 ### Test Parameters
 
@@ -35,7 +35,7 @@ var adUnits = [{
   code: 'your-slot_1-div', //use exactly the same code as your slot div id.
   sizes: [[300, 250]],
   bids: [{
-      bidder: 'admatic',
+      bidder: 'pixad',
       params: { 
           networkId: 12345,
           host: 'layer.serve.admatic.com.tr'
@@ -45,7 +45,7 @@ var adUnits = [{
   code: 'your-slot_2-div', //use exactly the same code as your slot div id.
   sizes: [[600, 800]],
   bids: [{
-      bidder: 'admatic',
+      bidder: 'pixad',
       params: { 
           networkId: 12345,
           host: 'layer.serve.admatic.com.tr'
