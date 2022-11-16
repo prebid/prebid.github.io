@@ -136,7 +136,7 @@ The `fetchDemand` method makes a bid request to the prebid server and provides a
 
 #### Step 5: Make an Ad Request
 
-Now you should just make a regular AdMob's ad request. Evetything else will be handled by GMA SDK and prebid adapters.
+Now you should just make a regular AdMob's ad request. Everything else will be handled by GMA SDK and prebid adapters.
 
 ## Interstitial API
 
