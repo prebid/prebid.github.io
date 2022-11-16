@@ -614,7 +614,7 @@
 
 - sbSecId: 2
   title: Overview
-  link: /prebid-mobile/prebid-mobile-overview.html
+  link: /prebid-mobile/prebid-mobile.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -665,14 +665,6 @@
   link:
   isHeader: 1
   headerId: rendering
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Rendering Overview
-  link: /prebid-mobile/modules/rendering/modules-rendering.html
-  isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
