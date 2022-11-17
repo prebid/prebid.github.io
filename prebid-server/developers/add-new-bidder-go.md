@@ -920,6 +920,21 @@ You need to provide default settings for your bid adapter. You can decide if you
 {: .alert.alert-warning :}
 **HOST SPECIFIC INFO:** The default endpoint must not be specific to any particular host, such as Xandr/AppNexus. We may ask you about suspicious looking ids during the review process. Please reach out to individual hosts if you need to set specialized configuration.
 
+## Aliasing an Adapter
+
+If your bidding endpoint can support more than one biddercode, you shouldn't replicate
+the whole adapter codebase. Rather, follow these steps to create a 'hardcoded' alias:
+
+1. Create a config yaml file in static/bidder-info - e.g. static/bidder-info/myalias.yaml
+1. Copy the “source” bidder json schema and place it in the static/bidder-params directory - e.g. static/bidder-params/myalias.json
+1. Add the new alias to the openrtb_ext/bidders.go file -- e.g. BidderMyAlias BidderName = "myalias"
+1. Map the alias to the adapter in exchange/adapter_builders.go . e.g. openrtb_ext.BidderMyAlias: myMain.Builder
+1. Test: build the server locally and try sending a request with the alias as a bidder.
+
+Notes:
+- The alias name must be unique for the first 6 chars as noted above for biddercodes.
+- This process will be simplified someday.
+
 ## Test Your Adapter
 
 This section will guide you through the creation of automated unit tests to cover your bid adapter code and bidder parameters JSON Schema. We use GitHub Action Workflows to ensure the code you submit passes validation. You can run the same validation locally with this command:
