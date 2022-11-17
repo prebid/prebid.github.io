@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: aidem
+title: AIDEM
 description: AIDEM Bidder Adapter
 biddercode: aidem
 gdpr_supported: false
