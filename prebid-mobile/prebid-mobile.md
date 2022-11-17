@@ -118,7 +118,7 @@ Supported Ad Servers: AdMob, MAX.
 1. The Prebid SDK sends the bid request to the Prebid server.
 1. Prebid server runs the header bidding auction among preconfigured demand partners.
 1. Prebid Server responds with the winning bid that contains targeting keywords.
-1. [Optional] The Prebid SDK sets up the targeting keywords of the winning bid into the ad unit of the primary ad server SDK. 
+1. [OPTIONAL] The Prebid SDK sets up the targeting keywords of the winning bid into the ad unit of the primary ad server SDK. 
 1. The primary ad server SDK sends the ad request to the primary ad server.
 1. The primary ad server responds with a mediation chain.
 1. The Primary Ad Server SDK runs the Waterfall.
@@ -126,6 +126,7 @@ Supported Ad Servers: AdMob, MAX.
 1. [OPTIONAL] adaters checks the wheather the Line Item's targeting keywors match the bid targeting keywords
 1. Adapter renders a wiining bid cached in the SDK.
 
+Note: passing the targeting keywords to the ad server depends on the server's ability to target line items. If the server doesn't provide such a feature, Prebid SDK doesn't enrich an ad request with targeting info. But activation of a line item with the proper price still works. The implementation details of such selection you can find in the respective integration guide. 
 
 ## Integration Reference
 
