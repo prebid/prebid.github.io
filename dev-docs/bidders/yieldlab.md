@@ -10,6 +10,7 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 prebid_member: true
 pbjs: true
 pbs: true
+floors_supported: true
 ---
 
 
