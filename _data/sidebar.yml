@@ -877,14 +877,6 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: iOS Mobile API
-  link: /prebid-mobile/pbm-api/ios/pbm-api-ios.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 2
   title: Ad Unit
   link: /prebid-mobile/pbm-api/ios/pbm-adunit-ios.html
   isHeader: 0

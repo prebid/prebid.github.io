@@ -411,5 +411,4 @@ Targeting.shared.removeStoredExternalUserIds()
 
 ## Further Reading
 
-- [Prebid Mobile API - iOS](/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
