@@ -1245,10 +1245,6 @@ Add the **full** LiveIntent Identity module to your Prebid.js package with:
 {: .alert.alert-info :}
 gulp build --modules=userId,liveIntentIdSystem
 
-Add the **minimal** LiveIntent Identity module to your Prebid.js package with:
-{: .alert.alert-info :}
-LiveConnectMode=minimal gulp build --modules=liveIntentIdSystem
-
 The `request.userId.lipb` object would look like:
 ```
 {
