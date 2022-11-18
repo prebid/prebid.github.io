@@ -28,9 +28,10 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 
 
 ## Global Bid Params
-| Name          | Scope    | Description         | Example       | Type     |
-|---------------|----------|---------------------|---------------|----------|
-| `siteId`      | required | Unique site ID      | `'ABCDEF'`    | `String` |
+| Name          | Scope    | Description         | Example    | Type     |
+|---------------|----------|---------------------|------------|----------|
+| `siteId`      | required | Unique site ID      | `'ABCDEF'` | `String` |
+| `publisherId` | required | Unique publisher ID | `'FEDCBA'` | `String` |
 
 
 ### Banner Bid Params
