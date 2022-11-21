@@ -877,6 +877,14 @@
   subgroup: 2
 
 - sbSecId: 2
+  title: GAM Original API
+  link: /prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
   title: Ad Unit
   link: /prebid-mobile/pbm-api/ios/pbm-adunit-ios.html
   isHeader: 0
