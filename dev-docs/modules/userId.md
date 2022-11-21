@@ -1237,8 +1237,7 @@ The Kinesso ID privacy policy is covered under the [Kinesso Privacy Notice](http
 
 LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent nonID is a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
 
-Build your Prebid.js package to include the LiveIntent nonID using the standard version which allows publishers to include the module with full functionalities, 
-like hashing email addresses and identity resolution.
+Build your Prebid.js package to include the LiveIntent nonID using the standard version which allows publishers to include the module with full functionalities, like hashing email addresses and identity resolution.
 
 Add the **full** LiveIntent Identity module to your Prebid.js package with:
 {: .alert.alert-info :}
