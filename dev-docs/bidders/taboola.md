@@ -14,6 +14,9 @@ gvl_id: 42
 prebid_member: true
 floors_supported: true
 safeframes_ok: true
+fpd_supported: false
+ortb_blocking_supported: partial
+deals_supported: false
 ---
 
 ### Note
@@ -32,7 +35,7 @@ The Taboola Adapter requires setup before beginning. Please contact us at prebid
 |-------------------|----------|---------------------------------------------------|-----------------------|--------------|
 | `tagId`           | required | Tag ID / Placement Name <br>                      | `'Below The Article'` | `String`     |
 | `publisherId`     | required | Numeric Publisher ID <br>(as provided by Taboola) | `'1234567'`           | `String`     |
-| `publisherDomain` | optional | Publisher Domain                                  | `'example.com'`       | `String`     |
+| `publisherDomain` | optional | Publisher Domain (server-side adapter only)       | `'example.com'`       | `String`     |
 | `bcat`            | optional | List of blocked advertiser categories (IAB)       | `['IAB1-1']`          | `Array`      |
 | `badv`            | optional | Blocked Advertiser Domains                        | `'example.com'`       | `String Url` |
 | `bidfloor`        | optional | CPM bid floor                                     | `0.25`                | `Float`      |
@@ -41,22 +44,22 @@ The Taboola Adapter requires setup before beginning. Please contact us at prebid
 ### Example Ad Unit
 ```javascript
  var adUnits = [{
-  code: 'your-unit-container-id',
-  mediaTypes: {
-    banner: {
-      sizes: [[300, 250], [300,600]]
-    }
-  },
-  bids: [{
-    bidder: 'taboola',
-    params: {
-      tagId: 'Placement Name',
-      publisherId: 'your-publisher-id',
-      publisherDomain: 'example.com' // Optional 
-      bidfloor: 0.25, // Optional - default is null
-      bcat: ['IAB1-1'], // Optional - default is []
-      badv: ['example.com']  // Optional - default is []
-    }
-  }]
+    code: 'your-unit-container-id',
+    mediaTypes: {
+        banner: {
+            sizes: [[300, 250], [300,600]]
+        }
+    },
+    bids: [{
+        bidder: 'taboola',
+        params: {
+            tagId: 'Placement Name',
+            publisherId: 'your-publisher-id',
+            publisherDomain: 'example.com',// Optional (server-side adapter only)
+            bidfloor: 0.25, // Optional - default is null
+            bcat: ['IAB1-1'], // Optional - default is []
+            badv: ['example.com']  // Optional - default is []
+        }
+    }]
 }];
 ```
