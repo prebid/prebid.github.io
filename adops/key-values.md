@@ -31,6 +31,7 @@ You can work with your engineers to modify the default list. See [Restricting Da
 
 {: .table .table-bordered .table-striped }
 | Key | Usage | Scenario | Description | Example Value |
+| --- | ----- | -------- | ----------- | ------------- |
 | hb_pb | targeting | All | The bid price bucket (adjusted for price granularity). | 2.10 |
 | hb_adid | rendering | All | The ad ID. Used by the Prebid Universal Creative (PUC) ad server creative to render the winning Prebid ad. | 123456 |
 | hb_bidder | targeting and reporting | Could be used for creative-level targeting in video scenarios; reporting for all scenarios | The bidder code. Used for logging and reporting to learn which bidder has higher fill rate/CPM. | BidderA |

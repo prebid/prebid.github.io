@@ -26,6 +26,7 @@ Here’s a brief comparison chart showing the primary differences between these 
 
 {: .table .table-bordered .table-striped }
 | | Send All Bids (Default) | Send Top Price Bid |
+| | ----------------------- | ------------------ |
 | Number of bids sent to the ad server | Sends all bids that are received before the timeout period has expired. | Sends one bid per ad request. Only the bid with the top price for each request is sent. |
 | Reporting | Gives your ad server the information to generate detailed reports on bids received from individual demand partners whether they are top bidders or not. | Your ad server can report only on bids it receives, so you won’t have visibility from within your ad server into bids from demand partners that were not top bidders. |
 | Line Items | Typically requires a large number of line items to capture individual bidder information. | You can set up line items that are independent of the bidder, resulting in far fewer line items. |

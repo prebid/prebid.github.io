@@ -79,6 +79,7 @@ If you’re working with currencies, such as JPY, INR, and CZK, that don’t fit
 
 {: .table .table-bordered .table-striped }  
 | Granularity | Increment | Cap | Number of Line Items Required per Bidder |
+| ----------- | --------- | --- | ---------------------------------------- |
 | low | 0.50 | 5.00 | 11 |
 | medium | 0.10 | 20.00 | 201 |
 | high | 0.01 | 20.00 | 2001 |
@@ -93,6 +94,7 @@ The auto option contains a series of predefined buckets. Any bid over the cap fa
 
 {: .table .table-bordered .table-striped }  
 | Increment | Cap | Number of Line Items Required per Bidder |
+| --------- | --- | ---------------------------------------- |
 | 0.05 | 5.00 | 51 |
 | 0.10 | 10.00 | 50 |
 | 0.50 | 20.00 | 10 |
@@ -106,6 +108,7 @@ Dense provides a sliding scale similar to auto, but with smaller granularity. An
 
 {: .table .table-bordered .table-striped }  
 | Increment | Cap | Number of Line Items Required per Bidder |
+| --------- | --- | ---------------------------------------- |
 | 0.01 | 3.00 | 301 |
 | 0.05 | 8.00 | 100 |
 | 0.50 | 20.00 | 24 |
@@ -149,7 +152,7 @@ The following examples give a general idea of the pros and cons of high and low 
 
 **Con**: Prices received from demand partners will be rounded down, so you could be losing money. A bid of 2.95 would be rounded down to 2.00, and lose to an ad server bid of 2.05. You’d be losing almost a dollar CPM.
 
-The following diagram, based on the scenarios we just described, illustrates just how quickly your line item count can grow.
+The following diagram, based on the high and low granularity scenarios with ten bidders we described above, illustrates just how quickly your line item count can grow.
 
 ![Line Items Required per Price Granularity](/assets/images/ad-ops/planning/pg-line-items-required.png){: .center-image :}
 

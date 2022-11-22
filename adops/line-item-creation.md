@@ -21,7 +21,7 @@ Manually configuring ad server elements for Prebid can be a fair amount of work.
 
 Line items (and creatives) must, at some level, be associated with advertisers. When you create line items to capture Prebid bids, you won’t know who the actual advertisers are. Instead you need to create generic advertisers in your ad server that are used for Prebid. For example, you can create an advertiser named “Prebid Advertiser.” Or if you’re using Send All Bids, you can create one advertiser per bidder, such as “Prebid BidderA,” “Prebid BidderB,” etc. You then associate your line items and creatives with those advertisers.
 
-Depending on your ad server, line items are typically grouped within orders under each advertiser. We recommend naming orders in the following format: Prebid - format - bidder - n. For example, Prebid - banner - BidderA - 1.
+Depending on your ad server, line items are typically grouped within orders under each advertiser. We recommend naming orders in the following format: Prebid - format - bidder - n. For example, `Prebid - banner - BidderA - 1`.
 
 
 ## Line Item Details
@@ -36,6 +36,7 @@ These tables show the Prebid line item recommendations and requirements. The fol
 
 {: .table .table-bordered .table-striped }
 | Detail | Requirement |
+| ------ | ----------- |
 | Line Item Type | Price Priority (depending on your ad server) |
 | Key Value Pricing | Include the number of decimal places that are defined in the price granularity precision. Normally this is two decimal places, e.g. hb_pb=0.50 or hb_pb=1.00 |
 
@@ -43,6 +44,7 @@ These tables show the Prebid line item recommendations and requirements. The fol
 
 {: .table .table-bordered .table-striped }
 | Detail | Recommendation |
+| ------ | -------------- |
 | Grouping Line Items | Determine the number of containers you'll need to store the line items based on price granularity, number of bidders, and ad server restrictions. Name your group in the format Prebid, media type, bidder name (for [Send All Bids](/adops/send-all-vs-top-price.html)), and unique number. Prebid - banner - BidderA - 1. |
 | Line Item Name | Name each line item for the header bidding price bucket. Use the naming pattern Prebid, mediatype, bidder (for Send All Bids), and price bucket. Prebid - banner - BidderA - 1.50. |
 | Creative Name | In the creative name, include Prebid, the media type and the size (if applicable), and a unique identifying number (if more than one creative of a given size is attached to the line item). If using Send All Bids, also include the bidder name. Prebid - banner - BidderA - 1x1 - 1 |
@@ -76,11 +78,11 @@ We recommend naming the group to include “Prebid” and the bidder name, and a
 
 ### Line Item Name
 
-Because you’ll be creating one line item per price within each [price bucket](/adops/price-granularity.html), it’s helpful to name your line items based on the price. It can also be helpful to include the mediatype, since different types of media could be priced the same. Some examples include Prebid - banner - 1.00, Prebid - video - 1.50, etc. If you’re [sending all bids](/adops/send-all-vs-top-price.html), include the bidder code: Prebid - banner - BidderA - 1.00, Prebid - banner - BidderA - 1.50.
+Because you’ll be creating one line item per price within each [price bucket](/adops/price-granularity.html), it’s helpful to name your line items based on the price. It can also be helpful to include the mediatype, since different types of media could be priced the same. Some examples include `Prebid - banner - 1.00`, `Prebid - video - 1.50`, etc. If you’re [sending all bids](/adops/send-all-vs-top-price.html), include the bidder code: `Prebid - banner - BidderA - 1.00`, `Prebid - banner - BidderA - 1.50`.
 
 ### Creative Name
 
-We recommend naming creatives to include the media type, size (where applicable), and a number if there is more than one. For example, Prebid - banner - BidderA - 1x1 - 1; Prebid - video - BidderA - 1.
+We recommend naming creatives to include the media type, size (where applicable), and a number if there is more than one. For example, `Prebid - banner - BidderA - 1x1 - 1`; `Prebid - video - BidderA - 1`.
 
 ### Start and End Dates
 
@@ -107,7 +109,7 @@ Grouping media types within line items is typically dictated by the pricing stru
 -  Banner, outstream video, and native generally run together because they have similar pricing expectations and therefore can share [price granularities](/adops/price-granularity.html).
 -  Instream video is normally created as a separate set of line items because they are usually priced higher than other formats, often requiring custom price granularity.
 
-You must set a key value for each format used by an ad unit using the hb_format (or hb_format_BIDDER) key and setting its value to the appropriate format. For example, if the ad unit is set up as a banner ad, you would target hb_format=banner (along with the price, such as hb_pb=1.00). If your ad unit supports multiple types, set the key value to include all types: hb_format in banner,native.
+You must set a key value for each format used by an ad unit using the hb_format (or hb_format_BIDDER) key and setting its value to the appropriate format. For example, if the ad unit is set up as a banner ad, you would target hb_format=banner (along with the price, such as hb_pb=1.00). If your ad unit supports multiple types, set the key value to include all types: `hb_format in banner,native`.
 
 ## Example Line Item Setup
 

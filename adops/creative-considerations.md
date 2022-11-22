@@ -36,7 +36,7 @@ You’ll need to determine whether the ease of implementation is worth the small
 
 ## Creative Naming
 
-You can name your creatives whatever makes sense to your organization. We recommend names in the following format: Prebid - Type - Size - N. For example, a banner creative using the PUC would be Prebid - banner - 1x1 - 1.
+You can name your creatives whatever makes sense to your organization. We recommend names in the following format: Prebid - Type - Size - N. For example, a banner creative using the PUC would be `Prebid - banner - 1x1 - 1`.
 
 ## Creative Modes
 
