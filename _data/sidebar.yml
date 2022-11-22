@@ -1190,25 +1190,16 @@
   sbCollapseId: ad-ops
 
 - sbSecId: 3
-  title: Ad Ops Tutorials
+  title: Overview
   link:
   isHeader: 1
-  headerId: adopstuts
-  isSectionHeader: 0
-  sectionTitle: Ad Ops
-  subgroup: 0
-
-- sbSecId: 3
-  title: "Prebid"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
+  headerId: adopsoverview
+  isSectionHeader:
   sectionTitle:
   subgroup: 0
 
 - sbSecId: 3
-  title: 'AdOps View of Prebid'
+  title: 'Ad Ops Overview'
   link: /adops/before-you-start.html
   isHeader: 0
   isSectionHeader: 0
@@ -1216,29 +1207,112 @@
   subgroup: 0
 
 - sbSecId: 3
+  title: Ad Ops Essentials
+  link:
+  isHeader: 1
+  headerId: adopsess
+  isSectionHeader: 0
+  sectionTitle: Ad Ops Essentials
+  subgroup: 1
+
+- sbSecId: 3
+  title: "Planning"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Planning Guide'
+  link: /adops/adops-planning-guide.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Ad Server Integration'
+  link: /adops/ad-server-integration.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Send All Bids vs Top Price'
+  link: /adops/send-all-vs-top-price.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Line Item Creation'
+  link: /adops/line-item-creation.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Price Granularity'
+  link: /adops/price-granularity.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Creative Considerations'
+  link: /adops/creative-considerations.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: "Ad Ops Information"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Key Values'
+  link: /adops/key-values.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
   title: 'Prebid Universal Creative'
   link: /overview/prebid-universal-creative.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 1
 
 - sbSecId: 3
-  title: 'Send All Bids'
-  link: /adops/send-all-bids-adops.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: 'Enable Deals'
+  title: 'Deals in Prebid'
   link: /adops/deals.html
-  Item: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 1
+
+- sbSecId: 3
+  title: Ad Server Setup
+  link:
+  isHeader: 1
+  headerId: adopssetup
+  isSectionHeader:
+  sectionTitle:
+  subgroup: 2
 
 - sbSecId: 3
   title: "Google Ad Manager"
@@ -1247,7 +1321,7 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: 'Guide to Prebid in Ad Manager'
@@ -1255,7 +1329,15 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
+
+- sbSecId: 3
+  title: 'Ad Manager Send All Bids'
+  link: /adops/send-all-bids-adops.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
 
 - sbSecId: 3
   title: 'Setting up for AMP in GAM'
@@ -1263,7 +1345,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: 'Setting up Multi-Format in GAM'
@@ -1271,7 +1353,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: 'Setting up Native in GAM'
@@ -1279,7 +1361,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: 'Setting up Video in GAM'
@@ -1287,7 +1369,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: 'Setting up Long-Form Video in GAM'
@@ -1295,40 +1377,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: "Mobile"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Setup Native Ads
-  link: /prebid-mobile/adops-native-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Price Granularity
-  link: /prebid-mobile/adops-price-granularity.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Dr. Prebid Validation App
-  link: /prebid-mobile/dr-prebid.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: "Freewheel"
@@ -1337,7 +1386,7 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: 'Setting up Long-Form Video'
@@ -1345,7 +1394,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: "AppNexus Publisher"
@@ -1354,7 +1403,7 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: 'Setting up Prebid'
@@ -1362,17 +1411,16 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: "Smart Ad Server"
   link:
-
   isHeader: 0
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: 'Setting up Prebid'
@@ -1380,16 +1428,24 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
-  title: Studies
+  title: Optimization
   link:
   isHeader: 1
-  headerId: studies
+  headerId: optimization
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
+  subgroup: 3
+
+- sbSecId: 3
+  title: Analyze Header Bidding Setup
+  link: /overview/optimal-header-bidding-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
 
 - sbSecId: 3
   title: Optimize Header Bidding Setup
@@ -1397,15 +1453,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
-
-- sbSecId: 3
-  title: An Optimal Setup for Header Bidding
-  link: /overview/optimal-header-bidding-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
+  subgroup: 3
 
 - sbSecId: 3
   title: Reduce Header Bidding Latency With Prebid.js
@@ -1413,15 +1461,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
-
-- sbSecId: 3
-  title: How to Simplify Line Item Setup
-  link: /overview/how-to-simplify-line-item-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
+  subgroup: 3
 
 #--------------Prebid Video--------------|
 
@@ -1519,7 +1559,7 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: Integrating Prebid.js with video on your own 
+  title: Integrating Prebid.js with video on your own
   link: /prebid-video/video-integrating-solo.html
   isHeader: 0
   isSectionHeader: 0
@@ -2355,6 +2395,15 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
+
+- sbSecId: 8
+  title: Dr. Prebid Validation App
+  link: /prebid-mobile/dr-prebid.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
 
  #-------------- Prebid Identity --------------|
 
