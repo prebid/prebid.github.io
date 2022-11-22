@@ -14,6 +14,7 @@ dchain_supported: false
 userIds: criteo, id5Id, sharedId, unifiedId
 safeframes_ok: true
 floors_supported: false
+aliasCode: admatic
 multiformat_supported: will-bid-on-any
 ---
 
