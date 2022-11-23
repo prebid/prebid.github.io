@@ -1240,6 +1240,7 @@ LiveIntent offers audience resolution by leveraging our next-generation identity
 Build your Prebid.js package to include the LiveIntent nonID using the standard version which allows publishers to include the module with full functionalities, like hashing email addresses and identity resolution.
 
 Add the **full** LiveIntent Identity module to your Prebid.js package with:
+
 {: .alert.alert-info :}
 gulp build --modules=userId,liveIntentIdSystem
 
