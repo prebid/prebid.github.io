@@ -19,6 +19,7 @@ Core config:
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 + [Set Timeout Buffer](#setConfig-timeoutBuffer)
++ [Set TTL Buffer](#setConfig-ttlBuffer)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
 + [Configure send bids control](#setConfig-Send-Bids-Control)
 + [Bid cache](#setConfig-Use-Bid-Cache)
@@ -33,6 +34,7 @@ Core config:
 + [Configure responsive ad units with `sizeConfig` and `labels`](#setConfig-Configure-Responsive-Ads)
 + [COPPA](#setConfig-coppa)
 + [First Party Data](#setConfig-fpd)
++ [Video Module to integrate with Video Players](#video-module)
 + [Caching VAST XML](#setConfig-vast-cache)
 + [Site Metadata](#setConfig-site)
 + [Disable performance metrics](#setConfig-performanceMetrics)
@@ -129,6 +131,18 @@ Prebid core adds a timeout buffer to extend the time that bidders have to return
 
 {% highlight js %}
 pbjs.setConfig({ timeoutBuffer: 300 });
+{% endhighlight %}
+
+#### Set TTL Buffer
+
+<a id="setConfig-ttlBuffer" />
+
+When an adapter bids, it provides a TTL (time-to-live); the bid is considered expired and unusuable after that time has elapsed. Core subtracts from it a buffer of 1 second; that is, a bid with TTL of 30 seconds is considered expired after 29 seconds. You can adjust this buffer with:
+
+{% highlight js %}
+pbjs.setConfig({ 
+  ttlBuffer: 10  // TTL buffer in seconds 
+});
 {% endhighlight %}
 
 #### Send All Bids
@@ -1085,6 +1099,79 @@ If a publisher only wants certain bidders to receive the data, use the [setBidde
 See the [AdUnit Reference](/dev-docs/adunit-reference.html) for AdUnit-specific first party data.
 
 See [Prebid Server First Party Data](/prebid-server/features/pbs-fpd.html) for details about passing data server-side.
+
+<a name="video-module" />
+
+#### Video Module to integrate with Video Players
+
+The Prebid Video Module allows Prebid to directly integrate with a Video Player, allowing Prebid to automatically load the winning ad into the player, mark bids as won, fill the video and content oRTB params in the bid request, surface video analytics, and more. For more information please visit the [Video Module docs]({{site.github.url}}/prebid-video/video-module.html).  
+To register a video player with Prebid, you must use `setConfig` to set a `video` config compliant with the following structure:
+
+{: .table .table-bordered .table-striped }
+| Field | Required? | Type | Description |
+|---|---|---|---|
+| video.providers[] | yes | array of objects | List of Provider configurations. You must define a provider configuration for each player instance that you would like integrate with. |
+| video.providers[] .vendorCode | yes | number | The identifier of the Video Provider vendor (i.e. 1 for JW Player, 2 for videojs, etc). Allows Prebid to know which submodule to instantiate. |
+| video.providers[].divId | yes | string | The HTML element id of the player or its placeholder div. All analytics events for that player will reference this ID. Additionally, used to indicate which HTLM element must contain the Video Player instance when instantiated. |
+| video.providers[] .playerConfig.autoStart | no | boolean | Defaults to false |
+| video.providers[] .playerConfig.mute | no | boolean | Defaults to false |
+| video.providers[] .playerConfig.licenseKey | no | boolean | The license key or account key. Required by most commercial video players. |
+| video.providers[] .playerConfig.setupAds | no | boolean | Defaults to true. Setting to false will prevent Prebid from setting up the ads components for the player. Disable when you wish to setup the player's ad components yourself. |
+| video.providers[] .playerConfig.params .vendorConfig | no | object | The configuration block specific to a video player. Use this when setting configuration options not available in `video.providers[].playerConfig`. Its properties supersede the equivalents in `video.providers[].playerConfig`. |
+| video.providers[] .playerConfig.params .adPluginConfig | no | object | The configuration block specific to the video player's ad plugin. Use this to customize the ad experience. The configuration spec is defined by your video player's ad plugin. |
+| video.providers[] .adServer | no | object | Configuration for ad server integration. Applies to all Ad Units linked to a video provider. Superseded by `video.adServer` configurations defined at the Ad Unit level. |
+| video.providers[] .adServer.vendorCode | yes | string | The identifier of the AdServer vendor (i.e. gam, etc) |
+| video.providers[] .adServer.baseAdTagUrl | yes | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. Required when `video.providers[].adServer.params` is absent. |
+| video.providers[] .adServer.params | yes | object | Querystring parameters that will be used to construct the video ad tag URL. Required when `video.providers[].adServer.baseAdTagUrl` is absent. |
+| video.contentEnrichmentEnabled | no | boolean | Defaults to true. Set to false to prevent the Video Module from enriching the `site.content` params in the bidder request. |
+| video.mainContentDivId | no | string | Div Id of the video player intended to populate the `bidderRequest.site.content` params. Used when multiple video players are registered with the Video Module to indicate which player is rendering the main content. The `bidderRequest.site.content` params will be populated by said video player for all auctions where a Video Player is registered with an Ad Unit in the auction. |
+| video.adServer | no | object | Configuration for ad server integration. Applies to all Video Providers and all Ad Units linked to a video provider. Superseded by `video.adServer` configurations defined at the Ad Unit level, and `video.providers[] .adServer` configurations. |
+| video.adServer .vendorCode | yes | string | The identifier of the AdServer vendor (i.e. gam, etc) |
+| video.adServer .baseAdTagUrl | yes | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. Required when `video.adServer.params` is absent. |
+| video.adServer .params | yes | object | Querystring parameters that will be used to construct the video ad tag URL. Required when `video.adServer.baseAdTagUrl` is absent. |
+
+**Note:** You can integrate with different Player vendors. For this to work, you must ensure that the right Video Submodules are included in your build, and that the providers have the right `vendorCode`s and `divId`s.
+
+##### Example
+
+Assuming your page has 2 JW Player video players, 1 video.js video player, and your ad server is GAM.
+{% highlight js %}
+pbjs.setConfig({
+    video: {
+        providers: [{
+            vendorCode: 1, // constant variable is JWPLAYER_VENDOR - see vendorCodes.js in the video library
+            divId: 'jwplayer-div-1',
+            playerConfig: {
+                autoStart: true,
+            }
+        }, {
+            vendorCode: 2, // constant variable is VIDEO_JS_VENDOR - see vendorCodes.js in the video library
+            divId: 'videojs-div',
+            playerConfig: {
+                params : {
+                    adPluginConfig: {
+                        numRedirects: 10
+                    },
+                    vendorConfig: {
+                        controls: true,
+                        preload: "auto",
+                    }
+                }
+            }
+        }, {
+            vendorCode: 1, // constant variable is JWPLAYER_VENDOR - see vendorCodes.js in the video library
+            divId: 'jwplayer-div-2',
+            playerConfig: {
+                mute: true
+            }
+        }],
+        adServer: {
+            vendorCode: 'gam', // constant variable is GAM_VENDOR - see vendorCodes.js in the video library
+            baseAdTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?iu=/12345/'
+        }
+    }
+});
+{% endhighlight %}
 
 <a name="setConfig-vast-cache" />
 

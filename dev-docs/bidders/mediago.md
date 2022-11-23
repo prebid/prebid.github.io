@@ -4,8 +4,12 @@ title: MediaGo
 description: MediaGo Prebid Bidder Adapter
 biddercode: mediago
 media_types: banner
+gdpr_supported: true
+coppa_supported: true
+usp_supported: true
 pbjs: true
 floors_supported: true
+gvl_id: 1020
 pbjs_version_notes: not ported to 5.x, added back 7.13
 ---
 ### Modules

@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Conversant
-description: Prebid Conversant Bidder Adaptor
+title: Epsilon
+description: Epsilon Prebid Bidder Adaptor (formerly Conversant)
 pbjs: true
 pbs: true
 biddercode: conversant
@@ -21,12 +21,12 @@ gvl_id: 24
 
 | Name          | Scope                       | Description                                                                                                               | Example           | Type             |
 |---------------|-----------------------------|---------------------------------------------------------------------------------------------------------------------------|-------------------|------------------|
-| `site_id`     | optional                    | The site ID from Conversant.                                                                                              | `'87293'`         | `string`         |
+| `site_id`     | required                    | The site ID from Epsilon.                                                                                              | `'87293'`         | `string`         |
 | `secure`      | required (for secure pages) | If impression requires secure HTTPS URL creative assets and markup. 0 for non-secure, 1 for secure. Default is non-secure | `1`               | `integer`        |
 | `bidfloor`    | optional                    | Bid floor                                                                                                                 | `0.50`            | `float`          |
 | `tag_id`      | optional                    | Identifies specific ad placement.                                                                                         | `'cnvr-test-tag'` | `string`         |
 | `white_label_url`| optional                  | Override the destination URL the request is sent to.                                                                       | `'https://mydomain.com/hbendpoint'`  | `string` |
-| `pubcid_name` | optional                    | Name of the pub common id. Conversant adapter can read the id directly if the UserID module is absent. Default is _pubcid.| `'_pubcid'`         | `string`         |
+| `pubcid_name` | optional                    | Name of the pub common id. Epsilon adapter can read the id directly if the UserID module is absent. Default is _pubcid.| `'_pubcid'`         | `string`         |
 
 ### Video Params
 
