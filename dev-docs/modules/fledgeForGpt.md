@@ -111,8 +111,8 @@ Modifying a bid adapter to support FLEDGE is a straightforward process and consi
 2. Responding with AuctionConfig
 
 FLEDGE eligibility is made available to bid adapters through the `bidderRequest.fledgeEnabled` field.
-The [`bidderRequest`](https://docs.prebid.org/dev-docs/bidder-adaptor.html#bidderrequest-parameters) object is passed to
-the [`buildRequests`](https://docs.prebid.org/dev-docs/bidder-adaptor.html#building-the-request) method of an adapter. Bid adapters
+The [`bidderRequest`](/dev-docs/bidder-adaptor.html#bidderrequest-parameters) object is passed to
+the [`buildRequests`](/dev-docs/bidder-adaptor.html#building-the-request) method of an adapter. Bid adapters
 who wish to participate should read this flag and pass it to their server. FLEDGE eligibility depends on a number of parameters:
 
 1. Chrome enablement
@@ -139,7 +139,7 @@ function interpretResponse(resp, req) {
 ```
 
 An AuctionConfig must be associated with an adunit and auction, and this is accomplished using the value in the `bidId` field from the objects in the
-`validBidRequests` array passed to the `buildRequests` function - see [here](https://docs.prebid.org/dev-docs/bidder-adaptor.html#ad-unit-params-in-the-validbidrequests-array)
+`validBidRequests` array passed to the `buildRequests` function - see [here](/dev-docs/bidder-adaptor.html#ad-unit-params-in-the-validbidrequests-array)
 for more details. This means that the AuctionConfig objects returned from `interpretResponse` must contain a `bidId` field whose value corresponds to
 the request it should be associated with. This may raise the question: why isn't the AuctionConfig object returned as part of the bid? The
 answer is that it's possible to participate in the FLEDGE auction without returning a contextual bid.
@@ -148,3 +148,7 @@ An example of this can be seen in the OpenX OpenRTB bid adapter [here](https://g
 
 Other than the addition of the `bidId` field, the `AuctionConfig` object should adhere to the requirements set forth in FLEDGE. The details of creating an
 `AuctionConfig` object are beyond the scope of this document.
+
+## Related Reading
+- [FLEDGE](https://github.com/WICG/turtledove/blob/main/FLEDGE.md)
+- [Component Auctions](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction)
