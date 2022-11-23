@@ -3,8 +3,22 @@ layout: bidder
 title: Redtram
 description: Prebid Redtram Bidder Adapter.
 pbjs: true
+pbs: false
+gvl_id: none
 biddercode: redtram
 media_types: banner
+gdpr_supported: false
+usp_supported: false
+coppa_supported: false
+schain_supported: false
+safeframes_ok: false
+dchain_supported: false
+deals_supported: false
+floors_supported: true
+fpd_supported: false
+ortb_blocking_supported: false
+multiformat_supported: will-bid-on-one
+prebid_member: false
 ---
 
 ### Table of Contents
@@ -28,7 +42,6 @@ Redtram header bidding adapter connects with redtram demand sources to fetch bid
 |--------------|----------|------------------------------------|------------|----------|
 | `placementId`| optional | The placement ID from Redtram      | `'23611'`  | `string` |
 | `bidFloor`   | optional | Lowest value of expected bid price | `1.1`      | `float`  |
-| `currency`   | optional | Currency of request and response   | `'USD'`    | `string` |
 
 
 <a name="redtram-test-params" />
