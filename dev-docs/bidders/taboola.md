@@ -46,22 +46,22 @@ The Taboola Adapter requires setup before beginning. Please contact us at prebid
 ### Example Ad Unit
 ```javascript
  var adUnits = [{
-    code: 'your-unit-container-id',
-    mediaTypes: {
-        banner: {
-            sizes: [[300, 250], [300,600]]
-        }
-    },
-    bids: [{
-        bidder: 'taboola',
-        params: {
-            tagId: 'Placement Name',
-            publisherId: 'your-publisher-id',
-            publisherDomain: 'example.com',// Optional (server-side adapter only)
-            bidfloor: 0.25, // Optional - default is null
-            bcat: ['IAB1-1'], // Optional - default is []
-            badv: ['example.com']  // Optional - default is []
-        }
-    }]
+  code: 'your-unit-container-id',
+  mediaTypes: {
+    banner: {
+      sizes: [[300, 250], [300,600]]
+    }
+  },
+  bids: [{
+    bidder: 'taboola',
+    params: {
+      tagId: 'Placement Name',
+      publisherId: 'your-publisher-id',
+      publisherDomain: 'example.com',// Optional (server-side adapter only)
+      bidfloor: 0.25, // Optional - default is null
+      bcat: ['IAB1-1'], // Optional - default is []
+      badv: ['example.com']  // Optional - default is []
+    }
+  }]
 }];
 ```

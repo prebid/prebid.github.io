@@ -99,33 +99,29 @@ In this configuration Prebid.js calls Index directly from the browser using our 
 
 3. Define your ad units in the `adUnit` object. This includes the details about the ad slots such as the media types, ad size, and ad code. For more information about this object, see Prebid's [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html) documentation.
 4. Enable user syncing by adding the following code in the [pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Make  sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.  <br />
-
 **Example:** 
 ```javascript
-pbjs.setConfig({
-    userSync: {
-        iframeEnabled: true,
-        filterSettings: {
-            iframe: {
-                bidders: ['ix'],
-                filter: 'include'
+    pbjs.setConfig({
+        userSync: {
+            iframeEnabled: true,
+            filterSettings: {
+                iframe: {
+                    bidders: ['ix'],
+                    filter: 'include'
+                }
             }
         }
-    }
-});
+    });
 ```
-
-
 5. (Optional) Set up First Party Data (FPD) using the Index bidder-specific FPD (preferred method) setting or the Prebid FPD module. For more information, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
 6. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the [pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) function as follows: <br />
 ```javascript
-pbjs.setConfig({
-    cache: {
-        url: 'https://prebid.adnxs.com/pbc/v1/cache'
-    }
-});
+    pbjs.setConfig({
+        cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        }
+    });
 ```
-
 7. (Optional) If you want to monetize outstream video, you can choose among the following options. Outstream video is available from Prebid.js version 6.25 or higher.
     * Use Index’s outstream video player. For more information, see the [Index's outstream video player ](#indexs-outstream-video-player)section below. 
     * Use your own outstream video player. For more information, see [Prebid's documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
@@ -142,40 +138,32 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
     adapters.ix.enabled=true 
     adapters.ix.endpoint=http://<Your Prebid Server Host's URL>
 ```
-
-
 2. In the `[pbjs.setConfig()]` function, within the `s2sConfig` property, add `ix` to the `bidders` attribute. 
 3. Define the Index-specific parameters at the bidder level. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html) documentation. 
 5. Enable user syncing by adding the following code in the [pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.   <br />
-
 ```javascript
-pbjs.setConfig({
-    userSync: {
-         iframeEnabled: true,
-         filterSettings: {
-             iframe: {
+    pbjs.setConfig({
+        userSync: {
+             iframeEnabled: true,
+             filterSettings: {
+                 iframe: {
                  bidders: ['ix'],
                  filter: 'include'
+                 }
              }
          }
-     }
- });
+     });
 ```
-
-
 6. (Optional) Set up First Party Data (FPD) using the Index bidder-specific FPD (preferred method) setting or the Prebid FPD module. For more information, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
 7. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
 ```javascript
-pbjs.setConfig({
-    cache: {
-           url: 'https://prebid.adnxs.com/pbc/v1/cache'
-        }
-});
+    pbjs.setConfig({
+        cache: {
+               url: 'https://prebid.adnxs.com/pbc/v1/cache'
+            }
+    });
 ```
-
-
-
 8. (Optional) If you want to monetize outstream video, you can choose among the following options. Outstream video is available from Prebid.js version 6.25 or higher.
     * Use Index's outstream video player. For more information, see the [Index's outstream video player ](#indexs-outstream-video-player) section below. 
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
@@ -467,11 +455,6 @@ var adUnits = [{
         }
     },
     bids: [{
-        bidder: 'ix',
-        params: {
-            siteId: '12345'
-        }
-    }, {
         bidder: 'ix',
         params: {
             siteId: '12345',

@@ -350,7 +350,7 @@ There are a number of important values that a publisher expects to be handled in
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
 | First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
-| Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
+| Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
 | Video Parameters | Video params must be read from AdUnit.mediaType.video when available; however bidder config can override the ad unit. | AdUnit.mediaType.video |
