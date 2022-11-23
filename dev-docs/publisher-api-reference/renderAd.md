@@ -20,6 +20,7 @@ Note: In regards to `options.clickThrough`:
 - Not compatible with safeframes (since the logic around rendering safeframe's does not invoke the renderAd function).
 - Not supported with Prebid Universal Creative at this time, only the standard pbjs.renderAd method.
 
+
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
