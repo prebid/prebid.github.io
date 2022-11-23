@@ -17,8 +17,8 @@ The DiscoveryDSP Bidding adapter requires setup before beginning. Please contact
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `token`      | required | publisher token        | `'1e100887dd614b7f69fdd1360437'`    | `string` |
-| `tagid`      | required | tagid        | `abcdefg`    | `string` |
-| `publisher`      | required | publisher id         | `abcdefg`    | `string` |
+| `tagid`      | required | tagid        | `'abcdefg'`    | `string` |
+| `publisher`      | required | publisher id         | `'abcdefg'`    | `string` |
 
 #### Prebid Server Test Request
 
