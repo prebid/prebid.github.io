@@ -13,9 +13,10 @@ pbjs: true
 pbs: true
 ---
 
-# Registration
-### Note: In order to use Yieldmo adapter please reach out to your Yieldmo account's person or support@yieldmo.com for more information.
-<br/>
+### Registration
+
+Note: In order to use Yieldmo adapter please reach out to your Yieldmo account's person or support@yieldmo.com for more information.
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
