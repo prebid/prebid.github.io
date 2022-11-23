@@ -21,7 +21,7 @@ Manually configuring ad server elements for Prebid can be a fair amount of work.
 
 Line items (and creatives) must, at some level, be associated with advertisers. When you create line items to capture Prebid bids, you won’t know who the actual advertisers are. Instead you need to create generic advertisers in your ad server that are used for Prebid. For example, you can create an advertiser named “Prebid Advertiser.” Or if you’re using Send All Bids, you can create one advertiser per bidder, such as “Prebid BidderA,” “Prebid BidderB,” etc. You then associate your line items and creatives with those advertisers.
 
-Depending on your ad server, line items are typically grouped within orders under each advertiser. We recommend naming orders in the following format: Prebid - format - bidder - n. For example, `Prebid - banner - BidderA - 1`.
+Depending on your ad server, line items are typically grouped within orders under each advertiser.
 
 
 ## Line Item Details
@@ -45,9 +45,9 @@ These tables show the Prebid line item recommendations and requirements. The fol
 {: .table .table-bordered .table-striped }
 | Detail | Recommendation |
 | ------ | -------------- |
-| Grouping Line Items | Determine the number of containers you'll need to store the line items based on price granularity, number of bidders, and ad server restrictions. Name your group in the format Prebid, media type, bidder name (for [Send All Bids](/adops/send-all-vs-top-price.html)), and unique number. Prebid - banner - BidderA - 1. |
-| Line Item Name | Name each line item for the header bidding price bucket. Use the naming pattern Prebid, mediatype, bidder (for Send All Bids), and price bucket. Prebid - banner - BidderA - 1.50. |
-| Creative Name | In the creative name, include Prebid, the media type and the size (if applicable), and a unique identifying number (if more than one creative of a given size is attached to the line item). If using Send All Bids, also include the bidder name. Prebid - banner - BidderA - 1x1 - 1 |
+| Line Item Groups | Determine the number of containers you'll need to store the line items based on price granularity, number of bidders, and ad server restrictions. Name your group in the format Prebid, format, bidder name (for [Send All Bids](/adops/send-all-vs-top-price.html)), and unique number; for example, `Prebid - banner - BidderA - 1`. |
+| Line Item Name | Name each line item for the header bidding price bucket. Use the naming pattern Prebid, mediatype, bidder (for Send All Bids), and price bucket; for example, `Prebid - banner - BidderA - 1.50`. |
+| Creative Name | In the creative name, include Prebid, the media type and the size (if applicable), and a unique identifying number (if more than one creative of a given size is attached to the line item). If using Send All Bids, also include the bidder name; for example, `Prebid - banner - BidderA - 1x1 - 1`. |
 | Start and End Dates | Start immediately, no end date |
 | Priority | Above house ads but below directly sold ads |
 | Impression Goal | None |
@@ -68,13 +68,13 @@ Engineering instructions for setting the precision value can be found in [setCon
 
 See [Key Values](/adops/key-values.html) for general information about key value pairs.
 
-### Grouping Line Items
+### Line Item Groups
 
 If you are [sending all bids](/adops/send-all-vs-top-price.html) to the ad server, you’ll most likely want to group your line items by bidder. (In Google Ad Manager this means creating at least one set of orders per bidder, with that bidder’s line items attached to the order.) This allows each group to have a set of line items that use the same targeting keywords, all of which include the bidder’s name. For example, if you are working with BidderA, all line items within a group would use the key hb_pb_BidderA in the line item’s key-value targeting, and hb_adid_BidderA in the attached creative.
 
 Depending on your ad server and the number of line items you’re creating, you might need more than one group per bidder. For example, suppose you need to create 2000 line items for one bidder. If GAM is your ad server, you’re allowed only 450 line items per order, so you will need five orders per bidder to store the 2000 line items, for a total of 25 orders.
 
-We recommend naming the group to include “Prebid” and the bidder name, and also a number or other identifier if you need more than one group per bidder. For example, Prebid - BidderA - 1. For [Send Top Price Bid](/adops/send-all-vs-top-price.html) you can omit the bidder name: Prebid - 1.
+We recommend naming the group to include “Prebid”, media type, the bidder name, and also a number or other identifier if you need more than one group per bidder. For example, `Prebid - banner - BidderA - 1`. For [Send Top Price Bid](/adops/send-all-vs-top-price.html) you can omit the bidder name: `Prebid - banner - 1`.
 
 ### Line Item Name
 
@@ -109,7 +109,7 @@ Grouping media types within line items is typically dictated by the pricing stru
 -  Banner, outstream video, and native generally run together because they have similar pricing expectations and therefore can share [price granularities](/adops/price-granularity.html).
 -  Instream video is normally created as a separate set of line items because they are usually priced higher than other formats, often requiring custom price granularity.
 
-You must set a key value for each format used by an ad unit using the hb_format (or hb_format_BIDDER) key and setting its value to the appropriate format. For example, if the ad unit is set up as a banner ad, you would target hb_format=banner (along with the price, such as hb_pb=1.00). If your ad unit supports multiple types, set the key value to include all types: `hb_format in banner,native`.
+You must set a key value for each format used by an ad unit using the hb_format (or hb_format_BIDDER) key and setting its value to the appropriate format. For example, if the ad unit is set up as a banner ad, you would target hb_format=banner (along with the price, such as hb_pb=1.00). If your ad unit supports multiple types, set the key value to include all types: `hb_format` in `banner`,`native`.
 
 ## Example Line Item Setup
 

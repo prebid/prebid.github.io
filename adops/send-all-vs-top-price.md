@@ -92,8 +92,8 @@ hb_size_BidderWithLo=300x250
 
 If you forget about or are unaware of your ad server’s truncation and include the full name, the line item targeting will not match.
 
-{: .alert-alert-success :}
-**Tip**: Prebid documentation lists the GAM truncated versions of ad server keys on each bidder parameter page. See https://docs.prebid.org/dev-docs/bidders/andBeyondMedia.html for an example.
+{: .alert.alert-success :}
+**Tip**: Prebid documentation lists the GAM truncated versions of ad server keys on each bidder parameter page. See [AndBeyondMedia](https://docs.prebid.org/dev-docs/bidders/andBeyondMedia.html) for an example.
 
 
 
@@ -105,7 +105,7 @@ Imagine you’re sending all bids to the ad server and you have the following sc
 -  7 key value pairs (KVPs) per bidder
 -  25 characters per KVP
 
-You now have a query string that is 2,625 characters long. There are many options for limiting the amount of data that’s sent on the query string. See [Configure Targeting Controls](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) for engineering options on reducing the amount of data being sent to the ad server.
+You now have an ad request query string that is 2,625 characters long. There are many options for limiting the amount of data that’s sent on the query string. See [Configure Targeting Controls](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) for engineering options on reducing the amount of data being sent to the ad server.
 
 
 
