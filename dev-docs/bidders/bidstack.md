@@ -30,3 +30,4 @@ The Bidstack Bidding adapter requires setup before beginning. Please contact us 
 | Name          | Scope    | Description  | Example   | Type     |
 |---------------|----------|--------------|-----------|----------|
 | `publisherId` | required | Publisher ID | `'be224bf2-fd3f-4afb-b6fc-4a97718be2f5'` | `string` |
+| `placementId` | optional | Placement ID | `'some_placement_id'` | `string` |
