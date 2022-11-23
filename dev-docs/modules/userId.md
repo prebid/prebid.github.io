@@ -481,7 +481,7 @@ pbjs.setConfig({
 ### AudienceOne ID by DAC
 
 AudienceOne ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
-Please contact D.A.Consortium Inc. before using this ID.
+Please visit [https://solutions.dac.co.jp/audienceone](https://solutions.dac.co.jp/audienceone) and request your Owner ID to get started.
 
 Add the AudienceOne ID to your Prebid.js Package with:
 
@@ -494,6 +494,8 @@ gulp build --modules=dacIdSystem
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module | `"dacId"` |
+| params | Required | Object | Details of module params. | |
+| params.oid | Required | String | This is the Owner ID value obtained via D.A.Consortium Inc. | `"55h67qm4ck37vyz5"` |
 
 #### AudienceOne ID Example
 
@@ -501,7 +503,10 @@ gulp build --modules=dacIdSystem
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: 'dacId'
+            name: 'dacId',
+            params: {
+                'oid': '55h67qm4ck37vyz5' // Set your AudienceOne Owner ID here
+            }
         }]
     }
 });
@@ -1237,17 +1242,12 @@ The Kinesso ID privacy policy is covered under the [Kinesso Privacy Notice](http
 
 LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent nonID is a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
 
-There are two ways to build your Prebid.js package to include the LiveIntent nonID:
-* The standard version which allows publishers to include the module with full functionalities, like hashing email addresses and identity resolution
-* The minimal version, which allows publishers to deploy a smaller bundle with minimal features, including identity resolution.
+Build your Prebid.js package to include the LiveIntent nonID using the standard version which allows publishers to include the module with full functionalities, like hashing email addresses and identity resolution.
 
 Add the **full** LiveIntent Identity module to your Prebid.js package with:
+
 {: .alert.alert-info :}
 gulp build --modules=userId,liveIntentIdSystem
-
-Add the **minimal** LiveIntent Identity module to your Prebid.js package with:
-{: .alert.alert-info :}
-LiveConnectMode=minimal gulp build --modules=liveIntentIdSystem
 
 The `request.userId.lipb` object would look like:
 ```

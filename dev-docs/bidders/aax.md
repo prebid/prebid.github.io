@@ -3,6 +3,7 @@ layout: bidder
 title: AAX
 description: Prebid Aax Bidder Adaptor
 biddercode: aax
+aliasCode : medianet
 gdpr_supported: true  
 media_types: banner,native,video
 usp_supported: true

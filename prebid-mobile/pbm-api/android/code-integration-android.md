@@ -19,7 +19,7 @@ If you are not familar with using Maven for build management visit the [Maven we
 To include the Prebid Mobile SDK simply add this line to your gradle dependencies to get the lastest stable release:
 
 ```
-implementation 'org.prebid:prebid-mobile-sdk:1.12.2'
+implementation 'org.prebid:prebid-mobile-sdk:2.0.4'
 ```
 
 {% capture warning_note %}  
@@ -53,6 +53,23 @@ Integrating **MoPub** with your application
 Integrating **Google** with your application   
 
 Go to Google's developer site and follow the instructions for integrating their [Mobile Ads SDK](https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start) into your app.
+
+### Initialize SDK
+
+Call the following method at the start of the app: 
+
+```
+PrebidMobile.initializeSdk(requireContext(), null)
+```
+
+If you integrate Prebid SDK with GMA SDK using Original API, add the following check right after initialization. It will help to monitor the compatibility of the Prebid and Google SDKs and avoid silent loosing of revenue. 
+
+```
+PrebidMobile.checkGoogleMobileAdsCompatibility()
+```
+
+Check the logs, and if there is no warning message, then SDKs are compatible. 
+
 
 ### Set Targeting Parameters (Optional)
 
