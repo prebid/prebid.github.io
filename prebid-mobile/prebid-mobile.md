@@ -88,9 +88,10 @@ Supported Ad Servers: GAM.
 1. Prebid Server constructs an OpenRTB bid request and passes it to the demand partners. Each demand partner returns a bid response to Prebid Server. The bid response includes the bid price and the creative content.
 1. Prebid Server sends the bid responses to Prebid Mobile.
 1. Prebid Mobile sets key/value targeting for each ad slot through the primary ad server mobile SDK. 
-1. The primary ad server responds with an ad.
-1. If the line item associated with the Prebid Mobile bid wins, the primary ad server returns the Prebid Universal Creative (PUC) to the ad server's SDK.
-1. The PUC will fetch and render the corresponding creative content from the winning Prebid Server demand partner.
+2. The primary ad server SDK sends the ad request enriched with targeting keywords of the wiining bid.
+1. The primary ad server responds with an ad. If the line item associated with the Prebid Mobile bid wins, the primary ad server returns the Prebid Universal Creative (PUC) to the ad server's SDK.
+2. The primary ad server SDK starts the rendering recived ad markup.
+1. The PUC fetches creative content of the winning bid from the Previd Cache and renders it.
 
 ### With Ad Server: Rendering API
 
