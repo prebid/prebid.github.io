@@ -44,7 +44,7 @@ gulp build --modules="rtdModule,captifyRtdProvider,appnexusBidAdapter,..."
 This module is configured as part of the `realTimeData.dataProviders`  
 
 ```javascript
-var TIMEOUT = 1500; // in milliseconds
+var TIMEOUT = 100; // in milliseconds
 pbjs.setConfig({
     realTimeData: {
         auctionDelay: TIMEOUT,
