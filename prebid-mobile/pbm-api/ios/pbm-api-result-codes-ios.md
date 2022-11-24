@@ -31,9 +31,6 @@ When you use the Prebid Mobile API to retrieve bids, you'll receive a ResultCode
 
 - **Return Code**: INVALID_CONFIG_ID  
 - **Description**: Prebid Server did not recognize the configuration ID that was passed in on your banner or interstitial ad unit object. Be sure you've passed in a non-empty configuration ID and that the ID is correct.  
-- **More Information**:  
-  - [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)  
-  - [InterstitialAdUnit](/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 
 ## Invalid size
 
@@ -62,11 +59,4 @@ When you use the Prebid Mobile API to retrieve bids, you'll receive a ResultCode
 - **Description**: Attempted to define a custom Prebid Server host without providing a host URL.
 - **More Information**: [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
 
-## Related Topics
 
-- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
-- [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)
-- [Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
-- [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
-- [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
-- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)

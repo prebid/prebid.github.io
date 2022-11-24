@@ -217,7 +217,6 @@ Array of OpenRTB 2.5 playback methods. If none are specified, any method may be 
   - `7` or `Signals.Protocols.VAST_4_0` : VAST 4.0
   - `8` or `Signals.Protocols.VAST_4_0_Wrapper` : VAST 4.0 Wrapper
 
-See our documentation on [AdUnit](/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for more details.
 
 #### Step 3: Create a GAMBannerView
 {:.no_toc}
@@ -842,5 +841,169 @@ Without it the SDK won't be able to recoginze the Prebid Line Item.
 {:.no_toc}
 
 Once the Prebid Line Item is recognized, the `NativeAdDelegate` will be activated. The method `nativeAdLoaded` will be invoked and provide the `NativeAd` object with a description of all ad assets that should be rendered. 
+
+## Ad Unit Configuration
+
+Each ad unit in the Original API is a subclass of the `AdUnit` class, which provides the following properties and methods for the additional configuration. 
+
+### Properties
+
+#### pbAdSlot
+{:.no_toc}
+
+PB Ad Slot is an identifier tied to the placement the ad will be delivered in. The use case for PB Ad Slot is to pass to exchange an ID they can use to tie to reporting systems or use for data science driven model building to match with impressions sourced from alternate integrations. A common ID to pass is the ad server slot name.
+
+```
+adUnit.ortb2Imp.ext.data.pbadslot = "/1111111/homepage/med-rect-2"`
+```
+
+### Autorefresh
+
+#### setAutoRefreshMillis
+{:.no_toc}
+
+If set on a given banner Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServes refresh be turned off.
+
+#### stopAutoRefresh
+{:.no_toc}
+
+Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-refresh behavior has been set, `stopAutoRefresh` will be ignored.
+
+#### resumeAutoRefresh
+{:.no_toc}
+
+Allows to resume the stopped autorefresh for the ad unit with predefined autorefresh value. 
+
+### Context Keyword
+
+
+#### addContextKeyword
+{:.no_toc}
+
+Ad Unit context keywords object is a free form list of comma separated keywords about the app as defined in app.keyword in OpenRTB 2.5. The `addContextKeyword` function adds a single keyword to the ad unit.
+
+```
+func addContextKeyword(_ newElement: String)
+```
+
+#### addContextKeywords
+{:.no_toc}
+
+Ad Unit context keywords object is a free form list of comma separated keywords about the app as defined in app.keyword in OpenRTB 2.5. The `addContextKeywords` function adds a multiple keyword to the ad unit.
+
+```
+func addContextKeywords(_ newElements: Set<String>)
+```
+
+#### removeContextKeyword
+{:.no_toc}
+
+```
+func removeContextKeyword(_ element: String)
+```
+
+### clearContextKeywords
+{:.no_toc}
+
+```
+func clearContextKeywords()
+```
+
+### App Content
+
+The `ContentObject` alows you to provide more details about content whithin the app. All proeprties provided to the `ContentObject` will be sent in the `app.content` field of the bid request.
+
+```
+func setAppContent(_ appContent: ContentObject) 
+
+func getAppContent() -> ContentObject? 
+      
+func clearAppContent() 
+```
+    
+### App Content Data
+
+Using the following methods you can add `app.content.data` objects to the bid requests.  
+    
+```
+func addAppContentData(_ dataObjects: [ContentDataObject]) 
+
+func removeAppContentData(_ dataObject: ContentDataObject) 
+
+func clearAppContentData() 
+```
+
+### User Data
+
+Using the following methods you can add `user.data` objects to the bid requests.  
+
+```
+func getUserData() -> [PBMORTBContentData]? 
+
+func addUserData(_ userDataObjects: [PBMORTBContentData]) 
+  
+func removeUserData(_ userDataObject: PBMORTBContentData) 
+   
+func clearUserData() 
+```
+
+### Data Object
+
+The Data object is free form data (also known as First Party Data) supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
+
+Data is broken up into two different data types:
+* User
+  * Global in scope only
+* Inventory (context)
+  * Global scope
+  * Ad Unit grain
+
+The first party inventory context below will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data) page.
+
+#### addContextData
+{:.no_toc}
+
+```
+func addContextData(key: String, value: String)
+```
+
+**Parameters**
+`key`: string containing the key for the specific data object
+`value`: String containing the value for the supplied key
+
+
+#### updateContextData
+{:.no_toc}
+
+```
+func updateContextData(key: String, value: Set<String>)
+```
+
+**Parameters**
+`key`: string containing the key for the specific data object
+`value`: String containing the value for the supplied key
+
+
+#### removeContextData
+{:.no_toc}
+
+```
+func removeContextData(forKey: String)
+```
+
+**Parameters**
+`key`: string containing the key for the specific data object
+`value`: String containing the value for the supplied key
+
+
+#### clearContextData
+{:.no_toc}
+
+```
+func clearContextData()
+```
+
+
+
 
 

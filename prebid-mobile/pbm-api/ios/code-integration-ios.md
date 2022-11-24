@@ -166,8 +166,6 @@ let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", 
 
 For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them:
 
-[Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)  
-[Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 
 #### Using Asset Ids with In-App Native Ad Units
 
@@ -230,3 +228,4 @@ func adViewDidReceiveAd(_ bannerView: GADBannerView) {
                                    }];
 }
 ```
+
