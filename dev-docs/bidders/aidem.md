@@ -21,26 +21,26 @@ prebid_member: false
 ortb_blocking_supported: false
 ---
 
-# Description
+## Description
 This module connects publishers to AIDEM demand.
 
 This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 
 
-## Global Bid Params
+### Global Bid Params
 | Name          | Scope    | Description         | Example    | Type     |
 |---------------|----------|---------------------|------------|----------|
 | `siteId`      | required | Unique site ID      | `'ABCDEF'` | `String` |
 | `publisherId` | required | Unique publisher ID | `'FEDCBA'` | `String` |
 
 
-### Banner Bid Params
+#### Banner Bid Params
 | Name       | Scope    | Description              | Example                   | Type    |
 |------------|----------|--------------------------|---------------------------|---------|
 | `sizes`    | required | List of the sizes wanted | `[[300, 250], [300,600]]` | `Array` |
 
 
-### Video Bid Params
+#### Video Bid Params
 | Name          | Scope    | Description                             | Example         | Type      |
 |---------------|----------|-----------------------------------------|-----------------|-----------|
 | `context`     | required | One of instream, outstream, adpod       | `'instream'`    | `String`  |
@@ -51,21 +51,21 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 | `protocols`   | required | An array of supported video protocols. At least one supported protocol must be specified, where: `2` = VAST 2.0 `3` = VAST 3.0 `5` = VAST 2.0 wrapper `6` = VAST 3.0 wrapper | `2`             | `Array`   |
 
 
-### Additional Config
+#### Additional Config
 | Name                | Scope    | Description                                             | Example | Type      |
 |---------------------|----------|---------------------------------------------------------|---------|-----------|
 | `coppa`             | optional | Child Online Privacy Protection Act                     | `true`  | `Boolean` |
 | `consentManagement` | optional | [Consent Management Object](#consent-management-object) | `{}`    | `Object`  |
 
 
-### Consent Management Object
+#### Consent Management Object
 | Name   | Scope    | Description                                                                                      | Example | Type     |
 |--------|----------|--------------------------------------------------------------------------------------------------|---------|----------|
 | `gdpr` | optional | GDPR Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagement.html) | `{}`    | `Object` |
 | `usp`  | optional | USP Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagementUsp.html)                                                                     | `{}`    | `Object` |
 
 
-### Example Banner ad unit
+#### Example Banner ad unit
 ```javascript
 var adUnits = [{
     code: 'banner-prebid-test-site',
@@ -86,7 +86,7 @@ var adUnits = [{
 }];
 ```
 
-### Example Video ad unit
+#### Example Video ad unit
 ```javascript
 var adUnits = [{
     code: 'video-prebid-test-site',
@@ -109,7 +109,7 @@ var adUnits = [{
 }];
 ```
 
-### Example GDPR Consent Management
+#### Example GDPR Consent Management
 ```javascript
 var pbjs = pbjs || {};
 pbjs.que = pbjs.que || [];
@@ -126,7 +126,7 @@ pbjs.que.push(function (){
 ```
 
 
-### Example USP Consent Management
+#### Example USP Consent Management
 ```javascript
 var pbjs = pbjs || {};
 pbjs.que = pbjs.que || [];
@@ -148,7 +148,7 @@ pbjs.que.push(function (){
 ```
 
 
-### Setting First Party Data (FPD)
+#### Setting First Party Data (FPD)
 ```javascript
 var pbjs = pbjs || {};
 pbjs.que = pbjs.que || [];
@@ -173,7 +173,7 @@ pbjs.que.push(function (){
 | Video  | Support all [AIDEM Sizes](https://kb.aidem.com/ssp/lists/adsizes/) | 
 
 
-# Setup / Dev Guide
+## Setup / Dev Guide
 ```shell
 nvm use
 
@@ -195,7 +195,7 @@ gulp test --file "test/spec/modules/aidemBidAdapter_spec.js"
 
 For video: gulp serve --modules=aidemBidAdapter,dfpAdServerVideo
 
-# FAQs
-### How do I view AIDEM bid request?
+## FAQs
+#### How do I view AIDEM bid request?
 Navigate to a page where AIDEM is setup to bid. In the network tab,
 search for requests to `zero.aidemsrv.com/bid/request`.
