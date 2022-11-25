@@ -52,6 +52,14 @@ to output the PrebidMobile framework for Android.
 
 ## Initialize SDK
 
+{% capture warning_note %}  
+All integration examples for Android are written on `Kotlin`. 
+
+The corresponding Java code you can find in the[Demo Java](https://github.com/prebid/prebid-mobile-android/tree/master/Example/PrebidDemoJava) application
+
+  {% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 Once you have a [Prebid Server]((/prebid-mobile/prebid-mobile-getting-started.html)), you will add 'account' info to the Prebid Mobile. Forexample, if you're using the AppNexus Prebid Server:
 
 ```
@@ -63,7 +71,6 @@ If you have opted to host your own Prebid Server solution you will need to store
 
 ```
 PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebid-server-test-j.prebid.org/openrtb2/auction"))
-
 ```
 
 Once you set the account ID and the Prebid Serber host, you should initialize the Prebid SDK. There are several options for how to do it. 
