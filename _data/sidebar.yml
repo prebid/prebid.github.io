@@ -869,7 +869,7 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: Code Integration
+  title: SDK Integration
   link: /prebid-mobile/pbm-api/ios/code-integration-ios.html
   isHeader: 0
   isSectionHeader: 0

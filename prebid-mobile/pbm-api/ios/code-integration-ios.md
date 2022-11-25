@@ -1,6 +1,6 @@
 ---
 layout: page_v2
-title: Code Integration - iOS
+title: SDK Integration - iOS
 description: Code Integration - iOS
 pid: 1
 top_nav_section: prebid-mobile
@@ -93,7 +93,7 @@ This will output the PrebidMobile.framework.
 Once you have a [Prebid Server]((/prebid-mobile/prebid-mobile-getting-started.html)), you will add 'account' info to the Prebid Mobile. Forexample, if you're using the AppNexus Prebid Server:
 
 ```
-Prebid.shared.prebidServerAccountId = @"YOUR_ACCOUNT_ID"
+Prebid.shared.prebidServerAccountId = "YOUR_ACCOUNT_ID"
 Prebid.shared.prebidServerHost = .Appnexus
 ```
 
@@ -147,85 +147,3 @@ Follow the coresponding guide to integrate Prebid Mobile:
 - [GAM using Rendering API]()
 - [AdMob]()
 - [AppLovin MAX]()
-
-
-// TODO: Move all above info into the respective integration section
-
-Integrating **Google** with your application   
-
-Go to Google's developer site and follow the instructions for integrating their [Mobile Ads SDK](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/quick-start) into your app.
-
-
-### Create Ad Units
-
-Banner and interstitial ad units can be created:
-
-```
-let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
-```
-
-For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them:
-
-
-#### Using Asset Ids with In-App Native Ad Units
-
-Setting this option to `true`, in your instance of Prebid Mobile, enables you to add an id for each asset in the assets array. The default setting is `false`
-
-**Swift**
-```
-Prebid.shared.shouldAssignNativeAssetID = true
-```
-
-**Objective C**
-```
-[Prebid shared].shouldAssignNativeAssetID = YES;
-```
-
-### Resize ad slot
-
-Prebid recommends app developers to resize ads slots to the Prebid rendering ad size using native code due to an unresolved bug in the Google Mobile Ads SDK (described [here](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!category-topic/google-admob-ads-sdk/ios/648jzAP2EQY)) where render failures can occur with 3rd party creatives (such as Prebid Universal Creative) using size overrides.
-
-{% capture warning_note %}  
-Failure to resize rendering Prebid ads can cause revenue loss under certain conditions. For this reason, we advise using the below resize function in all scenarios. {% endcapture %}
-{% include /alerts/alert_warning.html content=warning_note %}
-
-**Swift**
-
-```swift
-func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-
-    AdViewUtils.findPrebidCreativeSize(bannerView,
-                                            success: { (size) in
-                                                guard let bannerView = bannerView as? DFPBannerView else {
-                                                    return
-                                                }
-
-                                                bannerView.resize(GADAdSizeFromCGSize(size))
-
-        },
-                                            failure: { (error) in
-                                                print("error: \(error)");
-
-        })
-}
-
-```
-
-**Objective-C**
-
-```objective_c
- -(void) adViewDidReceiveAd:(GADBannerView *)bannerView {
-    NSLog(@"Ad received");
-    [AdViewUtils findPrebidCreativeSize:bannerView
-                                   success:^(CGSize size) {
-                                       if ([bannerView isKindOfClass:[DFPBannerView class]]) {
-                                           DFPBannerView *dfpBannerView = (DFPBannerView *)bannerView;
-
-                                           [dfpBannerView resize:GADAdSizeFromCGSize(size)];
-                                       }
-                                   } failure:^(NSError * _Nonnull error) {
-                                       NSLog(@"error: %@", error);
-                                   }];
-}
-```
-
