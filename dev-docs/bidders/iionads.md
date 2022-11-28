@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: Limelight Digital
-description: Prebid Limelight Digital Bidder Adaptor
-biddercode: limelightDigital
+title: IionAds
+description: IionAds Bidder Adaptor
+biddercode: iionads
 pbjs: true
 pbs: false
 media_types: video, banner
@@ -16,6 +16,7 @@ prebid_member: false
 ortb_blocking_supported: true
 multiformat_supported: will-bid-on-one
 floors_supported: false
+aliasCode: limelightDigital
 ---
 
 ### Bid Params
@@ -24,7 +25,7 @@ floors_supported: false
 
 | Name           | Scope      | Description                                                    | Example            |type|
 | :-----------   | :--------- | :------------                                                  | :----------------- |:---|
-| `host` | required | Ad network's RTB host | `'exchange.ortb.net'` | `string` |
+| `host` | required | Ad network's RTB host | `'iionads.com'` | `string` |
 | `adUnitId` | required   | Ad Unit Id will be generated on Limelight Digital Platform. | 0                        | `integer` |
 | `adUnitType`      | required   | Type of Ad Unit (`'video'`, `'banner'`)                                             | `'banner'`                 | `string` |
 | `publisherId` | optional | Publisher ID | `'12345'` | `string` |
