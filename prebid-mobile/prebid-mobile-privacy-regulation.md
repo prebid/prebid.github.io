@@ -9,7 +9,6 @@ sidebarType: 2
 ---
 
 # Prebid Mobile Guide to Privacy Regulation
-
 {:.no_toc}
 
 {% capture legalNotice %}
@@ -25,10 +24,9 @@ sidebarType: 2
 
 {% capture gdprNote %}
 
-  In order for publishers to meet their transparency, notice and choice/consent requirements under the GDPR and the existing ePrivacy Directive, Prebid Mobile supports the [IAB Europe Transparency & Consent Framework](https://www.iab.com/topics/consumer-privacy/gdpr/) (the "Framework").  
+In order for publishers to meet their transparency, notice and choice/consent requirements under the GDPR and the existing ePrivacy Directive, Prebid Mobile supports the [IAB Europe Transparency & Consent Framework](https://www.iab.com/topics/consumer-privacy/gdpr/) (the "Framework").  
 
-  This is a reference for mobile app publishers using Prebid Mobile to surface notice, transparency and choice to end users located in the EEA and signal approved vendors and, where necessary, pass consent information to demand sources and their vendors.  
-
+This is a reference for mobile app publishers using Prebid Mobile to surface notice, transparency and choice to end users located in the EEA and signal approved vendors and, where necessary, pass consent information to demand sources and their vendors.  
 
 {% endcapture %}
 
@@ -36,12 +34,14 @@ sidebarType: 2
 
 ### Framework APIs
 
-Prebid Mobile provides three APIs for app publishers to use with the Framework. These APIs allow you to:
+Prebid Mobile provides API for app publishers to use with the Framework. This API allow you to:
 
 -   Define whether the user is located in the European Economic Area (the "EEA") and if European privacy regulations should apply
 -   Set the [IAB Europe](https://www.iabeurope.eu/) (IAB) consent string
 
-This information will be persisted by Prebid Mobile and will be added to each ad call to the demand partners. Publishers/Consent Management Platforms (CMPs) are free to store these values in an `UserDefaults`/`SharedPreferences` interface (as defined by [IAB Tech Lab - CMP API v2](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md)) instead of passing them via the new APIs, and Prebid SDK will read the values as a fallback. The consent API's will check for TCF2.0 params -`IABTCF_gdprApplies` and `IABTCF_TCString`. 
+This information will be persisted by Prebid Mobile and will be added to each ad call to the demand partners. 
+
+Publishers/Consent Management Platforms (CMPs) are free to store these values in an `UserDefaults`/`SharedPreferences` interface (as defined by [IAB Tech Lab - CMP API v2](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md)) instead of passing them via the new APIs, and Prebid SDK will read the values as a fallback. The consent API's will check for TCF2.0 params -`IABTCF_gdprApplies` and `IABTCF_TCString`. 
 
 Publishers are responsible for providing notice, transparency and choice and collecting consent from their users in accordance with [the Framework policies](https://www.iab.com/topics/consumer-privacy/gdpr/), either using their own CMP or working with a vendor.
 
@@ -53,7 +53,7 @@ All vendor SDKs (including mediation SDKs) are responsible for looking up approv
 -   [iOS - Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 -   [Android - Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 
-## Sending Device Information
+### Sending Device Information
 
 To ensure proper monetization and relevant targeting, the SDK should be enabled to send the device information. Setting the consentRequired and purposeConsents flag correctly will help ensure proper device information is sent. The table below provides information on:
 
@@ -74,9 +74,9 @@ To ensure proper monetization and relevant targeting, the SDK should be enabled 
 
 {% include /alerts/alert_important.html content=codeNote %}
 
-## Code Samples
+### Code Samples
 
-### iOS
+#### iOS
 
 ```
 Targeting.shared.subjectToGDPR = false;
@@ -88,7 +88,7 @@ Targeting.shared.purposeConsents = "100000000000000000000000";
 let deviceAccessConsent = Targeting.shared.getDeviceAccessConsent();
 ```
 
-### Android
+#### Android
 
 ```
 TargetingParams.setSubjectToGDPR(context, true);

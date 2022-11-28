@@ -20,7 +20,7 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 
 ### Cocoapods
 
-If you are not familar with using Cocoapods for dependency management visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `Podfile` setup, include the following:
+If you are not familiar with using Cocoapods for dependency management visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `Podfile` setup, include the following:
 
 ```
 target 'MyAmazingApp' do
@@ -32,7 +32,7 @@ Now run `pod install` to add the Prebid SDK to project dependencies.
 
 ### Carthage
 
-If you are not familiar with the Carthage package builder, please refere to the project [github page](https://github.com/Carthage/Carthage) for more details.
+If you are not familiar with the Carthage package builder, please refer to the project [github page](https://github.com/Carthage/Carthage) for more details.
 
 1. Install Carthage
 2. Add `github "prebid/prebid-mobile-ios" == 2.0.4-carthage` to your `Cartfile`.
@@ -47,7 +47,7 @@ If you are not familiar with the Carthage package builder, please refere to the 
 
 ### Swift PM
 
-SPM doesn't supported for Prebid SDK `2.0.0` and higher ([details](https://github.com/prebid/prebid-mobile-ios/issues/640)). 
+SPM isn't supported for Prebid SDK `2.0.0` and higher ([details](https://github.com/prebid/prebid-mobile-ios/issues/640)). 
 
 The next guide is applicable for `1.x` versions of the SDK. 
 
@@ -90,7 +90,7 @@ This will output the PrebidMobile.framework.
 
 ## Initialize SDK
 
-Once you have a [Prebid Server]((/prebid-mobile/prebid-mobile-getting-started.html)), you will add 'account' info to the Prebid Mobile. Forexample, if you're using the AppNexus Prebid Server:
+Once you have a [Prebid Server]((/prebid-mobile/prebid-mobile-getting-started.html)), you will add 'account' info to the Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
 
 ```
 Prebid.shared.prebidServerAccountId = "YOUR_ACCOUNT_ID"
@@ -105,7 +105,7 @@ try! Prebid.shared.setCustomPrebidServer(url: "https://prebid-server-test-j.preb
 
 This method throws an exception if the provided URL is invalid.
 
-Once you set the account ID and the Prebid Serber host, you should initialize the Prebid SDK. There are several options for how to do it. 
+Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. There are several options for how to do it. 
 
 For the No Ad Server scenario, use the following initialization: 
 

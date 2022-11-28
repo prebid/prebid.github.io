@@ -22,10 +22,15 @@ Get started with Prebid Mobile by creating a [Prebid Server account](/prebid-mob
 
 If you are not familar with using Maven for build management visit the [Maven website](https://maven.apache.org/index.html).
 
-To include the Prebid Mobile SDK simply add this line to your gradle dependencies to get the lastest stable release:
+To include the Prebid Mobile SDK simply add this line to your gradle dependencies to get the latest stable release:
 
 ```
-implementation 'org.prebid:prebid-mobile-sdk:2.0.4'
+dependencies {
+    ////
+    
+    // Prebid SDK
+    implementation 'org.prebid:prebid-mobile-sdk:2.0.4'
+}
 ```
 
 {% capture warning_note %}  
@@ -45,7 +50,7 @@ please change it to the strict version.  {% endcapture %}
 After [cloning the repo](https://github.com/prebid/prebid-mobile-android), use Terminal or another command line tool, change to the root directory and run:
 
 ```
-./buildprebid.sh
+scripts/buildPrebidMobile.sh
 ```
 
 to output the PrebidMobile framework for Android.
@@ -55,12 +60,12 @@ to output the PrebidMobile framework for Android.
 {% capture warning_note %}  
 All integration examples for Android are written on `Kotlin`. 
 
-The corresponding Java code you can find in the[Demo Java](https://github.com/prebid/prebid-mobile-android/tree/master/Example/PrebidDemoJava) application
+The corresponding Java code you can find in the [Demo Java](https://github.com/prebid/prebid-mobile-android/tree/master/Example/PrebidDemoJava) application
 
-  {% endcapture %}
+{% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-Once you have a [Prebid Server]((/prebid-mobile/prebid-mobile-getting-started.html)), you will add 'account' info to the Prebid Mobile. Forexample, if you're using the AppNexus Prebid Server:
+Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add 'account' info to the Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
 
 ```
 PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
@@ -73,7 +78,7 @@ If you have opted to host your own Prebid Server solution you will need to store
 PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebid-server-test-j.prebid.org/openrtb2/auction"))
 ```
 
-Once you set the account ID and the Prebid Serber host, you should initialize the Prebid SDK. There are several options for how to do it. 
+Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. There are several options for how to do it. 
 
 Use the following initialization for Prebid SDK: 
 
@@ -94,7 +99,7 @@ If you integrate Prebid Mobile with GMA SDK, use the following method, wich chec
 ```kotlin
 PrebidMobile.checkGoogleMobileAdsCompatibility(MobileAds.getVersion().toString())
 ```
-
+Check the log messages of the app. If the provided GMA SDK version is not verified for compatibility, the Prebid SDK informs about it.
 
 ## Set Targeting Parameters 
 
