@@ -407,8 +407,3 @@ Targeting.shared.removeStoredExternalUserId("sharedid.org")
 //Remove All External UserID
 Targeting.shared.removeStoredExternalUserIds()
 ```
-
-
-## Further Reading
-
-- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)

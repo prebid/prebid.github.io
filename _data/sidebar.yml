@@ -934,8 +934,8 @@
   subgroup: 3
 
 - sbSecId: 2
-  title: Android Mobile API
-  link: /prebid-mobile/pbm-api/android/pbm-api-android.html
+  title: GAM Original API
+  link: /prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

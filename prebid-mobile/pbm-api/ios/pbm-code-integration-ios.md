@@ -211,7 +211,3 @@ Use the table below to see which ad objects are supported currently.
 | Google Ad Manager               | Banner         | `DFPBannerView`              | `- (void)loadRequest:(GADRequest *)request` |
 | Google Ad Manager               | Interstitial   | `DFPInterstitial`            | `- (void)loadRequest:(GADRequest *)request` |
 
-## Further Reading
-
-- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-

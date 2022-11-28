@@ -93,7 +93,7 @@ To add Index as a bidder to your mobile app:
 
 1. Inform your Prebid Server hosting company to add `ix `as a bidder in the configuration and include the `siteId` that Index provides to you at the time of integration.
 2. Define the Index-specific parameters at the bidder level. For information about these parameters, see the [Bid request parameters](#bid-request-parameters) section below.
-3. Include any ad unit level required or optional parameters provided in Prebid's [Prebid Mobile API - iOS](https://docs.prebid.org/prebid-mobile/pbm-api/ios/pbm-api-ios.html) and [Prebid Mobile API - Android](https://docs.prebid.org/prebid-mobile/pbm-api/android/pbm-api-android.html) documentation.
+3. Include any ad unit level required or optional parameters provided in Prebid's [Prebid Mobile API - iOS](https://docs.prebid.org/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html) and [Prebid Mobile API - Android](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html) documentation.
 
 <a name="call-index-from-ctv-long-form-video-environment" />
 

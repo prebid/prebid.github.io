@@ -353,7 +353,3 @@ TargetingParams.removeStoredExternalUserId("adserver.org");
 TargetingParams.clearStoredExternalUserIds();
 ```
 
-## Further Reading
-
-- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-

@@ -1,18 +1,16 @@
 ---
 
 layout: page_v2
-title: GAM Original API integration
+title: Prebid Mobile - GAM with Original API
 description: Integration of Prebid SDK With Google Ad Manager using the original API
 sidebarType: 2
 
 ---
 
-# GAM Original API integration
+# Prebid Mobile with GAM (Original API)
 {:.no_toc}
 
 Prebid Mobile is an open-source library that provides an end-to-end header bidding solution for mobile app publishers. 
-
-Prebid Mobile libraries are available for iOS and Android.
 
 * TOC
 {:toc}
