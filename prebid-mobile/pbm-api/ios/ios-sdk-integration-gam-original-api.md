@@ -54,6 +54,21 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 }
 ```
 
+Implement GADBannerViewDelegate: 
+
+```
+    
+func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+
+    // 6. Resize ad view if needed
+    AdViewUtils.findPrebidCreativeSize(bannerView, success: { size in
+        guard let bannerView = bannerView as? GAMBannerView else { return }
+        bannerView.resize(GADAdSizeFromCGSize(size))
+    }, failure: { (error) in
+        PrebidDemoLogger.shared.error("Error occuring during searching for Prebid creative size: \(error)")
+    })
+}
+```
 #### Step 1: Create a BannerAdUnit
 {:.no_toc}
 
@@ -65,7 +80,9 @@ Initialize the `BannerAdUnit` with properties:
 #### Step 2: Configure banner parameters
 {:.no_toc}
 
-Using the `BannerParameters` you can customize the bid request for BannerAdUnit. The `api` property is dedicated to adding values for API Frameworks to bid response according to the OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
+Using the `BannerParameters` you can customize the bid request for BannerAdUnit. 
+
+The `api` property is dedicated to adding values for API Frameworks to bid response according to the OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
 
 * `3` or `Signals.Api.MRAID_1` : MRAID-1 support signal
 * `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
@@ -88,6 +105,11 @@ The `fetchDemand` method makes a bid request to the prebid server. You should pr
 Now you should request the ad from GAM. If the `GAMRequest` contains targeting keywords, the respective Prebid's line item will be returned from GAM, and GMA SDK will render its creative. 
 
 Be sure that you make the ad request with the same `GAMRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
+
+#### Step 6: Adjust the ad view size
+{:.no_toc}
+
+Once an app receives a signal that an ad is loaded, you should use the method `AdViewUtils.findPrebidCreativeSize` to verify whether it's Prebid's ad and resize the ad slot respectively to the creative's properties. 
 
 ## Video Banner
 
