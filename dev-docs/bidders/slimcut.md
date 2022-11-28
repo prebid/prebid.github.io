@@ -1,12 +1,12 @@
 ---
 layout: bidder
 title: Slimcut
-description: SlimCut Bidder Adaptor
+description: SlimCut Bidder Adapter
 pbjs: true
 biddercode: slimcut
 media_types: video, banner
 gdpr_supported: true
-pbjs_version_notes: not in 5.x
+gvl_id: 102
 ---
 
 ### Overview

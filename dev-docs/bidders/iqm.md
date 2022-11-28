@@ -6,7 +6,7 @@ pbjs: true
 biddercode: iqm
 ---
 
-# Parameters
+## Parameters
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description               | Example              |
@@ -16,11 +16,11 @@ biddercode: iqm
 | `placementId` | required | The Placement ID from iQM | 23451                |
 | `bidfloor`    | optional | Bid Floor                 | 0.50                 |
 
-# Description
+## Description
 
 Module that connects to iQM demand sources
 
-# Test Parameters
+## Test Parameters
 ```
 var adUnits = [{
         code: 'div-gpt-ad-1460505748561-0',
@@ -47,7 +47,7 @@ var adUnits = [{
 
 ```
 
-# adUnit Video
+## adUnit Video
 
 ```
  var videoAdUnit = {

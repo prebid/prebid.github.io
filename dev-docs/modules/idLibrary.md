@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: ID Import Library
-description: ID Graphing Adapter
+description: Retrieve user ids deployed on your site, and return them to a configurable endpoint for ID Graphing.
 module_code : currency
 display_name : ID Import Library
 enable_download : true

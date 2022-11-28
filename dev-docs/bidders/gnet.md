@@ -11,5 +11,6 @@ biddercode: gnet
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                | Example                             | Type     |
 |---------------|----------|--------------------------------------------|-------------------------------------|----------|
-| `websiteId`      | required | The Gnet website ID                            | `'4'`                                    | `string` |
+| `websiteId`   | required | The Gnet website ID                        | `'1'`                               | `string` |
+| `adunitId`    | required | The Gnet adunit ID                         | `'1'`                               | `string` |
 

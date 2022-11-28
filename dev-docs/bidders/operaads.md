@@ -11,7 +11,7 @@ schain_supported: true
 dchain_supported: false
 media_types: banner, video, native
 safeframes_ok: false
-bidder_supports_deals: false
+deals_supported: false
 pbjs: true
 pbs: true
 prebid_member: false
