@@ -31,9 +31,10 @@ which can be used for more than just First Party Data.
 Publishers supply First Party Data (FPD) by specifying attributes as
 configuration or on a Prebid.js AdUnit:
 
-- Global site or user data that applies to all AdUnits and all bidders. Use [`setConfig()`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd)
-- AdUnit-specific data that applies to all bidders. Define [AdUnit.ortb2Imp](/dev-docs/adunit-reference.html#first-party-data)
-- Bidder-specific site or user data that applies to all AdUnits. Use [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html)
+- Global site or user data that applies to all AdUnits, bidders, and auctions. Use [`setConfig()`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd)
+- Auction-specific site or user data that applies to all AdUnits and bidders in that auction. Use the `ortb2` parameter of [`requestBids()`](/dev-docs/publisher-api-reference/requestBids.html)
+- AdUnit-specific data that applies to all bidders and auctions. Define [AdUnit.ortb2Imp](/dev-docs/adunit-reference.html#first-party-data)
+- Bidder-specific site or user data that applies to all AdUnits and auctions. Use [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html)
 
 ## In-Page Examples
 
@@ -64,7 +65,7 @@ pbjs.setConfig({
 		data: [{
           	    name: "www.dataprovider1.com",
           	    ext: {
-		        segtax: 4,
+		        segtax: 7,
 			cids: [ "iris_c73g5jq96mwso4d8" ]
 		    },
 		    segment: [
@@ -110,6 +111,36 @@ of user data as part of its GDPR or CCPA modules.
 {: .alert.alert-warning :}
 If you're using PBJS version 4.29 or before, replace the following in the example above: 'ortb' with 'fpd', 'site' with 'context' and 'site.ext.data' with 'context.data'.
 
+### Supplying Auction-Specific Data
+
+In some situations the same page may wish to supply different `site` data for some of its sections, 
+for example in infinite scroll or instream video scenarios where multiple pieces of content that would benefit from different contexts are served together.
+
+To support this use case, Prebid version 7 and above accepts auction-specific first-party data as a parameter to `requestBids`. For example: 
+
+{% highlight js %}
+pbjs.requestBids({
+    ortb2: {
+        site: {
+            content: {
+                data: [{
+                    name: 'www.iris.com',
+                    ext: {
+                        segtax: 500,
+                        cids: ['iris_c73g5jq96mwso4d8']
+                    },
+                    segment: [
+                        {id: '687'},
+                        {id: '123'}
+                    ]
+                }]
+            }
+        }
+    }
+});
+{% endhighlight %}
+
+
 ### Supplying AdUnit-Specific Data
 
 If an attribute is specific to an AdUnit, it can be passed this way:
@@ -124,7 +155,7 @@ pbjs.addAdUnits({
     },
     ortb2Imp: {
         ext: {
-	    data: {
+	        data: {
                 pbadslot: "homepage-top-rect",
                 adUnitSpecificAttribute: "123"
             }
@@ -132,6 +163,24 @@ pbjs.addAdUnits({
     },
     ...
 });
+{% endhighlight %}
+
+You may also specify adUnit-specific transaction IDs using `ortb2Imp.ext.tid`, and Prebid will use them instead of generating random new ones. This is useful if you are auctioning the same slots through multiple header bidding libraries. Note: you must take care to not re-use the same transaction IDs across different ad units or auctions. Here's a simplified example passing a tid through the [requestBids](/dev-docs/publisher-api-reference/requestBids.html) function:
+
+{% highlight js %}
+const tid = crypto.randomUUID();
+pbjs.requestBids({
+   adUnits: [{
+    code: 'test-div',
+    // ...
+    ortb2Imp: {
+        ext: {
+          tid: tid
+        }
+    }
+   }]
+});
+// reuse `tid` when auctioning `test-div` through some other header bidding wrapper   
 {% endhighlight %}
 
 {: .alert.alert-info :}
@@ -248,7 +297,7 @@ pbjs.setConfig({
                 url: "http://foo_url.de",
                 cat: ["IAB1-1", "IAB1-2", "IAB2-10"],
                 context: "7",
-                keywords: ["k1", "k2"],
+                keywords: "k1,k2",
                 live: "0"
             }
         }
@@ -293,10 +342,12 @@ segment taxonomies they support.
 
 ## How Bid Adapters Should Read First Party Data
 
-To access global data, a Prebid.js bid adapter needs only to call [`getConfig()`](/dev-docs/publisher-api-reference/getConfig.html), like this:
+Prebid.js bid adapters are supplied global data in the `ortb2` property of [bid requests](/dev-docs/bidder-adaptor.html#building-the-request):
 
 {% highlight js %}
-config.getConfig('ortb2'))
+buildRequests: function(validBidRequests, bidderRequest) {
+   const firstPartyData = bidderRequest.ortb2;
+}
 {% endhighlight %}
 
 AdUnit-specific values must be parsed out of the AdUnit object.

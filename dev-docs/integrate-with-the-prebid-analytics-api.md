@@ -91,10 +91,10 @@ The best way to get started is to look at some of the existing AnalyticsAdapter.
 Here's a skeleton outline:
 
 {% highlight js %}
-import {ajax} from 'src/ajax';
-import adapter from 'src/AnalyticsAdapter';
-import CONSTANTS from 'src/constants.json';
-import adaptermanager from 'src/adaptermanager';
+import {ajax} from '../src/ajax.js';
+import adapter from '../libraries/analyticsAdapter/AnalyticsAdapter.js';
+import CONSTANTS from '../src/constants.json';
+import adaptermanager from '../src/adaptermanager.js';
 
 const analyticsType = 'endpoint';
 const url = 'URL_TO_SERVER_ENDPOINT';
@@ -134,6 +134,9 @@ The callback will receive an object with the following attributes:
   analyticsBlocked: ['moduleC']
 }
 ```
+
+Note that analytics adapters can read the TCF string directly from the auction object -- look for the gdprConsent object, which contains three attributes:
+gdprApplies, consentString, and apiVersion
 
 #### Listening for errors
 

@@ -20,6 +20,7 @@ safeframes_ok: false
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
 | `s` | required |  Section ID from Between SSP control panel | 999999 | `integer` |
+| `cur` | optional | 3-letter ISO 4217 code defining the currency of the bid (currently support USD and EUR), default is USD | `'USD'` | `string` |
 
 ### Prebid-Server Bid Params
 
