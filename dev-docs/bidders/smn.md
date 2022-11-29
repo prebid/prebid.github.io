@@ -5,7 +5,7 @@ description: Prebid SMN Bidder Adaptor
 pbjs: true
 biddercode: smn
 aliasCode: admixer
-media_types: video
+media_types: banner, video
 gdpr_supported: true
 usp_supported: true
 ---
