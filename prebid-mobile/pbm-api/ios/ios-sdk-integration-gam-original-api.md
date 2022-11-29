@@ -56,8 +56,7 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 
 Implement GADBannerViewDelegate: 
 
-```
-    
+```swift
 func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
 
     // 6. Resize ad view if needed
@@ -69,6 +68,7 @@ func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
     })
 }
 ```
+
 #### Step 1: Create a BannerAdUnit
 {:.no_toc}
 
@@ -165,7 +165,7 @@ Using the `VideoParameters` you can customize the bid request for VideoAdUnit.
 
 [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) Placement Type for the auction can be expressed as an integer array or can use an enum for easier readability. Option 1 (in-stream) is intentionally left out due to lack of in-stream support in Prebid SDK. 
 
-In the context of a VideoInterstitialAdUnit, rewarded video ads are typically labled as interstitial. As such, Prebid SDK will default to value 5 if no placement value is supplied.
+In the context of a VideoInterstitialAdUnit, rewarded video ads are typically labeled as interstitial. As such, Prebid SDK will default to value 5 if no placement value is supplied.
 
 * `2` or `InBanner` : In-Banner placement exists within a web banner that leverages the banner space to deliver a video experience as opposed to another static or rich media format. The format relies on the existence of display ad inventory on the page for its delivery.
 * `3` or `InArticle` : In-Article placement loads and plays dynamically between paragraphs of editorial content; existing as a standalone branded message.
@@ -289,8 +289,8 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 Initialize the Interstitial Ad Unit with properties:
     
 - `configId` - an ID of Stored Impression on the Prebid Server
-- `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occuy of a device's real estate. Support in SDK version 1.2+
-- `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occuy of a device's real estate. Support in SDK version 1.2+
+- `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
+- `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
 
 > **NOTE:** As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process to monetize sizes smaller than full screen ads. App developers can speicify a minimun width and minimum height percentage an ad can occupy of a devices real state, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction.
 
@@ -313,7 +313,7 @@ Be sure that you make the ad request with the same `GAMRequest` object that you 
 #### Step 4: Present the interstitial ad
 {:.no_toc}
 
-[Display](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/interstitial#display_the_ad) an interstitial ad right after recieving it or later in natural pauses in the flow of an app.
+Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/interstitial#display_the_ad) to display an interstitial ad right after receiving it or later in natural pauses in the flow of an app.
 
 ## Video Interstitial
 
@@ -377,7 +377,7 @@ Be sure that you make the ad request with the same `GAMRequest` object that you 
 #### Step 5: Present the interstitial ad
 {:.no_toc}
 
-[Display](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/interstitial#display_the_ad) an interstitial ad right after recieving it or later in natural pauses in the flow of an app.
+Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/interstitial#display_the_ad) to display an interstitial ad right after receiving it or later in natural pauses in the flow of an app.
 
 ## Rewarded Video
 
@@ -414,7 +414,6 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     }
 }
 ```
-
 #### Step 1: Create an Ad Unit
 {:.no_toc}
 
@@ -442,7 +441,7 @@ Be sure that you make the ad request with the same `GAMRequest` object that you 
 #### Step 5: Present the Rewarded Ad
 {:.no_toc}
 
-[Display](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/rewarded#show_the_ad) a rewarded ad right after recieving it or later according to the app flow.
+Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/rewarded#show_the_ad) to display an rewarded ad right after receiving it or later in natural pauses in the flow of an app.
 
 ## Video Instream
 
