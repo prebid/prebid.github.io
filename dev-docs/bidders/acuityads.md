@@ -2,7 +2,7 @@
 layout: bidder
 title: AcuityAds
 description: Prebid AcuityAds Bidder Adaptor
-biddercode: acuityads
+biddercode: acuityAds
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
@@ -13,6 +13,7 @@ safeframes_ok: true
 deals_supported: true
 pbjs: true
 pbs: true
+pbjs_version_notes: bidder code is acuityads (lower case)
 ---
 
 ### Note:
