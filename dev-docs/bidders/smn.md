@@ -8,6 +8,13 @@ aliasCode: admixer
 media_types: banner, video
 gdpr_supported: true
 usp_supported: true
+gvl_id: none
+fpd_supported: false
+schain_supported: true
+coppa_supported: false
+deals_supported: true
+ortb_blocking_supported: false
+safeframes_ok: false
 ---
 
 ### Bid Params
