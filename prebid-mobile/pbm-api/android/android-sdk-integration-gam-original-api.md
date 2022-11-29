@@ -117,3 +117,48 @@ Be sure that you make the ad request with the same `AdManagerAdRequest` object t
 {:.no_toc}
 
 Once an app receives a signal that an ad is loaded, you should use the method `AdViewUtils.findPrebidCreativeSize` to verify whether it's Prebid's ad and resize the ad slot respectively to the creative's properties. 
+
+## Video Banner
+
+// TODO:
+
+
+## Display Interstitial
+
+Integration example: 
+
+```kotlin
+private fun createAd() {
+    // 1. Create InterstitialAdUnit
+    adUnit = InterstitialAdUnit(CONFIG_ID, 80, 60)
+
+    // 2. Make a bid request to Prebid Server
+    val request = AdManagerAdRequest.Builder().build()
+    adUnit?.fetchDemand(request) {
+
+        // 3. Load a GAM interstitial ad
+        AdManagerInterstitialAd.load(this, AD_UNIT_ID, request, createListner())
+    }
+}
+```
+
+Also you need to implement `AdManagerInterstitialAdLoadCallback` in order to track the ad rediness:
+
+```kotlin
+private fun createListner(): AdManagerInterstitialAdLoadCallback {
+    return object : AdManagerInterstitialAdLoadCallback() {
+
+        override fun onAdLoaded(adManagerInterstitialAd: AdManagerInterstitialAd) {
+            super.onAdLoaded(adManagerInterstitialAd)
+
+            // 4.  Present the interstitial ad
+            adManagerInterstitialAd.show(this@GamOriginalApiDisplayInterstitialActivity)
+        }
+
+        override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+            super.onAdFailedToLoad(loadAdError)
+            Log.e("GAM", "Ad failed to load: $loadAdError")
+        }
+    }
+}
+```
