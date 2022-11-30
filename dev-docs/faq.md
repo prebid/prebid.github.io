@@ -25,9 +25,9 @@ but it's not necessary for contributing code as a community member.
 
 ## How does Prebid support privacy regulations?
 
-Prebid understands that publishers are under increasing pressure to respond and adapt to privacy regulations. For instance, an increasing number of laws require specific disclosures around and ability to opt out of targeted advertising activities as well as “sales” of consumer data. While we cannot give legal advice, we do provide a toolkit that supports publishers in their efforts to comply with the laws that apply to them. If there’s a tool you need that you don’t see listed below, please do open an issue in the appropriate repository ([PBJS](https://github.com/prebid/Prebid.js/issues), [PBS](https://github.com/prebid/prebid-server/issues), [SDK](https://github.com/prebid/prebid-mobile-ios/issues)).
+Prebid understands that publishers are under increasing pressure to respond and adapt to privacy regulations. For instance, an increasing number of laws (including California’s CPRA and laws in Colorado, Virginia, Connecticut, and Utah) already require, or will require in 2023, specific disclosures around and ability to opt out of targeted advertising activities as well as “sales” of consumer data. While we cannot give legal advice, we do provide a toolkit that supports publishers in their efforts to comply with the laws that apply to them. If there’s a tool you need that you don’t see listed below, please do open an issue in the appropriate repository ([PBJS](https://github.com/prebid/Prebid.js/issues), [PBS](https://github.com/prebid/prebid-server/issues), [SDK](https://github.com/prebid/prebid-mobile-ios/issues)).
 
-To get started,:first talk to your lawyers to determine your legal obligations. You might, for instance, want to run a Consent Management Platform (CMP) that allows consumers to opt into or out of certain practices when your users are in privacy-sensitive jurisdictions.
+To get started, first talk to your lawyers to determine your legal obligations. You might, for instance, want to run a Consent Management Platform (CMP) that allows consumers to opt into or out of certain practices when your users are in privacy-sensitive jurisdictions.
 
 After you’ve determined your legal obligations, consider the tools Prebid makes available to publishers so that their pages can determine what actions are needed based on their interpretation of the user’s actions and the company’s policies:
 
@@ -39,13 +39,13 @@ After you’ve determined your legal obligations, consider the tools Prebid make
 - For GDPR:
     - Consider the [GDPR](/dev-docs/modules/consentManagement.html) and [GDPR Enforcement](/dev-docs/modules/gdprEnforcement.html) modules, which flexibly support various actions like cancelling usersyncs, auctions, and analytics. Using these modules, bid adapters can receive the IAB TCF string from the CMP.
     - Alternatively, the page can just avoid turning on certain bidders or modules.
-- For CCPA / US-Privacy:
+- For CCPA / CPRA / US-Privacy:
     - Consider the [US-Privacy](/dev-docs/modules/consentManagementUsp.html) module, which passes the IAB USP string through to bid adapters and supports data deletion events for User ID modules and other interested adapters and modules.
 - Set the [COPPA flag](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa), which passes this value through to modules and bid adapters.
 - Avoid adding certain bidders or modules to the AdUnit.
 - Turn off header bidding altogether.
 
-For all other regulations (LGPD, CPRA, GPP, etc), Prebid relies on the IAB and community members to determine whether additional tools are needed to support the publisher workflow. As noted above, open an issue in the appropriate repository, or join the org and help us improve the system!
+Prebid relies on the IAB and community members to determine what tools are needed to support publishers in meeting their legal obligations. As noted above, if there’s another tool you need, please open an issue in the appropriate repository, or join the org and help us improve the system!
 
 ## What should my timeouts be?
 
