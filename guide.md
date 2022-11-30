@@ -265,7 +265,8 @@ The attributes in the Jekyll 'front matter' drive various behaviors and dynamic 
 | pbs | sorta | true or false | defines whether this is a Prebid Server bidder |
 | description | no | - | Not used |
 | biddercode | yes | preferred bidder code | Used as the default ad server targeting suffix and the default download filename |
-| aliasCode | no | download filename | Overrides the filename used to build the PBJS package on the download page |
+| aliasCode | no | bid adapter that actually implements this adapter | Overrides the filename used to build the PBJS package on the download page. Will be suffixed with "BidAdapter". This is also intended to be a valid bidder code. |
+| filename | no | bid adapter that actually implements this adapter | Used when a bid adapter is created with a filename that is not the bidder code. This completely overrides what is passed into the gulp build command, so needs to be fully specified. e.g. bidderaBidAdapter |
 | prevBiddercode | no | secondary bidder code | Adds a note about an alternate code that may have been used. |
 | pbjs_version_notes | no | string | Displays on the download page |
 | ANYTHING ELSE | no | string | There are many pieces of metadata (e.g. GDPR support, user IDs supported) that bid adapters can disclose. They're displayed on the bidder's parameter page. |
@@ -280,6 +281,7 @@ with a prefix like `hb_cache_host`. So they wanted to have shorter bidderCode fo
 2) change the biddercode to the shorter name as it's the new preferred code
 3) add aliasCode so the Download page will pull in the right module
 4) optionally add prevBiddercode to add a note to the page about the legacy value
+5) optionally add filename if the bid adapter was created using a filename that's different than their bidder code. e.g. if the biddercode is "biddera" but they named the file "bidderABidAdapter", set the biddercode to "biddera" and the filename to "bidderABidAdapter".
 
 ## Algolia Search
 
