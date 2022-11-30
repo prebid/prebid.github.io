@@ -185,6 +185,7 @@ If you're the type that likes to skip to the answer instead of going through a t
 
 {: .alert.alert-warning :}
 ### Note on ORTB adapters
+
 {: .alert.alert-warning :}
 If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`. 
 
