@@ -33,4 +33,4 @@ Kargo is an invitation-only marketplace.  Please reach out to your Kargo account
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
-| `tagid`       | required | `openrtb2.BidRequest.Imp[0].TagID`|`'31355'`| `string` |
+| `placementId`       | required | `openrtb2.BidRequest.Imp[0].TagID`|`'31355'`| `string` |
