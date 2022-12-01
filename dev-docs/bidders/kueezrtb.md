@@ -2,7 +2,8 @@
 layout: bidder
 title: KueezRTB
 description: Prebid KueezRTB Bidder Adaptor
-biddercode: kueezRtb
+biddercode: kueezrtb
+filename: kueezRtbBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 gdpr_supported: true
 usp_supported: true
@@ -19,7 +20,6 @@ ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
 gvl_id: 1165
 pbjs: true
-pbjs_version_notes: bidder code is kueezrtb (lower case)
 ---
 
 ### Bid Params
