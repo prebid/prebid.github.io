@@ -14,7 +14,7 @@ media_types: banner
 |-----------------|----------|---------------------------------|------------------------------------------|--------------------|
 | `placeUid` | required | The Place UID from Aotter | `'f4a74f73-9a74-4a87-91c9-545c6316c23d'` | `string` |
 
-# Configuration
+### Configuration
 
 Following configuration is required:
 
@@ -26,7 +26,7 @@ pbjs.setConfig({
 });
 ```
 
-# Ad Unit Example
+### Ad Unit Example
 
 ```js
 var adUnits = [

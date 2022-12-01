@@ -5,7 +5,7 @@ description: Prebid TheMediaGrid Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: grid
-media_types: banner, video
+media_types: banner, video, native (s2s only)
 multiformat_supported: will-bid-on-any
 gdpr_supported: true
 usp_supported: true
@@ -22,6 +22,7 @@ fpd_supported: true
 - [Bid Params](#grid-bid-params)
 - [Bidder Config](#grid-bidder-config)
 - [First Party Data](#grid-first-party)
+- [Native setup example (s2s only)](#grid-native-example)
 
 <a name="grid-bid-params" />
 
@@ -31,31 +32,7 @@ fpd_supported: true
 | Name           | Scope    | Description                                                                                                 | Example                                   | Type      |
 |----------------|----------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------|-----------|
 | `uid`          | required | Represents the MediaGrid bidder system Ad Slot ID associated with the respective div id from the site page. | `1`                                       | `integer` |
-| `keywords`     | optional | A set of key-value pairs applied to all ad slots on the page. Values can be empty.                          | `keywords: { topic: ['stress', 'fear'] }` | `object`  |
 | `bidFloor`     | optional | Floor of the impression opportunity. If present in the request overrides XML info.                          | `0.8`                                     | `float`   |
-
-Parameter `keywords` must have following format:
-```
-{
-   "site":{
-      "publisher1":[
-         {
-            "name":"SomeKeywordsBlockName",
-            "segment1Name":[
-               "segment2Value"
-            ],
-            "segment2Name":[
-               "segment2Value1",
-               "segment2Value2",
-               ...
-            ],
-            ...
-         }
-      ],
-      ...
-   }
-}
-```
 
 <a name="grid-bidder-config" />
 
@@ -92,3 +69,46 @@ AdUnit-specific data using `AdUnit.ortb2Imp` supports following fields:
 
 - `ortb2.imp[].ext.data.*`
 - `ortb2.imp[].instl`
+
+<a name="grid-native-example" />
+
+### Native setup example (s2s only)
+
+Setup native in adUnit mediaTypes, for example:
+```
+...
+mediaTypes: {
+  native: {
+    ortb: {
+      ver: '1.2',
+      "assets": [
+        {
+          "id": 1,
+          "img": {
+            "hmin": 180,
+            "wmin": 216,
+            "type": 3
+          },
+          "required": 1
+        },
+        {
+          "title": {
+            "len": 140
+          },
+          "id": 2,
+          "required": 1
+        },
+        {
+          "id": 3,
+          "data": {
+            "len": 25,
+            "type": 1
+          },
+          "required": 1
+        }
+      ],
+    }
+  }
+},
+...
+```

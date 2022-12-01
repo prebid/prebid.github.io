@@ -184,6 +184,7 @@ Prebid recommends keeping module HTTP requests 'simple' if at all possible. The 
 If you're the type that likes to skip to the answer instead of going through a tutorial, see the <a href="#bidder-example">Full Bid Adapter Example</a> below.
 
 + [Overview](#bidder-adaptor-Overview)
++ [Note on ORTB adapters](#ortb-adapters)
 + [Building the Request](#bidder-adaptor-Building-the-Request)
 + [Interpreting the Response](#bidder-adaptor-Interpreting-the-Response)
 + [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs)
@@ -237,6 +238,12 @@ export const spec = {
 registerBidder(spec);
 
 {% endhighlight %}
+
+<a id="ortb-adapters" />
+
+### Note on ORTB adapters
+
+If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`. 
 
 <a name="bidder-adaptor-Building-the-Request" />
 
@@ -343,7 +350,7 @@ There are a number of important values that a publisher expects to be handled in
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
 | First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
-| Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
+| Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
 | Video Parameters | Video params must be read from AdUnit.mediaType.video when available; however bidder config can override the ad unit. | AdUnit.mediaType.video |
@@ -1190,6 +1197,7 @@ registerBidder(spec);
     - If you support floors, set `floors_supported: true`. No default value..
     - If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
     - If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to 'true','partial', or 'false'. No default value. In order to set 'true', you must support: bcat, badv, battr, and bapp.
+    - Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
     - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 - Submit both the code and docs pull requests
 

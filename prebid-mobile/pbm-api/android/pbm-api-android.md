@@ -23,7 +23,7 @@ The Prebid Mobile API supports instantiation of the following objects:
 
 - [Global Settings]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)
 - [Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
-- [Intersitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
+- [Interstitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 
 ## Result Codes
 
