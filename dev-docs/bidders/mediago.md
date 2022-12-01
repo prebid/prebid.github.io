@@ -26,5 +26,6 @@ The MediaGo Bidding adapter requires setup before beginning. Please contact us a
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `token`      | required | publisher token        | `'1e100887dd614b7f69fdd1360437'`    | `string` |
+| test | recommend | 0(dafult): production env value. <br> 1: dev env value.we will bid Higher frequency to make debug easier.  | 1/0 | Number |
 | bidfloor | recommend | Sets a floor price for the bid | 0.05 | float |
 | placementId | recommend | The AD placement ID | 12341234 | string |
