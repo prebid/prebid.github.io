@@ -173,7 +173,7 @@ Data is broken up into two different data types:
   * Global scope
   * Ad Unit grain
 
- The below first party user and inventory context will apply to all ad units. For ad unit level first party data, refer to [First Party Data section in the Ad Unit](pbm-adunit-android#first-party-data) page.
+
 
 ### First Party User Data
 
