@@ -34,27 +34,3 @@ Kargo is an invitation-only marketplace.  Please reach out to your Kargo account
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
 | `placementId`       | required | The placementId of the ad slot. |`'31355'`| `string` |
-
-### Use Example: 
-
-    "prebidRawBidRequests": [
-        {
-            "bidder": "kargo",
-            "params": {
-              "placementId": "_adSlot1"
-            }
-        }
-    ]
-    
-For server-to-server (S2S) pass the OTRB tagId:
-
-    "prebidRawBidRequests": [
-        {
-            "bidder": "kargo",
-            "params": {
-              "tagId": "openrtb2.BidRequest.Imp[0].TagID"
-            }
-        }
-    ]
-
-
