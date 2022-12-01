@@ -42,6 +42,7 @@ After you’ve determined your legal obligations, consider the tools Prebid make
 - For CCPA / CPRA / US-Privacy:
     - Consider the [US-Privacy](/dev-docs/modules/consentManagementUsp.html) module, which passes the IAB USP string through to bid adapters and supports data deletion events for User ID modules and other interested adapters and modules.
 - Set the [COPPA flag](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa), which passes this value through to modules and bid adapters.
+- The IAB is still refining the definition of GPP. Once that has settled, Prebid will build a GPP module. In the meantime, a few bid adapters have added support for statically setting GPP strings, e.g. pbjs.setConfig({ortb2: {regs: {gpp: "blah", gpp_sid: [1,2]}}});
 - Avoid adding certain bidders or modules to the AdUnit.
 - Turn off header bidding altogether.
 
