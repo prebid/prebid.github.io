@@ -34,3 +34,4 @@ Kargo is an invitation-only marketplace.  Please reach out to your Kargo account
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
 | `placementId`       | required | The placementId of the ad slot. |`'_jWuc8Hks'`| `string` |
+
