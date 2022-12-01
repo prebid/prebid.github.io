@@ -28,9 +28,10 @@ This adapter is known to use an HTTP 1 endpoint. Header bidding often generates 
 ### Note:
 Kargo is an invitation-only marketplace.  Please reach out to your Kargo account manager to get setup.  Also, you *must* test on a mobile device, or emulate a mobile device by manipulating the user agent string sent to the server.
 
-### Bid Params
+### Bid Params:
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
-| `placementId`       | required | `openrtb2.BidRequest.Imp[0].TagID`|`'31355'`| `string` |
+| `placementId`       | required | The placementId of the ad slot. |`'_jWuc8Hks'`| `string` |
+
