@@ -138,6 +138,112 @@ Targeting parameters enable you to define the target audience for the bid reques
 
 View the full list of [targeting parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html).
 
+## Setup SDK
+
+The `Prebid` class is a singleton that enables the user to apply global settings.
+
+### Properties
+
+`prebidServerAccountId`: String containing the Prebid Server account ID.
+
+
+`prebidServerHost`: String containing configuration your Prebid Server host with which Prebid SDK will communicate. Choose from the system-defined Prebid Server hosts or define your own custom Prebid Server host.
+
+
+`shareGeoLocation`: Optional Bool, if this flag is True AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s geographical location data to Prebid Server. If this flag is False OR the app does not collect the user’s geographical location data, Prebid Mobile will not populate any user geographical location information in the call to Prebid Server. The default setting is false.
+
+`logLevel`: Optional level of loging to output in the console. Options are one of following sorted by verbosity of the log:
+
+``` swift
+public static let debug = LogLevel(stringValue: "[💬]", rawValue: 0)
+public static let verbose = LogLevel(stringValue: "[🔬]", rawValue: 1)
+public static let info = LogLevel(stringValue: "[ℹ️]", rawValue: 2)
+public static let warn = LogLevel(stringValue: "[⚠️]", rawValue: 3)
+public static let error = LogLevel(stringValue: "[‼️]", rawValue: 4)
+public static let severe = LogLevel(stringValue: "[🔥]", rawValue: 5)
+```
+
+`timeoutMillis`: The Prebid timeout (accessible to Prebid SDK 1.2+), set in milliseconds, will return control to the ad server SDK to fetch an ad once the expiration period is achieved. Because Prebid SDK solicits bids from Prebid Server in one payload, setting Prebid timeout too low can stymie all demand resulting in a potential negative revenue impact.
+
+
+`storedAuctionResponse`: Set as type string, stored auction responses signal Prebid Server to respond with a static response matching the storedAuctionResponse found in the Prebid Server Database, useful for debugging and integration testing. No bid requests will be sent to any bidders when a matching storedAuctionResponse is found. For more information on how stored auction responses work, refer to the written [description on github issue 133](https://github.com/prebid/prebid-mobile-android/issues/133).
+
+`pbsDebug`: adds the debug flag ("test":1) on the outbound http call to Prebid Server. The test:1 flag will signal to Prebid Server to emit the full resolved request (resolving any Stored Request IDs) as well as the full Bid Request and Bid Response to and from each bidder.
+
+
+### Methods
+
+#### Stored Response
+{:.no_toc}
+
+`addStoredBidResponse`: Function containing two properties:
+
+* `bidder`: Bidder name as defined by Prebid Server bid adapter of type string.
+* `responseId`: Configuration ID used in the Prebid Server Database to store static bid responses.
+
+Stored Bid Responses are similar to Stored Auction Responses in that they signal to Prebid Server to respond with a static pre-defined response, except Stored Bid Responses is done at the bidder level, with bid requests sent out for any bidders not specified in the bidder parameter. For more information on how stored auction responses work, refer to the written [description on github issue 133](https://github.com/prebid/prebid-mobile-android/issues/133).
+
+```swift
+func addStoredBidResponse(bidder: String, responseId: String)
+```
+
+`clearStoredBidResponses`: Clears any stored bid responses.
+
+```swift
+func clearStoredBidResponses()
+```
+
+#### Custom headers
+{:.no_toc}
+
+The following methods enables the customization of the HTTP call to the prebid server:
+
+```
+func addCustomHeader(name: String, value: String) 
+```
+
+```
+func clearCustomHeaders() 
+```
+
+### Examples
+{:.no_toc}
+
+
+```swift
+// Host
+Prebid.shared.prebidServerHost = .Rubicon
+// or set a custom host
+Prebid.shared.prebidServerHost = PrebidHost.Custom
+do {
+    try Prebid.shared.setCustomPrebidServer(url: "https://prebid-server.customhost.com")
+} catch {
+    print(error)
+}
+
+// Account Id
+Prebid.shared.prebidServerAccountId = "1234"
+
+// Geolocation
+Prebid.shared.shareGeoLocation = true
+
+// Log level data
+Prebid.shared.logLevel = .verbose
+
+// Set Prebid timeout in milliseconds
+Prebid.shared.timeoutMillis = 3000
+
+// Enable Prebid Server debug respones
+Prebid.shared.pbsDebug = true
+
+// Stored responses  can be one of storedAuction response or storedBidResponse
+Prebid.shared.storedAuctionResponse = "111122223333"
+
+//or
+Prebid.shared.addStoredBidResponse(bidder: "appnexus", responseId: "221144")
+Prebid.shared.addStoredBidResponse(bidder: "rubicon", responseId: "221155")
+```
+
 ## Integrate Ad Units
 
 Follow the coresponding guide to integrate Prebid Mobile:
