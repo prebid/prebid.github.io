@@ -679,24 +679,8 @@
   subgroup: 1
 
 - sbSecId: 2
-  title: SDK Integration
-  link: /prebid-mobile/modules/rendering/android-sdk-integration.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
   title: Targeting
   link: /prebid-mobile/modules/rendering/android-sdk-parameters.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Ad Experience Controls
-  link: /prebid-mobile/modules/rendering/android-sdk-customization-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -903,6 +887,14 @@
 - sbSecId: 2
   title: Targeting Parameters
   link: /prebid-mobile/pbm-api/android/pbm-targeting-params-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+  
+- sbSecId: 2
+  title: Ad Experience Controls
+  link: /prebid-mobile/modules/rendering/android-sdk-customization-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
