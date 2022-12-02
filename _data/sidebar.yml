@@ -660,49 +660,6 @@
   sectionTitle:
   subgroup: 0
 
-- sbSecId: 2
-  title: Rendering API
-  link:
-  isHeader: 1
-  headerId: rendering
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-
-- sbSecId: 2
-  title: "Ad Server"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Rendering Order - GAM
-  link: /prebid-mobile/modules/rendering/rendering-gam-line-item-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Mediation Group - AdMob
-  link: /prebid-mobile/modules/rendering/rendering-admob-line-item-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Custom Network - MAX
-  link: /prebid-mobile/modules/rendering/rendering-max-line-item-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
 # - sbSecId: 2
 #   title: Modules
 #   link:
@@ -764,14 +721,6 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: GAM Rendering Integration
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-gam.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 2
   title: AdMob
   link: /prebid-mobile/modules/rendering/ios-sdk-integration-admob.html
   isHeader: 0
@@ -782,6 +731,14 @@
 - sbSecId: 2
   title: AppLovin MAX
   link: /prebid-mobile/modules/rendering/ios-sdk-integration-max.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 2
+  title: GAM Rendering Integration
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-gam.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1069,6 +1026,57 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
+
+- sbSecId: 3
+  title: 'Setting up Long-Form Video in GAM'
+  link: /adops/setting-up-prebid-ott-video-in-gam.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 3
+  title: "Setting up Order for Mobile Rendering API"
+  link: /prebid-mobile/modules/rendering/rendering-gam-line-item-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 3
+  title: "AdMob"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 3
+  title: "Mediation Group - AdMob"
+  link: /prebid-mobile/modules/rendering/rendering-admob-line-item-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 3
+  title: "AppLovin MAX"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 3
+  title: "Custom Network - MAX"
+  link: /prebid-mobile/modules/rendering/rendering-max-line-item-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
 
 - sbSecId: 3
   title: "Freewheel"
