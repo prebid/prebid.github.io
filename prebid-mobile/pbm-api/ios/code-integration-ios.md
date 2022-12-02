@@ -248,8 +248,9 @@ Prebid.shared.addStoredBidResponse(bidder: "rubicon", responseId: "221155")
 
 Follow the coresponding guide to integrate Prebid Mobile:
 
-- [No Ad Server]()
-- [GAM using Original API]()
-- [GAM using Rendering API]()
-- [AdMob]()
-- [AppLovin MAX]()
+- [GAM using Original API](code-integration-ios.html)
+- [No Ad Server](../../modules/rendering/ios-sdk-integration-pb.html)
+- [GAM using Rendering API](../../modules/rendering/ios-sdk-integration-gam.html)
+- [AdMob](../../modules/rendering/ios-sdk-integration-gam.html)
+- [AppLovin MAX](../../modules/rendering/ios-sdk-integration-max.html)
+

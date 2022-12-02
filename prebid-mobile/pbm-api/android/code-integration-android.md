@@ -130,7 +130,7 @@ For *banner and interstitial ads only*, include the following custom activities 
 
 Custom Activities:
 
-``` xml
+```xml
 <activity
     android:name="org.prebid.mobile.rendering.views.browser.AdBrowserActivity"
     android:configChanges="orientation|screenSize|keyboardHidden"
@@ -146,7 +146,7 @@ Custom Activities:
 
 Add this tag to your `<application>` to use Google Play Services:
 
- ``` xml
+``` xml
 <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />  
 ```
 
@@ -266,10 +266,8 @@ PrebidMobile.setPbsDebug(true)
 
 Follow the coresponding guide to integrate Prebid Mobile:
 
-- [No Ad Server]()
-- [GAM using Original API]()
-- [GAM using Rendering API]()
-- [AdMob]()
-- [AppLovin MAX]()
-
-
+- [GAM using Original API](android-sdk-integration-gam-original-api.html)
+- [No Ad Server](../../modules/rendering/android-sdk-integration-pb.html)
+- [GAM using Rendering API](../../modules/rendering/android-sdk-integration-gam.html)
+- [AdMob](../../modules/rendering/android-sdk-integration-admob)
+- [AppLovin MAX](../../modules/rendering/android-sdk-integration-max.html)

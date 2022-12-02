@@ -155,7 +155,7 @@ Follow these steps to integrate the Prebid SDK:
     * [AdMob](modules/rendering/android-sdk-integration-admob) as a primary ad server.
     * [AppLovin MAX](modules/rendering/android-sdk-integration-max.html) as a primary ad server.
     
-1. Actualize the [integration and targeting](mpbm-api/android/pbm-targeting-params-android.html) properties.  
+1. Actualize the [integration and targeting](pbm-api/android/pbm-targeting-params-android.html) properties.  
 
 ### iOS
 
@@ -173,7 +173,7 @@ Follow these steps to integrate the rendering API:
     * [GAM Rendering API](modules/rendering/ios-sdk-integration-gam.html) as a primary ad server.
     * [AdMob](modules/rendering/ios-sdk-integration-gam.html) as a primary ad server.
     * [AppLovin MAX](modules/rendering/ios-sdk-integration-max.html) as a primary ad server.
-1. Actualize the [integration and targeting](modules/rendering/ios-sdk-parameters.html) properties.
+1. Actualize the [integration and targeting](pbm-api/ios/pbm-targeting-params-ios.html) properties.
 
 ## Additional refences
 
