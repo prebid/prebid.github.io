@@ -687,38 +687,6 @@
   subgroup: 1
 
 - sbSecId: 2
-  title: Custom or No mediation
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Integration with GAM
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-gam.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Integration with AdMob
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-admob.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Integration with AppLovin MAX
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-max.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
   title: Targeting
   link: /prebid-mobile/modules/rendering/ios-sdk-parameters.html
   isHeader: 0
@@ -877,8 +845,40 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: GAM Original API
+  title: GAM Original Integration
   link: /prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 2
+  title: Custom or No mediation
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: GAM Rendering Integration
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-gam.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: AdMob
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-admob.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: AppLovin MAX
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-max.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
