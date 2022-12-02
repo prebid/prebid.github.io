@@ -1,25 +1,19 @@
 ---
 layout: page_v2
-title: Google Ad Manager Integration
+title: GAM with Prebid Rendering
 description: Integration of Prebid Rendering module whith Google Ad Manager  
 sidebarType: 2
 ---
 
-# Google Ad Manager Integration
+# GAM with Prebid Rendering
+{:.no_toc}
 
 The integration of Prebid Rendering API with Google Ad Manager (GAM) assumes that publisher has an account on GAM and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app project.
 
 If you do not have GMA SDK in the app yet, refer the the [Google Integration Documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/quick-start).
 
-{: .alert.alert-warning :}
-**Warning:** GMA SDK is a closed library that sometimes works in an unexpected way. The `GADMobileAds.sharedInstance().start()` should be called in all bundles where it is used. Otherwise, GMA SDK won't load the ads with error: `adView:didFailToReceiveAdWithError: SDK tried to perform a networking task before being initialized.`
-
-To avoid the error add the following line to your app right after initialization of GMA SDK:
-
-```
-GAMUtils.shared.initializeGAM()
-```
-
+* TOC
+{:toc}
  
 ## GAM Integration Overview
 
@@ -35,25 +29,24 @@ GAMUtils.shared.initializeGAM()
 
 **Step 6** The winner is displayed in the App with the respective rendering engine. The winning bid will be renderd by Prebid SDK. An other ad will be rendered by GMA SDK. The GAM Event Handler manages this process.
   
-Prebid Rendering API supports these ad formats:
+## Event Handlers Integration
 
-- Display Banner
-- Video Banner
-- Display Interstitial
-- Video Interstitial 
-- Rewarded Video
+Prebid SDK provides rendering integration into GAM setup via [app events ](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner#app_events) mechanizm. To integrate Prebid Event Handlers into your app, add the following line to your Podfile:
 
-[//]: #  (- Native)
-[//]: #  (- Native Styles)
+```
+pod 'PrebidMobileAdMobAdapters'
+```
 
-They can be integrated using these API categories:
+## Event Handlers Initialization
 
-- [**Banner API**](#banner-api) - for *Display* and *Video* Banner
-- [**Interstitial API**](#interstitial-api) - for *Display* and *Video* Interstitials
-- [**Rewarded API**](#rewarded-api) - for *Rewarded Video*
+{: .alert.alert-warning :}
+**Warning:** GMA SDK is a closed library that sometimes works in an unexpected way. The `GADMobileAds.sharedInstance().start()` should be called in all bundles where it is used. Otherwise, GMA SDK won't load the ads with error: `adView:didFailToReceiveAdWithError: SDK tried to perform a networking task before being initialized.`
 
-[//]: #  (- [**Native API**](android-sdk-integration-gam-native.html) - for *Native Ads*)
+To avoid the error add the following line to your app right after initialization of GMA SDK:
 
+```
+GAMUtils.shared.initializeGAM()
+```
 
 ## Banner API
 
@@ -77,6 +70,7 @@ banner.loadAd()
 ```
 
 #### Step 1: Create Event Handler
+{:.no_toc}
 
 To create the `GAMBannerEventHandler ` you should provide:
 
@@ -85,6 +79,8 @@ To create the `GAMBannerEventHandler ` you should provide:
 
 
 #### Step 2: Create Ad View
+{:.no_toc}
+
 
 `BannerView` - is a view that will display the particular ad. It should be added to the UI. To create it you should provide:
 
@@ -94,6 +90,7 @@ To create the `GAMBannerEventHandler ` you should provide:
 Also, you should add the instance of `BannerView` to the UI.
 
 #### Step 3: Load the Ad
+{:.no_toc}
 
 Call the method `loadAd()` which will:
 
@@ -101,6 +98,7 @@ Call the method `loadAd()` which will:
 - render the winning bid on display.
 
 ### Banner Video
+{:.no_toc}
 
 For **Banner Video** you also need to specify the ad format:
 
@@ -111,6 +109,7 @@ banner.adFormat = .video
 And all the rest code will be the same as for integration of Display Banner.
 
 ### Migration from the original API
+{:.no_toc}
 
 GAM setup:
 
@@ -169,10 +168,12 @@ adUnit?.adFormats = [.display]
 
 
 #### Step 1: Create Event Handler
+{:.no_toc}
 
 To create an event handler you should provide a **GAM Ad Unit**.
 
 #### Step 2: Create Interstitial Ad Unit
+{:.no_toc}
 
 Initialize the `InterstitialRenderingAdUnit` with properties:
 
@@ -184,10 +185,12 @@ Initialize the `InterstitialRenderingAdUnit` with properties:
 
 
 #### Step 3: Load the Ad
+{:.no_toc}
 
 Call the method `loadAd()` which will make a bid request to Prebid Server.
 
 #### Step 4: Show the Ad when it is ready
+{:.no_toc}
 
 Wait for the ad to and show it to the user in any suitable time.
 
@@ -201,6 +204,7 @@ func interstitialDidReceiveAd(_ interstitial: InterstitialAdUnit) {
 ```
 
 ### Migration from the original API
+{:.no_toc}
 
 GAM setup:
 
@@ -260,10 +264,12 @@ if let reward = rewardedAd.reward as? GADAdReward {
 ```
 
 #### Step 1: Create Event Handler
+{:.no_toc}
 
 To create an event handler you should provide a **GAM Ad Unit ID**.
 
 #### Step 2: Create Rewarded Ad Unit
+{:.no_toc}
 
 Create the `RewardedAdUnit` object with parameters:
 
@@ -271,10 +277,12 @@ Create the `RewardedAdUnit` object with parameters:
 - `eventHandler` - the instance of rewarded event handler
 
 #### Step 3: Load the Ad
+{:.no_toc}
 
 Call the `loadAd()` method which will make a bid request to Prebid server.
 
 #### Step 4: Show the Ad when it is ready
+{:.no_toc}
 
 Wait for the ad to load and show it to the user in any suitable time.
 
@@ -288,6 +296,7 @@ func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
 ```
 
 ### Migration from the original API
+{:.no_toc}
 
 GAM setup:
 
@@ -302,4 +311,3 @@ Integration:
 3. Remove usage of `GAMRequest`.
 4. Remove original `RewardedVideoAdUnit`.
 5. Follow the instructions to integrate [Rewarded API](#rewarded-api).  
-ß

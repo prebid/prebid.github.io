@@ -166,7 +166,7 @@ Follow these steps to integrate the rendering API:
     * [GAM](modules/rendering/rendering-gam-line-item-setup.html)
     * [AdMob](modules/rendering/rendering-admob-line-item-setup.html)
     * [MAX](modules/rendering/rendering-max-line-item-setup.html)
-1. [Integrate Prebid SDK](modules/rendering/ios-sdk-integration.html).
+1. [Integrate Prebid SDK](pbm-api/ios/code-integration-ios.html).
 1.  Add prebid's ad units to your app respectively to the monetization scenario: 
     * [GAM Original API](pbm-api/ios/code-integration-ios.html)
     * [Custom in-app bidding](modules/rendering/ios-sdk-integration-pb.html) integration without a primary ad server.
