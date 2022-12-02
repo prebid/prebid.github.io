@@ -934,14 +934,6 @@
   subgroup: 3
 
 - sbSecId: 2
-  title: Prebid Mobile Object
-  link: /prebid-mobile/pbm-api/android/prebidmobile-object-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
   title: Prebid Utility Functions
   link: /prebid-mobile/pbm-api/android/pbm-util-android.html
   isHeader: 0

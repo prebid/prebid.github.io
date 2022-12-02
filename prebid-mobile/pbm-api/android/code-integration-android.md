@@ -107,7 +107,6 @@ Targeting parameters enable you to define the target audience for the bid reques
 
 View the full list of [targeting parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html).
 
-
 ## Supported Android versions
 
 Prebid supports the following versions by release:
@@ -115,6 +114,104 @@ Prebid supports the following versions by release:
 * Prebid SDK version 1.0 or 1.1 supports Android 16+
 * Prebid SDK version 1.1.1+ supports Android 19+
 * Prebid SDK version 2.0.0+ supporst Android 16+
+
+## Setup SDK
+
+Apply global settings with the `PrebidMobile` object.
+
+
+### AccountId
+{:.no_toc}
+
+String containing the Prebid Server account ID.
+
+```kotlin
+PrebidMobile.setPrebidServerAccountId("123321")
+var pbsAccountId = PrebidMobile.getPrebidServerAccountId()
+```
+
+### Host
+{:.no_toc}
+
+Object containing configuration your Prebid Server host with which Prebid SDK will communicate. Choose from the system-defined Prebid Server hosts or define your own custom Prebid Server host.
+
+```kotlin
+PrebidMobile.setPrebidServerHost(Host.RUBICON);
+
+//or set a custom host
+Host.CUSTOM.setHostUrl("https://prebid-server.bidder.com/");
+PrebidMobile.setPrebidServerHost(Host.CUSTOM);
+```
+
+### Timeout
+{:.no_toc}
+
+The Prebid timeout (accessible to Prebid SDK 1.2+), set in milliseconds, will return control to the ad server SDK to fetch an ad once the expiration period is achieved. Because Prebid SDK solicits bids from Prebid Server in one payload, setting Prebid timeout too low can stymie all demand resulting in a potential negative revenue impact.
+
+```kotlin
+PrebidMobile.setTimeoutMillis(3000)
+
+var timeout = PrebidMobile.getTimeoutMillis()
+```
+
+
+### ShareGeoLocation
+{:.no_toc}
+
+If this flag is True AND the app collects the user's geographical location data, Prebid Mobile will send the user's geographical location data to Prebid Server. If this flag is False OR the app does not collect the user's geographical location data, Prebid Mobile will not populate any user geographical location information in the call to Prebid Server.
+
+```kotlin
+PrebidMobile.setShareGeoLocation(true)
+
+var isShareLocation = PrebidMobile.isShareGeoLocation()
+```
+
+### CustomHeaders
+{:.no_toc}
+
+The following methods enable the customization of the HTTP call to the Prebid server:
+
+```kotlin
+var headers = HashMap<String, String> ()
+headers.put("custom-header-1", "prebid-in-action")
+
+PrebidMobile.setCustomHeaders(headers)
+        
+headers = PrebidMobile.getCustomHeaders()
+```
+
+### Auction Response
+{:.no_toc}
+
+`storedAuctionResponse`: Set as type string, stored auction responses signal Prebid Server to respond with a static response matching the storedAuctionResponse found in the Prebid Server Database, useful for debugging and integration testing. No bid requests will be sent to any bidders when a matching storedAuctionResponse is found. For more information on how stored auction responses work, refer to the written [description on github issue 133](https://github.com/prebid/prebid-mobile-android/issues/133).
+
+```kotlin
+PrebidMobile.setStoredAuctionResponse("response-prebid-banner-320-50")
+```
+
+### StoredBidResponses
+{:.no_toc}
+
+Stored Bid Responses are similar to Stored Auction Responses in that they signal to Prebid Server to respond with a static pre-defined response, except Stored Bid Responses is done at the bidder level, with bid requests sent out for any bidders not specified in the bidder parameter. For more information on how stored auction responses work, refer to the written [description on github issue 133](https://github.com/prebid/prebid-mobile-android/issues/133).
+
+```kotlin
+PrebidMobile.addStoredBidResponse("appnexus", "221144");
+PrebidMobile.addStoredBidResponse("rubicon", "221155");
+```
+To stop sending stored bid response signals use the following method:
+
+```kotlin
+void clearStoredBidResponses()
+```
+
+### Debug
+{:.no_toc}
+
+`pbsDebug`: adds the debug flag ("test":1) on the outbound http call to Prebid Server. The test:1 flag will signal to Prebid Server to emit the full resolved request (resolving any Stored Request IDs) as well as the full Bid Request and Bid Response to and from each bidder.
+
+```kotlin
+PrebidMobile.setPbsDebug(true)
+```
 
 ## Integrate Ad Units
 
