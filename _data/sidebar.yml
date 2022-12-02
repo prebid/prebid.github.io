@@ -670,31 +670,6 @@
   subgroup: 1
 
 - sbSecId: 2
-  title: "iOS"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Targeting
-  link: /prebid-mobile/modules/rendering/ios-sdk-parameters.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Ad Experience Controls
-  link: /prebid-mobile/modules/rendering/ios-sdk-customization-controls.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
   title: "Android"
   link:
   isHeader: 0
