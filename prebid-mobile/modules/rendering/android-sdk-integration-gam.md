@@ -8,14 +8,15 @@ sidebarType: 2
 ---
 
 # Google Ad Manager Integration
+{:.no_toc}
 
 The integration of Prebid Rendering API with Google Ad Manager (GAM) assumes that publisher has an account on GAM and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app project. 
 
 
 If you do not have GAM SDK in the app yet, refer the the [Google Integration Documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start).
 
-Prebid Rendering API was tested with **GAM SDK 20.4.0**. 
-
+* TOC
+{:toc}
 
 ## GAM Integration Overview
 
@@ -31,41 +32,10 @@ Prebid Rendering API was tested with **GAM SDK 20.4.0**.
 
 **Step 6** The winner is displayed in the app with the respective rendering engine.
   
-Prebid Rendering API supports these ad formats:
 
-- Display Banner
-- Video Banner
-- Display Interstitial
-- Video Interstitial 
-- Rewarded Video
+## Integrate Event Handlers
 
-[//]: # (- Native)
-[//]: # (- Native Styles)
-
-They can be integrated using these API categories.
-
-- [**Banner API**](#banner-api) - for *Display Banner* and *Outstream Video*
-- [**Interstitial API**](#interstitial-api) - for *Display* and *Video* Interstitials
-- [**Rewarded API**](#rewarded-api) - for *Rewarded Video*
-
-[//]: # (- [**Native API**](android-sdk-integration-gam-native.html) - for *Native Ads*)
-
-
-## Init Prebid Rendering Module
-
-To start running bid requests you have to set the Prebid Server **Host** and **Account Id** and then initilize the SDK with application context. The best place for this is the `onCreate()` method of your Application class.
-
-```
-PrebidMobile.setBidServerHost(HOST)
-PrebidMobile.setAccountId(YOUR_ACCOUNT_ID)
-
-// Init SDK
-PrebidMobile.setApplicationContext(this)
-```
-
-> **NOTE:** The account ID is an identifier of the **Stored Request**.
-
-### Event Handlers
+Prebid SDK provides rendering integration into GAM setup via [app events ](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner#app_events) mechanizm. To integrate Prebid Event Handlers into your app, add the following line to your Podfile:
 
 GAM Event Handlers is a set of classes that wrap the GAM Ad Units and manage them respectively to the In-App Bidding flow. These classes are provided in the form of library that could be added to the app via Gradle:
 
@@ -86,7 +56,6 @@ App module build.gradle:
 ```
 implementation('org.prebid:prebid-mobile-sdk-gam-event-handlers:x.x.x')
 ```
-
 
 ## Banner API
 
@@ -110,6 +79,7 @@ bannerView?.loadAd()
 ```
 
 #### Step 1: Create Event Handler
+{:.no_toc}
 
 GAM's event handlers are special containers that wrap GAM Ad Views and help to manage collaboration between GAM and Prebid views.
 
@@ -118,6 +88,7 @@ GAM's event handlers are special containers that wrap GAM Ad Views and help to m
 To create the event handler you should provide a GAM Ad Unit Id and the list of available sizes for this ad unit.
 
 #### Step 2: Create Ad View
+{:.no_toc}
 
 **BannerView** - is a view that will display the particular ad. It should be added to the UI. To create it you should provide:
 
@@ -129,10 +100,12 @@ Also, you should add the instance of `BannerView` to the UI.
 And assign the listeners for processing ad events.
 
 #### Step 3: Load the Ad
+{:.no_toc}
 
 Simply call the `loadAd()` method to start In-App Bidding flow. The In-App Bidding SDK starts the  bidding process right away.
 
 ### Outstream Video
+{:.no_toc}
 
 For **Outstream Video** you also need to specify video placement type of the expected ad:
 
@@ -141,6 +114,7 @@ bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other availabl
 ```
 
 ### Migration from the original API
+{:.no_toc}
 
 GAM setup:
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
@@ -191,6 +165,7 @@ interstitialAdUnit = InterstitialAdUnit(
 
 
 #### Step 1: Create Event Handler
+{:.no_toc}
 
 GAM's event handlers are special containers that wrap the GAM Ad Views and help to manage collaboration between GAM and Prebid views.
 
@@ -199,6 +174,7 @@ GAM's event handlers are special containers that wrap the GAM Ad Views and help 
 To create an event handler you should provide a GAM Ad Unit.
 
 #### Step 2: Create Interstitial Ad Unit
+{:.no_toc}
 
 **InterstitialAdUnit** - is an object that will load and display the particular ad. To create it you should provide:
 
@@ -210,14 +186,14 @@ Also, you can assign the listeners for processing ad events.
 
 > **NOTE:** minSizePercentage - plays an important role in a bidding process for display ads. If provided space is not enough demand partners won't respond with the bids.
 
-
 #### Step 3: Load the Ad
+{:.no_toc}
 
 Simply call the `loadAd()` method to start In-App Bidding flow. The ad unit will load an ad and will wait for explicit instructions to display the Interstitial Ad.
 
 
 #### Step 4: Show the Ad when it is ready
-
+{:.no_toc}
 
 The most convenient way to determine if the interstitial ad is ready for displaying is to listen to the particular listener method:
 
@@ -228,6 +204,7 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 ```
 
 ### Migration from the original API
+{:.no_toc}
 
 GAM setup:
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
@@ -282,6 +259,7 @@ val reward = rewardedAdUnit.getUserReward()
 ```
 
 #### Step 1: Create Event Handler
+{:.no_toc}
 
 GAM's event handlers are special containers that wrap the GAM Ad Views and help to manage collaboration between GAM and Prebid views.
 
@@ -289,8 +267,8 @@ GAM's event handlers are special containers that wrap the GAM Ad Views and help 
 
 To create an event handler you should provide a GAM Ad Unit.
 
-
 #### Step 2: Create Rewarded Ad Unit
+{:.no_toc}
 
 **RewardedAdUnit** - is an object that will load and display the particular ad. To create it you should provide
 
@@ -301,12 +279,13 @@ Also, you can assign the listener for processing ad events.
 
 
 #### Step 3: Load the Ad
+{:.no_toc}
 
 Simply call the `loadAd()` method to start an In-App Bidding flow. The ad unit will load an ad and will wait for explicit instructions to display the Rewarded Ad.
 
 
 #### Step 4: Show the Ad when it is ready
-
+{:.no_toc}
 
 The most convenient way to determine if the ad is ready for displaying is to listen for particular listener method:
 
@@ -317,6 +296,7 @@ override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 ```
 
 ### Migration from the original API
+{:.no_toc}
 
 GAM setup:
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.

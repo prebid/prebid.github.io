@@ -29,7 +29,7 @@ If you do not have GMA SDK in the app yet, refer the the [Google Integration Doc
 
 **Step 6** The winner is displayed in the App with the respective rendering engine. The winning bid will be renderd by Prebid SDK. An other ad will be rendered by GMA SDK. The GAM Event Handler manages this process.
   
-## Event Handlers Integration
+## Integrate Event Handlers
 
 Prebid SDK provides rendering integration into GAM setup via [app events ](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner#app_events) mechanizm. To integrate Prebid Event Handlers into your app, add the following line to your Podfile:
 

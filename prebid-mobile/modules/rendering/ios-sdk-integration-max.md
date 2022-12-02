@@ -27,7 +27,7 @@ See the [AppLovin MAX Documentation](https://dash.applovin.com/documentation/med
 
 **Step 5** The adapter verifies the targeting keywords of the winning bid and the custom properties of the given placement. If they match the adapter will render the winning bid. Otherwise, adpater will fail with "no ad" immediately and the next placement will instantiate the same adapter but for another custom properties. 
 
-## Adapters Integration
+## Integrate Prebid Adapters
 
 Prebid SDK is integrated into AppLovin MAX setup via custom adapters. To integrate Prebid Adapters into your app, add the following line to your Podfile:
 
