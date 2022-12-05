@@ -26,6 +26,6 @@ aliasCode: limelightDigital
 | Name           | Scope      | Description                                                    | Example            |type|
 | :-----------   | :--------- | :------------                                                  | :----------------- |:---|
 | `host` | required | Ad network's RTB host | `'iionads.com'` | `string` |
-| `adUnitId` | required   | Ad Unit Id will be generated on Limelight Digital Platform. | 0                        | `integer` |
+| `adUnitId` | required   | Ad Unit Id will be generated on iionads Platform. | 0                        | `integer` |
 | `adUnitType`      | required   | Type of Ad Unit (`'video'`, `'banner'`)                                             | `'banner'`                 | `string` |
 | `publisherId` | optional | Publisher ID | `'12345'` | `string` |
