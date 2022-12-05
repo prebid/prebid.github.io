@@ -551,7 +551,8 @@ Prepare the in-stream setup according to the [Google's docs](https://developers.
 #### Step 4: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the prebid server. You should provide a `GAMRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
+The `fetchDemand` method makes a bid request to the prebid server. You should use the version of the `fetchDemand` which returns the targeting keywords in the callback. Later you will construct the IMA ad request using these keywords. 
+
 
 #### Step 5: Generate GAM Instream URI
 {:.no_toc}
@@ -561,7 +562,7 @@ Using Prebid util method generate Google IMA URI for downloading the cached crea
 #### Step 6: Load IMA ad request
 {:.no_toc}
 
-Create ad display container for ad rendering. Than create an ad request with our ad tag, display container, and optional user context. And load load the ad. Foolow the [in-stream video guide](https://developers.google.com/interactive-media-ads/docs/sdks/ios/client-side#6_initialize_the_ads_loader_and_make_an_ads_request) for additional details.  
+Create an ad display container for ad rendering. Then create an ad request with our ad tag, display container, and optional user context. And load the ad. Follow the [in-stream video guide](https://developers.google.com/interactive-media-ads/docs/sdks/ios/client-side#6_initialize_the_ads_loader_and_make_an_ads_request) for additional details.  
 
 
 #### Step 7: Set up an ads loader delegate
