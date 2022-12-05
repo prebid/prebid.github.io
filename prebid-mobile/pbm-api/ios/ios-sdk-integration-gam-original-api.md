@@ -579,7 +579,7 @@ Lastly, to manage events and state changes, the ads manager needs a delegate of 
 
 Integration example:
 
-Prepare the set of requested asstes first
+Prepare the set of requested assets first
 
 ```swift
 private var nativeRequestAssets: [NativeAsset] {
@@ -694,7 +694,7 @@ The cached assets might expire. If this occurs the publisher will receive a noti
 ### Ad Ops Setup
 {:.no_toc}
 
-These instructions will enable you to create a creative template in either Google Ad Manager or MoPub that can then be applied to native ads in your app.
+These instructions will enable you to create a creative template in either Google Ad Manager that can then be applied to native ads in your app.
 
 1. Sign in to Google Ad Manager.
 2. Create an ad unit with fluid ad size.
@@ -705,7 +705,7 @@ These instructions will enable you to create a creative template in either Googl
 7. Choose `ADD VARIABLE` and add the following variable names and placeholders.  
 
   {: .table .table-bordered .table-striped }  
-  | Variable Name       | Place Holder                     |
+  | Variable Name       | Placeholder                     |
   |---------------------+----------------------------------|
   | isPrebid            | [%isPrebid%]                     |
   | hb_cache_id_local   | [%hb_cache_id_local%]            |
@@ -725,7 +725,7 @@ These instructions will enable you to create a creative template in either Googl
 ### Integration Example
 {:.no_toc}
 
-Prepare the set of requested asstes first
+Prepare the set of requested assets first
 
 ```swift
 private var nativeRequestAssets: [NativeAsset] {
@@ -744,7 +744,7 @@ private var nativeRequestAssets: [NativeAsset] {
 }
 ```
 
-Then integrate the native style ad using GAM Banner ad unit 
+Then integrate the native style ad using GADAdLoader 
 
 ```swift
 // 1. Setup NativeRequest
@@ -855,7 +855,7 @@ Utils.shared.delegate = self
 Utils.shared.findNative(adObject: customNativeAd)
 ```
 
-Without it the SDK won't be able to recoginze the Prebid Line Item.
+Without it the SDK won't be able to recognize the Prebid Line Item.
 
 #### Step 5: Implement NativeAdDelegate
 {:.no_toc}
@@ -931,7 +931,7 @@ func clearContextKeywords()
 
 ### App Content
 
-The `ContentObject` alows you to provide more details about content whithin the app. All proeprties provided to the `ContentObject` will be sent in the `app.content` field of the bid request.
+The `ContentObject` allows you to provide more details about content within the app. All properties provided to the `ContentObject` will be sent in the `app.content` field of the bid request.
 
 ```
 func setAppContent(_ appContent: ContentObject) 
@@ -1022,8 +1022,3 @@ func removeContextData(forKey: String)
 ```
 func clearContextData()
 ```
-
-
-
-
-

@@ -720,7 +720,7 @@ private fun createAd() {
 }
 ```
 
-Add native asstest:
+Add native assets:
 
 ```kotlin
 private fun addNativeAssets(adUnit: NativeAdUnit?)  {
@@ -1002,7 +1002,7 @@ You should use following Prebid function to determine whether Prebid's line item
  AdViewUtils.findNative(...)
 ```
 
-Without it the SDK won't be able to recoginze the Prebid Line Item.
+Without it the SDK won't be able to recognize the Prebid Line Item.
 
 #### Step 6: Inflate the native layout
 {:.no_toc}

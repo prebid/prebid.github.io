@@ -79,7 +79,7 @@ Targeting.shared.purposeConsents = "100000000000000000000000"
 
 ```
 
-## Targeting proeprties
+## Targeting properties
 
 {: .table .table-bordered .table-striped }
 
