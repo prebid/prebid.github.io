@@ -18,7 +18,7 @@ This page will store any utilities that can used in conjuntion with the Prebid S
 ## Find Prebid Creative Size
 Prebid SDK provides a function `findPrebidCreativeSize` to address a bug in the Google Ad Manager ad server (described [here](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!category-topic/google-admob-ads-sdk/ios/648jzAP2EQY)) where under certain situations ads fail to render. 
 
-It is recommended all Google Ad Manager integrations resize all ads served based on the winning Prebid creative size `findPrebidCreativeSize`. Functionally speaking the Prebid SDK resizes ad slots based on the [onAdLoaded](https://developers.google.com/android/reference/com/google/android/gms/ads/AdListener.html#onAdLoaded()) (when an ad is recieved) to determine the winning Prehbid ad size to determine how to resize the ad slot.
+It is recommended all Google Ad Manager integrations resize all ads served based on the winning Prebid creative size `findPrebidCreativeSize`. Functionally speaking the Prebid SDK resizes ad slots based on the [onAdLoaded](https://developers.google.com/android/reference/com/google/android/gms/ads/AdListener.html#onAdLoaded()) (when an ad is received) to determine the winning Prehbid ad size to determine how to resize the ad slot.
 
 
 {% include alerts/alert_note.html content="`findPrebidCreativeSize` is supported on Android API versions 19+. Using on earlier versions is safe to use, however the resizing would not function." %}

@@ -95,7 +95,7 @@ PrebidMobile.initializeSdk(applicationContext, object : SdkInitializationListene
 })
 ```
 
-If you integrate Prebid Mobile with GMA SDK, use the following method, wich checks the compatibility of Prebid SDK with GMA SDK used in the app: 
+If you integrate Prebid Mobile with GMA SDK, use the following method, which checks the compatibility of Prebid SDK with GMA SDK used in the app: 
 
 ```kotlin
 PrebidMobile.checkGoogleMobileAdsCompatibility(MobileAds.getVersion().toString())
@@ -264,7 +264,7 @@ PrebidMobile.setPbsDebug(true)
 
 ## Integrate Ad Units
 
-Follow the coresponding guide to integrate Prebid Mobile:
+Follow the corresponding guide to integrate Prebid Mobile:
 
 - [GAM using Original API](android-sdk-integration-gam-original-api.html)
 - [No Ad Server](../../modules/rendering/android-sdk-integration-pb.html)

@@ -101,7 +101,7 @@ This step is totally the same as for the original [AdMob integration](https://de
 #### Step 2: Create AdMobMediationBannerUtils
 {:.no_toc}
 
-The `AdMobBannerMediationUtils` is a helper class, wich performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `AdMobBannerMediationUtils` is a helper class, which performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 {:.no_toc}
@@ -169,7 +169,7 @@ This step is totally the same as for original [AdMob integration](https://develo
 #### Step 2: Create AdMobInterstitialMediationUtils
 {:.no_toc}
 
-The `AdMobInterstitialMediationUtils` is a helper class, wich performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
+The `AdMobInterstitialMediationUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
 
 #### Step 3: Create MediationInterstitialAdUnit
 {:.no_toc}
@@ -255,7 +255,7 @@ This step is totally the same as for the original [AdMob integration](https://de
 #### Step 2: Create AdMobRewardedMediationUtils
 {:.no_toc}
 
-The `AdMobRewardedMediationUtils ` is a helper class, wich performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
+The `AdMobRewardedMediationUtils ` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
 
 #### Step 3: Create MediationRewardedVideoAdUnit
 {:.no_toc}

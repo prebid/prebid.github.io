@@ -170,7 +170,7 @@ In the context of a VideoInterstitialAdUnit, rewarded video ads are typically la
 * `2` or `InBanner` : In-Banner placement exists within a web banner that leverages the banner space to deliver a video experience as opposed to another static or rich media format. The format relies on the existence of display ad inventory on the page for its delivery.
 * `3` or `InArticle` : In-Article placement loads and plays dynamically between paragraphs of editorial content; existing as a standalone branded message.
 * `4` or `InFeed` : In-Feed placement is found in content, social, or product feeds.
-* `5` or `Slider`, `Floating` or `Interstitial` : Open RTB supports one of three values for option 5 as eitehr Slider, Floating or Interstitial. If an enum value is supplied in placement, bidders will recieve value 5 for placement type and assume to be interstitial with the instl flag set to 1.
+* `5` or `Slider`, `Floating` or `Interstitial` : Open RTB supports one of three values for option 5 as either Slider, Floating or Interstitial. If an enum value is supplied in placement, bidders will receive value 5 for placement type and assume to be interstitial with the instl flag set to 1.
 
 
 #### api
@@ -292,7 +292,7 @@ Initialize the InterstitialAdUnit with properties:
 - `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
 - `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
 
-> **NOTE:** As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process to monetize sizes smaller than full screen ads. App developers can speicify a minimun width and minimum height percentage an ad can occupy of a devices real state, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction.
+> **NOTE:** As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process to monetize sizes smaller than full screen ads. App developers can specify a minimum width and minimum height percentage an ad can occupy of a devices real state, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction.
 
 > PBS will take the AdUnit's size (width and height) as the max size for the interstitial as size, generating a list of ad sizes, selecting the first 10 sizes that fall within the imp's max size and minimum percentage size. All the interstitial parameters will still be passed to the bidders, allowing them to use their own size matching algorithms if they prefer.
 
@@ -384,7 +384,7 @@ Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-s
 Integration example:
 
 ``` swift
-// 1. Create an RewardedVideoAdUnit
+// 1. Create a RewardedVideoAdUnit
 adUnit = RewardedVideoAdUnit(configId: storedImpVideoRewarded)
 
 // 2. Configure video parameters
@@ -441,7 +441,7 @@ Be sure that you make the ad request with the same `GAMRequest` object that you 
 #### Step 5: Present the Rewarded Ad
 {:.no_toc}
 
-Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/rewarded#show_the_ad) to display an rewarded ad right after receiving it or later in natural pauses in the flow of an app.
+Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/rewarded#show_the_ad) to display a rewarded ad right after receiving it or later in natural pauses in the flow of an app.
 
 ## Video Instream
 
@@ -557,7 +557,7 @@ The `fetchDemand` method makes a bid request to the prebid server. You should us
 #### Step 5: Generate GAM Instream URI
 {:.no_toc}
 
-Using Prebid util method generate Google IMA URI for downloading the cached creative from the winning bid.
+Using Prebid util method, generate Google IMA URI for downloading the cached creative from the winning bid.
 
 #### Step 6: Load IMA ad request
 {:.no_toc}
@@ -579,7 +579,7 @@ Lastly, to manage events and state changes, the ads manager needs a delegate of 
 
 Integration example:
 
-Prepare the set of requested assets first
+Prepare the set of requested assets first.
 
 ```swift
 private var nativeRequestAssets: [NativeAsset] {
@@ -725,7 +725,7 @@ These instructions will enable you to create a creative template in either Googl
 ### Integration Example
 {:.no_toc}
 
-Prepare the set of requested assets first
+Prepare the set of requested assets first.
 
 ```swift
 private var nativeRequestAssets: [NativeAsset] {

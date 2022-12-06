@@ -87,7 +87,7 @@ This step is totally the same as for original [MAX integration](https://dash.app
 #### Step 2: Create MaxMediationBannerUtils
 {:.no_toc}
 
-The `MaxMediationBannerUtils` is a helper class, wich performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MaxMediationBannerUtils` is a helper class, which performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 {:.no_toc}
@@ -153,7 +153,7 @@ This step is totally the same as for original [MAX integration](https://dash.app
 #### Step 2: Create MaxMediationInterstitialUtils
 {:.no_toc}
 
-The `MaxMediationInterstitialUtils` is a helper class, wich performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MaxMediationInterstitialUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationInterstitialAdUnit
 {:.no_toc}
@@ -214,7 +214,7 @@ This step is totally the same as for original [MAX integration](https://dash.app
 #### Step 2: Create MaxMediationRewardedUtils
 {:.no_toc}
 
-The `MaxMediationRewardedUtils` is a helper class, wich performs certain utilty work for the `MediationRewardedVideoAdUnit`, like passing the targeting keywords to the adapters.
+The `MaxMediationRewardedUtils` is a helper class, which performs certain utilty work for the `MediationRewardedVideoAdUnit`, like passing the targeting keywords to the adapters.
 
 #### Step 3: Create MediationRewardedVideoAdUnit
 {:.no_toc}
@@ -234,7 +234,7 @@ Now you should make a regular MAX's ad request. Everything else will be handled 
 #### Steps 6: Display an ad
 {:.no_toc}
 
-Once the rewarded ad is recieved you can display it. Folow the [MAX instructions](https://dash.applovin.com/documentation/mediation/android/getting-started/rewarded-ads#showing-a-rewarded-ad) for the details. 
+Once the rewarded ad is received you can display it. Folow the [MAX instructions](https://dash.applovin.com/documentation/mediation/android/getting-started/rewarded-ads#showing-a-rewarded-ad) for the details. 
 
 ## Native Ads
 

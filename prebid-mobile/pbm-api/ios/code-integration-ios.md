@@ -20,7 +20,7 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 
 ### Cocoapods
 
-If you are not familiar with using Cocoapods for dependency management visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `Podfile` setup, include the following:
+If you are not familiar with using Cocoapods for dependency management, visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `Podfile` setup, include the following:
 
 ```
 target 'MyAmazingApp' do
@@ -42,16 +42,16 @@ If you are not familiar with the Carthage package builder, please refer to the p
 ### XCFramework
 
 1. Clone the project and run script `scripts/buildPrebidMobile.sh`
-2. Drag `PrebidMobile.xcframework` from `generated/output` directory into your project. Make sure Copy items if needed is selected.
+2. Drag `PrebidMobile.xcframework` from `generated/output` directory into your project. Make sure "Copy items if needed" is selected.
 3. Go to your Xcode project’s `General -> Frameworks, Libraries, and Embedded Content` settings. Use `Embed & Sign` for dynamic and `Do Not Embed` for static linking
 
 ### Swift PM
 
 SPM isn't supported for Prebid SDK `2.0.0` and higher ([details](https://github.com/prebid/prebid-mobile-ios/issues/640)). 
 
-The next guide is applicable for `1.x` versions of the SDK. 
+The next guide is applicable to `1.x` versions of the SDK. 
 
-If you are not familiar with the Swift Package Manager, please refere to the project [github page](https://github.com/apple/swift-package-manager) for more details.
+If you are not familiar with the Swift Package Manager, please refer to the project [github page](https://github.com/apple/swift-package-manager) for more details.
 
 1. Add Prebid dependency `File -> Swift Packages -> Add Package Dependency...` 
 2. Select desired version, branch or commit
@@ -97,7 +97,7 @@ Prebid.shared.prebidServerAccountId = "YOUR_ACCOUNT_ID"
 Prebid.shared.prebidServerHost = .Appnexus
 ```
 
-If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app.
+If you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app.
 
 ```
 try! Prebid.shared.setCustomPrebidServer(url: "https://prebid-server-test-j.prebid.org/openrtb2/auction")
@@ -118,7 +118,7 @@ Prebid.initializeSDK { status, error in
 }
 ```
 
-If you integrate Prebid Mobile with GMA SDK, use the following initializer, wich checks the compatibility of Prebid SDK with GMA SDK used in the app: 
+If you integrate Prebid Mobile with GMA SDK, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app: 
 
 
 ```
@@ -152,7 +152,7 @@ The `Prebid` class is a singleton that enables the user to apply global settings
 
 `shareGeoLocation`: Optional Bool, if this flag is True AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s geographical location data to Prebid Server. If this flag is False OR the app does not collect the user’s geographical location data, Prebid Mobile will not populate any user geographical location information in the call to Prebid Server. The default setting is false.
 
-`logLevel`: Optional level of loging to output in the console. Options are one of following sorted by verbosity of the log:
+`logLevel`: Optional level of logging to output in the console. Options are one of the following sorted by a verbosity of the log:
 
 ``` swift
 public static let debug = LogLevel(stringValue: "[💬]", rawValue: 0)
@@ -196,7 +196,7 @@ func clearStoredBidResponses()
 #### Custom headers
 {:.no_toc}
 
-The following methods enables the customization of the HTTP call to the prebid server:
+The following methods enable the customization of the HTTP call to the prebid server:
 
 ```
 func addCustomHeader(name: String, value: String) 
@@ -246,7 +246,7 @@ Prebid.shared.addStoredBidResponse(bidder: "rubicon", responseId: "221155")
 
 ## Integrate Ad Units
 
-Follow the coresponding guide to integrate Prebid Mobile:
+Follow the corresponding guide to integrate Prebid Mobile:
 
 - [GAM using Original API](code-integration-ios.html)
 - [No Ad Server](../../modules/rendering/ios-sdk-integration-pb.html)
