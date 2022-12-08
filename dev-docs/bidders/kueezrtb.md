@@ -10,7 +10,7 @@ usp_supported: true
 coppa_supported: false
 schain_supported: true
 floors_supported: true
-media_types: banner
+media_types: banner, video
 prebid_member: false
 safeframes_ok: false
 deals_supported: false
