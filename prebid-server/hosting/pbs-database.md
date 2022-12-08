@@ -105,14 +105,14 @@ The Stored Response query needs to return fields in this order:
 
 One parameter can be passed into the query:
 
-- %RESPONSE_ID_LIST% : a comma-separated list of stored response IDs
+- %ID_LIST% : a comma-separated list of stored response IDs
 
 This query is defined in settings.database.stored-requests-query. Example:
 ```
 settings:
   database:
     type: mysql
-    stored-responses-query: SELECT resid, responseData FROM stored_responses WHERE resid IN (%RESPONSE_ID_LIST%)
+    stored-responses-query: SELECT resid, responseData FROM stored_responses WHERE resid IN (%ID_LIST%)
 ```
  
 This example assumes that the stored_responses schema includes these fields:
