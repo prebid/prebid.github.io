@@ -15,5 +15,5 @@ pbs: true
 pbs_app_supported: true
 ---
 
-# Description
+## Description
 Quantumdex is an aliased bidder of Apacdex bid adapter. Please refer to [Apacdex documentation](https://docs.prebid.org/dev-docs/bidders/apacdex) for bid parameters and implementation guide.

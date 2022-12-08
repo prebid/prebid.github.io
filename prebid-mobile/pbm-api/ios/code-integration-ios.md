@@ -123,6 +123,23 @@ If you have opted to host your own Prebid Server solution you will need to store
 Prebid.shared.setCustomPrebidServer(url:URL_STRING_TO_SERVER)
 ```
 
+### Initialize Prebid SDK
+
+To start Prebid SDK use the following method: 
+
+```
+Prebid.initializeSDK()
+```
+
+If you integrate Prebid Mobile with GMA SDK, use the following initializer, wich checks the compatibility of Prebid SDK with GMA SDK used in the app: 
+
+
+```
+Prebid.initializeSDK(GADMobileAds.sharedInstance())
+```
+
+Check the log messages of the app. If the provided GMA SDK version is not verified for compatibility, the Prebid SDK informs about it.
+
 
 ### Integrate Ad Servers With Your App
 

@@ -25,7 +25,7 @@ The Rise adapter requires setup and approval. Please reach out to prebid-rise-en
 {: .table .table-bordered .table-striped }
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
-| `org` | required | String |  Rise publisher Id provided by your Rise representative  | "56f91cd4d3e3660002000033"
+| `org` | required | String |  Rise publisher Id provided by your Rise representative  | "1234567890abcdef12345678"
 | `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
@@ -46,7 +46,7 @@ var adUnits = [{
         bids: [{
             bidder: 'rise',
             params: {
-                org: '56f91cd4d3e3660002000033', // Required
+                org: '1234567890abcdef12345678', // Required
                 floorPrice: 0.05, // Optional
                 placementId: '12345678', // Optional
                 testMode: false // Optional,
@@ -70,7 +70,7 @@ var adUnits = [{
         bids: [{
             bidder: 'rise',
             params: {
-                org: '56f91cd4d3e3660002000033', // Required
+                org: '1234567890abcdef12345678', // Required
                 floorPrice: 5.00, // Optional
                 placementId: '12345678', // Optional
                 testMode: false // Optional,

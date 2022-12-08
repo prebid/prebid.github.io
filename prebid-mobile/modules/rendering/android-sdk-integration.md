@@ -28,7 +28,7 @@ allprojects {
 
 dependencies {
     ...
-    implementation('org.prebid:prebid-mobile-sdk:2.0.0')
+    implementation('org.prebid:prebid-mobile-sdk:2.0.4')
     ...
 }
 ```
