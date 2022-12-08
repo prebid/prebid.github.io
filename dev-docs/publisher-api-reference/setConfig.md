@@ -477,16 +477,22 @@ See the [Prebid Server module](/dev-docs/modules/prebidServer.html).
 #### Mobile App Post-Bid
 
 To support [post-bid](/overview/what-is-post-bid.html) scenarios on mobile apps, the
-prebidServerBidAdapter module recognizes the `app` config object to
+prebidServerBidAdapter module will accept `ortb2.app` config to
 forward details through the server:
 
 {% highlight js %}
 pbjs.setConfig({
-   app: {
+  ortb2: {
+    app: {
       bundle: "org.prebid.mobile.demoapp",
       domain: "prebid.org"
-   }
+    }
+  }
+});
 {% endhighlight %}
+
+{: .alert.alert-warning :}
+In PBJS 4.29 and earlier, don't add the `ortb2` level here -- just `app` directly. Oh, and please upgrade. 4.29 was a long time ago.
 
 <a name="setConfig-Configure-User-Syncing" />
 
@@ -1273,21 +1279,23 @@ More examples [here](/dev-docs/modules/instreamTracking.html#example-with-urlpat
 
 #### Site Configuration
 
-{: .alert.alert-info :}
-This setting is obsolete as of Prebid.js 4.30. Please set site fields in `ortb2.site` as [First Party Data](#setConfig-fpd).
-
 Adapters, including Prebid Server adapters, can support taking site parameters like language.
-The structure here is OpenRTB; the site object will be available to client- and server-side adapters.
+Just set the `ortb2.site` object as First Party Data to make it available to client- and server-side adapters.
 
 {% highlight js %}
 pbjs.setConfig({
-   site: {
+  ortb2: {
+    site: {
        content: {
            language: "en"
        }
-   }
+    }
+  }
 });
 {% endhighlight %}
+
+{: .alert.alert-warning :}
+In PBJS 4.29 and earlier, don't add the `ortb2` level here -- just `site` directly. Oh, and please upgrade. 4.29 was a long time ago.
 
 <a name="setConfig-auctionOptions" />
 
