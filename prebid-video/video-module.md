@@ -38,7 +38,7 @@ The following Video Players are currently supported:
 {: .table .table-bordered .table-striped }
 | Video Player | Submodule Name | Vendor Code |
 |--------------|----------------|-------------|
-| [JW Player](https://www.jwplayer.com/)  | jwplayerVideoProvider | 1 |
+| [JW Player](https://info.jwplayer.com/sign-up/?utm_source=developer&utm_medium=CTA)  | jwplayerVideoProvider | 1 |
 | [video.js](https://videojs.com/)   | videojsVideoProvider | 2 |
 
 Not seeing your desired video player ? Learn how to add support by reading our [contribution guide](#Video-Module-Contributing)

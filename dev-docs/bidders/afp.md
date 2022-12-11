@@ -126,7 +126,7 @@ The code below returns a demo ad.
 <head>
 	<meta charset="UTF-8">
 	<title>Prebid.js In-image Example</title>
-	<script async src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+	<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
 	<script async src="prebid.js"></script>
 	<script>
 		var adUnits = [{
