@@ -103,9 +103,10 @@ The Stored Response query needs to return fields in this order:
 | 1 | response ID | string | The Stored Response ID | n/a |
 | 2 | response body | JSON | The body of the Stored Response | n/a |
 
-One parameter can be passed into the query:
+One parameter can be passed into the query, though at this point, the parameter differs between Go and Java:
 
-- %ID_LIST% : a comma-separated list of stored response IDs
+- %RESPONSE_ID_LIST% (PBS-Java): a comma-separated list of stored response IDs
+- %ID_LIST% (PBS-Go): a comma-separated list of stored response IDs
 
 This query is defined in settings.database.stored-requests-query. Example:
 ```
