@@ -57,9 +57,9 @@ The full list of attributes supported by Prebid Server may differ by PG Host Com
 {: .table .table-bordered .table-striped }
 | Attribute | Description | Encoding | PBS Source | OpenRTB path | Operators |
 | --- | --- | --- | --- | --- | --- |
-| adunit.size | Ad Sizes | [{w: 300, h: 250},...] | OpenRTB | imp[].banner.format[] | intersects |
+| adunit.size | Ad Sizes | [{w: 300, h: 250},...] | OpenRTB | imp[].banner.format[] OR (imp[].video.w AND imp[].video.h) | intersects |
 | adunit.mediatype | Mediatype | string | OpenRTB | mediatype="banner" if imp.banner exists. mediatype="video-instream" if imp.video exists and placement is 1. mediatype="video-outstream" if imp.video exists and placement is <> 1. mediatype="native" if imp.native exists | intersects |
-| adunit.adslot | The ad server slot name | string | OpenRTB | imp[].ext.context.data.pbadslot | in, matches |
+| adunit.adslot | The ad server slot name | string | OpenRTB | imp[].ext.data.pbadslot OR imp[].ext.gpid OR imp[].tagid OR imp[].ext.data.adserver.adslot | in, matches |
 | site.domain | Site domain | string | OpenRTB | site.domain | in, matches |
 | site.referrer | Referring URL | string | OpenRTB | site.page | in, matches |
 | app.bundle | Mobile application bundle | string | OpenRTB | app.bundle | in, matches |
@@ -83,7 +83,7 @@ The full list of attributes supported by Prebid Server may differ by PG Host Com
 | user.ext.time.userdow | User Day of Week | 1=sun, 7=sat | Geo vendor + clock | user.ext.time.userdow | in|
 | user.ext.time.userhour | User Hour | 0-23 |Geo vendor + clock | user.ext.time.userhour | in|
 | ufpd.ATTR | User First Party Data | string | OpenRTB | user.ATTR or user.ext.data.ATTR | in, matches, intersects |
-| sfpd.ATTR | Site First Party Data | string | OpenRTB | imp[].ext.context.data.ATTR=VAL OR site.ext.data.ATTR=VAL OR app.ext.data.ATTR=VAL | in, matches, intersects |
+| sfpd.ATTR | Site First Party Data | string | OpenRTB | imp[].ext.data.ATTR=VAL OR imp[].ext.context.data.ATTR=VAL OR site.ext.data.ATTR=VAL OR app.ext.data.ATTR=VAL | in, matches, intersects |
 | segment.SOURCE | User Segment Data | string | OpenRTB | user.data[].id=SOURCE AND VALUE in user.data[].segment[].id | intersects |
 | bidp.BIDDER.ATTR | Bid Parameter Data | string | OpenRTB | imp[].ext.BIDDER.ATTR | in, matches, intersects|
 

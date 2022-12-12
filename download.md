@@ -208,7 +208,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <div class="col-md-4">
  <div class="checkbox">
   <label>
-  {% if page.aliasCode %} <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" class="bidder-check-box"> {{ page.title }} {% else %} <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }} {% endif %}
+  {% if page.filename %} <input type="checkbox" moduleCode="{{ page.filename }}" {% elsif page.aliasCode %} <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" {% else %} <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" {% endif %} class="bidder-check-box"> {{ page.title }}
   {% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
   </label>
 </div>
@@ -278,9 +278,6 @@ These modules may require accounts with a service provider.<br/>
   <label><input type="checkbox" moduleCode="fabrickIdSystem" class="bidder-check-box"> Neustar Fabrick ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="flocIdSystem" class="bidder-check-box"> FLoC Cohort ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="ftrackIdSystem" class="bidder-check-box"> FTrack ID</label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
@@ -345,6 +342,9 @@ These modules may require accounts with a service provider.<br/>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="tapadIdSystem" class="bidder-check-box"> Tapad ID</label>
+  </div></div>
+  <div class="col-md-4"><div class="checkbox">
+  <label><input type="checkbox" moduleCode="teadsIdSystem" class="bidder-check-box"> Teads ID<div style="font-size:80%">please avoid using v7.20.0 and v7.21.0</div></label>
   </div></div>
   <div class="col-md-4"><div class="checkbox">
   <label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> Unified ID</label>

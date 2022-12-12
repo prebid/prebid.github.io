@@ -27,6 +27,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 + [Required Adapter Rules](#bidder-adaptor-Required-Adapter-Conventions)
 + [Required Files](#bidder-adaptor-Required-Files)
 + [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
++ [HTTP Simple Requests](#bidder-adaptor-HTTP-simple-requests)
 
 <a name="bidder-adaptor-Required-Adapter-Conventions" />
 
@@ -146,10 +147,47 @@ For more information about the kinds of information that can be passed using the
 
 {% endhighlight %}
 
+<a name="bidder-adaptor-HTTP-simple-requests" />
+
+### HTTP Simple Requests
+
+When defining the HTTP headers for your endpoint, it is important from a performance perspective to consider what forces the browser to initiate a [CORS preflight request](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request). We encourage learning more about [Simple Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests) & [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) as it relates to your specific development configuration.
+
+A 'Simple Request' meets **all** of the following conditions:
+
+- Must be one of 3 following allowed methods
+    - GET
+    - HEAD
+    - POST
+
+- Only headers that are allowed to be manually set apart from the headers automatically set by the user-agent
+    - `Accept`
+    - `Accept-Language`
+    - `Content-Language`
+    - `Content-Type`
+    - `Range`
+
+- For the `Content-Type` header the only type/subtype combinations allowed are the following
+    - application/x-www-form-urlencoded
+    - multipart/form-data
+    - text/plain
+
+- If the request is made using `XMLHttpRequest` object, no event listeners are registered on the object returned by the `XMLHttpRequest.upload` property used in the request
+
+- No `ReadableStream` object is used in the request
+
+Prebid recommends keeping module HTTP requests 'simple' if at all possible. The default content-type used by Prebid.js is text/plain.
+
 ## Creating the Adapter
 
 {: .alert.alert-success :}
 If you're the type that likes to skip to the answer instead of going through a tutorial, see the <a href="#bidder-example">Full Bid Adapter Example</a> below.
+
+{: .alert.alert-warning :}
+### Note on ORTB adapters
+
+{: .alert.alert-warning :}
+If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`. 
 
 + [Overview](#bidder-adaptor-Overview)
 + [Building the Request](#bidder-adaptor-Building-the-Request)
@@ -205,6 +243,12 @@ export const spec = {
 registerBidder(spec);
 
 {% endhighlight %}
+
+<a id="ortb-adapters" />
+
+### Note on ORTB adapters
+
+If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`. 
 
 <a name="bidder-adaptor-Building-the-Request" />
 
@@ -311,7 +355,7 @@ There are a number of important values that a publisher expects to be handled in
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
 | First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
-| Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
+| Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
 | Video Parameters | Video params must be read from AdUnit.mediaType.video when available; however bidder config can override the ad unit. | AdUnit.mediaType.video |
@@ -921,7 +965,8 @@ In order for your bidder to support the native media type:
 1. Your (server-side) bidder needs to return a response that contains native assets.
 2. Your (client-side) bidder adapter needs to unpack the server's response into a Prebid-compatible bid response populated with the required native assets.
 3. Your bidder adapter must be capable of ingesting the required and optional native assets specified on the `adUnit.mediaTypes.native` object, as described in [Show Native Ads](/prebid/native-implementation.html).
-4. Your spec must declare NATIVE in the supportedMediaTypes array.
+4. Your code, including tests, should check whether native support is enabled (through the global flag `FEATURES.NATIVE`) before doing #2 or #3. This allows users not interested in native to build your adapter without any native-specific code.
+5. Your spec must declare NATIVE in the supportedMediaTypes array.
 
 The adapter code samples below fulfills requirement #2, unpacking the server's reponse and:
 
@@ -931,7 +976,7 @@ The adapter code samples below fulfills requirement #2, unpacking the server's r
 {% highlight js %}
 
 /* Does the bidder respond with native assets? */
-else if (rtbBid.rtb.native) {
+else if (FEATURES.NATIVE && rtbBid.rtb.native) {
 
     /* If yes, let's populate our response with native assets */
 
@@ -958,7 +1003,7 @@ Here's an example of returning image sizes:
 
 ```javascript
     /* Does the bidder respond with native assets? */
-    else if (rtbBid.rtb.native) {
+    else if (FEATURES.NATIVE && rtbBid.rtb.native) {
 
         const nativeResponse = rtbBid.rtb.native;
 
@@ -1155,7 +1200,9 @@ registerBidder(spec);
     - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
     - If you support deals, set `deals_supported: true`. No default value..
     - If you support floors, set `floors_supported: true`. No default value..
-    - If you support first party data, set `fpd_supported: true`. No default value..
+    - If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
+    - If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to 'true','partial', or 'false'. No default value. In order to set 'true', you must support: bcat, badv, battr, and bapp.
+    - Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
     - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 - Submit both the code and docs pull requests
 
@@ -1183,6 +1230,7 @@ pbjs: true/false
 pbs: true/false
 prebid_member: true/false
 multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
+ortb_blocking_supported: true/partial/false
 ---
 ### Note:
 

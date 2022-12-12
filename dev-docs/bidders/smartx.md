@@ -7,11 +7,11 @@ media_types: no-display, video
 gdpr_supported: true
 userIds: none
 prebid_member: true
-schain_supported: false
+schain_supported: true
 usp_supported: true
 safeframes_ok: false
 pbjs: true
-pbjs_version_notes: avoid 4.31-4.39
+floors_supported: true
 ---
 
 ### Registration
