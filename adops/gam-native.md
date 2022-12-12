@@ -38,7 +38,7 @@ For information on the Multiplex ad option, see the [Traffic Multiplex ads](http
 3. Enter a **Format name**, such as `pb-native-fluid`.
 4. Click **Add variable**. This will slide out the **New variable** window.
 
-Every format needs at least one variable. Don't worry, you can add more later. Or not. Either way, GAM requires at least one variable in order to move on to the next step.
+Every format needs at least one variable. Don't worry, you can add more later. GAM requires at least one variable in order to move on to the next step.
 
 {:start="5"}
 5. Type in a **Variable name**. In this example, we've used the name `title`.
@@ -79,7 +79,7 @@ For engineering instructions, see [Native Implementation Guide](/prebid/native-i
 There are three key aspects of the native template:
 
 1. Build the creative with special Prebid.js macros, e.g. `##hb_native_assetname##`. Note that macros can be placed in the body (HTML) and/or head (CSS) of the native creative.
-2. Load the Prebid.js native rendering code. You can utilize the jsdelivr version of native-render.js or host your own copy. If you use the version hosted on jsdelivr, make sure to declare jsdelivr as an ad technology provider in GAM. (Go to **Privacy & messaging** and click the Settings icon under **GDPR**. Under **Review your ad partners** click into **Commonly used ad partners**.)
+2. Load the Prebid.js native rendering code. You can utilize the jsdelivr version of native-render.js or host your own copy. If you use the version hosted on jsdelivr, make sure to declare jsdelivr as an ad technology provider in GAM. (Go to **Privacy & messaging** and click the Settings icon under **GDPR**. Under **Review your ad partners** click into **Commonly used ad partners**.) See Step 6 under [Create a New Native Creative](#create-a-new-native-creative) below.
 3. Invoke the Prebid.js native rendering function with an object containing the following attributes:
     - adid - Used to identify which Prebid.js creative holds the appropriate native assets.
     - pubUrl - The URL of the page, which is needed for the HTML postmessage call.
@@ -202,12 +202,17 @@ Now that you've defined your native template you can create your native creative
 
 {:start="4"}
 4. Under **Settings**, enter a **Name** for your creative.
-5. Enter any value into the **Click-through URL** field; this value will be overwritten by the native asset values. Also, if you operate in Europe and are using the jsdelivr-hosted native-render.js, make sure you set jsdelivr as your ad technology provider.
+5. Enter any value into the **Click-through URL** field; this value will be overwritten by the native asset values. Also, if you operate in Europe and are using the jsdelivr-hosted native-render.js, make sure you set jsdelivr as your ad technology provider. (See Step 6 below.)
 
 ![Native Creative](/assets/images/ad-ops/gam-sbs/gam-new-creative-part2.png){: .pb-md-img :}
 
 {:start="6"}
-6. Click **Save and preview**.
+6. If you're using jsdelivr, set your **Associated ad technology provider**:
+
+{% include /adops/adops-creative-declaration.html %}
+
+{:start="7"}
+7. Click **Save and preview**.
 
 ## Attach the Creative to Your Line Item
 

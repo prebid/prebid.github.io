@@ -19,11 +19,14 @@ For complete instructions on setting up Prebid line items in Google Ad Manager, 
 1. In GAM, select **Delivery** > **Creatives**.
 2. Under the **Display creatives** tab, click **New Creative**.
 3. Select your advertiser, then click **Third party**.
-4. Enter a **Name** for your creative. For example, `Prebid – banner – 1x1`.
+4. Enter a **Name** for your creative. For example, `Prebid – banner – 1x1 - 1`.
 5. Enter a **Target ad unit size** of `1x1`. This allows the creative to serve on all inventory sizes.
 
 {: .alert.alert-info :}
 These instructions assume you're using the Prebid Universal Creative (PUC). See the [Prebid Universal Creative](/overview/prebid-universal-creative.html) documentation for alternate approaches.
+
+{: .alert.alert-danger :}
+**AMP**: If you choose to bypass the PUC for AMP, Prebid Server events will not work.
 
 {:start="6"}
 6. Select **Standard** as the **Code type**.
@@ -37,7 +40,7 @@ These instructions assume you're using the Prebid Universal Creative (PUC). See 
 **Send All Bids Configuration**
 
 {: .alert.alert-warning :}
-Be sure to replace BIDDERCODE with the appropriate bidder. For example, if the bidder code is `BidderA`, the `adid` would be `%%PATTERN:hb_adid_BidderA%%`.
+Be sure to replace BIDDERCODE with the appropriate bidder. For example, if the bidder code is `PBbidder`, the `adid` would be `%%PATTERN:hb_adid_PBbidder%%`.
 
 ```
     <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
@@ -68,6 +71,8 @@ Warning: Be sure none of the attribute names are longer than 20 characters. See 
 
 **Send Top Price Bid Configuration**
 
+In top-price mode, you can make use of the GAM `TARGETINGMAP` feature instead of listing out each attribute.
+
 ```
 <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
 <script>
@@ -91,7 +96,7 @@ Warning: Be sure none of the attribute names are longer than 20 characters. See 
 {: .alert.alert-info :}
 **AMP**: For AMP, you must select **Serve into a SafeFrame**.
 
-Your creative settings will look something like this. In this example we're assuming a Send All Bids configuration, and we’ve replaced BIDDERCODE with the code for our bidder, BidderA.
+Your creative settings will look something like this. In this example we're assuming a Send All Bids configuration, and we’ve replaced BIDDERCODE with the code for our bidder, PBbidder. (Notice that some of the key names have been truncated to adhere to the GAM 20-character key length limit.)
 
 ![Banner creative settings](/assets/images/ad-ops/gam-sbs/banner-creative-settings.png)
 
@@ -99,7 +104,12 @@ Your creative settings will look something like this. In this example we're assu
 Note: You can ignore the “Sorry, we don’t recognize this tag” warning. GAM doesn’t have built-in macros for Prebid and so doesn’t recognize them. The ad tag will still work correctly.
 
 {:start="9"}
-9. Click **Save and preview**.
+9. If you're using jsdelivr, set your **Associated ad technology provider**:
+
+{% include /adops/adops-creative-declaration.html %}
+
+{:start="10"}
+10. Click **Save and preview**.
 
 ## Further Reading
 

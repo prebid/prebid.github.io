@@ -46,6 +46,9 @@ To define new keys, in GAM go to **Inventory** > **Key-Values** and enter your P
 
 You can also define accepted values for the keys, but you don’t need to. If you create Dynamic keys, values can be added when you set up your line item.
 
+{: .alert.alert-danger :}
+Keys in GAM have a maximum length of 20 characters; any keys passed to GAM longer than that will be truncated. This means that if Prebid passes in the key `hb_format_BidderWithALongName`, GAM will truncate it to `hb_format_BidderWith`. When you create your keys, you must use the truncated name.
+
 See [Key Values](/adops/key-values.html) for information on the keys you'll need.
 
 ## Create a Line Item
@@ -113,7 +116,7 @@ If you combine native with another format in a single line item, you’ll need t
 
 **In-Player and Outstream Video**:
 
-Both in-player (instream) and outstream video ads target the `hb_format_BIDDERCODE=video` key-value pair, so targeting on that key alone is not enough to choose the correct line items. If you're running both instream and outstream video ads, they will most likely be separate line items, so you will need to target outstream line items to either "Inventory Type=display" or "Inventory in (list of GAM AdUnits)".
+Both in-player (instream) and outstream video ads supply the `hb_format_BIDDERCODE=video` key-value pair, so targeting on that key alone is not enough to choose the correct line items. If you're running both instream and outstream video ads, they will most likely be separate line items, so you will need to target outstream line items to either "Inventory Type=display" or "Inventory in (list of GAM AdUnits)".
 
 
 **Long-Form (OTT) Video**:
@@ -121,8 +124,8 @@ Both in-player (instream) and outstream video ads target the `hb_format_BIDDERCO
 For long-form video the custom key **hb_pb_cat_dur_BIDDERCODE** is required. The value of this key breaks down like this:
 
 - *_pb* represents the price bucket. This is the currency amount entered in the **Rate** field of the **Settings** section.
-- *_cat* indicates the competitive exclusion industry code. (For engineering information, refer to the [Category Translation module](/dev-docs/modules/categoryTranslation.html)). This is the value entered in the **Label** field for the purpose of competitive exclusion. If you are not using competitive exclusion, you can omit this portion of the value.
-- *_dur* is the length of the video in seconds. This is the value listed in the **Max duration** field in the **Creative forecasting defaults** section.
+- *_cat* indicates the competitive exclusion industry code. (For engineering information, refer to the [Category Translation module](/dev-docs/modules/categoryTranslation.html)). This is the value entered in the **Label** field for the purpose of competitive exclusion. Having this value in the target helps GAM choose the line items that declare the competitive exclusion label. If you are not using competitive exclusion, you can omit this portion of the value.
+- *_dur* is the length of the video in seconds. This is the value listed in the **Max duration** field in the **Creative forecasting defaults** section. Having this value in the target helps GAM choose the line items whose creatives are set up with the right duration.
 
 For example, for a line item with a $10.00 CPM entered in the Rate field, a Label of “news”, and 30s entered in the Duration field, you would enter the following in the Custom key-value field: `hb_pb_cat_dur_BIDDERCODE = 10.00_news_30s`. If you’re not using competitive exclusion, you can have a value such as this: `hb_pb_cat_dur_BIDDERCODE = 10.00_30s`.
 
@@ -163,7 +166,7 @@ The process you use to create your creatives differs based on the media type. Fo
 After you've created your creatives, you’ll need to associate a creative with each size in your line item. Even if you’ve specified only one or two sizes, you might actually want more creatives than you have sizes. Because the creative body itself is identical no matter which size you’re associating it with, you can duplicate the creative so you have as many as you need.
 
 {: .alert.alert-info :}
-You need extra copies of the creative because GAM will display only one creative per line item per page. So if you have two ad slots where two Prebid bids in the same price bucket win the auctions, if you defined only one creative on that line item, only that one creative would be displayed in an ad slot, the other ad slot would fall through to your house ads. See [Creative Considerations](/adops/creative-considerations.html) for more information.
+You need extra copies of the creative because GAM will display only one creative per line item per page. See [Creative Considerations](/adops/creative-considerations.html) for more information.
 
 1. Select **Delivery** > **Creatives**.
 2. Find the creative you want to duplicate and click the check mark to the left.
@@ -215,23 +218,6 @@ You now need to click into each line item to change the following values to refl
 If you’re using a Send Top Price cofiguration, at this point you’re done. Congratulations!
 
 If you’re using a Send All Bids configuration, you need to repeat all the above steps for each of your bidders. You can copy one of the existing creatives and change the BIDDERCODE, and you can copy the existing line items and change the names, so you don’t have to completely start from scratch.
-
-## Video Tutorial
-
-<div id="youtube">
-<h2>(Sorry, YouTube videos aren't available with your cookie privacy settings.)</h2>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br />
-</div>
-
-<script type="text/javascript">
-Optanon.InsertHtml('<iframe width="853" height="480" src="https://www.youtube.com/embed/-bfI24_hwZ0?rel=0" frameborder="0" allowfullscreen="true"></iframe>', 'youtube', null, {deleteSelectorContent: true}, 3);
-</script>
-
-<div class="alert alert-danger" role="alert">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Correction:</span>
-  Correction: in your Line Item settings, 'Display Creative' should be set to 'One or More', not 'As Many as Possible' as described in the video.
-</div>
 
 ## Further Reading
 
