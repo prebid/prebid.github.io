@@ -144,9 +144,9 @@ Follow these steps to integrate the Prebid SDK:
 
 1. If integrating into an ad server, create line items specific for rendering (line items for rendering API are unique and do not coincide with the standard Prebid SDK line items):
     * [GAM Original API](../adops/step-by-step.html)
-    * [GAM Rendering API](modules/rendering/rendering-gam-line-item-setup.html)
-    * [AdMob](modules/rendering/rendering-admob-line-item-setup.html)
-    * [MAX](modules/rendering/rendering-max-line-item-setup.html)
+    * [GAM Rendering API](../adops/mobile-rendering-gam-line-item-setup.html)
+    * [AdMob](../adops/mobile-rendering-admob-line-item-setup.html)
+    * [MAX](../adops/mobile-rendering-max-line-item-setup.html)
 1. [Integrate Prebid SDK](pbm-api/android/code-integration-android.html) into your project.
 1. Add prebid's ad units to your app respectively to the monetization scenario: 
     * [GAM Original API](pbm-api/android/android-sdk-integration-gam-original-api.html)
@@ -163,9 +163,9 @@ Follow these steps to integrate the rendering API:
 
 1. If integrating into an ad server, create line items specific for rendering (line items are uniqe for the Rendering Module and do not cooicide with the standard Prebid SDK line items):
     * [GAM Original API](../adops/step-by-step.html)
-    * [GAM](modules/rendering/rendering-gam-line-item-setup.html)
-    * [AdMob](modules/rendering/rendering-admob-line-item-setup.html)
-    * [MAX](modules/rendering/rendering-max-line-item-setup.html)
+    * [GAM](../adops/mobile-rendering-gam-line-item-setup.html)
+    * [AdMob](../adops/mobile-rendering-admob-line-item-setup.html)
+    * [MAX](../adops/mobile-rendering-max-line-item-setup.html)
 1. [Integrate Prebid SDK](pbm-api/ios/code-integration-ios.html).
 1.  Add prebid's ad units to your app respectively to the monetization scenario: 
     * [GAM Original API](pbm-api/ios/code-integration-ios.html)

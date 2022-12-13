@@ -1037,46 +1037,11 @@
   
 - sbSecId: 3
   title: "Setting up Order for Mobile Rendering API"
-  link: /prebid-mobile/modules/rendering/rendering-gam-line-item-setup.html
+  link: /adops/mobile-rendering-gam-line-item-setup.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-
-- sbSecId: 3
-  title: "AdMob"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 2
-  
-- sbSecId: 3
-  title: "Mediation Group - AdMob"
-  link: /prebid-mobile/modules/rendering/rendering-admob-line-item-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-  
-- sbSecId: 3
-  title: "AppLovin MAX"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 3
-  title: "Custom Network - MAX"
-  link: /prebid-mobile/modules/rendering/rendering-max-line-item-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-  
 
 - sbSecId: 3
   title: "Freewheel"
@@ -1124,6 +1089,40 @@
 - sbSecId: 3
   title: 'Setting up Prebid'
   link: /adops/setting-up-prebidjs-with-Smart-Ad-Server.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 3
+  title: "AdMob"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 3
+  title: "Mediation Group - AdMob"
+  link: /adops/mobile-rendering-admob-line-item-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 3
+  title: "AppLovin MAX"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 3
+  title: "Custom Network - MAX"
+  link: /adops/mobile-rendering-max-line-item-setup.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

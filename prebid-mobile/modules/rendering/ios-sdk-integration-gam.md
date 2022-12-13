@@ -115,7 +115,7 @@ GAM setup:
 
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
 2. Create new GAM ad unit.
-3. Setup new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach.
+3. Setup new [GAM Order](/adops/mobile-rendering-gam-line-item-setup.html) for rendering approach.
 
 Integration:
 
