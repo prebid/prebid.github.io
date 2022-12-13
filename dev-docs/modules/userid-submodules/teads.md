@@ -2,7 +2,7 @@
 layout: userid
 title: Teads ID
 description: Teads ID User ID sub-module
-useridmodule: teads
+useridmodule: teadsId
 ---
 
 

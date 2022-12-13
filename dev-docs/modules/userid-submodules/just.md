@@ -2,7 +2,7 @@
 layout: userid
 title: Just ID
 description: Just ID User ID sub-module
-useridmodule: just
+useridmodule: justId
 ---
 
 

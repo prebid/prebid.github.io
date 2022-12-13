@@ -2,7 +2,7 @@
 layout: userid
 title: Czech Publisher Exchange ID (CPExID)
 description: Czech Publisher Exchange ID (CPExID) User ID sub-module
-useridmodule: cpexid
+useridmodule: cpexId
 ---
 
 

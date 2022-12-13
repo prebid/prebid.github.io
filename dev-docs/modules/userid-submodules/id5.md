@@ -2,7 +2,7 @@
 layout: userid
 title: ID5 Universal ID
 description: ID5 Universal ID User ID sub-module
-useridmodule: id5
+useridmodule: id5Id
 ---
 
 

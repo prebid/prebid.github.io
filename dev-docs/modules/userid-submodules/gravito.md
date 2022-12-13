@@ -2,7 +2,7 @@
 layout: userid
 title: GRAVITO ID by Gravito Ltd.
 description: GRAVITO ID by Gravito Ltd. User ID sub-module
-useridmodule: gravito
+useridmodule: gravitompId
 ---
 
 

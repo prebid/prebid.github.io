@@ -2,7 +2,7 @@
 layout: userid
 title: Parrable ID
 description: Parrable ID User ID sub-module
-useridmodule: parrable
+useridmodule: parrableId
 ---
 
 

@@ -2,7 +2,7 @@
 layout: userid
 title: DMD ID by DMD Marketing Corp
 description: DMD ID by DMD Marketing Corp User ID sub-module
-useridmodule: dmd
+useridmodule: dmdId
 ---
 
 

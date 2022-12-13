@@ -2,7 +2,7 @@
 layout: userid
 title: ID+
 description: ID+ User ID sub-module
-useridmodule: idplus
+useridmodule: zeotapIdPlus
 ---
 
 

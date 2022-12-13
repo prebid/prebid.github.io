@@ -2,7 +2,7 @@
 layout: userid
 title: Hadron ID from Audigent
 description: Hadron ID from Audigent User ID sub-module
-useridmodule: hadron
+useridmodule: hadronId
 ---
 
 

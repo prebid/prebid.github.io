@@ -2,7 +2,7 @@
 layout: userid
 title: RampID
 description: RampID User ID sub-module
-useridmodule: ramp
+useridmodule: identityLink
 ---
 
 

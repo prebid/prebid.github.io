@@ -2,7 +2,7 @@
 layout: userid
 title: Kinesso ID
 description: Kinesso ID User ID sub-module
-useridmodule: kinesso
+useridmodule: kpuid
 ---
 
 

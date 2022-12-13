@@ -23,10 +23,6 @@
     <div class="col-lg-9">
       <div class="pb-content" markdown="1">
 
-        {% if page.is_full_screen %}
-          {{content}}
-        {% else %}
-
           <div class="row">
 
             <div class="col-md-12" role="main">
@@ -40,15 +36,9 @@
                 <p><a href="/dev-docs/modules/userId.html#user-id-sub-modules">Back to User ID Module</a></p>
               </div>
 
-              {% if page.show_disqus %}
-                {% include disqus_addon.html %}
-              {% endif %}
             </div>
 
           </div>
-
-        {% endif %}
-
 
       </div>
 

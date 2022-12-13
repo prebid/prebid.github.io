@@ -2,7 +2,7 @@
 layout: userid
 title: GrowthCode
 description: GrowthCode User ID sub-module
-useridmodule: growthcode
+useridmodule: growthCodeId
 ---
 
 

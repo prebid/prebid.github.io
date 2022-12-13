@@ -32,19 +32,10 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html), [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html), or [pbjs.getUserIdsAsync()](/dev-docs/publisher-api-reference/getUserIdsAsync.html).
 
 {: .alert.alert-info :}
-Note: If your ID structure is complicated, it is helpful to add tests for pbjs.getUserIds(), pbjs.getUserIdsAsEids() and pbjs.getUserIdsAsync().
- 
-{: .alert.alert-info :}
-Note: To add a custom data type for the response of pbjs.getUserIdsAsEids(), see other examples within the createEidsArray method in /modules/userId/eid.js
-
-{: .alert.alert-info :}
 Note that User IDs aren't as popular in the mobile app world because device ID is available in those ad serving scenarios.
 
 {: .alert.alert-info :}
-Note that not all bidder adapters support all forms of user ID. See the tables below for a list of which bidders support which ID schemes.
-
-{: .alert.alert-info :}
-As of Prebid 4.0, this module will attempt storage in the main domain of the publisher's website instead of a subdomain, unless this behavior is overriden by a submodule.
+Not all bidder adapters support all forms of user ID. See the tables below for a list of which bidders support which ID schemes.
 
 ## User ID, GDPR, Permissions, and Opt-Out
 
@@ -87,10 +78,15 @@ The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rul
 
 The table below has the options that are common across ID systems. See the sections below for specific configuration needed by each system and examples.
 
+{% assign userid_pages = site.pages | where: "layout", "userid" | sort_natural: "title" %}
+
+{% assign name_string = "" %}
+{% assign count = 0 %}
+
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be: `"33acrossId"`, `"admixerId"`, `"qid"`, `"adtelligentId"`, `"amxId"`, `"britepoolId"`, `"criteo"`, `"fabrickId"`, `"hadronId"`, `"id5id"`, `identityLink`, `"idx"`, `"intentIqId"`, `"justId"`, `"liveIntentId"`, `"lotamePanoramaId"`, `"merkleId"`, `"naveggId"`, `"mwOpenLinkId"`, `"netId"`, `"novatiqId"`, `"parrableId"`, `"quantcastId"`, `"pubProvidedId"`, `"sharedId"`, `"tapadId"`, `"teadsId"`, `"unifiedId"`,`"uid2"`, `"verizonMediaId"`, `"zeotapIdPlus"` | `"unifiedId"`
+| name | Required | String | May be any of the following values: {% for page in userid_pages -%}{% if count == 1 %}{{ name_string | append: ", " -}}{% endif %}{% assign count = 1 %}`"{{ name_string | append: name_string -}}{{ name_string | append: page.useridmodule -}}"`{% endfor %} | `"unifiedId"`
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
@@ -100,7 +96,9 @@ The table below has the options that are common across ID systems. See the secti
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
+
 ## Permissions
+
 Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with.
 
 Use the optional `bidders` parameter to define an array of bidder codes to which this user ID may be sent.
@@ -179,9 +177,13 @@ The Rubicon bid adapter would then receive
 
 ## Bidder Adapter Implementation
 
+If your ID structure is complicated, it is helpful to add tests for `pbjs.getUserIds()`, `pbjs.getUserIdsAsEids()` and `pbjs.getUserIdsAsync()`.
+ 
+To add a custom data type for the response of `pbjs.getUserIdsAsEids()`, see other examples within the `createEidsArray` method in [/modules/userId/eid.js](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.js).
+
 ### Prebid.js Adapters
 
-Bidders that want to support the User ID module in Prebid.js, need to update their bidder adapter to read the indicated bidRequest attributes and pass them to their endpoint.
+Bidders that want to support the User ID module in Prebid.js need to update their bidder adapter to read the indicated bidRequest attributes and pass them to their endpoint.
 
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr: bidRequest.userId. | EID Source | Example Value |
@@ -234,7 +236,7 @@ For example, the adapter code might do something like:
 
 ### Prebid Server Adapters
 
-Bidders that want to support the User ID module in Prebid Server, need to update their server-side bid adapter to read the desired OpenRTB 'user.ext.eids.source' object and forward the relevant values to their endpoint.
+Bidders that want to support the User ID module in Prebid Server need to update their server-side bid adapter to read the desired OpenRTB 'user.ext.eids.source' object and forward the relevant values to their endpoint.
 
 See the [Prebid.js EIDs javascript source](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.js) for the definitive list of user EID sources.
 

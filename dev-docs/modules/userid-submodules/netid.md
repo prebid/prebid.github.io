@@ -2,7 +2,7 @@
 layout: userid
 title: netID
 description: netID User ID sub-module
-useridmodule: netid
+useridmodule: netId
 ---
 
 
