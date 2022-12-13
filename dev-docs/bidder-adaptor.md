@@ -248,7 +248,7 @@ registerBidder(spec);
 
 ### Note on ORTB adapters
 
-If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`. 
+If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`.
 
 <a name="bidder-adaptor-Building-the-Request" />
 
@@ -369,7 +369,7 @@ Referrer information should be passed to your endpoint in contexts where the ori
 - `canonicalUrl`: a string containing the canonical (search engine friendly) URL, as set by the publisher.
 - `page`: the best candidate for the top level URL - or null when the top window is inaccessible. Equivalent to `canonicalUrl` || `location`.
 - `domain`: the domain (hostname and port) portion of `page`.
-- `ref`: referrer to the top window (`window.top.document.referrer`), or null when the top window is inaccessible. 
+- `ref`: referrer to the top window (`window.top.document.referrer`), or null when the top window is inaccessible.
 - `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
 - `numIframes`: the number of iFrames.
 - `stack`: an array of URLs of all windows from the top window down to the current window.
@@ -501,7 +501,7 @@ There's often a long lag time between making a PBJS adapter update and when most
 If your endpoint can return creatives with OpenRTB macros, your adapter
 should resolve them.
 
-Prebid will resolve the AUCTION_PRICE macro, but it will be after currency conversion and any bid adjustments. This differs from how OpenRTB defines this value as being the clearing price in the 
+Prebid will resolve the AUCTION_PRICE macro, but it will be after currency conversion and any bid adjustments. This differs from how OpenRTB defines this value as being the clearing price in the
 bid currency. Header Bidding is a first-price auction, the best candidate for
 "clearing price" is the original bid itself.
 
@@ -1021,7 +1021,7 @@ Here's an example of returning image sizes:
     }
 ```
 
-The targeting key `hb_native_image` (about which more [here]({{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html) (ad ops setup) and [here]({{site.baseurl}}/dev-docs/show-native-ads.html) (engineering setup)) will be set with the value of `image.url` if `image` is an object.
+The targeting key `hb_native_image` (about which your can read more in the [Native Implementation Guide](/prebid/native-implementation.html)) will be set with the value of `image.url` if `image` is an object.
 
 If `image` is a string, `hb_native_image` will be populated with that string (a URL).
 

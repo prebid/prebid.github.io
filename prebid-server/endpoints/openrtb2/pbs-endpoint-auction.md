@@ -313,7 +313,7 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
 ```
 The list of price granularity ranges must be given in order of increasing `max` values. If `precision` is omitted, it will default to `2`. The minimum of a range will be 0 or the previous `max`. Any cmp above the largest `max` will go in the `max` pricebucket.
 
-For backwards compatibility the following strings will also be allowed as price granularity definitions. There is no guarantee that these will be honored in the future. "One of ['low', 'med', 'high', 'auto', 'dense']" See [price granularity definitions](/prebid-mobile/adops-price-granularity.html)
+For backwards compatibility the following strings will also be allowed as price granularity definitions. There is no guarantee that these will be honored in the future. "One of ['low', 'med', 'high', 'auto', 'dense']" See [price granularity definitions](/adops/price-granularity.html)
 
 One of "includewinners" or "includebidderkeys" must be true (both default to false if unset). If both are false, then no targeting keys will be set, which is better configured by omitting targeting altogether.
 
@@ -768,7 +768,7 @@ You can turn on the extra Prebid Server debug log without the formal `test` beha
 {: .alert.alert-info :}
 PBS-Java only
 
-You can turn on additional Prebid Server tracing by setting `ext.prebid.trace` to either "verbose" or "basic". 
+You can turn on additional Prebid Server tracing by setting `ext.prebid.trace` to either "verbose" or "basic".
 This provides additional information for certain scenarios:
 
 - for [modules](/prebid-server/pbs-modules/), look in response ext.prebid.modules.trace
@@ -879,7 +879,7 @@ an array of ortb2 seatbid objects. e.g.
 
 In contrast to the feature above, using `storedbidresponse` (instead of stored**auction**response) lets real auctions take place while the actual bidder response is overridden in such a way that it still exercises adapter code.
 
-PBS removes imp.ext.prebid.bidder parameters for those 
+PBS removes imp.ext.prebid.bidder parameters for those
 bidders specified in storedbidresponse but if there's a bidder present
 in imp.ext.prebid.bidder that's doesn't have a storedbidresponse specified,
 the adapter will be called as usual.
@@ -957,7 +957,7 @@ Could result in this response:
 }
 ```
 
-Notes: 
+Notes:
 - the DB entries for this stored-response scenario are quite different: they need to be in whatever format the bid adapter's endpoint responds with. i.e. the host company will need to capture an actual bid response from the specific bidders and enter it into the DB table.
 - the `replaceimpid` parameter tells PBS to ignore the impid supplied in the DB and instead create/overwrite seatbid.bid.impid with the value that matches the incoming request. This simplifies debugging.
 - `replaceimpid` doesn't work in PBS-Java. Instead, the implementation there is to use the `##PBSIMPID##` macro in the body of the stored response, which will be replaced by PBS-core.
