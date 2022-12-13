@@ -74,8 +74,7 @@ Here's a description of the Stages of a PBS request that modules can tap into fo
 | Processed Auction Request | Any stored requests have been merged in and all PBS enrichments are done | auction, amp, video | Inject First Party Data, Channel determination, Bid floors, Bidder optimization |
 | Bidder Request | The request has been customized for a particular bidder in the auction | auction, amp, video | Bidder-specific bcat/badv, Bidder-specific deals |
 | Raw Bidder Response | Hook functions can get access to the unprocessed bidder response | auction, amp, video | Response validations |
-| Processed Bidder Response | PBS has done its own validations on an individual bidder's response | auction, amp, video | Advanced CPM adjustments, Custom VAST macros |
-| All Processed Bid Responses | All bids are back and PBS-core bid validations are done. | auction, amp, video | Creative validation, advanced bid validations. (PBS-Java 1.97+) |
+| All Processed Bid Responses | All bids are back and PBS-core bid validations are done. | auction, amp, video | Creative validation, advanced bid validations. |
 | Auction Response | Last step before the response goes back to the client | auction, amp, video | Inject ad server targeting, alternate auction winner logic |
 
 ### 3. Figure Out Which Stages You're Going to Hook Into

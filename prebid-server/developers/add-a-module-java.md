@@ -118,7 +118,7 @@ These are the available hooks that can be implemented in a module:
 - org.prebid.server.hooks.v1.auction.ProcessedAuctionRequestHook
 - org.prebid.server.hooks.v1.bidder.BidderRequestHook
 - org.prebid.server.hooks.v1.bidder.RawBidderResponseHook
-- org.prebid.server.hooks.v1.bidder.ProcessedBidderResponseHook
+- org.prebid.server.hooks.v1.bidder.AllProcessedBidResponsesHook
 - org.prebid.server.hooks.v1.auction.AuctionResponseHook
 
 In a module it is not necessary to implement all mentioned interfaces but only one (or several) required by your functionality.
