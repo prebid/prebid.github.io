@@ -98,6 +98,10 @@ pbjs.setConfig({
                   interests: ["cars"]
 	       }
            }
+        },
+        regs: {
+            gpp: "abc1234",
+            gpp_sid: [7]
         }
     }
 });
