@@ -11,6 +11,13 @@ floors_supported: true
 fpd_supported: false
 multiformat_supported: will-not-bid
 ortb_blocking_supported: partial
+pbs_app_supported: true
+gdpr_supported: true
+usp_supported: true 
+coppa_supported: true
+deals_supported: false
+schain_supported: true
+dchain_supported: false
 ---
 
 ### Bid Params
