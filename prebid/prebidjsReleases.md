@@ -115,4 +115,4 @@ The table below is a summary of feature changes and important bug fixes in core 
 
 ## Further Reading
 
-+ [Getting Started With Prebid.js]({{site.github.url}}/overview/getting-started.html)
++ [Getting Started With Prebid.js](/dev-docs/getting-started.html)
