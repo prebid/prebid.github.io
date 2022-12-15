@@ -59,7 +59,7 @@ The exact order of the following steps will differ depending on your ad server.
 
 ### General Settings
  
-1. Enter a name for your line item. Suggested format: Prebid – format - bidder – price bucket. For example, `Prebid – banner - BidderA– 1.50`.
+1. Enter a name for your line item. Suggested format: Prebid – format - bidder – price bucket. For example, `Prebid – banner - BidderA – 1.50`.
 2. Set the priority of your line item to whatever you think is appropriate. Typically Prebid line items are prioritized below direct-sold but above house/remnant.
 3. Enter the sizes of your creatives:
 - Banner/Outstream/AMP/Video: Select the sizes of all ad slots included in the Prebid process.
@@ -81,7 +81,7 @@ Target the price bucket key: `hb_pb_BIDDERCODE` (where BIDDERCODE is the actual 
 
 The following additional keys must be added for the corresponding formats:
  
-Banner/Outstream/Native: 
+**Banner/Outstream/Native:** 
 
 You can use the same line item for banner, outstream, and/or native creatives. If your ad slot could be filled by two or more of these formats, you should include the hb_format_BIDDERCODE key with values specifying all expected formats.
 
@@ -92,7 +92,7 @@ In-Player and Outstream Video:
 
 Both in-player (instream) and outstream video ads receive the `hb_format_BIDDERCODE=video` key-value pair, so targeting on that key alone is not enough to choose the correct line items. If you're running both in-player and outstream video ads, they will most likely be separate line items, so you will need to target outstream line items to a “display” inventory type, or perhaps separate them by adunits. 
 
-Long-Form (OTT) Video:
+**Long-Form (OTT) Video:**
  
 For long-form video the custom key `hb_pb_cat_dur_BIDDERCODE` is required. The value of this key breaks down like this:
 
