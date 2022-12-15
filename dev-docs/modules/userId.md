@@ -481,7 +481,7 @@ pbjs.setConfig({
 ### AudienceOne ID by DAC
 
 AudienceOne ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
-Please contact D.A.Consortium Inc. before using this ID.
+Please visit [https://solutions.dac.co.jp/audienceone](https://solutions.dac.co.jp/audienceone) and request your Owner ID to get started.
 
 Add the AudienceOne ID to your Prebid.js Package with:
 
@@ -494,6 +494,8 @@ gulp build --modules=dacIdSystem
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module | `"dacId"` |
+| params | Required | Object | Details of module params. | |
+| params.oid | Required | String | This is the Owner ID value obtained via D.A.Consortium Inc. | `"55h67qm4ck37vyz5"` |
 
 #### AudienceOne ID Example
 
@@ -501,7 +503,10 @@ gulp build --modules=dacIdSystem
 pbjs.setConfig({
     userSync: {
         userIds: [{
-            name: 'dacId'
+            name: 'dacId',
+            params: {
+                'oid': '55h67qm4ck37vyz5' // Set your AudienceOne Owner ID here
+            }
         }]
     }
 });
@@ -760,9 +765,9 @@ pbjs.setConfig({
 
 ### GrowthCode
 
-[GrowthCode](https://growthcode.io/) offers scaled infrastructure-as-a-service 
-to empower independent publishers to harness data and take control of 
-identity and audience while rapidly aligning to industry changes and 
+[GrowthCode](https://growthcode.io/) offers scaled infrastructure-as-a-service
+to empower independent publishers to harness data and take control of
+identity and audience while rapidly aligning to industry changes and
 margin pressure.
 
 #### GrowthCode Configuration
@@ -1237,17 +1242,12 @@ The Kinesso ID privacy policy is covered under the [Kinesso Privacy Notice](http
 
 LiveIntent offers audience resolution by leveraging our next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent nonID is a user identifier tied to an active, encrypted email in our graph and functions in cookie-challenged environments and browsers.
 
-There are two ways to build your Prebid.js package to include the LiveIntent nonID:
-* The standard version which allows publishers to include the module with full functionalities, like hashing email addresses and identity resolution
-* The minimal version, which allows publishers to deploy a smaller bundle with minimal features, including identity resolution.
+Build your Prebid.js package to include the LiveIntent nonID using the standard version which allows publishers to include the module with full functionalities, like hashing email addresses and identity resolution.
 
 Add the **full** LiveIntent Identity module to your Prebid.js package with:
+
 {: .alert.alert-info :}
 gulp build --modules=userId,liveIntentIdSystem
-
-Add the **minimal** LiveIntent Identity module to your Prebid.js package with:
-{: .alert.alert-info :}
-LiveConnectMode=minimal gulp build --modules=liveIntentIdSystem
 
 The `request.userId.lipb` object would look like:
 ```
@@ -2374,7 +2374,8 @@ gulp build --modules=userId,connectIdSystem
 | name | Required | String | The name of this module. | `'connectId'` |
 | params | Required | Object | Container of all module params. ||
 | params.pixelId | Required | Number | The Yahoo supplied publisher specific pixel Id  | `8976` |
-| params.he | Required | String | The SHA-256 hashed user email address |`'ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4'`|
+| params.he | Optional | String | The SHA-256 hashed user email address. One of either the `he` parameter or the `puid` parameter must be supplied. |`'ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4'`|
+| params.puid | Optional | String | The publisher-supplied user identifier. One of either the `he` parameter or the `puid` parameter must be supplied. | `"P-975484817"` |
 | storage | Required | Object | Defines where and for how long the results of the call to get a user ID will be stored. | |
 | storage.type | Required | String | Defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'html5'` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'connectId'` |
@@ -2386,6 +2387,7 @@ gulp build --modules=userId,connectIdSystem
 #### Yahoo ConnectID Examples
 
 ```
+// [Sample #1]: Using a hashed email.
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -2393,6 +2395,47 @@ pbjs.setConfig({
             params: {
               pixelId: 8976,
               he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"
+            },
+            storage: {
+              type: "html5",
+              name: "connectId",
+              expires: 15
+            }
+        }]
+    }
+})
+```
+
+```
+// [Sample #2]: Using a publisher-supplied user identifier.
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "connectId",
+            params: {
+              pixelId: 8976,
+              puid: "P-975484817"
+            },
+            storage: {
+              type: "html5",
+              name: "connectId",
+              expires: 15
+            }
+        }]
+    }
+})
+```
+
+```
+// [Sample #3]: Using a hashed email and a publisher-supplied user identifier.
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "connectId",
+            params: {
+              pixelId: 8976,
+              he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4",
+              puid: "P-975484817"
             },
             storage: {
               type: "html5",

@@ -105,7 +105,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | device.dpidmd5 | Optional  | `String` | Platform device ID (e.g., Android ID); hashed via MD5. |
 | device.macsha1 | Optional  | `String` | MAC address of the device; hashed via SHA1. |
 | device.macmd5 | Optional  | `String` | MAC address of the device; hashed via MD5. |
-| pricegranularity | Optional  (recommended)   | `Object` | The price range in varying increments that the CPM of the ad unit will fall into. Visit our [price granualarity](/prebid-mobile/adops-price-granularity.html) overview for more details. |
+| pricegranularity | Optional  (recommended)   | `Object` | The price range in varying increments that the CPM of the ad unit will fall into. Visit our [price granualarity](/adops/price-granularity.html) overview for more details. |
 | pricegranularity.precision | Optional  | `Object` | If precision is omitted, it will default to 2. |
 | pricegranularity.ranges | Optional  (recommended)   | `Object[]` | See [price range](#price-range) for details. |
 | regs | Optional   | `Object` |  Container object for data related to various regulations. See the [Regulations](#price-range) section below for more details. |
@@ -173,8 +173,8 @@ These are the supported (registered) bidder names.
 - "audienceNetwork"  
 - "beachfront"
 - "brightroll"
-- "conversant"
 - "eplanning"
+- "epsilon"
 - "grid"
 - "gumgum"
 - "ix"
@@ -191,7 +191,7 @@ These are the supported (registered) bidder names.
 
 ### Price Range
 
-The `pricegranularity` sub-object `range` describes the maximum price point for the price range and the increments to traverse that range. Visit our [price granualarity](/prebid-mobile/adops-price-granularity.html) overview for more details.
+The `pricegranularity` sub-object `range` describes the maximum price point for the price range and the increments to traverse that range. Visit our [price granualarity](/adops/price-granularity.html) overview for more details.
 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |

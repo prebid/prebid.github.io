@@ -5,7 +5,7 @@ description: Prebid Adagio Bidder Adaptor
 pbjs: true
 biddercode: adagio
 media_types: banner, native, video
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
+userIds: all
 floors_supported: true
 gdpr_supported: true
 usp_supported: true

@@ -20,9 +20,15 @@ If you’re looking for a marketing-level overview of the Prebid software and or
 
 The Prebid.org suite of products leads the industry in providing header bidding to publishers.
 
-![Top Header Bidding Providers](/assets/images/intros/top-header-providers.png)
+<iframe
+    src="https://sincera.metabaseapp.com/public/question/fc2fec3f-f702-45f3-8e5d-672515817168"
+    frameborder="0"
+    width="800"
+    height="600"
+    allowtransparency>
+</iframe>
 
-<div style="width:650px;">
+<div style="width:800px;">
 <p align=right>
 <a href="https://app.sincera.io/">Data by <img border="0" alt="Sincera" src="/assets/images/intros/Sincera_Logo_Black_Green-small.png"></a>
 </p>

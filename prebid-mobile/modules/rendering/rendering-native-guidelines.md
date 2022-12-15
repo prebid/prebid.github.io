@@ -51,7 +51,7 @@ The Prebid Rendering Module supports the original prebid's approach for renderin
 
 The ad will be rendered in the web view. The rendering engine will be the prebid's universal creative. It will load the winning bid from the prebid cache and substitute assets into the ad markup. For the more detailed info visit the Prebid's instructions about [How Native Ads Work](https://docs.prebid.org/dev-docs/show-native-ads.html#how-native-ads-work).
 
-In order to prepare the valid layout folow the instructions in the Prebid docs for [Mobile in general](https://docs.prebid.org/prebid-mobile/adops-native-setup.html) and for [Google Ad Manager](https://docs.prebid.org/adops/setting-up-prebid-native-in-dfp.html).
+In order to prepare the valid layout follow the instructions in the Prebid docs for [Google Ad Manager](/adops/gam-native.html).
 
 In the case of integration of Native Styles ads without Primary Ad Server publishers should provide the Ad Layout to the SDK. And the winning bid will be rendered right after receiving it from Prebid.
 
@@ -61,7 +61,7 @@ In the case of integration of Native Styles ads without Primary Ad Server publis
 2. Prebid Rendering Module sends the bid request.
 3. Prebid server runs the header bidding auction among preconfigured demand partners.
 3. The received creative will be rendered in the Web View of Prebid Rendering Module.
- 
+
 ## Components
 
 The Prebid Rendering Module supports all Native Ad components proclaimed by the OpenRTB specification: **title**, **image**, **video**, **data**.
