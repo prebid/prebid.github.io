@@ -34,7 +34,7 @@ Many of the Prebid.js bidder adaptors support delivery of native ads.
 
 - [Overview]({{site.baseurl}}/dev-docs/show-native-ads.html#how-native-ads-work)
 - [Developer Walkthrough]({{site.baseurl}}/dev-docs/show-native-ads.html)
-- [Setting Up Your Ad Server for Native]({{site.baseurl}}/adops/setting-up-prebid-native-in-dfp.html)
+- [GAM Step by Step - Native Creatives](/adops/gam-native.html)
 - [Bidders with Native Demand]({{site.baseurl}}/dev-docs/bidders.html#bidders-with-video-and-native-demand)
 
 ## AMP
@@ -43,7 +43,8 @@ You can implement header bidding on your AMP pages.
 
 - [How It Works]({{site.baseurl}}/dev-docs/how-prebid-on-amp-works.html)
 - [Show Prebid Ads on AMP Pages]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html)
-- [Setting Up Your Ad Server for AMP]({{site.baseurl}}/adops/setting-up-prebid-for-amp-in-dfp.html)
+- [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
+- [GAM Step by Step - Banner/Outstream/AMP Creatives](/adops/gam-creative-banner-sbs.html)
 
 For general information on the AMP Project, see [ampproject.org](https://www.ampproject.org/).
 
@@ -53,7 +54,7 @@ A multi-format ad unit supports at least two of the following types: banner, nat
 
 - [Overview]({{site.baseurl}}/dev-docs/show-multi-format-ads.html#how-multi-format-ads-work)
 - [Show Multi-Format Ads]({{site.baseurl}}/dev-docs/show-multi-format-ads.html)
-- [Setting Up Your Ad Server for Multi-Format]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html)
+- [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
 - [Example]({{site.baseurl}}/dev-docs/examples/multi-format-example.html)
 
 ## Interstitial

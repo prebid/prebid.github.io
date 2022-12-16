@@ -45,7 +45,7 @@ On the ad server side, you need to set up line items that can bid on each of the
 
 To simulate a dynamic auction using static line items, each line item targets a narrow portion of the entire range.
 
-To see how it works, follow the instructions in [Send all bids to the ad server - Ad Ops setup]({{site.baseurl}}/adops/send-all-bids-adops.html).  These instructions correspond with the code sample in the developer setup in the previous step.
+To see how it works, follow the instructions in [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).  These instructions correspond with the code sample in the developer setup in the previous step.
 
 ## Further Reading
 
@@ -53,4 +53,4 @@ For more information, check out the following:
 
 + [Before You Start](/adops/before-you-start.html): Learn about considerations of your Prebid.js setup such as price granularity, line item configuration, and more.
 + [Supported Ad Servers](/adops/before-you-start.html#supported-ad-servers): Ad ops docs arranged by ad server.
-+ [Docs by Format](/dev-docs/docs-by-format.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).
++ [Prebid Formats](/formats/formats.html): Engineering and ad ops docs arranged by ad format (video, native, etc.).

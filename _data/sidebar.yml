@@ -1324,7 +1324,7 @@
   subgroup: 2
 
 - sbSecId: 3
-  title: 'Guide to Prebid in Ad Manager'
+  title: 'Line Item Setup'
   link: /adops/step-by-step.html
   isHeader: 0
   isSectionHeader: 0
@@ -1332,31 +1332,15 @@
   subgroup: 2
 
 - sbSecId: 3
-  title: 'Ad Manager Send All Bids'
-  link: /adops/send-all-bids-adops.html
+  title: 'Creative Setup: Banner/Outstream/AMP'
+  link: /adops/gam-creative-banner-sbs.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
 
 - sbSecId: 3
-  title: 'Setting up for AMP in GAM'
-  link: /adops/setting-up-prebid-for-amp-in-dfp.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 3
-  title: 'Setting up Multi-Format in GAM'
-  link: /adops/setting-up-prebid-multi-format-in-dfp.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 3
-  title: 'Setting up Native in GAM'
+  title: 'Creative Setup: Native'
   link: /adops/gam-native.html
   isHeader: 0
   isSectionHeader: 0
@@ -1364,16 +1348,8 @@
   subgroup: 2
 
 - sbSecId: 3
-  title: 'Setting up Video in GAM'
+  title: 'Creative Setup: Video'
   link: /adops/setting-up-prebid-video-in-dfp.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 3
-  title: 'Setting up Long-Form Video in GAM'
-  link: /adops/setting-up-prebid-ott-video-in-gam.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

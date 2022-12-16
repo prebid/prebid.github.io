@@ -31,5 +31,5 @@ Optanon.InsertHtml('<iframe width="100%" height="1600" src="//jsfiddle.net/Prebi
 
 ### Next Steps
 
-1. Set up your ad server using the [corresponding Ad Ops setup instructions]({{site.baseurl}}/adops/send-all-bids-adops.html)
-2. Once you're comfortable with the basic setup, check out [the examples showing other use cases]({{site.baseurl}}/dev-docs/examples/basic-example.html)
+1. Set up your ad server using the [corresponding Ad Ops setup instructions](/adops/step-by-step.html)
+2. Once you're comfortable with the basic setup, check out [the examples showing other use cases](/dev-docs/examples/basic-example.html)
