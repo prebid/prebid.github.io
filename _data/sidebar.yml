@@ -1407,6 +1407,23 @@
   subgroup: 2
 
 - sbSecId: 3
+  title: "Other Ad Servers"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 3
+  title: 'General Ad Server Setup'
+  link: /adops/adops-general-sbs.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 3
   title: Optimization
   link:
   isHeader: 1
@@ -1426,14 +1443,6 @@
 - sbSecId: 3
   title: Optimize Header Bidding Setup
   link: /overview/how-many-bidders-for-header-bidding.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 3
-  title: Reduce Header Bidding Latency With Prebid.js
-  link: /overview/how-to-reduce-latency-of-header-bidding.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
