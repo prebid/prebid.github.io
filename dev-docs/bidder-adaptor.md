@@ -342,7 +342,7 @@ Notes on parameters in the bidderRequest object:
     {: .alert.alert-warning :}
     If your adapter generates an ORTB request, we recommend that you include _everything_ contained in `bidderRequest.ortb2` (and `bidRequest.ortb2Imp`); or, use the [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md) which does this by default.  
 
-    Since version 7.28, if Prebid finds appropriate values for the following fields, `ortb2` is guaranteed to contain:
+    Since version 7.29, if Prebid finds appropriate values for the following fields, `ortb2` is guaranteed to contain:
 
     - under `site`: `page`, `ref`, `domain`, `publisher.domain`, `keywords`;
     - under `device`: `w`, `h`, `dnt`, `ua`, `sua`, `language`;
