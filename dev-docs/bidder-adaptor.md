@@ -337,10 +337,23 @@ Here is a sample bidderRequest object:
 
 Notes on parameters in the bidderRequest object:
 - **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
+- **ortb2** is the global (not specific to any adUnit) [first party data](/features/firstPartyData.html) to use for all requests in this auction. Note that Prebid allows any standard ORTB field or extension as first party data - including items that typically wouldn't be considered as such, for example user agent client hints (`device.sua`) or information on the regulatory environment (`regs.ext.gpc`).
+
+    {: .alert.alert-warning :}
+    If your adapter generates an ORTB request, we recommend that you include _everything_ contained in `bidderRequest.ortb2` (and `bidRequest.ortb2Imp`); or, use the [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md) which does this by default.  
+
+    Since version 7.29, if Prebid finds appropriate values for the following fields, `ortb2` is guaranteed to contain:
+
+    - under `site`: `page`, `ref`, `domain`, `publisher.domain`, `keywords`;
+    - under `device`: `w`, `h`, `dnt`, `ua`, `sua`, `language`;
+    - under `regs`: `coppa`, `ext.gdpr`, `ext.us_privacy`;
+    - under `user`: `user.ext.consent`
+
+Some of the data in `ortb2` is also made available through other `bidderRequest` fields:   
+
 - **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
 - **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
 - **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module.
-- **ortb2** is the global (not specific to any adUnit) [first party data](/features/firstPartyData.html) to use for all requests in this auction. Note that Prebid allows any standard ORTB field or extension as first party data - including items that typically wouldn't be considered as such, for example user agent client hints (`device.sua`) or information on the regulatory environment (`regs.ext.gpc`).
 
 <a name="std-param-location"></a>
 
