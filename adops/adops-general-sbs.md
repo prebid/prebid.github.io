@@ -88,7 +88,7 @@ You can use the same line item for banner, outstream, and/or native creatives. I
 {: .alert.alert-warning :}
 If you combine native with another format in a single line item, you’ll need to add creative-level targeting to designate which creatives target which format. If your ad server doesn't support creative-level targeting, you may need to break out a separate set of line items.
 
-In-Player and Outstream Video:
+**In-Player and Outstream Video:**
 
 Both in-player (instream) and outstream video ads receive the `hb_format_BIDDERCODE=video` key-value pair, so targeting on that key alone is not enough to choose the correct line items. If you're running both in-player and outstream video ads, they will most likely be separate line items, so you will need to target outstream line items to a “display” inventory type, or perhaps separate them by adunits. 
 
