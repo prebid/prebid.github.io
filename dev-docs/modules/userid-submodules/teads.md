@@ -6,7 +6,7 @@ useridmodule: teadsId
 ---
 
 
-The Teads ID is a first-party identifier designed for publishers using the Teads adapter. For more information please contact [innov-ssp@teads.com](innov-ssp@teads.com)
+The Teads ID is a first-party identifier designed for publishers using the Teads adapter. For more information please contact [innov-ssp@teads.com](mailto:innov-ssp@teads.com)
 
 ## Teads ID Configuration
 

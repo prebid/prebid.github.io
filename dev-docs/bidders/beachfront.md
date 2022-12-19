@@ -108,7 +108,7 @@ pbjs.setConfig({
 
 ### Prebid Server
 
-As seen in the JSON response from \{your PBS server\}\/bidder\/params [(example)](https://prebid.adnxs.com/pbs/v1/bidders/params), the beachfront
+As seen in the JSON response from \{your PBS server\}\/bidder\/params, the beachfront
 bidder can take either an "appId" parameter, or an "appIds" parameter. If the request is for one media type, the appId parameter should be used
 with the value of the Exchange Id on the Beachfront platform.
 

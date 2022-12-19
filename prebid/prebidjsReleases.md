@@ -38,7 +38,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 4.29 | PBS Bid Adapter: cooperative sync flag |
 | 4.28 | Prebid Server Bid Adapter: use floors module to obtain OpenRTB floor, Support for [ignoreBidderCacheKey](/dev-docs/publisher-api-reference/setConfig.html#setConfig-vast-cache) |
 | 4.27 | Update TTL logic |
-| 4.26 | [Bid Viewability Module](dev-docs/modules/bidviewable.html) |
+| 4.26 | Bid Viewability Module |
 | 4.25 | Extended ID permissions |
 | 4.24 | Support Multiple Prebid Servers |
 | 4.23 | Added skipPbsAliasing feature |

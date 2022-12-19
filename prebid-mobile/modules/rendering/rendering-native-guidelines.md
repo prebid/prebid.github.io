@@ -34,7 +34,7 @@ The general integration scenario requires these steps from publishers:
     * Provide the list of [Native Assets](#components) representing the ad's structure.
     * Tune other general properties of the ad.
 4. Make a bid request.
-5. Find the winning native ad using `GAMUtils.shared.findNativeAd` or `MoPubUtils.findNativeAd`.
+5. Find the winning native ad using `GAMUtils.shared.findNativeAd`.
 6. Bind the data from the native ad response with the layout.
 
 ### Native Styles
@@ -68,7 +68,6 @@ The Prebid Rendering Module supports all Native Ad components proclaimed by the 
 
 We strongly recommend to follow the industry best practices and requirements, especially in the case of integration with Primary Ad Server:
 
-* [OpenRTB Specification](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf)
-* [The Native Advertizing Playbook](https://www.iab.com/wp-content/uploads/2015/06/IAB-Native-Advertising-Playbook2.pdf)
-* [Google Guidelines](https://support.google.com/admanager/answer/6075370)
-* [MoPub Guidelines](https://developers.mopub.com/publishers/best-practices/native-ads/)
+- [OpenRTB Specification](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf)
+- [The Native Advertizing Playbook](https://www.iab.com/wp-content/uploads/2015/06/IAB-Native-Advertising-Playbook2.pdf)
+- [Google Guidelines](https://support.google.com/admanager/answer/6075370)

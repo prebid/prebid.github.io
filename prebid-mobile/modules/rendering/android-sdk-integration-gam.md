@@ -130,7 +130,7 @@ And assign the listeners for processing ad events.
 
 #### Step 3: Load the Ad
 
-Simply call the `loadAd()` method to start [In-App Bidding](../android-in-app-bidding-getting-started.html) flow. The In-App Bidding SDK starts the  bidding process right away.
+Simply call the `loadAd()` method to start In-App Bidding flow. The In-App Bidding SDK starts the  bidding process right away.
 
 ### Outstream Video
 

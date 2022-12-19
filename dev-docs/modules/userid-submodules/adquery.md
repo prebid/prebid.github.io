@@ -6,7 +6,7 @@ useridmodule: qid
 ---
 
 
-The adQuery QiD is a first-party identifier designed for publishers using the Adquery adapter. For more information please contact [prebid@adquery.io](prebid@adquery.io)
+The adQuery QiD is a first-party identifier designed for publishers using the Adquery adapter. For more information please contact [prebid@adquery.io](mailto:prebid@adquery.io)
 
 ## adQuery QiD Configuration
 
