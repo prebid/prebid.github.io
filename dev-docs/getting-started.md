@@ -43,7 +43,7 @@ To learn more about header bidding and Prebid see:
 - [Introduction to Prebid](/overview/intro.html)
 - [What is Prebid.js?](/prebid/prebidjs.html)
 
-For guideance on planning out your configuration and working with your ad server, see:
+For guidance on planning out your configuration and working with your ad server, see:
 
 - [Ad Ops and Prebid](/adops/before-you-start.html)
 - [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
