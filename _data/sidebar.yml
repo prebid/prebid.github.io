@@ -85,7 +85,7 @@
 
 - sbSecId: 0
   title: Contributing
-  link: /contributing/contribute.html
+  link: /policies/contribute.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -93,7 +93,7 @@
 
 - sbSecId: 0
   title: Prebid.org IP Policy
-  link: /overview/ip-policy.html
+  link: /policies/ip-policy.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -101,7 +101,15 @@
 
 - sbSecId: 0
   title: Privacy Policy
-  link: /privacy.html
+  link: /policies/privacy.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 0
+  title: Antitrust Policy
+  link: /policies/antitrust.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -109,7 +117,7 @@
 
 - sbSecId: 0
   title: Cookies
-  link: /cookies.html
+  link: /policies/cookies.html
   isHeader: 0
   isSectionHeader: 0
   subgroup: 2

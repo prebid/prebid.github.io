@@ -56,7 +56,7 @@ Specifically, the information we collect automatically may include information l
 
 Collecting this information enables us to better understand the visitors who come to our Website, where they come from, and what content on our Website is of interest to them.  We use this information for our internal analytics purposes and to improve the quality and relevance of our Website to our visitors.
 
-Some of this information may be collected using cookies and similar tracking technology, as explained further in our [Cookies Notice](/cookies.html).
+Some of this information may be collected using cookies and similar tracking technology, as explained further in our [Cookies Notice](/policies/cookies.html).
 
 <a name="share-personal-info"></a>
 ## Who does Prebid.org share my personal information with?
