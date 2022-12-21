@@ -78,7 +78,7 @@ In this mode, the publisher will be responsible for the following actions:
 
 **Function callbacks**
 
-* `ResultCode`: enum [result codes](prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
+* `ResultCode`: enum [result codes](/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 * `targetingDict`: [Prebid Server Response targeting keys](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting)
 
 
