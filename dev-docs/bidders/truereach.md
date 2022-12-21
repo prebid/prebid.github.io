@@ -7,6 +7,9 @@ media_types: banner
 pbjs: true
 ---
 
+### Note:
+For more information, please visit us at: http://doc.truereach.co.in/docs/prebid/js-bidder-adapter.html
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
