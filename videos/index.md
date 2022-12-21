@@ -28,8 +28,6 @@ This page has a collection of header bidding training videos.
 Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/208562744" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>','vimeo1', null, {deleteSelectorContent: true}, 3);
 </script>
 
-<p>Header Bidding from <a href="https://xandr.com">Xandr</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-
 ### Downloading and Installing Prebid.js
 
 <div id="vimeo2">
@@ -40,8 +38,6 @@ Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/208562744" width
 <script type="text/javascript">
 Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/208843795" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>','vimeo2', null, {deleteSelectorContent: true}, 3);
 </script>
-
-<p>Downloading and Installing Prebid.js from <a href="https://xandr.com">Xandr</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 ### Ad Server Setup for Header Bidding
 
@@ -64,8 +60,6 @@ Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/237794019" width
 <script type="text/javascript">
 Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/214538709" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>','vimeo4', null, {deleteSelectorContent: true}, 3);
 </script>
-
-<p>Setup Google Ad Manager for Header Bidding from <a href="https://xandr.com">Xandr</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 ### Ad Units Array Setup
 
@@ -90,8 +84,6 @@ Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/244651234" width
 <script type="text/javascript">
 Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/212583123" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>','vimeo6', null, {deleteSelectorContent: true}, 3);
 </script>
-
-<p>Troubleshooting Header Bidding Configuration from <a href="https://xandr.com">Xandr</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 ### Troubleshooting Ad Server: Size and Inventory
 
