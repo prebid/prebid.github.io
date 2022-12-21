@@ -11,10 +11,6 @@ title: Prebid Server | Developers | Adding a Module
 This document guides you through the process of developing a module for host companies to plug into their instance of Prebid Server.
 We encourage you to look at existing modules for working examples. You can also ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server/issues/new).
 
-{: .alert.alert-info :}
-Modules are currently only supported in [PBS-Java](https://github.com/prebid/prebid-server-java).
-
-
 * TOC
 {:toc }
 
@@ -162,7 +158,7 @@ about how to format ATags.
 The details of the implementation depend on the platform.
 
 - PBS-Java: see [Adding a PBS-Java module](/prebid-server/developers/add-a-module-java.html)
-- PBS-Go: TBD
+- PBS-Go: see [Adding a PBS-Go module](/prebid-server/developers/add-a-module-go.html)
 
 Other rules for open source PBS pull request:
 

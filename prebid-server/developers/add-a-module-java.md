@@ -105,7 +105,7 @@ The documentation must also live on the docs.prebid.org site. Please add a markd
 
 ### Hook Interfaces
 
-The Prebid server processing workflow is divided into serveal 'stages' where module authors can code agaist a specific function signature called a 'hook'.
+The Prebid server processing workflow is divided into several 'stages' where module authors can code agaist a specific function signature called a 'hook'.
 
 The Prebid Server host company will define which modules to run in which order by setting up a configuration defining which hooks run, and which can run in parallel.
 
