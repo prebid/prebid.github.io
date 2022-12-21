@@ -53,9 +53,9 @@ PB Ad Slot is an identifier tied to the placement the ad will be delivered in. T
 
 Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad unit.
 
-#### Mopub or GAM
+#### GAM
 
-By default, Prebid SDK uses inflection to determine the publisher ad server, one of Mopub or Google Ad Manager (GAM), to convert Prebid's targeting keys (PBS bid keys, host and cache key) to trigger targeted line items. To render ads in ad servers other than Mopub or GAM, use the next section's 3rd party ad server support feature.
+By default, Prebid SDK uses inflection to determine the publisher ad server to convert Prebid's targeting keys (PBS bid keys, host and cache key) to trigger targeted line items. To render ads in ad servers other than GAM, use the next section's 3rd party ad server support feature.
 
 **Parameters**
 
@@ -66,7 +66,7 @@ By default, Prebid SDK uses inflection to determine the publisher ad server, one
 
 #### 3rd Party Ad Server
 
-The default ad servers for Prebid's Mobile SDK are MoPub and GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice. 
+The default ad servers for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice. 
 
 In this mode, the publisher will be responsible for the following actions:
 * Call fetchDemand with extended targetingDict callback
@@ -78,8 +78,8 @@ In this mode, the publisher will be responsible for the following actions:
 
 **Function callbacks**
 
-* `ResultCode`: enum [result codes](https://docs.prebid.org/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
-* `targetingDict`: [Prebid Server Response targeting keys](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting)
+* `ResultCode`: enum [result codes](prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
+* `targetingDict`: [Prebid Server Response targeting keys](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting)
 
 
 ```

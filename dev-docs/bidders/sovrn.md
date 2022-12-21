@@ -50,12 +50,12 @@ Bid Params for video ads. These params should be added to `mediatype.video`.
 | `playbackend`    | optional    | The event that causes playback to end. Refer to Playback Cessation Modes                                                       | `5`             | `integer`       |
 | `delivery`       | optional    | Supported delivery methods (1 = streaming, 2 = progressive, 3 = download). If none specified, assume all are supported.        | `[1, 2]`        | `integer array` |
 | `pos`            | recommended | Ad position on screen. Refer to [Ad Position](#ad-position)                                                                    | `5`             | `integer`       |
-| `api`            | recommended | List of supported API frameworks for this impression. Refer to [API Frameworks](api-frameworks)                                | `[1, 2, 3]`     | `integer array` |
+| `api`            | recommended | List of supported API frameworks for this impression. Refer to [API Frameworks](#sovrn-api-frameworks)                               | `[1, 2, 3]`     | `integer array` |
  
 
 ### Note
 
-[Protocols list](https://docs.prebid.org/dev-docs/bidders/conversant.html#protocols)
+[Protocols list](#epsilon-protocols)
 
 #### MIME types:
 
@@ -105,6 +105,7 @@ video/3gpp
 | `6`   | Sidebar        |
 | `7`   | Full Screen    |
 
+<a id="sovrn-api-frameworks"></a>
 #### API Frameworks:
 
 {: .table .table-bordered .table-striped }

@@ -64,6 +64,7 @@ The following values are defined in the [ORTB 2.5 spec](https://www.iab.com/wp-c
 + `5` : MRAID 2.0
 + `6` : MRAID 3.0
 
+<a id="epsilon-protocols"></a>
 ### protocols
 + `1` : VAST 1.0
 + `2` : VAST 2.0

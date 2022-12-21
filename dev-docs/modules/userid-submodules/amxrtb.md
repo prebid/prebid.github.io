@@ -6,7 +6,7 @@ useridmodule: amxId
 ---
 
 
-The AMX RTB ID is a first-party identifier designed for publishers using the AMX RTB adapter. For more information please contact [prebid@amxrtb.com](prebid@amxrtb.com)
+The AMX RTB ID is a first-party identifier designed for publishers using the AMX RTB adapter. For more information please contact [prebid@amxrtb.com](mailto:prebid@amxrtb.com)
 
 ## AMX RTB ID Configuration
 

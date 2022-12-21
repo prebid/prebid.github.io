@@ -737,7 +737,7 @@ public {bidder}Bidder(String endpointUrl,  CurrencyConversionService currencyCon
 
 ### Price Floors
 
-Prebid server manages the OpenRTB floors values (imp.bidfloor and imp.bidfloorcur) at the core level using the [Price Floors feature](/features/pbs-floors.html). Minimally, bid adapters are expected to read these values and pass them to the endpoint.
+Prebid server manages the OpenRTB floors values (imp.bidfloor and imp.bidfloorcur) at the core level using the [Price Floors feature](/prebid-server/features/pbs-floors.html). Minimally, bid adapters are expected to read these values and pass them to the endpoint.
 
 However, as described in the feature documentation, some adapters may benefit from access to more granular values. The primary use case is for multi-format as [detailed in the document](/prebid-server/features/pbs-floors.html#bid-adapter-floor-interface). To implement this, you may use the overloaded `getFloor()` function which can use more specific values for certain fields.
 
@@ -1307,7 +1307,7 @@ Notes on the metadata fields:
 
 ## Contribute
 
-Whew! You're almost done. Thank you for taking the time to develop a Prebid Server bid adapter. When you're ready, [contribute](https://github.com/prebid/prebid-server-java/blob/master/docs/contributing.md) your new bid adapter by opening a PR to the [PBS-Java GitHub repository](https://github.com/prebid/prebid-server-java) with the name "New Adapter: {Bidder}".
+Whew! You're almost done. Thank you for taking the time to develop a Prebid Server bid adapter. When you're ready, [contribute](https://github.com/prebid/prebid-server-java/blob/master/docs/developers/contributing.md) your new bid adapter by opening a PR to the [PBS-Java GitHub repository](https://github.com/prebid/prebid-server-java) with the name "New Adapter: {Bidder}".
 
 {: .alert.alert-warning :}
 You don't need to ask permission or open a GitHub issue before submitting an adapter.

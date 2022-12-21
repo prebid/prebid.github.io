@@ -8,7 +8,7 @@ pbjs: true
 ---
 
 ### Note:
-For more information, please visit us at: [TrueReach Ads](http://doc.truereach.co.in/docs/prebid/js-bidder-adapter.html).
+For more information, please visit us at: http://doc.truereach.co.in/docs/prebid/js-bidder-adapter.html
 
 ### Bid Params
 

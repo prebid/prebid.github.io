@@ -213,7 +213,7 @@ In order for publishers to meet their transparency, notice and choice/consent re
 
 Publishers can enable GDPR regulations by setting `regs.ext.gdpr` to `1`. To disable GDPR, change the setting to `0`. The default setting is `0`.
 
-Publishers can comply with CCPA regulations by setting `regs.ext.us.privacy` to one of the accepted string formats outlined in [IAB's CCPA Framework](https://iabtechlab.com/wp-content/uploads/2019/11/OpenRTB-Extension-U.S.-Privacy-IAB-Tech-Lab.pdf) such as `1YNN`.
+Publishers can comply with CCPA regulations by setting `regs.ext.us.privacy` to one of the accepted string formats outlined in [IAB's CCPA Framework](https://iabtechlab.com/standards/ccpa/) such as `1YNN`.
 
 
 
@@ -353,7 +353,7 @@ The SSAI should take the key-values from the response `adPods.[].targeting.[]${k
 ## Further Reading:
 
 - [Prebid Server overview](/prebid-server/overview/prebid-server-overview.html)  
-- [OpenRTB auction endpoint ](/prebid-server/endpoints/openrtb2/auction.html)  
+- [OpenRTB auction endpoint ](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html)  
 - [Category Translation module](/dev-docs/modules/categoryTranslation.html)  
 - [Freewheel module](/dev-docs/modules/freewheel.html)  
 - [Ad Pod module](/dev-docs/modules/adpod.html)  

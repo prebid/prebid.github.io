@@ -22,7 +22,7 @@ You will want to be familiar with the following background information:
 
 ### Coding standards
 
-The module’s code style should correspond to the [PBS-Java project code style](https://github.com/prebid/prebid-server-java/blob/master/docs/code-style.md).
+The module’s code style should correspond to the [PBS-Java project code style](https://github.com/prebid/prebid-server-java/blob/master/docs/developers/code-style.md).
 
 ## Module Directory Layout
 

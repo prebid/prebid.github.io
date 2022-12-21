@@ -19,7 +19,7 @@ gulp build --modules=idxIdSystem
 
 If you are a publisher or an advertiser, then IDx is free to use but requires a simple registration process. To do this, please send an email to [idx-partners@retargetly.com](mailto:idx-partners@retargetly.com) to request your IDx Partner ID.
 
-We may ask for some basic information from you before approving your request. For more information on IDx, please visit [retargetly.com/idx](http://retargetly.com/idx).
+We may ask for some basic information from you before approving your request. For more information on IDx, please visit [retargetly.com](https://retargetly.com/).
 
 ## IDx Configuration
 

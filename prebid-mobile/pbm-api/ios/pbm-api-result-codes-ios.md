@@ -38,7 +38,7 @@ When you use the Prebid Mobile API to retrieve bids, you'll receive a ResultCode
 ## Invalid size
 
 - **Return Code**: INVALID_SIZE  
-- **Description**: Attempted to add an invalid size to a banner ad unit. This error usually occurs if you've attempted to add multiple sizes on a request to Mopub; Mopub allows only a single size.  
+- **Description**: Attempted to add an invalid size to a banner ad unit.  
 - **More Information**: [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)
 
 ## Network error
