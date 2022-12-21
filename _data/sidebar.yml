@@ -211,6 +211,14 @@
   subgroup: 1
 
 - sbSecId: 1
+  title: Running without an ad server
+  link: /dev-docs/examples/no-adserver.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
   title: Legacy Browser Example
   link: /dev-docs/examples/legacy-browser-example.html
   isHeader: 0
