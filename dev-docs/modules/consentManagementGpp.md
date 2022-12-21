@@ -30,7 +30,7 @@ This module works with supported [Consent Management Platforms](https://www.cmsw
 
 {: .alert.alert-warning :}
 Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws.
-**We recommend consulting with your legal counsel before determining how to utilize these features in support of your overall privacy approach.**
+**We recommend consulting with your legal counsel before determining how to utilize these features in support of your overall privacy approach. This module is not yet intended to replace other consent modules; it supplements them.**
 
 Below is a summary of the actions performed by the GPP consent management module:
 
