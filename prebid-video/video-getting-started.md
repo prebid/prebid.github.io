@@ -14,7 +14,7 @@ sidebarType: 4
 If you’re new to header bidding and Prebid, your implementation of Prebid for video demand will likely go much smoother if you first read the following:
 
 -	[What Is Prebid?](/overview/intro.html)
--	[Getting Started with Prebid for Developers]({/dev-docs/getting-started.html)
+-	[Getting Started with Prebid for Developers](/dev-docs/getting-started.html)
 
 See [Prebid.js Video Overview](/prebid-video/video-overview.html) for a general description and high-level overview of working with video demand in Prebid.js.
 

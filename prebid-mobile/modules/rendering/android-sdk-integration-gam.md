@@ -213,7 +213,7 @@ Also, you can assign the listeners for processing ad events.
 
 #### Step 3: Load the Ad
 
-Simply call the `loadAd()` method to start [In-App Bidding](../android-in-app-bidding-getting-started.html) flow. The ad unit will load an ad and will wait for explicit instructions to display the Interstitial Ad.
+Simply call the `loadAd()` method to start In-App Bidding flow. The ad unit will load an ad and will wait for explicit instructions to display the Interstitial Ad.
 
 
 #### Step 4: Show the Ad when it is ready
