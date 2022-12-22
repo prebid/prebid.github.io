@@ -351,7 +351,7 @@ You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
 
-| Key | Scope | Type | Description |
+| Name | Scope | Type | Description |
 |---|---|---|---|
 | `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
 
@@ -362,7 +362,7 @@ You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
 
-| Key | Scope | Type | Description |
+| Name | Scope | Type | Description |
 |---|---|---|---|
 | `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
 
@@ -371,7 +371,7 @@ If you are using Index's outstream player and have placed the video object at th
 
 {: .table .table-bordered .table-striped }
 
-| Key | Scope | Type | Description |
+| Name | Scope | Type | Description |
 |---|---|---|---|
 | `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
 | `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
@@ -394,7 +394,7 @@ The following are the parameters that you can specify for each multi-format type
 
 {: .table .table-bordered .table-striped }
 
-| Key | Scope | Type | Description |
+| Name | Scope | Type | Description |
 |---|---|---|---|
 | `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`. <br><br><b>Note:</b> This will also act as the default siteID for multi-format adunits if a format specific siteId is not provided.|
 | `banner.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `banner` format in the multi-format ad unit.|
