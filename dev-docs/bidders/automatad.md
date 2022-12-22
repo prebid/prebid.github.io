@@ -7,6 +7,7 @@ pbjs: true
 pbs: true
 media_types: banner
 fpd_supported: false
+sidebarType: 1
 ---
 
 #### Prebid.js Bid Params

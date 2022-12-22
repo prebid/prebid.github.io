@@ -9,6 +9,7 @@ media_types: banner, video
 gdpr_supported: true
 usp_supported: true
 gvl_id: 541
+sidebarType: 1
 ---
 
 ### Bid Params

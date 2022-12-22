@@ -5,6 +5,7 @@ description: Prebid Page Science Bidder Adaptor
 pbjs: true
 biddercode: pagescience
 aliasCode : appnexus
+sidebarType: 1
 ---
 
 ### Bid Params

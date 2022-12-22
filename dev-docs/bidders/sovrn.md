@@ -13,6 +13,7 @@ schain_supported: true
 gvl_id: 13
 floors_supported: true
 media_types: banner, video
+sidebarType: 1
 ---
 
 ### Bid Params

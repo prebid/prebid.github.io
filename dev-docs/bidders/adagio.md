@@ -14,6 +14,7 @@ schain_supported: true
 gvl_id: 617
 prebid_member: true
 fpd_supported: false
+sidebarType: 1
 ---
 
 ### Note

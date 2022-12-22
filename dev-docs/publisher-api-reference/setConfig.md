@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.setConfig(options)
 description:
+sidebarType: 1
 ---
 
 

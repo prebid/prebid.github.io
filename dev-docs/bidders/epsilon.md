@@ -11,6 +11,7 @@ userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, uni
 prebid_member: true
 schain_supported: true
 gvl_id: 24
+sidebarType: 1
 ---
 
 

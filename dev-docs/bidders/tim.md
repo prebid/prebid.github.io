@@ -6,6 +6,7 @@ pbjs: true
 biddercode: tim
 enable_download: false
 pbjs_version_notes: not ported to 5.x
+sidebarType: 1
 ---
 
 ### Bid Params

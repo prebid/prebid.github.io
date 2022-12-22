@@ -19,13 +19,15 @@ fpd_supported: false
 ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
 prebid_member: false
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Description](#redtram-bid-desc)
-- [Bid Params](#redtram-bid-params)
-- [Test Params](#redtram-test-params)
+- [Table of Contents](#table-of-contents)
+- [Description](#description)
+- [Bid params](#bid-params)
+- [Test Parameters](#test-parameters)
 
 <a name="redtram-bid-desc" />
 

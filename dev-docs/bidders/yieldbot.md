@@ -4,6 +4,7 @@ title: Yieldbot
 description: Prebid Yieldbot Bidder Adaptor
 pbjs: true
 biddercode: yieldbot
+sidebarType: 1
 ---
 
 

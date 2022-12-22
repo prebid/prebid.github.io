@@ -8,6 +8,7 @@ biddercode: ccx
 media_types: banner, video
 gvl_id: 773
 gdpr_supported: true
+sidebarType: 1
 ---
 
 

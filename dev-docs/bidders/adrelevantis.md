@@ -6,6 +6,7 @@ biddercode: adrelevantis
 media_types: banner, video, native
 fpd_supported: true
 pbjs: true
+sidebarType: 1
 ---
 
 ### Note:

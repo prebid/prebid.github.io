@@ -5,6 +5,7 @@ description: Prebid AdPartner Bidder Adaptor
 pbjs: true
 biddercode: adpartner
 media_types: banner
+sidebarType: 1
 ---
 
 ### Bid Params

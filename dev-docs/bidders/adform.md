@@ -13,6 +13,7 @@ userIds: all
 gvl_id: 50
 enable_download: false
 pbjs_version_notes: not ported to 5.x
+sidebarType: 1
 ---
 
 **Adform bid adapter is deprecated since Prebid 5.0. Please refer to [AdformOpenRTB adapter](#adf) documentation to fetch bids from Adform demand sources.**

@@ -15,6 +15,7 @@ userIds: criteo, id5Id, sharedId, unifiedId
 safeframes_ok: true
 floors_supported: false
 multiformat_supported: will-bid-on-any
+sidebarType: 1
 ---
 
 ### Description

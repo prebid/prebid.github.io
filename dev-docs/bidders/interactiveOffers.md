@@ -7,6 +7,7 @@ pbjs: true
 biddercode: interactiveOffers
 gdpr_supported: false
 media_types: banner
+sidebarType: 1
 ---
 
 ### Note:

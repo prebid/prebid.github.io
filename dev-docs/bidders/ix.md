@@ -19,19 +19,26 @@ dchain_supported: false
 deals_supported: true
 prebid_member: yes
 multiformat_supported: yes
+sidebarType: 1
 ---
 
 ## Table of contents
 
+- [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Supported media types](#supported-media-types)
-- [Set up Prebid.js to call Index directly from the browser](#client-side-adapter)
-- [Set up Prebid.js to call Index through Prebid Server](#server-side-adapter)
+- [Set up Prebid.js to call Index directly from the browser (client-side adapter)](#set-up-prebidjs-to-call-index-directly-from-the-browser-client-side-adapter)
+- [Set up Prebid.js to call Index through Prebid Server (server-side adapter)](#set-up-prebidjs-to-call-index-through-prebid-server-server-side-adapter)
 - [Modules to include in your build process](#modules-to-include-in-your-build-process)
 - [Set up First Party Data (FPD)](#set-up-first-party-data-fpd)
-- [Index's outstream video player](#index-outstream-video-player)
+  - [Index bidder-specific FPD module](#index-bidder-specific-fpd-module)
+  - [Prebid FPD module](#prebid-fpd-module)
+- [Index's outstream video player](#indexs-outstream-video-player)
 - [Prebid Native configuration](#prebid-native-configuration)
 - [Bid request parameters](#bid-request-parameters)
+  - [Banner](#banner)
+  - [Video](#video)
+  - [Native](#native)
 - [Multi-format ad units](#multi-format-ad-units)
 - [Examples](#examples)
 

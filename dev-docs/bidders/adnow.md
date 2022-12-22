@@ -5,7 +5,9 @@ description: Prebid AdNow Bidder Adaptor
 biddercode: adnow
 pbjs: true
 media_types: native, banner
+sidebarType: 1
 ---
+
 ### Note:
 The Example Bidding adapter requires setup before beginning. Please contact us at support@adnow.com
 

@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.enableAnalytics(config)
 description: 
+sidebarType: 1
 ---
 
 

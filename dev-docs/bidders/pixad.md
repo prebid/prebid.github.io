@@ -16,6 +16,7 @@ safeframes_ok: true
 floors_supported: false
 aliasCode: admatic
 multiformat_supported: will-bid-on-any
+sidebarType: 1
 ---
 
 ### Description

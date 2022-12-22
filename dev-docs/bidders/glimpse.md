@@ -9,6 +9,7 @@ usp_supported: true
 deals_supported: true
 media_types: banner
 gvl_id: 1012
+sidebarType: 1
 ---
 
 ## Overview

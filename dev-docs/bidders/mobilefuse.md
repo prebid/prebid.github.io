@@ -15,6 +15,7 @@ pbs_app_supported: true
 floors_supported: true
 gvl_id: 909
 ortb_blocking_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params

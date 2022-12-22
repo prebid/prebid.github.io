@@ -4,6 +4,7 @@ title: BeOp
 description: BeOp Bidder Adaptor
 pbjs: true
 biddercode: beop
+sidebarType: 1
 ---
 
 ### Bid Params

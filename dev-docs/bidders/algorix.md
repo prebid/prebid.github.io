@@ -13,6 +13,7 @@ pbjs: false
 pbs: true
 pbs_app_supported: true
 prebid_member: true
+sidebarType: 1
 ---
 
 ### Note:

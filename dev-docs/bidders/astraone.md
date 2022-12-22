@@ -6,6 +6,7 @@ pbjs: true
 media_types: banner
 biddercode: astraone
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Note

@@ -18,6 +18,7 @@ prebid_member: false
 ortb_blocking_supported: true
 multiformat_supported: will-bid-on-one
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Note:

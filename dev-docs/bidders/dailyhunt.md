@@ -8,6 +8,7 @@ media_types: display, native, video
 gdpr_supported: true
 enable_download: false
 pbjs_version_notes: not ported to 5.x
+sidebarType: 1
 ---
 
 ### Bid Params

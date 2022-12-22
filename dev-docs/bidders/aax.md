@@ -17,6 +17,7 @@ fpd_supported: true
 pbs: true
 safeframes_ok: true
 multiformat_supported: will-not-bid
+sidebarType: 1
 ---
 
 ### Bid Params
