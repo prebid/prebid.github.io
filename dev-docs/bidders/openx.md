@@ -16,6 +16,7 @@ prebid_member: true
 fpd_supported: true
 gvl_id: 69
 fpd_supported: true
+sidebarType: 1
 ---
 
 ### Registration

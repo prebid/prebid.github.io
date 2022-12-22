@@ -8,6 +8,7 @@ biddercode: adrino
 media_types: no-display, native
 gdpr_supported: true
 gvl_id: 1072
+sidebarType: 1
 ---
 
 ### Note

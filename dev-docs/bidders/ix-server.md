@@ -19,20 +19,24 @@ dchain_supported: false
 deals_supported: true
 prebid_member: yes
 multiformat_supported: yes
+sidebarType: 1
 ---
 
 
 
 ## Table of contents
 
+- [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Supported media types](#supported-media-types)
-- [Set up instructions to call Index through Prebid Server](#call-index)
-    - [Call Index from a web browser](#call-index-from-a-web-browser)
-    - [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk)
-    - [Call Index from CTV/long-form video environment](#call-index-from-ctv-long-form-video-environment)
-    - [Call Index from any other server-to-server OpenRTB environment](#call-index-from-ortb)
+- [Setup instructions to call Index through Prebid Server](#setup-instructions-to-call-index-through-prebid-server)
+  - [Call Index from a web browser](#call-index-from-a-web-browser)
+  - [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk)
+  - [Call Index from CTV/long-form video environment](#call-index-from-ctvlong-form-video-environment)
+  - [Call Index from any other server-to-server OpenRTB environment](#call-index-from-any-other-server-to-server-openrtb-environment)
 - [Bid request parameters](#bid-request-parameters)
+  - [Banner](#banner)
+  - [Video](#video)
 - [Examples](#examples)
 
 

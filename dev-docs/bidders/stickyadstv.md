@@ -7,5 +7,6 @@ nav_section: reference
 pbjs: true
 biddercode: stickyadstv
 media_types: native
+sidebarType: 1
 
 ---

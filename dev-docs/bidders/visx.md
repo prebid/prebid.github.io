@@ -12,6 +12,7 @@ media_types: banner, video
 deals_supported: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
 ### Note

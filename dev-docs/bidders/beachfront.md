@@ -15,6 +15,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 gvl_id: 335
+sidebarType: 1
 ---
 
 ### Registration

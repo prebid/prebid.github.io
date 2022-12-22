@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.getEvents()
 description: 
+sidebarType: 1
 ---
 
 The `getEvents` method returns a copy of all emitted events since the page loaded.

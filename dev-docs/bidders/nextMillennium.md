@@ -17,6 +17,7 @@ pbs: true
 biddercode: nextMillennium
 media_types: banner, video
 prebid_member: true
+sidebarType: 1
 ---
 
 ### Bid Params

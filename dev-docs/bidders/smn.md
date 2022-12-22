@@ -15,6 +15,7 @@ coppa_supported: false
 deals_supported: true
 ortb_blocking_supported: false
 safeframes_ok: false
+sidebarType: 1
 ---
 
 ### Bid Params

@@ -9,6 +9,7 @@ prebid_member: true
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+sidebarType: 1
 ---
 
 ### Registration

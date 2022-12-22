@@ -16,6 +16,7 @@ deals_supported: true
 pbs_app_supported: true
 multiformat_supported: will-bid-on-any
 media_types: banner, video
+sidebarType: 1
 ---
 
 ### bid params

@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.getUserIdsAsEids()
 description: 
+sidebarType: 1
 ---
 
 

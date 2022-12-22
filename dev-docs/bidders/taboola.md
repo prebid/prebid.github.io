@@ -17,6 +17,7 @@ safeframes_ok: true
 fpd_supported: false
 ortb_blocking_supported: partial
 deals_supported: false
+sidebarType: 1
 ---
 
 ### Note

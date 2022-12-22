@@ -20,6 +20,7 @@ fpd_supported: true
 ortb_blocking_supported: partial
 gvl_id: 52
 multiformat_supported: will-bid-on-one
+sidebarType: 1
 ---
 
 ### Registration

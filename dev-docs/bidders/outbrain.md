@@ -17,6 +17,7 @@ userIds: id5Id, identityLink
 floors_supported: true
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: partial
+sidebarType: 1
 ---
 
 ### Registration

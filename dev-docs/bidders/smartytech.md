@@ -5,6 +5,7 @@ description: Prebid SmartyTech Bidder Adaptor
 pbjs: true
 biddercode: smartytech
 media_types: banner
+sidebarType: 1
 ---
 
 ### Bid Params

@@ -7,6 +7,7 @@ biddercode: verizonmedia
 prebid_member: true
 gdpr_supported: true
 gvl_id: 25
+sidebarType: 1
 ---
 
 ### Bid Params
