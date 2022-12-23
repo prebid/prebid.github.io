@@ -12,6 +12,7 @@ prebid_member: false
 
 ### Bid Params
 
+{: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                  | Example   | Type     |
 | ---------- | -------- | ---------------------------- | --------- | -------- |
 | `adUnitID` | required | Ad Unit ID provided by Holid | `'12345'` | `string` |
