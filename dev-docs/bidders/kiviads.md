@@ -18,6 +18,7 @@ coppa_supported: true
 deals_supported: false
 schain_supported: true
 dchain_supported: false
+sidebarType: 1
 ---
 
 ### Bid Params
