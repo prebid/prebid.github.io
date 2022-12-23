@@ -8,6 +8,7 @@ media_types: banner
 gdpr_supported: true
 usp_supported: true
 prebid_member: false
+sidebarType: 1
 ---
 
 ### Bid Params
