@@ -15,6 +15,7 @@ floors_supported: true
 pbjs: true
 pbs: false
 prebid_member: true
+sidebarType: 1
 ---
 
 ### Disclosure:

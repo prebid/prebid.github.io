@@ -15,6 +15,7 @@ prebid_member: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 safeframes_ok: true
 gvl_id: 1111
+sidebarType: 1
 ---
 
 ### Bid Params

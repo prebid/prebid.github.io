@@ -17,13 +17,15 @@ tcf2_supported: true
 coppa_supported: true
 fpd_supported: true
 pbjs_version_notes: 7.0 and after
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Bid Params](#trustx-bid-params)
-- [Bidder Config](#trustx-bidder-config)
-- [First Party Data](#trustx-first-party)
+- [Table of Contents](#table-of-contents)
+- [Bid Params](#bid-params)
+- [Bidder Config](#bidder-config)
+- [First Party Data](#first-party-data)
 
 <a name="trustx-bid-params" />
 

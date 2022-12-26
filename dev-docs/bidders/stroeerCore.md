@@ -19,6 +19,7 @@ userIds: criteo, id5Id, netId, pubCommonId, sharedId
 multiformat_supported: will-bid-on-one
 floors_supported: false
 fpd_supported: false
+sidebarType: 1
 ---
 
 ### Bid Params

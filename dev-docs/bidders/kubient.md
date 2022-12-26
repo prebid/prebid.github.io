@@ -12,6 +12,7 @@ usp_supported: true
 coppa_supported: true
 tcf2_supported: true
 gvl_id: 794
+sidebarType: 1
 ---
 
 ### Note:

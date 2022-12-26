@@ -12,16 +12,18 @@ userIds: all
 floors_supported: true
 pbs: true
 pbs_app_supported: true
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Bid Params](#apacdex-bid-params)
-- [Geo Object](#apacdex-geo-object)
-- [Video Ad Unit](#apacdex-video-ad-unit)
-- [Sample Banner Ad Unit](#apacdex-sample-banner-ad-unit)
-- [Sample Video Ad Unit: Instream](#apacdex-sample-instream-ad-unit)
-- [Sample Video Ad Unit: Outstream](#apacdex-sample-outstream-ad-unit)
+- [Table of Contents](#table-of-contents)
+- [Bid Params](#bid-params)
+- [Geo Object](#geo-object)
+- [Video Ad Unit](#video-ad-unit)
+- [Sample Banner Ad Unit](#sample-banner-ad-unit)
+- [Sample Video Ad Unit: Instream](#sample-video-ad-unit-instream)
+- [Sample Video Ad Unit: Outstream](#sample-video-ad-unit-outstream)
 
 <a name="apacdex-bid-params" />
 

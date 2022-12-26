@@ -12,6 +12,7 @@ gvl_id: 919
 usp_supported: true
 coppa_supported: true
 safeframes_ok: true
+sidebarType: 1
 ---
 
 ### Note:

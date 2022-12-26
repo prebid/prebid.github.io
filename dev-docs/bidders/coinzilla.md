@@ -5,6 +5,7 @@ description: Prebid Coinzilla Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: coinzilla
+sidebarType: 1
 ---
 
 

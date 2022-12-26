@@ -12,6 +12,7 @@ usp_supported: true
 floors_supported: true
 pbjs: true
 safeframes_ok: false
+sidebarType: 1
 ---
 
 ### Note:

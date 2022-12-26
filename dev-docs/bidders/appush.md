@@ -12,6 +12,7 @@ floors_supported: true
 fpd_supported: false
 multiformat_supported: will-not-bid
 ortb_blocking_supported: partial
+sidebarType: 1
 ---
 
 ### Prebid Server Params

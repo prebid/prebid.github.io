@@ -6,6 +6,7 @@ pbjs: true
 biddercode: finative
 media_types: native
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Bid params

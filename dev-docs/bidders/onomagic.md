@@ -6,6 +6,7 @@ top_nav_section: dev_docs
 nav_section: reference
 pbjs: true
 biddercode: onomagic
+sidebarType: 1
 ---
 
 ### Note:

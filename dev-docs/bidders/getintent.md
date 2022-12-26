@@ -6,6 +6,7 @@ pbjs: true
 biddercode: getintent
 media_types: video, banner
 floors_supported: true
+sidebarType: 1
 ---
 
 
