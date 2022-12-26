@@ -19,6 +19,7 @@ floors_supported: false
 fpd_supported: false
 ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
+sidebarType: 1
 ---
 
 ### Note:
