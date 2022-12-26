@@ -19,6 +19,7 @@ pbjs: true
 pbs: false
 prebid_member: false
 ortb_blocking_supported: false
+sidebarType: 1
 ---
 
 # Description
