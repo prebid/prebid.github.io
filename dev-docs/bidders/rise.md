@@ -50,7 +50,7 @@ var adUnits = [{
                 org: '1234567890abcdef12345678', // Required
                 floorPrice: 0.05, // Optional
                 placementId: '12345678', // Optional
-                testMode: false // Optional,
+                testMode: false, // Optional,
                 rtbDomain: 'www.test.com' //Optional
             }
         }]
@@ -74,7 +74,7 @@ var adUnits = [{
                 org: '1234567890abcdef12345678', // Required
                 floorPrice: 5.00, // Optional
                 placementId: '12345678', // Optional
-                testMode: false // Optional,
+                testMode: false, // Optional,
                 rtbDomain: 'www.test.com' //Optional
             }
         }]
