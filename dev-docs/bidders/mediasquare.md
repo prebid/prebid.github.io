@@ -11,6 +11,7 @@ userIds: id5Id
 media_types: banner, video, native
 floors_supported: true
 glv_id: 791
+sidebarType: 1
 ---
 
 

@@ -11,6 +11,7 @@ coppa_supported: true
 usp_supported: true
 pbjs: true
 pbs: false
+sidebarType: 1
 ---
 
 *NOTE*: The AdBookPSP Bidder Adapter requires setup and approval before use. The adapter uses custom targeting keys that require a dedicated Google Ad Manager setup to work. Please reach out to your AdbookPSP representative for more details. 

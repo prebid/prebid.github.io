@@ -6,6 +6,7 @@ biddercode: relaido
 userIds: imuid
 pbjs: true
 media_types: banner, video
+sidebarType: 1
 ---
 
 ### Bid Params

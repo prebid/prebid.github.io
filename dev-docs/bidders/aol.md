@@ -8,6 +8,7 @@ gdpr_supported: true
 usp_supported: true
 gvl_id: 25
 userIds: connectId
+sidebarType: 1
 
 ---
 ### IMPORTANT NOTICE!

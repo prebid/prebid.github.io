@@ -2,16 +2,23 @@
 layout: bidder
 title: CatapultX
 description: CatapultX Bidder Adaptor
-pbjs: true
-pbs: true
 biddercode: catapultx
-aliasCode : adkernel
-media_types: banner, video
+pbjs: true
+pbs: false
+media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 pbs_app_supported: true
 schain_supported: true
+userIds: all
+fpd_supported: true
+prebid_member: false
+ortb_blocking_supported: true
+multiformat_supported: will-bid-on-one
+floors_supported: true
+aliasCode: adkernel
+sidebarType: 1
 ---
 
 ### Bid Params

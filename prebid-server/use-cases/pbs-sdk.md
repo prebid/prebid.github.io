@@ -24,7 +24,7 @@ Here's a workflow diagramming how this works.
 1. The auction takes place and bid responses are placed in a cache.
 1. Prebid Server responds to the Prebid SDK with results and ad server targeting variables.
 1. The ad server targeting variables are sent along with the ad request to the publisher ad server.
-1. When header bidding wins in the ad server, the ad server responds with a call to the [Prebid Universal Creative](overview/prebid-universal-creative.html).
+1. When header bidding wins in the ad server, the ad server responds with a call to the [Prebid Universal Creative](/overview/prebid-universal-creative.html).
 1. The Prebid Universal Creative pulls the winning bid from the Prebid Cache.
 1. The Prebid Universal Creative displays the winning bid creative from the cache.
 

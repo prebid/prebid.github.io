@@ -99,11 +99,15 @@ adapters:
       supported-vendors:
       vendor-id: your_vendor_id
     usersync:
-      url: your_bid_adapter_usersync_url
-      redirect-url: /setuid?bidder=yourBidderCode&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
       cookie-family-name: yourBidderCode
-      type: redirect
-      support-cors: false
+      iframe:
+        url: https://some-bidder-domain.com/usersync-url?gdpr={{gdpr}}&consent={{gdpr_consent}}&us_privacy={{us_privacy}}&redirect={{redirect_url}}
+        uid-macro: 'YOURMACRO'
+        support-cors: false
+      redirect:
+        url: https://some-bidder-domain.com/usersync-url?gdpr={{gdpr}}&consent={{gdpr_consent}}&us_privacy={{us_privacy}}&redirect={{redirect_url}}
+        uid-macro: 'YOURMACRO'
+        support-cors: false
 ```
 
 Modify this template for your bid adapter:
@@ -114,16 +118,21 @@ Modify this template for your bid adapter:
 - Choose the `supported-vendors` constants: These constants should be unique. The list of existing vendor constants can be found [here](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/bidder/ViewabilityVendors.java).
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
 - If your auction endpoint supports gzip compression, setting 'endpoint-compression' to 'gzip' will save on network fees.
-- Change the `cookie-family-name` to the name which will be used for storing your user sync id within the federated cookie. Please keep this the same as your bidder name.
-  If you implemented a user syncer, you'll need to provide a default endpoint.
-  The user sync endpoint is composed of two main parts, the url of your user syncer and a redirect back(redirect-url) to Prebid Server. The url of your user syncer is responsible for reading the user id from the client's cookie and redirecting to Prebid Server with a user id macro resolved.
 
-The url of your user syncer can make use of the following privacy policy macros which will be resolved by Prebid Server before sending the url to your server:
+If you does not support user syncing, you can remove `usersync` section of configuration.
+- Change the `cookie-family-name` to the name which will be used for storing your user sync id within the federated cookie. Please keep this the same as your bidder name.
+- Choose appropriate section for your usersync type(iframe/redirect). If both iframe and redirect endpoints are provided, the iframe endpoint will be used by default.
+
+In appropriate usersync section:
+- Change the `url` to url of your usersync endpoint
+- Change the `uid-macro` to macro that will be placed in callback endpoint, to be resolved by your usersyncer. Defaults to empty string. 
+- Change the `support-cors` to true if your endpoint supports cors.
+
+The url of your user syncer can make use of the following macros which will be resolved by Prebid Server before sending the url to your server:
 - `{%raw%}{{us_privacy}}{%endraw%}`: Client's CCPA consent string.
 - `{%raw%}{{gdpr}}{%endraw%}`: Client's GDPR TCF enforcement flag.
 - `{%raw%}{{gdpr_consent}}{%endraw%}`: Client's GDPR TCF consent string.
-
-- Change the `usersync:type` value to `redirect` or `iframe` specific to your bidder.
+- `{%raw%}{{redirect_url}}{%endraw%}`: Url to redirect back to Prebid Server.
 
 ### Default bidder configuration
 
@@ -728,7 +737,7 @@ public {bidder}Bidder(String endpointUrl,  CurrencyConversionService currencyCon
 
 ### Price Floors
 
-Prebid server manages the OpenRTB floors values (imp.bidfloor and imp.bidfloorcur) at the core level using the [Price Floors feature](/features/pbs-floors.html). Minimally, bid adapters are expected to read these values and pass them to the endpoint.
+Prebid server manages the OpenRTB floors values (imp.bidfloor and imp.bidfloorcur) at the core level using the [Price Floors feature](/prebid-server/features/pbs-floors.html). Minimally, bid adapters are expected to read these values and pass them to the endpoint.
 
 However, as described in the feature documentation, some adapters may benefit from access to more granular values. The primary use case is for multi-format as [detailed in the document](/prebid-server/features/pbs-floors.html#bid-adapter-floor-interface). To implement this, you may use the overloaded `getFloor()` function which can use more specific values for certain fields.
 
@@ -817,6 +826,8 @@ private static BidderBid createBidderBid(Bid bid, Imp imp, BidType bidType, Stri
     }
 ```
 <p></p>
+
+2. Test: 
 
 ## Test Your Adapter
 
@@ -1242,7 +1253,7 @@ multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ortb_blocking_supported: true/partial/false
 ---
 
-### Note:
+### Registration
 
 The Example Bidding adapter requires setup before beginning. Please contact us at setup@example.com
 
@@ -1259,7 +1270,7 @@ Notes on the metadata fields:
 - If you support GDPR and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
 - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
-- If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
+- If you support video, native, or audio mediaTypes add `media_types: video, native, audio`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 - If you support COPPA, add `coppa_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
@@ -1269,6 +1280,7 @@ Notes on the metadata fields:
 - If your bidder supports floors, set `floors_supported: true`. No default value.
 - If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
 - If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to ‘true’,’partial’, or ‘false’. No default value. In order to set ‘true’, you must support: bcat, badv, battr, and bapp.
+- Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
 
@@ -1295,7 +1307,7 @@ Notes on the metadata fields:
 
 ## Contribute
 
-Whew! You're almost done. Thank you for taking the time to develop a Prebid Server bid adapter. When you're ready, [contribute](https://github.com/prebid/prebid-server-java/blob/master/docs/contributing.md) your new bid adapter by opening a PR to the [PBS-Java GitHub repository](https://github.com/prebid/prebid-server-java) with the name "New Adapter: {Bidder}".
+Whew! You're almost done. Thank you for taking the time to develop a Prebid Server bid adapter. When you're ready, [contribute](https://github.com/prebid/prebid-server-java/blob/master/docs/developers/contributing.md) your new bid adapter by opening a PR to the [PBS-Java GitHub repository](https://github.com/prebid/prebid-server-java) with the name "New Adapter: {Bidder}".
 
 {: .alert.alert-warning :}
 You don't need to ask permission or open a GitHub issue before submitting an adapter.

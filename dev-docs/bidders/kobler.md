@@ -7,6 +7,7 @@ pbjs: true
 media_types: banner
 floors_supported: true
 deals_supported: true
+sidebarType: 1
 ---
 
 ### Note:

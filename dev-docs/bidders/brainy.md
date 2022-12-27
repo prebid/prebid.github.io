@@ -4,6 +4,7 @@ title: brainy
 description: Prebid brainy Bidder Adaptor
 pbjs: true
 biddercode: brainy
+sidebarType: 1
 ---
 
 ### Bid Params

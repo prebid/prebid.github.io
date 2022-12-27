@@ -13,6 +13,7 @@ safeframes_ok: true
 deals_supported: true
 pbjs: false
 pbs: true
+sidebarType: 1
 ---
 
 ### Note:

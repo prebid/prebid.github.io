@@ -21,7 +21,7 @@ For more information about AMP RTC, see:
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
 {% capture tipNote %}
-For ad ops setup instructions, see [Setting up Prebid for AMP in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html).
+For ad ops setup instructions, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
 {% endcapture %}
 
 {% include alerts/alert_note.html content=tipNote %}
@@ -161,7 +161,7 @@ For other hosts, you can specify the URL directly rather than using one of the c
 
 ### HTML Creative
 
-This is the creative that your Ad Ops team needs to upload to the ad server (it's also documented at [Setting up Prebid for AMP in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html)).
+This is the creative that your Ad Ops team needs to upload to the ad server (it's also documented at [GAM Step by Step - Banner/Outstream/AMP Creatives](/adops/gam-creative-banner-sbs.html)).
 
 {% capture tipNote %}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
@@ -182,27 +182,6 @@ For Google Ad Manager:
   ucTagData.hbPb = "%%PATTERN:hb_pb%%";
 
   try {
-    ucTag.renderAd(document, ucTagData);
-  } catch (e) {
-    console.log(e);
-  }
-</script>
-
-```
-
-For Mopub:
-
-```html
-
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
-<script>
-  var ucTagData = {};
-  ucTagData.adServerDomain = "";
-  ucTagData.pubUrl = "%%KEYWORD:url%%";
-  ucTagData.targetingKeywords = "%%KEYWORDS%%";
-  ucTagData.hbPb = "%%KEYWORD:hb_pb%%";
-
-   try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {
     console.log(e);
@@ -326,7 +305,7 @@ To review that Prebid on AMP is working properly the following aspects can be lo
 ## Further Reading
 
 + [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp.html)
-+ [Setting up Prebid for AMP in Google Ad Manager](/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops Setup)
++ [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html) (Ad Ops Setup)
 + [AMP RTC Overview](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)
 
 <!-- Reference Links -->

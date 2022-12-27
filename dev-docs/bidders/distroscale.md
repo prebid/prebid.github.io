@@ -16,6 +16,7 @@ floors_supported: true
 safeframes_ok: false
 prebid_member: true
 gvl_id: 754
+sidebarType: 1
 ---
 
 ### Bid Params
