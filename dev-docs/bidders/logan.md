@@ -8,6 +8,7 @@ schain_supported: true
 media_types: banner, video, native
 gdpr: true
 pbjs: true
+pbs: true
 sidebarType: 1
 ---
 
