@@ -4,18 +4,20 @@ title: Yieldmo
 description: Prebid Yieldmo Bidder Adaptor
 biddercode: yieldmo
 media_types: banner, video
-userIds: pubCommonId, unifiedId, criteo
+userIds: pubCommonId, unifiedId, criteo, sharedId
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
 prebid_member: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
-# Registration
-## In order to use Yieldmo adapter please reach out to your Yieldmo account's person or support@yieldmo.com for more information.
-<br/>
+### Registration
+
+Note: In order to use Yieldmo adapter please reach out to your Yieldmo account's person or support@yieldmo.com for more information.
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -52,7 +54,6 @@ In addition, Yieldmo adapter relies on parameters specified in the `mediaTypes.v
 |-------------------|----------|--------------------------------------------------------|-----------------|------------------|
 | `playerSize`      | required | Width and height of the player                         | `[640, 480]`    | `Array<integer>` |
 | `context`         | required | `instream` or `outstream ` are only supported                           | `instream`      | `string`         |
-
 ### Example of in-stream Video Ad-unit
 ```javascript
 var videoAdUnits = [{
@@ -77,7 +78,7 @@ var videoAdUnits = [{
   bids: [{
     bidder: 'yieldmo',
     params: {
-      placementId: '1524592390382976659' // required
+      placementId: '1524592390382976659',// required,
     }
   }]
 }];
@@ -88,23 +89,23 @@ var videoAdUnit = [{
   code: 'div-video-ad-1234567890',
   mediaTypes: {
       video: {
-          playerSize: [640, 480],   // required
+          playerSize: [640, 480],        // required
           context: 'outstream',
-          mimes: ['video/mp4'],      // required, array of strings
-          placement: 3,                      // required, integer ( 3,4,5 )
-          maxduration: 30,                   // required, integer
-          protocols: [2, 3],                 // required, array of integers
-          api: [2, 3],                       // required, array of integers
-          playbackmethod: [1,2]              // required, array of integers
+          mimes: ['video/mp4'],          // required, array of strings
+          placement: 3,                  // required, integer ( 3,4,5 )
+          maxduration: 30,               // required, integer
+          protocols: [2, 3],             // required, array of integers
+          api: [2, 3],                   // required, array of integers
+          playbackmethod: [1,2]          // required, array of integers
       }
   },
   bids: [{
     bidder: 'yieldmo',
     params: {
-      placementId: '1524592390382976659'  // required
+      placementId: '1524592390382976659',  // required
     }
   }]
 }];
 ```
 
-> Prebid out-stream demo - https://prebid-outstream-qa.yieldmo.com/prebid-outstream.html
+> [Prebid out-stream demo](https://prebid-outstream-qa.yieldmo.com/prebid-outstream.html)

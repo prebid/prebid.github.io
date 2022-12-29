@@ -11,11 +11,12 @@ schain_supported: true
 dchain_supported: false
 media_types: banner, video
 safeframes_ok: true
-bidder_supports_deals: false
+deals_supported: false
 pbjs: false
 pbs: true
 pbs_app_supported: true
 prebid_member: false
+sidebarType: 1
 ---
 
 ### Prebid Server Note:

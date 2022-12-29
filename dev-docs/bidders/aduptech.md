@@ -4,9 +4,11 @@ title: AdUp Technology
 description: Prebid Bidder Adapter for AdUp Technology
 biddercode: aduptech
 gdpr_supported: true
+floors_supported: true
 gvl_id: 647
 media_types: banner, native
 pbjs: true
+sidebarType: 1
 ---
 
 ### Registration

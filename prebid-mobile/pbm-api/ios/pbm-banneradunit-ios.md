@@ -25,7 +25,7 @@ See [AdUnit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html) for
 
 **Parameters**
 
-`configId (String)`: Prebid Server configuration ID.
+`configId (String)`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 
 `size (CGSize)`: Width and height of the banner.
 
@@ -70,9 +70,9 @@ let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", 
 **Add additional ad sizes**
 
 ```
-bannerUnit.addAdditionalSizes(sizes: CGSize(width: 320, height: 50))
+bannerUnit.addAdditionalSize(sizes: [CGSize(width: 320, height: 50), CGSize(width: 300, height: 250)])
 ```
-Once a BannerAdUnit is created use Google Mobile Ads or MoPub to retrieve and display creatives.
+Once a BannerAdUnit is created use Google Mobile Ads to retrieve and display creatives.
 
 ** Define any appropriate API Frameworks **
 
@@ -139,65 +139,11 @@ func loadDFPBanner(bannerUnit : AdUnit){
 ```
 
 
-**MoPub**
-
-Import MoPub from the [mopub-ios-sdk](https://github.com/mopub/mopub-ios-sdk) into the UIViewController displaying the BannerAdUnit
-
-**Swift**
-```
-func loadMoPubBanner(bannerUnit: AdUnit){
-
-        let sdkConfig = MPMoPubConfiguration(adUnitIdForAppInitialization: "a935eac11acd416f92640411234fbba6")
-        sdkConfig.globalMediationSettings = []
-
-        MoPub.sharedInstance().initializeSdk(with: sdkConfig) {
-
-        }
-
-        mopubBanner = MPAdView(adUnitId: "a935eac11acd416f92640411234fbba6", size: CGSize(width: 300, height: 250))
-        mopubBanner!.delegate = self
-
-        appBannerView.addSubview(mopubBanner!)
-
-        // Do any additional setup after loading the view, typically from a nib.
-        bannerUnit.fetchDemand(adObject: mopubBanner!){ (ResultCode) in
-            print("Prebid demand fetch for mopub \(ResultCode)")
-
-            self.mopubBanner!.loadAd()
-        }
-
-    }
-```
-
-**Objective-C**
-
-```
--(void) loadMoPubBanner {
-
-    MPMoPubConfiguration *configuration = [[MPMoPubConfiguration alloc] initWithAdUnitIdForAppInitialization:@"a935eac11acd416f92640411234fbba6"];
-
-    [[MoPub sharedInstance] initializeSdkWithConfiguration:configuration completion:^{
-
-    }];
-    self.mopubAdView = [[MPAdView alloc] initWithAdUnitId:@"a935eac11acd416f92640411234fbba6" size:CGSizeMake(300, 250)];
-    self.mopubAdView.delegate = self;
-
-    [self.bannerView addSubview:self.mopubAdView];
-
-    self.bannerUnit = [[BannerAdUnit alloc] initWithConfigId:@"6ace8c7d-88c0-4623-8117-75bc3f0a2e45" size:CGSizeMake(300, 250)];
-    // Do any additional setup after loading the view, typically from a nib.
-    [self.bannerUnit fetchDemandWithAdObject:self.mopubAdView completion:^(enum ResultCode result) {         
-        NSLog(@"Prebid demand result %ld", (long)result);
-        [self.mopubAdView loadAd];
-    }];
-}
-```
-
 ## Related Topics
 
 - [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
 - [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
+- [Interstitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)

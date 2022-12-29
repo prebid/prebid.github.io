@@ -4,7 +4,9 @@ title: TOPRTB
 description: Prebid topRTB Bidder Adapter
 pbjs: true
 biddercode: topRTB
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
+sidebarType: 1
 ---
 
 

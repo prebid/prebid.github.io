@@ -6,10 +6,12 @@ pbjs: true
 biddercode: districtmDMX
 gdpr_supported: true
 schain_supported: true
-getFloor: true
+floors_supported: true
 usp_supported: true
 coppa_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, intentiq, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+pbjs_version_notes: not supported in 7.0+
+sidebarType: 1
 ---
 
 
@@ -33,4 +35,3 @@ userIds: britepoolId, criteo, id5Id, identityLink, intentiq, liveIntentId, netId
 | `floor`    | optional | Bid floor price         | `"1.00"`           | `string`  |
 | `revShare` | optional | Publisher Revenue Share | `"0.85"`           | `string`  |
 | `currency` | optional | Currency code           | `"usd"`            | `string`  |
-

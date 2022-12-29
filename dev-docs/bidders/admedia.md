@@ -6,7 +6,9 @@ pbjs: true
 biddercode: admedia
 media_types: banner
 gdpr_supported: false
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
+sidebarType: 1
 ---
 
 

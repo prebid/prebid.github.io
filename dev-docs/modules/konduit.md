@@ -2,10 +2,11 @@
 layout: page_v2
 page_type: module
 title: Module - Konduit Accelerate
-description: Applies Konduit video ad acceleration optimization to a provided bid.
+description: Applies Konduit video ad acceleration optimization to wining video bid.
 module_code : konduitWrapper
 display_name : Konduit Accelerate
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 
@@ -52,7 +53,7 @@ pbjs.setConfig({
   enableSendAllBids: false
 });  
 ```
-Please refer to [Publisher API Reference (Send All Bids)](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids) for more information on the Send All Bids settings. 
+Please refer to [Publisher API Reference (Send All Bids)](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids) for more information on the Send All Bids settings.
 
 ### Step 3: Configure Google Ad Manager (GAM)
 
@@ -84,7 +85,6 @@ Note that the creative URL contains a few custom macros that allow Konduit platf
 
 Refer to the following documentation for more information on Google Ad Manager setup:  
 [Step By Step Guide to Google Ad Manager Setup](https://prebid.org/adops/step-by-step.html)  
-[Send all bids to the ad server - Ad Ops setup](https://prebid.org/adops/send-all-bids-adops.html)
 
 ### Sample Code
 

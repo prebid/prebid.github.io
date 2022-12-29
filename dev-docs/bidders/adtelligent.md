@@ -14,6 +14,7 @@ prebid_member: true
 pbjs: true
 pbs: true
 gvl_id: 410
+sidebarType: 1
 ---
 
 ### Bid params

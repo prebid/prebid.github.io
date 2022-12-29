@@ -9,10 +9,10 @@ biddercode: kubient
 media_types: banner, video
 gdpr_supported: true
 usp_supported: true
+coppa_supported: true
 tcf2_supported: true
-pbjs: true
-pbs: true
 gvl_id: 794
+sidebarType: 1
 ---
 
 ### Note:

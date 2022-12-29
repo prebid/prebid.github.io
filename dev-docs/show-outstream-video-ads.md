@@ -30,7 +30,7 @@ There should be no changes required on the ad ops side, since the outstream unit
 
 Use the `adUnit.mediaTypes` object to set up your ad units with the `video` media type and assign the appropriate context
 
-The fields supported in a given `bid.params.video` object will vary based on the rendering options supported by each bidder.  For more information, see [Bidders' Params]({{site.github.url}}/dev-docs/bidders.html).
+For full details on video ad unit parameters, see [Ad Unit Reference for Video]({{site.baseurl}}/dev-docs/adunit-reference.html#adunitmediatypesvideo)
 
 {% highlight js %}
 
@@ -43,17 +43,14 @@ var videoAdUnits = [{
                 mimes: ['video/mp4'],
                 protocols: [1, 2, 3, 4, 5, 6, 7, 8],
                 playbackmethod: [2],
-                skip: 1
+                skip: 1,
+                playback_method: ['auto_play_sound_off']
         }
     },
     bids: [{
         bidder: 'appnexus',
         params: {
             placementId: 13232385,
-            video: {
-                skip: 1,
-                playback_method: ['auto_play_sound_off']
-            }
         }
     }]
 }];
@@ -76,9 +73,13 @@ Prebid.js will select the `renderer` used to display the outstream video in the 
 {: .alert.alert-warning :}
 At this time, since not all demand partners return a renderer with their video bid responses, we recommend that publishers associate a `renderer` with their Prebid video adUnits, if possible.  By doing so, any Prebid adapter that supports video will be able to provide demand for a given outstream slot.
 
-Renderers are associated with adUnits in two ways.
-Primarily through the `adUnit.renderer` object. But also, especially for multiFormat adUnits, through the specified mediaType `adUnit.mediaTypes.video.renderer`.
-This object contains these fields:
+Renderers can be attached to adUnits in three ways; Prebid will pick the first that is defined as:  
+
+ 1. `adUnit.mediaTypes[type].renderer` (for example, `adUnit.mediaTypes.video.renderer`);
+ 2. `adUnit.bids[].renderer`;
+ 3. `adUnit.renderer`.
+
+A renderer is an object containing these properties:
 
 1. `url` -- Points to a file containing the renderer script.
 2. `render` -- A function that tells Prebid.js how to invoke the renderer script.

@@ -7,5 +7,5 @@ modulecode: google
 
 #### Registration
 
-Please visit []() for more information.
+Please visit [Prebid Analytics with GA](/overview/ga-analytics.html) for more information.
 

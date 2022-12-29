@@ -8,14 +8,15 @@ biddercode: mgid
 media_types: banner,native
 gdpr_supported: true
 gvl_id: 358
-pbjs_version_notes: not in 5.x
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Description](#mgid-bid-desc)
-- [Bid Params](#mgid-bid-params)
-- [Test Params](#mgid-test-params)
+- [Table of Contents](#table-of-contents)
+- [Description](#description)
+- [Bid params](#bid-params)
+- [Test Parameters](#test-parameters)
 
 <a name="mgid-bid-desc" />
 

@@ -6,7 +6,9 @@ pbjs: true
 biddercode: dailyhunt
 media_types: display, native, video
 gdpr_supported: true
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -27,7 +29,7 @@ pbjs_version_notes: not in 5.x
 
 **Notes: The `video`, `site`, `device`, `user`, `publisher` objects are all ORTB objects. Please refer to the [ORTB documentation](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for additional details.**
 
-# Test Parameters
+### Test Parameters
 ```
     var adUnits = [
         {

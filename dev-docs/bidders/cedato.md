@@ -9,7 +9,9 @@ usp_supported: true
 nav_section: reference
 pbjs: true
 biddercode: cedato
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
+sidebarType: 1
 ---
 
 ### Bid params

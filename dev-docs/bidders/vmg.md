@@ -4,7 +4,9 @@ title: VMG
 description: Connects Google Ad Manager to the VMG Predict engine.
 pbjs: true
 biddercode: vmg
-pbjs_version_notes: not in 5.x
+enable_download: false
+pbjs_version_notes: not ported to 5.x
+sidebarType: 1
 ---
 
 ### Bid Params

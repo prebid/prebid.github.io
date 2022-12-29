@@ -17,7 +17,7 @@ Create a new Video Rewarded Ad Unit associated with a Prebid Server configuratio
 
 **Parameters**
 
-`configId(String)`: Prebid Server configuration ID.
+`configId(String)`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 
 
 
@@ -164,28 +164,6 @@ let adUnit.fetchDemand(adObject: amRequest) { (resultCode: ResultCode) in
                }
            }
        }
-
-```
-
-**Mopub**  
-Import the Mopub SDK from [Mopub](https://developers.mopub.com/publishers/ios/integrate/).
-
-**Swift**
-```swift    
-//setup PB RewardedVideo
-let adUnit = RewardedVideoAdUnit(configId: "1001-1")
-//setup MP RewardedVideo
-MPRewardedVideo.setDelegate(self, forAdUnitId: "adUnitId")
-//load MP RewardedVideo
-let targetingDict = NSMutableDictionary()
-adUnit.fetchDemand(adObject: targetingDict) { (resultCode: ResultCode) in
-           print("Prebid demand fetch for mopub \(resultCode.name())")
-           if let targetingDict = targetingDict as? Dictionary<String, String> {
-               let keywords = Utils.shared.convertDictToMoPubKeywords(dict: targetingDict)
-               MPRewardedVideo.loadAd(withAdUnitID: "adUnitId", keywords: keywords, userDataKeywords: nil, location: nil, mediationSettings: nil)
-           }
-}
-
 
 ```
 

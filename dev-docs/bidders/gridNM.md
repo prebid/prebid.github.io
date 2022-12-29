@@ -7,6 +7,8 @@ biddercode: gridNM
 media_types: video
 gdpr_supported: true
 usp_supported: true
+fpd_supported: true
+sidebarType: 1
 ---
 
 
@@ -34,3 +36,9 @@ usp_supported: true
 | `video.startdelay`     | optional | Indicates the start delay in seconds                                                                                   | `0`                               | `int`           |
 | `video.placement`      | optional | Placement type for the impression.                                                                                     | `1`                               | `int`           |
 | `video.playbackmethod` | optional | Playback methods that may be in use                                                                                    | `[1]`                             | `integer array` |
+
+### First Party Data
+
+AdUnit-specific data using `AdUnit.ortb2Imp` supports following fields:
+
+- `ortb2.imp[].ext.data.*`
