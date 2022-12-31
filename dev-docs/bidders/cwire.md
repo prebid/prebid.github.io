@@ -3,6 +3,7 @@ layout: bidder
 title: C-WIRE
 description: C-WIRE Prebid Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: cwire
 gdpr_supported: false
 usp_supported: false
