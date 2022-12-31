@@ -9,7 +9,7 @@ usp_supported: false
 schain_supported: false
 userIds: uid2Id
 enable_download: true
-media_types: banner, video
+media_types: banner
 sidebarType: 1
 ---
 
