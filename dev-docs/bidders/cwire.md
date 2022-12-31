@@ -8,7 +8,7 @@ biddercode: cwire
 gdpr_supported: false
 usp_supported: false
 schain_supported: false
-userIds: uid2Id
+userIds: none
 enable_download: true
 media_types: banner
 sidebarType: 1
