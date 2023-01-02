@@ -32,7 +32,7 @@ The Taboola Adapter requires setup before beginning. Please contact us at prebid
 Publishers can use the `ortb2` configuration parameter to provide First Party Data.
 
 #### OpenRTB Parameters
-The following table contains currently supported parameters.
+The following table contains currently supported parameters we parse.
 
 {: .table .table-bordered .table-striped }
 
@@ -41,6 +41,10 @@ The following table contains currently supported parameters.
 | `bcat`             | optional | List of blocked advertiser categories (IAB)                   | `['IAB1-1']`      | `string array` |
 | `badv`             | optional | Blocked Advertiser Domains                                    | `['example.com']` | `string array` |
 | `wlang`            | optional | Allow List of languages for creatives using ISO-639-1-alpha-2 | `['fr', 'en']`    | `string array` |
+
+Notes:
+- will extract the page,ref,domain if passed within `ortb2.site` 
+- will extract the pageType if passed within the preferred field `ortb2.ext.data.pageType` or `ortb2.ext.data.section`
 
 Example configuration:
 ```
@@ -58,16 +62,20 @@ pbjs.setConfig({
 
 {: .table .table-bordered .table-striped }
 
-| Name              | Scope    | Description                                       | Example               | Type         |
-|-------------------|----------|---------------------------------------------------|-----------------------|--------------|
-| `tagId`           | required | Tag ID / Placement Name <br>                      | `'Below The Article'` | `String`     |
-| `publisherId`     | required | Numeric Publisher ID <br>(as provided by Taboola) | `'1234567'`           | `String`     |
-| `publisherDomain` | optional | Publisher Domain (server-side adapter only)       | `'example.com'`       | `String`     |
-| `bidfloor`        | optional | CPM bid floor                                     | `0.25`                | `Float`      |
-| `bcat`            | optional | List of blocked advertiser categories (IAB)       | `['IAB1-1']`          | `Array`      |
-| `badv`            | optional | Blocked Advertiser Domains                        | `'example.com'`       | `String Url` |
+| Name              | Scope                  | Description                                                                                                                                                                                                                                  | Example               | Type         |
+|-------------------|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|--------------|
+| `tagId`           | required               | Tag ID / Placement Name <br>                                                                                                                                                                                                                 | `'Below The Article'` | `String`     |
+| `publisherId`     | required               | Numeric Publisher ID <br>(as provided by Taboola)                                                                                                                                                                                            | `'1234567'`           | `String`     |
+| `pageType`        | optional, recommended  | Kind of content present in the page                                                                                                                                                                                                          | `'homepage'`          | `String`     |
+| `position`        | optional, recommended  | Identify the placement position on screen. Possible values:  0 - 7  <br> <br>  0	Unknown <br> 1	Above The Fold <br> 2	Locked  (i.e., fixed position) <br> 3	Below The Fold <br> 4	Header <br> 5	Footer <br> 6	Sidebar <br> 7	Fullscreen <br> | `2`                   | `Integer`    |
+| `publisherDomain` | optional               | Publisher Domain (server-side adapter only)                                                                                                                                                                                                  | `'example.com'`       | `String`     |
+| `bidfloor`        | optional               | CPM bid floor                                                                                                                                                                                                                                | `0.25`                | `Float`      |
+| `bcat`            | optional               | List of blocked advertiser categories (IAB)                                                                                                                                                                                                  | `['IAB1-1']`          | `Array`      |
+| `badv`            | optional               | Blocked Advertiser Domains                                                                                                                                                                                                                   | `'example.com'`       | `String Url` |
 
-Note: Preferred to provide the `bcat` and `badv` within the first party data (above). When both methods are provided, first party data values will be prioritized. 
+Notes:
+- Preferred to provide the `bcat` and `badv` within the first party data (above). When both methods are provided, first party data values will be prioritized.
+- If `pageType` or `publisherDomain` provided within the first part data (as explained above) ,first party data properties will be prioritized.
 
 ### Example Ad Unit
 ```javascript
