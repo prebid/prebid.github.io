@@ -1199,7 +1199,7 @@ registerBidder(spec);
 - Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
   - Fork the repo
   - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and name it to exactly the same as your biddercode. Add the following metadata to the header of your .md file:
-    - Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. This needs to be the same name as the docs file!
+    - Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. *This needs to be the same name as the docs file!*
     - Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
     - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
     - If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
@@ -1217,6 +1217,7 @@ registerBidder(spec);
     - If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to 'true','partial', or 'false'. No default value. In order to set 'true', you must support: bcat, badv, battr, and bapp.
     - Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
     - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
+    - Always add `sidebarType: 1`. This is required for docs.prebid.org site navigation.
 - Submit both the code and docs pull requests
 
 For example:
@@ -1244,6 +1245,7 @@ pbs: true/false
 prebid_member: true/false
 multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ortb_blocking_supported: true/partial/false
+sidebarType: 1
 ---
 ### Note:
 
