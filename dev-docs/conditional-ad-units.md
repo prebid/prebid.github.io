@@ -27,7 +27,7 @@ The basic steps are:
 
 See the [Publisher API reference](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads) for syntax.
 
-## Some Bidders Should Be Skipper for Some Devices
+## Some Bidders Should Be Skipped for Some Devices
 
 {: .alert.alert-info :}
 See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) for another way to handle this scenario. Note that you must use Advanced Size Mapping for mediaTypes other than banner.
