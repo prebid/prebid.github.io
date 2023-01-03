@@ -253,7 +253,7 @@ In certain cases, it is helpful to the user to highlight a page in the left navi
 - Add `sidebarType: 1` to all bidder pages. This opens the Prebid.js menu. (If you want to extend this functionality to other pages, use the sbSecId in the sidebar.yml file of the top-level menu as the value for sidebarType.) 
 - Modified the left_nav.html file's Liquid code to highlight Reference > Bidder Params anytime a page with layout=bidder is open.
 
-This has been done for both bidders pages (pages with `layout: bidder`) and the Publisher API Reference (`layout: api_prebidjs` and highlighting Prebid.js > Reference > Publish API Refeence in the left nav), but can be extended to other pages as needed. 
+This has been done for both bidders pages (pages with `layout: bidder`) and the Publisher API Reference (`layout: api_prebidjs` and highlighting Prebid.js > Reference > Publish API Reference in the left nav), but can be extended to other pages as needed. 
 
 ## Bidder Files
 
