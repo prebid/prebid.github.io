@@ -75,7 +75,7 @@ pbjs.setConfig({
 
 Notes:
 - Preferred to provide the `bcat` and `badv` within the first party data (above). When both methods are provided, first party data values will be prioritized.
-- If `pageType` or `publisherDomain` provided within the first part data (as explained above) ,first party data properties will be prioritized.
+- If `pageType` or `publisherDomain` provided within the first party data (as explained above), first party data properties will be prioritized.
 - `tagId` is an identifier for specific ad placement, and should be the same unique `tagId` per placement/ad unit in all Bid Requests.
 
 ### Example Ad Unit
