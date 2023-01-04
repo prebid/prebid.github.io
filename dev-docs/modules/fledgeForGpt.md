@@ -75,7 +75,7 @@ pbjs.setBidderConfig({
 Enabling an adunit for FLEDGE eligibility is accomplished by setting an attribute of the `ortb2Imp` object for that
 adunit.
 
-show-long-form-video-with-gam.md
+{: .table .table-bordered .table-striped }
 |Name |Type |Description |Notes |
 | ------------ | ------------ | ------------ |------------ |
 | ortb2Imp.ext.ae | Integer | Auction Environment: 1 indicates FLEDGE eligible, 0 indicates it is not | Absence indicates this is not FLEDGE eligible |
