@@ -119,7 +119,7 @@ the [`buildRequests`](/dev-docs/bidder-adaptor.html#building-the-request) method
 who wish to participate should read this flag and pass it to their server. FLEDGE eligibility depends on a number of parameters:
 
 1. Chrome enablement
-2. Publisher participatipon in the [Origin Trial](https://developer.chrome.com/docs/privacy-sandbox/unified-origin-trial/#configure)
+2. Publisher participation in the [Origin Trial](https://developer.chrome.com/docs/privacy-sandbox/unified-origin-trial/#configure)
 3. Publisher Prebid.js configuration (detailed above)
 
 When a bid request is FLEDGE enabled, a bid adapter can return a tuple consisting of bids and AuctionConfig objects rather than just a list of bids:
