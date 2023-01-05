@@ -11,6 +11,7 @@ schain_supported: true
 coppa_supported: true
 gpp_supported: true
 usp_supported: true
+gpp_supported: true
 floors_supported: true
 fpd_supported: true
 pbjs: true
