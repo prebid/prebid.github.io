@@ -9,6 +9,7 @@ prebid_member: true
 userIds: criteo, identityLink, netId, pubProvidedId, uid2, unifiedId,
 schain_supported: true
 coppa_supported: true
+gpp_supported: true
 usp_supported: true
 floors_supported: true
 fpd_supported: true
