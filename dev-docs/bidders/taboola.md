@@ -8,6 +8,7 @@ biddercode: taboola
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 schain_supported: false
 media_types: banner
 gvl_id: 42

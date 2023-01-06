@@ -7,6 +7,7 @@ gdpr_supported: true
 gvl_id: 21
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 schain_supported: true
 dchain_supported: false
 userIds: unifiedId, uid2
