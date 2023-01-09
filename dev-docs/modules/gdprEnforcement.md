@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: GDPR Enforcement Module
-description: If you have users in Europe, you'll want this module that takes action based on a user’s GDPR choices
+description: If you have users in Europe, you can use this module to enable actions for processing under the GDPR and ePrivacy
 module_code : gdprEnforcement
 display_name : GDPR Enforcement
 enable_download : true
