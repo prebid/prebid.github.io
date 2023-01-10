@@ -16,6 +16,7 @@ pbjs: true
 pbs: false
 deals_supported: false
 gvl_id: 1148
+sidebarType: 1
 ---
 
 ### Bid params

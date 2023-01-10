@@ -6,6 +6,7 @@ pbjs: true
 biddercode: kumma
 media_types: banner, native, video
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params

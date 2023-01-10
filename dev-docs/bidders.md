@@ -15,7 +15,7 @@ For each bidder listed below, you'll find the following information:
 
 {: .table .table-bordered .table-striped }
 | **Features**                     | A table of features supported by the adapter.  |
-| **"Send All Bids" Ad Server Keys**  | Used for sending all bids to the ad server, as described in [Send All Bids to the Ad Server]({{site.baseurl}}/adops/send-all-bids-adops.html) |
+| **"Send All Bids" Ad Server Keys**  | Used for sending all bids to the ad server, as described in [Send All Bids vs Send Top Price]({{site.baseurl}}/adops/send-all-vs-top-price.html) |
 | **Bid Params**                      | Ad request parameters required by a given bidder, such as the tag ID, site ID, or query string parameters                                     |
 
 You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV data file</a>.

@@ -19,6 +19,7 @@ multiformat_supported: will-bid-on-one
 floors_supported: true
 aliasCode: adkernel
 safeframes_ok: true
+sidebarType: 1
 ---
 
 ### Note:

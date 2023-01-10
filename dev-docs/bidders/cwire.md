@@ -10,6 +10,7 @@ schain_supported: false
 userIds: uid2Id
 enable_download: true
 media_types: banner, video
+sidebarType: 1
 ---
 
 ### Bid Params

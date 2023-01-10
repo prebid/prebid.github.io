@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.getEvents()
 description: 
+sidebarType: 1
 ---
 
 The `getEvents` method returns a copy of all emitted events since the page loaded.
@@ -37,7 +38,7 @@ The available events are:
 | requestBids   | Bids have been requested from adapters (i.e. pbjs.requestBids() was called) | None |
 | addAdUnits    | Ad units have been added to the auction | None |
 | adRenderFailed| Ad rendering failed | Object containing 'reason' and 'message' |
-| adRenderSucceeded | Ad rendering succeeded| Object containing 'doc', 'bid', and 'adId'. 'doc' is the DOM root containing the ad and may be `null` if it was rendered in a cross-origin iframe.|
+| adRenderSucceeded | Ad rendering succeeded| Object containing 'doc', 'bid', and 'adId'. 'doc' is the DOM root containing the ad and may be `null` if it was rendered in a cross-origin iframe. This event indicates that the render function did not generate an error, it does not guarantee that tracking for this event has occurred yet.|
 | auctionDebug  | An error was logged to the console | Object containing 'type' and 'arguments' |
 | bidderDone    | A bidder has signaled they are done responding | Bid request object |
 | bidderError    | A bidder responded with an error | Object with the XMLHttpRequest error and the bid request object `{ error, bidderRequest }` |

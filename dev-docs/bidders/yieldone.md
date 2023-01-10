@@ -8,6 +8,7 @@ userIds: identityLink, imuid, AudienceOne ID, ID5
 pbjs: true
 pbs: true
 multiformat_supported: will-bid-on-any
+sidebarType: 1
 ---
 
 ### Note:

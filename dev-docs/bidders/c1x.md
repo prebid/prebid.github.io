@@ -10,6 +10,7 @@ gdpr_supported: true
 pbs_app_supported: false
 enable_download: false
 pbjs_version_notes: not ported to 5.x
+sidebarType: 1
 ---
 
 ### Note:

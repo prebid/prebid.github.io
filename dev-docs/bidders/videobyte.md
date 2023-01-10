@@ -9,6 +9,7 @@ media_types: display, video
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
+sidebarType: 1
 ---
 
 ### Note:

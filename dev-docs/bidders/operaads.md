@@ -15,6 +15,7 @@ deals_supported: false
 pbjs: true
 pbs: true
 prebid_member: false
+sidebarType: 1
 ---
 
 ### Registration
