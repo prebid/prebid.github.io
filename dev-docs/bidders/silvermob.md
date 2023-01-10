@@ -8,6 +8,7 @@ media_types: banner, video, native
 pbjs: false
 pbs: true
 prebid_member: false
+sidebarType: 1
 ---
 
 ### Note:

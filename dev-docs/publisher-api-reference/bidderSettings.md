@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.bidderSettings
 description:
+sidebarType: 1
 ---
 
 

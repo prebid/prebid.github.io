@@ -21,7 +21,7 @@ gulp bundle --modules=exAnalyticsAdapter,xyzBidAdapter
 {% endhighlight %}
 
 - If required, load analytics JavaScript from vendor directly on the page
-- Call the `pbjs.enableAnalytics()` function
+- Call the [`pbjs.enableAnalytics()` function](/dev-docs/publisher-api-reference/enableAnalytics.html)
 
 e.g.
 

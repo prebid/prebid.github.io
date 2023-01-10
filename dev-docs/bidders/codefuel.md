@@ -9,6 +9,7 @@ biddercode: CodeFuel
 gdpr_supported: false
 usp_supported: false
 floors_supported: false
+sidebarType: 1
 ---
 
 ### Description

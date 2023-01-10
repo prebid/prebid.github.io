@@ -920,6 +920,21 @@ You need to provide default settings for your bid adapter. You can decide if you
 {: .alert.alert-warning :}
 **HOST SPECIFIC INFO:** The default endpoint must not be specific to any particular host, such as Xandr/AppNexus. We may ask you about suspicious looking ids during the review process. Please reach out to individual hosts if you need to set specialized configuration.
 
+## Aliasing an Adapter
+
+If your bidding endpoint can support more than one biddercode, you shouldn't replicate
+the whole adapter codebase. Rather, follow these steps to create a 'hardcoded' alias:
+
+1. Create a config yaml file in static/bidder-info - e.g. static/bidder-info/myalias.yaml
+1. Copy the “source” bidder json schema and place it in the static/bidder-params directory - e.g. static/bidder-params/myalias.json
+1. Add the new alias to the openrtb_ext/bidders.go file -- e.g. BidderMyAlias BidderName = "myalias"
+1. Map the alias to the adapter in exchange/adapter_builders.go . e.g. openrtb_ext.BidderMyAlias: myMain.Builder
+1. Test: build the server locally and try sending a request with the alias as a bidder.
+
+Notes:
+- The alias name must be unique for the first 6 chars as noted above for biddercodes.
+- This process will be simplified someday.
+
 ## Test Your Adapter
 
 This section will guide you through the creation of automated unit tests to cover your bid adapter code and bidder parameters JSON Schema. We use GitHub Action Workflows to ensure the code you submit passes validation. You can run the same validation locally with this command:
@@ -1181,6 +1196,7 @@ gdpr_supported: true/false
 gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
+gpp_supported: true/false
 schain_supported: true/false
 dchain_supported: true/false
 userId: <list of supported vendors>
@@ -1216,6 +1232,7 @@ Notes on the metadata fields:
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
 - If you support video, native, or audio mediaTypes add `media_types: video, native, audio`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 - If you support COPPA, add `coppa_supported: true`. Default is false.
+- If you support GPP, add `gpp_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.

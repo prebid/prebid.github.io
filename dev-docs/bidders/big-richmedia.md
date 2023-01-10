@@ -13,6 +13,7 @@ floors_supported: true
 fpd_supported: true
 gdpr_supported: true
 gvl_id: 32
+sidebarType: 1
 ---
 
 #### Global Settings

@@ -11,6 +11,7 @@ usp_supported: true
 floors_supported: true
 pbjs: true
 deals_supported: true
+sidebarType: 1
 ---
 
 ### Note:

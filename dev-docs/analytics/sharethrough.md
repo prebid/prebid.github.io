@@ -7,5 +7,5 @@ modulecode: sharethrough
 
 #### Registration
 
-Please visit []() for more information.
+Please visit [https://www.sharethrough.com/](https://www.sharethrough.com/) for more information.
 

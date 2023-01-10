@@ -10,6 +10,7 @@ coppa_supported: true
 media_types: banner, video, native
 pbjs: true
 pbs: false
+sidebarType: 1
 ---
 
 ### Prebid.Server Bid Params

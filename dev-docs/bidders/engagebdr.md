@@ -4,6 +4,7 @@ title: Engage BDR
 pbs: true
 media_types: banner
 biddercode: engagebdr
+sidebarType: 1
 ---
 
 ### Bid Params

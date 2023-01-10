@@ -13,6 +13,7 @@ media_types: banner, native
 schain_supported: true
 userIds: id5Id, identityLink, pubProvidedId
 pbs_app_supported: true
+sidebarType: 1
 ---
 
 

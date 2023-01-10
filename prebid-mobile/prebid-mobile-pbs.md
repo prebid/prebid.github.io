@@ -79,7 +79,7 @@ After you have the SDK installed, register ad units with the Prebid Mobile frame
 ## Ad Ops - Setting Up the Ad Server
 
 Ad ops users configure the primary ad server with Prebid Mobile line items targeted to key/values.
--   [Set Up Line Items for Google Ad Manager]({{site.github.url}}/prebid-mobile/adops-line-item-setup-dfp.html)
+-   [Set Up Line Items for Google Ad Manager](/adops/step-by-step.html)
 
 ## Additional Information
 
@@ -87,7 +87,7 @@ The following resources are available for further information on working with Pr
 
 ### Ad Ops
 
--   [Price Granularity](/prebid-mobile/adops-price-granularity.html)
+-   [Price Granularity](/adops/price-granularity.html)
     Additional details to help you ensure your line items are set up to target bid prices at an appropriate level of granularity.
 
 ### Mobile Developers

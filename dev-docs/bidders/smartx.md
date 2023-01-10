@@ -12,6 +12,7 @@ usp_supported: true
 safeframes_ok: false
 pbjs: true
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Registration

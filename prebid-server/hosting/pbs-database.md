@@ -16,7 +16,7 @@ Companies looking to spin up Prebid Server should consider setting up a database
 It could actually be file-based or no-sql based, but for the purposes of this reference, we'll assume a relational DB.
 Here are the kinds of data that PBS needs from a data store:
 - **account data:** defaults and settings for things like price granularities, time-to-live, privacy regulations, and modules.
-- [stored requests](/features/pbs-storedreqs.html): blocks of JSON that define how PBS responds to mobile and AMP requests.
+- [stored requests](/prebid-server/features/pbs-storedreqs.html): blocks of JSON that define how PBS responds to mobile and AMP requests.
 - **stored responses:** very useful for debugging
 
 **Where does this data come from?** You, the host company need to figure that out. PBS never writes this data, only reads it. The difference between a good PBS host company and an average one will be in details like the managing of this data.
@@ -103,16 +103,17 @@ The Stored Response query needs to return fields in this order:
 | 1 | response ID | string | The Stored Response ID | n/a |
 | 2 | response body | JSON | The body of the Stored Response | n/a |
 
-One parameter can be passed into the query:
+One parameter can be passed into the query, though at this point, the parameter differs between Go and Java:
 
-- %RESPONSE_ID_LIST% : a comma-separated list of stored response IDs
+- %RESPONSE_ID_LIST% (PBS-Java): a comma-separated list of stored response IDs
+- %ID_LIST% (PBS-Go): a comma-separated list of stored response IDs
 
 This query is defined in settings.database.stored-requests-query. Example:
 ```
 settings:
   database:
     type: mysql
-    stored-responses-query: SELECT resid, responseData FROM stored_responses WHERE resid IN (%RESPONSE_ID_LIST%)
+    stored-responses-query: SELECT resid, responseData FROM stored_responses WHERE resid IN (%ID_LIST%)
 ```
  
 This example assumes that the stored_responses schema includes these fields:
@@ -159,5 +160,5 @@ See the [PBS-Java configuration docs](https://github.com/prebid/prebid-server-ja
 result of the query. There are many account-level settings detailed there.
 
 ## Related Reading
-- [Stored Requests](/features/pbs-storedreqs.html)
-- [Hosting a PBS cluster](/prebid-server/overview/prebid-server-overview.md)
+- [Stored Requests](/prebid-server/features/pbs-storedreqs.html)
+- [Hosting a PBS cluster](/prebid-server/overview/prebid-server-overview.html)

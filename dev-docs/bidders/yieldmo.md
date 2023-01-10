@@ -11,11 +11,13 @@ schain_supported: true
 prebid_member: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
-# Registration
-### Note: In order to use Yieldmo adapter please reach out to your Yieldmo account's person or support@yieldmo.com for more information.
-<br/>
+### Registration
+
+Note: In order to use Yieldmo adapter please reach out to your Yieldmo account's person or support@yieldmo.com for more information.
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }

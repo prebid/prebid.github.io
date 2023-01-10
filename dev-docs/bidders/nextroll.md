@@ -8,6 +8,7 @@ media_types: display, native
 gdpr_supported: false
 usp_supported: true
 prebid_member: true
+sidebarType: 1
 ---
 
 ### Bid Params
