@@ -135,7 +135,7 @@ Contains an image request. Images can be of type `1` (Icon) or `3` (Main image)
     img: {
         type: 3,
         w: 150,
-        h: 50,
+        h: 50
     }
 }
 ```
@@ -202,7 +202,10 @@ In the native template, simply access the custom value with the normal Prebid `#
 - If you’d prefer to manage your creative within the Prebid.js AdUnit, follow the instructions for [AdUnit-Defined Creative](#42-implementing-adunit-defined-template).
 - If you’d prefer to manage your creative from a separate piece of JavaScript, follow the instructions for the [Custom Renderer](#43-implementing-the-custom-renderer-scenario).
 
-### 4.1. Implementing an AdServer-Defined Template
+{: .alert.alert-info :}
+For instructions on implementing the native template within Google Ad Manager, see [GAM Step by Step - Native Creative](/adops/gam-native.html)
+
+### 4.1. Implementing AdServer-Defined Template
 
 In this scenario, the body of the native creative template is managed within the ad server and includes special Prebid.js macros.
 
@@ -332,11 +335,8 @@ a {
     text-decoration: none;
 }
 
-p {
-    font-size: 16px;
-    color: #444;
-    margin: 10px 0 10px 0;
-}
+{: .alert.alert-info :}
+See [Managing the Native Template in GAM](/adops/gam-native.html#managing-the-native-template-in-gam) for ad server instructions.
 
 .attribution {
     color: #fff;
@@ -416,6 +416,7 @@ var adUnits = [{
     }
 }];
 ```
+
 #### 4.2.2. Define the AdServer Creative
 
 Even though the body of the native creative is defined in the AdUnit, an AdServer creative is still needed. There are two key aspects of the native creative in this scenario:
@@ -442,9 +443,12 @@ Example Creative HTML
 {: .alert.alert-warning :}
 When using 'Send All Bids' mode you should update `pbNativeTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` for each bidder’s creative.
 
+{: .alert.alert-info :}
+See [Managing the Native Template Outside of GAM](/adops/gam-native.html#managing-the-native-template-outside-of-gam) for ad server instructions.
+
 ### 4.3. Implementing the Custom Renderer Scenario
 
-In this scenario, the body of the native creative is managed from an external JavaScript file. 
+In this scenario, the body of the native creative is managed from an external JavaScript file.
 
 #### 4.3.1. Prebid.js AdUnit Setup
 
@@ -525,6 +529,9 @@ Example creative HTML:
 
 {: .alert.alert-warning :}
 When using `Send All Bids` you should update `pbNativeTagData.adId = "%%PATTERN:hb_adid_biddercode%%";` for each bidder’s creative
+
+{: .alert.alert-info :}
+See [Managing the Native Template Outside of GAM](/adops/gam-native.html#managing-the-native-template-outside-of-gam) for ad server instructions.
 
 #### 4.3.3. Define the Render JavaScript
 

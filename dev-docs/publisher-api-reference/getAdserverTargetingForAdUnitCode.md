@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.getAdserverTargetingForAdUnitCode([adunitCode])
 description:
+sidebarType: 1
 ---
 
 

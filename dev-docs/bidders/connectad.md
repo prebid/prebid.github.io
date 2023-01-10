@@ -15,6 +15,7 @@ floors_supported: true
 pbjs: true
 pbs: true
 gvl_id: 138
+sidebarType: 1
 ---
 
 ### Prebid Server Note:

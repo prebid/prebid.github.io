@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.adServers.freewheel.getTargeting(options)
 description: 
+sidebarType: 1
 ---
 
 

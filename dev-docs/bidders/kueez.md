@@ -12,6 +12,7 @@ usp_supported: true
 floors_supported: true
 userIds: all
 fpd_supported: true
+sidebarType: 1
 ---
 
 ### Note

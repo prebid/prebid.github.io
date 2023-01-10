@@ -7,6 +7,7 @@ media_types: banner, video
 schain_supported: false
 prebid_member: false
 pbjs: true
+sidebarType: 1
 ---
 
 ### Note:

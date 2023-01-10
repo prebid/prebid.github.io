@@ -2,11 +2,21 @@
 layout: bidder
 title: ResetDigital
 description: Reset Digital Bidder Module
-hide: true
 pbjs: true
+pbs: true
 biddercode: resetdigital
-gdpr_supported: true
+gdpr_supported: false
+usp_supported: false
+coppa_supported: false
+schain_supported: true
+floors_supported: true
+userIds: check with bidder
+prebid_member: false
+deals_supported: true
+pbs_app_supported: true
+multiformat_supported: will-bid-on-any
 media_types: banner, video
+sidebarType: 1
 ---
 
 ### bid params

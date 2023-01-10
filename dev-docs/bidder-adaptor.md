@@ -27,6 +27,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 + [Required Adapter Rules](#bidder-adaptor-Required-Adapter-Conventions)
 + [Required Files](#bidder-adaptor-Required-Files)
 + [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
++ [HTTP Simple Requests](#bidder-adaptor-HTTP-simple-requests)
 
 <a name="bidder-adaptor-Required-Adapter-Conventions" />
 
@@ -146,10 +147,47 @@ For more information about the kinds of information that can be passed using the
 
 {% endhighlight %}
 
+<a name="bidder-adaptor-HTTP-simple-requests" />
+
+### HTTP Simple Requests
+
+When defining the HTTP headers for your endpoint, it is important from a performance perspective to consider what forces the browser to initiate a [CORS preflight request](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request). We encourage learning more about [Simple Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests) & [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) as it relates to your specific development configuration.
+
+A 'Simple Request' meets **all** of the following conditions:
+
+- Must be one of 3 following allowed methods
+    - GET
+    - HEAD
+    - POST
+
+- Only headers that are allowed to be manually set apart from the headers automatically set by the user-agent
+    - `Accept`
+    - `Accept-Language`
+    - `Content-Language`
+    - `Content-Type`
+    - `Range`
+
+- For the `Content-Type` header the only type/subtype combinations allowed are the following
+    - application/x-www-form-urlencoded
+    - multipart/form-data
+    - text/plain
+
+- If the request is made using `XMLHttpRequest` object, no event listeners are registered on the object returned by the `XMLHttpRequest.upload` property used in the request
+
+- No `ReadableStream` object is used in the request
+
+Prebid recommends keeping module HTTP requests 'simple' if at all possible. The default content-type used by Prebid.js is text/plain.
+
 ## Creating the Adapter
 
 {: .alert.alert-success :}
 If you're the type that likes to skip to the answer instead of going through a tutorial, see the <a href="#bidder-example">Full Bid Adapter Example</a> below.
+
+{: .alert.alert-warning :}
+### Note on ORTB adapters
+
+{: .alert.alert-warning :}
+If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`. 
 
 + [Overview](#bidder-adaptor-Overview)
 + [Building the Request](#bidder-adaptor-Building-the-Request)
@@ -205,6 +243,12 @@ export const spec = {
 registerBidder(spec);
 
 {% endhighlight %}
+
+<a id="ortb-adapters" />
+
+### Note on ORTB adapters
+
+If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`.
 
 <a name="bidder-adaptor-Building-the-Request" />
 
@@ -293,10 +337,23 @@ Here is a sample bidderRequest object:
 
 Notes on parameters in the bidderRequest object:
 - **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
+- **ortb2** is the global (not specific to any adUnit) [first party data](/features/firstPartyData.html) to use for all requests in this auction. Note that Prebid allows any standard ORTB field or extension as first party data - including items that typically wouldn't be considered as such, for example user agent client hints (`device.sua`) or information on the regulatory environment (`regs.ext.gpc`).
+
+    {: .alert.alert-warning :}
+    If your adapter generates an ORTB request, we recommend that you include _everything_ contained in `bidderRequest.ortb2` (and `bidRequest.ortb2Imp`); or, use the [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md) which does this by default.  
+
+    Since version 7.29, if Prebid finds appropriate values for the following fields, `ortb2` is guaranteed to contain:
+
+    - under `site`: `page`, `ref`, `domain`, `publisher.domain`, `keywords`;
+    - under `device`: `w`, `h`, `dnt`, `ua`, `sua`, `language`;
+    - under `regs`: `coppa`, `ext.gdpr`, `ext.us_privacy`;
+    - under `user`: `user.ext.consent`
+
+Some of the data in `ortb2` is also made available through other `bidderRequest` fields:   
+
 - **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
 - **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
 - **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module.
-- **ortb2** is the global (not specific to any adUnit) [first party data](/features/firstPartyData.html) to use for all requests in this auction. Note that Prebid allows any standard ORTB field or extension as first party data - including items that typically wouldn't be considered as such, for example user agent client hints (`device.sua`) or information on the regulatory environment (`regs.ext.gpc`).
 
 <a name="std-param-location"></a>
 
@@ -311,7 +368,7 @@ There are a number of important values that a publisher expects to be handled in
 | Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
 | COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
 | First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
-| Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
+| Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
 | [Supply Chain](/dev-docs/modules/schain.html) | Adapters cannot accept an schain parameter. Rather, they must look for the schain parameter at bidRequest.schain. | bidRequest.schain |
 | Video Parameters | Video params must be read from AdUnit.mediaType.video when available; however bidder config can override the ad unit. | AdUnit.mediaType.video |
@@ -325,7 +382,7 @@ Referrer information should be passed to your endpoint in contexts where the ori
 - `canonicalUrl`: a string containing the canonical (search engine friendly) URL, as set by the publisher.
 - `page`: the best candidate for the top level URL - or null when the top window is inaccessible. Equivalent to `canonicalUrl` || `location`.
 - `domain`: the domain (hostname and port) portion of `page`.
-- `ref`: referrer to the top window (`window.top.document.referrer`), or null when the top window is inaccessible. 
+- `ref`: referrer to the top window (`window.top.document.referrer`), or null when the top window is inaccessible.
 - `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
 - `numIframes`: the number of iFrames.
 - `stack`: an array of URLs of all windows from the top window down to the current window.
@@ -457,7 +514,7 @@ There's often a long lag time between making a PBJS adapter update and when most
 If your endpoint can return creatives with OpenRTB macros, your adapter
 should resolve them.
 
-Prebid will resolve the AUCTION_PRICE macro, but it will be after currency conversion and any bid adjustments. This differs from how OpenRTB defines this value as being the clearing price in the 
+Prebid will resolve the AUCTION_PRICE macro, but it will be after currency conversion and any bid adjustments. This differs from how OpenRTB defines this value as being the clearing price in the
 bid currency. Header Bidding is a first-price auction, the best candidate for
 "clearing price" is the original bid itself.
 
@@ -988,7 +1045,7 @@ Here's an example of returning image sizes:
     }
 ```
 
-The targeting key `hb_native_image` (about which more [here](/adops/setting-up-prebid-native-in-dfp.html) (ad ops setup) and [here](/prebid/native-implementation-legacy.html#3-prebidjs-native-adunit-overview) (engineering setup)) will be set with the value of `image.url` if `image` is an object.
+The targeting key `hb_native_image` (about which your can read more in the [Native Implementation Guide](/prebid/native-implementation.html)) will be set with the value of `image.url` if `image` is an object.
 
 If `image` is a string, `hb_native_image` will be populated with that string (a URL).
 
@@ -1165,7 +1222,7 @@ registerBidder(spec);
 - Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
   - Fork the repo
   - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and name it to exactly the same as your biddercode. Add the following metadata to the header of your .md file:
-    - Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. This needs to be the same name as the docs file!
+    - Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. *This needs to be the same name as the docs file!*
     - Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
     - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
     - If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
@@ -1174,6 +1231,7 @@ registerBidder(spec);
     - If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
     - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
     - If you support COPPA, add `coppa_supported: true`. Default is false.
+    - If you support GPP, add `gpp_supported: true`. Default is false.
     - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
     - If you support passing a demand chain on the response, add `dchain_supported: true`. Default is false.
     - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
@@ -1181,7 +1239,9 @@ registerBidder(spec);
     - If you support floors, set `floors_supported: true`. No default value..
     - If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
     - If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to 'true','partial', or 'false'. No default value. In order to set 'true', you must support: bcat, badv, battr, and bapp.
+    - Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
     - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
+    - Always add `sidebarType: 1`. This is required for docs.prebid.org site navigation.
 - Submit both the code and docs pull requests
 
 For example:
@@ -1196,6 +1256,7 @@ gdpr_supported: true/false
 gvl_id: none
 usp_supported: true/false
 coppa_supported: true/false
+gpp_supported: true/false
 schain_supported: true/false
 dchain_supported: true/false
 userId: (list of supported vendors)
@@ -1209,6 +1270,7 @@ pbs: true/false
 prebid_member: true/false
 multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ortb_blocking_supported: true/partial/false
+sidebarType: 1
 ---
 ### Note:
 

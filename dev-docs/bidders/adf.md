@@ -16,6 +16,7 @@ gvl_id: 50
 prevBiddercode: adformOpenRTB
 floors_supported: true
 multiformat_supported: will-bid-on-one
+sidebarType: 1
 ---
 
 ### Bid params

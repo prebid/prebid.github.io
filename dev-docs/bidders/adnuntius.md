@@ -5,10 +5,16 @@ description: Prebid Adnuntius Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: adnuntius
-media_types: banner, video
+media_types: banner, video, native
 gdpr_supported: true
 fpd_supported: true
 gvl_id: 855
+safeframes_ok: false
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: false
+floors_supported: false
+sidebarType: 1
+
 ---
 
 ### Bid Params
@@ -114,6 +120,18 @@ The following test parameters can be used to verify that Prebid Server is workin
 }]
 ```
 
+### Passing no Cookie in Prebid Server request
+
+As a publisher you have the option to set no cookie in the device request to let Adnuntius adserver know not to set cookies in the client's browser. In order to do that you just need to pass this in the request:
+
+```
+"device": {  
+    "ext": {
+        "noCookies": true
+    }
+},
+```
+
 ### First Party Data
 
 publishers can use the `ortb2` configuration parameter to provide First Party Data. We accept all standard OpenRTB fields for both:
@@ -149,3 +167,34 @@ Currently we only support client requests and instream context. An example reque
 };
 ```
 
+#### Example native
+
+Here's an example of how to request a native ad from adnuntius:
+
+```
+{
+    code: 'native',
+    sizes: [
+        [320, 320]
+    ],
+    mediaTypes: {
+        native: {
+            title: {
+                required: true
+            },
+            image: {
+                required: true
+            },
+            body: {
+                required: true
+            }
+        }
+    },
+    bids: [{
+        bidder: 'adnuntius',
+        params: {
+            auId: "0000000000abc123",
+        }
+    }]
+}
+```

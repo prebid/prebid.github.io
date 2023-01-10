@@ -19,6 +19,7 @@ pbs: true
 pbs_app_supported: true
 fpd_supported: true
 gvl_id: 28
+sidebarType: 1
 ---
 
 {% capture version2 %}
@@ -30,8 +31,9 @@ This is a Prebid Server adapter for running component native only. For the stand
 
 ### Table of Contents
 
-- [Bid Params](#triplelift-bid-params)
-- [First Party Data](#triplelift-first-party)
+- [Table of Contents](#table-of-contents)
+- [Bid Params](#bid-params)
+- [First Party Data](#first-party-data)
 
 <a name="triplelift-bid-params" />
 

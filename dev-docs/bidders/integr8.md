@@ -5,6 +5,7 @@ description: Prebid Integr8 Bidder Adapter
 pbjs: true
 biddercode: integr8
 media_types: banner, video
+sidebarType: 1
 ---
 
 

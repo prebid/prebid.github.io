@@ -7,11 +7,12 @@ gdpr_supported: true
 tcf2_supported: true
 gvl_id: 154
 schain_supported: true
-userIds: id5Id, unifiedId
+userIds: all
 media_types: banner, video
 deals_supported: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
 ### Note
@@ -87,7 +88,7 @@ pbjs.setConfig({
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                         | Example    | Type     |
 |-------|----------|-------------------------------------|------------|----------|
-| `uid`   | required | The publisher's Ad unit ID in VIS.X. | `'903536'` | `string` |
+| `uid`   | required | The publisher's Ad unit ID in VIS.X. | `903536` | `integer` |
 
 ### Media type Banner object params
 
@@ -118,7 +119,7 @@ var bannerAdUnit = {
     bids: [{
         bidder: 'visx',
         params: {
-            uid: '903536'                     // required
+            uid: 903536                     // required
         }
     }]
 };
@@ -139,7 +140,7 @@ var videoAdUnit = {
     bids: [{
         bidder: 'visx',
         params: {
-            uid: '921068'                     // required
+            uid: 921068                     // required
         }
     }]
 };
