@@ -7,6 +7,7 @@ module_code : consentManagementGpp
 display_name : Consent Management - GPP
 enable_download : true
 recommended: true
+min_js_version: 7.30.0
 sidebarType : 1
 ---
 

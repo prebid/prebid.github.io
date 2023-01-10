@@ -3,6 +3,7 @@ layout: userid
 title: Teads ID
 description: Teads ID User ID sub-module
 useridmodule: teadsId
+pbjs_version_notes: please avoid using v7.20.0 and v7.21.0
 ---
 
 
