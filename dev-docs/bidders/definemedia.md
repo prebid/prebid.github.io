@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: DEFINE MEDIA GmbH
-description: Prebid DEFINE MEDIA GmbH Bidder Adapter
+title: DEFINE MEDIA
+description: Prebid DEFINE MEDIA Bidder Adapter
 biddercode: definemedia
 gdpr_supported: true
 gvl_id: 440
@@ -14,7 +14,7 @@ prebid_member: false
 
 ### Registration
 
-Please reach out to your account management team to get started. Contact information is available under [a link](https://www.definemedia.de). 
+Please reach out to our account management team to get started. Contact information is available under [a link](https://definemedia.de). 
 
 ### Bid Params
 
