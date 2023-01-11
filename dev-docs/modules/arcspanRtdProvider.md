@@ -12,4 +12,44 @@ sidebarType : 1
 ---
 
 # ArcSpan Contextual APP
+{:.no_toc}
 
+* TOC
+{:toc}
+
+## Prebid Config for ArcSpan RTD Module
+
+This module attaches contextual classification signals to the site object in the bid request, with the goal of enhancing the addressability of ad impressions and increasing buyer demand.
+
+### Usage
+
+Compile the ArcSpan RTD Module into your Prebid build:
+
+```
+gulp build --modules=rtdModule,arcspanRtdProvider
+```
+
+{: .alert.alert-warning :}
+Note that the global RTD module, `rtdModule`, is a prerequisite of the ArcSpan RTD Module.
+
+You then need to enable the ArcSpan RTD Module in your Prebid configuration, using the format below.
+
+{: .alert.alert-warning :}
+Please replace the `silo` parameter value with the one provided by your ArcSpan representative.
+
+```javascript
+pbjs.setConfig({
+  ...,
+  realTimeData: {
+    auctionDelay: 50, // optional auction delay
+    dataProviders: [{
+      name: 'arcspan',
+      waitForIt: true, // should be true if there's an `auctionDelay`
+      params: {
+        silo: 1
+      }
+    }]
+  },
+  ...
+})
+```
