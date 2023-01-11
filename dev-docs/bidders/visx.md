@@ -20,9 +20,9 @@ Please reach out to your account manager to enable Prebid.js for your account.
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                         | Example    | Type     |
-|-------|----------|-------------------------------------|------------|----------|
-| `uid` | required | The publisher's ad unit ID in VIS.X | `'903536'` | `string` |
+| Name  | Scope    | Description                                                                                                                             | Example    | Type                  |
+| ----- | -------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------------- |
+| `uid` | required | The publisher's ad unit ID in VIS.X. The parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred. | `'903536'` | `integer` or `string` |
 
 ### Configuration
 
