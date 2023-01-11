@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Brightcom
+title: Brightcom SSP
 description: Prebid Brightcom SSP Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
