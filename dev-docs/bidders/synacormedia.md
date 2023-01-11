@@ -22,6 +22,7 @@ multiformat_supported: will-bid-on-any
 prebid_member: false
 gvl_id: none
 sidebarType: 1
+pbjs_version_notes: use imds after 7.X
 ---
 
 ### Note:
