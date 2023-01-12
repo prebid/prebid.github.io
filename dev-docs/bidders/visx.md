@@ -31,9 +31,9 @@ Please reach out to your account manager to enable Prebid.js for your account.
 ### Configuration: Currency
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                                                                                                                             | Example  | Type      |
-| ----- | -------- | --------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
-| `uid` | required | The publisher's ad unit ID in VIS.X. The parameter can be either a `integer` or `string` for Prebid.js, however `integer` is preferred. | `903536` | `integer` |
+| Name  | Scope    | Description                                                                                                                              | Example  | Type      |
+| ----- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
+| `uid` | required | The publisher's ad unit ID in VIS.X. The parameter can be either an `integer` or `string` for Prebid.js, however `integer` is preferred. | `903536` | `integer` |
 
 ### Configuration
 
@@ -94,9 +94,9 @@ pbjs.setConfig({
 
 {: .table .table-bordered .table-striped }
 
-| Name  | Scope    | Description                                                                                                                             | Example  | Type      |
-| ----- | -------- | --------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
-| `uid` | required | The publisher's ad unit ID in VIS.X. The parameter can be either a `integer` or `string` for Prebid.js, however `integer` is preferred. | `903536` | `integer` |
+| Name  | Scope    | Description                                                                                                                              | Example  | Type      |
+| ----- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
+| `uid` | required | The publisher's ad unit ID in VIS.X. The parameter can be either an `integer` or `string` for Prebid.js, however `integer` is preferred. | `903536` | `integer` |
 
 ### Media type Banner object params
 
