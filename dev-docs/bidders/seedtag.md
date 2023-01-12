@@ -12,6 +12,7 @@ media_types: banner, video
 biddercode: seedtag
 coppa_supported: true
 sidebarType: 1
+gpp_supported: true
 ---
 
 ### Note
