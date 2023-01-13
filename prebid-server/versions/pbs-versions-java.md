@@ -43,14 +43,15 @@ important architectural considerations, then follow the instructions for [Instal
 
 There are a few test requests in sample/requests that work with prebid-config-file-bidders.yaml and the files in the samples/stored directory.
 
-1. Follow the instructions in the root-level README.txt file to build the server
-2. Start the server pointing to a config in the sample directory. e.g.
+1) Follow the instructions in the root-level README.txt file to build the server
+
+2) Start the server pointing to a config in the sample directory. e.g.
 
 ```
 java -jar target/prebid-server.jar --spring.config.additional-location=sample/prebid-config.yaml
 ```
 
-3. Use one of the stored requests in the sample directory with curl:
+3) Use one of the stored requests in the sample directory with curl:
 
 ```bash
 cd sample
