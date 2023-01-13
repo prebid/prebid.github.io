@@ -21,11 +21,9 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example                              | Type      |
 |---------------|----------|-----------------------|--------------------------------------|-----------|
-| `account`     | required | Nexx360 account ID    | `'1067'`                             | `string`  |
-| `tagId`       | required | Nexx360 tag ID        | `'luvxjvgn'`                         | `string`  |
-| `bidfloor`       | optional | Bidfloor applied to auction (default: 0)        | `0.8`                         | `float`  |
-| `bidfloorCurrency`       | optional | Bidfloor currency (default: `'USD'`) - Can be `'USD'` or `'EUR'`       | `'USD'`                         | `string`  |
-| `keywords`       | optional | Keywords used for targeting       | `{ 'interest': ['cars', 'sports']}`                         | `object`  |
+| `tagId`       | required | Nexx360 tag ID        | `"luvxjvgn"`                         | `string`  |
+| `videoTagId`  | optional | Nexx360 Video tag ID        | `"luvxjvgn"`                         | `string`  |
+| `allBids`  | optional | Return all bids       | `true`                         | `boolean`  |
 
 ### Test Parameters
 
@@ -42,7 +40,6 @@ var adUnits = [
       bids: [{
          bidder: 'nexx360',
          params: {
-            account: '1067',
             tagId: 'luvxjvgn'
          }
        }]
@@ -59,11 +56,29 @@ var adUnits = [
         bids: [{
             bidder: 'nexx360',
             params: {
-               account: '1067',
                tagId: 'luvxjvgn'
             }
         }]
+    },
+    // Multiformat Ad
+   {
+        code: 'multi1',
+        mediaTypes: {
+            video: {
+                playerSize: [640, 480],
+                context: 'instream'
+            },
+            banner: {
+              sizes: [[300, 250], [300,600]]
+            }
+        },
+        bids: [{
+            bidder: 'nexx360',
+            params: {
+               tagId: 'luvxjvgn',
+               videoTagId: 'luvxjvgn'
+            }
+        }]
     };
-
 ];
 ```
