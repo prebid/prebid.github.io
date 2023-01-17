@@ -2,7 +2,7 @@
 layout: userid
 title: BritePool
 description: BritePool User ID sub-module
-useridmodule: britepool
+useridmodule: britepoolIdSystem
 ---
 
 

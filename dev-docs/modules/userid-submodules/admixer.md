@@ -2,7 +2,7 @@
 layout: userid
 title: AdmixerID
 description: AdmixerID User ID sub-module
-useridmodule: admixer
+useridmodule: admixerIdSystem
 ---
 
 

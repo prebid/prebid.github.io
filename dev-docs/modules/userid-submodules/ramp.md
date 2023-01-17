@@ -2,7 +2,7 @@
 layout: userid
 title: RampID
 description: RampID User ID sub-module
-useridmodule: identityLink
+useridmodule: identityLinkIdSystem
 ---
 
 
@@ -84,4 +84,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-

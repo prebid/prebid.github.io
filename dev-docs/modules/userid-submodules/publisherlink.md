@@ -2,7 +2,7 @@
 layout: userid
 title: Publisher Link
 description: Publisher Link User ID sub-module
-useridmodule: publink
+useridmodule: publinkIdSystem
 ---
 
 

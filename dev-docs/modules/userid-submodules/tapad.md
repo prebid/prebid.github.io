@@ -2,7 +2,7 @@
 layout: userid
 title: Tapad ID
 description: Tapad ID User ID sub-module
-useridmodule: tapad
+useridmodule: tapadIdSystem
 ---
 
 

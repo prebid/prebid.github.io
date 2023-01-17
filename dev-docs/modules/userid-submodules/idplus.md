@@ -2,7 +2,7 @@
 layout: userid
 title: ID+
 description: ID+ User ID sub-module
-useridmodule: zeotapIdPlus
+useridmodule: zeotapIdPlusIdSystem
 ---
 
 
@@ -34,5 +34,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-
-

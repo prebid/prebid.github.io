@@ -2,7 +2,7 @@
 layout: userid
 title: Lotame Panorama ID
 description: Lotame Panorama ID User ID sub-module
-useridmodule: lotamePanorama
+useridmodule: lotamePanoramaIdSystem
 ---
 
 

@@ -2,7 +2,7 @@
 layout: userid
 title: Trustpid
 description: Trustpid User ID sub-module
-useridmodule: trustp
+useridmodule: trustpidSystem
 ---
 
 

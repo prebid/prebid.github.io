@@ -2,7 +2,7 @@
 layout: userid
 title: AMX RTB ID
 description: AMX RTB ID User ID sub-module
-useridmodule: amx
+useridmodule: amxIdSystem
 ---
 
 

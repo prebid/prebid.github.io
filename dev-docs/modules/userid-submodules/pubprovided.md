@@ -2,7 +2,7 @@
 layout: userid
 title: PubProvided ID
 description: PubProvided ID User ID sub-module
-useridmodule: pubProvided
+useridmodule: pubProvidedIdSystem
 ---
 
 

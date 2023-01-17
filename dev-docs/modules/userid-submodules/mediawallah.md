@@ -2,7 +2,7 @@
 layout: userid
 title: MediaWallah OpenLinkID
 description: MediaWallah OpenLinkID User ID sub-module
-useridmodule: mwOpenLink
+useridmodule: mwOpenLinkIdSystem
 ---
 
 

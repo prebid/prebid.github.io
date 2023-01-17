@@ -2,7 +2,7 @@
 layout: userid
 title: Merkle ID
 description: Merkle IDUser ID sub-module
-useridmodule: merkle
+useridmodule: merkleIdSystem
 ---
 
 

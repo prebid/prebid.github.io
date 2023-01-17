@@ -2,7 +2,7 @@
 layout: userid
 title: SharedID
 description: SharedID User ID sub-module
-useridmodule: shared
+useridmodule: sharedIdSystem
 ---
 
 

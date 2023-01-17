@@ -2,7 +2,7 @@
 layout: userid
 title: adQuery QiD
 description: adQuery QiD User ID sub-module
-useridmodule: adquery
+useridmodule: adqueryIdSystem
 ---
 
 
