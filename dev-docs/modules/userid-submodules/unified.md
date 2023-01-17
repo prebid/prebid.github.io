@@ -2,7 +2,7 @@
 layout: userid
 title: Unified ID
 description: Unified ID User ID sub-module
-useridmodule: unifiedId
+useridmodule: unifiedIdSystem
 ---
 
 
@@ -93,4 +93,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-

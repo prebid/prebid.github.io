@@ -2,7 +2,7 @@
 layout: userid
 title: PubProvided ID
 description: PubProvided ID User ID sub-module
-useridmodule: pubProvidedId
+useridmodule: pubProvidedIdSystem
 ---
 
 
@@ -86,4 +86,3 @@ gulp build --modules=pubProvidedIdSystem
 | params.eidsFunction | Optional | function | any function that exists in the page | getIdsFn() |
 | uids.atype | optional | int | ADCOM - Type of user agent the match is from | `"1"` |
 | uids.ext.stype | Optional | String | Description of how the id was generated and by whom ('ppuid','DMP','other') | `DMP` |
-

@@ -2,7 +2,7 @@
 layout: userid
 title: Just ID
 description: Just ID User ID sub-module
-useridmodule: justId
+useridmodule: justIdSystem
 ---
 
 
@@ -61,4 +61,3 @@ pbjs.setConfig({
 ## Just ID  Disclosure
 
 This module in `COMBINED` mode loads external JavaScript to generate optimal quality user ID. It is possible to retrieve user ID, without loading additional script by this module in `BASIC` mode.
-

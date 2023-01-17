@@ -2,7 +2,7 @@
 layout: userid
 title: AudienceOne ID by DAC
 description: AudienceOne ID by DAC User ID sub-module
-useridmodule: dacId
+useridmodule: dacIdSystem
 ---
 
 
@@ -37,4 +37,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-
