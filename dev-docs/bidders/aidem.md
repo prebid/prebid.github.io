@@ -3,7 +3,7 @@ layout: bidder
 title: AIDEM
 description: AIDEM Bidder Adapter
 biddercode: aidem
-gdpr_supported: false
+gdpr_supported: true
 gvl_id: none
 usp_supported: true
 coppa_supported: false
@@ -92,6 +92,8 @@ var adUnits = [{
           bidder: 'aidem',
           params: {
             siteId: 'prebid-test-site',
+            placementId: '12345678',
+            publisherId: '123456'  
           },
     }]
 }];
@@ -115,6 +117,8 @@ var adUnits = [{
           bidder: 'aidem',
           params: {
             siteId: 'prebid-test-site',
+            placementId: '12345678',
+            publisherId: '123456'
           },
     }]
 }];
