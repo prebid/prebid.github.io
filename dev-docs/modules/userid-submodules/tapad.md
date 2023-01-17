@@ -2,7 +2,7 @@
 layout: userid
 title: Tapad ID
 description: Tapad ID User ID sub-module
-useridmodule: tapadId
+useridmodule: tapad
 ---
 
 
@@ -48,4 +48,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-

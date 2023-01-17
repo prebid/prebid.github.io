@@ -2,7 +2,7 @@
 layout: userid
 title: Deepintent
 description: Deepintent User ID sub-module
-useridmodule: deepintentId
+useridmodule: deepintent
 ---
 
 
@@ -59,4 +59,3 @@ pbjs.setConfig({
   }
 });
 {% endhighlight %}
-

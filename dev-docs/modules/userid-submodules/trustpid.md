@@ -2,7 +2,7 @@
 layout: userid
 title: Trustpid
 description: Trustpid User ID sub-module
-useridmodule: trustpid
+useridmodule: trustp
 ---
 
 
@@ -51,4 +51,3 @@ pbjs.setConfig({
 ## Truspid onboarding
 
 If you wish to find out more about Trustpid, please contact onboarding@trustpid.com
-
