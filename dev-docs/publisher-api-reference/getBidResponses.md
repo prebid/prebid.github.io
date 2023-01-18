@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.getBidResponses()
 description:
+sidebarType: 1
 ---
 
 

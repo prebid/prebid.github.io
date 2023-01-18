@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.mergeConfig(options)
 description:
+sidebarType: 1
 ---
 
 This is the same as [`setConfig(options)`](/dev-docs/publisher-api-reference/setConfig.html) except that it merges the supplied config into the structure rather than replacing it.

@@ -19,19 +19,26 @@ dchain_supported: false
 deals_supported: true
 prebid_member: yes
 multiformat_supported: yes
+sidebarType: 1
 ---
 
 ## Table of contents
 
+- [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Supported media types](#supported-media-types)
-- [Set up Prebid.js to call Index directly from the browser](#client-side-adapter)
-- [Set up Prebid.js to call Index through Prebid Server](#server-side-adapter)
+- [Set up Prebid.js to call Index directly from the browser (client-side adapter)](#set-up-prebidjs-to-call-index-directly-from-the-browser-client-side-adapter)
+- [Set up Prebid.js to call Index through Prebid Server (server-side adapter)](#set-up-prebidjs-to-call-index-through-prebid-server-server-side-adapter)
 - [Modules to include in your build process](#modules-to-include-in-your-build-process)
 - [Set up First Party Data (FPD)](#set-up-first-party-data-fpd)
-- [Index's outstream video player](#index-outstream-video-player)
+  - [Index bidder-specific FPD module](#index-bidder-specific-fpd-module)
+  - [Prebid FPD module](#prebid-fpd-module)
+- [Index's outstream video player](#indexs-outstream-video-player)
 - [Prebid Native configuration](#prebid-native-configuration)
 - [Bid request parameters](#bid-request-parameters)
+  - [Banner](#banner)
+  - [Video](#video)
+  - [Native](#native)
 - [Multi-format ad units](#multi-format-ad-units)
 - [Examples](#examples)
 
@@ -351,7 +358,7 @@ You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
 
-| Key | Scope | Type | Description |
+| Name | Scope | Type | Description |
 |---|---|---|---|
 | `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
 
@@ -362,7 +369,7 @@ You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
 
-| Key | Scope | Type | Description |
+| Name | Scope | Type | Description |
 |---|---|---|---|
 | `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
 
@@ -371,7 +378,7 @@ If you are using Index's outstream player and have placed the video object at th
 
 {: .table .table-bordered .table-striped }
 
-| Key | Scope | Type | Description |
+| Name | Scope | Type | Description |
 |---|---|---|---|
 | `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
 | `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
@@ -394,7 +401,7 @@ The following are the parameters that you can specify for each multi-format type
 
 {: .table .table-bordered .table-striped }
 
-| Key | Scope | Type | Description |
+| Name | Scope | Type | Description |
 |---|---|---|---|
 | `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`. <br><br><b>Note:</b> This will also act as the default siteID for multi-format adunits if a format specific siteId is not provided.|
 | `banner.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `banner` format in the multi-format ad unit.|

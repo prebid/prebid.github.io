@@ -9,6 +9,7 @@ usp_supported: true
 media_types: banner, video, native
 safeframes_ok: false
 pbjs: true
+sidebarType: 1
 ---
 
 ### Preliminaries

@@ -6,6 +6,7 @@ pbjs: true
 media_types: banner, video
 biddercode: afp
 safeframes_ok: false
+sidebarType: 1
 ---
 
 ### Note

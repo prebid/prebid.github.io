@@ -12,6 +12,7 @@ safeframes_ok: false
 pbjs: true
 pbs: false
 prebid_member: false
+sidebarType: 1
 ---
 
 ### Registration

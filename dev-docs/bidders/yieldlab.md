@@ -19,6 +19,7 @@ deals_supported: true
 gvl_id: 70
 coppa_supported: false
 usp_supported: false
+sidebarType: 1
 ---
 
 

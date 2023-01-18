@@ -11,6 +11,7 @@ safeframes_ok: false
 deals_supported: false
 floors_supported: false
 fpd_supported: false
+sidebarType: 1
 ---
 
 

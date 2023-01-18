@@ -8,6 +8,7 @@ media_types: banner, video
 gdpr_supported: true
 usp_supported: true
 pbjs: true
+sidebarType: 1
 ---
 
 ### Bid Params

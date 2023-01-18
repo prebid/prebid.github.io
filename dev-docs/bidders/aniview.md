@@ -10,6 +10,7 @@ usp_supported: true
 schain_supported: true
 safeframes_ok: true
 gvl_id: 780
+sidebarType: 1
 ---
 
 ### Note:

@@ -11,6 +11,7 @@ userIds: all
 pbjs: true
 pbs: true
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Registration

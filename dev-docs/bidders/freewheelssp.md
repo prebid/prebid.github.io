@@ -13,6 +13,7 @@ coppa_supported: true
 schain_supported: true
 media_types: video
 ortb_blocking_supported: partial
+sidebarType: 1
 ---
 
 ### Bid Params

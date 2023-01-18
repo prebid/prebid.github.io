@@ -11,6 +11,7 @@ pbjs: true
 floors_supported: true
 gvl_id: 1020
 pbjs_version_notes: not ported to 5.x, added back 7.13
+sidebarType: 1
 ---
 ### Modules
 

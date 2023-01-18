@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.setConfig(options)
 description:
+sidebarType: 1
 ---
 
 
@@ -751,6 +752,8 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 | CACHE_ID | `hb_cache_id` | yes | Network cache ID for AMP or Mobile |
 | CACHE_HOST | `hb_cache_host` | yes | |
 | ADOMAIN | `hb_adomain` | no | Set to bid.meta.advertiserDomains[0]. Use cases: report on VAST errors, set floors on certain buyers, monitor volume from a buyer, track down bad creatives. |
+| ACAT | `hb_acat` | no | Set to bid.meta.primaryCatId. Optional category targeting key that can be sent to ad servers that stores the value of the Primary IAB category ID if present. Use cases: category exclusion with an ad server order or programmatic direct deal on another ad slot (good for contextual targeting and/or brand
+safety/suitability). |
 | title | `hb_native_title` | yes | |
 | body | `hb_native_body` | yes | |
 | body2 | `hb_native_body2` | yes | |
@@ -1405,6 +1408,48 @@ Notes:
 - The only time `waitForIt` means anything is if some modules are flagged as true and others as false. If all modules are the same (true or false), it has no effect.
 - Likewise, `waitForIt` doesn't mean anything without an auctionDelay specified.
 
+
+
+<a name="setConfig-topicsIframeConfig" />
+
+#### Topics Iframe Configuration
+
+Topics iframe implementation is the enhancements of existing module under topicsFpdModule.js where different bidders will call the topic API under their domain to fetch the topics for respective domain and the segment data will be part of ORTB request under user.data object. Default config is maintained in the module itself. Below are the configuration which can be used to configure and override the default config maintained in the module.
+
+```
+pbjs.setConfig({
+    userSync: {
+        ...,
+        topics: { 
+            maxTopicCaller: 3, // SSP rotation 
+            bidders: [{
+                bidder: 'pubmatic',
+                iframeURL: 'https://ads.pubmatic.com/AdServer/js/topics/topics_frame.html',
+                expiry: 7 // Configurable expiry days
+            },{
+                bidder: 'rubicon',
+                iframeURL: 'https://rubicon.com:8080/topics/fpd/topic.html', // dummy URL
+                expiry: 7 // Configurable expiry days
+            },{
+                bidder: 'appnexus',
+                iframeURL: 'https://appnexus.com:8080/topics/fpd/topic.html', // dummy URL
+                expiry: 7 // Configurable expiry days
+            }]
+        }
+        ....
+    }
+})
+
+```
+
+{: .table .table-bordered .table-striped }
+| Field | Required? | Type | Description |
+|---|---|---|---|
+| topics.maxTopicCaller | no | integer | Defines the maximum numbers of Bidders Iframe which needs to be loaded on the publisher page. Default is 1 which is hardcoded in Module. Eg: topics.maxTopicCaller is set to 3. If there are 10 bidders configured along with their iframe URLS, random 3 bidders iframe URL is loaded which will call TOPICS API. If topics.maxTopicCaller is set to 0, it will load random 1(default) bidder iframe atleast. |
+| topics.bidders | no | Array of objects  | Array of topics callers with the iframe locations and other necessary informations like bidder(Bidder code) and expiry. Default Array of topics in the module itself.|
+| topics.bidders[].bidder | yes | string  | Bidder Code of the bidder(SSP).  |
+| topics.bidders[].iframeURL | yes | string  | URL which is hosted on bidder/SSP/third-party domains which will call Topics API.  |
+| topics.bidders[].expiry | no | integer  | Max number of days where Topics data will be persist. If Data is stored for more than mentioned expiry day, it will be deleted from storage. Default is 21 days which is hardcoded in Module. |
 
 
 <a id="setConfig-performanceMetrics" />

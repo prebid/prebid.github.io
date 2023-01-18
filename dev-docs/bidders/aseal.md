@@ -5,6 +5,7 @@ description: Prebid Aseal Bidder Adapter
 pbjs: true
 biddercode: aseal
 media_types: banner
+sidebarType: 1
 ---
 
 ### BidParams

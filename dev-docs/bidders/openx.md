@@ -10,12 +10,14 @@ schain_supported: true
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 floors_supported: true
 userIds: admixerId, adtelligentId, amxId, britepoolId, criteo, dapId, deepintentId, dmdId, fabrickId, hadronId, id5Id, identityLink, idxId, imuId, intentIqId, kinessoId, liveIntentId, lotamePanoramaId, merkleId, mwOpenLinkId, naveggId, netId, novatiq, parrableId, pubCommonId, publinkId, quantcastId, sharedId, tapadId, uid2, unifiedId, verizonMediaId, zeotapIdPlus
 prebid_member: true
 fpd_supported: true
 gvl_id: 69
 fpd_supported: true
+sidebarType: 1
 ---
 
 ### Registration
@@ -247,6 +249,6 @@ pbjs.setConfig({
 ```
 
 ## Additional Details
-[Banner Ads](https://docs.openx.com/Content/developers/containers/prebid-adapter.html)
+[Banner Ads](https://docs.openx.com/Content/developers/containers/prebid-adapter.html) (Customer login required.)
 
-[Video Ads](https://docs.openx.com/Content/developers/containers/prebid-video-adapter.html)
+[Video Ads](https://docs.openx.com/Content/developers/containers/prebid-video-adapter.html) (Customer login required.)

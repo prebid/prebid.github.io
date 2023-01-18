@@ -9,7 +9,7 @@ sidebarType: 2
 
 # Deep Link+
 
-Prebid Rendering Module supports the premium standard for retargeting campaigns - [DeepLink+](https://developers.mopub.com/dsps/ad-formats/deep-linking/)
+Prebid Rendering Module supports the premium standard for retargeting campaigns - DeepLink+.
 
 ## Advantages over traditional mobile deep-linking functionality
 

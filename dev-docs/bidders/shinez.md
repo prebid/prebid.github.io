@@ -12,6 +12,7 @@ floors_supported: true
 userIds: all
 fpd_supported: true
 safeframes_ok: false
+sidebarType: 1
 ---
 
 ### Note

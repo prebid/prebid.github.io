@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.renderAd(doc, id, options)
 description:
+sidebarType: 1
 ---
 
 

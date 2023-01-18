@@ -190,27 +190,6 @@ For Google Ad Manager:
 
 ```
 
-For Mopub:
-
-```html
-
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
-<script>
-  var ucTagData = {};
-  ucTagData.adServerDomain = "";
-  ucTagData.pubUrl = "%%KEYWORD:url%%";
-  ucTagData.targetingKeywords = "%%KEYWORDS%%";
-  ucTagData.hbPb = "%%KEYWORD:hb_pb%%";
-
-   try {
-    ucTag.renderAd(document, ucTagData);
-  } catch (e) {
-    console.log(e);
-  }
-</script>
-
-```
-
 For all other ad servers:
 
 ```html

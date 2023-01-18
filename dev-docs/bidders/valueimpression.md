@@ -13,6 +13,7 @@ userIds: all
 floors_supported: true
 pbs: true
 pbs_app_supported: true
+sidebarType: 1
 ---
 
 ## Description

@@ -11,6 +11,7 @@ userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, uni
 prebid_member: true
 schain_supported: true
 gvl_id: 24
+sidebarType: 1
 ---
 
 
@@ -64,6 +65,7 @@ The following values are defined in the [ORTB 2.5 spec](https://www.iab.com/wp-c
 + `5` : MRAID 2.0
 + `6` : MRAID 3.0
 
+<a id="epsilon-protocols"></a>
 ### protocols
 + `1` : VAST 1.0
 + `2` : VAST 2.0

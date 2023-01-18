@@ -14,6 +14,7 @@ coppa_supported: true
 media_types: banner, video
 gvl_id: 591
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Note:

@@ -9,6 +9,7 @@ deals_supported: false
 media_types: banner, video
 userIds: uid2, unifiedId
 gdpr_supported: false
+sidebarType: 1
 ---
 
 ### Registration

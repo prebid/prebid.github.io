@@ -13,6 +13,7 @@ floors_supported: true
 userIds: all
 fpd_supported: true
 gvl_id: 918
+sidebarType: 1
 ---
 
 ### Note

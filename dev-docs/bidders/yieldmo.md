@@ -11,6 +11,7 @@ schain_supported: true
 prebid_member: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
 ### Registration

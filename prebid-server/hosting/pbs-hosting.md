@@ -111,7 +111,7 @@ Optional:
 - Are there any features you'd like to see in Prebid Server?
 
 Even though this is not information about individuals, this information falls under the
-[Prebid website privacy policy](/privacy.html). You can remove your company from the
+[Prebid website privacy policy](/policies/privacy.html). You can remove your company from the
 email list at any time just by emailing us again at prebid-server@prebid.org.
 
 ## Further Reading
