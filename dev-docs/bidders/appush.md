@@ -4,7 +4,7 @@ title: Appush
 description: Prebid Appush Bidder Adapter
 biddercode: appush
 media_types: banner, video, native
-pbjs: false
+pbjs: true
 pbs: true
 gvl_id: 879
 safeframes_ok: true
