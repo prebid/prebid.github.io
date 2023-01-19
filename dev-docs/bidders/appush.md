@@ -15,7 +15,7 @@ ortb_blocking_supported: partial
 sidebarType: 1
 ---
 
-### Prebid Server Params
+### Prebid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
