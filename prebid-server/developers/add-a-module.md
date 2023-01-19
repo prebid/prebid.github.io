@@ -19,7 +19,7 @@ We encourage you to look at existing modules for working examples. You can also 
 The ability to add optional modules in [Prebid.js](/prebid/prebidjs.html) has been widely used,
 with dozens of interesting features forming a healthy ecosystem of vendor choice that's good for publishers and the industry.
 
-Prebid Server (Java) supports a rich module interface that
+Prebid Server supports a rich module interface that
 allows anyone to contribute functionality at predefined places
 along the request pipeline. Here's the general development process:
 

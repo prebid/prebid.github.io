@@ -125,7 +125,7 @@ In a module it is not necessary to implement all mentioned interfaces but at lea
 
 ### Examples
 
-1) To **update** the request in the `BidderRequest` hook you would return:
+1) To **update** the request in the `BidderRequest`, your implementation would return a hook result with a change set:
 ```
 import (
 	"context"
@@ -172,7 +172,7 @@ func (m Module) HandleBidderRequestHook(
 }
 ```
 
-2) To **reject** the bidder in the `BidderRequest` hook you would return:
+2) To **reject** the bidder in the `BidderRequest`, your hook implementation would return a hook result with a reject flag and an NBR code:
 ```
 func (m Module) HandleBidderRequestHook(
 	ctx context.Context,

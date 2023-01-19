@@ -247,7 +247,7 @@ For PBS-Go:
                         },
                         "bcat": {
                             "enforce_blocks": false,
-                            "blocked-adv-cat": [],
+                            "blocked_adv_cat": [],
                             "action_overrides": {
                                 "blocked_adv_cat": [
                                     {
@@ -281,7 +281,7 @@ For PBS-Go:
             "endpoints": {
                 "/openrtb2/amp": {
                     "stages": {
-                        "bidder-request": {
+                        "bidder_request": {
                             "groups": [
                                 {
                                     "timeout": 5,
@@ -298,7 +298,7 @@ For PBS-Go:
                 },
                 "/openrtb2/auction": {
                     "stages": {
-                        "bidder-request": {
+                        "bidder_request": {
                             "groups": [
                                 {
                                     "timeout": 5,
@@ -544,7 +544,7 @@ For PBS-Go
                   "blocked_adv_cat": [ "IAB-1", "IAB-2" ],
                   // deals can return this cat
                   "allowed_adv_cat_for_deals": [ "IAB-1" ],
-                  "action-overrides": {
+                  "action_overrides": {
                       "blocked_adv_cat": [
                         {
                           // block additional categories for video
@@ -563,7 +563,7 @@ For PBS-Go
                           "override": true
                         }
                       ],
-                      "block-unknown-adv-cat": [
+                      "block_unknown_adv_cat": [
                         {
                           // enforce unknown cat for this bidder
                           "conditions": {
@@ -576,7 +576,7 @@ For PBS-Go
                         {
                           // this deal ID allowed to be this category
                           "conditions": {
-                            "deal-ids": [ "1111111" ]
+                            "deal_ids": [ "1111111" ]
                           },
                           "override": [ "IAB-2" ]
                         }
