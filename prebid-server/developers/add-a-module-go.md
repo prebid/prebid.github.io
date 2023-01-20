@@ -185,7 +185,7 @@ func (m Module) HandleBidderRequestHook(
 
 Refer [here](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/OpenRTB%20v3.0%20FINAL.md#list--no-bid-reason-codes-) for a list of available No Bid Response Codes.
 
-3) To supply [analytics tags](/prebid-server/developers/module-atags.html) in the `BidderRequest` hook you would return:
+3) To supply [analytics tags](/prebid-server/developers/module-atags.html) in the `BidderRequest`, your hook implementation would return a hook result with analytics tags:
 ```
 import (
 	"context"
@@ -212,11 +212,11 @@ func (m Module) HandleBidderRequestHook(
                                 "attributes": []string{"bcat"},
                                 "bcat":       []string{"IAB-1"},
                             },
-                            AppliedTo: hookanalytics.AppliedTo{Bidders: []string{"appnexus"}, ImpIds: []string{"imp_ID1"}},
+                            AppliedTo: hookanalytics.AppliedTo{Bidder: "appnexus", ImpIds: []string{"imp_ID1"}},
                         },
                         {
                             Status:    hookanalytics.ResultStatusAllow,
-                            AppliedTo: hookanalytics.AppliedTo{Bidders: []string{"appnexus"}, ImpIds: []string{"imp_ID2"}},
+                            AppliedTo: hookanalytics.AppliedTo{Bidder: "appnexus", ImpIds: []string{"imp_ID2"}},
                         },
                     },
                 },
