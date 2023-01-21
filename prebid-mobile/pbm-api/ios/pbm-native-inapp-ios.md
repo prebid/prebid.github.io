@@ -18,8 +18,8 @@ At a high level the in app rendering process works like this:
 
 1. The publisher configures a native ad unit.
 2. PBM fetches native demand. However, instead of caching the native assets on the server, the assets are cached locally in the SDK.
-3. Bid request are made to Google Ad Manager/MoPub.
-4. Upon receiving results from Google Ad Manager/MoPub, PBM determines if any of the received items are from Prebid Server.
+3. Bid request are made to Google Ad Manager.
+4. Upon receiving results from Google Ad Manager, PBM determines if any of the received items are from Prebid Server.
 5. If there are Prebid ads, the cached assets are then rendered.
 
 {% capture importantNote %}
@@ -28,9 +28,15 @@ The cached assets might expire. If this occurs the publisher will receive a noti
 
 {% include alerts/alert_important.html content=importantNote %}
 
+{% capture importantNote %}
+Starting with the `1.14.0-beta1` version converting the native ad template to the ad objects is changed to match the IAB specs. See this [issue](https://github.com/prebid/prebid-mobile-ios/issues/494) for the details. If you update SDK from the previous version - verify the native ads integration before the release.
+{% endcapture %}
+
+{% include alerts/alert_important.html content=importantNote %}
+
 ## Ad Ops Setup
 
-These instructions will enable you to create a creative template in either Google Ad Manager or MoPub that can then be applied to native ads in your app.
+These instructions will enable you to create a creative template in Google Ad Manager that can then be applied to native ads in your app.
 
 ### Google Ad Manager
 
@@ -58,34 +64,7 @@ These instructions will enable you to create a creative template in either Googl
   | isPrebid            | 1                                |
   | hb_cache_id_local   | %%PATTERN:hb_cache_id_local%%    |
 
-9. Now create Prebid line items with price priority and a display ad type that are targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (making sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
-
-### MoPub
-
-1. Sign in to MoPub.
-2. Select the order for the Prebid line items.  
-3. Create a line item that targets an `hb_pb key-value`.
-4. Save your line item.
-5. Create the creative. When prompted, input a name and choose the format `Native`.
-6. Instead of `Easy Form` choose `Manual JSON`.
-7. In the JSON input field insert the following content:
-<pre>
-<code>
-{
-"mainimage": "https://dummyimage.com/600x400/000/fff",
-"isPrebid": true,
-"hb_cache_id_local": "%%KEYWORD:hb_cache_id_local%%"
-}
-</code>
-</pre>
-
-8. Click `Save`.
-
-{% capture importantNote %}
-The mainimage is a dummy field that MoPub requires for caching.  If the dummy image is not added, the ad will not work. You can insert any dummy pixel.
-{% endcapture %}
-
-{% include alerts/alert_important.html content=importantNote %}
+9. Create Prebid line items with price priority and a display ad type that is targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (making sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
 
 ## Code Integration
 
@@ -122,6 +101,19 @@ The `NativeAdDelegate` protocol provides three methods to handle the display and
 
 An object representing the `NativeAd` to be displayed.
 
+#### Using Asset Ids with In-App Native Ad Units
+
+Setting this option to `true`, in your instance of Prebid Mobile, enables you to add an id for each asset in the assets array. The default setting is `false`
+
+**Swift**
+```
+Prebid.shared.shouldAssignNativeAssetID = true
+```
+
+**Objective C**
+```
+[Prebid shared].shouldAssignNativeAssetID = YES;
+```
 ##### Methods
 
   *registerViews*
@@ -261,44 +253,6 @@ func adLoader(_ adLoader: GADAdLoader, didReceive bannerView: DFPBannerView) {
 
 func validBannerSizes(for adLoader: GADAdLoader) -> [NSValue] {
     return [NSValueFromGADAdSize(kGADAdSizeBanner)]
-}
-</code>
-</pre>
-
-#### MoPub Integration
-
-<pre>
-<code>
-var mpNative:MPNativeAdRequest?
-var mpAd: MPNativeAd?
-var nativeUnit: NativeRequest!
-var nativeAd:NativeAd?
-var nativeUnit: NativeRequest!
-var eventTrackers: NativeEventTracker!
-func loadPrebidNativeForMoPub(){
-    removePreviousAds()
-    createPrebidNativeView()
-    loadNativeAssets()
-
-    let settings: MPStaticNativeAdRendererSettings = MPStaticNativeAdRendererSettings.init()
-    let config:MPNativeAdRendererConfiguration = MPStaticNativeAdRenderer.rendererConfiguration(with: settings)
-    self.mpNative = MPNativeAdRequest.init(adUnitIdentifier: "2674981035164b2db5ef4b4546bf3d49", rendererConfigurations: [config])
-
-    let targeting:MPNativeAdRequestTargeting = MPNativeAdRequestTargeting.init()
-    self.mpNative?.targeting = targeting
-
-    nativeUnit.fetchDemand(adObject: mpNative!) { [weak self] (resultCode: ResultCode) in
-        print("Prebid demand fetch for AdManager \(resultCode.name())")
-        if let mpNative = mpNative{
-            mpNative.start(completionHandler: { (request, response, error)->Void in
-                if error == nil {
-                    self.mpAd = response!
-                    Utils.shared.delegate = self
-                    Utils.shared.findNative(adObject: response!)
-                }
-            })
-       }
-    }
 }
 </code>
 </pre>

@@ -7,6 +7,9 @@ pbs: true
 biddercode: eplanning
 usp_supported: true
 gdpr_supported: true
+pbs_app_supported: true
+gvl_id: 90
+sidebarType: 1
 ---
 
 

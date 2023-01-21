@@ -1,135 +1,60 @@
 ---
 layout: page_v2
-title: Enable Deals
-head_title: Enable Deals in Prebid for Header Bidding
-description: Enable Deals in Prebid for Header Bidding Analysis.
-pid: 4
-
+title: Deals in Prebid
+head_title: Deals in Prebid
 sidebarType: 3
+sbUUID: 3.2
 ---
 
-# Enable Deals in Prebid
-{:.no_toc}
-
-In order to enable deals for prebid, the ad ops setup is slightly different from the standard header bidding setup. Specifically:
-
-+ From the ad ops side, you'll create separate orders and line items that target the deal ID key-values. These line items will be at different (probably higher) priorities than your standard header bidding line items.
-
-+ From the dev side, if your page is using the standard prebid.js key-values, no change or work is required.
-
-{: .bg-info :}
-In this example we will use the Google Ad Manager setup to illustrate, but the steps are basically the same for any ad server.
+# Deals in Prebid
+{: .no_toc }
 
 * TOC
-{:toc}
+{: toc }
 
-### Step 1: Understand Key-values
 
-Whenever a bidder responds with a bid containing a deal ID, Prebid.js will generate and attach deal-related key-values to the ad server call in the format: `hb_deal_BIDDERCODE = DEAL_ID`.
+In the same way that you can negotiate deals with advertisers in your ad server, you can also set up deals with your header bidding partners. When you do that, there are just a few things to keep in mind to ensure those deals get sent to the ad server and your line items are prepared to receive them.
 
-For example, given the submitted bids, prices, and deals shown here:
+## Send Deal to Ad Server
 
-```
-bid 1: Bidder = Rubicon,  CPM = 1.50, Deal ID = RBC_123
-bid 2: Bidder = AppNexus, CPM = 1.20, Deal ID = APN_456
-```
+In [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html) we described those two options for sending bids to the ad server. There is also a third option created specifically for deals: Send top price and deals.
 
-The key-values attached to the ad server call (that the line items will target) will be:
+### Deals with Send All Bids
 
-```
-hb_pb_rubicon    = 1.50
-hb_deal_rubicon  = RBC_123
-hb_pb_appnexus   = 1.20
-hb_deal_appnexus = APN_456
-// hb_adid, hb_size, and hb_adid omitted
-```
+If you send all bids to the ad server, deals will be sent along with the rest of the bids. If you want your deals to be prioritized over the rest of the bids, be sure to inform the software engineers so they can configure Prebid for this scenario.
 
-{% capture noteAlert %}
-We recommend confirming with your development team that the page is set up to send all deal targeting to the ad server. There are two ways to do this:  
-- Set the `enableSendAllBids` to **true**.  
-- Set `enableSendAllBids` to **false** and `alwaysIncludeDeals` to **true**. This option will minimize the number of targeting variables sent to the ad server.  
-See the [enableSendAllBids](/dev-docs/publisher-api-reference.html#setConfig-Send-All-Bids) documentation for details.
-{% endcapture %}
+{: .alert.alert-info :}
+See [Configure Send Bids Control](/dev-docs/publisher-api-reference/setConfig.html#configure-send-bids-control) for engineering instructions on this configuration.
 
-{% include alerts/alert_note.html content=noteAlert %}
+### Deals with Send Top Price
 
-<br>
+If you decide to send only the top price bid, the deal might not be the top price, in which case it would not be sent and the ad server would never see it. To ensure deals make it to the ad server, the software engineers need to know that deal bids should be included along with the top priced bid. They can then configure Prebid to send both the top price and any deals that come through.
 
-### Step 2: Create Key-values
+{: .alert.alert-info :}
+See the  [Send All Bids engineering reference](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids) for engineering instructions on sending deals along with the top bid.
 
-For each header bidding partner you work with, create a keyword in the format of `hb_deal_BIDDERCODE`, e.g., `hb_deal_pubmatic`. For more examples of the keyword format, see the [API Reference for `pbjs.getAdserverTargeting`]({{site.github.url}}/dev-docs/publisher-api-reference.html#module_pbjs.getAdserverTargeting).
+## Deal Line Item Details
 
-<br>
+In [Line Item Creation](/adops/line-item-creation.html) we talked about some requirements and recommendations for setting up line items for Prebid. You can follow most of those settings for deals, with the modifications outlined here.
 
-![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/deals/key-val.png){: .pb-lg-img :}
+### Deal Key Value Pairs
 
-<br>
+From the ad server side, you need to create special line items for each deal. This is done through a key-value pair. (See [Key Values](/adops/key-values.html) for details on how key value pairs work.)
 
-### Step 3: Create Line Items for Deals
+For each header bidding partner you negotiate deals with, create a keyword in the format hb_deal_BIDDERCODE, e.g., hb_deal_BidderA. Then when you create the line item for the deal, add in that code with the associated deal ID. For example, hb_deal_BidderA=BDA_123.
 
-In Google Ad Manager, create a new line item.
+{: .alert.alert-info :}
+The actual value of the deal ID (BDA_123 in this example) will be obtained from the demand partner.
 
-Enter all the **Inventory sizes** for your deal (or deals):
+### Start and End Dates
 
-![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/inventory-sizes.png){: .pb-md-img :}
+Prebid line items normally start immediately with no end date; the line item exists to receive a bid at any time, whenever it gets sent to the ad server. Because deals are negotiated with the demand partner, deals will have date ranges in accordance with the agreement.
 
-<br />
+### Priority
+Bids from header bidding typically have a priority lower than directly sold ads but higher than any competing house ads. Deals should have a priority higher than the line items that cover the regular open market bids.
 
-Set the **priority** to the level you prefer.
+## Further Reader
 
-![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/deals/deal-priority.png){: .pb-lg-img :}
-
-<br>
-
-Set **Display Creatives** to *One or More* since we'll have one or more creatives attached to this line item.
-
-Set **Rotate Creatives** to *Evenly*.
-
-![Display and Rotation]({{ site.github.url }}/assets/images/demo-setup/display-and-rotation.png){: .pb-md-img :}
-
-<br>
-
-Then you'll need to target the **inventory** that you want to this deal to run on.
-
-<br>
-
-**Use Key-values targeting to target deal ID(s)**
-
-There are two ways to target deal IDs using *Key-values* targeting:
-
-1. If you would like the deals to have the same priority and target the same inventory, you can include multiple deal IDs (as shown below).
-2. Otherwise, you must create a separate line item for each deal ID you want to target.
-
-![Inventory Sizes]({{ site.github.url }}/assets/images/demo-setup/deals/targeting.png){: .pb-lg-img :}
-
-<br>
-
-### Step 4: Attach Creatives to Line Items
-
-Like all line items, those that represent deals need to be associated with creatives that pass the correct adid back to Prebid.js for display.
-
-e.g. if the line item is targeted to `hb_deal_pubmatic`, then the creative needs to send `hb_adid_pubmatic` in the creative. Like this:
-
-    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
-    <script>
-      var ucTagData = {};
-      ucTagData.adServerDomain = "";
-      ucTagData.pubUrl = "%%PATTERN:url%%";
-      ucTagData.env = "%%PATTERN:hb_env%%";
-      ucTagData.adId = "%%PATTERN:hb_adid_pubmatic%%";
-      ucTagData.cacheHost = "%%PATTERN:hb_cache_host_pubmatic%%";
-      ucTagData.cachePath = "%%PATTERN:hb_cache_path_pubmatic%%";
-      ucTagData.uuid = "%%PATTERN:hb_cache_id_pubmatic%%";
-      ucTagData.mediaType = "%%PATTERN:hb_format_pubmatic%%";
-      ucTagData.size = "%%PATTERN:hb_size_pubmatic%%";
-      ucTagData.hbPb = "%%PATTERN:hb_pb_pubmatic%%";
-
-      try {
-        ucTag.renderAd(document, ucTagData);
-      } catch (e) {
-        console.log(e);
-      }
-    </script>
-
-If however, the line item is targeted to `hb_deal` (without a bidder code),
-then the simplified creative setup in the [step-by-step instructions](/adops/step-by-step.html#step-2-add-a-creative) will be fine.
+-  [Planning Guide](/adops/adops-planning-guide.html)
+-  [Key Values for Ad Ops](/adops/key-values.html)
+-  [Prebid Universal Creative](/overview/prebid-universal-creative.html)

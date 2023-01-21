@@ -6,11 +6,13 @@ biddercode: gothamads
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
+ccpa_supported: true
 schain_supported: true
 media_types: banner, video, native
 safeframes_ok: true
-bidder_supports_deals: true
+deals_supported: true
 pbjs: true
+sidebarType: 1
 ---
 
 ### Note:

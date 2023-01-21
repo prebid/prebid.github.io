@@ -7,9 +7,6 @@ page_type: module
 module_type: rtd
 module_code : sirdataRtdProvider
 enable_download : true
-sidebarType : 1
----
-
 # Seller Defined Audience (Sirdata RTD Module)
 {:.no_toc}
 

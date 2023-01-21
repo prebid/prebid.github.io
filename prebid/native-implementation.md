@@ -77,7 +77,7 @@ The Prebid.js AdUnit needs to defines a native mediatype object to tell bidders 
 | Attribute | Scope | Description | Example | Type |
 | --- | --- | --- | --- | --- |
 | sendTargetingKeys | optional | Defines whether or not to send the hb_native_ASSET targeting keys to the ad server. Defaults to `true` for now, though we recommend setting this to `false` and utilizing one of the ways to define a native template. | `false` | boolean |
-| adTemplate | optional | Used in the ‘AdUnit-Defined Creative Scenario’, this value controls the Native template right in the page. | See [example](#5-implementing-adunit-defined-creative) below. | escaped ES5 string |
+| adTemplate | optional | Used in the ‘AdUnit-Defined Creative Scenario’, this value controls the Native template right in the page. | See [example](#42-implementing-adunit-defined-template) below. | escaped ES5 string |
 | rendererUrl | optional | Used in the ‘Custom Renderer Scenario’, this points to javascript code that will produce the Native template. | 'https://host/path.js' | string |
 | type | optional | A “type” is like a macro that defines a group of assets. The only value currently supported is ‘image’, which implies the following assets: image, title, sponsoredBy, clickUrl, body, icon, and cta. The first 4 are required attributes. | `image` | string |
 | ASSETCODE. required | optional | Defines whether native bids must include this asset. Defaults to `false`. | `true` | boolean |
@@ -111,7 +111,8 @@ Note: The `native-render.js::renderNativeAd()` function must be called with `req
 
 Bid adapters will declare which custom assets they support in their documentation. It is recommended to prefix the asset name with the bidderCode to avoid collision issues.
 
-```javascript
+```
+javascript
 mediaTypes {
   native: {
     body: {
@@ -136,9 +137,12 @@ In the native template, simply access the custom value with the normal Prebid ##
 
 ## 4. Implementing the Native Template
 
-- If you want to manage your creative within the ad server (e.g. Google Ad Manager), follow the instructions for [AdServer-Defined Creative](#4-implementing-adserver-defined-creative).
-- If you’d prefer to manage your creative within the Prebid.js AdUnit, follow the instructions for [AdUnit-Defined Creative](#5-implementing-adunit-defined-creative)
-- If you’d prefer to manage your creative from a separate piece of JavaScript, follow the instructions for the [Custom Renderer](#6-implementing-the-custom-renderer-scenario).
+- If you want to manage your creative within the ad server (e.g. Google Ad Manager), follow the instructions for [AdServer-Defined Creative](#41-implementing-adserver-defined-template).
+- If you’d prefer to manage your creative within the Prebid.js AdUnit, follow the instructions for [AdUnit-Defined Creative](#42-implementing-adunit-defined-template)
+- If you’d prefer to manage your creative from a separate piece of JavaScript, follow the instructions for the [Custom Renderer](#43-implementing-the-custom-renderer-scenario).
+
+{: .alert.alert-info :}
+For instructions on implementing the native template within Google Ad Manager, see [GAM Step by Step - Native Creative](/adops/gam-native.html)
 
 ### 4.1. Implementing AdServer-Defined Template
 
@@ -203,89 +207,10 @@ const adUnits = [{
     }]
 }];
 ```
-#### Native Template in AdServer
 
-There are three key aspects of the native template:
+{: .alert.alert-info :}
+See [Managing the Native Template in GAM](/adops/gam-native.html#managing-the-native-template-in-gam) for ad server instructions.
 
-1. Build the creative with special Prebid.js macros, e.g. ##hb_native_assetname##. (See the Native Assets table above for an exhaustive list of assets and macros.) Note that macros can be placed in the body (HTML) and/or head (CSS) of the native creative.
-2. Load the Prebid.js native rendering code. You may utilize the jsdelivr version of native-render.js or host your own copy. If you use the version hosted on jsdelivr, make sure any necessary ad server permissions are established.
-3. Invoke the Prebid.js native rendering function with an object containing the following attributes:
-    1. adid - used to identify which Prebid.js creative holds the appropriate native assets
-    2. pubUrl - the URL of the page, which is needed for the HTML postmessage call
-    3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js rather than having to scan the template to find which specific assets are needed.
-
-Example creative HTML:
-```
-<div class="sponsored-post">
-  <div class="thumbnail" style="background-image: url(##hb_native_image##);"></div>
-  <div class="content">
-    <h1><a href="%%CLICK_URL_UNESC%%##hb_native_linkurl##" target="_blank" class="pb-click">##hb_native_title##</a></h1>
-    <p>##hb_native_body##</p>
-    <div class="attribution">##hb_native_brand##</div>
-  </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native-render.js"></script>
-<script>
-    var pbNativeTagData = {};
-    pbNativeTagData.pubUrl = "%%PATTERN:url%%";     // GAM specific
-    pbNativeTagData.adId = "%%PATTERN:hb_adid%%";   // GAM specific
-    // if you're using 'Send All Bids' mode, you should use %%PATTERN:hb_adid_BIDDER%%
-    pbNativeTagData.requestAllAssets = true;
-    window.pbNativeTag.renderNativeAd(pbNativeTagData);
-</script>
-```
-
-{: .alert.alert-warning :}
-When using 'Send All Bids' mode you should update `pbNativeTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` for each bidder’s creative
-
-Example CSS:
-```
-.sponsored-post {
-    background-color: #fffdeb;
-    font-family: sans-serif;
-    padding: 10px 20px 10px 20px;
-}
-
-.content {
-    overflow: hidden;
-}
-
-.thumbnail {
-    width: 120px;
-    height: 100px;
-    float: left;
-    margin: 0 20px 10px 0;
-    background-image: url(##native_image##);
-    background-size: cover;
-}
-
-h1 {
-    font-size: 18px;
-    margin: 0;
-}
-
-a {
-    color: #0086b3;
-    text-decoration: none;
-}
-
-p {
-    font-size: 16px;
-    color: #444;
-    margin: 10px 0 10px 0;
-}
-
-.attribution {
-    color: #fff;
-    font-size: 9px;
-    font-weight: bold;
-    display: inline-block;
-    letter-spacing: 2px;
-    background-color: #ffd724;
-    border-radius: 2px;
-    padding: 4px;
-}
-```
 ### 4.2 Implementing AdUnit-Defined Template
 
 In this scenario, the body of the native creative template is managed within the Prebid.js AdUnit and includes special Prebid.js macros.
@@ -321,42 +246,20 @@ var adUnits = [{
     }
 }];
 ```
-#### Native Template in the AdServer
 
-Even though the body of the native creative is defined in the AdUnit, an AdServer creative is still needed. There are two key aspects of the native creative in this scenario:
-
-1. Load the Prebid.js native rendering code. You may utilize the jsdelivr version of native-render.js or host your own copy. If you use the version hosted on jsdelivr, make sure any necessary ad server permissions are established.
-2. Invoke the Prebid.js native rendering function with an object containing the following attributes:
-    1. adid - used to identify which Prebid.js creative holds the appropriate native assets
-    2. pubUrl - the URL of the page, which is needed for the HTML postmessage call
-    3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js. The rendering function cannot currently scan a template defined in the AdUnit.
-
-Example Creative HTML
-```
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native-render.js"></script>
-<script>
-    var pbNativeTagData = {};
-    pbNativeTagData.pubUrl = "%%PATTERN:url%%";     // GAM specific
-    pbNativeTagData.adId = "%%PATTERN:hb_adid%%";   // GAM specific
-    // if you're using 'Send All Bids' mode, you should use %%PATTERN:hb_adid_BIDDER%%
-    pbNativeTagData.requestAllAssets = true;
-    window.pbNativeTag.renderNativeAd(pbNativeTagData);
-</script>
-```
-
-{: .alert.alert-warning :}
-When using 'Send All Bids' mode you should update `pbNativeTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` for each bidder’s creative
+{: .alert.alert-info :}
+See [Managing the Native Template Outside of GAM](/adops/gam-native.html#managing-the-native-template-outside-of-gam) for ad server instructions.
 
 ### 4.3 Implementing the Custom Renderer Scenario
 
-In this scenario, the body of the native creative is managed from an external JavaScript file. 
+In this scenario, the body of the native creative is managed from an external JavaScript file.
 
 #### Prebid.js AdUnit Setup
 
 When the Native AdUnit is defined in the page:
 
 - Declare`sendTargetingKeys: false` in the Native Object. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
-- Define the `rendererUrl` as a URL that defines a `window.renderAd` function in the creative iframe. Any CSS definitions need to be defined in the body (e.g. <style> tags) or in the AdServer creative.
+- Define the `rendererUrl` as a URL that defines a `window.renderAd` function in the creative iframe. Any CSS definitions need to be defined in the body (e.g. `<style>` tags) or in the AdServer creative.
 
 Example AdUnit setup:
 ```
@@ -383,31 +286,8 @@ var adUnits = [{
 }];
 ```
 
-#### Native Template in the AdServer
-
-Even though the body of the native creative is defined in the external JavaScript, an AdServer creative is still needed. There are two key aspects of the native creative in this scenario:
-
-1. Load the Prebid.js native rendering code. You may utilize the jsdelivr version of native-render.js or host your own copy. If you use the version hosted on jsdelivr, make sure any necessary ad server permissions are established.
-2. Invoke the Prebid.js native rendering function with an object containing the following attributes:
-    1. adid - used to identify which Prebid.js creative holds the appropriate native assets
-    2. pubUrl - the URL of the page, which is needed for the HTML postmessage call
-    3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js so they can be passed to the render function.
-
-Example creative HTML:
-```
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native-render.js"></script>
-<script>
-    var pbNativeTagData = {};
-    pbNativeTagData.pubUrl = "%%PATTERN:url%%";    // GAM specific
-    pbNativeTagData.adId = "%%PATTERN:hb_adid%%";  // GAM specific
-    // if you're using 'Send All Bids' mode, you should use %%PATTERN:hb_adid_BIDDER%%
-    pbNativeTagData.requestAllAssets = true;
-    window.pbNativeTag.renderNativeAd(pbNativeTagData);
-</script>
-```
-
-{: .alert.alert-warning :}
-When using `Send All Bids` you should update `pbNativeTagData.adId = "%%PATTERN:hb_adid_biddercode%%";` for each bidder’s creative
+{: .alert.alert-info :}
+See [Managing the Native Template Outside of GAM](/adops/gam-native.html#managing-the-native-template-outside-of-gam) for ad server instructions.
 
 #### The Render JavaScript
 

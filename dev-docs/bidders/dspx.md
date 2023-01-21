@@ -6,6 +6,8 @@ pbjs: true
 biddercode: dspx
 media_types: banner, video 
 gdpr_supported: true
+userIds: uid2, netId
+sidebarType: 1
 ---
 
 ### Note:

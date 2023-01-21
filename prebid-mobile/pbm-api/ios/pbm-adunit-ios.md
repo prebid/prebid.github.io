@@ -27,7 +27,7 @@ Create a new Banner Ad Unit or Interstitial Ad Unit with a Prebid Server configu
 
 **Parameters**
 
-`configId`:  String containing the Prebid Server configuration ID.
+`configId`:  String containing the Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 
 `size:`: CGSize conatining width and height of the AdUnit.
 
@@ -53,9 +53,9 @@ PB Ad Slot is an identifier tied to the placement the ad will be delivered in. T
 
 Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad unit.
 
-#### Mopub or GAM
+#### GAM
 
-By default, Prebid SDK uses inflection to determine the publisher ad server, one of Mopub or Google Ad Manager (GAM), to convert Prebid's targeting keys (PBS bid keys, host and cache key) to trigger targeted line items. To render ads in ad servers other than Mopub or GAM, use the next section's 3rd party ad server support feature.
+By default, Prebid SDK uses inflection to determine the publisher ad server to convert Prebid's targeting keys (PBS bid keys, host and cache key) to trigger targeted line items. To render ads in ad servers other than GAM, use the next section's 3rd party ad server support feature.
 
 **Parameters**
 
@@ -66,7 +66,7 @@ By default, Prebid SDK uses inflection to determine the publisher ad server, one
 
 #### 3rd Party Ad Server
 
-The default ad servers for Prebid's Mobile SDK are MoPub and GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice. 
+The default ad servers for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice. 
 
 In this mode, the publisher will be responsible for the following actions:
 * Call fetchDemand with extended targetingDict callback
@@ -78,8 +78,8 @@ In this mode, the publisher will be responsible for the following actions:
 
 **Function callbacks**
 
-* `ResultCode`: enum [result codes](https://docs.prebid.org/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
-* `targetingDict`: [Prebid Server Response targeting keys](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting)
+* `ResultCode`: enum [result codes](/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
+* `targetingDict`: [Prebid Server Response targeting keys](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting)
 
 
 ```
@@ -193,12 +193,60 @@ func removeContextKeyword(_ element: String)
 func clearContextKeywords()
 ```
 
+### App Content
 
+The `ContentObject` alows you to provide more details about content whithin the app. All proeprties provided to the `ContentObject` will be sent in the `app.content` field of the bid request.
 
+```
+func setAppContent(_ appContent: ContentObject) 
+```
+   
+```  
+func getAppContent() -> ContentObject? 
+```
+
+```        
+func clearAppContent() 
+```
+    
+### App Content Data
+
+Using the following methods you can add `app.content.data` objects to the bid requests.  
+    
+```
+func addAppContentData(_ dataObjects: [ContentDataObject]) 
+```
+
+```
+func removeAppContentData(_ dataObject: ContentDataObject) 
+```
+    
+```
+func clearAppContentData() 
+```
+
+### User Data
+
+Using the following methods you can add `user.data` objects to the bid requests.  
+
+```
+func getUserData() -> [PBMORTBContentData]? 
+```    
+```
+func addUserData(_ userDataObjects: [PBMORTBContentData]) 
+```
+
+```    
+func removeUserData(_ userDataObject: PBMORTBContentData) 
+```
+
+```    
+func clearUserData() 
+```
 
 ### Data Object
 
-The Data object is free form data (also known as First Party Data)supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
+The Data object is free form data (also known as First Party Data) supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
 
 Data is broken up into two different data types:
 * User
@@ -207,7 +255,7 @@ Data is broken up into two different data types:
   * Global scope
   * Ad Unit grain
 
- The below first party inventory context will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data) page.
+The first party inventory context below will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data) page.
 
 #### addContextData
 ```
@@ -347,7 +395,7 @@ bannerAdUnit.addContextData(key: "adunitContextDataKey1", value: "adunitContextD
 
 - [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
 - [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
+- [Interstitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)

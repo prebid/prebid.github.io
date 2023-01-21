@@ -35,9 +35,15 @@
 
                 <h2>{{ page.title }}</h2>
 
+                {% if page.enable_download == false %}
+                  <div class="pb-bidder-s2">
+                    <h4>Note:</h4> This adapter is not available in current versions of Prebid.js. Reason: {{page.pbjs_version_notes}}
+                  </div>
+                {% endif %}
+
                 {% if page.s2s_only == true %}
                   <div class="pb-bidder-s2">
-                    <h3>Note:</h3> This is a S2S adapter only.</h3>
+                    <h3>Note:</h3> This is a Prebid Server adapter only.
                   </div>
                 {% endif %}
 
@@ -71,14 +77,14 @@
                   <tr>
                     <th class="pbTh">Demand Chain Support</th>
                     <td class="pbTd">{% if page.dchain_supported  == true %}yes{% else %}no{% endif %}</td>
-                    <th class="pbTh">Safeframes OK</th>
-                    <td class="pbTd">{% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %}</td>
+                    <th class="pbTh">GPP Support</th>
+                    <td class="pbTd">{% if page.gpp_supported == true %}yes{% else %}no{% endif %}</td>
                   </tr>
                   <tr>
                     <th class="pbTh">Supports Deals</th>
-                    <td class="pbTd">{% if page.bidder_supports_deals == false %}no{% elsif page.bidder_supports_deals == true %}yes{% else %}check with bidder{% endif %}</td>
+                    <td class="pbTd">{% if page.deals_supported == false %}no{% elsif page.deals_supported == true %}yes{% else %}check with bidder{% endif %}</td>
                     <th class="pbTh">Prebid.js Adapter</th>
-                    <td class="pbTd">yes</td>
+                    <td class="pbTd">{% if page.pbjs == true %}yes{% else %}no{% endif %}</td>
                   </tr>
                   <tr>
                     <th class="pbTh">IAB GVL ID</th>
@@ -88,9 +94,21 @@
                   </tr>
                   <tr>
                     <th class="pbTh">Floors Module Support</th>
-                    <td class="pbTd">{% if page.getFloor  == true %}yes{% else %}no{% endif %}</td>
+                    <td class="pbTd">{% if page.floors_supported  == true %}yes{% else %}no{% endif %}</td>
+                    <th class="pbTh">First Party Data Support</th>
+                    <td class="pbTd">{% if page.fpd_supported == true %}yes{% elsif page.fpd_supported == false %}no{% else %}check with bidder{% endif %}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">Multi Format Support</th>
+                    <td class="pbTd">{% if page.multiformat_supported %}{{page.multiformat_supported}}{% else %}check with bidder{% endif %}</td>
+                    <th class="pbTh">ORTB Blocking Support</th>
+                    <td class="pbTd">{% if page.ortb_blocking_supported == true %}yes{% elsif page.ortb_blocking_supported == false %}no{% elsif page.ortb_blocking_supported == 'partial' %}partial{% else %}check with bidder{% endif %}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">Safeframes OK</th>
+                    <td class="pbTd">{% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %}</td>
                     <th class="pbTh"></th>
-                    <td class="pbTd"></td>
+		    <td class="pbTd"></td>
                   </tr>
                 </table>
 

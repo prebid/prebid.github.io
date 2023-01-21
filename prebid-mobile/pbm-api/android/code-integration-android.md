@@ -10,23 +10,28 @@ sidebarType: 2
 
 # Code Integration for Android
 
-Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Maven or by [cloning the repo](https://github.com/prebid/prebid-mobile-android) and using our included script to build the SDK.
+Get started with Prebid Mobile by getting access to a [Prebid Server](/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Maven or by [cloning the repo](https://github.com/prebid/prebid-mobile-android) and using our included script to build the SDK.
 
 ### Include with Maven
 
 If you are not familar with using Maven for build management visit the [Maven website](https://maven.apache.org/index.html).
 
-To include the Prebid Mobile SDK simply add this line to your gradle dependencies:
+To include the Prebid Mobile SDK simply add this line to your gradle dependencies to get the lastest stable release:
+
+```
+implementation 'org.prebid:prebid-mobile-sdk:2.0.4'
+```
+
+{% capture warning_note %}  
+Prebid is going to release beta versions of SDK from time to time. So if you don't want to update to beta versions - avoid Maven's range notation for the dependency versions.
+If you still use the range notation like this:
 
 ```
 implementation 'org.prebid:prebid-mobile-sdk:[1,2)'
 ```
 
-If you wish to explicitly state the lastest stable release, please use the following:
-
-```
-implementation 'org.prebid:prebid-mobile-sdk:1.3'
-```
+please change it to the strict version.  {% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
 
 
 ### Build framework from source
@@ -41,13 +46,26 @@ to output the PrebidMobile framework for Android.
 
 ### Integrate Ad Servers With Your App
 
-Integrating **MoPub** with your application
-1.  Go to [MoPub.com](https://app.mopub.com/register/) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/).
-2.  After the registration you will be automatically prompted to set up a new MoPub application required for integrating mobile ads to your application.
-
 Integrating **Google** with your application   
 
 Go to Google's developer site and follow the instructions for integrating their [Mobile Ads SDK](https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start) into your app.
+
+### Initialize SDK
+
+Call the following method at the start of the app: 
+
+```
+PrebidMobile.initializeSdk(requireContext(), null)
+```
+
+If you integrate Prebid SDK with GMA SDK using Original API, add the following check right after initialization. It will help to monitor the compatibility of the Prebid and Google SDKs and avoid silent loosing of revenue. 
+
+```
+PrebidMobile.checkGoogleMobileAdsCompatibility()
+```
+
+Check the logs, and if there is no warning message, then SDKs are compatible. 
+
 
 ### Set Targeting Parameters (Optional)
 
@@ -66,6 +84,20 @@ For details on creating the specific ad units and additional parameters and meth
 
 [Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)  
 [Interstitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
+
+#### Using Asset Ids with In-App Native Ad Units
+
+Setting this option to `true`, in your instance of Prebid Mobile, enables you to add an id for each asset in the assets array. The default setting is `false`
+
+**Kotlin**
+```
+PrebidMobile.assignNativeAssetID(true)
+```
+
+**Java**
+```
+PrebidMobile.assignNativeAssetID(true);
+```
 
 ### Resize ad slot
 
@@ -112,7 +144,7 @@ Prebid supports the following versions by release:
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
 - [Ad Unit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html)
 - [Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
-- [Intersitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
+- [Interstitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)

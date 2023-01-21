@@ -30,7 +30,7 @@ RewardedVideoAdUnit("configId");
 
 **Parameters**
 
-`configId`: String; Prebid Server configuration ID.
+`configId`: String; Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 
 ### Paramaters
 
@@ -205,75 +205,12 @@ adUnit.fetchDemand(request, new OnCompleteListener() {
 ```
 
 
-**Mopub**
-
-```java
-//setup PB RewardedVideo
-RewardedVideoAdUnit adUnit = new RewardedVideoAdUnit("configId");
-
-VideoAdUnit.Parameters parameters = new VideoAdUnit.Parameters();
-
-parameters.setPlacement(5);  // or alternative enum value Signals.Placement.Interstitial
-parameters.setApi(Arrays.asList(1,2));  // or alternative enum values [Signals.Api.VPAID_1, Signals.Api.VPAID_2]
-parameters.setMaxBitrate(1500);
-parameters.setMinBitrate(300);
-parameters.setMaxDuration(30);
-parameters.setMinDuration(5);
-parameters.setMimes(Arrays.asList("video/x-flv", "video/mp4"));
-parameters.setPlaybackMethod(1); // or alternative enum value (Signals.PlaybackMethod.AutoPlaySoundOn)
-parameters.setProtocols(Arrays.asList(2,3)); // or alternative enum values (Signals.Protocols.VAST_2_0, Signals.Protocols.VAST_3_0)
-
-adUnit.setParameters(parameters);
-
-
-//setup MP RewardedVideo
-SdkConfiguration sdkConfiguration = new SdkConfiguration.Builder("adUnitId").build();
-MoPub.initializeSdk(this, sdkConfiguration, null);
-MoPubRewardedVideos.setRewardedVideoListener(this);
-//loadMPRewardedVideo
-final Map<String, String> keywordsMap = new HashMap<>();
-adUnit.fetchDemand(keywordsMap, new OnCompleteListener() {
-           @Override
-           public void onComplete(ResultCode resultCode) {
-               MoPubRewardedVideoManager.RequestParameters parameters = new MoPubRewardedVideoManager.RequestParameters(Util.convertMapToMoPubKeywords(keywordsMap));
-               MoPubRewardedVideos.loadRewardedVideo("adUnitId", parameters, (MediationSettings) null);
-           }
-});
-//MoPub Rewarded Video Listener
-   @Override
-   public void onRewardedVideoLoadSuccess(@NonNull String adUnitId) {
-       if (MoPubRewardedVideos.hasRewardedVideo(MP_ADUNITID_REWARDED)) {
-           MoPubRewardedVideos.showRewardedVideo(MP_ADUNITID_REWARDED);
-       }
-   }
-   @Override
-   public void onRewardedVideoLoadFailure(@NonNull String adUnitId, @NonNull MoPubErrorCode errorCode) {
-       LogUtil.d("onRewardedVideoLoadFailure:" + errorCode);
-   }
-   @Override
-   public void onRewardedVideoStarted(@NonNull String adUnitId) {
-   }
-   @Override
-   public void onRewardedVideoPlaybackError(@NonNull String adUnitId, @NonNull MoPubErrorCode errorCode) {
-   }
-   @Override
-   public void onRewardedVideoClicked(@NonNull String adUnitId) {
-   }
-   @Override
-   public void onRewardedVideoClosed(@NonNull String adUnitId) {
-   }
-   @Override
-   public void onRewardedVideoCompleted(@NonNull Set<String> adUnitIds, @NonNull MoPubReward reward) {
-   }
-
-```
-
 ## Related Topics
 
-- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-adunit-android.html)
-- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
-- [Banner Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
-- [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
-- [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
-- [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
+- [Ad Unit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html)
+- [Prebid Mobile API - Android](/prebid-mobile/pbm-api/android/pbm-api-android.html)
+- [Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
+- [Result Codes](/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
+- [Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
+- [Prebid Mobile Object](/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)
+- [Prebid Mobile API - iOS](/prebid-mobile/pbm-api/ios/pbm-api-ios.html)

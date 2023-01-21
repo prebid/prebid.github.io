@@ -9,6 +9,9 @@ media_types: video
 gdpr_supported: true
 usp_supported: true
 gvl_id: 67
+enable_download: false
+pbjs_version_notes: not ported to 5.x, added back 7.13
+sidebarType: 1
 ---
 
 

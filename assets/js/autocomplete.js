@@ -1,6 +1,6 @@
-var input = document.getElementById('bidder-filter');
+var input = document.getElementById('autocomplete-filter');
 new Awesomplete(input, {
-  list: BidderList,
+  list: AutocompleteList,
   replace: function(item) {
     this.input.value = item.label;
   },

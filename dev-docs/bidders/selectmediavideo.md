@@ -1,17 +1,20 @@
 ---
 layout: bidder
 title: SelectMedia Video
-description: SelectMedia Video Bidder Adapter
+description: Prebid SelectMedia Video Bidder Adapter
 pbjs: true
 biddercode: selectmediavideo
 aliasCode: aniview
-media_types: video
+media_types: banner, video
 gdpr_supported: true
 usp_supported: true
+schain_supported: true
+safeframes_ok: true
+sidebarType: 1
 ---
 
 ### Note:
-For more information about [SelectMedia](http://www.selectmedia.asia/).
+For more information about [SelectMedia](https://www.selectmedia.asia/), please contact info@selectmedia.asia.
 
 ### Bid Params
 
