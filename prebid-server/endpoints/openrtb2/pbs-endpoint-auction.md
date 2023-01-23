@@ -110,14 +110,30 @@ This is a corresponding sample response to a sample OpenRTB 2.5 bid request:
   }
 }
 ```
-### OpenRTB Fields
+### OpenRTB Request Fields
 
-Prebid Server accepts all OpenRTB 2.5 fields and passes them in the request to all bid and analytics adapters. Some fields are processed by Prebid Server in the following ways:
+Prebid Server accepts all OpenRTB 2.5 fields and passes them in the request to all bid and analytics adapters. Some ORTB 2.6 fields are supported. Here are the fields with special processing:
 
-#### Currency
+{: .table .table-bordered .table-striped }
+| ORTB Field | Version | Notes |
+| --- | --- | --- |
+| cur | 2.5 | Supports either a string or an array. If array, the first element is taken to be the "Ad Server Currency" for purposes of [currency conversion](/prebid-server/features/pbs-currency.html).
+| exp | 2.5 | See the [expiration](#expiration) section below |
+| device.lmt | 2.5 | See special processing for iOS apps defined in [issue 1699](https://github.com/prebid/prebid-server/issues/1699) |
+| regs.gdpr | 2.6.202210 | Bidders supporting 2.5 only: downgraded to regs.ext.gdpr | 
+| regs.us_privacy | 2.6.202210 | Bidders supporting 2.5 only: downgraded to regs.ext.us_privacy |
+| user.consent | 2.6.202210 | Bidders supporting 2.5 only: downgraded to user.ext.consent |
+| imp.rwdd | 2.6.202210 | Bidders supporting 2.5 only: downgraded to imp.ext.prebid.is_rewarded_inventory (PBS-Java) or removed (PBS-Go) |
+| user.eids | 2.6.202210 | Bidders supporting 2.5 only: downgraded to user.ext.eids |
+| source.schain | 2.6.202210 | Bidders supporting 2.5 only: downgraded to source.ext.schain |
+| wlangb, {content, device}.langb, cattax, {site, app, publisher, content, producer}.cattax, ssai, {app, site}.content.{network, channel}, {app, content, site, user}.kwarray, device.sua | 2.6.202210 | Bidders supporting 2.5 only: these fields are removed |
+| {video, audio}.{rqddurs, maxseq, poddur, podid, podseq, mincpmpersec, slotinpod} | 2.6.202210 | not yet supported by PBS |
+| regs.gpp | 2.6.202211 | Bidders supporting 2.5 only: this field is removed |
+| regs.gpp_sid | 2.6.202211 | Bidders supporting 2.5 only: this field is removed |
+| dooh | 2.6.202211 | not yet supported by PBS |
+| imp.qty | 2.6.202211 | not yet supported by PBS |
+| imp.dt | 2.6.202211 | not yet supported by PBS |
 
-The `cur` field is read and the first element of the array is taken to be the
-"Ad Server Currency" for purposes of [currency conversion](/prebid-server/features/pbs-currency.html).
 
 #### Expiration
 
@@ -149,16 +165,6 @@ How long an item is stored in Prebid Cache is determined by this hunt path:
 3. request.ext.prebid.cache.{bids,vastxml}.ttlseconds
 4. account config: {banner,video}-cache-ttl
 5. global config: cache.{banner,video}-ttl-seconds
-
-#### Privacy fields
-
-Prebid Server reads the OpenRTB privacy fields:
-
-- regs.coppa
-- regs.ext.gdpr
-- regs.ext.us_privacy
-- user.ext.consent
-- device.lmt
 
 ### OpenRTB Extensions
 
@@ -1424,6 +1430,42 @@ This contains the request after the resolution of stored requests and implicit i
 `response.seatbid[].bid[].ext.origbidcpm` and `response.seatbid[].bid[].ext.origbidcur` will contain the original bid price/currency from the bidder.
 The value in seatbid[].bid[].price may be converted for currency and adjusted with a [bid adjustment factor](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bid-adjustments).
 
+##### Seat Non-Bid
+
+{: .alert.alert-info :}
+PBS-Java only
+
+Prebid Server supports an ORTB extension that allows callers to get more information about bidders that may have had a chance to bid but did not. Eventually the system will support a fine-grained set of codes describing why a given bidder didn't bid on a particular impression, but for now we're phasing in the necessary internal infrastructure.
+
+To enable the additional output, set `ext.prebid.returnallbidstatus: true`.
+
+Here's a sample response:
+```
+{
+   ...
+   "ext": {
+      "seatnonbid": [
+        {
+          "seat": "rubiconAlias",
+          "nonbid": [
+            {
+              "impid": "test-div",
+              "statuscode": 0
+            }
+          ]
+        }
+     }
+}
+```
+
+The codes currently returned:
+
+{: .table .table-bordered .table-striped }
+| Code | | Meaning | Platform | Notes |
+| --- | --- | --- | --- |
+| 0 | General No Bid | Java | The bidder had a chance to bid, and either declined to bid, returned an error, or the response was removed. |
+
+
 ### OpenRTB Ambiguities
 
 This section describes the ways in which Prebid Server **implements** OpenRTB spec ambiguous parts.
@@ -1531,6 +1573,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.server | additional Prebid Server metadata | object | yes |
 | ext<wbr>.prebid<wbr>.pbs.endpoint | additional Prebid Server metadata | string | yes |
 | ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
+| ext<wbr>.prebid<wbr>.returnallbidstatus | If true, PBS returns [ext.seatnonbid](#seat-non-bid) with details about bidders that didn't bid. | boolean | no |
 | imp<wbr>.ext<wbr>.prebid<wbr>.adunitcode | Prebid.js adunit code | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
@@ -1556,6 +1599,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.errors<wbr>.BIDDER | Debug Mode: errors from the named bidder | object |
 | ext<wbr>.responsetimemillisv.BIDDER | Debug Mode: how long the named bidder took to respond with a bid. | integer |
 | ext<wbr>.prebid<wbr>.passthrough | Copy of request ext.prebid.passthrough, see [passthrough](#request-passthrough). | object|
+| ext<wbr>.seatnonbid | Details on which bidders did not bid on each imp. See [seatnonbid]()#seat-non-bid| object|
 
 ### Further Reading
 
