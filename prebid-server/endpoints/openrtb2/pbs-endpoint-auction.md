@@ -119,6 +119,7 @@ Prebid Server accepts all OpenRTB 2.5 fields and passes them in the request to a
 | --- | --- | --- |
 | cur | 2.5 | Supports either a string or an array. If array, the first element is taken to be the "Ad Server Currency" for purposes of [currency conversion](/prebid-server/features/pbs-currency.html).
 | exp | 2.5 | See the [expiration](#expiration) section below |
+| tmax | 2.5 | See the [timeout](#timeout) section below |
 | device.lmt | 2.5 | See special processing for iOS apps defined in [issue 1699](https://github.com/prebid/prebid-server/issues/1699) |
 | regs.gdpr | 2.6.202210 | Bidders supporting 2.5 only: downgraded to regs.ext.gdpr | 
 | regs.us_privacy | 2.6.202210 | Bidders supporting 2.5 only: downgraded to regs.ext.us_privacy |
@@ -165,6 +166,34 @@ How long an item is stored in Prebid Cache is determined by this hunt path:
 3. request.ext.prebid.cache.{bids,vastxml}.ttlseconds
 4. account config: {banner,video}-cache-ttl
 5. global config: cache.{banner,video}-ttl-seconds
+
+#### Timeout
+
+The OpenRTB 2.5 `imp[].exp` field defines how long Prebid Server has to process the request
+before the client will stop waiting.
+
+This field is used in different ways by PBS-Go and PBS-Java:
+
+##### PBS-Go
+
+##### PBS-Java
+
+Core concepts:
+
+- request_tmax: what the incoming ORTB request defines as tmax (as milliseconds)
+- biddertmax_max: controls that upstream doesn't tell us ridiculous values. In milliseconds. (configuration auction.biddertmax.max)
+- biddertmax_min: it's not worth calling bidders and give them less time than this number of milliseconds (configuration (auction.biddertmax.min). Note: we recommend this value be at least 150 ms)
+- biddertmax_percent: a lower number means more buffer for network delay. Host companies should set this to a lower value in regions where the network connections are slower. (configuration auction.biddertmax.percent)
+- tmax_upstream_response_time: the amount of time (in ms) that PBS needs to respond to the original caller (configuration auction.tmax-upstream-response-time)
+- processing_time: PBS calculation for how long it's been since the start of the request up to the point where the bidders are called
+- bidder_tmax: this is what PBS-core tells the bidders they have to respond. The conceptual formula is: capped(request_tmax)*biddertmax_percent - processing_time - tmax_upstream_response_time ==> must be at least the configured min
+- enforced_tmax: this is long PBS-core actually gives the bidders: capped(request_tmax)- processing_time - tmax_upstream_response_time ==> cannot be lower than bidder_tmax
+
+The full formulas:
+
+bidder_tmax=max(calculated_tmax, biddertmax_min)=max((min(request_tmax,biddertmax_max)*biddertmax_percent)-processing_time - tmax_upstream_response_time, biddertmax_min)
+
+enforced_tmax=max(calculated_enforcement,bidder_tmax)=max(min(request_tmax,biddertmax_max)-processing_time - tmax_upstream_response_time , bidder_tmax)
 
 ### OpenRTB Extensions
 
