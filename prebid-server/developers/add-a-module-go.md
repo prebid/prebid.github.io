@@ -36,6 +36,9 @@ The Prebid Server repository contains a package `modules` located in the root pr
       +- {YOUR_MODULE_NAME}/ <- package with source code of your module
         +- module.go         <- file with module initialization function
 ```
+Module directory names (`{YOUR_VENDOR_NAME}/YOUR_MODULE_NAME/}`) must consist of valid identifiers.
+A valid identifier is defined as a sequence of one or more letters, including an underscore character (`_`), and digits.
+All other symbols such as `-`, `.`, etc. are not permitted.
 
 ### Your module's build file
 
@@ -231,6 +234,43 @@ More test implementations for each hook can be found in unit-tests at [https://g
 ### Configuration
 
 It's possible to define default module configuration which can be read by the module at PBS startup. Please see the [Configuration](https://docs.google.com/document/d/1CmamniQpwcI3p0_rHe2F17zV4sEhzpOdrqU7zuZVZ_I/edit#heading=h.mh3urph3k1mk) section of the technical specification.
+
+An example configuration for hooks might look like this:
+```json
+{
+  "hooks": {
+    "enabled": true,
+    "modules": {
+      "vendor1": {
+        "module1": {
+          "enabled": true
+        }
+      }
+    },
+    "host_execution_plan": {
+      "endpoints": {
+        "/openrtb2/auction": {
+          "stages": {
+            "bidder_request": {
+              "groups": [
+                {
+                  "timeout": 10,
+                  "hook_sequence": [
+                    {
+                      "module_code": "vendor1.module1",
+                      "hook_impl_code": "code123"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
 
 ### Testing
 
