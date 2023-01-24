@@ -161,20 +161,6 @@ The Rubicon bid adapter would then receive
 {% endfor %}
 
 
-
-## Adapters Supporting the User ID Sub-Modules
-
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-
-<table class="pbTable">
-<tr class="pbTr"><th class="pbTh">Bidder</th><th class="pbTh">IDs Supported</th></tr>
-{% for item in bidder_pages %}
-{% if item.userIds != nil %}
-<tr class="pbTr"><td class="pbTd">{{item.biddercode}}</td><td class="pbTd">{{item.userIds}}</td></tr>
-{% endif %}
-{% endfor %}
-</table>
-
 ## Bidder Adapter Implementation
 
 If your ID structure is complicated, it is helpful to add tests for `pbjs.getUserIds()`, `pbjs.getUserIdsAsEids()` and `pbjs.getUserIdsAsync()`.
