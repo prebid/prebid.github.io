@@ -6,6 +6,7 @@ pbjs: true
 biddercode: adhash
 safeframes_ok: false
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Note

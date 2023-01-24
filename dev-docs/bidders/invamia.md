@@ -5,6 +5,7 @@ description: Prebid Invamia Bidder Adapter
 pbjs: true
 biddercode: invamia
 safeframes_ok: false
+sidebarType: 1
 ---
 
 ### Note

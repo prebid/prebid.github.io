@@ -45,14 +45,17 @@ They can be integrated using these mediation API categories:
 
 ## Init Prebid Rendering Module
 
-To start running bid requests you should provide the Prebid Server URL and account ID:
+To start running bid requests you have to set the Prebid Server **Host** and **Account Id** and then initilize the SDK with application context. The best place for this is the `onCreate()` method of your Application class.
 
 ```
-PrebidRenderingSettings.setBidServerHost(HOST)
-PrebidRenderingSettings.setAccountId(YOUR_ACCOUNT_ID)
+PrebidMobile.setBidServerHost(HOST)
+PrebidMobile.setAccountId(YOUR_ACCOUNT_ID)
+
+// Init SDK
+PrebidMobile.setApplicationContext(this)
 ```
 
-The best place to do it is the `onCreate()` method of your Application class. The `account ID` is an identifier of the **Stored Request** on the prebid server.
+> **NOTE:** The account ID is an identifier of the **Stored Request**.
 
 ### Prebid Adapters
 
@@ -90,7 +93,7 @@ bannerView?.adUnitId = adUnitId
 val extras = Bundle()
 val request = AdRequest
         .Builder()
-        .addCustomEventExtrasBundle(PrebidBannerAdapter::class.java, extras)
+        .addNetworkExtrasBundle(PrebidInterstitialAdapter::class.java, extras)
         .build()
 
 // 2. Create AdMobBannerMediationUtils
@@ -116,7 +119,7 @@ adUnit?.fetchDemand { result ->
 
 #### Step 1: Create AdView and AdRequest
 
-This step is totally the same as for the pure [AdMob integration](https://developers.google.com/admob/android/banner). You don't have to make any modifications here.
+This step is totally the same as for the original [AdMob integration](https://developers.google.com/admob/android/banner). You don't have to make any modifications here.
 
 
 #### Step 2: Create AdMobMediationBannerUtils
@@ -131,9 +134,9 @@ The `MediationBannerAdUnit` is part of the prebid mediation API. This class is r
 
 The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
 
-#### Step 5: Make an Ad Reuest
+#### Step 5: Make an Ad Request
 
-Now you should just make a regular AdMob's ad request. Evetything else will be handled by GMA SDK and prebid adapters.
+Now you should just make a regular AdMob's ad request. Everything else will be handled by GMA SDK and prebid adapters.
 
 ## Interstitial API
 
@@ -144,7 +147,7 @@ Integration example:
 val extras = Bundle()
 val request = AdRequest
     .Builder()
-    .addCustomEventExtrasBundle(PrebidInterstitialAdapter::class.java, extras)
+    .addNetworkExtrasBundle(PrebidInterstitialAdapter::class.java, extras)
     .build()
 
 // 2. Create AdMobInterstitialMediationUtils
@@ -180,7 +183,7 @@ adUnit?.fetchDemand { result ->
 
 #### Step 1: Create AdRequest
 
-This step is totally the same as for pure [AdMob integration](https://developers.google.com/admob/android/interstitial). You don't have to make any modifications here.
+This step is totally the same as for original [AdMob integration](https://developers.google.com/admob/android/interstitial). You don't have to make any modifications here.
 
 #### Step 2: Create AdMobInterstitialMediationUtils
 
@@ -190,22 +193,22 @@ The `AdMobInterstitialMediationUtils` is a helper class, wich performs certain u
 
 The `MediationInterstitialAdUnit` is part of the prebid mediation API. This class is responsible for making a bid request and providing the winning bid and targeting keywords to mediating SDKs.  
 
-If you need to make a bid request for `video` ad - provide the respective ad format `AdUnitFormat.VIDEO` to the constructor of `MediationInterstitialAdUnit`:
+The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ```
 adUnit = MediationInterstitialAdUnit(
-    activity,
-    configId,
-    AdUnitFormat.VIDEO,
-    mediationUtils
-)
+            activity,
+            configId,
+            EnumSet.of(AdUnitFormat.DISPLAY, AdUnitFormat.VIDEO),
+            mediationUtils
+        )
 ```
 
 #### Step 4: Make a bid request
 
 The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
 
-#### Step 5: Make an ad reuest
+#### Step 5: Make an ad request
 
 Now you should just make a regular AdMob's ad request. Evetything else will be handled by GMA SDK and prebid adapters.
 
@@ -260,7 +263,7 @@ adUnit?.fetchDemand { result ->
 
 #### Step 1: Create AdRequest
 
-This step is totally the same as for the pure [AdMob integration](https://developers.google.com/admob/android/rewarded). You don't have to make any modifications here.
+This step is totally the same as for the original [AdMob integration](https://developers.google.com/admob/android/rewarded). You don't have to make any modifications here.
 
 #### Step 2: Create AdMobRewardedMediationUtils
 
@@ -274,7 +277,7 @@ The `MediationRewardedVideoAdUnit` is part of the prebid mediation API. This cla
 
 The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
 
-#### Step 5: Make an ad reuest
+#### Step 5: Make an ad request
 
 Now you should just make a regular AdMob's ad request. Evetything else will be handled by GMA SDK and prebid adapters.
 
@@ -309,7 +312,7 @@ val adLoader = AdLoader
 val extras = Bundle()
 val adRequest = AdRequest
     .Builder()
-    .addCustomEventExtrasBundle(PrebidNativeAdapter::class.java, extras)
+    .addNetworkExtrasBundle(PrebidInterstitialAdapter::class.java, extras)
     .build()
 
 // 2. Create Native AdUnit

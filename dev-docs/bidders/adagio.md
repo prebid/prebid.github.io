@@ -5,7 +5,7 @@ description: Prebid Adagio Bidder Adaptor
 pbjs: true
 biddercode: adagio
 media_types: banner, native, video
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
+userIds: all
 floors_supported: true
 gdpr_supported: true
 usp_supported: true
@@ -14,11 +14,25 @@ schain_supported: true
 gvl_id: 617
 prebid_member: true
 fpd_supported: false
+sidebarType: 1
 ---
 
 ### Note
 
-The Adagio bidder adaptor requires setup and approval from the Adagio team. Please reach out to [contact@adagio.io](mailto:contact@adagio.io) for more information.
+The Adagio bidder adapter requires setup and approval from the Adagio team. Please reach out to [contact@adagio.io](mailto:contact@adagio.io) for more information.
+
+### Bidder Settings
+
+The Adagio bid adapter uses browser local storage. Since Prebid.js 7.x, the access to it must be explicitly set.
+
+```js
+// https://docs.prebid.org/dev-docs/publisher-api-reference/bidderSettings.html
+pbjs.bidderSettings = {
+  adagio: {
+    storageAllowed: true
+  }
+}
+```
 
 ### Bid Params
 
@@ -33,9 +47,7 @@ The Adagio bidder adaptor requires setup and approval from the Adagio team. Plea
 | `placement`*       | required           | Refers to the placement of an adunit in a page.<br>Must not contain any information about the type of device.<br><i>- max length: 30</i><br><i>- max distinctives values: 10</i> | `'ban_atf'`     | `string`  |
 | `adUnitElementId`  | required           | Refers to the adunit html attribute id in a page.                                                                    | `'gpt-ban-atf'` | `string`  |
 | `pagetype`*        | highly recommended | Describes what kind of content will be present in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i> | `'article'`     | `string`  |
-| `environment`*     | recommended        | Environment where the page is displayed.<br><i>- max length: 30</i><br><i>- max distinctives values: 10</i>          | `'desktop'`     | `string`  |
 | `category`*        | recommended        | Category of the content displayed in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i>    | `'sport'`       | `string`  |
-| `subcategory`*     | optional           | Subcategory of the content displayed in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i> | `'handball'`    | `string`  |
 | `video`            | optional           | OpenRTB 2.5 video options object.<br> All options will override ones defined in mediaTypes.video                     | `{skip: 1, playbackmethod: [6]}` | `object` |
 | `native`           | optional           | Partial OpenRTB Native 1.2 request object. Supported fields are:<br>- context<br>-plcmttype                      | `{context: 1, plcmttype: 2}` | `object` |
 
@@ -50,4 +62,8 @@ The Adagio bidder adaptor requires setup and approval from the Adagio team. Plea
 
 ### First Party Data
 
-Adagio does not support FPD for now. It will be added soon.
+Adagio will use FPD data as fallback for the params below:
+- pagetype
+- category
+
+If the FPD value is an array, the 1st value of this array will be used.

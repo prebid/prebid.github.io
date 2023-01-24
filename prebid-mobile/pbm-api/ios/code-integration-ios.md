@@ -16,7 +16,7 @@ Get started with Prebid Mobile by creating a [Prebid Server account]({{site.gith
 - TOC
  {:toc}
 
-## Pacakge Managers
+## Package Managers
 
 ### Cocoapods
 
@@ -123,14 +123,25 @@ If you have opted to host your own Prebid Server solution you will need to store
 Prebid.shared.setCustomPrebidServer(url:URL_STRING_TO_SERVER)
 ```
 
+### Initialize Prebid SDK
+
+To start Prebid SDK use the following method: 
+
+```
+Prebid.initializeSDK()
+```
+
+If you integrate Prebid Mobile with GMA SDK, use the following initializer, wich checks the compatibility of Prebid SDK with GMA SDK used in the app: 
+
+
+```
+Prebid.initializeSDK(GADMobileAds.sharedInstance())
+```
+
+Check the log messages of the app. If the provided GMA SDK version is not verified for compatibility, the Prebid SDK informs about it.
+
 
 ### Integrate Ad Servers With Your App
-
-Integrating **MoPub** with your application
-
-1.  Go to [MoPub.com](https://app.mopub.com/register) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/).
-
-2.  After the registration you will be automatically prompted to set up a new MoPub application required for integrating mobile ads to your application.
 
 Integrating **Google** with your application   
 
@@ -224,7 +235,7 @@ func adViewDidReceiveAd(_ bannerView: GADBannerView) {
 - [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
 - [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
 - [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
+- [Interstitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)

@@ -13,12 +13,11 @@ sidebarType: 2
 
 The impression tracking depends on a certain integration approach. 
 
-In case of GAM or MoPub integration when the Ad Server ad wins - the impression will be tracked according to the policy of the certain Primary Ad Server SDK that will handle the rendering.
+In case of GAM integration when the Ad Server ad wins - the impression will be tracked according to the policy of the certain Primary Ad Server SDK that will handle the rendering.
 
 If Prebid ad wins on the Primary Ad Server Auction, the impression tracking will depend on particular integration kind:
 
 * **GAM** impression will be tracked only for banner ads since it allows [manual impression counting](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner#manual_impression_counting). Rendering Module is not able to track impressions for GAM Interstitial or Rewarded ads.
-* **MoPub** impression will be tracked as stated in the MoPub policies since the rendering part is performed according to the Mediation feature. 
 * **Pure In-App Bidding** impression pixels for Open Measurement and VAST will be tracked according to the [In-App Bidding Impression](#in-app-bidding-impression) policies of the SDK.
 
 

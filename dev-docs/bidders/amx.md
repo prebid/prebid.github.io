@@ -10,12 +10,13 @@ coppa_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId, amxId
 biddercode: amx
 safeframes_ok: true
-media_types: banner, video
+media_types: banner, video, native
 pbjs: true
 pbs: true
 pbs_app_supported: true
 fpd_supported: true
 gvl_id: 737
+sidebarType: 1
 ---
 
 ### Bid Params

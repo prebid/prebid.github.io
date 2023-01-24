@@ -5,12 +5,15 @@ description: Prebid HuaweiAds Bidder Adapter
 biddercode: huaweiads
 gvl_id: 856
 media_types: banner, video, native
+gdpr_supported: true
+coppa_supported: true
 safeframes_ok: false
 deals_supported: true
 pbjs: false
 pbs: true
 pbs_app_supported: true
 prebid_member: false
+sidebarType: 1
 ---
 
 ### Note:

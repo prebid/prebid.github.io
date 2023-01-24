@@ -11,6 +11,10 @@ sidebarType: 4
 
 
 # Prebid.js for Video Overview
+{:.no_toc}
+
+* TOC
+{:toc}
 
 Prebid.js provides tools that allow header bidding video demand to compete with your ad server video demand. Prebid video demand can be incorporated for both instream, outstream, and long-form video slots.
 
@@ -118,8 +122,8 @@ The video player loads the master video ad server tag URL, which makes a call to
 
 ## Further Reading
 
--   [Getting Started with Video for Prebid.js]({{site.github.url}}/prebid-video/video-getting-started.html)
--   [Getting Started with Long-Form Video for Prebid.js]({{site.github.url}}/prebid-video/video-long-form.html)
--   [What is Prebid?]({{site.github.url}}/overview/intro.html)
--   [AdOps - Before You Start]({{site.github.url}}/overview/getting-started.html)
--   [Getting Started for Developers]({{site.github.url}}/dev-docs/getting-started.html)
+-   [Getting Started with Video for Prebid.js](/prebid-video/video-getting-started.html)
+-   [Getting Started with Long-Form Video for Prebid.js](/prebid-video/video-long-form.html)
+-   [What is Prebid?](/overview/intro.html)
+-   [AdOps - Before You Start](/adops/before-you-start.html)
+-   [Getting Started for Developers](/dev-docs/getting-started.html)

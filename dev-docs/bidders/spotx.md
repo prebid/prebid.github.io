@@ -11,8 +11,9 @@ schain_supported: true
 usp_supported: true
 safeframes_ok: false
 pbjs: true
-gvl_id: 52
+gvl_id: 165
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Registration

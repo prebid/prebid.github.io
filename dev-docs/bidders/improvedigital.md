@@ -6,6 +6,7 @@ biddercode: improvedigital
 pbjs: true
 pbs: true
 coppa_supported: true
+gpp_supported: true
 gdpr_supported: true
 usp_supported: true
 userIds: all
@@ -13,6 +14,8 @@ media_types: banner, native, video
 schain_supported: true
 gvl_id: 253
 pbs_app_supported: true
+floors_supported: true
+sidebarType: 1
 ---
 
 <a name="improvedigital-params"></a>
@@ -23,9 +26,11 @@ pbs_app_supported: true
 | Name           | Scope    | Description                                                                                                                | Example                                                                | Type      |
 |----------------|----------|----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|-----------|
 | `placementId`  | required | The placement ID from Improve Digital.                                                                                     | `1234567`                                                              | `integer` |
+| `publisherId`  | required | The publisher ID from Improve Digital.                                                                                     | `4567`                                                              | `integer` |
 | `keyValues`    | optional | Contains one or more key-value pairings for key-value targeting                                                            | `{ testKey1: ['testValueA'], testKey2: ['testValueB', 'testValueC'] }` | `object`  |
 | `bidFloor`  | optional | Bid floor price | `0.01` | `float` |
 | `bidFloorCur`  | optional | Bid floor price currency. Supported values: USD (default), EUR, GBP, AUD, DKK, SEK, CZK, CHF, NOK | `'USD'` | `string` |
+| `extend`  | optional | See the [Extend mode section](#improvedigital-extend)  | `true` | `boolean` |
 | `rendererConfig`  | optional | Configuration object for JS renderer of the RAZR creatives. Provided by Improve Digital.  | `{ key1: value1 }` | `object` |
 | `video`    | optional | Object with video parameters. See the [Video params](#improvedigital-video) section below for details. | | `object` |
 
@@ -65,6 +70,23 @@ pbjs.setConfig({
         rendererConfig: {
             // Global config object provided by Improve Digital
         }
+    }
+});
+```
+
+<a name="improvedigital-extend"></a>
+
+#### Extend Mode
+
+Improve Digital Extend mode provides publishers with access to additional demand from other SSPs. Before enabling please contact our team for more information.
+The Extend mode can be enabled:
+* per ad unit via the `extend` [bid param](#improvedigital-params)
+* for all ad units via `setConfig()`:
+
+```
+pbjs.setConfig({
+    improvedigital: {
+        extend: true
     }
 });
 ```

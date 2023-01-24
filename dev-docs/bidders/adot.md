@@ -4,11 +4,14 @@ title: Adot
 description: Prebid Adot Bidder Adapter
 biddercode: adot
 media_types: banner, video, native
+userIds: pubProvidedId
 gdpr_supported: true
 gvl_id: 272
 pbjs: true
 pbs: true
 floors_supported: true
+schain_supported: true
+sidebarType: 1
 ---
 
 ### Prebid JS
@@ -74,7 +77,7 @@ pbjs.setBidderConfig({
 |---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|------------------|
 | `placementId`       | optional | An ID which identifies this placement of the impression.                                   | `'adot_placement_224521'`                                            | `string`         |
 | `parallax`          | optional (only for prebid-server) | Specify if the wanted advertising's creative is a parallax.                                                                        | `true/false` | `boolean`         |
-| `placementPath`          | optional | Specific to each integration. Do not use until asked by someone from adot.                                                                      | `/hubvisor` | `string`         |
+| `publisherPath`          | optional | Specific to each integration. Do not use until asked by someone from adot.                                                                      | `/hubvisor` | `string`         |
 
 #### Testing Bid Request
 
