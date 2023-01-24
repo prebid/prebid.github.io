@@ -13,6 +13,3 @@ gulp build --modules=a,b,c
 ```
 
 pbjs.installedModules would have the value ['a','b','c'].
-
-If you happen to compile in all 400+ modules (not a good idea!), the value of pbjs.installedModules will be an empty array.
-

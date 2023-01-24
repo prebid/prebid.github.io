@@ -2,7 +2,7 @@
 layout: userid
 title: Intent IQ ID
 description: Intent IQ ID User ID sub-module
-useridmodule: intentIqId
+useridmodule: intentIqIdSystem
 ---
 
 
@@ -116,4 +116,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-

@@ -2,7 +2,7 @@
 layout: userid
 title: Merkle ID
 description: Merkle IDUser ID sub-module
-useridmodule: merkleId
+useridmodule: merkleIdSystem
 ---
 
 
@@ -30,4 +30,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-
