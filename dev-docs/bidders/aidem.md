@@ -35,7 +35,8 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 |---------------|----------|---------------------|------------|----------|
 | `siteId`      | required | Unique site ID      | `'ABCDEF'` | `String` |
 | `publisherId` | required | Unique publisher ID | `'FEDCBA'` | `String` |
-| `placementId` | optional | Unique publisher tag ID | `'ABCDEF'`    | `String` |
+| `placementId` | required | Unique publisher tag ID | `'ABCDEF'`    | `String` |
+| `rateLimit`   | optional | Limit the volume sent to AIDEM. Must be between 0 and 1 | `0.6`      | `Number`   |
 
 #### Banner Bid Params
 
@@ -91,9 +92,9 @@ var adUnits = [{
     bids: [{
           bidder: 'aidem',
           params: {
-            siteId: 'prebid-test-site',
-            placementId: '12345678',
-            publisherId: '123456'  
+              placementId: 'prebid-test-placementId',
+              siteId: 'prebid-test-siteId',
+              publisherId: 'prebid-test-publisherId',
           },
     }]
 }];
@@ -116,9 +117,9 @@ var adUnits = [{
     bids: [{
           bidder: 'aidem',
           params: {
-            siteId: 'prebid-test-site',
-            placementId: '12345678',
-            publisherId: '123456'
+              placementId: 'prebid-test-placementId',
+              siteId: 'prebid-test-siteId',
+              publisherId: 'prebid-test-publisherId',
           },
     }]
 }];
