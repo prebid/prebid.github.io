@@ -4,7 +4,7 @@ title: Limelight Digital
 description: Prebid Limelight Digital Bidder Adaptor
 biddercode: limelightDigital
 pbjs: true
-pbs: false
+pbs: true
 media_types: video, banner
 userIds: all
 fpd_supported: false
@@ -21,6 +21,8 @@ sidebarType: 1
 
 ### Bid Params
 
+#### Prebid.js
+
 {: .table .table-bordered .table-striped }
 
 | Name           | Scope      | Description                                                    | Example            |type|
@@ -29,3 +31,12 @@ sidebarType: 1
 | `adUnitId` | required   | Ad Unit Id will be generated on Limelight Digital Platform. | 0                        | `integer` |
 | `adUnitType`      | required   | Type of Ad Unit (`'video'`, `'banner'`)                                             | `'banner'`                 | `string` |
 | `publisherId` | optional | Publisher ID | `'12345'` | `string` |
+
+#### Prebid Server
+
+{: .table .table-bordered .table-striped }
+
+| Name          | Scope    | Description           | Example               | Type      |
+|---------------|----------|-----------------------|-----------------------|-----------|
+| `host`        | required | Ad network's RTB host | `'exchange.ortb.net'` | `string`  |
+| `publisherId` | required | Publisher ID          | `71`                  | `integer` |
