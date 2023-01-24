@@ -7,6 +7,7 @@ gvl_id: 263
 gdpr_supported: true
 usp_supported: true
 biddercode: nativo
+sidebarType: 1
 ---
 
 ### Note:

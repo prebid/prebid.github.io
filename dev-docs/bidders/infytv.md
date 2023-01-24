@@ -11,6 +11,7 @@ pbs: true
 pbs_app_supported: true
 usp_supported: true
 schain_supported: true
+sidebarType: 1
 ---
 
 ### Note:

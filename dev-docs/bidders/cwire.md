@@ -7,9 +7,10 @@ biddercode: cwire
 gdpr_supported: false
 usp_supported: false
 schain_supported: false
-userIds: flocId, uid2Id
+userIds: uid2Id
 enable_download: true
 media_types: banner, video
+sidebarType: 1
 ---
 
 ### Bid Params

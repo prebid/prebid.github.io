@@ -6,6 +6,8 @@ pbjs: true
 biddercode: selectmedia
 aliasCode: adtelligent
 media_types: banner, video
+sidebarType: 1
+gvl_id: 775
 ---
 
 ### Bid params

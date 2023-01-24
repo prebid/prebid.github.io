@@ -12,5 +12,5 @@ gvl_id: 14
 
 #### Registration
 
-Please visit https://adkernel.com/dsp-suite/ for more information.
+Please visit [https://adkernel.com/dsp-suite/](https://adkernel.com/dsp-suite/) for more information.
 

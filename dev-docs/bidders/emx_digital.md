@@ -11,6 +11,7 @@ gvl_id: 183
 usp_supported: true
 schain_supported: true
 userIds: identityLink, uid2
+sidebarType: 1
 ---
 
 ### Registration

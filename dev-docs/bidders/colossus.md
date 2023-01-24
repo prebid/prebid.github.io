@@ -11,6 +11,7 @@ gdpr: true
 pbjs: false
 pbs: true
 pbs_app_supported: true
+sidebarType: 1
 ---
 
 ### Disclosure:

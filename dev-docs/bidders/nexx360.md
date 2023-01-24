@@ -11,6 +11,7 @@ userIds: id5Id
 media_types: banner, video
 glv_id: 965
 pbs: false
+sidebarType: 1
 
 ---
 
@@ -20,8 +21,9 @@ pbs: false
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example                              | Type      |
 |---------------|----------|-----------------------|--------------------------------------|-----------|
-| `account`     | required | Nexx360 account       | `'1067'`                             | `string`  |
-| `tagId`       | required | Nexx360 tag ID        | `'luvxjvgn'`                         | `string`  |
+| `tagId`       | required | Nexx360 tag ID        | `"luvxjvgn"`                         | `string`  |
+| `videoTagId`  | optional | Nexx360 Video tag ID        | `"luvxjvgn"`                         | `string`  |
+| `allBids`  | optional | Return all bids       | `true`                         | `boolean`  |
 
 ### Test Parameters
 
@@ -38,7 +40,6 @@ var adUnits = [
       bids: [{
          bidder: 'nexx360',
          params: {
-            account: '1067',
             tagId: 'luvxjvgn'
          }
        }]
@@ -55,11 +56,29 @@ var adUnits = [
         bids: [{
             bidder: 'nexx360',
             params: {
-               account: '1067',
                tagId: 'luvxjvgn'
             }
         }]
+    },
+    // Multiformat Ad
+   {
+        code: 'multi1',
+        mediaTypes: {
+            video: {
+                playerSize: [640, 480],
+                context: 'instream'
+            },
+            banner: {
+              sizes: [[300, 250], [300,600]]
+            }
+        },
+        bids: [{
+            bidder: 'nexx360',
+            params: {
+               tagId: 'luvxjvgn',
+               videoTagId: 'luvxjvgn'
+            }
+        }]
     };
-
 ];
 ```
