@@ -7,7 +7,7 @@ page_type: module
 module_type: rtd
 module_code : sirdataRtdProvider
 enable_download : true
-# Seller Defined Audience (Sirdata RTD Module)
+# Sirdata RTD/SDA Module
 {:.no_toc}
 
 * TOC
@@ -23,7 +23,7 @@ User's country and choice management are included in the module, so it's 100% co
 
 ORTB2 compliant and FPD support for Prebid versions < 4.29
 
-Now support Seller Defined Audience !
+Now supports Seller Defined Audience !
 
 Please contact prebid@sirdata.com for more information.
 
