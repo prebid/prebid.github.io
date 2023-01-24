@@ -10,6 +10,7 @@ usp_supported: false
 pbjs: true
 pbs: true
 gvl_id: 203
+sidebarType: 1
 ---
 
 ### Note

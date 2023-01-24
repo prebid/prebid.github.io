@@ -13,6 +13,7 @@ schain_supported: true
 coppa_supported: true
 gvl_id: 25
 userIds: All
+sidebarType: 1
 ---
 
 ### Important Notice (JS vs PBS)

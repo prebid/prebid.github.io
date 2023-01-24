@@ -12,6 +12,7 @@ userIds: all
 gvl_id: 724
 usp_supported: true
 safeframes_ok: false
+sidebarType: 1
 ---
 
 ### Prebid.js Bid Params

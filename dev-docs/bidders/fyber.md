@@ -5,6 +5,7 @@ description: Prebid Fyber Bidder Adaptor
 pbjs: true
 biddercode: fyber
 media_types: banner
+sidebarType: 1
 ---
 
 ### Bid Params

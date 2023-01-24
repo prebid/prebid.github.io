@@ -7,6 +7,7 @@ pbs: true
 biddercode: streamkey
 aliasCode: adtelligent
 media_types: video
+sidebarType: 1
 ---
 
 ### Bid params

@@ -5,6 +5,7 @@ description: Prebid IPAX Bidder Adaptor
 pbjs: true
 biddercode: giants
 media_types: video
+sidebarType: 1
 ---
 
 ### Bid Params

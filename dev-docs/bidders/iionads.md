@@ -17,6 +17,7 @@ ortb_blocking_supported: true
 multiformat_supported: will-bid-on-one
 floors_supported: false
 aliasCode: limelightDigital
+sidebarType: 1
 ---
 
 ### Bid Params

@@ -11,6 +11,7 @@ gvl_id: 157
 media_types: banner, video
 biddercode: seedtag
 coppa_supported: true
+sidebarType: 1
 ---
 
 ### Note

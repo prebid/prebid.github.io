@@ -6,6 +6,7 @@ biddercode: discovery
 media_types: banner,native
 pbjs: true
 enable_download: true
+sidebarType: 1
 ---
 ### Note:
 

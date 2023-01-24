@@ -10,6 +10,7 @@ gdpr_supported: true
 userIds: id5Id
 gvl_id: 553
 pbs_app_supported: true
+sidebarType: 1
 ---
 
 ### Registration

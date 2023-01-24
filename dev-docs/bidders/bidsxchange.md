@@ -14,6 +14,7 @@ safeframes_ok: true
 prebid_member: true
 pbjs: true
 pbs: false
+sidebarType: 1
 ---
 
 ### Bid params
