@@ -7,6 +7,7 @@ pbjs: true
 media_types: banner
 gdpr_supported: true
 gvl_id: 539
+sidebarType: 1
 ---
 
 ### Note:

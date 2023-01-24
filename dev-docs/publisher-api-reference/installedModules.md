@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.installedModules
 description: 
+sidebarType: 1
 ---
 
 When a Prebid.js package is built, the list of modules compiled into it are placed in the pbjs.installedModules array.

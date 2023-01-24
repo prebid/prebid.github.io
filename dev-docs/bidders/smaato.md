@@ -7,7 +7,7 @@ gdpr_supported: true
 gvl_id: 82
 usp_supported: true
 coppa_supported: true
-media_types: banner, video
+media_types: banner, video, native
 userId: criteo, pubCommonId, unifiedId
 pbjs: true
 pbs: true
@@ -16,17 +16,23 @@ prebid_member: true
 floors_supported: true
 fpd_supported: true
 schain_supported: true
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Registration](#smaato-registration)
-- [Note](#smaato-note)
-- [Bid Params](#smaato-bid-params)
-- [App Object](#smaato-app-object)
-- [Example Ad Units](#smaato-example-ad-units)
-- [First Party Data](#smaato-first-party)
-- [Test Parameters](#smaato-test-parameters)
+- [Table of Contents](#table-of-contents)
+- [Registration](#registration)
+- [Note](#note)
+- [Bid Params](#bid-params)
+  - [App Object](#app-object)
+- [Example Ad Units](#example-ad-units)
+  - [Example Banner Ad Unit](#example-banner-ad-unit)
+  - [Example Video Ad Unit](#example-video-ad-unit)
+  - [Example Native Ad Unit](#example-native-ad-unit)
+  - [Example AdPod (long-form) Video Ad Unit](#example-adpod-long-form-video-ad-unit)
+- [First Party Data](#first-party-data)
+- [Test Parameters](#test-parameters)
 
 <a name="smaato-registration" />
 
@@ -118,6 +124,51 @@ var adUnit = {
     }]
 };
 ```
+
+#### Example Native Ad Unit
+
+```javascript
+var adUnit = {
+    "code": "native unit",
+    "mediaTypes": {
+        native: {
+            sendTargetingKeys: false,
+            image: {
+                required: true,
+                sizes: [150, 50]
+            },
+            icon: {
+                required: true,
+                sizes: [50, 50]
+            },
+            title: {
+                required: true,
+                len: 80
+            },
+            sponsoredBy: {
+                required: true
+            },
+            body: {
+                required: true
+            },
+            cta: {
+                required: false
+            },
+            rating: {
+                required: false
+            }
+        }
+    },
+    "bids": [{
+        "bidder": "smaato",
+        "params": {
+            "publisherId": "1100012345",
+            "adspaceId": "11002234"
+        }
+    }]
+};
+```
+
 #### Example AdPod (long-form) Video Ad Unit
 
 ```javascript

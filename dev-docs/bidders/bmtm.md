@@ -9,6 +9,7 @@ schain_supported: true
 pbjs: true
 pbs: true
 userIds: id5Id, sharedId
+sidebarType: 1
 ---
 
 ### Bid Params

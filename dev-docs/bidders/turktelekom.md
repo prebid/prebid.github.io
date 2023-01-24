@@ -2,18 +2,24 @@
 layout: bidder
 title: Türk Telekom
 description: Türk Telekom Bidder Adaptor
-pbjs: true
-pbs: true
 biddercode: turktelekom
-aliasCode : adkernel
+pbjs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 pbs_app_supported: true
 schain_supported: true
-pbjs_version_notes: v5.18+
+userIds: all
+fpd_supported: true
+prebid_member: false
+ortb_blocking_supported: true
+multiformat_supported: will-bid-on-one
+floors_supported: true
+aliasCode: adkernel
 safeframes_ok: true
+sidebarType: 1
 ---
 
 ### Note:

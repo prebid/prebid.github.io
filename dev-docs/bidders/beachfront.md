@@ -15,6 +15,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 gvl_id: 335
+sidebarType: 1
 ---
 
 ### Registration
@@ -30,7 +31,7 @@ For further information, please contact adops@beachfront.com.
 | Name | Scope | Description | Example | Type |
 |------------|----------|---------------------------------------------------------------------------------------------|------------------------------------------|----------|
 | `appId` | required | Beachfront Exchange ID | `'11bc5dd5-7421-4dd8-c926-40fa653bec76'` | `string` |
-| `bidfloor` | required | Bid floor | `0.01` | `float` |
+| `bidfloor` | required | Bid floor. The floor price module will take priority over this value. | `0.01` | `float` |
 | `video` | optional | Object with video parameters. See the [video section below](#beachfront-video) for details. | | `object` |
 | `banner` | optional | Object with banner parameters. See the [banner section below](#beachfront-banner) for details. | | `object` |
 | `player` | optional | Object with outstream player parameters. See the [player section below](#beachfront-player) for details. | | `object` |
@@ -108,7 +109,7 @@ pbjs.setConfig({
 
 ### Prebid Server
 
-As seen in the JSON response from \{your PBS server\}\/bidder\/params [(example)](https://prebid.adnxs.com/pbs/v1/bidders/params), the beachfront
+As seen in the JSON response from \{your PBS server\}\/bidder\/params, the beachfront
 bidder can take either an "appId" parameter, or an "appIds" parameter. If the request is for one media type, the appId parameter should be used
 with the value of the Exchange Id on the Beachfront platform.
 

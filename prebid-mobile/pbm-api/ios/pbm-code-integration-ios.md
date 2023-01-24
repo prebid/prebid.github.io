@@ -55,7 +55,7 @@ We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDel
 
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)
-4. Set the primary adserver for the bid to either Google Ad Manager or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
+4. Set the primary adserver for the bid to Google Ad Manager. (Primary ad server is necessary to determine the caching mechanism.)
 5. Set the Prebid Server host to AppNexus or Rubicon.
 6. Register the ad units with the adapter to start the bid fetching process.
 
@@ -143,27 +143,6 @@ self.request.testDevices = @[kDFPSimulatorID];
     });
 }];
 ```
-**MoPub Example**
-
-```
-MPMoPubConfiguration *configuration = [[MPMoPubConfiguration alloc] initWithAdUnitIdForAppInitialization:@"a935eac11acd416f92640411234fbba6"];
-
- [[MoPub sharedInstance] initializeSdkWithConfiguration:configuration completion:^{
- }];
-self.mopubAdView = [[MPAdView alloc] initWithAdUnitId:@"a935eac11acd416f92640411234fbba6" size:CGSizeMake(300, 250)];
-self.mopubAdView.delegate = self;
-
-    [self.bannerView addSubview:self.mopubAdView];
-
-    self.bannerUnit = [[BannerAdUnit alloc] initWithConfigId:@"6ace8c7d-88c0-4623-8117-75bc3f0a2e45" size:CGSizeMake(300, 250)];
-    // Do any additional setup after loading the view, typically from a nib.
-    [self.bannerUnit fetchDemandWithAdObject:self.mopubAdView completion:^(enum ResultCode result) {         
-        NSLog(@"Prebid demand result %ld", (long)result);
-        [self.mopubAdView loadAd];
-    }];
-```
-
-
 
 #### Swift
 ```
@@ -206,26 +185,6 @@ bannerUnit.fetchDemand(adObject:self.request) { (ResultCode) in
         self.dfpBanner!.load(self.request)
  }
 ```
-**MoPub Example**  
-```
-let sdkConfig = MPMoPubConfiguration(adUnitIdForAppInitialization: "a935eac11acd416f92640411234fbba6")
-        sdkConfig.globalMediationSettings = []
-
- MoPub.sharedInstance().initializeSdk(with: sdkConfig) {
-
- }
-
-mopubBanner = MPAdView(adUnitId: "a935eac11acd416f92640411234fbba6", size: CGSize(width: 300, height: 250))
-mopubBanner!.delegate = self
-
-appBannerView.addSubview(mopubBanner!)
-
-// Do any additional setup after loading the view, typically from a nib.
-bannerUnit.fetchDemand(adObject: mopubBanner!){ (ResultCode) in
-        print("Prebid demand fetch for mopub \(ResultCode)")
-        self.mopubBanner!.loadAd()
-}
-```
 Note that host should be the prebid server host you're using.
 
 ### Set Ad Server Targeting
@@ -251,8 +210,6 @@ Use the table below to see which ad objects are supported currently.
 |-------------------|----------------|------------------------------|---------------------------------------------|
 | Google Ad Manager               | Banner         | `DFPBannerView`              | `- (void)loadRequest:(GADRequest *)request` |
 | Google Ad Manager               | Interstitial   | `DFPInterstitial`            | `- (void)loadRequest:(GADRequest *)request` |
-| MoPub             | Banner         | `MPAdView`                   | `- (void)loadAd`                            |
-| MoPub             | Interstitial   | `MPInterstitialAdController` |` - (void)loadAd`                            | -->
 
 ## Further Reading
 

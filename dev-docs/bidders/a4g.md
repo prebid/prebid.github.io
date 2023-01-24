@@ -5,6 +5,7 @@ description: Prebid A4G Bidder Adaptor
 pbjs: true
 biddercode: a4g
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params

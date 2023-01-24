@@ -57,7 +57,7 @@ We recommend doing this in the `didFinishLaunchingWithOptions` method in `AppDel
 
 2. Add a server-side configuration for each ad unit to Prebid Server Adapter.
 3. Set targeting parameters for the ad units. (Optional)
-4. Set the primary adserver for the bid to either Google Ad Manager or MoPub. (Primary ad server is necessary to determine the caching mechanism.)
+4. Set the primary adserver for the bid to Google Ad Manager. (Primary ad server is necessary to determine the caching mechanism.)
 5. Set the Prebid Server host to AppNexus or Rubicon.
 6. Register the ad units with the adapter to start the bid fetching process.
 
@@ -122,23 +122,6 @@ PBBannerAdUnit *__nullable adUnit1 = [[PBBannerAdUnit alloc] initWithAdUnitIdent
     	   andPrimaryAdServer:PBPrimaryAdServerDFP];
 ```
 
-If you are using MoPub as your ad server, modify step 3 above to use `PBPrimaryAdServerMoPub`, as shown below:
-```
-/**
- * 3. Register the ad units with Prebid Mobile to start bid fetching process.
- *
- * MoPub Example
- *
- * Replace @"PREBID-SERVER-ACCOUNT-ID" with your Prebid Server account ID.
- *
- * If you are using a Prebid Server host other than AppNexus, be sure
- * to replace 'PBServerHostAppNexus'.
- */
-[PrebidMobile registerAdUnits:@[adUnit1, adUnit2]
-          		withAccountId:@"PREBID-SERVER-ACCOUNT-ID"
-               		 withHost:PBServerHostAppNexus
-    	   andPrimaryAdServer:PBPrimaryAdServerMoPub];
-```
 Note that host should be the prebid server host you're using.
 
 ### Set Ad Server Targeting
@@ -188,8 +171,6 @@ Use the table below to see which ad objects are supported currently.
 |-------------------|----------------|------------------------------|---------------------------------------------|
 | Google Ad Manager               | Banner         | `DFPBannerView`              | `- (void)loadRequest:(GADRequest *)request` |
 | Google Ad Manager               | Interstitial   | `DFPInterstitial`            | `- (void)loadRequest:(GADRequest *)request` |
-| MoPub             | Banner         | `MPAdView`                   | `- (void)loadAd`                            |
-| MoPub             | Interstitial   | `MPInterstitialAdController` |` - (void)loadAd`                            |
 
 
 
