@@ -26,18 +26,18 @@ sidebarType: 1
 
 {: .table .table-bordered .table-striped }
 
-| Name           | Scope      | Description                                                    | Example            |type|
-| :-----------   | :--------- | :------------                                                  | :----------------- |:---|
-| `host` | required | Ad network's RTB host | `'iionads.com'` | `string` |
-| `adUnitId` | required   | Ad Unit Id will be generated on iionads Platform. | 0                        | `integer` |
-| `adUnitType`      | required   | Type of Ad Unit (`'video'`, `'banner'`)                                             | `'banner'`                 | `string` |
-| `publisherId` | optional | Publisher ID | `'12345'` | `string` |
+| Name          | Scope    | Description                                       | Example         | type      |
+|:--------------|:---------|:--------------------------------------------------|:----------------|:----------|
+| `host`        | required | Ad network's RTB host                             | `'iionads.com'` | `string`  |
+| `adUnitId`    | required | Ad Unit Id will be generated on iionads Platform. | `42`            | `integer` |
+| `adUnitType`  | required | Type of Ad Unit (`'video'`, `'banner'`)           | `'banner'`      | `string`  |
+| `publisherId` | optional | Publisher ID                                      | `'12345'`       | `string`  |
 
 #### Prebid Server
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description           | Example               | Type      |
-|---------------|----------|-----------------------|-----------------------|-----------|
-| `host`        | required | Ad network's RTB host | `'exchange.ortb.net'` | `string`  |
-| `publisherId` | required | Publisher ID          | `71`                  | `integer` |
+| Name          | Scope    | Description           | Example         | Type      |
+|---------------|----------|-----------------------|-----------------|-----------|
+| `host`        | required | Ad network's RTB host | `'iionads.com'` | `string`  |
+| `publisherId` | required | Publisher ID          | `71`            | `integer` |
