@@ -16,6 +16,7 @@ pbs_app_supported: true
 prebid_member: true
 enable_download : false
 ortb_blocking_supported: partial
+sidebarType: 1
 ---
 
 ### Registration

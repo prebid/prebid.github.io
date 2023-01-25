@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.setBidderConfig(options, mergeFlag)
 description:
+sidebarType: 1
 ---
 
 

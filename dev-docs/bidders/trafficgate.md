@@ -17,6 +17,7 @@ deals_supported: true
 floors_supported: false
 fpd_supported: false
 prebid_member: true
+sidebarType: 1
 ---
 
 ### Note:

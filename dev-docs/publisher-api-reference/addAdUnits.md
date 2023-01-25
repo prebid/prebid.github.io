@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.addAdUnits(Array|Object)
 description:
+sidebarType: 1
 ---
 
 
@@ -65,10 +66,15 @@ For the list of properties please visit the [adUnit.video reference]({{site.base
 
 #### Examples
 
-+ [Native](#adUnit-native)
-+ [Video](#adUnit-video)
-+ [Banner](#adUnit-banner)
-+ [Multi-format](#adUnit-multi-format)
+- [Ad Unit Properties](#ad-unit-properties)
+  - [Bids](#bids)
+  - [Media Types](#media-types)
+- [Video](#video)
+- [Examples](#examples)
+  - [Native](#native)
+  - [Video](#video-1)
+  - [Banner](#banner)
+  - [Multi-format](#multi-format)
 
 
 <a name="adUnit-native">

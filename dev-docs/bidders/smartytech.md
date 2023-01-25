@@ -5,6 +5,7 @@ description: Prebid SmartyTech Bidder Adaptor
 pbjs: true
 biddercode: smartytech
 media_types: banner, video
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -13,6 +14,7 @@ media_types: banner, video
 | Name         | Scope    | Description  | Example | Type      |
 |--------------|----------|--------------|---------|-----------|
 | `endpointId` | required | Endpoint ID. | `14`    | `integer` | 
+
 
 ### Sample Banner Ad Unit Example
 ```
@@ -29,7 +31,7 @@ var adUnits = [{
     bids: [{
         bidder: 'smartytech',
         params: {
-            endpointId: 12
+            endpointId: 14
         }
     }]
 }];
@@ -49,7 +51,7 @@ var videoAdUnit = {
     bids: [{
         bidder: 'smartytech',
         params: {
-            endpointId: 12
+            endpointId: 14
         }
     }]
 };

@@ -6,6 +6,7 @@ biddercode: appier
 pbjs: true
 media_types: banner
 gdpr_supported: true
+sidebarType: 1
 ---
 
 <a name="appier-bid-params" />

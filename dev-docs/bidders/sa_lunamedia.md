@@ -12,6 +12,7 @@ pbs: true
 pbs_app_supported: true
 gvl_id: 998
 enable_download: false
+sidebarType: 1
 ---
 
 ### Prebid Server Bid Params

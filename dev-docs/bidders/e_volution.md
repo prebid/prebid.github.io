@@ -12,6 +12,7 @@ pbs_app_supported: true
 usp_supported: true
 schain_supported: true
 userIds: id5Id
+sidebarType: 1
 ---
 
 ### Note:

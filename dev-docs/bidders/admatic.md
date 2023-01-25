@@ -1,8 +1,9 @@
 ---
 layout: bidder
 title: AdMatic
-description: Prebid AdMatica Bidder Adapter.
+description: Prebid AdMatic Bidder Adapter.
 pbjs: true
+pbs: false
 biddercode: admatic
 media_types: banner,video
 gdpr_supported: false
@@ -14,6 +15,7 @@ userIds: criteo, id5Id, sharedId, unifiedId
 safeframes_ok: true
 floors_supported: false
 multiformat_supported: will-bid-on-any
+sidebarType: 1
 ---
 
 ### Description
@@ -22,9 +24,11 @@ AdMatic header bidding adapter connects with AdMatic demand sources to fetch bid
 
 ### Bid params
 
+{: .table .table-bordered .table-striped }
 | Name         | Scope    | Description                        | Example    | Type     |
 |--------------|----------|------------------------------------|------------|----------|
 | `networkId` | required | The network ID from AdMatic | `12345` | `number` |
+| `host` | required | RTB Host | `layer.serve.admatic.com.tr` | `string` |
 
 ### Test Parameters
 
@@ -36,7 +40,8 @@ var adUnits = [{
   bids: [{
       bidder: 'admatic',
       params: { 
-          networkId: 12345
+          networkId: 12345,
+          host: 'layer.serve.admatic.com.tr'
       }
   }]
 },{
@@ -45,7 +50,8 @@ var adUnits = [{
   bids: [{
       bidder: 'admatic',
       params: { 
-          networkId: 12345
+          networkId: 12345,
+          host: 'layer.serve.admatic.com.tr'
       }
   }]
 }];

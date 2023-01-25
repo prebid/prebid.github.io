@@ -13,6 +13,7 @@ safeframes_ok: false
 pbjs: true
 gvl_id: 165
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Registration

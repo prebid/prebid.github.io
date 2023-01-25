@@ -7,6 +7,7 @@ media_types: banner
 pbjs: true
 floors_supported: true
 safeframes_ok: true
+sidebarType: 1
 ---
 ### Note:
 

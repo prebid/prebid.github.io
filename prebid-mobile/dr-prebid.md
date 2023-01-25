@@ -70,9 +70,8 @@ These settings will enable you to test whether the Prebid Mobile line item in yo
 
 The primary ad server you’re using to serve your ads.
 
-Select from:
+Select:
 -	*DFP*
--	*MoPub*
 
 **Bid Price**
 

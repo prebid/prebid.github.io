@@ -20,9 +20,15 @@ If you’re looking for a marketing-level overview of the Prebid software and or
 
 The Prebid.org suite of products leads the industry in providing header bidding to publishers.
 
-![Top Header Bidding Providers](/assets/images/intros/top-header-providers.png)
+<iframe
+    src="https://sincera.metabaseapp.com/public/question/fc2fec3f-f702-45f3-8e5d-672515817168"
+    frameborder="0"
+    width="800"
+    height="600"
+    allowtransparency>
+</iframe>
 
-<div style="width:650px;">
+<div style="width:800px;">
 <p align=right>
 <a href="https://app.sincera.io/">Data by <img border="0" alt="Sincera" src="/assets/images/intros/Sincera_Logo_Black_Green-small.png"></a>
 </p>
@@ -153,7 +159,7 @@ With header bidding, the publisher creates a short delay in their ad serving to 
 - Minimize the number of bidders that will be allowed to participate in the header bidding auction. The fewer demand partners that have the opportunity to bid, the fewer the bids, and therefore the faster the processing. But fewer demand partners also means fewer chances for an optimal bid. It might require some time and experimentation to determine the optimal number. Client-side implementations typically use 5 – 15 demand partners. Because of the faster processing speeds, server-side will often have more.
 - Use Prebid Server to do the processing rather than the client browser. Passing the load of running auctions to the server can be faster than running them client-side from the browser. You can also use a combination of client and server processing to optimize your yield while still reducing latency.
 - Set a time limit for receiving bids. Prebid provides the option for you to set a time limit. Any demand partner who hasn’t responded with a bid within the time allotted will not be included in the auction. See [Timeouts](/features/timeouts.html) for more information.
-- Asynchronous Processing. Requests are sent to all bidders at once, rather than one at a time. See [How to reduce the latency of header bidding with Prebid.js](/overview/how-to-reduce-latency-of-header-bidding.html#asynchronous-call-scenario-with-prebidjs) for more information.
+- Asynchronous Processing. Requests are sent to all bidders at once, rather than one at a time.
 
 We recommend that publishers do A/B testing on the number of bidders, timeout values, and client-vs-server for their specific pages. If your org doesn't do a lot of A/B testing, several of the managed services can help in this area.
 

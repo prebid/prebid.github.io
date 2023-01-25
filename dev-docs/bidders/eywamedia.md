@@ -6,6 +6,7 @@ pbjs: true
 biddercode: eywamedia
 media_types: display
 gdpr_supported: false
+sidebarType: 1
 ---
 
 
