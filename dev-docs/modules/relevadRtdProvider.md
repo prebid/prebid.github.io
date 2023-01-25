@@ -5,7 +5,7 @@ display_name: Relevad RTD Provider
 description: Contextual Categories and Segments, cookieless and privacy-first.
 page_type: module
 module_type: rtd
-module_code : airgridRtdProvider
+module_code : relevadRtdProvider
 enable_download : true
 vendor_specific: true
 sidebarType : 1
@@ -25,7 +25,7 @@ This real-time data processing module provides quality contextual IAB categories
 
 Compile the Relevad RTD module (`relevaddRtdProvider`) into your Prebid build, along with the parent RTD Module (`rtdModule`):
 
-`gulp build --modules=rtdModule,airgridRtdProvider,appnexusBidAdapter`
+`gulp build --modules=rtdModule,relevadRtdProvider,appnexusBidAdapter`
 
 Next we configure the module, via `pbjs.setConfig`. See the **Parameter Descriptions** below for more detailed information of the configuration parameters. 
 
