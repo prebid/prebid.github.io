@@ -25,6 +25,7 @@ This adapter is known to use an HTTP 1 endpoint. Header bidding often generates 
 The Sharethrough bidder adapter requires additional setup and approval from the Sharethrough Integrations team. Please reach out to your account manager for more information to start using it.
 
 ### Bid Params
+
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                | Example                      | Type                 |
 |-------------|----------|------------------------------------------------------------|------------------------------|----------------------|
