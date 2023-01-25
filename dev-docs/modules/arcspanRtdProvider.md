@@ -21,6 +21,9 @@ sidebarType : 1
 
 This module attaches contextual classification signals to the site object in the bid request, with the goal of enhancing the addressability of ad impressions and increasing buyer demand.
 
+{: .alert.alert-warning :}
+Disclosure: This module loads external code that is not open source and has not been reviewed by Prebid.org.
+
 ### Usage
 
 Compile the ArcSpan RTD Module into your Prebid build:
@@ -35,7 +38,7 @@ Note that the global RTD module, `rtdModule`, is a prerequisite of the ArcSpan R
 You then need to enable the ArcSpan RTD Module in your Prebid configuration, using the format below.
 
 {: .alert.alert-warning :}
-Please replace the `silo` parameter value with the one provided by your ArcSpan representative.
+Please replace the `silo` parameter value with the one provided by your ArcSpan representative. This will load the latest version of ArcSpan's JavaScript tag that is specific to your ArcSpan seat.
 
 ```javascript
 pbjs.setConfig({
