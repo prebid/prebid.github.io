@@ -56,3 +56,6 @@ pbjs.setConfig({
   ...
 })
 ```
+
+{: .alert.alert-info :}
+For best results, we recommend that you also deploy ArcSpan's JavaScript tag in your tag management solution, as instructed in the implementation overview you received from your ArcSpan representative. This will ensure that more of your auctions contain ArcSpan's contextual signals. Please reach out to your ArcSpan representative if you have any questions.
