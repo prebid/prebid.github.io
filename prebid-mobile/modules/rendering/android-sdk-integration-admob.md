@@ -95,7 +95,7 @@ adUnit?.fetchDemand { result ->
 #### Step 1: Create AdView and AdRequest
 {:.no_toc}
 
-This step is totally the same as for the original [AdMob integration](https://developers.google.com/admob/android/banner). You don't have to make any modifications here.
+This step is the same as for the original [AdMob integration](https://developers.google.com/admob/android/banner). You don't have to make any modifications here.
 
 
 #### Step 2: Create AdMobMediationBannerUtils
@@ -164,7 +164,7 @@ adUnit?.fetchDemand { result ->
 #### Step 1: Create AdRequest
 {:.no_toc}
 
-This step is totally the same as for original [AdMob integration](https://developers.google.com/admob/android/interstitial). You don't have to make any modifications here.
+This step is the same as for original [AdMob integration](https://developers.google.com/admob/android/interstitial). You don't have to make any modifications here.
 
 #### Step 2: Create AdMobInterstitialMediationUtils
 {:.no_toc}
