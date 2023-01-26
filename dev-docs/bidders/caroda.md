@@ -19,6 +19,7 @@ fpd_supported: true
 safeframes_ok: true
 ortb_blocking_supported: false
 deals_supported: false
+sidebarType: 1
 ---
 
 ### Bid params

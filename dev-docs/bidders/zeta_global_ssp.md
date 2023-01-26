@@ -12,6 +12,7 @@ coppa_supported: true
 userIds: all
 prebid_member: true
 gvl_id: 833
+sidebarType: 1
 ---
 
 ### Registration

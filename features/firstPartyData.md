@@ -98,6 +98,10 @@ pbjs.setConfig({
                   interests: ["cars"]
 	       }
            }
+        },
+        regs: {
+            gpp: "abc1234",
+            gpp_sid: [7]
         }
     }
 });
@@ -229,9 +233,9 @@ pbjs.setBidderConfig({ // different bidders can receive different data
 });
 {% endhighlight %}
 
-### Supplying App Content Data
+### Supplying App or DOOH ORTB Objects
 
-Occasionally, an app which embeds a webview might run Prebid.js. In this case, the app object is often specified for OpenRTB, and the site object would be invalid. When this happens, one should specify app.content.data in place of site.content.data.
+Occasionally, an app which embeds a webview might run Prebid.js. In this case, the app object is often specified for OpenRTB, and the site object would be invalid. When this happens, one should specify app.content.data in place of site.content.data. We can also imagine scenarios where billboards or similar displays are running Prebid.js. In the case of a DOOH object existing, both the site object and the app object are considered invalid. 
 
 {% highlight js %}
 pbjs.setConfig({
@@ -307,10 +311,7 @@ pbjs.setConfig({
 
 ## Segments and Taxonomy
 
-The [IAB](https://iab.com) offers standard content and audience taxonomies for categorizing sites and users. Prebid supports defining these values as first party data in `site.content.data` or `user.data` as shown in the examples above.
-
-{: .alert.alert-warning :}
-Segment support is still under development. You can follow the [Prebid.js discussion](https://github.com/prebid/Prebid.js/issues/6057) if you'd like.
+The [IAB](https://iab.com) offers standard content and audience taxonomies for categorizing sites and users. Prebid supports defining these values as first party data in `site.content.data` or `user.data` as shown in examples above and below.
 
 ```
         user: {
@@ -332,9 +333,11 @@ here to their page. For now, here's the beta table defining the segtax values:
 {: .table .table-bordered .table-striped }
 | Segtax ID | Taxonomy Type | Version | Description |
 |-----------+---------------+---------+-------------|
-| 1 | Content | 1.x | IAB - Content Taxonomy version 1 |
-| 2 | Content | 2.x | [IAB - Content Taxonomy version 2](https://iabtechlab.com/wp-content/uploads/2020/12/IABTechLab_Content_Taxonomy_2-2_Final.xlsx) |
+| 1 | Content | 1.0 | IAB - Content Taxonomy version 1 - deprecated|
+| 2 | Content | 2.0 | IAB - Content Taxonomy version 2) - deprecated |
 | 4 | Audience | 1.1 | [IAB - Audience Taxonomy version 1.1](https://iabtechlab.com/wp-content/uploads/2020/07/IABTL-Audience-Taxonomy-1.1-Final.xlsx) |
+| 5 | Content | 2.1 | [IAB - Content Taxonomy version 2.1](https://iabtechlab.com/standards/content-taxonomy/) |
+| 6 | Content | 2.2 | [IAB - Content Taxonomy version 2.2](https://iabtechlab.com/standards/content-taxonomy/) |
 
 {: .alert.alert-info :}
 The [IAB version of this table](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md#list--category-taxonomies-) is associated with ADCOM. Publishers should check with their SSPs and DSPs to confirm which

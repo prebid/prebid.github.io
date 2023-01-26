@@ -6,6 +6,7 @@ biddercode: missena
 gvl_id: 867
 pbjs: true
 safeframes_ok: false
+sidebarType: 1
 ---
 
 ### Note

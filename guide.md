@@ -243,10 +243,17 @@ Each menu item is represented in the YML map as a collection of key value pairs 
 | sbCollapseId |  string | overview  | Required if isSectionHeader = 1. Used to identify which div object is being toggled. |
 
 **Code Use**  
-This data file is read in the page_v2.html file using Liquid.
+This data file is read in the left_nav.html file using Liquid. (__includes/left_nav.html)
 
-**Code Use**  
-This data file is read in the home.html file using Liquid.
+**Files Not in the Sidebar**  
+If a page is open that is not listed in the sidebar.yml file, by default the sidebar will display only top-level options, with no options expanded or selected. 
+
+In certain cases, it is helpful to the user to highlight a page in the left navigation that is not currently open. For example, when a bidder page is open (such as [https://docs.prebid.org/dev-docs/bidders/1ad4good.html](https://docs.prebid.org/dev-docs/bidders/1ad4good.html)), we don't want hundreds of bidders displayed in the left nav, but we want the user to be oriented to where they are in the documentation. In this case, that would be under Prebid.js > Reference > Bidder Params. To accomplish this, you must do two things:
+
+- Add `sidebarType: 1` to all bidder pages. This opens the Prebid.js menu. (If you want to extend this functionality to other pages, use the sbSecId in the sidebar.yml file of the top-level menu as the value for sidebarType.) 
+- Modified the left_nav.html file's Liquid code to highlight Reference > Bidder Params anytime a page with layout=bidder is open.
+
+This has been done for both bidders pages (pages with `layout: bidder`) and the Publisher API Reference (`layout: api_prebidjs` and highlighting Prebid.js > Reference > Publish API Reference in the left nav), but can be extended to other pages as needed. 
 
 ## Bidder Files
 
@@ -265,9 +272,11 @@ The attributes in the Jekyll 'front matter' drive various behaviors and dynamic 
 | pbs | sorta | true or false | defines whether this is a Prebid Server bidder |
 | description | no | - | Not used |
 | biddercode | yes | preferred bidder code | Used as the default ad server targeting suffix and the default download filename |
-| aliasCode | no | download filename | Overrides the filename used to build the PBJS package on the download page |
+| aliasCode | no | bid adapter that actually implements this adapter | Overrides the filename used to build the PBJS package on the download page. Will be suffixed with "BidAdapter". This is also intended to be a valid bidder code. |
+| filename | no | bid adapter that actually implements this adapter | Used when a bid adapter is created with a filename that is not the bidder code. This completely overrides what is passed into the gulp build command, so needs to be fully specified. e.g. bidderaBidAdapter |
 | prevBiddercode | no | secondary bidder code | Adds a note about an alternate code that may have been used. |
 | pbjs_version_notes | no | string | Displays on the download page |
+| sidebarType | yes | `1` | Used for navigation. This opens the Prebid.js portion of the menu so the sidebar can display the Reference/Prebid Params menu option when a bidder page is open. 
 | ANYTHING ELSE | no | string | There are many pieces of metadata (e.g. GDPR support, user IDs supported) that bid adapters can disclose. They're displayed on the bidder's parameter page. |
 
 The bidderCode, aliasCode, and prevBiddercode parameters bear some description.
@@ -280,6 +289,7 @@ with a prefix like `hb_cache_host`. So they wanted to have shorter bidderCode fo
 2) change the biddercode to the shorter name as it's the new preferred code
 3) add aliasCode so the Download page will pull in the right module
 4) optionally add prevBiddercode to add a note to the page about the legacy value
+5) optionally add filename if the bid adapter was created using a filename that's different than their bidder code. e.g. if the biddercode is "biddera" but they named the file "bidderABidAdapter", set the biddercode to "biddera" and the filename to "bidderABidAdapter".
 
 ## Algolia Search
 

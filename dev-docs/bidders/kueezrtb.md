@@ -3,13 +3,14 @@ layout: bidder
 title: KueezRTB
 description: Prebid KueezRTB Bidder Adaptor
 biddercode: kueezrtb
+filename: kueezRtbBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 gdpr_supported: true
 usp_supported: true
 coppa_supported: false
 schain_supported: true
 floors_supported: true
-media_types: banner
+media_types: banner, video
 prebid_member: false
 safeframes_ok: false
 deals_supported: false
@@ -19,6 +20,7 @@ ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
 gvl_id: 1165
 pbjs: true
+sidebarType: 1
 ---
 
 ### Bid Params

@@ -47,20 +47,20 @@ PB Ad Slot is an identifier tied to the placement the ad will be delivered in. T
 
 Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad unit.
 
-#### Mopub or GAM
+#### GAM
 
-By default, Prebid SDK uses inflection to determine the publisher ad server, one of Mopub or Google Ad Manager (GAM), to convert Prebid's targeting keys (PBS bid keys, host and cache key) to trigger targeted line items. To render ads in ad servers other than Mopub or GAM, follow the instructions in the 3rd party ad server below.
+By default, Prebid SDK uses inflection to determine the publisher ad server to convert Prebid's targeting keys (PBS bid keys, host and cache key) to trigger targeted line items. To render ads in ad servers other than GAM, follow the instructions in the 3rd party ad server below.
 
 
 **Parameters**
 
-- `adObj`: This is the ad server request object (for [Google Ad Manager](https://developers.google.com/android/reference/com/google/android/gms/ads/doubleclick/PublisherAdRequest) and for [Mopub](https://developers.mopub.com/publishers/reference/android/MoPubView/)). If you do not wish to add any additional /custom key values to the ad server after the Prebid auction, pass `adObj` to the fetchDemand function, where Prebid SDK will set all the Prebid targeting keys as well as any keys added prior to auction
-- As of Prebid SDK 1.7, a publisher can optionally pass the Google Ad Manager `builder` object of the [Google Ad Manager Mobile Ads SDK](https://developers.google.com/android/reference/com/google/android/gms/ads/doubleclick/PublisherAdRequest.Builder) to pass custom keys to Google Ad Manager after the Prebid Auction
+- `adObj`: This is the ad server request object. If you do not wish to add any additional /custom key values to the ad server after the Prebid auction, pass `adObj` to the fetchDemand function, where Prebid SDK will set all the Prebid targeting keys as well as any keys added prior to auction
+- As of Prebid SDK 1.7, a publisher can optionally pass the Google Ad Manager `builder` object of the [Google Ad Manager Mobile Ads SDK](https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start) to pass custom keys to Google Ad Manager after the Prebid Auction
 - `onCompleteListener`: listener object
 
 #### 3rd Party Ad Server
 
-The default ad servers for Prebid's Mobile SDK are MoPub and GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice.
+The default ad server is GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice.
 
 In this mode, the publisher will be responsible for the following actions:
 * Call fetchDemand with extended targetingDict callback
@@ -72,8 +72,8 @@ In this mode, the publisher will be responsible for the following actions:
 
 **Function Callbacks**
 
-* `ResultCode`: enum [result codes](https://docs.prebid.org/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
-* `unmodifiableMap`: [Prebid Server Response targeting keys](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting)
+* `ResultCode`: enum [result codes](/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
+* `unmodifiableMap`: [Prebid Server Response targeting keys](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting)
 
 
 ```

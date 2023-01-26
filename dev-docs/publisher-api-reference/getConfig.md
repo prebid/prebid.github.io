@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.getConfig([string])
 description: 
+sidebarType: 1
 ---
 
 ## Overview

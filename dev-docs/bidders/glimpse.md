@@ -9,6 +9,7 @@ usp_supported: true
 deals_supported: true
 media_types: banner
 gvl_id: 1012
+sidebarType: 1
 ---
 
 ## Overview
@@ -123,4 +124,4 @@ pbjs.que.push(() => {
 
 ### Can you provide additional support?
 
-Of course! You can check the Glimpse Prebid Adapter documentation [here](https://docs.glimpseportal.io/en/latest/) or reach out to us at [support@glimpseportal.io](mailto:support@glimpseportal.io).
+Of course! You can check the Glimpse Prebid Adapter documentation at https://docs.glimpseportal.io/en/latest/ or reach out to us at support@glimpseportal.io.

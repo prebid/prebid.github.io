@@ -8,6 +8,7 @@ media_types: banner, video
 gdpr_supported: true
 gvl_id: 602
 userIds: uid2, netId
+sidebarType: 1
 ---
 
 

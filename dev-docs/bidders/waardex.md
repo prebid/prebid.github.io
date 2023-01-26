@@ -6,6 +6,7 @@ hide: true
 biddercode: waardex
 media_types: banner, video
 pbjs: true
+sidebarType: 1
 ---
 
 ### Bid Params

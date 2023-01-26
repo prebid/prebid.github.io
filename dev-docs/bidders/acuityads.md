@@ -3,6 +3,7 @@ layout: bidder
 title: AcuityAds
 description: Prebid AcuityAds Bidder Adaptor
 biddercode: acuityads
+filename: acuityAdsBidAdapter
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
@@ -13,6 +14,7 @@ safeframes_ok: true
 deals_supported: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
 ### Note:

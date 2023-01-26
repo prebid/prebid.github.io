@@ -13,12 +13,12 @@ sidebarType: 1
 # Conditional Ad Units
 {:.no_toc}
 
-The [global sizeConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads) and [Advanced Size Mapping](/dev-docs/modules/sizeMappingV2.html) features are useful for standard responsive ad designs, but a number of other scenarios are supported as well:
+The [global sizeConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads) and [Advanced Size Mapping](/dev-docs/modules/sizeMappingV2.html) features are useful for standard responsive ad designs, but a number of other scenarios are supported as well.
 
 * TOC
 {:toc}
 
-By supporting these scenarios, header bidding can be more efficient - the browser can send bids to a more surgical set of bidders based on device size or other attributes the page code can create.
+By supporting these scenarios, header bidding can be more efficient; the browser can send bids to a more surgical set of bidders based on device size or other attributes the page code can create.
 
 The basic steps are:
 
@@ -27,7 +27,7 @@ The basic steps are:
 
 See the [Publisher API reference](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads) for syntax.
 
-## What if some bidders should be skipped for some devices?
+## Some Bidders Should Be Skipped for Some Devices
 
 {: .alert.alert-info :}
 See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) for another way to handle this scenario. Note that you must use Advanced Size Mapping for mediaTypes other than banner.
@@ -95,7 +95,7 @@ How this works:
     1. The first bid doesn't have any conditional logic, so is present in every auction.
     1. The second bid requires that "phone" be present in the label array, otherwise it won't be part of the auction.
 
-## What if some bidders have different parameters for different devices?
+## Some Bidders Have Different Parameters for Different Devices
 
 For reporting and targeting purposes, Publishers and SSPs sometimes break out different inventory structures for different platforms.
 
@@ -188,7 +188,7 @@ var AdUnits = [{
 {% endhighlight %}
 
 
-## What if some ad unit auctions should be skipped entirely for some devices?
+## Some Ad Unit Auctions Should Be Skipped Entirely for Some Devices
 
 Say there's a responsive page where one of the ad units only supports larger sizes, so it doesn't make sense
 on phones. To suppress the ad unit for mobile users, we can apply conditional logic to the entire ad unit. Here's an example using the global sizeConfig approach (banner only):
@@ -223,7 +223,7 @@ See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) if 
 
 {% endhighlight %}
 
-## What if some bid requests apply only to users originating certain from countries?
+## Some Bid Requests Apply Only to Users Originating from Certain Countries
 
 Labels aren't constrained to describing device size -- they can be used for many types of conditions the page maywant to define. Besides being defined as part of `sizeConfig`, labels can also be passed into the [`requestBids()`](/dev-docs/publisher-api-reference/requestBids.html) function as an argument.
 

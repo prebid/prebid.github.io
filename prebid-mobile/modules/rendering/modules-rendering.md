@@ -35,7 +35,7 @@ Prebid SDK rendering offers the following benefits:
 This set of features are not supported in the current release but are designated for future implementation.
 
 - **Multiformat Ad Unit**: The rendering module will enable Prebid SDK to display any bid format in the given inventory regardless of Primary Ad Server capabilities.
-- **Support of Custom Ad Servers**: The rendering module will work with any ad server not just GAM and MoPub.
+- **Support of Custom Ad Servers**: The rendering module will work with any ad server not just GAM.
 - **Rendering Delegation**:  The module will potentially delegate rendering of the winning bid to the Demand Partner SDK if it is required for special creatives.
 
 ## How It Works
@@ -106,7 +106,7 @@ Follow these steps to integrate the rendering API:
     * [GAM](rendering-gam-line-item-setup.html)
     * [AdMob](rendering-admob-line-item-setup.html)
     * [MAX](rendering-max-line-item-setup.html)
-1. [Integrate Prebid SDK](ios-sdk-integration.html).
+1. [Integrate Prebid SDK](ios-sdk-Integration.html).
 1.  Add prebid's ad units to your app respectively to the monetization scenario: 
     * [Custom in-app bidding](ios-sdk-integration-pb.html) integration without a primary ad server.
     * In-app bidding using [Google Ad Manager (GAM)](ios-sdk-integration-gam.html) as a primary ad server.

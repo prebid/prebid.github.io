@@ -7,7 +7,7 @@ sidebarType: 1
 
 
 about:
-- Asynchronous Prebid.js integration with single Google Ad Manager ad slot
+- This example demonstrates asynchronous Prebid.js integration with a single Google Ad Manager ad slot
 - Default keyword targeting setup (<a href="/dev-docs/publisher-api-reference/bidderSettings.html">reference</a>)
 - Default price granularity
 

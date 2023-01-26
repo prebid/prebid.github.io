@@ -9,9 +9,14 @@ module_type: rtd
 enable_download: true
 vendor_specific: true
 sidebarType: 1
+enable_download: false
 ---
 
 # Zeus Prime Real Time Data Module
+
+# NOTE: ZEUS PRIME HAS BEEN DEPRECATED!
+# THIS MODULE NO LONGER FUNCTIONS AND WILL BE REMOVED FROM A
+# FUTURE VERSION OF PREBID.
 
 The Zeus Prime RTD Provider provides integration of Zeus Prime onto sites with Prebid. This module will request information from Zeus Prime servers to add the page level targeting required for Prime into the customer's ad setup.
 

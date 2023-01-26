@@ -6,6 +6,7 @@ pbjs: true
 biddercode: microad
 media_types: banner
 userIds: imuid, id5Id, tdid, novatiq, parrableId, dacId, identityLink, criteo, pubcid, uid2
+sidebarType: 1
 ---
 
 Note:

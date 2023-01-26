@@ -5,6 +5,7 @@ description: Prebid GrowAdvertising Bidder Adapter
 pbjs: true
 biddercode: growads
 media_types: banner, native
+sidebarType: 1
 ---
 
 ### Bid Params
