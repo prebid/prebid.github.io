@@ -22,8 +22,6 @@ sidebarType: 1
 
 ### Bid Params
 
-#### Prebid.js
-
 {: .table .table-bordered .table-striped }
 
 | Name          | Scope    | Description                                       | Example         | type      |
@@ -31,13 +29,4 @@ sidebarType: 1
 | `host`        | required | Ad network's RTB host                             | `'iionads.com'` | `string`  |
 | `adUnitId`    | required | Ad Unit Id will be generated on iionads Platform. | `42`            | `integer` |
 | `adUnitType`  | required | Type of Ad Unit (`'video'`, `'banner'`)           | `'banner'`      | `string`  |
-| `publisherId` | optional | Publisher ID                                      | `'12345'`       | `string`  |
-
-#### Prebid Server
-
-{: .table .table-bordered .table-striped }
-
-| Name          | Scope    | Description           | Example         | Type      |
-|---------------|----------|-----------------------|-----------------|-----------|
-| `host`        | required | Ad network's RTB host | `'iionads.com'` | `string`  |
-| `publisherId` | required | Publisher ID          | `71`            | `integer` |
+| `publisherId` | required | Publisher ID                                      | `'12345'`       | `string`  |
