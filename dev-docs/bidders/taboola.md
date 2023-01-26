@@ -18,6 +18,8 @@ safeframes_ok: true
 fpd_supported: false
 ortb_blocking_supported: partial
 deals_supported: false
+pbs_app_supported: false
+multiformat_supported: will-not-bid
 sidebarType: 1
 ---
 
