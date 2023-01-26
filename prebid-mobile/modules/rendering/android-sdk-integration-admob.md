@@ -250,7 +250,7 @@ adUnit?.fetchDemand { result ->
 #### Step 1: Create AdRequest
 {:.no_toc}
 
-This step is totally the same as for the original [AdMob integration](https://developers.google.com/admob/android/rewarded). You don't have to make any modifications here.
+This step is the same as for the original [AdMob integration](https://developers.google.com/admob/android/rewarded). You don't have to make any modifications here.
 
 #### Step 2: Create AdMobRewardedMediationUtils
 {:.no_toc}
@@ -335,9 +335,9 @@ The `NativeAdUnit` is responsible for making bid requests. Once the bid responce
 #### Step 3: Configure NativeAdUnit
 {:.no_toc}
 
-The bid request for native ad should have a descrition of expected assets. The full spec for the Native template you can find in the [Native Ad Specification from IAB](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf). 
+The bid request for native ad should have a description of expected assets. The full spec for the Native template can be found in the [Native Ad Specification from IAB](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf). 
 
-The example of creating the assets array and configuring the `NativeAdUnit`:
+Example of creating the assets array and configuring the `NativeAdUnit`:
 
 ``` kotlin
 private fun configureNativeAdUnit(nativeAdUnit: NativeAdUnit) {
@@ -404,4 +404,4 @@ The `fetchDemand` method makes a bid request to the prebid server and provides a
 #### Step 5: make an ad request
 {:.no_toc}
 
-Now just load a native ad from AdMob according to the [AdMob instructions](https://developers.google.com/admob/android/native/start). Everything else will be handled by GMA SDK and prebid adapters. 
+Now load an native ad from AdMob according to the [AdMob instructions](https://developers.google.com/admob/android/native/start). Everything else will be handled by GMA SDK and prebid adapters. 
