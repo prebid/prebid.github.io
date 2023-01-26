@@ -34,7 +34,7 @@ dependencies {
 ```
 
 {% capture warning_note %}  
-Prebid is going to release beta versions of SDK from time to time. So if you don't want to update to beta versions - avoid Maven's range notation for the dependency versions.
+Prebid is going to release beta versions of the SDK from time to time. If you don't want to update to beta versions - avoid Maven's range notation for the dependency versions.
 
 If you still use the range notation like this:
 
@@ -48,25 +48,25 @@ please change it to the strict version.
 
 ### Build framework from source
 
-After [cloning the repo](https://github.com/prebid/prebid-mobile-android), use Terminal or another command line tool, change to the root directory and run:
+After [cloning the repo](https://github.com/prebid/prebid-mobile-android), use Terminal or another command line tool to change to the root directory and run:
 
 ```
 scripts/buildPrebidMobile.sh
 ```
 
-to output the PrebidMobile framework for Android.
+This will output the PrebidMobile framework for Android.
 
 ## Initialize SDK
 
 {% capture warning_note %}  
-All integration examples for Android are written on `Kotlin`. 
+All integration examples for Android are written in `Kotlin`. 
 
-The corresponding Java code you can find in the [Demo Java](https://github.com/prebid/prebid-mobile-android/tree/master/Example/PrebidDemoJava) application
+The corresponding Java code can be found in the [Demo Java](https://github.com/prebid/prebid-mobile-android/tree/master/Example/PrebidDemoJava) application
 
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add 'account' info to the Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
+Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add the 'account' info to Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
 
 ```
 PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
@@ -100,7 +100,7 @@ If you integrate Prebid Mobile with GMA SDK, use the following method, which che
 ```kotlin
 PrebidMobile.checkGoogleMobileAdsCompatibility(MobileAds.getVersion().toString())
 ```
-Check the log messages of the app. If the provided GMA SDK version is not verified for compatibility, the Prebid SDK informs about it.
+Check the log messages of the app. If the provided GMA SDK version is not verified for compatibility, the Prebid SDK will log a warning.
 
 ## Updating your Android manifest
 
@@ -182,7 +182,7 @@ var pbsAccountId = PrebidMobile.getPrebidServerAccountId()
 ### Host
 {:.no_toc}
 
-Object containing configuration your Prebid Server host with which Prebid SDK will communicate. Choose from the system-defined Prebid Server hosts or define your own custom Prebid Server host.
+Object containing configuration for your Prebid Server host with which the Prebid SDK will communicate. Choose from the system-defined Prebid Server hosts or define your own custom Prebid Server host.
 
 ```kotlin
 PrebidMobile.setPrebidServerHost(Host.RUBICON);
@@ -218,7 +218,7 @@ var isShareLocation = PrebidMobile.isShareGeoLocation()
 ### CustomHeaders
 {:.no_toc}
 
-The following methods enable the customization of the HTTP call to the Prebid server:
+The following methods enables the customization of the HTTP call to the Prebid server:
 
 ```kotlin
 var headers = HashMap<String, String> ()
