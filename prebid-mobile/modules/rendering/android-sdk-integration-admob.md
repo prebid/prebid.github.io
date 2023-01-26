@@ -29,7 +29,7 @@ Prebid is integrated into the AdMob monetization via adapters.
 
 **Step 4** For each prebid's ad source, the GMA SDK sequentially instantiates an adapter. 
 
-**Step 5** The adapter verifies the targeting keywords of the winning bid and the server properties of the given ad source. If they match adapter will render the winning bid. Otherwise, it will fail with "no ad" immediately and the next ad source will instantiate the same adapter but for another set of server params.
+**Step 5** The adapter verifies the targeting keywords of the winning bid and the server properties of the given ad source. If they match the adapter will render the winning bid. Otherwise, it will immediately fail with a "no ad" error and the next ad source will instantiate the same adapter but for another set of server params.
 
 
 ## Integrate Prebid Adapters
