@@ -10,10 +10,10 @@ sidebarType: 2
 # Google Ad Manager Integration
 {:.no_toc}
 
-The integration of Prebid Rendering API with Google Ad Manager (GAM) assumes that publisher has an account on GAM and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app project. 
+The integration of Prebid Rendering API with Google Ad Manager (GAM) assumes that the publisher has an account on GAM and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app project. 
 
 
-If you do not have GAM SDK in the app yet, refer the the [Google Integration Documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start).
+If you do not have the GAM SDK in the app yet, refer to the [Google Integration Documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start).
 
 * TOC
 {:toc}
@@ -22,11 +22,11 @@ If you do not have GAM SDK in the app yet, refer the the [Google Integration Doc
 
 ![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-GAM.png)
 
-**Steps 1-2** Prebid SDK makes a bid request. Prebid server runs an auction and returns the winning bid.
+**Steps 1-2** Prebid SDK makes a bid request. Prebid Server runs an auction and returns the winning bid.
 
-**Step 3** Prebid Rendering Module via GAM Event Handler sets up the targeting keywords into the GAM's ad unit.
+**Step 3** The Prebid Rendering Module, through the GAM Event Handler, sets up the targeting keywords into the GAM's ad unit.
 
-**Step 4** GMA SDK makes an ad request. GAM returns the winning line item.
+**Step 4** The GMA SDK makes an ad request. GAM returns the winning line item.
 
 **Step 5** Based on the ad response, Prebid GAM Event Handler defines which line item has won in GAM - Prebid's or another ad source.
 
