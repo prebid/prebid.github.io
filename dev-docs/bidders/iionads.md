@@ -24,7 +24,7 @@ sidebarType: 1
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description                                       | Example         | type      |
+| Name          | Scope    | Description                                       | Example         | Type      |
 |:--------------|:---------|:--------------------------------------------------|:----------------|:----------|
 | `host`        | required | Ad network's RTB host                             | `'iionads.com'` | `string`  |
 | `adUnitId`    | required | Ad Unit Id will be generated on iionads Platform. | `42`            | `integer` |
