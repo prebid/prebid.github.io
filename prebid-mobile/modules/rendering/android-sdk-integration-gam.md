@@ -26,16 +26,16 @@ If you do not have GAM SDK in the app yet, refer the the [Google Integration Doc
 
 **Step 3** Prebid Rendering Module via GAM Event Handler sets up the targeting keywords into the GAM's ad unit.
 
-**Step 4** GMA SDK makes an ad request. GAM returns the winned line item.
+**Step 4** GMA SDK makes an ad request. GAM returns the winning line item.
 
-**Step 5** Basing on the ad response Prebid GAM Event Handler defines which line item has won on the GAM - the Prebid's one or another ad source on GAM.
+**Step 5** Based on the ad response, Prebid GAM Event Handler defines which line item has won in GAM - Prebid's or another ad source.
 
 **Step 6** The winner is displayed in the app with the respective rendering engine.
   
 
 ## Integrate Event Handlers
 
-Prebid SDK provides rendering integration into GAM setup via [app events ](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner#app_events) mechanizm. To integrate Prebid Event Handlers into your app, add the following line to your Podfile:
+Prebid SDK provides rendering integration into GAM setup via [app events ](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner#app_events) mechanism. To integrate Prebid Event Handlers into your app, add the following line to your Podfile:
 
 GAM Event Handlers is a set of classes that wrap the GAM Ad Units and manage them respectively to the In-App Bidding flow. These classes are provided in the form of library that could be added to the app via Gradle:
 
@@ -63,10 +63,10 @@ To integrate the banner ad you need to implement three easy steps:
 
 
 ``` kotlin
-// 1. Create banner custom event handler for GAM ad server.
+// 1. Create a banner custom event handler for GAM ad server.
 val eventHandler = GamBannerEventHandler(requireContext(), GAM_AD_UNIT, GAM_AD_SIZE)
 
-// 2. Create a bannerView instance and provide GAM event handler
+// 2. Create a bannerView instance and provide the GAM event handler
 bannerView = BannerView(requireContext(), configId, eventHandler)
 // (Optional) set an event listener
 bannerView?.setBannerListener(this)
@@ -74,7 +74,7 @@ bannerView?.setBannerListener(this)
 // Add bannerView to your viewContainer
 viewContainer?.addView(bannerView)
 
-// 3. Execute ad loading
+// 3. Execute the loadAd function.
 bannerView?.loadAd()
 ```
 
@@ -90,7 +90,7 @@ To create the event handler you should provide a GAM Ad Unit Id and the list of 
 #### Step 2: Create Ad View
 {:.no_toc}
 
-**BannerView** - is a view that will display the particular ad. It should be added to the UI. To create it you should provide:
+**BannerView** - is the view that will display a particular ad. It should be added to the UI. To create it you should provide:
 
 - **configId** - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
 - **eventHandler** - the instance of the banner event handler
@@ -102,7 +102,7 @@ And assign the listeners for processing ad events.
 #### Step 3: Load the Ad
 {:.no_toc}
 
-Simply call the `loadAd()` method to start In-App Bidding flow. The In-App Bidding SDK starts the  bidding process right away.
+Call the `loadAd()` method to start the In-App Bidding flow. The In-App Bidding SDK starts the bidding process immediately.
 
 ### Outstream Video
 {:.no_toc}
@@ -124,36 +124,36 @@ GAM setup:
 Integration:
 1. Replace the `AdManagerAdView` with `BannerView` in the UI. 
 3. Implement the interface `BannerViewListener`.
-4. Remove usage of `AdManagerAdView`, `AdManagerAdRequest`, and implementation of the `AdListener`.
-5. Remove original `BannerAdUnit`.
+4. Remove both `AdManagerAdView` and `AdManagerAdRequest` and implement an`AdListener`.
+5. Remove the original `BannerAdUnit`.
 6. Follow the instructions to integrate [Banner API](#banner-api).  
 
 
 ## Interstitial API
 
-To integrate interstitial ad you need to implement four easy steps:
+To integrate interstitial ad follow these steps:
 
 
 ``` kotlin
-// 1. Create interstitial custom event handler for GAM ad server.
+// 1. Create an interstitial custom event handler for GAM ad server.
 val eventHandler = GamInterstitialEventHandler(requireContext(), gamAdUnit)
 
-// 2. Create interstitialAdUnit instance and provide GAM event handler
+// 2. Create an interstitialAdUnit instance and provide GAM event handler
 interstitialAdUnit = InterstitialAdUnit(requireContext(), configId, minSizePercentage, eventHandler)
 // (Optional) set an event listener
 interstitialAdUnit?.setInterstitialAdUnitListener(this)
 
-// 3. Execute ad load
+// 3. Execute the loadAd function. 
 interstitialAdUnit?.loadAd()
 
 //....
 
-// 4. After ad is loaded you can execute `show` to trigger ad display
+// 4. After ad is loaded you can execute the `show` function to trigger ad display
 interstitialAdUnit?.show()
 
 ```
 
-The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
+The **default** ad format for an interstitial ad is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ```
 interstitialAdUnit = InterstitialAdUnit(
@@ -176,26 +176,26 @@ To create an event handler you should provide a GAM Ad Unit.
 #### Step 2: Create Interstitial Ad Unit
 {:.no_toc}
 
-**InterstitialAdUnit** - is an object that will load and display the particular ad. To create it you should provide:
+**InterstitialAdUnit** - is an object that will load and display a particular ad. To create it you should provide:
 
 - **configId** - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
-- **minSizePercentage** - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
+- **minSizePercentage** - specifies the minimum width and height percent an ad may occupy of a device’s screen.
 - **eventHandler** - the instance of the interstitial event handler
 
 Also, you can assign the listeners for processing ad events.
 
-> **NOTE:** minSizePercentage - plays an important role in a bidding process for display ads. If provided space is not enough demand partners won't respond with the bids.
+> **NOTE:** minSizePercentage - plays an important role in a bidding process for display ads. If the provided space is too small demand partners won't respond with bids.
 
 #### Step 3: Load the Ad
 {:.no_toc}
 
-Simply call the `loadAd()` method to start In-App Bidding flow. The ad unit will load an ad and will wait for explicit instructions to display the Interstitial Ad.
+Call the `loadAd()` method to start In-App Bidding flow. The ad unit will load an ad and will wait for explicit instructions to display the Interstitial Ad.
 
 
 #### Step 4: Show the Ad when it is ready
 {:.no_toc}
 
-The most convenient way to determine if the interstitial ad is ready for displaying is to listen to the particular listener method:
+The most convenient way to determine if the interstitial ad is ready for displaying is to listen to the listener method:
 
 ``` kotlin
 override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
@@ -208,51 +208,51 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 
 GAM setup:
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
-2. Create new GAM ad unit.
-3. Setup new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach. 
+2. Create a new GAM ad unit.
+3. Setup a new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach. 
 
 Integration:
 1. Replace the `AdManagerInterstitialAd` with `InterstitialRenderingAdUnit`. 
-3. Implement the interface `InterstitialEventListener`.
-4. Remove usage of `AdManagerInterstitialAd`, `AdManagerAdRequest`.
-5. Remove original `InterstitialAdUnit`.
+3. Implement the interface for `InterstitialEventListener`.
+4. Remove both `AdManagerInterstitialAd` and `AdManagerAdRequest`.
+5. Remove the original `InterstitialAdUnit`.
 6. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
 
 
 ## Rewarded API
 
-To display an Rewarded Ad need to implement four easy steps:
+To display a Rewarded Ad follow these steps:
 
 
 ``` kotlin
-// 1. Create rewarded custom event handler for GAM ad server.
+// 1. Create a rewarded custom event handler for GAM ad server.
 val eventHandler = GamRewardedEventHandler(requireActivity(), gamAdUnitId)
 
-// 2. Create rewardedAdUnit instance and provide GAM event handler
+// 2. Create a rewardedAdUnit instance and provide the GAM event handler
 rewardedAdUnit = RewardedAdUnit(requireContext(), configId, eventHandler)
 
-// (Optional) set an event listener
+// You can also set an event listener, this step is optional.
 rewardedAdUnit?.setRewardedAdUnitListener(this)
 
-// 3. Execute ad load
+// 3. Execute the loadAd function. 
 rewardedAdUnit?.loadAd()
 
 //...
 
-// 4. After ad is loaded you can execute `show` to trigger ad display
+// 4. After the ad is loaded you can execute the `show` function to display the ad. 
 rewardedAdUnit?.show()
 ```
 
-The way of displaying the **Rewarded Ad** is totally the same as for the Interstitial Ad. You can customize a kind of ad:
+Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad. The type of ad can be customized to:
 
 
-To be notified when user earns a reward - implement `RewardedAdUnitListener` interface:
+Be notified when user earns a reward - implement `RewardedAdUnitListener` interface:
 
 ``` kotlin
  fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit)
 ```
 
-The actual reward object is stored in the `RewardedAdUnit`:
+When the actual reward object is stored in the `RewardedAdUnit`:
 
 ``` kotlin
 val reward = rewardedAdUnit.getUserReward()
@@ -272,22 +272,20 @@ To create an event handler you should provide a GAM Ad Unit.
 
 **RewardedAdUnit** - is an object that will load and display the particular ad. To create it you should provide
 
-- **configId** - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
-- **eventHandler** - the instance of rewarded event handler
+- **configId** - is an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
+- **eventHandler** - is the instance of the rewarded event handler
 
-Also, you can assign the listener for processing ad events.
-
+You can also assign the listener for processing ad events.
 
 #### Step 3: Load the Ad
 {:.no_toc}
 
-Simply call the `loadAd()` method to start an In-App Bidding flow. The ad unit will load an ad and will wait for explicit instructions to display the Rewarded Ad.
+Call the `loadAd()` method to start the In-App Bidding flow. The ad unit will load an ad and will wait for explicit instructions to display the Rewarded Ad.
 
-
-#### Step 4: Show the Ad when it is ready
+#### Step 4: Display the Ad when it is ready
 {:.no_toc}
 
-The most convenient way to determine if the ad is ready for displaying is to listen for particular listener method:
+The most convenient way to determine if the ad is ready for displaying is to listen for the listener method:
 
 ``` kotlin
 override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
@@ -300,11 +298,11 @@ override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 
 GAM setup:
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
-2. Create new GAM ad unit.
-3. Setup new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach.
+2. Create a new GAM ad unit.
+3. Setup a new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach.
 
 Integration:
 1. Replace the `RewardedAd` with `RewardedAdUnit`. 
-2. Implement the interface `RewardedAdUnitListener`.
-3. Remove original `RewardedVideoAdUnit`.
+2. Implement the interface for `RewardedAdUnitListener`.
+3. Remove the original `RewardedVideoAdUnit`.
 4. Follow the instructions to integrate [Rewarded API](#rewarded-api).  
