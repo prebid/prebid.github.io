@@ -633,11 +633,11 @@ According to the [OpenRTB spec](https://www.iab.com/wp-content/uploads/2018/03/O
 
 When native ad is rendered prebid universal creative will attach `click` listeners on all DOM elements that have class `pb-click`. Which means it's up to the publisher to decide which DOM objects are 'clickable'.
 
-Furthermore, prebid universal creative can also track if some specific asset is clicked. To enable this, publisher needs to assign custom attribute to associated DOM element: `hb_native_asset_id = "5"`. In that case if user clicks on asset with `id: 5` prebid universal creative will take `link` object from that asset and fire all click trackers. If asset doesn't have `link` object, prebid universal creative will fire all click trackers associated with 'master' `link` object (as described in openRTB specs).
+Furthermore, prebid universal creative can also track if some specific asset is clicked. To enable this, publisher needs to assign custom attribute to associated DOM element: `hb_native_asset_id="5"`. In that case if user clicks on asset with `id: 5` prebid universal creative will take `link` object from that asset and fire all click trackers. If asset doesn't have `link` object, prebid universal creative will fire all click trackers associated with 'master' `link` object (as described in openRTB specs).
 
 
 ```html
-<div class="pb-click" hb_native_asset_id = "5">
+<div class="pb-click" hb_native_asset_id="5">
 ```
 If the user clicks on this div, the Prebid Universal Creative will take the `link` object from the identified asset and fire any click trackers. If the asset doesn't have a `link` object, it will just fire the click trackers associated with 'master' `link` object.
 
@@ -651,48 +651,6 @@ Example of how to configure a template so that the Prebid Universal Creative can
     <div class="attribution" class="pb-click" hb_native_asset_id="3">##hb_native_asset_id_3##</div>
   </div>
 </div>
-```
-
-### 6.3. Viewability Tracking
-In order for viewability tracking to work, there needs to be a script on `window.top` that is tracking if the ad's iframe is viewable or not. Also, this script needs to communicate with Prebid.js so that appropriate trackers are fired when the ad is viewable.
-
-To minimize needed work on the publisher side, we recommend using the [Prebid.js Viewability module](https://github.com/prebid/Prebid.js/blob/master/modules/viewability.md).
-
-Enabling viewability tracking for native ads:
-- Build your Prebid.js bundle with the `viewability` module
-- Use the [Custom Renderer scenario](#43-implementing-the-custom-renderer-scenario) and add the following code to the `window.renderAd` function:
-
-``` javascript
-window.renderAd = (bid) => {
-    const {ortb} = bid;
-    // code that generates the native ad based on a template and ortb response should remain the same
-    ...
-
-    // send post message for viewability module to track and fire appropriate trackers
-    if (ortb.eventtrackers) {
-        // filter for "viewable-mrc50" and "viewable-mrc100"
-        ortb.eventtrackers.filter(ev => ev.event == 2 || ev.event == 3).forEach(tracker => {
-            let viewabilityRecord = {
-                vid: bid.adId,
-                tracker: {
-                    value: tracker.url,
-                    method: tracker.method == 1 ? 'img' : 'js', // method 1: img, 2: js
-                },
-                criteria: {
-                    inViewThreshold: tracker.event == 2 ? 0.5 : 1.0,
-                    timeInView: 1000,
-                },
-                message: 'Prebid Viewability',
-                action: 'startMeasurement',
-            };
-
-            let message = JSON.stringify(viewabilityRecord);
-            window.parent.postMessage(message, '*');
-        })
-    }
-
-    return template;
-}
 ```
 
 ## 7. Ad Server Implementation Details
