@@ -125,7 +125,7 @@ This is a regular title and the most important property is `len`, to specify the
 
 #### 3.1.2. Image Asset
 
-Contains an image request. Images can be of type `1` (Icon) or `3` (Main image). There are several ways to specify the image size or aspect ratio; the OpenRTB spec contains all the possibilities. Here's an example: 
+Contains an image request. Images can be of type `1` (Icon) or `3` (Main image). There are several ways to specify the image size or aspect ratio; the [OpenRTB spec](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) contains all the possibilities. Here's an example: 
 
 ```javascript
 {
@@ -435,6 +435,8 @@ Example Creative HTML
     pbNativeTagData.adId = "%%PATTERN:hb_adid%%";   // GAM specific
     // if you're using 'Send All Bids' mode, you should use %%PATTERN:hb_adid_BIDDER%%
     pbNativeTagData.requestAllAssets = true;
+    // if you want to track clicks in GAM, add the following variable
+    pbNativeTagData.clickUrlUnesc = "%%CLICK_URL_UNESC%%";
     window.pbNativeTag.renderNativeAd(pbNativeTagData);
 </script>
 ```
@@ -522,6 +524,8 @@ Example creative HTML:
     pbNativeTagData.adId = "%%PATTERN:hb_adid%%";  // GAM specific
     // if you're using 'Send All Bids' mode, you should use %%PATTERN:hb_adid_BIDDER%%
     pbNativeTagData.requestAllAssets = true;
+    // if you want to track clicks in GAM, add the following variable
+    pbNativeTagData.clickUrlUnesc = "%%CLICK_URL_UNESC%%";
     window.pbNativeTag.renderNativeAd(pbNativeTagData);
 </script>
 ```
@@ -612,7 +616,7 @@ Native ads support 3 different types of event tracking:
 - viewability tracking
 
 ### 6.1. Impression Tracking
-Prebid supports both methods (`img` and `js`) for impression tracking. Publishers just need to specify which method is support for which adUnit. This is configured in `adUnit.mediaTypes.native.ortb.eventtrackers`. For more details take a look at OpenRTB specs.  
+Prebid supports both methods (`img` and `js`) for impression tracking. Publishers just need to specify which method is support for which adUnit. This is configured in `adUnit.mediaTypes.native.ortb.eventtrackers`. For more details take a look at the [OpenRTB spec](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf).
 
 How impression tracking works step by step:
 - When the `window.pbNativeTag.renderNativeAd()` is called, the Prebid Universal Creative will request OpenRTB response from Prebid.js (via postmessage).
@@ -623,12 +627,14 @@ How impression tracking works step by step:
 
 The publisher doesn't need to implement anything for impression tracking to work, all that is needed is proper configuration of OpenRTB request on adUnit level. Prebid.js + Prebid Universal Creative will automatically take care of the impression tracking.
 
-### 6.2. Click Tracking
-According to the OpenRTB spec, click trackers can be found in `link` objects. There is a 'master' `link` object for the entire native ad and also each asset in the response can have its own separate `link` object.
+### 6.2 Click tracking
 
-When a native ad is rendered, the Prebid Universal Creative will attach click listeners on all DOM elements that have class `pb-click`. Which means it's up to the publisher to decide which DOM objects are 'clickable'.
+According to the [OpenRTB spec](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf], click trackers can be found in `link` objects. There is 'master' `link` object for the entire native ad and also each asset in the response can have it's own separate `link` object.
 
-By default, only the 'master' `link` URLs will be fired, but, the Prebid Universal Creative can also fire click tracking for specific assets. To enable this, publisher assigns a custom attribute to the associated DOM element.
+When native ad is rendered prebid universal creative will attach `click` listeners on all DOM elements that have class `pb-click`. Which means it's up to the publisher to decide which DOM objects are 'clickable'.
+
+Furthermore, prebid universal creative can also track if some specific asset is clicked. To enable this, publisher needs to assign custom attribute to associated DOM element: `hb_native_asset_id = "5"`. In that case if user clicks on asset with `id: 5` prebid universal creative will take `link` object from that asset and fire all click trackers. If asset doesn't have `link` object, prebid universal creative will fire all click trackers associated with 'master' `link` object (as described in openRTB specs).
+
 
 ```html
 <div class="pb-click" hb_native_asset_id = "5">
