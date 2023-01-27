@@ -174,17 +174,19 @@ Example creative HTML:
 ```
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
-    var pbNativeTagData = {};
-    pbNativeTagData.pubUrl = "%%PATTERN:url%%";
-    pbNativeTagData.adId = "%%PATTERN:hb_adid%%";
+    var ucTagData = {};
+    ucTagData.pubUrl = "%%PATTERN:url%%";
+    ucTagData.adId = "%%PATTERN:hb_adid%%";
     // if you're using 'Send All Bids' mode, you should use %%PATTERN:hb_adid_BIDDER%%
-    pbNativeTagData.requestAllAssets = true;
-    window.pbNativeTag.renderNativeAd(pbNativeTagData);
+    ucTagData.requestAllAssets = true;
+    // if you want to track clicks in GAM, add the following variable
+    ucTagData.clickUrlUnesc = "%%CLICK_URL_UNESC%%";
+    window.uctag.renderAd(document, ucTagData);
 </script>
 ```
 
 {: .alert.alert-warning :}
-When using Send All Bids, use `pbNativeTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` rather than `pbNativeTagData.adId = "%%PATTERN:hb_adid%%";` for each bidder’s creative, replacing `BIDDERCODE` with the actual bidder code, such as `%%PATTERN:hb_adid_BidderA%%`.
+When using Send All Bids, use `ucTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` rather than `ucTagData.adId = "%%PATTERN:hb_adid%%";` for each bidder’s creative, replacing `BIDDERCODE` with the actual bidder code, such as `%%PATTERN:hb_adid_BidderA%%`.
 
 
 The example CSS in the previous section applies here as well.
@@ -202,7 +204,7 @@ Now that you've defined your native template you can create your native creative
 
 {:start="4"}
 4. Under **Settings**, enter a **Name** for your creative.
-5. Enter any value into the **Click-through URL** field; this value will be overwritten by the native asset values. Also, if you operate in Europe and are using the jsdelivr-hosted native-render.js, make sure you set jsdelivr as your ad technology provider. (See Step 6 below.)
+5. Enter any value into the **Click-through URL** field; this value will be overwritten by the native asset values. Also, if you operate in Europe and are using the jsdelivr-hosted native.js, make sure you set jsdelivr as your ad technology provider. (See Step 6 below.)
 
 ![Native Creative](/assets/images/ad-ops/gam-sbs/gam-new-creative-part2.png){: .pb-md-img :}
 

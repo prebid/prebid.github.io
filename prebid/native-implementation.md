@@ -291,17 +291,17 @@ Example creative HTML:
 </div>
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
-    var ucTag = {};
-    ucTag.pubUrl = "%%PATTERN:url%%";     // GAM specific
-    ucTag.adId = "%%PATTERN:hb_adid%%";   // GAM specific
+    var ucTagData = {};
+    ucTagData.pubUrl = "%%PATTERN:url%%";     // GAM specific
+    ucTagData.adId = "%%PATTERN:hb_adid%%";   // GAM specific
     // if you're using 'Send All Bids' mode, you should use %%PATTERN:hb_adid_BIDDER%%
-    ucTag.requestAllAssets = true;
-    window.ucTag.renderAd(document, ucTag);
+    ucTagData.requestAllAssets = true;
+    window.ucTag.renderAd(document, ucTagData);
 </script>
 ```
 
 {: .alert.alert-warning :}
-When using 'Send All Bids' mode you should update `ucTag.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` for each bidder’s creative.
+When using 'Send All Bids' mode you should update `ucTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` for each bidder’s creative.
 
 Example CSS:
 ``` css
@@ -430,19 +430,19 @@ Example Creative HTML
 ```html
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist//%%PATTERN:hb_format%%.js"></script>
 <script>
-    var ucTag = {};
-    ucTag.pubUrl = "%%PATTERN:url%%";     // GAM specific
-    ucTag.adId = "%%PATTERN:hb_adid%%";   // GAM specific
+    var ucTagData = {};
+    ucTagData.pubUrl = "%%PATTERN:url%%";     // GAM specific
+    ucTagData.adId = "%%PATTERN:hb_adid%%";   // GAM specific
     // if you're using 'Send All Bids' mode, you should use %%PATTERN:hb_adid_BIDDER%%
-    ucTag.requestAllAssets = true;
+    ucTagData.requestAllAssets = true;
     // if you want to track clicks in GAM, add the following variable
-    ucTag.clickUrlUnesc = "%%CLICK_URL_UNESC%%";
-    window.ucTag.renderAd(document, ucTag);
+    ucTagData.clickUrlUnesc = "%%CLICK_URL_UNESC%%";
+    window.ucTag.renderAd(document, ucTagData);
 </script>
 ```
 
 {: .alert.alert-warning :}
-When using 'Send All Bids' mode you should update `ucTag.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` for each bidder’s creative.
+When using 'Send All Bids' mode you should update `ucTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` for each bidder’s creative.
 
 {: .alert.alert-info :}
 See [Managing the Native Template Outside of GAM](/adops/gam-native.html#managing-the-native-template-outside-of-gam) for ad server instructions.
@@ -519,17 +519,19 @@ Example creative HTML:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist//%%PATTERN:hb_format%%.js"></script>
 <script>
-    var ucTag = {};
-    ucTag.pubUrl = "%%PATTERN:url%%";    // GAM specific
-    ucTag.adId = "%%PATTERN:hb_adid%%";  // GAM specific
+    var ucTagData = {};
+    ucTagData.pubUrl = "%%PATTERN:url%%";    // GAM specific
+    ucTagData.adId = "%%PATTERN:hb_adid%%";  // GAM specific
     // if you're using 'Send All Bids' mode, you should use %%PATTERN:hb_adid_BIDDER%%
-    ucTag.requestAllAssets = true;
-    window.ucTag.renderAd(document, ucTag);
+    ucTagData.requestAllAssets = true;
+    // if you want to track clicks in GAM, add the following variable
+    ucTagData.clickUrlUnesc = "%%CLICK_URL_UNESC%%";
+    window.ucTag.renderAd(document, ucTagData);
 </script>
 ```
 
 {: .alert.alert-warning :}
-When using `Send All Bids` you should update `ucTag.adId = "%%PATTERN:hb_adid_biddercode%%";` for each bidder’s creative
+When using `Send All Bids` you should update `ucTagData.adId = "%%PATTERN:hb_adid_biddercode%%";` for each bidder’s creative
 
 {: .alert.alert-info :}
 See [Managing the Native Template Outside of GAM](/adops/gam-native.html#managing-the-native-template-outside-of-gam) for ad server instructions.
@@ -656,13 +658,13 @@ Example of how to configure a template so that the Prebid Universal Creative can
 There are detailed [instructions for setting up native in GAM](/adops/gam-native.html), but none of the Prebid functionality is specific to GAM. The requirements to use any of these approaches in a different ad server are:
 
 1. Put the creative in an iframe and load native.js
-1. Invoke the renderAd() function with a hash that includes the following values:
-    1. ucTag.pubUrl = "PAGE URL";
-    1. ucTag.adId = "PREBID ADID";
-    1. ucTag.requestAllAssets = true;
-1. renderAd() will look for the existence of an "adTemplate" value in the AdUnit. If it finds one, it will resolve macros and append it to the iframe's body.
-1. Otherwise, renderAd() will look for the existence of a "rendererUrl" value in the AdUnit. If it finds one, it loads the script then calls window.renderAd() and appends the results to the iframe's body.
-1. Otherwise renderAd() scans the iframe body and resolves macros.
+1. Invoke the `renderAd()` function with a hash that includes the following values:
+    1. `ucTagData.pubUrl = "PAGE URL";`
+    1. `ucTagData.adId = "PREBID ADID";`
+    1. `ucTagData.requestAllAssets = true;`
+1. `renderAd()` will look for the existence of an `adTemplate` value in the AdUnit. If it finds one, it will resolve macros and append it to the iframe's body.
+1. Otherwise, `renderAd()` will look for the existence of a `rendererUrl` value in the AdUnit. If it finds one, it loads the script then calls `window.renderAd()` and appends the results to the iframe's body.
+1. Otherwise `renderAd()` scans the iframe body and resolves macros.
 
 ## Further Reading
 
