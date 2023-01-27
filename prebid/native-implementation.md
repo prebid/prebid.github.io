@@ -198,7 +198,7 @@ In the native template, simply access the custom value with the normal Prebid `#
 ## 4. Implementing the Native Template
 
 - If you want to manage your creative within the ad server (e.g. Google Ad Manager), follow the instructions for [AdServer-Defined Creative](#41-implementing-adserver-defined-template).
-- If you’d prefer to manage your creative within the Prebid.js AdUnit, follow the instructions for [AdUnit-Defined Creative](#42-implementing-adunit-defined-template).
+- If you’d prefer to manage your creative within the Prebid.js AdUnit, follow the instructions for [AdUnit-Defined Creative](#42-implementing-an-adunit-defined-template).
 - If you’d prefer to manage your creative from a separate piece of JavaScript, follow the instructions for the [Custom Renderer](#43-implementing-the-custom-renderer-scenario).
 
 {: .alert.alert-info :}
