@@ -177,6 +177,7 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 | 33Across ID | 33Across | 33acrossId | 33across.com | "1111" |
 | Admixer ID | Admixer | admixerId | admixer.net | "1111" |
 | adQuery QiD | adQuery | qid | adquery.io | "p9v2dpnuckkzhuc..." |
+| Adriver ID | Adriver | adriverId | adriver.ru | "1111" |
 | Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
 | AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
