@@ -88,7 +88,7 @@ See the table below for the list of properties in the `mediaTypes` object of the
 
 The `native` object contains properties that correspond to the assets of the native ad.
 
-See [Prebid Native Implementation](prebid/native-implementation.html) for details.
+See [Prebid Native Implementation](/prebid/native-implementation.html) for details.
 
 <a name="adUnit.mediaTypes.video" />
 
