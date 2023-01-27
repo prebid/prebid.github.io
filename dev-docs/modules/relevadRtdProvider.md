@@ -25,7 +25,7 @@ This real-time data processing module provides quality contextual IAB categories
 
 Compile the Relevad RTD module (`relevaddRtdProvider`) into your Prebid build, along with the parent RTD Module (`rtdModule`):
 
-`gulp build --modules=rtdModule,relevadRtdProvider,appnexusBidAdapter`
+`gulp build --modules=rtdModule,relevadRtdProvider`
 
 Next we configure the module, via `pbjs.setConfig`. See the **Parameter Descriptions** below for more detailed information of the configuration parameters. 
 
