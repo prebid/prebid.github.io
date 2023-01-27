@@ -106,7 +106,7 @@ To see all of the winning bids, open your browser console and type `pbjs.getAllW
 Keep in mind that any bid responses that come back after the [timeout you configured](/dev-docs/getting-started.html#set-the-ad-server-timeout) during setup will not be sent to the ad server.
 
 {: .pb-alert .pb-alert-tip :}
-You can also print this data to the console in [table format](/dev-docs/troubleshooting-tips.html#see-all-bids-in-the-console) for easier reading.
+You can also print this data to the console in [table format](#see-all-bids-in-the-console) for easier reading.
 <hr>
 
 ## Modify bid responses for testing
@@ -114,7 +114,7 @@ You can also print this data to the console in [table format](/dev-docs/troubles
 Using `pbjs.setConfig({debugging:{ ... }})` from the javascript console, it is possible to override and filter bids as they come in. When this type of debugging is enabled it will persist across page loads using `sessionStorage`.
 
 {: .pb-alert .pb-alert-warning :}
-While this allows for easy testing of pages that immediately start auctions (most pages), it also means you need to remember to **deactivate debugging when you are done** (or clear your local storage / use incognito mode when testing). Also, note that this approach only _modifies_ existing bids. It cannot create bids for bidders that didn't bid.
+While this allows for easy testing of pages that immediately start auctions (most pages), it also means you need to remember to **deactivate debugging when you are done** (or clear your local storage / use incognito mode when testing). Also, note that this approach only _modifies_ existing bids. It cannot create bids for bidders that didn't bid; for that functionality, see the [debugging module](/dev-docs/modules/debugging.html).
 
 ```javascript
 // Filtering bidders
@@ -182,7 +182,7 @@ Here's another scenario using the 'debugging' feature described in the previous 
 
 This section covers cases in which a particular server-side bidder doesn't always respond with a bid, or you want to try specific bid CPM values to verify line item setup.
 
-If you're using Prebid Server (i.e. the [s2sConfig](/dev-docs/publisher-api-reference/setconfig#setConfig-Server-to-Server) option), you can force it to respond with a particular canned response on any page by defining a storedAuctionResponse ID on the javascript console:
+If you're using Prebid Server (i.e. the [s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) option), you can force it to respond with a particular canned response on any page by defining a storedAuctionResponse ID on the javascript console:
 
 ```javascript
 javascript console> pbjs.setConfig({
@@ -217,12 +217,12 @@ Open your browser console and type `pbjs.getBidResponses();` to see a list of th
 To see all of the winning bids, open your browser console and type [`pbjs.getAllWinningBids();`](/dev-docs/publisher-api-reference/getAllWinningBids.html).
 
 {: .alert.alert-danger :}
-Keep in mind that any bid responses that come back after [the timeout you configured during setup]({{site.github.url}}/dev-docs/getting-started.html#set-the-ad-server-timeout) will not be sent to the ad server.
+Keep in mind that any bid responses that come back after [the timeout you configured during setup](/dev-docs/getting-started.html#set-the-ad-server-timeout) will not be sent to the ad server.
 
 {: .alert.alert-success :}
-You can also [print this data to the console in table format]({{site.baseurl}}/dev-docs/troubleshooting-tips.html#see-all-bids-in-the-console) for easier reading.
+You can also [print this data to the console in table format](#see-all-bids-in-the-console) for easier reading.
 
-![pbjs.getBidResponses() in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/bids.png "pbjs.getBidResponses()"){: .pb-lg-img :}
+![pbjs.getBidResponses() in browser console](/assets/images/overview/prebid-troubleshooting-guide/bids.png "pbjs.getBidResponses()"){: .pb-lg-img :}
 
 <hr>
 
@@ -232,13 +232,13 @@ To print information about all of the bids that come in to the Console on any pa
 
 Open the Chrome Dev Tools.  In the **Sources** tab, next to **Content Scripts**, click the **>>** button and you can add **Snippets**:
 
-![View Snippets in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png){: .pb-sm-img :}
+![View Snippets in Dev Tools](/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png){: .pb-sm-img :}
 
 <br />
 
 Right-click to add a **New** snippet:
 
-![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png){: .pb-sm-img :}
+![Add New Snippet in Dev Tools](/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png){: .pb-sm-img :}
 
 <br />
 
@@ -296,13 +296,13 @@ Paste in the following code using Control-V (or Command-V on Mac), and give the 
 
 Right-click the snippet and choose **Run**:
 
-![Run a Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png){: .pb-sm-img :}
+![Run a Snippet in Dev Tools](/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png){: .pb-sm-img :}
 
 <br />
 
 Check the output in Console to see the bids:
 
-![See Snippet Output in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png){: .pb-sm-img :}
+![See Snippet Output in Dev Tools](/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png){: .pb-sm-img :}
 
 <hr>
 
@@ -312,13 +312,13 @@ To print information about all of the winning bids that come in to the Console o
 
 Open the Chrome Dev Tools.  In the **Sources** tab, next to **Content Scripts**, click the **>>** button and you can add **Snippets**:
 
-![View Snippets in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png){: .pb-sm-img :}
+![View Snippets in Dev Tools](/assets/images/dev-docs/troubleshooting-tips/01-view-snippets.png){: .pb-sm-img :}
 
 <br />
 
 Right-click to add a **New** snippet:
 
-![Add New Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png){: .pb-sm-img :}
+![Add New Snippet in Dev Tools](/assets/images/dev-docs/troubleshooting-tips/02-add-new-snippet.png){: .pb-sm-img :}
 
 <br />
 
@@ -351,13 +351,13 @@ if (output.length) {
 
 Right-click the snippet and choose **Run**:
 
-![Run a Snippet in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png){: .pb-sm-img :}
+![Run a Snippet in Dev Tools](/assets/images/dev-docs/troubleshooting-tips/03-run-snippet.png){: .pb-sm-img :}
 
 <br />
 
 Check the output in Console to see the bids (note that this screenshot shows the output from "see all bids" but they're very similar):
 
-![See Snippet Output in Dev Tools]({{site.github.url}}/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png){: .pb-sm-img :}
+![See Snippet Output in Dev Tools](/assets/images/dev-docs/troubleshooting-tips/04-snippet-output.png){: .pb-sm-img :}
 
 <hr>
 
@@ -399,7 +399,7 @@ To make sure your ad server is set up correctly, answer the following questions:
 
 + **Is there other remnant inventory in the ad server with a higher CPM that is winning?** To test for this, you may want to use a test creative set up within a bidder partner that has a high CPM or create artificial demand with a [bidCPMadjustment](/dev-docs/publisher-api-reference/bidderSettings.html).
 
-+ **Have you set up all of the line items in the ad server to match the [setPriceGranularity setting]({{site.github.url}}/dev-docs/examples/custom-price-buckets.html) within Prebid.js?**  All of the line items that correspond to your price granularity settings must be set up in your ad server.  When there are gaps in the price granularity of your line item setup, bids will be reduced according to the size of the gap.  For example, with [dense granularity](/dev-docs/publisher-api-reference/setConfig.html#denseGranularityBucket), a $3.32 bid will be sent to the ad server as $3.30.
++ **Have you set up all of the line items in the ad server to match the [setPriceGranularity setting](/dev-docs/examples/custom-price-buckets.html) within Prebid.js?**  All of the line items that correspond to your price granularity settings must be set up in your ad server.  When there are gaps in the price granularity of your line item setup, bids will be reduced according to the size of the gap.  For example, with [dense granularity](/dev-docs/publisher-api-reference/setConfig.html#denseGranularityBucket), a $3.32 bid will be sent to the ad server as $3.30.
 
 <hr>
 
@@ -413,7 +413,7 @@ When a prebid line item wins the ad server's auction, a `renderAd` event will be
 
 When this event is logged, it shows that Prebid.js has requested to render the ad from the winning bidder partner, and that this partner's bid has won both the Prebid and ad server auctions.
 
-![renderAd event in browser console]({{site.github.url}}/assets/images/overview/prebid-troubleshooting-guide/render-ad.png "renderAd event in browser console"){: .pb-lg-img :}
+![renderAd event in browser console](/assets/images/overview/prebid-troubleshooting-guide/render-ad.png "renderAd event in browser console"){: .pb-lg-img :}
 
 <hr>
 
@@ -425,7 +425,7 @@ The following parameters in the `bidResponse` object are common across all bidde
 | Name     | Type    | Description                                                                                                                                                       | Example                                                                 |
 |----------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------|
 | `bidder` | String  | Unique bidder code used by ad server's line items to identify the bidder                                                                                          | `"appnexus"`                                                            |
-| `adId`   | String  | Unique identifier of a bid creative. Used by the line item's creative as in [this example]({{site.baseurl}}/adops/send-all-bids-adops.html#step-3-add-a-creative) | `"123"`                                                                 |
+| `adId`   | String  | Unique identifier of a bid creative. Used by the line item's creative as in [this example](/adops/gam-creative-banner-sbs.html) | `"123"`                                                                 |
 | `pbLg`   | String  | Low granularity price bucket: $0.50 increment, capped at $5, floored to 2 decimal places (0.50, 1.00, 1.50, ..., 5.00)                                            | `"1.50"`                                                                |
 | `pbMg`   | String  | Medium granularity price bucket: 0.10 increment, capped at $20, floored to 2 decimal places (0.10, 0.20, ..., 19.90, 20.00)                                       | `"1.60"`                                                                |
 | `pbHg`   | String  | High granularity price bucket: 0.01 increment, capped at $20, floored to 2 decimal places (0.01, 0.02, ..., 19.99, 20.00)                                         | `"1.61"`                                                                |
@@ -482,6 +482,10 @@ function auctionOptionsLogging() {
     pbjs.onEvent('bidTimeout', timedOutBidders => {
         let auctionId = timedOutBidders.length > 0 ? timedOutBidders[0].auctionId : 0
         console.log(`Auction Options: Auction End! Timed Out! Bidders: ${Array.from(new Set(timedOutBidders.map(each => each.bidder))).join(',')} - ${auctionId}`);
+    })
+
+    pbjs.onEvent('bidderError', { error, bidderRequest } => {
+        console.log(`Auction Error: Bidder ${bidderRequest.bidderCode} responded with ${error.status} ${error.statusText} - ${bidderRequest.auctionId}`);
     })
 
     pbjs.onEvent('auctionEnd', auction => {

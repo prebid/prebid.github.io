@@ -5,7 +5,8 @@ description: Prebid GetIntent Bidder Adaptor
 pbjs: true
 biddercode: getintent
 media_types: video, banner
-getFloor: true
+floors_supported: true
+sidebarType: 1
 ---
 
 

@@ -4,7 +4,7 @@ title: Saambaa
 description: Prebid Saambaa Bidder Adapter
 pbjs: true
 biddercode: saambaa
-pbjs_version_notes: not in 5.x
+sidebarType: 1
 ---
 
 ### Note:

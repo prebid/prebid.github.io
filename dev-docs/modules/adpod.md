@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Adpod
-description: Adds functions to validate, cache, and modify long-form video bids.
+description: Enables developers to add support for a new adserver that handles ad pod (long-form) videos.
 module_code : adpod
 display_name : Adpod
 enable_download : true

@@ -1,12 +1,25 @@
 ---
 layout: bidder
-title: SeedingAlliance
-description: Prebid SeedingAlliance Bidder Adaptor
-pbjs: true
+title: Seeding Alliance
+description: Prebid Seeding Alliance Bidder Adapter
 biddercode: seedingAlliance
-media_types: native
 gdpr_supported: true
-pbjs_version_notes: not in 5.x
+gvl_id: 371 
+usp_supported: false
+coppa_supported: false
+schain_supported: false
+dchain_supported: false
+userId: none
+media_types: banner, native
+safeframes_ok: true
+deals_supported: false
+floors_supported: true
+fpd_supported: false
+pbjs: true
+pbs: true
+pbs_app_supported: false
+prebid_member: false
+sidebarType: 1
 ---
 
 ### Bid params

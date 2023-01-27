@@ -23,13 +23,13 @@ The `AdUnit` object is an abstract object that cannot be instantiated. Use the [
 
 **Parameters**
 
-- `configId`: String containing the Prebid Server configuration ID.
-- `adType`: `BANNER` or `INTERSITIAL`. This value will be set by the object based on which type of ad unit object you create.
+- `configId`: String containing the Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
+- `adType`: `BANNER` or `INTERSTITIAL`. This value will be set by the object based on which type of ad unit object you create.
 
 **Properties**
 
-- `configId`: Prebid Server configuration ID.
-- `adType`: `BANNER` or `INTERSITIAL`.
+- `configId`: Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
+- `adType`: `BANNER` or `INTERSTITIAL`.
 - `periodMillis`: Integer defining the refresh time in milliseconds. Default = 0, meaning no auto refresh.
 - `keywords`: ArrayList containing keys and values.
 
@@ -47,20 +47,20 @@ PB Ad Slot is an identifier tied to the placement the ad will be delivered in. T
 
 Trigger a call to Prebid Server to retrieve demand for this Prebid Mobile ad unit.
 
-#### Mopub or GAM
+#### GAM
 
-By default, Prebid SDK uses inflection to determine the publisher ad server, one of Mopub or Google Ad Manager (GAM), to convert Prebid's targeting keys (PBS bid keys, host and cache key) to trigger targeted line items. To render ads in ad servers other than Mopub or GAM, follow the instructions in the 3rd party ad server below.
+By default, Prebid SDK uses inflection to determine the publisher ad server to convert Prebid's targeting keys (PBS bid keys, host and cache key) to trigger targeted line items. To render ads in ad servers other than GAM, follow the instructions in the 3rd party ad server below.
 
 
 **Parameters**
 
-- `adObj`: This is the ad server request object (for [Google Ad Manager](https://developers.google.com/android/reference/com/google/android/gms/ads/doubleclick/PublisherAdRequest) and for [Mopub](https://developers.mopub.com/publishers/reference/android/MoPubView/)). If you do not wish to add any additional /custom key values to the ad server after the Prebid auction, pass `adObj` to the fetchDemand function, where Prebid SDK will set all the Prebid targeting keys as well as any keys added prior to auction
-- As of Prebid SDK 1.7, a publisher can optionally pass the Google Ad Manager `builder` object of the [Google Ad Manager Mobile Ads SDK](https://developers.google.com/android/reference/com/google/android/gms/ads/doubleclick/PublisherAdRequest.Builder) to pass custom keys to Google Ad Manager after the Prebid Auction
+- `adObj`: This is the ad server request object. If you do not wish to add any additional /custom key values to the ad server after the Prebid auction, pass `adObj` to the fetchDemand function, where Prebid SDK will set all the Prebid targeting keys as well as any keys added prior to auction
+- As of Prebid SDK 1.7, a publisher can optionally pass the Google Ad Manager `builder` object of the [Google Ad Manager Mobile Ads SDK](https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start) to pass custom keys to Google Ad Manager after the Prebid Auction
 - `onCompleteListener`: listener object
 
 #### 3rd Party Ad Server
 
-The default ad servers for Prebid's Mobile SDK are MoPub and GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice.
+The default ad server is GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice.
 
 In this mode, the publisher will be responsible for the following actions:
 * Call fetchDemand with extended targetingDict callback
@@ -72,8 +72,8 @@ In this mode, the publisher will be responsible for the following actions:
 
 **Function Callbacks**
 
-* `ResultCode`: enum [result codes](https://docs.prebid.org/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
-* `unmodifiableMap`: [Prebid Server Response targeting keys](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting)
+* `ResultCode`: enum [result codes](/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
+* `unmodifiableMap`: [Prebid Server Response targeting keys](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting)
 
 
 ```
@@ -104,7 +104,9 @@ private void loadMPRewardedVideo() {
 }
 ```
 
+### setAppContent
 
+Provides targeting information for the `app.content` field of the bid request. Parameter is an `ContentObject` wich provides all respective fields. 
 
 
 ### setAutoRefreshPeriodMillis
@@ -255,6 +257,42 @@ Clear all key-value combinations from the Prebid Mobile ad unit.
 none
 </div>
 
+### UserData
+
+The following methods enable adding `user.data[]` objects into the bid request:
+
+```
+public void addUserData(DataObject dataObject)
+```
+
+```
+public ArrayList<DataObject> getUserData() 
+```
+
+```
+public void clearUserData() 
+```
+
+### App Content Data
+
+In order to set the `app.contnent.data[]` objects use the `getAppContent()` first and then one of the respective methods of the `ContentObject` class:
+
+```
+public void addData(@NonNull DataObject dataObject)
+```
+
+```
+public ArrayList<DataObject> getDataList()
+```
+
+```
+public void setDataList(@NonNull ArrayList<DataObject> dataObjects) 
+```
+
+```
+public void clearDataList()     
+```
+
 ## Example
 
 ```
@@ -288,7 +326,7 @@ adUnit.fetchDemand(builder, new OnCompleteListener() {
 
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
 - [Banner Ad Unit](/prebid-mobile/pbm-api/android/pbm-banneradunit-android.html)
-- [Intersitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
+- [Interstitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)

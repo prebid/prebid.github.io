@@ -9,17 +9,21 @@ gdpr_supported: true
 schain_supported: true
 usp_supported: true
 userIds: all
-getFloor: true
+floors_supported: true
+pbs: true
+pbs_app_supported: true
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Bid Params](#apacdex-bid-params)
-- [Geo Object](#apacdex-geo-object)
-- [Video Ad Unit](#apacdex-video-ad-unit)
-- [Sample Banner Ad Unit](#apacdex-sample-banner-ad-unit)
-- [Sample Video Ad Unit: Instream](#apacdex-sample-instream-ad-unit)
-- [Sample Video Ad Unit: Outstream](#apacdex-sample-outstream-ad-unit)
+- [Table of Contents](#table-of-contents)
+- [Bid Params](#bid-params)
+- [Geo Object](#geo-object)
+- [Video Ad Unit](#video-ad-unit)
+- [Sample Banner Ad Unit](#sample-banner-ad-unit)
+- [Sample Video Ad Unit: Instream](#sample-video-ad-unit-instream)
+- [Sample Video Ad Unit: Outstream](#sample-video-ad-unit-outstream)
 
 <a name="apacdex-bid-params" />
 
@@ -32,6 +36,7 @@ getFloor: true
 | `siteId`*     | required | Publisher site ID from Apacdex                                                      | `'apacdex1234'`                                   | `string` |
 | `floorPrice`  | optional | CPM bidfloor in USD                                                                 | `0.03`                                            | `float`  |
 | `geo`         | optional | GEO data of device. See [Geo Object](#apacdex-geo-object) for details.              | `{"lat":17.98928,"lon":99.7741712,"accuracy":20}` | `object` |
+
 (*) Please do not use `placementId` and `siteId` at the same time.
 
 <a name="apacdex-geo-object" />

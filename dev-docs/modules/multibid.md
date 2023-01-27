@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - MultiBid
-description: Allows bidders to return more than one bid response
+description: Allows bidders to send multiple bids to the ad server.
 module_code : multibid
 display_name : MultiBid
 enable_download : true

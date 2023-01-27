@@ -8,7 +8,7 @@ title: Prebid Server | Features | Interstitials
 # Prebid Server | Features | Interstitials
 
 Support for interstitial ads is enabled with the addition of two fields to the OpenRTB request: `device.ext.prebid.interstitial.minwidthperc`
-and `device.ext.interstial.minheightperc` The values will be numbers that indicate the minimum allowed
+and `device.ext.interstitial.minheightperc` The values will be numbers that indicate the minimum allowed
 size for the ad, as a percentage of the base side. For example, a width of 600 and "minwidthperc": 60
 would allow ads with widths from 360 to 600 pixels inclusive.
 

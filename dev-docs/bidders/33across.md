@@ -7,11 +7,12 @@ pbs: true
 biddercode: 33across
 media_types: banner, video
 gdpr_supported: true
-getFloor: true
+floors_supported: true
 schain_supported: true
 usp_supported: true
 userIds: all
 gvl_id: 58
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -156,4 +157,15 @@ var adUnits = [
   ...
 }
 ```
-
+### SRA Mode
+We recommend using SRA mode to optimize the bidding process as this allows our adapter to group together bid requests for Ad Units pertaining to the same product and site ID thereby minimizing the number of http requests made to our endpoint. To enable SRA set the following bidder specific config under 33Across
+```
+pbjs.setBidderConfig({
+   bidders: ['33across'],
+   config: {
+      ttxSettings: {
+        enableSRAMode: true
+      }
+   }
+});
+```

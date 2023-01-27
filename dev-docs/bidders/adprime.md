@@ -10,6 +10,7 @@ tcf2_supported: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
+sidebarType: 1
 ---
 
 ### Note:

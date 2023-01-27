@@ -19,11 +19,11 @@ Use the `BannerAdUnit` object to create and configure a banner ad unit in your a
 
 ### BannerAdUnit
 
-Create a new Banner Ad Unit associated with a Prebid Server configuration ID and a banner size.
+Create a new Banner Ad Unit associated with a Prebid Server 'configuration ID' and a banner size.
 
 **Parameters**
 
-- `configId`: String; Prebid Server configuration ID.
+- `configId`: String; Prebid Server configuration ID. Note: this is a Prebid Server [impression-level stored request ID](/prebid-server/features/pbs-storedreqs.html).
 - `width`: Integer; Width of the ad unit.
 - `height`: Integer; Height of the ad unit.
 
@@ -96,7 +96,7 @@ bannerAdUnit.fetchDemand(request, new onCompleteListener() {
 
 - [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)
 - [Ad Unit](/prebid-mobile/pbm-api/android/pbm-adunit-android.html)
-- [Intersitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
+- [Interstitial Ad Unit](/prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html)
 - [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html)
 - [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 - [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/android/prebidmobile-object-android.html)
