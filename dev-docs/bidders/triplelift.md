@@ -5,6 +5,7 @@ description: Prebid TripleLift Bidder Adapter
 biddercode: triplelift
 gdpr_supported: true
 usp_supported: true
+gpp_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
