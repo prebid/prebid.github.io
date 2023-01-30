@@ -3,7 +3,7 @@ layout: bidder
 title: MobileFuse
 pbs: true
 pbjs: false
-media_types: banner, video
+media_types: banner, video, native
 gdpr_supported: true
 schain_supported: true
 usp_supported: true

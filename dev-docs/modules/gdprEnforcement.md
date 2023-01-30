@@ -59,7 +59,7 @@ A page needs to define configuration rules about how Prebid.js should enforce ea
 {: .alert.alert-info :}
 To turn on Prebid.js enforcement you must:
 1) Include the gdprEnforcement module in the Prebid.js build
-and 2) setConfig `consentManagement.gdpr.cmp` to either 'iab' or 'static'
+and 2) setConfig `consentManagement.gdpr.cmpApi` to either 'iab' or 'static'
 
 The following fields related to GDPR enforcement are supported in the [`consentManagement`](/dev-docs/modules/consentManagement.html) object:
 
