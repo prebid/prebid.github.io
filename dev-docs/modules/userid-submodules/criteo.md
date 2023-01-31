@@ -2,7 +2,7 @@
 layout: userid
 title: Criteo ID for Exchanges
 description: Criteo ID for Exchanges User ID sub-module
-useridmodule: criteo
+useridmodule: criteoIdSystem
 ---
 
 
@@ -35,4 +35,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-

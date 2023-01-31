@@ -2,7 +2,7 @@
 layout: userid
 title: ID5 Universal ID
 description: ID5 Universal ID User ID sub-module
-useridmodule: id5Id
+useridmodule: id5IdSystem
 ---
 
 
@@ -76,4 +76,3 @@ pbjs.setConfig({
   }
 });
 {% endhighlight %}
-

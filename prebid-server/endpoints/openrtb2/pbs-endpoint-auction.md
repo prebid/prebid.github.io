@@ -1012,15 +1012,26 @@ Bidder-specific data can be defined with ext.prebid.bidderconfig:
 ```
 "ext": {
   "prebid": {
-    "bidderconfig": {
-      "bidders": ["bidderA", "bidderB"]
-    },
-    "config": {
-      "ortb2": {
-        "site": { ... },
-        "user": { ... }
+    "bidderconfig": [
+      {
+        "bidders": ["bidderA", "bidderB"],
+        "config": {
+           "ortb2": {
+              "site": { ... },
+              "user": { ... }
+           }
+        }
+      },
+      {
+        "bidders": ["bidderC"],
+        "config": {
+           "ortb2": {
+              "site": { ... },
+              "user": { ... }
+           }
+        }
       }
-    }
+    ]
   }
 }
 ```
