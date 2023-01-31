@@ -15,7 +15,7 @@ and users, and to apply permissions so only certain bidders are allowed
 to access those attributes.
 
 {: .alert.alert-warning :}
-For now, this feature is only supported in PBS-Java and these conventions aren't implemented by all adapters. Please
+For now, these conventions aren't implemented by all adapters. Please
 check with each of your bidders to make sure they're reading first
 party data from the standard Prebid locations.
 
