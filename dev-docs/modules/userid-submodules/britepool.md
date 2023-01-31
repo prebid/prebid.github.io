@@ -2,7 +2,7 @@
 layout: userid
 title: BritePool
 description: BritePool User ID sub-module
-useridmodule: britepoolId
+useridmodule: britepoolIdSystem
 ---
 
 
@@ -56,4 +56,3 @@ The BritePool privacy policy is at [https://britepool.com/services-privacy-notic
        }
    });
 {% endhighlight %}
-

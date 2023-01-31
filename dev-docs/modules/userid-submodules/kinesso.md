@@ -2,7 +2,7 @@
 layout: userid
 title: Kinesso ID
 description: Kinesso ID User ID sub-module
-useridmodule: kpuid
+useridmodule: kinessoIdSystem
 ---
 
 
@@ -38,4 +38,3 @@ The Kinesso ID privacy policy is covered under the [Kinesso Privacy Notice](http
 | name | Required | String | The name of this module. | `'kpuid'` |
 | params | Required | Object | Details for KinessoId initialization | |
 | params.accountid | Required | Int | Your SSP Account Id | 123 |
-

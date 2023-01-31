@@ -2,7 +2,7 @@
 layout: userid
 title: Novatiq Hyper ID
 description: Novatiq Hyper ID User ID sub-module
-useridmodule: novatiq
+useridmodule: novatiqIdSystem
 ---
 
 
@@ -93,5 +93,3 @@ pbjs.setConfig({
 
 
 If you have any questions, please reach out to us at [prebid@novatiq.com](mailto:prebid@novatiq.com)
-
-

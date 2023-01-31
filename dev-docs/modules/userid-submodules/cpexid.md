@@ -2,7 +2,7 @@
 layout: userid
 title: Czech Publisher Exchange ID (CPExID)
 description: Czech Publisher Exchange ID (CPExID) User ID sub-module
-useridmodule: cpexId
+useridmodule: cpexIdSystem
 ---
 
 
@@ -29,4 +29,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-
