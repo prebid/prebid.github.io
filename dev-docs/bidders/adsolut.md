@@ -31,4 +31,4 @@ The adsolut Bidding adaptor requires setup and approval before beginning. Please
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Ad network's RTB host | `'cpm.adsolut.in'` | `string` |
-| `zoneId` | required | RTB zone id           | `'30164'`                 | `string` |
+| `zoneId` | required | RTB zone id           | `30164`                 | `integer` |
