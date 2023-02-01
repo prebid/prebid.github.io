@@ -180,7 +180,7 @@ Make a regular AdMob's ad request. Everything else will be handled by GMA SDK an
 #### Steps 6: Display an ad
 {:.no_toc}
 
-Once you receive the ad it will be ready for display. Follow the [AdMob instructions](https://developers.google.com/admob/ios/interstitial#swift) instructions for displaying an ad.
+Once you receive the ad it will be ready for display. Follow the [AdMob instructions](https://developers.google.com/admob/ios/interstitial#swift) for displaying an ad.
 
 ## Rewarded API
 
@@ -252,7 +252,7 @@ Make a regular AdMob's ad request. Everything else will be handled by GMA SDK an
 #### Steps 6: Display an ad
 {:.no_toc}
 
-Once the rewarded ad is received you can display it. Follow the [AdMob instructions](https://developers.google.com/admob/ios/rewarded#swift) instructons instructions for displaying an ad. 
+Once the rewarded ad is received you can display it. Follow the [AdMob instructions](https://developers.google.com/admob/ios/rewarded#swift) for displaying an ad. 
 
 ## Native Ads
 
