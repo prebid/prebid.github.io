@@ -6,6 +6,7 @@ biddercode: improvedigital
 pbjs: true
 pbs: true
 coppa_supported: true
+gpp_supported: true
 gdpr_supported: true
 usp_supported: true
 userIds: all
@@ -14,6 +15,7 @@ schain_supported: true
 gvl_id: 253
 pbs_app_supported: true
 floors_supported: true
+sidebarType: 1
 ---
 
 <a name="improvedigital-params"></a>
@@ -24,6 +26,7 @@ floors_supported: true
 | Name           | Scope    | Description                                                                                                                | Example                                                                | Type      |
 |----------------|----------|----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|-----------|
 | `placementId`  | required | The placement ID from Improve Digital.                                                                                     | `1234567`                                                              | `integer` |
+| `publisherId`  | required | The publisher ID from Improve Digital.                                                                                     | `4567`                                                              | `integer` |
 | `keyValues`    | optional | Contains one or more key-value pairings for key-value targeting                                                            | `{ testKey1: ['testValueA'], testKey2: ['testValueB', 'testValueC'] }` | `object`  |
 | `bidFloor`  | optional | Bid floor price | `0.01` | `float` |
 | `bidFloorCur`  | optional | Bid floor price currency. Supported values: USD (default), EUR, GBP, AUD, DKK, SEK, CZK, CHF, NOK | `'USD'` | `string` |

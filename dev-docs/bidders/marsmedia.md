@@ -12,6 +12,7 @@ schain_supported: true
 usp_supported: true
 coppa_supported: true
 gvl_id: 776
+sidebarType: 1
 ---
 
 ### Bid Params

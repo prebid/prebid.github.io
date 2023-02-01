@@ -2,13 +2,23 @@
 layout: bidder
 title: BCM
 description: BCM Bid Adapter
-pbjs: true
 biddercode: bcm
+pbjs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
+coppa_supported: true
+pbs_app_supported: true
 schain_supported: true
-aliasCode : adkernel
+userIds: all
+fpd_supported: true
+prebid_member: false
+ortb_blocking_supported: true
+multiformat_supported: will-bid-on-one
+floors_supported: true
+aliasCode: adkernel
+sidebarType: 1
 ---
 
 ### Note:

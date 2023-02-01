@@ -6,16 +6,18 @@ biddercode: appnexus
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
-userIds: criteo, flocId, identityLink, netId, pubProvidedId, uid2, unifiedId,
+userIds: criteo, identityLink, netId, pubProvidedId, uid2, unifiedId,
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+gpp_supported: true
 floors_supported: true
 fpd_supported: true
 pbjs: true
 pbjs_version_notes: please avoid using v7.15 and v7.16
 pbs: true
 gvl_id: 32
+sidebarType: 1
 ---
 
 ### Disclosure:
@@ -24,16 +26,20 @@ This adapter is known to use an HTTP 1 endpoint. Header bidding often generates 
 
 ### Table of Contents
 
-- [Bid Params](#appnexus-bid-params)
-- [Video Object](#appnexus-video-object)
-- [User Object](#appnexus-user-object)
-- [App Object](#appnexus-app-object)
-- [Custom Targeting keys](#custom-targeting-keys)
-- [Auction Level Keywords](#appnexus-auction-keywords)
-- [Passing Keys Without Values](#appnexus-no-value)
-- [First Party Data](#appnexus-fpd)
-- [User Sync in AMP](#appnexus-amp)
-- [Debug Auction](#appnexus-debug-auction)
+- [Disclosure:](#disclosure)
+- [Table of Contents](#table-of-contents)
+  - [Bid Params](#bid-params)
+  - [Video Object](#video-object)
+  - [User Object](#user-object)
+  - [App Object](#app-object)
+  - [Custom Targeting keys](#custom-targeting-keys)
+  - [Auction Level Keywords](#auction-level-keywords)
+  - [Passing Keys Without Values](#passing-keys-without-values)
+  - [First Party Data](#first-party-data)
+  - [User Sync in AMP](#user-sync-in-amp)
+  - [Mobile App Display Manager Version](#mobile-app-display-manager-version)
+  - [Debug Auction](#debug-auction)
+  - [Prebid Server Test Request](#prebid-server-test-request)
 
 <a name="appnexus-bid-params" />
 

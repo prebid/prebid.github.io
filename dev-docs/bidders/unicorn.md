@@ -7,6 +7,7 @@ pbs: true
 pbs_app_supported: true
 media_types: banner
 biddercode: unicorn
+sidebarType: 1
 ---
 
 ### bid params

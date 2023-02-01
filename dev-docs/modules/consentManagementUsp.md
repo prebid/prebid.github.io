@@ -52,6 +52,21 @@ If the timeout period expires or an error from the USP-API is thrown, the auctio
 | 3) Has user opted-out of the sale of his or her personal information?| 	(N = No,Y = Yes,– = Not Applicable)|
 | 4) Publisher is a signatory to the IAB Limited Service Provider Agreement| 	(N = No,Y = Yes,– = Not Applicable)|
 
+### Deletes
+
+As of January 1st 2023, CCPA will require that requests to "delete my personal information" (right to delete) must be propagated to all 3rd parties user data is being shared with. US Privacy Consent Management Module will support this feature in 7.23.0 and above. 
+
+Prebid Modules that receive user data (bid adapters, analytics adapters), or set user data (UserId, RTD) may define a new method called `onDataDeletionRequest`. The US Privacy Consent Management Module will attach a `registerDeletion` event handler with the CMP, when triggered it will: 
+
+The USP module attaches a 'registerDeletion' event handler with the CMP; when triggered, it will:
+- invoke the methods above on all adapters
+- delete all IDs from cookies/localStorage
+
+3rd parties can define the method like this:
+- UserID submodules can define a method onDataDeletionRequest(config, idValue)
+- Bid adapters can define a method spec.onDataDeletionRequest(bidderRequests)
+- Analytics adapters can define a method onDataDeletionRequest()
+
 ## Page Integration
 
 To utilize this module, software that provides the [USP-API](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md) must to be implemented on the site to interact with the user and obtain their notice and opt-out status.

@@ -15,7 +15,10 @@ fpd_supported: true
 schain_supported: true
 gvl_id: 91
 coppa_supported: true
+multiformat_supported: will-bid-on-any
+sidebarType: 1
 ---
+
 ### Notes
 
 {: .alert.alert-warning :}

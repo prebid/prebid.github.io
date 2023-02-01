@@ -5,6 +5,7 @@ description: Prebid AOL Bidder Adaptor aliase
 pbjs: true
 biddercode: onemobile
 aliasCode : aol
+sidebarType: 1
 ---
 
 ### IMPORTANT NOTICE!

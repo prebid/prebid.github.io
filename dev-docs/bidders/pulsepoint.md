@@ -11,6 +11,7 @@ userIds: all
 pbjs: true
 pbs: true
 gvl_id: 81
+sidebarType: 1
 ---
 
 ### Disclosure

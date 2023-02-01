@@ -15,6 +15,11 @@ pbs: true
 gvl_id: 869
 floors_supported: true
 pbs_app_supported: true
+fpd_supported: false
+dchain_supported: false
+deals_supported: true
+ortb_blocking_supported: true
+sidebarType: 1
 ---
 
 ### Note:

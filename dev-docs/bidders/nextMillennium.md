@@ -17,6 +17,7 @@ pbs: true
 biddercode: nextMillennium
 media_types: banner, video
 prebid_member: true
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -30,3 +31,18 @@ prebid_member: true
 Required one of the two parameters placement_id or group_id.
 
 Further information for the auction on NextMillennium side is generated automatically.
+
+### Additional options
+
+#### disabledSendingStatisticData
+
+The `disabledSendingStatisticData` parameter disables sending statistics data to the nextMillennium server, such as bidRequested, bidResponse, noBid and bidTimeout events.
+An example of enabling this option:  
+```
+pbjs.setBidderConfig({
+  bidders: ['nextMillennium'],
+  config: {
+    disabledSendingStatisticData: true,
+  },
+})
+```

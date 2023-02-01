@@ -10,9 +10,9 @@ sidebarType: 2
 # Ad Experience Controls
 {:.no_toc}
 
-Prebid SDK provides an API way to customize its behaviour. 
+If you use Prebid SDK to render the winning bid you can customize behaviour using the following API. 
 
->NOTE: Planned future enhancements will support Server Side Configuration. Follow this [feature request](https://github.com/prebid/prebid-server/issues/2186) for the details. 
+> NOTE: Planned future enhancements will support Server Side Configuration. Follow this [feature request](https://github.com/prebid/prebid-server/issues/2186) for the details. 
 
 * TOC
 {:toc}
@@ -88,7 +88,7 @@ Customization Example
 
 ### Skip Button Area
 
-This control set the percent of device screen which the skip button should occupy. 
+This control sets the percent of device screen which the skip button should occupy. 
 
 {: .table .table-bordered .table-striped }
 
@@ -119,7 +119,7 @@ Customization Example
 
 ### Skip Delay
 
-This control sets number of seconds which should be passed from the start of playback until the skip or close button should be shown. 
+This control sets the number of seconds which should be passed from the start of playback until the skip or close button should be shown. 
 
 {: .table .table-bordered .table-striped }
 

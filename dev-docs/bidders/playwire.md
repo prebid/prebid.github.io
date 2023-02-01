@@ -15,13 +15,15 @@ tcf2_supported: true
 coppa_supported: true
 fpd_supported: true
 prebid_member: true
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Bid Params](#playwire-bid-params)
-- [Bidder Config](#playwire-bidder-config)
-- [First Party Data](#playwire-first-party)
+- [Table of Contents](#table-of-contents)
+- [Bid Params](#bid-params)
+- [Bidder Config](#bidder-config)
+- [First Party Data](#first-party-data)
 
 <a name="playwire-bid-params" />
 
