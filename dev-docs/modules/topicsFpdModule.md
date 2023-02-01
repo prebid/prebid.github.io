@@ -45,8 +45,6 @@ try {
 # Topics Iframe Configuration
 Topics iframe implementation is the enhancements of existing module under topicsFpdModule.js where different bidders will call the topic API under their domain to fetch the topics for respective domain and the segment data will be part of ORTB request under user.data object. Default config is maintained in the module itself. 
 
-{: .alert.alert-danger :}
-Disclaimer: Topics Module is available from 7.x version. But please download prebid version >=7.29 to start utilizing Topics Iframe which will be called from third party domain.
 
 Below are the configuration which can be used to configure and override the default config maintained in the module.
 
@@ -76,7 +74,7 @@ pbjs.setConfig({
 ```
 
 ## Topics Config Descriptions
-
+{: .table .table-bordered .table-striped }
 | Field | Required? | Type | Description |
 |---|---|---|---|
 | topics.maxTopicCaller | no | integer | Defines the maximum numbers of Bidders Iframe which needs to be loaded on the publisher page. Default is 1 which is hardcoded in Module. Eg: topics.maxTopicCaller is set to 3. If there are 10 bidders configured along with their iframe URLS, random 3 bidders iframe URL is loaded which will call TOPICS API. If topics.maxTopicCaller is set to 0, it will load random 1(default) bidder iframe atleast. |
