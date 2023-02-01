@@ -117,6 +117,24 @@ Prebid Server accepts all OpenRTB 2.5 fields and passes them in the request to a
 {: .table .table-bordered .table-striped }
 | ORTB Field | Version | Notes |
 | --- | --- | --- |
+| id | 2.5 | if host config generate-storedrequest-bidrequest-id config is true
+    if $.id is not set, generate a random value
+    if the storedrequest is from AMP or from ext.prebid.storedrequest, then replace any existing $.id with a random value
+if $.id contains "{{UUID}}", replace that macro with a random value |
+| source.tid | 2.5 | if source.tid is not set:
+   set source.tid to a random UUID
+if host config generate-storedrequest-bidrequest-id config is true
+    if the storedrequest is from AMP or from a top-level stored request (ext.prebid.storedrequest), then replace any existing $.source.tid with a random value
+if $.source.tid contains "{{UUID}}", replace that macro with a random value |
+| imp[].id | 2.5 | if host config generate-storedrequest-bidrequest-id config is true
+    if any $.imp[].id is missing, set it to a random 16-digit string. (Note: this wasn't in issue 1507)
+    if the storedrequest is from AMP **or** from a top-level stored request (ext.prebid.storedrequest), confirm that all $.imp[].id fields in the request are different. If not different, re-number them all starting from "1".
+ |
+| imp[].ext.tid | 2.x | if imp[n].ext.tid is not set:
+       set imp[n].ext.tid to a randomly generated UUID
+   if host config generate-storedrequest-bidrequest-id config is true
+       if the storedrequest is from AMP or from ext.prebid.storedrequest, then replace any existing $.imp[n].ext.tid with a random value
+  if $.imp[n].ext.tid contains "{{UUID}}", replace that macro with a random value |
 | cur | 2.5 | Supports either a string or an array. If array, the first element is taken to be the "Ad Server Currency" for purposes of [currency conversion](/prebid-server/features/pbs-currency.html).
 | exp | 2.5 | See the [expiration](#expiration) section below |
 | tmax | 2.5 | See the [timeout](#timeout) section below |
