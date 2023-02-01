@@ -1,9 +1,9 @@
 ---
 layout: page_v2
 page_type: module
-title: Module - topicFpdModule
+title: Module - topicsFpdModule
 description: how to get topics data using Topics API
-module_code : topicFpdModule
+module_code : topicsFpdModule
 display_name : Topics FPD Module
 enable_download : true
 sidebarType : 1
