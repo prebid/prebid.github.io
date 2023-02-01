@@ -12,7 +12,7 @@ sidebarType: 2
 
 ## Overview of Rendering API
 
-The integration and usage of the Rendering API are similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid. 
+The integration and usage of the Rendering API is similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid. 
 
 ![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
@@ -97,7 +97,7 @@ Initialize the `InterstitialAdUnit ` with properties:
 
 You can also assign the listener for processing ad events.
 
-> **NOTE:** the `minSizePercentage` - plays an important role in a bidding process for display ads. If provided space is not enough demand partners won't respond with the bids.
+> **NOTE:** the `minSizePercentage` - plays an important role in a bidding process for display ads. If the provided space is not enough demand partners won't respond with bids.
 
 #### Step 2: Load the Ad
 {:.no_toc}
@@ -124,16 +124,16 @@ Integration example:
 rewardedAdUnit = RewardedAdUnit(requireContext(), configId)
 rewardedAdUnit?.setRewardedAdUnitListener(this)
     
-// 2. Execute ad load
+// 2. Execute the loadAd function
 rewardedAdUnit?.loadAd()
 
 /// .......
 
-// After ad is loaded you can execute `show` to trigger ad display
+// After the ad is loaded you can execute `show` to trigger ad display
 rewardedAdUnit?.show()
 ```
 
-#### Step 1: Create Rewarded Ad Unit
+#### Step 1: Create a Rewarded Ad Unit
 {:.no_toc}
 
 Create the `RewardedAdUnit` object with parameters:
