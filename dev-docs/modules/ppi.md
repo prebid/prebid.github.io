@@ -249,7 +249,7 @@ At a high level, here's how each of the hbInventory sub-modules works to choose 
 - **AUPAutoSlots** - scans all the GPT slots on the page to get the div and slot name, then scans all AUPs looking for a match.
 
 In all cases, these rules are applied:
-1. If multiple AUPs match, PPI will choose the first one without a wildcard in the slotPattern or the first match if all matching patterns have wildcards.
+1. If multiple AUPs match, PPI will choose the first one in the list.
 1. If a custom mapping function is provided, it will be called to veto matches.
 1. The resulting PBJS AdUnit "code" is a hashed value from the AUP.
 1. The sizes in the PBJS AdUnit are constrained by any sizes defined in the transaction object.
@@ -268,7 +268,7 @@ When processing AUPSlotPath transactions, PPI does the following:
 1. Loop through available AUPs
 1. Compare values.name to the AUP slotPattern, which may be a regular expression. The intention is that values.name corresponds to an actual Ad Server AdUnit name, but this is not necessary.
 1. Call the custom matching function if defined.
-1. If there are multiple matches, choose the first amongst the most specific (any without wildcards). Else choose first amongst those that matched with a wildcard.
+1. If there are multiple matches, choose the first in the list.
 1. Resolve any MediaType Objects as appropriate and determine sizes.
 1. Create the PBJS AdUnit
 
@@ -320,7 +320,7 @@ This method is different from the others. It scans all the GPT slots in the page
 1. Compare GPT slot name to the AUP slotPattern, which may be a regular expression.
 1. Compare GPT div to the AUP divPattern, which may be a regular expression.
 1. Call the custom matching function if defined.
-1. If there are multiple matches, first choose the first amongst the most specific (any without wildcards). Then choose first amongst those that matched with a wildcard.
+1. If there are multiple matches, first choose the first one in the list.
 1. Resolve any Media Type Objects as appropriate and filter sizes.
 1. Create PBJS AdUnit
 
