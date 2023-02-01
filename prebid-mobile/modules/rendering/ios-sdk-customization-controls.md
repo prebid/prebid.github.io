@@ -88,7 +88,7 @@ Customization Example
 
 ### Skip Button Area
 
-This control set the percent of device screen which the skip button should occupy. 
+This control sets the percent of device screen which the skip button should occupy. 
 
 {: .table .table-bordered .table-striped }
 
@@ -119,7 +119,7 @@ Customization Example
 
 ### Skip Delay
 
-This control sets number of seconds which should be passed from the start of playback until the skip or close button should be shown. 
+This control sets the number of seconds which should be passed from the start of playback until the skip or close button should be shown. 
 
 {: .table .table-bordered .table-striped }
 
