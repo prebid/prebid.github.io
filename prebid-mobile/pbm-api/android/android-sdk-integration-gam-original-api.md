@@ -17,7 +17,7 @@ Prebid Mobile is an open-source library that provides an end-to-end header biddi
 
 ## Overview
 
-This is the original Prebid mobile integration approach when SDK plays the transport role, and the winning bid is rendered by Primary Ad Server SDK using PUC. You can find details of how it works and other integration approaches on the [overview page](/prebid-mobile/prebid-mobile.html#with-ad-server-original-api).  
+This is the original Prebid mobile integration approach when SDK plays the transport role, and the winning bid is rendered by the Primary Ad Server SDK using PUC. You can find details of how it works and other integration approaches on the [overview page](/prebid-mobile/prebid-mobile.html#with-ad-server-original-api).  
 
 ![In-App Bidding with Prebid](/assets/images/prebid-mobile/prebid-in-app-bidding-overview-prebid-original-gam.png)
 
@@ -90,29 +90,29 @@ Initialize the `BannerAdUnit` with properties:
 
 Using the `BannerBaseAdUnit.Parameters()` you can customize the bid request for BannerAdUnit. 
 
-The `api` property is dedicated to adding values for API Frameworks to bid response according to the OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
+The `api` property is dedicated to adding values for API Frameworks to a bid response according to the OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
 
 * `3` or `Signals.Api.MRAID_1` : MRAID-1 support signal
 * `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
 * `6` or `Signals.Api.MRAID_3` : MRAID-3 support signal
 * `7` or `Signals.Api.OMID_1` :  signals OMSDK support
 
-#### Step 3: Create a AdManagerAdView
+#### Step 3: Create an AdManagerAdView
 {:.no_toc}
 
-Just follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner) to integrate a banner ad unit. 
+Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner) to integrate a banner ad unit. 
 
 #### Step 4: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the prebid server. You should provide a `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
+The `fetchDemand` method makes a bid request to the Prebid Server. You should provide an `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
 
 #### Step 5: Load an Ad
 {:.no_toc}
 
-Now you should request the ad from GAM. If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid's line item will be returned from GAM, and GMA SDK will render its creative. 
+You should now request the ad from GAM. If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid line item will be returned from GAM, and GMA SDK will render its creative. 
 
-Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
+Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain the targeting keywords, and Prebid's ad won't ever be displayed.
 
 #### Step 6: Adjust the ad view size
 {:.no_toc}
@@ -192,7 +192,7 @@ private fun createListener(gamView: AdManagerAdView): AdListener {
 #### Step 1: Create a VideoAdUnit
 {:.no_toc}
 
-Initialize the `VideoAdUnit` with properties:
+Initialize the `VideoAdUnit` with the following properties:
 
 - `configId` - an ID of the Stored Impression on the Prebid Server
 - `adSize` - the size of the ad unit which will be used in the bid request.
@@ -200,7 +200,7 @@ Initialize the `VideoAdUnit` with properties:
 #### Step 2: Configure video parameters
 {:.no_toc}
 
-Using the `VideoParameters` you can customize the bid request for VideoAdUnit. 
+Using the `VideoParameters` you can customize the bid request for a VideoAdUnit. 
 
 #### placement
 {:.no_toc}
@@ -218,7 +218,7 @@ In the context of a VideoInterstitialAdUnit, rewarded video ads are typically la
 #### api
 {:.no_toc}
 
-The `api` property is dedicated to adding values for API Frameworks to bid response according to the OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
+The `api` property is dedicated to adding values for API Frameworks to a bid response according to the OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
 
 * `1` or `Signals.Api.VPAID_1` : VPAID 1.0  
 * `2` or `Signals.Api.VPAID_2` : VPAID 2.0  
@@ -268,7 +268,7 @@ Array of OpenRTB 2.5 playback methods. If none are specified, any method may be 
 #### protocols
 {:.no_toc}
 
-  Array or enum of OpenRTB 2.5 supported Protocols. Values can be one of:
+Array or enum of OpenRTB 2.5 supported Protocols. Values can be one of:
   
   - `1` or `Signals.Protocols.VAST_1_0` : VAST 1.0
   - `2` or `Signals.Protocols.VAST_2_0` : VAST 2.0
@@ -280,7 +280,7 @@ Array of OpenRTB 2.5 playback methods. If none are specified, any method may be 
   - `8` or `Signals.Protocols.VAST_4_0_Wrapper` : VAST 4.0 Wrapper
 
 
-#### Step 3: Create a AdManagerAdView
+#### Step 3: Create an AdManagerAdView
 {:.no_toc}
 
 Just follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner) to integrate a banner ad unit. 
@@ -288,12 +288,12 @@ Just follow the [GMA SDK documentation](https://developers.google.com/ad-manager
 #### Step 4: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the prebid server. You should provide a `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
+The `fetchDemand` method makes a bid request to the Prebid Server. You should provide an `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
 
 #### Step 5: Load an Ad
 {:.no_toc}
 
-Now you should request the ad from GAM. If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid's line item will be returned from GAM, and GMA SDK will render its creative. 
+You should now request the ad from GAM. If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid line item will be returned from GAM, and GMA SDK will render its creative. 
 
 Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
@@ -320,7 +320,7 @@ private fun createAd() {
 }
 ```
 
-Also you need to implement `AdManagerInterstitialAdLoadCallback` in order to track the ad rediness:
+You also need to implement `AdManagerInterstitialAdLoadCallback` in order to track the ad rediness:
 
 ```kotlin
 private fun createListner(): AdManagerInterstitialAdLoadCallback {
@@ -347,10 +347,10 @@ private fun createListner(): AdManagerInterstitialAdLoadCallback {
 Initialize the Interstitial Ad Unit with properties:
     
 - `configId` - an ID of Stored Impression on the Prebid Server
-- `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
-- `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
+- `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occupy of a device's screen. Support in SDK version 1.2+
+- `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occupy of a device's screen. Support in SDK version 1.2+
 
-> **NOTE:** As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process to monetize sizes smaller than full screen ads. App developers can specify a minimum width and minimum height percentage an ad can occupy of a devices real state, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction.
+> **NOTE:** As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process to monetize sizes smaller than full screen ads. App developers can specify a minimum width and minimum height percentage an ad can occupy of a devices screen, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction.
 
 > PBS will take the AdUnit's size (width and height) as the max size for the interstitial as size, generating a list of ad sizes, selecting the first 10 sizes that fall within the imp's max size and minimum percentage size. All the interstitial parameters will still be passed to the bidders, allowing them to use their own size matching algorithms if they prefer.
 
@@ -359,19 +359,19 @@ Initialize the Interstitial Ad Unit with properties:
 #### Step 2: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the prebid server. You should provide a `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
+The `fetchDemand` method makes a bid request to the prebid server. You should provide an `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
 
 #### Step 3: Load a GAM interstitial ad
 {:.no_toc}
 
-Now you should request the ad from GAM. If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid's line item will be returned from GAM, and GMA SDK will render its creative. 
+You should now request the ad from GAM. If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid line item will be returned from GAM, and GMA SDK will render its creative. 
 
 Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
 #### Step 4: Present the interstitial ad
 {:.no_toc}
 
-Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/android/interstitial#display_the_ad) to display an interstitial ad right after receiving it or later in natural pauses in the flow of an app.
+Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/android/interstitial#display_the_ad) to display an interstitial ad right after receiving it or later in a natural pauses in the flow of an app.
 
 ## Video Interstitial
 
@@ -449,7 +449,7 @@ private fun createAdListener(): AdManagerInterstitialAdLoadCallback {
 #### Step 1: Create an Ad Unit
 {:.no_toc}
 
-Initialize the Interstitial Video Ad Unit with properties:
+Initialize the Interstitial Video Ad Unit with the following properties:
     
 - `configId` - an ID of Stored Impression on the Prebid Server
 
@@ -461,19 +461,19 @@ Provide configuration properties for the video ad using the [VideoParameters](#s
 #### Step 3: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the prebid server. You should provide a `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
+The `fetchDemand` method makes a bid request to the Prebid Server. You should provide an `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
 
 #### Step 4: Load a GAM interstitial ad
 {:.no_toc}
 
-Now you should request the ad from GAM. If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid's line item will be returned from GAM, and GMA SDK will render its creative. 
+Now you should request the ad from GAM. If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid line item will be returned from GAM, and GMA SDK will render its creative. 
 
 Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
 #### Step 5: Present the interstitial ad
 {:.no_toc}
 
-Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/android/interstitial#display_the_ad) to display an interstitial ad right after receiving it or later in natural pauses in the flow of an app.
+Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/android/interstitial#display_the_ad) to display an interstitial ad right after receiving it or later in a natural pauses in the flow of an app.
 
 ## Rewarded Video
 
@@ -537,7 +537,7 @@ private fun createListener(): RewardedAdLoadCallback {
 #### Step 1: Create an Ad Unit
 {:.no_toc}
 
-Initialize the Rewarded Video Ad Unit with properties:
+Initialize the Rewarded Video Ad Unit with the following properties:
     
 - `configId` - an ID of Stored Impression on the Prebid Server
 
@@ -549,19 +549,19 @@ Provide configuration properties for the video ad using the [VideoParameters](#s
 #### Step 3: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the prebid server. You should provide a `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
+The `fetchDemand` method makes a bid request to the Prebid Server. You should provide an `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
 
 #### Step 4: Load a GAM Rewarded Ad
 {:.no_toc}
 
-Now you should request the ad from GAM. If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid's line item will be returned from GAM, and GMA SDK will render its creative. 
+Now you should request the ad from GAM. If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid line item will be returned from GAM, and GMA SDK will render its creative. 
 
 Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
 #### Step 5: Present the Rewarded Ad
 {:.no_toc}
 
-Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/android/rewarded#show_the_ad) to display a rewarded ad right after receiving it or later in natural pauses in the flow of an app.
+Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/android/rewarded#show_the_ad) to display a rewarded ad right after receiving it or later in a natural pauses in the flow of an app.
 
 ## Video Instream
 
@@ -657,13 +657,13 @@ private fun initializePlayer() {
 #### Step 1: Create an Ad Unit
 {:.no_toc}
 
-Initialize the VideoAdUnit with properties:
+Initialize the VideoAdUnit with the following properties:
     
 - `configId` - an ID of Stored Impression on the Prebid Server
 - `width` - Width of the video ad unit.
 - `height` - Height of the video ad unit
 
-#### Step 2: Configure video parameters
+#### Step 2: Configure the video parameters
 {:.no_toc}
 
 Provide configuration properties for the video ad using the [VideoParameters](#step-2-configure-video-parameters) object.
@@ -671,12 +671,12 @@ Provide configuration properties for the video ad using the [VideoParameters](#s
 #### Step 3: Prepare the Player 
 {:.no_toc}
 
-Create the instance of `PlayerView` and put it to the app UI. 
+Create the instance of `PlayerView` and display it in the app UI. 
 
 #### Step 4: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the prebid server. Use the methods which returs the targing map int the result clusre. 
+The `fetchDemand` method makes a bid request to the Prebid Server. Use the methods which return the targeting map in the result closure. 
 
 #### Step 5: Generate GAM Instream URI
 {:.no_toc}
@@ -788,20 +788,20 @@ In order to make a bid request for the native ads you should provide a descripti
 - `NativeTitleAsset`
 
 
-#### Step 3: Create a AdManagerAdView
+#### Step 3: Create an AdManagerAdView
 {:.no_toc}
 
-Just follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner) to integrate a banner ad unit. 
+Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner) to integrate a banner ad unit. 
 
 #### Step 3: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the prebid server. You should provide a `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
+The `fetchDemand` method makes a bid request to the Prebid Server. You should provide an `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
 
 #### Step 4: Load an Ad
 {:.no_toc}
 
-Now you should request the ad from GAM. If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid's line item will be returned from GAM, and GMA SDK will render its creative. 
+Now you should request the ad from GAM. If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid line item will be returned from GAM, and GMA SDK will render its creative. 
 
 Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
@@ -966,7 +966,7 @@ private fun inflatePrebidNativeAd(ad: PrebidNativeAd, wrapper: ViewGroup) {
 #### Step 1: Create a NativeAdUnit
 {:.no_toc}
 
-Initialize the `NativeAdUnit` with properties:
+Initialize the `NativeAdUnit` with the following properties:
 
 - `configId` - an ID of the Stored Impression on the Prebid Server
 
@@ -982,36 +982,36 @@ In order to make a bid request for the native ads you should provide a descripti
 #### Step 3: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the prebid server. You should provide a `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
+The `fetchDemand` method makes a bid request to the Prebid Server. You should provide an `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
 
 #### Step 4: Configure and make a GAM ad request
 {:.no_toc}
 
-Prepare the `AdManagerAdRequest` and run ad request as described in the GMA SDK docs for the [native ads](https://developers.google.com/ad-manager/mobile-ads-sdk/android/native/start).
+Prepare the `AdManagerAdRequest` and run an ad request as described in the GMA SDK docs for the [native ads](https://developers.google.com/ad-manager/mobile-ads-sdk/android/native/start).
 
-If the `AdManagerAdRequest ` contains targeting keywords, the respective Prebid's line item will be returned from GAM, and GMA SDK will render its creative. Be sure that you make the ad request with the same `AdManagerAdRequest ` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
+If the `AdManagerAdRequest ` contains targeting keywords, the respective Prebid line item will be returned from GAM, and GMA SDK will render its creative. Be sure that you make the ad request with the same `AdManagerAdRequest ` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
 #### Step 4: Implement OnCustomFormatAdLoadedListener protocol
 {:.no_toc}
 
-In order to capture the native ad response need to implement [OnCustomFormatAdLoadedListener](https://radeon-drivers.com/?_=%2Fandroid%2Freference%2Fcom%2Fgoogle%2Fandroid%2Fgms%2Fads%2Fnativead%2FNativeCustomFormatAd.OnCustomFormatAdLoadedListener%23UUlexhFFzSDzTfOQ54KBpjGsLVY524B1MgR06Ro%3D) protocol. 
+In order to capture the native ad response you will need to implement [OnCustomFormatAdLoadedListener](https://radeon-drivers.com/?_=%2Fandroid%2Freference%2Fcom%2Fgoogle%2Fandroid%2Fgms%2Fads%2Fnativead%2FNativeCustomFormatAd.OnCustomFormatAdLoadedListener%23UUlexhFFzSDzTfOQ54KBpjGsLVY524B1MgR06Ro%3D) protocol. 
  
-You should use following Prebid function to determine whether Prebid's line item should be rendered:
+You should use following Prebid function to determine whether the Prebid line item should be rendered:
 
 ```
  AdViewUtils.findNative(...)
 ```
 
-Without it the SDK won't be able to recognize the Prebid Line Item.
+Without it the SDK won't be able to recognize the Prebid line item.
 
 #### Step 6: Inflate the native layout
 {:.no_toc}
 
-Once the Prebid Line Item is recognized, the you should extract the ad from the winning bid and init view properties with natve assets data. 
+Once the Prebid line item is recognized you should extract the ad from the winning bid and init the view properties with native assets data. 
 
 ## Ad Unit Configuration
 
-Each ad unit in the Original API is a subclass of the `AdUnit` class, which provides the following properties and methods for the additional configuration. 
+Each ad unit in the Original API is a subclass of the `AdUnit` class, which provides the following properties and methods for additional configuration. 
 
 ### Properties
 
@@ -1095,7 +1095,7 @@ void clearContextKeywords()
 
 ### First Party Data
 
-First Party Data (FPD) is free form data supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
+First Party Data (FPD) is free form data supplied by the publisher to provide additional targeting of the user or inventory context. It is used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
 
 Data is broken up into two different data types:
 * User
@@ -1104,7 +1104,7 @@ Data is broken up into two different data types:
   * Global scope
   * Ad Unit grain
 
- The below first party inventory context will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](pbm-targeting-params-android#first-party-data) page.
+ The first party inventory context will apply to the specic ad unit the data object it is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](pbm-targeting-params-android#first-party-data) page.
 
 
 #### addContextData
