@@ -161,20 +161,6 @@ The Rubicon bid adapter would then receive
 {% endfor %}
 
 
-
-## Adapters Supporting the User ID Sub-Modules
-
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-
-<table class="pbTable">
-<tr class="pbTr"><th class="pbTh">Bidder</th><th class="pbTh">IDs Supported</th></tr>
-{% for item in bidder_pages %}
-{% if item.userIds != nil %}
-<tr class="pbTr"><td class="pbTd">{{item.biddercode}}</td><td class="pbTd">{{item.userIds}}</td></tr>
-{% endif %}
-{% endfor %}
-</table>
-
 ## Bidder Adapter Implementation
 
 If your ID structure is complicated, it is helpful to add tests for `pbjs.getUserIds()`, `pbjs.getUserIdsAsEids()` and `pbjs.getUserIdsAsync()`.
@@ -191,6 +177,7 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 | 33Across ID | 33Across | 33acrossId | 33across.com | "1111" |
 | Admixer ID | Admixer | admixerId | admixer.net | "1111" |
 | adQuery QiD | adQuery | qid | adquery.io | "p9v2dpnuckkzhuc..." |
+| Adriver ID | Adriver | adriverId | adriver.ru | "1111" |
 | Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
 | AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |

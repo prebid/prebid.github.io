@@ -12,6 +12,7 @@ coppa_supported: true
 gdpr_supported: true
 floors_supported: true
 usp_supported: true
+gpp_supported: true
 media_types: banner, video, native
 fpd_supported: true
 gvl_id: 10
