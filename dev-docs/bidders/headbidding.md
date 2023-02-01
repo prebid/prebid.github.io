@@ -33,7 +33,7 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description | Example | Type     |
 |----------|----------|-------------|---------|----------|
-| `zoneId` | required |             |         | `string` |
+| `zoneId` | required |             |         | `integer` |
 | `host`   | required |             |         | `string` |
 
 Head Bidding is an aliased bidder for AdKernel
