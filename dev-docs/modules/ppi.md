@@ -320,7 +320,7 @@ This method is different from the others. It scans all the GPT slots in the page
 1. Compare GPT slot name to the AUP slotPattern, which may be a regular expression.
 1. Compare GPT div to the AUP divPattern, which may be a regular expression.
 1. Call the custom matching function if defined.
-1. If there are multiple matches, first choose the first one in the list.
+1. If there are multiple matches, choose the first one in the list.
 1. Resolve any Media Type Objects as appropriate and filter sizes.
 1. Create PBJS AdUnit
 
