@@ -69,7 +69,7 @@ The Taboola Adapter requires setup before beginning. Please contact us at prebid
 }];
 ```
 
-### Native - Prebid Sevrer Adapter
+### Native - Prebid Server Adapter
 
 Currently, supporting native and multi-format (banner and native mixed) requests in the prebid server adapter only. 
 
