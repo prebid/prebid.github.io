@@ -25,6 +25,7 @@ sidebarType: 1
 
 ### Note
 - Supports `display` format.
+- Supports `native` format only in the Prebid Sever. 
 - Uses `OpenRTB` standard.
 
 ### Registration
@@ -67,3 +68,8 @@ The Taboola Adapter requires setup before beginning. Please contact us at prebid
   }]
 }];
 ```
+
+### Native - Prebid Sevrer Adapter
+
+Currently, supporting native and multi-format (banner and native mixed) requests in the prebid server adapter only. 
+
