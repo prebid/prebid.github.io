@@ -64,11 +64,12 @@ Integration example:
 bannerView = AdView(activity)
 bannerView?.adSize = AdSize.BANNER
 bannerView?.adUnitId = adUnitId
+adWrapperView.addView(bannerView)
 
 val extras = Bundle()
 val request = AdRequest
         .Builder()
-        .addNetworkExtrasBundle(PrebidInterstitialAdapter::class.java, extras)
+        .addNetworkExtrasBundle(PrebidBannerAdapter::class.java, extras)
         .build()
 
 // 2. Create AdMobBannerMediationUtils
