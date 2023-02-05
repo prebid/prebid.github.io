@@ -2,7 +2,7 @@
 layout: bidder
 title: MinuteMediaPlus
 description: Prebid Minute Media Plus Bidder Adaptor
-biddercode: minutemediaplus
+biddercode: mmplus
 filename: minutemediaplusBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 gdpr_supported: true
