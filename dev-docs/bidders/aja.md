@@ -7,6 +7,7 @@ pbjs: true
 pbs: true
 biddercode: aja
 media_types: video, native
+sidebarType: 1
 ---
 
 ### Note

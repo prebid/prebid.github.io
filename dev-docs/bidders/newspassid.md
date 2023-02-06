@@ -22,6 +22,7 @@ pbjs: true
 pbs: false
 prebid_member: false
 multiformat_supported: will-bid-on-any
+sidebarType: 1
 ---
 
 ### Description

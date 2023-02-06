@@ -11,6 +11,7 @@ coppa_supported: true
 usp_supported: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
 ### Registration

@@ -15,8 +15,8 @@ sbUUID: 3.2
 
 Prebid provides two options for the number of bids that will be sent to the ad server:
 
-Send all bids to the ad server that are received from the header bidding demand partners. This is the default behavior in Prebid.
-Send only the top bid from among all the demand partner responses.
+- Send all bids to the ad server that are received from the header bidding demand partners. This is the default behavior in Prebid.
+- Send only the top bid from among all the demand partner responses.
 
 {: .alert.alert-info :}
 There is also a third option if you’re using deals. See [Deals in Prebid](/adops/deals.html) for more information.

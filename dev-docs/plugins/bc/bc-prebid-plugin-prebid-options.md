@@ -22,20 +22,28 @@ These options are used to configure how the plugin should execute the prebid pro
 
 When configuring prebid options for more than one ad break, create an array of Prebid and rendering options for each ad break.
 
-- [prebidPath](#prebidPath)
-- [biddersSpec](#biddersSpec)
-- [bidderAliases](#bidderAliases)
-- [bidderSettings](#bidderSettings)
-- [prebidConfigOptions](#prebidConfigOptions)
-- [dfpParameters](#dfpParameters)
-- [adServerCallback](#adServerCallback)
-- [prebidTimeout](#prebidTimeout)
-- [enablePrebidCache](#enablePrebidCache)
-- [label](#labeloption)
-- [scriptLoadTimeout](#scriptLoadTimeout)
-- [prebidPluginPath](#prebidPluginPath)
-- [adapters](#pb-adapters)
-- [loggerLevel](#loggerLevel)
+- [Prebid Options Supported by the Brightcove Prebid Plugin](#prebid-options-supported-by-the-brightcove-prebid-plugin)
+  - [Overview](#overview)
+  - [Plugin Prebid Options](#plugin-prebid-options)
+    - [prebidPath](#prebidpath)
+    - [biddersSpec](#biddersspec)
+    - [bidderAliases](#bidderaliases)
+    - [bidderSettings](#biddersettings)
+    - [prebidConfigOptions](#prebidconfigoptions)
+    - [dfpParameters](#dfpparameters)
+    - [adServerCallback](#adservercallback)
+    - [prebidTimeout](#prebidtimeout)
+    - [enablePrebidCache](#enableprebidcache)
+    - [label](#label)
+    - [scriptLoadTimeout](#scriptloadtimeout)
+    - [prebidPluginPath](#prebidpluginpath)
+    - [adapters](#adapters)
+    - [loggerLevel](#loggerlevel)
+    - [Setting Up Prebid Parameters](#setting-up-prebid-parameters)
+  - [Links](#links)
+    - [Plugin Render Options](#plugin-render-options)
+    - [Plugin API](#plugin-api)
+    - [Sample Implementations](#sample-implementations)
 
 <a name="prebidPath"></a>
 ### prebidPath
@@ -187,10 +195,7 @@ For example:
 ...
 ```
 
-A Brightcove Prebid Plugin : Bidder Settings JSON Converter tool has been created that you can use to convert bidder settings as they would be defined on the page into the format acceptable in Brightcove Studio. You can access this tool in one of the following ways:
-
-- directly in the GitHub repository for the plugin: [https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html](https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html)
-- directly using this external link: [https://video-demo.appnexus.com/encino/bcplugin/prebid/tools/biddersettings.html](https://video-demo.appnexus.com/encino/bcplugin/prebid/tools/biddersettings.html)
+A Brightcove Prebid Plugin : Bidder Settings JSON Converter tool has been created that you can use to convert bidder settings as they would be defined on the page into the format acceptable in Brightcove Studio. You can access this tool directly from the GitHub repository for the plugin: [https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html](https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html)
 
 See "bidderSettings" at [Prebid.org]({{site.baseurl}}/dev-docs/publisher-api-reference.html) for details.
 

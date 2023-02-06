@@ -77,8 +77,8 @@
                   <tr>
                     <th class="pbTh">Demand Chain Support</th>
                     <td class="pbTd">{% if page.dchain_supported  == true %}yes{% else %}no{% endif %}</td>
-                    <th class="pbTh">Safeframes OK</th>
-                    <td class="pbTd">{% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %}</td>
+                    <th class="pbTh">GPP Support</th>
+                    <td class="pbTd">{% if page.gpp_supported == true %}yes{% else %}no{% endif %}</td>
                   </tr>
                   <tr>
                     <th class="pbTh">Supports Deals</th>
@@ -103,6 +103,12 @@
                     <td class="pbTd">{% if page.multiformat_supported %}{{page.multiformat_supported}}{% else %}check with bidder{% endif %}</td>
                     <th class="pbTh">ORTB Blocking Support</th>
                     <td class="pbTd">{% if page.ortb_blocking_supported == true %}yes{% elsif page.ortb_blocking_supported == false %}no{% elsif page.ortb_blocking_supported == 'partial' %}partial{% else %}check with bidder{% endif %}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">Safeframes OK</th>
+                    <td class="pbTd">{% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %}</td>
+                    <th class="pbTh"></th>
+		    <td class="pbTd"></td>
                   </tr>
                 </table>
 

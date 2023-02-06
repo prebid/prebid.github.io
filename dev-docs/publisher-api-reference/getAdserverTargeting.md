@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.getAdserverTargeting()
 description:
+sidebarType: 1
 ---
 
 <a name="module_pbjs.getAdserverTargeting"></a>

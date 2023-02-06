@@ -8,6 +8,7 @@ media_types: video
 gdpr_supported: true
 schain_supported: true
 enable_download : false
+sidebarType: 1
 ---
 
 ### Note:

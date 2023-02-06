@@ -5,6 +5,7 @@ description: Prebid Bucksense Bidder Adapter
 pbjs: true
 biddercode: bucksense
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Bid params

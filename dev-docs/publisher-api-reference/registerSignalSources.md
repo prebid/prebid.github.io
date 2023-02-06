@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.registerSignalSources()
 description: enabling ESP (encrypt signals) for Open Bidding
+sidebarType: 1
 ---
 
 {: .alert.alert-info :}

@@ -13,6 +13,9 @@ sidebarType : 1
 # First Party Data Enrichment Module
 {:.no_toc}
 
+{: .alert.alert-warning :}
+Since version 7.29, this module does nothing; its functionality is instead included by default in all Prebid distributions.
+
 This module adds a number of First Party Data (FPD) fields from the environment. 
 
 Add it to the Prebid.js build with this command:

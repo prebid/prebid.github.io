@@ -86,7 +86,7 @@ And this is where setups for instream and outstream diverge. Please follow one o
 Be sure to note the setting for price granularity.  You might need to set up a custom price granularity. (See “Custom CPM Bucket Sizing” under [Price Granularity](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity). Or, if you’re monetizing both banner and video inventory with Prebid, you might need to define format-specific price granularity settings through  [mediaTypePriceGranularity](/dev-docs/publisher-api-reference/setConfig.html#setConfig-MediaType-Price-Granularity).
 
 {: .alert.alert-info :}
-**Prebid Server**  If you’re using Prebid Server, you also need to configure your server-to-server bidder adapters. See [Getting Started with Prebid Server](/overview/prebid-server-overview.html).
+**Prebid Server**  If you’re using Prebid Server, you also need to configure your server-to-server bidder adapters. See [Getting Started with Prebid Server](/prebid-server/overview/prebid-server-overview.html).
 
 ## Examples
 

@@ -10,12 +10,14 @@ userIds: criteo, identityLink, netId, pubProvidedId, uid2, unifiedId,
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+gpp_supported: true
 floors_supported: true
 fpd_supported: true
 pbjs: true
 pbjs_version_notes: please avoid using v7.15 and v7.16
 pbs: true
 gvl_id: 32
+sidebarType: 1
 ---
 
 ### Disclosure:
@@ -24,16 +26,20 @@ This adapter is known to use an HTTP 1 endpoint. Header bidding often generates 
 
 ### Table of Contents
 
-- [Bid Params](#appnexus-bid-params)
-- [Video Object](#appnexus-video-object)
-- [User Object](#appnexus-user-object)
-- [App Object](#appnexus-app-object)
-- [Custom Targeting keys](#custom-targeting-keys)
-- [Auction Level Keywords](#appnexus-auction-keywords)
-- [Passing Keys Without Values](#appnexus-no-value)
-- [First Party Data](#appnexus-fpd)
-- [User Sync in AMP](#appnexus-amp)
-- [Debug Auction](#appnexus-debug-auction)
+- [Disclosure:](#disclosure)
+- [Table of Contents](#table-of-contents)
+  - [Bid Params](#bid-params)
+  - [Video Object](#video-object)
+  - [User Object](#user-object)
+  - [App Object](#app-object)
+  - [Custom Targeting keys](#custom-targeting-keys)
+  - [Auction Level Keywords](#auction-level-keywords)
+  - [Passing Keys Without Values](#passing-keys-without-values)
+  - [First Party Data](#first-party-data)
+  - [User Sync in AMP](#user-sync-in-amp)
+  - [Mobile App Display Manager Version](#mobile-app-display-manager-version)
+  - [Debug Auction](#debug-auction)
+  - [Prebid Server Test Request](#prebid-server-test-request)
 
 <a name="appnexus-bid-params" />
 
@@ -60,7 +66,6 @@ All AppNexus (Xandr) placements included in a single call to `requestBids` must 
 | `reserve`                                       | optional | Sets a floor price for the bid that is returned. If floors have been configured in the AppNexus Console, those settings will override what is configured here unless 'Reserve Price Override' is checked. See [Xandr docs](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/create-a-floor-rule.html)                | `0.90`                                                | `float`          |
 | `position`                                      | optional | Identify the placement as above or below the fold.  Allowed values: Unknown: `unknown`; Above the fold: `above`; Below the fold: `below`                                      | `'above'`                                               | `string`        |
 | `trafficSourceCode`                             | optional | Specifies the third-party source of this impression.                                                                                                                          | `'my_traffic_source'`                                 | `string`         |
-| `supplyType`                                    | optional | Indicates the type of supply for this placement. Possible values are `web`, `mobile_web`, `mobile_app`                                                                        | `'web'`                                               | `string`         |
 | `supplyType`                                    | optional | Indicates the type of supply for this placement. Possible values are `web`, `mobile_web`, `mobile_app`                                                                        | `'web'`                                               | `string`         |
 | `pubClick`                                      | optional | Specifies a publisher-supplied URL for third-party click tracking. This is just a placeholder into which the publisher can insert their own click tracker. This parameter should be used for an unencoded tracker. This parameter is expected to be the last parameter in the URL. Please note that the click tracker placed in this parameter will only fire if the creative winning the auction is using AppNexus click tracking properly.                                  | `'http://click.adserver.com/'`                        | `string`         |
 | `extInvCode`                                    | optional | Specifies predefined value passed on the query string that can be used in reporting. The value must be entered into the system before it is logged.                           | `'10039'`                                             | `string`         |

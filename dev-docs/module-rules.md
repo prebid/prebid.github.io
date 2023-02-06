@@ -74,7 +74,7 @@ The use of the terms "must" and "should" in this document is deliberate.  Howeve
 ### Bidder Adapter Rules
 
 1. All global rules apply.
-1. Bid adapters must(*) be able to bid. If they cannot return an auction bid, they should consider integration as a Real-Time Data or other module type.
+1. Bid adapters must be able to bid. If they cannot return an auction bid, they should consider integration as a Real-Time Data or other module type.
 1. Creative rendering scripts must(*) load from the creative frame and not directly in the page. In other words, creative rendering JavaScript cannot be used to bypass the “no external code” rule.
 1. Bidder modules must not(*) make requests to endpoints for functionality other than auctions without:
     1. Disclosure
@@ -83,7 +83,7 @@ The use of the terms "must" and "should" in this document is deliberate.  Howeve
     1. Building a Real-Time Data sub-module that obtains data in a way that can be utilized by other bidders as well if a bidder would like to incorporate an external data fetch that would influence the auction.
 1. Bidder modules must not obtain bid information from or about any other party in the auction. E.g., they cannot listen to ad server events and forward information naming other bidders back to their endpoint - that is the job of an analytics module.
 1. Bidder modules must not(*) cache bids from previous auctions. That functionality is reserved for Prebid core.
-1. Bidders must(*) accept parameters in the conventional location in preference to bidder-specific parameters. The list of these parameters is in the [bidder adapter documentation](/dev-docs/bidder-adaptor.html#std-param-location).
+1. Bidders must accept parameters in the conventional location in preference to bidder-specific parameters. The list of these parameters is in the [bidder adapter documentation](/dev-docs/bidder-adaptor.html#std-param-location).
 1. Bidders must not override the standard ad server targeting values: hb_adid, hb_bidder, hb_pb, hb_deal, or hb_size, hb_source, hb_format.
 1. If bid adapters are reporting multiple media types in the hb_format as ‘banner’, they must(*) indicate the actual mediatype in the metadata object. One use case for this is that it allows publishers to manage which creatives support safeframes.
 1. Bidder modules should supply buyer metadata - including advertiser, advertiser domain, network, actual mediatype, and others defined in the Prebid documentation.

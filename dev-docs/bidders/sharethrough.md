@@ -15,6 +15,7 @@ pbjs: true
 pbs: true
 fpd_supported: true
 ortb_blocking_supported: partial
+sidebarType: 1
 ---
 
 ### Disclosure:

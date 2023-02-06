@@ -1,7 +1,7 @@
 ---
 layout: page_v2
 title: Ad Operations Planning
-head_title: Getting Started with Prebid for Header Bidding
+head_title: Ad Operations Planning
 sidebarType: 3
 sbUUID: 3.2
 ---

@@ -32,8 +32,9 @@ settings exist at the module level, the bidder level, and the adunit level.
 ### Module Configuration
 This module exposes the following settings:
 
+{: .table .table-bordered .table-striped }
 |Name |Type |Description |Notes |
-| :------------ | :------------ | :------------ |:------------ |
+| ------------ | ------------ | ------------ |------------ |
 |enabled | Boolean |Enable/disable the module |Defaults to `false` |
 
 As noted above, FLEDGE support is disabled by default. To enable it, set the `enabled` value to `true` for this module
@@ -52,8 +53,9 @@ pbjs.que.push(function() {
 ### Bidder Configuration
 This module adds the following setting for bidders:
 
+{: .table .table-bordered .table-striped }
 |Name |Type |Description |Notes |
-| :------------ | :------------ | :------------ |:------------ |
+| ------------ | ------------ | ------------ |------------ |
 | fledgeEnabled | Boolean | Enable/disable a bidder to participate in FLEDGE | Defaults to `false` |
 
 In addition to enabling FLEDGE at the module level, individual bidders must also be enabled. This allows publishers to
@@ -73,8 +75,9 @@ pbjs.setBidderConfig({
 Enabling an adunit for FLEDGE eligibility is accomplished by setting an attribute of the `ortb2Imp` object for that
 adunit.
 
+{: .table .table-bordered .table-striped }
 |Name |Type |Description |Notes |
-| :------------ | :------------ | :------------ |:------------ |
+| ------------ | ------------ | ------------ |------------ |
 | ortb2Imp.ext.ae | Integer | Auction Environment: 1 indicates FLEDGE eligible, 0 indicates it is not | Absence indicates this is not FLEDGE eligible |
 
 The `ae` field stands for Auction Environment and was chosen to be consistent with the field that GAM passes to bidders
@@ -116,7 +119,7 @@ the [`buildRequests`](/dev-docs/bidder-adaptor.html#building-the-request) method
 who wish to participate should read this flag and pass it to their server. FLEDGE eligibility depends on a number of parameters:
 
 1. Chrome enablement
-2. Publisher participatipon in the [Origin Trial](https://developer.chrome.com/docs/privacy-sandbox/unified-origin-trial/#configure)
+2. Publisher participation in the [Origin Trial](https://developer.chrome.com/docs/privacy-sandbox/unified-origin-trial/#configure)
 3. Publisher Prebid.js configuration (detailed above)
 
 When a bid request is FLEDGE enabled, a bid adapter can return a tuple consisting of bids and AuctionConfig objects rather than just a list of bids:

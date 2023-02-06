@@ -10,6 +10,7 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: true
+sidebarType: 1
 ---
 
 ### Note:

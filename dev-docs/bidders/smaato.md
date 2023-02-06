@@ -16,17 +16,23 @@ prebid_member: true
 floors_supported: true
 fpd_supported: true
 schain_supported: true
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Registration](#smaato-registration)
-- [Note](#smaato-note)
-- [Bid Params](#smaato-bid-params)
-- [App Object](#smaato-app-object)
-- [Example Ad Units](#smaato-example-ad-units)
-- [First Party Data](#smaato-first-party)
-- [Test Parameters](#smaato-test-parameters)
+- [Table of Contents](#table-of-contents)
+- [Registration](#registration)
+- [Note](#note)
+- [Bid Params](#bid-params)
+  - [App Object](#app-object)
+- [Example Ad Units](#example-ad-units)
+  - [Example Banner Ad Unit](#example-banner-ad-unit)
+  - [Example Video Ad Unit](#example-video-ad-unit)
+  - [Example Native Ad Unit](#example-native-ad-unit)
+  - [Example AdPod (long-form) Video Ad Unit](#example-adpod-long-form-video-ad-unit)
+- [First Party Data](#first-party-data)
+- [Test Parameters](#test-parameters)
 
 <a name="smaato-registration" />
 

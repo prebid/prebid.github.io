@@ -14,7 +14,7 @@ sidebarType : 1
 # Publisher Common ID Module
 {:.no_toc}
 
-This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It's lightweight and self contained.  Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
+This module stores a unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It's lightweight and self contained.  Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
 
 ## Page integration
 
@@ -44,7 +44,7 @@ Example: Changing ID expiration to 1 year
 
 ### User Opt-Out
 
-Users must be allowed to opt out of targeted advertising. When implementing this module, you are required to place a link in your privacy policy or elsewhere on your website which allows the user to implement this opt-out. User opt-out is supported by setting the `_pubcid_optout` as a cookie in the publisher’s domain, or in local storage. When this flag is set, then Publisher Common ID is neither read nor updated, and it will not be made available to any adapters. The opt-out must also delete the Publisher Common ID value (shown in [example](../../examples/modules/pub_common_id_optout.html)).
+Users must be allowed to opt out of targeted advertising. When implementing this module, you are required to place a link in your privacy policy or elsewhere on your website which allows the user to implement this opt-out. User opt-out is supported by setting the `_pubcid_optout` as a cookie in the publisher’s domain, or in local storage. When this flag is set, then Publisher Common ID is neither read nor updated, and it will not be made available to any adapters. The opt-out must also delete the Publisher Common ID value.
 
 * Opt-In - `_pubcid_optout` flag is not present or set to 0
 * Opt-Out - `_pubcid_optout` flag is set to 1

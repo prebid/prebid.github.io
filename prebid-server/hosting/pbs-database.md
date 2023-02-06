@@ -16,7 +16,7 @@ Companies looking to spin up Prebid Server should consider setting up a database
 It could actually be file-based or no-sql based, but for the purposes of this reference, we'll assume a relational DB.
 Here are the kinds of data that PBS needs from a data store:
 - **account data:** defaults and settings for things like price granularities, time-to-live, privacy regulations, and modules.
-- [stored requests](/features/pbs-storedreqs.html): blocks of JSON that define how PBS responds to mobile and AMP requests.
+- [stored requests](/prebid-server/features/pbs-storedreqs.html): blocks of JSON that define how PBS responds to mobile and AMP requests.
 - **stored responses:** very useful for debugging
 
 **Where does this data come from?** You, the host company need to figure that out. PBS never writes this data, only reads it. The difference between a good PBS host company and an average one will be in details like the managing of this data.
@@ -160,5 +160,5 @@ See the [PBS-Java configuration docs](https://github.com/prebid/prebid-server-ja
 result of the query. There are many account-level settings detailed there.
 
 ## Related Reading
-- [Stored Requests](/features/pbs-storedreqs.html)
-- [Hosting a PBS cluster](/prebid-server/overview/prebid-server-overview.md)
+- [Stored Requests](/prebid-server/features/pbs-storedreqs.html)
+- [Hosting a PBS cluster](/prebid-server/overview/prebid-server-overview.html)

@@ -18,6 +18,7 @@ ortb_blocking_supported: true
 multiformat_supported: will-bid-on-one
 floors_supported: true
 aliasCode: adkernel
+sidebarType: 1
 ---
 
 ### Note:
@@ -31,4 +32,4 @@ The BCM adapter requires approval and setup. Please reach out to contact@bcm.ltd
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Our Host  - Do Not Change   | `'serve.datacygnal.io'`   | `string` |
-| `zoneId` | required | Example RTB zone id   |         `'12345'`         | `string` |
+| `zoneId` | required | Example RTB zone id   |         `12345`         | `integer` |

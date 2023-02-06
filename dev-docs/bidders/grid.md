@@ -15,14 +15,16 @@ userIds: all
 tcf2_supported: true
 coppa_supported: true
 fpd_supported: true
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Bid Params](#grid-bid-params)
-- [Bidder Config](#grid-bidder-config)
-- [First Party Data](#grid-first-party)
-- [Native setup example (s2s only)](#grid-native-example)
+- [Table of Contents](#table-of-contents)
+- [Bid Params](#bid-params)
+- [Bidder Config](#bidder-config)
+- [First Party Data](#first-party-data)
+- [Native setup example (s2s only)](#native-setup-example-s2s-only)
 
 <a name="grid-bid-params" />
 

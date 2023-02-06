@@ -12,6 +12,7 @@ media_types: banner, video
 deals_supported: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
 ### Note
@@ -28,6 +29,13 @@ The YOC VIS.X adapter requires setup and approval from your YOC account manager 
 Please reach out to your account manager to enable Prebid.js for your account.
 
 ### Configuration: Currency
+
+{: .table .table-bordered .table-striped }
+| Name  | Scope    | Description                                                                                                                              | Example  | Type      |
+| ----- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
+| `uid` | required | The publisher's ad unit ID in VIS.X. The parameter can be either an `integer` or `string` for Prebid.js, however `integer` is preferred. | `903536` | `integer` |
+
+### Configuration
 
 The YOC VIS.X adapter has the ability to work in different currencies. Currently, this adapter supports `EUR`, `USD`,
 `GBP`, `PLN`. Defaults to `EUR`. If your Ad Server uses `EUR`, you don't need any additional currency settings.
@@ -85,25 +93,26 @@ pbjs.setConfig({
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                         | Example    | Type     |
-|-------|----------|-------------------------------------|------------|----------|
-| `uid`   | required | The publisher's Ad unit ID in VIS.X. | `903536` | `integer` |
+
+| Name  | Scope    | Description                                                                                                                              | Example  | Type      |
+| ----- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
+| `uid` | required | The publisher's ad unit ID in VIS.X. The parameter can be either an `integer` or `string` for Prebid.js, however `integer` is preferred. | `903536` | `integer` |
 
 ### Media type Banner object params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                         | Example    | Type     |
-|-------|----------|-------------------------------------|------------|----------|
-| `sizes`  | required | All sizes this ad unit can accept. | `[[300, 250], [300, 600]]` | `array of integer arrays` |
+| Name    | Scope    | Description                        | Example                    | Type                      |
+| ------- | -------- | ---------------------------------- | -------------------------- | ------------------------- |
+| `sizes` | required | All sizes this ad unit can accept. | `[[300, 250], [300, 600]]` | `array of integer arrays` |
 
 ### Media type Video object params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                         | Example    | Type     |
-|-------|----------|-------------------------------------|------------|----------|
-| `context`     | required | The video context, only 'instream' is allowed. | `'instream'` | `string` |
-| `playerSize`  | required | The size (width, height) of the video player on the page, in pixels. | `[640, 480]` | `integer array` |
-| `mimes`       | optional | Content MIME types supported. | `['video/mp4', 'video/x-ms-wmv']` | `string array` |
+| Name         | Scope    | Description                                                          | Example                           | Type            |
+| ------------ | -------- | -------------------------------------------------------------------- | --------------------------------- | --------------- |
+| `context`    | required | The video context, only 'instream' is allowed.                       | `'instream'`                      | `string`        |
+| `playerSize` | required | The size (width, height) of the video player on the page, in pixels. | `[640, 480]`                      | `integer array` |
+| `mimes`      | optional | Content MIME types supported.                                        | `['video/mp4', 'video/x-ms-wmv']` | `string array`  |
 
 ### Example of Banner Ad unit
 

@@ -12,6 +12,7 @@ coppa_supported: false
 schain_supported: false
 dchain_supported: false
 prebid_member: false
+sidebarType: 1
 ---
 
 ### Bid Params

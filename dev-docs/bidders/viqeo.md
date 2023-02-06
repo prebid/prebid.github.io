@@ -6,6 +6,7 @@ biddercode: viqeo
 pbjs: true
 floors_supported: true
 media_types: video
+sidebarType: 1
 ---
 
 ### Note

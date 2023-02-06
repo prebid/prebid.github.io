@@ -18,6 +18,7 @@ ortb_blocking_supported: true
 multiformat_supported: will-bid-on-one
 floors_supported: true
 aliasCode: adkernel
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -26,4 +27,4 @@ aliasCode: adkernel
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Ad network's RTB host | `'cpm.audience.media'` | `string` |
-| `zoneId` | required | Zone ID           | `'76156'`                 | `string` |
+| `zoneId` | required | Zone ID           | `76156`                 | `integer` |
