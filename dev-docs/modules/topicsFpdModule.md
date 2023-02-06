@@ -13,7 +13,7 @@ sidebarType : 1
 This module is use to call the Topics API (document.browsingTopics()) which will fetch the first party domain as well third party domain(Iframe) topics data which will be sent onto user.data in bid stream. 
 
 
-To learn more about topics in general, go [here](https://blog.google/products/chrome/get-know-new-topics-api-privacy-sandbox/).
+To learn more about topics in general, visit [googles blog "Get to know the new Topics API for Privacy Sandbox"](https://blog.google/products/chrome/get-know-new-topics-api-privacy-sandbox/).
 
 This document covers the steps necessary for publishers to enable Topics Data on their inventory. It also describes
 the configuration needed to override topics Iframe Default implementation
