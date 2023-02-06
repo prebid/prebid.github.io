@@ -58,6 +58,7 @@ Integration example:
 // 1. Create MaxAdView
 adView = MaxAdView(adUnitId, requireContext())
 adView?.setListener(createListener())
+adWrapperView.addView(adView)
         
 // 2. Create MaxMediationBannerUtils
 val mediationUtils = MaxMediationBannerUtils(adView)
