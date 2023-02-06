@@ -14,6 +14,7 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 tcf1_supported: true
 floors_supported: false
 gvl_id: 842
+sidebarType: 1
 ---
 
 ### Note:

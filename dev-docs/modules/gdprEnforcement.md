@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: GDPR Enforcement Module
-description: If you have users in Europe, you'll want this module that enforces GDPR consent
+description: If you have users in Europe, you can use this module to enable actions for processing under the GDPR and ePrivacy
 module_code : gdprEnforcement
 display_name : GDPR Enforcement
 enable_download : true
@@ -24,7 +24,7 @@ sidebarType : 1
 
 {: .alert.alert-warning :}
 This module requires the [EU GDPR consent management module](/dev-docs/modules/consentManagement.html) (the base consent module), which reads consent values from the Consent Management Platform (CMP). The GDPR Enforcement Module
-will then enforce the results. See the [base module page](/dev-docs/modules/consentManagement.html) for general background, usage, and legal disclaimers.
+will then take action based on the results. See the [base module page](/dev-docs/modules/consentManagement.html) for general background, usage, and legal disclaimers.
 
 ## Overview
 
@@ -41,7 +41,7 @@ The GDPR Enforcement Module adds the following:
 The following table details the Prebid.js activities that fall under the [Transparency and Consent Framework (TCF)](https://iabeurope.eu/iab-europe-transparency-consent-framework-policies/) scope:
 
 {: .table .table-bordered .table-striped }
-| In-Scope Activity | TCF Legal Basis Required | Enforcement Activity | Prebid.js Version |
+| In-Scope Activity | TCF Legal Basis Required | Activity | Prebid.js Version |
 | --- | --- | --- | --- |
 | Invoke usersync pixels | Purpose 1 - Store and/or access information on a device | May prevent one or more vendor usersyncs. | 3.14+ |
 | Invoke user ID modules | Purpose 1 - Store and/or access information on a device | May prevent one or more UserID modules from activating. | 3.14+ |
@@ -59,9 +59,9 @@ A page needs to define configuration rules about how Prebid.js should enforce ea
 {: .alert.alert-info :}
 To turn on Prebid.js enforcement you must:
 1) Include the gdprEnforcement module in the Prebid.js build
-and 2) setConfig `consentManagement.gdpr.cmp` to either 'iab' or 'static'
+and 2) setConfig `consentManagement.gdpr.cmpApi` to either 'iab' or 'static'
 
-The following fields related to GDPR enforcement are supported in the [`consentManagement.gdpr`](/dev-docs/modules/consentManagement.html) object:
+The following fields related to GDPR enforcement are supported in the [`consentManagement`](/dev-docs/modules/consentManagement.html) object:
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
@@ -71,9 +71,12 @@ The following fields related to GDPR enforcement are supported in the [`consentM
 | gdpr.rules[].enforcePurpose | `Boolean` | Determines whether to enforce the purpose consent. The default in Prebid.js 3.x is not to enforce purposes. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].enforceVendor | `Boolean` | Determines whether to enforce vendor signals for this purpose. The default in Prebid.js 3.x is not to enforce vendor signals. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of this Purpose. | ["bidderA", "userID-module-B"] |
+| gdpr.rules[].softVendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of vendor signals for this purpose. Unlike with `vendorExceptions`, Purpose consent is still enforced . | ["bidderA", "userID-module-B"] |
+| strictStorageEnforcement | `Boolean` | If false (the default), allows some use of storage regardless of purpose 1 consent - see [note](#strictStorageEnforcement) below | true |
 
 Notes:
 
+- <a id="strictStorageEnforcement" /> By default, Prebid allows some limited use of storage even when purpose 1 consent was not given: this is limited to non-PII, such as [category translation mappings](/dev-docs/modules/categoryTranslation.html), or temporary test data used to probe the browser's storage features. If `strictStorageEnforcement` is true, purpose 1 consent will always be enforced for any access to storage.      
 - To accomodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345").
 - An alternate way of establishing a GVL mapping is to define a 'gvlMapping' object:
 
@@ -86,12 +89,13 @@ pbjs.setConfig({
 });
 ````
 
+
 ### Examples
 
 The following examples cover a range of use cases and show how Prebid.js supports
 configuration of different business rules.
 
-1) Enforce device access activity and basic ads. These are the default values (in Prebid.js 4.0) if the module is included in the build.
+1) Restrict device access activity and basic ads. These are the default values (in Prebid.js 4.0) if the module is included in the build.
 
 ```
 pbjs.setConfig({
@@ -117,7 +121,7 @@ pbjs.setConfig({
 });
 ```
 
-2) Enforce that the user consents to DeviceAccess as an activity and consider their per-vendor selection. However, idSystemA is a special case - the publisher has confirmed that this system obtains a user ID every auction and does not write to the local device.
+2) Restrict that the user consents to DeviceAccess as an activity and consider their per-vendor selection. However, idSystemA is a special case - the publisher has confirmed that this system obtains a user ID every auction and does not write to the local device.
 
       ...
       rules: [{
@@ -127,7 +131,7 @@ pbjs.setConfig({
         vendorExceptions: ["idSystemA"]
       }]
 
-3) Enforce legal basis for both storage and basicAds, with the exception of "firstPartyBidder", which is always allowed to run an auction. Assumes the publisher has special legal basis for this entity.
+3) Restrict for both storage and basicAds, with the exception of "firstPartyBidder", which is always allowed to run an auction. Assumes the publisher has special legal basis for this entity.
 
       ...
       rules: [{
@@ -141,7 +145,7 @@ pbjs.setConfig({
         vendorExceptions: ["firstPartyBidder"]
       }]
 
-4) Turn off enforcement of Purpose 1: don't enforce either the user's DeviceAccess consent or their per-vendor selection.
+4) Turn off restriction of Purpose 1: don't enforce either the user's DeviceAccess consent or their per-vendor selection.
 
       ...
       rules: [{
@@ -165,7 +169,7 @@ pbjs.setConfig({
 Prebid.js does not have access to the Global Vendor List (GVL), so it implements
 a "basic" form of TCF 'legal basis' validation using the supplied consent string.
 
-A goal of basic enforcement is to confirm that there's enough evidence of consent to pass data on to vendors who do have access to the GVL and can fully parse and enforce.
+A goal of 'basic enforcement' is to confirm that there's enough evidence of consent to pass data on to vendors who do have access to the GVL and can fully parse and enforce.
 
 Before allowing an activity tied to a TCF-protected Purpose for a given vendor, one of these scenarios must be true:
 
@@ -179,45 +183,6 @@ Before allowing an activity tied to a TCF-protected Purpose for a given vendor, 
 - Configuration rules enforce neither purpose consent nor vendor signal.
 
 See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) for details.
-
-## Modules that Support GVL ID
-
-The GDPR Enforcement module requires the GVL ID for a module to be specified. If no GVL ID is found the module will be blocked by default unless it is specifically listed under `vendorExceptions`. The following modules have listed their GVL IDs.
-
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Module Type</th>
-      <th>Module</th>
-    </tr>
-  </thead>
-  <tbody>
-{% for page in bidder_pages %}{% unless page.gvl_id %}{% continue %}{% endunless %}
-    <tr>
-      <td>Bid Adapter</td>
-      <td>{{page.title}}</td>
-    </tr>
-{% endfor %}
-    <tr>
-      <td>Analytics Adapter</td>
-      <td>AppNexus</td>
-    </tr>
-    <tr>
-      <td>User ID</td>
-      <td>ID5</td>
-    </tr>
-    <tr>
-      <td>User ID</td>
-      <td>Lotame Panorama Id</td>
-    </tr>
-    <tr>
-      <td>User ID</td>
-      <td>Parrable ID</td>
-    </tr>
-</tbody>
-</table>
 
 ## Build the Package
 

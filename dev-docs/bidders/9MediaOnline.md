@@ -11,6 +11,7 @@ schain_supported: true
 usp_supported: true
 userIds: id5Id, unifiedId
 aliasCode: gamoshi
+sidebarType: 1
 ---
 
 ### Bid params

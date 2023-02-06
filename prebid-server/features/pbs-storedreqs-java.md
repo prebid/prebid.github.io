@@ -295,4 +295,4 @@ settings:
 Refresh rate can be negative or zero - in such case the data will be fetched once and never updated.
 
 ## Related Reading
-- [Stored Responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses-pbs-java-only)
+- [Stored Responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses)

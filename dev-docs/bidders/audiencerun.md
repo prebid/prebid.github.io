@@ -13,6 +13,7 @@ safeframes_ok: false
 prebid_member: false
 userIds: all
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params

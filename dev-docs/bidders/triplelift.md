@@ -5,6 +5,7 @@ description: Prebid TripleLift Bidder Adapter
 biddercode: triplelift
 gdpr_supported: true
 usp_supported: true
+gpp_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
@@ -18,14 +19,21 @@ pbs: true
 pbs_app_supported: true
 fpd_supported: true
 gvl_id: 28
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Overview](#triplelift-overview)
-- [Bid Parameters](#triplelift-bid-params)
-- [Example Configuration](#triplelift-config) 
-- [First Party Data](#triplelift-first-party)
+- [Table of Contents](#table-of-contents)
+- [Overview](#overview)
+- [Bid Params](#bid-params)
+  - [Banner](#banner)
+  - [Video](#video)
+- [Example Configuration](#example-configuration)
+  - [Banner](#banner-1)
+  - [Video (Instream)](#video-instream)
+  - [Video (Outstream)](#video-outstream)
+- [First Party Data](#first-party-data)
 
 <a name="triplelift-overview" />
 
@@ -54,17 +62,15 @@ The Triplelift Prebid Server bidding adapter and user sync endpoint require setu
 
 #### Video
 
-The following parameters are supported for instream inventory only.
+Triplelift bid params for video mediaTypes are identical, but be sure to include the appropriate video.placement value to indicate instream/outstream format. Speak with your partner manager about which value to place here based on what formats are enabled.
+
+See the [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html#adunitmediatypesvideo) for more info.
 
 {: .table .table-bordered .table-striped }
 
 | Name            | Scope                        | Description                                                                          | Example                                     | Type     |
 |-----------------|------------------------------|--------------------------------------------------------------------------------------|---------------------------------------------|----------|
-| `inventoryCode` | required                     | TripleLift inventory code for this ad unit (provided to you by your partner manager) | `'pubname_instream_1'`                      | `string` |
-| `video`         | required                     | oRTB video object                                                                    | `{ mimes: ['video/mp4'], w: 640, h: 480 }`     | `object`  |
-| `video.context`         | required             | Instream or outstream - TripleLift only supports instream.                           | `instream`                                      | `string`  |
-| `video.w`         | required                   | oRTB video object width dimension                                                    | `640`                                      | `int`  |
-| `video.h`         | required                   | oRTB video object height dimension                                                   | `480`                                      | `int`  |
+| `adUnit.mediaTypes.video.placement`         | required                   | Instream: 1;      Outstream: 3, 4, 5.                      | `3`                                         | `int`  |
 
 <a name="triplelift-config" />
 
@@ -87,7 +93,7 @@ var adUnits = [
     bids: [{
         bidder: 'triplelift',
         params: {
-            inv_code: 'pubname_topbanner'
+            inventoryCode: 'pubname_top_banner'
         }
     }]
 }];
@@ -102,17 +108,36 @@ var videoAdUnit = {
         video: {
             playerSize: [640, 480],
             context: 'instream',
+            placement: 1,
             mimes: ['video/mp4']
         }
     },
     bids: [{
         bidder: 'triplelift',
         params: {
-            inv_code: 'pubname_instream1',
-            video: {
-                w: 640,
-                h: 480
-            }
+            inventoryCode: 'pubname_instream1'
+        }
+    }]
+};
+```
+
+#### Video (Outstream)
+
+```
+var videoAdUnit = {
+    code: 'video1',
+    mediaTypes: {
+        video: {
+            playerSize: [640, 480],
+            context: 'outstream',
+            placement: 3,
+            mimes: ['video/mp4']
+        }
+    },
+    bids: [{
+        bidder: 'triplelift',
+        params: {
+            inventoryCode: 'pubname_outstream',
         }
     }]
 };
