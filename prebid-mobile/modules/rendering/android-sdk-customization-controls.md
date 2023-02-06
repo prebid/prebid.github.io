@@ -8,55 +8,159 @@ sidebarType: 2
 ---
 
 # Ad Experience Controls
+{:.no_toc}
 
-Prebid SDK provides an API way to customize its behaviour. 
+If you use Prebid SDK to render the winning bid you can customize behaviour using the following API. 
 
-> NOTE: In the nearest future the Server Side Configuration will be supported as well. Follow this [feature request](https://github.com/prebid/prebid-server/issues/2186) for the details. 
+> NOTE: Planned future enhancements will support Server Side Configuration. Follow this [feature request](https://github.com/prebid/prebid-server/issues/2186) for the details. 
+
+* TOC
+{:toc}
 
 
 ## Rendering Controls
 
-The following properties allow to customize the rendering of Video Interstitial Ads.
+
+The following properties enable rendering customization of Video Interstitial Ads.
 
 ### Max Video Duration
 
-The `maxVideoDuration` indicates the maximum available playback time in seconds.
-If the value in the **Duration** tag is bigger than the given value SDK will fail to load ad, providing a respective error message.
+This control sets the maximum available video duration in seconds. Prebid SDK sends the value of this property in the  `imp.video.maxduration` object of the bid request. If the value in the received VAST tag `<Duration>` is larger than the given number the SDK will not load the media file, the ad load will fail and an error message will be generated.
+
+
+{: .table .table-bordered .table-striped }
+
+|**API Object**         | `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+|**Ad Unit Property**   | `adUnit.setMaxVideoDuration(seconds)`|
+|**Server Property**    | `maxvideoduration` *(pending for PBS implementation)*|
+|**Default Value**     | `3600 seconds`|
 
 ### Application Muted
 
-The `isMuted` property indicates whether the ad should run playback with sound or not.
-Default value - **false**.
+This control enables playback to toggle sound on or off.  
+
+{: .table .table-bordered .table-striped }
+
+|**API Object**         | `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+|**Ad Unit Property**   | `adUnit.setIsMuted(true)`|
+|**Server Property**    | `ismuted` *(pending for PBS implementation)*|
+|**Default Value**     | `false`|
 
 ### Close Button Area
 
-The `closeButtonArea` property indicates the percent of device screen which the close button should occupy. The possible values are from **0** to **1**.
+This control sets the percent of device screen which the close button should occupy.
+
+{: .table .table-bordered .table-striped }
+
+|**API Object**         | `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+|**Ad Unit Property**   | `adUnit.setCloseButtonArea(factor) `|
+|**Server Property**    | `closebuttonarea` *(pending for PBS implementation)*|
+|**Allowed Values**     | `0..1`|
+|**Default Size**       | `70dp`|
+
+Customization Example
+
+{: .table .table-bordered .table-striped }
+
+|**Default**|**Custom**|
+|![Close Button Area - Default](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-close-button-area-default.jpg){:width="250px"}|![Close Button Area - Custom](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-close-button-area-custom.jpg){:width="250px"}|
+
 
 ### Close Button Position
 
-The `closeButtonPosition` property indicates the position of the close button on the screen. The possible values are **Position.BOTTOM_LEFT** and **Position.TOP_RIGHT**. The default value is **Position.TOP_RIGHT**.
+This control sets the position of the close button on the screen.
 
-The example: 
+{: .table .table-bordered .table-striped }
 
-![Close Button Position - Top Right](/assets/images/prebid-mobile/modules/rendering/ad-experience-android-close-button-possition-top-left.png){:width="250px"}
+|**API Object**         `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+|**Ad Unit Property**   | `adUnit.setCloseButtonPosition(Position.TOP_LEFT)`|
+|**Server Property**    | `closebuttonposition` *(pending for PBS implementation)*|
+|**Allowed Values**     | `Position.TOP_LEFT, Position.TOP_RIGHT`|
+|**Default Value**      | `Position.TOP_RIGHT`|
+
+
+Customization Example
+
+{: .table .table-bordered .table-striped }
+
+|**Default**|**Custom**|
+|![Close Button Position - Default](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-close-button-position-default.jpg){:width="250px"}|![Close Button Position - Custom](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-close-button-position-custom.jpg){:width="250px"}|
+
 
 ### Skip Button Area
 
-The `skipButtonArea` property indicates the percent of device screen which the skip button should occupy. The possible values are from **0** to **1**.
+This control sets the percent of device screen which the skip button should occupy.
+
+{: .table .table-bordered .table-striped }
+
+|**API Object**         `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+|**Ad Unit Property**   | `adUnit.setSkipButtonArea(factor)`|
+|**Server Property**    | `skipbuttonarea` *(pending for PBS implementation)*|
+|**Allowed Values**     | `0..1`|
+|**Default Value**      | `70dp`|
+
+Customization Example
+
+{: .table .table-bordered .table-striped }
+
+|**Default**|**Custom**|
+|![Close Button Position - Default](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-skip-button-area-default.jpg){:width="250px"}|![Close Button Position - Custom](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-skip-button-area-custom.jpg){:width="250px"}|
+
 
 ### Skip Button Position
 
-The `skipButtonPosition` property indicates the position of the close button on the screen. The possible values are **Position.BOTTOM_LEFT** and **Position.TOP_RIGHT**. The default value is **Position.BOTTOM_LEFT**.
+This control sets the position of the skip button on the screen.
 
-The example: 
+{: .table .table-bordered .table-striped }
 
-![Close Button Position - Top Right](/assets/images/prebid-mobile/modules/rendering/ad-experience-android-skip-button-possition-top-left.png){:width="250px"}
+|**API Object**         `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+|**Ad Unit Property**   | `adUnit.setSkipButtonPosition(Position.TOP_LEFT)`|
+|**Server Property**    | `skipbuttonposition` *(pending for PBS implementation)*|
+|**Allowed Values**     | `Position.TOP_LEFT, Position.TOP_RIGHT`|
+|**Default Value**      | `Position.TOP_RIGHT`|
+
+Customization Example
+
+{: .table .table-bordered .table-striped }
+
+|**Default**|**Custom**|
+|![Close Button Position - Default](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-skip-button-position-default.jpg){:width="250px"}|![Close Button Position - Custom](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-skip-button-position-custom.jpg){:width="250px"}|
+
+### Sound Button
+
+This control toggles the display of the sound/mute button to users.
+
+{: .table .table-bordered .table-striped }
+
+|**API Object**         `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+|**Ad Unit Property**   | `adUnit.setIsSoundButtonVisible(true)`|
+|**Server Property**    | *not supported*|
+|**Default Value**      | `false`|
+
+Customization Example
+
+{: .table .table-bordered .table-striped }
+
+|**Custom**|
+|![Close Button Area - Default](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-sound-button.jpg){:width="250px"}|
+
 
 ### Skip Delay
 
-The `skipDelay` property indicates the number of seconds which should be passed from the start of playback until the skip or close button should be shown. The default value is **10**.
+This control sets number of seconds which should be passed from the start of playback until the skip or close button should be shown.
 
-The code sample: 
+{: .table .table-bordered .table-striped }
+
+|**API Object**         `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+|**Ad Unit Property**   | `adUnit.setSkipDelay(seconds)`|
+|**Server Property**    | `skipdelay` *(pending for PBS implementation)*|
+|**Default Value**      | `10 seconds`|
+
+
+### Customization examples
+
+The code sample:
+
 
 ``` kotlin
 adUnit = MediationInterstitialAdUnit(
@@ -71,6 +175,6 @@ adUnit?.setCloseButtonArea(0.1)
 adUnit?.setSkipDelay(5)
 adUnit?.setSkipButtonArea(0.1)
 adUnit?.setSkipButtonPosition(Position.TOP_RIGHT)
-adUnit?.setCloseButtonPosition(Position.BOTTOM_LEFT)
+adUnit?.setCloseButtonPosition(Position.TOP_LEFT)
 ```
 

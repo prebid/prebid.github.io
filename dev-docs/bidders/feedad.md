@@ -7,6 +7,7 @@ biddercode: feedad
 gdpr_supported: true
 media_types: banner
 gvl_id: 781
+sidebarType: 1
 ---
 
 ### Bid Params

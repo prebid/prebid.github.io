@@ -11,6 +11,7 @@ coppa_supported: true
 usp_supported: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
 ### Registration
@@ -25,7 +26,7 @@ To use the Adtarget bidder you will need an aid from an exchange account on [htt
 | `aid` | required | The source ID from Adtarget platform. | `529814` | `integer` |
 
 
-# Description
+### Description
 
 Provides a solution for accessing Video demand and display demand from Adtarget
 

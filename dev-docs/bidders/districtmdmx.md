@@ -10,6 +10,8 @@ floors_supported: true
 usp_supported: true
 coppa_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, intentiq, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+pbjs_version_notes: not supported in 7.0+
+sidebarType: 1
 ---
 
 

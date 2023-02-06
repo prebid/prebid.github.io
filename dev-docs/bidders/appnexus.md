@@ -6,28 +6,40 @@ biddercode: appnexus
 media_types: banner, video, native
 gdpr_supported: true
 prebid_member: true
-userIds: criteo, flocId, identityLink, netId, pubProvidedId, uid2, unifiedId,
+userIds: criteo, identityLink, netId, pubProvidedId, uid2, unifiedId,
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+gpp_supported: true
 floors_supported: true
 fpd_supported: true
 pbjs: true
+pbjs_version_notes: please avoid using v7.15 and v7.16
 pbs: true
 gvl_id: 32
+sidebarType: 1
 ---
+
+### Disclosure:
+
+This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
 
 ### Table of Contents
 
-- [Bid Params](#appnexus-bid-params)
-- [Video Object](#appnexus-video-object)
-- [User Object](#appnexus-user-object)
-- [App Object](#appnexus-app-object)
-- [Custom Targeting keys](#custom-targeting-keys)
-- [Auction Level Keywords](#appnexus-auction-keywords)
-- [Passing Keys Without Values](#appnexus-no-value)
-- [User Sync in AMP](#appnexus-amp)
-- [Debug Auction](#appnexus-debug-auction)
+- [Disclosure:](#disclosure)
+- [Table of Contents](#table-of-contents)
+  - [Bid Params](#bid-params)
+  - [Video Object](#video-object)
+  - [User Object](#user-object)
+  - [App Object](#app-object)
+  - [Custom Targeting keys](#custom-targeting-keys)
+  - [Auction Level Keywords](#auction-level-keywords)
+  - [Passing Keys Without Values](#passing-keys-without-values)
+  - [First Party Data](#first-party-data)
+  - [User Sync in AMP](#user-sync-in-amp)
+  - [Mobile App Display Manager Version](#mobile-app-display-manager-version)
+  - [Debug Auction](#debug-auction)
+  - [Prebid Server Test Request](#prebid-server-test-request)
 
 <a name="appnexus-bid-params" />
 
@@ -48,13 +60,12 @@ All AppNexus (Xandr) placements included in a single call to `requestBids` must 
 | `user`                                          | optional | Object that specifies information about an external user. See [User Object](#appnexus-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
 | `allowSmallerSizes`                             | optional | If `true`, ads smaller than the values in your ad unit's `sizes` array will be allowed to serve. Defaults to `false`.                                                         | `true`                                                | `boolean`        |
 | `usePaymentRule` (PBJS) or `use_pmt_rule` (PBS) | optional | If `true`, Appnexus will return net price to Prebid.js after publisher payment rules have been applied.                                                                       | `true`                                                | `boolean`        |
-| `keywords`                                      | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://monetize.xandr.com/docs/segment-targeting) (login required). Values can be empty. See [Passing Keys Without Values](#appnexus-no-value) below for examples. If you want to pass keywords for all adUnits, see [Auction Level Keywords](#appnexus-auction-keywords) for an example. Note that to use keyword with the Prebid Server adapter, that feature must be enabled for your account by an AppNexus account manager. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
+| `keywords`                                      | optional | A set of key-value pairs applied to all ad slots on the page.  Mapped to [buy-side segment targeting](https://monetize.xandr.com/docs/segment-targeting) (login required). A maximum of 100 key/value pairs can be defined at the page level. Each tag can have up to 100 additional key/value pairs defined. Values can be empty. See [Passing Keys Without Values](#appnexus-no-value) below for examples. If you want to pass keywords for all adUnits, see [Auction Level Keywords](#appnexus-auction-keywords) for an example. Note that to use keyword with the Prebid Server adapter, that feature must be enabled for your account by an AppNexus account manager. | `keywords: { genre: ['rock', 'pop'] }`                | `object`         |
 | `video`                                         | optional | Object containing video targeting parameters.  See [Video Object](#appnexus-video-object) for details.                                                                        | `video: { playback_method: ['auto_play_sound_off'] }` | `object`         |
 | `app`                                           | optional | Object containing mobile app parameters.  See the [App Object](#appnexus-app-object) for details.                                                                      | `app : { id: 'app-id'}`                               | `object`         |
 | `reserve`                                       | optional | Sets a floor price for the bid that is returned. If floors have been configured in the AppNexus Console, those settings will override what is configured here unless 'Reserve Price Override' is checked. See [Xandr docs](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/create-a-floor-rule.html)                | `0.90`                                                | `float`          |
 | `position`                                      | optional | Identify the placement as above or below the fold.  Allowed values: Unknown: `unknown`; Above the fold: `above`; Below the fold: `below`                                      | `'above'`                                               | `string`        |
 | `trafficSourceCode`                             | optional | Specifies the third-party source of this impression.                                                                                                                          | `'my_traffic_source'`                                 | `string`         |
-| `supplyType`                                    | optional | Indicates the type of supply for this placement. Possible values are `web`, `mobile_web`, `mobile_app`                                                                        | `'web'`                                               | `string`         |
 | `supplyType`                                    | optional | Indicates the type of supply for this placement. Possible values are `web`, `mobile_web`, `mobile_app`                                                                        | `'web'`                                               | `string`         |
 | `pubClick`                                      | optional | Specifies a publisher-supplied URL for third-party click tracking. This is just a placeholder into which the publisher can insert their own click tracker. This parameter should be used for an unencoded tracker. This parameter is expected to be the last parameter in the URL. Please note that the click tracker placed in this parameter will only fire if the creative winning the auction is using AppNexus click tracking properly.                                  | `'http://click.adserver.com/'`                        | `string`         |
 | `extInvCode`                                    | optional | Specifies predefined value passed on the query string that can be used in reporting. The value must be entered into the system before it is logged.                           | `'10039'`                                             | `string`         |
@@ -179,6 +190,17 @@ keywords: {
   otherKeyword: ['']
 }
 ```
+
+<a name="appnexus-fpd" />
+
+#### First Party Data
+
+Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+
+At this time however, the `appnexus` bidder only reads the First Party Data when using the Prebid Server and Prebid Server Premium endpoints.  The client-side version of the `appnexus` bidder does not use the values from the First Party Data fields.
+
+PBS/PSP supports all first party data fields: site, user, segments, and imp-level first party data.
+
 
 <a name="appnexus-amp" />
 

@@ -23,6 +23,31 @@ Nope. The only approval process is a code review. There are separate instruction
 As for [membership](https://prebid.org/membership/) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
 but it's not necessary for contributing code as a community member.
 
+## How does Prebid support privacy regulations?
+
+Prebid understands that publishers are under increasing pressure to respond and adapt to privacy regulations. For instance, an increasing number of laws (including California’s CPRA and laws in Colorado, Virginia, Connecticut, and Utah) already require, or will require in 2023, specific disclosures around and ability to opt out of targeted advertising activities as well as “sales” of consumer data. While we cannot give legal advice, we do provide a toolkit that supports publishers in their efforts to comply with the laws that apply to them. If there’s a tool you need that you don’t see listed below, please do open an issue in the appropriate repository ([PBJS](https://github.com/prebid/Prebid.js/issues), [PBS](https://github.com/prebid/prebid-server/issues), [SDK](https://github.com/prebid/prebid-mobile-ios/issues)).
+
+To get started, first talk to your lawyers to determine your legal obligations. You might, for instance, want to run a Consent Management Platform (CMP) that allows consumers to opt into or out of certain practices when your users are in privacy-sensitive jurisdictions.
+
+After you’ve determined your legal obligations, consider the tools Prebid makes available to publishers so that their pages can determine what actions are needed based on their interpretation of the user’s actions and the company’s policies:
+
+- Turn off Prebid.js usersync:
+    - [for client-side adapters](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) - either completely or for certain bidders.
+    - [for server-side adapters](/dev-docs/modules/prebidServer.html) - override the s2sConfig.syncEndpoint
+- [Disable User ID modules](/dev-docs/modules/userId.html) - there are controls for different ID modules and which bidders can get which IDs.
+- [Disable device access](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) - no adapter or module will be able to create a cookie or HTML5 localstorage object.
+- For GDPR:
+    - Consider the [GDPR](/dev-docs/modules/consentManagement.html) and [GDPR Enforcement](/dev-docs/modules/gdprEnforcement.html) modules, which flexibly support various actions like cancelling usersyncs, auctions, and analytics. Using these modules, bid adapters can receive the IAB TCF string from the CMP.
+    - Alternatively, the page can just avoid turning on certain bidders or modules.
+- For CCPA / CPRA / US-Privacy:
+    - Consider the [US-Privacy](/dev-docs/modules/consentManagementUsp.html) module, which passes the IAB USP string through to bid adapters and supports data deletion events for User ID modules and other interested adapters and modules.
+- Set the [COPPA flag](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa), which passes this value through to modules and bid adapters.
+- The IAB is still refining the definition of [GPP](https://iabtechlab.com/gpp/). Once that has settled, Prebid will build a GPP module. In the meantime, a few bid adapters have added support for statically setting GPP strings, e.g. pbjs.setConfig({ortb2: {regs: {gpp: "blah", gpp_sid: [1,2]}}});
+- Avoid adding certain bidders or modules to the AdUnit.
+- Turn off header bidding altogether.
+
+Prebid relies on the IAB and community members to determine what tools are needed to support publishers in meeting their legal obligations. As noted above, if there’s another tool you need, please open an issue in the appropriate repository, or join the org and help us improve the system!
+
 ## What should my timeouts be?
 
 Below is a set of recommended best practice starting points for your timeout settings:
@@ -156,7 +181,7 @@ It's technically possible, but we don't recommend doing this:
 - We don't test concurrent versions
 - We won't specifically support debugging problems caused by running two concurrent versions. But will take take PRs if someone finds an issue.
 
-If all this wasn't enough to warn you away from trying, it should work if you name the PBJS global differently for each instance (https://github.com/prebid/Prebid.js/blob/master/package.json#L20)
+If all this wasn't enough to warn you away from trying, it should work if you name the PBJS global differently for each instance (Update the value of 'globalVarName' in https://github.com/prebid/Prebid.js/blob/master/package.json)
 
 ## Can I filter bid responses that don't meet my criteria?
 
@@ -176,20 +201,16 @@ For historic reasons, Prebid will resolve the AUCTION_PRICE macro.
 Google is developing this technology to help publishers create and manage line items in bulk. This should enable more publishers to integrate their sites with header bidding on the open web. Here is Google's [official blog post](https://blog.google/products/admanager/improved-header-bidding-support-in-google-ad-manager/) on yield group. This feature is currently in beta production. 
 
 What we know about yield group feature:
-- The beta is limited to which publishers are involved.
-- The feature is limited to premium GAM accounts.
-- The [Prebid Universal Creative](/overview/prebid-universal-creative.html) is not supported. Google has ported some portions of the PUC to an internal creative.
-- GPT reads Prebid.js objects directly from the 'pbjs' global.
-- Not all Prebid bid adapters are supported.
-- While detailed performance testing has not taken place, we hope that the improved auction dynamics from no longer using price bucketing will have beneficial effects on auction outcomes.
-
-What we don't know:
-- Whether all use cases currently work well when using yield groups. e.g. [Native](/formats/native.html), [video](/formats/video.html), [AMP](/formats/amp.html), [Post-Bid](/overview/what-is-post-bid.html).
-- Whether utilizing the feature might cause an impact to some analytics scenarios.
-- Whether GPT can find Prebid at a global other than 'pbjs'.
-- Google's timelines for adding publishers to the beta or making the feature Generally Available.
-
-When we have solid information to share with the community, we will create additional [AdOps pages](/adops/before-you-start.html) and update existing ones.
+1. The feature is limited to premium GAM accounts.
+1. The beta is limited to which publishers are involved.
+1. These use cases currently don't work with yield groups: [Native](/formats/native.html), [video](/formats/video.html), [AMP](/formats/amp.html), [Post-Bid](/overview/what-is-post-bid.html). Google is open to feedback from the community about these scenarios.
+1. The [Prebid Universal Creative](/overview/prebid-universal-creative.html) is not utilized. Google has ported some portions of the PUC to an internal creative. For safeframes, the special creative calls postMessage, or if not a safeframe, it calls pbjs.renderAd() in the parent frame.
+1. The in-page Google Publisher Toolkit (GPT) reads Prebid.js objects directly from the 'pbjs' global. If window.pbjs does not exist, it attempts to locate a non-standard Prebid global via window._pbjsGlobals; looking for the first instance that exists with the required functionality.
+1. Not all Prebid bid adapters are supported.
+1. Aliases are not currently supported, but Google aims to support aliases that are commonly used. There may be future updates to support custom aliases.
+1. GPT determines bid values using pbjs events, specifically creating auctionEnd, bidTimeout, bidRequested, and noBid event handlers.
+1. The Yield Group should win when the adjusted bid price is higher than the header bidding price bucket (hp_pb), which should typically occur if the publisher is rounding bids down, as is the Prebid default.
+1. While detailed performance testing has not taken place, we hope that the improved auction dynamics from no longer using price bucketing will have beneficial effects on auction outcomes.
 
 ## I'm a developer - how do I change the name of my module?
 

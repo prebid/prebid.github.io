@@ -6,6 +6,7 @@ pbjs: true
 pbs: true
 biddercode: adocean
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Note

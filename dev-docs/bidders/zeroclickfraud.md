@@ -4,6 +4,7 @@ title: ZeroClickFraud
 pbs: true
 media_types: banner
 biddercode: zeroclickfraud
+sidebarType: 1
 ---
 
 ### Bid Params

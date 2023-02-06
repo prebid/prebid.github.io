@@ -12,7 +12,7 @@ floors_supported: true
 userIds: unifiedId, identityLink
 gdpr_supported: true
 usp_supported: true
-fpd_supported: true
+sidebarType: 1
 ---
 
 ### Note:
@@ -35,6 +35,7 @@ Client side and server side parameters differ slightly. For Server side (Prebid 
 | `pubId`        | required for all bid requests tracking multiple domains or sites | Publisher ID          | `123`                  | `integer` |
 | `irisid`       | optional                                                         | Iris.tv ID            | `'iris_6f9285823a4'`   | `string`  |
 | `slot`         | optional                                                         | Placement ID          | `40`                   | `number`  |
+| `product`      | required for new supported products like 'skins'                 | Product Type          | `skins`                | `string`  |
 
 ### Client Side Bid Params
 
@@ -44,6 +45,7 @@ Client side and server side parameters differ slightly. For Server side (Prebid 
 | `zone`         | required for all bid requests tracking a single domain or site   | Tracking ID           | `'ggumtest'`           | `string`  |
 | `pubId`        | required for all bid requests tracking multiple domains or sites | Publisher ID          | `123`                  | `integer` |
 | `slot`         | required for slot placement only                                 | Slot ID               | `9`                    | `integer` |
+| `product`      | required for new supported products like 'skins'                 | Product Type          | `skins`                | `string`  |
 | `iriscat`      | optional                                                         | Iris.tv segments      | `'segment1,segment2'`  | `string`  |
 | `irisid`       | optional                                                         | Iris.tv ID            | `'123'`                | `string`  |
 | `bidfloor`     | optional                                                         | CPM bidfloor in USD   | `0.03`                 | `float`   |
@@ -93,6 +95,17 @@ To enable ad requests for in-screen, either `zone` or `pubId` must be present in
         bidder: 'gumgum',
         params: {
             zone: 'zone_id' // provided by GumGum
+        }
+    }
+
+#### Skins
+Skins ad requests require the `product` parameter with the value of `skins` in the params object:
+
+    {
+        bidder: 'gumgum',
+        params: {
+            zone: 'zone_id', // provided by GumGum
+            product: 'skins'
         }
     }
 
@@ -183,6 +196,21 @@ other size you choose).
                 bidder: 'gumgum',
                 params: {
                     zone: 'zone_id' // zone id is provided by GumGum
+                }
+            },
+        ]
+    }
+
+#### Skins 
+The skins product requires a similar setup to its client side header bidding counterpart:
+
+    {
+        bids: [
+            {
+                bidder: 'gumgum',
+                params: {
+                    zone: 'zone_id', // provided by GumGum
+                    product: 'skins'
                 }
             },
         ]

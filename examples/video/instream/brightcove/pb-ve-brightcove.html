@@ -17,7 +17,7 @@ sidebarType: 4
 		</div>
 
 		<!--video warning-->
-		<div class="pb-alert pb-alert-important" style="width:60vw;">
+		<div class="pb-alert pb-alert-important" >
 			<p style="color:#85720f"><b>Important:</b>
 			This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
 		</div>
@@ -30,97 +30,96 @@ sidebarType: 4
 		<!--video code fencing-->
 
 		<!--header code example-->
-		<div class="pb-alert pb-alert-warning" style="width:60vw;">
+		<div class="pb-alert pb-alert-warning" >
 			<p style="color:#a94443"><b>Warning:</b>
 			Do not forget to exchange the placementId in the code examples with your own placementId!</p>
 		</div>
 
-		<div style="width:60vw;">
-			<h4>Place this code in the page header.</h4>
-<pre class="pb-code-hl" style="width:60vw;">
+    <h4>Place this code in the page header.</h4>
+    <div class="pb-code-hl-wrap">
+      <pre class="pb-code-hl" >
 <!--put javascript code here-->
 &lt;script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"&gt;&lt;/script&gt;<br>
 &lt;!--brightcove & prebid js code--&gt;
 &lt;script&gt;
-	var pbjs = pbjs || {};
-	pbjs.que = pbjs.que || [];
-	iosDevice = !!navigator.platform.match(/iPhone|iPod|iPad/);
+  var pbjs = pbjs || {};
+  pbjs.que = pbjs.que || [];
+  iosDevice = !!navigator.platform.match(/iPhone|iPod|iPad/);
 
-	/* PRE-DEFINE `invokeVideoPlayer`
+  /* PRE-DEFINE `invokeVideoPlayer`
 
-	  Because we have no way of knowing when all the bids will be
-	  returned from Prebid we can't be sure that the browser will
-	  reach the point where `invokeVideoPlayer` is defined before
-	  `bidsBackHandler` fires and tries to call it.
+    Because we have no way of knowing when all the bids will be
+    returned from Prebid we can't be sure that the browser will
+    reach the point where `invokeVideoPlayer` is defined before
+    `bidsBackHandler` fires and tries to call it.
 
-	  To prevent an "`invokeVideoPlayer` not defined" error, we
-	  pre-define it before we make the call to Prebid, and redefine
-	  it later on with the code to create the player and play the
-	  ad.
+    To prevent an "`invokeVideoPlayer` not defined" error, we
+    pre-define it before we make the call to Prebid, and redefine
+    it later on with the code to create the player and play the
+    ad.
 
-	  In this first version, it simply stores the winning VAST to
-	  use later. */
+    In this first version, it simply stores the winning VAST to
+    use later. */
 
-	var tempTag = false;
-	var invokeVideoPlayer = function(url) {
-		tempTag = url;
-	}
+  var tempTag = false;
+  var invokeVideoPlayer = function(url) {
+    tempTag = url;
+  }
 
-	var videoAdUnit = {
-		code: 'video1',
-		mediaTypes: {
-			video: {
-			  context: 'instream',
-			  playerSize: [640, 480],
-			  mimes: ['video/mp4'],
-			  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-			  playbackmethod: [2],
-			  skip: 1
-			}
-		},
-		bids: [{
-			bidder: 'appnexus',
-			params: {
-				placementId: iosDevice ? 13239390 : 13232361 // Add your own placement id here.
-			}
-		}]
-	};
+  var videoAdUnit = {
+    code: 'video1',
+    mediaTypes: {
+      video: {
+        context: 'instream',
+        playerSize: [640, 480],
+        mimes: ['video/mp4'],
+        protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+        playbackmethod: [2],
+        skip: 1
+      }
+    },
+    bids: [{
+      bidder: 'appnexus',
+      params: {
+        placementId: iosDevice ? 13239390 : 13232361 // Add your own placement id here.
+      }
+    }]
+  };
 
-	pbjs.que.push(function() {
-		pbjs.addAdUnits(videoAdUnit);
-		pbjs.setConfig({
-			debug: true,
-			cache: {
-				url: 'https://prebid.adnxs.com/pbc/v1/cache'
-			}
-		});
-		pbjs.requestBids({
-			bidsBackHandler: function(bids) {
-				var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-					adUnit: videoAdUnit,
-					params: {
-						iu: '/19968336/prebid_cache_video_adunit',
-						cust_params: {
-							section: 'blog',
-							anotherKey: 'anotherValue'
-						},
-						output: 'vast'
-					}
-				});
-				invokeVideoPlayer(videoUrl);
-			}
-		});
-	});
+  pbjs.que.push(function() {
+    pbjs.addAdUnits(videoAdUnit);
+    pbjs.setConfig({
+      debug: true,
+      cache: {
+        url: 'https://prebid.adnxs.com/pbc/v1/cache'
+      }
+    });
+    pbjs.requestBids({
+      bidsBackHandler: function(bids) {
+        var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+          adUnit: videoAdUnit,
+          params: {
+            iu: '/19968336/prebid_cache_video_adunit',
+            cust_params: {
+              section: 'blog',
+              anotherKey: 'anotherValue'
+            },
+            output: 'vast'
+          }
+        });
+        invokeVideoPlayer(videoUrl);
+      }
+    });
+  });
 
 &lt;/script&gt;
-</pre>
-
+      </pre>
 		</div>
 
-		<!--body code example-->
-		<div style="width:60vw;">
-			<h4>Place this code in the page body.</h4>
-<pre class="pb-code-hl" style="width:60vw;">
+    <h4>Place this code in the page body.</h4>
+    <div class="pb-code-hl-wrap">
+      <!--body code example-->
+      <pre class="pb-code-hl" >
 <!--put body html and javascript here-->
 &lt;!-- INCLUDE PLAYER AND IMA3 PLUGIN SCRIPTS
 
@@ -136,80 +135,78 @@ need to include this script on the page.  --&gt;
 
 &lt;script type="text/JavaScript"&gt;
 
-	  // REDEFINE `invokeVideoPlayer`<br>
-	function invokeVideoPlayer(url) {
+    // REDEFINE `invokeVideoPlayer`<br>
+  function invokeVideoPlayer(url) {
 
-		  // USE `bc()` TO REFERENCE VIDEO PLAYER, PASS OPTIONS INTO IMA3 PLUGIN<br>
-		bc("myVideo").ima3({
-		 	serverUrl: url,
-		 	debug: true,
-		 	timeout: 5000,
-		 	ima3SdkSettings: {
-		    	"disableCustomPlaybackForIOS10Plus": true
-		  	},
-		  	adTechOrder: [
-		    	"html5",
-		    	"flash"
-		  	],
-		});
+      // USE `bc()` TO REFERENCE VIDEO PLAYER, PASS OPTIONS INTO IMA3 PLUGIN<br>
+    bc("myVideo").ima3({
+      serverUrl: url,
+      debug: true,
+      timeout: 5000,
+      ima3SdkSettings: {
+          "disableCustomPlaybackForIOS10Plus": true
+        },
+        adTechOrder: [
+          "html5",
+          "flash"
+        ],
+    });
 
-		// ADD A `ready` LISTENER AND INTERACT WITH THE PLAYER &nbsp;
+    // ADD A `ready` LISTENER AND INTERACT WITH THE PLAYER &nbsp;
 
-		//   Call `videojs()` and pass in the ID of the video element to &nbsp;
-		//   get a reference to the player. Call `.ready` on the player &nbsp;
-		//   to set up the event listener, and place any code that will &nbsp;
-		//   interact with the player inside the callback (such as  &nbsp;
-		//   loading media files, logging events for the player or ads). <br>
+    //   Call `videojs()` and pass in the ID of the video element to &nbsp;
+    //   get a reference to the player. Call `.ready` on the player &nbsp;
+    //   to set up the event listener, and place any code that will &nbsp;
+    //   interact with the player inside the callback (such as  &nbsp;
+    //   loading media files, logging events for the player or ads). <br>
 
-		videojs("myVideo").ready(function() {
-		 	var myPlayer = this;
+    videojs("myVideo").ready(function() {
+      var myPlayer = this;
 
-		  // LOAD THE MEDIA FILE &nbsp;
+      // LOAD THE MEDIA FILE &nbsp;
 
-		  //   Once we know the player is ready and we have our prebid ad &nbsp;
-		  //   ready, load the content video from Brightcove Studio. &nbsp;
+      //   Once we know the player is ready and we have our prebid ad &nbsp;
+      //   ready, load the content video from Brightcove Studio. &nbsp;
 
-		  //   Replace this ID with the ID with one of your own media file IDs &nbsp;
-		  //   which can be found in your Brightcove Studio account. <br>
+      //   Replace this ID with the ID with one of your own media file IDs &nbsp;
+      //   which can be found in your Brightcove Studio account. <br>
 
-		 	myPlayer.catalog.getVideo("5530880848001", function(error, video){
-				myPlayer.catalog.load(video);
-				if(error) {
-			  		console.log("There was an error retrieving the media file: " + error);
-				}
-		  	});
+      myPlayer.catalog.getVideo("5530880848001", function(error, video){
+        myPlayer.catalog.load(video);
+        if(error) {
+            console.log("There was an error retrieving the media file: " + error);
+        }
+        });
 
-		  	myPlayer.on("ima3error", function() {
-				console.log("There was an ima3 error.");
-		  	});
-		});
-	 };
+        myPlayer.on("ima3error", function() {
+        console.log("There was an ima3 error.");
+        });
+    });
+   };
 
-	// ACCOUNT FOR PAGE SPEED &nbsp;
+  // ACCOUNT FOR PAGE SPEED &nbsp;
 
-	//   If prebid returned bids before the browser reached the end of &nbsp;
-	//   the page, the first version of `invokeVideoPlayer` will have &nbsp;
-	//   been called from `bidsBackHandler` so the winning vast tag &nbsp;
-	//   will be stored in `tempTag`. &nbsp;
+  //   If prebid returned bids before the browser reached the end of &nbsp;
+  //   the page, the first version of `invokeVideoPlayer` will have &nbsp;
+  //   been called from `bidsBackHandler` so the winning vast tag &nbsp;
+  //   will be stored in `tempTag`. &nbsp;
 
-	//   If that's the case, we want to call the 'real' version of &nbsp;
-	//   `invokeVideoPlayer` with the stored url to create the player &nbsp;
-	//   and play the ad. &nbsp;
+  //   If that's the case, we want to call the 'real' version of &nbsp;
+  //   `invokeVideoPlayer` with the stored url to create the player &nbsp;
+  //   and play the ad. &nbsp;
 
-	//   If `tempTag` is not defined, that means the browser reached &nbsp;
-	//   the end of the page before the bids came back from prebid, &nbsp;
-	//   meaning the 'real' version of `invokeVideoPlayer` was already &nbsp;
-	//   called. <br>
+  //   If `tempTag` is not defined, that means the browser reached &nbsp;
+  //   the end of the page before the bids came back from prebid, &nbsp;
+  //   meaning the 'real' version of `invokeVideoPlayer` was already &nbsp;
+  //   called. <br>
 
-	if (tempTag) {
-	 	invokeVideoPlayer(tempTag);
-	 	tempTag = false;
-	}
+  if (tempTag) {
+    invokeVideoPlayer(tempTag);
+    tempTag = false;
+  }
   &lt;/script&gt;
-
-</pre>
+      </pre>
 		</div>
-
 	</div>
 </div>
 
