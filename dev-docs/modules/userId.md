@@ -179,7 +179,7 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 | adQuery QiD | adQuery | qid | adquery.io | "p9v2dpnuckkzhuc..." |
 | Adriver ID | Adriver | adriverId | adriver.ru | "1111" |
 | Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
-| AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
+| AMX ID | AMX | amxId | amxdt.net | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
 | AudienceOne ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
 | DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
