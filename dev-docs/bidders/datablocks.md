@@ -12,6 +12,7 @@ pbs_app_supported: true
 schain_supported: true
 usp_supported: true
 userIds: criteo,unifiedId,netId,pubcid
+sidebarType: 1
 ---
 
 ### Bid Params

@@ -7,6 +7,7 @@ page_type: module
 module_type: rtd
 module_code : dgkeywordRtdProvider
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 

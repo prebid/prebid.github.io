@@ -4,7 +4,7 @@ title: Innity
 description: Prebid Innity Bidder Adapter
 pbjs: true
 biddercode: innity
-pbjs_version_notes: not in 5.x
+sidebarType: 1
 ---
 
 ### Note:

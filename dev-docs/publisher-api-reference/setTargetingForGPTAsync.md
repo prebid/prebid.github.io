@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.setTargetingForGPTAsync([codeArr], customSlotMatching)
 description:
+sidebarType: 1
 ---
 
 

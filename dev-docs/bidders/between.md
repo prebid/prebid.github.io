@@ -8,9 +8,11 @@ biddercode: between
 schain_supported: true
 gdpr_supported: true
 pbs_app_supported: true
-userIds: sharedId
+userIds: all
 gvl_id: 724
 usp_supported: true
+safeframes_ok: false
+sidebarType: 1
 ---
 
 ### Prebid.js Bid Params
@@ -19,8 +21,7 @@ usp_supported: true
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
 | `s` | required |  Section ID from Between SSP control panel | 999999 | `integer` |
-| `w`        | required | width of placement(Number)                | 240       |
-| `h`        | required | height of placement(Number)               | 400       |
+| `cur` | optional | 3-letter ISO 4217 code defining the currency of the bid (currently support USD and EUR), default is USD | `'USD'` | `string` |
 
 ### Prebid-Server Bid Params
 

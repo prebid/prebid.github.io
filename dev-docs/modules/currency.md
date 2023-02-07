@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Currency
-description: Converts bids to the ad server currency
+description: Converts bid currency into ad server currency based on data in a supplied exchange rate file.
 module_code : currency
 display_name : Currency
 enable_download : true

@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Category Translation
-description: Converts IAB sub category to ad server group.
+description: Converts IAB category to ad server category for long-form videos.
 module_code : categoryTranslation
 display_name : CategoryTranslation
 enable_download : true

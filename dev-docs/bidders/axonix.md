@@ -5,6 +5,9 @@ description: Axonix Prebid Adaptor
 biddercode: axonix
 media_types: banner, video
 pbjs: true
+pbs: true
+gvl_id: 678
+sidebarType: 1
 ---
 
 ### Prebid Server Note:

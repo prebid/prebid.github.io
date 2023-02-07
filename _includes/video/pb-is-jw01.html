@@ -2,24 +2,24 @@
 <html lang="en" class="html--no-js">
 
 <head>
-{% include head--common.html %}    
+{% include head--common.html %}
     <!--production version of prebid.js-->
-    <script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
-    
-    <!--pbjs and player code -->	
-    
-    	    
+    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+
+    <!--pbjs and player code -->
+
+
     <script type="text/javascript">
-	    
+
       	var pbjs = pbjs || {};
 	    pbjs.que = pbjs.que || [];
-	
+
 	    // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
 	    var tempTag = false;
 	    var invokeVideoPlayer = function(url) {
 	        tempTag = url;
 	    }
-	
+
 	    var videoAdUnit = {
 	        code: 'video1',
 	        mediaTypes: {
@@ -39,17 +39,17 @@
 	            }
 	        }]
 	    };
-	
+
 	    pbjs.que.push(function() {
 	        pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
-	
+
 	        pbjs.setConfig({
 	            debug: true,
 	            cache: {
 	                url: 'https://prebid.adnxs.com/pbc/v1/cache'
 	            }
 	        });
-	
+
 	        pbjs.requestBids({
 	            bidsBackHandler: function(bids) {
 	                var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
@@ -66,9 +66,9 @@
 	                invokeVideoPlayer(videoUrl);
 	            }
 	        });
-	    });			     
+	    });
 	</script>
-    
+
 </head>
 
 <body>

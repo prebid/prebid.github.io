@@ -1,6 +1,6 @@
 ---
 layout: page_v2
-title: Code Integration - iOS
+title: SDK Integration - iOS
 description: Code Integration - iOS
 pid: 1
 top_nav_section: prebid-mobile
@@ -8,195 +8,249 @@ nav_section: prebid-mobile-ios
 sidebarType: 2
 ---
 
-# Code Integration for iOS
-{: .notoc}
+# Integration for iOS
+{:.no_toc}
 
-Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Cocoapods or by [cloning the repo](https://github.com/prebid/prebid-mobile-ios) and using our included script to build the SDK.
+Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-getting-started.html). Once your account is set up include the Prebid Mobile SDK in your app by either using dependencies managers or by [cloning the repo](https://github.com/prebid/prebid-mobile-ios) and using our included script to build the SDK.
 
-- TOC
- {:toc}
+* TOC
+{:toc}
 
-### Include with Cocoapods
+## SDK Integration
 
-If you are not familar with using Cocoapods for dependency management visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `podfile` setup, include the following:
+### Cocoapods
+
+If you are not familiar with using Cocoapods for dependency management, visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `Podfile` setup, include the following:
 
 ```
-platform :ios, '10.0'
-
 target 'MyAmazingApp' do
     pod 'PrebidMobile'
 end
 ```
 
-### Include with Carthage
+Now run `pod install` to add the Prebid SDK to project dependencies. 
 
-If you are not familiar with the Carthage package builder, please refere to the project [github page](https://github.com/Carthage/Carthage) for more details.
+### Carthage
 
-Since Prebid SDK architecture supports a multi-module feature for future enhancements, that currently use the same module name for every schema, please use CarthageBuild.sh script to build a necessary binary.
+If you are not familiar with the Carthage package builder, please refer to the project [github page](https://github.com/Carthage/Carthage) for more details.
 
-There are two shared schemes available ([issue #239](https://github.com/prebid/prebid-mobile-ios/issues/239)):
+1. Install Carthage
+2. Add `github "prebid/prebid-mobile-ios" == 2.0.4-carthage` to your `Cartfile`.
+3. Run `carthage update`.
+4. Drag `PrebidMobile.xcframework` from `Carthage/Build` to `General -> Linked Frameworks and Libraries`
 
-- PrebidMobile
-- PrebidMobileCore
+### XCFramework
 
-Follow the next steps:
+1. Clone the project and run script `scripts/buildPrebidMobile.sh`
+2. Drag `PrebidMobile.xcframework` from `generated/output` directory into your project. Make sure "Copy items if needed" is selected.
+3. Go to your Xcode project’s `General -> Frameworks, Libraries, and Embedded Content` settings. Use `Embed & Sign` for dynamic and `Do Not Embed` for static linking
 
-1. Add PrebidSDK dependency into Cartfile. Release notes
-```
-github "prebid/prebid-mobile-ios" == 1.5
-```
-2. Update Carthage
-```
-carthage update
-```
+### Swift PM
 
+SPM isn't supported for Prebid SDK `2.0.0` and higher ([details](https://github.com/prebid/prebid-mobile-ios/issues/640)). 
+
+The next guide is applicable to `1.x` versions of the SDK. 
+
+If you are not familiar with the Swift Package Manager, please refer to the project [github page](https://github.com/apple/swift-package-manager) for more details.
+
+1. Add Prebid dependency `File -> Swift Packages -> Add Package Dependency...` 
+2. Select desired version, branch or commit
+3. Select Prebid [module]({{site.baseurl}}/prebid-mobile/modules/modules-overview.html)
 3. Build the specific schema `CarthageBuild.sh`
-    
+
     **Variant 1**
-    
+
     - Run CarthageBuild.sh script from Cartfile folder. The path should be:
         `.../Carthage/Checkouts/prebid-mobile-ios/scripts/CarthageBuild.sh`
-    
+
     - Enter Schema name (PrebidMobile or PrebidMobileCore)
         - If you run CarthageBuild.sh and see Permission denied use:
              `chmod +x <path_to_CarthageBuild.sh>`
-    
+
     **Variant 2**
-    
+
     - Open `PrebidMobile.xcodeproj` at `.../Carthage/Checkouts/prebid-mobile-ios/PrebidMobile.xcodeproj` using Xcode
-    
+
     - Manage Schemes -> Check Shared checkbox for a necessary schema
-    
+
     - run `carthage build prebid-mobile-ios`
 4. Integrate the binary into your project
 
-
-
 You can find the schema name in the build PrebidSDK framework inside Info.plist with `PrebidMobileName` key
-
-
 
 ### Build framework from source
 
 Build Prebid Mobile from source code. After [cloning the repo](https://github.com/prebid/prebid-mobile-ios), use Terminal or another command line tool, change to the root directory and run:
 
 ```
-./scripts/buildPrebidMobile.sh
+scripts/buildPrebidMobile.sh
 ```
+
 This will output the PrebidMobile.framework.
 
-### Setup Prebid Server Account
+## Initialize SDK
 
-In order to conduct header bidding within your app you will need a Prebid Server hosted account. There are two options available for publishers:
+Once you have a [Prebid Server]((/prebid-mobile/prebid-mobile-getting-started.html)), you will add 'account' info to the Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
 
-1. The simplest option is to sign up for a hosted solution. Several [Prebid.org members](https://prebid.org/product-suite/managed-services/) provide hosting packages.
+```
+Prebid.shared.prebidServerAccountId = "YOUR_ACCOUNT_ID"
+Prebid.shared.prebidServerHost = .Appnexus
+```
 
-2. Implement your own Prebid Server solution. You will need to [download](https://github.com/prebid/prebid-server) the source code from Github. The repository has [full instructions](https://github.com/prebid/prebid-server/tree/master/docs/developers) for configuring, deploying, and testing your implementation.
+If you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app.
 
-Once you have a Prebid Server account, you will need to add your account credentials to the app.
+```
+try! Prebid.shared.setCustomPrebidServer(url: "https://prebid-server-test-j.prebid.org/openrtb2/auction")
+```
+
+This method throws an exception if the provided URL is invalid.
+
+Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. There are several options for how to do it. 
+
+For the No Ad Server scenario, use the following initialization: 
+
+```
+Prebid.initializeSDK { status, error in
+    if let error = error {
+        print("Initialization Error: \(error.localizedDescription)")
+        return
+    }
+}
+```
+
+If you integrate Prebid Mobile with GMA SDK, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app: 
 
 
 ```
-Prebid.shared.prebidServerAccountId = @"YOUR_ACCOUNT_ID";
-Prebid.shared.prebidServerHost = PrebidHostAppnexus;
+Prebid.initializeSDK(GADMobileAds.sharedInstance()) { status, error in
+    if let error = error {
+        print("Initialization Error: \(error.localizedDescription)")
+        return
+    }
+}
 ```
 
-If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app.
+Check the log messages of the app. If the provided GMA SDK version is not verified for compatibility, the Prebid SDK informs about it.
 
-
-```
-Prebid.shared.setCustomPrebidServer(url:URL_STRING_TO_SERVER)
-```
-
-
-### Integrate Ad Servers With Your App
-
-Integrating **MoPub** with your application
-
-1.  Go to [MoPub.com](https://app.mopub.com/register) and  register for a MoPub account . If you already have an account with them, you can [log in](https://app.mopub.com/account/login/).
-
-2.  After the registration you will be automatically prompted to set up a new MoPub application required for integrating mobile ads to your application.
-
-Integrating **Google** with your application   
-
-Go to Google's developer site and follow the instructions for integrating their [Mobile Ads SDK](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/quick-start) into your app.
-
-### Set Targeting Parameters (Optional)
+## Set Targeting Parameters 
 
 Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
 
 View the full list of [targeting parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html).
 
-### Create Ad Units
+## Setup SDK
 
-Banner and interstitial ad units can be created:
+The `Prebid` class is a singleton that enables the user to apply global settings.
+
+### Properties
+
+`prebidServerAccountId`: String containing the Prebid Server account ID.
 
 
+`prebidServerHost`: String containing configuration your Prebid Server host with which Prebid SDK will communicate. Choose from the system-defined Prebid Server hosts or define your own custom Prebid Server host.
+
+
+`shareGeoLocation`: Optional Bool, if this flag is True AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s geographical location data to Prebid Server. If this flag is False OR the app does not collect the user’s geographical location data, Prebid Mobile will not populate any user geographical location information in the call to Prebid Server. The default setting is false.
+
+`logLevel`: Optional level of logging to output in the console. Options are one of the following sorted by a verbosity of the log:
+
+``` swift
+public static let debug = LogLevel(stringValue: "[💬]", rawValue: 0)
+public static let verbose = LogLevel(stringValue: "[🔬]", rawValue: 1)
+public static let info = LogLevel(stringValue: "[ℹ️]", rawValue: 2)
+public static let warn = LogLevel(stringValue: "[⚠️]", rawValue: 3)
+public static let error = LogLevel(stringValue: "[‼️]", rawValue: 4)
+public static let severe = LogLevel(stringValue: "[🔥]", rawValue: 5)
 ```
-let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
-```
 
-For details on creating the specific ad units and additional parameters and methods associated with each view the documentation pertaining to them:
+`timeoutMillis`: The Prebid timeout (accessible to Prebid SDK 1.2+), set in milliseconds, will return control to the ad server SDK to fetch an ad once the expiration period is achieved. Because Prebid SDK solicits bids from Prebid Server in one payload, setting Prebid timeout too low can stymie all demand resulting in a potential negative revenue impact.
 
-[Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)  
-[Interstitial Ad Unit](/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
 
-### Resize ad slot
+`storedAuctionResponse`: Set as type string, stored auction responses signal Prebid Server to respond with a static response matching the storedAuctionResponse found in the Prebid Server Database, useful for debugging and integration testing. No bid requests will be sent to any bidders when a matching storedAuctionResponse is found. For more information on how stored auction responses work, refer to the written [description on github issue 133](https://github.com/prebid/prebid-mobile-android/issues/133).
 
-Prebid recommends app developers to resize ads slots to the Prebid rendering ad size using native code due to an unresolved bug in the Google Mobile Ads SDK (described [here](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!category-topic/google-admob-ads-sdk/ios/648jzAP2EQY)) where render failures can occur with 3rd party creatives (such as Prebid Universal Creative) using size overrides.
+`pbsDebug`: adds the debug flag ("test":1) on the outbound http call to Prebid Server. The test:1 flag will signal to Prebid Server to emit the full resolved request (resolving any Stored Request IDs) as well as the full Bid Request and Bid Response to and from each bidder.
 
-{% capture warning_note %}  
-Failure to resize rendering Prebid ads can cause revenue loss under certain conditions. For this reason, we advise using the below resize function in all scenarios. {% endcapture %}
-{% include /alerts/alert_warning.html content=warning_note %}
 
-*SWIFT*
+### Methods
+
+#### Stored Response
+{:.no_toc}
+
+`addStoredBidResponse`: Function containing two properties:
+
+* `bidder`: Bidder name as defined by Prebid Server bid adapter of type string.
+* `responseId`: Configuration ID used in the Prebid Server Database to store static bid responses.
+
+Stored Bid Responses are similar to Stored Auction Responses in that they signal to Prebid Server to respond with a static pre-defined response, except Stored Bid Responses is done at the bidder level, with bid requests sent out for any bidders not specified in the bidder parameter. For more information on how stored auction responses work, refer to the written [description on github issue 133](https://github.com/prebid/prebid-mobile-android/issues/133).
+
 ```swift
-func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+func addStoredBidResponse(bidder: String, responseId: String)
+```
 
-    AdViewUtils.findPrebidCreativeSize(bannerView,
-                                            success: { (size) in
-                                                guard let bannerView = bannerView as? DFPBannerView else {
-                                                    return
-                                                }
+`clearStoredBidResponses`: Clears any stored bid responses.
 
-                                                bannerView.resize(GADAdSizeFromCGSize(size))
+```swift
+func clearStoredBidResponses()
+```
 
-        },
-                                            failure: { (error) in
-                                                print("error: \(error)");
+#### Custom headers
+{:.no_toc}
 
-        })
+The following methods enable the customization of the HTTP call to the prebid server:
+
+```
+func addCustomHeader(name: String, value: String) 
+```
+
+```
+func clearCustomHeaders() 
+```
+
+### Examples
+{:.no_toc}
+
+
+```swift
+// Host
+Prebid.shared.prebidServerHost = .Rubicon
+// or set a custom host
+Prebid.shared.prebidServerHost = PrebidHost.Custom
+do {
+    try Prebid.shared.setCustomPrebidServer(url: "https://prebid-server.customhost.com")
+} catch {
+    print(error)
 }
 
+// Account Id
+Prebid.shared.prebidServerAccountId = "1234"
 
+// Geolocation
+Prebid.shared.shareGeoLocation = true
 
- ```
+// Log level data
+Prebid.shared.logLevel = .verbose
 
-*Objective C*
- ```objective_c
- -(void) adViewDidReceiveAd:(GADBannerView *)bannerView {
-    NSLog(@"Ad received");
-    [AdViewUtils findPrebidCreativeSize:bannerView
-                                   success:^(CGSize size) {
-                                       if ([bannerView isKindOfClass:[DFPBannerView class]]) {
-                                           DFPBannerView *dfpBannerView = (DFPBannerView *)bannerView;
+// Set Prebid timeout in milliseconds
+Prebid.shared.timeoutMillis = 3000
 
-                                           [dfpBannerView resize:GADAdSizeFromCGSize(size)];
-                                       }
-                                   } failure:^(NSError * _Nonnull error) {
-                                       NSLog(@"error: %@", error);
-                                   }];
-}
- ```
+// Enable Prebid Server debug respones
+Prebid.shared.pbsDebug = true
 
+// Stored responses  can be one of storedAuction response or storedBidResponse
+Prebid.shared.storedAuctionResponse = "111122223333"
 
-## Further Reading
+//or
+Prebid.shared.addStoredBidResponse(bidder: "appnexus", responseId: "221144")
+Prebid.shared.addStoredBidResponse(bidder: "rubicon", responseId: "221155")
+```
 
-- [Prebid Mobile API - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
-- [Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-adunit-ios.html)
-- [Banner Ad Unit](/prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html)
-- [Intersitial Ad Unit]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html)
-- [Result Codes]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html)
-- [Targeting Parameters]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
-- [Prebid Mobile Object]({{site.baseurl}}/prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html)
-- [Prebid Utilities - iOS]({{site.baseurl}}/prebid-mobile/pbm-api/ios/pbm-util-ios.html)
+## Integrate Ad Units
+
+Follow the corresponding guide to integrate Prebid Mobile:
+
+- [GAM using Original API](code-integration-ios.html)
+- [No Ad Server](../../modules/rendering/ios-sdk-integration-pb.html)
+- [GAM using Rendering API](../../modules/rendering/ios-sdk-integration-gam.html)
+- [AdMob](../../modules/rendering/ios-sdk-integration-gam.html)
+- [AppLovin MAX](../../modules/rendering/ios-sdk-integration-max.html)
+

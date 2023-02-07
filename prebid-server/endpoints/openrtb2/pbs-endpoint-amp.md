@@ -6,10 +6,14 @@ title: Prebid Server | Endpoints | OpenRTB2 | AMP
 ---
 
 # Prebid Server | Endpoints | /openrtb2/amp
+{:.no_toc}
+
+* TOC
+{:toc}
 
 This document describes the behavior of the Prebid Server AMP endpoint in detail.
 For a more general reference, see the [Prebid AMP Implementation Guide
-]({{site.baseurl}}/dev-docs/show-prebid-ads-on-amp-pages.html).
+](/dev-docs/show-prebid-ads-on-amp-pages.html).
 
 ## GET /openrtb2/amp
 
@@ -19,24 +23,29 @@ For a more general reference, see the [Prebid AMP Implementation Guide
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
 | tag_id | Required | `String` |  The `tag_id` ID must reference a [Stored BidRequest]({{site.baseurl}}/prebid-server/features/pbs-storedreqs.html). For a thorough description of bid request JSON, see the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) docs. |
-| w | recommended | `String` | Comes from the amp-ad.width attribute. The stored request may contain width already, but this parameter reflects what's actually in the page. It replaces imp.banner.format[0].w |
-| h | recommended | `String` | Comes from the amp-ad.height attribute. The stored request may contain height already, but this parameter reflects what's actually in the page. It replaces imp.banner.format[0].h |
+| w | recommended | `String` | Comes from the amp-ad.width attribute. The stored request may contain width already, but this parameter reflects what's actually in the page. It's used to help determine imp.banner.format[0].w. See [resolving sizes](#resolving-sizes). |
+| h | recommended | `String` | Comes from the amp-ad.height attribute. The stored request may contain height already, but this parameter reflects what's actually in the page. It's used to help determine imp.banner.format[0].h. See [resolving sizes](#resolving-sizes). |
 | ms | optional | `String` | Comes from the amp-ad.data-multi-size attribute. e.g. "970x90, 728x90". Sizes are parsed and added to imp.banner.format |
-| oh | optional | `String` | Comes from the amp-ad.data-override-height attribute. See below for details on size calculation. |
-| ow | optional | `String` | Comes from the amp-ad.data-override-width attribute. See below for details on size calculation. |
+| oh | optional | `String` | Comes from the amp-ad.data-override-height attribute. See [resolving sizes](#resolving-sizes). |
+| ow | optional | `String` | Comes from the amp-ad.data-override-width attribute. See [resolving sizes](#resolving-sizes). |
 | curl | optional | `String` | Added to OpenRTB request as site.page |
 | slot | optional | `String` | Added to OpenRTB request as imp[0].tagid |
 | timeout | optional | `String` | Added to OpenRTB request as tmax |
-| targeting | optional | `String` | First Party Data (PBS-Java only) |
-| gdpr_consent | optional | `String` | Consent string passed from CMP. Note this is used for both GDPR and CCPA. |
+| targeting | optional | `String` | First Party Data |
+| gdpr_consent | optional | `String` | (PBS-Go ony) Consent string passed from CMP. Note this is used for both GDPR and CCPA. |
+| consent_string | optional | `String` | (PBS-Java only) Consent string passed from CMP. Note this is used for all privacy regulations. The consent_type field indicates which kind of string is present. |
+| consent_type | optional | `String` | (PBS-Java only) If "1", request is TCFv1 and GDPR fields are ignored. If "2", the 'gdpr_consent' field is interpreted as TCFv2. If "3", the 'gdpr_consent' field is interpreted as us_privacy. |
+| gdpr_applies | optional | `String` | Takes the values "true", "false" or empty. This is used as the value of regs.ext.gdpr. If "true", regs.ext.gdpr:1, if "false", regs.ext.gdpr:0. |
+| addtl_consent | optional | `String` | GAM "additional consent". If present, this value is copied to user.ext.ConsentedProvidersSettings.consented_providers |
 | account | optional | `String` | Can be used to pass the Prebid-Server specific account ID. This is useful if `tag_id` parameters aren't unique across accounts. |
-| debug | optional | `integer` | If 1, returns additional debug info. |
+| debug | optional | `integer` | If 1, sets ext.prebid.debug to true to obtain additional debug info. |
 
 To be compatible with AMP, this endpoint behaves different from normal `/openrtb2/auction` requests.
 
-1. The Stored `request.imp` data must have exactly one element.
-2. `request.imp[0].secure` will be always be set to `1`, because AMP requires all content to be `https`.
-3. AMP query params will overwrite parts of your Stored Request. For details, see the [Query Parameters](#query_params) section.
+1. The 'tag_id' parameter points to a stored request.
+2. The stored request must have exactly one `imp` element.
+3. The request `imp[0].secure` will be always be set to `1`, because AMP requires all content to be `https`.
+4. AMP query params will overwrite parts of your Stored Request. See the table above.
 
 ### Request
 
@@ -63,104 +72,65 @@ An example Stored Request is given below:
             }
         }
     },
-    "imp": [
-        {
-            "id": "some-impression-id",
-            "banner": {}, // The sizes are defined by your AMP tag query params settings
-            "ext": {
-                "appnexus": {
+    "imp": [{
+      "id": "some-impression-id",
+      "banner": {}, // The sizes are defined by your AMP tag query params settings
+      "ext": {
+        "prebid": {
+            "bidder": {
+                "bidderA": {
                     // Insert parameters here
                 },
-                "rubicon": {
+                "bidderB": {
                     // Insert parameters here
                 }
             }
-        }
-    ]
+         }
+      }
+    }]
 }
 ```
 
 Note that other ext.prebid extensions can be specified in the stored request such as:
 - [ext.prebid.currency](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#currency-support)
 - [ext.prebid.aliases](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bidder-aliases)
-- [ext.prebid.multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only)
+- [ext.prebid.multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid)
 - etc.
 
 #### First Party Data
 
-(Currently only supported in PBS-Java)
+The nature of AMP is that user-level FPD is difficult or impossible. All of the pages are cached on a CDN and page javascript that can modify RTC calls is severely limited.
 
-You can send first party data into an AMP request by encoding a JSON
-targeting block like this:
+Contextual First Party Data must be defined in the stored request entries.
 
+The only field that PBS supports in the AMP call that can be considered FPD is the 'targeting' block. These are key-value pairs that are sent to the ad server. They are also copied to the ORTB JSON in imp[].ext.data.
+
+For example, if the AMP JSON targeting provided is:
 ```
-GET /openrtb2/amp?tag_id=7470-Eater_AMP_ROS_ATF&w=300&h=250&ow=&oh=&ms=&slot=%2F172968584%2Feater%2Fgoogle%2Famp_med_rec_02&targeting=%7B%22site%22%3A%7B%22keywords%22%3A%22article%2C%20las%20vegas%22%2C%22cat%22%3A%7B%22blah%22%3A%221%22%7D%2C%22other-attribute%22%3A%22other-value%22%2C%22ext%22%3A%7B%22data%22%3A%7B%22entry_group%22%3A%5B%22front-page%22%2C%22featured-stories%22%5D%2C%22page_type%22%3A%22AMP%22%7D%7D%7D%2C%22user%22%3A%7B%22gender%22%3A%22m%22%7D%2C%22bidders%22%3A%5B%22rubicon%22%2C%22appnexus%22%5D%2C%22keywords%22%3A%22las%20vegas%20hospitality%20employees%22%2C%22foo%22%3A%7B%22bar%22%3A%22baz%22%7D%7D...
+  <amp-ad width="300" height="50"
+    type="doubleclick"
+    data-slot="/1111/amp_test"
+    rtc-config='{"vendors": {"prebidrubicon": {"REQUEST_ID": "1001-my-test"}}}'
+    json='{ "targeting": {"attr1": "val1", "attr2": "val2"}}' >
+  </amp-ad>
 ```
-
-Prebid Server will expand the targeting value and merge the data into
-the resulting OpenRTB JSON for the appropriate bidders.
-
-For example, if this AMP targeting is provided:
+The AMP URL would be something like this:
+```
+GET /openrtb2/amp?tag_id=1001-my-test&w=300&h=250&ow=&oh=&ms=&slot=%2F1111%2Famp_test&targeting=%7B%22attr1%22%3A%22val1%22%2C%22attr2%22%3A%22val2%22%7D&...
+```
+And the resulting OpenRTB would merge these targeting values as FPD on imp.ext.data:
 ```
 {
-    "site": {
-      "keywords": "article, las vegas", // (1)
-      "cat": { "blah": "1" }, // invalid data type, will be dropped
-      "other-attribute": "other-value", // not openrtb2, remove
-      "ext": {
-        "data": {
-          "entry_group": ["front-page","featured-stories"], // (4)
-          "page_type": "AMP" // (5)
-        } 
-     }
-    },
-    "user": {
-      "gender": "m", // (2)
-    },
-    "bidders": ["rubicon","appnexus"], // (3)
-    "keywords": "las vegas hospitality employees", // (6)
-    "foo": { // (7)
-      "bar": "baz"
-    }
-}
-```
-The numbered elements from the raw targeting data above are merged into the resulting OpenRTB like this:
-```
-{
-  "imp": [...],
-  "site": {
-    "publisher": { … },
-    "keywords": "article, las vegas" // (1)
-    "ext":{
-      "data": {
-        "entry_group": ["front-page","featured-stories"], // (4)
-        "page_type": "AMP" // (5)
-      }
-    }
-  },
-  "user": {
-    "gender": "m" // (2)
-  },
-  "ext": {
-    "prebid": {
-      "data": {
-        "bidders": ["rubicon",appnexus"], // (3)
-      }
-    }
-  },
-  "imp": [
+  "imp": [{
     ...
     "ext": {
-       "context": {
-         "data": {
-           "keywords": "las vegas hospitality employees", // (6)
-           "foo": { // (7)
-             "bar": "baz"
-           }
-         }
-       }
+      "data": {
+        "attr1": "val1",
+        "attr2": "val2"
+      }
     }
-  ]
+  }],
+  ...
 }
 ```
 
@@ -228,41 +198,7 @@ The following errors can occur when loading a stored OpenRTB request for an inco
 |  Checking stored request for match against tag_id. | 999  | No AMP config found for tag_id `%s`.  | Error is returned.  |
 |  Checking if imp exists. | 999  | Data for tag_id=`'%s'` does not define the required imp array.  | Error is returned.  |
 |  Checking if imp count is greater than one. | 999  | Data for tag_id `'%s'` includes `%d` imp elements. Only one is allowed.  | Error is returned.  |
-|  Checking if request.app exists. | 999  | `request.app` must not exist in AMP stored requests.  | Error is returned.  |
-
-
-<a name="query_params"></a>
-### Query Parameter Details
-
-   - A configuration option `amp_timeout_adjustment_ms` may be set to account for estimated latency so that Prebid Server can handle timeouts from adapters and respond to the AMP RTC request before it times out.
-
-Ensure that the amp-ad component was imported in the header.
-
-```html
-<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
- ```
-
-This script provides code libraries that will convert the `<amp-ad>` properties to the endpoint query parameters. In the most basic usage pass `width` and `height` as well as `type` and a `rtc-config`.  The `type` value is the ad network you will be using. The `rtc-config` is used to pass JSON configuration to the Prebid Server, which handles the communication with [AMP RTC](https://medium.com/ampfuel/better-than-header-bidding-amp-rtc-fc54e80f3999). Vendors is an object that defines any vendors that will be receiving the RTC callout. In this example, the required parameter `tag_id` will receive the `PLACEMENT_ID` (or `REQUEST_ID`) value.
-
-```html
-<amp-ad  
-    width="300"
-    height="250"
-    rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "ef8299d0-cc32-46cf-abcd-41cebe8b4b85"}}, "timeoutMillis": 500}'
-</amp-ad>
-```
-Here's a simplified URL:
-
-```
-/openrtb2/amp?tag_id='ef8299d0-cc32-46cf-abcd-41cebe8b4b85'&w=300&h=250&timeout=500
-```
-
-Some endpoint parameters will override parts of the Stored Request.
-
-1. `ow`, `oh`, `w`, `h`, and/or `ms` will be used to set `request.imp[0].banner.format` if `request.imp[0].banner` is present.
-2. `curl` will be used to set `request.site.page`
-3. `timeout` will generally be used to set `request.tmax`. However, the Prebid Server host can [configure](https://github.com/prebid/prebid-server/blob/master/docs/developers/configuration.md) their deploy to reduce this timeout for technical reasons.
-4. `debug` will be used to set `request.test`, causing the `response.debug` to have extra debugging info in it.
+|  Checking if app exists. | 999  | The `app` object must not exist in AMP stored requests.  | Error is returned.  |
 
 ### Resolving Sizes
 
@@ -271,15 +207,23 @@ track the logic used by `doubleclick` when resolving sizes used to fetch ads fro
 
 Specifically:
 
-1. If `ow` and `oh` exist, `request.imp[0].banner.format` will be a single element with `w: ow` and `h: oh`
-2. If `ow` and `h` exist, `request.imp[0].banner.format` will be a single element with `w: ow` and `h: h`
-3. If `oh` and `w` exist, `request.imp[0].banner.format` will be a single element with `w: w` and `h: oh`
-4. If `ms` exists, `request.imp[0].banner.format` will contain an element for every size it uses.
-5. If `w` and `h` exist, `request.imp[0].banner.format` will be a single element with `w: w` and `h: h`
-6. If `w` _or_ `h` exist, it will be used to override _one_ of the dimensions inside each element of `request.imp[0].banner.format`
-7. If none of these exist then the Stored Request values for `request.imp[0].banner.format` will be used without modification.
+1. If `ow` and `oh` exist, `imp[0].banner.format` will be a single element with `w: ow` and `h: oh`
+2. If `ow` and `h` exist, `imp[0].banner.format` will be a single element with `w: ow` and `h: h`
+3. If `oh` and `w` exist, `imp[0].banner.format` will be a single element with `w: w` and `h: oh`
+4. If `ms` exists, `imp[0].banner.format` will contain an element for every size it uses.
+5. If `w` and `h` exist, `imp[0].banner.format` will be a single element with `w: w` and `h: h`
+6. If `w` _or_ `h` exist, it will be used to override _one_ of the dimensions inside each element of `imp[0].banner.format`
+7. If none of these exist then the Stored Request values for `imp[0].banner.format` will be used without modification.
+
+## Configuration Options
+
+- settings.generate-storedrequest-bidrequest-id: replace the stored request `id` with a UUID
+- amp.default-timeout-ms: default operation timeout for AMP requests
+- amp.timeout-adjustment-ms: reduces timeout value passed in AMP request. Can be used to account for estimated latency so that Prebid Server can respond to the AMP RTC request before it times out.
+- amp.max-timeout-ms: maximum operation timeout for AMP requests
 
 ## Further Reading
 - [Prebid and AMP](/formats/amp.html)
 - [Prebid Server AMP Use Case Overview](/prebid-server/use-cases/pbs-amp.html)
 - [Prebid Server First Party Data](/prebid-server/features/pbs-fpd.html)
+- [Stored Requests](/prebid-server/features/pbs-storedreqs.html)

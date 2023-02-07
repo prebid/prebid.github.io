@@ -10,6 +10,7 @@ gdpr_supported: true
 media_types: banner, video
 schain_supported: true
 usp_supported: true
+sidebarType: 1
 ---
 
 ### Registration

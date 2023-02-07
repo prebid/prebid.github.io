@@ -7,6 +7,7 @@ usp_supported: true
 pbjs: true
 biddercode: pxyz
 prevBiddercode: playgroundxyz
+sidebarType: 1
 ---
 
 ### Bid Params

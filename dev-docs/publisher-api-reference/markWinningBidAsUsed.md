@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.markWinningBidAsUsed(markBidRequest)
 description: 
+sidebarType: 1
 ---
 
 

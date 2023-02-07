@@ -8,7 +8,7 @@ schain_supported: true
 media_types: banner, video, native
 gdpr: true
 pbjs: true
-pbjs_version_notes: not in 5.x
+sidebarType: 1
 ---
 
 ### Bid Params
