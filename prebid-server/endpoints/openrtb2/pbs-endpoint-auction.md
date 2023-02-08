@@ -117,13 +117,13 @@ Prebid Server accepts all OpenRTB 2.5 fields and passes them in the request to a
 {: .table .table-bordered .table-striped }
 | ORTB Field | Version | Notes |
 | --- | --- | --- |
-| id | 2.5 | if host config generate-storedrequest-bidrequest-id config is true
+| id | 2.5 | if host config generate_request_id (Go) / generate-storedrequest-bidrequest-id (Java) is true
     if $.id is not set, generate a random value
     if the storedrequest is from AMP or from ext.prebid.storedrequest, then replace any existing $.id with a random value
 if $.id contains "{{UUID}}", replace that macro with a random value |
 | source.tid | 2.5 | if source.tid is not set:
    set source.tid to a random UUID
-if host config generate-storedrequest-bidrequest-id config is true
+if host config auto_gen_source_tid (Go) / generate-storedrequest-bidrequest-id (Java) is true
     if the storedrequest is from AMP or from a top-level stored request (ext.prebid.storedrequest), then replace any existing $.source.tid with a random value
 if $.source.tid contains "{{UUID}}", replace that macro with a random value |
 | imp[].id | 2.5 | if host config generate-storedrequest-bidrequest-id config is true
@@ -135,23 +135,23 @@ if $.source.tid contains "{{UUID}}", replace that macro with a random value |
    if host config generate-storedrequest-bidrequest-id config is true
        if the storedrequest is from AMP or from ext.prebid.storedrequest, then replace any existing $.imp[n].ext.tid with a random value
   if $.imp[n].ext.tid contains "{{UUID}}", replace that macro with a random value |
-| cur | 2.5 | Supports either a string or an array. If array, the first element is taken to be the "Ad Server Currency" for purposes of [currency conversion](/prebid-server/features/pbs-currency.html).
+| cur | 2.5 | Only the first array element is taken to be the "Ad Server Currency" for purposes of [currency conversion](/prebid-server/features/pbs-currency.html). |
 | exp | 2.5 | See the [expiration](#expiration) section below |
 | tmax | 2.5 | See the [timeout](#timeout) section below |
 | device.lmt | 2.5 | See special processing for iOS apps defined in [issue 1699](https://github.com/prebid/prebid-server/issues/1699) |
-| regs.gdpr | 2.6.202210 | Bidders supporting 2.5 only: downgraded to regs.ext.gdpr | 
-| regs.us_privacy | 2.6.202210 | Bidders supporting 2.5 only: downgraded to regs.ext.us_privacy |
-| user.consent | 2.6.202210 | Bidders supporting 2.5 only: downgraded to user.ext.consent |
-| imp.rwdd | 2.6.202210 | Bidders supporting 2.5 only: downgraded to imp.ext.prebid.is_rewarded_inventory (PBS-Java) or removed (PBS-Go) |
-| user.eids | 2.6.202210 | Bidders supporting 2.5 only: downgraded to user.ext.eids |
-| source.schain | 2.6.202210 | Bidders supporting 2.5 only: downgraded to source.ext.schain |
+| regs.gdpr | 2.6 | Bidders supporting 2.5 only: downgraded to regs.ext.gdpr | 
+| regs.us_privacy | 2.6 | Bidders supporting 2.5 only: downgraded to regs.ext.us_privacy |
+| user.consent | 2.6 | Bidders supporting 2.5 only: downgraded to user.ext.consent |
+| imp.rwdd | 2.6 | Bidders supporting 2.5 only: downgraded to imp.ext.prebid.is_rewarded_inventory |
+| user.eids | 2.6 | Bidders supporting 2.5 only: downgraded to user.ext.eids |
+| source.schain | 2.6 | Bidders supporting 2.5 only: downgraded to source.ext.schain |
 | wlangb, {content, device}.langb, cattax, {site, app, publisher, content, producer}.cattax, ssai, {app, site}.content.{network, channel}, {app, content, site, user}.kwarray, device.sua | 2.6.202210 | Bidders supporting 2.5 only: these fields are removed |
-| {video, audio}.{rqddurs, maxseq, poddur, podid, podseq, mincpmpersec, slotinpod} | 2.6.202210 | not yet supported by PBS |
-| regs.gpp | 2.6.202211 | Bidders supporting 2.5 only: this field is removed |
-| regs.gpp_sid | 2.6.202211 | Bidders supporting 2.5 only: this field is removed |
-| dooh | 2.6.202211 | not yet supported by PBS |
-| imp.qty | 2.6.202211 | not yet supported by PBS |
-| imp.dt | 2.6.202211 | not yet supported by PBS |
+| {video, audio}.{rqddurs, maxseq, poddur, podid, podseq, mincpmpersec, slotinpod} | 2.6.202210 | Bidders supporting 2.5 only: these fields are removed |
+| regs.gpp | 2.6-202211 | Bidders supporting 2.5 only: this field is removed |
+| regs.gpp_sid | 2.6-202211 | Bidders supporting 2.5 only: this field is removed |
+| dooh | 2.6-202211 | not yet supported by PBS |
+| imp.qty | 2.6-202211 | (PBS-Go only so far) Bidders supporting 2.5 only: this field is removed |
+| imp.dt | 2.6-202211 | (PBS-Go only so far) Bidders supporting 2.5 only: this field is removed |
 
 
 #### Expiration
@@ -193,6 +193,9 @@ before the client will stop waiting.
 This field is used in different ways by PBS-Go and PBS-Java:
 
 ##### PBS-Go
+
+1. if tmax is not specified or is 0, use the host configured default value (auction_timeout_ms.default)
+1. if tmax is over the host defined max, cap it to the host defined max (auction_timeout_ms.max)
 
 ##### PBS-Java
 
