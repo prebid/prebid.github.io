@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.getHighestUnusedBidResponseForAdUnitCode(adUnitCode)
 description:
+sidebarType: 1
 ---
 
 Use this method to retrieve the highest unused bid for the specified adUnit. Unused means not it's not rendered.

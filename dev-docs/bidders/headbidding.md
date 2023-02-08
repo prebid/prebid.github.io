@@ -22,6 +22,7 @@ ortb_blocking_supported: true
 multiformat_supported: will-bid-on-one
 floors_supported: true
 aliasCode : adkernel
+sidebarType: 1
 
 
 
@@ -32,7 +33,7 @@ aliasCode : adkernel
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description | Example | Type     |
 |----------|----------|-------------|---------|----------|
-| `zoneId` | required |             |         | `string` |
+| `zoneId` | required |             |         | `integer` |
 | `host`   | required |             |         | `string` |
 
 Head Bidding is an aliased bidder for AdKernel

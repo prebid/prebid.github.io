@@ -14,6 +14,7 @@ coppa_supported: true
 usp_supported: true
 floors_supported: true
 prebid_member: true
+sidebarType: 1
 
 ---
 

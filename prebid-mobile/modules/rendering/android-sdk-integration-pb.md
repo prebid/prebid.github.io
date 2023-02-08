@@ -8,53 +8,18 @@ sidebarType: 2
 ---
 
 # Custom Integration
-
-## Table of Contents
-
-- [Overview of Rendering API](#mobile-api)
-- [Banner](#banner-api)
-- [Interstitial](#interstitial-api)
-- [Rewarded](#rewarded-api)
-
-[//]: # (- [Native](android-sdk-integration-pb-native.html))
+{:.no_toc}
 
 ## Overview of Rendering API
 
-The integration and usage of the Rendering API are similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid. 
+The integration and usage of the Rendering API is similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid. 
 
 ![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
-Prebid's Rendering API provides the ability to integrate these ad formats:
+* TOC
+{:toc}
 
-- Display Banner
-- Display Interstitial
-- Video Interstitial 
-- Rewarded Video
-- Outstream Video
-
-[//]: # (- [Native](android-sdk-integration-pb-native.html))
-
-The Rendering API ad formats are accessible through the following API classes:
-
-- **Banner API** - for **Display** and **Video**  Banners
-- **Interstitial API** - for **Display** and **Video** Interstitials
-- **Rewarded API** - for **Rewarded Video**
-
-### Init Prebid Rendering Module
-
-To start running bid requests you have to set the Prebid Server **Host** and **Account Id** and then initilize the SDK with application context. The best place for this is the `onCreate()` method of your Application class.
-
-```
-PrebidMobile.setBidServerHost(HOST)
-PrebidMobile.setAccountId(YOUR_ACCOUNT_ID)
-
-// Init SDK
-PrebidMobile.setApplicationContext(this)
-```
-
-> **NOTE:** The account ID is an identifier of the **Stored Request**.
-
-### Banner API
+## Banner API
 
 Integration example:
 
@@ -72,6 +37,7 @@ bannerView?.loadAd()
 ```
 
 #### Step 1: Create Ad View
+{:.no_toc}
 
 Initialize the `BannerAdView` with properties:
 
@@ -79,6 +45,7 @@ Initialize the `BannerAdView` with properties:
 - `size` - the size of the ad unit which will be used in the bid request.
 
 #### Step 2: Load the Ad
+{:.no_toc}
 
 Call `loadAd()` and SDK will:
 
@@ -86,6 +53,7 @@ Call `loadAd()` and SDK will:
 - render the winning bid on display
 
 #### Outstream Video
+{:.no_toc}
 
 For **Banner Video** you will also need to specify the `bannerView.videoPlacementType`:
 
@@ -93,7 +61,7 @@ For **Banner Video** you will also need to specify the `bannerView.videoPlacemen
 bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
 ```
 
-### Interstitial API
+## Interstitial API
 
 Integration example:
 
@@ -120,6 +88,7 @@ interstitialAdUnit = InterstitialAdUnit(
 ```
 
 #### Step 1: Create an Ad Unit
+{:.no_toc}
 
 Initialize the `InterstitialAdUnit ` with properties:
 
@@ -128,14 +97,15 @@ Initialize the `InterstitialAdUnit ` with properties:
 
 You can also assign the listener for processing ad events.
 
-> **NOTE:** the `minSizePercentage` - plays an important role in a bidding process for display ads. If provided space is not enough demand partners won't respond with the bids.
+> **NOTE:** the `minSizePercentage` - plays an important role in a bidding process for display ads. If the provided space is not enough demand partners won't respond with bids.
 
 #### Step 2: Load the Ad
+{:.no_toc}
 
 Call the `loadAd()` method which will make a request to Prebid server.
 
-
 #### Step 3: Show the Ad when it is ready
+{:.no_toc}
 
 Wait until the ad is loaded and present it to the user in any suitable time.
 
@@ -145,7 +115,7 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 }
 ```
 
-### Rewarded API
+## Rewarded API
 
 Integration example:
 
@@ -154,28 +124,29 @@ Integration example:
 rewardedAdUnit = RewardedAdUnit(requireContext(), configId)
 rewardedAdUnit?.setRewardedAdUnitListener(this)
     
-// 2. Execute ad load
+// 2. Execute the loadAd function
 rewardedAdUnit?.loadAd()
 
 /// .......
 
-// After ad is loaded you can execute `show` to trigger ad display
+// After the ad is loaded you can execute `show` to trigger ad display
 rewardedAdUnit?.show()
 ```
 
-#### Step 1: Create Rewarded Ad Unit
+#### Step 1: Create a Rewarded Ad Unit
+{:.no_toc}
 
 Create the `RewardedAdUnit` object with parameters:
 
 - `adUnitId` - an ID of Stored Impression on the Prebid server.
 
 #### Step 2: Load the Ad
+{:.no_toc}
 
 Call the `loadAd()` method which will make a request to Prebid server.
 
-
 #### Step 3: Show the Ad when it is ready
-
+{:.no_toc}
 
 Wait until the ad is loaded and present it to the user in any suitable time.
 

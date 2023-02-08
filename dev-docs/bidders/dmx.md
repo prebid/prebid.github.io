@@ -7,6 +7,7 @@ biddercode: dmx
 gvl_id: 144
 gdpr_supported: true
 pbjs_version_notes: not supported in 7.0+
+sidebarType: 1
 ---
 
 ### Bid Params

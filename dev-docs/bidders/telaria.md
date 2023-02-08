@@ -17,6 +17,7 @@ deals_supported: false
 pbs_app_supported: false
 fpd_supported: false
 gvl_id: 202
+sidebarType: 1
 ---
 
 ### Registration

@@ -1,21 +1,23 @@
 ---
 layout: bidder
 title: Smart AdServer
-description: Prebid Smart AdServer Bidder Adaptor
+description: Prebid Smart AdServer Bidder Adapter
 biddercode: smartadserver
 media_types: display, video, native
 gdpr_supported: true
+gpp_supported: true
 schain_supported: true
 usp_supported: true
 userIds: all
 pbjs: true
 pbs: true
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Registration
 
-The Smart AdServer bidder adaptor requires setup and approval from the Smart AdServer Service team. Please reach out to your account manager for more information and start using it.
+The Smart AdServer bidder adapter requires setup and approval from the Equativ (former Smart AdServer) service team. Please reach out to your account manager for more information and start using it.
 
 ### Bid params
 

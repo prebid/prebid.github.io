@@ -11,10 +11,6 @@ title: Prebid Server | Developers | Adding a Module
 This document guides you through the process of developing a module for host companies to plug into their instance of Prebid Server.
 We encourage you to look at existing modules for working examples. You can also ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server/issues/new).
 
-{: .alert.alert-info :}
-Modules are currently only supported in [PBS-Java](https://github.com/prebid/prebid-server-java).
-
-
 * TOC
 {:toc }
 
@@ -23,7 +19,7 @@ Modules are currently only supported in [PBS-Java](https://github.com/prebid/pre
 The ability to add optional modules in [Prebid.js](/prebid/prebidjs.html) has been widely used,
 with dozens of interesting features forming a healthy ecosystem of vendor choice that's good for publishers and the industry.
 
-Prebid Server (Java) supports a rich module interface that
+Prebid Server supports a rich module interface that
 allows anyone to contribute functionality at predefined places
 along the request pipeline. Here's the general development process:
 
@@ -74,8 +70,7 @@ Here's a description of the Stages of a PBS request that modules can tap into fo
 | Processed Auction Request | Any stored requests have been merged in and all PBS enrichments are done | auction, amp, video | Inject First Party Data, Channel determination, Bid floors, Bidder optimization |
 | Bidder Request | The request has been customized for a particular bidder in the auction | auction, amp, video | Bidder-specific bcat/badv, Bidder-specific deals |
 | Raw Bidder Response | Hook functions can get access to the unprocessed bidder response | auction, amp, video | Response validations |
-| Processed Bidder Response | PBS has done its own validations on an individual bidder's response | auction, amp, video | Advanced CPM adjustments, Custom VAST macros |
-| All Processed Bid Responses | All bids are back and PBS-core bid validations are done. | auction, amp, video | Creative validation, advanced bid validations. (PBS-Java 1.97+) |
+| All Processed Bid Responses | All bids are back and PBS-core bid validations are done. | auction, amp, video | Creative validation, advanced bid validations. |
 | Auction Response | Last step before the response goes back to the client | auction, amp, video | Inject ad server targeting, alternate auction winner logic |
 
 ### 3. Figure Out Which Stages You're Going to Hook Into
@@ -163,7 +158,7 @@ about how to format ATags.
 The details of the implementation depend on the platform.
 
 - PBS-Java: see [Adding a PBS-Java module](/prebid-server/developers/add-a-module-java.html)
-- PBS-Go: TBD
+- PBS-Go: see [Adding a PBS-Go module](/prebid-server/developers/add-a-module-go.html)
 
 Other rules for open source PBS pull request:
 

@@ -10,6 +10,7 @@ safeframes_ok: false
 deals_supported: true
 pbjs: true
 enable_download: false
+sidebarType: 1
 ---
 ### Note:
 
