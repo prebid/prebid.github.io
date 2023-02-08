@@ -66,7 +66,7 @@ Publishers that want to do this should design their workflow and then set `_pbjs
 By including this module and one or more of the sub-modules, a number of new options become available in `setConfig()`,
 under the `userSync` object as attributes of the `userIds` array of sub-objects.
 
-The `value` parameter can be used to indicate an identifier the publisher has obtained via a direct integration with that identity provider that the publisher wishes to make available to Prebid.js bidders. 
+The `value` parameter can be used to indicate an identifier the publisher has obtained via a direct integration with that identity provider that the publisher wishes to make available to Prebid.js bidders.
 
 Publishers using Google AdManager may want to sync one of the identifiers as their Google PPID for frequency capping or reporting.
 The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rules; refer to [Google AdManager documentation](https://support.google.com/admanager/answer/2880055?hl=en) for them. Please note, Prebid uses a [GPT command](https://developers.google.com/publisher-tag/reference#googletag.PubAdsService) to sync identifiers for publisher convenience. It doesn't currently work for instream video requests, as Prebid typically interacts with the player, which in turn may interact with IMA. IMA does has a [similar method](https://developers.google.com/interactive-media-ads/docs/sdks/html5/client-side/reference/js/google.ima.ImaSdkSettings#setPpid) as GPT, but IMA does not gather this ID from GPT.
@@ -164,7 +164,7 @@ The Rubicon bid adapter would then receive
 ## Bidder Adapter Implementation
 
 If your ID structure is complicated, it is helpful to add tests for `pbjs.getUserIds()`, `pbjs.getUserIdsAsEids()` and `pbjs.getUserIdsAsync()`.
- 
+
 To add a custom data type for the response of `pbjs.getUserIdsAsEids()`, see other examples within the `createEidsArray` method in [/modules/userId/eid.js](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.js).
 
 ### Prebid.js Adapters
@@ -211,7 +211,7 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 | SharedID (PBJS 5.x) | n/a | pubcid | pubcid.org | "1111" |
 | SharedID (PBJS 4.x)| Prebid | sharedid | sharedid.org | {"id":"01EAJWWN...", "third":"01EAJ..."} |
 | Unified ID | Trade Desk | tdid | adserver.org | "1111" |
-| ConnectID | Yahoo | connectId | yahoo.com | "72d04af6..." |
+| ConnectID | Yahoo | connectId | yahoo.com | {"connectId": "72d04af6..."} |
 
 For example, the adapter code might do something like:
 
