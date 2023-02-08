@@ -5,7 +5,10 @@ description: An example of displaying both instream video and banner ads using P
 
 sidebarType: 1
 
-jsfiddle_link: jsfiddle.net/Prebid_Examples/nowfejh7/2/embedded/html,result/
+about:
+- This example shows how to display instream video and banner ads within the same configuration.
+
+jsfiddle_link: jsfiddle.net/Prebid_Examples/nowfejh7/embedded/html,result/
 
 code_height: 3050
 

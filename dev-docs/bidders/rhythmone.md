@@ -2,11 +2,14 @@
 layout: bidder
 title: RhythmOne
 description: Prebid RhythmOne Bidder Adaptor
-
+pbjs: true
+pbs: true
 biddercode: rhythmone
 media_types: video
 gdpr_supported: true
 schain_supported: true
+gvl_id: 36
+sidebarType: 1
 ---
 
 

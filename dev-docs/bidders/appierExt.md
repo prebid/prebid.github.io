@@ -4,9 +4,10 @@ title: AppierExt
 description: Prebid Appier Bidder Adapter
 biddercode: appierExt
 aliasCode: appier
-
+pbjs: true
 media_types: banner
 gdpr_supported: true
+sidebarType: 1
 ---
 
 #### Bid Params

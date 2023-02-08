@@ -1,7 +1,7 @@
 ---
 layout: video_sample
-title: Prebid Video | Video Outstream Example with  Google Ad Manager 
-description: An example of an outstream video with a pre-roll ad using Prebid.js and Google Ad Manager.  
+title: Prebid Video | Video Outstream Example with  Google Ad Manager
+description: An example of an outstream video with a pre-roll ad using Prebid.js and Google Ad Manager.
 videoType: pb-os-dfp
 isVideo: true
 sidebarType: 4
@@ -13,27 +13,27 @@ sidebarType: 4
 	<div class="row">
 		<h1>{{ page.title }}</h1>
 		<p>{{page.description }}</p>
-		
+
 		<!--video warning-->
 		<div markdown="span" class="pb-alert pb-alert-important" role="alert">
 			<i class="fa fa-exclamation-circle"></i>
 			<p style="color:#85720f"><b>Important:</b>
 			This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
 		</div>
-		
+
 		<!--video placeholder | this should be formatted per the needs of each player-->
 		<h1>{{page.title}}</h1>
-					
+
 					<!--video example explanation-->
 					<div>{{page.description}}</div>
-					
+
 					<!--video warning-->
 					<div markdown="span" class="pb-alert pb-alert-important" role="alert">
 						<i class="fa fa-exclamation-circle"></i>
 						<p style="color:#85720f"><b>Important:</b>
 						This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
 					</div>
-					
+
 					<!--video placeholder | this should be formatted per the needs of each player-->
 					<div>
 							<p>
@@ -59,10 +59,10 @@ sidebarType: 4
 		                    googletag.cmd.push(function() {
 		                        googletag.display('video1');
 		                    });
-		
+
 		                </script>
 		            </div>
-		            
+
 		            <div style="padding:7px;"><a href="#codesample">Code Sample</a></div>
 		            <p>
 		                Quisque ac luctus nisi, vitae ornare arcu. Proin fermentum sapien vitae odio vestibulum porta. Suspendisse faucibus sapien enim, et faucibus urna tempus et. Integer porttitor justo sed faucibus blandit. Morbi semper lectus vitae semper facilisis. Quisque
@@ -159,27 +159,27 @@ sidebarType: 4
 		                vel tortor. Aenean ultrices libero sed neque fermentum tempor. Morbi tincidunt dui turpis, non mollis est dignissim at. Suspendisse molestie convallis interdum. Donec sit amet fermentum purus.
 		            </p>
 					</div>
-				
 
-				
+
+
 		<!--video code fencing-->
-					
+
 		<!--header code example-->
 		<div markdown="span" class="pb-alert pb-alert-warning" role="alert">
 			<i class="fa fa-exclamation-circle"></i>
 			<p style="color:#a94443"><b>Warning:</b>
 			Do not forget to exchange the placementId in the code examples with your own placementId!</p>
 		</div>
-		
+
 		<div>
 			<h4>Place this code in the page header.</h4>
 <pre class="pb-code-hl">
 	<!--put javascript code here-->
-	&lt;script async src="//www.googletagservices.com/tag/js/gpt.js"&gt;&lt;/script&gt;
-		&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"&gt;&lt;/script&gt;
-		&lt;script type="text/javascript" src="http://ssl.p.jwpcdn.com/player/v/8.0.5/jwplayer.js"&gt;&lt;/script&gt;
+	&lt;script async src="//securepubads.g.doubleclick.net/tag/js/gpt.js"&gt;&lt;/script&gt;
+		&lt;script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"&gt;&lt;/script&gt;
+		&lt;script type="text/javascript" src="https://ssl.p.jwpcdn.com/player/v/8.0.5/jwplayer.js"&gt;&lt;/script&gt;
         &lt;script type="text/javascript"&gt;
-            jwplayer.key = "F4+phNkFZ4+I3UhfSN6h8JPbxdnsto3caVMq+A=="; //Test Key - replace this with your own valid JWPlayer license key
+            jwplayer.key = "ssbF6k0i9BPe87xfG/s0ipdp5gwbLoZaDON/GQvuwPU9nVJy"; //Test Key - replace this with your own valid JWPlayer license key
         &lt;/script&gt;
 
         &lt;script&gt;
@@ -197,18 +197,18 @@ sidebarType: 4
                 mediaTypes: {
                     video: {
                         playerSize: [640, 480],
-                        context: 'outstream'
+                        context: 'outstream',
+			mimes: ['video/mp4'],
+			protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+			playbackmethod: [2],
+			skip: 1
                     }
                 },
                 bids: [
                     {
                         bidder: 'appnexus',
                         params: {
-                            placementId: 13232385,
-                            video: {
-                                skippable: true,
-                                playback_method: ['auto_play_sound_off']
-                            }
+                            placementId: 13232385
                         }
                     }
                 ]
@@ -248,7 +248,7 @@ sidebarType: 4
 </pre>
 
 		</div>
-					
+
 		<!--body code example-->
 		<div>
 			<h4>Place this code in the page body.</h4>
@@ -261,14 +261,14 @@ sidebarType: 4
 				googletag.display('video1');
 			});
 		&lt;/script&gt;
-	&lt;/div&gt;  
+	&lt;/div&gt;
 
 </pre>
 		</div>
-	
+
 	</div>
 </div>
-	
+
 <!--video player code-->
 
 <script type=text/javascript>
@@ -277,7 +277,7 @@ sidebarType: 4
             invokeVideoPlayer = function(url) {
                 console.log("starting player with url " + url);
                 jwPlayerInstance.setup({
-                    "file": "http://video-demo.appnexus.com/pbjs/JWPlayerDemo/AppNexus_Summit_Video_HighRes.mp4",
+                    "file": "https://video-demo.appnexus.com/pbjs/JWPlayerDemo/AppNexus_Summit_Video_HighRes.mp4",
                     "width": 640,
                     "height": 480,
                     "autostart": true,
@@ -302,4 +302,3 @@ sidebarType: 4
 
 
 	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
-	

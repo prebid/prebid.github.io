@@ -2,8 +2,9 @@
 layout: bidder
 title: Content Ignite
 description: Prebid Contnent Ignite Adaptor
-
+pbjs: true
 biddercode: contentignite
+sidebarType: 1
 ---
 
 

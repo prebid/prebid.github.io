@@ -1,11 +1,12 @@
 This repository contains the source files for the Prebid.js documentation site at [Prebid.org](https://prebid.org).
 
-Please see the sections below for more information.
+Please see the sections below for more information:
 
 + [Contributing](#contributing)
 + [License](#license)
 + [Prerequisites](#prerequisites)
 + [Running Jekyll Locally](#running-jekyll-locally)
++ [Building Assets](#building-assets)
 + [The Downloads Page](#the-downloads-page)
 + [Thanks](#thanks)
 
@@ -13,7 +14,7 @@ Please see the sections below for more information.
 
 ## Contributing
 
-Thanks in advance for your contribution!  Contributors are listed in the **Thanks** section below.
+Thanks in advance for your contribution!
 
 For smaller changes, such as fixing a typo or adding a new section to an existing page, submit a pull request.
 
@@ -32,11 +33,17 @@ All docs are under the license shown in the `LICENSE` file in this directory.
 
 ## Prerequisites
 
-The site uses [Jekyll](https://jekyllrb.com/), which is written in the [Ruby](https://www.ruby-lang.org/en/) language.
+The site is hosted on GitHub pages, and uses [Jekyll](https://jekyllrb.com/) to generate the HTML. Jekyll is written in the [Ruby](https://www.ruby-lang.org/en/) language.
 
 1. follow the instructions at https://jekyllrb.com/docs/installation/ for your OS
 1. gem install github-pages
 1. start Jekyll as described below
+
+For CSS, the site uses Laravel Mix to build CSS from Sass (scss-flavored) source files. Under the hood Laravel Mix uses Webpack.
+
+1. follow the instructions at https://nodejs.dev to install Node.js for your OS
+1. `npm ci` to install packages for building assets
+1. build assets as described below
 
 <a name="running-jekyll-locally" />
 
@@ -46,20 +53,22 @@ Before submitting a pull request, you should run the site locally to make sure y
 
 To get started editing the site and seeing your changes, clone this repo and enter the following commands in your terminal:
 
-- `cd path/to/prebid.github.io`
-- `bundle exec jekyll serve`
+```bash
+$ JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental
+```
+
 
 You should see output that looks something like this:
 
 ```
-Configuration file: /Users/rloveland/Dropbox/Code/prebid.github.io/_config.yml  
-            Source: /Users/rloveland/Dropbox/Code/prebid.github.io  
-       Destination: /Users/rloveland/Dropbox/Code/prebid.github.io/_site  
+Configuration file: /Users/me/git/prebid.github.io/_config.yml  
+            Source: /Users/me/git/prebid.github.io  
+       Destination: /Users/me/git/prebid.github.io/_site  
  Incremental build: disabled. Enable with --incremental  
       Generating...   
                     done in 13.596 seconds.  
- Auto-regeneration: enabled for '/Users/rloveland/Dropbox/Code/prebid.github.io'  
-Configuration file: /Users/rloveland/Dropbox/Code/prebid.github.io/_config.yml  
+ Auto-regeneration: enabled for '/Users/me/git/prebid.github.io'  
+Configuration file: /Users/me/git/prebid.github.io/_config.yml  
     Server address: http://127.0.0.1:8080/  
   Server running... press ctrl-c to stop.  
 ...  
@@ -67,6 +76,14 @@ Configuration file: /Users/rloveland/Dropbox/Code/prebid.github.io/_config.yml
 ```
 
 Open the `Server address` URL in your browser, and you should see a locally running copy of the site.
+
+<a name="building-assets"/>
+
+## Building Assets
+
+- `npm run dev` to build unminified CSS for development
+- `npm run prod` to build minified CSS for production
+- `npm run watch` to use [Browsersync](https://browsersync.io) to rebuild CSS on demand and reload the browser
 
 ## The Downloads Page
 

@@ -2,8 +2,9 @@
 layout: bidder
 title: Cox
 description: Prebid Cox Bidder Adaptor
-
+pbjs: true
 biddercode: cox
+sidebarType: 1
 ---
 
 ### Bid Params

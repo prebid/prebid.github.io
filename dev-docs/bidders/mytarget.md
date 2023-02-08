@@ -2,8 +2,9 @@
 layout: bidder
 title: myTarget
 description: Prebid myTarget Bidder Adapter
-
+pbjs: true
 biddercode: mytarget
+sidebarType: 1
 ---
 
 

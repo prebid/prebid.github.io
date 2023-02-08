@@ -3,10 +3,19 @@ layout: bidder
 title: Ozone Project
 description: Prebid Ozone Project Bidder Adaptor
 biddercode: ozone 
-
-media_types: banner
+pbjs: true
+media_types: banner, video
 gdpr_supported: true
-userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId
+userIds: criteo, id5Id, tdid, identityLink, liveIntentId, parrableId, pubCommonId, lotamePanoramaId, sharedId, fabrickId
+gvl_id: 524
+deals_supported: true
+schain_supported: true
+coppa_supported: true
+usp_supported: true
+floors_supported: true
+prebid_member: true
+sidebarType: 1
+
 ---
 
 #### Bid Params
@@ -19,4 +28,77 @@ userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId
 | `publisherId`    | required | The publisher ID.  | `"4204204201"` | `string` |
 | `placementId`    | required | The placement ID.  | `"0420420421"` | `string` |
 | `customData`     | optional | publisher key-values used for targeting | `[{"settings":{},"targeting":{"key1": "value1", "key2": "value2"}}], ` | `array` |
-| `lotameData`     | optional | lotame key-values used for targeting | `{"key1": "value1", "key2": "value2"}` | `string` |
+
+
+### Test Parameters
+
+
+A test ad unit that will consistently return test creatives:
+
+```
+
+//Banner adUnit
+
+adUnits = [{
+                    code: 'id-of-your-banner-div',
+			        mediaTypes: {
+			          banner: {
+			            sizes: [[300, 250], [300,600]]
+			          }
+			        },
+                    bids: [{
+                        bidder: 'ozone',
+                        params: {
+                            publisherId: 'OZONETST0001', /* an ID to identify the publisher account  - required */
+                            siteId: '4204204201', /* An ID used to identify a site within a publisher account - required */
+                            placementId: '8000000125', /* an ID used to identify the piece of inventory - required - for appnexus test use 13144370. */
+							customData: [{"settings": {}, "targeting": {"key": "value", "key2": ["value1", "value2"]}}],/* optional array with 'targeting' placeholder for passing publisher specific key-values for targeting. */                            
+                        }
+                    }]
+                }];
+				
+				
+//Outstream adUnit
+
+adUnits = [{
+                    code: 'id-of-your-banner-div',
+			        mediaTypes: {
+				   	 	video: {
+	                        playerSize: [640, 360],
+	                        mimes: ['video/mp4'],
+	                        context: 'outstream'
+			          }
+			        },
+                    bids: [{
+                        bidder: 'ozone',
+                        params: {
+                            publisherId: 'OZONETST0001', /* an ID to identify the publisher account  - required */
+                            siteId: '4204204201', /* An ID used to identify a site within a publisher account - required */
+                            placementId: '8000000328', /* an ID used to identify the piece of inventory - required. */
+							customData: [{"settings": {}, "targeting": {"key": "value", "key2": ["value1", "value2"]}}],/* optional array with 'targeting' placeholder for passing publisher specific key-values for targeting. */                            
+                        }
+                    }]
+                }];
+				
+//Instream adUnit
+
+adUnits = [{
+                    code: 'id-of-your-banner-div',
+			        mediaTypes: {
+				   	 	video: {
+	                        playerSize: [640, 480],
+	                        mimes: ['video/mp4'],
+	                        context: 'instream'
+			          }
+			        },
+                    bids: [{
+                        bidder: 'ozone',
+                        params: {
+                            publisherId: 'OZONETST0001', /* an ID to identify the publisher account  - required */
+                            siteId: '4204204201', /* An ID used to identify a site within a publisher account - required */
+                            placementId: '8000000327', /* an ID used to identify the piece of inventory - required. */
+							customData: [{"settings": {}, "targeting": {"key": "value", "key2": ["value1", "value2"]}}],/* optional array with 'targeting' placeholder for passing publisher specific key-values for targeting. */                            
+                        }
+                    }]
+                }];
+```

@@ -2,12 +2,18 @@
 layout: bidder
 title: OneTag
 description: Prebid OneTag Bidder Adaptor
-
+pbjs: true
+pbs: true
 biddercode: onetag
 media_types: banner, video
 gdpr_supported: true
+gpp_supported: true
+gvl_id: 241
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+schain_supported: true
+getFloor: true
+sidebarType: 1
 ---
 
 

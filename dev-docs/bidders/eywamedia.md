@@ -2,10 +2,11 @@
 layout: bidder
 title: Eywamedia
 description: Prebid Eywamedia Bidder Adaptor
-
+pbjs: true
 biddercode: eywamedia
 media_types: display
 gdpr_supported: false
+sidebarType: 1
 ---
 
 

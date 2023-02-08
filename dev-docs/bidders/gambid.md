@@ -6,11 +6,12 @@ description: Prebid Gambid Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
 
-
+pbjs: true
 media_types: banner, video
 biddercode: gambid
 aliasCode: gamoshi
 userIds: id5Id, unifiedId
+sidebarType: 1
 ---
 
 ### Bid params

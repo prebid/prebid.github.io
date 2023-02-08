@@ -2,105 +2,175 @@
 
 {% include nav.html %}
 
-		
-<div class="container bs-docs-container">
-	
-	 
-	
-	<div class="row ">
-		
-		<div class="wrapper">
-			
-			<div class="col-sm-2 sidebar-expanded d-none d-md-block sidebar" id="sidebar">		
-				{% include left_nav.html %}
+
+<div class="container pb-docs-container">
+
+  <div class="row ">
+
+			<div class="col-lg-3 sidebar" id="sidebar">
+
+        <div>
+          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#sidebarContent" aria-controls="sidebarContent" aria-expanded="false" aria-label="Toggle Sidebar navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse d-lg-block" id="sidebarContent">
+				    {% include left_nav.html %}
+          </div>
+        </div>
+
 			</div>
-		
-		
-			<div class="col-sm-9 pb-content" markdown="1">
-				
-				{% if page.is_full_screen %} 
-					{{content}}
-				{% else %}
-			
-				<div class="row">
-		
-		            <div class="col-md-9" role="main">
-		                <div class="bs-docs-section">
-		
-		                    <h3>{{ page.title }}</h3>
-		
-		                    {% if page.s2s_only == true %}
-								<div class="pb-bidder-s2">
-									<h3>Note:</h3> This is a S2S adapter only.</h3>
-								</div>
-							{% endif %}
-		
-<h3>Features</h3>
 
-<table>
-<tr><th class="pbTh">Bidder Code</th><td class="pbTd">{{ page.biddercode }}</td><th class="pbTh">Prebid.org Member</th><td class="pbTd">{% if page.prebid_member == true %}yes{% else %}no{% endif %}</td></tr>
-<tr><th class="pbTh">Media Types</th><td class="pbTd">display{% if page.media_types contains 'video' %}, video{% endif %}{% if page.media_types contains 'native' %}, native{% endif %}</td><th class="pbTh">GDPR Support<td class="pbTd">{% if page.gdpr_supported == true %}yes{% else %}no{% endif %}</td></tr>
-<tr><th class="pbTh">User IDs</th><td class="pbTd">{% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %}</td><th class="pbTh">COPPA Support</th><td class="pbTd">{% if page.coppa_supported == true %}yes{% else %}no{% endif %}</td></tr>
-</table>
+    <div class="col-lg-9">
+      <div class="pb-content" markdown="1">
 
-<h3>"Send All Bids" Ad Server Keys</h3>
+        {% if page.is_full_screen %}
+          {{content}}
+        {% else %}
 
-<font size="-1">These are the bidder-specific keys that would be targeted within GAM in a Send-All-Bids scenario. GAM truncates keys to 20 characters.</font>
+          <div class="row">
 
-<table>
-<tr><td class="pbTd"><code>{{ "hb_pb_" | append: page.biddercode | slice: 0,20 }}</code></td><td class="pbTd"><code>{{ "hb_bidder_" | append: page.biddercode | slice: 0,20 }}</code></td><td class="pbTd"><code>{{ "hb_adid_" | append: page.biddercode | slice: 0,20 }}</code></td></tr>
-<tr><td class="pbTd"><code>{{ "hb_size_" | append: page.biddercode | slice: 0,20 }}</code></td><td class="pbTd"><code>{{ "hb_source_" | append: page.biddercode | slice: 0,20 }}</code></td><td class="pbTd"><code>{{ "hb_format_" | append: page.biddercode | slice: 0,20 }}</code></td></tr>
-<tr><td class="pbTd"><code>{{ "hb_cache_host_" | append: page.biddercode | slice: 0,20 }}</code></td><td class="pbTd"><code>{{ "hb_cache_id_" | append: page.biddercode | slice: 0,20 }}</code></td><td class="pbTd"><code>{{ "hb_uuid_" | append: page.biddercode | slice: 0,20 }}</code></td></tr>
-</table>
+            <div class="col-md-12" role="main">
+              <div class="bs-docs-section">
+                <p><a href="/dev-docs/bidders.html">Back to Bidders</a></p>
 
-{% if page.prevBiddercode %}
-This bidder previously had a bidder code of `{{ page.prevBiddercode }}`, but prefers new configurations to use `{{ page.biddercode }}`.
-{% endif %}
+                <h2>{{ page.title }}</h2>
 
-{% if page.bidder_supports_deals != false %}
-<h3>"Deal ID" Ad Server Key</h3>
-<code>{{ "hb_deal_" | append: page.biddercode | slice: 0,20 }}</code>
-{% endif %}
+                {% if page.enable_download == false %}
+                  <div class="pb-bidder-s2">
+                    <h4>Note:</h4> This adapter is not available in current versions of Prebid.js. Reason: {{page.pbjs_version_notes}}
+                  </div>
+                {% endif %}
 
-		                    {{content}}
-							
-		                </div>
-		
-		                {% if page.show_disqus %} 
-		                    {% include disqus_addon.html %} 
-		                {% endif %}
-		            </div>
-		
-		        </div>
-		        
-		        {% endif %}
+                {% if page.s2s_only == true %}
+                  <div class="pb-bidder-s2">
+                    <h3>Note:</h3> This is a Prebid Server adapter only.
+                  </div>
+                {% endif %}
+
+                <h3>Features</h3>
+
+                <table class="table table-bordered table-striped">
+                  <tr>
+                    <th class="pbTh">Bidder Code</th>
+                    <td class="pbTd">{{ page.biddercode }}</td>
+                    <th class="pbTh">Prebid.org Member</th>
+                    <td class="pbTd">{% if page.prebid_member == true %}yes{% else %}no{% endif %}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">Media Types</th>
+                    <td class="pbTd">{% unless page.media_types contains 'no-display' %}display{% if page.media_types contains 'video' %},{% endif %}{% endunless %}{% if page.media_types contains 'video' %} video{% endif %}{% if page.media_types != "no-display, native" and page.media_types contains 'native' %}, native{% endif %}{% if page.media_types == "no-display, native" %}native{% endif %}</td>
+                    <th class="pbTh">GDPR TCF Support</th>
+                    <td class="pbTd">{% if page.gdpr_supported == true %}yes{% else %}no{% endif %}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">User IDs</th>
+                    <td class="pbTd">{% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %}</td>
+                    <th class="pbTh">USP/CCPA Support</th>
+                    <td class="pbTd">{% if page.usp_supported == true %}yes{% else %}no{% endif %}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">Supply Chain Support</th>
+                    <td class="pbTd">{% if page.schain_supported  == true %}yes{% else %}no{% endif %}</td>
+                    <th class="pbTh">COPPA Support</th>
+                    <td class="pbTd">{% if page.coppa_supported == true %}yes{% else %}no{% endif %}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">Demand Chain Support</th>
+                    <td class="pbTd">{% if page.dchain_supported  == true %}yes{% else %}no{% endif %}</td>
+                    <th class="pbTh">GPP Support</th>
+                    <td class="pbTd">{% if page.gpp_supported == true %}yes{% else %}no{% endif %}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">Supports Deals</th>
+                    <td class="pbTd">{% if page.deals_supported == false %}no{% elsif page.deals_supported == true %}yes{% else %}check with bidder{% endif %}</td>
+                    <th class="pbTh">Prebid.js Adapter</th>
+                    <td class="pbTd">{% if page.pbjs == true %}yes{% else %}no{% endif %}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">IAB GVL ID</th>
+                    <td class="pbTd">{% if page.gvl_id %}{{page.gvl_id}}{% else %}check with bidder{% endif %}</td>
+                    <th class="pbTh">Prebid Server Adapter</th>
+                    <td class="pbTd">{% if page.pbs == true %}yes{% else %}no{% endif %}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">Floors Module Support</th>
+                    <td class="pbTd">{% if page.floors_supported  == true %}yes{% else %}no{% endif %}</td>
+                    <th class="pbTh">First Party Data Support</th>
+                    <td class="pbTd">{% if page.fpd_supported == true %}yes{% elsif page.fpd_supported == false %}no{% else %}check with bidder{% endif %}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">Multi Format Support</th>
+                    <td class="pbTd">{% if page.multiformat_supported %}{{page.multiformat_supported}}{% else %}check with bidder{% endif %}</td>
+                    <th class="pbTh">ORTB Blocking Support</th>
+                    <td class="pbTd">{% if page.ortb_blocking_supported == true %}yes{% elsif page.ortb_blocking_supported == false %}no{% elsif page.ortb_blocking_supported == 'partial' %}partial{% else %}check with bidder{% endif %}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">Safeframes OK</th>
+                    <td class="pbTd">{% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %}</td>
+                    <th class="pbTh"></th>
+		    <td class="pbTd"></td>
+                  </tr>
+                </table>
+
+                <h3>"Send All Bids" Ad Server Keys</h3>
+
+                <font size="-1">These are the bidder-specific keys that would be targeted within GAM in a Send-All-Bids scenario. GAM truncates keys to 20 characters.</font>
+
+                <table class="table table-bordered table-striped">
+                  <tr>
+                    <td class="pbTd"><code>{{ "hb_pb_" | append: page.biddercode | slice: 0,20 }}</code></td>
+                    <td class="pbTd"><code>{{ "hb_bidder_" | append: page.biddercode | slice: 0,20 }}</code></td>
+                    <td class="pbTd"><code>{{ "hb_adid_" | append: page.biddercode | slice: 0,20 }}</code></td>
+                  </tr>
+                  <tr>
+                    <td class="pbTd"><code>{{ "hb_size_" | append: page.biddercode | slice: 0,20 }}</code></td>
+                    <td class="pbTd"><code>{{ "hb_source_" | append: page.biddercode | slice: 0,20 }}</code></td>
+                    <td class="pbTd"><code>{{ "hb_format_" | append: page.biddercode | slice: 0,20 }}</code></td>
+                  </tr>
+                  <tr>
+                    <td class="pbTd"><code>{{ "hb_cache_host_" | append: page.biddercode | slice: 0,20 }}</code></td>
+                    <td class="pbTd"><code>{{ "hb_cache_id_" | append: page.biddercode | slice: 0,20 }}</code></td>
+                    <td class="pbTd"><code>{{ "hb_uuid_" | append: page.biddercode | slice: 0,20 }}</code></td>
+                  </tr>
+                  <tr>
+                    <td class="pbTd"><code>{{ "hb_cache_path_" | append: page.biddercode | slice: 0,20 }}</code></td>
+                    <td class="pbTd"><code>{{ "hb_deal_" | append: page.biddercode | slice: 0,20 }}</code></td>
+                    <td class="pbTd"></td>
+                  </tr>
+                </table>
+
+                {% if page.prevBiddercode %}
+                  This bidder previously had a bidder code of `{{ page.prevBiddercode }}`, but prefers new configurations to use `{{ page.biddercode }}`.
+                {% endif %}
 
 
-        	</div>
+                {{content}}
 
-							
-		</div>
-		<!--end wrapper-->
-	</div>	
-	<!--end row-->	
-	
-	<p></p>
-	<hr>
+                <p><a href="/dev-docs/bidders.html">Back to Bidders</a></p>
+              </div>
 
-	{% if page.title != "Credits" %}
-		{% if page.layout != "home" %}
-			{% include footer.html %}
-		{% endif %}
-	{% endif %}
-	
-	</div>
+              {% if page.show_disqus %}
+                {% include disqus_addon.html %}
+              {% endif %}
+            </div>
+
+          </div>
+
+        {% endif %}
 
 
+      </div>
+
+
+    </div>
+  </div>
+  <!--end row-->
+</div>
+  {% if page.title != "Credits" %}
+    {% if page.layout != "home" %}
+      {% include footer.html %}
+    {% endif %}
+  {% endif %}
 
 </body>
-		
-		
-
-
-
-
+</html>

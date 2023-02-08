@@ -3,18 +3,17 @@ layout: page_v2
 title: Setting up Prebid Video in FreeWheel
 head_title: Setting up Prebid Video in FreeWheel
 description: Setting up Prebid Video in FreeWheel
-pid: 3
-
-top_nav_section: adops
-nav_section: tutorials
 sidebarType: 3
 ---
 
 # FreeWheel Guide for Premium Long-Form Video
 
+{: .alert.alert-warning :}
+This guide is not written, maintained, or endorsed by Freewheel. Freewheel recommends speaking to your account team before implementing any header-bidding setup to ensure full implications for direct-sold ad delivery, forecasting, and reporting is understood.
+
 This page describes how to set up Campaigns for long form video using FreeWheel's ad server.
 
-As with Google Ad Manager for digital ads, ad ops will need to configure their FreeWheel server account so that the server can provide the correct creatives for the video player. If you do not have an account visit [FreeWheel](https://www.FreeWheel.tv) to create one.  
+As with Google Ad Manager for digital ads, ad ops will need to configure their FreeWheel server account so that the server can provide the correct creatives for the video player. If you do not have an account visit [FreeWheel](https://www.freewheel.com/) to create one.  
 
 Once your account is set up log in to the FreeWheel site. You will be presented with a dashboard area. Click on either the Advertising button in the top navigation bar or the Campaign link in the main body.
 
@@ -54,7 +53,7 @@ The value is a concatenation of the CPM (12.00), the FreeWheel industry code (39
 
 Once you have created a Placement it will appear in the first row of the Placement table.
 
-In the last column of each row is a magnifying glass icon. Clicking on that will present detailed information about the Placement. In this detailed section information such as Delivery and Forecast, Schedule and Budget, Custom Targets, Exclusivity and Industry can be set for the Placement. The topics relevant to Prebid are covered in this section, for detailed information about all settings, visit FreeWheel.tv.
+In the last column of each row is a magnifying glass icon. Clicking on that will present detailed information about the Placement. In this detailed section information such as Delivery and Forecast, Schedule and Budget, Custom Targets, Exclusivity and Industry can be set for the Placement. The topics relevant to Prebid are covered in this section, for detailed information about all settings, visit FreeWheel.com.
 
 ### Schedule and Budget
 

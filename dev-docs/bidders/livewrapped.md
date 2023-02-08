@@ -3,12 +3,16 @@ layout: bidder
 title: Livewrapped
 description: Prebid Livewrapped Bidder Adaptor
 biddercode: livewrapped
-
-media_types: banner
+pbjs: true
+media_types: banner, video, native
 gdpr_supported: true
-userIds: id5Id, pubCommonId
-tcf2_supported: true
+userIds: all
 schain_supported: true
+gvl_id: 919
+usp_supported: true
+coppa_supported: true
+safeframes_ok: true
+sidebarType: 1
 ---
 
 ### Note:

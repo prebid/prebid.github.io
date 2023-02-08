@@ -1,53 +1,13 @@
 ---
 layout: page_v2
 title: Analytics for Prebid.js
-description: Prebid.js Analytics Overview
+description: Prebid.js Analytics Adapters
 sidebarType: 1
 ---
 
-# Prebid.js Analytics
+# Prebid.js Analytics Adapters
 
-There are several analytics adapter plugins available to track header bidding performance for your site.
-
-{: .table .table-bordered .table-striped }
-| Analytics Adapter | Cost | Contact |
-| ------------- | ------------- | ----------- |
-| Appier | Contact vendor | [Website](https://www.appier.com) |
-| Adagio | Contact vendor| [Website](https://adagio.io)|
-| adWMG Analytics | Contact vendor| [Website](https://adwmg.com)|
-| AdxPremium | Free to try| [Website](https://luponmedia.com)|
-| Assertive Yield (contact for adapter) | Free to try (Large accounts \$0.002 CPM or sampled < 10mm/m imp.) | [Website](https://yield.assertcom.de) |
-| ATS Analytics | Contact vendor | [Website](https://liveramp.com) |
-| Datablocks Analytics | Contact vendor| [Website](https://datablocks.net) |
-| Finteza Analytics | <a href="mailto: support@finteza.com">Contact vendor</a> | [Website](https://www.finteza.com/) |
-| [Google Analytics]({{site.baseurl}}/overview/ga-analytics.html) | Free up to a certain volume. See [terms](https://www.google.com/analytics/terms/) | [Website](https://www.google.com/analytics) |
-| Invisibly Analytics | Contact vendor | [Website](https://invisibly.com/) |
-| Kargo Analytics | Contact vendor | [Website](https://kargo.com/) |
-| Konduit Accelerate | Contact vendor | [Website](https://konduitvideo.com/) |
-| Livewrapped Analytics | Contact vendor | [Website](https://livewrapped.com/) |
-| LiveYield | Contact vendor | [Website](https://www.pubocean.com/liveyield) |
-| OpenX | Contact vendor | [Website](https://www.openx.com/publishers/header-bidding/) |
-| Media.net | <a href="mailto: prebid-support@media.net">Contact vendor</a>| [Website](https://media.net) |
-| PrebidAnalytics by Roxot | [Paid]( http://prebidanalytics.roxot.com/) | [Website](http://prebidanalytics.roxot.com/) |
-| [Prebid Manager](https://prebidmanager.com/) | Free trial and free up to a certain volume. See [pricing](http://prebidmanager.com/#pricing) | [Website](http://prebidmanager.com/) |
-| [Pubperf](https://www.pubperf.com/) | Free trial. See [pricing](https://www.pubperf.com/pricing) | [Website](http://www.pubperf.com/) |
-| [Pubstack](https://pubstack.io?source=prebid.org-analytics) ~ Real Time Analytics For Prebid and GAM | <a href="mailto: sales@pubstack.io">Start a free trial / Talk to the Sales Team</a> | [Website](https://pubstack.io?source=prebid.org-analytics) |
-| PubWise | Free & Paid, see [pricing](https://pubwise.io/pricing/) | [Website](https://www.pubwise.io/) |
-| PulsePoint | Contact vendor | [Website](https://www.pulsepoint.com/) |
-| RealVu | Contact vendor | [Website](https://www.realvu.com/rvaa/) |
-| Rivr Analytics | Contact vendor | [Website](https://www.rivr.ai/)|
-| Rubicon Project | <a href="mailto: sales@rubiconproject.com">Contact vendor</a> | [Website](https://rubiconproject.com/header-bidding-for-publishers/) |
-| Scaleable.ai Analytics | Free & Paid | [Website](https://scaleable.ai) |
-| ShareThrough | Contact vendor | |
-| Sortable | Contact vendor | [Website](https://www.sortable.com) |
-| Sovrn | <a href="https://www.sovrn.com/contact/">Contact vendor</a> | [Website](https://www.sovrn.com/analytics/)|
-| STAQ | <a href="https://www.staq.com/contact">Contact vendor</a> | [Website](https://www.staq.com/)|
-| Tercept Analytics | <a href="https://www.tercept.com/unified-analytics/">Contact vendor</a> | [Website](https://www.tercept.com/)|
-| ucfunnel | Contact vendor | [Website](https://www.ucfunnel.com/)|
-| Yieldone | Contact vendor | [Website](https://www.platform-one.co.jp/) |
-| YuktaMedia Analytics | Contact vendor | [Website](https://yuktamedia.com/publishers/prebid/) |
-
-None of these analytics options are endorsed or supported by Prebid.org.
+There are many analytics adapter plugins available to track header bidding performance for your site.
 
 ## How to Integrate an Analytics Adapter
 
@@ -61,7 +21,7 @@ gulp bundle --modules=exAnalyticsAdapter,xyzBidAdapter
 {% endhighlight %}
 
 - If required, load analytics JavaScript from vendor directly on the page
-- Call the `pbjs.enableAnalytics()` function
+- Call the [`pbjs.enableAnalytics()` function](/dev-docs/publisher-api-reference/enableAnalytics.html)
 
 e.g.
 
@@ -76,6 +36,35 @@ pbjs.que.push(function() {
 });
 {% endhighlight %}
 
-## Further Reading
+## Analytics Adapters
+
+{% assign analytics_pages = site.pages | where: "layout", "analytics" %}
+
+<ul>
+{% for page in analytics_pages %}
+<li>
+<a href="#{{ page.modulecode }}">{{ page.title }}</a>
+</li>
+{% endfor %}
+</ul>
+
+## Analytics Adapter Documentation
+
+{% for page in analytics_pages %}
+<div class="bs-docs-section" markdown="1">
+<a name="{{ page.modulecode }}" ></a>
+<h3>{{ page.title }}</h3>
+<h4>Features</h4>
+
+{: .table .table-bordered .table-striped }
+| **Module Code** | {{ page.modulecode }} | **Prebid.org Member** | {% if page.prebid_member == true %}yes{% else %}no{% endif %} |
+| **GDPR Support** | {% if page.gdpr_supported == true %}yes{% elsif page.gdpr_supported == false %}no{% else %}Check with vendor{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% elsif page.usp_supported == false %}no{% else %}Check with vendor{% endif %} |
+| **IAB GVL ID** | {% if page.gvl_id %}{{page.gvl_id}}{% else %}Check with vendor{% endif %} | **COPPA Support** | {% if page.coppa_supported == true %}yes{% elsif page.coppa_supported == false %}no{% else %}Check with vendor{% endif %} |
+
+{{ page.content }}
+</div>
+{% endfor %}
+
+## Related Topics
 
 - [Integrate with the Prebid Analytics API]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html) (For developers)

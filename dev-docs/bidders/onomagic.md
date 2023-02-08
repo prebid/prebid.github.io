@@ -4,8 +4,9 @@ title: Onomagic
 description: Prebid Onomagic Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
-
+pbjs: true
 biddercode: onomagic
+sidebarType: 1
 ---
 
 ### Note:

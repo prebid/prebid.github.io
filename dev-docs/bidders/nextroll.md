@@ -2,11 +2,13 @@
 layout: bidder
 title: NextRoll
 description: Prebid NextRoll Bidder Adapter
-
+pbjs: true
 biddercode: nextroll
 media_types: display, native
 gdpr_supported: false
 usp_supported: true
+prebid_member: true
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -17,7 +19,7 @@ usp_supported: true
 | `sellerId`     | required | The seller ID from NextRoll.Please reach out your NextRoll representative for more details.       | `'541459'`                  | `string` |
 | `publisherId`  | optional | The publisher ID from NextRoll.Please reach out your NextRoll representative for more details.    | `'956812'`                  | `string` |
 | `zoneId`       | optional | Descriptive or unique identifier for the ad position                                              | `'main-banner-505/600x160'` | `string` |
-| `bidfloor`     | optional | Per ad-unit bid floor                                                                             | `2.3`                       | `number` |
+| `bidfloor`     | optional | Per ad-unit bid floor, used if the floor module is not available                                  | `2.3`                       | `number` |
 
 #### Example of Banner Ad-unit
 ```
@@ -26,6 +28,17 @@ var adUnits = [
         code: 'div-1',
         mediaTypes: {
             banner: {sizes: [[300, 250], [160, 600]]}
+        },
+        // If floors module is enabled
+        floors: {
+            currency: "USD",
+            schema: {
+                delimiter: "|",
+                fields: ["mediaType", "size"]
+            },
+            values: {
+                "*|*": 2.0
+            }
         },
         bids: [{
             bidder: 'nextroll',

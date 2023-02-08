@@ -2,10 +2,13 @@
 layout: bidder
 title: Rads
 description: Prebid Rads Bidder Adaptor
-
+pbjs: true
 biddercode: rads
 media_types: banner, video 
-gdpr_supported: false
+gdpr_supported: true
+gvl_id: 602
+userIds: uid2, netId
+sidebarType: 1
 ---
 
 

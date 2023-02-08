@@ -2,12 +2,13 @@
 layout: bidder
 title: YieldLift
 description: Prebid YieldLift Bidder Adaptor
-
+pbjs: true
 biddercode: yieldlift
 media_types: banner
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
+sidebarType: 1
 
 ---
 

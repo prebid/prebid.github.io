@@ -55,6 +55,8 @@ The type of ad you want to test. This will be the ad type that is associated wit
 Select from:
 -	*Banner*
 -	*Interstitial*
+-    *Native*
+-    *Video*
 
 **Ad Size**
 
@@ -68,9 +70,8 @@ These settings will enable you to test whether the Prebid Mobile line item in yo
 
 The primary ad server you’re using to serve your ads.
 
-Select from:
+Select:
 -	*DFP*
--	*MoPub*
 
 **Bid Price**
 
@@ -94,6 +95,10 @@ Select your Prebid Server host:
 
 -	*AppNexus*
 -	*Rubicon*
+-    *Custom*
+
+**Custom Server Host**
+Provide the url of the custom hosted prebid server 
 
 **Account ID**
 
@@ -212,7 +217,7 @@ There are three possible outcomes from this validation test:
 
 *Failure*: No auctions were run. If no auctions were run, verify the following in your setup:
   - Check to make sure the Prebid Server Account ID and Prebid Server Configuration ID you entered on the Dr. Prebid Setup page are correct. Ensure they don’t contain leading or trailing spaces.
-  - Ensure that your Prebid Server Configuration is correct. See [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html#configure-prebid-server) for more information.
+  - Ensure that your Prebid Server Configuration is correct. See [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-getting-started.html#configure-prebid-server) for more information.
 
 ### End-to-End SDK Validation
 

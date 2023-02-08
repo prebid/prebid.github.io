@@ -65,18 +65,18 @@ sidebarType: 4
         code: 'video1',
         mediaTypes: {
             video: {
+                context: 'instream',
                 playerSize: [640, 480],
-                context: 'instream'
+                mimes: ['video/mp4'],
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2],
+                skip: 1
             }
         },
         bids: [{
             bidder: 'appnexus',
             params: {
-                placementId: 13232361, // Add your own placement ID here<br>
-                video: {
-                    skippable: true,
-                    playback_method: ['auto_play_sound_off']
-                }
+                placementId: 13232361  // Add your own placement ID here<br>
             }
         }]
     };
@@ -125,7 +125,7 @@ sidebarType: 4
  Add the script for your Kaltura player. This will be part of
  the code you will copy-paste from Kaltura. --&gt;
 
-&lt;script src="http://cdnapi.kaltura.com/p/2222001/sp/222200100/embedIframeJs/uiconf_id/37440401/partner_id/2222001"&gt;&lt;/script&gt;
+&lt;script src="https://cdnapi.kaltura.com/p/2222001/sp/222200100/embedIframeJs/uiconf_id/37440401/partner_id/2222001"&gt;&lt;/script&gt;
 
 &lt;script&gt;
     invokeVideoPlayer = function(url) {
@@ -137,7 +137,7 @@ sidebarType: 4
            the code you will copy paste from Kaltura.
 
            Documentation for kWidget available here:
-           http://player.kaltura.com/docs/kwidget */
+           https://player.kaltura.com/docs/kwidget */
 
         kWidget.embed({
             "targetId": "myPlayer",
@@ -209,7 +209,7 @@ sidebarType: 4
      Add the script for your Kaltura player. This will be part of
      the code you will copy-paste from Kaltura. -->
 
-    <script src="http://cdnapi.kaltura.com/p/2222001/sp/222200100/embedIframeJs/uiconf_id/37440401/partner_id/2222001"></script>
+    <script src="https://cdnapi.kaltura.com/p/2222001/sp/222200100/embedIframeJs/uiconf_id/37440401/partner_id/2222001"></script>
 
     <script>
         invokeVideoPlayer = function(url) {
@@ -221,7 +221,7 @@ sidebarType: 4
                the code you will copy paste from Kaltura.
 
                Documentation for kWidget available here:
-               http://player.kaltura.com/docs/kwidget */
+               https://player.kaltura.com/docs/kwidget */
 
             kWidget.embed({
                 "targetId": "myPlayer",

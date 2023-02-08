@@ -2,11 +2,13 @@
 layout: bidder
 title: OpenX Outstream
 description: Prebid OpenX Outstream Bidder Adaptor
-
+pbjs: true
 biddercode: openxoutstream
 media_types: native
 prebid_member: true
 coppa_supported: true
+gvl_id: 69
+sidebarType: 1
 ---
 
 

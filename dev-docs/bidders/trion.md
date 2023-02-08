@@ -2,10 +2,11 @@
 layout: bidder
 title: Trion Interactive
 description: Prebid Trion Interactive Bidder Adaptor
-
+pbjs: true
 biddercode: trion
 usp_supported: true
 gdpr_supported: true
+sidebarType: 1
 ---
 
 

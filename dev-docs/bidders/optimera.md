@@ -2,8 +2,9 @@
 layout: bidder
 title: Optimera
 description: Optimera Bidder Adaptor
-
+pbjs: true
 biddercode: optimera
+sidebarType: 1
 ---
 
 ### Bid Params

@@ -3,179 +3,175 @@
 {% include nav.html %}
 
 <div class="pb-homepage">
-		
-		<div class="pb-homepage-container pb-homepage-image">
-			<img src="/assets/images/homepage/pbhp_bg2.png" class="pb-obj-fit-fill">
-			<p><div>{% include footer.html %}</div></p>
-		</div>
-		
-		<div class="pb-homepage-container pb-homepage-content container">
-			
-			<div class="row">
-				<div class="col-lg-12 pb-top-text">
-					<h1>Header bidding unwrapped</h1>
-					<h2>Earn more from your advertising with Prebid, a transparent, open-source solution that increases advertiser demand while maintaining a fast and responsive user experience.</h2>
-        		</div>
-			</div>
-			
-			<!--start links-->
-			<div class="row">
-				<div class="pb-home-links">
-					<div class="pb-outer">
-						<div class="pb-inner">
-							<div class="pb-home-links-outer-panel">
-								<div class="pb-home-link-container">
-									<div class="pb-home-link-visible"><a href="/developers.html"><img src="/assets/images/svg/icn_developers_2.svg" class="pb_md-homelink" /></a></div>
-									<div class="pb-home-link-hidden"><a href="/developers.html"><img src="/assets/images/svg/icn_developers_2_on.svg" class="pb_md-homelink" /></a></div>
-								</div>
-								<p class="pb-panel-title pb-outer-title">Developers</p>
-							</div>
-							
-							<!--<img src="/assets/images/svg/icn_getstarted.svg" class="pb-large-img" alt="Get Started!">-->
-							<div class="pb-home-links-panel">
-								<div class="pb-home-link-container">
-									<div class="pb-home-link-visible"><a href="/prebid/prebidjs.html"><img src="/assets/images/svg/icn_getstarted.svg" class="pb_lg-homelink" /></a></div>
-									<div class="pb-home-link-hidden"><a href="/prebid/prebidjs.html"><img src="/assets/images/svg/icn_getstarted_on.svg" class="pb_lg-homelink" /></a></div>
-								</div>
-								<p class="pb-panel-title pb-center-title"><span>Get Started</p>
-							</div>
-							
-							<div class="pb-home-links-outer-panel">
-								<div class="pb-home-link-container">
-									<div class="pb-home-link-visible"><a href="/adops/before-you-start.html"><img src="/assets/images/svg/icn_adops_2.svg" class="pb_md-homelink" /></a></div>
-									<div class="pb-home-link-hidden"><a href="/adops/before-you-start.html"><img src="/assets/images/svg/icn_adops_2_on.svg" class="pb_md-homelink" /></a></div>
-								</div>
-								<p class="pb-panel-title pb-outer-title">Ad Ops</p>
-							</div>
-	
-						</div>
-					</div>
-				</div>
-				
-				{% assign arrMsgs = site.data.message %}
-				{% assign lastMsg = arrMsgs.last %}
-				{% assign lastMsgSize = lastMsg.messageText | size %}
-				<div class="pb-message-container">
-					
-					{% if lastMsgSize > 1 %}
-					<div class="pb-message">
-						
-						<h3>{{lastMsg.messageText}}</h3>
-						
-					</div>
-					{% else %}
-					<div class="pb-empty-message">&nbsp;</div>
-					{% endif %}
-				</div>
-				
-				<!--start benefits-->
-				<div class="pb_benefits">
-					
-					<div class="pb-benefits-title"><h2>The Benefits of Using Prebid</h2></div>
-					
-					<div class="pb-benefits-container">
-						<div class="pb-benefits-row">
-							<div class="pb-benefits-panel pb-benefits-panel-left">
-								<div class="pb-benefits-panel-img">
-									<img src="/assets/images/icons/icnMonetization.png">
-								</div>
-								<div class="pb-benefits-panel-content">
-									<div class="pb-benefits-panel-content-title">Maximize Earnings</div>
-									<div class="pb-benefits-panel-content-text">Bring additional advertiser demand into your ad server, ensuring you get the best possible price for your inventory.</div>
-								</div>
-							</div>
-							<div class="pb-benefits-panel pb-benefits-panel-right">
-								<div class="pb-benefits-panel-img">
-									<img src="/assets/images/icons/icnMultiPlatform.png">
-								</div>
-								<div class="pb-benefits-panel-content">
-									<div class="pb-benefits-panel-content-title">Use it Everywhere</div>
-									<div class="pb-benefits-panel-content-text">Apply header bidding to the most popular platforms and formats, including web, mobile app, video, native, AMP, and server-to-server.</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="pb-benefits-row">
-							<div class="pb-benefits-panel pb-benefits-panel-left">
-								<div class="pb-benefits-panel-img">
-									<img src="/assets/images/icons/icnGetStarted.png">
-								</div>
-								<div class="pb-benefits-panel-content">
-									<div class="pb-benefits-panel-content-title">Get Started Quickly</div>
-									<div class="pb-benefits-panel-content-text">Follow simple step-by-step instructions to download, integrate, and configure header bidding with Prebid.</div>
-								</div>
-							</div>
-							<div class="pb-benefits-panel pb-benefits-panel-right">
-								<div class="pb-benefits-panel-img">
-									<img src="/assets/images/icons/icnOpenSource.png">
-								</div>
-								<div class="pb-benefits-panel-content">
-									<div class="pb-benefits-panel-content-title">Join The Community</div>
-									<div class="pb-benefits-panel-content-text">Become part of our active community of advertising technology experts, where you can quickly resolve issues and contribute to the evolution of the leading header.</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-														
-				</div>
-				<!--end benefits-->
-				
-				<!--start carousel-->
-				<div class="pb_home_belowfold_carousel">
-					<h1 class="pb_carousel_title">Product Highlights</h1>
-					
-					<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-												  
-					  <div class="carousel-inner">
-					  
-					    <div class="carousel-item active">
-					      <h3>Prebid.js</h3>
-					      <h4>A feature-rich header bidding platform for the web, including more than 150 demand sources and 15 analytics adapters. Supports currency conversion, GDPR, common ID systems, and multiple ad servers.</h4>
-					    </div>
-					    <div class="carousel-item">
-					      <h3>Prebid Mobile</h3>
-					      <h4>Header bidding for your iOS and Android apps. Combine Prebid SDK and Prebid Server for a great user experience and easy management.</h4>
-					    </div>
-					    <div class="carousel-item">
-					      <h3>Prebid Server</h3>
-					      <h4>A server-side header bidding solution with more than 20 demand sources. Hosted by a number of companies in highly available and geo-distributed clusters, Prebid Server lightens the load on browsers, while also enabling mobile app and AMP.</h4>
-					    </div>
-					  </div>
-					  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-					    <span class="carousel-control-prev-icon glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-					    <span class="sr-only">Previous</span>
-					  </a>
-					  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-					    <span class="carousel-control-next-icon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-					    <span class="sr-only">Next</span>
-					  </a>
-					</div>
-						
-				</div>
-				<!--end carousel-->
-				
-			</div>
-			<!--end links-->
-			
-		</div>
-		<!--end content-->
-		
-		<!--footer-->
-		<div class="pb-footer">
-			This is the footer!
-		</div>
-	
-	</div>
-	<!--end homepage-->
-	
+
+  <div class="container pb-homepage-container">
+
+    <div class="row justify-content-center text-center mt-6">
+      <div class="col-md-10">
+        <h1>Prebid Documentation</h1>
+        <p>Welcome to the Prebid.org technical documentation portal. Here you will find the help you need to work with the Prebid.org family of products. Visit <a href="https://prebid.org" target="_blank">Prebid.org</a> for general product overviews, blog updates, and additional information on membership and events. If you're wondering what Header Bidding is all about, check out our <a href="/overview/intro-to-header-bidding.html" target="_blank">Introduction to Header Bidding</a></p>
+      </div>
+    </div> <!-- row -->
+
+    <!--this is the product row-->
+    <div class="card-deck--md card-deck--products mt-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <div class="card-media"><img src="/assets/images/icon__product--prebid-js.svg" alt="Prebid.js Icon"></div>
+          <div class="card-title"><h3>Prebid.js</h3></div>
+          <p class="mb-4">The leading web based header bidding solution used by publishers worldwide</p>
+          <a href="/prebid/prebidjs.html" class="btn btn-outline-brand">View Docs</a>
+          <p class="mt-4"><a href="/download.html">Download Prebid.js</a></p>
+        </div>
+      </div>
+      <div class="card text-center">
+        <div class="card-body">
+          <div class="card-media"><img src="/assets/images/icon__product--prebid-server.svg" alt="Prebid Server Icon"></div>
+          <div class="card-title"><h3>Prebid Server</h3></div>
+          <p class="mb-4">Moving Prebid and Header Bidding to the cloud for efficiency, scale and performance</p>
+          <a href="/prebid-server/overview/prebid-server-overview.html" class="btn btn-outline-brand">View Docs</a>
+          <p class="mt-4"><a href="https://github.com/prebid/prebid-server">Setup Prebid Server</a></p>
+        </div>
+      </div>
+      <div class="card text-center">
+        <div class="card-body">
+          <div class="card-media"><img src="/assets/images/icon__product--prebid-mobile-sdk.svg" alt="Prebid Mobile SDK Icon"></div>
+          <div class="card-title"><h3>Prebid Mobile SDK</h3></div>
+          <p class="mb-4">Lightweight SDK enabling app publishers to move beyond the waterfall</p>
+          <a href="/prebid-mobile/prebid-mobile.html" class="btn btn-outline-brand">View Docs</a>
+          <p class="mt-4"><a href="/prebid-mobile/download.html">Download Mobile SDK</a></p>
+        </div>
+      </div>
+      <div class="card text-center">
+        <div class="card-body">
+          <div class="card-media"><img src="/assets/images/user-identity.png" width=100 alt="Prebid User Identity Icon"></div>
+          <div class="card-title"><h3>Prebid User Identity</h3></div>
+          <p class="mb-4">Supporting the open web while respecting user privacy.</p>
+          <a href="/identity/prebid-identity.html" class="btn btn-outline-brand">View Docs</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row text-center mt-7">
+      <div class="col">
+        <h2>Formats</h2>
+      </div>
+    </div>
+    <div class="card-deck--formats mt-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <a class="card-title stretched-link" href="/formats/display.html">Display</a>
+          <div class="card-media">{% include icon__format--display.svg %}</div>
+        </div>
+      </div>
+      <div class="card text-center">
+        <div class="card-body">
+          <a class="card-title stretched-link" href="/prebid-video/video-overview.html">Video</a>
+          <div class="card-media">{% include icon__format--video.svg %}</div>
+        </div>
+      </div>
+      <div class="card text-center">
+        <div class="card-body">
+          <a class="card-title stretched-link" href="/formats/amp.html">AMP</a>
+          <div class="card-media">{% include icon__format--amp.svg %}</div>
+        </div>
+      </div>
+      <div class="w-100 d-none d-md-block d-xl-none"></div>
+      <div class="card text-center">
+        <div class="card-body">
+          <a class="card-title stretched-link" href="/prebid/native-implementation.html">Native</a>
+          <div class="card-media">{% include icon__format--native.svg %}</div>
+        </div>
+      </div>
+      <div class="card text-center">
+        <div class="card-body">
+          <a class="card-title stretched-link" href="/dev-docs/show-multi-format-ads.html">Multi-Format</a>
+          <div class="card-media">{% include icon__format--multi-format.svg %}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="banner banner--medium text-center mt-8">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <div><img src="/assets/images/icon__github-octocat--knockout.svg" alt="GitHub Octocat Icon"></div>
+          <h2 class="text-white my-4">Prebid is Completely Open Source! Join our Community of Developers at GitHub.</h2>
+        </div>
+      </div>
+      <div class="card-deck">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-media"><img src="/assets/images/icon__source--prebid-js.svg"></div>
+            <div class="card-title"><h3><a href="https://github.com/prebid/Prebid.js" class="stretched-link">Prebid.js</a></h3></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-media"><img src="/assets/images/icon__source--prebid-server.svg"></div>
+            <div class="card-title"><h3><a href="https://github.com/prebid/prebid-server" class="stretched-link">Prebid Server</a></h3></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-media"><img src="/assets/images/icon__source--prebid-mobile.svg"></div>
+            <div class="card-title"><h3><a href="https://github.com/prebid/prebid-mobile-ios" class="stretched-link">Prebid Mobile</a></h3></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-media"><img src="/assets/images/icon__source--prebid-docs.svg"></div>
+            <div class="card-title"><h3><a href="https://github.com/prebid/prebid.github.io" class="stretched-link">Prebid Docs</a></h3></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="banner banner--light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="wpb_raw_code wpb_content_element wpb_raw_html footer__form" >
+            <div class="wpb_wrapper">
+              <div class="wpb_wrapper">
+                <h4>Subscribe for Updates</h4>
+                <p>Please review our <a href="/policies/privacy.html">privacy policy</a></p>
+              </div>
+              <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/shell.js"></script>
+              <script>
+                hbspt.forms.create({
+                                portalId: "7874009",
+                                formId: "4180bae7-aece-4b05-accb-42f68977345f",
+                                css: "text-align:center;"
+                              });
+              </script>
+            </div>
+          </div> <!-- wpb_raw_code -->
+        </div>
+        <div class="col-md-4">
+          <div class="social-media">
+            <h5>Follow Us</h5>
+            <a href="https://twitter.com/Prebidorg" target="_blank"><img src="/assets/images/icon__social-media--twitter.svg" alt="Twitter Icon"></a>
+            <a href="https://www.linkedin.com/company/prebid-org" target="_blank"><img src="/assets/images/icon__social-media--linkedin.svg" alt="LinkedIn Icon"></a>
+          </div>
+        </div>
+
+      </div> <!-- row -->
+      <div class="row">
+        <div class="col"><hr></div>
+      </div>
+    </div>
+  </div>
+
+  {% include footer.html %}
 
   <!-- Template Main Javascript File -->
   <script src="/assets/js/main.js"></script>
-  
-  
-  
- </body>
-  
 
-  
+
+</div> <!-- pb-homepage -->
+  {% include body-end.html %}
+</body>

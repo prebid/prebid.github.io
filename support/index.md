@@ -16,14 +16,14 @@ There are several ways to ask for help or get involved with Prebid.  See below f
 
 ## Overview
 
-For technical & feature requests or questions, it's best to use the GitHub or Stack Overflow forums. Prebid is worked on full-time by engineering teams from AppNexus and Rubicon Project.  There are also many publishers using and contributing to the project.
+For technical and feature requests or questions, it's best to use the GitHub or Stack Overflow forums. Prebid is worked on full-time by engineering teams from Xandr and Magnite.  There are also many publishers using and contributing to the project.
 
-For questions about how an adapter works, it's best to reach out to the company directly, or ask on GitHub. Each demand adapter should be maintained by the SSPs or exchange behind that adapter.
+For questions about how an adapter works, it's best to reach out to the company directly, or raise an issue on GitHub. Each demand adapter should be maintained by the SSPs or exchange behind that adapter.
 
 For Prebid news or general questions, we recommend the Ad Ops Slack Channel, Quora, or Twitter.
 
 {: .alert.alert-success :}
-There are serveral Prebid.org members that will install & maintain Prebid on a publisher's behalf. See the list of [Managed Prebid Solutions](/prebid/managed.html).
+There are serveral Prebid.org members that will install and maintain Prebid on a publisher's behalf. See the list of [Managed Prebid Solutions](https://prebid.org/product-suite/managed-services/).
 
 ## GitHub
 
@@ -46,7 +46,7 @@ If you ask questions on [Stack Overflow](https://stackoverflow.com/), please use
 
 ## Ad Ops Slack Channel
 
-Join the [Ad Ops Reddit Slack](https://redditadops.slack.com/messages/C0HVALS8P/) (specifically the `#HeaderBidding` channel) to connect with other publishers & developers using Prebid.
+Join the [Ad Ops Reddit Slack](https://redditadops.slack.com/messages/C0HVALS8P/) (specifically the `#HeaderBidding` channel) to connect with other publishers and developers using Prebid.
 
 ## Reddit
 

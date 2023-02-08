@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Category Translation
-description: Converts IAB sub category to ad server group.
+description: Converts IAB category to ad server category for long-form videos.
 module_code : categoryTranslation
 display_name : CategoryTranslation
 enable_download : true
@@ -24,7 +24,7 @@ The module provides the following:
 ## How to use the module:
 
 1. A Prebid.js package is built that contains this module and the Ad server module. Prebid supports [FreeWheel](/dev-docs/modules/freewheel.html) and Google Ad Manager ad servers.
-2. The inclusion of this module and long-form ad server module causes Prebid to download a mapping file to local storage. The user also has the option to provide their own mapping file.
+2. The inclusion of this module and long-form ad server module causes Prebid to download a mapping file to local storage. The user also has the option to provide their own mapping file. The default ad server is Freewheel. To hook to the DFP video ad server module you must configure it in the mapping url. 
 3. At runtime, brand category translation happens as needed.
 
 

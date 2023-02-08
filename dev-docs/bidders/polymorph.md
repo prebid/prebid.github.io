@@ -2,9 +2,10 @@
 layout: bidder
 title: Polymorph
 description: Polymorph Prebid Adaptor
-
+pbjs: true
 biddercode: polymorph
 media_types: native, video, banner
+sidebarType: 1
 ---
 
 ### Note:

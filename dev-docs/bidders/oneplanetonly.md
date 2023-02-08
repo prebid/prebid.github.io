@@ -2,8 +2,9 @@
 layout: bidder
 title: Oneplanetonly
 description: Prebid Oneplanetonly Bidder Adaptor
-
+pbjs: true
 biddercode: oneplanetonly
+sidebarType: 1
 ---
 
 

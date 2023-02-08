@@ -1,5 +1,7 @@
 {% if page.videoType == "pb-is-br" %}
 	{% include /video/pb-is-br.html %}
+{% elsif page.videoType == "pb-is-amp" %}
+	{% include /video/pb-is-amp.html %}
 {% elsif page.videoType == "pb-is-app" %}
 	{% include /video/pb-is-app.html %}
 {% elsif page.videoType == "pb-is-bc" %}
@@ -10,8 +12,6 @@
 	{% include /video/pb-is-jw01.html %}
 {% elsif page.videoType == "pb-is-jw02" %}
 	{% include /video/pb-is-jw02.html %}
-{% elsif page.videoType == "pb-is-jw03" %}
-	{% include /video/pb-is-jw03.html %}
 {% elsif page.videoType == "pb-is-kl" %}
 	{% include /video/pb-is-kl.html %}
 {% elsif page.videoType == "pb-is-ol" %}
@@ -28,10 +28,6 @@
 	{% include /video/pbs-jw01.html %}
 {% elsif page.videoType == "pbs-jw02" %}
 	{% include /video/pbs-jw02.html %}
-{% elsif page.videoType == "pbs-jw03" %}
-	{% include /video/pbs-jw03.html %}
-{% elsif page.videoType == "pbs-jw04" %}
-	{% include /video/pbs-jw04.html %}
 {% elsif page.videoType == "pbs-kl" %}
 	{% include /video/pbs-kl.html %}
 {% elsif page.videoType == "pbs-oy" %}
@@ -48,6 +44,10 @@
 	{% include /video/pb-os-app.html %}
 {% elsif page.videoType == "pb-os-nas" %}
 	{% include /video/pb-os-nas.html %}
+{% elsif page.videoType == "pb-os-nas-renderer" %}
+	{% include /video/pb-os-nas-renderer.html %}
+{% elsif page.videoType == "pb-os-basic-ima" %}
+	{% include /video/pb-os-basic-ima.html %}
 {% elsif page.videoType == "pb-lf-fw" %}
 	{% include /video/pb-lf-fw.html %}
 {% elsif page.videoType == "pb-cp-fp" %}
@@ -63,37 +63,38 @@
 
 {% include nav.html %}
 
-<div class="container bs-docs-container">
-	
+<div class="container pb-docs-container">
+
 	<div class="row ">
-		
-		<div class="wrapper">
-		
-			<div class="col-sm-2 sidebar-expanded d-none d-md-block sidebar" id="sidebar">
-				
-				{% include left_nav.html %}							
-				
-			</div>	
-		
-		
-			<div class="col-sm-9 pb-content" markdown="1">
-			
+
+			<div class="col-lg-3 sidebar" id="sidebar">
+
+        <div>
+          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#sidebarContent" aria-controls="sidebarContent" aria-expanded="false" aria-label="Toggle Sidebar navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse d-lg-block" id="sidebarContent">
+				    {% include left_nav.html %}
+          </div>
+        </div>
+
+			</div>
+
+      <div class="col-lg-9">
+       <div class="pb-content" markdown="1">
+
 			{{ content }}
-			
+
 			{% if page.description == "Partners" %}
 				{% include partners.html %}
 			{% endif %}
-			
-			</div>
-				
-		</div>
-		<!--end wrapper-->
-	</div>	
-	<!--end row-->	
-</div>
 
-<p></p>
-<hr>
+			</div>
+      </div>
+
+	</div>
+	<!--end row-->
+</div>
 
 {% if page.title != "Credits" %}
 	{% if page.layout != "home" %}
@@ -112,11 +113,5 @@
 </script>
 
 -->
-
-
- 
-
-    
-
-
-
+</body>
+</html>

@@ -1,97 +1,43 @@
-# Overview
-
-```
-Module Name: AP Stream Bidder Adapter
-Module Type: Bidder Adapter
-Maintainer: stream@audienceproject.com
+---
+layout: bidder
+title: AP Stream
+description: AP Stream Bidder Adapter
+biddercode: apstream
+pbjs: true
+media_types: banner
 gdpr_supported: true
-tcf2_supported: true
-```
+gvl_id: 394
+sidebarType: 1
+---
 
-# Description
+### Bid Params
 
-Module that connects to AP Stream source
+{: .table .table-bordered .table-striped }
+| Name           | Scope      | Description                                     | Example            | type    |
+| :-----------   | :--------- | :------------                                   | :----------------- | :---    |
+| `publisherId`  | optional*  | Publisher Id will be generated on AP Stream.    | '1234'             | string  |
+| `code`         | optional   | Ad code                                         | 'S1_Leaderboard'   | string  |
+| `adunitId`     | optional   | Ad unit Id                                      | 1234               | integer |
+| `endpoint`     | optional   | Endpoint for custom bidder                      | 'site.com/v1'      | string  |
+| `test`         | optional*  | Use test endpoint                               | true               | boolean |
+| `sendDsu`      | optional   | Send DSU to bidder (default `true`)             | false              | boolean |
 
-# Inherit from prebid.js
-```
-    var adUnits = [
-      {
-        code: '/19968336/header-bid-tag-1',
-        mediaTypes: { // mandatory and should be only one
-            banner: {
-                sizes: [[920,180], [920, 130]]
-            }
-        },
-        bids: [{
-            bidder: 'apstream',
-            params: {
-                publisherId: STREAM_PIBLISHER_ID // mandatory
-            }
-        }]
-      }
-    ];
-```
+\* see description below
 
-# Explicit ad-unit code
-```
-    var website = null;
-    switch (location.hostname) { 
-      case "site1.com": 
-        website = "S1"; 
-        break;
-      case "site2.com":
-        website = "S2";
-        break;
-    }
-    
-    var adUnits = [
-      {
-        code: '/19968336/header-bid-tag-1',
-        mediaTypes: { // mandatory and should be only one
-            banner: {
-                sizes: [[920,180], [920, 130]]
-            }
-        },
-        bids: [{
-            bidder: 'apstream',
-            params: {
-                publisherId: STREAM_PIBLISHER_ID, // mandatory
-                code: website + '_Leaderboard'
-            }
-        }]
-      }
-    ];
-```
+#
 
-# Explicit ad-unit ID
-```
-    var adUnits = [
-      {
-        code: '/19968336/header-bid-tag-1',
-        mediaTypes: { // mandatory and should be only one
-            banner: {
-                sizes: [[920,180], [920, 130]]
-            }
-        },
-        bids: [{
-            bidder: 'apstream',
-            params: {
-                publisherId: STREAM_PIBLISHER_ID, // mandatory
-                adunitId: 1234
-            }
-        }]
-      }
-    ];
-```
+### Bidder config
 
-# DSU
-
-To disable DSU use config option:
+Here parameters `test` and `publisherId` can be set globally, but will be overrided if set in specific bid.
 
 ```
-    pbjs.setConfig({
-        apstream: {
-            noDsu: true
+pbjs.setBidderConfig({
+    bidders: ["apstream"],
+    config: {
+        appstream: {
+            publisherId: '1234
+            test: true
         }
-    });
+    }
+});
 ```

@@ -1,7 +1,7 @@
 ---
 layout: video_sample
-title: Prebid Video | Instream Example with  Flowplayer 
-description: An example of an instream pre-roll ad using Prebid.js and Flowplayer.  
+title: Prebid Video | Instream Example with  Flowplayer
+description: An example of an instream pre-roll ad using Prebid.js and Flowplayer.
 videoType: pb-is-fp
 isVideo: true
 sidebarType: 4
@@ -15,47 +15,37 @@ sidebarType: 4
 			<h1>{{ page.title }}</h1>
 			<p>{{page.description }}</p>
 		</div>
-		
+
 		<!--video warning-->
-		<div class="pb-alert pb-alert-important" style="width:60vw;">
-			<p style="color:#85720f"><b>Important:</b>
+		<div class="pb-alert pb-alert-important" >
 			<p style="color:#85720f"><b>Important:</b>
 			This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
 		</div>
-		
+
 		<!--video placeholder | this should be formatted per the needs of each player-->
-		<div>
-			
+
 			<div id="player"></div>
-			<div id="controls">
-			    <button id="ad-toggle" disabled>
-			        Toggle ad playback
-			    </button>
-			    <p>The button will be enabled only during ads</p>
-			</div>
-			
-		</div>
-		
+
 	</div>
-	
+
 	<div class="row">
-		
+
 		<!--video code fencing-->
-					
+
 		<!--header code example-->
-		<div class="pb-alert pb-alert-warning" style="width:60vw;">
+		<div class="pb-alert pb-alert-warning" >
 			<p style="color:#a94443"><b>Warning:</b>
 			Do not forget to exchange the placementId in the code examples with your own placementId!</p>
 		</div>
-		
-		<div style="width:60vw;">
-			<h4>Place this code in the page header.</h4>
-<pre class="pb-code-hl" style="width:60vw;">
+
+    <h4>Place this code in the page header.</h4>
+    <div class="pb-code-hl-wrap">
+      <pre class="pb-code-hl">
 <!--put javascript code here-->
-&lt;script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"&gt;&lt;/script&gt;
-&lt;link rel="stylesheet" href="//cdn.flowplayer.com/releases/native/stable/style/flowplayer.css"&gt;
-&lt;script src="//cdn.flowplayer.com/releases/native/stable/flowplayer.min.js"&gt;&lt;/script&gt;
-&lt;script src="//cdn.flowplayer.com/releases/native/stable/plugins/ads.min.js"&gt;&lt;/script&gt;
+&lt;script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="//cdn.flowplayer.com/releases/native/3/stable/style/flowplayer.css"&gt;
+&lt;script src="//cdn.flowplayer.com/releases/native/3/stable/flowplayer.min.js"&gt;&lt;/script&gt;
+&lt;script src="//cdn.flowplayer.com/releases/native/3/stable/plugins/ads.min.js"&gt;&lt;/script&gt;
 &lt;script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"&gt;&lt;/script&gt;
 &lt;style&gt;
     #player {
@@ -64,21 +54,20 @@ sidebarType: 4
         float: left;
     }
 
-    #controls {
-        float: left;
-        padding: 1em;
-    }
 &lt;/style&gt;
 &lt;script&gt;
   var pbjs = pbjs || {};
   pbjs.que = pbjs.que || [];
+
+  const BIDDER1_PROVIDER = 'appnexus';
+  const BIDDER1_PLACEMENT_ID = '13232361';
 
   // The ad tag in Flowplayer can be actual ad tag or promise to an ad tag. &nbsp;
   // We return the ad tag if it is available before the player is ready to play &nbsp;
   // Otherwise the player waits for 2 secs for tag to be available.<br>
   var adtag = null
   var timeout = 2000
-  var asyncTag = function() {
+  window.prebid_fetcher = function() {
     if (adtag) return Promise.resolve(adtag)
 
     return new Promise(function (resolve) {
@@ -97,18 +86,19 @@ sidebarType: 4
     sizes: [640,480],
     mediaTypes: {
       video: {
-        context: "instream"
+          context: 'instream',
+          playerSize: [640, 480],
+          mimes: ['video/mp4'],
+          protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+          playbackmethod: [2],
+          skip: 1
       }
     },
     bids: [
       {
-        bidder: 'appnexus',
+        bidder: BIDDER1_PROVIDER,
         params: {
-          placementId: '13232361', // Add your own placement id here<br>
-          video: {
-            skipppable: true,
-            playback_method: ['auto_play_sound_off']
-          }
+          placementId: BIDDER1_PLACEMENT_ID
         }
       }
     ]
@@ -141,16 +131,15 @@ sidebarType: 4
       }
     });
   });
-    
-&lt;/script&gt;
-</pre>
 
+&lt;/script&gt;
+      </pre>
 		</div>
-					
-		<!--body code example-->
-		<div style="width:60vw;">
-			<h4>Place this code in the page body.</h4>
-<pre class="pb-code-hl" style="width:60vw;">
+
+    <h4>Place this code in the page body.</h4>
+    <div class="pb-code-hl-wrap">
+      <!--body code example-->
+      <pre class="pb-code-hl">
 <!--put body html and javascript here-->
 &lt;div id="player"&gt;&lt;/div&gt;
 &lt;!--video player div--&gt;
@@ -161,76 +150,44 @@ sidebarType: 4
     &lt;/button&gt;
     &lt;p&gt;The button will be enabled only during ads&lt;/p&gt;
 &lt;/div&gt;
-	
+
 &lt;script type="text/javascript"&gt;
   var player = flowplayer('#player', {
     src: "//edge.flowplayer.org/drive.mp4",
     title: "Flowplayer demo",
     description: "Demo showing ads",
-    autoplay: true,
     ima: {
-      ads: [
-        {"time":0,"adTag":asyncTag}
+      ads: [{
+        time: 0, // preroll
+        adTag: 'flowplayer://prebid_fetcher' // this will try to call window.prebid_fetcher
       ]
     },
     token:"eyJraWQiOiJZSVI0VVJZODA2TGoiLCJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjIjoie1wiYWNsXCI6NixcImlkXCI6XCJZSVI0VVJZODA2TGpcIn0iLCJpc3MiOiJGbG93cGxheWVyIn0.YUoY8b2vl1Z15PikwgYeWQ8Cp85C-TvtmwIJ_UFxpfAYYH8yiiUrhmd3SaY_qb3AvVDz45xVV6R9wizYl-NRGQ"
   })
-  
-  var btn = document.querySelector('#ad-toggle');
 
-  btn.addEventListener('click', function() {
-    if (player.ads.adPlaying) player.ads.pause();
-    else player.ads.resume();
-  })
-
-  function toggleDisabled(disabled) {
-    return function() { btn.disabled = disabled }
-  }
-
-  player.ads.on(flowplayer.AdEvents.AD_STARTED, toggleDisabled(false));
-  player.ads.on(flowplayer.AdEvents.AD_COMPLETED, toggleDisabled(true));
-  player.ads.on(flowplayer.AdEvents.AD_SKIPPED, toggleDisabled(true));
-
-&lt;/script&gt;      
-
-</pre>
+&lt;/script&gt;
+      </pre>
 		</div>
-	
 	</div>
 </div>
-	
+
 <!--video player code-->
 	<script type="text/javascript">
 		var player = flowplayer('#player', {
 		src: "//edge.flowplayer.org/drive.mp4",
 		title: "Flowplayer demo",
 		description: "Demo showing ads",
-		autoplay: true,
 		ima: {
-		  ads: [
-		    {"time":0,"adTag":asyncTag}
-		  ]
+		  ads: [{
+        time: 0,  //preroll
+        adTag: 'flowplayer://prebid_fetcher'
+      }]
 		},
 		token:"eyJraWQiOiJZSVI0VVJZODA2TGoiLCJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjIjoie1wiYWNsXCI6NixcImlkXCI6XCJZSVI0VVJZODA2TGpcIn0iLCJpc3MiOiJGbG93cGxheWVyIn0.YUoY8b2vl1Z15PikwgYeWQ8Cp85C-TvtmwIJ_UFxpfAYYH8yiiUrhmd3SaY_qb3AvVDz45xVV6R9wizYl-NRGQ"
 		})
-		
-		var btn = document.querySelector('#ad-toggle');
-		
-		btn.addEventListener('click', function() {
-		if (player.ads.adPlaying) player.ads.pause();
-		else player.ads.resume();
-		})
-		
-		function toggleDisabled(disabled) {
-		return function() { btn.disabled = disabled }
-		}
-		
-		player.ads.on(flowplayer.AdEvents.AD_STARTED, toggleDisabled(false));
-		player.ads.on(flowplayer.AdEvents.AD_COMPLETED, toggleDisabled(true));
-		player.ads.on(flowplayer.AdEvents.AD_SKIPPED, toggleDisabled(true));
-	
+
+
 	</script>
 
-	
+
 	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
-	

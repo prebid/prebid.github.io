@@ -2,10 +2,11 @@
 layout: bidder
 title: Buzzoola
 description: Prebid Buzzoola Bidder Adaptor
-
+pbjs: true
 biddercode: buzzoola
-media_types: banner, video
+media_types: banner, video, native
 gdpr_supported: false
+sidebarType: 1
 ---
 
 ### Note:

@@ -3,9 +3,10 @@ layout: bidder
 title: Yield Nexus
 description: Yield Nexus Bidder Adapter
 biddercode: yieldnexus
-
+pbjs: true
 media_types: banner, video
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Bid params

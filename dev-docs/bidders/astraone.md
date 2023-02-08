@@ -2,10 +2,11 @@
 layout: bidder
 title: AstraOne
 description: Prebid AstraOne Bidder Adapter
-
+pbjs: true
 media_types: banner
 biddercode: astraone
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Note
@@ -105,7 +106,7 @@ The code below returns a demo ad.
 	<meta charset="UTF-8">
 	<title>Prebid.js Banner Example</title>
 	<script async src="prebid.js"></script>
-	<script async src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+	<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
 	<style>
 		.banner-block {
 			position: absolute;

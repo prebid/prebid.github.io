@@ -1,0 +1,11 @@
+table.table {
+  background: $color--white;
+}
+
+.table-bordered {
+  thead {
+    th, td {
+      border-bottom-width: 1px;
+    }
+  }
+}

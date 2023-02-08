@@ -23,7 +23,7 @@ An ad unit is said to be multi-format if it supports at least two of the followi
 Once declared, any bidder that supports at least one of the media types can participate in the auction for that ad unit.
 
 {: .alert.alert-info :}
-For ad ops setup instructions, see [Setting up Prebid Multi-Format in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html).
+For ad ops setup instructions, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
 
 * TOC
 {:toc}
@@ -34,7 +34,7 @@ Prebid multi-format ad units allow direct competition between banner, native, an
 
 At a high level, Prebid.js supports multi-format ads as follows:
 
-1. An ad unit may define a [`mediaTypes`]({{site.baseurl}}/dev-docs/publisher-api-reference.html#addAdUnits-MediaTypes) object to specify one or more supported formats and their respective properties.
+1. An ad unit may define a [`mediaTypes`](/dev-docs/publisher-api-reference/addAdUnits.html#addAdUnits-MediaTypes) object to specify one or more supported formats and their respective properties.
 2. Each bidder specified on a given ad unit will be eligible to bid if the bidder supports at least one of the media types specified via `adUnit.mediaTypes`.
 3. Prebid.js sends bid requests to each eligible bidder.
 
@@ -42,7 +42,7 @@ The following key is added to your ad server targeting, and set to the value of 
 
 + `hb_format`
 
-The ad ops team will reference this key in the ad server to set targeting.  For ad ops setup instructions, see [Setting up Prebid Multi-Format in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html).
+The ad ops team will reference this key in the ad server to set targeting.  For ad ops setup instructions, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
 
 ## Prerequisites
 
@@ -76,7 +76,11 @@ The ad unit below supports the banner, native, and video media types.
             },
             video: {
                 context: 'outstream',
-                playerSize: [640, 480]
+                playerSize: [640, 480],
+                mimes: ['video/mp4'],
+                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                playbackmethod: [2],
+                skip: 1
             },
         },
         bids: [
@@ -125,6 +129,6 @@ Add a tag like the following to your page.  Depending on who wins the auction, a
 
 + [Multi-Format Example](/dev-docs/examples/multi-format-example.html)
 
-## Related Topics
+## Further Reading
 
-+ [Setting up Prebid Multi-Format in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-multi-format-in-dfp.html)
+- [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)

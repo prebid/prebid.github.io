@@ -2,8 +2,9 @@
 layout: bidder
 title: FairTrade
 description: FairTrade Bidder Adapter
-
+pbjs: true
 biddercode: fairtrade
+sidebarType: 1
 ---
 
 

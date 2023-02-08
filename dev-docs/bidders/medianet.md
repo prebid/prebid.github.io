@@ -3,13 +3,17 @@ layout: bidder
 title: Media.net
 description: Prebid Media.net Bidder Adaptor
 biddercode: medianet
-
 gdpr_supported: true
 media_types: banner,native,video
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
-tcf2_supported: true
+pbjs: true
+gvl_id: 142
+schain_supported: true
+floors_supported: true
+pbs: true
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -51,18 +55,17 @@ var videoAdUnit = {
   code: 'video1',
   mediaTypes: {
     video: {
-      context: "outstream",
-      playerSize: [640, 480]
+      context: "instream",
+      playerSize: [640, 480],
+      mimes: ['video/mp4'],
+      placement: 1
     }
   },
   bids: [{
     bidder: 'medianet',
     params: {
       cid: '8CUX0H51C',
-      video: {
-        mimes: ['video/mp4'],
-        placement: 1
-      },
+      crid: '776755783',  
       // Site member is to be used only for testing
       site: {
         page: 'http://smoketesting.net/prebidtest/',

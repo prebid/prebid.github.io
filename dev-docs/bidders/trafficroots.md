@@ -2,9 +2,10 @@
 layout: bidder
 title: Trafficroots
 description: Prebid Trafficroots Bidder Adapter
-
+pbjs: true
 biddercode: trafficroots
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params

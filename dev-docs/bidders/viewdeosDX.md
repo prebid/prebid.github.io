@@ -1,12 +1,17 @@
 ---
 layout: bidder
-title: ViewDeos DX
-description: Prebid ViewDeos Bidder Adaptor
-
+title: ViewdeosDX Client
+description: Prebid.js ViewDeos Bidder Adapter
+pbjs: true
+pbs: false
 biddercode: viewdeosDX
 media_types: banner,video
 gdpr_supported: true
+gvl_id: 924
+sidebarType: 1
 ---
+
+Note that for Prebid Server, use "viewdeos" bidder code.
 
 ### Bid params
 

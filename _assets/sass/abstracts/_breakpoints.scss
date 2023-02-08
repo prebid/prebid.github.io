@@ -1,0 +1,50 @@
+//  Breakpoint Declarations
+//
+//  Responsive breakpoint declarations
+// 	Breakpoints are matched in Responsive VC Design Options Plugin
+//	http://actian/wp-admin/admin.php?page=bb_edo_all_devices
+//
+//	Markup:
+//	'phone-xs': 320px,
+//	'phone-sm': 480px,
+//	'phone': 767px, // Page Builder Default
+//	'tablet': 960px, // Page Builder Default
+//	'desktop-sm': 1200px,
+//	'desktop': 1980px,
+//
+// Styleguide Layout.Breakpoints
+
+// Site width
+$t-site-width-pixels: 1180;
+$t-site-width: 1180px;
+$t-site-width--padded: 1210px;
+
+$t-phone-xs: 320px;
+$t-phone-sm: 480px;
+$t-phone-md: 640px;
+$t-phone: 767px; // Page Builder Default
+$t-tablet: 992px; // Page Builder Default
+$t-ipad-landscape: 1024px;
+$t-desktop-aio: 1257px; // Site width + scrollbar (17px) + margins (60px). *** This is where the content starts to shrink. ***
+$t-desktop: 1200px; // Page Builder Default
+$t-fullscreen: 1903px; // 1920 - 17px scrollbar
+
+$t-screen-sm-min: $t-phone;
+$t-screen-md-min: $t-tablet;
+$t-screen-lg-min: $t-desktop;
+
+$t-screen-xs-max: $t-screen-sm-min - 1;
+$t-screen-sm-max: $t-screen-md-min - 1;
+$t-screen-md-max: $t-screen-lg-min - 1;
+
+$breakpoints: (
+  'phone-xs': $t-phone-xs,
+  'phone-sm': $t-phone-sm,
+  'phone-md': $t-phone-md,
+  'phone': $t-phone, 
+  'tablet': $t-tablet, 
+  'ipad-landscape': $t-ipad-landscape, 
+  'site-width': $t-site-width,
+  'desktop': $t-desktop,
+  'fullscreen': $t-fullscreen,
+) !default;

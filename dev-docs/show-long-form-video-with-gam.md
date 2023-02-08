@@ -167,7 +167,7 @@ hb_pb_cat_dur = '10.00_10s'
 
 **4. Implement Custom Price Buckets**
 
-By default, Prebid.js caps all CPMs at $20. With sell side video there may be an expecation to see CPMs over $20. In order to receive those bids, custom price buckets need to be implemented by setting the [priceGranularity](/dev-docs/publisher-api-reference.html#setConfig-Price-Granularity) object of the `setConfig` method.
+By default, Prebid.js caps all CPMs at $20. With sell side video there may be an expecation to see CPMs over $20. In order to receive those bids, custom price buckets need to be implemented by setting the [priceGranularity](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity) object of the `setConfig` method.
 
 For instructions on setting custom price buckets, view the [Custom Price Granularity Buckets](/dev-docs/examples/custom-price-buckets.html) documentation on prebid.org.
 
