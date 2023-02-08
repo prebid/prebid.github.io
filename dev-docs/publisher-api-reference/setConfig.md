@@ -39,6 +39,7 @@ Core config:
 + [Caching VAST XML](#setConfig-vast-cache)
 + [Site Metadata](#setConfig-site)
 + [Disable performance metrics](#setConfig-performanceMetrics)
++ [Setting alias registry to private](#setConfig-aliasRegistry)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
 
@@ -1459,6 +1460,21 @@ Since version 7.17, Prebid collects fine-grained performance metrics and attache
 
 ```
 pbjs.setConfig({performanceMetrics: false})
+```
+
+<a id="setConfig-aliasRegistry" />
+#### Setting alias registry to private
+
+The alias registry is made public by default during an auction.  It can be referenced in the following way:
+
+```
+pbjs.aliasRegistry or pbjs.aliasRegistry[aliasName];
+```
+
+Inversely, if you wish for the alias registry to be private you can do so by using the option below (causing `pbjs.aliasRegistry` to return undefined): 
+
+```
+pbjs.setConfig({aliasRegistry: 'private'})
 ```
 
 <a name="setConfig-Generic-Configuration" />
