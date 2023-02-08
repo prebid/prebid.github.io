@@ -759,9 +759,9 @@ pbjs.setConfig({
 
 ### GrowthCode
 
-[GrowthCode](https://growthcode.io/) offers scaled infrastructure-as-a-service 
-to empower independent publishers to harness data and take control of 
-identity and audience while rapidly aligning to industry changes and 
+[GrowthCode](https://growthcode.io/) offers scaled infrastructure-as-a-service
+to empower independent publishers to harness data and take control of
+identity and audience while rapidly aligning to industry changes and
 margin pressure.
 
 #### GrowthCode Configuration
@@ -2487,7 +2487,7 @@ Bidders that want to support the User ID module in Prebid.js, need to update the
 | SharedID (PBJS 5.x) | n/a | pubcid | pubcid.org | "1111" |
 | SharedID (PBJS 4.x)| Prebid | sharedid | sharedid.org | {"id":"01EAJWWN...", "third":"01EAJ..."} |
 | Unified ID | Trade Desk | tdid | adserver.org | "1111" |
-| ConnectID | Yahoo | connectId | yahoo.com | "72d04af6..." |
+| ConnectID | Yahoo | connectId | yahoo.com | {"connectId": "72d04af6..."} |
 
 For example, the adapter code might do something like:
 
