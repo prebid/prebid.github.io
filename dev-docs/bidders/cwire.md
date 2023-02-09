@@ -33,3 +33,4 @@ Additionally, the following parameters can be passed by URL parameters for testi
 | `cwcreative` | optional |   C-WIRE creative id to force    |       `&cwcreative=1234`        | `string` |
 | `cwgroups`   | optional |    C-WIRE group name to force    |     `&cwgroups=test-group`      | `string` |
 | `cwfeatures` | optional | Comma separated list of features | `&cwfeatures=feature1,feature2` | `string` |
+| `cwdebug`    | optional |            Debug flag            |         `&cwdebug=true`         | `string` |
