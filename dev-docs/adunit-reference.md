@@ -152,11 +152,11 @@ When using the Video Module, the mediaTypes.video properties get filled out auto
 {: .table .table-bordered .table-striped }
 | Field     | Scope                                                        | Type   | Description                                                                                                        |
 |----------+--------------------------------------------------------------+--------+--------------------------------------------------------------------------------------------------------------------|
-| `divId` | required | string | Unique identifier of the player provider, used to specify which player should be used to render the ad. Equivalent to the HTML Div Id of the player.                  |
-| `adServer` | optional | object | Configuration for ad server integration. Supersedes `video.adServer` configurations defined in the Prebid Config. |
-| `adServer.vendorCode` | required if `adServer` is defined | string | The identifier of the AdServer vendor (i.e. gam, etc). |
-| `adServer.baseAdTagUrl` | required if `adServer.params` is not defined | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. |
-| `adServer.params` | required if `adServer.baseAdTagUrl` is not defined | object | Querystring parameters that will be used to construct the video ad tag URL. |
+| `divId` | Required | String | Unique identifier of the player provider, used to specify which player should be used to render the ad. Equivalent to the HTML Div Id of the player.                  |
+| `adServer` | Optional | Object | Configuration for ad server integration. Supersedes `video.adServer` configurations defined in the Prebid Config. |
+| `adServer.vendorCode` | Required if `adServer` is defined | String | The identifier of the AdServer vendor (i.e. gam, etc). |
+| `adServer.baseAdTagUrl` | Required if `adServer.params` is not defined | String | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. |
+| `adServer.params` | Required if `adServer.baseAdTagUrl` is not defined | Object | Querystring parameters that will be used to construct the video ad tag URL. |
 
 ## Examples
 
