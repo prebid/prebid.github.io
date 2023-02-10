@@ -56,6 +56,13 @@ scripts/buildPrebidMobile.sh
 
 This will output the PrebidMobile framework for Android.
 
+{% capture warning_note %}  
+If you see errors while building the Prebid Mobile SDK or Demo Applications, make sure that the needed Android SDK version is set up on your machine. Check the gradle build configs for the project and applications for details about the current required version.
+
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
+
 ## Initialize SDK
 
 {% capture warning_note %}  
