@@ -8,118 +8,124 @@ sidebarType: 2
 ---
 
 
-# Global Targeting Parameters
+# Request parameters
 {:.no_toc}
 
-Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
+The tables below list the methods and properties that the Prebid Rendering API uses for customization.
+The more data about the user, app, and device that can be provided the more chances to win an impression.
+
+It is advised that you strictly follow the recommendations in the tables below. Any field marked with an ❗is required and recommended. 
 
 * TOC
 {:toc}
 
-## Global User Targeting
+## GPDR API
 
-### Gender
+Prebid Mobile supports the [IAB GDPR recommendations](https://www.iab.com/topics/consumer-privacy/gdpr/). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice](/prebid-mobile/prebid-mobile-privacy-regulation.html)
+
+Prebid SDK doesn't modify values for IAB-defined keys in the `UserDefaults`. Instead, SDK will keep the provided value in the in-memory property.
+
+The values provided via targeting API will be included in the bid request according to the `TCF v2` framework.
+
+{% capture warning_note %}  
+
+Since the SDK API has priority over CMP values, using the API blocks the CMP signals. Use a single way to provide the TCF signals. 
+
+If you need to use an API way, ensure that all the following properties are set in the app code. 
+
+If you need to use a CMP way, ensure that you don't set any of the following API properties. 
+
+
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
+### Subject To GPDR
 
 ```
-public var userGender: Gender 
+public var subjectToGDPR:Bool?
 ```
 
-Gender is an enum with the following values:
+You can retrieve and set the subjectToGDPR for targeting:
 
 ```
-@objc public enum Gender : Int {
-    case unknown
-    case male
-    case female
-    case other
+guard let subjectToGDPR = Targeting.shared.subjectToGDPR else {
+    print("There was an error retrieving subjectToGDPR)
+    return
 }
 ```
 
-You can retrieve and set the gender for targeting:
+```
+Targeting.shared.subjectToGDPR = false
+```
+ 
+
+### GDPR Consent String
 
 ```
-let gender = Targeting.shared.userGender
+public var gdprConsentString?
+```
+
+You can retrieve and set the subjectToGDPR for targeting:
+
+```
+guard let gdprConsentString = Targeting.shared.gdprConsentString else {
+    print("There was an error retrieving gdprConsentString")
+    return
+}
 ```
 
 ```
-Targeting.shared.userGender = .unknown;
+Targeting.shared.gdprConsentString = "A String"
 ```
 
-### Year of Birth
+### Purpose Consent
 
 ```
-public var yearOfBirth: Int
+public var purposeConsents: String?
 ```
 
-You can retrieve and set the year of birth for targeting:
+You can retrieve and set the purposeConsents for targeting:
 
 ```
-Targeting.shared.yearOfBirth = 1990;
-```
-
-### User Keywords
-
-User keywords are a list of keywords, intrests or intent as defined by user.keywords in OpenRTB 2.5. Any keywords passed in the UserKeywords object may be passsed to DSPs.
-
-#### Add User Keyword
+Targeting.shared.purposeConsents = "100000000000000000000000"
 
 ```
-func addUserKeyword(_ newElement: String)
+
+## Targeting properties
+
+{: .table .table-bordered .table-striped }
+
+| **Variable**         | **Description**                                              | **Required?**            |
+| -------------------- | ---------------- | ------------------------------------------------------------ | ------------------------ |
+| `storeURL`    | Stores URL for the mobile application. For example: `"https://itunes.apple.com/us/app/your-app/id123456789"` | ❗ Required            |
+|`contentUrl`            |  This is the deep-link URL for the app screen that is displaying the ad. This can be an iOS universal link.  | ❗ Highly Recommended                 |
+|`publisherName`| App's publisher's name. | ❗ Highly Recommended                 |
+| `yearOfBirth`              | For example: `1987`  | ❗ Highly Recommended |
+| `coppa` or `subjectToCOPPA`              | Flag indicating if this request is subject to the COPPA regulations established by the USA FTC, where 0 = no, 1 = yes  | ❗ Highly Recommended |
+| `userGender`           | User's gender (Male, Female, Other, Unknown). For example: `.female` | ❗ Highly Recommended  |
+|`userGenderDescription`| String representation of the user's gender, where “M” = male, “F” = female, “O” = known to be other (i.e., omitted is unknown) | |
+| `userID`               | ID of the user within the app. For example: `"24601"`   | ❗ Highly Recommended  |
+| `buyerUID`             | Buyer-specific ID for the user as mapped by the exchange for the buyer. | ❗ Highly Recommended  |
+| `keywords`             | Comma separated list of keywords, interests, or intent | Optional |
+| `userCustomData`| Optional feature to pass bidder the data that was set in the exchange’s cookie. The string must be in base85 cookie safe characters and be in any format. Proper JSON encoding must be used to include “escaped” quotation marks. | Optional |
+|`userExt`| Placeholder for exchange-specific extensions to OpenRTB. | Optional |
+|`domain`|Retrieve and set the domain of your app|Optional|
+|`itunesID`|Retrieve and set the domain of your iTunes ID with the below command. This field will be transmitted to buyers as the bundle ID as recommended in OpenRTB 2.5. Failure to supply this value can have a negative monetary impact.|Optional|
+
+
+The code sample:
+
+``` swift
+let targeting = Targeting.shared
+        
+targeting.userGender = .male
+targeting.yearOfBirth = 1987
+targeting.userID = "X345Y678Z890"
 ```
 
-#### Add User Keywords
+## Open Measurement SDK (OMSDK) API
 
-```
-func addUserKeywords(_ newElements: Set<String>)
-```
-
-#### Remove User Keywords
-
-```
-func removeUserKeyword(_ element: String)
-```
-
-#### Clear User Keywords
-
-```
-func clearUserKeywords()
-```
-
-Examples:
-
-```swift
-Targeting.shared.addUserKeyword("globalUserKeywordValue1")
-Targeting.shared.addUserKeyword("globalUserKeywordValue2")
-Targeting.shared.addUserKeyword("globalUserKeywordValue3")
-```
-
-## Global Application Targeting
-
-
-### Domain
-
-Retrieve and set the domain of your app with the following commands:
-
-```
-Targeting.shared.domain = domain
-```
-### Store URL
-
-Retrieve and set the domain of your store URL with the following command:
-
-```
-Targeting.shared.storeURL = "itunes store URL string"
-```
-
-### iTunesID
-
-Retrieve and set the domain of your iTunes ID with the below command. This field will be transmitted to buyers as the bundle ID as recommended in OpenRTB 2.5. Failure to supply this value can have a negative monetary impact.
-
-```
-Targeting.shared.itunesID = itunesID
-```
-
-### Open Measurement SDK (OMSDK)
+> **NOTE**: these properties are relevant only for the original Prebid integration into GAM monetization. In this case the creative is rendered by GMA SDK and publishers should provide OMID description in the bid re qest. If you use Prebid SDK as a rendering engine you shouldn't use these properties. Prebid SDK sends them automaticaly according to the current OMID setup. 
 
 OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is eligible for OMSDK support. Original API of prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
 
@@ -129,6 +135,7 @@ There three components to signaling support for OMSDK:
 * API code
 
 #### Partner Name
+{:.no_toc}
 
 This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. See below for configuration and examples
 
@@ -136,8 +143,8 @@ This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.i
 Targeting.shared.omidPartnerName = "Google"
 ```
 
-
 #### Partner Version
+{:.no_toc}
 
 The OMSDK version number the partner integrated with. See below for configuration and examples.
 
@@ -145,24 +152,11 @@ The OMSDK version number the partner integrated with. See below for configuratio
 Targeting.shared.omidPartnerVersion = "1.0"
 ```
 
-#### API Code
+## Targeting methods
 
-Per OpenRTB 2.5, support for OMSDK is signaled using the imp.[media type].api field represented in Prebid SDK withing each ad format type under the parameters object. Refer to the documentation of the respective ad unit class.
+{: .table .table-bordered .table-striped }
 
-
-```
-let bannerUnit = BannerAdUnit(configId: "6ace8c7d-88c0-4623-8117-75bc3f0a2e45", size: CGSize(width: 300, height: 250))
-
-let parameters = BannerParameters()
-parameters.api = [Signals.Api(7)]
-
-bannerUnit.parameters = parameters
-```
-
-Note that the OMID value for imp.banner/video/native.api field should be 7, as defined by the IAB in the OMSDK v1.2 document.
-
-
-## Inventory (Context) Keywords
+### Inventory (Context) Keywords
 
 Context Keywords are a list of keywords about the app as referenced in OpenRTB 2.5 as app.keywords. Any keyword passed in the context keyword field may be passed to the buyer for targeting. Prebid provides following functions to manage context keywords:
 
@@ -184,21 +178,6 @@ Targeting.shared.addContextKeyword("globalContextKeywordValue1")
 Targeting.shared.addContextKeyword("globalContextKeywordValue2")
 Targeting.shared.addContextKeyword("globalContextKeywordValue3")
 ```
-
-
-## First Party Data
-
-First Party Data (FPD) is free form data supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. setYearOfBirth, setGender, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
-
-Data is broken up into two different data types:
-
-* User
-    * Global in scope only
-* Inventory (context)
-    * Global scope
-    * Ad Unit grain
-
- The below first party user and inventory context will apply to all ad units. For ad unit level first party data, refer to [First Party Data section in the Ad Unit](pbm-adunit-ios#first-party-data) page.
 
 ### First Party User Data
 
@@ -241,11 +220,6 @@ Example:
 Targeting.shared.addContextData(key: "globalContextDataKey1", value: "globalContextDataValue1")
 ```
 
-
-#### Ad Unit Context Data
-
-For ad unit context data, please refer to the [ad unit](pbm-adunit-ios.html) section.
-
 ### Access Control
 
 The First Party Data Access Control List provides a methods to restrict access to first party data to a supplied list of bidders.
@@ -265,75 +239,34 @@ Example:
 Targeting.shared.addBidderToAccessControlList(Prebid.bidderNameRubiconProject)
 ```
 
-## GPDR
 
-Prebid Mobile supports the [IAB GDPR recommendations](https://www.iab.com/topics/consumer-privacy/gdpr/). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice](/prebid-mobile/privacy-regulation.html)
+### Custom Params
 
-### Subject To GPDR
-
-```
-public var subjectToGDPR:Bool?
-```
-
-You can retrieve and set the subjectToGDPR for targeting:
+The methods that add or change the custom parameters. The name will be auto-prepended with `c.` to avoid collisions. 
 
 ```
-guard let subjectToGDPR = Targeting.shared.subjectToGDPR else {
-    print("There was an error retrieving subjectToGDPR)
-    return
-}
+public func addCustomParam(_ value: String, withName: String?)
+
+public func setCustomParams(_ params: [String : String]?)
 ```
 
-```
-Targeting.shared.subjectToGDPR = false
-```
+### Parameter
 
-### GDPR Consent String
+Adds a new param by name and sets its value.
 
-```
-public var gdprConsentString?
+``` 
+public func addParam(_ value: String, withName: String?)
 ```
 
-You can retrieve and set the subjectToGDPR for targeting:
+### Latitude Longitude
+
+Store location in the user's section
 
 ```
-guard let gdprConsentString = Targeting.shared.gdprConsentString else {
-    print("There was an error retrieving gdprConsentString")
-    return
-}
+public func setLatitude(_ latitude: Double, longitude: Double)
 ```
 
-```
-Targeting.shared.gdprConsentString = "A String"
-```
-
-### Purpose Consent
-
-```
-public var purposeConsents: String?
-```
-
-You can retrieve and set the purposeConsents for targeting:
-
-```
-Targeting.shared.purposeConsents = "100000000000000000000000"
-
-```
-### Subject to COPPA
-
-Prebid supports passing of the Child Online Privacy Prection (COPPA) signal to Prebid Server (PBS) for all COPPA traffic. When PBS receives the COPPA flag we strip out all personal data from the requeset. For a general overview of COPPA, see the [FTC's guidlines](https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule).
-
-```swift
-var subjectToCOPPA: Bool
-```
-
-Example:
-
-```
-Targeting.shared.subjectToCOPPA = true
-```
-
-## User Identity
+## User Identity API
 
 Prebid SDK supports two interfaces to pass / maintain User IDs and ID vendor details:
 * Real-time in Prebid SDK's API field externalUserIdArray
@@ -349,7 +282,6 @@ Prebid SDK supports passing an array of UserID(s) at auction time in the field e
 ```swift
 public var externalUserIdArray = [ExternalUserId]()
 ```
-
 
 **Exmaples**
 
@@ -403,8 +335,3 @@ Targeting.shared.removeStoredExternalUserId("sharedid.org")
 Targeting.shared.removeStoredExternalUserIds()
 ```
 
-
-## Further Reading
-
-- [Prebid Mobile API - iOS](/prebid-mobile/pbm-api/ios/pbm-api-ios.html)
-- [Prebid Mobile API - Android]({{site.baseurl}}/prebid-mobile/pbm-api/android/pbm-api-android.html)

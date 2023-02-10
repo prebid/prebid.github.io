@@ -5,13 +5,14 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: false
-userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid
+userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, imuid
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
 gdpr_supported: true
 floors_supported: true
 usp_supported: true
+gpp_supported: true
 media_types: banner, video, native
 fpd_supported: true
 gvl_id: 10

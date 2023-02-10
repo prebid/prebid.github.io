@@ -110,7 +110,19 @@ This is a corresponding sample response to a sample OpenRTB 2.5 bid request:
   }
 }
 ```
-### OpenRTB Request Fields
+
+#### Fledge Auctions
+
+[Fledge](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing) is an experimental approach to running online ad auctions with enhanced privacy.
+
+Prebid Server's support for Fledge is a passthrough:
+
+1. If the request contains `imp.ext.ae: 1`
+2. Bid adapters may respond with 'auction config' that's placed in `ext.prebid.fledge.auctionconfigs[]`.
+
+The auction config must then be used by the client. See the Prebid.js [Fledge for GPT](/dev-docs/modules/fledgeForGpt.html) module for more information.
+
+### OpenRTB Fields
 
 Prebid Server accepts all OpenRTB 2.5 fields and passes them in the request to all bid and analytics adapters. Some ORTB 2.6 fields are supported. Here are the fields with special processing:
 
@@ -1617,8 +1629,9 @@ The Prebid SDK version comes from:
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedauctionresponse | PBS-Core skips the auction and uses the response in the DB instead, see [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses). | object | no |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedbidresponse | PBS-Core calls the adapter with the response in the DB instead of actually running the auction,see [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses). | object | no |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedrequest<wbr>.id | Look up the defined stored request and merge the DB contents with this imp, see [stored requests](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-requests). | object | no (yes with [issue 2292](https://github.com/prebid/prebid-server/issues/2292) |
-| imp[]<wbr>.ext<wbr>.prebid<wbr>.is_rewarded_inventory | Passed through to bid adapters, see [rewarded video](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#rewarded-video). | integer | yes |
+| imp[]<wbr>.ext<wbr>.prebid<wbr>.is_rewarded_inventory | (deprecated) Passed through to bid adapters, see [rewarded video](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#rewarded-video). (use imp.rwdd in ORTB 2.6) | integer | yes |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.passthrough | Allows an application to pass a value through to the response, see [request passthrough](#request-passthrough). | object | no |
+| imp<wbr>.ext<wbr>.prebid<wbr>.adunitcode | Prebid.js adunit code | string | yes |
 | app<wbr>.ext<wbr>.source | Defined by Prebid SDK.<br>ex: `"prebid-mobile"` | string | yes |
 | app<wbr>.ext<wbr>.version | Defined by Prebid SDK,<br>ex: `"1.6"` | string | yes |
 | device<wbr>.ext<wbr>.prebid<wbr>.interstitial | PBS-core will adjust the sizes on a request for interstitials,see [interstitial support](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#interstitial-support). | object | yes |
@@ -1650,7 +1663,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.pbs.endpoint | additional Prebid Server metadata | string | yes |
 | ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
 | ext<wbr>.prebid<wbr>.returnallbidstatus | If true, PBS returns [ext.seatnonbid](#seat-non-bid) with details about bidders that didn't bid. | boolean | no |
-| imp<wbr>.ext<wbr>.prebid<wbr>.adunitcode | Prebid.js adunit code | string | yes |
+| imp<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. (ae stands for auction environment) | integer | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
 
@@ -1676,6 +1689,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.responsetimemillisv.BIDDER | Debug Mode: how long the named bidder took to respond with a bid. | integer |
 | ext<wbr>.prebid<wbr>.passthrough | Copy of request ext.prebid.passthrough, see [passthrough](#request-passthrough). | object|
 | ext<wbr>.seatnonbid | Details on which bidders did not bid on each imp. See [seatnonbid]()#seat-non-bid| object|
+| ext<wbr>.prebid<wbr>.fledge.auctionconfigs | Bidder-supplied [Fledge](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing) responses. | array of objects |
 
 ### Further Reading
 

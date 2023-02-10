@@ -10,7 +10,7 @@ sidebarType: 2
 # Ad Experience Controls
 {:.no_toc}
 
-Prebid SDK provides an API way to customize its behaviour. 
+If you use Prebid SDK to render the winning bid you can customize behaviour using the following API. 
 
 > NOTE: Planned future enhancements will support Server Side Configuration. Follow this [feature request](https://github.com/prebid/prebid-server/issues/2186) for the details. 
 
