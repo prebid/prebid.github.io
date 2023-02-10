@@ -23,6 +23,18 @@ Prebid SDK doesn't modify values for IAB-defined keys in the `SharedPreferences`
 
 The values provided via targeting API will be included in the bid request according to the `TCF v2` framework.
 
+{% capture warning_note %}  
+
+Since the SDK API has priority over CMP values, using the API blocks the CMP signals. Use a single way to provide the TCF signals. 
+
+If you need to use an API way, ensure that all the following properties are set in the app code. 
+
+If you need to use a CMP way, ensure that you don't set any of the following API properties. 
+
+
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 
 ### Subject To GPDR
 {:.no_toc}
