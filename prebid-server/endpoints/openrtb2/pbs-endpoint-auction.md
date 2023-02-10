@@ -131,8 +131,8 @@ Prebid Server accepts all OpenRTB 2.5 fields and passes them in the request to a
 | imp.rwdd | 2.6 | Bidders supporting 2.5 only: downgraded to imp.ext.prebid.is_rewarded_inventory |
 | user.eids | 2.6 | Bidders supporting 2.5 only: downgraded to user.ext.eids |
 | source.schain | 2.6 | Bidders supporting 2.5 only: downgraded to source.ext.schain |
-| wlangb, {content, device}.langb, cattax, {site, app, publisher, content, producer}.cattax, ssai, {app, site}.content.{network, channel}, {app, content, site, user}.kwarray, device.sua | 2.6.202210 | Bidders supporting 2.5 only: these fields are removed |
-| {video, audio}.{rqddurs, maxseq, poddur, podid, podseq, mincpmpersec, slotinpod} | 2.6.202210 | Bidders supporting 2.5 only: these fields are removed |
+| wlangb, {content, device}.langb, cattax, {site, app, publisher, content, producer}.cattax, ssai, {app, site}.content.{network, channel}, {app, content, site, user}.kwarray, device.sua | 2.6 | Bidders supporting 2.5 only: these fields are removed |
+| {video, audio}.{rqddurs, maxseq, poddur, podid, podseq, mincpmpersec, slotinpod} | 2.6 | Bidders supporting 2.5 only: these fields are removed |
 | regs.gpp | 2.6-202211 | Bidders supporting 2.5 only: this field is removed |
 | regs.gpp_sid | 2.6-202211 | Bidders supporting 2.5 only: this field is removed |
 | dooh | 2.6-202211 | not yet supported by PBS |
