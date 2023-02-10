@@ -2,7 +2,7 @@
 layout: userid
 title: 33Across ID
 description: 33Across ID User ID sub-module
-useridmodule: 33acrossId
+useridmodule: 33acrossIdSystem
 ---
 
 
@@ -49,5 +49,3 @@ pbjs.setConfig({
   }
 });
 ```
-
-

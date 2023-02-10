@@ -2,7 +2,7 @@
 layout: userid
 title: Fabrick ID by Neustar
 description: Fabrick ID by Neustar User ID sub-module
-useridmodule: fabrickId
+useridmodule: fabrickIdSystem
 ---
 
 
@@ -81,4 +81,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-

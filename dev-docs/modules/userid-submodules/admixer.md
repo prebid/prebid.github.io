@@ -2,7 +2,7 @@
 layout: userid
 title: AdmixerID
 description: AdmixerID User ID sub-module
-useridmodule: admixerId
+useridmodule: admixerIdSystem
 ---
 
 
@@ -50,4 +50,3 @@ gulp build --modules=admixerIdSystem
        }
    });
 {% endhighlight %}
-

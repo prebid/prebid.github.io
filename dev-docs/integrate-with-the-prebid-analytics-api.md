@@ -22,6 +22,8 @@ The Prebid Analytics API provides a way to get analytics data from `Prebid.js` a
 
 + Since this API separates your analytics provider's code from `Prebid.js`, the upgrade and maintenance of the two systems are separate.  If you want to upgrade your analytics library, there is no need to upgrade or test the core of `Prebid.js`.
 
+[//]: # (This comment is a separator that allows the list above and the TOC to be rendered at the same time)
+
 * TOC
 {:toc }
 

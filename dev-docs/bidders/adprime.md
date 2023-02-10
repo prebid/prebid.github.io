@@ -17,12 +17,20 @@ sidebarType: 1
 
 The Adprime Bidding adapter requires setup before beginning. Please contact us at rafal@adprime.com
 
-### Bid Params
+### Prebid.js Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placementId`      | required | Adprime placement id         | `'1234asdf'`    | `string` |
+| `placementId` | required | Adprime placement id  | `'1234asdf'`    | `string` |
 | `keywords`    | optional | page context keywords | ['car','sport'] | `array` |
-| `audiences`    | optional | publisher audiences | ['aud1','aud2'] | `array` |
+| `audiences`   | optional | publisher audiences   | ['aud1','aud2'] | `array` |
 
+### Prebid Server Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description           | Example   | Type      |
+|---------------|----------|-----------------------|-----------|-----------|
+| `TagID`       | required | Adprime ad tag id     | `'1234asdf'`    | `string` |
+| `keywords`    | optional | page context keywords | ['car','sport'] | `array` |
+| `audiences`   | optional | publisher audiences   | ['aud1','aud2'] | `array` |

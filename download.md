@@ -268,7 +268,7 @@ These modules may require accounts with a service provider.<br/>
 
 <h4>User ID Modules</h4>
 <div class="row">
- {% for page in userid_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.useridmodule }}IdSystem" moduleCode="{{ page.useridmodule }}IdSystem" class="bidder-check-box"> <a href="{{page.url}}">{{ page.title }}</a></label>{% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
+ {% for page in userid_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.useridmodule }}" moduleCode="{{ page.useridmodule }}" class="bidder-check-box"> <a href="{{page.url}}">{{ page.title }}</a></label>{% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
 </div></div>{% endfor %}
 </div>
 

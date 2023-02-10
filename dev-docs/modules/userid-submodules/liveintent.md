@@ -2,7 +2,7 @@
 layout: userid
 title: LiveIntent nonID
 description: LiveIntent nonID User ID sub-module
-useridmodule: liveIntentId
+useridmodule: liveIntentIdSystem
 ---
 
 
@@ -167,4 +167,3 @@ pbjs.setConfig({
     }
 })
 ```
-

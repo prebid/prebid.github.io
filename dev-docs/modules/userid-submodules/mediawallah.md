@@ -2,7 +2,7 @@
 layout: userid
 title: MediaWallah OpenLinkID
 description: MediaWallah OpenLinkID User ID sub-module
-useridmodule: mwOpenLinkId
+useridmodule: mwOpenLinkIdSystem
 ---
 
 
@@ -46,4 +46,3 @@ pbjs.setConfig({
     }
 })
 ```
-

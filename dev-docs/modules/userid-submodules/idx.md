@@ -2,7 +2,7 @@
 layout: userid
 title: IDx
 description: IDx User ID sub-module
-useridmodule: idx
+useridmodule: idxIdSystem
 ---
 
 
@@ -39,4 +39,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-

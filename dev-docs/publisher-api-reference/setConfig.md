@@ -39,6 +39,7 @@ Core config:
 + [Caching VAST XML](#setConfig-vast-cache)
 + [Site Metadata](#setConfig-site)
 + [Disable performance metrics](#setConfig-performanceMetrics)
++ [Setting alias registry to private](#setConfig-aliasRegistry)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
 
@@ -752,6 +753,8 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 | CACHE_ID | `hb_cache_id` | yes | Network cache ID for AMP or Mobile |
 | CACHE_HOST | `hb_cache_host` | yes | |
 | ADOMAIN | `hb_adomain` | no | Set to bid.meta.advertiserDomains[0]. Use cases: report on VAST errors, set floors on certain buyers, monitor volume from a buyer, track down bad creatives. |
+| ACAT | `hb_acat` | no | Set to bid.meta.primaryCatId. Optional category targeting key that can be sent to ad servers that stores the value of the Primary IAB category ID if present. Use cases: category exclusion with an ad server order or programmatic direct deal on another ad slot (good for contextual targeting and/or brand
+safety/suitability). |
 | title | `hb_native_title` | yes | |
 | body | `hb_native_body` | yes | |
 | body2 | `hb_native_body2` | yes | |
@@ -1457,6 +1460,21 @@ Since version 7.17, Prebid collects fine-grained performance metrics and attache
 
 ```
 pbjs.setConfig({performanceMetrics: false})
+```
+
+<a id="setConfig-aliasRegistry" />
+#### Setting alias registry to private
+
+The alias registry is made public by default during an auction.  It can be referenced in the following way:
+
+```
+pbjs.aliasRegistry or pbjs.aliasRegistry[aliasName];
+```
+
+Inversely, if you wish for the alias registry to be private you can do so by using the option below (causing `pbjs.aliasRegistry` to return undefined): 
+
+```
+pbjs.setConfig({aliasRegistry: 'private'})
 ```
 
 <a name="setConfig-Generic-Configuration" />

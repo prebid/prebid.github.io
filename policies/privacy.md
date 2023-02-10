@@ -5,7 +5,7 @@ description: Prebid.org Privacy Policy
 sidebarType: 0
 ---
 
-# Prebid.org Website Privacy Policy
+# Prebid.org Privacy Policy
 {:.no_toc}
 
 Last updated Aug 5, 2020

@@ -233,9 +233,9 @@ pbjs.setBidderConfig({ // different bidders can receive different data
 });
 {% endhighlight %}
 
-### Supplying App Content Data
+### Supplying App or DOOH ORTB Objects
 
-Occasionally, an app which embeds a webview might run Prebid.js. In this case, the app object is often specified for OpenRTB, and the site object would be invalid. When this happens, one should specify app.content.data in place of site.content.data.
+Occasionally, an app which embeds a webview might run Prebid.js. In this case, the app object is often specified for OpenRTB, and the site object would be invalid. When this happens, one should specify app.content.data in place of site.content.data. We can also imagine scenarios where billboards or similar displays are running Prebid.js. In the case of a DOOH object existing, both the site object and the app object are considered invalid. 
 
 {% highlight js %}
 pbjs.setConfig({

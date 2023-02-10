@@ -2,7 +2,7 @@
 layout: userid
 title: Yahoo ConnectID
 description: Yahoo ConnectID User ID sub-module
-useridmodule: connectId
+useridmodule: connectIdSystem
 ---
 
 Yahoo ConnectID is a person based ID and does not depend on 3rd party cookies. It enables ad tech platforms to recognize and match users consistently across the open web. Built on top of Yahoo’s robust and proprietary ID Graph it delivers a higher find rate of audiences on publishers’ sites user targeting that respects privacy.
@@ -106,4 +106,3 @@ pbjs.setConfig({
     }
 })
 ```
-

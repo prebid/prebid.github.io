@@ -110,6 +110,18 @@ This is a corresponding sample response to a sample OpenRTB 2.5 bid request:
   }
 }
 ```
+
+#### Fledge Auctions
+
+[Fledge](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing) is an experimental approach to running online ad auctions with enhanced privacy.
+
+Prebid Server's support for Fledge is a passthrough:
+
+1. If the request contains `imp.ext.ae: 1`
+2. Bid adapters may respond with 'auction config' that's placed in `ext.prebid.fledge.auctionconfigs[]`.
+
+The auction config must then be used by the client. See the Prebid.js [Fledge for GPT](/dev-docs/modules/fledgeForGpt.html) module for more information.
+
 ### OpenRTB Fields
 
 Prebid Server accepts all OpenRTB 2.5 fields and passes them in the request to all bid and analytics adapters. Some fields are processed by Prebid Server in the following ways:
@@ -1012,15 +1024,26 @@ Bidder-specific data can be defined with ext.prebid.bidderconfig:
 ```
 "ext": {
   "prebid": {
-    "bidderconfig": {
-      "bidders": ["bidderA", "bidderB"]
-    },
-    "config": {
-      "ortb2": {
-        "site": { ... },
-        "user": { ... }
+    "bidderconfig": [
+      {
+        "bidders": ["bidderA", "bidderB"],
+        "config": {
+           "ortb2": {
+              "site": { ... },
+              "user": { ... }
+           }
+        }
+      },
+      {
+        "bidders": ["bidderC"],
+        "config": {
+           "ortb2": {
+              "site": { ... },
+              "user": { ... }
+           }
+        }
       }
-    }
+    ]
   }
 }
 ```
@@ -1521,6 +1544,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.pbs.endpoint | additional Prebid Server metadata | string | yes |
 | ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
 | imp<wbr>.ext<wbr>.prebid<wbr>.adunitcode | Prebid.js adunit code | string | yes |
+| imp<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. (ae stands for auction environment) | integer | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
 
@@ -1545,6 +1569,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.errors<wbr>.BIDDER | Debug Mode: errors from the named bidder | object |
 | ext<wbr>.responsetimemillisv.BIDDER | Debug Mode: how long the named bidder took to respond with a bid. | integer |
 | ext<wbr>.prebid<wbr>.passthrough | Copy of request ext.prebid.passthrough, see [passthrough](#request-passthrough). | object|
+| ext<wbr>.prebid<wbr>.fledge.auctionconfigs | Bidder-supplied [Fledge](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing) responses. | array of objects |
 
 ### Further Reading
 

@@ -2,7 +2,7 @@
 layout: userid
 title: IM-UID by Intimate Merger
 description: IM-UID by Intimate Merger User ID sub-module
-useridmodule: imuid
+useridmodule: imuIdSystem
 ---
 
 IM-UID, provided by [Intimate Merger](https://corp.intimatemerger.com/), is a universal identifier that designed for publishers, platforms and advertisers to perform segmentation and targeting even in environments where 3rd party cookies are not available. IM-UID is currently only available in Japan.
@@ -42,4 +42,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-

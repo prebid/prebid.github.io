@@ -2,7 +2,7 @@
 layout: userid
 title: Quantcast ID
 description: Quantcast ID User ID sub-module
-useridmodule: quantcastId
+useridmodule: quantcastIdSystem
 ---
 
 The Prebid Quantcast ID module stores a Quantcast ID in a first party cookie. The ID is then made available in the bid request. The ID from the cookie added in the bidstream allows Quantcast to more accurately bid on publisher inventories without third party cookies, which can result in better monetization across publisher sites from Quantcast. And, it’s free to use! For easier integration, you can work with one of our SSP partners, like PubMatic, who can facilitate the legal process as well as the software integration for you.
@@ -43,6 +43,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-
-
-
