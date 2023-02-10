@@ -3,7 +3,7 @@ layout: bidder
 title: MobileFuse
 pbs: true
 pbjs: false
-media_types: banner, video
+media_types: banner, video, native
 gdpr_supported: true
 schain_supported: true
 usp_supported: true
@@ -15,6 +15,7 @@ pbs_app_supported: true
 floors_supported: true
 gvl_id: 909
 ortb_blocking_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params

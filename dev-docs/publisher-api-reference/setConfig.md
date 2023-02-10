@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.setConfig(options)
 description:
+sidebarType: 1
 ---
 
 
@@ -19,6 +20,7 @@ Core config:
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 + [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 + [Set Timeout Buffer](#setConfig-timeoutBuffer)
++ [Set TTL Buffer](#setConfig-ttlBuffer)
 + [Turn on send all bids mode](#setConfig-Send-All-Bids)
 + [Configure send bids control](#setConfig-Send-Bids-Control)
 + [Bid cache](#setConfig-Use-Bid-Cache)
@@ -26,14 +28,18 @@ Core config:
 + [Set the page URL](#setConfig-Page-URL)
 + [Set price granularity](#setConfig-Price-Granularity)
 + [Set media type price granularity](#setConfig-MediaType-Price-Granularity)
++ [Set custom cpm rounding](#setConfig-Cpm-Rounding)
 + [Configure server-to-server header bidding](#setConfig-Server-to-Server)
 + [Configure user syncing](#setConfig-Configure-User-Syncing)
 + [Configure targeting controls](#setConfig-targetingControls)
 + [Configure responsive ad units with `sizeConfig` and `labels`](#setConfig-Configure-Responsive-Ads)
 + [COPPA](#setConfig-coppa)
 + [First Party Data](#setConfig-fpd)
++ [Video Module to integrate with Video Players](#video-module)
 + [Caching VAST XML](#setConfig-vast-cache)
 + [Site Metadata](#setConfig-site)
++ [Disable performance metrics](#setConfig-performanceMetrics)
++ [Setting alias registry to private](#setConfig-aliasRegistry)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
 
@@ -127,6 +133,18 @@ Prebid core adds a timeout buffer to extend the time that bidders have to return
 
 {% highlight js %}
 pbjs.setConfig({ timeoutBuffer: 300 });
+{% endhighlight %}
+
+#### Set TTL Buffer
+
+<a id="setConfig-ttlBuffer" />
+
+When an adapter bids, it provides a TTL (time-to-live); the bid is considered expired and unusuable after that time has elapsed. Core subtracts from it a buffer of 1 second; that is, a bid with TTL of 30 seconds is considered expired after 29 seconds. You can adjust this buffer with:
+
+{% highlight js %}
+pbjs.setConfig({ 
+  ttlBuffer: 10  // TTL buffer in seconds 
+});
 {% endhighlight %}
 
 #### Send All Bids
@@ -419,6 +437,37 @@ are recognized. This was driven by the recognition that outstream often shares l
 If the mediatype is video, the price bucketing code further looks at the context (e.g. outstream) to see if there's
 a price granularity override. If it doesn't find 'video-outstream' defined, it will then look for just 'video'.
 
+<a name="setConfig-Cpm-Rounding" />
+
+#### Custom CPM Rounding
+
+Prebid defaults to rounding down all bids to the nearest increment, which may cause lower CPM ads to be selected. 
+While this can be addressed through higher [price granularity](#setConfig-Price-Granularity), Prebid also allows setting a custom rounding function. 
+This function will be used by Prebid to determine what increment a bid will round to. 
+<br/>
+<br/>
+You can set a simple rounding function:
+```javascript
+// Standard rounding
+pbjs.setConfig({'cpmRoundingFunction': Math.round});
+```
+
+Or you can round according to more complex considerations:
+
+```javascript
+// Custom rounding function
+const roundToNearestEvenIncrement = function (number) {
+  let ceiling = Math.ceil(number);
+  let ceilingIsEven = ceiling % 2 === 0;
+  if (ceilingIsEven) {
+    return ceiling;
+  } else {
+    return Math.floor(number);
+  }
+}
+pbjs.setConfig({'cpmRoundingFunction': roundToNearestEvenIncrement});
+```
+
 <a name="setConfig-Server-to-Server" />
 
 #### Server to Server
@@ -430,16 +479,22 @@ See the [Prebid Server module](/dev-docs/modules/prebidServer.html).
 #### Mobile App Post-Bid
 
 To support [post-bid](/overview/what-is-post-bid.html) scenarios on mobile apps, the
-prebidServerBidAdapter module recognizes the `app` config object to
+prebidServerBidAdapter module will accept `ortb2.app` config to
 forward details through the server:
 
 {% highlight js %}
 pbjs.setConfig({
-   app: {
+  ortb2: {
+    app: {
       bundle: "org.prebid.mobile.demoapp",
       domain: "prebid.org"
-   }
+    }
+  }
+});
 {% endhighlight %}
+
+{: .alert.alert-warning :}
+In PBJS 4.29 and earlier, don't add the `ortb2` level here -- just `app` directly. Oh, and please upgrade. 4.29 was a long time ago.
 
 <a name="setConfig-Configure-User-Syncing" />
 
@@ -698,6 +753,8 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 | CACHE_ID | `hb_cache_id` | yes | Network cache ID for AMP or Mobile |
 | CACHE_HOST | `hb_cache_host` | yes | |
 | ADOMAIN | `hb_adomain` | no | Set to bid.meta.advertiserDomains[0]. Use cases: report on VAST errors, set floors on certain buyers, monitor volume from a buyer, track down bad creatives. |
+| ACAT | `hb_acat` | no | Set to bid.meta.primaryCatId. Optional category targeting key that can be sent to ad servers that stores the value of the Primary IAB category ID if present. Use cases: category exclusion with an ad server order or programmatic direct deal on another ad slot (good for contextual targeting and/or brand
+safety/suitability). |
 | title | `hb_native_title` | yes | |
 | body | `hb_native_body` | yes | |
 | body2 | `hb_native_body2` | yes | |
@@ -1053,6 +1110,79 @@ See the [AdUnit Reference](/dev-docs/adunit-reference.html) for AdUnit-specific 
 
 See [Prebid Server First Party Data](/prebid-server/features/pbs-fpd.html) for details about passing data server-side.
 
+<a name="video-module" />
+
+#### Video Module to integrate with Video Players
+
+The Prebid Video Module allows Prebid to directly integrate with a Video Player, allowing Prebid to automatically load the winning ad into the player, mark bids as won, fill the video and content oRTB params in the bid request, surface video analytics, and more. For more information please visit the [Video Module docs]({{site.github.url}}/prebid-video/video-module.html).  
+To register a video player with Prebid, you must use `setConfig` to set a `video` config compliant with the following structure:
+
+{: .table .table-bordered .table-striped }
+| Field | Required? | Type | Description |
+|---|---|---|---|
+| video.providers[] | yes | array of objects | List of Provider configurations. You must define a provider configuration for each player instance that you would like integrate with. |
+| video.providers[] .vendorCode | yes | number | The identifier of the Video Provider vendor (i.e. 1 for JW Player, 2 for videojs, etc). Allows Prebid to know which submodule to instantiate. |
+| video.providers[].divId | yes | string | The HTML element id of the player or its placeholder div. All analytics events for that player will reference this ID. Additionally, used to indicate which HTLM element must contain the Video Player instance when instantiated. |
+| video.providers[] .playerConfig.autoStart | no | boolean | Defaults to false |
+| video.providers[] .playerConfig.mute | no | boolean | Defaults to false |
+| video.providers[] .playerConfig.licenseKey | no | boolean | The license key or account key. Required by most commercial video players. |
+| video.providers[] .playerConfig.setupAds | no | boolean | Defaults to true. Setting to false will prevent Prebid from setting up the ads components for the player. Disable when you wish to setup the player's ad components yourself. |
+| video.providers[] .playerConfig.params .vendorConfig | no | object | The configuration block specific to a video player. Use this when setting configuration options not available in `video.providers[].playerConfig`. Its properties supersede the equivalents in `video.providers[].playerConfig`. |
+| video.providers[] .playerConfig.params .adPluginConfig | no | object | The configuration block specific to the video player's ad plugin. Use this to customize the ad experience. The configuration spec is defined by your video player's ad plugin. |
+| video.providers[] .adServer | no | object | Configuration for ad server integration. Applies to all Ad Units linked to a video provider. Superseded by `video.adServer` configurations defined at the Ad Unit level. |
+| video.providers[] .adServer.vendorCode | yes | string | The identifier of the AdServer vendor (i.e. gam, etc) |
+| video.providers[] .adServer.baseAdTagUrl | yes | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. Required when `video.providers[].adServer.params` is absent. |
+| video.providers[] .adServer.params | yes | object | Querystring parameters that will be used to construct the video ad tag URL. Required when `video.providers[].adServer.baseAdTagUrl` is absent. |
+| video.contentEnrichmentEnabled | no | boolean | Defaults to true. Set to false to prevent the Video Module from enriching the `site.content` params in the bidder request. |
+| video.mainContentDivId | no | string | Div Id of the video player intended to populate the `bidderRequest.site.content` params. Used when multiple video players are registered with the Video Module to indicate which player is rendering the main content. The `bidderRequest.site.content` params will be populated by said video player for all auctions where a Video Player is registered with an Ad Unit in the auction. |
+| video.adServer | no | object | Configuration for ad server integration. Applies to all Video Providers and all Ad Units linked to a video provider. Superseded by `video.adServer` configurations defined at the Ad Unit level, and `video.providers[] .adServer` configurations. |
+| video.adServer .vendorCode | yes | string | The identifier of the AdServer vendor (i.e. gam, etc) |
+| video.adServer .baseAdTagUrl | yes | string | Your AdServer Ad Tag. The targeting params of the winning bid will be appended. Required when `video.adServer.params` is absent. |
+| video.adServer .params | yes | object | Querystring parameters that will be used to construct the video ad tag URL. Required when `video.adServer.baseAdTagUrl` is absent. |
+
+**Note:** You can integrate with different Player vendors. For this to work, you must ensure that the right Video Submodules are included in your build, and that the providers have the right `vendorCode`s and `divId`s.
+
+##### Example
+
+Assuming your page has 2 JW Player video players, 1 video.js video player, and your ad server is GAM.
+{% highlight js %}
+pbjs.setConfig({
+    video: {
+        providers: [{
+            vendorCode: 1, // constant variable is JWPLAYER_VENDOR - see vendorCodes.js in the video library
+            divId: 'jwplayer-div-1',
+            playerConfig: {
+                autoStart: true,
+            }
+        }, {
+            vendorCode: 2, // constant variable is VIDEO_JS_VENDOR - see vendorCodes.js in the video library
+            divId: 'videojs-div',
+            playerConfig: {
+                params : {
+                    adPluginConfig: {
+                        numRedirects: 10
+                    },
+                    vendorConfig: {
+                        controls: true,
+                        preload: "auto",
+                    }
+                }
+            }
+        }, {
+            vendorCode: 1, // constant variable is JWPLAYER_VENDOR - see vendorCodes.js in the video library
+            divId: 'jwplayer-div-2',
+            playerConfig: {
+                mute: true
+            }
+        }],
+        adServer: {
+            vendorCode: 'gam', // constant variable is GAM_VENDOR - see vendorCodes.js in the video library
+            baseAdTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?iu=/12345/'
+        }
+    }
+});
+{% endhighlight %}
+
 <a name="setConfig-vast-cache" />
 
 #### Client-side Caching of VAST XML
@@ -1153,21 +1283,23 @@ More examples [here](/dev-docs/modules/instreamTracking.html#example-with-urlpat
 
 #### Site Configuration
 
-{: .alert.alert-info :}
-This setting is obsolete as of Prebid.js 4.30. Please set site fields in `ortb2.site` as [First Party Data](#setConfig-fpd).
-
 Adapters, including Prebid Server adapters, can support taking site parameters like language.
-The structure here is OpenRTB; the site object will be available to client- and server-side adapters.
+Just set the `ortb2.site` object as First Party Data to make it available to client- and server-side adapters.
 
 {% highlight js %}
 pbjs.setConfig({
-   site: {
+  ortb2: {
+    site: {
        content: {
            language: "en"
        }
-   }
+    }
+  }
 });
 {% endhighlight %}
+
+{: .alert.alert-warning :}
+In PBJS 4.29 and earlier, don't add the `ortb2` level here -- just `site` directly. Oh, and please upgrade. 4.29 was a long time ago.
 
 <a name="setConfig-auctionOptions" />
 
@@ -1277,8 +1409,75 @@ Notes:
 - The only time `waitForIt` means anything is if some modules are flagged as true and others as false. If all modules are the same (true or false), it has no effect.
 - Likewise, `waitForIt` doesn't mean anything without an auctionDelay specified.
 
-<a name="setConfig-Generic-Configuration" />
 
+
+<a name="setConfig-topicsIframeConfig" />
+
+#### Topics Iframe Configuration
+
+Topics iframe implementation is the enhancements of existing module under topicsFpdModule.js where different bidders will call the topic API under their domain to fetch the topics for respective domain and the segment data will be part of ORTB request under user.data object. Default config is maintained in the module itself. Below are the configuration which can be used to configure and override the default config maintained in the module.
+
+```
+pbjs.setConfig({
+    userSync: {
+        ...,
+        topics: { 
+            maxTopicCaller: 3, // SSP rotation 
+            bidders: [{
+                bidder: 'pubmatic',
+                iframeURL: 'https://ads.pubmatic.com/AdServer/js/topics/topics_frame.html',
+                expiry: 7 // Configurable expiry days
+            },{
+                bidder: 'rubicon',
+                iframeURL: 'https://rubicon.com:8080/topics/fpd/topic.html', // dummy URL
+                expiry: 7 // Configurable expiry days
+            },{
+                bidder: 'appnexus',
+                iframeURL: 'https://appnexus.com:8080/topics/fpd/topic.html', // dummy URL
+                expiry: 7 // Configurable expiry days
+            }]
+        }
+        ....
+    }
+})
+
+```
+
+{: .table .table-bordered .table-striped }
+| Field | Required? | Type | Description |
+|---|---|---|---|
+| topics.maxTopicCaller | no | integer | Defines the maximum numbers of Bidders Iframe which needs to be loaded on the publisher page. Default is 1 which is hardcoded in Module. Eg: topics.maxTopicCaller is set to 3. If there are 10 bidders configured along with their iframe URLS, random 3 bidders iframe URL is loaded which will call TOPICS API. If topics.maxTopicCaller is set to 0, it will load random 1(default) bidder iframe atleast. |
+| topics.bidders | no | Array of objects  | Array of topics callers with the iframe locations and other necessary informations like bidder(Bidder code) and expiry. Default Array of topics in the module itself.|
+| topics.bidders[].bidder | yes | string  | Bidder Code of the bidder(SSP).  |
+| topics.bidders[].iframeURL | yes | string  | URL which is hosted on bidder/SSP/third-party domains which will call Topics API.  |
+| topics.bidders[].expiry | no | integer  | Max number of days where Topics data will be persist. If Data is stored for more than mentioned expiry day, it will be deleted from storage. Default is 21 days which is hardcoded in Module. |
+
+
+<a id="setConfig-performanceMetrics" />
+#### Disable performance metrics
+
+Since version 7.17, Prebid collects fine-grained performance metrics and attaches them to several events for the purpose of analytics. If you find that this generates too much data for your analytics provider you may disable this feature with: 
+
+```
+pbjs.setConfig({performanceMetrics: false})
+```
+
+<a id="setConfig-aliasRegistry" />
+#### Setting alias registry to private
+
+The alias registry is made public by default during an auction.  It can be referenced in the following way:
+
+```
+pbjs.aliasRegistry or pbjs.aliasRegistry[aliasName];
+```
+
+Inversely, if you wish for the alias registry to be private you can do so by using the option below (causing `pbjs.aliasRegistry` to return undefined): 
+
+```
+pbjs.setConfig({aliasRegistry: 'private'})
+```
+
+<a name="setConfig-Generic-Configuration" />
 #### Generic setConfig Configuration
 
 Some adapters may support other options, as defined in their documentation. To set arbitrary configuration values:

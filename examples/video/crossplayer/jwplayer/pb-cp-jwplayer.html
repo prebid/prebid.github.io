@@ -129,7 +129,10 @@ function doHeaderBidding() {
         return new Promise(function(resolve) {
           var listener = function(event) {
             if (event && event.data) {
-              var data = JSON.parse(event.data);
+              var data = {};
+              try {
+                data = JSON.parse(event.data);
+              } catch (error) { }
               if (data.command === 'PPCP:prebidResponse' && data.messageId === messageId) {
                 window.removeEventListener('message', listener);
                 if (data.url && data.url != 'failed') {
@@ -196,7 +199,10 @@ function doHeaderBidding() {
     return new Promise(function(resolve) {
         var listener = function(event) {
         if (event && event.data) {
-            var data = JSON.parse(event.data);
+            var data = {};
+            try {
+                data = JSON.parse(event.data);
+            } catch (error) { }
             if (data.command === 'PPCP:prebidResponse' && data.messageId === messageId) {
             window.removeEventListener('message', listener);
             if (data.url && data.url != 'failed') {

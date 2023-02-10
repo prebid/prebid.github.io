@@ -1,0 +1,1 @@
+<div markdown="span" class="pb-alert pb-alert-warning" role="alert"><i class="fa fa-exclamation-triangle"></i> This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use.</div>

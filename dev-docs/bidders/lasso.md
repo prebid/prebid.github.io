@@ -15,6 +15,7 @@ deals_supported: false
 floors_supported: false
 fpd_supported: false
 multiformat_supported: will-not-bid
+sidebarType: 1
 ---
 
 ### Note:

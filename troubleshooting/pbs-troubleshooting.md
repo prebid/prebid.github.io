@@ -61,9 +61,6 @@ https://my-prebid-server.com/openrtb2/amp?tag_id=1111111111111&w=300&h=50&...&de
 
 ## Stored Responses
 
-{: .pb-alert .pb-alert-important :}
-Currently, this approach only works with the Java version of Prebid Server.
-
 Sometimes it's hard to get a test bid. Other times, you may want to test a
 very specific bid, such as one that has a particular CPM value or
 creative.

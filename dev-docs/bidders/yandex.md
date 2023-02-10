@@ -5,6 +5,7 @@ description: Prebid Yandex Bidder Adapter
 pbjs: true
 biddercode: yandex
 media_types: banner
+sidebarType: 1
 ---
 
 

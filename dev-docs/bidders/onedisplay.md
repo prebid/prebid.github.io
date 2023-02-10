@@ -5,6 +5,7 @@ description: Prebid AOL Bidder Adaptor
 pbjs: true
 biddercode: onedisplay
 aliasCode : aol
+sidebarType: 1
 ---
 ### IMPORTANT NOTICE!
 **TL;DR**

@@ -10,6 +10,16 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 prebid_member: true
 pbjs: true
 pbs: true
+pbs_app_supported: true
+floors_supported: true
+fpd_supported: true
+ortb_blocking_supported: false
+multiformat_supported: will-bid-on-any
+deals_supported: true
+gvl_id: 70
+coppa_supported: false
+usp_supported: false
+sidebarType: 1
 ---
 
 
@@ -21,7 +31,6 @@ pbs: true
 |----------------|----------|---------------------------------------------------------------------------------------|---------------------------------------------|----------|
 | `adslotId`     | required | Yieldlab Adslot ID                                                                    | `'12345'`                                   | `string` |
 | `supplyId`     | required | Yieldlab Supply ID. Please reach out to your account management for more information. | `'12345'`                                   | `string` |
-| `adSize`       | optional | Override the default prebid size                                                      | `'970x250'`                                 | `string` |
 | `targeting`    | optional | Key-Value Targeting                                                                   | `{ 'key1': 'value1', 'key2': 'value2' }`    | `object` |
 | `extId`        | optional | External Id                                                                           | `'abc'`                                     | `string` |
 | `iabContent`   | optional | Object of content information, see [IAB Content Object](#iab_content) for details. It will override the content object passed in [First Party Data](https://docs.prebid.org/features/firstPartyData.html)    | `{ 'id': 'foo', 'title': 'bar' }`           | `object` |
