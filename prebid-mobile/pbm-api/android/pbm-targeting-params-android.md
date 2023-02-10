@@ -29,7 +29,7 @@ Since the SDK API has priority over CMP values, using the API blocks the CMP sig
 
 If you need to use an API way, ensure that all the following properties are set in the app code. 
 
-If you need to use CMP way, ensure that you don't set any of the following API properties. 
+If you need to use a CMP way, ensure that you don't set any of the following API properties. 
 
 
 {% endcapture %}
