@@ -95,7 +95,6 @@ This section contains working examples of instream and outstream video ads for v
 ## Using client-side adapters
 
 ### Instream
-+ [Akamai AMP]({{site.github.url}}/examples/video/instream/akamai/pb-ve-amp.html)
 + [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
 + [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
 + [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
