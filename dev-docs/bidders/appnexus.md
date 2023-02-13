@@ -50,7 +50,7 @@ All AppNexus (Xandr) placements included in a single call to `requestBids` must 
 #### Bid Params
 
 {: .alert.alert-danger :}
-Starting with Prebid.js version 7.36.0, an update was made to the `appnexusBidAdapter.js` file to support bid params in a lower-case underscore format (eg `invCode` to `inv_code`) similar to how the params are formatted for the Prebid Server AppNexus bidder.  This change was implemented to streamline publisher setups for both projects instead of maintaining separate versions of the same params depening on what setup is used.
+Starting with Prebid.js version 7.36.0, an update was made to the `appnexusBidAdapter.js` file to support bid params in a lower-case underscore format (eg `invCode` to `inv_code`) similar to how the params are formatted for the Prebid Server AppNexus bidder.  This change was implemented to streamline publisher setups for both projects instead of maintaining separate versions of the same params depending on what setup is used.
 To avoid breaking changes, the old 'camelCase' format is still currently supported for all AppNexus bid params in the `appnexusBidAdapter.js` file. If you are using an older version of Prebid.js, you will need to continue to use the older 'camelCase' format as appropriate.
 The table below will reflect both formats, though it's recommended to use the lower-case underscore format where possible going forward (assuming you're using a compatible version of Prebid.js).
 
