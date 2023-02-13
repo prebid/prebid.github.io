@@ -25,7 +25,6 @@ The following examples are available:
   - [JW Player](/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
   - [JW Player (Self-Hosted)](/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
   - [Kaltura](/examples/video/instream/kaltura/pb-ve-kaltura.html)
-  - [Ooyala](/examples/video/instream/ooyala/pb-ve-ooyala.html)
   - [VideoJS](/examples/video/instream/videojs/pb-ve-videojs.html)
 
 ## Instream and Banner Mixed Page
@@ -38,7 +37,6 @@ The following examples are available:
   - [JW Player](/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
   - [JW Player (Self-Hosted)](/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
   - [Kaltura](/examples/video/server/kaltura/pbs-ve-kaltura.html)
-  - [Ooyala](/examples/video/server/ooyala/pbs-ve-ooyala.html)
   - [VideoJS](/examples/video/server/videojs/pbs-ve-videojs.html)
 
 ## Outstream
