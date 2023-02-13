@@ -1349,14 +1349,6 @@
   subgroup: 2
 
 - sbSecId: 4
-  title: 'Ooyala'
-  link: /examples/video/instream/ooyala/pb-ve-ooyala.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 4
   title: 'Radiant'
   link: /examples/video/instream/radiant/pb-ve-radiant.html
   isHeader: 0
@@ -1408,14 +1400,6 @@
 - sbSecId: 4
   title: 'Kaltura'
   link: /examples/video/server/kaltura/pbs-ve-kaltura.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 4
-  title: 'Ooyala'
-  link: /examples/video/server/ooyala/pbs-ve-ooyala.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
