@@ -27,8 +27,7 @@ In this mode, the publisher will be responsible for the following actions:
 * Pass converted keys to your ad server
 * Render ad with Prebid Universal Creative or custom renderer
 
-
-This fuction is accesible for the following ad formats:
+This approach is avaliable for the following ad formats:
 
 * Display Banner via `BannerAdUnit`
 * Video Banner and Instream Video via `VideoAdUnit`
@@ -37,7 +36,7 @@ This fuction is accesible for the following ad formats:
 * Rewarded Video via `RewardedVideoAdUnit`
 * Native Styles via `NativeRequest`
 
-Te basic integration steps for these ad units you can find at the page for integration using [Original API](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html). The diference is that you should use  the `fetchDemand` function with following signature:
+The basic integration steps for these ad units you can find at the page for integration using [Original API](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html). The diference is that you should use  the `fetchDemand` function with following signature:
 
 ``` swift
 dynamic public func fetchDemand(
