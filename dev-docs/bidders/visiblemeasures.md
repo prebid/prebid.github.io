@@ -9,9 +9,11 @@ coppa_supported: true
 schain_supported: true
 floors_supported: true
 media_types: banner, video, native
+multiformat_supported: will-not-bid
 pbjs: true
 pbs: true
 pbs_app_supported: true
+safeframes_ok: true
 sidebarType: 1
 ---
 
