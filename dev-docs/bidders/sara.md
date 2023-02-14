@@ -4,6 +4,7 @@ title: SARA
 description: SARA Bidder Adapter
 pbjs: true
 biddercode: sara
+sidebarType: 1
 ---
 
 ### Bid Params

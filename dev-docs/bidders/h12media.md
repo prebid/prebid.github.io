@@ -8,6 +8,7 @@ media_types: banner
 gdpr_supported: true
 usp_supported: true
 userIds: all
+sidebarType: 1
 ---
 
 

@@ -14,6 +14,7 @@ pbjs: true
 pbs: true
 floors_supported: true
 pbs_app_supported: true
+sidebarType: 1
 ---
 
 ### Note:

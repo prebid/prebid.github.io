@@ -6,6 +6,7 @@ biddercode: improvedigital
 pbjs: true
 pbs: true
 coppa_supported: true
+gpp_supported: true
 gdpr_supported: true
 usp_supported: true
 userIds: all
@@ -14,6 +15,7 @@ schain_supported: true
 gvl_id: 253
 pbs_app_supported: true
 floors_supported: true
+sidebarType: 1
 ---
 
 <a name="improvedigital-params"></a>

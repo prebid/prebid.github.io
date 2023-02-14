@@ -13,18 +13,21 @@ usp_supported: true
 getFloor: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Bid Params](#godlbach-bid-params)
-- [Video Object](#godlbach-video-object)
-- [User Object](#godlbach-user-object)
-- [App Object](#godlbach-app-object)
-- [Custom Targeting keys](#custom-targeting-keys)
-- [Passing Keys Without Values](#godlbach-no-value)
-- [User Sync in AMP](#godlbach-amp)
-- [Debug Auction](#godlbach-debug-auction)
+- [Table of Contents](#table-of-contents)
+  - [Bid Params](#bid-params)
+  - [Video Object](#video-object)
+  - [User Object](#user-object)
+  - [App Object](#app-object)
+  - [Custom Targeting keys](#custom-targeting-keys)
+  - [Passing Keys Without Values](#passing-keys-without-values)
+  - [User Sync in AMP](#user-sync-in-amp)
+  - [Mobile App Display Manager Version](#mobile-app-display-manager-version)
+  - [Debug Auction](#debug-auction)
 
 <a name="godlbach-bid-params" />
 

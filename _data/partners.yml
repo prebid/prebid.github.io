@@ -43,11 +43,6 @@
   imgURL: /assets/images/partners/tech/beachfront_logo.png
   type: technology
 
-- company: Conversant
-  link: https://www.conversantmedia.com/
-  imgURL: /assets/images/partners/tech/conversant_logo.png
-  type: technology
-
 - company: Criteo
   link: https://www.criteo.com/for-publishers/products/criteo-direct-bidder/
   imgURL: /assets/images/partners/tech/criteo.png
@@ -56,6 +51,11 @@
 - company: Datablocks
   link: https://datablocks.net/
   imgURL: /assets/images/partners/tech/datablocks_logo.png
+  type: technology
+
+- company: Epsilon
+  link: https://www.epsilon.com/
+  imgURL: /assets/images/partners/tech/epsilon_logo.png
   type: technology
 
 - company: LiveRamp

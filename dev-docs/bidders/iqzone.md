@@ -10,6 +10,7 @@ media_types: banner, video, native
 pbjs: true
 pbs: true
 pbs_app_supported: true
+sidebarType: 1
 ---
 
 ### Prebid.js Bid Params

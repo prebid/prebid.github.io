@@ -15,6 +15,7 @@ fpd_supported: false
 pbjs: true
 pbs: true
 multiformat_supported: will-bid-on-one
+sidebarType: 1
 ---
 
 ### Note:

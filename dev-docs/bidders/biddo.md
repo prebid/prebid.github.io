@@ -5,6 +5,7 @@ description: Prebid Biddo Bidder Adapter
 pbjs: true
 biddercode: biddo
 safeframes_ok: false
+sidebarType: 1
 ---
 
 ### Note

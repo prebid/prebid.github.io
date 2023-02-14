@@ -18,6 +18,7 @@ ortb_blocking_supported: true
 multiformat_supported: will-bid-on-one
 floors_supported: true
 aliasCode: adkernel
+sidebarType: 1
 ---
 
 ### Note:
@@ -31,4 +32,4 @@ Please contact info@houseofpubs.com for any questions or for information about o
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Our Host              | `'cpm.houseofpubs.com'`   | `string` |
-| `zoneId` | required | Example RTB zone id   |         `'12345'`         | `string` |
+| `zoneId` | required | Example RTB zone id   |         `12345`         | `integer` |

@@ -6,6 +6,7 @@ pbjs: true
 biddercode: adWMG
 media_types: banner
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### BidParams

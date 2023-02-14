@@ -14,6 +14,7 @@ schain_supported: true
 userIds: id5Id, identityLink, pubProvidedId
 pbs_app_supported: true
 gvl_id: 620
+sidebarType: 1
 ---
 
 ### Note:

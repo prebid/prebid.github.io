@@ -19,20 +19,24 @@ dchain_supported: false
 deals_supported: true
 prebid_member: yes
 multiformat_supported: yes
+sidebarType: 1
 ---
 
 
 
 ## Table of contents
 
+- [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Supported media types](#supported-media-types)
-- [Set up instructions to call Index through Prebid Server](#call-index)
-    - [Call Index from a web browser](#call-index-from-a-web-browser)
-    - [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk)
-    - [Call Index from CTV/long-form video environment](#call-index-from-ctv-long-form-video-environment)
-    - [Call Index from any other server-to-server OpenRTB environment](#call-index-from-ortb)
+- [Setup instructions to call Index through Prebid Server](#setup-instructions-to-call-index-through-prebid-server)
+  - [Call Index from a web browser](#call-index-from-a-web-browser)
+  - [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk)
+  - [Call Index from CTV/long-form video environment](#call-index-from-ctvlong-form-video-environment)
+  - [Call Index from any other server-to-server OpenRTB environment](#call-index-from-any-other-server-to-server-openrtb-environment)
 - [Bid request parameters](#bid-request-parameters)
+  - [Banner](#banner)
+  - [Video](#video)
 - [Examples](#examples)
 
 
@@ -83,13 +87,13 @@ If you want to call Index from a web environment, you can use Prebid.js to call 
 
 **Before you begin:** Contact your Index Exchange representative to get your `siteId`. You must provide this site ID to your Prebid Server host company.
 
-**Note:** To implement Prebid Mobile SDK, follow Prebid's [Getting Started with Prebid Mobile](https://docs.prebid.org/prebid-mobile/prebid-mobile-pbs.html) documentation. 
+**Note:** To implement Prebid Mobile SDK, follow Prebid's [Getting Started with Prebid Mobile](https://docs.prebid.org/prebid-mobile/prebid-mobile-getting-started.html) documentation. 
 
 To add Index as a bidder to your mobile app:
 
 1. Inform your Prebid Server hosting company to add `ix `as a bidder in the configuration and include the `siteId` that Index provides to you at the time of integration.
 2. Define the Index-specific parameters at the bidder level. For information about these parameters, see the [Bid request parameters](#bid-request-parameters) section below.
-3. Include any ad unit level required or optional parameters provided in Prebid's [Prebid Mobile API - iOS](https://docs.prebid.org/prebid-mobile/pbm-api/ios/pbm-api-ios.html) and [Prebid Mobile API - Android](https://docs.prebid.org/prebid-mobile/pbm-api/android/pbm-api-android.html) documentation.
+3. Include any ad unit level required or optional parameters provided in Prebid's [Prebid Mobile API - iOS](https://docs.prebid.org/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html) and [Prebid Mobile API - Android](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html) documentation.
 
 <a name="call-index-from-ctv-long-form-video-environment" />
 

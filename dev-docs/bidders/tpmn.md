@@ -13,6 +13,7 @@ floors_supported: false
 fpd_supported: false
 pbjs: true
 pbs: false
+sidebarType: 1
 ---
 
 

@@ -5,6 +5,7 @@ description: Prebid TripleLift Bidder Adapter
 biddercode: triplelift
 gdpr_supported: true
 usp_supported: true
+gpp_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
@@ -18,14 +19,21 @@ pbs: true
 pbs_app_supported: true
 fpd_supported: true
 gvl_id: 28
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Overview](#triplelift-overview)
-- [Bid Parameters](#triplelift-bid-params)
-- [Example Configuration](#triplelift-config) 
-- [First Party Data](#triplelift-first-party)
+- [Table of Contents](#table-of-contents)
+- [Overview](#overview)
+- [Bid Params](#bid-params)
+  - [Banner](#banner)
+  - [Video](#video)
+- [Example Configuration](#example-configuration)
+  - [Banner](#banner-1)
+  - [Video (Instream)](#video-instream)
+  - [Video (Outstream)](#video-outstream)
+- [First Party Data](#first-party-data)
 
 <a name="triplelift-overview" />
 

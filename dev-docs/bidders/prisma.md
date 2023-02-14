@@ -11,6 +11,7 @@ userIds: id5Id
 media_types: banner, video
 glv_id: 965
 pbs: false
+sidebarType: 1
 
 ---
 

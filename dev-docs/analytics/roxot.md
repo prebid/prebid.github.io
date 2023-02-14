@@ -7,5 +7,5 @@ modulecode: roxot
 
 #### Registration
 
-Please visit []() for more information.
+Please visit [https://roxot.com/](https://roxot.com/) for more information.
 

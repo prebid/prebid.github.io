@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.onEvent(eventType, handler, id)
 description: 
+sidebarType: 1
 ---
 
 This routine allows the page (or module) to create a callback function that's invoked when heading bidding events are fired.
