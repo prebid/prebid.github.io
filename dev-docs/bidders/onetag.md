@@ -12,7 +12,7 @@ gvl_id: 241
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
-getFloor: true
+floors_supported: true
 sidebarType: 1
 ---
 
