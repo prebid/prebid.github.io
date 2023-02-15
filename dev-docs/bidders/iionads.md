@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: iionads
-description: iionads Bidder Adaptor
+title: Iion
+description: Iion Bidder Adaptor
 biddercode: iionads
 pbjs: true
 pbs: false
@@ -30,3 +30,8 @@ sidebarType: 1
 | `adUnitId` | required   | Ad Unit Id will be generated on iionads Platform. | 0                        | `integer` |
 | `adUnitType`      | required   | Type of Ad Unit (`'video'`, `'banner'`)                                             | `'banner'`                 | `string` |
 | `publisherId` | optional | Publisher ID | `'12345'` | `string` |
+| `custom1` | optional | Custom targeting field 1 | `'custom1'` | `string` |
+| `custom2` | optional | Custom targeting field 2 | `'custom2'` | `string` |
+| `custom3` | optional | Custom targeting field 3 | `'custom3'` | `string` |
+| `custom4` | optional | Custom targeting field 4 | `'custom4'` | `string` |
+| `custom5` | optional | Custom targeting field 5 | `'custom5'` | `string` |

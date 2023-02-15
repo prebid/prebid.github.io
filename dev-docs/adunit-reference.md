@@ -86,102 +86,9 @@ See the table below for the list of properties in the `mediaTypes` object of the
 
 #### adUnit.mediaTypes.native
 
-The `native` object contains the following properties that correspond to the assets of the native ad.
+The `native` object contains properties that correspond to the assets of the native ad.
 
-{: .table .table-bordered .table-striped }
-| Name          | Scope    | Type   | Description                                                                                                                                                                                                          |
-|---------------+----------+--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `type`        | Optional | String | A [pre-defined native type]({{site.baseurl}}/dev-docs/show-native-ads.html#pre-defined-native-types) used as a shorthand, e.g., `type: 'image'` implies required fields `image`, `title`, `sponsoredBy`, `clickUrl`. |
-| `title`       | Optional | Object | The title object is to be used for the title element of the native ad.  For properties, see [`native.title`](#adUnit.mediaTypes.native.title).                                                                       |
-| `body`        | Optional | Object | The body object is to be used for the body element of the native ad.  For properties, see [`native.body`](#adUnit.mediaTypes.native.body).                                                                           |
-| `sponsoredBy` | Optional | Object | The name of the brand associated with the ad.  For properties, see [`native.sponsoredBy`](#adUnit.mediaTypes.native.sponsoredby).                                                                                    |
-| `icon`        | Optional | Object | The brand icon that will appear with the ad.  For properties, see [`native.icon`](#adUnit.mediaTypes.native.icon).                                                                                                   |
-| `image`       | Optional | Object | The image object is to be used for the main image of the native ad.  For properties, see [`native.image`](#adUnit.mediaTypes.native.image).                                                                          |
-| `clickUrl`    | Optional | Object | Where the user will end up if they click the ad.  For properties, see [`native.clickUrl`](#adUnit.mediaTypes.native.clickUrl).                                                                                       |
-| `cta`         | Optional | String | *Call to Action* text, e.g., "Click here for more information".  |
-
-<a name="adUnit.mediaTypes.native.image" />
-
-##### adUnit.mediaTypes.native.image
-
-{: .table .table-bordered .table-striped }
-| Name            | Scope    | Type                                  | Description                                                                                                                                           |
-|-----------------+----------+---------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `required`      | Optional | Boolean                               | Whether this asset is required.                                                                                                                       |
-| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this image can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                               |
-| `aspect_ratios` | Optional | Array[Object]                         | Alongside `sizes`, you can define allowed aspect ratios.  For properties, see [`image.aspect_ratios`](#adUnit.mediaTypes.native.image.aspect_ratios). |
-
-<a name="adUnit.mediaTypes.native.image.aspect_ratios" />
-
-###### adUnit.mediaTypes.native.image.aspect_ratios
-
-{: .table .table-bordered .table-striped }
-| Name           | Scope    | Type    | Description                                                                                          |
-|----------------+----------+---------+------------------------------------------------------------------------------------------------------|
-| `min_height`   | Optional | Integer | The minimum height required for an image to serve (in pixels).                                       |
-| `min_width`    | Optional | Integer | The minimum width required for an image to serve (in pixels).                                        |
-| `ratio_height` | Required | Integer | This, combined with `ratio_width`, determines the required aspect ratio for an image that can serve. |
-| `ratio_width`  | Required | Integer | See above.                                                                                           |
-
-<a name="adUnit.mediaTypes.native.title" />
-
-##### adUnit.mediaTypes.native.title
-
-{: .table .table-bordered .table-striped }
-| Name       | Scope    | Type    | Description                                          |
-|------------+----------+---------+------------------------------------------------------|
-| `required` | Optional | Boolean | Whether a title asset is required on this native ad. |
-| `len`      | Optional | Integer | Maximum length of title text, in characters.         |
-
-<a name="adUnit.mediaTypes.native.sponsoredBy" />
-
-##### adUnit.mediaTypes.native.sponsoredBy
-
-{: .table .table-bordered .table-striped }
-| Name       | Scope    | Type    | Description                                               |
-|------------+----------+---------+-----------------------------------------------------------|
-| `required` | Optional | Boolean | Whether a brand name asset is required on this native ad. |
-
-<a name="adUnit.mediaTypes.native.clickUrl" />
-
-##### adUnit.mediaTypes.native.clickUrl
-
-{: .table .table-bordered .table-striped }
-| Name       | Scope    | Type    | Description                                              |
-|------------+----------+---------+----------------------------------------------------------|
-| `required` | Optional | Boolean | Whether a click URL asset is required on this native ad. |
-
-<a name="adUnit.mediaTypes.native.body" />
-
-##### adUnit.mediaTypes.native.body
-
-{: .table .table-bordered .table-striped }
-| Name       | Scope    | Type    | Description                                       |
-|------------+----------+---------+---------------------------------------------------|
-| `required` | Optional | Boolean | Whether body text is required for this native ad. |
-| `len`      | Optional | Integer | Maximum length of body text, in characters.       |
-
-<a name="adUnit.mediaTypes.native.icon" />
-
-##### adUnit.mediaTypes.native.icon
-
-{: .table .table-bordered .table-striped }
-| Name            | Scope    | Type                                  | Description                                                                                                                                          |
-|-----------------+----------+---------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `required`      | Optional | Boolean                               | Whether an icon asset is required on this ad.                                                                                                        |
-| `sizes`         | Optional | Array[Number] or Array[Array[Number]] | All sizes this icon can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.                                                              |
-| `aspect_ratios` | Optional | Array[Object]                         | Instead of `sizes`, you can define allowed aspect ratios.  For properties, see [`icon.aspect_ratios`](#adUnit.mediaTypes.native.icon.aspect_ratios). |
-
-<a name="adUnit.mediaTypes.native.icon.aspect_ratios" />
-
-###### adUnit.mediaTypes.native.icon.aspect_ratios
-
-{: .table .table-bordered .table-striped }
-| Name           | Scope    | Type    | Description                                                                                          |
-|----------------+----------+---------+------------------------------------------------------------------------------------------------------|
-| `min_width`    | Optional | Integer | The minimum width required for an image to serve (in pixels).                                        |
-| `ratio_height` | Required | Integer | This, combined with `ratio_width`, determines the required aspect ratio for an image that can serve. |
-| `ratio_width`  | Required | Integer | See above.                                                                                           |
+See [Prebid Native Implementation](/prebid/native-implementation.html) for details.
 
 <a name="adUnit.mediaTypes.video" />
 
@@ -195,25 +102,25 @@ The `native` object contains the following properties that correspond to the ass
 | `useCacheKey`        | Optional    | Boolean                 | Defaults to `false`. While context `'instream'` always will return an vastUrl in bidResponse, `'outstream'` will not. Setting this `true` will use cache url defined in global options also for outstream responses. |
 | `placement`        | Recommended    | Integer                 | 1=in-stream, 2=in-banner, 3=in-article, 4=in-feed, 5=interstitial/floating. **Highly recommended** because some bidders require more than context=outstream. |
 | `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                                                                  |
-| `api`            | Recommended | Array[Integer]         | List of supported API frameworks for this impression.  If an API is not explicitly listed, it is assumed not to be supported.  For list, see [OpenRTB spec][openRTB].  If your video player or video ads SDK supports [Open Measurement][OpenMeasurement], **recommended** to set `7` for OMID-1|
+| `api`            | Recommended | Array[Integer]         | List of supported API frameworks for this impression.  If an API is not explicitly listed, it is assumed not to be supported.  For list, see [OpenRTB 2.5 spec][openRTB].  If your video player or video ads SDK supports [Open Measurement][OpenMeasurement], **recommended** to set `7` for OMID-1|
 | `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                                   |
-| `protocols`      | Optional    | Array[Integer]         | Array of supported video protocols.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                            |
-| `playbackmethod` | Optional    | Array[Integer]         | Allowed playback methods. If none specified, all are allowed.  For list, see [OpenRTB spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                     |
-| `minduration`      | Recommended    | Integer         | Minimum video ad duration in seconds, see [OpenRTB spec][openRTB].           |
-| `maxduration`      | Recommended    | Integer         | Maximum video ad duration in seconds, see [OpenRTB spec][openRTB].           |
-| `w`      | Recommended    | Integer         | Width of the video player in device independent pixels (DIPS)., see [OpenRTB spec][openRTB].           |
-| `h`      | Recommended    | Integer         | Height of the video player in device independent pixels (DIPS)., see [OpenRTB spec][openRTB].           |
-| `startdelay`      | Recommended    | Integer         | Indicates the start delay in seconds, see [OpenRTB spec][openRTB].           |
-| `placement`      | Optional    | Integer         | Placement type for the impression, see [OpenRTB spec][openRTB].           |
-| `linearity`      | Optional    | Integer         | Indicates if the impression must be linear, nonlinear, etc, see [OpenRTB spec][openRTB].           |
-| `skip`      | Optional    | Integer         | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes., see [OpenRTB spec][openRTB].           |
-| `skipmin`      | Optional    | Integer         | Videos of total duration greater than this number of seconds can be skippable; only applicable if the ad is skippable., see [OpenRTB spec][openRTB].           |
-| `skipafter`      | Optional    | Integer         | Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable., see [OpenRTB spec][openRTB].           |
-| `minbitrate`      | Optional    | Integer         | Minimum bit rate in Kbps., see [OpenRTB spec][openRTB].           |
-| `maxbitrate`      | Optional    | Integer         | Maximum bit rate in Kbps., see [OpenRTB spec][openRTB].           |
-| `delivery`      | Optional    | Array[Integer]         | Supported delivery methods (e.g., streaming, progressive), see [OpenRTB spec][openRTB].           |
-| `pos`      | Optional    | Integer         | Ad position on screen, see [OpenRTB spec][openRTB].           |
-| `playbackend`      | Optional    | Integer         | The event that causes playback to end, see [OpenRTB spec][openRTB].           |
+| `protocols`      | Optional    | Array[Integer]         | Array of supported video protocols.  For list, see [OpenRTB 2.5 spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                            |
+| `playbackmethod` | Optional    | Array[Integer]         | Allowed playback methods. If none specified, all are allowed.  For list, see [OpenRTB 2.5 spec][openRTB]. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                     |
+| `minduration`      | Recommended    | Integer         | Minimum video ad duration in seconds, see [OpenRTB 2.5 spec][openRTB].           |
+| `maxduration`      | Recommended    | Integer         | Maximum video ad duration in seconds, see [OpenRTB 2.5 spec][openRTB].           |
+| `w`      | Recommended    | Integer         | Width of the video player in device independent pixels (DIPS)., see [OpenRTB 2.5 spec][openRTB].           |
+| `h`      | Recommended    | Integer         | Height of the video player in device independent pixels (DIPS)., see [OpenRTB 2.5 spec][openRTB].           |
+| `startdelay`      | Recommended    | Integer         | Indicates the start delay in seconds, see [OpenRTB 2.5 spec][openRTB].           |
+| `placement`      | Optional    | Integer         | Placement type for the impression, see [OpenRTB 2.5 spec][openRTB].           |
+| `linearity`      | Optional    | Integer         | Indicates if the impression must be linear, nonlinear, etc, see [OpenRTB 2.5 spec][openRTB].           |
+| `skip`      | Optional    | Integer         | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes., see [OpenRTB 2.5 spec][openRTB].           |
+| `skipmin`      | Optional    | Integer         | Videos of total duration greater than this number of seconds can be skippable; only applicable if the ad is skippable., see [OpenRTB 2.5 spec][openRTB].           |
+| `skipafter`      | Optional    | Integer         | Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable., see [OpenRTB 2.5 spec][openRTB].           |
+| `minbitrate`      | Optional    | Integer         | Minimum bit rate in Kbps., see [OpenRTB 2.5 spec][openRTB].           |
+| `maxbitrate`      | Optional    | Integer         | Maximum bit rate in Kbps., see [OpenRTB 2.5 spec][openRTB].           |
+| `delivery`      | Optional    | Array[Integer]         | Supported delivery methods (e.g., streaming, progressive), see [OpenRTB 2.5 spec][openRTB].           |
+| `pos`      | Optional    | Integer         | Ad position on screen, see [OpenRTB 2.5 spec][openRTB].           |
+| `playbackend`      | Optional    | Integer         | The event that causes playback to end, see [OpenRTB 2.5 spec][openRTB].           |
 
 If `'video.context'` is set to `'adpod'` then the following parameters are also available.  
 
@@ -447,28 +354,41 @@ pbjs.addAdUnits({
     code: slot.code,
     mediaTypes: {
         native: {
-            image: {
-                required: true,
-                sizes: [150, 50]
-            },
-            title: {
-                required: true,
-                len: 80
-            },
-            sponsoredBy: {
-                required: true
-            },
-            clickUrl: {
-                required: true
-            },
-            body: {
-                required: true
-            },
-            icon: {
-                required: true,
-                sizes: [50, 50]
-            }
-        }
+            ortb: {
+                ver: "1.2",
+                assets: [{
+                    required: 1,
+                    img: {
+		        type: 1,
+                        hmin: 50
+                    },
+		},{
+                    required: 1,
+                    title: {
+                        len: 80
+                    },
+		},{
+                    required: 1,
+                    data: {
+                        type: 1,
+                        len: 30
+                    },
+		},{
+                    required: 1,
+                    data: {
+                        type: 2,
+                        len: 100
+                    },
+		},{
+                    required: 1,
+                    img: {
+                        type: 3,
+                        hmin: 200,
+                        wmin: 267
+                    }
+                }]
+	    }
+	}
     },
     bids: [
         {
@@ -498,7 +418,16 @@ pbjs.addAdUnits([{
                 ]
             },
             native: {
-                type: 'image'
+		ortb: {
+		    ver: "1.2",
+		    assets: [{
+			required: 1,
+                	img: {
+			    type: 1,
+			    hmin: 50
+			}
+		    }]
+		}
             },
         },
         bids: [{
@@ -539,7 +468,16 @@ pbjs.addAdUnits([{
                 ]
             },
             native: {
-                type: 'image'
+		ortb: {
+		    ver: "1.2",
+		    assets: [{
+			required: 1,
+                	img: {
+			    type: 1,
+			    hmin: 50
+			}
+		    }]
+		}
             },
             video: {
                 context: 'outstream',
@@ -669,23 +607,23 @@ For more information on Interstitial ads, reference the [Interstitial feature pa
 
 ## Related Topics
 
-+ [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference)
++ [Publisher API Reference](/dev-docs/publisher-api-reference)
 + [Conditional Ad Units][conditionalAds]
-+ [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html)
-+ [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html)
-+ [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html)
-+ [Show Long-Form Video Ads]({{site.baseurl}}/prebid-video/video-long-form.html)
-+ [Prebid.org Video Examples]({{site.baseurl}}/examples/video/)
++ [Show Native Ads](/prebid/native-implementation.html)
++ [Show Video Ads](/dev-docs/show-video-with-a-dfp-video-tag.html)
++ [Show Outstream Video Ads](/dev-docs/show-outstream-video-ads.html)
++ [Show Long-Form Video Ads](/prebid-video/video-long-form.html)
++ [Prebid.org Video Examples](/examples/video/)
 + [Prebid.org Native Examples](/dev-docs//examples/native-ad-example.html)
 
 
 
 <!-- Reference Links -->
 
-[conditionalAds]: {{site.baseurl}}/dev-docs/conditional-ad-units.html
-[setConfig]: {{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html
-[configureResponsive]: {{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads
+[conditionalAds]: /dev-docs/conditional-ad-units.html
+[setConfig]: /dev-docs/publisher-api-reference/setConfig.html
+[configureResponsive]: /dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads
 [openRTB]: https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf
-[pbServer]: {{site.baseurl}}/prebid-server/overview/prebid-server-overview.html
+[pbServer]: /prebid-server/overview/prebid-server-overview.html
 [OpenMeasurement]: https://iabtechlab.com/standards/open-measurement-sdk/
 [videoModule]: {{site.github.url}}/prebid-video/video-module.html

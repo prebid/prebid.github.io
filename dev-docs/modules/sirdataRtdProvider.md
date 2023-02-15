@@ -7,11 +7,7 @@ page_type: module
 module_type: rtd
 module_code : sirdataRtdProvider
 enable_download : true
-vendor_specific: true
-sidebarType : 1
----
-
-# Sirdata RTD Segmentation Module
+# Sirdata RTD/SDA Module
 {:.no_toc}
 
 * TOC
@@ -26,6 +22,8 @@ Automatic or custom integration with Google Ad Manager and major bidders like Xa
 User's country and choice management are included in the module, so it's 100% compliant with local and regional laws like GDPR and CCPA/CPRA.
 
 ORTB2 compliant and FPD support for Prebid versions < 4.29
+
+Now supports Seller Defined Audience !
 
 Please contact prebid@sirdata.com for more information.
 
@@ -93,6 +91,10 @@ pbjs.setConfig(
                         bidder: 'ix',
                         sizeLimit: 1200 //specific to Index Exchange,
                         contextualMinRelevancyScore: 50, //Min score to filter contextual category for curation in the bidder (0-100 scale)
+                    },{
+                        bidder: 'smartadserver'
+                    },{
+                        bidder: 'proxistore'
                     }]
                 }
             }
@@ -135,14 +137,54 @@ Please see the following example, which provides a function to modify bids for a
 ```
 data Object format for usage in this kind of function :
 {
-	"segments":[111111,222222],
-	"contextual_categories":{"333333":100},
-	"shared_taxonomy":{
-		"27446":{ //CurationId
-			"segments":[444444,555555],
-			"contextual_categories":{"666666":100}
-		}
-	}
+  "segments": [
+    111111,
+    222222
+  ],
+  "segtaxid": null,
+  "cattaxid": null,
+  "contextual_categories": {
+    "333333": 100
+  },
+  "shared_taxonomy": {
+    "27440": {
+      "segments": [
+        444444,
+        555555
+      ],
+      "segtaxid": 552,
+      "cattaxid": 553,
+      "contextual_categories": {
+        "666666": 100
+      }
+    }
+  },
+  "global_taxonomy": {
+    "9998": {
+      "segments": [
+        123,
+        234
+      ],
+      "segtaxid": 4,
+      "cattaxid": 7,
+      "contextual_categories": {
+        "345": 100,
+        "456": 100
+      }
+    },
+    "9999": {
+      "segments": [
+        12345,
+        23456
+      ],
+      "segtaxid": 550,
+      "cattaxid": 551,
+      "contextual_categories": {
+        "34567": 100,
+        "45678": 100
+      }
+    }
+  }
 }
 ```
 
