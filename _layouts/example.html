@@ -61,7 +61,7 @@
 
         <div class="row">
           <!-- JSFiddle -->
-          <div id="jsfiddle" class="col-md-12">
+          <div id="jsfiddle" class="col-md-12"> 
             <h2>(Sorry, JSFiddle code examples aren't available with your cookie privacy settings.)</h2>
             <p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
           </div>
@@ -99,7 +99,18 @@
 </div>
 
 <script type="text/javascript">
-  OneTrust.InsertHtml('<iframe width="100%" height="{{page.code_height}}" src="//{{page.jsfiddle_link}}" allowfullscreen="allowfullscreen" frameborder="0"></iframe>', 'jsfiddle', null, {deleteSelectorContent: true}, 3);
+function runOt() {
+  OneTrust.InsertHtml('<iframe width="100%" height="{{page.code_height}}" src="//{{page.jsfiddle_link}}" allowfullscreen="allowfullscreen" frameborder="0"></iframe>', 'jsfiddle', null, {deleteSelectorContent: true}, 3); 
+}
+function onOtLoad(cb) {
+    const tmr = setInterval(function () {
+        if (window.OneTrust != null) {
+            clearInterval(tmr);
+            cb();
+        }
+    }, 100);
+}
+onOtLoad(runOt);
 </script>
 {% include footer.html %}
 
