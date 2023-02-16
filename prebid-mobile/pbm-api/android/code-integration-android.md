@@ -297,6 +297,6 @@ In the table below, you can find Prebid's test IDs that are used in the Demo App
 |`imp-prebid-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
 |`imp-prebid-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
 |`imp-prebid-video-rewarded-320-480`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
-|`imp-prebid-video-interstitial-320-480`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid.|
+|`sample_video_response`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid. Note: on Android we have an [issue](https://github.com/prebid/prebid-mobile-android/issues/517) with Instream Video demo example. When it is fixed the config id will be updated to the new one.|
 |`imp-prebid-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
 |`imp-prebid-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|
