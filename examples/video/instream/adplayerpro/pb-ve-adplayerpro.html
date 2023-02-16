@@ -131,18 +131,19 @@ sidebarType: 4
       }
       &lt;/script&gt;
           </pre>
-        </div>
-
-      </div>
-    </div>
+        </div>`;
 
       <!--video player code-->
       <!--player div-->
-      <div id="playerContainerADP" style="width:640px; height:480px;"></div>`;
       Optanon.InsertHtml(exampleHTML, 'videoExample', null, {deleteSelectorContent: true}, 3);
     </script>
-    <script type="text/plain" class="optanon-category-C0003">
-      invokeVideoPlayer = function(url) {
+  </div>
+</div>
+
+<div id="playerContainerADP" style="width:640px; height:480px;"></div>
+
+<script type="text/plain" class="optanon-category-C0003">
+  invokeVideoPlayer = function(url) {
             AdPlayerPro('playerContainerADP').setup({
               "file": "https://static.adplayer.pro/video/640.mp4",
               "width": 640,
@@ -159,5 +160,5 @@ sidebarType: 4
         invokeVideoPlayer(tempTag);
         tempTag = false;
       }
-    </script>
-    <script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
+</script>
+<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
