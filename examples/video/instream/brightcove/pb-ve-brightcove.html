@@ -7,8 +7,6 @@ isVideo: true
 sidebarType: 4
 ---
 
-
-
 <div class="container">
 	<div class="row">
 		<div class="vidHeader" style="width:75vw;">
@@ -16,6 +14,13 @@ sidebarType: 4
 			<p>{{page.description }}</p>
 		</div>
 
+    <div id="videoExample" class="col-md-12">
+      <h2>(Sorry, video code examples aren't available with your cookie privacy settings.)</h2>
+      <p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+    </div>
+
+    <script type="text/javascript">
+      const exampleHTML = `
 		<!--video warning-->
 		<div class="pb-alert pb-alert-important" >
 			<p style="color:#85720f"><b>Important:</b>
@@ -46,14 +51,14 @@ sidebarType: 4
   pbjs.que = pbjs.que || [];
   iosDevice = !!navigator.platform.match(/iPhone|iPod|iPad/);
 
-  /* PRE-DEFINE `invokeVideoPlayer`
+  /* PRE-DEFINE invokeVideoPlayer
 
     Because we have no way of knowing when all the bids will be
     returned from Prebid we can't be sure that the browser will
-    reach the point where `invokeVideoPlayer` is defined before
-    `bidsBackHandler` fires and tries to call it.
+    reach the point where invokeVideoPlayer is defined before
+    bidsBackHandler fires and tries to call it.
 
-    To prevent an "`invokeVideoPlayer` not defined" error, we
+    To prevent an "invokeVideoPlayer not defined" error, we
     pre-define it before we make the call to Prebid, and redefine
     it later on with the code to create the player and play the
     ad.
@@ -135,10 +140,10 @@ need to include this script on the page.  --&gt;
 
 &lt;script type="text/JavaScript"&gt;
 
-    // REDEFINE `invokeVideoPlayer`<br>
+    // REDEFINE invokeVideoPlayer<br>
   function invokeVideoPlayer(url) {
 
-      // USE `bc()` TO REFERENCE VIDEO PLAYER, PASS OPTIONS INTO IMA3 PLUGIN<br>
+      // USE bc() TO REFERENCE VIDEO PLAYER, PASS OPTIONS INTO IMA3 PLUGIN<br>
     bc("myVideo").ima3({
       serverUrl: url,
       debug: true,
@@ -152,10 +157,10 @@ need to include this script on the page.  --&gt;
         ],
     });
 
-    // ADD A `ready` LISTENER AND INTERACT WITH THE PLAYER &nbsp;
+    // ADD A ready LISTENER AND INTERACT WITH THE PLAYER &nbsp;
 
-    //   Call `videojs()` and pass in the ID of the video element to &nbsp;
-    //   get a reference to the player. Call `.ready` on the player &nbsp;
+    //   Call videojs() and pass in the ID of the video element to &nbsp;
+    //   get a reference to the player. Call .ready on the player &nbsp;
     //   to set up the event listener, and place any code that will &nbsp;
     //   interact with the player inside the callback (such as  &nbsp;
     //   loading media files, logging events for the player or ads). <br>
@@ -187,17 +192,17 @@ need to include this script on the page.  --&gt;
   // ACCOUNT FOR PAGE SPEED &nbsp;
 
   //   If prebid returned bids before the browser reached the end of &nbsp;
-  //   the page, the first version of `invokeVideoPlayer` will have &nbsp;
-  //   been called from `bidsBackHandler` so the winning vast tag &nbsp;
-  //   will be stored in `tempTag`. &nbsp;
+  //   the page, the first version of invokeVideoPlayer will have &nbsp;
+  //   been called from bidsBackHandler so the winning vast tag &nbsp;
+  //   will be stored in tempTag. &nbsp;
 
   //   If that's the case, we want to call the 'real' version of &nbsp;
-  //   `invokeVideoPlayer` with the stored url to create the player &nbsp;
+  //   invokeVideoPlayer with the stored url to create the player &nbsp;
   //   and play the ad. &nbsp;
 
-  //   If `tempTag` is not defined, that means the browser reached &nbsp;
+  //   If tempTag is not defined, that means the browser reached &nbsp;
   //   the end of the page before the bids came back from prebid, &nbsp;
-  //   meaning the 'real' version of `invokeVideoPlayer` was already &nbsp;
+  //   meaning the 'real' version of invokeVideoPlayer was already &nbsp;
   //   called. <br>
 
   if (tempTag) {
@@ -206,7 +211,9 @@ need to include this script on the page.  --&gt;
   }
   &lt;/script&gt;
       </pre>
-		</div>
+		</div>`;
+      Optanon.InsertHtml(exampleHTML, 'videoExample', null, {deleteSelectorContent: true}, 3);
+    </script>
 	</div>
 </div>
 
@@ -219,15 +226,17 @@ include the ima3 plugin script.
 Since we are not configuring the plugin in Video Cloud, we
 need to include this script on the page.  -->
 
-<script src="//players.brightcove.net/5530036758001/HJMTvh2YZ_default/index.min.js"></script>
-<script src="//players.brightcove.net/videojs-ima3/2/videojs.ima3.min.js"></script>
+<script>
+  Optanon.InsertScript("//players.brightcove.net/5530036758001/HJMTvh2YZ_default/index.min.js", 'head', null, {}, 3);
+  Optanon.InsertScript("//players.brightcove.net/videojs-ima3/2/videojs.ima3.min.js", 'head', null, {}, 3);
+</script>
 
-<script type="text/JavaScript">
+<script type="text/plain" class="optanon-category-C0003">
 
-	  // REDEFINE `invokeVideoPlayer`
+	// REDEFINE invokeVideoPlayer
 	function invokeVideoPlayer(url) {
 
-		  // USE `bc()` TO REFERENCE VIDEO PLAYER, PASS OPTIONS INTO IMA3 PLUGIN
+		  // USE bc() TO REFERENCE VIDEO PLAYER, PASS OPTIONS INTO IMA3 PLUGIN
 		bc("myVideo").ima3({
 		 	serverUrl: url,
 		 	debug: true,
@@ -241,10 +250,10 @@ need to include this script on the page.  -->
 		  	],
 		});
 
-		// ADD A `ready` LISTENER AND INTERACT WITH THE PLAYER
+		// ADD A ready LISTENER AND INTERACT WITH THE PLAYER
 
-		//   Call `videojs()` and pass in the ID of the video element to
-		//   get a reference to the player. Call `.ready` on the player
+		//   Call videojs() and pass in the ID of the video element to
+		//   get a reference to the player. Call .ready on the player
 		//   to set up the event listener, and place any code that will
 		//   interact with the player inside the callback (such as
 		//   loading media files, logging events for the player or ads).
@@ -276,17 +285,17 @@ need to include this script on the page.  -->
 	// ACCOUNT FOR PAGE SPEED
 
 	//   If prebid returned bids before the browser reached the end of
-	//   the page, the first version of `invokeVideoPlayer` will have
-	//   been called from `bidsBackHandler` so the winning vast tag
-	//   will be stored in `tempTag`.
+	//   the page, the first version of invokeVideoPlayer will have
+	//   been called from bidsBackHandler so the winning vast tag
+	//   will be stored in tempTag.
 
 	//   If that's the case, we want to call the 'real' version of
-	//   `invokeVideoPlayer` with the stored url to create the player
+	//   invokeVideoPlayer with the stored url to create the player
 	//   and play the ad.
 
-	//   If `tempTag` is not defined, that means the browser reached
+	//   If tempTag is not defined, that means the browser reached
 	//   the end of the page before the bids came back from prebid,
-	//   meaning the 'real' version of `invokeVideoPlayer` was already
+	//   meaning the 'real' version of invokeVideoPlayer was already
 	//   called.
 
 	if (tempTag) {
@@ -294,5 +303,4 @@ need to include this script on the page.  -->
 	 	tempTag = false;
 	}
   </script>
-
 	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
