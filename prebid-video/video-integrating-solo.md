@@ -108,15 +108,6 @@ This section contains working examples of instream and outstream video ads for v
 + [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html)
 + [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-no-server.html)
 
-## Using Prebid Server
-
-+ [Brid]({{site.baseurl}}/examples/video/server/brid/pbs-ve-brid.html)
-+ [JW Player - Platform]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
-+ [JW Player - Hosted]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
-+ [Kaltura]({{site.baseurl}}/examples/video/server/kaltura/pbs-ve-kaltura.html)
-+ [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)
-
-
 # Further Reading
 
 -   [Prebid.js for Video Overview]({{site.github.url}}/prebid-video/video-overview.html)

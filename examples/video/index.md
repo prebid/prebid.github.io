@@ -1,7 +1,7 @@
 ---
 layout: page_v2
 title: Prebid Video Examples
-description: This section provides examples of instream, outstream, server and long-form videos with Prebid.js.
+description: This section provides examples of instream, outstream and long-form videos with Prebid.js.
 sidebarType: 4
 ---
 
@@ -19,7 +19,6 @@ The following examples are available:
 
 ## Instream
 
-  - [Brid](/examples/video/server/brid/pbs-ve-brid.html)
   - [Brightcove](/examples/video/instream/brightcove/pb-ve-brightcove.html)
   - [Flowplayer](/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
   - [JW Player](/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
@@ -30,14 +29,6 @@ The following examples are available:
 ## Instream and Banner Mixed Page
 
   - [Instream/Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
-
-## Server
-
-  - [Brid](/examples/video/server/brid/pbs-ve-brid.html)
-  - [JW Player](/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
-  - [JW Player (Self-Hosted)](/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
-  - [Kaltura](/examples/video/server/kaltura/pbs-ve-kaltura.html)
-  - [VideoJS](/examples/video/server/videojs/pbs-ve-videojs.html)
 
 ## Outstream
 
