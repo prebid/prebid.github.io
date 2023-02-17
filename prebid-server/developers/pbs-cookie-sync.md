@@ -77,7 +77,7 @@ See [the AMP implementation guide](/dev-docs/show-prebid-ads-on-amp-pages.html#u
 {: .alert.alert-info :}
 If the publisher has an AMP Consent Management Platform, they should use `load-cookie-with-consent.html`.
 
-3) At runtime, the `load-cookie` script just calls the Prebid Server /cookie_sync endpoint. The rest works the same as described for Prebid.js above.
+3) At runtime, the `load-cookie` script just calls the Prebid Server /cookie_sync endpoint. The rest works similar to what's described for Prebid.js above. One difference is that the bidders are not known on the AMP page so those aren't passed. Another difference is that AMP doesn't support iframe syncs, so load-cookie passes instructions to PBS so only pixel syncs are returned.
 
 ### Cooperative Syncing
 

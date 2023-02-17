@@ -13,6 +13,7 @@ schain_supported: true
 gvl_id: 511
 userIds: AdmixerID
 prebid_member: true
+sidebarType: 1
 ---
 
 ### Bid Params

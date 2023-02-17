@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Compass
+title: AndBeyond.Media
 description: Prebid AndBeyond.Media Bidder Adapter
 biddercode: beyondmedia
 usp_supported: true
@@ -11,9 +11,10 @@ floors_supported: true
 media_types: banner, video, native
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
-### Prebid.JS Bid Params
+### Prebid Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |

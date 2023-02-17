@@ -7,5 +7,5 @@ modulecode: adxcg
 
 #### Registration
 
-Please visit []() for more information.
+Please visit [https://www.adxcg.com/](https://www.adxcg.com/) for more information.
 

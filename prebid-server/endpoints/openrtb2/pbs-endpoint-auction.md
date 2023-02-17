@@ -61,7 +61,7 @@ This endpoint will respond with either:
 - HTTP 400 if the request is malformed, or
 - HTTP 503 if the account or app specified in the request is blacklisted
 
-This is a corresponding sample response to sample OpenRTB 2.5 bid request:
+This is a corresponding sample response to a sample OpenRTB 2.5 bid request:
 
 ```
 {
@@ -110,6 +110,18 @@ This is a corresponding sample response to sample OpenRTB 2.5 bid request:
   }
 }
 ```
+
+#### Fledge Auctions
+
+[Fledge](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing) is an experimental approach to running online ad auctions with enhanced privacy.
+
+Prebid Server's support for Fledge is a passthrough:
+
+1. If the request contains `imp.ext.ae: 1`
+2. Bid adapters may respond with 'auction config' that's placed in `ext.prebid.fledge.auctionconfigs[]`.
+
+The auction config must then be used by the client. See the Prebid.js [Fledge for GPT](/dev-docs/modules/fledgeForGpt.html) module for more information.
+
 ### OpenRTB Fields
 
 Prebid Server accepts all OpenRTB 2.5 fields and passes them in the request to all bid and analytics adapters. Some fields are processed by Prebid Server in the following ways:
@@ -261,10 +273,10 @@ Note that video-outstream is defined to be imp[].video requests where imp[].vide
 
 ##### Targeting
 
-Targeting refers to strings which are sent to the adserver to
-[make header bidding possible](/overview/intro.html#how-does-prebid-work).
+Targeting refers to strings that are sent to the adserver to
+[make header bidding possible](/overview/intro.html).
 
-`request.ext.prebid.targeting` is an optional property which causes Prebid Server
+`request.ext.prebid.targeting` is an optional property that causes Prebid Server
 to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.targeting`.
 
 {: .table .table-bordered .table-striped }
@@ -311,9 +323,9 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
   }
 }
 ```
-The list of price granularity ranges must be given in order of increasing `max` values. If `precision` is omitted, it will default to `2`. The minimum of a range will be 0 or the previous `max`. Any cmp above the largest `max` will go in the `max` pricebucket.
+The list of price granularity ranges must be given in order of increasing `max` values. If `precision` is omitted, it will default to `2`. The minimum of a range will be 0 or the previous `max`. Any cpm above the largest `max` will go in the `max` pricebucket.
 
-For backwards compatibility the following strings will also be allowed as price granularity definitions. There is no guarantee that these will be honored in the future. "One of ['low', 'med', 'high', 'auto', 'dense']" See [price granularity definitions](/prebid-mobile/adops-price-granularity.html)
+For backwards compatibility the following strings will also be allowed as price granularity definitions. There is no guarantee that these will be honored in the future. "One of ['low', 'med', 'high', 'auto', 'dense']" See [price granularity definitions](/adops/price-granularity.html).
 
 One of "includewinners" or "includebidderkeys" must be true (both default to false if unset). If both are false, then no targeting keys will be set, which is better configured by omitting targeting altogether.
 
@@ -608,7 +620,7 @@ If the keys exist, the values can be used to fetch the bid's VAST XML from Prebi
 
 ##### GDPR
 
-Prebid Server supports the IAB's GDPR recommendations, which can be found [here](https://iabtechlab.com/wp-content/uploads/2018/02/OpenRTB_Advisory_GDPR_2018-02.pdf).
+Prebid Server supports the IAB's [GDPR recommendations](https://iabtechlab.com/wp-content/uploads/2018/02/OpenRTB_Advisory_GDPR_2018-02.pdf).
 
 This adds two optional properties:
 
@@ -619,8 +631,8 @@ These fields will be forwarded to each Bidder, so they can decide how to process
 
 ##### Interstitial support
 Additional support for interstitials is enabled through the addition of two fields to the request:
-device.ext.prebid.interstitial.minwidthperc and device.ext.interstial.minheightperc
-The values will be numbers that indicate the minimum allowed size for the ad, as a percentage of the base side. For example, a width of 600 and "minwidthperc": 60 would allow ads with widths from 360 to 600 pixels inclusive.
+`device.ext.prebid.interstitial.minwidthperc` and `device.ext.interstitial.minheightperc`.
+The values will be numbers that indicate the minimum allowed size for the ad, as a percentage of the base side. For example, a width of 600 and `"minwidthperc": 60` would allow ads with widths from 360 to 600 pixels inclusive.
 
 Example:
 ```
@@ -647,8 +659,9 @@ Example:
 }
 ```
 
-PBS receiving a request for an interstitial imp and these parameters set, it will rewrite the format object within the interstitial imp. If the format array's first object is a size, PBS will take it as the max size for the interstitial. If that size is 1x1, it will look up the device's size and use that as the max size. If the format is not present, it will also use the device size as the max size. (1x1 support so that you don't have to omit the format object to use the device size)
-PBS with interstitial support will come preconfigured with a list of common ad sizes. Preferentially organized by weighing the larger and more common sizes first. But no guarantees to the ordering will be made. PBS will generate a new format list for the interstitial imp by traversing this list and picking the first 10 sizes that fall within the imp's max size and minimum percentage size. There will be no attempt to favor aspect ratios closer to the original size's aspect ratio. The limit of 10 is enforced to ensure we don't overload bidders with an overlong list. All the interstitial parameters will still be passed to the bidders, so they may recognize them and use their own size matching algorithms if they prefer.
+If PBS receives a request for an interstitial imp and these parameters are set, it will rewrite the format object within the interstitial imp. If the format array's first object is a size, PBS will take it as the max size for the interstitial. If that size is 1x1, it will look up the device's size and use that as the max size. If the format is not present, it will also use the device size as the max size (1x1 support so that you don't have to omit the format object to use the device size).
+
+PBS with interstitial support will come preconfigured with a list of common ad sizes,preferentially organized by weighing the larger and more common sizes first. But no guarantees to the ordering will be made. PBS will generate a new format list for the interstitial imp by traversing this list and picking the first 10 sizes that fall within the imp's max size and minimum percentage size. There will be no attempt to favor aspect ratios closer to the original size's aspect ratio. The limit of 10 is enforced to ensure we don't overload bidders with an overlong list. All the interstitial parameters will still be passed to the bidders, so they may recognize them and use their own size matching algorithms if they prefer.
 
 ##### Currency Support
 
@@ -673,7 +686,7 @@ define ext.prebid.currency.rates.
 }
 ```
 
-If it exists, a rate defined in ext.prebid.currency.rates has the highest priority.
+If it exists, a rate defined in `ext.prebid.currency.rates` has the highest priority.
 If a currency rate doesn't exist in the request, the external file will be used.
 
 An additional option is `usepbsrates`. When `true`, this flag indicates that dynamic currency exchange rates should be preferred over any supplied static rates. When `false`, it indicates that dynamic exchange rates should not be used. The default is 'true'.
@@ -763,6 +776,17 @@ The OpenRTB `test` flag has a special meaning that bidders may react to: they ma
 
 You can turn on the extra Prebid Server debug log without the formal `test` behavior by instead setting `ext.prebid.debug: true`.
 
+##### Trace Flag
+
+{: .alert.alert-info :}
+PBS-Java only
+
+You can turn on additional Prebid Server tracing by setting `ext.prebid.trace` to either "verbose" or "basic".
+This provides additional information for certain scenarios:
+
+- for [modules](/prebid-server/pbs-modules/), look in response ext.prebid.modules.trace
+- for [PG](/prebid-server/features/pg/pbs-pg-idx.html), look in response ext.debug.trace
+
 ##### Stored Responses
 
 While testing SDK and video integrations, it's important, but often difficult, to get consistent responses back from bidders that cover a range of scenarios like different CPM values, deals, etc. Prebid Server supports a debugging workflow in two ways:
@@ -814,7 +838,7 @@ This request:
 }
 ```
 
-Will result in this response, assuming that the ids exist in the appropriate DB table read by Prebid Server:
+will result in this response, assuming that the ids exist in the appropriate DB table read by Prebid Server:
 ```
 {
   "id": "test-auction-id",
@@ -868,7 +892,7 @@ an array of ortb2 seatbid objects. e.g.
 
 In contrast to the feature above, using `storedbidresponse` (instead of stored**auction**response) lets real auctions take place while the actual bidder response is overridden in such a way that it still exercises adapter code.
 
-PBS removes imp.ext.prebid.bidder parameters for those 
+PBS removes imp.ext.prebid.bidder parameters for those
 bidders specified in storedbidresponse but if there's a bidder present
 in imp.ext.prebid.bidder that's doesn't have a storedbidresponse specified,
 the adapter will be called as usual.
@@ -946,11 +970,12 @@ Could result in this response:
 }
 ```
 
-Notes: 
-- the DB entries for this stored-response scenario are quite different: they need to be in whatever format the bid adapter's endpoint responds with. i.e. the host company will need to capture an actual bid response from the specific bidders and enter it into the DB table.
-- the `replaceimpid` parameter tells PBS to ignore the impid supplied in the DB and instead create/overwrite seatbid.bid.impid with the value that matches the incoming request. This simplifies debugging.
+Notes:
+- The DB entries for this stored-response scenario are quite different: they need to be in whatever format the bid adapter's endpoint responds with. i.e. the host company will need to capture an actual bid response from the specific bidders and enter it into the DB table.
+- The `replaceimpid` parameter tells PBS to ignore the impid supplied in the DB and instead create/overwrite seatbid.bid.impid with the value that matches the incoming request. This simplifies debugging.
+- `replaceimpid` doesn't work in PBS-Java. Instead, the implementation there is to use the `##PBSIMPID##` macro in the body of the stored response, which will be replaced by PBS-core.
 
-See Prebid.org troubleshooting pages for how to utilize this feature within the context of the browser.
+See Prebid.org [troubleshooting pages](/troubleshooting/pbs-troubleshooting.html#manual-specification-of-stored-responses-in-openrtb) for how to utilize this feature within the context of the browser.
 
 
 ##### First Party Data Support
@@ -999,15 +1024,26 @@ Bidder-specific data can be defined with ext.prebid.bidderconfig:
 ```
 "ext": {
   "prebid": {
-    "bidderconfig": {
-      "bidders": ["bidderA", "bidderB"]
-    },
-    "config": {
-      "ortb2": {
-        "site": { ... },
-        "user": { ... }
+    "bidderconfig": [
+      {
+        "bidders": ["bidderA", "bidderB"],
+        "config": {
+           "ortb2": {
+              "site": { ... },
+              "user": { ... }
+           }
+        }
+      },
+      {
+        "bidders": ["bidderC"],
+        "config": {
+           "ortb2": {
+              "site": { ... },
+              "user": { ... }
+           }
+        }
       }
-    }
+    ]
   }
 }
 ```
@@ -1494,7 +1530,8 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.currency<wbr>.usepbsrates | if true, currency.rates is used as a backup if dynamic rates aren't found. If false, dynamic rates are not used.<br>ex: `true` | boolean | yes |
 | ext<wbr>.prebid<wbr>.data.<wbr>bidders | bidders in scope for bidder-specific first party data, see [first party data](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#first-party-data-support). | array of strings | no |
 | ext<wbr>.prebid<wbr>.data.<wbr>eidpermissions | Allows publishers to define which bidders are allowed to see which extended IDs, see [eid permissions](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#eid-permissions) | object  | no |
-| ext<wbr>.prebid<wbr>.debug | Provides debug output in response.<br>ex: `true` | boolean | yes |
+| ext<wbr>.prebid<wbr>.debug | Provides debug output in response. | boolean | yes |
+| ext<wbr>.prebid<wbr>.trace | Provides trace output in response. | "verbose" or "basic" | yes |
 | ext<wbr>.prebid<wbr>.events | Enables VAST impression tracking injection for the request when an empty object is provided. This is an alernative method from using account configuration. | object | no
 | ext<wbr>.prebid<wbr>.experiment<wbr>adscert<wbr>.enabled | Enabled Ads.Cert 2.0 Authenticated Connections on supported outgoing bidder requests. | boolean | no |
 | ext<wbr>.prebid<wbr>.integration | host-dependent integration type passed through to events and analytics.<br>ex: `"managed"` | string | yes |
@@ -1504,7 +1541,12 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.targeting | defines the key-value pairs that PBS-core places in seatbid.bid.ext.prebid.targeting, see [ad server targeting](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) | object | no |
 | ext<wbr>.prebid<wbr>.no-sale | turns off CCPA processing for the named bidder(s).<br>ex: `["bidderA"]` | array of strings | no |
 | ext<wbr>.prebid<wbr>.server | additional Prebid Server metadata | object | yes |
+| ext<wbr>.prebid<wbr>.pbs.endpoint | additional Prebid Server metadata | string | yes |
 | ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
+| imp<wbr>.ext<wbr>.prebid<wbr>.adunitcode | Prebid.js adunit code | string | yes |
+| imp<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. (ae stands for auction environment) | integer | yes |
+| app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
+| app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
 
 #### Response
 {:.no_toc}
@@ -1527,6 +1569,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.errors<wbr>.BIDDER | Debug Mode: errors from the named bidder | object |
 | ext<wbr>.responsetimemillisv.BIDDER | Debug Mode: how long the named bidder took to respond with a bid. | integer |
 | ext<wbr>.prebid<wbr>.passthrough | Copy of request ext.prebid.passthrough, see [passthrough](#request-passthrough). | object|
+| ext<wbr>.prebid<wbr>.fledge.auctionconfigs | Bidder-supplied [Fledge](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing) responses. | array of objects |
 
 ### Further Reading
 
