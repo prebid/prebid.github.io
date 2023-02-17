@@ -110,7 +110,7 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 
 **Emitting SeatNonBid Data**
 
-* SeatNonBid information from Prebid Server can be emitted through a `SEAT_NON_BID` event by setting `extPrebid.seatnonbid` equal to `true`.
+* SeatNonBid information from Prebid Server can be emitted through a `seatNonBid` event by setting `extPrebid.returnallbidstatus` equal to `true`.
 
 ## Bid Params
 
