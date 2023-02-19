@@ -91,5 +91,6 @@ title: Prebid Server | Features
 | Modules | [ortb2-blocking](/prebid-server/pbs-modules/ortb2-blocking.html) | Configure per-account OpenRTB blocking details. | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 | Anti-Fraud | Ads.Cert 2.0 Authenticated Connections | Includes authenticated connection signing header on outgoing bid requests to supported adapters. *  | <img src="/assets/images/icons/icon-check-green.png" width="30"> | |
 | Request Enrichment | Enhanced tid and request IDs | Fills out id, imp.id, source.tid, and imp.ext.tid  | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
+| Auction Response | Bidders can supply [Fledge](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing) auction config | If the request contains imp.ext.ae, bid adapters can return ext.prebid.fledge.auctionconfigs | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 
 \* Experimental feature not yet recommended for production.

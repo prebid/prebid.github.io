@@ -3,7 +3,7 @@ layout: bidder
 title: AIDEM
 description: AIDEM Bidder Adapter
 biddercode: aidem
-gdpr_supported: false
+gdpr_supported: true
 gvl_id: none
 usp_supported: true
 coppa_supported: false
@@ -36,6 +36,7 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 | `siteId`      | required | Unique site ID      | `'ABCDEF'` | `String` |
 | `publisherId` | required | Unique publisher ID | `'FEDCBA'` | `String` |
 | `placementId` | optional | Unique publisher tag ID | `'ABCDEF'`    | `String` |
+| `rateLimit`   | optional | Limit the volume sent to AIDEM. Must be between 0 and 1 | `0.6`      | `Number`   |
 
 #### Banner Bid Params
 
@@ -91,7 +92,8 @@ var adUnits = [{
     bids: [{
           bidder: 'aidem',
           params: {
-            siteId: 'prebid-test-site',
+              siteId: 'prebid-test-siteId',
+              publisherId: 'prebid-test-publisherId',
           },
     }]
 }];
@@ -114,7 +116,8 @@ var adUnits = [{
     bids: [{
           bidder: 'aidem',
           params: {
-            siteId: 'prebid-test-site',
+              siteId: 'prebid-test-siteId',
+              publisherId: 'prebid-test-publisherId',
           },
     }]
 }];

@@ -211,7 +211,7 @@ at the time `requestBids` is called, and RTD submodules that wish to modify it a
 export const subModuleObj = {
   name: 'ExampleRTDModule2',
   init: init,
-  setBidRequestsData: alterBidRequests
+  getBidRequestData: alterBidRequests
 };
 
 function init(config, userConsent) {

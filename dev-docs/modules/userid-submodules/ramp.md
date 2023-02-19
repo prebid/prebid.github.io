@@ -1,7 +1,7 @@
 ---
 layout: userid
-title: RampID
-description: RampID User ID sub-module
+title: LiveRamp RampID
+description: LiveRamp RampID User ID sub-module
 useridmodule: identityLinkIdSystem
 ---
 
@@ -26,8 +26,8 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of LiveRamp's user ID module. | `"identityLink"` |
 | params | Required | Object | Container of all module params. |  |
-| params.pid | Required | String | This is the Placement ID, a unique identifier that is used to identify each publisher, obtained from registering with LiveRamp. | `999` |
-| params.notUse3P | Not required | Boolean | Property for choosing if a cookieable envelope should be set and stored until the user authenticates and a RampID envelope can be created (either `true` or `false`). | `false` |
+| params.pid | Required | String | This is the Placement ID, a unique identifier that is used to identify each publisher, obtained from registering with LiveRamp. | `"999"` |
+| params.notUse3P | Not required | Boolean | Property for choosing if a cookieable RampID envelope (RTIS) should be set and stored until the user authenticates which then will be replaced by an authenticated RampID envelope (ATS) (either `true` or `false`). | `false` |
 | storage | Required | Object | This object defines where and for how long the results of the call to get a RampID envelope will be stored. |
 | storage.type	| Required | String | This parameter defines where the resolved RampID envelope will be stored (either `"cookie"` or `"html5"` localStorage). | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved RampID envelope will be stored. LiveRamp requires `"idl_env"`. | `"idl_env"` |
@@ -39,7 +39,7 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 
 ## RampID Examples
 
-1) Publisher passes a Placement ID and elects to store the RampID envelope in a cookie.
+1) Publisher passes a Placement ID and elects to store the RampID envelope in a first-party cookie.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -47,8 +47,8 @@ pbjs.setConfig({
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999',             // Set your Placement ID here
-                notUse3P: true/false    // If you want to generate and use a RampID based on a LiveRamp 3p cookie (from a previous authentication) until ATS can generate a new RampID, set this property to false
+                pid: "999",             // Set your Placement ID here
+                notUse3P: false
             },
             storage: {
                 type: "cookie",
@@ -70,8 +70,8 @@ pbjs.setConfig({
         userIds: [{
             name: "identityLink",
             params: {
-                pid: '999',             // Set your Placement ID here
-                notUse3P: true/false    // If you want to generate and use a RampID based on a LiveRamp 3p cookie (from a previous authentication) until ATS can generate a new RampID, set this property to false
+                pid: "999",             // Set your Placement ID here
+                notUse3P: false
             },
             storage: {
                 type: "html5",
