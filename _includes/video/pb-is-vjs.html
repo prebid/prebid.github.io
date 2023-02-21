@@ -10,66 +10,74 @@
 
 	<!-- use recent version of videojs to ensure proper functioning with the iOS devices -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.4.0/video-js.css">
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.4.0/video.js"></script>
-        <!-- videojs-vast-vpaid -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs.vast.vpaid.min.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs_5.vast.vpaid.min.js"></script>
+        <!-- videojs-vast-vpaid -->
+        <script>
+          var resolveVideoJS;
+          window.videoJSReady = new Promise((resolve) => resolveVideoJS = resolve);
+          function videoJSLoaded() {
+            OneTrust.InsertScript("https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs_5.vast.vpaid.min.js", 'head', window.runVideoJSCode, {}, 3);
+          }
+          window.onetrustLoaded.then(() => {
+            OneTrust.InsertScript("https://cdnjs.cloudflare.com/ajax/libs/video.js/6.4.0/video.js", 'head', videoJSLoaded, {}, 3);
+          })
+        </script>
 
         <script>
-            var pbjs = pbjs || {};
-            pbjs.que = pbjs.que || [];
+          var pbjs = pbjs || {};
+          pbjs.que = pbjs.que || [];
 
+          /* Prebid video ad unit */
 
-            /* Prebid video ad unit */
+          var videoAdUnit = {
+              code: 'video1',
+              mediaTypes: {
+                  video: {
+    context: 'instream',
+    playerSize: [640, 480],
+    mimes: ['video/mp4'],
+    protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+    playbackmethod: [2],
+    skip: 1
+                  }
+              },
+              bids: [{
+                  bidder: 'appnexus',
+                  params: {
+                      placementId: 13232361
+                  }
+              }]
+          };
 
-            var videoAdUnit = {
-                code: 'video1',
-                mediaTypes: {
-                    video: {
-			context: 'instream',
-			playerSize: [640, 480],
-			mimes: ['video/mp4'],
-			protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-			playbackmethod: [2],
-			skip: 1
-                    }
-                },
-                bids: [{
-                    bidder: 'appnexus',
-                    params: {
-                        placementId: 13232361
-                    }
-                }]
-            };
+          pbjs.que.push(function() {
+              pbjs.addAdUnits(videoAdUnit);
 
-            pbjs.que.push(function() {
-                pbjs.addAdUnits(videoAdUnit);
+              pbjs.setConfig({
+                  debug: true,
+                  cache: {
+                      url: 'https://prebid.adnxs.com/pbc/v1/cache'
+                  }
+              });
 
-                pbjs.setConfig({
-                    debug: true,
-                    cache: {
-                        url: 'https://prebid.adnxs.com/pbc/v1/cache'
-                    }
-                });
-
-                pbjs.requestBids({
-                    bidsBackHandler: function(bids) {
-                        var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-                            adUnit: videoAdUnit,
-                            params: {
-                                iu: '/19968336/prebid_cache_video_adunit',
-                                cust_params: {
-                                    section: 'blog',
-                                    anotherKey: 'anotherValue'
-                                },
-                                output: 'vast'
-                            }
-                        });
-                        invokeVideoPlayer(videoUrl);
-                    }
-                });
-            });
-
+              pbjs.requestBids({
+                  bidsBackHandler: function(bids) {
+                      var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+                          adUnit: videoAdUnit,
+                          params: {
+                              iu: '/19968336/prebid_cache_video_adunit',
+                              cust_params: {
+                                  section: 'blog',
+                                  anotherKey: 'anotherValue'
+                              },
+                              output: 'vast'
+                          }
+                      });
+                      window.videoJSReady.then(() => {
+                        window.invokeVideoPlayer(videoUrl);
+                      })
+                  }
+              });
+          });
         </script>
 
 </head>
