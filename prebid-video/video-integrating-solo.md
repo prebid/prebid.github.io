@@ -95,12 +95,8 @@ This section contains working examples of instream and outstream video ads for v
 ## Using client-side adapters
 
 ### Instream
-+ [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
-+ [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
-+ [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
 + [JWPlayer - Platform]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
 + [JWPlayer - Hosted]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
-+ [Kaltura]({{site.github.url}}/examples/video/instream/kaltura/pb-ve-kaltura.html)
 + [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
 
 ### Outstream
