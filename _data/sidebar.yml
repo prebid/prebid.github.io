@@ -1292,39 +1292,6 @@
   subgroup: 2
 
 - sbSecId: 4
-  title: 'AdPlayer.Pro'
-  link: /examples/video/instream/adplayerpro/pb-ve-adplayerpro.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 4
-  title: 'Brid'
-  link: /examples/video/instream/brid/pb-ve-brid.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 4
-  title: 'Brightcove'
-  link: /examples/video/instream/brightcove/pb-ve-brightcove.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 4
-  title: 'Flowplayer'
-  link: /examples/video/instream/flowplayer/pb-ve-flowplayer.html
-  Item: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 4
   title: 'JW Player (Platform)'
   link: /examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html
   isHeader: 0
@@ -1341,65 +1308,8 @@
   subgroup: 2
 
 - sbSecId: 4
-  title: 'Kaltura'
-  link: /examples/video/instream/kaltura/pb-ve-kaltura.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 4
-  title: 'Radiant'
-  link: /examples/video/instream/radiant/pb-ve-radiant.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 4
   title: 'VideoJS'
   link: /examples/video/instream/videojs/pb-ve-videojs.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 4
-  title: "Cross Player"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 4
-  title: 'Flowplayer'
-  link: /examples/video/crossplayer/flowplayer/pb-cp-flowplayer.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 4
-  title: 'JW Player'
-  link: /examples/video/crossplayer/jwplayer/pb-cp-jwplayer.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 4
-  title: 'Kaltura'
-  link: /examples/video/crossplayer/kaltura/pb-cp-kaltura.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 4
-  title: 'VideoJS'
-  link: /examples/video/crossplayer/videojs/pb-cp-videojs.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1462,7 +1372,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-
 
 #--------------Prebid Server--------------|
 
