@@ -8,15 +8,18 @@
 
     <!--pbjs and player code -->
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css"/>
-    <script type="text/javascript" src="https://mssl.fwmrm.net/libs/adm/6.24.0/AdManager-debug.js"></script>
-    <script type="text/javascript" src="player.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+    <script>
+      window.onetrustLoaded.then(() => {
+        OneTrust.InsertScript("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js", 'head', null, {}, 3);
+        OneTrust.InsertScript("https://mssl.fwmrm.net/libs/adm/6.24.0/AdManager-debug.js", 'head', null, {}, 3);
+        OneTrust.InsertScript("player.js", 'head', null, {}, 3);
+      })
+    </script>
     <!--style specific to the long-form demo-->
 	<style type="text/css">
 
@@ -58,7 +61,7 @@
     </style>
 
 
-	<script>
+  <script type="text/plain" class="optanon-category-C0003">
 
       var pbjs = pbjs || {};
       pbjs.que = pbjs.que || [];
