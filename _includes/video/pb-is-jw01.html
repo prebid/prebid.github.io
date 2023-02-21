@@ -8,10 +8,8 @@
 
     <!--pbjs and player code -->
 
-
-    <script type="text/javascript">
-
-      	var pbjs = pbjs || {};
+    <script>
+      var pbjs = pbjs || {};
 	    pbjs.que = pbjs.que || [];
 
 	    // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
@@ -63,7 +61,7 @@
 	                        output: 'vast'
 	                    }
 	                });
-	                invokeVideoPlayer(videoUrl);
+                  window.runJWPlayer(videoUrl);
 	            }
 	        });
 	    });
