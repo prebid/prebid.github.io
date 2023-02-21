@@ -124,12 +124,73 @@ The auction config must then be used by the client. See the Prebid.js [Fledge fo
 
 ### OpenRTB Fields
 
-Prebid Server accepts all OpenRTB 2.5 fields and passes them in the request to all bid and analytics adapters. Some fields are processed by Prebid Server in the following ways:
+Prebid Server accepts all OpenRTB 2.5 fields and passes them in the request to all bid and analytics adapters. Some ORTB 2.6 fields are supported. Here are the fields with special processing:
 
-#### Currency
+{: .table .table-bordered .table-striped }
+| ORTB Field | Version | Notes |
+| --- | --- | --- |
+| id | 2.5 | See below |
+| source.tid | 2.5 | See below |
+| imp[].id | 2.5 | See below |
+| imp[].ext.tid | 2.x | See below |
+| cur | 2.5 | Only the first array element is taken to be the "Ad Server Currency" for purposes of [currency conversion](/prebid-server/features/pbs-currency.html). |
+| exp | 2.5 | See the [expiration](#expiration) section below |
+| tmax | 2.5 | See the [timeout](#timeout) section below |
+| device.lmt | 2.5 | See special processing for iOS apps defined in [issue 1699](https://github.com/prebid/prebid-server/issues/1699) |
+| regs.gdpr | 2.6 | Bidders supporting 2.5 only: downgraded to regs.ext.gdpr | 
+| regs.us_privacy | 2.6 | Bidders supporting 2.5 only: downgraded to regs.ext.us_privacy |
+| user.consent | 2.6 | Bidders supporting 2.5 only: downgraded to user.ext.consent |
+| imp.rwdd | 2.6 | Bidders supporting 2.5 only: downgraded to imp.ext.prebid.is_rewarded_inventory |
+| user.eids | 2.6 | Bidders supporting 2.5 only: downgraded to user.ext.eids |
+| source.schain | 2.6 | Bidders supporting 2.5 only: downgraded to source.ext.schain |
+| wlangb, {content, device}.langb, cattax, {site, app, publisher, content, producer}.cattax, ssai, {app, site}.content.{network, channel}, {app, content, site, user}.kwarray, device.sua | 2.6 | Bidders supporting 2.5 only: these fields are removed |
+| {video, audio}.{rqddurs, maxseq, poddur, podid, podseq, mincpmpersec, slotinpod} | 2.6 | Bidders supporting 2.5 only: these fields are removed |
+| regs.gpp | 2.6-202211 | Bidders supporting 2.5 only: this field is removed |
+| regs.gpp_sid | 2.6-202211 | Bidders supporting 2.5 only: this field is removed |
+| dooh | 2.6-202211 | not yet supported by PBS |
+| imp.qty | 2.6-202211 | (PBS-Go only so far) Bidders supporting 2.5 only: this field is removed |
+| imp.dt | 2.6-202211 | (PBS-Go only so far) Bidders supporting 2.5 only: this field is removed |
 
-The `cur` field is read and the first element of the array is taken to be the
-"Ad Server Currency" for purposes of [currency conversion](/prebid-server/features/pbs-currency.html).
+#### IDs
+
+Prebid Server has the ability to fill in key IDs in the request.
+
+##### request.id
+
+```
+if host config generate_request_id (Go) / generate-storedrequest-bidrequest-id (Java) is true
+    if $.id is not set, generate a random value
+    if the storedrequest is from AMP or from ext.prebid.storedrequest, then replace any existing $.id with a random value
+if $.id contains "{{UUID}}", replace that macro with a random value
+```
+
+##### request.source.tid
+
+```
+if source.tid is not set:
+   set source.tid to a random UUID
+if host config auto_gen_source_tid (Go) / generate-storedrequest-bidrequest-id (Java) is true
+    if the storedrequest is from AMP or from a top-level stored request (ext.prebid.storedrequest), then replace any existing $.source.tid with a random value
+if $.source.tid contains "{{UUID}}", replace that macro with a random value
+```
+
+##### request.imp[].id
+
+```
+if host config generate-storedrequest-bidrequest-id config is true
+    if any $.imp[].id is missing, set it to a random 16-digit string. (Note: this wasn't in issue 1507)
+    if the storedrequest is from AMP **or** from a top-level stored request (ext.prebid.storedrequest), confirm that all $.imp[].id fields in the request are different. If not different, re-number them all starting from "1".
+```
+
+##### request.imp[].ext.tid
+
+```
+if imp[n].ext.tid is not set:
+       set imp[n].ext.tid to a randomly generated UUID
+   if host config generate-storedrequest-bidrequest-id config is true
+       if the storedrequest is from AMP or from ext.prebid.storedrequest, then replace any existing $.imp[n].ext.tid with a random value
+if $.imp[n].ext.tid contains "{{UUID}}", replace that macro with a random value
+```
 
 #### Expiration
 
@@ -162,15 +223,36 @@ How long an item is stored in Prebid Cache is determined by this hunt path:
 4. account config: {banner,video}-cache-ttl
 5. global config: cache.{banner,video}-ttl-seconds
 
-#### Privacy fields
+#### Timeout
 
-Prebid Server reads the OpenRTB privacy fields:
+The OpenRTB 2.5 `imp[].exp` field defines how long Prebid Server has to process the request
+before the client will stop waiting.
 
-- regs.coppa
-- regs.ext.gdpr
-- regs.ext.us_privacy
-- user.ext.consent
-- device.lmt
+This field is used in different ways by PBS-Go and PBS-Java:
+
+##### PBS-Go
+
+1. if tmax is not specified or is 0, use the host configured default value (auction_timeout_ms.default)
+1. if tmax is over the host defined max, cap it to the host defined max (auction_timeout_ms.max)
+
+##### PBS-Java
+
+Core concepts:
+
+- request_tmax: what the incoming ORTB request defines as tmax (as milliseconds)
+- biddertmax_max: controls that upstream doesn't tell us ridiculous values. In milliseconds. (configuration auction.biddertmax.max)
+- biddertmax_min: it's not worth calling bidders and give them less time than this number of milliseconds (configuration (auction.biddertmax.min). Note: we recommend this value be at least 150 ms)
+- biddertmax_percent: a lower number means more buffer for network delay. Host companies should set this to a lower value in regions where the network connections are slower. (configuration auction.biddertmax.percent)
+- tmax_upstream_response_time: the amount of time (in ms) that PBS needs to respond to the original caller (configuration auction.tmax-upstream-response-time)
+- processing_time: PBS calculation for how long it's been since the start of the request up to the point where the bidders are called
+- bidder_tmax: this is what PBS-core tells the bidders they have to respond. The conceptual formula is: capped(request_tmax)*biddertmax_percent - processing_time - tmax_upstream_response_time ==> must be at least the configured min
+- enforced_tmax: this is long PBS-core actually gives the bidders: capped(request_tmax)- processing_time - tmax_upstream_response_time ==> cannot be lower than bidder_tmax
+
+The full formulas:
+
+bidder_tmax=max(calculated_tmax, biddertmax_min)=max((min(request_tmax,biddertmax_max)*biddertmax_percent)-processing_time - tmax_upstream_response_time, biddertmax_min)
+
+enforced_tmax=max(calculated_enforcement,bidder_tmax)=max(min(request_tmax,biddertmax_max)-processing_time - tmax_upstream_response_time , bidder_tmax)
 
 ### OpenRTB Extensions
 
@@ -1436,6 +1518,42 @@ This contains the request after the resolution of stored requests and implicit i
 `response.seatbid[].bid[].ext.origbidcpm` and `response.seatbid[].bid[].ext.origbidcur` will contain the original bid price/currency from the bidder.
 The value in seatbid[].bid[].price may be converted for currency and adjusted with a [bid adjustment factor](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bid-adjustments).
 
+##### Seat Non-Bid
+
+{: .alert.alert-info :}
+PBS-Java only
+
+Prebid Server supports an ORTB extension that allows callers to get more information about bidders that may have had a chance to bid but did not. Eventually the system will support a fine-grained set of codes describing why a given bidder didn't bid on a particular impression, but for now we're phasing in the necessary internal infrastructure.
+
+To enable the additional output, set `ext.prebid.returnallbidstatus: true`.
+
+Here's a sample response:
+```
+{
+   ...
+   "ext": {
+      "seatnonbid": [
+        {
+          "seat": "rubiconAlias",
+          "nonbid": [
+            {
+              "impid": "test-div",
+              "statuscode": 0
+            }
+          ]
+        }
+     }
+}
+```
+
+The codes currently returned:
+
+{: .table .table-bordered .table-striped }
+| Code | | Meaning | Platform | Notes |
+| --- | --- | --- | --- |
+| 0 | General No Bid | Java | The bidder had a chance to bid, and either declined to bid, returned an error, or the response was removed. |
+
+
 ### OpenRTB Ambiguities
 
 This section describes the ways in which Prebid Server **implements** OpenRTB spec ambiguous parts.
@@ -1511,8 +1629,9 @@ The Prebid SDK version comes from:
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedauctionresponse | PBS-Core skips the auction and uses the response in the DB instead, see [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses). | object | no |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedbidresponse | PBS-Core calls the adapter with the response in the DB instead of actually running the auction,see [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses). | object | no |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedrequest<wbr>.id | Look up the defined stored request and merge the DB contents with this imp, see [stored requests](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-requests). | object | no (yes with [issue 2292](https://github.com/prebid/prebid-server/issues/2292) |
-| imp[]<wbr>.ext<wbr>.prebid<wbr>.is_rewarded_inventory | Passed through to bid adapters, see [rewarded video](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#rewarded-video). | integer | yes |
+| imp[]<wbr>.ext<wbr>.prebid<wbr>.is_rewarded_inventory | (deprecated) Passed through to bid adapters, see [rewarded video](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#rewarded-video). (use imp.rwdd in ORTB 2.6) | integer | yes |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.passthrough | Allows an application to pass a value through to the response, see [request passthrough](#request-passthrough). | object | no |
+| imp<wbr>.ext<wbr>.prebid<wbr>.adunitcode | Prebid.js adunit code | string | yes |
 | app<wbr>.ext<wbr>.source | Defined by Prebid SDK.<br>ex: `"prebid-mobile"` | string | yes |
 | app<wbr>.ext<wbr>.version | Defined by Prebid SDK,<br>ex: `"1.6"` | string | yes |
 | device<wbr>.ext<wbr>.prebid<wbr>.interstitial | PBS-core will adjust the sizes on a request for interstitials,see [interstitial support](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#interstitial-support). | object | yes |
@@ -1543,7 +1662,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.server | additional Prebid Server metadata | object | yes |
 | ext<wbr>.prebid<wbr>.pbs.endpoint | additional Prebid Server metadata | string | yes |
 | ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
-| imp<wbr>.ext<wbr>.prebid<wbr>.adunitcode | Prebid.js adunit code | string | yes |
+| ext<wbr>.prebid<wbr>.returnallbidstatus | If true, PBS returns [ext.seatnonbid](#seat-non-bid) with details about bidders that didn't bid. | boolean | no |
 | imp<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. (ae stands for auction environment) | integer | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
@@ -1569,6 +1688,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.errors<wbr>.BIDDER | Debug Mode: errors from the named bidder | object |
 | ext<wbr>.responsetimemillisv.BIDDER | Debug Mode: how long the named bidder took to respond with a bid. | integer |
 | ext<wbr>.prebid<wbr>.passthrough | Copy of request ext.prebid.passthrough, see [passthrough](#request-passthrough). | object|
+| ext<wbr>.seatnonbid | Details on which bidders did not bid on each imp. See [seatnonbid]()#seat-non-bid| object|
 | ext<wbr>.prebid<wbr>.fledge.auctionconfigs | Bidder-supplied [Fledge](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing) responses. | array of objects |
 
 ### Further Reading

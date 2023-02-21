@@ -25,6 +25,7 @@ sidebarType: 1
 
 ### Note
 - Supports `display` format.
+- Supports `native` format only in the Prebid Sever. 
 - Uses `OpenRTB` standard.
 
 ### Registration
@@ -105,3 +106,8 @@ Notes:
   }]
 }];
 ```
+
+### Native - Prebid Server Adapter
+
+Currently, supporting native and multi-format (banner and native mixed) requests in the prebid server adapter only. 
+
