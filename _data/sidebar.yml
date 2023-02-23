@@ -368,14 +368,6 @@
   subgroup: 3
 
 - sbSecId: 1
-  title: Prebid 1.0 Publisher API Changes
-  link: /dev-docs/prebid-1.0-API.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 1
   title: Adding an Adapter
   link:
   isHeader: 1
@@ -1027,14 +1019,6 @@
   sectionTitle:
   subgroup: 2
 
-- sbSecId: 3
-  title: 'Setting up Long-Form Video in GAM'
-  link: /adops/setting-up-prebid-ott-video-in-gam.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-  
 - sbSecId: 3
   title: "Setting up Order for Mobile Rendering API"
   link: /adops/mobile-rendering-gam-line-item-setup.html

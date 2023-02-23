@@ -3,7 +3,7 @@
 layout: page_v2
 title: Prebid Mobile Rendering GAM Line Item Setup
 description: Prebid Mobile Rendering Modules GAM line item setup
-sidebarType: 2
+sidebarType: 3
 
 ---
 
