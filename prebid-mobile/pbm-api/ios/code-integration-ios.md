@@ -11,7 +11,7 @@ sidebarType: 2
 # Integration for iOS
 {:.no_toc}
 
-Get started with Prebid Mobile by creating a [Prebid Server account]({{site.github.url}}/prebid-mobile/prebid-mobile-getting-started.html). Once your account is set up include the Prebid Mobile SDK in your app by either using dependencies managers or by [cloning the repo](https://github.com/prebid/prebid-mobile-ios) and using our included script to build the SDK.
+Get started with Prebid Mobile by creating a [Prebid Server account](/prebid-mobile/prebid-mobile-getting-started.html). Once your account is set up include the Prebid Mobile SDK in your app by either using dependencies managers or by [cloning the repo](https://github.com/prebid/prebid-mobile-ios) and using our included script to build the SDK.
 
 * TOC
 {:toc}
@@ -90,7 +90,7 @@ This will output the PrebidMobile.framework.
 
 ## Initialize SDK
 
-Once you have a [Prebid Server]((/prebid-mobile/prebid-mobile-getting-started.html)), you will add 'account' info to the Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
+Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add 'account' info to the Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
 
 ```
 Prebid.shared.prebidServerAccountId = "YOUR_ACCOUNT_ID"

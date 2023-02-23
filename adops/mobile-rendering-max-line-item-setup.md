@@ -3,7 +3,7 @@
 layout: page_v2
 title: Prebid Mobile Rendering Modules
 description: Prebid Mobile Rendering Modules architecture
-sidebarType: 2
+sidebarType: 3
 
 ---
 
