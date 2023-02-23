@@ -16,10 +16,10 @@
           var resolveVideoJS;
           window.videoJSReady = new Promise((resolve) => resolveVideoJS = resolve);
           function videoJSLoaded() {
-            OneTrust.InsertScript("https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs_5.vast.vpaid.min.js", 'head', window.runVideoJSCode, {}, 3);
+            OneTrust.InsertScript("https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs_5.vast.vpaid.min.js", 'head', window.runVideoJSCode, {}, 'C0003');
           }
           window.onetrustLoaded.then(() => {
-            OneTrust.InsertScript("https://cdnjs.cloudflare.com/ajax/libs/video.js/6.4.0/video.js", 'head', videoJSLoaded, {}, 3);
+            OneTrust.InsertScript("https://cdnjs.cloudflare.com/ajax/libs/video.js/6.4.0/video.js", 'head', videoJSLoaded, {}, 'C0003');
           })
         </script>
 
