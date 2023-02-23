@@ -54,7 +54,7 @@ If GAM Event Handler receives the `PrebidAppEvent` event it will render the winn
 ``` html
 <script type="text/javascript" src="https://media.admob.com/api/v1/google_mobile_app_ads.js">
 </script>
-<script type="text/javascript">admob.events.dispatchAppEvent("PrebidAppEvent","");</script>
+<script type="text/javascript">admob.events.dispatchAppEvent("PrebidAppEvent","%%PATTERN:bidid%%");</script>
 ```
 
 <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-creative-banner.png" alt="Pipeline Screenshot" align="center">
