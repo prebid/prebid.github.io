@@ -9,6 +9,7 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: false
 schain_supported: true
+gpp_supported: true
 floors_supported: true
 media_types: banner, video
 prebid_member: false
