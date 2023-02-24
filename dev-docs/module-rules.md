@@ -46,7 +46,7 @@ The use of the terms "must" and "should" in this document is deliberate.  Howeve
 
 #### Strictly Enforced Rules
 
-1. Each adapter and module must include working maintainer information with a group email address for Prebid.org to contact for support or maintenance.
+1. Each adapter and module must include maintainer information with a group email address for Prebid.org to contact for support or maintenance. The group email address must remain current and respond to enquiries in a timely manner.
 1. Modules must not load outside code files unless those libraries are approved and open source.
     1. External modules may be used at build-time at the discretion of the relevant Prebid committee. Build-time modules must be locked to a particular version so that any upgrades must be done via Prebid pull request.
     1. Exceptions may be made in the following cases:
@@ -60,9 +60,9 @@ The use of the terms "must" and "should" in this document is deliberate.  Howeve
 1. Modules must not add any pixel, iframe, cookie or local storage directly onto the page. Rather, they must use wrapper-provided mechanisms for usersyncs, cookies, and local storage.
 1. All modules must support the creation of multiple concurrent instances. This means, for example, they cannot rely on mutable global variables.
     - PBJS: Writing to the global window object must be non-intrusive, disclosed, and done in a way that supports multiple instances.
-1. Modules must not include polyfills or override standard or Prebid JavaScript functions.
+1. Modules must not include polyfills and must not override standard or Prebid JavaScript functions
 1. Endpoint domain names cannot be fully variable. At some point, they won't be able contain any variables at all. e.g. $PARAM1.example.com.
-1. In order to be listed on the Prebid.org website, a module must be in a Prebid open source repository.
+1. To be listed on the Prebid.org website, a module must be in a Prebid open source repository.
 1. Prebid.js requests and responses must be secure HTTPS.
 1. Prebid.js modules must not use the PREBID_GLOBAL variable nor otherwise obtain a pointer to the global PBJS object. This preserves data integrity.
 
@@ -98,6 +98,7 @@ All global rules apply.
 1. If bid adapters are reporting multiple media types in the hb_format as ‘banner’, they must(*) indicate the actual mediatype in the metadata object. One use case for this is that it allows publishers to manage which creatives support safeframes.
 1. Bidder modules should supply buyer metadata - including advertiser, advertiser domain, network, actual mediatype, and others defined in the Prebid documentation.
 1. Creatives returned must be fully HTTPS.
+1. Bid adapters should understand how their endpoints handle currency and floors, and make the necessary changes in the endpoint request.
 
 ### Analytics Adapter Rules
 
