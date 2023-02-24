@@ -6,5 +6,8 @@
 
 .c-search {
   @include media('<=990px') {
+    .DocSearch-Button {
+      margin-left: 0;
+    }
   }
 }
