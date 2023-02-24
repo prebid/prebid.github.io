@@ -11,15 +11,6 @@
     float: left;
   }
 
-  &::after {
-    @include position(absolute, 50% 10px null null);
-    @include size(20px);
-    transform: translateY(-50%);
-    background: url(/assets/images/icons/search-icon2.svg);
-    background-size: cover;
-    content: '';
-  }
-
   input[type="search"] {
     @include padding(null 8px);
     border: 1px solid rgba(0, 0, 0, 0.125);
