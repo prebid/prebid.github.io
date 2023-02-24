@@ -5,31 +5,6 @@
 }
 
 .c-search {
-  position: relative;
-
   @include media('<=990px') {
-    float: left;
-  }
-
-  input[type="search"] {
-    @include padding(null 8px);
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    max-width: 120px;
-    transition: max-width 200ms ease-in-out;
-
-    &:hover, &:focus {
-      max-width: 200px;
-      outline: none;
-    }
-
-    /* clears the ‘X’ from Internet Explorer */
-    &::-ms-clear { display: none; width : 0; height: 0; }
-    &::-ms-reveal { display: none; width : 0; height: 0; }
-
-    /* clears the ‘X’ from Chrome */
-    &::-webkit-search-decoration,
-    &::-webkit-search-cancel-button,
-    &::-webkit-search-results-button,
-    &::-webkit-search-results-decoration { display: none; }
   }
 }
