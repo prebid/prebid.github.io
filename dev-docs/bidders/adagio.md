@@ -21,7 +21,27 @@ sidebarType: 1
 
 The Adagio bidder adapter requires setup and approval from the Adagio team. Please reach out to [contact@adagio.io](mailto:contact@adagio.io) for more information.
 
-### Bidder Settings
+### Configuration
+
+#### User Sync
+
+Adagio strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the bid rate and bid price. Make sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Adagio.
+
+```js
+// https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing
+pbjs.setConfig({
+  userSync: {
+    filterSettings: {
+      iframe: {
+        bidders: ['adagio'],
+        filter: 'include'
+      }
+    }
+  }
+});
+```
+
+#### Bidder Settings
 
 The Adagio bid adapter uses browser local storage. Since Prebid.js 7.x, the access to it must be explicitly set.
 
