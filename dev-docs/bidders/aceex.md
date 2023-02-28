@@ -10,9 +10,10 @@ schain_supported: true
 userId: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 media_types: banner, video, native
 safeframes_ok: true
-bidder_supports_deals: true
+deals_supported: true
 pbjs: false
 pbs: true
+sidebarType: 1
 ---
 
 ### Note:

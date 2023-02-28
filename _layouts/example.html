@@ -33,7 +33,7 @@
           </ul>
         {% endif %}
 
-        <h4>This page contains:</h4>
+        <h4>About this example:</h4>
 
         <p>
           <ul>
@@ -43,18 +43,29 @@
           </ul>
         </p>
 
+
+        <div class="row">
+          <!-- Build warning -->
+          <div class="col-md-12">
+            {% include dev-docs/not-for-production-warning.md %}
+          </div>
+        </div>
+
+	<p></p>
         <p>
-          For tips and troubleshooting info, see:
-          <ul>
-            <li>
-              <a href="/troubleshooting/troubleshooting-guide.html">Troubleshooting Guide</a>
-            </li>
-            <li>
-              <a href="{{site.github.url}}/dev-docs/common-issues.html">Common Issues</a>
-            </li>
-          </ul>
+          In the JSFiddle example below:
+	    <ul><li>Click <b>Result</b> to see the example output.</li>
+            <li>Click <b>Edit in JSFiddle</b> to open the example in the JSFiddle editor in a new tab.</li></ul>
         </p>
 
+
+        <div class="row">
+          <!-- JSFiddle -->
+          <div id="jsfiddle" class="col-md-12"> 
+            <h2>(Sorry, JSFiddle code examples aren't available with your cookie privacy settings.)</h2>
+            <p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+          </div>
+        </div>
 
         <div class="row">
           <!-- Build warning -->
@@ -62,32 +73,44 @@
             {% include dev-docs/build-from-source-warning.md %}
           </div>
         </div>
-
-	<p></p>
+  
+        <h2>Further Reading</h2>
         <p>
-          On the JSFiddle example below:
-	    <ul><li>click 'Result' to see the output of the page.</li>
-            <li>Click 'Edit in JSFiddle' to open the example in a new tab.</li></ul>
-        </p>
+          <ul>
+            <li>
+              <a href="/dev-docs/getting-started.html">Getting Started for Developers</a>
+            </li>
+          <li>
+            <a href="/troubleshooting/troubleshooting-guide.html">Troubleshooting Guide</a>
+          </li>
+          <li>
+            <a href="/dev-docs/common-issues.html">Common Issues</a>
+          </li>
+        </ul>
+      </p>
 
-
-        <div class="row">
-          <!-- JSFiddle -->
-          <div id="jsfiddle" class="col-md-12">
-            <h2>(Sorry, jsfiddle code examples aren't available with your cookie privacy settings.)</h2>
-            <p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
-          </div>
-        </div>
-
-      </div>
+    </div>
       <!--end main content-->
+
+
 
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
-  Optanon.InsertHtml('<iframe width="100%" height="{{page.code_height}}" src="//{{page.jsfiddle_link}}" allowfullscreen="allowfullscreen" frameborder="0"></iframe>', 'jsfiddle', null, {deleteSelectorContent: true}, 3);
+function runOt() {
+  OneTrust.InsertHtml('<iframe width="100%" height="{{page.code_height}}" src="//{{page.jsfiddle_link}}" allowfullscreen="allowfullscreen" frameborder="0"></iframe>', 'jsfiddle', null, {deleteSelectorContent: true}, 3); 
+}
+function onOtLoad(cb) {
+    const tmr = setInterval(function () {
+        if (window.OneTrust != null) {
+            clearInterval(tmr);
+            cb();
+        }
+    }, 100);
+}
+onOtLoad(runOt);
 </script>
 {% include footer.html %}
 

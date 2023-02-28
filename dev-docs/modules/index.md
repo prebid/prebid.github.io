@@ -1,6 +1,6 @@
 ---
 layout: page_v2
-title: Prebid Modules
+title: Prebid.js Modules
 description: Module Documentation
 sidebarType: 1
 ---
@@ -59,7 +59,7 @@ than others. See [the realTimeData setConfig](/dev-docs/publisher-api-reference/
   <tbody>
 {% for page in module_pages %}{% if page.recommended == true or page.vendor_specific == true %}{% continue %}{% endif %}
     <tr>
-      <td><a href="/dev-docs/modules/{{page.module_code}}.html"><strong>{{page.display_name}}</strong></a></td>
+      <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
       <td>{{page.description}}</td>
       {% if page.module_type == "rtd" %}<td>yes</td>{% else %}<td>no</td>{% endif %}
     </tr>
@@ -80,7 +80,7 @@ These modules may require accounts with a service provider.
   <tbody>
 {% for page in module_pages %}{% if page.recommended == true %}{% continue %}{% endif %}{% if page.vendor_specific == true %}
     <tr>
-      <td><a href="/dev-docs/modules/{{page.module_code}}.html"><strong>{{page.display_name}}</strong></a></td>
+      <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
       <td>{{page.description}}</td>
       {% if page.module_type == "rtd" %}<td>yes</td>{% else %}<td>no</td>{% endif %}
     </tr>

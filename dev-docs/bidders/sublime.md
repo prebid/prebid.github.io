@@ -6,6 +6,7 @@ pbjs: true
 biddercode: sublime
 gdpr_supported: true
 gvl_id: 114
+sidebarType: 1
 ---
 
 ### Note

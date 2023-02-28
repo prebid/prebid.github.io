@@ -8,6 +8,8 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 gvl_id: 902
+userIds: adQuery QiD
+sidebarType: 1
 ---
 
 ### Bid Params

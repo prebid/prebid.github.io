@@ -8,6 +8,7 @@ biddercode: viewdeos
 media_types: banner,video
 gdpr_supported: true
 gvl_id: 924
+sidebarType: 1
 ---
 
 ### Bid params

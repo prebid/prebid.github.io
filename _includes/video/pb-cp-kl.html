@@ -2,11 +2,11 @@
 <html lang="en" class="html--no-js">
 
 <head>
-{% include head--common.html %}    
-    
+{% include head--common.html %}
+
     <!--production version of prebid.js-->
-    <!--<script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>-->
-    
+    <!--<script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>-->
+
     <!--kaltura & prebid js code-->
     <script type="text/javascript">
 		var options = {
@@ -51,9 +51,9 @@
 		function doHeaderBidding() {
 		  window.prebidPluginCP.doPrebid(options);
 		}
-		  
+
 	</script>
-	<script src="//acdn.adnxs.com/video/plugins/cp/PrebidPluginCP.min.js" onload="doHeaderBidding()"></script> 
+	<script src="//acdn.adnxs.com/video/plugins/cp/PrebidPluginCP.min.js" onload="doHeaderBidding()"></script>
 </head>
 
 <body>

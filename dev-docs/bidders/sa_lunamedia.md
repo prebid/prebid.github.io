@@ -11,10 +11,12 @@ pbjs: false
 pbs: true
 pbs_app_supported: true
 gvl_id: 998
-pbjs_version_notes: not in 5.x
+enable_download: false
+sidebarType: 1
 ---
 
 ### Prebid Server Bid Params
+
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                              | Example    | Type      |
 |----------------|----------|----------------------------------------------------------|------------|-----------|

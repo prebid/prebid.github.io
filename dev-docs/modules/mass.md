@@ -28,7 +28,6 @@ This modules is designed to work with MASS enabled Exchanges and DSP's.
 This module only loads external JavaScript resources if the publisher ad server has 
 selected a MASS enabled bid as a winner. 
 
-Find out more [here](https://massplatform.net).
 
 {: .alert.alert-warning :}
 ## Disclosure
@@ -71,6 +70,7 @@ pbjs.que.push(function() {
 
 ### Configuration Parameters
 
+{: .table .table-bordered .table-striped }
 |Name |Type |Description |Notes |
 | :------------ | :------------ | :------------ |:------------ |
 |enabled | Boolean |Enable/disable the module |Defaults to `true` |
@@ -157,7 +157,7 @@ http://hostname/integrationExamples/mass/index.html
 ```
 
 ### Option 2 - Hosted online
-Mass Platform Limited hosts an official integration and demo page that can be accessed using the following link: http://demo.massplatform.com/ix/prebid/
+Mass Platform Limited hosts an official integration and demo page that can be accessed using the following link: https://demo.massplatform.net/ix/prebid/
 
 ## Testing MASS
 Testing requires valid bids to be returned to Prebid. To assist with this process, we recommend you use the MASS Bid Simulation tool found at https://github.com/massplatform/bidsim. Your Exchange partner might be able to assist you with other specialist tools and browser plugins to achieve similar resuls.

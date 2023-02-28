@@ -5,8 +5,21 @@ description: Prebid AOL Bidder Adaptor
 pbjs: true
 biddercode: onedisplay
 aliasCode : aol
+sidebarType: 1
 ---
+### IMPORTANT NOTICE!
+**TL;DR**
+1. The `onedisplay` adapter is scheduled to be depreciated.
+2. Our New `yahoossp` is available for early adoption.
+3. Please contact your Account Manager/Executive for migration details.
 
+Dear Publishers & Partners,
+As part of our platform consolidation process to simplify your integrations moving forward
+We invite you to switch from the `onedisplay` Adapter to our NEW `yahoossp` bid adapter for both Display & Video inventory.
+FYI - The oneVideo adapter is scheduled for depreciation in the upcoming months.
+
+Thanks in advance,
+Yahoo SSP
 
 
 ### Bid Params

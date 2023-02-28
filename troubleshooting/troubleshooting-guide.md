@@ -114,7 +114,7 @@ You can also print this data to the console in [table format](#see-all-bids-in-t
 Using `pbjs.setConfig({debugging:{ ... }})` from the javascript console, it is possible to override and filter bids as they come in. When this type of debugging is enabled it will persist across page loads using `sessionStorage`.
 
 {: .pb-alert .pb-alert-warning :}
-While this allows for easy testing of pages that immediately start auctions (most pages), it also means you need to remember to **deactivate debugging when you are done** (or clear your local storage / use incognito mode when testing). Also, note that this approach only _modifies_ existing bids. It cannot create bids for bidders that didn't bid.
+While this allows for easy testing of pages that immediately start auctions (most pages), it also means you need to remember to **deactivate debugging when you are done** (or clear your local storage / use incognito mode when testing). Also, note that this approach only _modifies_ existing bids. It cannot create bids for bidders that didn't bid; for that functionality, see the [debugging module](/dev-docs/modules/debugging.html).
 
 ```javascript
 // Filtering bidders
@@ -182,7 +182,7 @@ Here's another scenario using the 'debugging' feature described in the previous 
 
 This section covers cases in which a particular server-side bidder doesn't always respond with a bid, or you want to try specific bid CPM values to verify line item setup.
 
-If you're using Prebid Server (i.e. the [s2sConfig](/dev-docs/publisher-api-reference/setconfig#setConfig-Server-to-Server) option), you can force it to respond with a particular canned response on any page by defining a storedAuctionResponse ID on the javascript console:
+If you're using Prebid Server (i.e. the [s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) option), you can force it to respond with a particular canned response on any page by defining a storedAuctionResponse ID on the javascript console:
 
 ```javascript
 javascript console> pbjs.setConfig({
@@ -425,7 +425,7 @@ The following parameters in the `bidResponse` object are common across all bidde
 | Name     | Type    | Description                                                                                                                                                       | Example                                                                 |
 |----------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------|
 | `bidder` | String  | Unique bidder code used by ad server's line items to identify the bidder                                                                                          | `"appnexus"`                                                            |
-| `adId`   | String  | Unique identifier of a bid creative. Used by the line item's creative as in [this example](/adops/send-all-bids-adops.html#step-3-add-a-creative) | `"123"`                                                                 |
+| `adId`   | String  | Unique identifier of a bid creative. Used by the line item's creative as in [this example](/adops/gam-creative-banner-sbs.html) | `"123"`                                                                 |
 | `pbLg`   | String  | Low granularity price bucket: $0.50 increment, capped at $5, floored to 2 decimal places (0.50, 1.00, 1.50, ..., 5.00)                                            | `"1.50"`                                                                |
 | `pbMg`   | String  | Medium granularity price bucket: 0.10 increment, capped at $20, floored to 2 decimal places (0.10, 0.20, ..., 19.90, 20.00)                                       | `"1.60"`                                                                |
 | `pbHg`   | String  | High granularity price bucket: 0.01 increment, capped at $20, floored to 2 decimal places (0.01, 0.02, ..., 19.99, 20.00)                                         | `"1.61"`                                                                |
@@ -482,6 +482,10 @@ function auctionOptionsLogging() {
     pbjs.onEvent('bidTimeout', timedOutBidders => {
         let auctionId = timedOutBidders.length > 0 ? timedOutBidders[0].auctionId : 0
         console.log(`Auction Options: Auction End! Timed Out! Bidders: ${Array.from(new Set(timedOutBidders.map(each => each.bidder))).join(',')} - ${auctionId}`);
+    })
+
+    pbjs.onEvent('bidderError', { error, bidderRequest } => {
+        console.log(`Auction Error: Bidder ${bidderRequest.bidderCode} responded with ${error.status} ${error.statusText} - ${bidderRequest.auctionId}`);
     })
 
     pbjs.onEvent('auctionEnd', auction => {

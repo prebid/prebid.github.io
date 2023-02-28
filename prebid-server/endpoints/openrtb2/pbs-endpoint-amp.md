@@ -32,8 +32,9 @@ For a more general reference, see the [Prebid AMP Implementation Guide
 | slot | optional | `String` | Added to OpenRTB request as imp[0].tagid |
 | timeout | optional | `String` | Added to OpenRTB request as tmax |
 | targeting | optional | `String` | First Party Data |
-| gdpr_consent | optional | `String` | Consent string passed from CMP. Note this is used for both GDPR and CCPA. |
-| consent_type | optional | `String` | If "1", request is TCFv1 and GDPR fields are ignored. If "2", the 'gdpr_consent' field is interpreted as TCFv2. If "3", the 'gdpr_consent' field is interpreted as us_privacy. |
+| gdpr_consent | optional | `String` | (PBS-Go ony) Consent string passed from CMP. Note this is used for both GDPR and CCPA. |
+| consent_string | optional | `String` | (PBS-Java only) Consent string passed from CMP. Note this is used for all privacy regulations. The consent_type field indicates which kind of string is present. |
+| consent_type | optional | `String` | (PBS-Java only) If "1", request is TCFv1 and GDPR fields are ignored. If "2", the 'gdpr_consent' field is interpreted as TCFv2. If "3", the 'gdpr_consent' field is interpreted as us_privacy. |
 | gdpr_applies | optional | `String` | Takes the values "true", "false" or empty. This is used as the value of regs.ext.gdpr. If "true", regs.ext.gdpr:1, if "false", regs.ext.gdpr:0. |
 | addtl_consent | optional | `String` | GAM "additional consent". If present, this value is copied to user.ext.ConsentedProvidersSettings.consented_providers |
 | account | optional | `String` | Can be used to pass the Prebid-Server specific account ID. This is useful if `tag_id` parameters aren't unique across accounts. |
@@ -93,12 +94,10 @@ An example Stored Request is given below:
 Note that other ext.prebid extensions can be specified in the stored request such as:
 - [ext.prebid.currency](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#currency-support)
 - [ext.prebid.aliases](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bidder-aliases)
-- [ext.prebid.multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only)
+- [ext.prebid.multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid)
 - etc.
 
 #### First Party Data
-
-(Currently only supported in PBS-Java)
 
 The nature of AMP is that user-level FPD is difficult or impossible. All of the pages are cached on a CDN and page javascript that can modify RTC calls is severely limited.
 
@@ -218,7 +217,7 @@ Specifically:
 
 ## Configuration Options
 
-- settings.generate-storedrequest-bidrequest-id: replace the stored request `id` with a UUID (PBS-Java only)
+- settings.generate-storedrequest-bidrequest-id: replace the stored request `id` with a UUID
 - amp.default-timeout-ms: default operation timeout for AMP requests
 - amp.timeout-adjustment-ms: reduces timeout value passed in AMP request. Can be used to account for estimated latency so that Prebid Server can respond to the AMP RTC request before it times out.
 - amp.max-timeout-ms: maximum operation timeout for AMP requests
