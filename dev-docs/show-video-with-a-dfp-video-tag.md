@@ -206,16 +206,6 @@ Below, find links to end-to-end "working examples" integrating Prebid.js demand 
 + [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
 + [Instream and Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
 
-### Using Prebid Server Video
-
-+ [Brid]({{site.baseurl}}/examples/video/server/brid/pbs-ve-brid.html)
-+ [JW Player - Platform]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
-+ [JW Player - Hosted]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
-+ [Kaltura]({{site.baseurl}}/examples/video/server/kaltura/pbs-ve-kaltura.html)
-+ [Ooyala]({{site.baseurl}}/examples/video/server/ooyala/pbs-ve-ooyala.html)
-+ [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)
-
-
 ## Related Topics
 
 + [Setting up Prebid Video in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html)
