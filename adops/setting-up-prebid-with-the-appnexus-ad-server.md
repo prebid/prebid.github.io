@@ -78,7 +78,7 @@ Follow the creative setup instructions in [Add Creatives](https://docs.xandr.com
 ![New creative]({{ site.github.url }}/assets/images/ad-ops/appnexus-setup/prebid-creative-appnexus.png) {: .pb-lg-img :}
 
 {% highlight html %}
-<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/#{HB_FORMAT}.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = window.location.host;
