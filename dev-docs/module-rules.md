@@ -80,7 +80,7 @@ All global rules apply.
 #### Stricly Enforced Rules
 
 1. Bid adapters must be able to bid. If they cannot return an auction bid, they should consider integration as a Real-Time Data or other module type.
-1. Bidder modules must not make requests to endpoints for functionality other than auctions without:
+1. Bidder modules must not make requests to endpoints for functionality other than auctions. There's no exceptions to this rule for Prebid Server, though Prebid.js may allow exceptions with:
     1. Disclosure
     1. Ability for the publisher to control the additional functionality.
     1. Ensuring auctions are still operable if the publisher turns off the additional functionality; i.e., bid adapters may log certain analytics events, but if a publisher turns it off, the auction should still happen.
