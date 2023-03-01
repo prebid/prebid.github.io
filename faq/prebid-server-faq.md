@@ -227,6 +227,6 @@ Generally, people and companies will work on features and bug fixes that directl
 4. The core team will review your PR.
 
 If you're looking to help but don't have a specific item in mind, there are two approaches:
-- You can scan the [issue list](https://github.com/prebid/prebid-server/issues) and add a note to one offering to take it. Someone will add your github handle as the `assignee`. 
-- You can attend the Prebid Server committee meeting and ask about the issues currently ranked as most desirable by the group. Contact membership-at-prebid-org to get the invite to that meeting.
+- You can scan the [issue list](https://github.com/prebid/prebid-server/issues) and add a note to one offering to take it. Someone will add your github handle as the `assignee`. A prioritized set of issues is available on our [project board](https://github.com/orgs/prebid/projects/4/views/1).
+- You can attend the Prebid Server committee meeting and ask about the issues currently ranked as most desirable by the group. Contact membership@prebid.org to get an invite to that meeting.
 
