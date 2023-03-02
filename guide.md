@@ -8,11 +8,12 @@ sidebarType: 0
 ---
 
 # Prebid Website Maintenance Guide
+{:.no_toc}
 
-v 1.2  
-Sept 24, 2021
+Updated Feb 9, 2023
 
-***
+* TOC
+{:toc}
 
 ## Reviewing Pull Requests and Issues
 
@@ -298,3 +299,26 @@ We use Algolia for site search.
 - The configuration defining the search parameters is at https://github.com/algolia/docsearch-configs/blob/master/configs/prebid.json
 - Only elements p, th, td, li, code, and h1-h3 are indexed
 - Code implementation in _includes/body-end.html and a the 'site-search' div in the header.
+
+## Cookie Privacy
+
+Prebid websites don't set their own cookies, but vendor products we use do. So we use the OneTrust CookiePro library to pop up a cookie banner. If the user hasn't consented to setting cookies, they will find reduced functionality on the site -- they won't be able to view JSFiddle examples or example videos.
+
+This is implemented with the [OneTrust](https://community.cookiepro.com/s/article/UUID-730ad441-6c4d-7877-7f85-36f1e801e8ca?language=en_US) library. See layout/example.md for how the OneTrust.InsertHtml function is used.
+The last argument to that function is the "group id", which declares what kind of cookies this vendor script is
+going to set. Here's how OneTrust defines the groups:
+
+1. Strictly Necessary cookies
+2. Performance cookies
+3. Function cookies
+4. Targeting cookies
+
+OneTrust categorizes cookies on their own, and it seems pretty random to us. Our guideline is to define tools as group 3 for small trusted vendors, or group 4 for large vendors that probably have a database of users.
+
+The test case for vendor code that drops cookies is simple:
+
+- clear your prebid.org cookies
+- reload the page
+- confirm the cookie banner appears
+- confirm the vendor's functionality doesn't appear
+- confirm that the vendor didn't set any cookies

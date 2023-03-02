@@ -31,6 +31,7 @@ The Rise adapter requires setup and approval. Please reach out to prebid-rise-en
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 | `rtbDomain` | optional | String |  Sets the seller end point	| "www.test.com"
+| `is_wrapper` | private | Boolean |  Please don't use unless your account manager asked you to	| false
 
 ## Example
 ```javascript
@@ -50,7 +51,7 @@ var adUnits = [{
                 org: '1234567890abcdef12345678', // Required
                 floorPrice: 0.05, // Optional
                 placementId: '12345678', // Optional
-                testMode: false // Optional,
+                testMode: false, // Optional,
                 rtbDomain: 'www.test.com' //Optional
             }
         }]
@@ -74,7 +75,7 @@ var adUnits = [{
                 org: '1234567890abcdef12345678', // Required
                 floorPrice: 5.00, // Optional
                 placementId: '12345678', // Optional
-                testMode: false // Optional,
+                testMode: false, // Optional,
                 rtbDomain: 'www.test.com' //Optional
             }
         }]
