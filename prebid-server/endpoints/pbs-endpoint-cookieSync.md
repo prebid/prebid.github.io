@@ -60,7 +60,7 @@ The client code is responsible for taking the `url` response parameter and invok
 | gdpr | optional | flag indicating whether the request is in-scope for GDPR processing | 1 | 0 or 1 |
 | gdpr_consent | optional | GDPR consent string from the CMP | | string |
 | limit | optional | number indicating the max number of sync URLs to return | 5 | integer |
-| coopSync | optional | (PBS-Java only) Cooperative syncing is a way for publishers to help each other by allowing PBS to sync bidders beyond those specified by the `bidders` argument. See below for details. The default depends on PBS host company settings. | true | boolean |
+| coopSync | optional | Cooperative syncing is a way for publishers to help each other by allowing PBS to sync bidders beyond those specified by the `bidders` argument. See below for details. The default depends on PBS host company settings. | true | boolean |
 | filterSettings | optional | object defining which types of syncs are allowed for which bidders. Modeled after the similar Prebid.js feature. | | object |
 | filterSettings.iframe | optional | define the filter settings for iframe syncs | | object |
 | filterSettings.image | optional | define the filter settings for redirect syncs | | object |
