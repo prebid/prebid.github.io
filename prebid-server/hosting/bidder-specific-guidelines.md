@@ -1,12 +1,12 @@
 ---
 layout: page_v2
-title: Bidder-Specific Guidelines for PBS Host Companies
-description: Bidder-Specific Guidelines for PBS Host Companies
+title: Bidder-Specific Hosting Guidelines
+description: Bidder-Specific Hosting Guidelines
 pid: 0
 sidebarType: 5
 ---
 
-# Bidder-Specific Guidelines for PBS Host Companies
+# Bidder-Specific Hosting Guidelines
 {:.no_toc}
 
 * TOC
@@ -16,15 +16,29 @@ sidebarType: 5
 
 In general, a PBS host company may want to run only the server-side bid adapters they require.
 
-PBS-Go enables most bidders by default, while PBS-Java doesn't
-enable any bidders out of the box.
+PBS-Go enables most bidders by default. PBS-Java doesn't enable any bidders by default.
 
 ### PBS-Go
 
 You might want to consider disabling bid adapters that you're not 
 going to utilize in order to control which bidders get into the [/cookie_sync](/prebid-server/endpoints/pbs-endpoint-cookieSync.html) response when you're running the `coopSync` flag.
 
-TBD: how would a host company disable bidders?
+To disable a bid adapter, in your main pbs.yaml file, set:
+
+```
+adapters:
+  BIDDERCODE:
+    disabled: true
+```
+
+If the bidder supports different endpoints per geography, you can deploy different
+config in each of your datacenters:
+
+```
+adapters:
+  BIDDERCODE:
+    endpoint: REGION_SPECIFIC_ENDPOINT
+```
 
 ### PBS-Java
 
