@@ -227,4 +227,4 @@ pbjs.enableAnalytics({
 
 ### See also
 
-[Prebid.js events](/dev-docs/publisher-api-reference/getEvents.md)
+[Prebid.js events](/dev-docs/publisher-api-reference/getEvents.html)

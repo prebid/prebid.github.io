@@ -7,6 +7,7 @@ gdpr_supported: true
 gvl_id: 82
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 media_types: banner, video, native
 userId: criteo, pubCommonId, unifiedId
 pbjs: true
