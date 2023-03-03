@@ -1406,6 +1406,20 @@ PBS-core creates this block before sending to bid adapters. They receive additio
             }
 ```
 
+##### Analytics Extension
+
+Some analytics adapters may support special flags that can be passed on ext.prebid.analytics. e.g.
+
+```
+ext.prebid: {
+  analytics: {
+    myanalyticsadapter: {
+      myflag: true
+    }
+  }
+}
+```
+
 #### OpenRTB Response Extensions
 
 ##### Bidder Response Times
@@ -1663,6 +1677,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.pbs.endpoint | additional Prebid Server metadata | string | yes |
 | ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
 | ext<wbr>.prebid<wbr>.returnallbidstatus | If true, PBS returns [ext.seatnonbid](#seat-non-bid) with details about bidders that didn't bid. | boolean | no |
+| ext<wbr>.prebid<wbr>.analytics | Arguments that can be passed through to individual analytics adapters | object | no |
 | imp<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. (ae stands for auction environment) | integer | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |

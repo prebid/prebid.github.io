@@ -29,9 +29,9 @@ AlgoriX adapter requires setup and approval from the AlgoriX team, even for exis
 | `token`       | required | Token         | `'028bca2d3b5c4f0ba155fa34864b0c4d'` | `string` |
 | `placementId` | optional | Placement Id  | `'123456'`                           | `string` |
 | `appId`       | optional | App Id        | `'asdasdasd'`                        | `string` |
-| `region`      | optional | Server Region | `'APAC' or 'USE'`                    | `string` |
+| `region`      | optional | Server Region | `'APAC', 'USE', 'EUC'`               | `string` |
 
 Note:
 * Prebid Server adapter only checks for and uses first imp bid params. All other imp bid params are ignored.
 * placementId and appId will be generated on AlgoriX Platform.
-* region is optional param, which determine the AlgoriX server. APAC for SG endpoint, USE for US endpoint, Other for Global endpoint.
+* region is optional param, which determine the AlgoriX server. APAC for SG endpoint, USE for US endpoint, EUC for EU endpoint, Other for Global endpoint.
