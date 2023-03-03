@@ -90,14 +90,14 @@ pbjs.setConfig(
 | adUnitCodes | Array of Strings | List of specific AdUnit codes you with to target             | Optional. If empty or absent, all ad units are targeted. |
 | minscore    | Integer          | Bidder-specific minimum categorization relevancy score (0, 100) | Optional, defaults to global minscore above.             |
 
-If you do not have your own `partnerid, publisherid, apikey` please reach out to [anna@relevad.com](mailto:anna@relevad,com).
+If you do not have your own `partnerid, publisherid, apikey` please reach out to [info@relevad.com](mailto:info@relevad.com).
 
 ## Testing
 
 To view an example of the on page setup required:
 
 ```bash
-gulp serve-fast --modules=rtdModule,relevadRtdProvider,appnexusBidAdapter
+gulp serve-fast --modules=rtdModule,relevadRtdProvider
 ```
 
 Then in your browser access:
