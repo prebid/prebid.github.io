@@ -2,7 +2,7 @@
 layout: video_sample
 title: Prebid Video Module | Instream Example with VideoJS Submodule
 description: An example of an instream pre-roll ad using the Prebid.js Video Module and the VideoJS submodule.
-videoType: pb-videoModule-vjs
+videoType: pb-vm-vjs
 isVideo: true
 sidebarType: 4
 ---
@@ -112,7 +112,6 @@ sidebarType: 4
                             adServer: {
                                 vendorCode: 'gam',
                                 baseAdTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator='
-                                //'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/137679306/HB_Dev_Center_Example&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&correlator=',
                             },
                         },]
                     },
@@ -138,11 +137,11 @@ sidebarType: 4
                 });
 
                 pbjs.onEvent('videoSetupFailed', e => {
-                    console.log('player setup failed: ', e);
+                    console.log('The player setup failed: ', e);
                 });
 
                 pbjs.onEvent('videoAdRequest', (e) => {
-                    console.log('videos pb ad request: ', e);
+                    console.log('An ad request was made: ', e);
                 });
 
                 pbjs.onEvent('videoBidError', e => {
@@ -175,12 +174,21 @@ sidebarType: 4
     </div>
 </div>
 
-<!--video player code-->
+{% if jekyll.environment == "production" %}
 <script>
     window.onetrustLoaded.then(() => {
         OneTrust.InsertHtml(exampleHTML, 'videoExample', null, {deleteSelectorContent: true}, 'C0003');
-    })
+    });
+</script>
+{% else %}
+<script>
+    const videoExampleDiv = document.getElementById('videoExample');
+    videoExampleDiv.innerHTML = exampleHTML;
+</script>
+{% endif %}
 
+<!--video player code-->
+<script>
     // Setup ad units
     var adUnits = [{
         code: 'div-gpt-ad-51545-0',
@@ -252,8 +260,6 @@ sidebarType: 4
             }
         });
 
-        pbjs.addAdUnits(adUnits);
-
         pbjs.onEvent('videoSetupComplete', e => {
             // Load media with its Metadata when the video player is done instantiating.
             videojs('player').loadMedia({
@@ -264,6 +270,8 @@ sidebarType: 4
                 type: 'video/mp4'
             });
         });
+
+        pbjs.addAdUnits(adUnits);
 
         pbjs.requestBids(adUnits);
     });
