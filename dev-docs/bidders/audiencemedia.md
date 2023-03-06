@@ -27,4 +27,4 @@ sidebarType: 1
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Ad network's RTB host | `'cpm.audience.media'` | `string` |
-| `zoneId` | required | Zone ID           | `'76156'`                 | `string` |
+| `zoneId` | required | Zone ID           | `76156`                 | `integer` |

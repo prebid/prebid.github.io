@@ -43,6 +43,7 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 | `visitor`      | optional           | See below for details on First Party Data. In release 4.29 and earlier, this parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays of strings. | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
 | `keywords`     | optional           | See below for details on First Party Data. In release 4.29 and earlier, this can be used to influence reports for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. | `["travel", "tourism"]`                                                             | `Array<string>`  |
 | `video`       | required for video | Video targeting parameters. See the [video section below](#rubicon-video).                                                  | `{"language": "en"}` | `object`  |
+| pchain | optional | deprecated option that was an early alternative to schain | "GAM:11111-reseller1:22222" | string |
 | `bidonmultiformat` | optional | Beta parameter - please check with your account manager before setting this value | `boolean` | `true` |
 
 #### First Party Data

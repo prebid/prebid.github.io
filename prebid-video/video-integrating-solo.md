@@ -95,30 +95,14 @@ This section contains working examples of instream and outstream video ads for v
 ## Using client-side adapters
 
 ### Instream
-+ [Akamai AMP]({{site.github.url}}/examples/video/instream/akamai/pb-ve-amp.html)
-+ [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
-+ [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
-+ [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
 + [JWPlayer - Platform]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
 + [JWPlayer - Hosted]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
-+ [Kaltura]({{site.github.url}}/examples/video/instream/kaltura/pb-ve-kaltura.html)
-+ [Ooyala]({{site.github.url}}/examples/video/instream/ooyala/pb-ve-ooyala.html)
 + [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
 
 ### Outstream
 
 + [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html)
 + [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-no-server.html)
-
-## Using Prebid Server
-
-+ [Brid]({{site.baseurl}}/examples/video/server/brid/pbs-ve-brid.html)
-+ [JW Player - Platform]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
-+ [JW Player - Hosted]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
-+ [Kaltura]({{site.baseurl}}/examples/video/server/kaltura/pbs-ve-kaltura.html)
-+ [Ooyala]({{site.baseurl}}/examples/video/server/ooyala/pbs-ve-ooyala.html)
-+ [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)
-
 
 # Further Reading
 

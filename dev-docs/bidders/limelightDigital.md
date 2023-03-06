@@ -29,5 +29,10 @@ sidebarType: 1
 | `adUnitId`    | required | Ad Unit Id will be generated on Limelight Digital Platform. | `42`                  | `integer` |
 | `adUnitType`  | required | Type of Ad Unit (`'video'`, `'banner'`)                     | `'banner'`            | `string`  |
 | `publisherId` | required | Publisher ID                                                | `'12345'`             | `string`  |
+| `custom1`     | optional | Custom targeting field 1                                    | `'custom1'`           | `string`  |
+| `custom2`     | optional | Custom targeting field 2                                    | `'custom2'`           | `string`  |
+| `custom3`     | optional | Custom targeting field 3                                    | `'custom3'`           | `string`  |
+| `custom4`     | optional | Custom targeting field 4                                    | `'custom4'`           | `string`  |
+| `custom5`     | optional | Custom targeting field 5                                    | `'custom5'`           | `string`  |
 
 Limelight Digital server-side Prebid Server adapter supports `banner`, `video`, `audio`, `native` media types. But Limelight Digital client-side Prebid.js adapter supports only `banner` and `video` media types, doesn't support `audio` and `native`.

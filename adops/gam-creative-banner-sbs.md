@@ -23,7 +23,7 @@ For complete instructions on setting up Prebid line items in Google Ad Manager, 
 5. Enter a **Target ad unit size** of `1x1`. This allows the creative to serve on all inventory sizes.
 
 {: .alert.alert-info :}
-These instructions assume you're using the Prebid Universal Creative (PUC). See the [Prebid Universal Creative](/overview/prebid-universal-creative.html) documentation for alternate approaches.
+These instructions assume you're using the Prebid Universal Creative (PUC) after v1.15 that supports the separate `banner.js` file. See the [Prebid Universal Creative](/overview/prebid-universal-creative.html) documentation for alternate approaches.
 
 {: .alert.alert-danger :}
 **AMP**: If you choose to bypass the PUC for AMP, Prebid Server events will not work.
@@ -43,7 +43,7 @@ These instructions assume you're using the Prebid Universal Creative (PUC). See 
 Be sure to replace BIDDERCODE with the appropriate bidder. For example, if the bidder code is `PBbidder`, the `adid` would be `%%PATTERN:hb_adid_PBbidder%%`.
 
 ```
-    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
     <script>
       var ucTagData = {};
       ucTagData.adServerDomain = "";
@@ -74,7 +74,7 @@ Warning: Be sure none of the attribute names are longer than 20 characters. See 
 In top-price mode, you can make use of the GAM `TARGETINGMAP` feature instead of listing out each attribute.
 
 ```
-<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";

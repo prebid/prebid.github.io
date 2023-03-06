@@ -62,6 +62,6 @@ A multi-format ad unit supports at least two of the following types: banner, nat
 Interstitial ads appear as full screen ads in mobile apps that must be dismissed for interaction with the app to continue. Prebid Mobile supports header bidding for interstitial ads.
 
 - [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
-- [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-pbs.html)
+- [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-getting-started.html)
 - [iOS Code Integration](/prebid-mobile/pbm-api/ios/code-integration-ios.html)
 - [Android Code Integration](/prebid-mobile/pbm-api/android/code-integration-android.html)

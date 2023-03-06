@@ -10,6 +10,7 @@ gdpr_supported: true
 gvl_id: 183
 usp_supported: true
 schain_supported: true
+floors_supported: true
 userIds: identityLink, uid2
 sidebarType: 1
 ---
