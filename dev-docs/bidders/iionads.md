@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Iion
-description: Iion Bidder Adaptor
+title: iion.io
+description: iion.io Bidder Adaptor
 biddercode: iionads
 pbjs: true
 pbs: true
