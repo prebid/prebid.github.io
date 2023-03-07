@@ -1276,6 +1276,14 @@
   subgroup: 2
 
 - sbSecId: 4
+  title: 'Prebid Video Module: VideoJS'
+  link: /examples/video/instream/videoModule/videojs/video-module-videojs.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 4
   title: 'JW Player (Platform)'
   link: /examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html
   isHeader: 0
@@ -1305,6 +1313,14 @@
   isHeader: 0
   isSectionHeader: 0
   isCatHeader: 1
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 4
+  title: 'Prebid Video Module: VideoJS'
+  link: /examples/video/instream/videoModule/videojs/video-module-videojs.html
+  isHeader: 0
+  isSectionHeader: 0
   sectionTitle:
   subgroup: 2
 
