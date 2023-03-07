@@ -383,7 +383,7 @@ a subset that will be merged under the 'data' object.
 | additionalSchemaFields."key map function" | function | Function used to lookup the value for that particular custom key | - |
 
 {: .alert.alert-info :}
-When you see 'skipped' in the floors data, it indicates the status of the `skipRate` A/B test for this request. This is just a mechanism to be able to tell if the floor rules are providing value. e.g `skipRate` will often start at a high value like 90%, which means "only apply floors 10% of the time". If skipRate is 90, you would expect to see "skipped: true" 9 times out 10.
+As noted for Schema 1, when you see 'skipped' in the floors data, it indicates the status of the `skipRate` A/B test for this request. This is just a mechanism to be able to tell if the floor rules are providing value. e.g `skipRate` will often start at a high value like 90%, which means "only apply floors 10% of the time". If skipRate is 90, you would expect to see "skipped: true" 9 times out 10.
 
 *Example 1*
 Model weights add up to 100 and are sampled at a 25%, 25%, 50% distribution. Additionally, each model group has diffirent schema fields:
@@ -1178,9 +1178,6 @@ The module will do this by leveraging the already-existing implementation for an
 | modelTimestamp | integer | Epoch timestamp associated with the modelVersion to be used for post auction analysis.| 1607126814 |
 | skipRate | integer | skipRate will be populated when a skip rate is configured in the module, even if the skipRate is evaluated to false. Skip Rate is used to determine when to skip all floors logic.  | 15 |
 | skipped | Boolean | Whether the skipRate resolved to be true or false| true |
-
-{: .alert.alert-info :}
-When you see 'skipped' in the floors data, it indicates the status of the `skipRate` A/B test for this request. This is just a mechanism to be able to tell if the floor rules are providing value. e.g `skipRate` will often start at a high value like 90%, which means "only apply floors 10% of the time". If skipRate is 90, you would expect to see "skipped: true" 9 times out 10.
 
 **bidResponse**: When a bid response is being processed it is important for analytics adapters to know the decision which was made and the context of the rule selection. Here is the data which is attached to each bidResponse:
 
