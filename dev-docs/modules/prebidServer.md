@@ -111,6 +111,10 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 
 * Setting `extPrebid.origreferrer` will be recognized by some server-side adapters as the referring URL for the current page.
 
+**Emitting SeatNonBid Data**
+
+* SeatNonBid information from Prebid Server can be emitted through a `seatNonBid` event by setting `extPrebid.returnallbidstatus` equal to `true`.
+
 ## Bid Params
 
 Bid params are sourced from the adapter configurations set for client side. These do not need to change for Prebid Server.
