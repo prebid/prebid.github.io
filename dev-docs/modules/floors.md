@@ -54,7 +54,7 @@ There are several places where the Floor module changes the behavior of the Preb
 1. When building the Prebid.js package, the Price Floors Module (and any analytics adapters) needs to be included with 'gulp build --modules=priceFloors,...'
 2. As soon as the setConfig({floors}) call is initiated, the Price Floors Module will build an internal hash table for each auction derived from a Rule Location (one of Dynamic, setConfig or adUnit)
   - a. If an endpoint URL (a Dynamic Floor) is defined, the Price Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Price Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data, whichever is first.
-  - If the `skipRate` flag is specified, there's an A/B test in progress, so the module will decide or this request whether floors processing should be 'skipped' or not.
+  - If the `skipRate` flag is specified, there's an A/B test in progress, so the module will decide for this request whether floors processing should be 'skipped' or not.
 3. Bid Adapters are responsible for utilizing the getFloor() from the bidRequest object for each ad slot media type, size combination. The Price Floors Module will perform currency conversion if the bid adapter requests floors in a different currency from the defined floor data currency.
 4. Bid Adapters will pass the floor values to their bidding endpoints, to request bids, responding with any bids that meet or exceed the provided floor
 5. Bid adapters will submit bids to back to Prebid core, where the Price Floors Module will perform enforcement on each bid
