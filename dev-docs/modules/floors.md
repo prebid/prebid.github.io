@@ -54,12 +54,12 @@ There are several places where the Floor module changes the behavior of the Preb
 1. When building the Prebid.js package, the Price Floors Module (and any analytics adapters) needs to be included with 'gulp build --modules=priceFloors,...'
 2. As soon as the setConfig({floors}) call is initiated, the Price Floors Module will build an internal hash table for each auction derived from a Rule Location (one of Dynamic, setConfig or adUnit)
   - a. If an endpoint URL (a Dynamic Floor) is defined, the Price Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Price Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data, whichever is first.
+  - If the `skipRate` flag is specified, there's an A/B test in progress, so the module will decide or this request whether floors processing should be 'skipped' or not.
 3. Bid Adapters are responsible for utilizing the getFloor() from the bidRequest object for each ad slot media type, size combination. The Price Floors Module will perform currency conversion if the bid adapter requests floors in a different currency from the defined floor data currency.
 4. Bid Adapters will pass the floor values to their bidding endpoints, to request bids, responding with any bids that meet or exceed the provided floor
 5. Bid adapters will submit bids to back to Prebid core, where the Price Floors Module will perform enforcement on each bid
 6. The Price Floors Module will mark all bids below the floor as bids rejected. Prebid core will submit all eligible bids to the publisher ad server
     - a. The Price Floors Module emits floor event / bid data to Analytics adapters to allow Floor Providers a feedback loop on floor performance for model training
-
 
 ## Defining Floors
 
@@ -316,6 +316,8 @@ a subset that will be merged under the 'data' object.
 | additionalSchemaFields."custom key" | string | custom key name | - |
 | additionalSchemaFields."key map function" | function | Function used to lookup the value for that particular custom key | - |
 
+{: .alert.alert-info :}
+When you see 'skipped' in the floors data, it indicates the status of the `skipRate` A/B test for this request. This is just a mechanism to be able to tell if the floor rules are providing value. e.g `skipRate` will often start at a high value like 90%, which means "only apply floors 10% of the time". If skipRate is 90, you would expect to see "skipped: true" 9 times out 10.
 
 
 ### Schema 2
@@ -380,6 +382,8 @@ a subset that will be merged under the 'data' object.
 | additionalSchemaFields."custom key" | string | custom key name | - |
 | additionalSchemaFields."key map function" | function | Function used to lookup the value for that particular custom key | - |
 
+{: .alert.alert-info :}
+When you see 'skipped' in the floors data, it indicates the status of the `skipRate` A/B test for this request. This is just a mechanism to be able to tell if the floor rules are providing value. e.g `skipRate` will often start at a high value like 90%, which means "only apply floors 10% of the time". If skipRate is 90, you would expect to see "skipped: true" 9 times out 10.
 
 *Example 1*
 Model weights add up to 100 and are sampled at a 25%, 25%, 50% distribution. Additionally, each model group has diffirent schema fields:
@@ -1174,6 +1178,9 @@ The module will do this by leveraging the already-existing implementation for an
 | modelTimestamp | integer | Epoch timestamp associated with the modelVersion to be used for post auction analysis.| 1607126814 |
 | skipRate | integer | skipRate will be populated when a skip rate is configured in the module, even if the skipRate is evaluated to false. Skip Rate is used to determine when to skip all floors logic.  | 15 |
 | skipped | Boolean | Whether the skipRate resolved to be true or false| true |
+
+{: .alert.alert-info :}
+When you see 'skipped' in the floors data, it indicates the status of the `skipRate` A/B test for this request. This is just a mechanism to be able to tell if the floor rules are providing value. e.g `skipRate` will often start at a high value like 90%, which means "only apply floors 10% of the time". If skipRate is 90, you would expect to see "skipped: true" 9 times out 10.
 
 **bidResponse**: When a bid response is being processed it is important for analytics adapters to know the decision which was made and the context of the rule selection. Here is the data which is attached to each bidResponse:
 
