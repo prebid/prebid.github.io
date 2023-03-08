@@ -1713,6 +1713,15 @@
   subgroup: 6
 
 - sbSecId: 5
+  title: '/version'
+  link: /prebid-server/endpoints/pbs-endpoint-version.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
+
+- sbSecId: 5
   title: 'Event Endpoints'
   link: /prebid-server/endpoints/pbs-endpoint-event.html
   Item: 1
