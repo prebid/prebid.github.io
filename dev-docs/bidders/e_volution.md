@@ -11,7 +11,8 @@ pbs: true
 pbs_app_supported: true
 usp_supported: true
 schain_supported: true
-pbjs_version_notes: not in 5.x
+userIds: id5Id
+sidebarType: 1
 ---
 
 ### Note:

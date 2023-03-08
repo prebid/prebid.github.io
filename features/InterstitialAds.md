@@ -11,24 +11,26 @@ sidebarType: 1
 * TOC
 {:toc}
 
-Interstitails ads are often placed at natural transition points of the user's experince, such as moving from one page to the next. These ads are generally center aligned overlaying user content. 
+Interstitial ads are often placed at natural transition points of the user's experience, such as moving from one page to the next. These ads are generally center-aligned overlaying user content. 
 
 This document covers how to setup interstitial ad units.
 
 {: .alert.alert-warning :}
-Please check with each of your bidders to ensure they're reading the interstitial flag from the standard Prebid location.
+Please check with each of this AdUnit's bidders to ensure they're reading the interstitial flag from the standard Prebid location.
+If the bidder doesn't specifically support interstitials, results may be unexpected.
 
 
 ## How It Works
 
-The intended flow for publishers is the following:
-- Publisher traffics interstitial line item with appropriate size(s) ([GAM example](https://support.google.com/admanager/answer/9840201?hl=en))
+The  flow for publishers is the following:
+- Publisher traffics an interstitial line item with appropriate size(s) ([GAM example](https://support.google.com/admanager/answer/9840201?hl=en))
 - Publisher defines ad server interstitial slot on the page ([GAM Example](https://developers.google.com/publisher-tag/samples/display-web-interstitial-ad))
-- Publisher defines the appropriate interstitial ad sizes within appriate adUnit.mediaType and supplies the adUnit Interstitial flag within the [AdUnit.ortb2Imp](/dev-docs/adunit-reference.html#adUnit-interstitial-example) config
+- Publisher creates a PBJS AdUnit and defines the appropriate interstitial ad sizes, adUnit.mediaType, and a special interstitial flag
+- Publisher adds bidders and parameters that support interstitials to the PBJS AdUnit(s)
 - Prebid requests bids for interstitial adUnits and invokes the ad server call from the requestBids callback
 
 ## Ad Sizes
-Publishers are intended to set the desired size in the respective adUnit. 
+Publishers must set the desired size in the respective adUnit. 
 
 The below sizes are specials sizes to indicate the ad will be full screen for mobile or tablet devices:
 - 320x480: Fullscreen mobile phone portrait ad
@@ -39,7 +41,6 @@ The below sizes are specials sizes to indicate the ad will be full screen for mo
 ## In-Page Example
 
 The Prebid Interstitial flag reflects the OpenRTB standard, specifying it at the imp level.
-
 
 ### Supplying Interstitial Flag
 
@@ -54,9 +55,11 @@ pbjs.addAdUnits({
         }
     },
     ortb2Imp: {
-        intl:1
+        instl:1
     },
-    ...
+    bids: [
+      ... bidders that support interstitials ...
+    ]
 });
 {% endhighlight %}
 
@@ -64,7 +67,7 @@ pbjs.addAdUnits({
 
 ## How Bid Adapters Should Read Interstitial Flag
 
-To access global data, a Prebid.js bid adapter needs only to retrive the interstitial flag from the adUnit like this:
+To access global data, a Prebid.js bid adapter needs only to retrieve the interstitial flag from the adUnit like this:
 
 {% highlight js %}
 utils.deepAccess(bidRequest.ortb2Imp, 'instl')

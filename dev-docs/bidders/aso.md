@@ -7,10 +7,14 @@ gdpr_supported: true
 usp_supported: true
 media_types: video
 safeframes_ok: true
-bidder_supports_deals: false
+deals_supported: false
 pbjs: true
 pbs: false
-getFloor: true
+floors_supported: true
+schain_supported: true
+multiformat_supported: will-bid-on-one
+userIds: all
+sidebarType: 1
 ---
 ### Note:
 
@@ -19,9 +23,11 @@ For more information about [Adserver.Online](https://adserver.online), please co
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `zone`        | required | Zone ID               | `73815`   | `integer` |
+| Name          | Scope    | Description             | Example                  | Type      |
+|---------------|----------|-------------------------|--------------------------|-----------|
+| `zone`        | required | Zone ID                 | `73815`                  | `Integer` |
+| `attr`        | optional | Custom targeting params | `{keywords: ["a", "b"]}` | `Object`  |
+| `server`      | optional | Custom bidder endpoint  | `https://endpoint.url`   | `String`  |
 
 ### Test Parameters
 

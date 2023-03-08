@@ -7,6 +7,7 @@ page_type: module
 module_type: rtd
 module_code : optimeraRtdProvider
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 
@@ -21,8 +22,10 @@ Optimera Real Time Data Module. Provides targeting for ad requests from data col
 1) Compile the Optimera RTD Provider into your Prebid build:
 
 ```
-`gulp build --modules=optimeraRtdProvider`...
+`gulp build --modules=rtdModule,optimeraRtdProvider`...
 ```
+
+Note: You must include rtdModule in the build list.
 
 2) Use `setConfig` to instruct Prebid.js to initialize the optimera module, as specified below.
 
@@ -48,6 +51,12 @@ Configuration example for using RTD module with the `optimeraRTD` provider:
       ]
     }
 ``` 
+
+## Migration From the Optimera Bidder Adapter
+
+The Optimera Bidder Adapter is no longer active with Prebid 5.0. Therefore, the bidder settings used for the Optimera Bidder Adapter for < Prebid 5.0 can be removed and replaced with this new Optimera RTD module configuration.
+
+For the optimeraKeyName setting, the Optimera Bidder Adapter used 'hb_deal_optimera' as the key name, as this is the key that name used in GAM. There is no need to change this key name in GAM, as you can still use this key name with the Optimera RTD Module as indicated above.
 
 Parameters details:
 

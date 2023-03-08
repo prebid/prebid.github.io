@@ -2,13 +2,22 @@
 <html lang="en" class="html--no-js">
 
 <head>
-{% include head--common.html %}    
+{% include head--common.html %}
     <!--production version of prebid.js-->
-    <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
-    <script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
-    
-    <!--pbjs and player code -->	
-    
+    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+    <script>
+      let resolveGPT;
+      window.gptLoaded = new Promise((resolve) => resolveGPT = resolve);
+      function gptReady() {
+        resolveGPT();
+      }
+      window.onetrustLoaded.then(() => {
+        OneTrust.InsertScript("https://securepubads.g.doubleclick.net/tag/js/gpt.js", 'head', gptReady, {}, 'C0003');
+      })
+    </script>
+
+    <!--pbjs and player code -->
+
 	<script>
 
             var pbjs = pbjs || {};
@@ -23,12 +32,12 @@
                 code: 'video1',
                 mediaTypes: {
                     video: {
-                        context: 'outstream'
+                    context: 'outstream',
                 	playerSize: [640, 480],
-			mimes: ['video/mp4'],
-			protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-			playbackmethod: [2],
-			skip: 1
+                        mimes: ['video/mp4'],
+                        protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                        playbackmethod: [2],
+                        skip: 1
                     }
                 },
                 bids: [
@@ -49,6 +58,7 @@
             });
 
             function initAdserver() {
+              window.gptLoaded.then(() => {
                 if (pbjs.initAdserverSet) return;
                 pbjs.initAdserverSet = true;
                 googletag.cmd.push(function() {
@@ -57,6 +67,7 @@
                         googletag.pubads().refresh();
                     });
                 });
+              });
             }
 
             setTimeout(function() {

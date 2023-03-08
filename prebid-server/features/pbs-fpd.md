@@ -29,7 +29,10 @@ First Party Data in the OpenRTB JSON in several places:
 | --- | --- | --- | --- | --- |
 | site.ATTR | Only standard OpenRTB attributes should be here: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. | config ortb2.site.ATTR | n/a | Stored Request |
 | site.ext.data.ATTR | Any other site-related attributes should go here. | config ortb2.site.ext.data | n/a | Stored Request |
+| site.keywords | Site keywords | config ortb2.site.keywords | n/a | Stored Request |
 | app.ext.data.ATTR | Any app-related attributes should go here. | n/a | Targeting addContextData() | n/a |
+| app.keywords | App keywords | n/a | Targeting addContextKeywords() | n/a |
+| user.keywords | User keywords | config ortb2.user.keywords | addUserKeywords | n/a |
 | user.ATTR | Only standard OpenRTB attributes should be here: yob, gender, keywords. | config ortb2.user.ATTR | n/a | n/a |
 | user.ext.data.ATTR | Any other user-related attributes should go here. | config ortb2.user.ext.data.ATTR | Targeting addUserData() | n/a |
 | imp[].ext.data.ATTR | AdUnit-specific attributes should go here. | AdUnit.ortb2.ext.data | AdUnit addContextData() | AMP targeting attribute or Stored Request |

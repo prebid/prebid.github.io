@@ -5,7 +5,7 @@ description: Prebid Smartico Bidder Adaptor
 pbjs: true
 biddercode: smartico
 media_types: banner
-pbjs_version_notes: not in 5.x
+sidebarType: 1
 ---
 
 ### Bid Params

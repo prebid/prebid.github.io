@@ -7,7 +7,7 @@ title: Prebid Server | Endpoints | Events
 
 # Prebid Server | Endpoints | Events (Java-only)
 
-PBS-Java supports events as described in these GitHub issues:
+Prebid Server supports events as described in these GitHub issues:
 
 - [Prebid Server Event Notification proposal](https://github.com/prebid/prebid-server/issues/800)
 - [Prebid Server Event Updates](https://github.com/prebid/prebid-server/issues/1202)

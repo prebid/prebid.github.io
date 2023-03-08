@@ -8,6 +8,7 @@ biddercode: bidscube
 media_types: banner, video, native
 gdpr_supported: true
 pbs_app_supported: true
+sidebarType: 1
 ---
 
 ### Note:

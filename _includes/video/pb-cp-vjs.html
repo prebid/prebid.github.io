@@ -2,10 +2,10 @@
 <html lang="en" class="html--no-js">
 
 <head>
-{% include head--common.html %}    
+{% include head--common.html %}
     <!--production version of prebid.js-->
-    <!--<script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>-->
-    
+    <!--<script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>-->
+
     <!--videojs & prebid js code-->
     <!-- use recent version of videojs to ensure proper functioning with the iOS devices -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.4.0/video-js.css">
@@ -13,7 +13,7 @@
 	<!-- videojs-vast-vpaid -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs.vast.vpaid.min.css" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs_5.vast.vpaid.min.js"></script>
-	
+
 	<script type="text/javascript">
 	  var options = {
 	    biddersSpec: {
@@ -57,7 +57,7 @@
 	  function doHeaderBidding() {
 	    window.prebidPluginCP.doPrebid(options);
 	  }
-	    
+
 	</script>
 	<script src="//acdn.adnxs.com/video/plugins/cp/PrebidPluginCP.min.js" onload="doHeaderBidding()"></script>
 </head>

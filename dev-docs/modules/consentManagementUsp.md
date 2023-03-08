@@ -2,10 +2,11 @@
 layout: page_v2
 page_type: module
 title: Consent Management - US Privacy
-description: Module to consume and distribute US Privacy information to bidder adapters
+description: If you have users in California, this module works with your Consent Management Platform to pass CCPA/US-Privacy data to bidders.
 module_code : consentManagementUsp
 display_name : Consent Management - US Privacy
 enable_download : true
+recommended: true
 sidebarType : 1
 ---
 
@@ -26,7 +27,7 @@ sidebarType : 1
 
 This consent management module is designed to support the California Consumer Privacy Act ([CCPA](https://www.iab.com/guidelines/ccpa-framework/)). The IAB has generalized these guidelines to cover future regulations, referring to the feature as "US Privacy."
 
-This module works with an IAB-compatible US Privacy API (USP-API) to fetch an encoded string representing the user's notice and opt-out choices and make it available for adapters to consume and process.
+This module works with an IAB-compatible US Privacy API (USP-API) to fetch an encoded string representing the user's notice and opt-out choices and make it available for adapters to consume and process. In Prebid 7+; the module defaults to working with an IAB-compatible US Privacy API; in prior versions, the module had to be configured to be in effect.
 
 {: .alert.alert-info :}
 See also the [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagement.html) for supporting the EU General Data Protection Regulation (GDPR)
@@ -37,20 +38,43 @@ Here's a summary of the interaction process:
 2. Incorporate this data into the auction objects for adapters to collect.
 3. Proceed with the auction.
 
-In the the case of a new user, the USP-API will generally respond only after there is notice and opt-out status information available (i.e., the user has made their choices).
-Making these selections can take some time for the average user, so the module provides timeout settings.
+The IAB USP-API will respond immediately if it is available. The module timeout settings are not related to user selection, but only to API availability.
 
+If the timeout period expires or an error from the USP-API is thrown, the auction proceeds without a US Privacy string attached.
 
-If the timeout period expires or an error from the USP-API is thrown, the auction proceeds without the user's notice and opt-out status information.
+ The string has four characters:
+
+{: .table .table-bordered .table-striped }
+| String Component | Values |
+| --- | --- |
+| 1) Specification Version|	1|
+| 2) Explicit Notice/Opportunity to Opt Out|	(N = No,Y = Yes,– = Not Applicable)|
+| 3) Has user opted-out of the sale of his or her personal information?| 	(N = No,Y = Yes,– = Not Applicable)|
+| 4) Publisher is a signatory to the IAB Limited Service Provider Agreement| 	(N = No,Y = Yes,– = Not Applicable)|
+
+### Deletes
+
+As of January 1st 2023, CCPA will require that requests to "delete my personal information" (right to delete) must be propagated to all 3rd parties user data is being shared with. US Privacy Consent Management Module will support this feature in 7.23.0 and above. 
+
+Prebid Modules that receive user data (bid adapters, analytics adapters), or set user data (UserId, RTD) may define a new method called `onDataDeletionRequest`. The US Privacy Consent Management Module will attach a `registerDeletion` event handler with the CMP, when triggered it will: 
+
+The USP module attaches a 'registerDeletion' event handler with the CMP; when triggered, it will:
+- invoke the methods above on all adapters
+- delete all IDs from cookies/localStorage
+
+3rd parties can define the method like this:
+- UserID submodules can define a method onDataDeletionRequest(config, idValue)
+- Bid adapters can define a method spec.onDataDeletionRequest(bidderRequests)
+- Analytics adapters can define a method onDataDeletionRequest()
 
 ## Page Integration
 
 To utilize this module, software that provides the [USP-API](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md) must to be implemented on the site to interact with the user and obtain their notice and opt-out status.
 
 
-Though implementation details for the USP-API are not covered by Prebid.org, we do recommend to that you place the code before the Prebid.js code in the head of the page in order to ensure the framework is loaded before the Prebid code executes.
+Though implementation details for the USP-API are not covered by Prebid.org, we do recommend to that you place the code before the Prebid.js code in the head of the page in order to ensure the framework is loaded before the Prebid code executes. Many publishers who ensure the prior availability of the `__uspapi` set the timeout parameter to zero. 
 
-Once the USP-API is implemented, simply include this module into your build and add a `consentManagement` object in the `setConfig()` call.  Adapters that support this feature will then be able to retrieve the notice and opt-out status information and incorporate it in their requests.
+Once the USP-API is implemented, simply include this module into your build and add a `consentManagement` object in the `setConfig()` call. Without configuration, Prebid will throw a warning that the module is unconfigured, and will proceed with the default configuration parameter `cmpApi` as 'iab'. Adapters that support this feature will then be able to retrieve the notice and opt-out status information and incorporate it in their requests.
 
 Here are the parameters supported in the `consentManagement` object:
 
@@ -59,12 +83,15 @@ Here are the parameters supported in the `consentManagement` object:
 | --- | --- | --- | --- |
 | usp | `Object` | | |
 | usp.cmpApi | `string` | The USP-API interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
-| usp.timeout | `integer` | Length of time (in milliseconds) to allow the USP-API to obtain the CCPA string. Default is `10000`. | `10000` |
+| usp.timeout | `integer` | Length of time (in milliseconds) to allow the USP-API to obtain the CCPA string. Default is `50`. | `50` |
 | usp.consentData | `Object` | An object representing the CCPA notice and opt-out status data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 
 {: .alert.alert-info :}
 Note that the term 'CMP' (Consent Management Platform) was chosen in Prebid to keep the interface similar
 to the GDPR implementation, though US-Privacy doesn't specifically use that term.
+
+
+
 
 ### Examples
 
@@ -89,7 +116,7 @@ Example 1: Support both US Privacy and GDPR
      });
 {% endhighlight %}
 
-Example 2: Support US Privacy
+Example 2: Support US Privacy; timeout the api availability at zero because it is always available if it applies
 
 {% highlight js %}
      var pbjs = pbjs || {};
@@ -99,14 +126,14 @@ Example 2: Support US Privacy
          consentManagement: {
            usp: {
             cmpApi: 'iab',
-            timeout: 100 // US Privacy timeout 100ms
+            timeout: 0 // US Privacy timeout 100ms
            }
          }
        });
      });
 {% endhighlight %}
 
-Example 3: Static CMP using custom data passing.
+Example 3: Static CMP using custom data passing. Placing this config call in the command queue before loading Prebid is important to ensure the string is available before Prebid begins making external calls. 
 
 {% highlight js %}
      var pbjs = pbjs || {};
@@ -127,6 +154,26 @@ Example 3: Static CMP using custom data passing.
      });
 {% endhighlight %}
 
+Example 4: Static CMP with USP string set to does not apply for all fields, which may be useful to prevent excessive interaction with the `__uspapi` outside of the geographic scope. Placing this config call in the command queue before loading Prebid is important to ensure it is available early. 
+
+{% highlight js %}
+     var pbjs = pbjs || {};
+     pbjs.que = pbjs.que || [];
+     pbjs.que.push(function() {
+        pbjs.setConfig({
+          consentManagement: {
+            usp: {
+              cmpApi: 'static',
+              consentData: {
+                getUSPData: {
+                  uspString: '1---'
+                }
+              }
+            }
+          }
+        });
+     });
+{% endhighlight %}
 ## Build the Package
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the the **gulp build** command:
