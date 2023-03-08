@@ -247,9 +247,9 @@ The behavior of the keys is:
 * `includewinners`: If set to true, Prebid Server will emit the top winning bid as `hb_pb` format. If set to false, Prebid Server will not supply the top bid.
 * `includebidderkeys`: If set to true, Prebid Server will emit all bidder keys as `hb_pb_BIDDERNAME` along with all other bidder specific keys. If false, Prebid Server will not supply any bidder specific keys.
 
-### The SDK Recieves Prebid Server's Response
+### The SDK Receives Prebid Server's Response
 
-Prebid SDK will set the publisher ad server targeting with all keys recieved from Prebid Server's response, unadultered, contained in the `ext.prebid.targeting` object.
+Prebid SDK will set the publisher ad server targeting with all keys received from Prebid Server's response, unadultered, contained in the `ext.prebid.targeting` object.
 
 
 #### Application Code Calls the Ad Server

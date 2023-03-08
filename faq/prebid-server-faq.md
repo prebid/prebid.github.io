@@ -216,3 +216,17 @@ utilize the new location.
 ## Does PBS support SSL?
 
 No, Prebid Server is intended to run behind a load balancer or proxy, so it does not currently support defining a security certificate.
+
+## How can I help with Prebid Server?
+
+Generally, people and companies will work on features and bug fixes that directly affect them. The process is:
+
+1. If there's not already an issue tracking the work, create an issue in the PBS-Go repo [here](https://github.com/prebid/prebid-server/issues/new). Note: we track enhancement requests in the PBS-Go repo. If it's a bug that affects PBS-Java only, then you can open the issue [here](https://github.com/prebid/prebid-server-java/issues/new).
+2. The issue should describe what you're planning to build/fix. We'll want to review any interfaces, config options, or metrics for consistency.
+3. After getting approval (if needed), you'll make a Pull Request against the appropriate repo, whether PBS-Go or PBS-Java. Be sure to have read the contribution guidelines for [PBS-Go](https://github.com/prebid/prebid-server/tree/master/docs/developers) or [PBS-Java](https://github.com/prebid/prebid-server-java/tree/master/docs/developers).
+4. The core team will review your PR.
+
+If you're looking to help but don't have a specific item in mind, there are two approaches:
+- You can scan the [issue list](https://github.com/prebid/prebid-server/issues) and add a note to one offering to take it. Someone will add your github handle as the `assignee`. A prioritized set of issues is available on our [project board](https://github.com/orgs/prebid/projects/4/views/1).
+- You can attend the Prebid Server committee meeting and ask about the issues currently ranked as most desirable by the group. Contact membership@prebid.org to get an invite to that meeting.
+

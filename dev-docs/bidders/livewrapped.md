@@ -6,12 +6,14 @@ biddercode: livewrapped
 pbjs: true
 media_types: banner, video, native
 gdpr_supported: true
+prebid_member: true
 userIds: all
 schain_supported: true
 gvl_id: 919
 usp_supported: true
 coppa_supported: true
 safeframes_ok: true
+floors_supported: true
 sidebarType: 1
 ---
 

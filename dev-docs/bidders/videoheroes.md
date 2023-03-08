@@ -23,6 +23,7 @@ The VideoHeroes Header Bidding adapter requires setup and approval from the Vide
 
 ### Bid Params
 
-| Name          | Scope    | Description                       | Example                             | Type      |
-|---------------|----------|-----------------------------------|-------------------------------------|-----------|
-| `placementId` | required | VideoHeroes platform placement id | `1a8d9c22db19906cb8a5fd4518d05f62`  | `string`  |
+{: .table .table-bordered .table-striped }
+| Name | Scope    | Description         | Example                                  | Type     |
+|------|----------|---------------------|------------------------------------------|----------|
+| placementId  | required | VideoHeroes platform placement id | `'1a8d9c22db19906cb8a5fd4518d05f62'` | `string` |

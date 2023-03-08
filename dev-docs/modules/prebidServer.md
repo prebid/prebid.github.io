@@ -45,12 +45,14 @@ The same bidder cannot be set in both configs. For example:
 pbjs.setConfig({
     s2sConfig: [
     {
+        name: "pbs-appnexus",
         accountId: '12345',
         bidders: ['appnexus','pubmatic'],
         defaultVendor: 'appnexus',
         timeout: 300,
     },
     {
+        name: "pbs-rubicon",
         accountId: '678910',
         bidders: ['rubicon'],
         defaultVendor: 'rubicon',
@@ -65,6 +67,7 @@ There are many configuration options for s2sConfig:
 | Attribute | Scope | Type | Description                                                                                   |
 |------------+---------+---------+---------------------------------------------------------------|
 | `accountId` | Required | String | Your Prebid Server account ID. This is obtained from whoever's hosting your Prebid Server. |
+| `name` | Optional | String | A handle for this configuration, used to reference a specific server (when multiple are present) from [ad unit configuration](/dev-docs/adunit-reference.html#stored-imp) | 
 | `bidders` | Optional | Array of Strings | Which bidders auctions should take place on the server side |
 | `allowUnknownBidderCodes` | Optional | Boolean | Allow Prebid Server to bid on behalf of bidders that are not explicitly listed in the adUnit. See important [note](#allowUnknownBidderCodes) below. Defaults to `false`. |
 | `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.  Individual properties can be overridden by including them in the config along with this setting. See the Additional Notes below for more information. |
@@ -107,6 +110,10 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 **Passing the Referrer to Server Side Adapters**
 
 * Setting `extPrebid.origreferrer` will be recognized by some server-side adapters as the referring URL for the current page.
+
+**Emitting SeatNonBid Data**
+
+* SeatNonBid information from Prebid Server can be emitted through a `seatNonBid` event by setting `extPrebid.returnallbidstatus` equal to `true`.
 
 ## Bid Params
 
