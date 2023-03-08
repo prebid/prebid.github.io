@@ -36,6 +36,7 @@ For legacy "aol", "oneMobile" adapter partners/publishers.
 |------------|----------|------------------------|---------|----------|
 | dcn | Required | Site ID provided by Yahoo SSP | 'site1' | string |
 | pos | Required | Placement ID provided by Yahoo SSP | 'placement1' | string |
+
 #### PubId Integration Parameters (JS Only)
 For New partners/publishers joining Yahoo SSP
 floors_supported: true and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.

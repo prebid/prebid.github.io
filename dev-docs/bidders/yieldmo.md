@@ -54,6 +54,7 @@ In addition, Yieldmo adapter relies on parameters specified in the `mediaTypes.v
 |-------------------|----------|--------------------------------------------------------|-----------------|------------------|
 | `playerSize`      | required | Width and height of the player                         | `[640, 480]`    | `Array<integer>` |
 | `context`         | required | `instream` or `outstream ` are only supported                           | `instream`      | `string`         |
+
 ### Example of in-stream Video Ad-unit
 ```javascript
 var videoAdUnits = [{

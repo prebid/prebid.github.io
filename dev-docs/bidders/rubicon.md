@@ -177,7 +177,7 @@ The following Rubicon Project-specific video parameters are supported:
 {: .table .table-bordered .table-striped }
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
-| `size_id`      | optional for Prebid.js, required for Prebid Server |  Integer indicating the Rubicon Project video ad format ID. If not set, Prebid.js can infer from mediaTypes.video.context, placement, startDelay | `201`   | `integer` |
+| `size_id`      | optional |  Integer indicating the Rubicon Project video ad format ID. If not set, will be inferred from mediaTypes.video.context, placement, startDelay | `201`   | `integer` |
 | `language`     | recommended | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `'en'`  | `string`  |
 
 Here's a video example for Prebid.js 2.5 or later:
