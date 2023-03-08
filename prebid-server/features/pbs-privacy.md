@@ -75,7 +75,7 @@ under one communication path.
 Prebid Server support for this protocol is still being developed:
 
 1. (done) Passthrough - GPP parameters are forwarded through auction and usersync signals. In ORTB 2.6, these are regs.gpp and regs.gpp_sid. For url protocols, look for `gpp` and `gpp_sid`.
-1. (in-progress) GPP as a TCF and USP wrapper - PBS parses the GPP container for TCF2 and USP strings, extracting them to the original ORTB location.
+1. (done) GPP as a TCF and USP wrapper - PBS parses the GPP container for TCF2 and USP strings, extracting them to the original ORTB location. (PBS-Java only for now)
 1. (planned) GPP infrastructure - the ability to plug new regulations into PBS, and the first sub-module, the IAB's US [National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md).
 
 ## COPPA
