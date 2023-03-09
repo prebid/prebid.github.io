@@ -2,7 +2,7 @@
 layout: page_v2
 title: ArcSpan RTD Module
 display_name: ArcSpan RTD Module
-description: Surfaces contextual classification signals in the bid request to enhance the addressability of ad impressions and increase buyer demand
+description: ArcSpan is a real-time audience monetization platform focused on the needs of the world’s finest publishers and retailers. Unlock the true value of your first-party audience data while providing advertisers the targeting performance they need.
 page_type: module
 module_type: rtd
 module_code : arcspanRtdProvider
@@ -19,7 +19,7 @@ sidebarType : 1
 
 ## Prebid Config for ArcSpan RTD Module
 
-This module attaches contextual classification signals to the site object in the bid request, with the goal of enhancing the addressability of ad impressions and increasing buyer demand.
+ArcSpan is a real-time audience monetization platform focused on the needs of the world’s finest publishers and retailers. Unlock the true value of your first-party audience data while providing advertisers the targeting performance they need.
 
 {: .alert.alert-warning :}
 Disclosure: This module loads external code that is not open source and has not been reviewed by Prebid.org.
