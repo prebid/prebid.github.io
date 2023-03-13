@@ -222,6 +222,10 @@ Sometimes the owner of a bid adapter or other kind of module wants to rename the
 3) The docs repo should contain both names, with the old name referring to the new name. You can add the "enable_download: false" flag to prevent installations of the old name.
 4) At the next major release the old files may be removed.
 
+## Does Prebid.js support Amazon TAM?
+
+We would love for Amazon to contribute a TAM adapter, but so far that's not something they've been willing to consider. In fact, Prebid isn't even allowed to publish a page on how Prebid and TAM can co-exist on a page. Please work with your Amazon support team for that.
+
 ## Related Reading
 
 + [Prebid.js Troubleshooting Guide](/troubleshooting/troubleshooting-guide.html)
