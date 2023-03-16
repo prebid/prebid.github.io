@@ -34,7 +34,7 @@ sidebarType: 1
   - [Video (Instream)](#video-instream)
   - [Video (Outstream)](#video-outstream)
 - [First Party Data](#first-party-data)
-- [Programmatic DMP](#programmatic-dmp)
+- [Programmatic DMP](#triplelift-programmatic-dmp)
 
 <a name="triplelift-overview" />
 
