@@ -83,7 +83,7 @@ See the [Prebid Server Privacy Feature Page](/prebid-server/features/pbs-privacy
 For Prebid.js-initated server requests, we've found that cookie match rates are about what can be expected given the constraints:
 
 - The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) process is initiated by Prebid.js the moment the [s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) is parsed.
-- A limited number of bidders will be synced at once. PBS-Go will sync all the bidders listed in the `bidders` array. PBS-Java will sync all of them and possibly additional bidders. Publishers can change the number of syncs by specifying `userSyncLimit` on the s2sConfig.
+- A limited number of bidders will be synced at once. Prebid Server will sync all bidders listed in the `bidders` array and possibly additional bidders. Publishers can change the number of syncs by specifying `userSyncLimit` on the s2sConfig.
 - Privacy settings (e.g. GDPR) can affect sync rate. e.g. If a lot of your traffic is in the EEA, it's going to be harder to set cookies.
 
 [AMP](/prebid-server/use-cases/pbs-amp.html) is a different story. There are several things you should check:

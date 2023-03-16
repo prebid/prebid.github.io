@@ -242,7 +242,7 @@ pbjs.addAdUnits([{
 ### Stored responses
 
 For debugging purposes, it can be useful to have a page that retrieves a static value rather than running an actual auction.
-For this you can use PBS [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses-pbs-java-only).
+For this you can use PBS [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses).
 Here's an example:
 
 ```javascript

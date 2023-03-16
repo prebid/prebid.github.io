@@ -29,7 +29,7 @@ An OpenRTB 2.5 Bid Request contains one or more Impressions, each representing a
 
 ### Choose A Name
 
-You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `data`, `general`, `prebid`, `skadn` or `tid` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go#L37).
+You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `ae`, `all`, `context`, `data`, `general`, `gpid`, `prebid`, `skadn` or `tid` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders.go#L31).
 
 We ask that the first 6 letters of the name you choose be unique among the existing bid adapters. This consideration helps with generating targeting keys for use by some ad exchanges, such as Google Ad Manager. There's no need to manually check, as this constraint is enforced by the [`TestBidderUniquenessGatekeeping`](https://github.com/prebid/prebid-server/blob/master/openrtb_ext/bidders_validate_test.go#L45) test.
 
@@ -120,7 +120,8 @@ Modify this template for your bid adapter:
 ```yaml
 endpoint: "http://foo.com/openrtb2"
 maintainer:
-  email: foo@foo.com
+  email: prebid-maintainer@example.com
+endpointCompression: gzip
 gvlVendorID: 42
 capabilities:
   site:
@@ -139,7 +140,8 @@ userSync:
 ```yaml
 endpoint: "http://foo.com/openrtb2"
 maintainer:
-  email: foo@foo.com
+  email: prebid-maintainer@example.com
+endpointCompression: gzip
 capabilities:
   site:
     mediaTypes:
@@ -157,7 +159,8 @@ userSync:
 ```yaml
 endpoint: "http://foo.com/openrtb2"
 maintainer:
-  email: foo@foo.com
+  email: prebid-maintainer@example.com
+endpointCompression: gzip
 gvlVendorID: 42
 modifyingVastXmlAllowed: true
 capabilities:
@@ -183,12 +186,23 @@ userSync:
 endpoint: "http://foo.com/openrtb2"
 extra_info: "{\"foo\":\"bar\"}"
 maintainer:
-  email: foo@foo.com
+  email: prebid-maintainer@example.com
+endpointCompression: gzip
 gvlVendorID: 42
+modifyingVastXmlAllowed: true
 capabilities:
+  app:
+    mediaTypes:
+      - banner
+      - video
+      - audio
+      - native
   site:
     mediaTypes:
       - banner
+      - video
+      - audio
+      - native
 userSync:
   redirect:
     url: https://foo.com/sync?gdpr={%raw%}{{.GDPR}}{%endraw%}&consent={%raw%}{{.GDPRConsent}}{%endraw%}&us_privacy={%raw%}{{.USPrivacy}}{%endraw%}&redirect={%raw%}{{.RedirectURL}}{%endraw%}
@@ -200,8 +214,29 @@ userSync:
   <summary>Example: Disable the adapter.</summary>
 
 ```yaml
-endpoint: "http://foo.com/openrtb2"
 disabled: true
+maintainer:
+  email: prebid-maintainer@example.com
+endpointCompression: gzip
+gvlVendorID: 42
+modifyingVastXmlAllowed: true
+capabilities:
+  app:
+    mediaTypes:
+      - banner
+      - video
+      - audio
+      - native
+  site:
+    mediaTypes:
+      - banner
+      - video
+      - audio
+      - native
+userSync:
+  redirect:
+    url: https://foo.com/sync?gdpr={%raw%}{{.GDPR}}{%endraw%}&consent={%raw%}{{.GDPRConsent}}{%endraw%}&us_privacy={%raw%}{{.USPrivacy}}{%endraw%}&redirect={%raw%}{{.RedirectURL}}{%endraw%}
+    userMacro: $UID
 ```
 </details>
 <p></p>

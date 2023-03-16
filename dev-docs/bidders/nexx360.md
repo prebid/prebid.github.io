@@ -7,8 +7,10 @@ biddercode: nexx360
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
-userIds: id5Id
-media_types: banner, video
+floors_supported: true
+userIds: all
+tcf2_supported: true
+media_types: banner, video, native
 glv_id: 965
 pbs: false
 sidebarType: 1
@@ -19,11 +21,30 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example                              | Type      |
-|---------------|----------|-----------------------|--------------------------------------|-----------|
-| `tagId`       | required | Nexx360 tag ID        | `"luvxjvgn"`                         | `string`  |
-| `videoTagId`  | optional | Nexx360 Video tag ID        | `"luvxjvgn"`                         | `string`  |
-| `allBids`  | optional | Return all bids       | `true`                         | `boolean`  |
+| Name          | Scope    | Description                | Example                                   | Type      |
+|---------------|----------|----------------------------|--------------------------------------     |-----------|
+| `tagId`       | required | Nexx360 tag ID             | `"luvxjvgn"`                              | `string`  |
+| `videoTagId`  | optional | Nexx360 Video tag ID       | `"luvxjvgn"`                              | `string`  |
+| `nativeTagId` | optional | Nexx360 Native tag ID      | `"luvxjvgn"`                              | `string`  |
+| `allBids`     | optional | Return all bids            | `true`                                    | `boolean` |
+| `divId`       | optional | divId linked to adUnit     | `"div-1"`                                 | `string`  |
+| `adUnitName`  | optional | A code to identify adUnit  | `"header-ad"`                             | `string`  |
+| `adUnitPath`  | optional | A reference to adUnit Path | `"/12345/nexx360/Homepage/HP/Header-Ad"`  | `string`  |
+
+### Bidder Config
+
+You can allow writing in localStorage `pbjs.bidderSettings` for the bidder `nexx360`
+```
+pbjs.bidderSettings = {
+    nexx360: {
+        storageAllowed : true
+    }
+}
+```
+
+### First Party Data
+
+Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
 
 ### Test Parameters
 
@@ -60,6 +81,29 @@ var adUnits = [
             }
         }]
     },
+     // Native adUnit
+   {
+        code: 'native1',
+        mediaTypes:
+            native: {
+                title: {
+                    required: true
+                },
+                image: {
+                    required: true
+                },
+                sponsoredBy: {
+                    required: true
+                }
+            }
+        },
+        bids: [{
+            bidder: 'nexx360',
+            params: {
+               tagId: 'luvxjvgn'
+            }
+        }]
+    },
     // Multiformat Ad
    {
         code: 'multi1',
@@ -70,6 +114,9 @@ var adUnits = [
             },
             banner: {
               sizes: [[300, 250], [300,600]]
+            },
+            native: {
+
             }
         },
         bids: [{

@@ -1201,6 +1201,7 @@ be retrieved. There are two different flows possible with Prebid.js around VAST 
 | Cache Attribute | Required? | Type | Description |
 |----+--------+-----+-------|
 | cache.url | yes | string | The URL of the Prebid Cache server endpoint where VAST creatives will be sent. |
+| cache.timeout | no | number | Timeout (in milliseconds) for network requests to the cache | 
 | cache.vasttrack | no | boolean | Passes additional data to the url, used for additional event tracking data. Defaults to `false`. |
 | cache.ignoreBidderCacheKey | no | boolean | If the bidder supplied their own cache key, setting this value to true adds a VAST wrapper around that URL, stores it in the cache defined by the `url` parameter, and replaces the original video cache key with the new one. This can dramatically simplify ad server setup because it means all VAST creatives reside behind a single URL. The tradeoff: this approach requires the video player to unwrap one extra level of VAST. Defaults to `false`. |
 

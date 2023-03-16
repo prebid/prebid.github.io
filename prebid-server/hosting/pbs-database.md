@@ -123,12 +123,10 @@ This example assumes that the stored_responses schema includes these fields:
 ### Account Data
 
 {: .alert.alert-info :}
-PBS-Go does not currently support putting account data in the DB, only files and an HTTP interface.
+In PBS-Java, many account-configuration options come from the database. In PBS-Go, those options are available in either a YAML configuration or from an HTTP API.
 
 Account data is queried on every request to pull in important data. There is an LRU cache in the server
 so the database isn't actually hit on every request.
-
-In PBS-Java, many account-configuration options come from the database. In PBS-Go, those options are available in either a YAML configuration or from an HTTP API.
 
 In both versions the server can optionally validate the account and reject accounts from
 unknown sources.
@@ -143,7 +141,7 @@ One parameter can be passed into the query:
 
 - %ACCOUNT_ID% : selects the right row in the DB
 
-In PBS-Java, the query is configurable. For example:
+The query is configurable. For example:
 ```
 settings:
   database:

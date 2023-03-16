@@ -5,7 +5,7 @@ description: Prebid Criteo Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: criteo
-media_types: display, native, video
+media_types: display, video, native (pbjs only)
 gdpr_supported: true
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
