@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Nobid
-description: Prebid Nobid Bidder Adaptor
+description: Prebid NoBid Bidder Adaptor
 biddercode: nobid
 pbjs: true
 pbs: true
@@ -14,6 +14,7 @@ coppa_supported: true
 userId: criteo, unifiedId, id5Id
 safeframes_ok: true
 sidebarType: 1
+floors_supported: true
 ---
 
 ### Bid Params
