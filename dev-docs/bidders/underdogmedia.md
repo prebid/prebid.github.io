@@ -6,7 +6,7 @@ pbjs: true
 biddercode: underdogmedia
 gdpr_supported: true
 usp_supported: true
-userIds: pubCommonId, unifiedId
+userIds: 33acrossId, pubCommonId, unifiedId
 sidebarType: 1
 ---
 
