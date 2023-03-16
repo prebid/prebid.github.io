@@ -5,7 +5,7 @@ description: Prebid Adnuntius Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: adnuntius
-media_types: banner, video, native
+media_types: banner, video
 gdpr_supported: true
 fpd_supported: true
 gvl_id: 855
@@ -165,36 +165,4 @@ Currently we only support client requests and instream context. An example reque
         }
     }]
 };
-```
-
-#### Example native
-
-Here's an example of how to request a native ad from adnuntius:
-
-```
-{
-    code: 'native',
-    sizes: [
-        [320, 320]
-    ],
-    mediaTypes: {
-        native: {
-            title: {
-                required: true
-            },
-            image: {
-                required: true
-            },
-            body: {
-                required: true
-            }
-        }
-    },
-    bids: [{
-        bidder: 'adnuntius',
-        params: {
-            auId: "0000000000abc123",
-        }
-    }]
-}
 ```
