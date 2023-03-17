@@ -5,10 +5,11 @@ description: Prebid TrueReach Bidder Adapter
 biddercode: truereach
 media_types: banner
 pbjs: true
+sidebarType: 1
 ---
 
 ### Note:
-For more information, please visit us at: [TrueReach Ads](http://doc.truereach.co.in/docs/prebid/js-bidder-adapter.html).
+For more information, please visit us at: http://doc.truereach.co.in/docs/prebid/js-bidder-adapter.html
 
 ### Bid Params
 

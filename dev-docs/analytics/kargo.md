@@ -20,3 +20,4 @@ pbjs.enableAnalytics({
       sampling: 100 // value out of 100
   }
 });
+```

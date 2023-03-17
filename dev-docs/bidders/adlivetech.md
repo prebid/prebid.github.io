@@ -14,13 +14,15 @@ userIds: all
 tcf2_supported: true
 coppa_supported: true
 fpd_supported: true
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Bid Params](#adlivetech-bid-params)
-- [Bidder Config](#adlivetech-bidder-config)
-- [First Party Data](#adlivetech-first-party)
+- [Table of Contents](#table-of-contents)
+- [Bid Params](#bid-params)
+- [Bidder Config](#bidder-config)
+- [First Party Data](#first-party-data)
 
 <a name="adlivetech-bid-params" />
 

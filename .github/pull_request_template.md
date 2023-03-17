@@ -14,5 +14,5 @@ Please give a short description and check the matching checkboxes to help us rev
 
 ## 📋 Checklist
 <!-- Remove items that don't apply and/or select an item by changing [ ] to [x] -->
-- [ ] Related pull requests in prebid.js or server are linked
+- [ ] Related pull requests in prebid.js or server are linked -> Paste link in this list or reference it on the PR itself
 - [ ] For new adapters check [submitting your adapter docs](https://docs.prebid.org/dev-docs/bidder-adaptor.html#submitting-your-adapter)

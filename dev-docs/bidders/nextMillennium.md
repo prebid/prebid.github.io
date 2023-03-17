@@ -1,6 +1,7 @@
 ---
 layout: bidder
 title: NextMillennium
+description: NextMillennium bid adapter
 gdpr_supported: true
 usp_supported: true
 coppa_supported: false
@@ -14,11 +15,12 @@ pbs_app_supported: false
 pbjs: true
 pbs: true
 biddercode: nextMillennium
-media_types: banner
-description: NextMillennium bid adapter
+media_types: banner, video
+prebid_member: true
+sidebarType: 1
 ---
 
-### bid params
+### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope | Description                              | Example   | Type    |
@@ -29,3 +31,18 @@ description: NextMillennium bid adapter
 Required one of the two parameters placement_id or group_id.
 
 Further information for the auction on NextMillennium side is generated automatically.
+
+### Additional options
+
+#### disabledSendingStatisticData
+
+The `disabledSendingStatisticData` parameter disables sending statistics data to the nextMillennium server, such as bidRequested, bidResponse, noBid and bidTimeout events.
+An example of enabling this option:  
+```
+pbjs.setBidderConfig({
+  bidders: ['nextMillennium'],
+  config: {
+    disabledSendingStatisticData: true,
+  },
+})
+```

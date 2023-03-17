@@ -14,6 +14,7 @@ usp_supported: true
 safeframes_ok: true
 userIds: all
 fpd_supported: true
+sidebarType: 1
 ---
 <a name="table-of-contents" ></a>
 

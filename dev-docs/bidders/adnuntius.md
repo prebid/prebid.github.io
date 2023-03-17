@@ -13,6 +13,7 @@ safeframes_ok: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: false
 floors_supported: false
+sidebarType: 1
 
 ---
 
@@ -165,4 +166,3 @@ Currently we only support client requests and instream context. An example reque
     }]
 };
 ```
-

@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Nobid
-description: Prebid Nobid Bidder Adaptor
+description: Prebid NoBid Bidder Adaptor
 biddercode: nobid
 pbjs: true
 pbs: true
@@ -13,6 +13,8 @@ schain_supported: true
 coppa_supported: true
 userId: criteo, unifiedId, id5Id
 safeframes_ok: true
+sidebarType: 1
+floors_supported: true
 ---
 
 ### Bid Params
@@ -30,7 +32,7 @@ If you are using Google Ad Manager (GAM), it is highly recommended to make sure 
 If you absolutely want to run NoBid in a Saferame creative, please contact your Nobid repsentative to coordinate this setup.
 
 
-# Test Parameters
+### Test Parameters
 ```
     var adUnits = [
         {

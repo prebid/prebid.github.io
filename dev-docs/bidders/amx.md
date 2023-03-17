@@ -15,7 +15,9 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 fpd_supported: true
+gpp_supported: true
 gvl_id: 737
+sidebarType: 1
 ---
 
 ### Bid Params

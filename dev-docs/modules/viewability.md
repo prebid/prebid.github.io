@@ -5,17 +5,22 @@ title: Module - Viewability
 description: Generic Viewability module, tracks element viewability based on given criteria
 module_code: viewability
 display_name: Viewability
-enable_download: true
+enable_download: false
 sidebarType: 1
 ---
 
 # Generic Viewability
+
 {:.no_toc}
 
 * TOC
 {:toc}
 
 ## Overview
+
+{: .alert.alert-danger :}
+Disclaimer: A potential security risk has been identified in this module. We do not recommend its usage unless you're confident about
+the source of all code running on the page.
 
 This module will trigger a viewability pixel when a given HTML element becomes viewable according to custom viewability criteria.
 

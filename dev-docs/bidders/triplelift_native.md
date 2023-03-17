@@ -19,19 +19,19 @@ pbs: true
 pbs_app_supported: true
 fpd_supported: true
 gvl_id: 28
+sidebarType: 1
 ---
 
-{% capture version2 %}
+{: .alert.alert-info :}
 The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at prebid@triplelift.com.
-{% endcapture %}
-{% include alerts/alert_important.html content=version2 %}
 
 This is a Prebid Server adapter for running component native only. For the standard Prebid JS Triplelift bid adapter, see the "Triplelift" bidder.
 
 ### Table of Contents
 
-- [Bid Params](#triplelift-bid-params)
-- [First Party Data](#triplelift-first-party)
+- [Table of Contents](#table-of-contents)
+- [Bid Params](#bid-params)
+- [First Party Data](#first-party-data)
 
 <a name="triplelift-bid-params" />
 
