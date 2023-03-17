@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: SmartyAds
-description: Prebid SmartyAds Bidder Adaptor
+description: Prebid SmartyAds Bidder Adapter
 biddercode: smartyads
 gvl_id: 534
 gdpr_supported: true
@@ -32,3 +32,4 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 | `sourceid`      | required  (for prebid-server) | Partner id | `'smartyads'`    | `string` |
 | `accountid`      | required  (for prebid-server) | Endpoint id | `'hash'`    | `string` |
 | `traffic`     | optional (for prebid.js) | Configures the mediaType that should be used. Values can be `banner`, `native` or `video` | `'native'` | `string` 
+
