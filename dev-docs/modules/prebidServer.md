@@ -113,7 +113,7 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 
 **Emitting SeatNonBid Data**
 
-* SeatNonBid information from Prebid Server can be emitted through a `seatNonBid` event by setting `extPrebid.returnallbidstatus` equal to `true`.
+* Prebid Server can be instructed to return additional [SeatNonBid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) information about why bidders might not have bid on certain adunits. You can get this extra information by setting `extPrebid.returnallbidstatus` equal to `true`. Note that client-side analytics adapters can receive this data by listening to the `seatNonBid` event.
 
 ## Bid Params
 
