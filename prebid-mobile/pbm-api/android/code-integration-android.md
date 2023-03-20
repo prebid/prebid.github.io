@@ -82,10 +82,11 @@ PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
 ```
 
-If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app.
+If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+
 
 ```
-PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebid-server-test-j.prebid.org/openrtb2/auction"))
+PrebidMobile.setPrebidServerHost(Host.createCustomHost(PREBID_SERVER_AUCTION_ENDPOINT))
 ```
 
 ### Initialize SDK
@@ -108,7 +109,7 @@ PrebidMobile.initializeSdk(applicationContext) { status ->
 During the initialization, SDK creates internal classes and performs the health check request to the [/status](https://docs.prebid.org/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If you use a custom PBS host you should provide a custom status endpoint as well:
 
 ```
-PrebidMobile.setCustomStatusEndpoint("https://prebid-server-test-j.prebid.org/status")
+PrebidMobile.setCustomStatusEndpoint(PREBID_SERVER_STATUS_ENDPOINT)
 ```
 
 If something goes wrong with the request, the status of the initialization callback will be `SERVER_STATUS_WARNING`. It doesn't affect an SDK flow and just informs you about the health check result.
@@ -195,7 +196,7 @@ Apply global settings with the `PrebidMobile` object.
 String containing the Prebid Server account ID.
 
 ```kotlin
-PrebidMobile.setPrebidServerAccountId("123321")
+PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 var pbsAccountId = PrebidMobile.getPrebidServerAccountId()
 ```
 

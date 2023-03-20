@@ -95,14 +95,14 @@ This will output the PrebidMobile.framework.
 Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add 'account' info to the Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
 
 ```
-Prebid.shared.prebidServerAccountId = "YOUR_ACCOUNT_ID"
+Prebid.shared.prebidServerAccountId = YOUR_ACCOUNT_ID
 Prebid.shared.prebidServerHost = .Appnexus
 ```
 
-If you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app.
+If you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app. Make sure that your URL points to the [/openrtb2/auction](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
 
 ```
-try! Prebid.shared.setCustomPrebidServer(url: "https://prebid-server-test-j.prebid.org/openrtb2/auction")
+try! Prebid.shared.setCustomPrebidServer(url: PREBID_SERVER_AUCTION_ENDPOINT)
 ```
 
 This method throws an exception if the provided URL is invalid.
@@ -145,7 +145,7 @@ Prebid.initializeSDK { status, error in
 During the initialization, SDK creates internal classes and performs the health check request to the [/status](https://docs.prebid.org/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If you use a custom PBS host you should provide a custom status endpoint as well:
 
 ```
-Prebid.shared.customStatusEndpoint = "https://prebid-server-test-j.prebid.org/status"
+Prebid.shared.customStatusEndpoint = PREBID_SERVER_STATUS_ENDPOINT
 ```
 
 If something goes wrong with the request, the status of the initialization callback will be `.serverStatusWarning`. It doesn't affect an SDK flow and just informs you about the health check result.
