@@ -59,7 +59,6 @@ pbjs.bidderSettings = {
 **Important**: Adagio needs to collect attention data about the ads displayed on a page and must listen to some specifics ad-server events. Please refer to the [Adagio user guide](https://adagioio.notion.site/Adagio-Account-Setup-Guide-fbcd940649224cdfa10393d2f008792e) for details.
 
 {: .table .table-bordered .table-striped }
-
 | Name              | Scope              | Description                                                                                                                                                                                                                                          | Example                                                      | Type     |
 | ----------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | -------- |
 | `organizationId`  | required           | Id of the Organization. Handed out by Adagio.                                                                                                                                                                                                        | `'1010'`                                                     | `string` |
@@ -70,7 +69,8 @@ pbjs.bidderSettings = {
 | `category`*       | recommended        | Category of the content displayed in the page.<br><i>- max length: 30</i><br><i>- max distinctives values: 50</i>                                                                                                                                    | `'sport'`                                                    | `string` |
 | `video`           | optional           | OpenRTB video options object. All options will override ones defined in mediaTypes video.<br>Mandatory: <br>- api <small><i>(your video player must at least support the value 2 and/or 7)</i></small><br> Highly recommended: <br> - playbackmethod | `{api: [2, 7], playbackmethod: [6], skip: 1, startdelay: 0}` |
 | `native`          | optional           | Partial OpenRTB Native 1.2 request object. Supported fields are:<br>- context<br>- plcmttype                                                                                                                                                         | `{context: 1, plcmttype: 2}`                                 | `object` |
-
+| `splitKeyword`     | optional           | Allow to target a split rule in the case of a direct connection |  `'splitrule-one'` | `string` |
+| `dl`               | optional           | The Data Layer allows you to set key values ​​for a particular adUnit | `{placement: 'my-placement', 'siteid', 'my-siteid'}` | `object` |
 
 <i>*These parameters will have its accentuated characters converted to their non-accentuated version:&nbsp;`é`&nbsp;=>&nbsp;`e`</i>
 
