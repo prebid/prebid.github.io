@@ -624,6 +624,53 @@ Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.
 
 <p></p>
 
+#### Better Analytics 
+
+The [seatnonbid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) feature allows analytics adapters to piece together what happened in the auction when there's not a bid. This can be helpful to everyone involved: the publisher can get insight into why a bidder might not be bidding, which might lead them to update bid parameters or otherwise fix a setup problem.
+
+To implement this enhanced analytics, bidders just need to link errors and non-bids to a specific impression id:
+
+1. Provide impression ids that are covered by particular http request to bidder endpoint:
+   When bidder creates http requests in `makeHttpRequests` method of bidder adapter class, utilize `.impIds(Set<String>)` method of `HttpRequest<T>` class. (hint, if bidder uses ortb as its main protocol it can utilize `impIds` method of `BidderUtil` class), for example:</br>
+   ```java 
+   HttpRequest.<BidRequest>builder()
+       .method(HttpMethod.POST)
+       .uri(uri)
+       .body(mapper.encodeToBytes(bidRequest))
+       .headers(headers)
+       .payload(bidRequest)
+       .impIds(BidderUtil.impIds(bidRequest))
+       .build();
+   ```
+   or more generic case:</br>
+    ```java 
+    HttpRequest.<YourModel>builder()
+        .method(HttpMethod.POST)
+        .uri(uri)
+        .body(mapper.encodeToBytes(bidRequest))
+        .headers(headers)
+        .payload(bidRequest)
+        .impIds(Set.of(impId1, impId2))
+        .build();
+    ```
+
+2. When bidder drops impression in `makeHttpRequests` or bid in `makeBids` methods in bidder adapter class, and emits error, it should provide ids of impressions that particular error covers. Bidder adapter can do this by utilizing `BidderError.of(String message, Type type, Set<String> impIds)` method of `BidderError` class, or by creating/using specialized methods of this class, for example:
+   ```java 
+   BidderError.rejectedIpf(
+       "Bid with id '%s' was rejected by floor enforcement: price %s is below the floor %s"
+       .formatted(bid.getId(), price, floor), impId);
+   ```
+
+   (Note: list of specialized methods like this will increase as needed, but bidders can contribute by extending this list.)</br></br>or more generic case:</br>
+    ```java 
+    BidderError.of(
+        "Impression with id '%s' was dropped due to ...".formatted(impId),
+        BidderError.Type.bad_input,
+        Collections.sinleton(impId));
+    ```
+
+Note: If bidder provides PBS with impression id that was not present in provided `BidRequest`, PBS will just ignore it.
+
 ### Create Config Class 
 
 Go to `org.prebid.server.spring.config.bidder` and create new class `Configuration{bidder}`
