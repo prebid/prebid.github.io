@@ -624,9 +624,11 @@ Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.
 
 <p></p>
 
-#### Seat-non-bid integration
+#### Better Analytics 
 
-To implement enhanced analytics logging bidders need to:
+The [seatnonbid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) feature allows analytics adapters to piece together what happened in the auction when there's not a bid. This can be helpful to everyone involved: the publisher can get insight into why a bidder might not be bidding, which might lead them to update bid parameters or otherwise fix a setup problem.
+
+To implement this enhanced analytics, bidders just need to link errors and non-bids to a specific impression id:
 
 1. Provide impression ids that are covered by particular http request to bidder endpoint:
    When bidder creates http requests in `makeHttpRequests` method of bidder adapter class, utilize `.impIds(Set<String>)` method of `HttpRequest<T>` class. (hint, if bidder uses ortb as its main protocol it can utilize `impIds` method of `BidderUtil` class), for example:</br>
