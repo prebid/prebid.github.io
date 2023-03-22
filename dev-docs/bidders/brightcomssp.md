@@ -6,6 +6,7 @@ top_nav_section: dev_docs
 nav_section: reference
 pbjs: true
 biddercode: bcmssp
+aliasCode: brightcomSSP 
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
