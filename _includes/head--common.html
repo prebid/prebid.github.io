@@ -17,6 +17,7 @@
     {% if jekyll.environment == "production" %}
       <!-- OneTrust Cookies Consent Notice start for docs.prebid.org -->
       <script type="text/javascript">
+        window.addEventListener('consent.onetrust', console.log)
         // Global Promise we can check to make sure OneTrust is loaded.
         let resolveOneTrust;
         window.onetrustLoaded = new Promise((resolve) => resolveOnetrust = resolve);
