@@ -5,7 +5,7 @@ description: PubWise Bidder Adaptor
 pbjs: true
 biddercode: pwbid
 aliasCode: pubwise
-media_types: banner, native
+media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
