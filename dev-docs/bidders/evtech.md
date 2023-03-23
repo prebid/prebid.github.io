@@ -2,7 +2,7 @@
 layout: bidder
 title: Evolution Technologies
 description: Evolution Technologies Bidder Adaptor
-biddercode: evolutionTechnologies
+biddercode: evtech
 pbjs: false
 pbs: true
 media_types: banner, video, audio, native
