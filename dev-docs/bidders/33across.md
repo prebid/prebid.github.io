@@ -10,6 +10,8 @@ gdpr_supported: true
 floors_supported: true
 schain_supported: true
 usp_supported: true
+gpp_supported: true
+coppa_supported: true
 userIds: all
 gvl_id: 58
 sidebarType: 1
