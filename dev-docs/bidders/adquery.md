@@ -16,4 +16,4 @@ gvl_id: 902
 | Name          | Scope    | Description   | Example                                   | Type      |
 |---------------|----------|---------------|-------------------------------------------|-----------|
 | `placementId` | required | Placement ID  | `6d93f2a0e5f0fe2cc3a6e9e3ade964b43b07f897`| `string`  |
-| `type`        | required | Ad Type       | `banner300x250`                           | `string`  |
+| `type`        | required | Ad Type       | `banner`                                  | `string`  |
