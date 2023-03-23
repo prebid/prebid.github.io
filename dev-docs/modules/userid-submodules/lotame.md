@@ -31,8 +31,8 @@ Once you sign up, you will receive an email with your client ID and instructions
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of the module | "lotamePanoramaId" |
-| params | Mandatory | Object | Configuration options for the Lotame Panorama ID Module | |
- | params.clientId | Mandatory | String | The Lotame Client ID provided as part of your registration as noted above | "1001" |
+| params | Required | Object | Configuration options for the Lotame Panorama ID Module | |
+ | params.clientId | Required | String | The Lotame Client ID provided as part of your registration as noted above | "1001" |
 
 {% highlight javascript %}
 pbjs.setConfig({
