@@ -304,7 +304,7 @@ We use Algolia for site search.
 
 Prebid websites don't set their own cookies, but vendor products we use do. So we use the OneTrust CookiePro library to pop up a cookie banner. If the user hasn't consented to setting cookies, they will find reduced functionality on the site -- they won't be able to view JSFiddle examples or example videos.
 
-This is implemented with the [OptAnon](https://community.cookiepro.com/s/article/UUID-730ad441-6c4d-7877-7f85-36f1e801e8ca?language=en_US) library. See layout/example.md for how the OptAnon.InsertHtml function is used.
+This is implemented with the [OneTrust](https://community.cookiepro.com/s/article/UUID-730ad441-6c4d-7877-7f85-36f1e801e8ca?language=en_US) library. See layout/example.md for how the OneTrust.InsertHtml function is used.
 The last argument to that function is the "group id", which declares what kind of cookies this vendor script is
 going to set. Here's how OneTrust defines the groups:
 

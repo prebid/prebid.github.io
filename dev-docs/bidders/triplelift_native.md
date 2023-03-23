@@ -9,7 +9,7 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
-media_types: native
+media_types: no-display, native
 userIds: criteo, identityLink, unifiedId
 prebid_member: true
 safeframes_ok: true
@@ -22,10 +22,8 @@ gvl_id: 28
 sidebarType: 1
 ---
 
-{% capture version2 %}
+{: .alert.alert-info :}
 The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at prebid@triplelift.com.
-{% endcapture %}
-{% include alerts/alert_important.html content=version2 %}
 
 This is a Prebid Server adapter for running component native only. For the standard Prebid JS Triplelift bid adapter, see the "Triplelift" bidder.
 

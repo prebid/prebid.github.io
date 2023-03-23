@@ -7,6 +7,10 @@ page_type: module
 module_type: rtd
 module_code : sirdataRtdProvider
 enable_download : true
+vendor_specific: true
+sidebarType : 1
+---
+
 # Sirdata RTD/SDA Module
 {:.no_toc}
 

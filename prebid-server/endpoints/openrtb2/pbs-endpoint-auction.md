@@ -13,11 +13,11 @@ title: Prebid Server | Endpoints | OpenRTB2 | Auction
 * TOC
 {:toc }
 
-This endpoint runs an auction with the given OpenRTB 2.5 bid request.
+This endpoint runs an auction with the given OpenRTB 2.x bid request.
 
 ### Sample Request
 
-This is a sample OpenRTB 2.5 bid request:
+This is a sample OpenRTB 2.x bid request:
 
 ```
 {
@@ -57,11 +57,11 @@ Additional examples can be found in [endpoints/openrtb2/sample-requests/valid-wh
 
 This endpoint will respond with either:
 
-- An OpenRTB 2.5 bid response, or
+- An OpenRTB 2.x bid response, or
 - HTTP 400 if the request is malformed, or
 - HTTP 503 if the account or app specified in the request is blacklisted
 
-This is a corresponding sample response to a sample OpenRTB 2.5 bid request:
+This is a corresponding sample response to a sample bid request:
 
 ```
 {
@@ -124,7 +124,7 @@ The auction config must then be used by the client. See the Prebid.js [Fledge fo
 
 ### OpenRTB Fields
 
-Prebid Server accepts all OpenRTB 2.5 fields and passes them in the request to all bid and analytics adapters. Some ORTB 2.6 fields are supported. Here are the fields with special processing:
+Prebid Server accepts all OpenRTB 2.x fields and passes them in the request to all bid and analytics adapters. Some fields are processed by Prebid Server in the following ways:
 
 {: .table .table-bordered .table-striped }
 | ORTB Field | Version | Notes |
@@ -194,7 +194,7 @@ if $.imp[n].ext.tid contains "{{UUID}}", replace that macro with a random value
 
 #### Expiration
 
-The OpenRTB 2.5 `imp[].exp` field is an "Advisory as to the number of seconds that may elapse
+The `imp[].exp` field is an "Advisory as to the number of seconds that may elapse
 between the auction and the actual impression."
 
 This field is used in slightly different ways by PBS-Go and PBS-Java:
@@ -275,6 +275,7 @@ Prebid Server supports the following "standard" industry extensions:
 - `request.regs.ext.gdpr` and `request.user.ext.consent` -- To support GDPR
 - `request.regs.ext.us_privacy` -- To support CCPA
 - `request.site.ext.amp` -- To identify AMP as the request source
+- `request.user.ext.eids` -- To support Extended Identifiers
 - `request.app.ext.source` and `request.app.ext.version` -- To support identifying the displaymanager/SDK in mobile apps. If given, we expect these to be strings.
 
 #### OpenRTB Request Extensions
@@ -860,9 +861,6 @@ You can turn on the extra Prebid Server debug log without the formal `test` beha
 
 ##### Trace Flag
 
-{: .alert.alert-info :}
-PBS-Java only
-
 You can turn on additional Prebid Server tracing by setting `ext.prebid.trace` to either "verbose" or "basic".
 This provides additional information for certain scenarios:
 
@@ -1394,16 +1392,28 @@ See the [Prebid Server Floors Feature](/prebid-server/features/pbs-floors.html) 
 
 ##### Server Metadata
 
-{: .alert.alert-info :}
-PBS-Java only
-
 PBS-core creates this block before sending to bid adapters. They receive additional metadata about the PBS calling them. e.g.
+
 ```
-            "server": {
-                "externalurl": "https://prebid-server.rubiconproject.com",
-                "gvlid": 52,
-                "datacenter": "us-east-1"
-            }
+"server": {
+  "externalurl": "https://prebid-server.rubiconproject.com",
+  "gvlid": 52,
+  "datacenter": "us-east-1"
+}
+```
+
+##### Analytics Extension
+
+Some analytics adapters may support special flags that can be passed on ext.prebid.analytics. e.g.
+
+```
+ext.prebid: {
+  analytics: {
+    myanalyticsadapter: {
+      myflag: true
+    }
+  }
+}
 ```
 
 #### OpenRTB Response Extensions
@@ -1549,9 +1559,14 @@ Here's a sample response:
 The codes currently returned:
 
 {: .table .table-bordered .table-striped }
-| Code | | Meaning | Platform | Notes |
+| Code | Meaning | Platform | Notes |
 | --- | --- | --- | --- |
-| 0 | General No Bid | Java | The bidder had a chance to bid, and either declined to bid, returned an error, or the response was removed. |
+| 0 | General No Bid | Java | The bidder had a chance to bid, and either declined to bid on this impression. |
+| 100 | General Error | Java | The bid adapter returned with an unspecified error for this impression. |
+| 101 | Timeout | Java | The bid adapter timed out. |
+| 200 | Request Blocked - General | Java | This impression not sent to the bid adapter for an unspecified reason. |
+| 202 | Request Blocked due to mediatype | Java | This impression not sent to the bid adapter because it doesn't support the requested mediatype. |
+| 301 | Response Rejected - Below Floor | Java | The bid response did not meet the floor for this impression. |
 
 
 ### OpenRTB Ambiguities
@@ -1663,6 +1678,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.pbs.endpoint | additional Prebid Server metadata | string | yes |
 | ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
 | ext<wbr>.prebid<wbr>.returnallbidstatus | If true, PBS returns [ext.seatnonbid](#seat-non-bid) with details about bidders that didn't bid. | boolean | no |
+| ext<wbr>.prebid<wbr>.analytics | Arguments that can be passed through to individual analytics adapters | object | no |
 | imp<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. (ae stands for auction environment) | integer | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
@@ -1695,4 +1711,4 @@ The Prebid SDK version comes from:
 
 - [OpenRTB 2.4 Specification](https://iabtechlab.com/wp-content/uploads/2016/04/OpenRTB-API-Specification-Version-2-4-FINAL.pdf)
 - [OpenRTB 2.5 Specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)
-- [OpenRTB 2.6 Specification](https://iabtechlab.com/wp-content/uploads/2022/04/OpenRTB-2-6_FINAL.pdf)
+- [OpenRTB 2.6 Specification](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md)

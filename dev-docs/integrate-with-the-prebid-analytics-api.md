@@ -75,7 +75,7 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 
 2. Create an analytics adapter to listen for [Prebid events](/dev-docs/publisher-api-reference/onEvent.html) and call the analytics library or server. See the existing *AnalyticsAdapter.js files in the repo under [modules](https://github.com/prebid/Prebid.js/tree/master/modules).
 
-3. There are two types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.js](https://github.com/prebid/Prebid.js/blob/master/src/AnalyticsAdapter.js) for more info on the 'bundle' type.
+3. There are two types of analytics adapters. The example here focuses on the 'endpoint' type. See [AnalyticsAdapter.js](https://github.com/prebid/Prebid.js/blob/master/libraries/analyticsAdapter/AnalyticsAdapter.js) for more info on the 'bundle' type.
 
     * endpoint - Calls the specified URL on analytics events. Doesn't require a global context.
     * bundle - An advanced option expecting a global context.

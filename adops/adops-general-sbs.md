@@ -131,7 +131,7 @@ We recommend using the [Prebid Universal Creative](/overview/prebid-universal-cr
 If you’re working with banner or outstream creatives, the HTML you’ll enter in the creatives will be similar to the following (utilizing whatever macro format is supported by your ad server):
 
 ```
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
@@ -155,6 +155,7 @@ If you’re working with banner or outstream creatives, the HTML you’ll enter 
 {: .alert.alert-warning :}
 - Replace `%%MACRO%%` with the appropriate macro for your ad server. (Refer to your ad server’s documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
 - Replace BIDDERCODE with the appropriate code for the bidder your line item is targeting. For example, if you’re targeting BidderA, the macro variable for adId might look like `ucTagData.adId = "%%PATTERN:hb_adid_BidderA%%";`.
+- If you're hosting your own Prebid Universal Creative, make sure it's version 1.15 or later, or replace `%%PATTERN:hb_format%%.js` with `creative.js`.
 
 The example above uses the jsdelvr CDN as the domain from which the creative will serve. However, you may obtain the creative from a managed service or host it yourself. You might need to edit the creative and make adjustments to your creative settings depending on the CDN you're using.
 

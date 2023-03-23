@@ -15,15 +15,20 @@
     {% endif %}
 
     {% if jekyll.environment == "production" %}
-	<!-- OneTrust Cookies Consent Notice start for docs.prebid.org -->
-	<script src="https://cdn.cookielaw.org/consent/53783db5-1614-43d4-bb1a-148e68e8c87b.js" type="text/javascript" charset="UTF-8"></script>
-	<script type="text/javascript">
-	function OptanonWrapper() { }
-	</script>
-	<!-- OneTrust Cookies Consent Notice end for docs.prebid.org -->
+      <!-- OneTrust Cookies Consent Notice start for docs.prebid.org -->
+      <script type="text/javascript">
+        // Global Promise we can check to make sure OneTrust is loaded.
+        let resolveOneTrust;
+        window.onetrustLoaded = new Promise((resolve) => resolveOnetrust = resolve);
+        function OptanonWrapper() {
+          resolveOnetrust();
+        }
+      </script>
+      <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="031ad285-43ce-45f1-a493-8188aaf238cf"></script>
+      <!-- OneTrust Cookies Consent Notice end for docs.prebid.org -->
     {% endif %}
 
-	<link href="{{site.baseurl}}/assets/css/main-bundle.css?v=9" rel="stylesheet">
+	<link href="{{site.baseurl}}/assets/css/main-bundle.css?v=11" rel="stylesheet">
 
 	<!-- Favicons -->
 	<link href="{{site.baseurl}}/assets/images/favicon.png" rel="icon">
@@ -38,5 +43,5 @@
     <script src="{{site.baseurl}}/assets/js/main.js"></script>
     <script type="text/javascript" src="{{site.baseurl}}/assets/js/pbjs_home.js"></script>
 	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
 
