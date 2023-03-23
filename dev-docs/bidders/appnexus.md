@@ -12,7 +12,7 @@ coppa_supported: true
 usp_supported: true
 gpp_supported: true
 floors_supported: true
-fpd_supported: true
+fpd_supported: false
 pbjs: true
 pbjs_version_notes: please avoid using v7.15 and v7.16
 pbs: true
