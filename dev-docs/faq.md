@@ -224,7 +224,7 @@ Sometimes the owner of a bid adapter or other kind of module wants to rename the
 
 ## Does Prebid.js support Amazon TAM?
 
-We would love for Amazon to contribute a TAM adapter, but so far that's not happened. Publishers that want to sync  IDs across multiple header bidding wrappers should be aware of these resources:
+We would love for Amazon to contribute a TAM adapter, but so far that's not happened. Publishers that want to sync IDs across multiple header bidding wrappers should be aware of these resources:
 
 - You can generate the auctionId parameter outside of Prebid and pass it when calling [pbjs.requestBids()](/dev-docs/publisher-api-reference/requestBids.html)
 - [Example of Synchronizing Transaction IDs with Another Library](/dev-docs/examples/sync-tid.html)
