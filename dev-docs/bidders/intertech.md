@@ -5,7 +5,6 @@ description: Prebid Intertech Bidder Adapter
 pbs: true
 biddercode: intertech
 media_types: banner, native
-sidebarType: 1
 ---
 
 ### Registration
