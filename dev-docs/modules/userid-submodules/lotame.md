@@ -40,7 +40,7 @@ pbjs.setConfig({
         userIds: [{
             name: "lotamePanoramaId",
             params: {
-                clientId: “1001”
+                clientId: "1001"
             }
         }]
     }
