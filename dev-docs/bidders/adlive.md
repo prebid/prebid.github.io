@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Adlive
-description: Adlive Bidder Adaptor
+title: Adliveconnect
+description: Adliveconnect Bidder Adaptor
 biddercode: adliveconnect
 pbjs: true
 pbs: false
