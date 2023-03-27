@@ -70,7 +70,7 @@ pbjs.bidderSettings = {
 | `video`           | optional           | OpenRTB video options object. All options will override ones defined in mediaTypes video.<br>Mandatory: <br>- api <small><i>(your video player must at least support the value 2 and/or 7)</i></small><br> Highly recommended: <br> - playbackmethod | `{api: [2, 7], playbackmethod: [6], skip: 1, startdelay: 0}` |
 | `native`          | optional           | Partial OpenRTB Native 1.2 request object. Supported fields are:<br>- context<br>- plcmttype                                                                                                                                                         | `{context: 1, plcmttype: 2}`                                 | `object` |
 | `splitKeyword`     | optional           | Keyword that can later be used in a split rule targeting to trigger the rule (especially for Direct Seats AB testing) |  `'splitrule-one'` | `string` |
-| `dataLayer`        | optional           | Allows to set key-values to be used in templates for bidder's mappings definition | `{placement: 'my-placement', siteid: 'my-siteid'}` | `object` |
+| `dataLayer`        | optional           | A set of arbitrary key-value pairs. This can be used to configure mappings. The keys and values must be strings. | `{placement: 'my-placement', siteid: 'my-siteid'}` | `object` |
 
 <i>*These parameters will have its accentuated characters converted to their non-accentuated version:&nbsp;`é`&nbsp;=>&nbsp;`e`</i>
 
