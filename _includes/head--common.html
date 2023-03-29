@@ -14,19 +14,17 @@
         <title>{{page.title}} for Header Bidding</title>
     {% endif %}
 
-    {% if jekyll.environment == "production" %}
-      <!-- OneTrust Cookies Consent Notice start for docs.prebid.org -->
-      <script type="text/javascript">
-        // Global Promise we can check to make sure OneTrust is loaded.
-        let resolveOneTrust;
-        window.onetrustLoaded = new Promise((resolve) => resolveOnetrust = resolve);
-        function OptanonWrapper() {
-          resolveOnetrust();
-        }
-      </script>
-      <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="031ad285-43ce-45f1-a493-8188aaf238cf"></script>
-      <!-- OneTrust Cookies Consent Notice end for docs.prebid.org -->
-    {% endif %}
+    <!-- OneTrust Cookies Consent Notice start for docs.prebid.org -->
+    <script type="text/javascript">
+      // Global Promise we can check to make sure OneTrust is loaded.
+      let resolveOneTrust;
+      window.onetrustLoaded = new Promise((resolve) => resolveOnetrust = resolve);
+      function OptanonWrapper() {
+        resolveOnetrust();
+      }
+    </script>
+    <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="031ad285-43ce-45f1-a493-8188aaf238cf"></script>
+    <!-- OneTrust Cookies Consent Notice end for docs.prebid.org -->
 
 	<link href="{{site.baseurl}}/assets/css/main-bundle.css?v=11" rel="stylesheet">
 

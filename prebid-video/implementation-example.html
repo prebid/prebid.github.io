@@ -1,0 +1,150 @@
+---
+layout: video_sample
+title: Prebid Video | Video Module Example
+description: An example of a Video Module Implementation
+videoType: pb-video-module
+isVideo: true
+sidebarType: 4
+code_height: 2300
+---
+<style>
+  #mainContainer {
+    position: relative;
+    width: 640px;
+    height: 360px;
+  }
+
+  #adContainer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 640px;
+    height: 360px;
+  }
+
+  #player {
+    width: 640px;
+    height: 360px;
+    overflow: hidden;
+  }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="vidHeader" style="width:75vw;">
+            <h1>{{ page.title }}</h1>
+            <p>{{ page.description }}</p>
+        </div>
+
+
+    <div id="videoExample" class="col-md-12">
+      <h2>(Sorry, video code examples aren't available with your cookie privacy settings.)</h2>
+      <p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+    </div>
+
+    <script>
+      var exampleHTML = `
+          <!--video warning-->
+          <div class="pb-alert pb-alert-important">
+              <p style="color:#85720f"><b>Important:</b>
+              This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
+          </div>
+
+          <!--header code example-->
+          <div class="pb-alert pb-alert-warning">
+              <p style="color:#a94443"><b>Warning:</b>
+              Do not forget to exchange the placementId in the code examples with your own placementId!</p>
+          </div>
+
+          <div id="mainContainer">
+            <video-js id="player" class="vjs-big-play-centered"></video-js>
+          </div>
+
+          <div class="row">
+             <div class="pb-code-hl-wrap">
+               <pre id='codeExample' class="pb-code-hl"></pre>
+             </div>
+          </div>`;
+      </script>
+    </div>
+</div>
+
+<script id='adCode' type="text/javascript">
+  var pbjs = pbjs || {};
+  pbjs.que = pbjs.que || [];
+
+  // Setup ad units
+  const adUnits = [{
+    code: 'div-gpt-ad-51545-0',
+    mediaTypes: {
+      video: {
+        context: 'instream',
+      }
+    },
+    video: {
+      divId: 'player', // required to indicate which player is being used to render this ad unit.
+    },
+
+    bids: [{
+      bidder: 'appnexus',
+      params: {
+        placementId: 13232385,
+      }
+    }]
+  }];
+
+
+  pbjs.que.push(function () {
+    pbjs.setConfig({
+      video: {
+        providers: [{
+          divId: 'player',
+          vendorCode: 2, // videojs vendorCode
+          playerConfig: {
+            params: {
+              adPluginConfig: {
+                numRedirects: 10
+              },
+              vendorConfig: {
+                controls: true,
+                autoplay: false,
+                preload: "auto",
+              }
+            }
+          }
+        },]
+      },
+    });
+
+    pbjs.addAdUnits(adUnits);
+
+    pbjs.onEvent('videoSetupComplete', e => {
+      console.log('player setup complete: ', e);
+      // Load media with its Metadata when the video player is done instantiating.
+      videojs('player').loadMedia({
+        id: 'XYXYXYXY',
+        src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4',
+        title: 'Subaru Outback On Street And Dirt',
+        description: 'Smoking Tire takes the all-new Subaru Outback to the highest point we can find in hopes our customer-appreciation Balloon Launch will get some free T-shirts into the hands of our viewers.',
+        type: 'video/mp4'
+      });
+    });
+
+    pbjs.onEvent('videoSetupFailed', e => {
+      console.log('player setup failed: ', e);
+    });
+
+
+    pbjs.requestBids(adUnits);
+  });
+</script>
+<script>
+  window.onetrustLoaded.then(() => {
+    OneTrust.InsertHtml(exampleHTML, 'videoExample', null, {deleteSelectorContent: true}, 'C0003');
+
+    /* Display ad code as example on page. */
+    const codeExample = document.getElementById('codeExample');
+    const adCode = document.getElementById('adCode');
+    codeExample.innerHTML = `&lt;script&gt;${adCode.innerHTML}&lt;/script&gt;`
+  })
+</script>
+<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>

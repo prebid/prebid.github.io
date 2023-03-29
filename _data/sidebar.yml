@@ -1250,7 +1250,15 @@
   subgroup: 1
 
 - sbSecId: 4
-  title: Integrating Prebid.js with video on your own
+  title: Implementation Example
+  link: /prebid-video/implementation-example.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 4
+  title: Integrating Prebid Video Without the Video Module
   link: /prebid-video/video-integrating-solo.html
   isHeader: 0
   isSectionHeader: 0
