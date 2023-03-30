@@ -272,7 +272,14 @@ sidebarType: 4
 
         pbjs.addAdUnits(adUnits);
 
-        pbjs.requestBids(adUnits);
+        if (!window.onetrustLoaded) {
+            pbjs.requestBids(adUnits);
+            return;
+        }
+        
+        window.onetrustLoaded.then(() => {
+            pbjs.requestBids(adUnits);
+        });
     });
 
 </script>

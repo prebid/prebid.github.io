@@ -4,16 +4,7 @@
 <head>
     {% include head--common.html %}
     <!-- player code -->
-    {% if jekyll.environment == "production" %}
-    <script>
-        window.onetrustLoaded.then(() => {
-            OneTrust.InsertScript("https://vjs.zencdn.net/7.20.2/video.min.js", 'head', null, {}, 'C0003');
-        });
-    </script>
-    {% else %}
     <script src="https://vjs.zencdn.net/7.20.2/video.min.js"></script>
-    {% endif %}
-
     <link href="https://vjs.zencdn.net/7.20.2/video-js.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.9.0/videojs-contrib-ads.css"
           integrity="sha512-0gIqgiX1dWTChdWUl8XGIBDFvLo7aTvmd6FAhJjzWx5bzYsCJTiPJLKqLF3q31IN4Kfrc0NbTO+EthoT6O0olQ=="
