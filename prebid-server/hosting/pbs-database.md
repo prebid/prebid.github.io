@@ -65,12 +65,14 @@ This query is defined in settings.database.stored-requests-query. Example:
 settings:
   database:
     type: mysql
-    stored-requests-query: SELECT uuid, config, 'request' as dataType FROM stored_requests WHERE uuid IN (%REQUEST_ID_LIST%) UNION ALL SELECT uuid, config, 'imp' as dataType FROM stored_requests WHERE uuid IN (%IMP_ID_LIST%)
+    stored-requests-query: SELECT accountId, reqid, requestData, 'request' as dataType FROM stored_requests WHERE reqid IN (%REQUEST_ID_LIST%) UNION ALL SELECT accountId, impid, impData, 'imp' as dataType FROM stored_imps WHERE impid IN (%IMP_ID_LIST%)
 ```
 
 This example assumes that the schema includes these fields:
-- uuid is a string field that contains the stored request ID
-- config is a JSON field that contains the body of the stored request
+- accountId: account ID which is searched by.
+- reqid: ID of stored data item which is searched by.
+- requestData: value of stored data item.
+- 'request': type of stored data item. Can be request for stored requests or imp for stored impressions.
 
 Again, you can name the fields however you'd like in your database, and the query can be arbitrarily complicated as long as it returns the fields in the order and types shown here.
 
@@ -84,12 +86,14 @@ This query is defined in settings.database.amp-stored-requests-query. Example:
 settings:
   database:
     type: mysql
-    stored-requests-query: SELECT uuid, config, 'request' as dataType FROM stored_requests WHERE uuid IN (%REQUEST_ID_LIST%)
+    amp-stored-requests-query: SELECT accountId, reqid, requestData, 'request' as dataType FROM stored_requests WHERE reqid IN (%REQUEST_ID_LIST%)
 ```
 
 This example assumes that the stored_requests schema includes these fields:
-- uuid is a string field that contains the stored request ID
-- config is a JSON field that contains the body of the stored request
+- accountId: account ID which is searched by.
+- reqid: ID of stored data item which is searched by.
+- requestData: value of stored data item.
+- 'request': type of stored data item. Can be request for stored requests or imp for stored impressions.
 
 Again, you can name the fields however you'd like in your database, and the query can be arbitrarily complicated as long as it returns the fields in the order and types shown here.
 
