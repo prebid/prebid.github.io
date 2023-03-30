@@ -56,4 +56,16 @@ var adUnits = [{
         }]
     }
 ];
+
+// configure pbjs to enable user syncing
+pbjs.setConfig({
+    userSync: {
+      filterSettings: {
+        iframe: {
+          bidders: 'kueezrtb',
+          filter: 'include'
+        }
+      }
+    }
+});
 ```

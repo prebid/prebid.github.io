@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Kueez
+title: <s>Kueez</s> (<a href="./kueezrtb.html">Go To KueezRTB</a>)
 description: Prebid Kueez Bidder Adapter
 multiformat_supported: will-bid-on-any
 pbjs: true
