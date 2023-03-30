@@ -57,8 +57,8 @@ The Stored Request query needs to return fields in this order:
 
 There are two parameters that can be passed into the query:
 
-- %REQUEST_ID_LIST% : a comma-separated list of "top-level" stored request IDs
-- %IMP_ID_LIST% : a comma-separated list of "impression-level" stored request IDs
+- %REQUEST_ID_LIST% : a comma-separated list of "top-level" stored request IDs - these are the IDs in ext.prebid.storedrequest.id.
+- %IMP_ID_LIST% : a comma-separated list of "impression-level" stored request IDs - these are the IDs in imp[].ext.prebid.storedrequest.id.
 
 This query is defined in settings.database.stored-requests-query. Example:
 ```
@@ -69,10 +69,10 @@ settings:
 ```
 
 This example assumes that the schema includes these fields:
-- accountId: account ID which is searched by.
-- reqid: ID of stored data item which is searched by.
-- storedData: value of stored data item.
-- 'request': type of stored data item. Can be request for stored requests or imp for stored impressions.
+- accountId: account ID, which is used to make sure that storedrequests are unique to the account
+- reqid: ID of stored data item
+- storedData: value of stored data item
+- 'request' or 'imp': type of stored data item.
 
 Again, you can name the fields however you'd like in your database, and the query can be arbitrarily complicated as long as it returns the fields in the order and types shown here.
 
@@ -90,10 +90,10 @@ settings:
 ```
 
 This example assumes that the stored_requests schema includes these fields:
-- accountId: account ID which is searched by.
-- reqid: ID of stored data item which is searched by.
-- storedData: value of stored data item.
-- 'request': type of stored data item. Can be request for stored requests or imp for stored impressions.
+- accountId: account ID, which is used to make sure that storedrequests are unique to the account
+- reqid: ID of stored data item
+- storedData: value of stored data item
+- 'request': type of stored data item. Can be only be 'request' for AMP.
 
 Again, you can name the fields however you'd like in your database, and the query can be arbitrarily complicated as long as it returns the fields in the order and types shown here.
 
@@ -109,8 +109,8 @@ The Stored Response query needs to return fields in this order:
 
 One parameter can be passed into the query, though at this point, the parameter differs between Go and Java:
 
-- %RESPONSE_ID_LIST% (PBS-Java): a comma-separated list of stored response IDs
-- %ID_LIST% (PBS-Go): a comma-separated list of stored response IDs
+- %RESPONSE_ID_LIST% (PBS-Java): a comma-separated list of stored response IDs. These come from imp[].ext.prebid.storedbidresponse or imp[].ext.prebid.storedauctionresponse.
+- %ID_LIST% (PBS-Go): a comma-separated list of stored response IDs. These come from imp[].ext.prebid.storedbidresponse or imp[].ext.prebid.storedauctionresponse.
 
 This query is defined in settings.database.stored-requests-query. Example:
 ```
