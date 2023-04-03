@@ -1,11 +1,12 @@
 ---
 layout: bidder
-title: Zeta Global Ssp
-description: Zeta Global Ssp Prebid Bidder Adapter
+title: Zeta Global SSP
+description: Zeta Global SSP Prebid Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: zeta_global_ssp
 deals_supported: false
-media_types: banner
+media_types: banner, video
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
@@ -24,6 +25,8 @@ The Zeta Global SSP adapter requires setup and approval from the Zeta Global SSP
 
 ### Bid Params
 
+#### Prebid.js Bid Params
+
 {: .table .table-bordered .table-striped }
 | Name                 | Scope    | Description                                                                                                         | Example      | Type      |
 |----------------------|----------|---------------------------------------------------------------------------------------------------------------------|--------------|-----------|
@@ -34,3 +37,9 @@ The Zeta Global SSP adapter requires setup and approval from the Zeta Global SSP
 | `app`                | optional | The object containing app data (See OpenRTB spec)                                                                   | `app: {}`    | `object`  |
 | `bidfloor`           | optional | The minimum bid value desired                                                                                       | `0.2`        | `float`   |
 | `test`               | optional | Flag which will induce a sample bid response when true; only set to true for testing purposes (1 = true, 0 = false) | `1`          | `integer` |
+
+
+#### Prebid Server Bid Params
+
+Prebid Server Adapter does not support any parameters.
+You must get `sid` and `shortname` values from Zeta Global and use them instead of placeholders in the URL.
