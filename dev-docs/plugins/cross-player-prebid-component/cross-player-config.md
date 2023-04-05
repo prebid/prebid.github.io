@@ -45,7 +45,7 @@ Not required but recommended.
 
 **Default Value:**
 
-https://acdn.adnxs.com/prebid/not-for-prod/prebid.js
+https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js
 
 **Example:**
 
@@ -193,7 +193,7 @@ None
 
 **Example:**
 
-`options.prebidConfigOptions = { publisherDomain: "https://www.mydomain.com"};`
+`options.prebidConfigOptions = { pageUrl: "https://www.mydomain.com"};`
 
 <a name="dfpParameters"></a>
 ## dfpParameters
@@ -297,13 +297,13 @@ Here is a sample Prebid configuration JSON object returned via URL:
 
 ```
 {
-    "prebidPath" : "//acdn.adnxs.com/prebid/not-for-prod/prebid.js",
+    "prebidPath" : "//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js",
     "biddersSpec" : {
         "code" : "my-video-tag",
-        "sizes" : [640, 480],
         "mediaTypes": {
             "video": {
                 "context": "instream",
+		"playerSize": [640, 480],
                 "mimes": ["video/mp4", "application/javascript"],
                 "protocols" : [1,2,3,4,5,6,7,8],
                 "playbackmethod" : [1, 2],
@@ -314,11 +314,7 @@ Here is a sample Prebid configuration JSON object returned via URL:
             {
                 "bidder": "appnexus",
                 "params": {
-                    "placementId": 9999,
-                    "video": {
-                        "skippable": true,
-                        "playback_method": ["auto_play_sound_off"]
-                    }
+                    "placementId": 9999
                 }
             }
         ]

@@ -5,6 +5,8 @@ description: Prebid AdHash Bidder Adapter
 pbjs: true
 biddercode: adhash
 safeframes_ok: false
+gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Note
@@ -26,4 +28,4 @@ Please note that a number of AdHash functionalities are not supported in the Pre
 | Name          | Scope    | Description  | Example                                        | Type     |
 |---------------|----------|--------------|------------------------------------------------|----------|
 | `publisherId` | required | Publisher ID | `'0x1234567890123456789012345678901234567890'` | `string` |
-| `platformURL` | required | Platform URL | `'https://adhash.org/p/struma/'`               | `string` |
+| `platformURL` | required | Platform URL | `'https://adhash.org/p/example/'`              | `string` |

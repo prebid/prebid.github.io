@@ -2,60 +2,65 @@
 <html lang="en" class="html--no-js">
 
 <head>
-{% include head--common.html %}    
+{% include head--common.html %}
     <!--production version of prebid.js-->
-    <script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
-    
+    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+
     <!--brid & prebid js code-->
-    <script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"></script>  	
-    
-    <script type="text/javascript">
-    	
+    <script>
+      window.onetrustLoaded.then(() => {
+        OneTrust.InsertScript("//services.brid.tv/player/build/brid.min.js", 'head', null, {}, 'C0003');
+      })
+    </script>
+
+    <script type="text/plain" class="optanon-category-C0003">
+
 		var pbjs = pbjs || {};
 		pbjs.que = pbjs.que || [];
-		
+
 		// define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
 		var tempTag = false;
 		var invokeVideoPlayer = function(url){
 		  tempTag = url;
 		}
-		
+
 		/*
 		Prebid Video adUnit
 		*/
-		
+
 		var videoAdUnit = {
 		  code: 'video1',
 		  sizes: [640,480],
 		  mediaTypes: {
 		    video: {
-		      context: "instream"
+			context: 'instream',
+			playerSize: [640, 480],
+			mimes: ['video/mp4'],
+			protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+			playbackmethod: [2],
+			skip: 1
 		    }
 		  },
 		  bids: [
 		    {
 		      bidder: 'appnexusAst',
 		      params: {
-		        placementId: '13232361', // Add your own placement id here
-		        video: {
-		          skipppable: true,
-		          playback_method: ['auto_play_sound_off']
-		        }
+		        placementId: '13232361' // Add your own placement id here
 		      }
 		    }
 		  ]
 		};
-		
+
 		pbjs.que.push(function(){
 		  pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
-		
-		  pbjs.setConfig({ 
+
+		  pbjs.setConfig({
 		    usePrebidCache: true,
 				cache: {
 					url: 'https://prebid.adnxs.com/pbc/v1/cache'
-				} 
+				}
 		  });
-		
+
 		  pbjs.requestBids({
 		      bidsBackHandler: function(bids) {
 		          var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
@@ -73,7 +78,7 @@
 		      }
 		  });
 		});
-		
+
 		pbjs.bidderSettings =
 		{
 		    standard: {
@@ -97,15 +102,15 @@
 		                key: "hb_size",
 		                val: function (bidResponse) {
 		                    return bidResponse.size;
-		
+
 		                }
 		            }
 		        ]
 		    }
 		};
-			     
+
 	</script>
-    
+
 </head>
 
 <body>

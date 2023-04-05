@@ -7,10 +7,12 @@ media_types: no-display, video
 gdpr_supported: true
 userIds: none
 prebid_member: true
-schain_supported: false
+schain_supported: true
 usp_supported: true
 safeframes_ok: false
 pbjs: true
+floors_supported: true
+sidebarType: 1
 ---
 
 ### Registration
@@ -27,13 +29,13 @@ Please reach out to your smartclip business contact for any questions and assist
 | `bidfloor`           | required | Value of Bidfloor.                                                                                      | `0.3`                   | `float`     |
 | `bidfloorcur`        | required | Used Currency. (e.g. EUR, USD etc.)                                                                     | `'EUR'`                 | `string`    |
 | `context`            | optional | Token that describes which context to play: 'instream' or 'outstream'                                   | `'outstream'`           | `string`    |
-| `outstream_function` | optional | Custom function to be used as a renderer.                                                               | `function(bid){console.log(bid);}` | `function` |
 | `outstream_options`  | required | Object to set options on the smartx renderer. (Only required when setting mediaType.video.context = 'outstream') | `{}`           | `object`    |
 | `secure`             | optional | Boolean identifying whether the requests should be https or not (used to override the protocol if the page isn't secure). | `true`| `boolean`   |
 | `mimes`              | optional | List of MIME types to allow in ad.                                                                      | `['application/javascript', 'video/mp4', 'video/webm']` | `array` |
 | `price_floor`        | optional | Set the current channel price floor in real time.                                                       | `10`                    | `integer`   |
 | `min_duration`       | optional | Minimum video ad duration in seconds                                                                    | `15`                    | `integer`   |
 | `max_duration`       | optional | Maximum video ad duration in seconds                                                                    | `60`                    | `integer`   |
+| `sitekey`            | optional | Sitekey provided by smartclip.                                                                          | `'foo.bar.baz'`           | `string`    |
 
 <a name="smartx-outstream-options-object" />
 
@@ -43,10 +45,11 @@ Please reach out to your smartclip business contact for any questions and assist
 | Name            | Scope    | Description                                                                                  | Example          | Type        |
 | --------------- | -------- | -------------------------------------------------------------------------------------------- | ---------------- | ----------- |
 | `slot`          | required | ID of element that video ad should be rendered into.                                         | `'adSlot1'`      | `string`    |
-| `minAdWidth`    | optional | Minimum amount of space the player needs to expand.                                          | `290`            | `integer`   |
-| `maxAdWidth`    | optional | Maximum size of the player.                                                                  | `900`            | `integer`   |
-| `title`         | optional | Makes a defined advertising text appear in the below right corner. `[remainingTime]` can be used to display the remaining time of the advertisement. | `'Advertisement [remainingTime]s'` | `string`    |
-| `skipOffset`    | optional | Define whenever the advertisement can be skipped. 0 = never                                  | `0`              | `integer`   |
-| `startOpen`     | optional | Define whether the player should be initialized open or open when it is within view.         | `false`          | `bool`      |
-| `endingScreen`  | optional | Define whether the player should stay open after advertising or not.                         | `true`           | `bool`      |
-| `desiredBitrate`| optional | Define the desired bitrate of the mediafile.                                                 | `800`            | `integer`   |
+| `minAdWidth`    | optional | If the visible area is narrower than this size, no ad will be requested. The value is given in pixels. Default is `280`.       | `290`            | `integer`   |
+| `maxAdWidth`    | optional | The player will fill the whole width of the element it gets, to have it narrower a different maximum width can be defined in pixels. Default is `800`.                                | `900`            | `integer`   |
+| `title`         | optional | The player can show a freely definable text, a macro `[remainingTime]` in this string will be replaced with the remaining play time of the ad in seconds. | `'Advertisement [remainingTime]s'` | `string`    |
+| `skipOffset`    | optional | In order to enable skipping from the start set the delay to `0`, to show the skip button after 5 seconds set it to `5`. Setting a general skipOffset is discouraged. Note that linear creatives carrying a skipsoffet attribute will override the general player setting. By default the player does not set a general skipoffset, so a skip button will only be shown, if an ad has a specific skipoffset attached. |  `0`  | `integer`   |
+| `startOpen`     | optional | Per default the player will start fully expanded, if a valid ad can be played. Setting this option to `false` will trigger an expand animation instead once the player comes into view. Default is `true`.              | `'false'`        | `string`    |
+| `endingScreen`  | optional | By default the player will not close, but show the ending screen when an advertisement is complete (last frame of the ad and a replay button, if an advertisment comes with an endcard that will be shown). If set to `false` the player will collapse. Some VPAID creatives can cause issues with ending screen or replay behaviour. Default is `true`.              | `'true'`         | `string`    |
+| `desiredBitrate`| optional | You can specify a target bitrate for the creative, higher values will increase video quality but will cost bandwidth. Value is given in kpbs. Default is `700`.                       | `800`            | `integer`   |
+| `visibilityThreshold`| optional | Defines the percentage of the player which has to be in the visible area to play and pause the advertisment. The default is `50`.                           | `50`             | `integer`   |

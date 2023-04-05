@@ -19,7 +19,7 @@ There are several ways to get more debug info from Prebid Server.
 
 If you're invoking Prebid Server directly, add one of these parameters to the OpenRTB:
 - `"test":1`: This will inform bidders that this request should be treated as a test (non-billable), and provides additional debug information in the OpenRTB response.
-- `"debug":1`: Similar to `test`, but just adds  debug info, without declaring the request non-billable.
+- `"ext.prebid.debug":true`: Similar to `test`, but just adds debug info, without declaring the request non-billable.
 
 {% highlight bash %}
 POST https://prebid-server.rubiconproject.com/openrtb2/auction
@@ -33,12 +33,22 @@ POST https://prebid-server.rubiconproject.com/openrtb2/auction
 
 If you're invoking Prebid Server from Prebid.js, turn on the OpenRTB `test` flag from Prebid.js using one of these options:
 
-1) Add **?pbjs_debug=true** to the URL of the page.
+1) Add **?pbjs_debug=true** to the URL of the page. This will cause the pbsBidAdapter to send `ext.prebid.debug:true` to PBS, which will turn on additional debugging.
 
-2) Add the following `setConfig` to the page:
+2) Add the following `setConfig` to the page to get the same result:
 
 {% highlight bash %}
     pbjs.setConfig({"debug":true});
+{% endhighlight %}
+
+3) If instead of ext.prebid.debug you would like to set the OpenRTB 2.5 'test' flag, you can set that using the 'ortb2' approach:
+
+{% highlight bash %}
+    pbjs.setConfig({
+        "ortb2": {
+            "test":1
+        }
+    });
 {% endhighlight %}
 
 ### Invoked from AMP
@@ -50,9 +60,6 @@ https://my-prebid-server.com/openrtb2/amp?tag_id=1111111111111&w=300&h=50&...&de
 {% endhighlight %}
 
 ## Stored Responses
-
-{: .pb-alert .pb-alert-important :}
-Currently, this approach only works with the Java version of Prebid Server.
 
 Sometimes it's hard to get a test bid. Other times, you may want to test a
 very specific bid, such as one that has a particular CPM value or
@@ -134,7 +141,7 @@ hit these two URLs with the desired parameter values:
 
 Then you can check server logs for output like:
 ```
-http-interaction : Requested URL: "/openrtb2/auction?debug=1", request body: "{ ... }"
+http-interaction : Requested URL: "/openrtb2/auction", request body: "{ ... }"
 ```
 
 ## Related Topics

@@ -5,13 +5,16 @@ description: Avantis Video Bidder Adapter
 pbjs: true
 biddercode: avantisvideo
 aliasCode: aniview
-media_types: video
+media_types: banner, video
 gdpr_supported: true
 usp_supported: true
+schain_supported: true
+safeframes_ok: true
+sidebarType: 1
 ---
 
 ### Note:
-For more information about [Avantis Video](https://www.avantisvideo.com/).
+For more information about [Avantis Video](https://www.avantisvideo.com/), please contact contact@avantisvideo.com.
 
 ### Bid Params
 

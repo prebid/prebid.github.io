@@ -10,11 +10,12 @@ coppa_supported: true
 schain_supported: false
 media_types: banner, video, native
 safeframes_ok: true
-bidder_supports_deals: true
+deals_supported: true
 pbjs: false
 pbs: true
 pbs_app_supported: true
 prebid_member: false
+sidebarType: 1
 ---
 
 ### Note:

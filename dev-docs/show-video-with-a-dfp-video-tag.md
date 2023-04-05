@@ -59,21 +59,23 @@ var videoAdUnit = {
     mediaTypes: {
         video: {
             context: 'instream',
-            playerSize: [640, 480]
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
         },
     },
     bids: [{
         bidder: 'appnexus',
         params: {
-            placementId: 13232361,
-            video: {
-                skippable: true,
-                playback_methods: ['auto_play_sound_off']
-            }
+            placementId: 13232361
         }
     }]
 };
 ```
+
+For full details on video ad unit parameters, see [Ad Unit Reference for Video]({{site.baseurl}}/dev-docs/adunit-reference.html#adunitmediatypesvideo)
 
 ### 2. Implement Custom Price Buckets
 
@@ -203,16 +205,6 @@ Below, find links to end-to-end "working examples" integrating Prebid.js demand 
 + [Ooyala]({{site.github.url}}/examples/video/instream/ooyala/pb-ve-ooyala.html)
 + [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
 + [Instream and Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
-
-### Using Prebid Server Video
-
-+ [Brid]({{site.baseurl}}/examples/video/server/brid/pbs-ve-brid.html)
-+ [JW Player - Platform]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
-+ [JW Player - Hosted]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
-+ [Kaltura]({{site.baseurl}}/examples/video/server/kaltura/pbs-ve-kaltura.html)
-+ [Ooyala]({{site.baseurl}}/examples/video/server/ooyala/pbs-ve-ooyala.html)
-+ [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)
-
 
 ## Related Topics
 

@@ -9,6 +9,7 @@ media_types: video
 gdpr_supported: true
 schain_supported: true
 gvl_id: 36
+sidebarType: 1
 ---
 
 

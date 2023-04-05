@@ -54,23 +54,20 @@ This page presents a sample publisher page using the General Integration Method 
         "prebidPath": "//files.prebid.org/prebid-org.js",  // not for production use
         "biddersSpec": {
             ”code": "my-video-tag",
-            "sizes": [640,480],
             "mediaTypes": {
                 "video": {
                     "context": "instream",
-                 "mimes": ["video/mp4","application/javascript"],
-                 "protocols": [1,2,3,4,5,6,7,8],
-                 "playbackmethod": [1,2],
+		    "playerSize": [640,480],
+                    "mimes": ["video/mp4","application/javascript"],
+                    "protocols": [1,2,3,4,5,6,7,8],
+                    "playbackmethod": [1,2],
                     "api": [1,2 ]
                 }
             },
             "bids": [{
                 "bidder": "appnexus",
                 "params": {
-                    "placementId": 8845778,
-                 "video": {"skippable": true,
-                    "playback_method": ["auto_play_sound_off"]
-                    }
+                    "placementId": 8845778
                 }
             }]
         },

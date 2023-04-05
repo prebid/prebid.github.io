@@ -2,33 +2,31 @@
 <html lang="en" class="html--no-js">
 
 <head>
-{% include head--common.html %}    
+{% include head--common.html %}
     <!--production version of prebid.js-->
-    <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
-    <script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
-    
-    <!--pbjs and player code -->	
-    
-	<script>
+    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+
+    <!--pbjs and player code -->
+  <script type="text/plain" class="optanon-category-C0003">
 	    var pbjs = pbjs || {};
 	    pbjs.que = pbjs.que || [];
-	
+
 	    var adUnits = [{
 	        code: 'video1',
 	        mediaTypes: {
 	            video: {
-	                playerSize: [640, 480],
-	                context: 'outstream'
+	                context: 'outstream',
+			playerSize: [640, 480],
+			mimes: ['video/mp4'],
+			protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+			playbackmethod: [2],
+			skip: 1
 	            }
 	        },
 	        bids: [{
 	            bidder: 'appnexus',
 	            params: {
-	                placementId: 13232385,
-	                video: {
-	                    skippable: true,
-	                    playback_method: ['auto_play_sound_off']
-	                }
+	                placementId: 13232385
 	            }
 	        }]
         }];
@@ -45,7 +43,7 @@
         });
 
     </script>
-    
+
 </head>
 
 <body>

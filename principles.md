@@ -23,4 +23,4 @@ Prebid.org uses the following principles to guide how we develop [Prebid.js]({{s
 ## Further Reading
 
 + [What is Prebid?](/overview/intro.html)
-+ [Header Bidding Wrapper Code of Conduct]({{site.baseurl}}/wrapper_code_of_conduct.html)
++ [Header Bidding Wrapper Code of Conduct](https://prebid.org/code-of-conduct/)

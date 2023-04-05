@@ -7,17 +7,18 @@ pbjs: true
 biddercode: interactiveOffers
 gdpr_supported: false
 media_types: banner
+sidebarType: 1
 ---
 
 ### Note:
-Module that connects to interactiveOffers demand sources. Param pubid is required.
+Module that connects to interactiveOffers demand sources. Param partnerId is required.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
-| `pubid` | required |  Publisher id          | 35   | `integer` |
+| `partnerId` | required |  Partner id          | 'abc123'   | `string` |
 
 Example:
 
@@ -25,7 +26,7 @@ Example:
 {
     bidder: "interactiveOffers",
     params: {
-        pubid: 35
+        partnerId: "abc123"
     }
 }
 ```

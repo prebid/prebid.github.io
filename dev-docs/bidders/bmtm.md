@@ -2,9 +2,14 @@
 layout: bidder
 title: Bright Mountain Media
 description: Prebid Bright Mountain Media Bidder Adapter
-pbjs: true
 biddercode: bmtm
-media_types: banner
+media_types: banner, video
+floors_supported: true
+schain_supported: true
+pbjs: true
+pbs: true
+userIds: id5Id, sharedId
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -12,5 +17,4 @@ media_types: banner
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                                       | Example                    | Type     |
 | -------------- | -------- | ----------------------------------------------------------------- | -------------------------- | -------- |
-| `placement_id` | required | Placement Id will be generated on Bright Mountain Media Platform. | `'5f21784949be81002079d08c'` | `string` |
-| `traffic`      | required | Type traffic                                                      | `'banner'`                 | `string` |
+| `placement_id` | required | Placement ID will be generated on Bright Mountain Media Platform | `1` | `integer` |

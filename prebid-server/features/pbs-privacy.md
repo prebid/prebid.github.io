@@ -58,13 +58,25 @@ There are a number of GDPR configuration settings that PBS Host Companies must
 consider:
 
 - **GDPR enabled** - Allows the host company to turn off GDPR support. Default setting is enabled=true.
-- **Default GDPR applies** - How Prebid Server should respond if the incoming request doesn't have the `gdpr` flag. (Note: this config is currently called `usersync_if_ambiguous` in PBS-Go and gdpr.default-value in PBS-Java.)
+- **Default GDPR applies** - How Prebid Server should respond if the incoming request doesn't have the `gdpr` flag. (Note: this config is currently called `gdpr.default_value` in PBS-Go and `gdpr.default-value` in PBS-Java.)
 - **Host company GVL ID** - Currently PBS requires the host company to have a GVL-ID or the setting of the `uids` cookie in GDPR scope will fail.
 - **GDPR enforcement flags** - for each Purpose
 - **Host Cookie TTL** - The default expiration time of the `uids` cookie set in the host company domain should be defined to match what's in the TCF 2.1 `maxCookieAgeSeconds` GVL field. (This is the host-cookie.ttl-days setting in both Go and Java.)
 
 The specific details vary between [PBS-Go](https://github.com/prebid/prebid-server/blob/master/config/config.go) and [PBS-Java](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md), so check the
 version-specific documentation for more information.
+
+## GPP
+
+The IAB's [Global Privacy Platform](https://iabtechlab.com/gpp/) is container for
+privacy regulations aimed at helping the ad tech ecosystem bring disparate reguations
+under one communication path.
+
+Prebid Server support for this protocol is still being developed:
+
+1. (done) Passthrough - GPP parameters are forwarded through auction and usersync signals. In ORTB 2.6, these are regs.gpp and regs.gpp_sid. For url protocols, look for `gpp` and `gpp_sid`.
+1. (done) GPP as a TCF and USP wrapper - PBS parses the GPP container for TCF2 and USP strings, extracting them to the original ORTB location. (PBS-Java only for now)
+1. (planned) GPP infrastructure - the ability to plug new regulations into PBS, and the first sub-module, the IAB's US [National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md).
 
 ## COPPA
 
@@ -89,6 +101,11 @@ the following anonymization steps are taken:
 - Removes user.id and user.buyeruid
 - Removes the request.device.ifa attribute
 - Rounds the request.device.geo. {lat,lon} to two decimal places
+
+## Global Privacy Control
+
+In support of the [Global Privacy Control](https://globalprivacycontrol.org/), Prebid Server passes the `Sec-GPC` HTTP header through to bid adapters. It
+does not currently take action on this header.
 
 ## DNT
 

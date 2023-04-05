@@ -2,10 +2,11 @@
 layout: page_v2
 page_type: module
 title: Module - Google Ad Manager Express
-description: Simplified installation mechanism for publishers that have Google Ad Manager in their pages
+description: A simplified installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages.
 module_code : express
 display_name : Google Ad Manager Express
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 
@@ -177,7 +178,7 @@ pbjs.express(adUnits);
     // - a definition for a prebid.js adunit with a `code` of 'slot-name' or 'div-name'
     // - a call to pbjs.express(adUnits)
 
-    <script type="text/javascript" src="https://www.googletagservices.com/tag/js/gpt.js" async="true"></script>
+    <script type="text/javascript" src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" async="true"></script>
     <script type ="text/javascript">
         var googletag = googletag || {};
         googletag.cmd = googletag.cmd || [];

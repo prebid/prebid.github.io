@@ -21,7 +21,7 @@ default_request:
     alias_info: false
 ```
 
-The `file.name` option is the path/filename of a JSON file containing default request JSON. See the [stored request doc](/prebid-server/features/pbs-storedreqs.html) and the [openrtb2/auction endpoint doc](/prebid-server/endpoints/openrtb2/auction.html) for details about the syntax.
+The `file.name` option is the path/filename of a JSON file containing default request JSON. See the [stored request doc](/prebid-server/features/pbs-storedreqs.html) and the [openrtb2/auction endpoint doc](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) for details about the syntax.
 
 PBS-Java has a slightly different configuration in application.yaml:
 ```

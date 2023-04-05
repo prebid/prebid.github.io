@@ -3,7 +3,7 @@ layout: bidder
 title: Impactify
 description: Prebid Impactify Bidder Adapter
 pbjs: true
-pbs: false
+pbs: true
 biddercode: impactify
 gdpr_supported: true
 tcf2_supported: true
@@ -11,7 +11,9 @@ usp_supported: true
 schain_supported: true
 coppa_supported: true
 media_types: video
+userIds: criteo, id5Id, pubCommonId, unifiedId, uid2, netId
 gvl_id: 606
+sidebarType: 1
 ---
 
 ### Note:

@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Supply Chain Object
-description: Validates Supply Chain object and makes it available to bidder
+description: Validates the Supply Chain object and makes it available to bidders.
 module_code : schain
 display_name : Supply Chain Object
 enable_download : true

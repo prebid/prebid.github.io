@@ -51,17 +51,20 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
         // the set of bidders here shows how to specify the AppNexus video bidder:  appnexus
         var params = {
             code : 'my-video-tag',
-            sizes : [640, 480],
-            mediaType: 'video',
+            mediaTypes: {
+		video: {
+		  context: 'instream',
+                  playerSize: [640, 480],
+                  mimes: ['video/mp4'],
+                  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                  playbackmethod: [2],
+                  skip: 1
+		}
             bids: [
                 {
                     bidder: 'appnexus',
                     params: {
-                        placementId: 12334567,
-                        video: {
-                            skippable: true,
-                            playback_method: ['auto_play_sound_off']
-                        }
+                        placementId: 12334567
                     }
                 }
             ]

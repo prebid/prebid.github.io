@@ -21,7 +21,7 @@ they all compete in one single line item based on price.
 
 This diagram summarizes the post-bid scenario:
 
-![Add Creative to Line Item]({{ site.github.url }}/assets/images/blog/postbid-diagram.png){: .pb-lg-img :}
+![Add Creative to Line Item]({{ site.github.url }}/assets/images/overview/postbid-diagram.png){: .pb-lg-img :}
 
 Steps:
 

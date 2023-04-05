@@ -12,6 +12,8 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 pbs_app_supported: true
+floors_supported: true
+sidebarType: 1
 ---
 
 ### Note:
