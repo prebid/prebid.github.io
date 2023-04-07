@@ -13,28 +13,31 @@ pbs: true
 sidebarType: 1
 schain_supported: true
 ortb_blocking_supported: true
+userIds: all
+floors_supported: true
 ---
 
 ### Note:
 
 [Vidoomy](https://vidoomy.com/), for more info please contact support@vidoomy.com
 
-### Bid Params
+### Client Side Bid Params
 
 {: .table .table-bordered .table-striped }
+| Name             | Scope    | Description      | Example                      | Type     |
+|------------------|----------|------------------|------------------------------|----------|
+| `id` | required | id  | `'123123'` | `string` |
+| `pid`   | required | pid | `'123123'` | `string` |
+| `bidfloor`   | optional | CPM bidfloor in USD | `0.08` | `float` |
 
-| Name  | Scope    | Description | Example    | Type     |
-|-------|----------|-------------|------------|----------|
-| `id`  | required | id          | `123123`   | `string` |
-| `pid` | required | pid         | `'123123'` | `string` |
 
-### Bid Params (Prebid Server)
+### Server Side Bid Params (Prebid Server)
 
 {: .table .table-bordered .table-striped }
 
 | Name     | Scope    | Description                                 | Example           | Type           |
 |----------|----------|---------------------------------------------|-------------------|----------------|
-| `zoneId` | required | Zone Id                                     | "123123"          | `string`       |
+| `zoneId` | required | Zone Id                                     | `'123123'`          | `string`       |
 | `bcat`   | optional | List of blocked advertiser categories (IAB) | `['IAB1-1']`      | `string array` |
 | `badv`   | optional | Blocked Advertiser Domains                  | `['example.com']` | `string array` | 
 | `bapp`   | optional | blocked advertiser mobile app bundles       | `['app.com']`     | `string array` |
