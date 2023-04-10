@@ -125,8 +125,7 @@ adUnit = BannerAdUnit(configId: storedImpVideoBanner, size: adSize)
 adUnit.adFormats = [.video]
     
 // 3. Configure video parameters
-let parameters = VideoParameters()
-parameters.mimes = ["video/mp4"]
+let parameters = VideoParameters(mimes: ["video/mp4"])
 parameters.protocols = [Signals.Protocols.VAST_2_0]
 parameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOff]
 parameters.placement = Signals.Placement.InBanner
@@ -219,9 +218,11 @@ Integer representing the OpenRTB 2.5 maximum video ad duration in seconds.
 Integer representing the OpenRTB 2.5 minimum video ad duration in seconds.
 
 #### mimes
+
 {:.no_toc}
 
 Array of strings representing the supported OpenRTB 2.5 content MIME types (e.g., “video/x-ms-wmv”, “video/mp4”).
+Required property.
 
 #### playbackMethod
 {:.no_toc}
@@ -285,8 +286,7 @@ bannerParameters.api = [Signals.Api.MRAID_2]
 adUnit.bannerParameters = bannerParameters
 
 // 4. Configure video parameters
-let videoParameters = VideoParameters()
-videoParameters.mimes = ["video/mp4"]
+let videoParameters = VideoParameters(mimes: ["video/mp4"])
 videoParameters.protocols = [Signals.Protocols.VAST_2_0]
 videoParameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOff]
 videoParameters.placement = Signals.Placement.InBanner
@@ -445,8 +445,7 @@ adUnit = InterstitialAdUnit(configId: storedImpVideoInterstitial)
 adUnit.adFormats = [.video]
 
 // 3. Configure video parameters
-let parameters = VideoParameters()
-parameters.mimes = ["video/mp4"]
+let parameters = VideoParameters(mimes: ["video/mp4"])
 parameters.protocols = [Signals.Protocols.VAST_2_0]
 parameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOff]
 adUnit.videoParameters = parameters
@@ -519,8 +518,7 @@ adUnit = InterstitialAdUnit(configId: storedImpsInterstitial.randomElement()!, m
 adUnit.adFormats = [.display, .video]
 
 // 3. Configure parameters
-let parameters = VideoParameters()
-parameters.mimes = ["video/mp4"]
+let parameters = VideoParameters(mimes: ["video/mp4"])
 parameters.protocols = [Signals.Protocols.VAST_2_0]
 parameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOff]
 adUnit.videoParameters = parameters
@@ -597,8 +595,7 @@ Integration example:
 adUnit = RewardedVideoAdUnit(configId: storedImpVideoRewarded)
 
 // 2. Configure video parameters
-let parameters = VideoParameters()
-parameters.mimes = ["video/mp4"]
+let parameters = VideoParameters(mimes: ["video/mp4"])
 parameters.protocols = [Signals.Protocols.VAST_2_0]
 parameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOff]
 adUnit.videoParameters = parameters
@@ -663,8 +660,7 @@ Integration example:
 adUnit = InstreamVideoAdUnit(configId: storedImpVideo, size: CGSize(width: 1,height: 1))
 
 // 2. Configure Video Parameters
-let parameters = VideoParameters()
-parameters.mimes = ["video/mp4"]
+let parameters = VideoParameters(mimes: ["video/mp4"])
 parameters.protocols = [Signals.Protocols.VAST_2_0]
 parameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOn]
 adUnit.videoParameters = parameters
