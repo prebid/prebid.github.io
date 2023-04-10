@@ -11,7 +11,15 @@ media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
 pbjs: true
-pbs: false
+pbs: true
+gvl_id: 869
+floors_supported: true
+pbs_app_supported: true
+fpd_supported: false
+dchain_supported: false
+deals_supported: true
+ortb_blocking_supported: true
+sidebarType: 1
 ---
 
 ### Note:
@@ -20,7 +28,6 @@ The Brave Header Bidding adapter requires setup and approval from the Brave team
 
 ### Bid Params
 
-{: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                   | Example                             | Type      |
 |---------------|----------|-------------------------------|-------------------------------------|-----------|
 | `placementId` | required | Brave's platform placement id | `'to0QI2aPgkbBZq6vgf0oHitouZduz0qw'`  | `string`  |

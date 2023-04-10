@@ -5,13 +5,14 @@ description: Prebid WINR Bidder Adaptor
 biddercode: winr
 media_types: banner
 prebid_member: false
-userIds: criteo, unifiedId, netId, identityLink, flocId, uid2
+userIds: criteo, unifiedId, netId, identityLink, uid2
 schain_supported: true
 coppa_supported: true
 usp_supported: true
 floors_supported: true
 pbjs: true
 safeframes_ok: false
+sidebarType: 1
 ---
 
 ### Note:

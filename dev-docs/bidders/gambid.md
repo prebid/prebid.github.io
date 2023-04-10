@@ -11,6 +11,7 @@ media_types: banner, video
 biddercode: gambid
 aliasCode: gamoshi
 userIds: id5Id, unifiedId
+sidebarType: 1
 ---
 
 ### Bid params

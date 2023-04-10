@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.getUserIdsAsync()
 description: 
+sidebarType: 1
 ---
 
 {: .alert.alert-info :}

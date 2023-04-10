@@ -24,7 +24,7 @@ Here's a workflow diagramming how this works.
 1. The auction takes place and bid responses are placed in a cache.
 1. Prebid Server responds to the Prebid SDK with results and ad server targeting variables.
 1. The ad server targeting variables are sent along with the ad request to the publisher ad server.
-1. When header bidding wins in the ad server, the ad server responds with a call to the [Prebid Universal Creative](overview/prebid-universal-creative.html).
+1. When header bidding wins in the ad server, the ad server responds with a call to the [Prebid Universal Creative](/overview/prebid-universal-creative.html).
 1. The Prebid Universal Creative pulls the winning bid from the Prebid Cache.
 1. The Prebid Universal Creative displays the winning bid creative from the cache.
 
@@ -247,9 +247,9 @@ The behavior of the keys is:
 * `includewinners`: If set to true, Prebid Server will emit the top winning bid as `hb_pb` format. If set to false, Prebid Server will not supply the top bid.
 * `includebidderkeys`: If set to true, Prebid Server will emit all bidder keys as `hb_pb_BIDDERNAME` along with all other bidder specific keys. If false, Prebid Server will not supply any bidder specific keys.
 
-### The SDK Recieves Prebid Server's Response
+### The SDK Receives Prebid Server's Response
 
-Prebid SDK will set the publisher ad server targeting with all keys recieved from Prebid Server's response, unadultered, contained in the `ext.prebid.targeting` object.
+Prebid SDK will set the publisher ad server targeting with all keys received from Prebid Server's response, unadultered, contained in the `ext.prebid.targeting` object.
 
 
 #### Application Code Calls the Ad Server

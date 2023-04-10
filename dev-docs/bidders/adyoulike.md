@@ -12,6 +12,7 @@ gvl_id: 259
 usp_supported: true
 floors_supported: true
 schain_supported: true
+sidebarType: 1
 ---
 
 ### Note:
