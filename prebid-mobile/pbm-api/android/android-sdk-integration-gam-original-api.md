@@ -346,6 +346,7 @@ Initialize the `BannerAdUnit` with properties:
 - `adUnitFormats` - ad unit formats for the current ad unit. 
 
 #### Step 2-5
+{:.no_toc}
 
 Steps 2-5 are the same as for Display Banner. Setting up banner and video parameters can be found in Display Banner and Video Banner respectively.
 
@@ -564,6 +565,7 @@ Initialize the `InterstitialAdUnit` with the following properties:
 - `adUnitFormats` - ad unit formats for the current ad unit.
 
 #### Steps 2-3
+{:.no_toc}
 
 Steps 2-3 are the same as for Display Banner. Setting up banner and video parameters can be found in Display Interstitial and Video Interstitial respectively.
 
