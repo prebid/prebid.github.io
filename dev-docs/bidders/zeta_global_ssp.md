@@ -29,6 +29,7 @@ The Zeta Global SSP adapter requires setup and approval from the Zeta Global SSP
 |----------------------|----------|---------------------------------------------------------------------------------------------------------------------|--------------|-----------|
 | `sid`                | required | Seller ID. The identifier associated with the seller or reseller account within the advertising system              | `"sid123"`   | `string`  |
 | `shortname`          | required | Publisher Name. The unique name associated with the seller or reseller account within the advertising system        | `"pub_name"` | `string`  |
+| `tagid`              | required | Identifier for specific ad placement or ad tag that was used to initiate the auction                                | `"123877"`   | `string`  |
 | `tags`               | optional | The object containing set of  Zeta's custom tags witch publisher have to supply                                     | `tags: {}`   | `object`  |
 | `site`               | optional | The object containing site data (See OpenRTB spec)                                                                  | `site: {}`   | `object`  |
 | `app`                | optional | The object containing app data (See OpenRTB spec)                                                                   | `app: {}`    | `object`  |
