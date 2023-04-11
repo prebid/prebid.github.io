@@ -10,12 +10,13 @@ coppa_supported: true
 userIds: all
 biddercode: amx
 safeframes_ok: true
-media_types: banner, video
-pbjs: true
-pbs: false
+media_types: banner, video, native
+pbjs: false
+pbs: true
+pbs_app_supported: true
 fpd_supported: true
-gpp_supported: true
 multiformat_supported: true
+gpp_supported: true
 gvl_id: 737
 sidebarType: 1
 ---

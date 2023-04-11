@@ -1559,9 +1559,14 @@ Here's a sample response:
 The codes currently returned:
 
 {: .table .table-bordered .table-striped }
-| Code | | Meaning | Platform | Notes |
+| Code | Meaning | Platform | Notes |
 | --- | --- | --- | --- |
-| 0 | General No Bid | Java | The bidder had a chance to bid, and either declined to bid, returned an error, or the response was removed. |
+| 0 | General No Bid | Java | The bidder had a chance to bid, and either declined to bid on this impression. |
+| 100 | General Error | Java | The bid adapter returned with an unspecified error for this impression. |
+| 101 | Timeout | Java | The bid adapter timed out. |
+| 200 | Request Blocked - General | Java | This impression not sent to the bid adapter for an unspecified reason. |
+| 202 | Request Blocked due to mediatype | Java | This impression not sent to the bid adapter because it doesn't support the requested mediatype. |
+| 301 | Response Rejected - Below Floor | Java | The bid response did not meet the floor for this impression. |
 
 
 ### OpenRTB Ambiguities

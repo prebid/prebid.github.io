@@ -6,6 +6,7 @@ pbjs: true
 biddercode: underdogmedia
 gdpr_supported: true
 usp_supported: true
+userIds: 33acrossId, pubCommonId, unifiedId
 sidebarType: 1
 ---
 
@@ -15,3 +16,4 @@ sidebarType: 1
 | Name     | Scope    | Description | Example | Type     |
 |----------|----------|-------------|---------|----------|
 | `siteId` | required |             |         | `string` |
+| `productId` | optional | UDM Product ID `'standard'` or `'sticky'`, defaults to `'standard'` | `'standard'`   | `string` |
