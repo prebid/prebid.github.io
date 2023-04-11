@@ -4,7 +4,7 @@ title: Greenbids
 description: Greenbids Analytics Adapter
 modulecode: greenbids
 prebid_member: false
-enable_download: false
+enable_download: true
 ---
 
 #### Registration
@@ -18,7 +18,7 @@ Greenbids team. Please reach out to our team for more information [https://green
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
 | pbuid | required  | The Greenbids Publisher ID | greenbids-publisher-1  | string |
-| sampling | optional  | sampling factore [0-1] (a value of 0.1 will filter 90% of the traffic) | 0.5  | float |
+| sampling | optional  | sampling factor [0-1] (a value of 0.1 will filter 90% of the traffic) | 0.5  | float |
 
 ### Example Configuration
 
