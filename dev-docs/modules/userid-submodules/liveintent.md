@@ -51,6 +51,26 @@ The LiveIntent ID sub-module follows the standard Prebid.js initialization based
 
 Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option.
 
+### Resulving multiple identifiers
+
+Among others, LiveIntent's user id module can be configured to resolve the attributes 'nonId', 'uid2', 'medianet' and 'bidswitch'. Each of these attributes will result in a separate id returned by LiveIntent's user id module. For example, in case `nonId` and `uid2` are configured to be resolved and both values could successully be resolved, the `request.userId` object would look like this:
+
+{% highlight javascript %}
+```
+{
+    "lipb" : {
+        "lipbid": "sample-nonid-value",
+        "segments": ["999"]
+    },
+    "uid2" : {
+        "id" : "sample-uid2-value"
+    }
+}
+```
+{% endhighlight %}
+
+For the attributes 'nonId', 'uid2', 'medianet' and 'bidswitch' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
+
 ### Resolving uid2
 
 An attribute that requires special mention here is 'uid2'. If this attribute is resolved by the id module it will be exposed in the same format as from the Unified ID 2.0 user id module. If both the LiveIntent module and the uid2 module manage to resolve an uid2, the one from the uid2 module will be used. Enabling this option in addition to the uid2 module is an easy way to increase your uid2 resolution rates. Example configuration to enable uid2 resolution:
@@ -68,10 +88,6 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-
-### Extended identifiers format support
-
-Among others, LiveIntent's user id module can be configured to resolve the attributes 'nonId', 'uid2', 'medianet' and 'bidswitch'. For these attributes there is support for conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
 
 ## LiveIntent ID configuration
 
