@@ -76,7 +76,7 @@ Note that 'uid2' is exposed as part of 'lipb' as well as separately as 'uid2'. '
 
 For the attributes 'lipbid' (nonID), 'uid2', 'medianet' and 'bidswitch' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
 
-### Resolving uid2
+### Requesting uid2
 
 An attribute that requires special mention here is 'uid2'. If this attribute is resolved by the id sub-module, it will be exposed in the same format as from the Unified ID 2.0 user id module. If both the LiveIntent module and the uid2 module manage to resolve an uid2, the one from the uid2 module will be used. Enabling this option in addition to the uid2 module is an easy way to increase your uid2 resolution rates. Example configuration to enable uid2 resolution:
 
