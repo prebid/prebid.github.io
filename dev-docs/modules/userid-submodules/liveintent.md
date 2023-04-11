@@ -47,7 +47,7 @@ The first-party cookie generation and identity resolution functionality is provi
 
 The LiveIntent ID sub-module follows the standard Prebid.js initialization based on the GDPR consumer opt-out choices. With regard to CCPA, the LiveConnect JS receives a us_privacy string from the Prebid US Privacy Consent Management Module and respects opt-outs.
 
-## Configure requested attributes
+## Configuring requested attributes
 
 Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option.
 
@@ -74,7 +74,7 @@ Among others, LiveIntent's user id sub-module can be configured to resolve the a
 
 Note that 'uid2' is exposed as part of 'lipb' as well as separately as 'uid2'. 'medianet' and 'bidswitch' behave the same way.
 
-For the attributes 'nonId'/'lipbid', 'uid2', 'medianet' and 'bidswitch' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
+For the attributes 'lipbid' (nonID), 'uid2', 'medianet' and 'bidswitch' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
 
 ### Resolving uid2
 
