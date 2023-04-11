@@ -53,7 +53,7 @@ Attributes other than the nonID can be requested using the `requestedAttributesO
 
 ### Resolving multiple identifiers
 
-Among others, LiveIntent's user id module can be configured to resolve the attributes 'nonId' (resolved by default, exposed as 'lipbid'), 'uid2', 'medianet' and 'bidswitch'. Each of these attributes will result in a separate id returned by LiveIntent's user id module. For example, in case `nonId` and `uid2` are configured to be resolved and both values could successully be resolved, the `request.userId` object would look like this:
+Among others, LiveIntent's user id sub-module can be configured to resolve the attributes 'nonId' (resolved by default, exposed as 'lipbid'), 'uid2', 'medianet' and 'bidswitch'. Each of these attributes will result in a separate id returned by LiveIntent's user id sub-module. For example, in case `nonId` and `uid2` are configured to be resolved and both values could successfully be resolved, the `request.userId` object would look like this:
 
 {% highlight javascript %}
 ```
@@ -78,7 +78,7 @@ For the attributes 'nonId', 'uid2', 'medianet' and 'bidswitch' there is also sup
 
 ### Resolving uid2
 
-An attribute that requires special mention here is 'uid2'. If this attribute is resolved by the id module it will be exposed in the same format as from the Unified ID 2.0 user id module. If both the LiveIntent module and the uid2 module manage to resolve an uid2, the one from the uid2 module will be used. Enabling this option in addition to the uid2 module is an easy way to increase your uid2 resolution rates. Example configuration to enable uid2 resolution:
+An attribute that requires special mention here is 'uid2'. If this attribute is resolved by the id sub-module, it will be exposed in the same format as from the Unified ID 2.0 user id module. If both the LiveIntent module and the uid2 module manage to resolve an uid2, the one from the uid2 module will be used. Enabling this option in addition to the uid2 module is an easy way to increase your uid2 resolution rates. Example configuration to enable uid2 resolution:
 
 {% highlight javascript %}
 pbjs.setConfig({
