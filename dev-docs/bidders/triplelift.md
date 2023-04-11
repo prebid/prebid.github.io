@@ -70,6 +70,7 @@ See the [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.ht
 | Name            | Scope                        | Description                                                                          | Example                                     | Type     |
 |-----------------|------------------------------|--------------------------------------------------------------------------------------|---------------------------------------------|----------|
 | `adUnit.mediaTypes.video.placement`         | required                   | Instream: 1;      Outstream: 3, 4, 5.                      | `3`                                         | `int`  |
+| `adUnit.mediaTypes.video.playerSize` | required | Video player dimensions or size in pixels | `[640, 480]` | `integer array` |
 
 <a name="triplelift-config" />
 
