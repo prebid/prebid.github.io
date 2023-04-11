@@ -49,11 +49,27 @@ The LiveIntent ID sub-module follows the standard Prebid.js initialization based
 
 ## Configuring requested attributes
 
-Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option.
+Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option. 
+
+For example, with the configuration below, the nonID as well as 'uid2', the 'medianet' id and the 'bidswitch' id will be requested:
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            "name": "liveIntentId",
+            "params": {
+                "publisherId": "12432415",
+                "requestedAttributesOverrides": {'uid2': true, 'medianet': true, 'bidswitch': true},
+            },
+        }]
+    }
+});
+{% endhighlight %}
 
 ### Multiple user ids
 
-Among others, LiveIntent's user id sub-module can be configured to request the attributes 'uid2', 'medianet' and 'bidswitch'. Each of these attributes will result in a separate id returned by LiveIntent's user id sub-module. For example, in case 'uid2' is configured to be requested - additionally to the nonID - the `request.userId` object would look like this:
+Among others, LiveIntent's user id sub-module can be configured to request the attributes 'uid2', 'medianet' and 'bidswitch' as in the example above. Each of these three attributes will result in a separate id returned by LiveIntent's user id sub-module. For example, in case 'uid2' is configured to be requested - additionally to the nonID - the `request.userId` object would look like this:
 
 {% highlight javascript %}
 ```
