@@ -69,7 +69,7 @@ pbjs.setConfig({
 
 ### Multiple user ids
 
-Among others, LiveIntent's user id sub-module can be configured to request the attributes 'uid2', 'medianet' and 'bidswitch' as in the example above. Each of these three attributes will result in a separate id returned by LiveIntent's user id sub-module. For example, in case 'uid2' is configured to be requested - additionally to the nonID - the `request.userId` object would look like this:
+Requesting the attributes 'uid2', 'medianet' or 'bidswitch' will result in a separate id returned by LiveIntent's user id sub-module. For example, in case 'uid2' is configured to be requested - additionally to the nonID - the `request.userId` object would look like this:
 
 {% highlight javascript %}
 ```
