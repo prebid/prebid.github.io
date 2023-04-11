@@ -51,23 +51,28 @@ The LiveIntent ID sub-module follows the standard Prebid.js initialization based
 
 Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option.
 
-### Resulving multiple identifiers
+### Resolving multiple identifiers
 
-Among others, LiveIntent's user id module can be configured to resolve the attributes 'nonId', 'uid2', 'medianet' and 'bidswitch'. Each of these attributes will result in a separate id returned by LiveIntent's user id module. For example, in case `nonId` and `uid2` are configured to be resolved and both values could successully be resolved, the `request.userId` object would look like this:
+Among others, LiveIntent's user id module can be configured to resolve the attributes 'nonId' (resolved by default, exposed as 'lipbid'), 'uid2', 'medianet' and 'bidswitch'. Each of these attributes will result in a separate id returned by LiveIntent's user id module. For example, in case `nonId` and `uid2` are configured to be resolved and both values could successully be resolved, the `request.userId` object would look like this:
 
 {% highlight javascript %}
 ```
 {
+    ...
     "lipb" : {
         "lipbid": "sample-nonid-value",
-        "segments": ["999"]
+        "segments": ["999"],
+        "uid2" : "sample-uid2-value"
     },
     "uid2" : {
         "id" : "sample-uid2-value"
     }
+    ...
 }
 ```
 {% endhighlight %}
+
+Note that 'uid2' is exposed as part of 'lipb' as well as separately as 'uid2'. 'medianet' and 'bidswitch' behave the same way.
 
 For the attributes 'nonId', 'uid2', 'medianet' and 'bidswitch' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
 
