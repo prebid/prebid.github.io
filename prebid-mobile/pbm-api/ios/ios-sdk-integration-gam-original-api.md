@@ -119,7 +119,7 @@ Integration example:
 
 ``` swift
 // 1. Create a BannerAdUnit
-adUnit = BannerAdUnit(configId: storedImpVideoBanner, size: adSize)
+adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
 
 // 2. Set ad format
 adUnit.adFormats = [.video]
@@ -274,7 +274,7 @@ Integration example:
 
 ``` swift
 // 1. Create a BannerAdUnit
-adUnit = BannerAdUnit(configId: storedImpsBanner.randomElement()!, size: adSize)
+adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
 adUnit.setAutoRefreshMillis(time: 30000)
 
 // 2. Set adFormats
@@ -377,7 +377,7 @@ Integration example:
 
 ``` swift
 // 1. Create an Interstitial Ad Unit
-adUnit = InterstitialAdUnit(configId: storedImpDisplayInterstitial)
+adUnit = InterstitialAdUnit(configId: CONFIG_ID)
 
 // 2. Make a bid request to Prebid Server 
 let gamRequest = GAMRequest()
@@ -439,7 +439,7 @@ Integration Example:
 
 ```swift
 // 1. Create a InterstitialAdUnit
-adUnit = InterstitialAdUnit(configId: storedImpVideoInterstitial)
+adUnit = InterstitialAdUnit(configId: CONFIG_ID)
 
 // 2. Set ad format
 adUnit.adFormats = [.video]
@@ -512,7 +512,7 @@ Integration example:
 
 ``` swift
 // 1. Create an InterstitialAdUnit
-adUnit = InterstitialAdUnit(configId: storedImpsInterstitial.randomElement()!, minWidthPerc: 60, minHeightPerc: 70)
+adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: 60, minHeightPerc: 70)
 
 // 2. Set adFormats
 adUnit.adFormats = [.display, .video]
@@ -592,7 +592,7 @@ Integration example:
 
 ``` swift
 // 1. Create a RewardedVideoAdUnit
-adUnit = RewardedVideoAdUnit(configId: storedImpVideoRewarded)
+adUnit = RewardedVideoAdUnit(configId: CONFIG_ID)
 
 // 2. Configure video parameters
 let parameters = VideoParameters(mimes: ["video/mp4"])
@@ -657,7 +657,7 @@ Integration example:
 
 ```swift
 // 1. Create InstreamVideoAdUnit
-adUnit = InstreamVideoAdUnit(configId: storedImpVideo, size: CGSize(width: 1,height: 1))
+adUnit = InstreamVideoAdUnit(configId: CONFIG_ID, size: CGSize(width: 1,height: 1))
 
 // 2. Configure Video Parameters
 let parameters = VideoParameters(mimes: ["video/mp4"])
@@ -811,7 +811,7 @@ Then integrate the native style ad using GAM Banner ad unit
 
 ```swift
 // 1. Create NativeRequest
-nativeUnit = NativeRequest(configId: nativeStoredImpression, assets: nativeRequestAssets)
+nativeUnit = NativeRequest(configId: CONFIG_ID, assets: nativeRequestAssets)
 nativeUnit.context = ContextType.Social
 nativeUnit.placementType = PlacementType.FeedContent
 nativeUnit.contextSubType = ContextSubType.Social
