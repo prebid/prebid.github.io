@@ -61,9 +61,7 @@ pbjs.setConfig(
                 waitForIt: true,
                 params: {
                     segmentCache: false,
-                    requestParams: {
-                        publisherId: 1234
-                    }
+                    partnerId: 1234
                 }
             }
         ]
@@ -82,7 +80,7 @@ pbjs.setConfig(
 | params | Object | | |
 | params.handleRtd | Function | A passable RTD handler that allows custom adunit and ortb2 logic to be configured. The function signature is (bidConfig, rtd, rtdConfig, pbConfig) => {}. | Optional |
 | params.segmentCache | Boolean | This parameter tells the Hadron RTD module to attempt reading segments from a local storage cache instead of always requesting them from the Audigent server. | Optional. Defaults to false. |
-| params.requestParams | Object | Publisher partner specific configuration options, such as optional publisher id and other segment query related metadata to be submitted to Audigent's backend with each request.  Contact prebid@audigent.com for more information. | Optional |
+| params.partnerId | Number | This is the Audigent Partner ID obtained from Audigent. | Required |
 | params.hadronIdUrl | String | Parameter to specify alternate hadronid endpoint url. | Optional |
 
 ## Publisher Customized RTD Handling
@@ -119,9 +117,7 @@ pbjs.setConfig(
                         }
                     },
                     segmentCache: false,
-                    requestParams: {
-                        publisherId: 1234
-                    }
+                    partnerId: 1234                    
                 }
             }
         ]
@@ -144,7 +140,3 @@ To view an example of available segments returned by Audigent's backends:
 and then point your browser at:
 
 `http://localhost:9999/integrationExamples/gpt/hadronRtdProvider_example.html`
-
-
-
-

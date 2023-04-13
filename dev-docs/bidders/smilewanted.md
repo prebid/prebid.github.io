@@ -8,7 +8,9 @@ pbs: true
 biddercode: smilewanted
 gdpr_supported: true
 usp_supported: true
+userIds: all
 gvl_id: 639
+sidebarType: 1
 ---
 
 ### Note

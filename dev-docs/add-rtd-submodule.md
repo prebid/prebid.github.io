@@ -176,16 +176,33 @@ submodule('realTimeData', subModuleObj);
 This is the function that will allow RTD sub-modules to modify the AdUnit object for each auction. It's called as part of the requestBids hook.
 
 1. RTD-core will call this function with:
-    - reqBidsConfigObj: the object that's passed to [`pbjs.requestBids`](). Note that several auctions can happen concurrently, so the sub-module must be ready to support this.
+    - reqBidsConfigObj: a slightly modified version of the object that's passed to `pbjs.requestBids` (see [below](#reqBidsConfigObj)). Note that several auctions can happen concurrently, so the sub-module must be ready to support this.
     - callback: lets RTD-core know which auction the sub-module is done with.
     - config: the sub-module's config params provided by the publisher
     - userConsent object (see above)
 2. Your sub-module may update the reqBidsConfigObj and hit the callback. To inject data into the bid requests, you should follow one of these conventions:
     - Recommended: use one of these [First Party Data](/features/firstPartyData.html) conventions:
         - For AdUnit-specific first party data, set AdUnit.ortb2Imp.ext.data.ATTRIBUTES
-        - For global first party data, call 'pbjs.[mergeConfig](/dev-docs/publisher-api-reference/mergeConfig.html)()' 
-        - If the data is not meant to go to all bidders, the module should use 'pbjs.[mergeBidderConfig](/dev-docs/publisher-api-reference/mergeBidderConfig.html)()' and support a parameter to allow the publisher to define which bidders are to receive the data.
+        - For global first party data, including bidder-specific data, modify the `reqBidsConfigObj` as shown [below](#reqBidsConfigObj) 
     - Not recommended: Place your data in bidRequest.rtd.RTDPROVIDERCODE.ATTRIBUTES and then get individual adapters to specifically read that location. Note that this method won't pass data to Prebid Server adapters.
+
+<a id="reqBidsConfigObj" />
+
+The `reqBidsConfigObj` parameter is a copy of the object passed to [`requestBids`](/dev-docs/publisher-api-reference/requestBids.html), except for:
+
+- `adUnits` and `timeout` are always defined (if the publisher didn't provide them, the default values are filled in - `pbjs.adUnits` and `getConfig('bidderTimeout')` respectively)
+- `ortb2` is replaced with an `ortb2Fragments` object, intended to be inspected and / or modified by your module.
+
+The `ortb2Fragments` parameter is an object containing two properties:
+
+- `global`, an object containing global (not bidder-specific) first party data in the same OpenRTB format used by `setConfig({ortb2})`
+- `bidder`, a map from bidder code to bidder-specific, OpenRTB-formatted first party data.
+
+Your module may modify either or both with additional data. If adding bidder-specific data in `ortb2Fragments.bidder`, it should also support a parameter to allow the publisher to define which bidders are to receive the data.
+
+{: .alert.alert-warning :}
+Before version 7, the pattern for first party data inspection and enrichment by RTD modules was `getConfig({ortb2])` / `mergeConfig({ortb2})`. With the introduction of [auction-specific data](/features/firstPartyData.html#supplying-auction-specific-data) in 7, the global `getConfig('ortb2')` is "frozen"
+at the time `requestBids` is called, and RTD submodules that wish to modify it are required to work on `ortb2Fragments` instead - as any additional call to `mergeConfig` will only take effect on the *next* auction.  
 
 **Code Example**
 
@@ -194,7 +211,7 @@ This is the function that will allow RTD sub-modules to modify the AdUnit object
 export const subModuleObj = {
   name: 'ExampleRTDModule2',
   init: init,
-  setBidRequestsData: alterBidRequests
+  getBidRequestData: alterBidRequests
 };
 
 function init(config, userConsent) {
@@ -205,7 +222,12 @@ function init(config, userConsent) {
 
 function alterBidRequests(reqBidsConfigObj, callback, config, userConsent) {
   // do stuff
-  // put data in AdUnit.ortb2Imp.ext.data.* or rtd.RTDPROVIDERCODE.*
+  // put data in adUnits' ortb2Imp:
+  reqBidsConfigObj.adUnits.forEach((adUnit) => mergeDeep(adUnit, 'ortb2Imp.ext', myCustomData);
+  // or in global first party data:
+  mergeDeep(reqBidsConfigObj.ortb2Fragments.global, myCustomData);
+  // or in bidder-specific first party data:
+  config.bidders.forEach((bidderCode) => mergeDeep(reqBidsConfigObj.ortb2Fragments.bidder, {[bidderCode]: myCustomData});
   callback();
 }
 

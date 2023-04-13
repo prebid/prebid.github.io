@@ -16,7 +16,10 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 fpd_supported: true
+ortb_blocking_supported: true
 gvl_id: 76
+multiformat_supported: will-bid-on-one
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -200,4 +203,12 @@ and sizes that would match with the test creative.
       }
    ]
 ```
+
+### First Party Data
+
+Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html). The following fields are supported:
+- `ortb2.site.*`
+- `ortb2.user.*`
+
+AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
 <!-- workaround bug where code blocks at end of a file are incorrectly formatted-->

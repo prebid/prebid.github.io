@@ -15,7 +15,7 @@ For each bidder listed below, you'll find the following information:
 
 {: .table .table-bordered .table-striped }
 | **Features**                     | A table of features supported by the adapter.  |
-| **"Send All Bids" Ad Server Keys**  | Used for sending all bids to the ad server, as described in [Send All Bids to the Ad Server](/adops/send-all-bids-adops.html) |
+| **"Send All Bids" Ad Server Keys**  | Used for sending all bids to the ad server, as described in [Send All Bids vs Send Top Price](/adops/send-all-vs-top-price.html) |
 | **Bid Params**                      | Ad request parameters required by a given bidder, such as the tag ID, site ID, or query string parameters                                     |
 
 You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV data file</a>.
@@ -55,7 +55,7 @@ Publishers are advised to check with legal counsel before doing business with an
 | **Supports Deals** | {% if page.deals_supported and page.deals_supported == false %}no{% else %}yes{% endif %} | **Prebid.js Adapter** | {% if page.pbjs == true %}yes{% else %}no{% endif %} |
 | **Mobile App Support** | {% if page.pbs_app_supported and page.pbs_app_supported == false %}no{% elsif page.pbs_app_supported and page.pbs_app_supported == true %}yes{% else %}check with bidder{% endif %} | **Prebid Server Adapter** | yes |
 | **Floors Support** | {% if page.floors_supported == false %}no{% elsif page.floors_supported == true %}yes{% else %}check with bidder{% endif %} | **First Party Data Support** | {% if page.fpd_supported == true %}yes{% elsif page.fpd_supported == false %}no{% else %}check with bidder{% endif %} |
-| **Multi Format Support** | {% if page.multiformat_supported %}{{page.multiformat_supported}}{% else %}check with bidder{% endif %} | | |
+| **Multi Format Support** | {% if page.multiformat_supported %}{{page.multiformat_supported}}{% else %}check with bidder{% endif %} | **ORTB Blocking Support** | {% if page.ortb_blocking_supported == true %}yes{% elsif page.ortb_blocking_supported == false %}no{% elsif page.ortb_blocking_supported == 'partial' %}partial{% else %}check with bidder{% endif %} |
 
 
 <h3>"Send All Bids" Ad Server Keys</h3>

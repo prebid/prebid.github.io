@@ -11,7 +11,9 @@ coppa_supported: true
 usp_supported: true
 safeframes_ok: true
 prebid_member: true
+pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
 ### Bid params

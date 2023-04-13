@@ -4,11 +4,14 @@ title: Adot
 description: Prebid Adot Bidder Adapter
 biddercode: adot
 media_types: banner, video, native
+userIds: pubProvidedId
 gdpr_supported: true
 gvl_id: 272
 pbjs: true
 pbs: true
 floors_supported: true
+schain_supported: true
+sidebarType: 1
 ---
 
 ### Prebid JS

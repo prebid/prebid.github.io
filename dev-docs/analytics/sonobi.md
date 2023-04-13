@@ -8,5 +8,5 @@ enable_download: false
 
 #### Registration
 
-Please visit []() for more information.
+Please visit [https://sonobi.com/](https://sonobi.com/) for more information.
 

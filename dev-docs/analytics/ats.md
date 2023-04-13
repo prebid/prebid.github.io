@@ -2,7 +2,7 @@
 layout: analytics
 title: ATS Analytics
 description: ATS Prebid Analytics Adapter
-modulecode: atsAnalyticsAdapter
+modulecode: ats
 gdpr_supported: true
 usp_supported: true
 prebid_member: true
@@ -23,7 +23,7 @@ The LiveRamp privacy policy is at [https://liveramp.com/privacy/service-privacy-
 {: .table .table-bordered .table-striped }
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
-| pid | required  | This is the Placement ID, a unique identifier that is used to identify each publisher, obtained from registering with LiveRamp. | `"999"`  | `int` |
+| pid | required  | This is the Placement ID, a unique identifier that is used to identify each publisher, obtained from registering with LiveRamp. | `"999"`  | `string` |
 
 #### Example Configuration
 

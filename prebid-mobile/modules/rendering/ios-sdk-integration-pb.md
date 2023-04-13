@@ -8,13 +8,7 @@ sidebarType: 2
 ---
 
 # Custom Bidding Integration
-
-## Table of Contents
-
-- [Mobile API](#mobile-api)
-- [Banner](#banner-api)
-- [Interstitial](#interstitial-api)
-- [Rewarded](#rewarded-api)
+{:.no_toc}
 
 ## Mobile API
 
@@ -22,25 +16,10 @@ The integration and usage of the Rendering API are similar to any other Ad SDK. 
 
 ![In-App Bidding with Prebid](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
-Prebid supports rendering of these ad formats:
+* TOC
+{:toc}
 
-- Display Banner
-- Display Interstitial
-- Video Interstitial
-- Rewarded Video
-- Outstream Video
-
-[//]: # (- Native)
-
-They can be integrated using these API categories:
-
-- [**Banner API**](#banner-api) - for *Display* and *Video* Banners
-- [**Interstitial API**](#interstitial-api) - for *Display* and *Video* Interstitials
-- [**Rewarded API**](#rewarded-api) - for *Rewarded Video*
-
-[//]: # (- [**Native API**](ios-sdk-integration-pb-native.html) - for *Native Ads*)
-
-### Banner API
+## Banner API
 
 Integration example:
 
@@ -57,6 +36,7 @@ banner.loadAd()
 ```
 
 #### Step 1: Create Ad View
+{:.no_toc}
 
 Initialize the `BannerAdView` with properties:
 
@@ -65,6 +45,7 @@ Initialize the `BannerAdView` with properties:
 - `size` - the size of the ad unit which will be used in the bid request.
 
 #### Step 2: Load the Ad
+{:.no_toc}
 
 Call the method `loadAd()` which will:
 
@@ -72,6 +53,7 @@ Call the method `loadAd()` which will:
 - render the winning bid on display.
 
 #### Outstream Video
+{:.no_toc}
 
 For **Banner Video** you also need to specify the ad format:
 
@@ -79,7 +61,7 @@ For **Banner Video** you also need to specify the ad format:
 banner.adFormat = .video
 ```
 
-### Interstitial API
+## Interstitial API
 
 Integration example:
 
@@ -117,7 +99,7 @@ adUnit?.adFormats = [.display]
 ```
 
 #### Step 1: Create an Ad Unit
-
+{:.no_toc}
 
 Initialize the Interstitial Ad Unit with properties:
     
@@ -127,11 +109,12 @@ Initialize the Interstitial Ad Unit with properties:
 > **NOTE:** minSizePercentage - plays an important role in a bidding process for display ads. If provided space is not enough demand partners won't respond with the bids.
 
 #### Step 2: Load the Ad
+{:.no_toc}
 
 Call the method `loadAd()` which will make a bid request to Prebid server.
 
-
 #### Step 3: Show the Ad when it is ready
+{:.no_toc}
 
 Wait until the ad will be loaded and present it to the user in any suitable time.
 
@@ -143,7 +126,7 @@ func interstitialDidReceiveAd(_ interstitial: InterstitialRenderingAdUnit) {
 }
 ```
 
-### Rewarded API
+## Rewarded API
 
 Integration example:
 
@@ -165,16 +148,19 @@ if rewardedAd.isReady {
 
 
 #### Step 1: Create Rewarded Ad Unit
+{:.no_toc}
 
 Create the `RewardedAdUnit` object with parameter:
 
-- **configID** - an ID of Stored Impression on the Prebid Server
+- `configID` - an ID of Stored Impression on the Prebid Server
 
 #### Step 2: Load the Ad
+{:.no_toc}
 
 Call the `loadAd()` method which will make a bid request to Prebid server.
 
 #### Step 3: Show the Ad when it is ready
+{:.no_toc}
 
 Wait until the ad will be loaded and present it to the user in any suitable time.
 

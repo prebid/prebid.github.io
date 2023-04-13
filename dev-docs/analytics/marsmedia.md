@@ -7,5 +7,5 @@ modulecode: marsmedia
 
 #### Registration
 
-Please visit []() for more information.
+Please visit [https://mars.media/](https://mars.media/#!group) for more information.
 
