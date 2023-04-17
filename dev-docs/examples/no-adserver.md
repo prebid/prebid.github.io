@@ -6,7 +6,7 @@ description: Running Prebid.js without an ad server
 sidebarType: 1
 
 about:
-- Running an auction and rendering without an ad server
+- This example demonstrates running an auction and rendering without an ad server.
 
 jsfiddle_link: jsfiddle.net/Prebid_Examples/svumodbe/embedded/html,result
 

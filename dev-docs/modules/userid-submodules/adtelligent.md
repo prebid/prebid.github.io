@@ -2,7 +2,7 @@
 layout: userid
 title: Adtelligent
 description: Adtelligent User ID sub-module
-useridmodule: adtelligent
+useridmodule: adtelligentIdSystem
 ---
 
 
@@ -46,4 +46,3 @@ Example with a short storage for ~10 minutes and refresh in 5 minutes:
         }
     });
 {% endhighlight %}
-

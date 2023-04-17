@@ -1,13 +1,10 @@
 ---
 layout: bidder
-title: AdMedia
-description: Prebid AdMedia Bidder Adaptor
+title: admedia
+description: Prebid admedia Bidder Adaptor
 pbjs: true
 biddercode: admedia
 media_types: banner
-gdpr_supported: false
-enable_download: false
-pbjs_version_notes: not ported to 5.x
 sidebarType: 1
 ---
 
@@ -15,6 +12,8 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                        | Example  | Type     |
-|-------|----------|------------------------------------|----------|----------|
-| `aid` | required | The Affiliate ID for the Publisher | `'1234'` | `string` |
+| Name            | Scope    | Description              | Example      | Type     |
+|-----------------|----------|--------------------------|--------------|----------|
+| `placementId`   | required | The placement ID provided by admedia | `'1234567'` | `string` |
+| `aid`    | required | The aid provided by admedia | `'1234'` | `string` |
+| `referrrInfo`    | required | The referring page url to be sent by the publisher | `'https://test.com/abc'` | `string` |

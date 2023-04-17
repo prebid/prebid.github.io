@@ -2,7 +2,7 @@
 layout: userid
 title: FTrack ID from Flashtalking By Mediaocean
 description: FTrack ID from Flashtalking By Mediaocean User ID sub-module
-useridmodule: FTrack
+useridmodule: ftrackIdSystem
 ---
 
 
@@ -56,4 +56,3 @@ pbjs.setConfig({
 | storage.name | Required | String | The name of the local storage where the user ID will be stored. FTrack **requires** `"FTrackId"`. | `"FTrackId"` |
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. FTrack recommends `90`. | `90` |
 | storage.refreshInSeconds | Optional | Integer | How many seconds until the FTrack ID will be refreshed. FTrack strongly recommends 8 hours between refreshes | `8*3600` |
-

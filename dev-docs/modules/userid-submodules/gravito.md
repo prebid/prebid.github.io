@@ -2,7 +2,7 @@
 layout: userid
 title: GRAVITO ID by Gravito Ltd.
 description: GRAVITO ID by Gravito Ltd. User ID sub-module
-useridmodule: gravitompId
+useridmodule: gravitoIdSystem
 ---
 
 
@@ -32,4 +32,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-

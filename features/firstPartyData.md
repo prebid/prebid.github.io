@@ -75,15 +75,13 @@ pbjs.setConfig({
                 }]
 	   },
 	   ext: {
-               data: {   // fields that aren't part of openrtb 2.5
+               data: {   // fields that aren't part of openrtb 2.6
                    pageType: "article",
                    category: "repair"
                }
 	   }
         },
         user: {
-           yob: 1985,
-           gender: "m",
            keywords: "a,b",
 	   data: [{
 	       name: "dataprovider.com",
@@ -98,6 +96,10 @@ pbjs.setConfig({
                   interests: ["cars"]
 	       }
            }
+        },
+        regs: {
+            gpp: "abc1234",
+            gpp_sid: [7]
         }
     }
 });
@@ -157,6 +159,30 @@ pbjs.addAdUnits({
         ext: {
 	        data: {
                 pbadslot: "homepage-top-rect",
+                adUnitSpecificAttribute: "123"
+            }
+        }
+    },
+    ...
+});
+{% endhighlight %}
+
+Another case is [declaring rewarded](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/422eedb76e8730c89dcac75c7427c18cfa10e8c4/2.6.md?plain=1#L993). Here is how one might do that: 
+
+
+{% highlight js %}
+pbjs.addAdUnits({
+    code: "test-div-rewarded",
+    mediaTypes: {
+        banner: {
+            sizes: [[300,250]]
+        }
+    },
+    ortb2Imp: {
+        rwdd: 1,
+        ext: {
+	        data: {
+                pbadslot: "my-rewarded-rectangle",
                 adUnitSpecificAttribute: "123"
             }
         }
@@ -229,9 +255,9 @@ pbjs.setBidderConfig({ // different bidders can receive different data
 });
 {% endhighlight %}
 
-### Supplying App Content Data
+### Supplying App or DOOH ORTB Objects
 
-Occasionally, an app which embeds a webview might run Prebid.js. In this case, the app object is often specified for OpenRTB, and the site object would be invalid. When this happens, one should specify app.content.data in place of site.content.data.
+Occasionally, an app which embeds a webview might run Prebid.js. In this case, the app object is often specified for OpenRTB, and the site object would be invalid. When this happens, one should specify app.content.data in place of site.content.data. We can also imagine scenarios where billboards or similar displays are running Prebid.js. In the case of a DOOH object existing, both the site object and the app object are considered invalid. 
 
 {% highlight js %}
 pbjs.setConfig({

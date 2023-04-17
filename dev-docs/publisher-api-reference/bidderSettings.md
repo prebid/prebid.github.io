@@ -41,11 +41,12 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | Attribute | Scope | Version | Default | Description |
 | --- | --- | --- | --- | --- |
 | adserverTargeting | standard or adapter-specific | all | see below | Define which key/value pairs are sent to the ad server. |
-| bidCpmAdjustment | standard or adapter-specific | all | n/a | Could, for example, adjust a bidder's gross-price bid to net price. |
+| bidCpmAdjustment | standard or adapter-specific | all | n/a | Custom CPM adjustment function. Could, for example, adjust a bidder's gross-price bid to net price. |
+| inverseCpmAdjustment | standard or adapter-specific | 7.33.0 | n/a | Inverse of `bidCpmAdjustment` | 
 | sendStandardTargeting | adapter-specific | 0.13.0 | true | If adapter-specific targeting is specified, can be used to suppress the standard targeting for that adapter. |
 | suppressEmptyKeys | standard or adapter-specific | 0.13.0 | false | If custom adserverTargeting functions are specified that may generate empty keys, this can be used to suppress them. |
 | allowZeroCpmBids | standard or adapter-specific | 6.2.0 | false | Would allow bids with a 0 CPM to be accepted by Prebid.js and could be passed to the ad server. |
-| storageAllowed | standard or adapter-specific | 6.13.0 | true in 6.x, false after 7.0 | Allow use of cookies and local storage. |  
+| storageAllowed | standard or adapter-specific | 6.13.0 | true in 6.x, false after 7.0 | Allow use of cookies and/or local storage. |  
 | allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | true in v6.x <br /> false from v7.0| Allow adapters to bid with alternate bidder codes. |  
 | allowedAlternateBidderCodes | standard or adapter-specific | 6.23.0 | n/a | Array of bidder codes for which an adapter can bid. <br />`undefined` or `['*']` will allow adapter to bid with any bidder code. |  
 
@@ -192,6 +193,11 @@ In this case, the publisher may want to adjust the bidder's returned price to ru
 header bidding auction. Otherwise, this bidder's gross price will unfairly win over your
 other demand sources who report the real price.
 
+Custom adjustment can be provided as a function taking 3 arguments: `bidCpmAdjustment(cpm, bidResponse, bidRequest)`. 
+Note that either `bidResponse` or `bidRequest` may be missing, although at least one of them is guaranteed to be present. This is because Prebid will sometimes need to run adjustment when no bid has been made yet; see [inverseCpmAdjustment](#inverseCpmAdjustment) below. 
+
+For example:
+
 {% highlight js %}
 
 pbjs.bidderSettings = {
@@ -209,7 +215,32 @@ pbjs.bidderSettings = {
 
 In the above example, the AOL bidder will inherit from "standard" adserverTargeting keys, so that you don't have to define the targeting keywords again.
 
-##### 2.3. sendStandardTargeting
+##### 2.3. inverseCpmAdjustment
+
+When using [price floors](/dev-docs/modules/floors.html), Prebid attempts to calculate the inverse of `bidCpmAdjustment`, so that the floor values it requests from SSPs take into account how the bid will be adjusted. 
+For example, if the adjustment is `bidCpm * .85` as above, floors are adjusted by `bidFloor * 1 / .85`.
+
+The automatically derived inverse function is correct only when `bidCpmAdjustment` is a simple multiplication. If it isn't, the inverse should also be provided through `inverseCpmAdjustment`. For example:
+
+{% highlight js %}
+
+pbjs.bidderSettings = {
+    aol: {
+        bidCpmAdjustment : function(cpm) {
+          return Math.max(0.2, (cpm - 0.2) * .85)
+        }
+        inverseCpmAdjustment: function(cpm) {
+          return Math.max(0.2, (cpm / .85) + 0.2)
+        }
+    }
+}
+};
+
+{% endhighlight %}
+
+
+
+##### 2.4. sendStandardTargeting
 
 This boolean flag minimizes key/value pairs sent to the ad server when
 adapter-specific targeting is specified. By default, the platform will send both adapter-specific adServerTargeting as well as the standard adServerTargeting.
@@ -219,19 +250,24 @@ suppress the standard targeting for adapters that define their own.
 
 See the [example above](#key-targeting-specific-bidder) for example usage.
 
-##### 2.4. suppressEmptyKeys
+##### 2.5. suppressEmptyKeys
 
 If a custom adServerTargeting function can return an empty value, this boolean flag can be used to avoid sending those empty values to the ad server.
 
-##### 2.5. allowZeroCpmBids
+##### 2.6. allowZeroCpmBids
 
 By default, 0 CPM bids are ignored by Prebid.js entirely.  However if there's a valid business reason to allow these bids, this setting can be enabled to allow
 either specific bid adapter(s) or all bid adapters the permission for these bids to be processed by Prebid.js and potentially sent to the respective ad server 
 (depending on the Prebid.js auction results).
 
-##### 2.6. storageAllowed
+##### 2.7. storageAllowed
 
-This flag defines if the bid adapter can access browser cookies and local storage.
+This setting defines if the bid adapter can access browser cookies or local storage. Allowed values are:
+
+ - an array containing either `'html5'`, `'cookie'` or both to allow specific storage methods (e.g. `['cookie']` enables cookies but not local storage)
+ - `true` to allow any storage method;
+ - `false` to disable all storage.
+ 
 <br />Default value is `true` in version 6.x
 <br />Default value is `false` in version 7.x
 
@@ -241,14 +277,14 @@ Note that:
 
 <a id="allowAlternateBidderCodes" />
 
-##### 2.7. allowAlternateBidderCodes
+##### 2.8. allowAlternateBidderCodes
 
 If this flag is set to `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction.
 <br />Default value is `true` in version 6.x
 <br />Default value will be `false` from version 7.0
 
 
-##### 2.8. allowedAlternateBidderCodes
+##### 2.9. allowedAlternateBidderCodes
 
 This array will work in conjunction with `allowAlternateBidderCodes`. In this array, you can specify the names of the bidder for which an adapter can accept the bid. If the value is not specified for the array or `[‘*’]` is specified, Prebid will accept bids of all the bidders for the given adapter.
 

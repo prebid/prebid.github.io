@@ -2,7 +2,7 @@
 layout: userid
 title: OneKey IDs & Preferences
 description: OneKey IDs & Preferences User ID sub-module
-useridmodule: oneKeyData
+useridmodule: oneKeyIdSystem
 ---
 
 
@@ -48,4 +48,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-

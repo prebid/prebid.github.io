@@ -2,7 +2,7 @@
 layout: userid
 title: Novatiq Hyper ID
 description: Novatiq Hyper ID User ID sub-module
-useridmodule: novatiq
+useridmodule: novatiqIdSystem
 ---
 
 
@@ -23,14 +23,17 @@ pbjs.setConfig({
   userSync: {
     userIds: [{
       name: 'novatiq',
+      bidders: [
+        `rubicon`
+      ],
       params: {
         // change to the Partner Number you received from Novatiq
         sourceid '1a3'
         }
       }
     }],
-    // 50ms maximum auction delay, applies to all userId modules
-    auctionDelay: 50
+    // 1000ms maximum auction delay, applies to all userId modules
+    auctionDelay: 1000
   }
 });
 {% endhighlight %}
@@ -42,7 +45,7 @@ pbjs.setConfig({
 | --- | --- | --- | --- | --- |
 | name | Required | String | Module identification: `"novatiq"` | `"novatiq"` |
 | params | Required | Object | Configuration specifications for the Novatiq module. | |
-| params.sourceid | Required | String | This is the Novatiq Partner Number obtained via Novatiq registration. | `1a3` |
+| params.sourceid | Required (if applicable) | String | This is the Novatiq Partner Number obtained via Novatiq registration. | `1a3` |
 | params.useSharedId | Optional | Boolean | Use the sharedID module if it's activated. | `true` |
 | params.sharedIdName | Optional | String | Same as the SharedID "name" parameter <br /> Defaults to "_pubcid" | `"demo_pubcid"` |
 | params.useCallbacks | Optional | Boolean | Use callbacks for custom integrations | `false` |
@@ -72,6 +75,9 @@ pbjs.setConfig({
     userIds: [
       {
       name: 'novatiq',
+      bidders: [
+        `rubicon`
+      ],
       params: {
         // change to the Partner Number you received from Novatiq
         sourceid '1a3',
@@ -85,13 +91,11 @@ pbjs.setConfig({
         }
       }
     }],
-    // 50ms maximum auction delay, applies to all userId modules
-    auctionDelay: 50
+    // 1000ms maximum auction delay, applies to all userId modules
+    auctionDelay: 1000
   }
 });
 {% endhighlight %}
 
 
 If you have any questions, please reach out to us at [prebid@novatiq.com](mailto:prebid@novatiq.com)
-
-

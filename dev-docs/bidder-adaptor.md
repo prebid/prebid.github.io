@@ -981,7 +981,18 @@ In order for your bidder to support the native media type:
 4. Your code, including tests, should check whether native support is enabled (through the global flag `FEATURES.NATIVE`) before doing #2 or #3. This allows users not interested in native to build your adapter without any native-specific code.
 5. Your spec must declare NATIVE in the supportedMediaTypes array.
 
-The adapter code samples below fulfills requirement #2, unpacking the server's reponse and:
+There are two ways Prebid supports native:
+- The preferred method is for publishers to [define their native assets directly in OpenRTB format](/prebid/native-implementation.html).
+- The legacy way is for pubs to supply a [Prebid-proprietary native asset syntax](/prebid/native-implementation-legacy.html).
+
+### ORTB Native
+
+1. Read the bidrequest.ortb object
+2. Set the bidresponse object appropriately
+
+### Legacy Native
+
+The adapter code sample below fulfills requirement #2, unpacking the server's reponse and:
 
 1. Checking for native assets on the response.
 2. If present, filling in the `native` object with those assets.
@@ -1010,7 +1021,7 @@ else if (FEATURES.NATIVE && rtbBid.rtb.native) {
 
 {% endhighlight %}
 
-The full list of assets your bidder can set are defined in [Table 3: Native Assets Recognized by Prebid.js](/prebid/native-implementation.html). All assets can be returned as strings, or images can be returned as objects with attributes `url`, `height`, and `width`.
+The full list of assets your bidder can set are defined [by legacy Prebid.js](/prebid/native-implementation-legacy.html#3-prebidjs-native-adunit-overview). All assets can be returned as strings, or images can be returned as objects with attributes `url`, `height`, and `width`.
 
 Here's an example of returning image sizes:
 
@@ -1037,6 +1048,18 @@ Here's an example of returning image sizes:
 The targeting key `hb_native_image` (about which your can read more in the [Native Implementation Guide](/prebid/native-implementation.html)) will be set with the value of `image.url` if `image` is an object.
 
 If `image` is a string, `hb_native_image` will be populated with that string (a URL).
+
+### Transitioning Between Native Approaches
+
+For some time, Prebid engineers will try to ensure that legacy-style request definitions will continue to work. However, Prebid.JS is internally converting everything to OpenRTB. So, OpenRTB is the way to go if you want to ensure your native adapter will continue to work for the long run.
+
+We assume that in the first times all adapters will only understand legacy-style native, so we expose two functions in `native.js`:
+
+- `convertOrtbRequestToProprietaryNative(bidRequests)` - this function will convert OpenRTB-style native requests to legacy format. Actually, we've already added this conversion to all adapters so they will not fail when an OpenRTB definition is used by publisher.
+
+- `toOrtbNativeRequest(legacyNativeAssets)` - In the future, you should convert your bid adapter to assume that OpenRTB is the standard. If, however, you encounter a native bid without the `ortb` property, you can call this function to convert legacy assets to OpenRTB.
+
+For the bid response, Prebid expects to find your OpenRTB bid response under `bid.native.ortb` property.
 
 ## Adding Unit Tests
 
@@ -1199,7 +1222,7 @@ registerBidder(spec);
 - Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
   - Fork the repo
   - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and name it to exactly the same as your biddercode. Add the following metadata to the header of your .md file:
-    - Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. This needs to be the same name as the docs file!
+    - Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. *This needs to be the same name as the docs file!*
     - Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
     - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
     - If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
@@ -1208,6 +1231,7 @@ registerBidder(spec);
     - If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
     - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
     - If you support COPPA, add `coppa_supported: true`. Default is false.
+    - If you support GPP, add `gpp_supported: true`. Default is false.
     - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
     - If you support passing a demand chain on the response, add `dchain_supported: true`. Default is false.
     - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
@@ -1217,6 +1241,7 @@ registerBidder(spec);
     - If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to 'true','partial', or 'false'. No default value. In order to set 'true', you must support: bcat, badv, battr, and bapp.
     - Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
     - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
+    - Always add `sidebarType: 1`. This is required for docs.prebid.org site navigation.
 - Submit both the code and docs pull requests
 
 For example:
@@ -1231,6 +1256,7 @@ gdpr_supported: true/false
 gvl_id: none
 usp_supported: true/false
 coppa_supported: true/false
+gpp_supported: true/false
 schain_supported: true/false
 dchain_supported: true/false
 userId: (list of supported vendors)
@@ -1244,6 +1270,7 @@ pbs: true/false
 prebid_member: true/false
 multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ortb_blocking_supported: true/partial/false
+sidebarType: 1
 ---
 ### Note:
 

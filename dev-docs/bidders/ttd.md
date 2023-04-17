@@ -7,6 +7,7 @@ gdpr_supported: true
 gvl_id: 21
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 schain_supported: true
 dchain_supported: false
 userIds: unifiedId, uid2
@@ -34,6 +35,7 @@ Name | Scope | Description | Example | Type
 `publisherId` | required | The publisher ID. If there is a sellers.json, this should be the same as the seller_id in the sellers.json for the site being trafficked. If there is no sellers.json, this should be hardcoded to "1". | `'1427ab10f2e448057ed3b422'` | `String`
 `placementId` | optional | This field is optional if GPID is passed through the GPT module https://docs.prebid.org/dev-docs/modules/gpt-pre-auction.html. If that module isn't used, the GPID value should be passed in this field. | `'/1111/home#header'` | `String`
 `banner` | optional | Display banner targeting parameters. See the banner section below. | `{}` | `object`
+`bidfloor` | optional | Sets a bid floor price | `0.95` | `Float`
 
 ### Banner Object
 
@@ -70,7 +72,8 @@ var bannerAdUnit = {
                 placementId: 'sidebar_1',
                 banner: {
                     expdir: [1, 3]
-                }
+                },
+                bidfloor: 0.95
             }
         }
     ]
@@ -117,7 +120,8 @@ var videoAdUnit = {
                 supplySourceId: 'supplier',
                 publisherId: '1427ab10f2e448057ed3b422',
                 siteId: 'site-123',
-                placementId: 'video1'
+                placementId: 'video1',
+                bidfloor: 0.95
             }
         }
     ]

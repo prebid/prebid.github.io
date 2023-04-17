@@ -2,7 +2,7 @@
 layout: userid
 title: SharedID
 description: SharedID User ID sub-module
-useridmodule: sharedId
+useridmodule: sharedIdSystem
 ---
 
 
@@ -102,4 +102,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-

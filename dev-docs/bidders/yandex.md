@@ -3,8 +3,9 @@ layout: bidder
 title: Yandex
 description: Prebid Yandex Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: yandex
-media_types: banner
+media_types: banner, native
 sidebarType: 1
 ---
 

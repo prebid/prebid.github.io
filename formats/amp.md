@@ -22,7 +22,7 @@ At a high level, setting up AMP pages for header bidding with Prebid has these s
 
 ## Ad Ops
 
-+ [Google Ad Manager with Prebid Stpe by Step](/adops/step-by-step.html)
++ [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
 
 ## Developers
 

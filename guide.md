@@ -8,11 +8,12 @@ sidebarType: 0
 ---
 
 # Prebid Website Maintenance Guide
+{:.no_toc}
 
-v 1.2  
-Sept 24, 2021
+Updated Feb 9, 2023
 
-***
+* TOC
+{:toc}
 
 ## Reviewing Pull Requests and Issues
 
@@ -243,10 +244,17 @@ Each menu item is represented in the YML map as a collection of key value pairs 
 | sbCollapseId |  string | overview  | Required if isSectionHeader = 1. Used to identify which div object is being toggled. |
 
 **Code Use**  
-This data file is read in the page_v2.html file using Liquid.
+This data file is read in the left_nav.html file using Liquid. (__includes/left_nav.html)
 
-**Code Use**  
-This data file is read in the home.html file using Liquid.
+**Files Not in the Sidebar**  
+If a page is open that is not listed in the sidebar.yml file, by default the sidebar will display only top-level options, with no options expanded or selected. 
+
+In certain cases, it is helpful to the user to highlight a page in the left navigation that is not currently open. For example, when a bidder page is open (such as [https://docs.prebid.org/dev-docs/bidders/1ad4good.html](https://docs.prebid.org/dev-docs/bidders/1ad4good.html)), we don't want hundreds of bidders displayed in the left nav, but we want the user to be oriented to where they are in the documentation. In this case, that would be under Prebid.js > Reference > Bidder Params. To accomplish this, you must do two things:
+
+- Add `sidebarType: 1` to all bidder pages. This opens the Prebid.js menu. (If you want to extend this functionality to other pages, use the sbSecId in the sidebar.yml file of the top-level menu as the value for sidebarType.) 
+- Modified the left_nav.html file's Liquid code to highlight Reference > Bidder Params anytime a page with layout=bidder is open.
+
+This has been done for both bidders pages (pages with `layout: bidder`) and the Publisher API Reference (`layout: api_prebidjs` and highlighting Prebid.js > Reference > Publish API Reference in the left nav), but can be extended to other pages as needed. 
 
 ## Bidder Files
 
@@ -269,6 +277,7 @@ The attributes in the Jekyll 'front matter' drive various behaviors and dynamic 
 | filename | no | bid adapter that actually implements this adapter | Used when a bid adapter is created with a filename that is not the bidder code. This completely overrides what is passed into the gulp build command, so needs to be fully specified. e.g. bidderaBidAdapter |
 | prevBiddercode | no | secondary bidder code | Adds a note about an alternate code that may have been used. |
 | pbjs_version_notes | no | string | Displays on the download page |
+| sidebarType | yes | `1` | Used for navigation. This opens the Prebid.js portion of the menu so the sidebar can display the Reference/Prebid Params menu option when a bidder page is open. 
 | ANYTHING ELSE | no | string | There are many pieces of metadata (e.g. GDPR support, user IDs supported) that bid adapters can disclose. They're displayed on the bidder's parameter page. |
 
 The bidderCode, aliasCode, and prevBiddercode parameters bear some description.
@@ -290,3 +299,26 @@ We use Algolia for site search.
 - The configuration defining the search parameters is at https://github.com/algolia/docsearch-configs/blob/master/configs/prebid.json
 - Only elements p, th, td, li, code, and h1-h3 are indexed
 - Code implementation in _includes/body-end.html and a the 'site-search' div in the header.
+
+## Cookie Privacy
+
+Prebid websites don't set their own cookies, but vendor products we use do. So we use the OneTrust CookiePro library to pop up a cookie banner. If the user hasn't consented to setting cookies, they will find reduced functionality on the site -- they won't be able to view JSFiddle examples or example videos.
+
+This is implemented with the [OneTrust](https://community.cookiepro.com/s/article/UUID-730ad441-6c4d-7877-7f85-36f1e801e8ca?language=en_US) library. See layout/example.md for how the OneTrust.InsertHtml function is used.
+The last argument to that function is the "group id", which declares what kind of cookies this vendor script is
+going to set. Here's how OneTrust defines the groups:
+
+1. Strictly Necessary cookies
+2. Performance cookies
+3. Function cookies
+4. Targeting cookies
+
+OneTrust categorizes cookies on their own, and it seems pretty random to us. Our guideline is to define tools as group 3 for small trusted vendors, or group 4 for large vendors that probably have a database of users.
+
+The test case for vendor code that drops cookies is simple:
+
+- clear your prebid.org cookies
+- reload the page
+- confirm the cookie banner appears
+- confirm the vendor's functionality doesn't appear
+- confirm that the vendor didn't set any cookies

@@ -66,7 +66,7 @@ Publishers that want to do this should design their workflow and then set `_pbjs
 By including this module and one or more of the sub-modules, a number of new options become available in `setConfig()`,
 under the `userSync` object as attributes of the `userIds` array of sub-objects.
 
-The `value` parameter can be used to indicate an identifier the publisher has obtained via a direct integration with that identity provider that the publisher wishes to make available to Prebid.js bidders. 
+The `value` parameter can be used to indicate an identifier the publisher has obtained via a direct integration with that identity provider that the publisher wishes to make available to Prebid.js bidders.
 
 Publishers using Google AdManager may want to sync one of the identifiers as their Google PPID for frequency capping or reporting.
 The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rules; refer to [Google AdManager documentation](https://support.google.com/admanager/answer/2880055?hl=en) for them. Please note, Prebid uses a [GPT command](https://developers.google.com/publisher-tag/reference#googletag.PubAdsService) to sync identifiers for publisher convenience. It doesn't currently work for instream video requests, as Prebid typically interacts with the player, which in turn may interact with IMA. IMA does has a [similar method](https://developers.google.com/interactive-media-ads/docs/sdks/html5/client-side/reference/js/google.ima.ImaSdkSettings#setPpid) as GPT, but IMA does not gather this ID from GPT.
@@ -161,24 +161,10 @@ The Rubicon bid adapter would then receive
 {% endfor %}
 
 
-
-## Adapters Supporting the User ID Sub-Modules
-
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-
-<table class="pbTable">
-<tr class="pbTr"><th class="pbTh">Bidder</th><th class="pbTh">IDs Supported</th></tr>
-{% for item in bidder_pages %}
-{% if item.userIds != nil %}
-<tr class="pbTr"><td class="pbTd">{{item.biddercode}}</td><td class="pbTd">{{item.userIds}}</td></tr>
-{% endif %}
-{% endfor %}
-</table>
-
 ## Bidder Adapter Implementation
 
 If your ID structure is complicated, it is helpful to add tests for `pbjs.getUserIds()`, `pbjs.getUserIdsAsEids()` and `pbjs.getUserIdsAsync()`.
- 
+
 To add a custom data type for the response of `pbjs.getUserIdsAsEids()`, see other examples within the `createEidsArray` method in [/modules/userId/eid.js](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.js).
 
 ### Prebid.js Adapters
@@ -191,8 +177,9 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 | 33Across ID | 33Across | 33acrossId | 33across.com | "1111" |
 | Admixer ID | Admixer | admixerId | admixer.net | "1111" |
 | adQuery QiD | adQuery | qid | adquery.io | "p9v2dpnuckkzhuc..." |
+| Adriver ID | Adriver | adriverId | adriver.ru | "1111" |
 | Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
-| AMX RTB ID | AMX RTB | amxId | amxrtb.com | "3ca11058-..." |
+| AMX ID | AMX | amxId | amxdt.net | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
 | AudienceOne ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
 | DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
@@ -224,7 +211,7 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 | SharedID (PBJS 5.x) | n/a | pubcid | pubcid.org | "1111" |
 | SharedID (PBJS 4.x)| Prebid | sharedid | sharedid.org | {"id":"01EAJWWN...", "third":"01EAJ..."} |
 | Unified ID | Trade Desk | tdid | adserver.org | "1111" |
-| ConnectID | Yahoo | connectId | yahoo.com | "72d04af6..." |
+| ConnectID | Yahoo | connectId | yahoo.com | {"connectId": "72d04af6..."} |
 
 For example, the adapter code might do something like:
 

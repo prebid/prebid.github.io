@@ -5,13 +5,14 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: false
-userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid
+userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, imuid
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
 gdpr_supported: true
 floors_supported: true
 usp_supported: true
+gpp_supported: true
 media_types: banner, video, native
 fpd_supported: true
 gvl_id: 10
@@ -138,13 +139,9 @@ In this configuration Prebid.js calls Index directly from the browser using our 
 
 ## Set up Prebid.js to call Index through Prebid Server (server-side adapter)
 
-In this configuration, Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Index. Complete the following steps to complete the Index-specific configuration:
+In this configuration, Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Index. Complete the following steps to configure Index as a demand source:
 
-1. In your PrebidServer adapter configuration Prebid.js, you must enable the Index adapter as follows:
-```javascript
-    adapters.ix.enabled=true 
-    adapters.ix.endpoint=http://<Your Prebid Server Host's URL>
-```
+1. If you are hosting your own Prebid Server instance, see [Setup instructions to call Index through Prebid Server](https://docs.prebid.org/dev-docs/pbs-bidders.html#setup-instructions-to-call-index-through-prebid-server).
 2. In the `[pbjs.setConfig()]` function, within the `s2sConfig` property, add `ix` to the `bidders` attribute. 
 3. Define the Index-specific parameters at the bidder level. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html) documentation. 

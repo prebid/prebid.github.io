@@ -2,7 +2,7 @@
 layout: userid
 title: Publisher Link
 description: Publisher Link User ID sub-module
-useridmodule: publinkId
+useridmodule: publinkIdSystem
 ---
 
 
@@ -51,4 +51,3 @@ In addition to the parameters documented above in the Basic Configuration sectio
        }
    });
 ```
-

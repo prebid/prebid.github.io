@@ -117,7 +117,7 @@ If you don't trust all your bidders to provide creatives that can safely run ins
 
 Be sure to check with bidders directly if you have questions about their SafeFrame support.
 
-## Further Reader
+## Related Reading
 
 -  [Planning Guide](/adops/adops-planning-guide.html)
 -  [Key Values for Ad Ops](/adops/key-values.html)

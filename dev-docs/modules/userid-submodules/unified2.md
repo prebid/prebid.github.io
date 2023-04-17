@@ -2,7 +2,7 @@
 layout: userid
 title: Unified ID 2.0
 description: Unified ID 2.0 User ID sub-module
-useridmodule: uid2
+useridmodule: uid2IdSystem
 ---
 
 
@@ -84,4 +84,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-

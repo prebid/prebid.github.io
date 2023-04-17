@@ -2,99 +2,70 @@
 layout: userid
 title: Intent IQ ID
 description: Intent IQ ID User ID sub-module
-useridmodule: intentIqId
+useridmodule: intentIqIdSystem
 ---
 
+# Intent IQ Universal ID module
 
-Intent IQ’s universal ID with its unparalleled coverage of over 80% of ad inventory, protects publishers’ ability to rely on advertising as their main revenue source while preserving user privacy in a third party cookieless world.
+By leveraging the Intent IQ identity graph, our module helps publishers, SSPs, and DSPs overcome the challenges of monetizing cookie-less inventory and preparing for a future without 3rd-party cookies. Our solution implements 1st-party data clustering and provides Intent IQ person IDs with over 90% coverage and unmatched accuracy in supported countries while remaining privacy-friendly and CCPA compliant. This results in increased CPMs, higher fill rates, and, ultimately, lifting overall revenue
 
-The universal ID is an Intent IQ generated alphanumeric characters ID representing a person. This ID is not matched with personal information and remains anonymous to Intent IQ.
+# All you need is a few basic steps to start using our solution.
 
-Intent IQ universal ID enables partners - publishers, SSPs, DSPs, DMPs and advertisers to support, in a privacy-friendly way, and on a person level, core elements of the advertising business model -
+## Registration
 
-- Targeting across sites and devices
-- Frequency capping
-- Attribution measurement across sites and devices
+Navigate to [our portal ](https://www.intentiq.com/) and contact our team for partner ID.
+check our [documentation](https://pbmodule.documents.intentiq.com/) to get more information about our solution and how utilze it's full potential 
 
-Intent IQ's universal ID works across IP addresses and user-agent changes.
-
-Intent IQ's universal ID truly stands out in the coverage and accuracy it provides. Intent IQ's universal ID covers over 80% of ad inventory with 90% accuracy. By contrast, third-party cookies offer 56% coverage and log-in solutions offer coverage of less than 20%.
-
-
-Add it to your Prebid.js package with:
+## Integration     
 
 {: .alert.alert-info :}
-gulp build --modules=intentIqIdSystem
+gulp build –modules=intentIqIdSystem
 
-## Intent IQ ID Registration
+We recommend including the Intent IQ Analytics adapter module for improved visibility
 
-You can set up Intent IQ ID by contacting our operations team at [Intent IQ Contact Us](https://www.intentiq.com/contact-us) and getting your partner id.
+## Configuration
 
-The Intent IQ ID privacy is covered under the [Intent IQ Privacy Policy](https://www.intentiq.com/technology-privacy-policy).
+### Parameters
 
-## Intent IQ ID Configuration
+Please find below list of parameters that could be used in configuring Intent IQ Universal ID module
+
+
 
 {: .table .table-bordered .table-striped }
-| Param under userSync.userIds[] | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | `"intentIqId"` | `"intentIqId"` |
-| params | Required for IntentIqId | Object | Details for IntentIqId initialization. | |
-| params.partner | Required | String | This is the partner ID value obtained from registering with IntentIQ. | `"1177538"` |
-| params.pcid | Optional | String | This is the partner cookie ID, it is a dynamic value attached to the request. | `"g3hC52b"` |
-| params.pai | Optional | String | This is the partner customer ID / advertiser ID, it is a dynamic value attached to the request. | `"advertiser1"` |
 
-{: .alert.alert-info :}
-**NOTE:** The Intent IQ ID is encrypted with a key that changes every several hours. Demand partners utilize the latest key to decrypt the ID and use it. Therefore, to enable demand partners have an ID they can use, we highly recommend calling Intent IQ every 4 hours by setting storage.refreshInSeconds to 4 hours (4*3600 seconds)
+| Param under userSync.userIds[] | Scope    | Type   | Description                                                                                                                                                                                                  | Example         |
+| ------------------------------ | -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| name                           | Required | String | The name of this module: "intentIqId"                                                                                                                                                                        | `"intentIqId"`  |
+| params                         | Required | Object | Details for IntentIqId initialization.                                                                                                                                                                       |                 |
+| params.partner                 | Required | Number | This is the partner ID value obtained from registering with IntentIQ.                                                                                                                                        | `1177538`       |
+| params.percentage              | Required | Number | This a percentage value for our A/B testing group distribution. The values supposed to be in range of 0 to 100. We suggest to set it to 95 percent for optimal balance ofbetween prefromance and preceision. | `95`            |
+| params.pcid                    | Optional | String | This is the partner cookie ID, it is a dynamic value attached to the request.                                                                                                                                | `"g3hC52b"`     |
+| params.pai                     | Optional | String | This is the partner customer ID / advertiser ID, it is a dynamic value attached to the request.                                                                                                              | `"advertiser1"` |
 
-## Intent IQ ID Examples
-
-1) Publisher has a partner ID from Intent IQ and cookies.
-
-{: .alert.alert-warning :}
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "intentIqId",
-            params: {
-                partner: 123456             // valid partner id
-            },
-            storage: {
-                type: "cookie",
-                name: "intentIqId",         // create a cookie with this name
-                expires: 60,                // cookie can last for 60 days
-                refreshInSeconds: 4*3600    // refresh ID every 4 hours to ensure it's fresh
-}
-        }],
-        syncDelay: 3000              // 3 seconds after the first auction
-    }
-});
-{% endhighlight %}
-
-2) Publisher supports Intent IQ and HTML5 local storage.
+### Configuration example
 
 {% highlight javascript %}
 pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "intentIqId",
-            params: {
-                partner: 123456			    // valid partner id
-            },
-            storage: {
-                type: "html5",
-                name: "intentIqId",         // set localstorage with this name
-                expires: 60,
-                refreshInSeconds: 4*3600    // refresh ID every 4 hours to ensure it's fresh
-            }
-        }],
-        syncDelay: 3000
-    }
+  userSync: {
+    userIds: [
+      {
+        name: "intentIqId",
+        params: {
+          partner: 123456, // valid partner id
+          percentage: 95,
+        },
+        storage: {
+          type: "html5",
+          name: "intentIqId", // set localstorage with this name
+          expires: 60,
+          refreshInSeconds: 4 * 3600, // refresh ID every 4 hours to ensure it's fresh
+        },
+      },
+    ],
+    syncDelay: 3000,
+  },
 });
 {% endhighlight %}
-
-
-3) Publisher supports IntentIQ and HTML5 local storage with extra dynamic params such as 'pcid' and 'pai'.
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -103,8 +74,9 @@ pbjs.setConfig({
             name: "intentIqId",
             params: {
                 partner: 123456     // valid partner id
-                pcid: PCID_VARIABLE   // string value, dynamically loaded into a variable before setting the configuration
-                pai: PAI_VARIABLE   // string value, dynamically loaded into a variable before setting the configuration
+                pcid: PCID_VARIABLE,   // string value, dynamically loaded into a variable before setting the configuration
+                pai: PAI_VARIABLE ,  // string value, dynamically loaded into a variable before setting the configuration
+                percentage: 95
             },
             storage: {
                 type: "html5",
@@ -116,4 +88,3 @@ pbjs.setConfig({
     }
 });
 {% endhighlight %}
-
