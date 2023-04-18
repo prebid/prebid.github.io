@@ -166,7 +166,7 @@ The code sample:
 adUnit = MediationInterstitialAdUnit(
     activity,
     configId,
-    EnumSet.of(AdUnitFormat.DISPLAY),
+    EnumSet.of(AdUnitFormat.BANNER),
     mediationUtils
 )
 

@@ -138,7 +138,7 @@ val mediationUtils = AdMobInterstitialMediationUtils(extras)
 adUnit = MediationInterstitialAdUnit(
     activity,
     configId,
-    AdUnitFormat.DISPLAY,
+    AdUnitFormat.BANNER,
     mediationUtils
 )
 
@@ -183,7 +183,7 @@ The **default** ad format for interstitial is **DISPLAY**. In order to make a `m
 adUnit = MediationInterstitialAdUnit(
             activity,
             configId,
-            EnumSet.of(AdUnitFormat.DISPLAY, AdUnitFormat.VIDEO),
+            EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO),
             mediationUtils
         )
 ```

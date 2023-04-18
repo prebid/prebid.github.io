@@ -84,7 +84,7 @@ The **default** ad format for interstitial is **DISPLAY**. In order to make a `m
 interstitialAdUnit = InterstitialAdUnit(
                         requireContext(), 
                         configId, 
-                        EnumSet.of(AdUnitFormat.DISPLAY, AdUnitFormat.VIDEO))
+                        EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO))
 ```
 
 #### Step 1: Create an Ad Unit
