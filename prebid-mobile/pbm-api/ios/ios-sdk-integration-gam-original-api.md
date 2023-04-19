@@ -164,7 +164,7 @@ Initialize the `BannerAdUnit` with the following properties:
 #### Step 2: Set ad format
 {:.no_toc}
 
-For video ad unit, you must set video ad format. Default value for `adFormats` property is `[.display]`.  
+For video ad unit, you must set video ad format. Default value for `adFormats` property is `[.banner]`.  
 
 #### Step 3: Configure the video parameters
 {:.no_toc}
@@ -278,7 +278,7 @@ adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
 adUnit.setAutoRefreshMillis(time: 30000)
 
 // 2. Set adFormats
-adUnit.adFormats = [.display, .video]
+adUnit.adFormats = [.banner, .video]
 
 // 3. Configure banner parameters
 let bannerParameters = BannerParameters()
@@ -337,7 +337,7 @@ Initialize the `BannerAdUnit` with the following properties:
 #### Step 2: Set ad formats
 {:.no_toc}
 
-For multiformat ad unit, you must set both display and video ad formats. 
+For multiformat ad unit, you must set both banner and video ad formats. 
 
 #### Step 3: Configure banner parameters
 {:.no_toc}
@@ -482,7 +482,7 @@ Initialize the Interstitial Video Ad Unit with properties:
 #### Step 2: Set ad format
 {:.no_toc}
 
-For video ad unit, you must set video ad format. Default value for `adFormats` property is `[.display]`. 
+For video ad unit, you must set video ad format. Default value for `adFormats` property is `[.banner]`. 
 
 #### Step 3: Configure video parameters
 {:.no_toc}
@@ -515,7 +515,7 @@ Integration example:
 adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: 60, minHeightPerc: 70)
 
 // 2. Set adFormats
-adUnit.adFormats = [.display, .video]
+adUnit.adFormats = [.banner, .video]
 
 // 3. Configure parameters
 let parameters = VideoParameters(mimes: ["video/mp4"])
@@ -561,7 +561,7 @@ Initialize the InterstitialAdUnit with the following properties:
 #### Step 2: Set ad formats
 {:.no_toc}
 
-For multiformat ad unit, you must set both display and video ad formats. 
+For multiformat ad unit, you must set both banner and video ad formats. 
 
 #### Step 3: Configure parameters
 {:.no_toc}
