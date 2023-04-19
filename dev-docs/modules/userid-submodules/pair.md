@@ -20,6 +20,7 @@ gulp build --modules=pairIdSystem
 | name | Required | String | The name of PAIR ID user ID module. | `"pairId"` |
 | params | Optional | Object | Container of all module params. |  |
 | params.liveramp | Optional | Object | Container of all liveramp cleanroom specified params. |  |
+| params.liveramp.storageKey | Optional | String | storage key to fetch liveramp provided PAIR Id, the default key is `"_lr_pairId_"` | `"_lr_pairId_custom"` |
 
 ## PAIR ID Examples
 
@@ -50,7 +51,7 @@ pbjs.setConfig({
         name: 'pairId',
         params: {
                 liveramp: {
-                    // liveramp params
+                    storageKey: '_lr_pairId_custom'
                 }
             },
       }]
