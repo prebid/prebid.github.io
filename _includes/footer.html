@@ -9,6 +9,7 @@
       </div>
     </div>
   </div>
+  <div id="prebid-google-analytics-consent" style="display: none;"></div>
 </footer>
   <!-- / copyrights -->
 
@@ -30,7 +31,7 @@
   // use the global variable provided in the head-common to wait for onetrust
   window.onetrustLoaded.then(() => {
     // grant consent if one trust says so. We use the callback to update gtag consent status
-    OneTrust.InsertHtml('<span display:"none">google analytics</span>', 'body', function() {
+    OneTrust.InsertHtml('<span>given</span>', 'prebid-google-analytics-consent', function() {
       gtag('consent', 'update', {'ad_storage': 'granted','analytics_storage': 'granted'});
     }, {}, 'C0002');
   });
