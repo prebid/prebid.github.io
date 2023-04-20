@@ -17,6 +17,7 @@ gvl_id: 91
 coppa_supported: true
 multiformat_supported: will-bid-on-any
 sidebarType: 1
+gpp_supported: true
 ---
 
 ### Notes

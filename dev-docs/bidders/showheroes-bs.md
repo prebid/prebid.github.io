@@ -6,6 +6,8 @@ pbjs: true
 biddercode: showheroes-bs
 media_types: video, banner
 gdpr_supported: true
+usp_supported: true
+schain_supported: true
 sidebarType: 1
 ---
 

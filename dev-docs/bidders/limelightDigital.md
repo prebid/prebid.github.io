@@ -35,4 +35,6 @@ sidebarType: 1
 | `custom4`     | optional | Custom targeting field 4                                    | `'custom4'`           | `string`  |
 | `custom5`     | optional | Custom targeting field 5                                    | `'custom5'`           | `string`  |
 
-Limelight Digital server-side Prebid Server adapter supports `banner`, `video`, `audio`, `native` media types. But Limelight Digital client-side Prebid.js adapter supports only `banner` and `video` media types, doesn't support `audio` and `native`.
+Limelight Digital server-side Prebid Server adapter requires only `publisherId` and `host` parameters. But Limelight Digital client-side Prebid.js adapter requires only `host`, `adUnitId`, `adUnitType`.
+
+Limelight Digital server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types. But Limelight Digital client-side Prebid.js adapter supports only `banner` and `video` media types, doesn't support `audio` and `native`.
