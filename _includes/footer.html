@@ -27,10 +27,14 @@
   // new google analytics v4 property
   gtag('config', 'G-GM972HCTEB');
 
-  // grant consent if one trust says so. We use the callback to update gtag consent status
-  OneTrust.InsertHtml('<span display:"none">google analytics</span>', 'body', function() {
-    gtag('consent', 'update', {'ad_storage': 'granted','analytics_storage': 'granted'});
-  }, {}, 'C0002');
+  // use the global variable provided in the head-common to wait for onetrust
+  window.onetrustLoaded.then(() => {
+    // grant consent if one trust says so. We use the callback to update gtag consent status
+    OneTrust.InsertHtml('<span display:"none">google analytics</span>', 'body', function() {
+      gtag('consent', 'update', {'ad_storage': 'granted','analytics_storage': 'granted'});
+    }, {}, 'C0002');
+  });
+
 </script>
 
 
