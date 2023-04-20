@@ -9,21 +9,33 @@
       </div>
     </div>
   </div>
+  <div id="prebid-google-analytics-consent" style="display: none;"></div>
 </footer>
   <!-- / copyrights -->
 
 <!-- Global tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GM972HCTEB"></script>
 <script>
+  window['gtag_enable_tcf_support'] = true;
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
-  // old universal analytics
-  gtag('config', 'UA-130832561-2');
+  gtag('consent', 'default', {'ad_storage': 'denied','analytics_storage': 'denied'});
+  gtag("config", "G-GM972HCTEB", {
+      anonymize_ip: true
+  });
 
   // new google analytics v4 property
   gtag('config', 'G-GM972HCTEB');
+
+  // use the global variable provided in the head-common to wait for onetrust
+  window.onetrustLoaded.then(() => {
+    // grant consent if one trust says so. We use the callback to update gtag consent status
+    OneTrust.InsertHtml('<span>given</span>', 'prebid-google-analytics-consent', function() {
+      gtag('consent', 'update', {'ad_storage': 'granted','analytics_storage': 'granted'});
+    }, {}, 'C0002');
+  });
+
 </script>
 
 
