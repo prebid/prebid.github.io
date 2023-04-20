@@ -1357,7 +1357,7 @@ If the currency function is unable to derive the correct cpm in any of the scena
 | <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | [globalsupport@magnite.com](mailto:globalsupport@magnite.com) | Magnite data-science applied to dynamic floors. (Currently only available to Demand Manager customers) |
 | <img src="/assets/images/partners/leader/openx.png" style="height:50px;"> | Reach out to OpenX at [apollo@openx.com](mailto:apollo@openx.com) | Dynamic floor optimization and more |
 | <img src="/assets/images/partners/leader/pubmatic.png" style="height:50px;"> | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
-| Assertive Yield | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
+| <img src="/assets/images/partners/leader/AssertiveYield_logo.png"> | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
 | pubx.ai | [hello@pubx.ai](mailto:hello@pubx.ai) | AI-powered dynamic floor optimization |
 
 ## Further Reading

@@ -222,6 +222,14 @@ Sometimes the owner of a bid adapter or other kind of module wants to rename the
 3) The docs repo should contain both names, with the old name referring to the new name. You can add the "enable_download: false" flag to prevent installations of the old name.
 4) At the next major release the old files may be removed.
 
+## Does Prebid.js support Amazon TAM?
+
+We would love for Amazon to contribute a TAM adapter, but so far that's not happened. Publishers that want to sync IDs across multiple header bidding wrappers should be aware of these resources:
+
+- You can generate the auctionId parameter outside of Prebid and pass it when calling [pbjs.requestBids()](/dev-docs/publisher-api-reference/requestBids.html)
+- [Example of Synchronizing Transaction IDs with Another Library](/dev-docs/examples/sync-tid.html)
+
+
 ## Related Reading
 
 + [Prebid.js Troubleshooting Guide](/troubleshooting/troubleshooting-guide.html)
