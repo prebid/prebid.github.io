@@ -21,7 +21,11 @@ This is the original Prebid mobile integration approach when SDK plays the trans
 
 ![In-App Bidding with Prebid](/assets/images/prebid-mobile/prebid-in-app-bidding-overview-prebid-original-gam.png)
 
-## Display Banner
+## Banner API
+
+Starting with Prebid Mobile `2.1.0` you can use `BannerAdUnit` to bid over the banner and/or video demand. The default ad format is `BANNER`. To customize the bidding format, specify the ad formats in the `BannerAdUnit` constructor.
+
+### HTML Banner
 
 Integration example:
 
@@ -91,6 +95,9 @@ Initialize the `BannerAdUnit` with properties:
 
 Using the `BannerParameters()` you can customize the bid request for BannerAdUnit. 
 
+{: .alert.alert-warning :}
+Starting from PrebidMobile `2.1.0` the `BannerBaseAdUnit.Parameters` class is deprecated. Use `BannerParameters` instead. 
+
 The `api` property is dedicated to adding values for API Frameworks to a bid response according to the OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
 
 * `3` or `Signals.Api.MRAID_1` : MRAID-1 support signal
@@ -120,9 +127,7 @@ Be sure that you make the ad request with the same `AdManagerAdRequest` object t
 
 Once an app receives a signal that an ad is loaded, you should use the method `AdViewUtils.findPrebidCreativeSize` to verify whether it's Prebid's ad and resize the ad slot respectively to the creative's properties. 
 
-## Video Banner
-
-`VideoAdUnit` was deprecated in 2.1.0. You should use `BannerAdUnit` with the video ad format.
+### Video Banner (Outstream Video)
 
 Integration example:
 
@@ -150,7 +155,9 @@ private fun createAd() {
 }
 ```
 
-`VideoBaseAdUnit.Parameters` was deprecated in 2.1.0. You should use `VideoParameters`. 
+{: .alert.alert-warning :}
+Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `BannerAdUnit` class with video ad format instead.
+
 
 Configure Video parameters:
 
@@ -206,6 +213,9 @@ Initialize the `BannerAdUnit` with the following properties:
 
 Using the `VideoParameters` you can customize the bid request for a `BannerAdUnit`. 
 
+{: .alert.alert-warning :}
+Starting from PrebidMobile `2.1.0` the `VideoBaseAdUnit.Parameters` class is deprecated. Use `VideoParameters` instead. 
+
 #### placement
 {:.no_toc}
 
@@ -230,7 +240,6 @@ The `api` property is dedicated to adding values for API Frameworks to a bid res
 * `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
 * `6` or `Signals.Api.MRAID_3` : MRAID-3 support signal
 * `7` or `Signals.Api.OMID_1`  : signals OMSDK support
-
 
 #### maxBitrate
 {:.no_toc}
@@ -301,7 +310,7 @@ You should now request the ad from GAM. If the `AdManagerAdRequest` contains tar
 
 Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
-## Multiformat Banner (Display + Video)
+### Multiformat Banner (HTML + Video)
 
 Integration example:
 
@@ -351,7 +360,11 @@ Initialize the `BannerAdUnit` with properties:
 Steps 2-5 are the same as for Display Banner. Setting up banner and video parameters can be found in Display Banner and Video Banner respectively.
 
 
-## Display Interstitial
+## Interstitial API
+
+Starting with Prebid Mobile `2.1.0` you can use `InterstitialAdUnit ` to bid over the banner and/or video demand. The default ad format is `BANNER`. To customize the bidding format, specify the ad formats in the `InterstitialAdUnit ` constructor.
+
+### HTML Interstitial
 
 Integration example: 
 
@@ -427,9 +440,7 @@ Be sure that you make the ad request with the same `AdManagerAdRequest` object t
 
 Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/android/interstitial#display_the_ad) to display an interstitial ad right after receiving it or later in a natural pauses in the flow of an app.
 
-## Video Interstitial
-
-`VideoInterstitialAdUnit` was deprecated in 2.1.0. You should use `InterstitialAdUnit` with the video ad format. 
+### Video Interstitial
 
 Integration Example: 
 
@@ -456,6 +467,10 @@ private fun createAd() {
     }
 }
 ```
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `2.1.0` the `VideoInterstitialAdUnit` class is deprecated. Use `InterstitialAdUnit` class with video ad format instead. 
+
 
 Configuration function:
 
@@ -531,7 +546,7 @@ Be sure that you make the ad request with the same `AdManagerAdRequest` object t
 
 Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/android/interstitial#display_the_ad) to display an interstitial ad right after receiving it or later in a natural pauses in the flow of an app.
 
-## Multiformat Interstitial (Display + Video)
+### Multiformat Interstitial (HTML + Video)
 
 Integration example:
 
@@ -570,7 +585,7 @@ Initialize the `InterstitialAdUnit` with the following properties:
 Steps 2-3 are the same as for Display Banner. Setting up banner and video parameters can be found in Display Interstitial and Video Interstitial respectively.
 
 
-## Rewarded Video
+## Rewarded Video API
 
 Integration example:
 
@@ -657,9 +672,7 @@ Be sure that you make the ad request with the same `AdManagerAdRequest` object t
 
 Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/android/rewarded#show_the_ad) to display a rewarded ad right after receiving it or later in a natural pauses in the flow of an app.
 
-## Video Instream
-
-`VideoAdUnit` was deprecated in 2.1.0. You should use `InStreamVideoAdUnit` for an instream ad. 
+## Instream Video API
 
 Integration example: 
 
@@ -695,6 +708,9 @@ private fun createAd() {
     }
 }
 ```
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `InStreamVideoAdUnit ` instead.
 
 Configure the video ad:
 
@@ -784,7 +800,9 @@ Using Prebid util method, generate Google IMA URI for downloading the cached cre
 Follow the Google Guide for [integrating IMA with ExoPlayer](https://developers.google.com/interactive-media-ads/docs/sdks/android/client-side/exoplayer-extension) to run a video and show instream ad from the winning bid.   
 
 
-## Native Style Banner
+## Native API
+
+### Native Banner
 
 Integration example:
 
@@ -900,7 +918,7 @@ Now you should request the ad from GAM. If the `AdManagerAdRequest` contains tar
 
 Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
-## In-App Native
+### In-App Native
 
 Integration example: 
 
@@ -1108,10 +1126,7 @@ Once the Prebid line item is recognized you should extract the ad from the winni
 
 Each ad unit in the Original API is a subclass of the `AdUnit` class, which provides the following properties and methods for additional configuration. 
 
-### Properties
-
-#### pbAdSlot
-{:.no_toc}
+### Ad Slot
 
 PB Ad Slot is an identifier tied to the placement the ad will be delivered in. The use case for PB Ad Slot is to pass to exchange an ID they can use to tie to reporting systems or use for data science driven model building to match with impressions sourced from alternate integrations. A common ID to pass is the ad server slot name.
 
