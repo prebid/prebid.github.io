@@ -7,7 +7,7 @@ useridmodule: freepassIdSystem
 
 [FreePass](https://freepass-login.com/introduction.html) is a common authentication service operated by Freebit Co., Ltd. Users with a FreePass account do not need to create a new account to use partner services.
 
-Please contact FreePass before using this ID.
+Please contact FreePass before using this ID at [freepass-headerbidding@craid-inc.com](mailto:freepass-headerbidding@craid-inc.com)
 
 ## FreePass ID Configuration
 
