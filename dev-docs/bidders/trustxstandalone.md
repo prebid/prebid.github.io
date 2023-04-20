@@ -3,7 +3,6 @@ layout: bidder
 title: TrustX (standalone)
 description: Prebid TrustX Bidder Adaptor
 pbjs: true
-pbs: true
 biddercode: trustx
 media_types: banner, video
 multiformat_supported: will-bid-on-any

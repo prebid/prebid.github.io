@@ -10,8 +10,8 @@ gdpr_supported: true
 userIds: unifiedId
 usp_supported: true
 coppa_supported: false
-schain_supported: false
-dchain_supported: false
+schain_supported: true
+dchain_supported: true
 safeframes_ok: false
 deals_supported: true
 floors_supported: true

@@ -17,6 +17,12 @@ sidebarType: 4
 
 The following examples are available:
 
+## Prebid Video Module: Instream
+
+- [VideoJS](/examples/video/instream/videoModule/videojs/video-module-videojs.html)
+
+## Prebid Video Module: Outstream
+
 ## Instream
 
   - [Brightcove](/examples/video/instream/brightcove/pb-ve-brightcove.html)

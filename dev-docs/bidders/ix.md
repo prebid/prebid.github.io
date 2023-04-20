@@ -32,8 +32,9 @@ sidebarType: 1
 - [Set up Prebid.js to call Index through Prebid Server (server-side adapter)](#set-up-prebidjs-to-call-index-through-prebid-server-server-side-adapter)
 - [Modules to include in your build process](#modules-to-include-in-your-build-process)
 - [Set up First Party Data (FPD)](#set-up-first-party-data-fpd)
-  - [Index bidder-specific FPD module](#index-bidder-specific-fpd-module)
-  - [Prebid FPD module](#prebid-fpd-module)
+  - [Global data](#prebid-fpd-module)
+  - [Index bidder-specific data](#index-bidder-specific-fpd-module)
+  - [AdUnit-specific data](#adunit-specific-data)
 - [Index's outstream video player](#indexs-outstream-video-player)
 - [Prebid Native configuration](#prebid-native-configuration)
 - [Bid request parameters](#bid-request-parameters)
@@ -54,13 +55,13 @@ Publishers can use Prebid.js to call Index Exchange (Index) in any of the follow
 * **Call through our server-side adapter**: Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Index. This reduces workload on the browser. For configuration instructions, see the [Set up Prebid.js to call Index through Prebid Server (server-side adapter)](#server-side-adapter) on this page.
 
 **Notes:** 
-* **Bid request limit**: You can send up to 20 ad slots in a single bid request to Index. If a single bid request contains more than 20 ad slots, only the first 20 are accepted and the rest are ignored.
+* **Send multiple ad slots in a single bid request**: Index accepts up to 100 valid ad slots in a single bid request. If a single bid request contains more than 100 ad slots (including invalid ad slots), only the first 100 valid ad slots are accepted and the rest are ignored. For example streaming TV media owners can signal multiple ad pods for long-form programming in a single request. 
 * **How to view bid requests sent to Index:** 
     * In your browser, open a new tab.
     * Open the **Developer tools**. 
     * In **Developer tools**, click the **Network** tab. 
     * In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index. 
-* **Recommended Global Bidder settings:** For our adapter, Index recommends enabling local storage. As of Prebid.js 7.x, local storage access must be explicitly specified. By leveraging local storage, Index is able to take advantage of the latest features our exchange has to offer. For instructions on enabling local storage, see Prebid’s [pbjs.bidderSettings](https://docs.prebid.org/dev-docs/publisher-api-reference/bidderSettings.html) documentation.
+* **Recommended Global Bidder settings:** For our adapter, Index recommends enabling local storage. As of Prebid.js 7.x, local storage access must be explicitly specified. By leveraging local storage, Index is able to take advantage of the latest features our exchange has to offer. For instructions on enabling local storage, see Prebid’s [pbjs.bidderSettings](https://docs.prebid.org/dev-docs/publisher-api-reference/bidderSettings.html) documentation.<br />
 <b>Example:</b>
 ```javascript
 pbjs.bidderSettings = { 
@@ -198,18 +199,34 @@ If you are using a JSON file to specify modules, add `ixBidAdapter` and `dfpAdSe
 
 ## Set up First Party Data (FPD)
  
-You can set up FPD using the Index bidder-specific module (recommended) or the Prebid FPD module. 
+You can set up the Prebid.js FPD module using Global data, Index bidder-specific site data, or ad unit-specific data. Index supports deal targeting in all the three FPD types.
 
-**Notes:**
+<a name="prebid-fpd-module" />
 
-* Index does not support ad unit-specific FPD and `ortb2.imp`.
-* To target deals with Index, you must use the Index bidder-specific FPD module. The Prebid FPD module does not support deals targeting. If you have any questions or need help setting up the configuration, contact your Index Representative.
+### Global data
+
+Use this data type to allow all bid adapters to have access to first party data that might be useful in ad targeting. This is available from Prebid.js version 4.30 and above. 
+
+To supply data that is accessible to all bidders, use the `[pbjs.setConfig()]` object as illustrated below. Use the `[setBidderConfig()]` function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation. 
+
+```javascript
+pbjs.setConfig({
+    ortb2: {
+        site: {
+                    ...
+               },
+        user: {
+                    ...
+               }
+            }
+});
+```
 
 <a name="index-bidder-specific-fpd-module" />
 
-### Index bidder-specific FPD module 
+### Index bidder-specific data
 
-This module allows you to specify key-value pairs that will be included in your query string when targeting deals. For example, if a user visits a news page, you can pass that information by submitting a key-value pair for `category = news`. You can then create a deal in the Index UI and activate the deal only on pages that contain `category = news` as the key-value pair.
+Use this data type to specify key-value pairs that will be included in your query string when targeting deals. For example, if a user visits a news page, you can pass that information by submitting a key-value pair for `category = news`. You can then create a deal in the Index UI and activate the deal only on pages that contain `category = news` as the key-value pair.
 
 To include the FPD in a bid request, in the `[pbjs.setConfig()]` object at the `ix` bidder level, provide the key-values in the `firstPartyData` parameter. Make sure that you set it before the `pbjs.requestBids` configuration. If you want to change the values, you can update the `pbjs.setConfig` once again. The change will be reflected in all future bid requests. 
 
@@ -224,26 +241,22 @@ To include the FPD in a bid request, in the `[pbjs.setConfig()]` object at the `
     }
 });
 ```
+<a name="adunit-specific-data" />
 
+### AdUnit-specific data
 
-<a name="prebid-fpd-module" />
+Use this data type to specify key-value pairs at the ad unit level when targeting deals and apply it to all bidders. This is available from Prebid.js version 7.45 and above. To include the adUnit-specific data in a bid request, see Prebid's [Supplying AdUnit-Specific Data](https://docs.prebid.org/features/firstPartyData.html#supplying-adunit-specific-data) documentation.
 
-### Prebid FPD module 
-
-This module allows all bid adapters to have access to first party data that might be useful in ad targeting. This is available from Prebid.js version 4.30 and above.  
-To supply data that is accessible to all bidders, use the `[pbjs.setConfig()]` object as illustrated below. Use the `[setBidderConfig()]` function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation. 
 
 ```javascript
-pbjs.setConfig({
-    ortb2: {
-        site: {
-                    ...
-               },
-        user: {
-                    ...
+ortb2Imp: {
+    ext: {
+        data: {
+                pbadslot: "homepage-top-rect",
+                adUnitSpecificAttribute: "123"
                }
-            }
-});
+         }
+           }
 ```
 
 <a name="index-outstream-video-player" />
