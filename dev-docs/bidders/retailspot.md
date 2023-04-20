@@ -10,6 +10,13 @@ gdpr_supported: true
 usp_supported: true
 floors_supported: false
 schain_supported: false
+coppa_supported: false
+userIds:
+safeframes_ok: true
+deals_supported: true
+fpd_supported: false
+ortb_blocking_supported: false
+multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
