@@ -994,7 +994,7 @@ If the `AdManagerAdRequest ` contains targeting keywords, the respective Prebid 
 #### Step 4: Implement OnCustomFormatAdLoadedListener protocol
 {:.no_toc}
 
-In order to capture the native ad response you will need to implement [OnCustomFormatAdLoadedListener](https://radeon-drivers.com/?_=%2Fandroid%2Freference%2Fcom%2Fgoogle%2Fandroid%2Fgms%2Fads%2Fnativead%2FNativeCustomFormatAd.OnCustomFormatAdLoadedListener%23UUlexhFFzSDzTfOQ54KBpjGsLVY524B1MgR06Ro%3D) protocol. 
+In order to capture the native ad response you will need to implement [OnCustomFormatAdLoadedListener](https://developers.google.com/android/reference/com/google/android/gms/ads/nativead/NativeCustomFormatAd.OnCustomFormatAdLoadedListener) protocol. 
  
 You should use following Prebid function to determine whether the Prebid line item should be rendered:
 
