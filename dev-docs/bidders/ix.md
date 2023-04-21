@@ -245,7 +245,7 @@ To include the FPD in a bid request, in the `[pbjs.setConfig()]` object at the `
 
 ### AdUnit-specific data
 
-Use this data type to specify key-value pairs at the ad unit level when targeting deals and apply it to all bidders. This is available from Prebid.js version 7.45 and above. To include the adUnit-specific data in a bid request, see Prebid's [Supplying AdUnit-Specific Data](https://docs.prebid.org/features/firstPartyData.html#supplying-adunit-specific-data) documentation.
+Use this data type to specify key-value pairs at the ad unit level when targeting deals and apply it to all bidders. This will be available from Prebid.js version 7.46 and above. To include the adUnit-specific data in a bid request, see Prebid's [Supplying AdUnit-Specific Data](https://docs.prebid.org/features/firstPartyData.html#supplying-adunit-specific-data) documentation.
 
 
 ```javascript
