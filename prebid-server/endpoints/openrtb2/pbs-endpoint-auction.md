@@ -150,6 +150,8 @@ Prebid Server accepts all OpenRTB 2.x fields and passes them in the request to a
 | dooh | 2.6-202211 | not yet supported by PBS |
 | imp.qty | 2.6-202211 | (PBS-Go only so far) Bidders supporting 2.5 only: this field is removed |
 | imp.dt | 2.6-202211 | (PBS-Go only so far) Bidders supporting 2.5 only: this field is removed |
+| imp.refresh | 2.6-202303 | (PBS-Go only so far) Bidders supporting 2.5 only: this field is removed |
+| imp.video.plcmt | 2.6-202303 | (PBS-Go only so far) Bidders supporting 2.5 only: this field is removed |
 
 #### IDs
 
