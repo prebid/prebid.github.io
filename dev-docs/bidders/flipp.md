@@ -18,4 +18,4 @@ pbs: true
 | `creativeType` | required | Type of the creative | `NativeX` | `NativeX\|DTX` |
 | `siteId` | required | ID associated with the site | `123456` | `integer` |
 | `zoneIds` | optional | Zones to request from bidder | `[789, 123]` | `array[integer]` |
-| `userKey` | optional | User Key to track the user | `4188d8a3-22d1-49cb-8624-8838a22562bd` | `uuidv4` |
+| `userKey` | optional | User Key to power experience optimization and frequency capping | `4188d8a3-22d1-49cb-8624-8838a22562bd` | `uuidv4` |
