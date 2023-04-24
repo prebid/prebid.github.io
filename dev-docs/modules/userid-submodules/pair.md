@@ -5,7 +5,9 @@ description: pair PairId User ID sub-module
 useridmodule: pairIdSystem
 ---
 
-[PAIR](https://blog.google/products/marketingplatform/360/engage-your-first-party-audience-in-display-video-360/) (Publisher Advertiser Identity Reconciliation) is developed by Google DV360, which provides a secure and privacy safe way for advertisers and publishers to reconcile encrypted first-party data using unique keys. 
+Developed by and for use with Display and Video 360, PAIR (Publisher Advertiser Identity Reconciliation) is a secure and privacy-forward way for enabling advertisers and publishers to reconcile their
+first-party data for marketing use cases via advanced data encryption methods without the
+reliance on third-party cookies. PAIR can help advertisers and publishers maintain control of first-party data while ensuring there is no pooling of data, no leakage of data, no leakage of insights, durablility for the future using secure encryption methods, and no user tracking across publishers. 
 
 Add it to your Prebid.js package with:
 
