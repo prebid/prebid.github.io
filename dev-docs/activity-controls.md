@@ -110,7 +110,7 @@ Here's the list of 'potentially restricted activities' that Prebid.js core can e
 |----------------|-------------|---------------------------|--------------------------------|
 | `accessDevice` | A component wants to use device storage  | Storage is disabled | [`storageType`](#params-accessDevice) |
 | `enrichEids` | A user ID or RTD submodule wants to add user IDs to outgoing requests | User IDs are discarded | None |
-| `enrichUfpd` | A RTD submodule wants to add user first party data to outgoing requests (`user.data` in ORTB) | User FPD is discarded | None |
+| `enrichUfpd` | A Real Time Data (RTD) submodule wants to add user first party data to outgoing requests (`user.data` in ORTB) | User FPD is discarded | None |
 | `fetchBids`  | A bid adapter wants to participate in an auction | Bidder is removed from the auction | [`configName`](#params-fetchBids) |    
 | `reportAnalytics` | An analytics adapter is being enabled through `pbjs.enableAnalytics` | Adapter remains disabled | None |
 | `syncUser` | A bid adapter wants to fetch a [user sync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) | User sync is skipped | [`syncType`, `syncUrl`](#params-syncUser) |
