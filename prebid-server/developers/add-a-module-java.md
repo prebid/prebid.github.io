@@ -22,7 +22,7 @@ You will want to be familiar with the following background information:
 
 ### Coding standards
 
-The module’s code style should correspond to the [PBS-Java project code style](https://github.com/prebid/prebid-server-java/blob/master/docs/code-style.md).
+The module’s code style should correspond to the [PBS-Java project code style](https://github.com/prebid/prebid-server-java/blob/master/docs/developers/code-style.md).
 
 ## Module Directory Layout
 
@@ -83,6 +83,7 @@ The structure of your module source code inside the modules directory must have 
 +- src/
   +- main/
     +- java/ <- source code
+      +- org.prebid.server.* <- The package path needs to include "org.prebid.server"
     +- resources/ <- required resources
   +- test/
     +- java/ <- tests
@@ -104,7 +105,7 @@ The documentation must also live on the docs.prebid.org site. Please add a markd
 
 ### Hook Interfaces
 
-The Prebid server processing workflow is divided into serveal 'stages' where module authors can code agaist a specific function signature called a 'hook'.
+The Prebid server processing workflow is divided into several 'stages' where module authors can code agaist a specific function signature called a 'hook'.
 
 The Prebid Server host company will define which modules to run in which order by setting up a configuration defining which hooks run, and which can run in parallel.
 
@@ -117,7 +118,7 @@ These are the available hooks that can be implemented in a module:
 - org.prebid.server.hooks.v1.auction.ProcessedAuctionRequestHook
 - org.prebid.server.hooks.v1.bidder.BidderRequestHook
 - org.prebid.server.hooks.v1.bidder.RawBidderResponseHook
-- org.prebid.server.hooks.v1.bidder.ProcessedBidderResponseHook
+- org.prebid.server.hooks.v1.bidder.AllProcessedBidResponsesHook
 - org.prebid.server.hooks.v1.auction.AuctionResponseHook
 
 In a module it is not necessary to implement all mentioned interfaces but only one (or several) required by your functionality.
@@ -141,6 +142,8 @@ Future.succeededFuture(
     .build()
 );
 ```
+
+Please note that the `InvocationStatus` is only considered when the status is set to `InvocationStatus.success`. That means the `payloadUpdate` is only applied with `InvocationStatus.success` **and** `InvocationAction.update`
 
 2) To **reject** the request in the `RawAuctionRequestHook` you would return:
 ```

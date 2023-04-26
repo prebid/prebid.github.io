@@ -13,13 +13,13 @@ schain_supported: true
 coppa_supported: true
 gvl_id: 25
 userIds: All
+sidebarType: 1
 ---
 
 ### Important Notice (JS vs PBS)
 There are differences between our Prebid.js & Prebid-Server Yahoo SSP adapters.
 The Prebid-server adapter currently does not support:
-1. Video inventory.
-2. Integration via the `pubId` method.
+1. Integration via the `pubId` method.
 
 ### yahoossp Prebid.js Mandatory Bid Params
 The 'yahoossp' bid adapter supports 2 alternate integration types:
@@ -36,6 +36,7 @@ For legacy "aol", "oneMobile" adapter partners/publishers.
 |------------|----------|------------------------|---------|----------|
 | dcn | Required | Site ID provided by Yahoo SSP | 'site1' | string |
 | pos | Required | Placement ID provided by Yahoo SSP | 'placement1' | string |
+
 #### PubId Integration Parameters (JS Only)
 For New partners/publishers joining Yahoo SSP
 floors_supported: true and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.

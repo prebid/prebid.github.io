@@ -8,5 +8,5 @@ enable_download: false
 
 #### Registration
 
-Please visit []() for more information.
+Please visit [https://concert.io/](https://concert.io/) for more information.
 

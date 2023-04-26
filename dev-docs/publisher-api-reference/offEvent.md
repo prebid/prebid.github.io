@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.offEvent(eventType, handler, id)
 description: 
+sidebarType: 1
 ---
 
 Turns off an event callback defined with [onEvent](/dev-docs/publisher-api-reference/onEvent.html)
@@ -12,7 +13,7 @@ Turns off an event callback defined with [onEvent](/dev-docs/publisher-api-refer
 
 **Returns**: none
 
-See the [getEvents](/publisher-api-reference/getEvents.html) function for the full list of eventTypes supported.
+See the [getEvents](/dev-docs/publisher-api-reference/getEvents.html) function for the full list of eventTypes supported.
 
 Causes PBJS to search through registered event callbacks and remove the
 supplied callbackFunction for the specifc eventType.

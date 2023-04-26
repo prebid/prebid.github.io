@@ -8,9 +8,9 @@ schain_supported: true
 media_types: banner, video, native
 userIds: britepoolid, identityLink, unifiedId, id5Id, uid2
 gdpr: true
-fpd_supported: true
 pbjs: true
 pbs: false
+sidebarType: 1
 ---
 
 ### Prebid.JS Bid Params
@@ -18,7 +18,8 @@ pbs: false
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                              | Example    | Type      |
 |----------------|----------|----------------------------------------------------------|------------|-----------|
-| `placement_id` | required | Placement Id will be generated on Colossus SSP Platform. | `0`        | `integer` |
+| `placement_id` | optional | Placement Id will be generated on Colossus SSP Platform. Use instead of group_id | `0`        | `integer` |
+| `group_id`     | optional | Group Id will be generated on Colossus SSP Platform. Use instead of placement_id  | `0`        | `integer` |
 | `traffic`      | optional | Type traffic                                             | `'banner'` | `string`  |
 
 *For colossus prebid server parametres, look into colossus.md*

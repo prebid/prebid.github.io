@@ -6,6 +6,7 @@ media_type: native
 biddercode: my6sense
 pbjs: true
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Bid params

@@ -6,8 +6,10 @@ pbjs: true
 biddercode: nextroll
 media_types: display, native
 gdpr_supported: false
+floors_supported: true
 usp_supported: true
 prebid_member: true
+sidebarType: 1
 ---
 
 ### Bid Params

@@ -5,10 +5,12 @@ description: Prebid AdPlus Bidder Adapter
 biddercode: adplus
 media_types: banner
 pbjs: true
+sidebarType: 1
 ---
+
 ### Note:
 
-The AdPlus Bidding adapter requires setup before beginning. Please contact us at adplus.destek@yaani.com.tr
+The AdPlus Bidding adapter requires setup before beginning. Please contact us at <adplusdestek@turkcell.com.tr>.
 
 ### Bid Params
 

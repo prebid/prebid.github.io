@@ -13,6 +13,7 @@ coppa_supported: true
 schain_supported: true
 gvl_id: 607
 pbs_app_supported: true
+sidebarType: 1
 ---
 
 ### Prebid JS
@@ -59,5 +60,3 @@ Sizes set in the `adUnit` object will also apply to the ucfunnel bid requests.
 |--------|----------|-------------------------------------------------|---------|----------|
 | `adunitid` | required | ID for ad unit |         | `string` |
 | `partnerid` | required | ID for partner |         | `string` |
-
-```

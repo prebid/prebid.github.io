@@ -1,18 +1,19 @@
 ---
 layout: bidder
-title: YIELDONE
-description: Prebid YIELDONE Bidder Adaptor
+title: YieldOne
+description: Prebid YieldOne Bidder Adaptor
 biddercode: yieldone
 media_types: banner, video
-userIds: identityLink
+userIds: identityLink, imuid, AudienceOne ID, ID5
 pbjs: true
 pbs: true
-
+multiformat_supported: will-bid-on-any
+sidebarType: 1
 ---
 
 ### Note:
 
-THE YIELDONE adapter requires setup and approval from the YIELDONE team.<br/>
+THE YieldOne adapter requires setup and approval from the YieldOne team.<br/>
 Please reach out to your account team or y1s@platform-one.co.jp for more information.
 
 

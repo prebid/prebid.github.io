@@ -8,6 +8,7 @@ gdpr_supported: true
 schain_supported: false
 prebid_member: false
 pbjs: true
+sidebarType: 1
 ---
 
 

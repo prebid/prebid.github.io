@@ -5,8 +5,8 @@ description: iPROM Prebid Adaptor
 biddercode: iprom
 media_types: banner
 pbjs: true
-enable_download: false
-pbjs_version_notes: not in 5.x, in 6.2+
+enable_download: true
+sidebarType: 1
 ---
 
 ### Prebid Server Note:
