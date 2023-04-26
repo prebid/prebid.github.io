@@ -21,7 +21,7 @@ For more information about AMP RTC, see:
 + [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
 {% capture tipNote %}
-For ad ops setup instructions, see [Setting up Prebid for AMP in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html).
+For ad ops setup instructions, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
 {% endcapture %}
 
 {% include alerts/alert_note.html content=tipNote %}
@@ -137,7 +137,7 @@ e.g. for the AppNexus cluster of Prebid Servers:
 <amp-ad width="300" height="250"
     type="doubleclick"
     data-slot="/1111/universal_creative"
-    rtc-config='{"vendors": {"prebidappnexus": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
+    rtc-config='{"vendors": {"prebidappnexuspsp": {"PLACEMENT_ID": "13144370"}}, "timeoutMillis": 500}'>
 </amp-ad>
 ```
 
@@ -161,7 +161,7 @@ For other hosts, you can specify the URL directly rather than using one of the c
 
 ### HTML Creative
 
-This is the creative that your Ad Ops team needs to upload to the ad server (it's also documented at [Setting up Prebid for AMP in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-for-amp-in-dfp.html)).
+This is the creative that your Ad Ops team needs to upload to the ad server (it's also documented at [GAM Step by Step - Banner/Outstream/AMP Creatives](/adops/gam-creative-banner-sbs.html)).
 
 {% capture tipNote %}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
@@ -173,7 +173,7 @@ For Google Ad Manager:
 
 ```html
 
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
@@ -190,32 +190,11 @@ For Google Ad Manager:
 
 ```
 
-For Mopub:
-
-```html
-
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
-<script>
-  var ucTagData = {};
-  ucTagData.adServerDomain = "";
-  ucTagData.pubUrl = "%%KEYWORD:url%%";
-  ucTagData.targetingKeywords = "%%KEYWORDS%%";
-  ucTagData.hbPb = "%%KEYWORD:hb_pb%%";
-
-   try {
-    ucTag.renderAd(document, ucTagData);
-  } catch (e) {
-    console.log(e);
-  }
-</script>
-
-```
-
 For all other ad servers:
 
 ```html
 
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%MACRO:hb_format%%.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
@@ -243,15 +222,12 @@ Replace `MACRO` in the preceding example with the appropriate macro for the ad s
 
 To sync user IDs with Prebid Server, the `amp-iframe` below may be added to your AMP pages referring to `load-cookie.html` or if you're running an IAB-compliant AMP CMP you can use `load-cookie-with-consent.html`.
 
-{% capture tipNote %}
-The following examples include a transparent image as a placeholder which will allow you to place the example at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://amp.dev/documentation/components/amp-iframe/)
-{% endcapture %}
-{% include alerts/alert_tip.html content=tipNote %}
+Note that AMP constrains syncing as described in the [amp-iframe](https://amp.dev/documentation/components/amp-iframe) documentation. You may only have *one* amp-iframe on your page that is small, e.g. 1x1. Many publishers already have some kind of analytics or tracking frame on their page, so they may find it difficult to manage this. Several hacks are possible, including building a 'frankenstein' script that combines all of your required tracking into one or tying the sync to an image that's large enough to be visible.
 
-{% capture consentNote %}
- The load-cookie-with-consent.html file has the same argument syntax as load-cookie.html. It's a different file because it's larger and depends on the existence of an AMP Consent Management Platform. Note that the `sandbox` parameter to the amp-iframe must include both "allow-scripts" and "allow-same-origin".
-{% endcapture %}
-{% include alerts/alert_tip.html content=consentNote %}
+Notes:
+- The following examples include a transparent image as a placeholder which will allow you to place the example at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://amp.dev/documentation/components/amp-iframe/)
+- Note that the `sandbox` parameter to the amp-iframe must include both "allow-scripts" and "allow-same-origin".
+- The load-cookie-with-consent.html file has the same argument syntax as load-cookie.html. It's a different file because it's larger and depends on the existence of an AMP Consent Management Platform.
 
 If you're using AppNexus' managed service, you would enter something like this:
 ```html
@@ -286,28 +262,12 @@ Or you can specify a full URL to another Prebid Server location (including a QA 
 </amp-iframe>
 ```
 
-The usage of `load-cookie.html` and `load-cookie-with-consent.html` is the same. The arguments available on the query string are:
+See [manually initiating a sync](/prebid-server/developers/pbs-cookie-sync.html#manually-initiating-a-sync) for more information about the available parameters.
 
-{: .table .table-bordered .table-striped }
-| Param | Scope | Values | Description |
-| --- | --- | --- | --- |
-| endpoint | recommended | 'appnexus', 'rubicon', or URL | Determines which cluster of prebid servers to load from. Default, for legacy reasons, is appnexus. |
-| source | optional | recommended | Set it to 'amp' to tell Prebid Server to exclude iframe syncs, which don't work on AMP. |
-| max_sync_count | optional | integer | How many sync pixels should be returned from Prebid Server |
-| args | optional | attr1:val1,attr2:val2 | These attribute value pairs will be passed to Prebid Server in the /cookie_sync call. The attribute and value will be quoted by the system when appropriate. |
-| gdpr | optional | 0 or 1 | Defines whether GDPR processing is in scope for this request. 0=no, 1=yes. Leave unknown if not sure. |
-| gdpr_consent | optional | String | IAB CMP-formatted consent string |
+### AMP RTC
 
-### AMP RTC and GDPR
-
-The two Prebid Server RTC vendor strings 'prebidappnexus' and 'prebidrubicon'
-support passing GDPR consent to Prebid Server.
-
-The CONSENT_STRING macro will be populated if you've integrated with a CMP
-that supports amp-consent v2 -- custom CMP integration.
-
-If you're using a custom RTC callout, here are the parameters that can be passed through the RTC string:
-- tag_id
+If you're using a custom RTC callout rather than one of the pre-defined [vendor callouts](https://github.com/ampproject/amphtml/blob/main/src/service/real-time-config/callout-vendors.js), here are the parameters that can be passed through the RTC string:
+- tag_id (this correspondes to the Prebid Server stored request ID)
 - w=ATTR(width)
 - h=ATTR(height)
 - ow=ATTR(data-override-width)
@@ -324,8 +284,6 @@ If you're using a custom RTC callout, here are the parameters that can be passed
 - gdpr_applies=CONSENT_METADATA(gdprApplies)
 - attl_consent=CONSENT_METADATA(additionalConsent)
 
-See the entries in the [AMP vendors callout file](https://github.com/ampproject/amphtml/blob/main/src/service/real-time-config/callout-vendors.js).
-
 ## Debugging Tips
 To review that Prebid on AMP is working properly the following aspects can be looked at:
 + Include `#development=1` to the URL to review AMP specifc debug messages in the browser console.
@@ -336,10 +294,11 @@ To review that Prebid on AMP is working properly the following aspects can be lo
 ## Further Reading
 
 + [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp.html)
-+ [Setting up Prebid for AMP in Google Ad Manager](/adops/setting-up-prebid-for-amp-in-dfp.html) (Ad Ops Setup)
++ [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html) (Ad Ops Setup)
 + [AMP RTC Overview](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)
 
 <!-- Reference Links -->
 
 [PBS]: /prebid-server/overview/prebid-server-overview.html
 [callout-vendors.js]: https://github.com/ampproject/amphtml/blob/master/src/service/real-time-config/callout-vendors.js
+[RTC-Overview]: https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md

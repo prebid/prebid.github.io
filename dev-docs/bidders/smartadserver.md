@@ -1,21 +1,23 @@
 ---
 layout: bidder
 title: Smart AdServer
-description: Prebid Smart AdServer Bidder Adaptor
+description: Prebid Smart AdServer Bidder Adapter
 biddercode: smartadserver
-media_types: display, video
+media_types: display, video, native
 gdpr_supported: true
+gpp_supported: true
 schain_supported: true
 usp_supported: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+userIds: all
 pbjs: true
 pbs: true
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Registration
 
-The Smart AdServer bidder adaptor requires setup and approval from the Smart AdServer Service team. Please reach out to your account manager for more information and start using it.
+The Smart AdServer bidder adapter requires setup and approval from the Equativ (former Smart AdServer) service team. Please reach out to your account manager for more information and start using it.
 
 ### Bid params
 
@@ -46,6 +48,24 @@ The Smart AdServer bidder adaptor requires setup and approval from the Smart AdS
 |--------------|----------|-------------------------------------------------------------------------------------------------------------------------|------------------------|-----------|
 | `protocol`   | optional | Maximum open RTB video protocol supported                                                                               | `8` (VAST 4.0 wrapper) | `integer` |
 | `startDelay` | optional | Allowed values: 1 (generic pre-roll, default), 2 (generic mid-roll), 3 (generic post-roll)                               | `1`                    | `integer` |
+
+### Supported Media Types (Prebid.js)
+
+{: .table .table-bordered .table-striped }
+| Type | Support |
+|---|---|
+| `banner` | Supported |
+| `video`  | Supported |
+| `native` | Not currently supported |
+
+### Supported Media Types (Prebid Server)
+
+{: .table .table-bordered .table-striped }
+| Type   | Support |
+|------|-------|
+| `banner` | Supported |
+| `video`  | Supported |
+| `native` | Supported |
 
 ### Examples 
 

@@ -7,14 +7,17 @@ gdpr_supported: true
 gvl_id: 164
 usp_supported: true
 coppa_supported: true
-media_types: banner, native
+media_types: banner, native, video
 safeframes_ok: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
 prebid_member: true
 userIds: id5Id, identityLink
-pbjs_version_notes: v4.35 and later
+floors_supported: true
+multiformat_supported: will-bid-on-one
+ortb_blocking_supported: partial
+sidebarType: 1
 ---
 
 ### Registration
@@ -50,18 +53,47 @@ adapters:
 
 ```
 
+### First Party Data
+Publishers can use the `ortb2` configuration parameter to provide First Party Data.
+
+#### OpenRTB Parameters
+The following table contains currently supported parameters.
+
+{: .table .table-bordered .table-striped }
+
+| Name               | Scope    | Description                                                                                               | Example            | Type           |
+|--------------------|----------|-----------------------------------------------------------------------------------------------------------|--------------------|----------------|
+| `bcat`             | optional | Blocked advertiser categories using the IAB content categories                                            | `['IAB1-1']`       | `string array` |
+| `badv`             | optional | Block list of advertisers by their domains                                                                | `['example.com']`  | `string array` |
+| `wlang`            | optional | Allow list of languages for creatives using ISO-639-1-alpha-2. Omission implies no specific restrictions. | `['en', 'de']`     | `string array` |
+
+
+Example configuration:
+```
+pbjs.setConfig({
+    ortb2: {
+      bcat: ['IAB1-1'],
+      badv: ['example.com'],
+      wlang: ['en', 'de']
+    }
+});
+```
+
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 
-| Name               | Scope    | Description                                                    | Example            | Type           |
-|--------------------|----------|----------------------------------------------------------------|--------------------|----------------|
-| `publisher.id`     | required | The publisher account ID                                       | `'2706'`           | `string`       |
-| `publisher.name`   | optional | The publisher name                                             | `'Publisher Name'` | `string`       |
-| `publisher.domain` | optional | The publisher domain                                           | `'publisher.com'`  | `string`       |
-| `tagid`            | optional | Identifier for specific ad placement or ad tag                 | `'tag-id'`         | `string`       |
-| `bcat`             | optional | Blocked advertiser categories using the IAB content categories | `['IAB1-1']`       | `string array` |
-| `badv`             | optional | Block list of advertisers by their domains                     | `['example.com']`  | `string array` |
+| Name               | Scope    | Description                                    | Example            | Type           |
+|--------------------|----------|------------------------------------------------|--------------------|----------------|
+| `publisher.id`     | required | The publisher account ID                       | `'2706'`           | `string`       |
+| `publisher.name`   | optional | The publisher name                             | `'Publisher Name'` | `string`       |
+| `publisher.domain` | optional | The publisher domain                           | `'publisher.com'`  | `string`       |
+| `tagid`            | optional | Identifier for specific ad placement or ad tag | `'tag-id'`         | `string`       |
+| `bcat`             | optional | (Deprecated)                                   | `['IAB1-1']`       | `string array` |
+| `badv`             | optional | (Deprecated)                                   | `['example.com']`  | `string array` |
+
+Note: Providing `bcat` and `badv` via Bid Params is deprecated, the First Party Data method should be preferred (see above). When both methods are provided, first party data values will be used and bid param values will be ignored.
 
 #### Native example
 
@@ -117,6 +149,44 @@ var adUnits = [
       banner: {
         sizes: [[300, 250]]
       } 
+    },
+    bids: [{
+        bidder: 'outbrain',
+        params: {
+            publisher: {
+              id: '2706',
+              name: 'Publishers Name',
+              domain: 'publisher.com'
+            },
+            tagid: 'tag-id',
+            bcat: ['IAB1-1'],
+            badv: ['example.com']
+        }
+    }]
+];
+```
+
+#### Video example
+```
+var adUnits = [
+    code: '/19968336/prebid_video_example_1',
+    mediaTypes: {
+        video: {
+            context: "outstream",
+            playerSize: [[640, 480]],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [1],
+            skip: 1,
+            api: [2],
+            minbitrate: 1000,
+            maxbitrate: 3000,
+            minduration: 3,
+            maxduration: 10,
+            startdelay: 2,
+            placement: 4,
+            linearity: 1
+        },
     },
     bids: [{
         bidder: 'outbrain',

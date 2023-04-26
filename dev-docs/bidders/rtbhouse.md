@@ -14,6 +14,7 @@ schain_supported: true
 userIds: id5Id, identityLink, pubProvidedId
 pbs_app_supported: true
 ortb_blocking_supported: partial
+sidebarType: 1
 ---
 
 
@@ -29,7 +30,7 @@ ortb_blocking_supported: partial
 
 #### ORTB Blocking
 RTB House supports blocking advertisers in `badv` and categories in `bcat` parameters.
-The lists of blocked advertisers and blocked categories is not limited but the more entries the timeout is more likely to occur.
+The blocked advertisers/categories list has no length limitation, but response timeout is more likely to occur as the number of entries grow.
 Blocked advertisers list (`badv`) is an array of domains as strings.
 Blocked categories list (`bcat`) is an array of IAB categories as strings.
 

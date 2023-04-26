@@ -11,6 +11,7 @@ media_types: banner, native
 userIds: all
 gdpr_supported: false
 prebid_member: false
+sidebarType: 1
 ---
 
 

@@ -8,5 +8,5 @@ prebid_member: true
 
 #### Registration
 
-Please visit []() for more information.
+Please visit [https://www.adomik.com/](https://www.adomik.com/) for more information.
 

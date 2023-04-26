@@ -5,7 +5,7 @@ description: Prebid Proxistore Bidder Adapter
 pbjs: true
 biddercode: proxistore
 gdpr_supported: true
-fpd_supported: true
+sidebarType: 1
 ---
 
 

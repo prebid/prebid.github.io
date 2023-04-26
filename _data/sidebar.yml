@@ -20,7 +20,15 @@
   subgroup: 0
 
 - sbSecId: 0
-  title: What is Prebid?
+  title: Intro to Header Bidding
+  link: /overview/intro-to-header-bidding.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 0
+  title: Intro to Prebid
   link: /overview/intro.html
   isHeader: 0
   isSectionHeader: 0
@@ -77,7 +85,7 @@
 
 - sbSecId: 0
   title: Contributing
-  link: /contributing/contribute.html
+  link: /policies/contribute.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -85,7 +93,7 @@
 
 - sbSecId: 0
   title: Prebid.org IP Policy
-  link: /overview/ip-policy.html
+  link: /policies/ip-policy.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -93,7 +101,15 @@
 
 - sbSecId: 0
   title: Privacy Policy
-  link: /privacy.html
+  link: /policies/privacy.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 0
+  title: Antitrust Policy
+  link: /policies/antitrust.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -101,7 +117,7 @@
 
 - sbSecId: 0
   title: Cookies
-  link: /cookies.html
+  link: /policies/cookies.html
   isHeader: 0
   isSectionHeader: 0
   subgroup: 2
@@ -138,7 +154,7 @@
   subgroup: 0
 
 - sbSecId: 1
-  title: Getting Started
+  title: Getting Started for Developers
   link: /dev-docs/getting-started.html
   isHeader: 0
   isSectionHeader: 0
@@ -203,6 +219,14 @@
   subgroup: 1
 
 - sbSecId: 1
+  title: Running without an ad server
+  link: /dev-docs/examples/no-adserver.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
   title: Legacy Browser Example
   link: /dev-docs/examples/legacy-browser-example.html
   isHeader: 0
@@ -242,10 +266,19 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 1
-  
+
 - sbSecId: 1
   title: Meta Bid Filtering
   link: /dev-docs/examples/meta-bid-filtering.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: Synchronize Transaction Ids With Another Library
+  link: /dev-docs/examples/sync-tid.html
   Item: 1
   isHeader: 0
   isSectionHeader: 0
@@ -335,14 +368,6 @@
   subgroup: 3
 
 - sbSecId: 1
-  title: Prebid 1.0 Publisher API Changes
-  link: /dev-docs/prebid-1.0-API.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 1
   title: Adding an Adapter
   link:
   isHeader: 1
@@ -359,6 +384,8 @@
   sectionTitle:
   subgroup: 4
 
+
+
 - sbSecId: 1
   title: How to Add an Analytics Adapter
   link: /dev-docs/integrate-with-the-prebid-analytics-api.html
@@ -370,6 +397,22 @@
 - sbSecId: 1
   title: How to Add A Real Time Data submodule
   link: /dev-docs/add-rtd-submodule.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 1
+  title: How to Add a Prebid.js Video submodule
+  link: /dev-docs/add-video-submodule.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 1
+  title: Vendor Billing in Prebid.js
+  link: /dev-docs/vendor-billing.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -468,6 +511,14 @@
   subgroup: 8
 
 - sbSecId: 1
+  title: Ad Server Key Values
+  link: /features/adServerKvps.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
+- sbSecId: 1
   title: Native Ads
   link: /prebid/native-implementation.html
   isHeader: 0
@@ -517,7 +568,7 @@
 
 - sbSecId: 1
   title: Interstitial Ads
-  link: /features/interstitialAds.html
+  link: /features/InterstitialAds.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -563,7 +614,7 @@
 
 - sbSecId: 2
   title: Getting Started With Prebid Mobile
-  link: /prebid-mobile/prebid-mobile-pbs.html
+  link: /prebid-mobile/prebid-mobile-getting-started.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -579,7 +630,7 @@
 
 - sbSecId: 2
   title: Privacy Regulation
-  link: /prebid-mobile/privacy-regulation.html
+  link: /prebid-mobile/prebid-mobile-privacy-regulation.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -587,151 +638,19 @@
 
 - sbSecId: 2
   title: Download
-  link: /prebid-mobile/download.html
+  link: /prebid-mobile/prebid-mobile-download.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-
-- sbSecId: 2
-  title: Rendering API (Open Beta)
-  link:
-  isHeader: 1
-  headerId: rendering
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1  
   
 - sbSecId: 2
-  title: Rendering Overview
-  link: /prebid-mobile/modules/rendering/modules-rendering.html
+  title: For Contributors
+  link: /prebid-mobile/prebid-mobile-for-contributors.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
-  
-- sbSecId: 2
-  title: "iOS"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: SDK Integration
-  link: /prebid-mobile/modules/rendering/ios-sdk-Integration.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Pure In-App Bidding
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Integration with GAM
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-gam.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-  
-- sbSecId: 2
-  title: Integration with MoPub
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Targeting
-  link: /prebid-mobile/modules/rendering/ios-sdk-parameters.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-  
-- sbSecId: 2
-  title: "Android"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: SDK Integration
-  link: /prebid-mobile/modules/rendering/android-sdk-integration.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-  
-- sbSecId: 2
-  title: Pure In-app Bidding
-  link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-  
-- sbSecId: 2
-  title: Integration with GAM
-  link: /prebid-mobile/modules/rendering/android-sdk-integration-gam.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-  
-- sbSecId: 2
-  title: Integration with MoPub
-  link: /prebid-mobile/modules/rendering/android-sdk-integration-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-  
-- sbSecId: 2
-  title: Targeting
-  link: /prebid-mobile/modules/rendering/android-sdk-parameters.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-  
-- sbSecId: 2
-  title: "Ad Server"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 1
-  
-- sbSecId: 2
-  title: Rendering Order - GAM
-  link: /prebid-mobile/modules/rendering/rendering-gam-line-item-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 2
-  title: Rendering Order - MoPub
-  link: /prebid-mobile/modules/rendering/rendering-mopub-line-item-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
+  subgroup: 0
 
 # - sbSecId: 2
 #   title: Modules
@@ -759,7 +678,7 @@
 #   hasSubMenus: 1
 #   sectionTitle:
 #   subgroup: 1
-  
+
 - sbSecId: 2
   title: For iOS
   link:
@@ -770,7 +689,7 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: Code Integration
+  title: SDK Integration
   link: /prebid-mobile/pbm-api/ios/code-integration-ios.html
   isHeader: 0
   isSectionHeader: 0
@@ -778,80 +697,40 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: iOS Mobile API
-  link: /prebid-mobile/pbm-api/ios/pbm-api-ios.html
+  title: GAM Original Integration
+  link: /prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 2
+  title: Custom or No mediation
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
 
 - sbSecId: 2
-  title: Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-adunit-ios.html
+  title: AdMob
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-admob.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
 
 - sbSecId: 2
-  title: Banner Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-banneradunit-ios.html
+  title: AppLovin MAX
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-max.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-
+  
 - sbSecId: 2
-  title: Banner Interstitial Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-bannerinterstitialadunit-ios.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 2
-  title: Native Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-nativeadunit-ios.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 2
-  title: In App Native Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-native-inapp-ios.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 2
-  title: Video Outstream Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-videooutstreamadunit-ios.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 2
-  title: Video Instream Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-video-instream-ios.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 2
-  title: Video interstitial Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-videointerstitialadunit-ios.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 2
-  title: Video Rewarded Ad Unit
-  link: /prebid-mobile/pbm-api/ios/pbm-video-rewarded-adunit-ios.html
+  title: GAM Rendering Integration
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-gam.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -864,18 +743,10 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
-
+  
 - sbSecId: 2
-  title: Result Codes
-  link: /prebid-mobile/pbm-api/ios/pbm-api-result-codes-ios.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 2
-  title: Prebid Mobile Object
-  link: /prebid-mobile/pbm-api/ios/prebidmobile-object-ios.html
+  title: Ad Experience Controls
+  link: /prebid-mobile/modules/rendering/ios-sdk-customization-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -890,7 +761,7 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: For Android
+  title: "For Android"
   link:
   isHeader: 1
   headerId: android
@@ -907,85 +778,44 @@
   subgroup: 3
 
 - sbSecId: 2
-  title: Android Mobile API
-  link: /prebid-mobile/pbm-api/android/pbm-api-android.html
+  title: GAM Original API
+  link: /prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+  
+- sbSecId: 2
+  title: Custom or No mediation
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
 
 - sbSecId: 2
-  title: Ad Unit
-  link: /prebid-mobile/pbm-api/android/pbm-adunit-android.html
+  title: AdMob
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-admob.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
 
 - sbSecId: 2
-  title: Banner Ad Unit
-  link: /prebid-mobile/pbm-api/android/pbm-banneradunit-android.html
+  title: AppLovin MAX
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-max.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
-
+  
 - sbSecId: 2
-  title: Native Ad Unit
-  link: /prebid-mobile/pbm-api/android/pbm-nativeadunit-android.html
+  title: GAM Rendering Integration
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-gam.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
-
-- sbSecId: 2
-  title: In App Native Ad Unit
-  link: /prebid-mobile/pbm-api/android/pbm-native-inapp-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
-  title: Banner Interstitial Ad Unit
-  link: /prebid-mobile/pbm-api/android/pbm-bannerinterstitialadunit-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
-  title: Video Outstream Ad Unit
-  link: /prebid-mobile/pbm-api/android/pbm-videooutstreamadunit-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
-  title: Video Intream Ad Unit
-  link: /prebid-mobile/pbm-api/android/pbm-video-instream-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
-  title: Video Interstitial Ad Unit
-  link: /prebid-mobile/pbm-api/android/pbm-videointerstitialadunit-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
-  title: Video Rewarded Ad Unit
-  link: /prebid-mobile/pbm-api/android/pbm-video-rewarded-adunit-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
 
 - sbSecId: 2
   title: Targeting Parameters
@@ -994,18 +824,10 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
-
+  
 - sbSecId: 2
-  title: Result Codes
-  link: /prebid-mobile/pbm-api/android/pbm-api-result-codes-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
-  title: Prebid Mobile Object
-  link: /prebid-mobile/pbm-api/android/prebidmobile-object-android.html
+  title: Ad Experience Controls
+  link: /prebid-mobile/modules/rendering/android-sdk-customization-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1018,81 +840,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
-
-- sbSecId: 2
-  title: For Contributors
-  link:
-  isHeader: 1
-  headerId: forcontributors
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
-
-- sbSecId: 2
-  title: Add an Ad Server Adapter
-  link: /prebid-mobile/add-an-ad-server-adapter.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 4
-
-- sbSecId: 2
-  title: Legacy API
-  link:
-  isHeader: 1
-  headerId: legacyapi
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 2
-  title: Code Integration - iOS
-  link: /prebid-mobile/legacy/ios/code-integration-ios.html
-
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 2
-  title: Targeting Parameters - iOS
-  link: /prebid-mobile/legacy/ios/targeting-params-ios.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 2
-  title: Logging and Troubleshooting - iOS
-  link: /prebid-mobile/legacy/ios/logging-troubleshooting-ios.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 2
-  title: Code Integration - Android
-  link: /prebid-mobile/legacy/android/code-integration-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 2
-  title: Targeting Parameters - Android
-  link: /prebid-mobile/legacy/android/targeting-params-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
-
-- sbSecId: 2
-  title: Logging and Troubleshooting - Android
-  link: /prebid-mobile/legacy/android/logging-troubleshooting-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 5
 
 #--------------Ad Ops--------------|
 
@@ -1107,25 +854,16 @@
   sbCollapseId: ad-ops
 
 - sbSecId: 3
-  title: Ad Ops Tutorials
+  title: Overview
   link:
   isHeader: 1
-  headerId: adopstuts
-  isSectionHeader: 0
-  sectionTitle: Ad Ops
-  subgroup: 0
-
-- sbSecId: 3
-  title: "Prebid"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
+  headerId: adopsoverview
+  isSectionHeader:
   sectionTitle:
   subgroup: 0
 
 - sbSecId: 3
-  title: 'AdOps View of Prebid'
+  title: 'Ad Ops Overview'
   link: /adops/before-you-start.html
   isHeader: 0
   isSectionHeader: 0
@@ -1133,29 +871,112 @@
   subgroup: 0
 
 - sbSecId: 3
+  title: Ad Ops Essentials
+  link:
+  isHeader: 1
+  headerId: adopsess
+  isSectionHeader: 0
+  sectionTitle: Ad Ops Essentials
+  subgroup: 1
+
+- sbSecId: 3
+  title: "Planning"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Planning Guide'
+  link: /adops/adops-planning-guide.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Ad Server Integration'
+  link: /adops/ad-server-integration.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Send All Bids vs Top Price'
+  link: /adops/send-all-vs-top-price.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Line Item Creation'
+  link: /adops/line-item-creation.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Price Granularity'
+  link: /adops/price-granularity.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Creative Considerations'
+  link: /adops/creative-considerations.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: "Ad Ops Information"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
+  title: 'Key Values'
+  link: /adops/key-values.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
   title: 'Prebid Universal Creative'
   link: /overview/prebid-universal-creative.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 1
 
 - sbSecId: 3
-  title: 'Send All Bids'
-  link: /adops/send-all-bids-adops.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: 'Enable Deals'
+  title: 'Deals in Prebid'
   link: /adops/deals.html
-  Item: 1
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 1
+
+- sbSecId: 3
+  title: Ad Server Setup
+  link:
+  isHeader: 1
+  headerId: adopssetup
+  isSectionHeader:
+  sectionTitle:
+  subgroup: 2
 
 - sbSecId: 3
   title: "Google Ad Manager"
@@ -1164,112 +985,47 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
-  title: 'Guide to Prebid in Ad Manager'
+  title: 'Line Item Setup'
   link: /adops/step-by-step.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
-  title: 'Setting up for AMP in GAM'
-  link: /adops/setting-up-prebid-for-amp-in-dfp.html
+  title: 'Creative Setup: Banner/Outstream/AMP'
+  link: /adops/gam-creative-banner-sbs.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
-  title: 'Setting up Multi-Format in GAM'
-  link: /adops/setting-up-prebid-multi-format-in-dfp.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: 'Setting up Native in GAM'
+  title: 'Creative Setup: Native'
   link: /adops/gam-native.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
-  title: 'Setting up Video in GAM'
+  title: 'Creative Setup: Video'
   link: /adops/setting-up-prebid-video-in-dfp.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
-  title: 'Setting up Long-Form Video in GAM'
-  link: /adops/setting-up-prebid-ott-video-in-gam.html
+  title: "Setting up Order for Mobile Rendering API"
+  link: /adops/mobile-rendering-gam-line-item-setup.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: "Mobile"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Setup Line Items For MoPub
-  link: /prebid-mobile/adops-line-item-setup-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Setup Rewarded Video Line Items For MoPub
-  link: /prebid-mobile/adops-setup-rewarded-video-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Setup Full Screen Video Line Items For MoPub
-  link: /prebid-mobile/adops-setup-full-screen-video-mopub.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Setup Native Ads
-  link: /prebid-mobile/adops-native-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Price Granularity
-  link: /prebid-mobile/adops-price-granularity.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-- sbSecId: 3
-  title: Dr. Prebid Validation App
-  link: /prebid-mobile/dr-prebid.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: "Freewheel"
@@ -1278,7 +1034,7 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: 'Setting up Long-Form Video'
@@ -1286,7 +1042,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: "AppNexus Publisher"
@@ -1295,7 +1051,7 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: 'Setting up Prebid'
@@ -1303,17 +1059,16 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: "Smart Ad Server"
   link:
-
   isHeader: 0
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 3
   title: 'Setting up Prebid'
@@ -1321,16 +1076,75 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
-
+  subgroup: 2
+  
 - sbSecId: 3
-  title: Studies
+  title: "AdMob"
   link:
-  isHeader: 1
-  headerId: studies
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 3
+  title: "Mediation Group - AdMob"
+  link: /adops/mobile-rendering-admob-line-item-setup.html
+  isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 2
+  
+- sbSecId: 3
+  title: "AppLovin MAX"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 3
+  title: "Custom Network - MAX"
+  link: /adops/mobile-rendering-max-line-item-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 3
+  title: "Other Ad Servers"
+  link:
+  isHeader: 0
+  isSectionHeader: 0
+  isCatHeader: 1
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 3
+  title: 'General Ad Server Setup'
+  link: /adops/adops-general-sbs.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 3
+  title: Optimization
+  link:
+  isHeader: 1
+  headerId: optimization
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 3
+  title: Analyze Header Bidding Setup
+  link: /overview/optimal-header-bidding-setup.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
 
 - sbSecId: 3
   title: Optimize Header Bidding Setup
@@ -1338,31 +1152,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 2
-
-- sbSecId: 3
-  title: An Optimal Setup for Header Bidding
-  link: /overview/optimal-header-bidding-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 3
-  title: Reduce Header Bidding Latency With Prebid.js
-  link: /overview/how-to-reduce-latency-of-header-bidding.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 3
-  title: How to Simplify Line Item Setup
-  link: /overview/how-to-simplify-line-item-setup.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
+  subgroup: 3
 
 #--------------Prebid Video--------------|
 
@@ -1443,13 +1233,38 @@
   subgroup: 0
 
 - sbSecId: 4
+  title: Prebid.js Video Module
+  link:
+  isHeader: 1
+  headerId: pbjsVideoModule
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 4
+  title: Prebid Video Module
+  link: /prebid-video/video-module.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 4
+  title: Integrating Prebid.js with video on your own
+  link: /prebid-video/video-integrating-solo.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 4
   title: Examples
   link:
   isHeader: 1
   headerId: videxamples
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: "Instream"
@@ -1458,48 +1273,15 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
-  title: 'Akamai AMP'
-  link: /examples/video/instream/akamai/pb-ve-amp.html
+  title: 'Prebid Video Module: VideoJS'
+  link: /examples/video/instream/videoModule/videojs/video-module-videojs.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'AdPlayer.Pro'
-  link: /examples/video/instream/adplayerpro/pb-ve-adplayerpro.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'Brid'
-  link: /examples/video/instream/brid/pb-ve-brid.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'Brightcove'
-  link: /examples/video/instream/brightcove/pb-ve-brightcove.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'Flowplayer'
-  link: /examples/video/instream/flowplayer/pb-ve-flowplayer.html
-  Item: 1
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'JW Player (Platform)'
@@ -1507,7 +1289,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'JW Player (Self-Hosted)'
@@ -1515,31 +1297,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'Kaltura'
-  link: /examples/video/instream/kaltura/pb-ve-kaltura.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'Ooyala'
-  link: /examples/video/instream/ooyala/pb-ve-ooyala.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'Radiant'
-  link: /examples/video/instream/radiant/pb-ve-radiant.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'VideoJS'
@@ -1547,113 +1305,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: "Prebid Server"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'Brid'
-  link: /examples/video/server/brid/pbs-ve-brid.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'JW Player (Platform)'
-  link: /examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'JW Player (Self-Hosted)'
-  link: /examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'Kaltura'
-  link: /examples/video/server/kaltura/pbs-ve-kaltura.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'Ooyala'
-  link: /examples/video/server/ooyala/pbs-ve-ooyala.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'Radiant'
-  link: /examples/video/server/radiant/pbs-ve-radiant.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'VideoJS'
-  link: /examples/video/server/videojs/pbs-ve-videojs.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: "Cross Player"
-  link:
-  isHeader: 0
-  isSectionHeader: 0
-  isCatHeader: 1
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'Flowplayer'
-  link: /examples/video/crossplayer/flowplayer/pb-cp-flowplayer.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'JW Player'
-  link: /examples/video/crossplayer/jwplayer/pb-cp-jwplayer.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'Kaltura'
-  link: /examples/video/crossplayer/kaltura/pb-cp-kaltura.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'VideoJS'
-  link: /examples/video/crossplayer/videojs/pb-cp-videojs.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: "Outstream"
@@ -1662,7 +1314,15 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
+
+- sbSecId: 4
+  title: 'Basic IMA'
+  link: /examples/video/outstream/basic-ima.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Google Ad Manager'
@@ -1670,23 +1330,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'Radiant'
-  link: /examples/video/outstream/pb-ve-outstream-radiant.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 4
-  title: 'AdPlayer.Pro'
-  link: /examples/video/outstream/pb-ve-outstream-app.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'No Server'
@@ -1694,7 +1338,15 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
+
+- sbSecId: 4
+  title: 'No Server (Specify Renderer)'
+  link: /examples/video/outstream/pb-ve-outstream-no-server-specify-renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
 
 - sbSecId: 4
   title: "Long-Form (Ad Pods)"
@@ -1703,7 +1355,7 @@
   isSectionHeader: 0
   isCatHeader: 1
   sectionTitle:
-  subgroup: 1
+  subgroup: 2
 
 - sbSecId: 4
   title: 'Freewheel'
@@ -1711,8 +1363,7 @@
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 1
-
+  subgroup: 2
 
 #--------------Prebid Server--------------|
 
@@ -1842,6 +1493,22 @@
   subgroup: 3
 
 - sbSecId: 5
+  title: Native
+  link: /prebid-server/features/pbs-native.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Audio
+  link: /prebid-server/features/pbs-audio.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
   title: Caching
   link: /prebid-server/features/pbs-caching.html
   isHeader: 0
@@ -1858,8 +1525,8 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Interstitials
-  link: /prebid-server/features/pbs-interstitials.html
+  title: Floors
+  link: /prebid-server/features/pbs-floors.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1868,6 +1535,14 @@
 - sbSecId: 5
   title: Privacy Support (GDPR, CCPA, etc)
   link: /prebid-server/features/pbs-privacy.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Interstitials
+  link: /prebid-server/features/pbs-interstitials.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -2039,6 +1714,15 @@
 - sbSecId: 5
   title: '/status'
   link: /prebid-server/endpoints/pbs-endpoint-status.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 6
+
+- sbSecId: 5
+  title: '/version'
+  link: /prebid-server/endpoints/pbs-endpoint-version.html
   Item: 1
   isHeader: 0
   isSectionHeader: 0
@@ -2232,7 +1916,24 @@
   sectionTitle:
   subgroup: 0
 
-#-------------- Prebid Identity --------------|
+- sbSecId: 8
+  title: Professor Prebid
+  link: /tools/professor-prebid.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 8
+  title: Dr. Prebid Validation App
+  link: /prebid-mobile/dr-prebid.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+
+ #-------------- Prebid Identity --------------|
 
 - sbSecId: 9
   title:
@@ -2268,4 +1969,3 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-

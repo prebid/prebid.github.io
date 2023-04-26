@@ -7,7 +7,8 @@ gdpr_supported: true
 gvl_id: 82
 usp_supported: true
 coppa_supported: true
-media_types: banner, video
+gpp_supported: true
+media_types: banner, video, native
 userId: criteo, pubCommonId, unifiedId
 pbjs: true
 pbs: true
@@ -16,17 +17,23 @@ prebid_member: true
 floors_supported: true
 fpd_supported: true
 schain_supported: true
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Registration](#smaato-registration)
-- [Note](#smaato-note)
-- [Bid Params](#smaato-bid-params)
-- [App Object](#smaato-app-object)
-- [Example Ad Units](#smaato-example-ad-units)
-- [First Party Data](#smaato-first-party)
-- [Test Parameters](#smaato-test-parameters)
+- [Table of Contents](#table-of-contents)
+- [Registration](#registration)
+- [Note](#note)
+- [Bid Params](#bid-params)
+  - [App Object](#app-object)
+- [Example Ad Units](#example-ad-units)
+  - [Example Banner Ad Unit](#example-banner-ad-unit)
+  - [Example Video Ad Unit](#example-video-ad-unit)
+  - [Example Native Ad Unit](#example-native-ad-unit)
+  - [Example AdPod (long-form) Video Ad Unit](#example-adpod-long-form-video-ad-unit)
+- [First Party Data](#first-party-data)
+- [Test Parameters](#test-parameters)
 
 <a name="smaato-registration" />
 
@@ -118,6 +125,51 @@ var adUnit = {
     }]
 };
 ```
+
+#### Example Native Ad Unit
+
+```javascript
+var adUnit = {
+    "code": "native unit",
+    "mediaTypes": {
+        native: {
+            sendTargetingKeys: false,
+            image: {
+                required: true,
+                sizes: [150, 50]
+            },
+            icon: {
+                required: true,
+                sizes: [50, 50]
+            },
+            title: {
+                required: true,
+                len: 80
+            },
+            sponsoredBy: {
+                required: true
+            },
+            body: {
+                required: true
+            },
+            cta: {
+                required: false
+            },
+            rating: {
+                required: false
+            }
+        }
+    },
+    "bids": [{
+        "bidder": "smaato",
+        "params": {
+            "publisherId": "1100012345",
+            "adspaceId": "11002234"
+        }
+    }]
+};
+```
+
 #### Example AdPod (long-form) Video Ad Unit
 
 ```javascript
@@ -152,19 +204,41 @@ var adUnit = {
 <a name="smaato-first-party" />
 
 ### First Party Data
+Publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
+- ortb2.site.keywords
+- ortb2.site.content
+- ortb2.user.keywords
+- ortb2.user.yob
+- ortb2.user.gender
+- ortb2.user.ext.eids
+- ortb2.device.geo
+- ortb2.device.ifa
 
-The Smaato adapter supports passing through first party data configured in your prebid integration.
+The IAB standard taxonomies are not supported.
+
+Example first party data that's available to all bidders and all adunits:
 
 ```javascript
 pbjs.setConfig({
-    fpd: {
-        context: {
-            keywords: "power tools"
-        },
+    ortb2: {
+        site: {
+            keywords: "kw1,kw2", 
+            content: {
+                title: "title1",
+                series: "series1"
+                }
+            }, 
         user: {
-            keywords: "a,b",
-            gender: "M",
+            keywords: "a,b", 
+            gender: "M", 
             yob: 1984
+        },
+        device: {
+            ifa: "identifier",
+            geo: {
+                lat: 53.5488,
+                lon: 9.9872
+            }
         }
     }
 });
