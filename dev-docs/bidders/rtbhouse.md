@@ -44,7 +44,6 @@ pbjs.setConfig({
   }
 )};
 ```
-
 ##### ORTB Blocking specific only to rtbhouse bidder:
 ```javascript
 pbjs.setBidderConfig({
@@ -57,7 +56,8 @@ pbjs.setBidderConfig({
   }
 });
 ```
-
+### Setting up the Prebid Server Adapter
+If you’re a Prebid Server host company looking to enable the RTB House server-side adapter, you'll need to contact prebid@rtbhouse.com. They will guide you through the process. Do not use the default bidder config file as it will require custom partner code to be entered. It will be provided by RTB House.
 
 ### Please note:
 
