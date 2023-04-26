@@ -35,11 +35,25 @@ Blocked advertisers list (`badv`) is an array of domains as strings.
 Blocked categories list (`bcat`) is an array of IAB categories as strings.
 
 For example:
+##### Globally defined ORTB Blocking:
 ```
-pbjs.setConfig({
+pbjs.config({
   ortb2: {
     badv: ["domain1.com", "domain2.com"],
     bcat: ["IAB23-1", "IAB23-5", "IAB25-3", "IAB25-2"]
+  }
+)};
+```
+
+##### ORTB Blocking specific only to rtbhouse bidder:
+```
+pbjs.setBidderConfig({
+  bidders: ['rtbhouse'],
+  config:{
+    ortb2: {
+      badv: ["domain1.com", "domain2.com"],
+      bcat: ["IAB23-1", "IAB23-5", "IAB25-3", "IAB25-2"]
+    }
   }
 )};
 ```
