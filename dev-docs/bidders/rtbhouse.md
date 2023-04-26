@@ -55,7 +55,7 @@ pbjs.setBidderConfig({
       bcat: ["IAB23-1", "IAB23-5", "IAB25-3", "IAB25-2"]
     }
   }
-)};
+});
 ```
 
 
