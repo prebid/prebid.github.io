@@ -9,16 +9,55 @@ sidebarType: 1
 {: .no_toc }
 
 Starting with version 7.48, Prebid.js introduced a centralized control mechanism for privacy-sensitive _activities_ - such as accessing device storage or sharing data with partners.
-These are intended to serve as building blocks for more privacy protection mechanism, allowing module developers or publishers to directly specify what should be permitted or avoided in any given regulatory environment.
-
+These controls are intended to serve as building blocks for privacy protection mechanisms, allowing module developers or publishers to directly specify what should be permitted or avoided in any given regulatory environment.
 
 * TOC
 {: toc }
 
+## Overview
 
-#### Example
+There are many privacy regulations that Prebid publishers need to accomodate. Prebid supplies [modules](/dev-docs/faq.html#how-does-prebid-support-privacy-regulations) to help Publishers implement their legal policies, but there are scenarios where extra control is needed:
 
-The following disables storage for everything except the bid adapter `bidderX`:
+- a Publisher's lawyers want to make a particular exception
+- a module hasn't been built for a regulation the Publisher needs to support
+
+### Prebid Is a Toolkit
+
+{: .alert.alert-danger :}
+Important: This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+
+1. Get a privacy lawyer.
+2. Consider all the privacy regulations your content business is subject to.
+3. Come up with a plan.
+4. Use Prebid.js modules and these Activity Controls as ways to help implement your privacy plan with respect to header bidding.
+5. Let us know if there are tools missing from the Prebid toolkit.
+
+### Model
+
+We did an analysis of the kinds of things Prebid does and identified those that might be of concern to privacy regulations. We call these things "potentially restricted activities", or just "activities" for short. Here are some activities:
+
+- Setting a cookie
+- Syncing ID cookies
+- Transmitting user first party data
+- etc.
+
+The [full list of activities Prebid supports](#activities) is below.
+
+Think of an activity as a 'gatekeeper' that make an important decision:
+
+- Should I allow this cookie to be set?
+- Should I allow this usersync?
+- Is it ok for this data to be passed to bidders?
+- etc.
+
+This 'gatekeeper' in Prebid.js core checks with the Activity Controls to see whether that activity is allowed. The configuration for the activity can come from regulation modules, custom functions in the page, or a rule-based JSON config.
+
+### Example
+
+{: .alert.alert-info :}
+Hey, Activity System! I'm the gatekeeper for device storage... bidderX wants to set a cookie, is that allowed?
+
+Here's an example JSON config that disables accessing local storage (including cookies) for everything except the bid adapter `bidderX`:
 
 ```
 pbjs.setConfig({
@@ -38,9 +77,9 @@ pbjs.setConfig({
 
 <a id="config" />
 
-### Configuration
+## Configuration
 
-```allowActivities``` is a map from activity name ([see full list below](#activities)) to a configuration object that contains:
+`allowActivities` is a new option to [setConfig](/dev-docs/publisher-api-reference/setConfig.html). It contains a list of activity names -- see the [full list of activities below](#activities). Each activity is an object that can contain these attributes:
 
 {: .table .table-bordered .table-striped }
 | Name | Type | Description | 
@@ -51,16 +90,27 @@ pbjs.setConfig({
 | `rules[].allow`    | Boolean | Whether the activity should be allowed when this rule applies. Defaults to true. |  
 | `rules[].priority` | Number | Priority of this rule compared to other rules; a lower number means higher priority. See [note on rule priority](#priority) below. Defaults to 1. |  
 
+`Rules` is an array of objects that a publisher can contruct to provide fine-grained control over a given activity. For instance, you could set up a series of rules that says:
+
+- Amongst the bid adapters, BidderA is always allowed to receive user first party data
+- Always let analytics adapters receive user first party data
+- otherwise, let the active privacy modules decide
+- if they refuse to decide, then the overall default is to allow the transmitting of user first party data
+
+There's more about [rules](#parameters) below.
+
 <a id="activities" />
 
 ### Activities
+
+Here's the list of 'potentially restricted activities' that Prebid.js core can enforce for Publishers.
 
 {: .table .table-bordered .table-striped }
 | Name           | Description | Effect when denied | Additional parameters |
 |----------------|-------------|---------------------------|--------------------------------|
 | `accessDevice` | A component wants to use device storage  | Storage is disabled | [`storageType`](#params-accessDevice) |
 | `enrichEids` | A user ID or RTD submodule wants to add user IDs to outgoing requests | User IDs are discarded | None |
-| `enrichUfpd` | An RTD submodule wants to add user first party data to outgoing requests (`user.data` in ORTB) | User FPD is discarded | None |
+| `enrichUfpd` | A RTD submodule wants to add user first party data to outgoing requests (`user.data` in ORTB) | User FPD is discarded | None |
 | `fetchBids`  | A bid adapter wants to participate in an auction | Bidder is removed from the auction | [`configName`](#params-fetchBids) |    
 | `reportAnalytics` | An analytics adapter is being enabled through `pbjs.enableAnalytics` | Adapter remains disabled | None |
 | `syncUser` | A bid adapter wants to fetch a [user sync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) | User sync is skipped | [`syncType`, `syncUrl`](#params-syncUser) |
@@ -70,9 +120,14 @@ pbjs.setConfig({
 
 <a id="parameters" />
 
-### Activity parameters
+### Rule Parameters
  
-`condition` functions receive information about the activity that is about to be performed as _activity parameters_:
+ There are three parts to a rule:
+ 1. The condition
+ 2. The allow status
+ 3. The priority
+ 
+A `condition` is a function that receives information about the activity that is about to be performed as _activity parameters_:
 
 {: .table .table-bordered .table-striped }
 | Name | Type | Available for | Description |  
