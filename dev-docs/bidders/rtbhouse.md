@@ -36,7 +36,7 @@ Blocked categories list (`bcat`) is an array of IAB categories as strings.
 
 For example:
 ##### Globally defined ORTB Blocking:
-```
+```javascript
 pbjs.config({
   ortb2: {
     badv: ["domain1.com", "domain2.com"],
@@ -46,7 +46,7 @@ pbjs.config({
 ```
 
 ##### ORTB Blocking specific only to rtbhouse bidder:
-```
+```javascript
 pbjs.setBidderConfig({
   bidders: ['rtbhouse'],
   config:{
