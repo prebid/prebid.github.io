@@ -57,7 +57,7 @@ The following chart shows which API is used for which Ad Server
 
 {: .table .table-bordered .table-striped }
 
-|            |Original API|Rendering API|Mediation API|
+|Ad Server|Original API|Rendering API|Mediation API|
 |------------|------------|-------------|-------------|
 |No Ad Server|            |      ✅   |             |
 |GAM         |     ✅   |      ✅   |             |
