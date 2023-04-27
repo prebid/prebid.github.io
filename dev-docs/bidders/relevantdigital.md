@@ -3,6 +3,7 @@ layout: bidder
 title: Relevant Digital
 description: Relevant Digital Bid Adapter
 biddercode: relevantdigital
+pbjs: true
 gdpr_supported: true
 usp_supported: true
 coppa_supported: false
@@ -13,7 +14,6 @@ userIds: all
 prebid_member: true
 safeframes_ok: true
 deals_supported: true
-pbjs: true
 pbs: false
 pbs_app_supported: false
 fpd_supported: true
@@ -28,9 +28,10 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                             | Example                    | Type         |
 |---------------|----------|---------------------------------------------------------|----------------------------|--------------|
-| `placementId`       | required | The placement id.  | `'6204e83a077c5825441b8508_620f9e8e4fe67c1f87cd30ed'`      | `String`     |
+| `placementId`       | required | The placement id.  | `'6204e83a077_620f9e8e4fe'`      | `String`     |
 | `pbsHost` | required if not set in config | Host name of the server. | `'pbs-example.relevant-digital.com'`                | `String`     |
-| `accountId`        | required if not set in config | The account id.  | `'6204e5fa70e3ad10821b84ff'`               | `String`      |
+| `accountId`        | required if not set in config | The account id.  | `'6204e5fa70e3ad108'`               | `String`      |
+| `useSourceBidderCode`        | optional | Set to `true` in order to use the bidder code of the actual server-side bidder in bid responses. You **MUST** also use `allowAlternateBidderCodes: true` in `bidderSettings` if you enabled this - as otherwise the bids will be rejected.| `true`               | `Boolean`      |
 
 ### Config Parameters
 
@@ -38,7 +39,8 @@ sidebarType: 1
 | Name          | Scope    | Description                                             | Example                    | Type         |
 |---------------|----------|---------------------------------------------------------|----------------------------|--------------|
 | `pbsHost` | required if not set in bid parameters | Host name of the server. | `'pbs-example.relevant-digital.com'`                | `String`     |
-| `accountId`        | required if not set in bid parameters | The account id.  | `'6204e5fa70e3ad10821b84ff'`               | `String`      |
+| `accountId`        | required if not set in bid parameters | The account id.  | `'6204e5fa70e3ad108'`               | `String`      |
+| `useSourceBidderCode`        | optional | Set to `true` in order to use the bidder code of the actual server-side bidder in bid responses. You **MUST** also use `allowAlternateBidderCodes: true` in `bidderSettings` if you enabled this - as otherwise the bids will be rejected.| `true`               | `Boolean`      |
 
 ### Example setup using pbjs.setConfig()
 This is the recommended method to set the global configuration parameters.
@@ -65,8 +67,10 @@ var adUnits = [
   }
 ];
 ```
-### Example setup using only bid params
-This method to set the global configuration parameters (like **pbsHost**) in **params** could simplify integration of a provider for some publishers. Setting different global config-parameters on different bids is not supported, as the first settings found will be used and any subsequent global settings will be ignored.
+# Example setup using only bid params
+This method to set the global configuration parameters (like **pbsHost**) in **params** could simplify integration of a provider for some publishers. Setting different global config-parameters on different bids is not supported in general*, as the first settings found will be used and any subsequent global settings will be ignored.
+
+ *The exception is `useSourceBidderCode` which can be overriden individually per ad unit._
 ```javascript
 var adUnits = [
   {
