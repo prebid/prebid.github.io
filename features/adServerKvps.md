@@ -37,20 +37,19 @@ How a publisher should configure Prebid.js to report auction results
 will depend on how the final ad decision will be made. These approaches
 need to be in sync.
 
-There are four main scenarios that follow.
+There are four main scenarios, described in the following sections.
 
 ### Ad Server Line Items are Created Per-Bidder
 
 In order to have header bidding compete with direct-sold demand,
 a publisher can set up placeholder line items in their ad server.
 
-Prebid.org recommends setting up separate line items
-for each bidder. Benefits:
-- use ad server reporting to get a view of which bidders are performing well
-- control ad decisions with the ad server
-- video bids have a fallback available
+Prebid.org recommends setting up separate line items for each bidder. Benefits to this approach include:
+- You can use ad server reporting to get a view of which bidders are performing well.
+- You can control ad decisions with the ad server.
+- Video bids have a fallback available.
 
-There are more details on this scenario in the [Ad Ops section](/adops/before-you-start.html#one-set-of-line-items-for-each-bidder).
+There are more details on this scenario in the [Ad Ops section](/adops/send-all-vs-top-price.html).
 
 Once implemented in the ad server, setting this up in Prebid.js is
 simple, as it is the default [Send All Bids](#send-all-kvps) mode. However
@@ -65,17 +64,18 @@ publishers monitor the key traffic and [control](#controls) as necessary.
 
 ### Only One Set of Ad Server Line Items are Created
 
-However, there are reasons a publisher may not want to create
-separate line items for each bidder:
-- some ad servers have a limit on how many line items can be created
-- it takes work to set up line items
-- the volume of key-value pairs can be a factor
+There are reasons a publisher may not want to create separate line items for each bidder. For example:
+- Some ad servers have a limit on how many line items can be created.
+- It takes work to set up line items.
+- The volume of key-value pairs (KVPs) can be a factor.
 
 So the other ad-server based solution is to create one set of line
 items that is used by all bidders.
 
 Setting this mode up in Prebid.js is done by setting [enableSendAllBids](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids)
 to false. See the [Bare Minimum solution](#the-bare-minimum-for-display-ads) for reference.
+
+See [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html) for ad ops details on this scenario.
 
 ### Post-Bid
 
@@ -97,7 +97,7 @@ In early versions of Prebid.js, there were a couple of basic functions
 publishers could use to get the auction results:
 
 - [pbjs.setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) - matches Google Publisher Toolkit ad slots to Prebid.js AdUnits, obtains the auction results for that adunit, and adds "targeting" values using GPT-provided functions.
-- [pbjs.getAdserverTargeting](/dev-docs/publisher-api-reference/getAdserverTargeting.html) - a more generic interface for obtaining KVPs
+- [pbjs.getAdserverTargeting](/dev-docs/publisher-api-reference/getAdserverTargeting.html) - a more generic interface for obtaining KVPs.
 
 All of the other functions available in the [publisher API](/dev-docs/publisher-api-reference.html) for obtaining auction bids came later.
 
@@ -110,7 +110,7 @@ That approach has been deprecated -- all implementations should now use [one of 
 ### Video
 
 Video's always been a different implementation than banners because
-it's the video player that controls the ad call, not in-page javascript like
+it's the video player that controls the ad call, not in-page JavaScript like
 the GPT library. So the [Google Ad Manager Video module](/dev-docs/modules/dfp_video.html) includes the [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html) function.
 
 Publishers using other ad servers need to integrate on their own
@@ -128,10 +128,7 @@ targeting configuration](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.
 
 ## Controls
 
-Over the years, quite a few options have been added to to Prebid.js to adjust the number of bids and the exact set of KVPs sent to the ad server. This is an overlapping-but-powerful set of controls. There are often
-
-multiple ways to implement the same requirements, and there's no "wrong"
-way to do it.
+Over the years, quite a few options have been added to to Prebid.js to adjust the number of bids and the exact set of KVPs sent to the ad server. This is an overlapping-but-powerful set of controls. There are often multiple ways to implement the same requirements, and there's no "wrong" way to do it.
 
 The list is ordered by those functions that Prebid recommends starting with:
 
@@ -141,7 +138,9 @@ The list is ordered by those functions that Prebid recommends starting with:
 1. [targetingControls.allowTargetingKeys](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) - this resets the default keys defined by Prebid.js, defining which KVPs are sent for the winning set. (e.g. hb_pb)
 1. [targetingControls.allowSendAllBidsTargetingKeys](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) - similar to allowTargetingKeys but works on the bidder-specific KVPs. (e.g. hb_pb_BIDDER)
 1. [bidderSettings.standard.adserverTargeting](/dev-docs/publisher-api-reference/bidderSettings.html) - completely redefine what Prebid produces for the winning bid's KVPs.
+1. [bidderSettings.standard.sendStandardTargeting](/dev-docs/publisher-api-reference/bidderSettings.html) - turn off the sending of the standard winning KVPs
 1. [bidderSettings.BIDDER.adserverTargeting](/dev-docs/publisher-api-reference/bidderSettings.html) - completely redefine what Prebid produces for the bidder-specific KVPs.
+1. [bidderSettings.BIDDER.sendStandardTargeting](/dev-docs/publisher-api-reference/bidderSettings.html) - turn off the sending of the standard bidder-specific KVPs
 1. [targetingControls.addTargetingKeys](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) - This is similar to allowTargetingKeys but adds KVPs to the default set rather than replacing them.
 1. [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) - This limits the number of characters Prebid is allowed to add to the KVPs. The function will count the number of characters used and will limit to the integer number of bids that won't exceed this count.
 1. [sendBidsControl.dealPrioritization](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control) - This changes the sort order used by 'bidLimit' to put deals first. It's not useful when alwaysIncludeDeals is specified.
@@ -176,7 +175,7 @@ pbjs.setConfig({
 });
 ```
 
-Note: this example lacks video support, deal support, and doesn't even tell you which bidder won.
+Note: This example lacks video support, deal support, and doesn't even tell you which bidder won.
 
 #### Top Two Bids and Deals
 
@@ -192,8 +191,7 @@ pbjs.setConfig({
     }
 });
 ```
-Notes:
-- this assumes that video creatives are set up refering to HB_UUID rather than bidder-specific UUID values.
+Note: This assumes that video creatives are set up refering to HB_UUID rather than bidder-specific UUID values.
 
 #### Completely Custom KVPs
 
@@ -235,7 +233,7 @@ pbjs.bidderSettings={
 };
 ```
 
-## Related Topics
+## Further Reading
 
 - [Prebid.js Publisher API setConfig() routine](/dev-docs/publisher-api-reference/setConfig.html)
 - [Ad Ops and Prebid](/adops/before-you-start.html)

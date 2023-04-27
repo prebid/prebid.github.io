@@ -25,11 +25,11 @@ injected into bid request objects destined for different bidders in order to opt
 
 ## Usage
 
-Compile the Halo RTD module into your Prebid build:
+Compile the AirGrid RTD module (`airgridRtdProvider`) into your Prebid build, along with the parent RTD Module (`rtdModule`):
 
 `gulp build --modules=rtdModule,airgridRtdProvider,appnexusBidAdapter`
 
-Add the AirGrid RTD provider to your Prebid config. In this example we will configure publisher 1234 to retrieve segments from Audigent. See the "Parameter Descriptions" below for more detailed information of the configuration parameters. 
+Next we configure the module, via `pbjs.setConfig`. See the **Parameter Descriptions** below for more detailed information of the configuration parameters. 
 
 ```js
 pbjs.setConfig(
@@ -68,7 +68,7 @@ pbjs.setConfig(
 
 _Note: Although the module supports passing segment data to any bidder using the ORTB2 spec, there is no way for this to be currently monetised. Please reach out to support, to discuss using bidders other than Xandr/AppNexus._
 
-If you do not have your own `apiKey`, `accountId` & `publisherId` please reach out to [support@airgrid.io](mailto:support@airgrid.io)
+If you do not have your own `apiKey`, `accountId` & `publisherId` please reach out to [support@airgrid.io](mailto:support@airgrid.io) or you can sign up via the [AirGrid platform](https://app.airgrid.io).
 
 ## Testing
 
@@ -96,7 +96,7 @@ If you require further assistance or are interested in discussing the module fun
 - [hello@airgrid.io](mailto:hello@airgrid.io) for general questions.
 - [support@airgrid.io](mailto:support@airgrid.io) for technical questions.
 
-You are also able to find more examples and other integration routes on the [AirGrid docs site](docs.airgrid.io).
+You are also able to find more examples and other integration routes on the [AirGrid docs site](https://docs.airgrid.io), or learn more on our [site](https://airgrid.io)!
 
 Happy Coding! 😊
 The AirGrid Team.

@@ -5,7 +5,9 @@ description: Prebid Ad Generation Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: adgeneration
+userIds: novatiq, criteo, id5Id
 media_types: native
+sidebarType: 1
 ---
 
 

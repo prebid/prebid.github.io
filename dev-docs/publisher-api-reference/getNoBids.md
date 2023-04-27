@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.getNoBids()
 description: 
+sidebarType: 1
 ---
 
 

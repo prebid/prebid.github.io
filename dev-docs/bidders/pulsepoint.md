@@ -7,10 +7,11 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-userIds: britepoolId, criteo, fabrickId, haloId, id5Id, identityLink, liveIntentId, lotamePanoramaId, merkleId, parrableId, pubCommonId, sharedId, unifiedId, verizonMediaId
+userIds: all
 pbjs: true
 pbs: true
 gvl_id: 81
+sidebarType: 1
 ---
 
 ### Disclosure
