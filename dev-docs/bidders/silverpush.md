@@ -65,6 +65,7 @@ const adUnits = [{
 
 #### Video
 
+{: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `publisherId` | required | Publisher id provided by silverpush | "123456" | String |
