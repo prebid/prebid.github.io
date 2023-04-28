@@ -139,17 +139,17 @@ if interstitial.isReady {
 
 ```
 
-The **default** ad format for interstitial is **.display**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
+The **default** ad format for interstitial is **.banner**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
 
 ``` swift
 // Make bid request for video ad                                     
 adUnit?.adFormats = [.video]
 
-// Make bid request for both video amd disply ads                                     
-adUnit?.adFormats = [.video, .display]
+// Make bid request for both video and banner ads                                     
+adUnit?.adFormats = [.video, .banner]
 
-// Make bid request for disply ad (default behaviour)                                     
-adUnit?.adFormats = [.display]
+// Make bid request for banner ad (default behaviour)                                     
+adUnit?.adFormats = [.banner]
 
 ```
 
@@ -161,7 +161,7 @@ Initialize the Interstitial Ad Unit with properties:
 - `configID` - an ID of Stored Impression on the Prebid Server
 - `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
 
-> **NOTE:** minSizePercentage - plays an important role in a bidding process for display ads. If provided space is not enough demand partners won't respond with the bids.
+> **NOTE:** minSizePercentage - plays an important role in a bidding process for banner ads. If provided space is not enough demand partners won't respond with the bids.
 
 #### Step 2: Load the Ad
 {:.no_toc}
