@@ -159,7 +159,7 @@ The **default** ad format for an interstitial ad is **DISPLAY**. In order to mak
 interstitialAdUnit = InterstitialAdUnit(
                         requireContext(), 
                         configId, 
-                        EnumSet.of(AdUnitFormat.DISPLAY, AdUnitFormat.VIDEO), 
+                        EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO), 
                         eventHandler)
 ```
 

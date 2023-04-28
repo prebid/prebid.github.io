@@ -113,7 +113,6 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 | `w`      | Recommended    | Integer         | Width of the video player in device independent pixels (DIPS)., see [OpenRTB 2.5 spec][openRTB].           |
 | `h`      | Recommended    | Integer         | Height of the video player in device independent pixels (DIPS)., see [OpenRTB 2.5 spec][openRTB].           |
 | `startdelay`      | Recommended    | Integer         | Indicates the start delay in seconds, see [OpenRTB 2.5 spec][openRTB].           |
-| `placement`      | Optional    | Integer         | Placement type for the impression, see [OpenRTB 2.5 spec][openRTB].           |
 | `linearity`      | Optional    | Integer         | Indicates if the impression must be linear, nonlinear, etc, see [OpenRTB 2.5 spec][openRTB].           |
 | `skip`      | Optional    | Integer         | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes., see [OpenRTB 2.5 spec][openRTB].           |
 | `skipmin`      | Optional    | Integer         | Videos of total duration greater than this number of seconds can be skippable; only applicable if the ad is skippable., see [OpenRTB 2.5 spec][openRTB].           |

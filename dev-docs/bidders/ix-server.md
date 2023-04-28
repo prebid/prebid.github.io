@@ -51,7 +51,7 @@ Publishers can use Prebid Server in any of the following ways with Index Exchang
 * In CTV apps and other long-form video environments, you (or the SSAI vendor) can make a call to Prebid Server using OpenRTB, and then Prebid Server uses our server-side adapter to call Index. For set up instructions, see [Call Index from CTV/long-form video environment](#set-up-instructions-to-call-index-through-prebid-server) section on this page.
 * In any other server-to-server OpenRTB environment, you can send OpenRTB bid requests to the Prebid Server host of your choice. For set up instructions, see [Call Index from any other server-to-server OpenRTB environment](#call-index-from-ortb) section on this page.  
 
-**Note about the bid request limit:** You can send up to 20 ad slots in a single bid request to Index. If a single bid request contains more than 20 ad slots, only the first 20 are accepted and the rest are ignored.
+**Note about sending multiple ad slots in a single bid request:** Index accepts up to 100 valid ad slots in a single bid request. If a single bid request contains more than 100 ad slots (including invalid ad slots), only the first 100 valid ad slots are accepted and the rest are ignored. For example streaming TV media owners can signal multiple ad pods for long-form programming in a single request. 
 
 <a name="supported-media-types" />
 
