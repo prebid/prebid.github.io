@@ -68,7 +68,7 @@ const adUnits = [{
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `publisherId` | required | Publisher id provided by silverpush | "123456" | String |
-| `bidFloor` | optional | Minimum price in USD. bidFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50. <br/> | 1.50 | Number |
+| `bidFloor` | optional | Minimum price in USD. bidFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50. | 1.50 | Number |
 
 #### mediaTypes.video
 
