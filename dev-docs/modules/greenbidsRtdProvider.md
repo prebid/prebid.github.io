@@ -39,13 +39,13 @@ This module is configured as part of the `realTimeData.dataProviders` object.
 
 ```javascript
 const greenbidsDataProvider = {
-        name: 'greenbidsRtdProvider',
-        waitForIt: true,
-        params: {
-          pbuid: 'TEST_FROM_GREENBIDS',
-          timeout: 200
-        }
-      };
+  name: 'greenbidsRtdProvider',
+  waitForIt: true,
+  params: {
+    pbuid: 'TEST_FROM_GREENBIDS',
+    timeout: 200
+  }
+};
 pbjs.setConfig({
         realTimeData: {
             auctionDelay: 200,
