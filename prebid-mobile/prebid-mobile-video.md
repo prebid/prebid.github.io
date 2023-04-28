@@ -13,7 +13,7 @@ A high-level overview of Prebid Mobile, Prebid’s header bidding product for iO
 
 Further Content:
 - [Intro to Prebid](/overview/intro.html)
-- [Prebid Managed Services](https://prebid.org/product-suite/managed-services/
+- [Prebid Managed Services](https://prebid.org/product-suite/managed-services/)
 - [All videos](/overview/all-videos.html)
 
 Related Videos:

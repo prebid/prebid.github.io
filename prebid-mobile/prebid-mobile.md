@@ -25,7 +25,7 @@ A high-level overview of Prebid Mobile, Prebid’s header bidding product for iO
 
 Further Content:
 - [Transcript of this video](/prebid-mobile/prebid-mobile-video.html)
-- [Prebid Managed Services](https://prebid.org/product-suite/managed-services/
+- [Prebid Managed Services](https://prebid.org/product-suite/managed-services/)
 
 ## Benefits and Fetures
 
