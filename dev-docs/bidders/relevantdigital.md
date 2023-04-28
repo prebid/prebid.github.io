@@ -40,6 +40,7 @@ sidebarType: 1
 |---------------|----------|---------------------------------------------------------|----------------------------|--------------|
 | `pbsHost` | required if not set in bid parameters | Host name of the server. | `'pbs-example.relevant-digital.com'`                | `String`     |
 | `accountId`        | required if not set in bid parameters | The account id.  | `'6204e5fa70e3ad108'`               | `String`      |
+| `pbsBufferMs` | optional | How much less in *milliseconds* the server's internal timeout should be compared to the normal Prebid timeout. Default is *250*. To be increased in cases of frequent timeouts. | `250`                | `Integer`     |
 | `useSourceBidderCode`        | optional | Set to `true` in order to use the bidder code of the actual server-side bidder in bid responses. You **MUST** also use `allowAlternateBidderCodes: true` in `bidderSettings` if you enabled this - as otherwise the bids will be rejected.| `true`               | `Boolean`      |
 
 ### Example setup using pbjs.setConfig()
@@ -70,7 +71,7 @@ var adUnits = [
 # Example setup using only bid params
 This method to set the global configuration parameters (like **pbsHost**) in **params** could simplify integration of a provider for some publishers. Setting different global config-parameters on different bids is not supported in general*, as the first settings found will be used and any subsequent global settings will be ignored.
 
- *The exception is `useSourceBidderCode` which can be overriden individually per ad unit._
+ * _The exception is `useSourceBidderCode` which can be overriden individually per ad unit._
 ```javascript
 var adUnits = [
   {
