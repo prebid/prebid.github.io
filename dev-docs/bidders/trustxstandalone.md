@@ -13,6 +13,8 @@ pbjs_version_notes: 6.x and before
 sidebarType: 1
 ---
 
+#### Is relevant for versions 6.X and before
+
 ### Table of Contents
 
 - [Table of Contents](#table-of-contents)
