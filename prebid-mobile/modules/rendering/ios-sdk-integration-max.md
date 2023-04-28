@@ -117,17 +117,17 @@ adUnit?.fetchDemand { [weak self] result in
 })
 ```
 
-The **default** ad format for interstitial is **.display**. In order to make a `multiformat bid request` set the respective values in the `adFormats` property.
+The **default** ad format for interstitial is **.banner**. In order to make a `multiformat bid request` set the respective values in the `adFormats` property.
 
 ``` swift
 // Make bid request for video ad                                     
 adUnit?.adFormats = [.video]
 
-// Make bid request for both video amd disply ads                                     
-adUnit?.adFormats = [.video, .display]
+// Make bid request for both video amd banner ads                                     
+adUnit?.adFormats = [.video, .banner]
 
-// Make bid request for disply ad (default behaviour)                                     
-adUnit?.adFormats = [.display]
+// Make bid request for banner ad (default behaviour)                                     
+adUnit?.adFormats = [.banner]
 
 ```
 

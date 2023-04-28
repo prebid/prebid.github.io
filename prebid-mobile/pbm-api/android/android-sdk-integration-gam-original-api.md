@@ -21,7 +21,11 @@ This is the original Prebid mobile integration approach when SDK plays the trans
 
 ![In-App Bidding with Prebid](/assets/images/prebid-mobile/prebid-in-app-bidding-overview-prebid-original-gam.png)
 
-## Display Banner
+## Banner API
+
+Starting with Prebid Mobile `2.1.0` you can use `BannerAdUnit` to bid over the banner and/or video demand. The default ad format is `BANNER`. To customize the bidding format, specify the ad formats in the `BannerAdUnit` constructor.
+
+### HTML Banner
 
 Integration example:
 
@@ -33,8 +37,9 @@ private fun createAd() {
     adUnit?.setAutoRefreshInterval(refreshTimeSeconds)
 
     // 2. Configure banner parameters
-    val parameters = BannerBaseAdUnit.Parameters()
+    val parameters = BannerParameters()
     parameters.api = listOf(Signals.Api.MRAID_3, Signals.Api.OMID_1)
+    adUnit.bannerParameters = parameters
 
     // 3. Create AdManagerAdView
     val adView = AdManagerAdView(this)
@@ -55,7 +60,7 @@ private fun createAd() {
 }
 ```
 
-GAM ad view listner:
+GAM ad view listener:
 
 ```kotlin
 private fun createGAMListener(adView: AdManagerAdView): AdListener {
@@ -88,7 +93,10 @@ Initialize the `BannerAdUnit` with properties:
 #### Step 2: Configure banner parameters
 {:.no_toc}
 
-Using the `BannerBaseAdUnit.Parameters()` you can customize the bid request for BannerAdUnit. 
+Using the `BannerParameters()` you can customize the bid request for BannerAdUnit. 
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `2.1.0` the `BannerBaseAdUnit.Parameters` class is deprecated. Use `BannerParameters` instead. 
 
 The `api` property is dedicated to adding values for API Frameworks to a bid response according to the OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
 
@@ -119,17 +127,17 @@ Be sure that you make the ad request with the same `AdManagerAdRequest` object t
 
 Once an app receives a signal that an ad is loaded, you should use the method `AdViewUtils.findPrebidCreativeSize` to verify whether it's Prebid's ad and resize the ad slot respectively to the creative's properties. 
 
-## Video Banner
+### Video Banner (Outstream Video)
 
 Integration example:
 
 ```kotlin
 private fun createAd() {
     // 1. Create VideoAdUnit
-    adUnit = VideoAdUnit(CONFIG_ID, WIDTH, HEIGHT)
+    adUnit = BannerAdUnit(CONFIG_ID, WIDTH, HEIGHT, EnumSet.of(AdUnitFormat.VIDEO))
 
     // 2. Configure video ad unit
-    adUnit?.parameters = configureVideoParameters()
+    adUnit?.videoParameters = configureVideoParameters()
 
     // 3. Create AdManagerAdView
     val gamView = AdManagerAdView(this)
@@ -147,12 +155,15 @@ private fun createAd() {
 }
 ```
 
+{: .alert.alert-warning :}
+Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `BannerAdUnit` class with video ad format instead.
+
+
 Configure Video parameters:
 
 ```kotlin
-private fun configureVideoParameters(): VideoBaseAdUnit.Parameters {
-    return VideoBaseAdUnit.Parameters().apply {
-
+private fun configureVideoParameters(): VideoParameters {
+    return VideoParameters(listOf("video/x-flv", "video/mp4")).apply {
         api = listOf(
             Signals.Api.VPAID_1,
             Signals.Api.VPAID_2
@@ -162,7 +173,6 @@ private fun configureVideoParameters(): VideoBaseAdUnit.Parameters {
         minBitrate = 300
         maxDuration = 30
         minDuration = 5
-        mimes = listOf("video/x-flv", "video/mp4")
         playbackMethod = listOf(Signals.PlaybackMethod.AutoPlaySoundOn)
         protocols = listOf(
             Signals.Protocols.VAST_2_0
@@ -189,18 +199,22 @@ private fun createListener(gamView: AdManagerAdView): AdListener {
 }
 ```
 
-#### Step 1: Create a VideoAdUnit
+#### Step 1: Create a BannerAdUnit with the video ad type
 {:.no_toc}
 
-Initialize the `VideoAdUnit` with the following properties:
+Initialize the `BannerAdUnit` with the following properties:
 
 - `configId` - an ID of the Stored Impression on the Prebid Server
 - `adSize` - the size of the ad unit which will be used in the bid request.
+- `adUnitFormats` - `AdUnitFormat.VIDEO` for a video ad
 
 #### Step 2: Configure video parameters
 {:.no_toc}
 
-Using the `VideoParameters` you can customize the bid request for a VideoAdUnit. 
+Using the `VideoParameters` you can customize the bid request for a `BannerAdUnit`. 
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `2.1.0` the `VideoBaseAdUnit.Parameters` class is deprecated. Use `VideoParameters` instead. 
 
 #### placement
 {:.no_toc}
@@ -226,7 +240,6 @@ The `api` property is dedicated to adding values for API Frameworks to a bid res
 * `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
 * `6` or `Signals.Api.MRAID_3` : MRAID-3 support signal
 * `7` or `Signals.Api.OMID_1`  : signals OMSDK support
-
 
 #### maxBitrate
 {:.no_toc}
@@ -297,7 +310,61 @@ You should now request the ad from GAM. If the `AdManagerAdRequest` contains tar
 
 Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
-## Display Interstitial
+### Multiformat Banner (HTML + Video)
+
+Integration example:
+
+```kotlin
+// 1. Create BannerAdUnit
+adUnit = BannerAdUnit(configId, WIDTH, HEIGHT, EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO))
+adUnit?.setAutoRefreshInterval(refreshTimeSeconds)
+
+// 2. Configure banner and video parameters
+val parameters = BannerParameters()
+parameters.api = listOf(Signals.Api.MRAID_3, Signals.Api.OMID_1)
+adUnit?.bannerParameters = parameters
+
+adUnit?.videoParameters = VideoParameters(listOf("video/mp4"))
+
+// 3. Create AdManagerAdView
+val adView = AdManagerAdView(this)
+adView.adUnitId = AD_UNIT_ID
+adView.setAdSizes(AdSize(WIDTH, HEIGHT))
+adView.adListener = createGAMListener(adView)
+
+// Add GMA SDK banner view to the app UI
+adWrapperView.addView(adView)
+
+// 4. Make a bid request to Prebid Server
+val request = AdManagerAdRequest.Builder().build()
+adUnit?.fetchDemand(request) {
+
+    // 5. Load GAM Ad
+    adView.loadAd(request)
+}
+```
+
+#### Step 1: Create a BannerAdUnit
+{:.no_toc}
+
+Initialize the `BannerAdUnit` with properties:
+
+- `configId` - an ID of the Stored Impression on the Prebid Server
+- `width` - the width of the ad unit which will be used in the bid request.
+- `height` - the height of the ad unit which will be used in the bid request.
+- `adUnitFormats` - ad unit formats for the current ad unit. 
+
+#### Step 2-5
+{:.no_toc}
+
+Steps 2-5 are the same as for Display Banner. Setting up banner and video parameters can be found in Display Banner and Video Banner respectively.
+
+
+## Interstitial API
+
+Starting with Prebid Mobile `2.1.0` you can use `InterstitialAdUnit ` to bid over the banner and/or video demand. The default ad format is `BANNER`. To customize the bidding format, specify the ad formats in the `InterstitialAdUnit ` constructor.
+
+### HTML Interstitial
 
 Integration example: 
 
@@ -373,18 +440,18 @@ Be sure that you make the ad request with the same `AdManagerAdRequest` object t
 
 Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/android/interstitial#display_the_ad) to display an interstitial ad right after receiving it or later in a natural pauses in the flow of an app.
 
-## Video Interstitial
+### Video Interstitial
 
 Integration Example: 
 
 ```kotlin
 private fun createAd() {
 
-    // 1. Create VideoInterstitialAdUnit
-    adUnit = VideoInterstitialAdUnit(CONFIG_ID)
+    // 1. Create InterstitialAdUnit
+    adUnit = InterstitialAdUnit(CONFIG_ID, EnumSet.of(AdUnitFormat.VIDEO))
 
     // 2. Configure video ad unit
-    adUnit?.parameters = configureVideoParameters()
+    adUnit?.videoParameters = configureVideoParameters()
 
     // 3. Make a bid request to Prebid Server
     val request = AdManagerAdRequest.Builder().build()
@@ -401,11 +468,15 @@ private fun createAd() {
 }
 ```
 
+{: .alert.alert-warning :}
+Starting from PrebidMobile `2.1.0` the `VideoInterstitialAdUnit` class is deprecated. Use `InterstitialAdUnit` class with video ad format instead. 
+
+
 Configuration function:
 
 ```kotlin
-private fun configureVideoParameters(): VideoBaseAdUnit.Parameters {
-    return VideoBaseAdUnit.Parameters().apply {
+private fun configureVideoParameters(): VideoParameters {
+    return VideoParameters(listOf("video/x-flv", "video/mp4")).apply {
         placement = Signals.Placement.Interstitial
 
         api = listOf(
@@ -417,7 +488,6 @@ private fun configureVideoParameters(): VideoBaseAdUnit.Parameters {
         minBitrate = 300
         maxDuration = 30
         minDuration = 5
-        mimes = listOf("video/x-flv", "video/mp4")
         playbackMethod = listOf(Signals.PlaybackMethod.AutoPlaySoundOn)
         protocols = listOf(
             Signals.Protocols.VAST_2_0
@@ -449,9 +519,10 @@ private fun createAdListener(): AdManagerInterstitialAdLoadCallback {
 #### Step 1: Create an Ad Unit
 {:.no_toc}
 
-Initialize the Interstitial Video Ad Unit with the following properties:
+Initialize the `InterstitialAdUnit` with the following properties:
     
 - `configId` - an ID of Stored Impression on the Prebid Server
+- `adUnitFormats` - AdUnitFormat.VIDEO for a video ad
 
 #### Step 2: Configure video parameters
 {:.no_toc}
@@ -475,7 +546,46 @@ Be sure that you make the ad request with the same `AdManagerAdRequest` object t
 
 Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/android/interstitial#display_the_ad) to display an interstitial ad right after receiving it or later in a natural pauses in the flow of an app.
 
-## Rewarded Video
+### Multiformat Interstitial (HTML + Video)
+
+Integration example:
+
+```kotlin
+// 1. Create InterstitialAdUnit
+adUnit = InterstitialAdUnit(configId, EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO))
+adUnit?.setMinSizePercentage(80, 60)
+adUnit?.videoParameters = VideoParameters(listOf("video/mp4"))
+
+
+// 2. Make a bid request to Prebid Server
+val request = AdManagerAdRequest.Builder().build()
+adUnit?.fetchDemand(request) {
+
+    // 3. Load a GAM interstitial ad
+    AdManagerInterstitialAd.load(
+        this,
+        AD_UNIT_ID,
+        request,
+        createListener()
+    )
+}
+```
+
+#### Step 1: Create an Ad Unit
+{:.no_toc}
+
+Initialize the `InterstitialAdUnit` with the following properties:
+
+- `configId` - an ID of Stored Impression on the Prebid Server
+- `adUnitFormats` - ad unit formats for the current ad unit.
+
+#### Steps 2-3
+{:.no_toc}
+
+Steps 2-3 are the same as for Display Banner. Setting up banner and video parameters can be found in Display Interstitial and Video Interstitial respectively.
+
+
+## Rewarded Video API
 
 Integration example:
 
@@ -485,7 +595,7 @@ private fun createAd() {
     adUnit = RewardedVideoAdUnit(CONFIG_ID)
 
     // 2. Configure Video parameters
-    adUnit?.parameters = configureVideoParameters()
+    adUnit?.videoParameters = configureVideoParameters()
 
     // 3. Make a bid request to Prebid Server
     val request = AdManagerAdRequest.Builder().build()
@@ -502,12 +612,11 @@ private fun createAd() {
 }
 ```
 
-Configure vide ad unit:
+Configure video ad unit:
 
 ```kotlin
-private fun configureVideoParameters(): VideoBaseAdUnit.Parameters {
-    return VideoBaseAdUnit.Parameters().apply {
-        mimes = listOf("video/mp4")
+private fun configureVideoParameters(): VideoParameters {
+    return VideoParameters(listOf("video/mp4")).apply {
         protocols = listOf(Signals.Protocols.VAST_2_0)
         playbackMethod = listOf(Signals.PlaybackMethod.AutoPlaySoundOff)
     }
@@ -563,17 +672,17 @@ Be sure that you make the ad request with the same `AdManagerAdRequest` object t
 
 Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/android/rewarded#show_the_ad) to display a rewarded ad right after receiving it or later in a natural pauses in the flow of an app.
 
-## Video Instream
+## Instream Video API
 
 Integration example: 
 
 ```kotlin
 private fun createAd() {
     // 1. Create VideoAdUnit
-    adUnit = VideoAdUnit(CONFIG_ID, WIDTH, HEIGHT)
+    adUnit = InStreamVideoAdUnit(CONFIG_ID, WIDTH, HEIGHT)
 
     // 2. Configure video parameters
-    adUnit?.parameters = configureVideoParameters()
+    adUnit?.videoParameters = configureVideoParameters()
 
     // 3. Init player view
     playerView = PlayerView(this)
@@ -600,11 +709,14 @@ private fun createAd() {
 }
 ```
 
+{: .alert.alert-warning :}
+Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `InStreamVideoAdUnit ` instead.
+
 Configure the video ad:
 
 ```kotlin
-private fun configureVideoParameters(): VideoBaseAdUnit.Parameters {
-    return VideoBaseAdUnit.Parameters().apply {
+private fun configureVideoParameters(): VideoParameters {
+    return VideoParameters(listOf("video/x-flv", "video/mp4")).apply {
         placement = Signals.Placement.InStream
 
         api = listOf(
@@ -616,7 +728,6 @@ private fun configureVideoParameters(): VideoBaseAdUnit.Parameters {
         minBitrate = 300
         maxDuration = 30
         minDuration = 5
-        mimes = listOf("video/x-flv", "video/mp4")
         playbackMethod = listOf(Signals.PlaybackMethod.AutoPlaySoundOn)
         protocols = listOf(
             Signals.Protocols.VAST_2_0
@@ -689,7 +800,9 @@ Using Prebid util method, generate Google IMA URI for downloading the cached cre
 Follow the Google Guide for [integrating IMA with ExoPlayer](https://developers.google.com/interactive-media-ads/docs/sdks/android/client-side/exoplayer-extension) to run a video and show instream ad from the winning bid.   
 
 
-## Native Style Banner
+## Native API
+
+### Native Banner
 
 Integration example:
 
@@ -805,7 +918,7 @@ Now you should request the ad from GAM. If the `AdManagerAdRequest` contains tar
 
 Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
-## In-App Native
+### In-App Native
 
 Integration example: 
 
@@ -1013,10 +1126,7 @@ Once the Prebid line item is recognized you should extract the ad from the winni
 
 Each ad unit in the Original API is a subclass of the `AdUnit` class, which provides the following properties and methods for additional configuration. 
 
-### Properties
-
-#### pbAdSlot
-{:.no_toc}
+### Ad Slot
 
 PB Ad Slot is an identifier tied to the placement the ad will be delivered in. The use case for PB Ad Slot is to pass to exchange an ID they can use to tie to reporting systems or use for data science driven model building to match with impressions sourced from alternate integrations. A common ID to pass is the ad server slot name.
 
