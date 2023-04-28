@@ -9,6 +9,8 @@ coppa_supported: true
 schain_supported: true
 floors_supported: true
 media_types: banner, video, native
+multiformat_supported: will-bid-on-one
+safeframes_ok: true
 userIds: all
 pbjs: false
 pbs: true
