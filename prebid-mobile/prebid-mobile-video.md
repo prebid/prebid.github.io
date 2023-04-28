@@ -1,27 +1,23 @@
 ---
 layout: page_v2
-title: Video Intro to Prebid.org
-description: A video overview of Prebid org and products
+title: Video Intro to Prebid Mobile
+description: A video overview of Prebid Mobile SDK
 sidebarType: 0
 ---
 
-# A Video Overview of Prebid.org
+# A Video Overview of Prebid Mobile
 
-A high-level introduction to the Prebid community and its products.
+A high-level overview of Prebid Mobile, Prebid’s header bidding product for iOS and Android applications.
 
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/819942988?h=1a3701d51a&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Intro to Prebid"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/822158733?h=0d6369cf0c&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="1.4_Intro-to-Prebid-Mobile_v3"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 Further Content:
 - [Intro to Prebid](/overview/intro.html)
-- [Introduction for Developers](/developers.html)
-- [Prebid Membership](https://prebid.org/membership)
-- [Prebid on Github](https://github.com/prebid)
+- [Prebid Managed Services](https://prebid.org/product-suite/managed-services/
 - [All videos](/overview/all-videos.html)
 
 Related Videos:
 - [Introduction to Header Bidding](/overview/intro-to-header-bidding-video.html)
-- [Introduction to Prebid.js](/prebid/prebidjs-video.html)
-- [Introduction to Prebid Mobile](/prebid-mobile/prebid-mobile-video.html)
 - Introduction to Prebid Server (coming soon)
 
 ## Transcript

@@ -17,6 +17,16 @@ Prebid Mobile libraries are available for iOS and Android.
 * TOC
 {:toc}
 
+## Video Overview of Prebid Mobile
+
+A high-level overview of Prebid Mobile, Prebid’s header bidding product for iOS and Android applications.
+
+<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/822158733?h=0d6369cf0c&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="1.4_Intro-to-Prebid-Mobile_v3"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+Further Content:
+- [Transcript of this video](/prebid-mobile/prebid-mobile-video.html)
+- [Prebid Managed Services](https://prebid.org/product-suite/managed-services/
+
 ## Benefits and Fetures
 
 Prebid SDK rendering offers the following benefits:
