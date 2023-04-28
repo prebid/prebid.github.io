@@ -47,11 +47,11 @@ const greenbidsDataProvider = {
   }
 };
 pbjs.setConfig({
-        realTimeData: {
-            auctionDelay: 200,
-            dataProviders: [ greenbidsDataProvider ]
-            }
-        });
+  realTimeData: {
+    auctionDelay: 200,
+    dataProviders: [greenbidsDataProvider]
+  }
+});
 ```
 
 ## Integration
