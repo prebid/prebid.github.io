@@ -6,16 +6,14 @@ biddercode: gamoshi
 pbjs: true
 pbs: true
 media_types: banner, video
-gdpr_supported: false
-tcf2_supported: false
+gdpr_supported: true
+tcf2_supported: true
 schain_supported: true
 usp_supported: true
 userIds: id5Id, unifiedId
 gvl_id: 644
 sidebarType: 1
 ---
-
-Note: This bidder appears to only consider gdprApplies if a consent string is available.. This may result in some incorrect GDPR processing, such as when the consent string is not yet available but the publisher has decided GDPR always applies. See https://github.com/prebid/Prebid.js/issues/7775
 
 ### Bid params
 
