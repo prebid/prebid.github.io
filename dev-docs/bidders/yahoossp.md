@@ -7,7 +7,7 @@ pbjs: true
 media_types: banner, video
 biddercode: yahoossp
 prebid_member: true
-gdpr_supported: true
+gdpr_supported: false
 usp_supported: true
 schain_supported: true
 coppa_supported: true
@@ -15,6 +15,10 @@ gvl_id: 25
 userIds: All
 sidebarType: 1
 ---
+
+### Disclosure
+
+This adapter may not handle user syncs for TCF2 or GPP correctly. The user sync consent querystring parameters are generated at the time of the bid request and might be quite stale at the time of the user sync. See https://github.com/prebid/Prebid.js/pull/9345#issuecomment-1362887086
 
 ### Important Notice (JS vs PBS)
 There are differences between our Prebid.js & Prebid-Server Yahoo SSP adapters.
