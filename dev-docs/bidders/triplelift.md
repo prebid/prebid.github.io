@@ -24,7 +24,7 @@ sidebarType: 1
 
 ### Disclosure
 
-This bidder appears to only consider gdprApplies if a consent string is available.. This may result in some incorrect TCF2 processing, such as when the consent string is not yet available but the publisher has decided GDPR always applies. See https://github.com/prebid/Prebid.js/issues/7775
+This bidder's user syncs appear to only consider gdprApplies if a consent string is available.. This may result in some incorrect TCF2 processing, such as when the consent string is not yet available but the publisher has decided GDPR always applies. See https://github.com/prebid/Prebid.js/issues/7775
 
 ### Table of Contents
 
