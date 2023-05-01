@@ -652,6 +652,14 @@
   sectionTitle:
   subgroup: 0
 
+- sbSecId: 2
+  title: Prebid Mobile FAQ
+  link: /faq/prebid-mobile-faq.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
 # - sbSecId: 2
 #   title: Modules
 #   link:
@@ -1437,6 +1445,14 @@
 - sbSecId: 5
   title: 'Bid Adapter List'
   link: /dev-docs/pbs-bidders.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 5
+  title: Prebid Server FAQ
+  link: /faq/prebid-server-faq.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
