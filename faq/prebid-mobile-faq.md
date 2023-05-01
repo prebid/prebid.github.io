@@ -27,7 +27,7 @@ Note: these sizes will go down as several assets will be pulled out into a CDN o
 
 The Prebid SDK has no localized UI components. 
 
-Most probably you will use an integration approach that doesn’t utilize UI component at all, as the are used only with the Rendering API.
+Most probably you will use an integration approach that doesn’t utilize UI component at all, as they are used only with the Rendering API.
 
 ### Is the SDK compressed using any compression tools?
 
