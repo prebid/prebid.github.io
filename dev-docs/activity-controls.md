@@ -43,14 +43,14 @@ We did an analysis of the kinds of things Prebid does and identified those that 
 
 The [full list of activities Prebid supports](#activities) is below.
 
-Think of an activity as a 'gatekeeper' that make an important decision:
+Think of an activity control as a 'gatekeeper' that makes the decision about whether the activity should be allowed in this specific context:
 
-- Should I allow this cookie to be set?
-- Should I allow this usersync?
-- Is it ok for this data to be passed to bidders?
+- Should I allow this cookie to be set for bidderA?
+- Should I allow this usersync for bidderB?
+- Is it ok for this data to be passed to bidderC and analyticsD?
 - etc.
 
-This 'gatekeeper' in Prebid.js core checks with the Activity Controls to see whether that activity is allowed. The configuration for the activity can come from regulation modules, custom functions in the page, or a rule-based JSON config.
+Prebid.js core checks with the Activity Controls to see whether an activity is allowed. The configuration for the activity can come from modules, custom functions in the page, or a rule-based JSON config.
 
 ### Example Activity Control
 
@@ -120,48 +120,50 @@ Here's the list of the 'potentially restricted activities' that Prebid.js core c
 
 <a id="parameters" />
 
-### Rule Parameters
+### Rules
  
- There are three parts to a rule:
+ There are three parts to an Activity Control's rule:
+ 
  1. The priority
  2. The condition
  3. The allow status
 
- 
- For example:
+ For example, this rule would allow bidderX to perform the activity if no higher priority rules take precedence. 
  ```
+        ...
             rules: [{
+              priority: 10,               // average priority
               condition(params) {
                   return params.componentName === 'bidderX'
               },
-              allow: true,
-              priority: 10       // the default
+              allow: true
            }]
+        ...
 ```
 
 <a id="priority" />
 
-#### Priority
+#### Rule Priority
 
-Activity control rules in Prebid.js can be injected by two main sources:
+Activity control rules in Prebid.js can be created by two main sources:
 
 - Publisher `setConfig({allowActivities})` as in the examples shown here. When set this way, rules are consider the highest priority value of 1.
 - Modules can set activity control rules, e.g. [usersync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing), [bidderSettings](/dev-docs/publisher-api-reference/bidderSettings.html), the [GPP](/dev-docs/modules/consentManagementGpp.html) or [GDPR](/dev-docs/modules/gdprEnforcement.html) modules. Rules set by modules have a less urgent priority of 10. 
 
-When rules are processed, they are sorted by priority, and all rules of the same priority are considered to happen at the same time. 
+When rules are processed, they are sorted by priority, and all rules of the same priority are considered to happen at the same time. The details:
 
-1. The highest priority is 1
+1. The highest rule priority is 1
 2. There's no defined lowest priority other than MAXINT
-3. The module default priority is 10
+3. Default priority for rules defined with setConfig is 1. Default priority for other rules is 10.
 4. When processing, group the rules by priority
-5. In descending order of priority:
-    1. If any rule that matches the condition has allow: false, the activity is DENIED.
-    2. Otherwise, if at least one rule that matches the condition has allow: true, the activity is ALLOWED.
+5. Then, in descending order of priority:
+    1. If any rule that matching the condition defines `allow: false`, the activity is DENIED.
+    2. Otherwise, if at least one rule that matches the condition defines `allow: true`, the activity is ALLOWED.
     3. If any rule matched, break out of the priority loop.
-6. If none of rules match, and the activity has default: false, the activity is DENIED.
+6. If none of rules match, and the activity defines `default: false`, the activity is DENIED.
 7. Otherwise, the activity is ALLOWED.
 
-So this means that when `priority` is omitted from `allowActivities` configuration, it acts as an override over all other control mechanisms. For example:
+So this means that when `priority` is omitted from `allowActivities` configuration, it acts as an override over other control mechanisms. For example:
 
 ```javascript
 pbjs.setConfig({
@@ -176,7 +178,7 @@ pbjs.setConfig({
 }) 
 ```
 
-If a priority number greater than 10 is specified, the rule only takes effect when all other controls have allowed the activity; for example:
+If a priority number greater than 10 is specified, the rule only takes effect when all other controls have allowed the activity. For example:
 
 ```javascript
 pbjs.setConfig({
@@ -198,9 +200,11 @@ pbjs.setConfig({
 })
 ```
 
-#### Conditions
+#### Rule Conditions
  
-A `condition` is a function that receives information about the activity that is about to be performed as _activity parameters_. If a condition is specified, it will be evaluated and if true, the `allow` attribute of the rule will be utilized.
+A `condition` in an Activity Control rule is a function that receives information about the activity that is about to be performed. If a condition evaluates to true, the `allow` attribute of the rule will be utilized. If there's no condition specified, the rule's `allow` attribute will always be utilized.
+
+These are are the parameters available to the condition function:
 
 {: .table .table-bordered .table-striped }
 | Name | Type | Available for | Description |  
@@ -213,6 +217,14 @@ A `condition` is a function that receives information about the activity that is
 | `storageType`   | String | <a id="params-accessDevice" /> `accessDevice` | Either `'html5'` or `'cookie'` - the device storage mechanism being accessed. |
 | `syncType`      | String | <a id="params-syncUser" /> `syncUser`     | Either `'iframe'` or `'image'` - the type of user sync. | 
 | `syncUrl`       | String | `syncUser`     | URL of the user sync. |
+
+#### Rule Allow Status
+
+If the rule's condition matches, this attribute defines whether the rule 'votes' to allow (true) or disallow (false) the activity in question.
+
+As noted in the priority section, **disallow** (false) takes precedence amongst rules at the same priority level.
+
+If `allow` is not defined, the rule is assumed to assert **true** (i.e. allow).
 
 ### More examples
 
