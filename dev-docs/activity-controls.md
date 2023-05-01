@@ -1,11 +1,11 @@
 ---
 layout: page_v2
-title: Activity controls
+title: Activity Controls
 description: How to stop Prebid from doing things you don't want
 sidebarType: 1
 ---
 
-# Activity controls
+# Activity Controls
 {: .no_toc }
 
 Starting with version 7.48, Prebid.js introduced a centralized control mechanism for privacy-sensitive _activities_ - such as accessing device storage or sharing data with partners.
@@ -32,7 +32,7 @@ Important: This resource should not be construed as legal advice and Prebid.org 
 4. Use Prebid.js modules and these Activity Controls as ways to help implement your privacy plan with respect to header bidding.
 5. Let us know if there are tools missing from the Prebid toolkit.
 
-### Model
+### Activity Model
 
 We did an analysis of the kinds of things Prebid does and identified those that might be of concern to privacy regulations. We call these things "potentially restricted activities", or just "activities" for short. Here are some activities:
 
@@ -52,10 +52,10 @@ Think of an activity as a 'gatekeeper' that make an important decision:
 
 This 'gatekeeper' in Prebid.js core checks with the Activity Controls to see whether that activity is allowed. The configuration for the activity can come from regulation modules, custom functions in the page, or a rule-based JSON config.
 
-### Example
+### Example Activity Control
 
 {: .alert.alert-info :}
-Hey, Activity System! I'm the gatekeeper for device storage... bidderX wants to set a cookie, is that allowed?
+In this example, bidderX wants to set a cookie through StorageManager, which queries the Activity Control System to determine whether that's allowed. The publisher has set up configuration that specifically enables bidderX to do this.
 
 Here's an example JSON config that disables accessing local storage (including cookies) for everything except the bid adapter `bidderX`:
 
@@ -103,7 +103,7 @@ There's more about [rules](#parameters) below.
 
 ### Activities
 
-Here's the list of 'potentially restricted activities' that Prebid.js core can enforce for Publishers.
+Here's the list of the 'potentially restricted activities' that Prebid.js core can restrict for Publishers.
 
 {: .table .table-bordered .table-striped }
 | Name           | Description | Effect when denied | Additional parameters |
@@ -123,30 +123,45 @@ Here's the list of 'potentially restricted activities' that Prebid.js core can e
 ### Rule Parameters
  
  There are three parts to a rule:
- 1. The condition
- 2. The allow status
- 3. The priority
- 
-A `condition` is a function that receives information about the activity that is about to be performed as _activity parameters_:
+ 1. The priority
+ 2. The condition
+ 3. The allow status
 
-{: .table .table-bordered .table-striped }
-| Name | Type | Available for | Description |  
-|------|------|-------------|---------------|
-| `componentType` | String | All activities | One of: `'bidder'`, `'userId'`, `'rtd'`, `'analytics'`, or `'prebid'`; identifies the type of component (usually a module) that wishes to perform the activity. `'prebid'` is reserved for Prebid core itself and a few "privileged" modules such as the [PBS adapter](/dev-docs/modules/prebidServer.html). | 
-| `componentName` | String | All activities | Name of the component; this is (depending on the type) either a bidder code, user ID or RTD submodule name, analytics provider code, or module name. |
-| `component`     | String | All activities | This is always a dot-separated concatenation of `componentType` and `componentName`; for example, with `{componentType: 'bidder', componentName: 'bidderX'}`, `component` is `'bidder.bidderX'`. |
-| `adapterCode`   | String | All activities | If `componentType` is `'bidder'`, and `componentName` is an [alias](/dev-docs/publisher-api-reference/aliasBidder.html), then `adapterCode` is the bidder code that was aliased; or identical to `componentName` if the bidder is not an alias. This is undefined when the component is not a bidder.|
-| `configName`    | String | <a id="params-fetchBids" /> `fetchBids`    | When the Prebid Server adapter is part of an auction, this is the name given to its [s2s configuration](/dev-docs/modules/prebidServer.md), if any. | 
-| `storageType`   | String | <a id="params-accessDevice" /> `accessDevice` | Either `'html5'` or `'cookie'` - the device storage mechanism being accessed. |
-| `syncType`      | String | <a id="params-syncUser" /> `syncUser`     | Either `'iframe'` or `'image'` - the type of user sync. | 
-| `syncUrl`       | String | `syncUser`     | URL of the user sync. |
+ 
+ For example:
+ ```
+            rules: [{
+              condition(params) {
+                  return params.componentName === 'bidderX'
+              },
+              allow: true,
+              priority: 10       // the default
+           }]
+```
 
 <a id="priority" />
 
-### How rule priority works
+#### Priority
 
-By default, rules set through the `allowActivities` config have a priority of 1, and every other rule (set by, for example, `filterSettings`, `bidderSettings`, the [GPP](/dev-docs/modules/consentManagementGpp.html) or [GDPR](/dev-docs/modules/gdprEnforcement.html) modules, etc) have a less urgent priority of 10. 
-This means that when `priority` is omitted, `allowActivities` configuration acts as an override over all other control mechanisms. For example:
+Activity control rules in Prebid.js can be injected by two main sources:
+
+- Publisher `setConfig({allowActivities})` as in the examples shown here. When set this way, rules are consider the highest priority value of 1.
+- Modules can set activity control rules, e.g. [usersync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing), [bidderSettings](/dev-docs/publisher-api-reference/bidderSettings.html), the [GPP](/dev-docs/modules/consentManagementGpp.html) or [GDPR](/dev-docs/modules/gdprEnforcement.html) modules. Rules set by modules have a less urgent priority of 10. 
+
+When rules are processed, they are sorted by priority, and all rules of the same priority are considered to happen at the same time. 
+
+1. The highest priority is 1
+2. There's no defined lowest priority other than MAXINT
+3. The module default priority is 10
+4. When processing, group the rules by priority
+5. In descending order of priority:
+    1. If any rule that matches the condition has allow: false, the activity is DENIED.
+    2. Otherwise, if at least one rule that matches the condition has allow: true, the activity is ALLOWED.
+    3. If any rule matched, break out of the priority loop.
+6. If none of rules match, and the activity has default: false, the activity is DENIED.
+7. Otherwise, the activity is ALLOWED.
+
+So this means that when `priority` is omitted from `allowActivities` configuration, it acts as an override over all other control mechanisms. For example:
 
 ```javascript
 pbjs.setConfig({
@@ -154,7 +169,7 @@ pbjs.setConfig({
     allowActivities: {
         accessDevice: {
             rules: [
-                {allow: true} // ... it's overridden by allowActivities with when priority is < 10 (or omitted) 
+                {allow: true} // ... it's overridden by this conditionless rule with default priority of 1
             ]
         }
     } 
@@ -167,10 +182,9 @@ If a priority number greater than 10 is specified, the rule only takes effect wh
 pbjs.setConfig({
     allowActivities: {
         accessDevice: {
-            // disable all storage except localStorage.
-            // because this is using priority > 10, it still requires all other controls to allow storage;
-            // deviceAccess should be true; bidders need `storageAllowed` to be set through `bidderSettings`;
-            // if the GDPR module is enabled, vendor consent needs to have been given, etc 
+            // the intent here is to disable cookies but allow HTML5 localStorage
+            // because this defines priority > 10, other controls will be checked first
+            // e.g. if GDPR is in-scope and there's no consent, this priority 20 rule won't be processed
             default: false,
             rules: [{
                 condition({storageType}) {
@@ -184,13 +198,43 @@ pbjs.setConfig({
 })
 ```
 
-#### More examples
+#### Conditions
+ 
+A `condition` is a function that receives information about the activity that is about to be performed as _activity parameters_. If a condition is specified, it will be evaluated and if true, the `allow` attribute of the rule will be utilized.
 
+{: .table .table-bordered .table-striped }
+| Name | Type | Available for | Description |  
+|------|------|-------------|---------------|
+| `componentType` | String | All activities | One of: `'bidder'`, `'userId'`, `'rtd'`, `'analytics'`, or `'prebid'`; identifies the type of component (usually a module) that wishes to perform the activity. `'prebid'` is reserved for Prebid core itself and a few "privileged" modules such as the [PBS adapter](/dev-docs/modules/prebidServer.html). | 
+| `componentName` | String | All activities | Name of the component; this is (depending on the type) either a bidder code, user ID or RTD submodule name, analytics provider code, or module name. |
+| `component`     | String | All activities | This is always a dot-separated concatenation of `componentType` and `componentName`; for example, with `{componentType: 'bidder', componentName: 'bidderX'}`, `component` is `'bidder.bidderX'`. |
+| `adapterCode`   | String | All activities | If `componentType` is `'bidder'`, and `componentName` is an [alias](/dev-docs/publisher-api-reference/aliasBidder.html), then `adapterCode` is the bidder code that was aliased; or identical to `componentName` if the bidder is not an alias. This is undefined when the component is not a bidder.|
+| `configName`    | String | <a id="params-fetchBids" /> `fetchBids`    | When the Prebid Server adapter is part of an auction, this is the name given to its [s2s configuration](/dev-docs/modules/prebidServer.md), if any. | 
+| `storageType`   | String | <a id="params-accessDevice" /> `accessDevice` | Either `'html5'` or `'cookie'` - the device storage mechanism being accessed. |
+| `syncType`      | String | <a id="params-syncUser" /> `syncUser`     | Either `'iframe'` or `'image'` - the type of user sync. | 
+| `syncUrl`       | String | `syncUser`     | URL of the user sync. |
 
-Disable all user syncs except for specific domains:
+### More examples
+
+#### Always include a particular bidder in auctions
+
+This is similiar to the 'vendor exception' feature of the [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html). This would always allow bidderA to participate in the auction, even without explicit consent in GDPR scenarios. It might indicate, for instance, that this is a 'first party bidder'.
 
 ```javascript
-const WHITELIST = [
+pbjs.setConfig({
+    fetchBids: {
+        rules: [{
+            condition: ({componentName}) => componentName === 'bidderA',
+            allow: true
+        }]
+    }
+})
+```
+
+#### Disable all user syncs except for specific domains
+
+```javascript
+const DOMAINLIST = [
     'https://example-domain.org',
     'https://other-domain.com',
 ];
@@ -201,7 +245,7 @@ pbjs.setConfig({
             default: false,
             rules: [{
                 condition({syncUrl}) {
-                    return WHITELIST.find(domain => syncUrl.startsWith(domain))
+                    return DOMAINLIST.find(domain => syncUrl.startsWith(domain))
                 },
                 allow: true
             }]
@@ -210,20 +254,7 @@ pbjs.setConfig({
 })
 ```
 
-Always include a particular bidder in auctions (vendor exception):
-
-```javascript
-pbjs.setConfig({
-    fetchBids: {
-        rules: [{
-            condition: ({componentName}) => componentName === 'firstPartyBidder',
-            allow: true
-        }]
-    }
-})
-```
-
-Deny a particular vendor access to user IDs:
+#### Deny a particular vendor access to user IDs
 
 ```javascript
 pbjs.setConfig({
@@ -235,3 +266,6 @@ pbjs.setConfig({
     }
 })
 ```
+
+## Further Reading 
+- [FAQ: How does Prebid.js support privacy regulations](/dev-docs/faq.html#how-does-prebid-support-privacy-regulations)
