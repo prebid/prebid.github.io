@@ -3,7 +3,7 @@ layout: bidder
 title: TripleLift
 description: Prebid TripleLift Bidder Adapter
 biddercode: triplelift
-gdpr_supported: false
+gdpr_supported: true
 usp_supported: true
 gpp_supported: true
 coppa_supported: true
@@ -21,10 +21,6 @@ fpd_supported: true
 gvl_id: 28
 sidebarType: 1
 ---
-
-### Disclosure
-
-This bidder's user syncs appear to only consider gdprApplies if a consent string is available.. This may result in some incorrect TCF2 processing, such as when the consent string is not yet available but the publisher has decided GDPR always applies. See https://github.com/prebid/Prebid.js/issues/7775
 
 ### Table of Contents
 
