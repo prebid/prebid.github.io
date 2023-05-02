@@ -29,6 +29,6 @@ The Adtrgtme bidding adapter requires setup before beginning. Please contact us 
 
 {: .table .table-bordered .table-striped }
 
-| Name      | Scope    | Description | Example   | Type     |
-|-----------|----------|-------------|-----------|----------|
-| `site_id` | required | Site ID     | `'11111'` | `uint64` |
+| Name      | Scope    | Description | Example      | Type     |
+|-----------|----------|-------------|--------------|----------|
+| `site_id` | required | Site ID     | `1234567890` | `uint64` |
