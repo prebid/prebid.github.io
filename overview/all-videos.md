@@ -13,3 +13,4 @@ These are the multi-media overviews that Prebid has created covering various asp
 2. [Intro to Prebid](/overview/intro-video.html) - A high-level introduction to the Prebid community and its products.
 3. [Intro to Prebid.js](/prebid/prebidjs-video.html) - A high-level overview of Prebid.js, Prebid’s header bidding product for websites.
 4. [Intro to Prebid Mobile](/prebid-mobile/prebid-mobile-video.html) - A high-level overview of Prebid Mobile, Prebid’s header bidding product for iOS and Android applications.
+4. [Intro to Prebid Server](/prebid-server/overview/prebid-server-overview-video.html) - A high-level overview of Prebid Server, Prebid’s solution for header bidding in the cloud.
