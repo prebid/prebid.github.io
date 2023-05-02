@@ -73,6 +73,10 @@ The open source repos have a list of releases:
 https://github.com/prebid/prebid-mobile-ios/releases
 https://github.com/prebid/prebid-mobile-android/releases 
 
+### How does one update the Prebid Mobile version?
+
+The best way is to integrate SDK via dependency managers - CocoaPods (iOS) and Maven (Android). You can specify the particular version or point the dependency manager to the latest SDK version. In the second case, the new version of SDK will be added to the app as soon as released.
+
 ### If a bug is found in the SDK, what is the process for reporting it?
 
 Please open a github issue:
@@ -132,6 +136,12 @@ No. We'd welcome any community member to help us with requirements, code, and/or
 
 ### How long does it take to initialize?  
 Is not measured, but very fast. Because it makes only initialization of internal classes and optional health check calls to PBS. The result of the health check call does not influence the SDK behavior, so publishers may not wait for its result during the initialization.
+
+## API Questions
+
+### What is the difference between Original API and Rendering API?
+
+The main difference is that with Original API, the Prebid demand is rendered by the Ad Server SDK (Google Mobile Ads SDK) using Prebid Universal Creative. But with Rendering API, Prebid SDK renders the winning bid in its own Web or Video views.
 
 ## iOS Specifics
 
