@@ -375,6 +375,7 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
 | mediatypepricegranularity | no | Defines how PBS quantizes bid prices into buckets, allowing for different ranges by media type. | (see below) | object |
 | mediatypepricegranularity.banner | no | Defines how PBS quantizes bid prices into buckets for banners. | (see below) | object |
 | mediatypepricegranularity.video | no | Defines how PBS quantizes bid prices into buckets for video. | (see below) | object |
+| mediatypepricegranularity.native | no | Defines how PBS quantizes bid prices into buckets for native. | (see below) | object |
 | mediatypepricegranularity.TYPE.precision | no | How many decimal places are there in price buckets. | Defaults to 2 | integer |
 | mediatypepricegranularity.TYPE.ranges | no | Same as pricegranularity.ranges | (see below) | array of objects |
 | includewinners | no | Whether to include targeting for the winning bids in response.seatbid[].bid[]. ext.prebid.targeting. Defaults to false. | true | boolean |
@@ -416,19 +417,20 @@ One of "includewinners" or "includebidderkeys" must be true (both default to fal
 
 The parameter "includeformat" indicates the type of the bid (banner, video, etc) for multiformat requests. It will add the key `hb_format` and/or `hb_format_{bidderName}` as per "includewinners" and "includebidderkeys" above.
 
-MediaType PriceGranularity (PBS-Java only) - when a single OpenRTB request contains multiple impressions with different mediatypes, or a single impression supports multiple formats, the different mediatypes may need different price granularities. If `mediatypepricegranularity` is present, `pricegranularity` would only be used for any mediatypes not specified.
+MediaType PriceGranularity - when a single OpenRTB request contains multiple impressions with different mediatypes, or a single impression supports multiple formats, the different mediatypes may need different price granularities. If `mediatypepricegranularity` is present, `pricegranularity` would only be used for any mediatypes not specified.
 
+For example:
 ```
 {
   "ext": {
     "prebid": {
       "targeting": {
-        "mediatypepricegranularity": {
-          "banner": {
-            "ranges": [
+        "pricegranularity": {                 // use this for banner and native
+          "ranges": [
               {"max": 20, "increment": 0.5}
             ]
-          },
+        },
+        "mediatypepricegranularity": {        // video gets a different set of ranges     
           "video": {
             "ranges": [
               {"max": 10, "increment": 1},
@@ -468,7 +470,8 @@ MediaType PriceGranularity (PBS-Java only) - when a single OpenRTB request conta
 The winning bid for each `request.imp[i]` will also contain `hb_bidder`, `hb_size`, and `hb_pb`
 (with _no_ {bidderName} suffix). To prevent these keys, set `request.ext.prebid.targeting.includeWinners` to false.
 
-**NOTE**: Targeting keys are limited to 20 characters. If {bidderName} is too long, the returned key
+**NOTES**:
+- Targeting keys are limited to 20 characters. If {bidderName} is too long, the returned key
 will be truncated to only include the first 20 characters.
 
 ##### Buyer UID
