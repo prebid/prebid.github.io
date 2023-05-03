@@ -26,8 +26,10 @@ but it's not necessary for contributing code as a community member.
 ## How can I debug Prebid Server requests?
 
 + When invoking Prebid Server through Prebid.js, this can be done just by adding `?pbjs_debug=true` to the page URL.
-+ Through AMP, you can put `test: 1` in the stored request, or add `debug=1` to the query string of Prebid Server's AMP endpoint.
-+ If calling directly, add `test: 1` to the JSON.
++ Through AMP, you can put `ext.prebid.debug: true` in the stored request, or add `debug=1` to the query string of Prebid Server's AMP endpoint.
++ If calling directly, add `ext.prebid.debug: true` to the JSON.
+
+The OpenRTB `test:1` flag will also turn on debugging, and for true test requests, is the most appropriate thing to do, depending on your scenario. SSPs may not respond or log `test` requests.
 
 ## Why are there two versions of Prebid Server? Are they kept in sync?
 
