@@ -17,11 +17,11 @@ Prebid Mobile libraries are available for iOS and Android.
 * TOC
 {:toc}
 
-## Benefits and Fetures
+## Benefits and Features
 
 Prebid SDK rendering offers the following benefits:
 
-- **Transparent, open source header bidding solution**. The single integration point with Prebid Server**, enabling direct access to more mobile buyers.
+- **Transparent, open source header bidding solution**. The single integration point with Prebid Server, enabling direct access to more mobile buyers.
 - **Monetization without an Ad Server**: Publishers who do not have a direct sales force or have no need for an ad server can still access Prebid's mobile demand stack. Publishers will be able to render ads directly without relying on any 3rd party SDKs.
 - **Reduced ad delivery latency**: The rendering module enables Prebid SDK to render ads immediately when demand is returned from Prebid Server or when receiving the render signal from an ad server. The render process should vastly reduce ad delivery speeds.
 - **Less infrastructure**: The rendering API does not rely on Prebid Server's Cache server, reducing the cost and utility of Prebid Server Cache.
@@ -53,20 +53,18 @@ Prebid SDK supports following integration scenarios:
 
 In all scenarios, Prebid SDK leverages Prebid Server for demand. 
 
-The next chart shows which API is used for which Ad Server
+The following chart shows which API is used for which Ad Server
 
 {: .table .table-bordered .table-striped }
 
-|            |Original API|Rendering API|Mediation API|
+|Ad Server|Original API|Rendering API|Mediation API|
 |------------|------------|-------------|-------------|
 |No Ad Server|            |      ✅   |             |
 |GAM         |     ✅   |      ✅   |             |
 |AdMob       |            |             |     ✅   |
 |MAX         |            |             |     ✅   |
 
-Nothe that you can integrate Prebid demand into GAM setup using one of the options - Original API, Rendering API.
-
-Below are the processes for all modes:
+The following sections describe each integration method.
 
 ### No Ad Server
 
