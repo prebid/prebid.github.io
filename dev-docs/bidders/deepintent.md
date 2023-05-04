@@ -110,6 +110,7 @@ var videoAdUnits = [
     bids: [{
       bidder: 'deepintent',
       params: {
+        tagId: "1399",                            // required
         publisherId: '32572',                     // required
         adSlot: '38519891@300x250'                // required
         video: {
