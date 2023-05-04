@@ -26,15 +26,21 @@
       anonymize_ip: true
   });
 
-  // new google analytics v4 property
-  gtag('config', 'G-GM972HCTEB');
-
-  // use the global variable provided in the head-common to wait for onetrust
-  window.onetrustLoaded.then(() => {
-    // grant consent if one trust says so. We use the callback to update gtag consent status
+  // grant consent if one trust says so. We use the callback to update gtag consent status
+  function oneTrustGaConsent() {
     OneTrust.InsertHtml('<span>given</span>', 'prebid-google-analytics-consent', function() {
       gtag('consent', 'update', {'ad_storage': 'granted','analytics_storage': 'granted'});
     }, {}, 'C0002');
+  }
+
+
+  // use the global variable provided in the head-common to wait for onetrust
+  window.onetrustLoaded.then(() => {
+    // if consent has already been given
+    oneTrustGaConsent();
+
+    // if a users sees the first layer message and gives consent
+    OneTrust.OnConsentChanged(() => oneTrustGaConsent());
   });
 
 </script>
