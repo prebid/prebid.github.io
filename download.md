@@ -35,7 +35,9 @@ a.tip:hover span {
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 
 <script>
+var searchParams = new URL(window.location).searchParams;
 
+    setPrepickedModules()
   getVersionList();
 
 $(function(){
@@ -78,6 +80,7 @@ function getVersionList() {
           }
         }
       });
+      setPrepickedVersion();
     }
     catch(e) {
       console.log(e);
@@ -192,6 +195,31 @@ function get_form_data() {
     form_data['removedModules'] = removedModules;
 
     return form_data;
+}
+
+function setPrepickedModules() {
+    var modules = searchParams.get('modules');
+    if (modules) {
+        document.querySelectorAll('input[modulecode]').forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+        modules.split(',').forEach(function(module) {
+            var checkbox = document.getElementById(module);
+            if (checkbox) {
+                checkbox.checked = true;
+            }
+        });
+    }
+}
+
+function setPrepickedVersion() {
+    var version = searchParams.get('version');
+    if (version) {
+        var versionOption = document.querySelector('#version_selector option[value="' + version + '"]');
+        if (versionOption) {
+            versionOption.selected = true;
+        }
+    }
 }
 
 </script>
