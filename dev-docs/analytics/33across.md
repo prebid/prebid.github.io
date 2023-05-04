@@ -24,6 +24,7 @@ The 33Across privacy policy is at <https://www.33across.com/privacy-policy/>.
 
 #### Analytics Options
 
+{: .table .table-bordered .table-striped }
 | Name      | Scope    | Example | Type  | Description |
 |-----------|----------|---------|-------|-------------|
 | `pid`     | required | 12345   | `int` | 33Across PID (Publisher ID) |
@@ -38,13 +39,8 @@ when the page is unloaded, at the end of the auction, or after the timeout,
 whichever comes first.
 
 In order to guarantee consistent reports of your ad slot behavior, we recommend
-including the GPT Pre-Auction Module, `gptPreAuction`. This module is included
-by default when Prebid is downloaded. If you are compiling from source,
-this might look something like:
-
-```sh
-gulp bundle --modules=gptPreAuction,consentManagement,consentManagementGpp,consentManagementUsp,enrichmentFpdModule,gdprEnforcement,33acrossBidAdapter,33acrossIdSystem,33acrossAnalyticsAdapter
-```
+including the GPT Pre-Auction Module (`gptPreAuction` if compiling from source).
+This module is included by default when Prebid is downloaded.
 
 Enable the 33Across Analytics Adapter in Prebid.js using the analytics provider `33across`
 and options as seen in the example below.
