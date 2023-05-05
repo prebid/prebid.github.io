@@ -9,7 +9,7 @@ sidebarType: 0
 
 A high-level explanation of what header bidding is, what its benefits are, and how it works.
 
-<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/820684821?h=d55a008b4b&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="1.2_Intro-to-HB_v6"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/820684821?h=d55a008b4b&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="1.2_Intro-to-HB_v6"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 Further Content:
 - [Intro to Header Bidding](/overview/intro-to-header-bidding.html)
