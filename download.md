@@ -198,18 +198,51 @@ function get_form_data() {
 }
 
 function setPrepickedModules() {
-    var modules = searchParams.get('modules');
-    if (modules) {
-        document.querySelectorAll('input[modulecode]').forEach(function(checkbox) {
+    var moduleCheckboxes = document.querySelectorAll('input[modulecode], input[analyticscode]');
+    var modules = [];
+    var modulesParam = searchParams.get('modules');
+    if (modulesParam) {
+        modules = modulesParam.split(',');
+    }
+    if (modules && modules.length) {
+        moduleCheckboxes.forEach(function(checkbox) {
             checkbox.checked = false;
         });
-        modules.split(',').forEach(function(module) {
+        modules.forEach(function(module) {
             var checkbox = document.getElementById(module);
             if (checkbox) {
                 checkbox.checked = true;
             }
         });
     }
+
+    var getModuleCode = function(checkbox) {
+        return checkbox.getAttribute('modulecode') || checkbox.getAttribute('analyticscode');
+    };
+    moduleCheckboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+            var module = getModuleCode(checkbox);
+            if (!modules.includes(module)) {
+                modules.push(module);
+            }
+        }
+        checkbox.addEventListener('change', function(event) {
+            var module = getModuleCode(event.target);
+            if (event.target.checked) {
+                modules.push(module);
+            } else {
+                modules = modules.filter(function(m) {
+                    return m !== module;
+                });
+            }
+            if (modules.length) {
+                searchParams.set('modules', modules.join(','));
+            } else {
+                searchParams.delete('modules');
+            }
+            window.history.replaceState(null, '', window.location.pathname + '?' + searchParams.toString());
+        });
+    });
 }
 
 function setPrepickedVersion() {
@@ -219,6 +252,14 @@ function setPrepickedVersion() {
         if (versionOption) {
             versionOption.selected = true;
         }
+    }
+    var versionSelector = document.getElementById('version_selector');
+    if (versionSelector) {
+        versionSelector.addEventListener('change', function(event) {
+            var version = event.target.value;
+            searchParams.set('version', version);
+            window.history.replaceState(null, '', window.location.pathname + '?' + searchParams.toString());
+        });
     }
 }
 
