@@ -16,6 +16,18 @@ Prebid is the leading header bidding solution. It is free and fully open source,
 {: .alert.alert-info :}
 If you’re looking for a marketing-level overview of the Prebid software and organization, including product features, membership, events, and so on, visit [Prebid.org](https://prebid.org/).
 
+## Overview
+
+A video overview of Prebid.
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/819942988?h=1a3701d51a&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Intro to Prebid"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+Further Reading:
+- [Transcript of this video overview](/overview/intro-video.html)
+- [Introduction for Developers](/developers.html)
+- [Prebid Membership](https://prebid.org/membership)
+- [Prebid on Github](https://github.com/prebid)
+
 ## Header Bidding with Prebid
 
 The Prebid.org suite of products leads the industry in providing header bidding to publishers.
@@ -174,3 +186,8 @@ Prebid also has an active member community that ensures Prebid will continue to 
 The ad server you’re working with makes their money by taking a cut of the winning bid price, so you might be wondering if Prebid also takes a cut. The answer is NO. Prebid is free to anyone who wants to use it. So how does Prebid continue to evolve as a quality set of products (not to mention provide events and great documentation) without taking in fees? Through dedicated volunteers from member companies, alongside a small handful of employees and an occasional contractor paid through Prebid.org membership dues. All dues go into serving the Prebid community and providing a voice for our members in the world of header bidding.
 
 You don’t have to be a Prebid.org member to use Prebid. However, we do highly encourage you to explore the benefits of membership and consider joining. No matter the size of your company, Prebid has membership options available that will provide value to anyone interested in header bidding today and in the future. For more information on Prebid.org membership, see [Prebid.org Membership Overview](https://prebid.org/membership/).
+
+## Related Reading
+- [Introduction to Header Bidding](/overview/intro-to-header-bidding-video.html)
+- [Prebid Product Suite](https://prebid.org/product-suite/)
+- [What is Prebid.js](/prebid/prebidjs.html)
