@@ -33,7 +33,6 @@ sidebarType: 1
 - [Modules to include in your build process](#modules-to-include-in-your-build-process)
 - [Set up First Party Data (FPD)](#set-up-first-party-data-fpd)
   - [Global data](#prebid-fpd-module)
-  - [Index bidder-specific data](#index-bidder-specific-fpd-module)
   - [AdUnit-specific data](#adunit-specific-data)
 - [Index's outstream video player](#indexs-outstream-video-player)
 - [Prebid Native configuration](#prebid-native-configuration)
@@ -122,7 +121,7 @@ In this configuration Prebid.js calls Index directly from the browser using our 
         }
     });
 ```
-5. (Optional) Set up First Party Data (FPD) using the Index bidder-specific FPD (preferred method) setting or the Prebid FPD module. For more information, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
+5. (Optional) Set up the Prebid.js First Party Data (FPD) module using Global data or ad unit-specific data. For more information, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
 6. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the [pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) function as follows: <br />
 ```javascript
     pbjs.setConfig({
@@ -199,7 +198,7 @@ If you are using a JSON file to specify modules, add `ixBidAdapter` and `dfpAdSe
 
 ## Set up First Party Data (FPD)
  
-You can set up the Prebid.js FPD module using Global data, Index bidder-specific site data, or ad unit-specific data. Index supports deal targeting in all the three FPD types.
+You can set up the Prebid.js FPD module using Global data or ad unit-specific data. Index supports deal targeting in all the FPD types.
 
 <a name="prebid-fpd-module" />
 
@@ -219,26 +218,6 @@ pbjs.setConfig({
                     ...
                }
             }
-});
-```
-
-<a name="index-bidder-specific-fpd-module" />
-
-### Index bidder-specific data
-
-Use this data type to specify key-value pairs that will be included in your query string when targeting deals. For example, if a user visits a news page, you can pass that information by submitting a key-value pair for `category = news`. You can then create a deal in the Index UI and activate the deal only on pages that contain `category = news` as the key-value pair.
-
-To include the FPD in a bid request, in the `[pbjs.setConfig()]` object at the `ix` bidder level, provide the key-values in the `firstPartyData` parameter. Make sure that you set it before the `pbjs.requestBids` configuration. If you want to change the values, you can update the `pbjs.setConfig` once again. The change will be reflected in all future bid requests. 
-
-```javascript
- pbjs.setConfig({
-    ix: {
-        firstPartyData: {
-            '<key name>': '<key value>',
-            '<key name>': '<key value>',
-            // ...
-        }
-    }
 });
 ```
 <a name="adunit-specific-data" />
@@ -390,8 +369,8 @@ If you are using Index's outstream player and have placed the video object at th
 
 | Name | Scope | Type | Description |
 |---|---|---|---|
-| `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
-| `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
+| `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `144 x 144`. |
+| `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `144 x 144`. |
 | `video.playerSize` | Required | Integer[] | The video player size that will be passed to demand partners. |
 | `video.playerConfig` | Optional | Hash | The Index-specific outstream player configurations. |
 | `video.playerConfig.floatOnScroll` | Optional | Boolean | A boolean specifying whether you want to use the player's floating capabilities, where:<br />- `true`: Use the Index player's float capabilities.<br /> **Note:** If you set `floatOnScroll` to `true`, Index updates the placement value to `5`.<br /> **Note:** We do not recommend using the player's default float capabilities if you have more than one outstream ad unit per page. <br /> -`false`: Do not use the Index player's float capabilities (default). |
