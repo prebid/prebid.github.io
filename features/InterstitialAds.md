@@ -83,7 +83,7 @@ Optimizing when billing occurs for an interstitial ad can sometimes be tricky.  
 - When a bid wins, it is by default also billable. That is, by default, Prebid.js will invoke the bid adapter methods onBidWon and onBidBillable one after the other.
 - A publisher can flag individual adUnits as being separately billable with the following configuration: `pbjs.addAdUnits({deferBilling: true, ...})`
 - Winning bids for adUnits with deferBilling set to true will trigger a bid adapters onBidWon method but not their onBidBillable method.
-- Finally, when appropriate (e.g. an interstitial is displayed), the publisher may call `pbjs.triggerBilling({adId})`, which would trigger a bid adapters onBidBillable method.
+- Finally, when appropriate (e.g. an interstitial is displayed), the publisher may call `pbjs.triggerBilling({adId})` with the winning bid to be billed, which would trigger a bid adapters onBidBillable method.
 
 ## Related Topics
 
