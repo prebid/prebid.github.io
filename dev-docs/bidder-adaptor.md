@@ -609,6 +609,33 @@ Sample data received by this function:
 }
 {% endhighlight %}
 
+### Registering on Bid Billable
+
+The `onBidBillable` function will be called when it deems a bid to be billable. When a bid wins, it is by default also billable. That is, by default, onBidWon and onBidBillable will be called one after the other. However, a publisher can flag adUnits as being separately billable: `pbjs.addAdUnits({deferBilling: true, ...})`. Winning bids for adUnits with `deferBilling` set to true, trigger the onBidWon function but not the onBidBillable function. When appropriate (e.g. an interstitial is displayed), the publisher may then call the public API method, `pbjs.triggerBilling({adId})`, which will trigger onBidBillable.
+
+Sample data received by this function (same as what is recieved for onBidWon):
+
+{% highlight js %}
+{
+  "bidder": "example",
+  "width": 300,
+  "height": 250,
+  "adId": "330a22bdea4cac",
+  "mediaType": "banner",
+  "cpm": 0.28
+  "ad": "...",
+  "requestId": "418b37f85e772c",
+  "adUnitCode": "div-gpt-ad-1460505748561-0",
+  "size": "350x250",
+  "adserverTargeting": {
+    "hb_bidder": "example",
+    "hb_adid": "330a22bdea4cac",
+    "hb_pb": "0.20",
+    "hb_size": "350x250"
+  }
+}
+{% endhighlight %}
+
 ### Registering on Set Targeting
 
 The `onSetTargeting` function will be called when the adserver targeting has been set for a bid from the adapter.

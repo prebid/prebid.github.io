@@ -76,6 +76,15 @@ utils.deepAccess(bidRequest.ortb2Imp, 'instl')
 
 The assumption is that bid adapters will copy the values to the appropriate protocol location for their endpoint.
 
+## Billing Deferral
+
+Optimizing when billing occurs for an interstitial ad can sometimes be tricky.  The following built-in Prebid.js functionality can help assist with this:
+- Bid adapters can provide a method called `onBidBillable(bid)` which will be invoked by Prebid.js when it deems a bid to be billable (Note: A bid adapter must have the onBidBillable method configured for this to work).
+- When a bid wins, it is by default also billable. That is, by default, Prebid.js will invoke the bid adapter methods onBidWon and onBidBillable one after the other.
+- A publisher can flag individual adUnits as being separately billable with the following configuration: `pbjs.addAdUnits({deferBilling: true, ...})`
+- Winning bids for adUnits with deferBilling set to true will trigger a bid adapters onBidWon method but not their onBidBillable method.
+- Finally, when appropriate (e.g. an interstitial is displayed), the publisher may call `pbjs.triggerBilling({adId})`, which would trigger a bid adapters onBidBillable method.
+
 ## Related Topics
 
 - The [AdUnit Reference](/dev-docs/adunit-reference.html)
