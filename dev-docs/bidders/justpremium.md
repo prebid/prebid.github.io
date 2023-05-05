@@ -2,9 +2,13 @@
 layout: bidder
 title: Justpremium
 description: Prebid Justpremium Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: justpremium
 gdpr_supported: true
+usp_supported: true
+schain_supported: true
+userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+sidebarType: 1
 ---
 
 

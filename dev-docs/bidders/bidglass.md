@@ -2,10 +2,10 @@
 layout: bidder
 title: Bid Glass
 description: Bid Glass Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: bidglass
+sidebarType: 1
 ---
-
 
 
 ### Bid Params

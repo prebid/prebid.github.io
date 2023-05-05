@@ -2,67 +2,81 @@
 
 <div class="partners">
 	
-	<div class="tableTitle"><h3>Prebid.org Founding Members</h3></div>
+	<div class="tableTitle"><h2>Prebid.org Leader Members</h2></div>
 	<script type="text/javascript">
-	var memberDataFounders=[];
+	var memberDataLeader=[];
 	var idx=0;
-
 	{% for item in site.data.partners %}
-		{% if item.type == "founder" %}
-			memberDataFounders[idx]={};
-			memberDataFounders[idx].href="{{item.link}}";
-			memberDataFounders[idx].text="<img src=\"{{item.imgURL}}\" width=\"100\">";
+		{% if item.type == "leader" %}
+			memberDataLeader[idx]={};
+			memberDataLeader[idx].href="{{item.link}}";
+			memberDataLeader[idx].text="<img src=\"{{item.imgURL}}\" width=\"150\">";
 			idx++;
 		{% endif %}
 	{% endfor %}
 	</script>
-
-	<div id="memberTableFounders"></div>
+	<div id="memberTableLeader"></div>
 	<script>
-	   writeDynamicTable({div: "memberTableFounders", data: "memberDataFounders", sort: "rowFirst", maxcols: 2} );
+	  writeDynamicTable({div:"memberTableLeader", data:"memberDataLeader", sort:"rowFirst", maxcols:4, striped: false, fixedHeight: true});
 	</script>
 
-	<div class="tableTitle"><h3>Prebid.org Standard Members</h3></div>
+	<div class="tableTitle"><h2>Prebid.org Technology Partner Members</h2></div>
 	<script type="text/javascript">
-	var memberDataStandard=[];
+	var memberDataTech=[];
 	var idx=0;
-
 	{% for item in site.data.partners %}
-		{% if item.type == "standard" %}
-			memberDataStandard[idx]={};
-			memberDataStandard[idx].href="{{item.link}}";
-			memberDataStandard[idx].text="<img src=\"{{item.imgURL}}\" width=\"100\">";
+		{% if item.type == "technology" %}
+			memberDataTech[idx]={};
+			memberDataTech[idx].href="{{item.link}}";
+			memberDataTech[idx].text="<img src=\"{{item.imgURL}}\" width=\"120\">";
 			idx++;
 		{% endif %}
 	{% endfor %}
 	</script>
-
-	<div id="memberTableStandard"></div>
+	<div id="memberTableTech"></div>
 	<script>
-	  writeDynamicTable({div:"memberTableStandard", data:"memberDataStandard", sort:"rowFirst"});
+	  writeDynamicTable({div:"memberTableTech", data:"memberDataTech", sort:"rowFirst", maxcols: 4, striped: false, fixedHeight: true});
 	</script>
 
-	<div class="tableTitle"><h3>Prebid.org Publisher Members</h3></div>
+	<div class="tableTitle"><h2>Prebid.org Publisher Members</h2></div>
 	<script type="text/javascript">
 	var memberDataPub=[];
 	var idx=0;
-
 	{% for item in site.data.partners %}
 		{% if item.type == "publisher" %}
 			memberDataPub[idx]={};
 			memberDataPub[idx].href="{{item.link}}";
-			memberDataPub[idx].text="<img src=\"{{item.imgURL}}\" width=\"88\">";
+			memberDataPub[idx].text="<img src=\"{{item.imgURL}}\" width=\"120\">";
 			idx++;
 		{% endif %}
 	{% endfor %}
 	</script>
-
 	<div id="memberTablePub"></div>
 	<script>
-	  writeDynamicTable({div: "memberTablePub", data: "memberDataPub", sort:"rowFirst"});
+	  writeDynamicTable({div: "memberTablePub", data: "memberDataPub", sort:"rowFirst", maxcols: 4, striped: false, fixedHeight: true});
 	</script>
 
-	<div class="tableTitle"><h3>Prebid.org Community Members</h3></div>
+<!--
+	<div class="tableTitle"><h2>Prebid.org Buyer Members</h2></div>
+	<script type="text/javascript">
+	var memberDataBuyer=[];
+	var idx=0;
+	{% for item in site.data.partners %}
+		{% if item.type == "buyer" %}
+			memberDataBuyer[idx]={};
+			memberDataBuyer[idx].href="{{item.link}}";
+			memberDataBuyer[idx].text="<img src=\"{{item.imgURL}}\" width=\"120\">";
+			idx++;
+		{% endif %}
+	{% endfor %}
+	</script>
+	<div id="memberTableBuyer"></div>
+	<script>
+	  writeDynamicTable({div: "memberTableBuyer", data: "memberDataBuyer", sort:"rowFirst", maxcols: 1, striped: false, fixedHeight: true});
+	</script>
+-->
+
+	<div class="tableTitle"><h2>Prebid.org Community Members</h2></div>
 	<script type="text/javascript">
 	var memberDataComm=[];
 	var idx=0;
@@ -71,7 +85,7 @@
 		{% if item.type == "community" %}
 			memberDataComm[idx]={};
 			memberDataComm[idx].href="{{item.link}}";
-			memberDataComm[idx].text="<img src=\"{{item.imgURL}}\" width=\"75\">";
+			memberDataComm[idx].text="{{item.company}}";
 			idx++;
 		{% endif %}
 	{% endfor %}
@@ -79,26 +93,7 @@
 
 	<div id="memberTableComm"></div>
 	<script>
-	  writeDynamicTable({div: "memberTableComm", data: "memberDataComm", sort:"rowFirst"});
+	  writeDynamicTable({div: "memberTableComm", data: "memberDataComm", sort:"rowFirst", maxcols: 4, striped: false, fixedHeight: false});
 	</script>
 
-
-	<div class="tableTitle"><h3>Prebid.js Bidding Partners</h3></div>
-	<script type="text/javascript">
-	    var partnerData=[];
-	    idx=0;
-		
-		{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-	    {% for item in bidder_pages %}
-		partnerData[idx]={};
-		partnerData[idx].href="/dev-docs/bidders.html#{{item.biddercode}}";
-		partnerData[idx].text="{{item.title}}";
-		idx++;
-	    {% endfor %}
-        </script>
-
-	<div id="partnerTable"></div>
-	<script>
-	   writeDynamicTable({div:"partnerTable", data:"partnerData"});
-	</script>
 </div>

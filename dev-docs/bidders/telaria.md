@@ -2,18 +2,38 @@
 layout: bidder
 title: Telaria
 description: Telaria Bidder Adaptor
-hide: true
+pbjs: true
+pbs: false
 biddercode: telaria
-media_types: video
+media_types: video, no-display
 gdpr_supported: true
+usp_supported: false
+coppa_supported: false
+schain_supported: true
+floors_supported: false
+prebid_member: true
+safeframes_ok: false
+deals_supported: false
+pbs_app_supported: false
+fpd_supported: false
+gvl_id: 202
+sidebarType: 1
 ---
 
-### Overview
-This documentation covers some of the parameters that the  **Telaria** `(previously Tremor Video)` exchange accepts. And is intended to be referenced by publishers using prebid 1.x. Documentation for prebid 0.x can be found under [tremor]({{site.baseurl}}/dev-docs/bidders/bidders.html#tremor)
+### Registration
 
+The Telaria adapter requires setup and approval from your Magnite account manager. Please reach out to them for more information.
 
 ### Bid Params
-Please refer to the **Tag Parameters** section in the  [Telaria Console](https://console.telaria.com)
+
+{: .table .table-bordered .table-striped }
+| Name                 | Scope    | Description                                                                                                                                                   | Example                                                                                                                                                                                              | Type        |
+|----------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| adCode | required | A unique ID assigned by your Magnite account team. | `'lufip'`   | `string`    |
+| supplyCode | required | A code assigned by your Magnite account team. | `'demo'`   | `string`    |
+| videoId | optional | The ID of video asset. | `'myVideo'`   | `string`    |
+
+For other parameters, please refer to the **Tag Parameters** section in the  [Telaria Console](https://console.telaria.com)
 
 ### Example Ad Unit
 ```javascript
@@ -30,12 +50,48 @@ var adUnit = {
         "params": {
             "supplyCode": "ssp-demo-rm6rh",
             "adCode": "ssp-!demo!-lufip",
-            "videoId": "MyCoolVideo"    
-            // Other params go here       
+            "videoId": "MyCoolVideo"     
         }
     }]
 }
-``` 
+```
+### Supply Chain Object:
+```javascript
+// There are two ways of passing the SupplyChain Object to our adapter:
+// 1) set it in the config
+pbjs.setConfig({
+    "schain": {
+        "ver":"1.0",
+        "complete": 1,
+        "nodes": [
+            {
+                "asi":"indirectseller.com",
+                "sid":"00001",
+                "hp":1
+            }
+        ]     
+    }
+});
+
+// 2) pass it in the params object of the adunit:
+var adUnit = {
+    "code": "video1",
+    "mediaTypes": {
+        "video": {
+            "playerSize": [640, 480],
+            "context": "instream"
+        }
+    },
+    "bids": [{
+        "bidder": "telaria",
+        "params": {
+            "supplyCode": "ssp-demo-rm6rh",
+            "adCode": "ssp-!demo!-lufip",
+            "videoId": "MyCoolVideo"
+        }
+    }]
+}
+```
 [Telaria Prebid Example](https://console.telaria.com/examples/hb/headerbidding.jsp)
 
 ### Delivery
@@ -51,3 +107,6 @@ var adUnit = {
 + `1` : Streaming
 + `2` : Progressive
 + `3` : Download
+
+### Supply Chain Object
+The adapter has been enhanced to accept the supply chain object (schain) if provided. Please refer to [SupplyChain for Non RTB Requests](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md#supplychain-for-non-openrtb-requests) for more information

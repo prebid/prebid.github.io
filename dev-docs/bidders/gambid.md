@@ -6,11 +6,12 @@ description: Prebid Gambid Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
 
-hide: true
-
+pbjs: true
+media_types: banner, video
 biddercode: gambid
 aliasCode: gamoshi
-
+userIds: id5Id, unifiedId
+sidebarType: 1
 ---
 
 ### Bid params
@@ -19,6 +20,4 @@ aliasCode: gamoshi
 | Name              | Scope    | Description                                                   | Example              | Type     |
 |-------------------|----------|---------------------------------------------------------------|----------------------|----------|
 | `supplyPartnerId` | required | ID of the supply partner | `'12345'`            | `string` |
-
-Gambid is an aliased bidder for Gamoshi
 

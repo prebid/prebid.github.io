@@ -1,0 +1,22 @@
+{
+    "disclosures": [
+        {
+            "identifier": "_sharedid",
+            "type": "cookie",
+            "maxAgeSeconds": 2419200,
+            "cookieRefresh": true,
+            "domains": [
+                "*.sharedid.org"
+            ],
+            "purposes": [
+                1
+            ]
+        }
+    ],
+    "domains": [
+        {
+            "domain": "*.sharedid.org",
+            "use": "Cross-domain ID, deprecated in Prebid 5.x"
+        }
+    ]
+}

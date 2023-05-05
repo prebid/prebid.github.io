@@ -5,7 +5,7 @@ description: Dr. Prebid Terms of Use
 pid: 5
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-ios
-sidebarType: 2
+sidebarType: 3
 ---
 
 <div class="bs-docs-section" markdown="1">

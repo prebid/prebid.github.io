@@ -2,8 +2,9 @@
 layout: bidder
 title: Yieldbot
 description: Prebid Yieldbot Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: yieldbot
+sidebarType: 1
 ---
 
 

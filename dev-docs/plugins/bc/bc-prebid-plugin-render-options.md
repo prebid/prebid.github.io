@@ -52,9 +52,9 @@ Many of the rendering options listed below are ignored when the Brightcove IMA P
 
 This option is used to override the default behavior for selecting the plugin used to render the selected ad(s).
 
-By default, the prebid plugin will select the Brightcove IMA plugin if it detects that DFP is the primary ad server.  If dfpParameters are specified in *any* of the prebid configuration options passed into the plugin, then DFP is identified as the primary ad server.
+By default, the prebid plugin will select the Brightcove IMA plugin if it detects that Google Ad Manager is the primary ad server.  If dfpParameters are specified in *any* of the prebid configuration options passed into the plugin, then Google Ad Manager is identified as the primary ad server.
 
-If the prebid configuration options do not include any dfpParameters, meaning that DFP is *not* the primary ad server, then the MailOnline Prebid plugin will be used to render the ad(s).
+If the prebid configuration options do not include any dfpParameters, meaning that Google Ad Manager is *not* the primary ad server, then the MailOnline Prebid plugin will be used to render the ad(s).
 
 Specifying one of the acceptable values listed below will override this behavior; the prebid plugin will use the renderer specified in this option.
 
@@ -65,13 +65,13 @@ The prebid plugin will only use the **_first_** definition of the `adRenderer` o
 {% include alerts/alert_note.html content=infoNote %}
 
 {% capture infoNote %}
-If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include DFP parameters and you are not using a "custom" renderer, in this case you should explicitly specify the IMA plugin using the `adRenderer` option as shown below. Doing so seems to prevent a problem observed when multiple players are being used in the same HTML document in PC browsers (Edge and Internet Explorer) and some of the players load the IMA plugin and the others load the MailOnline plugin. You can also prevent this collision if your players are loaded into their own iFrames.
+If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include Google Ad Manager parameters and you are not using a "custom" renderer, in this case you should explicitly specify the IMA plugin using the `adRenderer` option as shown below. Doing so seems to prevent a problem observed when multiple players are being used in the same HTML document in PC browsers (Edge and Internet Explorer) and some of the players load the IMA plugin and the others load the MailOnline plugin. You can also prevent this collision if your players are loaded into their own iFrames.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=infoNote %}
 
 {% capture infoNote %}
-If you will be using the Brightcove IMA plugin as the ad renderer, either because DFP is the primary ad server or you have explicitly specified the IMA plugin in the `adRenderer` option, then it is *suggested* that you add the IMA plugin to your Brightcove Player configuration in the Brightcove Studio. Doing so prevents some problems observed when the Player is running on iOS and the IMA plugin is loaded at run-time. When you configure IMA in the Studio, do *not* put a URL in the `Ad Tag` field AND select `"On demand"` from the `Request Ads` field.
+If you will be using the Brightcove IMA plugin as the ad renderer, either because Google Ad Manager is the primary ad server or you have explicitly specified the IMA plugin in the `adRenderer` option, then it is *suggested* that you add the IMA plugin to your Brightcove Player configuration in the Brightcove Studio. Doing so prevents some problems observed when the Player is running on iOS and the IMA plugin is loaded at run-time. When you configure IMA in the Studio, do *not* put a URL in the `Ad Tag` field AND select `"On demand"` from the `Request Ads` field.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=infoNote %}
@@ -80,8 +80,8 @@ If you will be using the Brightcove IMA plugin as the ad renderer, either becaus
 
 One of the following strings:
 
-- `‘ima’`: The Brightcove IMA plugin will be used to render the ad(s) regardless of whether DFP has been identified as the primary ad server for Prebid.
-- `‘mailonline’`: The MailOnline plugin will be used to render the ad(s) regardless of whether DFP has been identified as the primary ad server for Prebid.
+- `‘ima’`: The Brightcove IMA plugin will be used to render the ad(s) regardless of whether Google Ad Manager has been identified as the primary ad server for Prebid.
+- `‘mailonline’`: The MailOnline plugin will be used to render the ad(s) regardless of whether Google Ad Manager has been identified as the primary ad server for Prebid.
 - `‘custom’`: A custom ad renderer is being provided by the publisher.  This can be either a custom build of MailOnline or a custom renderer altogether.  If this value is specified for `adRenderer`, then the plugin will not attempt to use either of the default ad renderers.  The plugin will simply use the renderer as specified in the custom build of the plugin.  See the ReadMe file for more information on specifying a custom renderer.
 
 **Required**

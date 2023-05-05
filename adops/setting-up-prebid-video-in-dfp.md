@@ -1,93 +1,107 @@
 ---
 layout: page_v2
-title: Setting up Prebid Video in DFP
-head_title: Setting up Prebid Video in DFP
-description: Setting up Prebid Video in DFP
-pid: 3
-hide: false
+title: GAM Step by Step - Video Creatives
+head_title: GAM Step by Step - Video Creatives
+description: Setting up in-player and long-form video for Prebid in Google Ad Manager
 top_nav_section: adops
-nav_section: tutorials
 sidebarType: 3
 ---
 
-
-
-# Setting up Prebid Video in DFP
-{: .no_toc}
-
-This page describes how to set up video creatives in DFP for use with Prebid.js.
-
-For general DFP line item setup instructions, see the other pages in this section.
-
-For engineering setup instructions, see
-[Show Video Ads with a DFP Video Tag]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
+# GAM Step by Step - Video Creatives
+{: .no_toc }
 
 * TOC
 {:toc}
 
-## Line Item Setup
-
-- In the **New line item** dialog, under **Inventory sizes**, select the **Video VAST** radio button.
-
-- In the **Master** text area, add your video player size(s).
-
-![DFP New Line Item]({{site.baseurl}}/assets/images/ad-ops/dfp-creative-setup/dfp-creative-setup-03.png){: .pb-md-img :}
-
-Other line item settings and key/value targeting are the same as [those recommended for Prebid display]({{site.baseurl}}/adops/step-by-step.html#step-1-add-a-line-item), with one exception:
-
-+ By default, Prebid.js caps all CPMs at $20.  As a video seller, you may expect to see CPMs higher than $20.  In order to receive those bids, you'll need to make sure your dev team implements custom price buckets as described in the [engineering setup instructions]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).  Once those changes are made on the engineering side, there should be no changes required from the ad ops side to support CPMs over $20.
+This page walks you through the steps required to create in-player and long-form video creatives to attach to your Prebid line items in Google Ad Manager (GAM).
 
 {: .alert.alert-success :}
-Be sure to duplicate your line item and video creative for each Prebid price bucket you intend to create. You may also need separate video line items for each cache service being used. For example, if both AppNexus and Rubicon Project are bidders, you'll need separate line items to support the different cache URLs required.
+For complete instructions on setting up Prebid line items in Google Ad Manager, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
 
-## Creative Setup
+{: .alert.alert-info :}
+For engineering setup instructions, see [Show Video Ads with a Google Ad Manager Video Tag](/dev-docs/show-video-with-a-dfp-video-tag.html).
 
-1\. For each line item you created above, select **new creative set**.
 
-2\. In the dialog that appears, set the **creative set type** to **"Redirect"**
+Each VAST creative contains a URL that points to the cached VAST XML. (This is because most video players can only work with a URL that returns VAST XML.) When setting up video creatives, it's important to understand where the VAST XML is stored for each of your bidders. The most common place to store VAST XML is the AppNexus cache, but some bidders (such as RubiconProject and SpotX) use their own cache services. To support such bidders, see [Multiple Cache Locations](#multiple-cache-locations) below.
 
-3\. Set the **VAST tag URL** to the cache location. Note that each bidder, e.g. Rubicon Project, may have a different cache location URL.
+## Single Cache Location
 
-If you're using a single order for all bidders, then the VAST URL will be the same for each bidder:
+All of your bidders may use the same VAST cache server in these scenarios:
 
-{% highlight html %}
-   https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%
+- Mobile SDK video interacts with Prebid Server which will be set up to cache VAST.
+- All of your Prebid.js bidders return VAST XML.
+- You utilize the Prebid.js [ignoreBidderCacheKey](/dev-docs/publisher-api-reference/setConfig.html#setConfig-vast-cache) option.
+
+In any of these cases, you only need to set up creatives pointing to the VAST cache:
+
+1. Select **Delivery** > **Creatives** and click the **VAST creatives** tab.
+2. Click **New creative**.
+3. In the **New VAST creative** screen, select your **Advertiser**, then select **Redirect**.
+4. Enter a **Name** for your creative.
+5. Set the **VAST tag URL** to the cache location.
+
+{: .alert.alert-info :}
+**Prebid Cache and the VAST creative URL warning**:
+Google Ad Manager will show you a warning stating that fetching VAST from the creative URL failed. This is expected, since the creative URL points to a server-side asset cache hosted by Prebid Server.
+
+**In Player Video Cache Location**
+
+If you’re using a Send Top Price Bid configuration, then the VAST URL will be the same for each bidder:
+
+`https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%`
+
 or
-   [other bidder cache location]
-{% endhighlight %}
 
-If you're using different orders for each bidder, the VAST URL for each will need to be different:
+`[other bidder cache location]`
 
-{% highlight html %}
-   https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid_BIDDERCODE%%
+If you’re using Send All Bids, the VAST URL will include the bidder-specific targeting variable. Be sure to replace `BIDDERCODE` with the actual bidder code for your bidders:
+
+`https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid_BIDDERCODE%%`
+
 or
-   [other bidder cache location]
-{% endhighlight %}
+
+`[other bidder cache location]`
 
 
-   {: .alert.alert-warning :}
-   This VAST tag URL is **required** in order to show video ads.  It points to
-   a server-side cache hosted by your Prebid Server provider.
+**Long-Form Video Cache Location**
 
-   {: .alert.alert-info :}
-   **Prebid Cache and the VAST creative URL warning**  
-   DFP will show you a warning that fetching VAST from the creative
-   URL failed.  This is expected, since the creative URL above points
-   to a server-side asset cache hosted by Prebid Server.
+If your creative is for long-form (OTT) video, you must include a prefix in your VAST URL. For example (Send Top Price Bid):
 
-4\. Set the **duration** to **1**
+`https://prebid.adnxs.com/pbc/v1/cache?uuid=50.00_news_30s_%%PATTERN:hb_cache_id%%`
+
+or (Send All Bids):
+
+`https://prebid.adnxs.com/pbc/v1/cache?uuid=50.00_news_30s_%%PATTERN:hb_cache_id_BIDDERCODE%%`
+
+In these examples, the `uuid` is set to the value of the `hb_pb_cat_dur` key you target in your line item. This value consists of the price bucket, label (for competitive exculsions), and video duration. In this example we've specified a price bucket of `50.00`, a label of `news`, and a duration of `30s`. See [GAM with Prebid Step by Step](/adops/step-by-step.html#targeting) for more information.
+
+{:start="6"}
+6. Set the **Duration** to the max length of video ads you serve. Ads flowing through header bidding are going to differ in length, so if you don't know what the max length is, set it to `30`. If you're using long-form video, this value should match the duration you specified in your uuid targeting.
 
 The resulting creative should look something like the following:
 
-![DFP Video Creative Setup]({{site.baseurl}}/assets/images/ad-ops/dfp-creative-setup/dfp-creative-setup-04.png){: .pb-md-img :}
+![GAM Video Creative Setup](/assets/images/ad-ops/gam-sbs/appnexus_vast_tag.png)
 
-That's it as far as Prebid setup is concerned.  At this point you can add any other options you would normally use, e.g., labels or tracking URLs.
+{:start="7"}
+7. If you're using jsdelivr, set your **Associated ad technology provider**:
 
-# Additional Setup for Long-Form (ad pods)
+{% include /adops/adops-creative-declaration.html %}
+
+{:start="8"}
+8. Click **Save and preview**.
+
+## Multiple Cache Locations
+
+If you're utilizing any bidders that cache their own VAST, you have two options:
+
+- If you're using Prebid.js 4.28 or later, your engineers can specify the [ignoreBidderCacheKey](/dev-docs/publisher-api-reference/setConfig.html#setConfig-vast-cache) option on `setConfig({cache})`. This will cause the browser to generate a VAST wrapper and cache it in your standard location. Then you can use the instructions above for "Single Cache Location". The tradeoff is that this approach requires the video player to unwrap one extra level of VAST.
+- Utilize creative-level targeting in the ad server. See [GAM with Prebid Step by Step](/adops/step-by-step.html#creative-level-targeting) for details. In this case, you'll target on the `hb_bidder` or `hb_bidder_BIDDERCODE` (replacing BIDDERCODE with the code for your bidder) key with a value of the bidder whose VAST is associated with that creative.
 
 ## Further Reading
 
-+ [Show Video Ads with DFP]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html) (Engineering setup)
-+ [Create a Master Video Tag Manually](https://support.google.com/dfp_premium/answer/1068325?hl=en&ref_topic=2480647) (DFP)
-+ [Add Key-Values to a Master Video Ad Tag](https://support.google.com/dfp_premium/answer/1080597) (DFP)
-+ [DFP Macros](https://support.google.com/dfp_premium/answer/1242718) (DFP)
+- [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
+- [Show Video Ads with Google Ad Manager](/dev-docs/show-video-with-a-dfp-video-tag.html)
+- [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html)
+- [Prebid Universal Creatives](/overview/prebid-universal-creative.html)
+- [Creative Considerations](/adops/creative-considerations.html)
+- [Ad Ops Planning Guide](/adops/adops-planning-guide.html)

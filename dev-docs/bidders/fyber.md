@@ -2,9 +2,10 @@
 layout: bidder
 title: Fyber
 description: Prebid Fyber Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: fyber
 media_types: banner
+sidebarType: 1
 ---
 
 ### Bid Params

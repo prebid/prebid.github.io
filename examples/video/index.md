@@ -1,49 +1,46 @@
 ---
 layout: page_v2
-title: Prebid.js Video Examples
-description: Prebid.js Video Examples
-pid: 1
-top_nav_section: pbjs-video
-nav_section: pbjs-video-examples
+title: Prebid Video Examples
+description: This section provides examples of instream, outstream and long-form videos with Prebid.js.
 sidebarType: 4
 ---
 
+# {{page.title}}
 
+{{page.description}}
 
+<!--video warning-->
+<div class="pb-alert pb-alert-important" style="width:60vw;">
+  <p style="color:#85720f"><b>Important:</b>
+  These examples uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
+</div>
 
-# Prebid Video Examples
+The following examples are available:
 
-## Instream Video
+## Prebid Video Module: Instream
 
-### Prebid.js (using only client-side adapters)
+- [VideoJS](/examples/video/instream/videoModule/videojs/video-module-videojs.html)
 
--   [Brightcove](bc-demo.html)
--   [JW Player (Platform)](jwPlatformPrebidDemo.html)
--   [JW Player](jwPlayerPrebid.html)
--   [JW Player (playlist)](jwPlaylistUniqueAds.html)
--   [VideoJS](videojs-demo.html)
--   [Kaltura](klt-demo.html)
--   [Ooyala](ooyala-demo.html)
--   [Brid Player](brid-player-demo.html)
+## Prebid Video Module: Outstream
 
-### Prebid.js (using Prebid Server)
+## Instream
 
--   [JW Player (Platform)](jwplatform-pbserver-demo.html)
--   [JW Player](jwplayer-pbserver-demo.html)
--   [JW Player (v7)](jwplayer7-pbserver-demo.html)
--   [JW Player (Playlist)](jwplaylist-pbserver-demo.html)
--   [Kaltura](kaltura-pbserver-demo.html)
--   [VideoJS](videojs-pbserver-demo.html)
--   [Ooyala](ooyala-pbserver-demo.html)
--   [Brid Player](bridplayer-pbserver-demo.html)
+  - [Brightcove](/examples/video/instream/brightcove/pb-ve-brightcove.html)
+  - [Flowplayer](/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
+  - [JW Player](/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
+  - [JW Player (Self-Hosted)](/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
+  - [Kaltura](/examples/video/instream/kaltura/pb-ve-kaltura.html)
+  - [VideoJS](/examples/video/instream/videojs/pb-ve-videojs.html)
 
-## Outstream Video
+## Instream and Banner Mixed Page
 
--   [Video with DFP](outstream/outstream-dfp.html)
--   [Outstream Video without an Ad Server](outstream/outstream-no-adserver.html)
+  - [Instream/Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
 
+## Outstream
 
-## Long-Form Video   
+  - [Google Ad Manager](/examples/video/outstream/pb-ve-outstream-dfp.html)
+  - [No Server](/examples/video/outstream/pb-ve-outstream-no-server.html)
 
--   [Long-Form Video Using Freewheel](long-form/long-form-video-with-freewheel.html)
+## Long-Form (Ad Pods)
 
+  - [Freewheel](/examples/video/long-form/pb-ve-lf-freewheel.html)

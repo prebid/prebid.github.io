@@ -5,6 +5,33 @@ description: Documentation on how to download Prebid.js for header bidding.
 sidebarType: 0
 ---
 
+<style>
+a.tip {
+    border-bottom: 1px dashed;
+    text-decoration: none
+}
+a.tip:hover {
+    cursor: help;
+    position: relative
+}
+a.tip span {
+    display: none
+}
+a.tip:hover span {
+    border: #c0c0c0 1px dotted;
+    padding: 5px 20px 5px 5px;
+    display: block;
+    z-index: 100;
+    left: 0px;
+    background: #f0f0f0;
+    margin: 10px;
+    width: 300px;
+    position: absolute;
+    top: 10px;
+    text-decoration: none
+}
+</style>
+
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 
 <script>
@@ -28,7 +55,7 @@ $(function(){
 function getVersionList() {
   $.ajax({
       type: "GET",
-      url: "http://js-download.prebid.org/versions",
+      url: "https://js-download.prebid.org/versions",
   })
   .success(function(data) {
     try{
@@ -79,8 +106,8 @@ function submit_download() {
     alertStatus.removeClass('hide');
     $.ajax({
         type: "POST",
-        url: "http://js-download.prebid.org/download",
-        //dataType: 'json',
+        url: "https://js-download.prebid.org/download",
+        dataType: 'text',
         data: form_data
     })
     .success(function(data, textStatus, jqXHR) {
@@ -105,6 +132,9 @@ function submit_download() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      if (form_data['removedModules'].length > 0) {
+	alert("The following modules were removed from your download because they aren't present in Prebid.js version "+form_data['version']+": "+JSON.stringify(form_data['removedModules']));
+      }
     })
     .fail(function(e) {
       errorO = e;
@@ -120,12 +150,30 @@ function get_form_data() {
     var bidders = [];
     var analytics = [];
     var version = $('.selectpicker').val();
+    var removedModules = [];
+
+    var version_restrictions=$('.version-restriction');
+    for (var i = 0; i < version_restrictions.length; i++) {
+        var module=version_restrictions[i].getAttribute('moduleCode');
+        var restriction_name=version_restrictions[i].getAttribute('name');
+        var restriction_value=version_restrictions[i].getAttribute('value');
+        if (restriction_name == "min-version") {
+          var module_version_array=restriction_value.split(".");
+          var pbjs_version_array=version.split(".");
+          if ((Number(pbjs_version_array[0]) < Number(module_version_array[0])) ||
+              (Number(pbjs_version_array[0]) == Number(module_version_array[0]) &&
+               Number(pbjs_version_array[1]) < Number(module_version_array[1]))) {
+              removedModules.push(module);
+          }
+        }
+    }
 
     var bidder_check_boxes = $('.bidder-check-box');
     for (var i = 0; i < bidder_check_boxes.length; i++) {
         var box = bidder_check_boxes[i];
-        if (box.checked) {
-            bidders.push(box.getAttribute('moduleCode'));
+        var module=box.getAttribute('moduleCode');
+        if (box.checked && !removedModules.includes(module)) {
+            bidders.push(module);
         }
     }
 
@@ -137,13 +185,14 @@ function get_form_data() {
         }
     }
 
+
     var form_data = {};
     form_data['modules'] = bidders.concat(analytics);
     form_data['version'] = version;
+    form_data['removedModules'] = removedModules;
 
     return form_data;
 }
-
 
 </script>
 
@@ -158,282 +207,93 @@ function get_form_data() {
 # Customize and Download Prebid.js
 
 {: .lead :}
-To improve the speed and load time of your site, build Prebid.js for only the header bidding partners you choose.
+
+{: .alert.alert-warning :}
+Prebid.js is open source software that is offered for free as a convenience. While it is designed to help companies address legal requirements associated with header bidding, we cannot and do not warrant that your use of Prebid.js will satisfy legal requirements. You are solely responsible for ensuring that your use of Prebid.js complies with all applicable laws.  We strongly encourage you to obtain legal advice when using Prebid.js to ensure your implementation complies with all laws where you operate.
+
+{: .alert.alert-danger :}
+**Note:** recommended modules are now checked by default. Please uncheck them as desired.
 
 ### Option 1: Customize your download here
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% assign module_pages = site.pages | where: "page_type", "module" %}
-
-{: .alert.alert-success :}
-Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version.
+{% assign analytics_pages = site.pages | where: "layout", "analytics" %}
+{% assign userid_pages = site.pages | where: "layout", "userid" %}
 
 <form>
-<div class="row">
 <h4>Select Prebid Version</h4>
 <select id="version_selector" class="selectpicker">
 </select>
-
-
+<br>
 <h4>Select Bidder Adapters</h4>
-<div class="adapters">
-{% for page in bidder_pages %}
-  {% if page.s2s_only == true %}
-    {% continue %}
-  {% endif %}
+<div class="row adapters">
+{% for page in bidder_pages %}{% if page.pbjs == true %}{% if page.enable_download == false %}{% continue %}{% endif %}
 <div class="col-md-4">
  <div class="checkbox">
   <label>
-  {% if page.aliasCode %}
-    <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
-  {% else %}
-    <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }}
-  {% endif %}
+  {% if page.filename %} <input type="checkbox" id="{{ page.filename }}" moduleCode="{{ page.filename }}" {% elsif page.aliasCode %} <input type="checkbox" id="{{ page.aliasCode }}BidAdapter" moduleCode="{{ page.aliasCode }}BidAdapter" {% else %} <input type="checkbox" id="{{ page.biddercode }}BidAdapter" moduleCode="{{ page.biddercode }}BidAdapter" {% endif %} class="bidder-check-box"><a href="{{page.url}}"> {{ page.title }}</a>
+  {% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
+  </label>
+</div>
+</div>
+{% endif %}{% endfor %}
+</div>
 
-    </label>
-</div>
-</div>
-{% endfor %}
-</div>
-</div>
 
 <br>
+<h4>Analytics Adapters</h4>
 <div class="row">
-  <h4>Analytics Adapters</h4>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adagio" class="analytics-check-box"> Adagio Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adkernelAdn" class="analytics-check-box"> Adkernel Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adomik" class="analytics-check-box"> Adomik Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="adxcg" class="analytics-check-box"> Adxcg Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="appier" class="analytics-check-box"> Appier Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="eplanning" class="analytics-check-box"> Eplanning Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="finteza" class="analytics-check-box" /> OpenX Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="google" class="analytics-check-box"> Google Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="livewrapped" class="analytics-check-box"> Livewrapped Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="marsmedia" class="analytics-check-box"> Marsmedia Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="openx" class="analytics-check-box" /> OpenX Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="prebidmanager" class="analytics-check-box" /> Prebid Manager
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="pubwise" class="analytics-check-box"> PubWise.io Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="pulsepoint" class="analytics-check-box"> PulsePoint
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="realvu" class="analytics-check-box"> Realvu Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="rivr" class="analytics-check-box" /> Rivr Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="roxot" class="analytics-check-box"> Prebid Analytics by Roxot
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="scaleable" class="analytics-check-box"> Scaleable.ai Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="sigmoid" class="analytics-check-box"> Sigmoid Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="sharethrough" class="analytics-check-box"> Sharethrough
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="sortable" class="analytics-check-box" /> Sortable Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="sovrn" class="analytics-check-box" /> Sovrn Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="staq" class="analytics-check-box" /> STAQ Analytics
-    </label>
-  </div>
-</div>
-
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="vuble" class="analytics-check-box"> Vuble Analytics
-    </label>
-  </div>
-</div>
-
-<div class="col-md-4">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" analyticscode="yuktamedia" class="analytics-check-box"> yuktamedia Analytics
-    </label>
-  </div>
-</div>
-
+{% for page in analytics_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label><input type="checkbox" id="{{ page.modulecode }}" analyticscode="{{ page.modulecode }}" class="analytics-check-box"><a href="{{page.url}}"> {{ page.title }}</a></label></div></div>{% endfor %}
 </div>
 <br/>
+<h4>Recommended Modules</h4>
+Prebid.org highly recommends that publishers utilize the following modules:
+<br/>
+{% for page in module_pages %}{% if page.recommended == true %}<div class="row"><div class="checkbox" style="background-color: #e1fce2;"><label> <input type="checkbox" CHECKED id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box"> <a href="{{page.url}}" class="tip"><strong>{{ page.display_name }}</strong></a> - {{page.description}}</label></div></div>{% endif %}{% endfor %}
+<br/>
+<h4>General Modules</h4>
 <div class="row">
- <h4>Modules</h4>
- {% for page in module_pages %}
-  {% if page.enable_download == false %}
-    {% continue %}
-  {% endif %}
- <div class="col-md-4">
- <div class="checkbox">
-  <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> {{ page.display_name }}</label>
+ {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true or page.vendor_specific == true %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox">
+  <label> <input type="checkbox" id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
+</div></div>{% endfor %}
 </div>
+
+<h4>Vendor-Specific Modules</h4>
+These modules may require accounts with a service provider.<br/>
+<div class="row">
+ {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true %}{% continue %}{% endif %}{% if page.vendor_specific == true %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
+</div></div>{% endif %}{% endfor %}
 </div>
- {% endfor %}
+
+<h4>User ID Modules</h4>
+<div class="row">
+ {% for page in userid_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.useridmodule }}" moduleCode="{{ page.useridmodule }}" class="bidder-check-box"> <a href="{{page.url}}">{{ page.title }}</a></label>{% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
+</div></div>{% endfor %}
 </div>
+
+{% for page in module_pages %}{% if page.enable_download == false%}{% continue %}{% endif %}{% if page.min_js_version %}<input type="hidden" class="version-restriction" moduleCode="{{ page.module_code }}" name="min-version" value="{{ page.min_js_version }}">{% endif %}
+{% endfor %}
 
 <br>
 
 <div class="form-group">
 
-  <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick="submit_download()">Get Prebid.js! </button>
+<button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick="submit_download()">Get Prebid.js! </button>
 
 </div>
 
 </form>
 
+{: .alert.alert-info :}
+Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version. Also please note that even though you can download older versions of Prebid.js,
+Prebid only supports the most recent major version. Within a month or so after a major release (e.g. 3.x), we won't patch the previous major release (e.g. 2.x).
+
+
 </div>
 
-
-
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade download-form__modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -463,13 +323,13 @@ Note: If you receive an error during download you most likely selected a configu
 
 
     </div>
+
   </div>
 </div>
-
 
 <div class="bs-docs-section" markdown="1">
 
 ### Option 2: Build from Source Code (More Advanced)
 
 {: .lead :}
-Alternatively, you can build Prebid.js from the source code.  For instructions, see the [Prebid.js README on GitHub](https://github.com/prebid/Prebid.js/blob/master/README.md).
+Alternatively, you can build Prebid.js from the source code. For instructions, see the [Prebid.js README on GitHub](https://github.com/prebid/Prebid.js/blob/master/README.md).

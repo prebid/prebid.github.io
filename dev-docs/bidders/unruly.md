@@ -2,16 +2,29 @@
 layout: bidder
 title: Unruly
 description: Prebid Unruly Bidder Adaptor
-hide: true
 biddercode: unruly
-media_types: native, video
 gdpr_supported: true
+usp_supported: true
+coppa_supported: false
+schain_supported: true
+floors_supported: true
+media_types: banner, video
+userIds: all
+prebid_member: false
+safeframes_ok: check with bidder
+deals_supported: check with bidder
+pbjs: true
+pbs: true
+pbs_app_supported: true
+gvl_id: 36
+sidebarType: 1
 ---
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name            | Scope    | Description                                                                                 | Example                                  | Type      |
-|-----------------|----------|---------------------------------------------------------------------------------------------|------------------------------------------|-----------|
-| `siteId`        | required | The site ID from Unruly. This will be provided to you by your Unruly account manager        | `123456`                                 | `integer` |
-| `targetingUUID` | required | The targeting UUID from Unruly. This will be provided to you by your Unruly account manager | `'766220b5-3d02-46c5-aa8b-2bc60c6f7418'` | `string`  |
+| Name               | Scope          | Description                                                                                                                  | Example                                          | Type      |
+|--------------------|----------------|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|-----------|
+| `siteId`           | required       | The site ID from Unruly. This will be provided to you by your Unruly account manager, this is prefered                                       | `123456`                                         | `integer` |
+|  `siteid`           | deprecated       | The site ID from Unruly. This will be provided to you by your Unruly account manager, this is backward compability                                      | `123456`                                         | `integer` |
+| `featureOverrides` | optional       | This param is a generic object for configuring Unruly outstream demand. To run UNmissable, set ‘canRunUnmissable’ to true.   | `"featureOverrides": {"canRunUnmissable": true}` | `object`  |

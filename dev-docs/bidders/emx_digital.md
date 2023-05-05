@@ -2,13 +2,22 @@
 layout: bidder
 title: EMX Digital
 description: Prebid EMX Digital Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: emx_digital
-bidder_supports_deals: false
 media_types: banner, video
 gdpr_supported: true
+gvl_id: 183
+usp_supported: true
+schain_supported: true
+floors_supported: true
+userIds: identityLink, uid2
+sidebarType: 1
 ---
 
+### Registration
+
+To use this bidder you will need an account and a valid tagid from our exchange.  For further information, please contact your Account Manager or adops@emxdigital.com.
 
 ### Bid Params
 

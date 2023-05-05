@@ -2,10 +2,11 @@
 layout: bidder
 title: Arteebee
 description: Prebid Arteebee Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: arteebee
 gdpr_supported: true
 coppa_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params

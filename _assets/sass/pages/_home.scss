@@ -1,0 +1,10 @@
+.pb-homepage {
+  h1, .h1 {
+    font-size: 12vw;
+    margin-bottom: 0.75rem;
+
+    @include media('>phone') {
+      font-size: 40px;
+    }
+  }
+}

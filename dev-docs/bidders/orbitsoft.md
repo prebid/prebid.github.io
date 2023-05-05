@@ -2,8 +2,9 @@
 layout: bidder
 title: Orbitsoft
 description: Prebid Orbitsoft Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: orbitsoft
+sidebarType: 1
 ---
 
 

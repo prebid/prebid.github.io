@@ -1,0 +1,12 @@
+.btn-outline-brand {
+  @include button-outline-variant($t-button-color, $color--white);
+  @include font-weight-bold;
+  padding: 18px 32px 15px;
+  border-color: $color--light-iron;
+  font-size: 18px;
+  text-decoration: none;
+
+  @include media('>=tablet') {
+    @include padding(null 68px);
+  }
+}

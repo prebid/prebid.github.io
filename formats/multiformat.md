@@ -14,9 +14,8 @@ Ad Units that support multiple formats are supported by Prebid.js. Prebid Server
 
 ### Adops
 
-- [Setting up Multi-Format in DFP](/adops/setting-up-prebid-multi-format-in-dfp.html)
+- [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
 
 ### Developers
 
 - [Show Multi-Format Ads with Prebid.js](/dev-docs/show-multi-format-ads.html)
-

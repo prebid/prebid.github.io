@@ -2,10 +2,32 @@
 layout: bidder
 title: AOL
 description: Prebid AOL Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: aol
-gdpr_supported: true
+gdpr_supported: false
+usp_supported: true
+gvl_id: 25
+userIds: connectId
+sidebarType: 1
+
 ---
+### Disclosure
+
+This adapter may not handle user syncs for TCF2 or GPP correctly. The user sync consent querystring parameters are generated at the time of the bid request and might be stale at the time of the user sync. See https://github.com/prebid/Prebid.js/pull/9345#issuecomment-1362887086
+
+### IMPORTANT NOTICE!
+**TL;DR**
+1. The `aol` adapter is scheduled to be deprecated.
+2. Our New `yahoossp` is available for adoption.
+3. Please contact your Account Manager/Executive for migration details.
+
+Dear Publishers & Partners,
+As part of our platform consolidation process to simplify your integrations moving forward
+We invite you to switch from the `oneVideo` Adapter to our NEW `yahoossp` bid adapter for both Display & Video inventory.
+FYI - The oneVideo adapter is scheduled for depreciation in the upcoming months.
+
+Thanks in advance,
+Yahoo SSP
 
 ### Note:
 This adapter allows use of both ONE by AOL: Display and ONE by AOL: Mobile platforms. In order to differentiate these sources of demand in your ad server and reporting, you may use the optional `onedisplay` and `onemobile` adapter aliases instead.
@@ -21,7 +43,6 @@ This adapter allows use of both ONE by AOL: Display and ONE by AOL: Mobile platf
 | `network`   | required | The network ID from AOL.                                                                                                                                                                | `'5071.1'`                                    | `string` |
 | `alias`     | optional | The placement alias from AOL.                                                                                                                                                           | `'desktop_articlepage_something_box_300_250'` | `string` |
 | `server`    | optional | The server domain name. Default is adserver-us.adtech.advertising.com. EU customers must use adserver-eu.adtech.advertising.com, and Asia customers adserver-as.adtech.advertising.com. | `'adserver-eu.adtech.advertising.com'`        | `string` |
-| `bidFloor`  | optional | Dynamic bid floor (added in Prebid 0.8.1)                                                                                                                                               | `'0.80'`                                      | `string` |
 
 #### ONE by AOL: Mobile
 

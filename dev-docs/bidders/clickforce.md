@@ -2,9 +2,10 @@
 layout: bidder
 title: Clickforce
 description: Prebid Clickforce Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: clickforce
 media_types: native
+sidebarType: 1
 ---
 
 ### Bid Params (display ad)

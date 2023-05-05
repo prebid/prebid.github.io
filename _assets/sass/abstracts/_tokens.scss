@@ -1,0 +1,156 @@
+// Tokens
+//
+// Tokens are named values that are used in the site to allow a common value to
+// be shared. Their names should be based (for the most part) on where/how they
+// are used rather than what the look like.
+//
+// Weight: -90
+//
+// Styleguide Tokens
+
+// Color Tokens
+//
+// Color tokens reference specific named colors but they themselves should be
+// named based on where/how they are used, rather than being descriptive of
+// their color.
+//
+// Markup: color-token-swatches.hbs
+//
+// Weight: 0
+//
+// Styleguide Tokens.Colors
+
+$t-text-color: $color--grey;
+$t-text-reverse: $color--white;
+$t-text-color--reverse: $t-text-reverse;
+$t-heading-color: $color--carbon;
+$t-heading-color--secondary: $color--dark-grey;
+$t-anchor-color: $color--orange;
+$t-nav-color: $color--blue;
+$t-brand-color: $color--blue;
+$t-brand-color--accent: $color--orange;
+$t-brand-color--secondary: rgba(9, 40, 52, 0.08);
+$t-brand-color--subtle2: rgba(0, 78, 145, 0.05);
+$t-brand-color--dark: $color--carbon;
+
+$t-button-color: $color--blue;
+$t-button-color--hover: $color--carbon;
+
+$t-divider-color: $color--light-iron;
+$t-code-bg: #f8f9f9;
+
+// Put colors in a map for ease of output in styleguide
+$sg-tokens--color: (
+
+);
+
+
+// Gradient Tokens
+//
+// Gradient tokens reference specific named colors but they themselves should be
+// named based on where/how they are used, rather than being descriptive of
+// their color.
+//
+// Markup: gradient-swatches.hbs
+//
+// Weight: 10
+//
+// Styleguide Tokens.Gradients
+
+
+
+
+// Put colors in a map for ease of output in styleguide
+$sg-tokens--gradient: (
+
+);
+
+
+
+// Font/Text Tokens
+//
+// Tokens related to fonts or text styling
+//
+// Markup:
+// <div class="sg-token-group">
+//   <div class="sg-token" data-token-name="font-family"></div>
+//   <div class="sg-token" data-token-name="font-family--primary"></div>
+//   <div class="sg-token" data-token-name="font-size"></div>
+//   <div class="sg-token" data-token-name="line-height"></div>
+// </div>
+//
+// Weight: 20
+//
+// Styleguide Tokens.Fonts
+$t-font-family: Arial, sans-serif;
+$t-font--primary: "Open Sans";
+$t-font-family--primary: $t-font--primary, $t-font-family;
+$t-font-size: 18px;
+$t-font-size--mobile: 18px;
+$t-line-height: (27 / 18);
+$em-base: $t-font-size;
+
+
+// Put variables in a map for ease of output in styleguide
+$sg-tokens--font: (
+
+);
+
+
+// Dimensional Tokens
+//
+// Tokens with dimensional value
+//
+// Markup:
+// <div class="sg-token-group">
+// </div>
+//
+// Weight: 30
+//
+// Styleguide Tokens.Dimensional
+$t-spacing-unit--xxs: 10px;
+$t-spacing-unit--xs: 20px;
+$t-spacing-unit--sm: 30px;
+$t-spacing-unit--md: 40px;
+$t-spacing-unit--lg: 60px;
+$t-spacing-unit--xl: 80px;
+$t-spacing-unit--xxl: 120px;
+
+$t-container-width: 1072px;
+
+// Put variables in a map for ease of output in styleguide
+$sg-tokens--dimension: (
+
+);
+
+
+
+// Miscellaneous Tokens
+//
+// Tokens that aren't color, typography, or size.
+//
+// Markup:
+// <div class="sg-token-group">
+//   <div class="sg-token" data-token-name="transition-duration"></div>
+// </div>
+//
+// Weight: 40
+//
+// Styleguide Tokens.Miscellaneous
+
+$t-transition-duration: 0.35s;
+$t-transition-duration--fast: 0.2s;
+$t-transition: $t-transition-duration ease;
+$t-transition--fast: $t-transition-duration--fast ease;
+
+$t-literal--inherit: inherit;
+
+$t-border-radius: 6px;
+$t-border-radius--asset-tile: 15px;
+$t-box-shadow: 0 0 12px 2px rgba(0,0,0,0.16);
+
+
+// Put variables in a map for ease of output in styleguide
+$sg-tokens--misc: (
+
+);

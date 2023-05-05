@@ -2,10 +2,16 @@
 layout: bidder
 title: AdKernelAdn
 description: Prebid AdKernel Ad Delivery Network Bidder Adaptor
-hide: true
+pbjs: true
+pbs: true
 biddercode: adkernelAdn
-media_types: video
+media_types: banner, video
 gdpr_supported: true
+usp_supported: true
+coppa_supported: true
+pbs_app_supported: true
+gvl_id: 14
+sidebarType: 1
 ---
 
 ### Note:

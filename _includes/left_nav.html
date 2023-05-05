@@ -1,142 +1,168 @@
- <ul class="list-group">
-					
-					<!--get all sections-->
-					
-					{% assign arrSideBarSections = site.data.sidebar | where: "isSectionHeader",  "1" %}
-					
-					{% for sectionHeader in arrSideBarSections %}
-					
-						<a href="#{{sectionHeader.sbCollapseId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-							<div class="d-flex w-100 justify-content-start align-items-center">
-								<span class="fa fa-dashboard fa-fw mr-3"></span> 
-								<span class="menu-collapsed pb-sidebar-section pb-section-title">{{sectionHeader.sectionTitle}}&nbsp;<img src="/assets/images/downarrow.png"></span>
-								<span class="submenu-icon ml-auto"></span>
-	            			</div>
-	        			</a>
-	        			
-	        			{% assign sectionIdx = forloop.index0 %}
-						{% assign arrSectionItems = site.data.sidebar | where: "sbSecId", sectionIdx %}
-						
-						<!--get all sub section headers-->
-	            			{% assign arrSectionHeaders = arrSectionItems | where: "isHeader", "1" %}
-	            		
-	            		
-	            			<!--parent collapse div - open if matches sidebartype-->
-	            			{% if page.sidebarType == sectionHeader.sbSecId || page.layout == bidder %}
-		            		<div id={{sectionHeader.sbCollapseId}} class="collapse sidebar-submenu in">
-			            	{% else %}
-	            			<div id={{sectionHeader.sbCollapseId}} class="collapse sidebar-submenu">
-		            		{% endif %}
-		            		
-		            		{% if arrSectionHeaders.size == 1 || page.layout == bidder %}
-		            		
-			            		<!--go through each section-->
-			            		
-		            			{% for sectionItem in arrSectionItems %}
-		            					            				
-		            				<!--display subsection headers-->
-		            				{% if sectionItem.isSectionHeader == 0 and sectionItem.isHeader == 0 %}
-		            							
-		            					<!-- check to see if we are on this page-->            				
-			            				<!--display subsection items with links-->
-									{% assign isPage = 0 %}
-				            				{% if sectionItem.link == page.url %}
-										{% assign isPage = 1 %}
-									{% endif %}
-			            				
-			            				
-			            				<a href="{{sectionItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-				            				{% if isPage == 1 %}
-											<span class="menu-collapsed pb-nav-item" style="background-color:#cccccc;">{{sectionItem.title}}</span>
-											{% else %}
-											<span class="menu-collapsed pb-nav-item">{{sectionItem.title}}</span>
-											{% endif %}
-		                				</a>
-		                				
-		            				{% endif %}
-		            			
-		            			{% endfor %}
-		            			
-		            		{% else %}	            			
-			            			
-		            				<!--go through each section-->
-									{% for thisSectionHeader in arrSectionHeaders %}
-									
-									<a href="#{{thisSectionHeader.headerId}}" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-										<div class="d-flex w-100 justify-content-start align-items-center">
-											<span class="fa fa-dashboard fa-fw mr-3"></span> 
-											<span class="menu-collapsed pb-sidebar-section pb-section-subtitle">{{thisSectionHeader.title}}&nbsp;<img src="/assets/images/downarrow.png"></span>
-											<span class="submenu-icon ml-auto"></span>
-			                			</div>
-			            			</a>
-			            			
-									
-									{% assign arrSubItems = arrSectionItems | where: "subgroup", thisSectionHeader.subgroup | where: "isHeader", "0" %}
-									{% assign isOpen = 0 %}
-									{% for thisSubItem in arrSubItems %}
-										{% if thisSubItem.link == page.url %}
-											{% assign isOpen = 1 %}
-										{% endif %}
-									{% endfor %}
-									
-										
-									<!--this is collapsed if not matching url of page-->
-									{% if isOpen == 1 %}
-									<div id={{thisSectionHeader.headerId}} class="collapse sidebar-submenu in">
-									{% else %}
-									<div id={{thisSectionHeader.headerId}} class="collapse sidebar-submenu">
-									{% endif %}
-	
-										{% for thisSubItem in arrSubItems %}
-										
-				            				{% assign subsectionIdx = forloop.index0 %}
-				            				{% assign lastIdx = arrSubItems.size | minus: 1 %}
-				            				{% assign isPage = 0 %}
-				            				{% if thisSubItem.link == page.url %}
-												{% assign isPage = 1 %}
-											{% endif %}
-				            				
-				            				<!--display subsection items with links-->
-				            				{% if subsectionIdx == 0 %}
-					            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-						            				{% if isPage == 1 %}
-						            					<span class="menu-collapsed pb-nav-item pb-first-item" style="background-color:#cccccc;">{{thisSubItem.title}}</span>
-						            				{% else %}
-														<span class="menu-collapsed pb-nav-item pb-first-item">{{thisSubItem.title}}</span>
-													{% endif %}
-				                				</a>
-				            				{% elsif subsectionIdx == lastIdx %}
-					            				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-						            				{% if isPage == 1 %}
-						            					<span class="menu-collapsed pb-nav-item pb-last-item" style="background-color:#cccccc;">{{thisSubItem.title}}</span>
-						            				{% else %}
-														<span class="menu-collapsed pb-nav-item pb-last-item">{{thisSubItem.title}}</span>
-													{% endif %}	
-				                				</a>
-				                		
-				                			{% else %}
-				                				<a href="{{thisSubItem.link}}" class="list-group-item list-group-item-action bg-dark text-white">
-					                				{% if isPage == 1 %}
-					                					<span class="menu-collapsed pb-nav-item bg-secondary" style="background-color:#cccccc;">{{thisSubItem.title}}</span>
-					                				{% else %}
-														<span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
-													{% endif %}
-			                					</a>
-				            				{% endif %}
-										
-				            				
-										
-										{% endfor %}						
-										
-									</div>
-			            			
-			            			{% endfor %}
-			            			
-	            			
-	            			{% endif %}
-		            		
-	            		</div>
-	
-					{% endfor %}
-								
-				</ul>
+<div class="list-group">
+
+  <!-- setup helper variables -->
+  {% assign is_active_class = 'is-active' %}
+  {% assign base_item_classes = "list-group-item list-group-item-action flex-column align-items-start" | split: " " %}
+  {% assign base_submenu_classes = "collapse sidebar-submenu" | split: " " %}
+
+  <!--get all sections-->
+  {% assign arrSideBarSections = site.data.sidebar | where: "isSectionHeader",  "1" %}
+
+  {% for sectionHeader in arrSideBarSections %} <!-- othello -->
+
+
+    {% assign item_classes = base_item_classes | push: 'list-group-item--level-0' %}
+    {% if page.sidebarType == sectionHeader.sbSecId || page.layout == bidder %}
+      {% assign item_classes = item_classes | push: is_active_class %}
+      {% assign submenu_classes = base_submenu_classes | push: is_active_class %}
+    {% else %}
+      {% assign item_classes = item_classes %}
+      {% assign submenu_classes = base_submenu_classes %}
+    {% endif %}
+
+
+    <a href="#{{sectionHeader.sbCollapseId}}" data-toggle="collapse" aria-expanded="false" class="{{ item_classes | join: " " }}">
+      <span class="menu-collapsed pb-sidebar-section pb-section-title">{{sectionHeader.sectionTitle}}</span>
+    </a>
+
+    {% assign sectionIdx = forloop.index0 %}
+    {% assign arrSectionItems = site.data.sidebar | where: "sbSecId", sectionIdx %}
+
+    <!--get all sub section headers-->
+    {% assign arrSectionHeaders = arrSectionItems | where: "isHeader", "1" %}
+
+    <div id={{sectionHeader.sbCollapseId}} class="{{ submenu_classes | join: " " }}">
+
+    {% if arrSectionHeaders.size == 1 || page.layout == bidder %} <!-- hamlet -->
+
+      <!--go through each section-->
+
+      {% for sectionItem in arrSectionItems %}
+
+        <!--display subsection headers-->
+        {% if sectionItem.isSectionHeader == 0 and sectionItem.isHeader == 0 %}
+
+          <!-- check to see if we are on this page-->
+          <!--display subsection items with links-->
+          {% assign isPage = 0 %}
+          {% if sectionItem.link == page.url %}
+            {% assign isPage = 1 %}
+          {% endif %}
+
+
+          <a href="{{sectionItem.link}}" class="list-group-item list-group-item-action list-group-item--level-1">
+            {% if isPage == 1 %}
+              <span class="menu-collapsed pb-nav-item is-active">{{sectionItem.title}}</span>
+            {% else %}
+              <span class="menu-collapsed pb-nav-item">{{sectionItem.title}}</span>
+            {% endif %}
+          </a>
+
+        {% endif %}
+
+      {% endfor %}
+
+    {% else %} <!-- /hamlet -->
+
+      <!--go through each section-->
+      {% for thisSectionHeader in arrSectionHeaders %} <!-- romeo -->
+
+        {% assign arrSubItems = arrSectionItems | where: "subgroup", thisSectionHeader.subgroup | where: "isHeader", "0" %}
+        {% assign isOpen = 0 %}
+        {% for thisSubItem in arrSubItems %}
+          {% if thisSubItem.link == page.url %}
+            {% assign isOpen = 1 %}
+          {% elsif  page.layout == "api_prebidjs" and thisSubItem.link == "/dev-docs/publisher-api-reference.html" %}
+            {% assign isOpen = 1 %}
+          {% elsif  page.layout == "bidder" and thisSubItem.link == "/dev-docs/bidders.html" %}
+            {% assign isOpen = 1 %}
+          {% endif %}
+        {% endfor %}
+
+        {% assign item_classes = base_item_classes | push: 'list-group-item--level-1' %}
+        {% if isOpen == 1 %}
+          {%assign item_classes = item_classes | push: 'is-active' %}
+        {% endif %}
+
+        <a href="#{{thisSectionHeader.headerId}}" data-toggle="collapse" aria-expanded="false" class="{{ item_classes | join: " " }}">
+          <span class="menu-collapsed pb-sidebar-section pb-section-subtitle">{{thisSectionHeader.title}}</span>
+        </a>
+
+        <!--this is collapsed if not matching url of page-->
+        {% if isOpen == 1 %}
+          <div id={{thisSectionHeader.headerId}} class="collapse sidebar-submenu is-active">
+        {% else %}
+          <div id={{thisSectionHeader.headerId}} class="collapse sidebar-submenu">
+        {% endif %}
+
+        {% for thisSubItem in arrSubItems %} <!-- mercutio -->
+
+          {% assign subsectionIdx = forloop.index0 %}
+          {% assign lastIdx = arrSubItems.size | minus: 1 %}
+          {% assign isPage = 0 %}
+          {% if thisSubItem.link == page.url %}
+            {% assign isPage = 1 %}
+          {% elsif  page.layout == "api_prebidjs" and thisSubItem.link == "/dev-docs/publisher-api-reference.html" %}
+            {% assign isPage = 1 %}
+          {% elsif  page.layout == "bidder" and thisSubItem.link == "/dev-docs/bidders.html" %}
+            {% assign isPage = 1 %}
+          {% endif %}
+
+          {% assign item_classes = base_item_classes | push: 'list-group-item--level-2' %}
+          {% if isPage == 1 %}
+            {% assign item_classes = item_classes | push: 'is-active' %}
+          {% endif %}
+
+          <!--display subsection items with links-->
+          {% if subsectionIdx == 0 % || thisSubItem.isCatHeader == 1 %}
+
+            <!--video example categories should not link-->
+            {% if thisSubItem.isCatHeader == 1 %}
+              <span class="{{ item_classes | join: " " }}">
+                <span class="menu-collapsed pb-nav-item pb-first-item pb-nav-item--title">{{thisSubItem.title}}</span>
+              </span>
+            {% else %}
+              <a href="{{thisSubItem.link}}" class="{{ item_classes | join: " " }}">
+                {% if isPage == 1 %}
+                  <span class="menu-collapsed pb-nav-item pb-first-item is-active">{{thisSubItem.title}}</span>
+                {% else %}
+                  <span class="menu-collapsed pb-nav-item pb-first-item">{{thisSubItem.title}}</span>
+                {% endif %}
+              </a>
+            {% endif %}
+          {% elsif subsectionIdx == lastIdx %}
+            <a href="{{thisSubItem.link}}" class="{{ item_classes | join: " " }}">
+              {% if isPage == 1 %}
+                <span class="menu-collapsed pb-nav-item pb-last-item is-active">{{thisSubItem.title}}</span>
+              {% else %}
+                <span class="menu-collapsed pb-nav-item pb-last-item">{{thisSubItem.title}}</span>
+              {% endif %}
+            </a>
+
+          {% else %}
+            {% if thisSubItem.isCatHeader == 1 %}
+              <span class="{{ item_classes | join: " " }}">
+                <span class="menu-collapsed pb-nav-item pb-nav-item--title">{{thisSubItem.title}}</span>
+              </span>
+            {% else %}
+              <a href="{{thisSubItem.link}}" class="{{ item_classes | join: " " }}">
+                {% if isPage == 1 %}
+                  <span class="menu-collapsed pb-nav-item is-active">{{thisSubItem.title}}</span>
+                {% else %}
+                  <span class="menu-collapsed pb-nav-item">{{thisSubItem.title}}</span>
+                {% endif %}
+              </a>
+            {% endif %}
+          {% endif %}
+
+        {% endfor %} <!-- /mercutio -->
+          </div> {% comment %} Closes the divs that are started in conditional {% endcomment %}
+      {% endfor %} <!-- /romeo -->
+
+    {% endif %} <!-- /hamlet -->
+
+      </div> {% comment %} Closes the divs that are started in conditional {% endcomment %}
+
+  {% endfor %} <!-- /othello -->
+
+</div>

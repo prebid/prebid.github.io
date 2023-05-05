@@ -5,7 +5,7 @@ description: How to Use the Dr. Prebid App
 pid: 4
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-ios
-sidebarType: 2
+sidebarType: 3
 ---
 
 # Dr. Prebid
@@ -19,11 +19,18 @@ Dr. Prebid is a validation and troubleshooting app for publishers implementing P
 
 ## Get the App
 
-This app is available for [download for iOS](https://itunes.apple.com/us/app/dr-prebid/id1442614692?mt=8).
+This app is available for iOS and Android:
 
-System Requirements: Requires iOS 12.0 or later. Compatible with iPhone, iPad, and iPod touch.
+- [Download for iOS](https://itunes.apple.com/us/app/dr-prebid/id1442614692?mt=8)  
+  System Requirements: Requires iOS 12.0 or later. Compatible with iPhone, iPad, and iPod touch.
 
-Dr. Prebid is an open source app. You can [find the source on the Prebid GitHub site](https://github.com/prebid/prebid-mobile-ios/tree/master/tools/PrebidValidator).
+- [Download for Android](https://play.google.com/store/apps/details?id=org.prebid.validation.drprebid)  
+  System Requirements: Requires Android 4.2 and up.
+
+Dr. Prebid is an open source app. You can find the source on the Prebid GitHub site:
+
+- [Source for iOS](https://github.com/prebid/prebid-mobile-ios/tree/master/tools/PrebidValidator)
+- [Source for Android](https://github.com/prebid/prebid-mobile-android/tree/master/tools/drprebid)
 
 **Review the [Prebid.org Dr. Prebid Terms of Use]({{site.github.url}}/prebid-mobile/dr-prebid-tou.html).**
 
@@ -48,6 +55,8 @@ The type of ad you want to test. This will be the ad type that is associated wit
 Select from:
 -	*Banner*
 -	*Interstitial*
+-    *Native*
+-    *Video*
 
 **Ad Size**
 
@@ -61,9 +70,8 @@ These settings will enable you to test whether the Prebid Mobile line item in yo
 
 The primary ad server you’re using to serve your ads.
 
-Select from:
+Select:
 -	*DFP*
--	*MoPub*
 
 **Bid Price**
 
@@ -87,6 +95,10 @@ Select your Prebid Server host:
 
 -	*AppNexus*
 -	*Rubicon*
+-    *Custom*
+
+**Custom Server Host**
+Provide the url of the custom hosted prebid server 
 
 **Account ID**
 
@@ -146,7 +158,7 @@ This test determines whether your Prebid Mobile line items are configured correc
 The test generates Prebid-specific key-value pairs representing the bid price you specified in the **Bid Price** field of your setup. Based on the **Ad Format** you selected, these key-values are set on the banner ad views or interstitials, and a test ad is loaded to determine whether any matching Prebid line items will be selected.
 
 -	**Ad Server Request sent and Key-Value targeting sent**  
-  Verifies that the ad server request was sent. (Note: If DFP was selected as the Ad Server on the Setup page and the IDs you entered on the Setup page are incorrect, the request will not be sent.) Tap this entry to see a list of key-value pairs that were sent with this request.
+  Verifies that the ad server request was sent. (Note: If Google Ad Manager was selected as the Ad Server on the Setup page and the IDs you entered on the Setup page are incorrect, the request will not be sent.) Tap this entry to see a list of key-value pairs that were sent with this request.
 	 - Select **Prebid Key-Value Pairs** to view only the key-values sent that apply to prebid.
 	 - Select **Ad Server Request** to view the full list of key-values sent in the ad request.
 -	**Prebid Mobile creative HTML served**  
@@ -205,7 +217,7 @@ There are three possible outcomes from this validation test:
 
 *Failure*: No auctions were run. If no auctions were run, verify the following in your setup:
   - Check to make sure the Prebid Server Account ID and Prebid Server Configuration ID you entered on the Dr. Prebid Setup page are correct. Ensure they don’t contain leading or trailing spaces.
-  - Ensure that your Prebid Server Configuration is correct. See [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html#configure-prebid-server) for more information.
+  - Ensure that your Prebid Server Configuration is correct. See [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-getting-started.html#configure-prebid-server) for more information.
 
 ### End-to-End SDK Validation
 
@@ -222,7 +234,7 @@ The summary screen displays the following information:
 -	**Creative content cached**  
   This test passes if the creative content from the bid received from Prebid Server was cached.
 -	**Ad server request sent and Key-value targeting sent**  
-  Verifies whether the bid request was sent. (Note: If your ad server is DFP, the request will not be sent if the IDs you entered on the Setup page are incorrect.) Tap this entry to see a list of key-value pairs that were sent with this request.
+  Verifies whether the bid request was sent. (Note: If your ad server is Google Ad Manager, the request will not be sent if the IDs you entered on the Setup page are incorrect.) Tap this entry to see a list of key-value pairs that were sent with this request.
     - Select **Prebid Key-Value Pairs** to view the specific key-value pairs that were generated by Prebid Mobile and sent to the ad server.
     - Select **Ad Server Request** to view the full ad request sent to the ad server.
 -	**Prebid Mobile creative HTML served**  
@@ -246,7 +258,7 @@ Some general things to check if this test fails include:
 
 Here are some more specific things to look for and actions to take based on which step(s) of the validation failed.
 -	**Ad unit registered**  
-  Be sure you’ve implemented your ad unit code correctly. See [Ad Unit Setup for iOS]({{site.github.url}}/prebid-mobile/code-integration-ios.html) for information.
+  Be sure you’ve implemented your ad unit code correctly. See [Ad Unit Setup for iOS]({{site.github.url}}/prebid-mobile/pbm-api/ios/code-integration-ios.html) or [Ad Unit Setup for Android]({{site.github.url}}/prebid-mobile/pbm-api/android/code-integration-android.html) for information.
 -	**Request to Prebid Server sent**  
   Make sure your account ID and configuration ID were entered correctly on the Setup screen. For more on integrating with Prebid Server see [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html).
 -	**Prebid Server response received**  

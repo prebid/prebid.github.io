@@ -22,20 +22,28 @@ These options are used to configure how the plugin should execute the prebid pro
 
 When configuring prebid options for more than one ad break, create an array of Prebid and rendering options for each ad break.
 
-- [prebidPath](#prebidPath)
-- [biddersSpec](#biddersSpec)
-- [bidderAliases](#bidderAliases)
-- [bidderSettings](#bidderSettings)
-- [prebidConfigOptions](#prebidConfigOptions)
-- [dfpParameters](#dfpParameters)
-- [adServerCallback](#adServerCallback)
-- [prebidTimeout](#prebidTimeout)
-- [enablePrebidCache](#enablePrebidCache)
-- [label](#labeloption)
-- [scriptLoadTimeout](#scriptLoadTimeout)
-- [prebidPluginPath](#prebidPluginPath)
-- [adapters](#pb-adapters)
-- [loggerLevel](#loggerLevel)
+- [Prebid Options Supported by the Brightcove Prebid Plugin](#prebid-options-supported-by-the-brightcove-prebid-plugin)
+  - [Overview](#overview)
+  - [Plugin Prebid Options](#plugin-prebid-options)
+    - [prebidPath](#prebidpath)
+    - [biddersSpec](#biddersspec)
+    - [bidderAliases](#bidderaliases)
+    - [bidderSettings](#biddersettings)
+    - [prebidConfigOptions](#prebidconfigoptions)
+    - [dfpParameters](#dfpparameters)
+    - [adServerCallback](#adservercallback)
+    - [prebidTimeout](#prebidtimeout)
+    - [enablePrebidCache](#enableprebidcache)
+    - [label](#label)
+    - [scriptLoadTimeout](#scriptloadtimeout)
+    - [prebidPluginPath](#prebidpluginpath)
+    - [adapters](#adapters)
+    - [loggerLevel](#loggerlevel)
+    - [Setting Up Prebid Parameters](#setting-up-prebid-parameters)
+  - [Links](#links)
+    - [Plugin Render Options](#plugin-render-options)
+    - [Plugin API](#plugin-api)
+    - [Sample Implementations](#sample-implementations)
 
 <a name="prebidPath"></a>
 ### prebidPath
@@ -56,11 +64,11 @@ Not required but recommended.
 
 **Default Value:**
 
-https://acdn.adnxs.com/prebid/not-for-prod/1/prebid.js
+https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js
 
 **Example:**
 
-`options.prebidPath = 'http://your-path/prebid.js'`
+`options.prebidPath = 'https://your-path/prebid.js'`
 
 <a name="biddersSpec"></a>
 ### biddersSpec
@@ -93,8 +101,6 @@ See [Setting Up Prebid Parameters](#set-up-params) below
 **Description:**
 
 Define aliases for bidders that are being specified in the biddersSpec. Using aliases allows to you to use the same bidder more than once with different targeting parameters.
-
-Define some behaviors for the platform and specific adapters. The basic structure is a ‘standard’ section with defaults for all adapters, and then one or more adapter-specific sections that override behavior for that bidder.
 
 **Acceptable Values:**
 
@@ -189,10 +195,7 @@ For example:
 ...
 ```
 
-A Brightcove Prebid Plugin : Bidder Settings JSON Converter tool has been created that you can use to convert bidder settings as they would be defined on the page into the format acceptable in Brightcove Studio. You can access this tool in one of the following ways:
-
-- directly in the GitHub repository for the plugin: [https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html](https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html)
-- directly using this external link: [http://video-demo.appnexus.com/encino/bcplugin/prebid/tools/biddersettings.html](http://video-demo.appnexus.com/encino/bcplugin/prebid/tools/biddersettings.html)
+A Brightcove Prebid Plugin : Bidder Settings JSON Converter tool has been created that you can use to convert bidder settings as they would be defined on the page into the format acceptable in Brightcove Studio. You can access this tool directly from the GitHub repository for the plugin: [https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html](https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html)
 
 See "bidderSettings" at [Prebid.org]({{site.baseurl}}/dev-docs/publisher-api-reference.html) for details.
 
@@ -295,7 +298,7 @@ Additional options that are passed in to the prebid.js `setConfig()` method.
 
 JSON object.
 
-Supported fields are documented in the [Prebid.org Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.setConfig)
+Supported fields are documented in the [Prebid.org Publisher API Reference](/dev-docs/publisher-api-reference/setConfig.html)
 
 **Required?**
 
@@ -307,16 +310,16 @@ None
 
 **Example:**
 
-`options.prebidConfigOptions = { publisherDomain: "https://www.theverge.com"};`
+`options.prebidConfigOptions = { pageUrl: "https://www.theverge.com"};`
 
 <a name="dfpParameters"></a>
 ### dfpParameters
 
 **Description:**
 
-Parameters used when using DFP as the ad server.
+Parameters used when using Google Ad Manager as the ad server.
 
-See prebid.org documentation for [buildVideoUrl]({{site.baseurl}}/dev-docs/publisher-api-reference.html#module_pbjs.adServers.dfp.buildVideoUrl)
+See prebid.org documentation for [buildVideoUrl](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html)
 
 **Acceptable Values:**
 
@@ -324,21 +327,20 @@ JSON object
 
 Can contain the following fields:
 
-- `params`: JSON object containing parameters needed to make DFP call. Parameters include:
+- `params`: JSON object containing parameters needed to make Google Ad Manager call. Parameters include:
   - `iu`: string (Required)
-  - DFP adUnit ID. For more information, see the DFP documentation on iu.
-
-- `cust_params`: JSON object (Optional). Key-value pairs that will be sent to DFP on the video ad tag URL. If present, any key-values here will be merged with Prebid standard targeting key-values. For more information, see the DFP documentation on cust_params
+  - Google Ad Manager adUnit ID. For more information, see the Google Ad Manager documentation on iu.
+  - `cust_params`: JSON object (Optional). Key-value pairs that will be sent to Google Ad Manager on the video ad tag URL. If present, any key-values here will be merged with Prebid standard targeting key-values. For more information, see the Google Ad Manager documentation on cust_params.
 
 - `output`: (Required) String specifying the type of response expected. This value should be `"vast"`
 
-- `url`: String specifying the DFP ad tag to call. You can use this parameter rather then using the `params` object to specify the DFP tag. This URL MUST contain the DFP `iu` value fully resolved. This URL may contain any other parameters that need to be passed to DFP. This string can NOT contain any `#` characters - all macros using that syntax must be fully resolved
+- `url`: String specifying the Google Ad Manager ad tag to call. You can use this parameter rather then using the `params` object to specify the Google Ad Manager tag. This URL MUST contain the Google Ad Manager `iu` value fully resolved. This URL may contain any other parameters that need to be passed to Google Ad Manager. This string can NOT contain any `#` characters - all macros using that syntax must be fully resolved
 
 - `bid`: (Optional) JSON object describing the Prebid bid for which targeting will be set. If this is not defined, Prebid will use the bid with the highest CPM for the adUnit.
 
 **Required?**
 
-No - If present, then DFP is considered to be the primary ad server and the results of the prebid auction will be passed to DFP. One or both of `dfpParameters.params` and `dfpParameters.url` is required.
+No - If present, then Google Ad Manager is considered to be the primary ad server and the results of the prebid auction will be passed to Google Ad Manager. One or both of `dfpParameters.params` and `dfpParameters.url` is required.
 
 **Default Value:**
 
@@ -497,9 +499,9 @@ Allows the user to specify a custom path used to load the Prebid plugin script. 
 
 In version 0.4, the original plugin was split into a loader and the main plugin.  The loader is the file that you specify when embedding the plugin into the player.  The loader will then load the main plugin itself at runtime.  This separation simplifies the process of debugging the plugin, especially when the plugin is embedded directly into the player in Brightcove Studio.  It also means that when updates are published for the plugin, publishers will be able to pick up the updates without having to re-publish their players.
 
-When registering the plugin to the Brightcove Player, you should continue to use the original path to the plugin.  This is now the path to the loader.  By default, this path is: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast.min.js`.
+When registering the plugin to the Brightcove Player, you should continue to use the original path to the plugin.  This is now the path to the loader.  By default, this path is: `https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast.min.js`.
 
-Also, by default, the loader will load in the plugin from: `http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js`.
+Also, by default, the loader will load in the plugin from: `https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js`.
 
 However, if you are trying to run custom or trial versions of the plugin, you can specify the path to this trial version using this new option: `prebidPluginPath`.
 
@@ -513,7 +515,7 @@ No.
 
 **Default Value:**
 
-http://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js
+https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js
 
 **Example:**
 

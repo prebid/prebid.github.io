@@ -1,0 +1,82 @@
+{% if page.videoType == "pb-is-jw01" %}
+	{% include /video/pb-is-jw01.html %}
+{% elsif page.videoType == "pb-is-jw02" %}
+	{% include /video/pb-is-jw02.html %}
+{% elsif page.videoType == "pb-is-sb" %}
+	{% include /video/pb-is-sb.html %}
+{% elsif page.videoType == "pb-is-vjs" %}
+	{% include /video/pb-is-vjs.html %}
+{% elsif page.videoType == "pb-vm-vjs" %}
+	{% include /video/pb-vm-vjs.html %}
+{% elsif page.videoType == "pbs-br" %}
+	{% include /video/pbs-br.html %}
+{% elsif page.videoType == "pbs-jw01" %}
+	{% include /video/pbs-jw01.html %}
+{% elsif page.videoType == "pbs-jw02" %}
+	{% include /video/pbs-jw02.html %}
+{% elsif page.videoType == "pbs-kl" %}
+	{% include /video/pbs-kl.html %}
+{% elsif page.videoType == "pbs-rd" %}
+	{% include /video/pbs-rd.html %}
+{% elsif page.videoType == "pbs-vjs" %}
+	{% include /video/pbs-vjs.html %}
+{% elsif page.videoType == "pb-os-dfp" %}
+	{% include /video/pb-os-dfp.html %}
+{% elsif page.videoType == "pb-os-rd" %}
+	{% include /video/pb-os-rd.html %}
+{% elsif page.videoType == "pb-os-app" %}
+	{% include /video/pb-os-app.html %}
+{% elsif page.videoType == "pb-os-nas" %}
+	{% include /video/pb-os-nas.html %}
+{% elsif page.videoType == "pb-os-nas-renderer" %}
+	{% include /video/pb-os-nas-renderer.html %}
+{% elsif page.videoType == "pb-os-basic-ima" %}
+	{% include /video/pb-os-basic-ima.html %}
+{% elsif page.videoType == "pb-lf-fw" %}
+	{% include /video/pb-lf-fw.html %}
+{% endif %}
+
+
+{% include nav.html %}
+
+<div class="container pb-docs-container">
+
+	<div class="row ">
+
+			<div class="col-lg-3 sidebar" id="sidebar">
+
+        <div>
+          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#sidebarContent" aria-controls="sidebarContent" aria-expanded="false" aria-label="Toggle Sidebar navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse d-lg-block" id="sidebarContent">
+				    {% include left_nav.html %}
+          </div>
+        </div>
+
+			</div>
+
+      <div class="col-lg-9">
+       <div class="pb-content" markdown="1">
+
+			{{ content }}
+
+			{% if page.description == "Partners" %}
+				{% include partners.html %}
+			{% endif %}
+
+			</div>
+      </div>
+
+	</div>
+	<!--end row-->
+</div>
+
+{% if page.title != "Credits" %}
+	{% if page.layout != "home" %}
+		{% include footer.html %}
+	{% endif %}
+{% endif %}
+
+</body>
+</html>

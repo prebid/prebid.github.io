@@ -13,7 +13,7 @@ sidebarType : 1
 
 # Prebid JS Module: Server-to-Server Testing
 
-This module allows publishers the chance to ramp-up on [Prebid Server](http://prebid.org/dev-docs/get-started-with-prebid-server.html),
+This module allows publishers the chance to ramp-up on [Prebid Server](/prebid-server/overview/prebid-server-overview.html),
 testing the impact of server-side header bidding before fully switching.
 Without this module, the s2sConfig settings direct all requests to
 Prebid Server. By including this module in the PrebidJS build, there are
@@ -45,6 +45,7 @@ pbjs.setConfig(
      bidders: [ "rubicon", "appnexus" ],
      enabled: true,
      testing: true,
+     testServerOnly: false,
      bidderControl: {
          "rubicon": {
              bidSource: {server:10, client:90},
@@ -86,7 +87,7 @@ AdUnit={
     [...]
     bids=[{
         bidder: "rubicon",
-        bidSource: {client:50, server:50} // precedence over s2sConfig
+        bidSource: {client:50, server:50} // precedence over s2sConfig.bidderControl
         [...]
     }]
 }
@@ -168,7 +169,57 @@ Requests will go to the Rubicon Exchange on the server path 25% of the time
 and the client path the rest of the time.  The additional hb_source_rubicon
 KVP will be sent to the ad server for additional reporting.
 
-### 3. Turn on Test KVP, but no server requests
+### 3. A/B Test isolating the server 
+
+*As a Publisher, I want to get metrics on the difference between a 'pure server'
+approach and a mixed client-server approach so we can gauge the impact of Prebid Server running alone, without any client requests. I'll use the `testServerOnly: true` flag to suppress all client requests whenever the 'A/B test group' results in a server request.*
+
+Using the `testServerOnly` flag means that all client requests will be suppressed (those requests will not be made) whenever any bid requests from the 'A/B test group' result in a 'server' bid request.  The 'A/B test group' includes any requests whose source is controled by 's2sConfig.bidderControl' or 'bidSource' at the adUnit level.  This may give a clearer picture of how s2s performs without interference from client bid requests.
+
+For best results, all bidders/bids in the 'A/B test group' should be configured with the same client/server allocation.  Because use of this flag will result in turning off client bids a certain percentage of the time, it could negatively affect revenue, and should be used with caution.  Thus it should only be used when 'server' is allocated a small percentage (i.e. <= 5%) of bid requests.
+
+Example S2S Config defining that 5% of the time all bid requests will go 'server' and 95% of the time a mix of 'server' and 'client':
+
+```
+pbjs.setConfig(
+  s2sConfig: {
+     account: "PREBID-SERVER-ACCOUNT",
+     bidders: [ "rubicon", "criteo" ],
+     enabled: true,
+     testing: true,
+     testServerOnly: true,
+     bidderControl: {
+         rubicon: {
+            bidSource: {client:95, server 5},
+            includeSourceKvp: true
+         },
+         criteo: {
+            bidSource: {client:95, server 5},
+            includeSourceKvp: true
+         }
+     }
+});
+
+AdUnit={
+    [...]
+    bids=[{
+        bidder: "index",
+        [...]
+    },{
+        bidder: "rubicon",
+        [...]
+    },{
+        bidder: "criteo",
+        [...]
+    }]
+}
+```
+5% of the time rubicon, and criteo will use s2s bid requests while index does not bid, and the other 95% of the time rubicon, criteo, and index use client bid requests.
+
+Addtional details:
+- If a bidder is always 100% server-side -- i.e. doesn't have either `s2sConfig.bidderControl` or `AdUnit.bids[].bidSource`, then it will not affect `testServerOnly`. i.e. It's going on the server path will not exclude client side adapters.
+
+### 4. Turn on Test KVP, but no server requests
 
 *As a Publisher, I'd like to run tests on one part or my site per one of the
 other use cases above. I'll use the test KVP to confirm relative responses,
@@ -195,6 +246,6 @@ The test KVP hb_source_rubicon on this page will always sent with the value "cli
 
 ## Further Reading
 
-+ [Prebid Server](http://prebid.org/dev-docs/get-started-with-prebid-server.html)
++ [Prebid Server](/prebid-server/overview/prebid-server-overview.html)
 
 

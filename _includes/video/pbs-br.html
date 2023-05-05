@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" class="html--no-js">
+
+<head>
+{% include head--common.html %}
+    <!--production version of prebid.js-->
+    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+
+    <!--pbjs and player code -->
+
+	<script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"></script>
+    <script>
+        var pbjs = pbjs || {};
+        pbjs.que = pbjs.que || [];
+
+        /* PRE-DEFINE `invokeVideoPlayer`
+
+        Because we have no way of knowing when all the bids will be
+        returned from Prebid we can't be sure that the browser will
+        reach the point where `invokeVideoPlayer` is defined before
+        `bidsBackHandler` fires and tries to call it.
+
+        To prevent an "`invokeVideoPlayer` not defined" error, we
+        pre-define it before we make the call to Prebid, and redefine
+        it later on with the code to create the player and play the
+        ad.
+
+        In this first version, it simply stores the winning VAST to
+        use later. */
+
+        var tempTag = false;
+        var invokeVideoPlayer = function(url) {
+            tempTag = url;
+        };
+
+        /* Prebid video ad unit */
+
+        var videoAdUnit = {
+            code: 'video1',
+            mediaTypes: {
+                video: {
+                  context: 'instream',
+                  playerSize: [640, 480],
+                  mimes: ['video/mp4'],
+                  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                  playbackmethod: [2],
+                  skip: 1
+                }
+            },
+            bids: [{
+                bidder: 'appnexus',
+                params: {
+                    placementId: 13232361 // Add your own placement id here
+                }
+            }]
+        };
+
+        pbjs.que.push(function() {
+
+            // configure prebid to use prebid cache and prebid server
+            // make sure to add your own accountId to your s2sConfig object
+            pbjs.setConfig({
+                cache: {
+                    url: 'https://prebid.adnxs.com/pbc/v1/cache'
+                },
+                enableSendAllBids: true,
+                s2sConfig: {
+                    endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
+                    enabled: true,
+                    accountId: 'c9d412ee-3cc6-4b66-9326-9f49d528f13e',
+                    bidders: ['appnexus']
+                }
+            });
+
+            pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
+
+            pbjs.requestBids({
+                bidsBackHandler: function(bids) {
+                    console.log("got some bids");
+                    console.log(bids);
+                    var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+                        adUnit: videoAdUnit,
+                        params: {
+                            iu: '/19968336/prebid_cache_video_adunit',
+                            cust_params: {
+                                section: 'blog',
+                                anotherKey: 'anotherValue'
+                            },
+                            output: 'vast'
+                        }
+                    });
+                    invokeVideoPlayer(videoUrl);
+                }
+            });
+        });
+
+    </script>
+</head>
+
+<body>

@@ -1,17 +1,18 @@
 ---
 layout: page_v2
 page_type: module
-title: Module - DFP Express
-description: Simplified installation mechanism for publishers that have GAM/DFP in their pages
+title: Module - Google Ad Manager Express
+description: A simplified installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages.
 module_code : express
-display_name : DFP Express
+display_name : Google Ad Manager Express
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 
 
 
-# GAM/DFP Express Module
+# GAM/Google Ad Manager Express Module
 {:.no_toc}
 
 This module is a simplified alternate installation mechanism for publishers that have Google Publisher Tag (GPT) ad calls in their pages. Here's how it works:
@@ -19,7 +20,7 @@ This module is a simplified alternate installation mechanism for publishers that
 * You build a Prebid.js package that contains the extra module code and optionally the page's AdUnits.
 * One or two lines of javascript are added to a page already coded with GPT ad calls.
 * The module intercepts ad behavior by overriding certain GPT APIs, coordinating the appropriate header bidding behavior, and then calling DoubleClick.
-* Bidder parameters for the auction are determined by linking the GAM/DFP slots to the Prebid AdUnits
+* Bidder parameters for the auction are determined by linking the Google Ad Manager slots to the Prebid AdUnits
 * Currently supports display formats only (i.e not video)
 
 Definitions:
@@ -36,7 +37,7 @@ Definitions:
 
 Adding the module to a page is done by adding just one line of javascript:
 {% highlight js %}
-<script src="http://some.hosting.domain/path/prebid.js">
+<script src="https://some.hosting.domain/path/prebid.js">
 {% endhighlight %}
 
 The prebid.js file needs to be loaded before the GPT library loads, unless you're willing to manage the timing with additional queue functions. The examples here assume the easiest integration, which is synchronous.
@@ -56,8 +57,8 @@ Create an AdUnits file and source control it in a separate local repository. E.g
      pbjs.que = pbjs.que || [];
      pbjs.que.push(function() {
         pbjs.addAdUnits({
-            code: 'door-medrect',   // must match DFP slot name
-            // sizes are optional: Express will copy sizes from the DFP slot
+            code: 'door-medrect',   // must match Google Ad Manager slot name
+            // sizes are optional: Express will copy sizes from the Google Ad Manager slot
             sizes: [[300, 250], [300,600]],
             bids: [{
                 bidder: 'rubicon',
@@ -68,7 +69,7 @@ Create an AdUnits file and source control it in a separate local repository. E.g
                 }
             }]
         });
-        pbjs.express(); // activates the DFP Express feature.
+        pbjs.express(); // activates the Google Ad Manager Express feature.
      });
 {% endhighlight %}
 
@@ -90,8 +91,8 @@ gulp build --modules=express
 This command will build the following files:
  
 - build/dist/prebid-core.js - the base Prebid code
-- build/dist/express.js - additional code for DFP express 
-- build/dist/prebid.js - a combined file with the base Prebid code and the DFP express code
+- build/dist/express.js - additional code for Google Ad Manager express 
+- build/dist/prebid.js - a combined file with the base Prebid code and the Google Ad Manager express code
  
 #### Step 2: Append the AdUnits
 
@@ -109,13 +110,13 @@ Note that there are more dynamic ways of combining these components for publishe
 
 ## Functions
 
-The DFP Express module adds one new function to Prebid:
+The Google Ad Manager Express module adds one new function to Prebid:
 
 {% highlight js %}
 pbjs.express(AdUnits);
 {% endhighlight %}
 
-This function initiates the scanning of the in-page DFP slots, mapping them to Prebid AdUnits, kicking off the Prebid auction, and forwarding the results to DFP.
+This function initiates the scanning of the in-page Google Ad Manager slots, mapping them to Prebid AdUnits, kicking off the Prebid auction, and forwarding the results to Google Ad Manager.
 
 The AdUnits argument is optional -- if not provided it will look for AdUnits previously registered with pbjs.addAdUnits(). If no AdUnits can be found, it will return an error.
 
@@ -172,12 +173,12 @@ pbjs.express(adUnits);
 <html>
 <head>
     // prebid.js needs to be loaded synchronously to make sure GPT doesn't fire before header bidding takes place
-    <script src="http://some.hosting.domain/path/myprebid.js"></script>
+    <script src="https://some.hosting.domain/path/myprebid.js"></script>
     // it's assumed that the above myprebid.js file contains:
     // - a definition for a prebid.js adunit with a `code` of 'slot-name' or 'div-name'
     // - a call to pbjs.express(adUnits)
 
-    <script type="text/javascript" src="http://www.googletagservices.com/tag/js/gpt.js" async="true"></script>
+    <script type="text/javascript" src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" async="true"></script>
     <script type ="text/javascript">
         var googletag = googletag || {};
         googletag.cmd = googletag.cmd || [];

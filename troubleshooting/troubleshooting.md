@@ -7,35 +7,18 @@ sidebarType: 7
 
 # Troubleshooting
 
-### Prebid.js
+## Prebid.js
 
-The most important tip is to add ```?pbjs_debug=true``` to the end of the page's URL -- you'll get a bunch of javascript console trace messages that will help pin down the issue.
+Enable javascript console trace messages by adding ```?pbjs_debug=true``` to the end of the page's URL. These messages can help isolate issues and improve debugging efforts.
 
++ [Prebid.js Developer Troubleshooting Guide]({{site.baseurl}}/troubleshooting/troubleshooting-guide.html)
++ [Prebid.js Troubleshooting Videos](/videos/)
++ [Debug Extension](/debugging/debugging.html)
 
-Other references:
-
-<br/>
-AdOps
+## AdOps
 
 + [Common Setup Issues]({{site.github.url}}/dev-docs/common-issues.html)
 
-Developers
+## Prebid Server
 
-+ [Prebid.js Developer Troubleshooting Guide]({{site.baseurl}}/dev-docs/prebid-troubleshooting-guide.html)
-+ [Developer Troubleshooting Tips]({{site.baseurl}}/dev-docs/troubleshooting-tips.html)
-+ [Debug Extension](/debugging/debugging.html)
-
-<hr>
-
-### Prebid Server
-
-The best way to get debug info for Prebid Server is to add `&debug=1` to the end of the URL. A 'url_override' parameter is also available. e.g.
-
-<br/>
-{% highlight bash %}
-https://prebid-server.rubiconproject.com/auction?url_override=rubiconproject.com&debug=1
-{% endhighlight %}
-
-
-Additional debugging references are under construction.
-
++ [Prebid Server Troubleshooting](/troubleshooting/pbs-troubleshooting.html)

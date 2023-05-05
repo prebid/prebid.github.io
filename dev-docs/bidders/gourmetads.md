@@ -2,9 +2,10 @@
 layout: bidder
 title: Gourmet Ads
 description: Prebid Gourmet Ads Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: gourmetads
 aliasCode : appnexus
+sidebarType: 1
 ---
 
 ### Bid Params

@@ -2,9 +2,10 @@
 layout: bidder
 title: Supply2
 description: Prebid Media Donuts Bidder Adaptor
-hide: true
+pbjs: true
 biddercode: supply2
 gdpr_supported: true
+sidebarType: 1
 ---
 
 

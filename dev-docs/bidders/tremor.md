@@ -4,8 +4,9 @@ title: Tremor
 description: Tremor Bidder Adaptor
 top_nav_section: dev_docs
 nav_section: reference
-hide: true
+pbjs: true
 biddercode: tremor
+sidebarType: 1
 ---
 
 ### Bid Params

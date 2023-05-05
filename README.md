@@ -1,12 +1,12 @@
-This repository contains the source files for the Prebid.js documentation site at [Prebid.org](http://prebid.org).
+This repository contains the source files for the Prebid.js documentation site at [Prebid.org](https://prebid.org).
 
-Please see the sections below for more information.
+Please see the sections below for more information:
 
 + [Contributing](#contributing)
 + [License](#license)
 + [Prerequisites](#prerequisites)
 + [Running Jekyll Locally](#running-jekyll-locally)
-+ [Alphabetization of Bidder Adapters](#alphabetization-of-bidder-adaptors)
++ [Building Assets](#building-assets)
 + [The Downloads Page](#the-downloads-page)
 + [Thanks](#thanks)
 
@@ -14,7 +14,7 @@ Please see the sections below for more information.
 
 ## Contributing
 
-Thanks in advance for your contribution!  Contributors are listed in the **Thanks** section below.
+Thanks in advance for your contribution!
 
 For smaller changes, such as fixing a typo or adding a new section to an existing page, submit a pull request.
 
@@ -33,20 +33,17 @@ All docs are under the license shown in the `LICENSE` file in this directory.
 
 ## Prerequisites
 
-The site uses [Jekyll](http://jekyllrb.com/), which is written in the [Ruby](http://www.ruby-lang.org/en/) language.
+The site is hosted on GitHub pages, and uses [Jekyll](https://jekyllrb.com/) to generate the HTML. Jekyll is written in the [Ruby](https://www.ruby-lang.org/en/) language.
 
-To follow the instructions in the next section, you will need to install the [Bundler](http://bundler.io/) Ruby gem.
+1. follow the instructions at https://jekyllrb.com/docs/installation/ for your OS
+1. gem install github-pages
+1. start Jekyll as described below
 
-Try the following command:
+For CSS, the site uses Laravel Mix to build CSS from Sass (scss-flavored) source files. Under the hood Laravel Mix uses Webpack.
 
-```
-$ gem install bundler
-```
-
-If you are on a Mac and the above command fails with a permissions error (e.g., `"ERROR:  While executing gem ... You don't have write permissions for the /Library/Ruby/Gems/... directory."`), try the following steps:
-
-1. Build your own `ruby` binary using [Homebrew](https://brew.sh/): `brew install ruby`.  The Homebrew-built Ruby should include its own version of the `gem` command which avoids modifying system libraries.
-2. Try `gem install bundler` again.  If it still fails, try `sudo gem install bundler`.  After that, you should be able to avoid any further use of `sudo` by running `bundler` with the arguments shown in the next section.
+1. follow the instructions at https://nodejs.dev to install Node.js for your OS
+1. `npm ci` to install packages for building assets
+1. build assets as described below
 
 <a name="running-jekyll-locally" />
 
@@ -56,23 +53,22 @@ Before submitting a pull request, you should run the site locally to make sure y
 
 To get started editing the site and seeing your changes, clone this repo and enter the following commands in your terminal:
 
-- `cd /path/to/prebid.github.io`
+```bash
+$ JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental
+```
 
-- `bundle install --path vendor/bundle`
-
-- `bundle exec jekyll serve`
 
 You should see output that looks something like this:
 
 ```
-Configuration file: /Users/rloveland/Dropbox/Code/prebid.github.io/_config.yml  
-            Source: /Users/rloveland/Dropbox/Code/prebid.github.io  
-       Destination: /Users/rloveland/Dropbox/Code/prebid.github.io/_site  
+Configuration file: /Users/me/git/prebid.github.io/_config.yml  
+            Source: /Users/me/git/prebid.github.io  
+       Destination: /Users/me/git/prebid.github.io/_site  
  Incremental build: disabled. Enable with --incremental  
       Generating...   
                     done in 13.596 seconds.  
- Auto-regeneration: enabled for '/Users/rloveland/Dropbox/Code/prebid.github.io'  
-Configuration file: /Users/rloveland/Dropbox/Code/prebid.github.io/_config.yml  
+ Auto-regeneration: enabled for '/Users/me/git/prebid.github.io'  
+Configuration file: /Users/me/git/prebid.github.io/_config.yml  
     Server address: http://127.0.0.1:8080/  
   Server running... press ctrl-c to stop.  
 ...  
@@ -81,23 +77,13 @@ Configuration file: /Users/rloveland/Dropbox/Code/prebid.github.io/_config.yml
 
 Open the `Server address` URL in your browser, and you should see a locally running copy of the site.
 
-<a name="alphabetization-of-bidder-adaptors" />
+<a name="building-assets"/>
 
-## Alphabetization of Bidder Adaptors
+## Building Assets
 
-Please don't alphabetize the lists of adapters in your PR, either on the home page or the downloads page.
-
-The adapters are not listed in alphabetical order, they're listed in the order in which they were added to the Prebid.js repo, using (approximately) this command in `src/adapters`:
-
-```
-for file in `ls | grep -f <(git ls-files)`; do
-    HASH=`git rev-list HEAD $file | tail -n 1`;
-    DATE=`git show -s --format="%ci" $HASH --`;
-    printf "%-35s %-35s %s\n" $file "$DATE" $HASH;
-done | sort -d -k 2
-```
-
-<a name="the-downloads-page" />
+- `npm run dev` to build unminified CSS for development
+- `npm run prod` to build minified CSS for production
+- `npm run watch` to use [Browsersync](https://browsersync.io) to rebuild CSS on demand and reload the browser
 
 ## The Downloads Page
 

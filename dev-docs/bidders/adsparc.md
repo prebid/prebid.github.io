@@ -1,17 +1,17 @@
 ---
 layout: bidder
 title: AdSparc
-description: Prebid Serverbid Bidder Adaptor
-hide: true
+description: Prebid Adsparc Bidder Adaptor
+pbjs: true
 biddercode: adsparc
-aliasCode: serverbid
+aliasCode: aardvark
+sidebarType: 1
 ---
 
-
-### Bid Params
+### bid params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                  | Example | Type      |
-|-------------|----------|------------------------------|---------|-----------|
-| `siteId`    | required | The site ID from AdSparc.    | `12345` | `integer` |
-| `networkId` | required | The network ID from AdSparc. | `9969`  | `integer` |
+| Name | Scope    | Description        | Example  | Type     |
+|------|----------|--------------------|----------|----------|
+| `ai` | required | The auction ID     | `'XBC1'` | `string` |
+| `sc` | required | The adshortcode    | `'AF2g'` | `string` |

@@ -1,0 +1,45 @@
+{
+  "name": "prebid.github.io",
+  "version": "1.0.0",
+  "description": "This repository contains the source files for the Prebid.js documentation site at [Prebid.org](https://prebid.org).",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "bundle exec jekyll serve",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --nide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AtreNet/prebid.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AtreNet/prebid.github.io/issues"
+  },
+  "homepage": "https://github.com/AtreNet/prebid.github.io#readme",
+  "devDependencies": {
+    "browser-sync": "^2.29.1",
+    "browser-sync-webpack-plugin": "^2.0.1",
+    "cross-env": "^7.0.2",
+    "laravel-mix": "^5.0.7",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.27.0",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "dependencies": {
+    "awesomplete": "^1.1.5",
+    "bootstrap": "^4.5.3",
+    "bourbon": "^7.0.0",
+    "include-media": "^1.4.9",
+    "popper.js": "^1.16.1"
+  }
+}

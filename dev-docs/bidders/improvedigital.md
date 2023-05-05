@@ -3,43 +3,80 @@ layout: bidder
 title: Improve Digital
 description: Prebid Improve Digital Bidder Adaptor
 biddercode: improvedigital
-hide: true
+pbjs: true
+pbs: true
+coppa_supported: true
+gpp_supported: true
 gdpr_supported: true
-media_types: native
+usp_supported: true
+userIds: all
+media_types: banner, native, video
+schain_supported: true
+gvl_id: 253
+pbs_app_supported: true
+floors_supported: true
+sidebarType: 1
 ---
 
-### Bid params
+<a name="improvedigital-params"></a>
 
-Depending on your setup in our system, your placements will either have a globally-unique placement ID or a publisher-unique placement key as an identifier.  Therefore, to identify your placement you either need a placementId only, or a combination of publisherId and placementKey.
+### Bid params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                                                                                                | Example                                                                | Type      |
 |----------------|----------|----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|-----------|
-| `placementId`  | optional | The placement ID from Improve Digital.                                                                                     | `1234567`                                                              | `integer` |
-| `publisherId`  | optional | Your publisher ID.  This is only required when using a placementKey                                                        | `950`                                                                  | `integer` |
-| `placementKey` | optional | The placement key for your placement.  Must be used with `publisherId`.                                                    | `'myMainBannerPlacement300x200'`                                       | `string`  |
+| `placementId`  | required | The placement ID from Improve Digital.                                                                                     | `1234567`                                                              | `integer` |
+| `publisherId`  | required | The publisher ID from Improve Digital.                                                                                     | `4567`                                                              | `integer` |
 | `keyValues`    | optional | Contains one or more key-value pairings for key-value targeting                                                            | `{ testKey1: ['testValueA'], testKey2: ['testValueB', 'testValueC'] }` | `object`  |
-| `size`         | optional | Single size filter.  Where a placement supports multiple sizes, this forces the response to feature only one of the multiple sizes. This parameter is ignored when `usePrebidSizes` is enabled (see `Sizes` section below) | `{ w:300, h:250 }`                                                     | `object`  |
+| `bidFloor`  | optional | Bid floor price | `0.01` | `float` |
+| `bidFloorCur`  | optional | Bid floor price currency. Supported values: USD (default), EUR, GBP, AUD, DKK, SEK, CZK, CHF, NOK | `'USD'` | `string` |
+| `extend`  | optional | See the [Extend mode section](#improvedigital-extend)  | `true` | `boolean` |
+| `rendererConfig`  | optional | Configuration object for JS renderer of the RAZR creatives. Provided by Improve Digital.  | `{ key1: value1 }` | `object` |
+
 
 ### Configuration
 
-#### Single-Request
-
-By default, the adapter sends one request for each ad unit to Improve Digital's ad server. For example, if there are 4 Prebid ad units defined on the page, you'll see 4 calls out to ad.360yield.com/hb.
-
-The Improve Digital adapter supports `Single Request` mode, where all ad unit requests are made in a single call to ad.360yield.com/hb. To turn this feature on, call `setConfig`:
-```
-pbjs.setConfig({
-   improvedigital: {singleRequest: true}
-});
-```
+<a name="improvedigital-sizes"></a>
 
 #### Sizes
 
 By default, the adapter doesn't send Prebid ad unit sizes to Improve Digital's ad server and the sizes defined for each placement in the Polaris platform will be used. If the ad server should only respond with creative sizes as defined in Prebid ad unit configuration, turn on `usePrebidSizes` adapter parameter like this:
 ```
 pbjs.setConfig({
-   improvedigital: {usePrebidSizes: true}
+    improvedigital: { usePrebidSizes: true }
+});
+```
+
+<a name="improvedigital-renderer"></a>
+
+#### Renderer Config
+
+Global configuration for the special creative format renderer. Please use [rendererConfig bid param](#improvedigital-params) for ad slot specific configuration.
+
+```
+pbjs.setConfig({
+    improvedigital: {
+        rendererConfig: {
+            // Global config object provided by Improve Digital
+        }
+    }
+});
+```
+
+<a name="improvedigital-extend"></a>
+
+#### Extend Mode
+
+Improve Digital Extend mode provides publishers with access to additional demand from other SSPs. Before enabling please contact our team for more information.
+The Extend mode can be enabled:
+* per ad unit via the `extend` [bid param](#improvedigital-params)
+* for all ad units via `setConfig()`:
+
+```
+pbjs.setConfig({
+    improvedigital: {
+        extend: true
+    }
 });
 ```
 
@@ -47,47 +84,33 @@ pbjs.setConfig({
 
 ### Examples
 
-#### Configuration With placementId
+Examples of different ad unit formats can be found in [Prebid.js ad unit reference](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit-banner-example). Improve Digital bidder must be added in the ad unit's `bids` array. Example:  
 
-    var adUnits = [{
-        code: 'div-gpt-ad-1499748733608-0',
-        sizes: [[600, 290]],
+    pbjs.addAdUnits({
+        code: 'banner1',
+        sizes: [[728, 90], [970, 250]],
         bids: [
             {
                 bidder: 'improvedigital',
                 params: {
-                    placementId:1053688
+                    placementId: 1111111,
+                    publisherId: 1234
                 }
             }
         ]
-    }];
+    });
 
-#### Configuration With publisherId/placementKey
+#### Example for Key-Values
 
-    var adUnits = [{
-        code: 'div-gpt-ad-1499748733608-0',
+    pbjs.addAdUnits({
+        code: 'banner1',
         sizes: [[600, 290]],
         bids: [
             {
                 bidder: 'improvedigital',
                 params: {
-                    placementKey:'',
-                    publisherId:
-                }
-            }
-        ]
-    }];
-
-#### Configuration With PlacementId and Key-Values
-
-    var adUnits = [{
-        code: 'div-gpt-ad-1499748733608-0',
-        sizes: [[600, 290]],
-        bids: [
-            {
-                bidder: 'improvedigital',
-                params: {
-                   placementId:1053689,
+                    placementId: 1111111,
+                    publisherId: 1234,
                     keyValues: {
                         testKey1: ["testValueA"],
                         testKey2: ["testValueB", "testValueC"]
@@ -95,23 +118,4 @@ pbjs.setConfig({
                 }
             }
         ]
-    }];
-
-#### Configuration With PlacementId and Size Filter
-
-    var adUnits = [{
-        code: 'div-gpt-ad-1499748733608-0',
-        sizes: [[600, 290]],
-        bids: [
-            {
-                bidder: 'improvedigital',
-                params: {
-                    placementId:1053687,
-                    size: {
-                        w:300,
-                        h:300
-                    }
-                }
-            }
-        ]
-    }];
+    });

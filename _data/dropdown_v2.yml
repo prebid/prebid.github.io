@@ -5,12 +5,13 @@
   link:
   isHeader: 1
   hasSubMenus: 1
+  sectionClass: overview
   submenus:
 
   - subsectionId: 0
     sectionId: 0
     sectionName: Overview
-    title: What is Prebid?
+    title: Introduction
     link:  /overview/intro.html
     needsDivider: 0
     isHeader: 0
@@ -19,47 +20,22 @@
   - subsectionId: 0
     sectionId: 0
     sectionName: Overview
-    title: Project Principles
-    link:  /principles.html
+    title: Developers
+    link:  /developers.html
     needsDivider: 0
     isHeader: 0
-    isSubSectionStart: 0
+    isSubSectionStart: 1
 
   - subsectionId: 0
     sectionId: 0
     sectionName: Overview
-    title: Contributing
-    link:  /contributing/contribute.html
+    title: Ad Ops
+    link:  /adops/before-you-start.html
     needsDivider: 0
     isHeader: 0
-    isSubSectionStart: 0
+    isSubSectionStart: 1
 
-  - subsectionId: 0
-    sectionId: 0
-    sectionName: Overview
-    title: About Prebid.Org
-    link:  /overview/what-is-prebid-org.html
-    needsDivider: 0
-    isHeader: 0
-    isSubSectionStart: 0
 
-  - subsectionId: 0
-    sectionId: 0
-    sectionName: Overview
-    title: Members and Partners
-    link:  /partners/partners.html
-    needsDivider: 0
-    isHeader: 0
-    isSubSectionStart: 0
-
-  - subsectionId: 0
-    sectionId: 0
-    sectionName: Overview
-    title: Privacy Policy
-    link:  /privacy.html
-    needsDivider: 0
-    isHeader: 0
-    isSubSectionStart: 0
 
 #----------Product SubNav------------
 
@@ -68,6 +44,7 @@
   link:
   isHeader: 1
   hasSubMenus: 1
+  sectionClass: product
   submenus:
 
   - subsectionId: 0
@@ -135,7 +112,7 @@
     sectionId: 1
     sectionName: Product
     title: Prebid Server
-    link: /prebid-server/prebid-server-overview.html
+    link: /prebid-server/overview/prebid-server-overview.html
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 1
@@ -228,6 +205,7 @@
   link:
   isHeader: 1
   hasSubMenus: 1
+  sectionClass: support
   submenus:
 
   - subsectionId: 0
@@ -311,15 +289,6 @@
     isHeader: 0
     isSubSectionStart: 0
 
-  - subsectionId: 4
-    sectionId: 2
-    sectionName: Support
-    title: Blog
-    link:  /blog.html
-    needsDivider: 0
-    isHeader: 0
-    isSubSectionStart: 1
-
 #-----------_Downloads---------------
 
 - sectionId: 3
@@ -327,6 +296,7 @@
   link:
   isHeader: 1
   hasSubMenus: 1
+  sectionClass: download
   submenus:
 
   - subsectionId: 0
@@ -342,7 +312,7 @@
     sectionId: 3
     sectionName: Download
     title: Prebid Mobile
-    link:  /prebid-mobile/download.html
+    link:  /prebid-mobile/prebid-mobile-download.html
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 1
@@ -364,3 +334,31 @@
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 0
+
+#-----------Resources---------------
+
+- sectionId: 4
+  sectionName: Resources
+  link:
+  isHeader: 1
+  hasSubMenus: 1
+  sectionClass: resources
+  submenus:
+
+  - subsectionId: 0
+    sectionId: 4
+    sectionName: Resources
+    title: Prebid.org
+    link:  https://www.prebid.org
+    needsDivider: 1
+    isHeader: 0
+    isSubSectionStart: 1
+
+  - subsectionId: 1
+    sectionId: 4
+    sectionName: Resources
+    title: Blog
+    link:  https://www.prebid.org/blog
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 1
