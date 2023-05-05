@@ -48,7 +48,8 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | allowZeroCpmBids | standard or adapter-specific | 6.2.0 | false | Would allow bids with a 0 CPM to be accepted by Prebid.js and could be passed to the ad server. |
 | storageAllowed | standard or adapter-specific | 6.13.0 | true in 6.x, false after 7.0 | Allow use of cookies and/or local storage. |  
 | allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | true in v6.x <br /> false from v7.0| Allow adapters to bid with alternate bidder codes. |  
-| allowedAlternateBidderCodes | standard or adapter-specific | 6.23.0 | n/a | Array of bidder codes for which an adapter can bid. <br />`undefined` or `['*']` will allow adapter to bid with any bidder code. |  
+| allowedAlternateBidderCodes | standard or adapter-specific | 6.23.0 | n/a | Array of bidder codes for which an adapter can bid. <br />`undefined` or `['*']` will allow adapter to bid with any bidder code. |
+| adjustAlternateBids | standard or adapter-specific | 7.48.0 | false | Optionally allow alternate bidder codes to use an adapter's bidCpmAdjustment function by default instead of the standard bidCpmAdjustment function if present (note: if a bidCpmAdjustment function exists for the alternate bidder code within bidderSettings, then this will be used instead of falling back to the adapter's bidCpmAdjustment function). |
 
 ##### 2.1. adserverTargeting
 
@@ -316,5 +317,39 @@ pbjs.bidderSettings = {
 
 In the above example, `groupm` bid will have a bid adjustment of 80% since the `bidCpmAdjustment` function says so.<br />
 If `appnexus` bids with another bidder code, say `appnexus2`. This bidder code will adjust the bid cpm to 95% because it will apply the `bidCpmAdjustment` function from `standard` setting, since the `bidCpmAdjustment` is missing for given bidder code I.e `appnexus2`
+
+##### 2.10. adjustAlternateBids
+
+Optionally allow alternate bidder codes originating from a specific bid adapter to fallback to that same adapter's bidCpmAdjustment function. When adjustAlternateBids is set to true, the prioity of which bidCpmAdjustment function to utilize will be as follows based on what is present within the bidderSettings object:
+
+1. Alternate bidder code bidCpmAdjustment function
+2. Adapter bidCpmAdjustment function
+3. The standard bidCpmAdjustment function
+
+{% highlight js %}
+
+pbjs.bidderSettings = {
+    standard: {
+         allowAlternateBidderCodes: false,
+         bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .95; },
+         [...]
+    },
+    pubmatic: {
+        allowAlternateBidderCodes: true,
+        allowedAlternateBidderCodes: ["groupm"],
+        adjustAlternateBids: true,
+        bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .85; },
+        [...]
+    },
+    appnexus: {
+        allowAlternateBidderCodes: true,
+        allowedAlternateBidderCodes: ["*"],
+        bidCpmAdjustment: function(bidCpm, bid){ return bidCpm * .90; },
+        [...]
+    }
+}
+{% endhighlight %}
+
+In the above example, if PubMatic were to return the "groupm" bidder code then the bidCpmAdjustment function under `pubmatic` would be used instead of what is available under `standard`.
 
 <hr class="full-rule" />
