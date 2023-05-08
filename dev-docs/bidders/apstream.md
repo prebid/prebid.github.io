@@ -5,10 +5,14 @@ description: AP Stream Bidder Adapter
 biddercode: apstream
 pbjs: true
 media_types: banner
-gdpr_supported: true
+gdpr_supported: false
 gvl_id: 394
 sidebarType: 1
 ---
+
+### Disclosure
+
+Note: This bidder passes consent strings but not the gdprApplies flag to its backend. This may result in some incorrect TCF2 processing, such as when the consent string is not yet available but the publisher has decided GDPR always applies. See https://github.com/prebid/Prebid.js/issues/7775
 
 ### Bid Params
 
