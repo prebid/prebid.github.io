@@ -32,16 +32,16 @@ Important: This resource should not be construed as legal advice and Prebid.org 
 4. Use Prebid.js modules and these Activity Controls as ways to help implement your privacy plan with respect to header bidding.
 5. Let us know if there are tools missing from the Prebid toolkit.
 
-### Activity Model
+### What is an Activity?
 
-We did an analysis of the kinds of things Prebid does and identified those that might be of concern to privacy regulations. We call these things "potentially restricted activities", or just "activities" for short. Here are some activities:
+We did an analysis of the things Prebid.js does and identified those related to privacy regulations. We call these things "potentially restricted activities", or just "activities" for short. Here are some:
 
 - Setting a cookie
 - Syncing ID cookies
 - Transmitting user first party data
 - etc.
 
-The [full list of activities Prebid supports](#activities) is below.
+The [full list of activities Prebid.js supports](#activities) is below.
 
 Think of an activity control as a 'gatekeeper' that makes the decision about whether the activity should be allowed in this specific context:
 
@@ -86,7 +86,7 @@ pbjs.setConfig({
 |------|------|-------------|
 | `default` | Boolean | Whether the activity should be allowed if no other rule applies. Defaults to true. |
 | `rules`   | Array of objects | Rules for this activity |
-| `rules[].condition` | Function | Condition function to use for this rule; the rule applies only if this returns true. Receives a single object that contains [activity parameters](#parameters) as input. If omitted, the rule always applies. 
+| `rules[].condition` | Function | Condition function to use for this rule; the rule applies only if this returns true. Receives a single object that contains [activity parameters](#parameters) as input. If omitted, the rule always applies. |
 | `rules[].allow`    | Boolean | Whether the activity should be allowed when this rule applies. Defaults to true. |  
 | `rules[].priority` | Number | Priority of this rule compared to other rules; a lower number means higher priority. See [note on rule priority](#priority) below. Defaults to 1. |  
 
@@ -103,7 +103,7 @@ There's more about [rules](#parameters) below.
 
 ### Activities
 
-Here's the list of the 'potentially restricted activities' that Prebid.js core can restrict for Publishers.
+Here's the list of the 'potentially restricted activities' that Prebid.js core can restrict for Publishers:
 
 {: .table .table-bordered .table-striped }
 | Name           | Description | Effect when denied | Additional parameters |
@@ -126,7 +126,7 @@ Here's the list of the 'potentially restricted activities' that Prebid.js core c
  
  1. The priority
  2. The condition
- 3. The allow status
+ 3. The allow flag
 
  For example, this rule would allow bidderX to perform the activity if no higher priority rules take precedence. 
  ```
@@ -202,9 +202,9 @@ pbjs.setConfig({
 
 #### Rule Conditions
  
-A `condition` in an Activity Control rule is a function that receives information about the activity that is about to be performed. If a condition evaluates to true, the `allow` attribute of the rule will be utilized. If there's no condition specified, the rule's `allow` attribute will always be utilized.
+A `condition` is a javascript function that receives information about the activity that is about to be performed. If a condition evaluates to true, the `allow` attribute of the rule will be utilized. If there's no condition specified, the rule's `allow` attribute will always be utilized.
 
-These are are the parameters available to the condition function:
+These are the parameters available to the condition function:
 
 {: .table .table-bordered .table-striped }
 | Name | Type | Available for | Description |  
@@ -218,13 +218,13 @@ These are are the parameters available to the condition function:
 | `syncType`      | String | <a id="params-syncUser" /> `syncUser`     | Either `'iframe'` or `'image'` - the type of user sync. | 
 | `syncUrl`       | String | `syncUser`     | URL of the user sync. |
 
-#### Rule Allow Status
+#### Allow Flag
 
 If the rule's condition matches, this attribute defines whether the rule 'votes' to allow (true) or disallow (false) the activity in question.
 
 As noted in the priority section, **disallow** (false) takes precedence amongst rules at the same priority level.
 
-If `allow` is not defined, the rule is assumed to assert **true** (i.e. allow).
+If `allow` is not defined, the rule is assumed to assert **true** (i.e. allow the activity to take place).
 
 ### More examples
 
