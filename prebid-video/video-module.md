@@ -62,6 +62,12 @@ To register a video player with Prebid, you must use `setConfig` to set a `video
 In order for Prebid to know which Ad Unit relates to which Video Player, you must include a `video` configuration in your Ad Unit. This allows Prebid to render the ad in the proper Video Player and obtain the Ortb data from the Video Player that will render the ad.
 For the list of properties in the `video` object of the ad unit please visit the [adUnit.video reference]({{site.baseurl}}/dev-docs/adunit-reference.html#adUnit.video).
 
+#### Implementation Examples
+
+[Video.js]({{site.baseurl}}/prebid-video/video-module/integration-examples/videojs.html)
+
+[JW Player]({{site.baseurl}}/prebid-video/video-module/integration-examples/jwplayer.html)
+
 ### Features for Publishers
 
 Integrating with the Video Module gives publishers access to the following features
