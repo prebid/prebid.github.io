@@ -32,5 +32,3 @@ Please note that a number of AdHash functionalities are not supported in the Pre
 | `publisherId`  | required | Publisher ID   | `'0x1234567890123456789012345678901234567890'` | `string`  |
 | `platformURL`  | required | Platform URL   | `'https://adhash.com/p/example/'`              | `string`  |
 | `bidderURL`    | optional | Bidder URL     | `'https://bidder.adhash.com'`                  | `string`  |
-| `globalScript` | optional | Global JS used | `true`                                         | `boolean` |
-
