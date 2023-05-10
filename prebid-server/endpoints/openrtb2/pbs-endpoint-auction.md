@@ -684,7 +684,7 @@ If the `ext.prebid.cache.vastxml` object is present, Prebid Server will make a b
           "ext": {
             "prebid": {
               "cache": {
-                "bids": {
+                "vastXml": {
                   "url": "https://example.com:443/cache?uuid=385b283c-22cb-49a0-8c0b-8b88c49d9fe9",
                   "cacheId": "385b283c-22cb-49a0-8c0b-8b88c49d9fe9"
                 }
