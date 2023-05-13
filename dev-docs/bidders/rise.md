@@ -7,6 +7,7 @@ pbjs: true
 biddercode: rise
 media_types: banner, video
 schain_supported: true
+coppa_supported: true
 gdpr_supported: true
 usp_supported: true
 floors_supported: true
