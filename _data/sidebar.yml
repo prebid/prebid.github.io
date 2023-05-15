@@ -136,7 +136,7 @@
   sbCollapseId: prebidjs
 
 - sbSecId: 1
-  title: Developer Quick Start
+  title: Quick Start
   link:
   isHeader: 1
   headerId: devquickstart
@@ -156,6 +156,22 @@
 - sbSecId: 1
   title: Getting Started for Developers
   link: /dev-docs/getting-started.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 1
+  title: Basic Impression Flow
+  link: /prebid/prebidjs-flow-video.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 1
+  title: Prebid.js Components
+  link: /prebid/prebidjs-components-video.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
