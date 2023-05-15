@@ -14,7 +14,7 @@ userIds: criteo, identityLink, unifiedId
 prebid_member: true
 safeframes_ok: true
 deals_supported: true
-pbjs: true
+pbjs: false
 pbs: true
 pbs_app_supported: true
 fpd_supported: true
@@ -23,9 +23,10 @@ sidebarType: 1
 ---
 
 {: .alert.alert-info :}
-The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at prebid@triplelift.com.
+This is a Prebid Server adapter for running component native only. For the standard Prebid JS Triplelift bid adapter, see the "Triplelift" bidder. If you are interested in running component native via Prebid JS, please contact us at prebid@triplelift.com.
 
-This is a Prebid Server adapter for running component native only. For the standard Prebid JS Triplelift bid adapter, see the "Triplelift" bidder.
+{: .alert.alert-info :}
+The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at prebid@triplelift.com.
 
 ### Table of Contents
 
