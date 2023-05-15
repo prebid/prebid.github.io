@@ -47,7 +47,7 @@ function sendAdserverRequest(bids, timedOut, auctionId) {
     });
   }
 
-  // run some custom logic to detect if a publisher is ready to trigger billing
+  // run some custom logic to detect if a publisher is ready to trigger billing (ex: the ad unit became visible)
 
   if (isReadyToTriggerBilling) {
     pbjs.triggerBilling(deferredWinningBid); // this will trigger the onBidBillable function inside of a bid adapter (if a bid adapter has configured onBidBillable to be utilized)
