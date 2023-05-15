@@ -10,7 +10,7 @@ Allows a publisher the option to manually trigger billing for a winning bid (The
 
 {% highlight js %}
 
-pbjs.triggerBilling({adId});
+pbjs.triggerBilling(winningBidToBill);
 
 {% endhighlight %}
 
