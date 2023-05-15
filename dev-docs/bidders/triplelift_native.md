@@ -14,8 +14,8 @@ userIds: criteo, identityLink, unifiedId
 prebid_member: true
 safeframes_ok: true
 deals_supported: true
-pbjs: true
-pbs: false
+pbjs: false
+pbs: true
 pbs_app_supported: true
 fpd_supported: true
 gvl_id: 28
