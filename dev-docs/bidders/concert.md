@@ -8,6 +8,7 @@ biddercode: concert
 media_types: banner
 gdpr_supported: true
 usp_supported: true
+gpp_supported: true
 sidebarType: 1
 ---
 

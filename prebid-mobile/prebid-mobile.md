@@ -17,11 +17,21 @@ Prebid Mobile libraries are available for iOS and Android.
 * TOC
 {:toc}
 
-## Benefits and Fetures
+## Video Overview of Prebid Mobile
+
+A high-level overview of Prebid Mobile, Prebid’s header bidding product for iOS and Android applications.
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/822158733?h=0d6369cf0c&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="1.4_Intro-to-Prebid-Mobile_v3"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+Further Content:
+- [Transcript of this video](/prebid-mobile/prebid-mobile-video.html)
+- [Prebid Managed Services](https://prebid.org/product-suite/managed-services/)
+
+## Benefits and Features
 
 Prebid SDK rendering offers the following benefits:
 
-- **Transparent, open source header bidding solution**. The single integration point with Prebid Server**, enabling direct access to more mobile buyers.
+- **Transparent, open source header bidding solution**. The single integration point with Prebid Server, enabling direct access to more mobile buyers.
 - **Monetization without an Ad Server**: Publishers who do not have a direct sales force or have no need for an ad server can still access Prebid's mobile demand stack. Publishers will be able to render ads directly without relying on any 3rd party SDKs.
 - **Reduced ad delivery latency**: The rendering module enables Prebid SDK to render ads immediately when demand is returned from Prebid Server or when receiving the render signal from an ad server. The render process should vastly reduce ad delivery speeds.
 - **Less infrastructure**: The rendering API does not rely on Prebid Server's Cache server, reducing the cost and utility of Prebid Server Cache.
@@ -53,20 +63,18 @@ Prebid SDK supports following integration scenarios:
 
 In all scenarios, Prebid SDK leverages Prebid Server for demand. 
 
-The next chart shows which API is used for which Ad Server
+The following chart shows which API is used for which Ad Server
 
 {: .table .table-bordered .table-striped }
 
-|            |Original API|Rendering API|Mediation API|
+|Ad Server|Original API|Rendering API|Mediation API|
 |------------|------------|-------------|-------------|
 |No Ad Server|            |      ✅   |             |
 |GAM         |     ✅   |      ✅   |             |
 |AdMob       |            |             |     ✅   |
 |MAX         |            |             |     ✅   |
 
-Nothe that you can integrate Prebid demand into GAM setup using one of the options - Original API, Rendering API.
-
-Below are the processes for all modes:
+The following sections describe each integration method.
 
 ### No Ad Server
 

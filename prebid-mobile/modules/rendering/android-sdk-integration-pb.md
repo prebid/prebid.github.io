@@ -7,19 +7,73 @@ sidebarType: 2
 
 ---
 
-# Custom Integration
+# Custom Bidding Integration
 {:.no_toc}
 
-## Overview of Rendering API
+You can use Prebid SDK to monetize your app with a custom ad server or even without it. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without primary ad server and its SDK.
+
+* TOC
+{:toc}
+
+## Transport API
+
+The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice. 
+
+In this mode, the publisher will be responsible for the following actions:
+
+* Call fetchDemand with extended targetingDict callback
+* Retrieve targeting keys from extended fetchDemand function
+* Convert targeting keys into the format for your ad server
+* Pass converted keys to your ad server
+* Render ad with Prebid Universal Creative or custom renderer
+
+This approach is avaliable for the following ad formats:
+
+* Display Banner via `BannerAdUnit`
+* Video Banner and Instream Video via `VideoAdUnit`
+* Display Interstitial via `InterstitialAdUnit`
+* Video Interstitial via `VideoInterstitialAdUnit`
+* Rewarded Video via `RewardedVideoAdUnit`
+* Native Styles via `NativeRequest`
+
+The basic integration steps for these ad units you can find at the page for integration using [Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html). The diference is that you should use  the `fetchDemand` function with following signature:
+
+``` kotlin
+public void fetchDemand(@NonNull Object adObj, 
+                        @NonNull OnCompleteListener2 listener) { ... }
+                        
+public interface OnCompleteListener2 {
+    /**
+     * This method will be called when PrebidMobile finishes attaching keywords to unmodifiableMap.
+     * @param resultCode see {@link ResultCode} class definition for details
+     * @param unmodifiableMap a map of targeting Key/Value pairs
+     */
+    @MainThread
+    void onComplete(ResultCode resultCode, 
+                    @Nullable Map<String, String> unmodifiableMap);
+}                        
+```
+
+Examples:
+
+``` kotlin
+private fun loadRewardedVideo() {
+    adUnit?.fetchDemand { resultCode, unmodifiableMap -> 
+        val keywords: Map<String, String> = HashMap(unmodifiableMap)
+
+        adServerObject.loadRewardedVideo(ADUNITID_REWARDED, keywords)
+    }
+}
+```
+
+## Rendering API
 
 The integration and usage of the Rendering API is similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid. 
 
 ![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
-* TOC
-{:toc}
 
-## Banner API
+### Banner API
 
 Integration example:
 
@@ -61,7 +115,7 @@ For **Banner Video** you will also need to specify the `bannerView.videoPlacemen
 bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
 ```
 
-## Interstitial API
+### Interstitial API
 
 Integration example:
 
@@ -84,7 +138,7 @@ The **default** ad format for interstitial is **DISPLAY**. In order to make a `m
 interstitialAdUnit = InterstitialAdUnit(
                         requireContext(), 
                         configId, 
-                        EnumSet.of(AdUnitFormat.DISPLAY, AdUnitFormat.VIDEO))
+                        EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO))
 ```
 
 #### Step 1: Create an Ad Unit
@@ -115,7 +169,7 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 }
 ```
 
-## Rewarded API
+### Rewarded API
 
 Integration example:
 

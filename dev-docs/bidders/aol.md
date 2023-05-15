@@ -4,17 +4,21 @@ title: AOL
 description: Prebid AOL Bidder Adaptor
 pbjs: true
 biddercode: aol
-gdpr_supported: true
+gdpr_supported: false
 usp_supported: true
 gvl_id: 25
 userIds: connectId
 sidebarType: 1
 
 ---
+### Disclosure
+
+This adapter may not handle user syncs for TCF2 or GPP correctly. The user sync consent querystring parameters are generated at the time of the bid request and might be stale at the time of the user sync. See https://github.com/prebid/Prebid.js/pull/9345#issuecomment-1362887086
+
 ### IMPORTANT NOTICE!
 **TL;DR**
-1. The `aol` adapter is scheduled to be depreciated.
-2. Our New `yahoossp` is available for early adoption.
+1. The `aol` adapter is scheduled to be deprecated.
+2. Our New `yahoossp` is available for adoption.
 3. Please contact your Account Manager/Executive for migration details.
 
 Dear Publishers & Partners,

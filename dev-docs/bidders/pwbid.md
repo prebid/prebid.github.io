@@ -3,6 +3,7 @@ layout: bidder
 title: PubWise
 description: PubWise Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: pwbid
 aliasCode: pubwise
 media_types: banner, native, video
