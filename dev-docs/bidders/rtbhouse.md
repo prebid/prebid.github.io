@@ -13,6 +13,7 @@ media_types: banner, native
 schain_supported: true
 userIds: id5Id, identityLink, pubProvidedId
 pbs_app_supported: true
+ortb_blocking_supported: partial
 sidebarType: 1
 ---
 
@@ -27,6 +28,36 @@ sidebarType: 1
 | `bidfloor`    | optional | Minimal CPM value   | `0.01`        | `float`  |
 | `channel`     | optional | Inventory channel identifier, limited to 50 characters  | `Partner 1 - News`        | `string`  |
 
+#### ORTB Blocking
+RTB House supports blocking advertisers in `badv` and categories in `bcat` parameters.
+The blocked advertisers/categories list has no length limitation, but response timeout is more likely to occur as the number of entries grow.
+Blocked advertisers list (`badv`) is an array of domains as strings.
+Blocked categories list (`bcat`) is an array of IAB categories as strings.
+
+For example:
+##### Globally defined ORTB Blocking:
+```javascript
+pbjs.setConfig({
+  ortb2: {
+    badv: ["domain1.com", "domain2.com"],
+    bcat: ["IAB23-1", "IAB23-5", "IAB25-3", "IAB25-2"]
+  }
+)};
+```
+##### ORTB Blocking specific only to rtbhouse bidder:
+```javascript
+pbjs.setBidderConfig({
+  bidders: ['rtbhouse'],
+  config:{
+    ortb2: {
+      badv: ["domain1.com", "domain2.com"],
+      bcat: ["IAB23-1", "IAB23-5", "IAB25-3", "IAB25-2"]
+    }
+  }
+});
+```
+### Setting up the Prebid Server Adapter
+If you’re a Prebid Server host company looking to enable the RTB House server-side adapter, you'll need to contact prebid@rtbhouse.com. They will guide you through the process. Do not use the default bidder config file as it will require custom partner code to be entered. It will be provided by RTB House.
 
 ### Please note:
 

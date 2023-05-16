@@ -761,7 +761,7 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: Prebid Utilities
+  title: Prebid Utility Functions
   link: /prebid-mobile/pbm-api/ios/pbm-util-ios.html
   isHeader: 0
   isSectionHeader: 0
@@ -778,7 +778,7 @@
   subgroup: 3
 
 - sbSecId: 2
-  title: Code Integration
+  title: SDK Integration
   link: /prebid-mobile/pbm-api/android/code-integration-android.html
   isHeader: 0
   isSectionHeader: 0
@@ -786,7 +786,7 @@
   subgroup: 3
 
 - sbSecId: 2
-  title: GAM Original API
+  title: GAM Original Integration
   link: /prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html
   isHeader: 0
   isSectionHeader: 0

@@ -15,6 +15,9 @@ userIds: identityLink, uid2
 sidebarType: 1
 ---
 
+{: .alert.alert-warning :}
+The emx_digital bidder is deprecated, and will be removed in a future release of Prebid.js and Prebid Server.
+
 ### Registration
 
 To use this bidder you will need an account and a valid tagid from our exchange.  For further information, please contact your Account Manager or adops@emxdigital.com.
