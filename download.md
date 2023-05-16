@@ -35,9 +35,9 @@ a.tip:hover span {
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 
 <script>
-var searchParams = new URL(window.location).searchParams;
+var currentUrl = new URL(window.location);
+var searchParams = currentUrl.searchParams;
 
-    setPrepickedModules()
   getVersionList();
 
 $(function(){
@@ -52,6 +52,7 @@ $(function(){
 
   // show all adapters
   $('.adapters .col-md-4').show();
+  setPrepickedModules()
 });
 
 function getVersionList() {
@@ -240,7 +241,7 @@ function setPrepickedModules() {
             } else {
                 searchParams.delete('modules');
             }
-            window.history.replaceState(null, '', window.location.pathname + '?' + searchParams.toString());
+            window.history.replaceState(null, '', currentUrl);
         });
     });
 }
