@@ -17,7 +17,7 @@ pbs_app_supported: true
 deals_supported: true
 userIds: criteo, id5Id, netId, pubCommonId, sharedId
 multiformat_supported: will-bid-on-one
-floors_supported: false
+floors_supported: true
 fpd_supported: false
 ---
 
