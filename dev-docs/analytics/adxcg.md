@@ -7,7 +7,6 @@ gdpr_supported: false
 usp_supported: false
 coppa_supported: false
 prebid_member: false
-gvl_id: N/A
 enable_download: false
 ---
 
