@@ -27,13 +27,13 @@ publishersupport@epsilon.com for more information.
 | send_error_data | optional | Adds extra analytics that tracks script runtime errors, bad data and bidders | true  | false | boolean |
 
 ### Example Configuration
-
+Legacy provider code of 'conversant' is still supported
 ```
             <!-- should be called before requestBids() -->
             pbjs.que.push(function(){
                 pbjs.enableAnalytics(
                     {
-                        provider: 'conversant',
+                        provider: 'epsilon',
                         options: {
                             site_id: 108060,
                             cnvr_sampling: 0.5,
