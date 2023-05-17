@@ -27,3 +27,5 @@ Current available integration options are as follows:
 | Name          | Scope    | Description  | Example   | Type     |
 |---------------|----------|--------------|-----------|----------|
 | `startCompact`      | optional | Height of the experience will be reduced | `true` | `boolean` |
+| `dwellExpand`      | optional | Auto expand the experience after a certain time passes | `true` | `boolean` |
+| `contentCode`      | optional | Force show a certain experience. Generally used for testing and debugging purposes. | `publisher-test` | `string` |
