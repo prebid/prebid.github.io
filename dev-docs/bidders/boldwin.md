@@ -7,6 +7,7 @@ pbs: true
 biddercode: boldwin
 gdpr_supported: true
 media_types: banner, video, native
+sidebarType: 1
 ---
 
 ### Note

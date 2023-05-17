@@ -9,6 +9,7 @@ usp_supported: true
 pbjs: true
 fpd_supported: true
 gvl_id: 29
+sidebarType: 1
 ---
 
 ### Bid Params

@@ -3,7 +3,6 @@ layout: bidder
 title: TrustX (standalone)
 description: Prebid TrustX Bidder Adaptor
 pbjs: true
-pbs: true
 biddercode: trustx
 media_types: banner, video
 multiformat_supported: will-bid-on-any
@@ -11,12 +10,16 @@ gdpr_supported: true
 usp_supported: true
 fpd_supported: true
 pbjs_version_notes: 6.x and before
+sidebarType: 1
 ---
+
+#### Is relevant for versions 6.X and before
 
 ### Table of Contents
 
-- [Bid Params](#trustx-bid-params)
-- [First Party Data](#trustx-first-party)
+- [Table of Contents](#table-of-contents)
+- [Bid Params](#bid-params)
+- [First Party Data](#first-party-data)
 
 <a name="trustx-bid-params" />
 

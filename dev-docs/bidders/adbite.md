@@ -18,6 +18,7 @@ ortb_blocking_supported: true
 multiformat_supported: will-bid-on-one
 floors_supported: true
 aliasCode: adkernel
+sidebarType: 1
 ---
 
 ### Note:
@@ -30,4 +31,4 @@ The adbite Bidding adaptor requires setup and approval before beginning. Please 
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Our Host | `'cpm.adbite.com'` | `string` |
-| `zoneId` | required | Example RTB zone id           | `'12345'`| `string` |
+| `zoneId` | required | Example RTB zone id           | `12345`| `integer` |

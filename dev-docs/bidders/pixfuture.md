@@ -11,6 +11,7 @@ usp_supported: true
 userIds: criteoId, unifiedId, id5Id, sharedId, identityLink, liveIntentId, fabrickId
 pbs: false
 pbjs: true
+sidebarType: 1
 ---
 #### Bid Params
 

@@ -11,6 +11,7 @@ usp_supported: true
 schain_supported: true
 coppa_supported: true
 userIds: unifiedId
+sidebarType: 1
 ---
 
 ### Bid Params

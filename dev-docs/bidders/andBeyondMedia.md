@@ -11,6 +11,7 @@ floors_supported: true
 media_types: banner, video, native
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
 ### Prebid Bid Params

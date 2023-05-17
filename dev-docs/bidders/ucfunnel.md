@@ -13,6 +13,7 @@ coppa_supported: true
 schain_supported: true
 gvl_id: 607
 pbs_app_supported: true
+sidebarType: 1
 ---
 
 ### Prebid JS

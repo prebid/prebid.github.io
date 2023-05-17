@@ -15,7 +15,7 @@ For each bidder listed below, you'll find the following information:
 
 {: .table .table-bordered .table-striped }
 | **Features**                     | A table of features supported by the adapter.  |
-| **"Send All Bids" Ad Server Keys**  | Used for sending all bids to the ad server, as described in [Send All Bids to the Ad Server]({{site.baseurl}}/adops/send-all-bids-adops.html) |
+| **"Send All Bids" Ad Server Keys**  | Used for sending all bids to the ad server, as described in [Send All Bids vs Send Top Price]({{site.baseurl}}/adops/send-all-vs-top-price.html) |
 | **Bid Params**                      | Ad request parameters required by a given bidder, such as the tag ID, site ID, or query string parameters                                     |
 
 You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV data file</a>.
@@ -31,7 +31,7 @@ Publishers are advised to check with legal counsel before doing business with an
 <input type="text" id="autocomplete-filter" class="autocomplete-filter">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js" integrity="sha512-HcBl0GSJvt4Qecm4srHapirUx0HJDi2zYXm6KUKNNUGdTIN9cBwakVZHWmRVj4MKgy1AChqhWGYcMDbRKgO0zg==" crossorigin="anonymous"></script>
 <script>
-var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}', value: '/dev-docs/bidders/{{ page.biddercode }}' },{% endfor %}];
+var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}', value: '{{ page.url }}' },{% endfor %}];
 </script>
 <script src="{{site.baseurl}}/assets/js/autocomplete.js"></script>
 <div class="c-bidder-list-group" markdown="1">

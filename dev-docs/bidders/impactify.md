@@ -13,6 +13,7 @@ coppa_supported: true
 media_types: video
 userIds: criteo, id5Id, pubCommonId, unifiedId, uid2, netId
 gvl_id: 606
+sidebarType: 1
 ---
 
 ### Note:

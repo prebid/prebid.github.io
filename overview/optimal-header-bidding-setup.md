@@ -1,6 +1,6 @@
 ---
 layout: page_v2
-title: Optimal Header Bidding Setup
+title: Analyze Header Bidding Setup
 description: What is the optimal header bidding setup and some common problems.
 
 pid: 10
@@ -13,7 +13,7 @@ sidebarType: 3
 
 
 
-# Optimal Header Bidding Setup
+# Analyze Header Bidding Setup
 
 
 ### What's a good header bidding auction:
@@ -141,9 +141,3 @@ Add the Plugin [Headerbid Expert](https://chrome.google.com/webstore/detail/head
 <a href="https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop" target="_blank"><img src="/assets/images/hb-expert/headerbid-expert-logo.png" alt="headerbid-expert-logo" width="50%" style="cursor:pointer">
 </a>
 </div>
-
-
-
-
-
-

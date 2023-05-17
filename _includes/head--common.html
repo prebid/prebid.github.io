@@ -1,12 +1,12 @@
     <meta charset="utf-8">
     <script>(function(){var cL=document.documentElement.classList;cL.remove('html--no-js');cL.add('html--js')})()</script>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet" onload="document.documentElement.classList.add('html__font-loaded--primary');">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="_SMhyxJ4MnU9eTUQQNMUwU5W18T5tjNF7A6mumIci-A" />
     <meta name="keywords" content="Header Bidding, Advanced Bidding, Header Bid, Pre-bid">
     <meta name="description" content="{{page.description}}" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
+
 
 
     {% if page.head_title %}
@@ -15,16 +15,19 @@
         <title>{{page.title}} for Header Bidding</title>
     {% endif %}
 
-    {% if jekyll.environment == "production" %}
-	<!-- OneTrust Cookies Consent Notice start for docs.prebid.org -->
-	<script src="https://cdn.cookielaw.org/consent/53783db5-1614-43d4-bb1a-148e68e8c87b.js" type="text/javascript" charset="UTF-8"></script>
-	<script type="text/javascript">
-	function OptanonWrapper() { }
-	</script>
-	<!-- OneTrust Cookies Consent Notice end for docs.prebid.org -->
-    {% endif %}
+    <!-- OneTrust Cookies Consent Notice start for docs.prebid.org -->
+    <script type="text/javascript">
+      // Global Promise we can check to make sure OneTrust is loaded.
+      let resolveOneTrust;
+      window.onetrustLoaded = new Promise((resolve) => resolveOnetrust = resolve);
+      function OptanonWrapper() {
+        resolveOnetrust();
+      }
+    </script>
+    <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="031ad285-43ce-45f1-a493-8188aaf238cf"></script>
+    <!-- OneTrust Cookies Consent Notice end for docs.prebid.org -->
 
-	<link href="{{site.baseurl}}/assets/css/main-bundle.css?v=9" rel="stylesheet">
+	<link href="{{site.baseurl}}/assets/css/main-bundle.css?v=11" rel="stylesheet">
 
 	<!-- Favicons -->
 	<link href="{{site.baseurl}}/assets/images/favicon.png" rel="icon">
@@ -39,5 +42,5 @@
     <script src="{{site.baseurl}}/assets/js/main.js"></script>
     <script type="text/javascript" src="{{site.baseurl}}/assets/js/pbjs_home.js"></script>
 	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
 

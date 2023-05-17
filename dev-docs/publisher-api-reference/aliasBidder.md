@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.aliasBidder(adapterName, aliasedName, options)
 description:
+sidebarType: 1
 ---
 
 

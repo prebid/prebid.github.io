@@ -3,6 +3,7 @@ layout: bidder
 title: Teads
 description: Prebid Teads Bidder Adapter
 pbjs: true
+pbjs_version_notes: please avoid using v7.20.0 and v7.21.0
 biddercode: teads
 gdpr_supported: true
 usp_supported: true
@@ -11,6 +12,7 @@ userIds: uid2Id, identityLinkId, lotamePanoramaId, id5Id, criteoId, connectId, q
 media_types: banner, video
 gvl_id: 132
 deals_supported: true
+sidebarType: 1
 ---
 
 ### Note:

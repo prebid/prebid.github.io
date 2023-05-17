@@ -7,13 +7,18 @@ pbjs: true
 media_types: banner, video
 biddercode: yahoossp
 prebid_member: true
-gdpr_supported: true
+gdpr_supported: false
 usp_supported: true
 schain_supported: true
 coppa_supported: true
 gvl_id: 25
 userIds: All
+sidebarType: 1
 ---
+
+### Disclosure
+
+This adapter may not handle user syncs for TCF2 or GPP correctly. The user sync consent querystring parameters are generated at the time of the bid request and might be stale at the time of the user sync. See https://github.com/prebid/Prebid.js/pull/9345#issuecomment-1362887086
 
 ### Important Notice (JS vs PBS)
 There are differences between our Prebid.js & Prebid-Server Yahoo SSP adapters.
@@ -35,6 +40,7 @@ For legacy "aol", "oneMobile" adapter partners/publishers.
 |------------|----------|------------------------|---------|----------|
 | dcn | Required | Site ID provided by Yahoo SSP | 'site1' | string |
 | pos | Required | Placement ID provided by Yahoo SSP | 'placement1' | string |
+
 #### PubId Integration Parameters (JS Only)
 For New partners/publishers joining Yahoo SSP
 floors_supported: true and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.

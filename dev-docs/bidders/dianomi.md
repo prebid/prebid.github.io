@@ -16,6 +16,7 @@ gvl_id: 885
 floors_supported: true
 fpd_supported: true
 multiformat_supported: will-bid-on-one
+sidebarType: 1
 ---
 
 ### Note

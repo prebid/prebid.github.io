@@ -14,27 +14,27 @@ sidebarType: 4
 
 If you’re new to header bidding and Prebid review the following to get a general understanding of Prebid.js.
 
--	[What Is Prebid?]({{site.github.url}}/overview/intro.html)
--	[Getting Started with Prebid]({{site.github.url}}/overview/getting-started.html)
+-	[What Is Prebid?](/overview/intro.html)
+-	[Getting Started with Prebid](/adops/before-you-start.html)
 
-See [Prebid.js Video Overview]({{site.github.url}}/prebid-video/video-overview.html) for a general description and high-level overview of working with video demand in Prebid.js.
+See [Prebid.js Video Overview](/prebid-video/video-overview.html) for a general description and high-level overview of working with video demand in Prebid.js.
 
 * TOC
 {:toc}
 
 ## Ad Server Setup
 
-Prebid uses FreeWheel for the distrubtion of `Creatives`. Refer to [Setting Up Prebid video in FreeWheel]({{site.github.url}}/adops/setting-up-prebid-video-in-freewheel.html) for an Ad Ops getting started guide.
+Prebid uses FreeWheel for the distrubtion of `Creatives`. Refer to [Setting Up Prebid video in FreeWheel](/adops/setting-up-prebid-video-in-freewheel.html) for an Ad Ops getting started guide.
 
 ## Developers
 
 ### Download Prebid.js
 
-To implement header bidding for long-form video start by [downloading Prebid.js]({{site.github.url}}/download.html).
+To implement header bidding for long-form video start by [downloading Prebid.js](/download.html).
 
 Before downloading, select the adapters you want to include. (You can add more adapters later.)
 
-- Include at least one video adapter. Find a list of available video adapters [here]({{site.github.url}}/dev-docs/bidders.html#bidder-video-native).
+- Include at least one video adapter. Find a list of available video adapters [here](/dev-docs/bidders.html#bidder-video-native).
 - Include the [FreeWheel](/dev-docs/modules/freewheel.html) Ad Server module.
 - Include the [Category Translation](/dev-docs/modules/categoryTranslation.html) module.  
 - If you’ll be integrating with Prebid Server, be sure to include “Prebid Server” in the list of adapters.
@@ -219,6 +219,6 @@ See [Prebid Video Examples](/examples/video/long-form/pb-ve-lf-freewheel.html) f
 
 ## Further Reading
 
--   [Prebid.js for Video Overview]({{site.github.url}}/prebid-video/video-overview.html)
--   [Getting Started with Video for Prebid.js]({{site.github.url}}/prebid-video/video-getting-started.html)
--   [What is Prebid?]({{site.github.url}}/overview/intro.html)
+-   [Prebid.js for Video Overview](/prebid-video/video-overview.html)
+-   [Getting Started with Video for Prebid.js](/prebid-video/video-getting-started.html)
+-   [What is Prebid?](/overview/intro.html)

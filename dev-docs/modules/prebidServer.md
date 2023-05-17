@@ -45,12 +45,14 @@ The same bidder cannot be set in both configs. For example:
 pbjs.setConfig({
     s2sConfig: [
     {
+        name: "pbs-appnexus",
         accountId: '12345',
         bidders: ['appnexus','pubmatic'],
         defaultVendor: 'appnexus',
         timeout: 300,
     },
     {
+        name: "pbs-rubicon",
         accountId: '678910',
         bidders: ['rubicon'],
         defaultVendor: 'rubicon',
@@ -65,6 +67,7 @@ There are many configuration options for s2sConfig:
 | Attribute | Scope | Type | Description                                                                                   |
 |------------+---------+---------+---------------------------------------------------------------|
 | `accountId` | Required | String | Your Prebid Server account ID. This is obtained from whoever's hosting your Prebid Server. |
+| `name` | Optional | String | A handle for this configuration, used to reference a specific server (when multiple are present) from [ad unit configuration](/dev-docs/adunit-reference.html#stored-imp) | 
 | `bidders` | Optional | Array of Strings | Which bidders auctions should take place on the server side |
 | `allowUnknownBidderCodes` | Optional | Boolean | Allow Prebid Server to bid on behalf of bidders that are not explicitly listed in the adUnit. See important [note](#allowUnknownBidderCodes) below. Defaults to `false`. |
 | `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.  Individual properties can be overridden by including them in the config along with this setting. See the Additional Notes below for more information. |
@@ -97,7 +100,7 @@ If `endpoint` and `syncEndpoint` are objects, these are the supported properties
 - If the `s2sConfig` timeout is greater than the Prebid.js timeout, the `s2sConfig` timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.
 - When using the `endpoint` or `syncEndpoint` object configs, you should define both properties.  If either property is not defined, Prebid Server requests for that type of user will not be made.  If you do not need to distinguish endpoints for consent reasons, you can simply define the same URL value in both fields or use the String version of the field (which is configured to use defined URL for all users).
 - <a name="allowUnknownBidderCodes" /> When `allowUnknownBidderCodes` is `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction. This can break custom logic that relies on the availability of a bid request object for any given bid. Known scenarios where custom code won't get the request when there's an "unknown bidder":
-    - There will not be a [`bidRequested`](getEvents.html) event.
+    - There will not be a [`bidRequested`](/dev-docs/publisher-api-reference/getEvents.html) event.
     - In the [MASS custom renderers](/dev-docs/modules/mass.html#configuration-parameters) module, `payload.bidRequest` will be undefined.
     - In the [Price Floors module](/dev-docs/modules/floors.html), custom schema functions will see the bidRequest object as undefined.
 
@@ -107,6 +110,10 @@ Additional options for `s2sConfig` may be enabled by including the [Server-to-Se
 **Passing the Referrer to Server Side Adapters**
 
 * Setting `extPrebid.origreferrer` will be recognized by some server-side adapters as the referring URL for the current page.
+
+**Emitting SeatNonBid Data**
+
+* Prebid Server can be instructed to return additional [SeatNonBid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) information about why bidders might not have bid on certain adunits. You can get this extra information by setting `extPrebid.returnallbidstatus` equal to `true`. Note that client-side analytics adapters can receive this data by listening to the `seatNonBid` event.
 
 ## Bid Params
 
@@ -235,7 +242,7 @@ pbjs.addAdUnits([{
 ### Stored responses
 
 For debugging purposes, it can be useful to have a page that retrieves a static value rather than running an actual auction.
-For this you can use PBS [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses-pbs-java-only).
+For this you can use PBS [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses).
 Here's an example:
 
 ```javascript

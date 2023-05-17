@@ -104,4 +104,4 @@ array returned from the `interpretResponse` function.
 
 ## Related Topics
 
-- [MultiBid in the Prebid Server /openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid-pbs-java-only)
+- [MultiBid in the Prebid Server /openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid)

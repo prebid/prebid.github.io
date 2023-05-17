@@ -54,12 +54,12 @@ There are several places where the Floor module changes the behavior of the Preb
 1. When building the Prebid.js package, the Price Floors Module (and any analytics adapters) needs to be included with 'gulp build --modules=priceFloors,...'
 2. As soon as the setConfig({floors}) call is initiated, the Price Floors Module will build an internal hash table for each auction derived from a Rule Location (one of Dynamic, setConfig or adUnit)
   - a. If an endpoint URL (a Dynamic Floor) is defined, the Price Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Price Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data, whichever is first.
+  - If the `skipRate` flag is specified, there's an A/B test in progress, so the module will decide for this request whether floors processing should be 'skipped' or not.
 3. Bid Adapters are responsible for utilizing the getFloor() from the bidRequest object for each ad slot media type, size combination. The Price Floors Module will perform currency conversion if the bid adapter requests floors in a different currency from the defined floor data currency.
 4. Bid Adapters will pass the floor values to their bidding endpoints, to request bids, responding with any bids that meet or exceed the provided floor
 5. Bid adapters will submit bids to back to Prebid core, where the Price Floors Module will perform enforcement on each bid
 6. The Price Floors Module will mark all bids below the floor as bids rejected. Prebid core will submit all eligible bids to the publisher ad server
     - a. The Price Floors Module emits floor event / bid data to Analytics adapters to allow Floor Providers a feedback loop on floor performance for model training
-
 
 ## Defining Floors
 
@@ -293,7 +293,7 @@ a subset that will be merged under the 'data' object.
 | enforcement | object | Controls the enforcement behavior within the Price Floors Module.| - |
 | skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the Price Floors Module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail. | 0 |
 | enforcement.enforceJS | boolean | If set to true, the Price Floors Module will provide floors to bid adapters for bid request matched rules and suppress any bids not exceeding a matching floor. If set to false, the Price Floors Module will still provide floors for bid adapters, there will be no floor enforcement.| true |
-| enforcement.enforcePBS | boolean | If set to true, the Price Floors Module will signal to Prebid Server to pass floors to it’s bid adapters and enforce floors. If set to false, the pbjs should still pass matched bid request floor data to PBS, however no enforcement will take place. | false |
+| enforcement.enforcePBS | boolean | If set to true, the Price Floors Module will signal to Prebid Server to pass floors to it’s bid adapters and enforce floors. If set to false, the pbjs should still pass matched bid request floor data to PBS, however no enforcement will take place. | true |
 | enforcement.floorDeals | boolean | Enforce floors for deal bid requests. | false |
 | enforcement.bidAdjustment | boolean | If true, the Price Floors Module will use the bidAdjustment function to adjust the floor per bidder. If false (or no bidAdjustment function is provided), floors will not be adjusted. Note: Setting this parameter to false may have unexpected results, such as signaling a gross floor when expecting net or vice versa. | true |
 | endpoint | object | Prebid.js only: controls behavior for dynamically retrieving floors.  | - |
@@ -316,6 +316,8 @@ a subset that will be merged under the 'data' object.
 | additionalSchemaFields."custom key" | string | custom key name | - |
 | additionalSchemaFields."key map function" | function | Function used to lookup the value for that particular custom key | - |
 
+{: .alert.alert-info :}
+When you see 'skipped' in the floors data, it indicates the status of the `skipRate` A/B test for this request. This is just a mechanism to be able to tell if the floor rules are providing value. e.g `skipRate` will often start at a high value like 90%, which means "only apply floors 10% of the time". If skipRate is 90, you would expect to see "skipped: true" 9 times out 10.
 
 
 ### Schema 2
@@ -352,7 +354,7 @@ a subset that will be merged under the 'data' object.
 | location | string | Prebid Server only: this is a read-only field set by the Prebid-Server floors feature to let analytics adapters know where the floors data came from. Possible values are: 'request', 'fetch' or 'noData'. | n/a |
 | enforcement | object | Controls the enforcement behavior within the module.| - |
 | enforcement.enforceJS | boolean | If set to true, the module will provide floors to bid adapters for bid request matched rules and suppress any bids not exceeding a matching floor. If set to false, the module will still provide floors for bid adapters, but there will be no floor enforcement.| true |
-| enforcement.enforcePBS | boolean | If set to true, the module will signal to Prebid Server to pass floors to it’s bid adapters and enforce floors. If set to false, Prebid.js should still pass matched bid request floor data to Prebid Server, however no enforcement will take place. | false |
+| enforcement.enforcePBS | boolean | If set to true, the module will signal to Prebid Server to pass floors to it’s bid adapters and enforce floors. If set to false, Prebid.js should still pass matched bid request floor data to Prebid Server, however no enforcement will take place. | true |
 | enforcement.floorDeals | boolean | Enforce floors for deal bid requests. | false |
 | enforcement.bidAdjustment | boolean | If true, the module will use the bidAdjustment function to adjust the floor per bidder. If false (or no bidAdjustment function is provided), floors will not be adjusted. Note: Setting this parameter to false may have unexpected results, such as signaling a gross floor when expecting net or vice versa. | true |
 | enforcement.enforceRate | integer | Prebid Server only: Defines a percentage for how often bid response enforcement activity should take place given that the floors feature is active. If the floors feature is skipped due to skipRate, this has no affect. For every non-skipped auction, this percent of them should be enforced: i.e. bids discarded. This feature lets publishers ease into enforcement in case bidders aren't adhering to floor rules. | 100 |
@@ -380,6 +382,8 @@ a subset that will be merged under the 'data' object.
 | additionalSchemaFields."custom key" | string | custom key name | - |
 | additionalSchemaFields."key map function" | function | Function used to lookup the value for that particular custom key | - |
 
+{: .alert.alert-info :}
+As noted for Schema 1, when you see 'skipped' in the floors data, it indicates the status of the `skipRate` A/B test for this request. This is just a mechanism to be able to tell if the floor rules are providing value. e.g `skipRate` will often start at a high value like 90%, which means "only apply floors 10% of the time". If skipRate is 90, you would expect to see "skipped: true" 9 times out 10.
 
 *Example 1*
 Model weights add up to 100 and are sampled at a 25%, 25%, 50% distribution. Additionally, each model group has diffirent schema fields:
@@ -1350,10 +1354,10 @@ If the currency function is unable to derive the correct cpm in any of the scena
 
 {: .table  }
 | Partner | Contact | About |
-| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | [globalsupport@magnite.com](mailto:globalsupport@magnite.com) | Magnite data-science applied to dynamic floors |
+| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | [globalsupport@magnite.com](mailto:globalsupport@magnite.com) | Magnite data-science applied to dynamic floors. (Currently only available to Demand Manager customers) |
 | <img src="/assets/images/partners/leader/openx.png" style="height:50px;"> | Reach out to OpenX at [apollo@openx.com](mailto:apollo@openx.com) | Dynamic floor optimization and more |
 | <img src="/assets/images/partners/leader/pubmatic.png" style="height:50px;"> | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
-| Assertive Yield | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
+| <img src="/assets/images/partners/leader/AssertiveYield_logo.png"> | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
 | pubx.ai | [hello@pubx.ai](mailto:hello@pubx.ai) | AI-powered dynamic floor optimization |
 
 ## Further Reading
