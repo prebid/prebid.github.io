@@ -27,8 +27,8 @@ Note: Parameters are case-sensitive. ConnectID is the proper name of our product
 | params | Required | Object | Container of all module params. ||
 | params.pixelId | Required | Number |
 The Yahoo-supplied publisher-specific pixel ID. | `"0000"` |
-| params.he | Optional | String | The SHA-256 hashed user email address which has been lowercased prior to hashing. Pass both `he` and `puid` params if present, otherwise pass either of the two that is available. |`"ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"`|
-| params.puid | Optional | String | The publisher supplied user identifier such as a first-party cookie. Pass both `he` and `puid` params if present, otherwise pass either of the two that is available. | `"ab9iibf5a231ii1db8ef911596ca297d5e3f84biii00041c5880dba3baf9c1da"` |
+| params.he | Optional | String | The SHA-256 hashed user email address which has been lowercased prior to hashing.  |`"ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"`|
+| params.puid | Optional | String | A domain-specific user identifier such as a first-party cookie. If not passed, a puid value will be auto-generated and stored in local and / or cookie storage.  | `"ab9iibf5a231ii1db8ef911596ca297d5e3f84biii00041c5880dba3baf9c1da"` |
 {: .table .table-bordered .table-striped }
 </div>
 
@@ -52,7 +52,7 @@ pbjs.setConfig({
 ```
 
 ```
-// [Sample #2]: Using a hashed email and a publisher-supplied user identifier such as a first-party cookie.
+// [Sample #2]: Neither a hashed email nor a publisher user identifier is passed.
 
 pbjs.setConfig({
     userSync: {
@@ -60,13 +60,39 @@ pbjs.setConfig({
             name: "connectId",
             params: {
               pixelId: "0000",
-              he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4",
-              puid: "ab9iibf5a231ii1db8ef911596ca297d5e3f84biii00041c580dba3baf9c1da"
             }
         }]
     }
 })
 ```
+
+```
+// [Sample #3]: Using a hashed email and a publisher user identifier such as a first-party cookie.
+
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "connectId",
+            params: {
+              pixelId: "0000",
+              he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"
+		 puid: "ab9iibf5a231ii1db8ef911596ca297d5e3f84biii00041c580dba3baf9c1da"
+            }
+        }]
+    }
+})
+```
+
+## Implementation Verification
+Follow the steps below to check that ConnectIDs are being successfully retrieved and included on ad requests.
+1) Open a Prebid-enabled page on the website.
+2) Open the browser console and enter pbjs.getUserIds().
+3) Verify connectId is in the list.
+   - If connectId is not in the list, the correct pixelId parameter is likely not being passed. Verify you are using the correct value provided by Yahoo. Reach out to [connectid.support@yahooinc.com](mailto:connectid.support@yahooinc.com) for assistance.
+4) Verify that ConnectID is successfully included in the ad requests.
+   - Go to the Network tab and search for an ad call event to any of the SSPs that you are using (e.g., “prebid-client”).
+   - Navigate to the Payload tab. Check that yahoo.com is listed as a source in the user.ext.eids array.
+5) Repeat steps 1-4 after an email is provided via login or some other mechanism used to collect user registration on the website.
 
 ## Honoring Privacy Choices
 
@@ -83,7 +109,7 @@ Please note that the storage related parameters are optional. We recommend that 
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | storage | Optional | Object | Defines where and for how long the results of the call to get a user ID will be stored. | |
-| storage.type | Optional | String | Defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` local storage).| `'cookie'` |
+| storage.type | Optional | String | Defines where the resolved user ID will be stored (either 'cookie' or 'html5' local storage). | `'cookie'` |
 | storage.name | Optional | String | The name of the cookie or html5 local storage where the resolved user ID will be stored. | `'connectId'` |
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. | `15` |
 {: .table .table-bordered .table-striped }
