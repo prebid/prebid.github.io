@@ -98,5 +98,5 @@ Now, we’ll go through the process in detail.
 - Publishers can measure their monetization performance, troubleshoot issues, and maximize yield by gathering data about their header bidding auctions. Prebid supports a standardized interface for analytics adapters that allows publishers to integrate header bidding analytics tools that give them the insights they need.
 - Prebid.js logs events throughout the auction and ad serving process. These events are exposed to analytics adapters, and they include the start of the auction, requests to bidders, bid responses, timeouts, ad server requests, ad renders, and more.
 - Tools like the Professor Prebid browser extension also have the ability to monitor Prebid.js events and can be used for troubleshooting, debugging, and optimization.
-- To learn more about the Prebid Auction and about Prebid’s analytics, optimization, and troubleshooting tools, visit docs.prebid.org.
+- To learn more about the Prebid Auction and about Prebid’s analytics, optimization, and troubleshooting tools, visit [docs.prebid.org](docs.prebid.org).
 
