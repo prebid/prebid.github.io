@@ -40,7 +40,7 @@ The Prebid.js User ID Module is used to integrate SharedId and other services in
 Publishers have complete control over which user ID submodules are included in their Prebid.js wrappers. Prebid.js also allows publishers to establish controls over user IDs, such as restricting when and how user syncing can occur during the header bidding auction.
 
 ### Privacy Solutions: Consent Modules
-Prebid.js also includes tools that allow publishers to execute on their privacy, consent, and regulatory compliance strategies. These tools work in close co ordination with the User ID module and Prebid adapters to control whether, when, and how user identifiers are created or shared. 
+Prebid.js also includes tools that allow publishers to execute on their privacy, consent, and regulatory compliance strategies. These tools work in close coordination with the User ID module and Prebid adapters to control whether, when, and how user identifiers are created or shared. 
 
 Collectively, these tools are called Consent Management Modules. They connect to the publisher’s Consent Management Platform, or CMP to make the user’s preferences about data use available to Prebid.js and to Prebid bidders.
 
