@@ -123,6 +123,7 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 | name | Required | String | The name of this module. | `'liveIntentId'` |
 | params | Required | Object | Container of all module params. ||
 | params.publisherId |Optional| String | The unique identifier for each publisher (for existing LiveIntent customers)|`'12432415'`|
+| params.distributorId |Optional| String | The unique identifier for each distributor (for existing LiveIntent customers). Will be ignored if `params.liCollectConfig.appId` is provided. |`'did-0123'`|
 | params.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the IdentityResolution endpoint. By default, 1000 milliseconds.|`1000`|
 | params.partner | Optional| String |The name of the partner whose data will be returned in the response.|`'prebid'`|
 | params.identifiersToResolve |Optional| Array[String] |Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
@@ -188,6 +189,7 @@ pbjs.setConfig({
             name: "liveIntentId",
             params: {
               publisherId: "9896876",
+              distributorId: "did-0123",
               identifiersToResolve: ["my-own-cookie"],
               url: "https://publisher.liveintent.com/idex",
               partner: "prebid",
@@ -208,3 +210,5 @@ pbjs.setConfig({
     }
 })
 ```
+
+Please note: the distributorId will be ignored when liCollectConfig.appId is present. 
