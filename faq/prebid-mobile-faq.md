@@ -37,6 +37,17 @@ No.
 
 No.
 
+### Is the SDK synchronous?
+
+Prebid SDK is always async. The completion handler for the main fetchDemand() method is called asynchronously when the bid response (or timeout, network error, etc.) is received. The app defines the desired timeout.
+
+### How long do bids remain valid?
+
+Prebid SDK does not support a [limited bid cache](dev-docs/faq.html#does-prebidjs-cache-bids) like Prebid.js does. Which means it's up to the app to build any kind of pre-fetch or bid-cache feature. Notes:
+
+1. If Prebid Cache is being utilized, the Time-To-Live for that cache should be understood. By default, the TTL for Prebid Cache is 5 minutes for banners and 15 minutes for video, but this can be changed. 
+2. No matter what the Cache TTL is set to, it's important that any pre-fetch or bid-cache feature built into the app should respect the OpenRTB `seatbid.bid.exp` field for each bid, which is the expiration of the bid in seconds.
+
 ## Dependencies
 
 ### Does the SDK use third-party libraries?  
