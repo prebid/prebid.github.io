@@ -12,7 +12,7 @@ title: Prebid Server | Features | Actvity Controls
 This feature is currently only available in PBS-Java.
 
 Prebid supports a centralized control mechanism for privacy-sensitive activities.
-These controls are intended to serve as building blocks for privacy protection mechanisms, allowing module developers or publishers to directly specify what should be permitted or avoided in any given regulatory environment.
+These controls are intended to serve as building blocks for privacy protection mechanisms, allowing publishers to directly specify what should be permitted or avoided in any given regulatory environment.
 
 * TOC
 {: toc }
@@ -22,7 +22,7 @@ These controls are intended to serve as building blocks for privacy protection m
 There are many privacy regulations that Prebid publishers need to accomodate. Prebid Server supplies [several features](/prebid-server/features/pbs-privacy.html) to help Publishers implement their legal policies, but there are scenarios where extra control is needed:
 
 - a Publisher's lawyers want to make a particular exception
-- a module hasn't been built for a regulation the Publisher needs to support
+- support hasn't been built for a regulation the Publisher needs to comply with
 
 ### Prebid Server Is a Toolkit
 
@@ -32,7 +32,7 @@ Important: This resource should not be construed as legal advice and Prebid.org 
 1. Get a privacy lawyer.
 2. Consider all the privacy regulations your content business is subject to.
 3. Come up with a plan.
-4. Use Prebid.js modules and these Activity Controls as ways to help implement your privacy plan with respect to header bidding.
+4. Use Prebid Server server features and these Activity Controls as ways to help implement your privacy plan with respect to header bidding.
 5. Let us know if there are tools missing from the Prebid toolkit.
 
 ### What is an Activity?
@@ -46,7 +46,7 @@ We did an analysis of the things Prebid does that might be of concern to privacy
 
 The [full list of activities](#activities) is below.
 
-An activity control is a 'gatekeeper' that makes a decision about whether the activity should be allowed in this specific context:
+An activity control is a gatekeeper that makes a decision about whether the activity should be allowed in a specific context:
 
 - Should I allow this usersync for bidderB?
 - Is it ok for this data to be passed to bidderC and analyticsD?
@@ -84,7 +84,26 @@ Here's an example account config that prevents bidderA, bidderB, and analytics a
 
 ## Configuration
 
-The `privacy.allowActivities` is a new option for account configuration that contains a list of activity names -- see the [full list of activities below](#activities). Each activity is an object that can contain these attributes:
+The `privacy.allowActivities` is a new account configuration option that contains a list of activity names -- see the [full list of activities below](#activities).
+
+```
+{
+  privacy: {
+    allowactivities: {
+      ACTIVITY: {
+        default: true,
+        rules: [{
+          condition: { ... },
+          allow: false
+        },{
+          ... more rules ...
+        }]
+     }
+   }
+ }
+```
+
+Each activity is an object that can contain these attributes:
 
 {: .table .table-bordered .table-striped }
 | Name | Type | Description | 
@@ -161,7 +180,7 @@ If `allow` is not defined, the rule is assumed to assert **true** (i.e. allow th
 
 ### Interaction with other privacy features
 
-Currently, the Activity Control feature is still separate from all other privacy features:
+Currently, the Activity Control feature is separate from other privacy features:
 
 1. Activity Controls are run before other privacy features. So, for instance, if a bidder is removed from a request by the `fetchBids` activity, the GDPR processing for that bidder will not take place.
 1. GDPR-suppression activities must still be managed through that feature's configuration. (See details for [PBS-Go](https://github.com/prebid/prebid-server/blob/master/config/config.go) or [PBS-Java](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md))
@@ -218,6 +237,10 @@ While Activity Controls are currently not well integrated with other privacy fea
   }
 }
 ```
+
+## Modules
+
+Modules that perform any 'potentially restricted activity' are responsible for confirming they are allowed to perform that activity. See [Adding a PBS Module](/prebid-server/developers/add-a-module.html) for more information.
 
 ## Further Reading 
 - [Prebid Server privacy regulation support](/prebid-server/features/pbs-privacy.html)
