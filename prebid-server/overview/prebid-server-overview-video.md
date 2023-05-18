@@ -16,7 +16,7 @@ Further Content:
 - [Prebid Server Overview](/prebid-server/overview/prebid-server.html)
 - [Prebid Membership](https://prebid.org/membership)
 - [Prebid on Github](https://github.com/prebid)
-- [All videos](/overview/all-videos.html)
+- [All Videos](/overview/all-videos.html)
 
 Related Videos:
 - [Introduction to Header Bidding](/overview/intro-to-header-bidding-video.html)
