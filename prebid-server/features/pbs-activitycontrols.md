@@ -131,7 +131,7 @@ Here's the list of the 'potentially restricted activities' that Prebid Server co
 | `enrichUfpd` | A module wants to add user first party data to outgoing requests (`user.data` and `user.ext.data` in ORTB) | Module is not allowed to run. |
 | `reportAnalytics` | The [/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html), [/amp](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html), or [/event](/prebid-server/endpoints/pbs-endpoint-event.html) endpoint is about to call an analytics adapter. | Adapter is not called. |
 | `transmitUfpd` | A bid adapter, analytics adapter, or module wants to access and/or transmit user FPD or EIDs to their endpoint | User FPD and EIDs are hidden from the adapter or module: `user.data`, `user.ext.data`, `user.{id, buyeruid, yob, gender}`, `user.eids`, `device.{device.ifa, macsha1, macmd5, dpidsha1, dpidmd5, didsha1, didmd5}` |
-| `transmitPreciseGeo` | A bid adapter, analytics adapter, or module wants to access and/or transmit precise geolocation data to their endpoint | Latitude, longitude, and IP address are rounded off. Specifically, lat and long are truncated to two decimal places, IPv4 masks rightmost 8 bits, IPv6 masks rightmost 32 bits. |
+| `transmitPreciseGeo` | A bid adapter, analytics adapter, or module wants to access and/or transmit precise geolocation data to their endpoint | Latitude, longitude, and IP address are rounded off. Specifically, lat and long are truncated to two decimal places, IPv4 masks rightmost 8 bits, IPv6 masks the rightmost bits based on a configured value. |
 
 <a id="rules" />
 
