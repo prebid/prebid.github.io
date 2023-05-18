@@ -14,6 +14,7 @@ sidebarType: 1
 The Axonix Bidding adapter requires setup before beginning. Please contact us at support.axonix@emodoinc.com.
 
 ### Bid Params
+
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                     | Example                    | Type |
 |------------|-------|----------------------------------------------|-------------------------------------|------|
