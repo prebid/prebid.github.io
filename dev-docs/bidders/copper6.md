@@ -13,7 +13,7 @@ usp_supported: true
 safeframes_ok: true
 prebid_member: true
 pbjs: true
-pbs: false
+pbs: true
 deals_supported: false
 sidebarType: 1
 ---
