@@ -7,7 +7,11 @@ pbs: true
 biddercode: mgid
 media_types: banner,native
 gdpr_supported: true
+usp_supported: true
 gvl_id: 358
+floors_supported: true
+ortb_blocking_supported: partial
+multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
 
@@ -17,6 +21,7 @@ sidebarType: 1
 - [Description](#description)
 - [Bid params](#bid-params)
 - [Test Parameters](#test-parameters)
+- [User Sync](#user-sync)
 
 <a name="mgid-bid-desc" />
 
@@ -114,3 +119,36 @@ var adUnits = [{
   }]
 }];
 ```
+
+<a name="mgid-user-sync" />
+
+### User Sync
+
+Mgid recommends UserSync configuration to be enabled. Without it, Mgid adapter will not be able to perform user syncs, which lowers match rate and reduces monetization.
+
+For Prebid.js v1.15.0 and later:
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    filterSettings: {
+      iframe: {
+        bidders: '*',      // '*' represents all bidders
+        filter: 'include'
+      }
+    }
+  }
+});
+```
+
+For Prebid.js v1.14.0 and before:
+
+```javascript
+pbjs.setConfig({
+   userSync: {
+    iframeEnabled: true,
+    enabledBidders: ['mgid']
+ }});
+```
+
+Note: Combine the above configuration with any other UserSync configuration. Multiple setConfig() calls overwrite each other and only the last call for a given attribute will take effect.

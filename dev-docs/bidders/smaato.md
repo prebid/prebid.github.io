@@ -7,6 +7,7 @@ gdpr_supported: true
 gvl_id: 82
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 media_types: banner, video, native
 userId: criteo, pubCommonId, unifiedId
 pbjs: true
@@ -210,6 +211,8 @@ Publishers should use the `ortb2` method of setting First Party Data. The follow
 - ortb2.user.yob
 - ortb2.user.gender
 - ortb2.user.ext.eids
+- ortb2.device.geo
+- ortb2.device.ifa
 
 The IAB standard taxonomies are not supported.
 
@@ -229,6 +232,13 @@ pbjs.setConfig({
             keywords: "a,b", 
             gender: "M", 
             yob: 1984
+        },
+        device: {
+            ifa: "identifier",
+            geo: {
+                lat: 53.5488,
+                lon: 9.9872
+            }
         }
     }
 });

@@ -35,6 +35,7 @@ Please reach out to your smartclip business contact for any questions and assist
 | `price_floor`        | optional | Set the current channel price floor in real time.                                                       | `10`                    | `integer`   |
 | `min_duration`       | optional | Minimum video ad duration in seconds                                                                    | `15`                    | `integer`   |
 | `max_duration`       | optional | Maximum video ad duration in seconds                                                                    | `60`                    | `integer`   |
+| `sitekey`            | optional | Sitekey provided by smartclip.                                                                          | `'foo.bar.baz'`           | `string`    |
 
 <a name="smartx-outstream-options-object" />
 

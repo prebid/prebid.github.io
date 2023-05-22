@@ -9,6 +9,7 @@ media_types: banner, video, native (s2s only)
 multiformat_supported: will-bid-on-any
 gdpr_supported: true
 usp_supported: true
+gpp_supported: true
 schain_supported: true
 floors_supported: true
 userIds: all

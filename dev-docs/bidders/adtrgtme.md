@@ -24,3 +24,11 @@ sidebarType: 1
 ### Note:
 
 The Adtrgtme bidding adapter requires setup before beginning. Please contact us at info@adtarget.me
+
+### Bid Params
+
+{: .table .table-bordered .table-striped }
+
+| Name      | Scope    | Description | Example      | Type     |
+|-----------|----------|-------------|--------------|----------|
+| `site_id` | required | Site ID     | `1234567890` | `uint64` |

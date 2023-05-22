@@ -66,6 +66,18 @@ consider:
 The specific details vary between [PBS-Go](https://github.com/prebid/prebid-server/blob/master/config/config.go) and [PBS-Java](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md), so check the
 version-specific documentation for more information.
 
+## GPP
+
+The IAB's [Global Privacy Platform](https://iabtechlab.com/gpp/) is container for
+privacy regulations aimed at helping the ad tech ecosystem bring disparate reguations
+under one communication path.
+
+Prebid Server support for this protocol is still being developed:
+
+1. (done) Passthrough - GPP parameters are forwarded through auction and usersync signals. In ORTB 2.6, these are regs.gpp and regs.gpp_sid. For url protocols, look for `gpp` and `gpp_sid`.
+1. (done) GPP as a TCF and USP wrapper - PBS parses the GPP container for TCF2 and USP strings, extracting them to the original ORTB location. (PBS-Java only for now)
+1. (planned) GPP infrastructure - the ability to plug new regulations into PBS, and the first sub-module, the IAB's US [National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md).
+
 ## COPPA
 
 The [Children's Online Privacy Protection Act (COPPA)](https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule) is a law in the US which imposes certain requirements on operators of websites or online services directed to children under 13 years of age, and on operators of other websites or online services that have actual knowledge that they are collecting personal information online from a child under 13 years of age.
@@ -73,7 +85,7 @@ If `regs.coppa` is set to '1' on the OpenRTB request, the following anonymizatio
 
 - Removes all ID fields: device.ifa, device.macsha1, device.macmd5, device.dpidsha1, device.dpidmd5, device.didsha1, device.didmd5
 - Truncate ip field - remove lowest 8 bits.
-- Truncate ipv6 field - remove lowest 32 bits.
+- Truncate ipv6 field - anonymize as noted below.
 - Remove geo.lat, geo.lon. geo.metro, geo.city, and geo.zip
 - Remove user.id, user.buyeruid, user.yob, and user.gender
 

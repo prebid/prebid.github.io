@@ -166,35 +166,3 @@ Currently we only support client requests and instream context. An example reque
     }]
 };
 ```
-<!-- 
-#### Example native
-
-Here's an example of how to request a native ad from adnuntius:
-
-```
-{
-    code: 'native',
-    sizes: [
-        [320, 320]
-    ],
-    mediaTypes: {
-        native: {
-            title: {
-                required: true
-            },
-            image: {
-                required: true
-            },
-            body: {
-                required: true
-            }
-        }
-    },
-    bids: [{
-        bidder: 'adnuntius',
-        params: {
-            auId: "0000000000abc123",
-        }
-    }]
-}
-``` -->

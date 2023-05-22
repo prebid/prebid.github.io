@@ -54,10 +54,12 @@ someday we'll deprecate it in favor of the more standard GPID.
 
 There are two ways a publisher can inject these values into the header bidding auctions:
 
-1. Supply them manually on the PBJS AdUnits
-2. Install the [GPT Pre-Auction module](/dev-docs/modules/gpt-pre-auction.html)
+1. Supply them manually on the PBJS AdUnits. This is required for in-stream video and for publishers not using GAM.
+2. If you're using GPT, install the [GPT Pre-Auction module](/dev-docs/modules/gpt-pre-auction.html)
 
 ### Defining them on the PBJS Ad Unit
+
+This approach what you'll have to use for in-stream video and for publishers not using GAM.
 
 #### Example 1 - unique ad slot names
 
