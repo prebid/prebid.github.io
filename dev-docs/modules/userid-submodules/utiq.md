@@ -5,8 +5,7 @@ description: Utiq User ID sub-module
 useridmodule: utiqSystem
 ---
 
-
-Utiq generates unique tokens, enabling improved efficiency in programmatic advertising while safeguarding transparency and control for end customers via `utiq.com`. A website visitor’s Utiq is generated based on network identifiers provided by network operators and requires explicit user consent.
+Utiq generates unique tokens, enabling improved efficiency in programmatic advertising while safeguarding transparency and control for end customers via `consenthub.utiq.com`. A website visitor’s Utiq is generated based on network identifiers provided by network operators and requires explicit user consent.
 
 Utiq is also the brand name of the service, which is provided by Utiq SA/NV.
 
@@ -41,11 +40,12 @@ pbjs.setConfig({
           name: "utiq",
           expires: 1,
         },
-      }],
+      },
+    ],
     syncDelay: 3000,
-    auctionDelay: 3000
-  }
-});
+    auctionDelay: 3000,
+  },
+})
 ```
 
 ## Utiq onboarding
