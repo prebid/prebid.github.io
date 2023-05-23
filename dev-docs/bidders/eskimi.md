@@ -12,13 +12,18 @@ sidebarType: 1
 schain_supported: true
 floors_supported: true
 safeframes_ok: false
-ortb_blocking_supported: false
+ortb_blocking_supported: true
 ---
-
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name              | Scope    | Description                   | Example | Type       |
-|-------------------|----------|-------------------------------|---------|------------|
-| `placementId`     | required | The placement ID from Eskimi. | `612`   | `integer`  |
+| Name              | Scope    | Description                     | Example                | Type      |
+|-------------------|----------|---------------------------------|------------------------|-----------|
+| `placementId`     | required | The placement ID from Eskimi.   | `612`                  | `integer` |
+| `bcat`            | optional | ORTB blocked categories         | `['IAB-1-1']`          | `string[]`|
+| `badv`            | optional | ORTB blocked advertiser domains | `['example.com']`      | `string[]`|
+| `bapp`            | optional | ORTB blocked applications       | `['com.example.game']` | `string[]`|
+
+Additionally `battr` ORTB blocking param may be set on `BANNER` and `VIDEO` media types to specify blocked creative
+attributes.
