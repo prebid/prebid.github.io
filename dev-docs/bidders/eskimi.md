@@ -6,7 +6,7 @@ pbjs: true
 pbs: false
 biddercode: eskimi
 deals_supported: false
-media_types: banner
+media_types: banner, video
 gvl_id: 814
 sidebarType: 1
 schain_supported: true
