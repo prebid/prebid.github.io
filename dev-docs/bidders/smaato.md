@@ -9,7 +9,7 @@ usp_supported: true
 coppa_supported: true
 gpp_supported: true
 media_types: banner, video, native
-userId: criteo, pubCommonId, unifiedId
+userIds: all
 pbjs: true
 pbs: true
 pbs_app_supported: true
