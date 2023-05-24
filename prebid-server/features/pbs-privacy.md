@@ -85,7 +85,7 @@ If `regs.coppa` is set to '1' on the OpenRTB request, the following anonymizatio
 
 - Removes all ID fields: device.ifa, device.macsha1, device.macmd5, device.dpidsha1, device.dpidmd5, device.didsha1, device.didmd5
 - Truncate ip field - remove lowest 8 bits.
-- Truncate ipv6 field - remove lowest 32 bits.
+- Truncate ipv6 field - anonymize as noted below.
 - Remove geo.lat, geo.lon. geo.metro, geo.city, and geo.zip
 - Remove user.id, user.buyeruid, user.yob, and user.gender
 
