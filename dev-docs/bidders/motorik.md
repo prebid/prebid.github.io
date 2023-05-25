@@ -19,6 +19,7 @@ fpd_supported: false
 gvl_id: none
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
+userIds: all
 ---
 
 ### Note:
