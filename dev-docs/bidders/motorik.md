@@ -13,6 +13,12 @@ deals_supported: true
 pbjs: true
 pbs: true
 sidebarType: 1
+floors_supported: true
+prebid_member: false
+fpd_supported: false
+gvl_id: none
+multiformat_supported: will-bid-on-one
+ortb_blocking_supported: true
 ---
 
 ### Note:
