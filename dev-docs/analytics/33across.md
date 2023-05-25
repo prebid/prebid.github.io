@@ -5,6 +5,8 @@ description: 33Across Analytics Adapter
 modulecode: 33across
 gdpr_supported: true
 usp_supported: true
+gpp_supported: true
+coppa_supported: true
 gvl_id: 58
 enable_download: true
 ---
