@@ -90,6 +90,11 @@ viewContainer?.addView(bannerView)
 bannerView?.loadAd()
 ```
 
+{% capture warning_note %}  
+Pay attention that the `loadAd()` should be called on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 #### Step 1: Create Ad View
 {:.no_toc}
 
@@ -132,6 +137,11 @@ interstitialAdUnit?.loadAd()
 interstitialAdUnit?.show()
 ```
 
+{% capture warning_note %}  
+Pay attention that the `loadAd()` should be called on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ```
@@ -156,7 +166,7 @@ You can also assign the listener for processing ad events.
 #### Step 2: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` method which will make a request to Prebid server.
+Call the `loadAd()` to make a bid request.
 
 #### Step 3: Show the Ad when it is ready
 {:.no_toc}
@@ -187,6 +197,11 @@ rewardedAdUnit?.loadAd()
 rewardedAdUnit?.show()
 ```
 
+{% capture warning_note %}  
+Pay attention that the `loadAd()` should be called on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 #### Step 1: Create a Rewarded Ad Unit
 {:.no_toc}
 
@@ -197,7 +212,7 @@ Create the `RewardedAdUnit` object with parameters:
 #### Step 2: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` method which will make a request to Prebid server.
+Call the `loadAd()` to make a bid request.
 
 #### Step 3: Show the Ad when it is ready
 {:.no_toc}
