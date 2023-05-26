@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Uol
-description: Uol Bidder Adapter
+title: UOL
+description: UOL Bidder Adapter
 biddercode: uol
 pbjs: true
 pbs: false
@@ -24,4 +24,4 @@ Uol is an aliased bidder for AppNexus.
 
 ### Note:
 
-The Uol bidder adapter requires setup before beginning. Please contact us at l-dev-techops@uolinc.com.
+The UOL bidder adapter requires setup before beginning. Please contact us at l-dev-techops@uolinc.com.
