@@ -64,14 +64,18 @@ The preceding is an example "impression-level stored request" using AppNexus as 
 Each block of JSON like this is called a "stored request" and gets an ID called a "stored request ID". This ID is then programmed into an adslot using the iOS or Android SDKs. Doing it this way allows the publisher to change bidders and parameters without
 having to change the app.
 
-### Test stored configurations
+### Testing with stored configurations
 
-If you eventually need to verify SDK integration, you can add some [Stored Responses](https://docs.prebid.org/troubleshooting/pbs-troubleshooting.html#stored-responses) to the server. 
+If you want to verify the SDK integration with test placements, you can add some [Stored Responses](https://docs.prebid.org/troubleshooting/pbs-troubleshooting.html#stored-responses) to your Prebid Server:
 
-In the [repository](https://github.com/prebid/prebid-mobile-ios/tree/master/Example/PrebidDemo/stored-configs), you can find mobile-specific test configurations: 
-
-- [Stored Impression](https://github.com/prebid/prebid-mobile-ios/tree/master/Example/PrebidDemo/stored-configs/stored-impressions) 
-- [Stored Responses](https://github.com/prebid/prebid-mobile-ios/tree/master/Example/PrebidDemo/stored-configs/stored-responses)
+1. Work with your Prebid Server provider to install the [Mobile Test Stored Requests](https://github.com/prebid/prebid-mobile-ios/tree/master/Example/PrebidDemo/stored-configs/stored-impressions) and [Mobile Test Stored Responses](https://github.com/prebid/prebid-mobile-ios/tree/master/Example/PrebidDemo/stored-configs/stored-responses). (Note: stored "impressions" are a special case of stored "requests" - your Prebid Server provider will know what to do.)
+    1. Confirm that the bid prices in the stored responses reflects what you want to test. If you're using an ad server, you'll need line items set up that reflect the test bid CPMs.
+    2. The Prebid Server **stored request IDs** could be the same as the filename in the repo, or could be different. If the IDs are different, your Prebid Server provider will let you know what IDs are available for testing.
+2. Code the test mobile app setting the CONFIG_ID to the stored request ID of the relevant test, e.g. 'prebid-demo-banner-320-50'.
+3. At runtime, here's what happens within Prebid Server:
+    1. The stored request will pull in the stored response
+    2. There will not be an actual auction
+    3. The creative in the stored response will be sent to the SDK as the bid
 
 ## Ad Ops - Setting Up the Ad Server
 
