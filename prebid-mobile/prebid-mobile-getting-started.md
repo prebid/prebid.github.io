@@ -64,14 +64,25 @@ The preceding is an example "impression-level stored request" using AppNexus as 
 Each block of JSON like this is called a "stored request" and gets an ID called a "stored request ID". This ID is then programmed into an adslot using the iOS or Android SDKs. Doing it this way allows the publisher to change bidders and parameters without
 having to change the app.
 
+### Test stored configurations
+
+If you eventually need to verify SDK integration, you can add some [Stored Responses](https://docs.prebid.org/troubleshooting/pbs-troubleshooting.html#stored-responses) to the server. 
+
+In the [repository](https://github.com/prebid/prebid-mobile-ios/tree/master/Example/PrebidDemo/stored-configs), you can find mobile-specific test configurations: 
+
+- [Stored Impression](https://github.com/prebid/prebid-mobile-ios/tree/master/Example/PrebidDemo/stored-configs/stored-impressions) 
+- [Stored Responses](https://github.com/prebid/prebid-mobile-ios/tree/master/Example/PrebidDemo/stored-configs/stored-responses)
+
 ## Ad Ops - Setting Up the Ad Server
 
 Ad ops users configure the primary ad server with Prebid Mobile line items targeted to key/values.
+
 -   [Set Up Line Items for Google Ad Manager](/adops/step-by-step.html)
 
 ## Developers - Using the SDK
 
 To begin using Prebid Mobile follow the instructions for the respective platforms and integration approach:
+
 -   [iOS Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/ios/code-integration-ios.html)
 -   [Android Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/android/code-integration-android.html)
 
