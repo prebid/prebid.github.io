@@ -9,7 +9,7 @@ usp_supported: true
 coppa_supported: true
 gpp_supported: true
 media_types: banner, video, native
-userId: criteo, pubCommonId, unifiedId
+userIds: all
 pbjs: true
 pbs: true
 pbs_app_supported: true
@@ -58,6 +58,10 @@ The Smaato adapter will convert bidfloors to 'USD' currency as needed.
 | `adspaceId` | required | Your Smaato adspace id. Required for non adpod requests | `'11002234'`   | `string` |
 | `adbreakId` | required | Your Smaato adbreak id. Required for adpod (long-form video) requests | `'41002234'`   | `string` |
 | `app` | optional | Object containing mobile app parameters.  See the [App Object](#smaato-app-object) for details.| `app : { ifa: '56700000-9cf0-22bd-b23e-46b96e40003a'}` | `object` |
+
+##### Note
+
+In case of AdPods, the Smaato adapter will only read the first `imp[].skadn` entry for each AdPod, such that there should only be one `skadn` occurrence per AdPod.
 
 <a name="smaato-app-object" />
 
