@@ -8,7 +8,7 @@ sidebarType: 4
 
 # The Video Module
 
-The Prebid Video Module allows Prebid to directly integrate with a Video Player.
+The Prebid Video Module allows Prebid to directly integrate with a Video Player. Currently the Video Module only supports instream implementations.
 
 The Video Module will allow Prebid.js to automatically:
 - render bids in the desired video player
