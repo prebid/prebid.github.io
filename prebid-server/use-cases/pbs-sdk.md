@@ -265,7 +265,7 @@ Prebid Universal Creative loads in the webiview, which sees the `hb_env=mobile-a
 
 ### Load Ad
 
-The Prebid Universal Crative will parse the response, looking for the `adm` object, loading the full markup into the webview.
+The Prebid Universal Creative will parse the response, looking for the `adm` object, loading the full markup into the webview.
 
 ## Further Reading
 
