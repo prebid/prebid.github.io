@@ -32,9 +32,7 @@ The TrafficGate Bidding adapter requires setup before beginning. Please contact 
 | Name          | Scope    | Description      | Example     | Type     |
 |---------------|----------|------------------|-------------|----------|
 | `placementId` | required | Placement ID     | `'12345'`   | `string` |
-|---------------|----------|------------------|-------------|----------|
 | `host`        | required | Host             | `'example'` | `string` |
-|---------------|----------|------------------|-------------|----------|
 | `customFloor` | optional | Custom Bid Floor | `2.55`      | `number` |
 
 
@@ -51,8 +49,7 @@ var adUnits = [{
         bidder: 'trafficgate',
         params: {
             placementId: '16',
-            host: 'example',
-            test: 1
+            host: 'example'
         }
     }]
 }];
