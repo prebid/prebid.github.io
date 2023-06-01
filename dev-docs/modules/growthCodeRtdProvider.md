@@ -36,7 +36,7 @@ Please visit <a href="https://growthcode.io">https://growthcode.io/</a> for more
 pbjs.setConfig(
     ...
     realTimeData: {
-         auctionDelay: 1000,
+         auctionDelay: 200,
           dataProviders: [
           {
             name: 'growthCodeRtd',
