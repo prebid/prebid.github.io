@@ -10,6 +10,13 @@ title: Prebid Server | Features | Privacy
 * TOC
 {:toc}
 
+## Prebid Server Activity Control Infrastructure
+
+Prebid Server supports a mechanism for Publisher control for overriding privacy-sensitive activities. See the [Activity Controls](/prebid-server/features/pbs-activitycontrols.html) for more information.
+
+Note that Activity Controls are currently not well integrated with other privacy features, but that will change as these features mature.
+
+
 ## Mobile 'Limit Ad Tracking' flag
 
 If PBS receives 'device.lmt' flag in the OpenRTB request, it does the following anonymization:
