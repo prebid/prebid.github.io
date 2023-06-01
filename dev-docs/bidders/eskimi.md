@@ -8,11 +8,12 @@ biddercode: eskimi
 deals_supported: false
 media_types: banner, video
 gvl_id: 814
-sidebarType: 1
 schain_supported: true
 floors_supported: true
 safeframes_ok: false
+multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params
