@@ -11,7 +11,7 @@ schain_supported: true
 coppa_supported: true
 usp_supported: true
 safeframes_ok: true
-prebid_member: true
+prebid_member: false
 pbjs: true
 pbs: true
 deals_supported: false
