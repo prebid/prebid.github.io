@@ -6,7 +6,6 @@ description: Zeus Prime Real Time Data Module
 page_type: module
 module_code: zeusPrimeRtdProvider
 module_type: rtd
-enable_download: true
 vendor_specific: true
 sidebarType: 1
 enable_download: false

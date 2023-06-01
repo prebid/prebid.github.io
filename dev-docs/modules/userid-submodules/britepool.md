@@ -55,4 +55,4 @@ The BritePool privacy policy is at [https://britepool.com/services-privacy-notic
            syncDelay: 3000 // 3 seconds after the first auction
        }
    });
-{% endhighlight %}
+```

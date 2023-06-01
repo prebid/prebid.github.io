@@ -34,26 +34,26 @@ This module uses `window.performance.getEntriesByType('resource')` to check the 
 | `instreamTracking.urlPattern` | Optional | RegExp | Regex for cache url patterns, to avoid false positives. |
 
 #### Basic Example
-{% highlight js %}
+```javascript
 pbjs.setConfig({
         'instreamTracking': {
             enabled: true,
         }
 });
-{% endhighlight %}
+```
 
 #### Example with urlPattern
 
 While checking for URLs having `videoCacheKey`, there are chances of false positives. To avoid those cases, we can set `instreamTracking.urlPattern: /REGEX_PATTERN/`.
 
-{% highlight js %}
+```javascript
 pbjs.setConfig({
         'instreamTracking': {
             enabled: true,
             urlPattern: /(prebid\.adnxs\.com\/pbc\/v1\/cache\.*)|(search\.spotxchange\.com\/ad\/vast\.html\?key=\.*)/
         }
 });
-{% endhighlight %}
+```
 
 ## Intergation
 
@@ -69,13 +69,13 @@ To install the module, follow these instructions:
 
 Enable `instreamTracking` using `pbjs.setConfig`
 
-{% highlight js %}
+```javascript
 pbjs.setConfig({
         'instreamTracking': {
             enabled: true,
         }
 });
-{% endhighlight %}
+```
 
 ## Further Reading
 ​

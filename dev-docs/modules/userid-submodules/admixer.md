@@ -49,4 +49,4 @@ gulp build --modules=admixerIdSystem
            auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
        }
    });
-{% endhighlight %}
+```

@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.adServers.dfp.buildAdpodVideoUrl(options) <span style="color:red" markdown="1">[Alpha]</span>
-description: 
+description: adServers.dfp.buildAdpodVideoUrl API
 sidebarType: 1
 ---
 

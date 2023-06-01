@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getBidResponses()
-description:
+description: getBidResponses API
 sidebarType: 1
 ---
 
@@ -44,17 +44,14 @@ This function returns the bid responses at the given moment.
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingThree">
       <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          > Response Object Example
-        </a>
-
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">> Response Object Example</a>
       </h4>
     </div>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
       <div class="panel-body" markdown="1">
 
 
-{% highlight bash %}
+```json
 {
   "/9968336/header-bid-tag-0": {
     "bids": [
@@ -168,27 +165,24 @@ This function returns the bid responses at the given moment.
     ]
   }
 }
-{% endhighlight %}
+```
+
 </div>
 </div>
 </div>
 </div>
 
 <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
-
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="heading-response-example-2">
       <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#response-example-2" aria-expanded="false" aria-controls="response-example-2">
-          > Response Object Example - Native
-        </a>
-
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#response-example-2" aria-expanded="false" aria-controls="response-example-2">Response Object Example - Native</a>
       </h4>
     </div>
     <div id="response-example-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-response-example-2">
       <div class="panel-body" markdown="1">
 
-{% highlight bash %}
+```json
 {
            "div-banner-outstream-native" : {
               "bids" : [
@@ -259,7 +253,7 @@ This function returns the bid responses at the given moment.
               ]
            }
         }
-{% endhighlight %}
+```
 
 </div>
 </div>

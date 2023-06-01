@@ -13,7 +13,7 @@ sidebarType: 2
 
 {% capture legalNotice %}
   This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
-  {% endcapture %}
+  :::
 
 {% include /alerts/alert_important.html content=legalNotice %}
 
@@ -28,7 +28,7 @@ In order for publishers to meet their transparency, notice and choice/consent re
 
 This is a reference for mobile app publishers using Prebid Mobile to surface notice, transparency and choice to end users located in the EEA and signal approved vendors and, where necessary, pass consent information to demand sources and their vendors.  
 
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=gdprNote %}
 
@@ -70,7 +70,7 @@ To ensure proper monetization and relevant targeting, the SDK should be enabled 
 {% capture codeNote %}
   Publishers set the value of `gdprApplies` in `Targeting.shared.subjectToGDPR` and `purposeConsent` in `Targeting.shared.purposeConsents`.
 
-  {% endcapture %}
+  :::
 
 {% include /alerts/alert_important.html content=codeNote %}
 
@@ -107,7 +107,7 @@ Prebid Mobile supports the IAB US Privacy signal as defined in the in-app sectio
 
 This is a reference for mobile app publishers using Prebid Mobile to surface notice, transparency and choice to end users located in California, United States, passing notice and opt out signals where necessary, to demand sources and their vendors.    
 
-{% endcapture %}
+:::
 {% include alerts/alert_note.html content=ccpaNote %}
 
 

@@ -1,7 +1,7 @@
 ---
 layout: page_v2
 title: Questions & FAQ
-description: 
+description: Questions & FAQ
 
 ---
 

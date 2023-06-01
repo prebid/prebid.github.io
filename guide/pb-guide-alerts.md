@@ -65,7 +65,7 @@ Using the examples above would render this alert:
 
 {% capture tipAlert %}
 Follow the Prebid.org style guide to ensure all your documentation is consistent!
-{% endcapture %}
+:::
 
 {% include alerts/alert_tip.html content=tipAlert %}
 
@@ -79,7 +79,7 @@ A note presents important information in relation to the page topic. The content
 
 {% capture noteAlert %}
 This is some very important information.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=noteAlert %}
 
@@ -91,7 +91,7 @@ A tip provides a shortcut or more efficient way of performing a task or writing 
 
 {% capture tipAlert %}
 A tip helps the user do something. 
-{% endcapture %}
+:::
 
 {% include alerts/alert_tip.html content=tipAlert %}
 
@@ -103,7 +103,7 @@ Important alerts provide critical information to the user, such as to use cautio
 
 {% capture importantAlert %}
 An important alert provides crititcal information to the user. 
-{% endcapture %}
+:::
 
 {% include alerts/alert_important.html content=importantAlert %}
 
@@ -115,7 +115,7 @@ Warning indicate when an action can cause dire results for the user. For example
 
 {% capture warningAlert %}
 A caution alert provides crititcal information to the user. 
-{% endcapture %}
+:::
 
 {% include alerts/alert_warning.html content=warningAlert %}
 

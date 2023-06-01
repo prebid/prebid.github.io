@@ -125,7 +125,7 @@ The MailOnline plugin can be used by the prebid plugin to render the ad, dependi
 
 {% capture infoNote %}
 If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include Google Ad Manager parameters, in this case you should explicitly specify the IMA plugin using the `adRenderer` option.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 
@@ -150,13 +150,13 @@ The Brightcove IMA plugin can be used by the prebid plugin to render the ad, dep
 
 {% capture infoNote %}
 If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include Google Ad Manager parameters, in this case you should explicitly specify the IMA plugin using the `adRenderer` option.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 
 {% capture infoNote %}
 If you will be using the Brightcove IMA plugin as the ad renderer, either because Google Ad Manager is the primary ad server or you have explicitly specified the IMA plugin in the `adRenderer` option, then it is *suggested* that you add the IMA plugin to your Brightcove Player configuration in the Brightcove Studio. Doing so prevents some problems observed when the Player is running on iOS and the IMA plugin is loaded at run-time. When you configure IMA in the Studio, do *not* put a URL in the `Ad Tag` field AND select `"On demand"` from the `Request Ads` field.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 

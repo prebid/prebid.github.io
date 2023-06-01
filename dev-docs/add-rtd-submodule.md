@@ -76,7 +76,7 @@ Maintainer: prebid@example.com
 
 RTD provider for Example.com. Contact prebid@example.com for information.
 
-{% endhighlight %}
+```
 
 ### Step 2: Build the Module
 
@@ -106,7 +106,7 @@ export const subModuleObj = {
   init: init,
   getTargetingData: sendDataToModule
 };
-{% endhighlight %}
+```
 
 #### Register the submodule
 
@@ -114,7 +114,7 @@ Register submodule to RTD-core:
 
 {% highlight text %}
 submodule('realTimeData', subModuleObject);
-{% endhighlight %}
+```
 
 #### User Consent
 
@@ -146,7 +146,7 @@ This is the function that will allow RTD sub-modules to merge ad server targetin
       "p":0.824,  // ad server targeting variable (e.g. p) for slotB is 0.824
   }
 }
-{% endhighlight %}
+```
 
 **Code Example**
 
@@ -170,7 +170,7 @@ function returnTargetingData(adUnits, config, userConsent) {
 }
 
 submodule('realTimeData', subModuleObj);
-{% endhighlight %}
+```
 
 #### getBidRequestData
 
@@ -233,7 +233,7 @@ function alterBidRequests(reqBidsConfigObj, callback, config, userConsent) {
 }
 
 submodule('realTimeData', subModuleObj);
-{% endhighlight %}
+```
 
 #### beforeInit
 1. Use this function to take action to make sure data will be served as soon as possible (AJAX calls, pixels, etc..)
@@ -286,7 +286,7 @@ function beforeInit(){
 }
 
 beforeInit();
-{% endhighlight %}
+```
 
 
 ### Step 3: Add unit tests

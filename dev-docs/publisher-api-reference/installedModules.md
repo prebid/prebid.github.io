@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.installedModules
-description: 
+description: installedModules API
 sidebarType: 1
 ---
 

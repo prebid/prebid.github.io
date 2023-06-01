@@ -36,9 +36,9 @@ Definitions:
 ## Page integration
 
 Adding the module to a page is done by adding just one line of javascript:
-{% highlight js %}
+```javascript
 <script src="https://some.hosting.domain/path/prebid.js">
-{% endhighlight %}
+```
 
 The prebid.js file needs to be loaded before the GPT library loads, unless you're willing to manage the timing with additional queue functions. The examples here assume the easiest integration, which is synchronous.
 
@@ -52,7 +52,7 @@ The prebid.js file must also be constructed so that it contains:
 
 Create an AdUnits file and source control it in a separate local repository. E.g. my-prebid-config/pub123adUnits.js:
  
-{% highlight js %}
+```javascript
      var pbjs = pbjs || {};
      pbjs.que = pbjs.que || [];
      pbjs.que.push(function() {
@@ -71,7 +71,7 @@ Create an AdUnits file and source control it in a separate local repository. E.g
         });
         pbjs.express(); // activates the Google Ad Manager Express feature.
      });
-{% endhighlight %}
+```
 
 Notes:
 
@@ -84,9 +84,9 @@ Notes:
 
 Follow the basic build instructions on the Gihub repo's main README. To include the module, an additional option must be added to the the gulp build command:
  
-{% highlight js %}
+```javascript
 gulp build --modules=express
-{% endhighlight %}
+```
  
 This command will build the following files:
  
@@ -98,9 +98,9 @@ This command will build the following files:
 
 If you've chosen to append the AdUnits right to the end of the package, use the command line to concatenate the files. e.g.
 
-{% highlight js %}
+```javascript
 cat build/dist/prebid.js my-prebid-config/pub123adUnits.js >> build/dist/prebid-express-with-adunits.js
-{% endhighlight %}
+```
  
 #### Step 3: Publish the package(s) to your CDN
 
@@ -112,9 +112,9 @@ Note that there are more dynamic ways of combining these components for publishe
 
 The Google Ad Manager Express module adds one new function to Prebid:
 
-{% highlight js %}
+```javascript
 pbjs.express(AdUnits);
-{% endhighlight %}
+```
 
 This function initiates the scanning of the in-page Google Ad Manager slots, mapping them to Prebid AdUnits, kicking off the Prebid auction, and forwarding the results to Google Ad Manager.
 

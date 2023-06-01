@@ -2,7 +2,7 @@
 redirect_to: "/index.html"
 layout: page_v2
 title: Add me!
-description: 
+description: Add me!
 pid: 60
 isNew: true
 

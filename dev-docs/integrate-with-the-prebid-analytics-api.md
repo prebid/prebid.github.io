@@ -67,7 +67,7 @@ Maintainer: prebid@example.com
 
 Analytics adapter for Example.com. Contact prebid@example.com for information.
 
-{% endhighlight %}
+```
 
 ### Step 2: Add analytics source code
 
@@ -92,7 +92,7 @@ The best way to get started is to look at some of the existing AnalyticsAdapter.
 
 Here's a skeleton outline:
 
-{% highlight js %}
+```javascript
 import {ajax} from '../src/ajax.js';
 import adapter from '../libraries/analyticsAdapter/AnalyticsAdapter.js';
 import CONSTANTS from '../src/constants.json';
@@ -121,7 +121,7 @@ adaptermanager.registerAnalyticsAdapter({
 });
 
 export default exAnalytics;
-{% endhighlight %}
+```
 
 #### Reading TCF2 enforcement actions
 

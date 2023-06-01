@@ -77,7 +77,7 @@ Below are some basic principles of ad unit floor definitions:
     - Values can differ between ad units
 
 
-{% highlight js %}
+```javascript
  var adUnits = [
          {
              code: 'test-div',
@@ -106,14 +106,14 @@ Below are some basic principles of ad unit floor definitions:
              ]
          }
      ];
-{% endhighlight %}
+```
 
 {: .alert.alert-info :}
-When defining floors at the adUnit level, the Price Floors Module requires the floors object to be defined in setConfig, even if the definition is an empty object as shown below: {% highlight js %}pbjs.setConfig({ floors: {} });{% endhighlight %}
+When defining floors at the adUnit level, the Price Floors Module requires the floors object to be defined in setConfig, even if the definition is an empty object as shown below: ```javascriptpbjs.setConfig({ floors: {} });```
 
 Floor definitions are set in the “values” object containing one or more rules, where the rule is the criteria that needs to be met for that given ad unit, with an associated CPM floor. In the above example, the floors are enforced when the bid from a bidder matches the “mediaType” and “size” combination. Since many bid adapters are not able to ingest floors per size, a simpler setup can be:
 
-{% highlight js %}
+```javascript
 floors: {
            currency: 'USD',
            skipRate: 5,
@@ -126,11 +126,11 @@ floors: {
                'video': 2.01
            }
        }
-{% endhighlight %}
+```
 
 For more advanced publisher setups, values can accept a “\*” to denote a catch-all when a bid comes back that the Price Floors Module does not have an exact match and for bid adapters who are not able to use a floor per size, the bid adapter will automatically receive the “\*” rule’s floor if available. Example setup can be:
 
-{% highlight js %}
+```javascript
 floors: {
    currency: 'USD',
    skipRate: 5,
@@ -147,23 +147,23 @@ floors: {
        'video|*': 2.01
    }
 }
-{% endhighlight %}
+```
 
 Alternatively, if there’s only one mediaType in the AdUnit and a single global floor, the syntax gets easier:
 
-{% highlight js %}
+```javascript
 ...
  floors: {
      default: 1.00     // default currency is USD
  },
  ...
-{% endhighlight %}
+```
 
 ### Package-Level Floors
 
 This approach is intended for scenarios where the Publisher or their Prebid managed service provider periodically appends updated floor data to the Prebid.js package. In this model, there could be more floor data present to cover AdUnits across many pages.
 
-{% highlight js %}
+```javascript
 pbjs.setConfig({
     floors: {
         enforcement: {
@@ -191,13 +191,13 @@ pbjs.setConfig({
         }
     }
 });
-{% endhighlight %}
+```
 
 By defining floor data with setConfig, the Price Floors Module will map GPT ad slots to AdUnits as needed. It does this in the same way as the setTargetingForGPTAsync() function – first looking for an AdUnit.code that matches the slot name, then looking for an AdUnit.code that matches the div id of the named GPT slot.
 
 Here’s another example that includes more fields:
 
-{% highlight js %}
+```javascript
 pbjs.setConfig({
     floors: {
         data: {     // default if endpoint doesn't return in time
@@ -217,7 +217,7 @@ pbjs.setConfig({
         }
     }
 });
-{% endhighlight %}
+```
 
 ### Dynamic Floors
 The final method of obtaining floor data allows the publisher to delay the auction for a certain time period to obtain up-to-date floor data tailored to each page or auction context. The assumed workflow is:
@@ -228,7 +228,7 @@ The final method of obtaining floor data allows the publisher to delay the aucti
 
 Here’s an example defining a simple GET endpoint:
 
-{% highlight js %}
+```javascript
 pbjs.setConfig({
     floors: {
         enforcement: {
@@ -240,11 +240,11 @@ pbjs.setConfig({
         }
     }
 });
-{% endhighlight %}
+```
 
 The Price Floors Module is flexible to handle floors set in multiple locations. Like in the below example a publisher can configure Dynamic floors in addition to Package floors (in setConfig). While the Price Floors Module is only able to use one set of rules (either Package, adUnit or Dynamic) defined as a Floor Location, setting floors in the Package will be utilized when the Dynamic floors fail to return data or another error condition occurs with the Dynamic fetch.
 
-{% highlight js %}
+```javascript
 pbjs.setConfig({
     floors: {
         enforcement: {
@@ -269,7 +269,7 @@ pbjs.setConfig({
         }
     }
 });
-{% endhighlight %}
+```
 
 
 ## Floors Syntax
@@ -388,7 +388,7 @@ As noted for Schema 1, when you see 'skipped' in the floors data, it indicates t
 *Example 1*
 Model weights add up to 100 and are sampled at a 25%, 25%, 50% distribution. Additionally, each model group has diffirent schema fields:
 
-{% highlight js %}
+```javascript
 pbjs.setConfig({
     floors: {
         enforcement: { ... },
@@ -453,7 +453,7 @@ pbjs.setConfig({
 	}
     }
 });
-{% endhighlight %}
+```
 
 *Example 2*
 Model weights do not equal 100 and are normalized. Weights will be applied in the following method: Model weight / (sum of all weights)
@@ -462,7 +462,7 @@ model2 = 50  -> 50 / (20 + 50) = 71% of auctions model 2 will be applied
 
 Additionally skipRate is supplied at model group level where model1 will skip floors 20% of times when model1 is selected, whereas model2 will skip 50% of auctions when model2 is selected.
 
-{% highlight js %}
+```javascript
 pbjs.setConfig({
     floors: {
         enforcement: { ... },
@@ -511,7 +511,7 @@ pbjs.setConfig({
 	}
     }
 });
-{% endhighlight %}
+```
 
 ### Impression-Level Floor Min
 
@@ -536,7 +536,7 @@ Out of the box, the Price Floors Module only supports looking up floors by AdUni
 Create a function to allow the module to understand context of a given auction. In the below example, a lookup function provides details about what deviceType this auction is for. 
 
 e.g.
-{% highlight js %}
+```javascript
   function deviceTypes (bidRequest, bidResponse) {
       //while bidRequest and bidResponse are not required for this function, they are available for custom attribute mapping
       
@@ -550,7 +550,7 @@ e.g.
           return 'desktop'
   }
 
-{% endhighlight %}
+```
 
 
 ### Define, Set and Map Custom Schema Attributes
@@ -559,7 +559,7 @@ After defining a lookup function for the given context of the auction, the custo
 
 In the below example, `deviceType` is a custom field not currently supported by default in the Price Floors Module whose values are one of "mobile", "desktop" or "tablet".
 
-{% highlight js %}
+```javascript
 
   pbjs.setConfig({
       floors: {
@@ -589,7 +589,7 @@ In the below example, `deviceType` is a custom field not currently supported by 
       }
   });
 
-{% endhighlight %}
+```
 
 
 ## Rule Handling
@@ -646,7 +646,7 @@ Domain = www.website.com
 
 Floor provider rule definition
 
-{% highlight js %}
+```javascript
 {
   "modelVersion": "Fancy Model",
   "currency": "USD",
@@ -673,7 +673,7 @@ Floor provider rule definition
   },
   "default": 0.01
 }
-{% endhighlight %}
+```
 
 **Bidder A Bid**
 
@@ -683,7 +683,7 @@ Domain context = www.website.com
 
 The Floor module produces an internal hash table of all possible permutations of “banner”, “300x600”, “www.website.com” and “\*” with the most specific hash values up top, weighting rules priority from left column specific values to right. Each left value will weigh more than the subsequent column’s specific values. The module attempts to find the matching rule by cycling through each below possible rule (from top to bottom) against the above rule provider data set.
 
-{% highlight js %}
+```javascript
 {
     "banner|300x600|www.website.com",     //Most specific possible rule match against floor provider rule set
     "banner|300x600|*",                               
@@ -695,7 +695,7 @@ The Floor module produces an internal hash table of all possible permutations of
     "*|*|www.website.com",
     "*|*|*"                                                       
   }
-{% endhighlight %}
+```
 
 Matching rule: "banner|300x600|www.website.com"  
 Floor enforced: 3.01  
@@ -708,7 +708,7 @@ Size = 640x480
 Domain context = www.website.com  
 
 Price Floor internal possible permutations sorted by priority:
-{% highlight js %}
+```javascript
 {
     "video|640x480|www.website.com",       //Fails to match due to no video specific rule
     "video|640x480|*",                                  //Fails to match due to no video specific rule
@@ -719,7 +719,7 @@ Price Floor internal possible permutations sorted by priority:
     "*|*|www.website.com",                           //Matching rule
     "*|*|*"
   }
-{% endhighlight %}
+```
 
 Matching rule: "\*|\*|www.website.com"  
 Enforced Floor: 15.01
@@ -732,7 +732,7 @@ Size = 300x250
 Domain context = www.website.com  
 
 Price Floor internal possible permutations sorted by priority:
-{% highlight js %}
+```javascript
 {
     "video|300x250|www.website.com",       //Fails to match due to no video specific rule
     "video|300x250|*",                                  //Fails to match due to no video specific rule
@@ -743,7 +743,7 @@ Price Floor internal possible permutations sorted by priority:
     "*|*|www.website.com",
     "*|*|*"
   }
-{% endhighlight %}
+```
 
 Matching Rule "\*|300x250|www.website.com”  
 Enforced floor: 10.01  
@@ -756,7 +756,7 @@ Domain = www.website.com
 
 Floor provider rule definition
 
-{% highlight js %}
+```javascript
 {
   "modelVersion": "Fancy Model",
   "currency": "USD",
@@ -784,7 +784,7 @@ Floor provider rule definition
   },
   "defaultValue": 0.01
 }
-{% endhighlight %}
+```
 
 **Bidder A Bid**
 
@@ -792,7 +792,7 @@ mediaType = banner
 Size = 300x600  
 Domain context = www.website.com  
 
-{% highlight js %}
+```javascript
 
 {
     "banner|300x600|www.website.com",   // Fails due to website.com does not match with banner and 300x600
@@ -806,7 +806,7 @@ Domain context = www.website.com
     "*|*|*"                                                       
   }
 
-{% endhighlight %}
+```
 
 Matching rule: "banner|300x600|\*"  
 Floor enforced: 4.01  
@@ -819,7 +819,7 @@ Domain context = www.website.com.
 
 Price Floor internal possible permutations sorted by priority:
 
-{% highlight js %}
+```javascript
 
 {
     "video|640x480|www.website.com",    //Fails to match due to no video specific rule
@@ -832,7 +832,7 @@ Price Floor internal possible permutations sorted by priority:
     "*|*|*"
   }
 
-{% endhighlight %}
+```
 
 Matching rule: "video\|\*\|\*"  
 Enforced Floor: 9.01
@@ -846,7 +846,7 @@ Domain context = www.website.com
 
 Price Floor internal possible permutations sorted by priority:
 
-{% highlight js %}
+```javascript
 {
     "video|300x250|www.website.com",       //Fails to match due to no video specific rule
     "video|300x250|*",                                  //Fails to match due to no video specific rule
@@ -857,7 +857,7 @@ Price Floor internal possible permutations sorted by priority:
     "*|*|www.website.com",
     "*|*|*"
   }
-{% endhighlight %}
+```
 
 Matching Rule "\*|300x250|www.website.com”  
 Enforced floor: 10.01  
@@ -879,7 +879,7 @@ As a floor provider, your goal is to provide effective floors, with minimal page
 - Implement client-side caching (such as max-age headers) whenever possible  
 - Evaluate data freshness vs frequency of new fetches to the CDN to reduce unnecessary calls  
 - Be aware of file sizes returned to the browser, implementing trimming algorithms for extremely large data sets  
-{% endcapture %}
+:::
 {% include /alerts/alert_important.html content=warning_note %}
 
 For Dynamic fetches, the Price Floors Module will perform a GET request to the supplied endpoint, that must return valid JSON, which will be merged into the data object in the “setConfig” Package configuration. In otherwords, the schema used for dynamic fetches is a subset of the full schema.
@@ -888,7 +888,7 @@ On rule creation, we recommend supplying various rules with catch-all \(“\*”
 
 #### Example Dynamic fetch
 
-{% highlight js %}
+```javascript
 
 pbjs.setConfig({
     floors: {
@@ -902,13 +902,13 @@ pbjs.setConfig({
     }
 });
 
-{% endhighlight %}
+```
 
 #### Example Dynamic Response 1 - Schema 1
 
 In this example, the floor is determined by AdUnit code and Media Type. Note that the response does not contain the 'data' object because everything in the response is merged there.
 
-{% highlight js %}
+```javascript
 
 {
     floorProvider: 'floorProviderName',
@@ -928,13 +928,13 @@ In this example, the floor is determined by AdUnit code and Media Type. Note tha
     default: 0.75
 }
 
-{% endhighlight %}
+```
 
 #### Example Response 2 - Schema 1
 
 In this example, the floor is determined by Domain, GPT Slot, Media Type and Size:
 
-{% highlight js %}
+```javascript
 
 {
     currency: 'EU',
@@ -956,14 +956,14 @@ In this example, the floor is determined by Domain, GPT Slot, Media Type and Siz
     default: 0.75
 }
 
-{% endhighlight %}
+```
 
 
 #### Example Response 3 - Schema 2
 
 In this example, the floor is determined by domain, gptSlot, mediaType, and size. Note again that dynamic floor responses are merged into the 'data' level of the schema.
 
-{% highlight js %}
+```javascript
 {
     "currency": "USD",
     "floorsSchemaVersion":2,
@@ -1007,7 +1007,7 @@ In this example, the floor is determined by domain, gptSlot, mediaType, and size
 
 }
 
-{% endhighlight %}
+```
 
 
 ### Bid Adapter Interface
@@ -1025,7 +1025,7 @@ Changes for bid adapters:
 
 getFloor() takes in a single object with the following params:
 
-{% highlight js %}
+```javascript
  if (typeof bidRequest.getFloor === 'function') {
    floorInfo = bidRequest.getFloor({
       currency: string,
@@ -1033,7 +1033,7 @@ getFloor() takes in a single object with the following params:
       size : [ w, h] OR "*"
   });
 }
-{% endhighlight %}
+```
 
 {: .alert.alert-warning :}
 Consider how floors will behave in multi-currency scenarios. A common pitfall is requesting floors without specifying currency, or specifying the wrong currency back to the bid adapter's platform. This may lead to bidders requesting one currency and bidding in an alternate currency.
@@ -1048,28 +1048,28 @@ Consider how floors will behave in multi-currency scenarios. A common pitfall is
 
 #### getFloor() Response
 
-{% highlight js %}
+```javascript
 
 {
     currency: string,
     floor: float
 }
 
-{% endhighlight %}
+```
 
 Or empty object if a floor was not found for a given input
 
-{% highlight js %}
+```javascript
 
 { }
 
-{% endhighlight %}
+```
 
 #### Example getFloor() scenarios
 
 Example rules file used for getFloor()
 
-{% highlight js %}
+```javascript
 
   {
       "data": {
@@ -1088,66 +1088,66 @@ Example rules file used for getFloor()
           }
   }
 
-{% endhighlight %}
+```
 
 **Example getFloor() 1**
 
 getFloor() for media type Banner for a bid request in GPT slot “/1111/homepage/top-rect” where the bid adapter does not support floors per size.
 
-{% highlight js %}
+```javascript
 
   getFloor({
       currency: 'USD',
       mediatype: ‘banner’,
       size: ‘*’
   });
-{% endhighlight %}
+```
 
 **Response**
 
-{% highlight js %}
+```javascript
 {
     currency: 'USD',
     floor: 1.10
 }
-{% endhighlight %}
+```
 
 To aid in the accuracy of floor selection when using size ”\*” in getFloor(), the Price Floors Module has built-in smart rule selection when an ad unit in the internal bidRequest to the bid adapters interface has one ad unit type and one size. In the above example, if the ad unit within the bidRequest object has an ad unit type of “banner” with only one size, say “300x250”, the module will intelligently select the rule with "banner\|300x250" in it, as opposed to the "banner\|\*" rule producing the following response:
 
-{% highlight js %}
+```javascript
 {
     currency: 'USD',
     floor: 0.60
 }
-{% endhighlight %}
+```
 
 
 **Example getFloor() 2**
 
 getFloor() for media type Banner for a bid requests in GPT slot “/1111/homepage/top-rect” with size of 300x600 where bid adapter does support floors per size.
 
-{% highlight js %}
+```javascript
 getFloor({
     currency: 'USD',
     size: [300,600],
     mediatype: ‘banner’
 });
-{% endhighlight %}
+```
 
 **Response**
 
-{% highlight js %}
+```javascript
 {
     currency: 'USD',
     floor: 1.78
 }
-{% endhighlight %}
+```
 
 Here are some examples of how a bid adapter may wish to configure their adapter to handle getFloor() function:
 
 For a bid adapter who does not wish to handle making a request for each size in a given bid request they can leverage the \* attribute which is meant to be a skewed average for a floor.
 
-{% highlight js %}
+```javascript
  if (typeof bidRequest.getFloor === 'function') {
       let floorInfo = bidRequest.getFloor({
         currency: 'USD',
@@ -1156,7 +1156,7 @@ For a bid adapter who does not wish to handle making a request for each size in 
       });
       data['adapter_floor'] = floorInfo.currency === 'USD' ? floorInfo.floor : undefined;
     }
-{% endhighlight %}
+```
 
 ### Analytics Adapter Interface
 
@@ -1263,7 +1263,7 @@ The Price Floors Module defaults the floor currency to USD if none is supplied i
 
 {% capture warning_note %}
 For publishers requiring currency conversions (for example if the floors data currency is not the same as a bid adapter’s supported currency), **failure to include the currency module may result in unexpected behavior** and / or may impact revenue performance.
-{% endcapture %}
+:::
 {% include /alerts/alert_warning.html content=warning_note %}
 
 Currency conversion can occur in two areas of the Floor Module code:
@@ -1281,31 +1281,31 @@ Example Rule:
 currency = ‘USD’,
 ‘banner|300x250’: 1.00
 
-{% highlight js %}
+```javascript
 getFloor({
   currency: ‘EUR’,
   mediaType: ‘banner’,
   size: [300, 250]
 });
-{% endhighlight %}
+```
 
 If successfully returned the requested currency:
 
-{% highlight js %}
+```javascript
 {
   floor: 0.85,
   currency: ‘EUR’
 }
-{% endhighlight %}
+```
 
 If currency conversion is unsuccessful:
 
-{% highlight js %}
+```javascript
 {
   floor:1.0,
   currency: ‘USD’
 }
-{% endhighlight %}
+```
 
 Currency conversion can fail for the following reasons:
 - Currency module is not included in the prebid bundle.

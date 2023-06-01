@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.offEvent(eventType, handler, id)
-description: 
+description: offEvent API
 sidebarType: 1
 ---
 
@@ -24,7 +24,7 @@ events for a specific item in the event context.
 
 Example
 
-{% highlight js %}
+```javascript
         /* This handler will be called only for rightAdUnit */
         /* Uses the `pbjs.offEvent` method to remove the handler once it has been called */
         var bidWonHandler = function bidWonHandler() {
@@ -50,7 +50,7 @@ Example
             pbjs.onEvent('bidWon', bidWonHandler, rightAdUnit);
 
             ...
-{% endhighlight %}
+```
 
 ## See Also
 - [getEvents](/dev-docs/publisher-api-reference/getEvents.html)

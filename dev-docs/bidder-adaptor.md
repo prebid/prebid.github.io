@@ -107,7 +107,7 @@ Module that connects to Example's demand sources
     ];
 ```
 
-{% endhighlight %}
+```
 
 <a name="bidder-adaptor-Designing-your-Bid-Params" />
 
@@ -117,7 +117,7 @@ The parameters of your ad request will be stored in the ad unit's `bid.params` o
 
 For more information about the kinds of information that can be passed using these parameters, see the example below, as well as [the existing bidder parameters]({{site.baseurl}}/dev-docs/bidders.html).
 
-{% highlight js %}
+```javascript
 
 {
     var adUnits = [{
@@ -144,7 +144,7 @@ For more information about the kinds of information that can be passed using the
         }]
     }];
 
-{% endhighlight %}
+```
 
 <a name="bidder-adaptor-HTTP-simple-requests" />
 
@@ -216,7 +216,7 @@ Compared to previous versions of Prebid, the new `BaseAdapter` model saves the a
 
 A high level example of the structure:
 
-{% highlight js %}
+```javascript
 
 import * as utils from 'src/utils';
 import { registerBidder } from 'src/adapters/bidderFactory';
@@ -241,7 +241,7 @@ export const spec = {
 }
 registerBidder(spec);
 
-{% endhighlight %}
+```
 
 <a id="ortb-adapters" />
 
@@ -258,12 +258,12 @@ When the page asks Prebid.js for bids, your module's `buildRequests` function wi
 - `validBidRequests[]` - An array of bidRequest objects, one for each AdUnit that your module is involved in. This array has been processed for special features like sizeConfig, so it's the list that you should be looping through.
 - `bidderRequest` - The master bidRequest object. This object is useful because it carries a couple of bid parameters that are global to all the bids.
 
-{% highlight js %}
+```javascript
 buildRequests: function(validBidRequests, bidderRequest) {
    ...
    return ServerRequestObjects;
 }
-{% endhighlight %}
+```
 
 Building the request will use data from several places:
 
@@ -276,7 +276,7 @@ Building the request will use data from several places:
 
 Here is a sample array entry for `validBidRequests[]`:
 
-{% highlight js %}
+```javascript
 [{
   adUnitCode: "test-div",
   auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917",
@@ -294,7 +294,7 @@ Here is a sample array entry for `validBidRequests[]`:
   src: "client",
   transactionId: "54a58774-7a41-494e-9aaf-fa7b79164f0c"
 }]
-{% endhighlight %}
+```
 
 Retrieve your bid parameters from the `params` object.
 
@@ -312,7 +312,7 @@ Other notes:
 
 Here is a sample bidderRequest object:
 
-{% highlight js %}
+```javascript
 {
   auctionId: "b06c5141-fe8f-4cdf-9d7d-54415490a917",
   auctionStart: 1579746300522,
@@ -332,7 +332,7 @@ Here is a sample bidderRequest object:
     stack: ["http://mypage.org?pbjs_debug=true"]
   }
 }
-{% endhighlight %}
+```
 
 Notes on parameters in the bidderRequest object:
 - **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
@@ -403,7 +403,7 @@ ServerRequest objects. These objects have this structure:
 
 Here's a sample block of code returning a ServerRequest object:
 
-{% highlight js %}
+```javascript
 
 return {
     method: 'POST',
@@ -411,7 +411,7 @@ return {
     data: payloadObject
 };
 
-{% endhighlight %}
+```
 
 <a name="bidder-adaptor-Interpreting-the-Response" />
 
@@ -419,7 +419,7 @@ return {
 
 The `interpretResponse` function will be called when the browser has received the response from your server. The function will parse the response and create a bidResponse object containing one or more bids. The adapter should indicate no valid bids by returning an empty array. An example showing a single bid:
 
-{% highlight js %}
+```javascript
 
     // if the bid response was empty or an error, return []
     // otherwise parse the response and return a bidResponses array
@@ -461,7 +461,7 @@ The `interpretResponse` function will be called when the browser has received th
     bidResponses.push(bidResponse);
     return bidResponses;
 
-{% endhighlight %}
+```
 
 {: .alert.alert-info :}
 Please provide as much information as possible in the `meta` object. Publishers use this
@@ -529,7 +529,7 @@ Given an array of all the responses from the server, `getUserSyncs` is used to d
 
 See below for an example implementation.  For more examples, search for `getUserSyncs` in the [modules directory in the repo](https://github.com/prebid/Prebid.js/tree/master/modules).
 
-{% highlight js %}
+```javascript
 
 {
     getUserSyncs: function(syncOptions, serverResponses, gdprConsent, uspConsent) {
@@ -558,7 +558,7 @@ See below for an example implementation.  For more examples, search for `getUser
     }
 }
 
-{% endhighlight %}
+```
 
 <a name="bidder-adaptor-Registering-on-Timout" />
 
@@ -568,7 +568,7 @@ The `onTimeout` function will be called when an adapter has timed out for an auc
 
 Sample data passed to this function:
 
-{% highlight js %}
+```javascript
 [{
   "bidder": "example",
   "bidId": "51ef8751f9aead",
@@ -579,7 +579,7 @@ Sample data passed to this function:
   "timeout": 3000,
   "auctionId": "18fd8b8b0bd757"
 }]
-{% endhighlight %}
+```
 
 ### Registering on Bid Won
 
@@ -587,7 +587,7 @@ The `onBidWon` function will be called when a bid from the adapter won the aucti
 
 Sample data received by this function:
 
-{% highlight js %}
+```javascript
 {
   "bidder": "example",
   "width": 300,
@@ -606,7 +606,7 @@ Sample data received by this function:
     "hb_size": "350x250"
   }
 }
-{% endhighlight %}
+```
 
 ### Registering on Bid Billable
 
@@ -614,7 +614,7 @@ The `onBidBillable` function will be called when it deems a bid to be billable. 
 
 Sample data received by this function (same as what is recieved for onBidWon):
 
-{% highlight js %}
+```javascript
 {
   "bidder": "example",
   "width": 300,
@@ -633,7 +633,7 @@ Sample data received by this function (same as what is recieved for onBidWon):
     "hb_size": "350x250"
   }
 }
-{% endhighlight %}
+```
 
 ### Registering on Set Targeting
 
@@ -641,7 +641,7 @@ The `onSetTargeting` function will be called when the adserver targeting has bee
 
 Sample data received by this function:
 
-{% highlight js %}
+```javascript
 {
   "bidder": "example",
   "width": 300,
@@ -660,7 +660,7 @@ Sample data received by this function:
     "hb_size": "350x250"
   }
 }
-{% endhighlight %}
+```
 
 ### Registering on Bidder Error
 
@@ -668,7 +668,7 @@ The `onBidderError` function will be called when the bidder responded with an er
 
 Sample data received by this function:
 
-{% highlight js %}
+```javascript
 {
     error: XMLHttpRequest,
     bidderRequest: {
@@ -692,13 +692,13 @@ Sample data received by this function:
         }
     }
 }
-{% endhighlight %}
+```
 
 ### Adding adapter aliases
 
 Use aliases if you want to reuse your adapter using other name for your partner/client, or just a shortcut name.
 
-{% highlight js %}
+```javascript
 
 export const spec = {
     code: 'appnexus',
@@ -713,7 +713,7 @@ export const spec = {
     ...
 }
 
-{% endhighlight %}
+```
 
 spec.aliases can be an array of strings or objects.
 
@@ -748,7 +748,7 @@ Follow the steps in this section to ensure that your adapter properly supports v
 
 Add the `supportedMediaTypes` argument to the spec object, and make sure VIDEO is in the list:
 
-{% highlight js %}
+```javascript
 
 export const spec = {
     code: BIDDER_CODE,
@@ -756,7 +756,7 @@ export const spec = {
     ...
 }
 
-{% endhighlight %}
+```
 
 {: .alert.alert-info :}
 If your adapter supports banner and video media types, make sure to include `'banner'` in the `supportedMediaTypes` array as well
@@ -896,7 +896,7 @@ In both use cases, adapter is requesting bid responses for 20 placements in one 
 
 Adapter must add following new properties to bid response
 
-{% highlight js %}
+```javascript
 {
   meta: {
     primaryCatId: '<iab sub category>', // only needed if you want to ensure competitive separation
@@ -906,7 +906,7 @@ Adapter must add following new properties to bid response
     durationSeconds: 30
   }
 }
-{% endhighlight %}
+```
 
 
 Appnexus Adapter uses above explained approach. You can refer [here](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
@@ -955,12 +955,12 @@ getIabSubCategory(bidderCode, pCategory)
 
 **Example**
 
-{% highlight js %}
+```javascript
 
 import { getIabSubCategory } from '../src/adapters/bidderFactory';
 let primaryCatId = getIabSubCategory(bidderCode, pCategory)
 
-{% endhighlight %}
+```
 
 #### Outstream Video Renderers
 
@@ -976,7 +976,7 @@ The returned VAST URL or raw VAST XML should be added into `bid.vastUrl` or `bid
 
 For example:
 
-{% highlight js %}
+```javascript
 
 function createBid(status, reqBid, response) {
     let bid = bidfactory.createBid(status, reqBid);
@@ -991,7 +991,7 @@ function createBid(status, reqBid, response) {
     return bid;
 }
 
-{% endhighlight %}
+```
 
 ### Deals in Ad Pods
 
@@ -1023,7 +1023,7 @@ The adapter code sample below fulfills requirement #2, unpacking the server's re
 1. Checking for native assets on the response.
 2. If present, filling in the `native` object with those assets.
 
-{% highlight js %}
+```javascript
 
 /* Does the bidder respond with native assets? */
 else if (FEATURES.NATIVE && rtbBid.rtb.native) {
@@ -1045,7 +1045,7 @@ else if (FEATURES.NATIVE && rtbBid.rtb.native) {
     };
 }
 
-{% endhighlight %}
+```
 
 The full list of assets your bidder can set are defined [by legacy Prebid.js](/prebid/native-implementation-legacy.html#3-prebidjs-native-adunit-overview). All assets can be returned as strings, or images can be returned as objects with attributes `url`, `height`, and `width`.
 
@@ -1097,7 +1097,7 @@ For example tests, see [the existing adapter test suites](https://github.com/pre
 
 ## Full Bid Adapter Example
 
-{% highlight js %}
+```javascript
 
 import * as utils from 'src/utils';
 import {config} from 'src/config';
@@ -1239,7 +1239,7 @@ export const spec = {
 }
 registerBidder(spec);
 
-{% endhighlight %}
+```
 
 
 ## Submitting your adapter

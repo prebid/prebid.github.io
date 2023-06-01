@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.setBidderConfig(options, mergeFlag)
-description:
+description: setBidderConfig API
 sidebarType: 1
 ---
 
@@ -17,16 +17,16 @@ Note if you would like to add to existing config you can pass `true` for the opt
 
 The page usage is:
 
-{% highlight js %}
+```javascript
 pbjs.setBidderConfig({
    bidders: ['bidderA'],
    config: {
       customArg: "customVal"
    }
 });
-{% endhighlight %}
+```
 or
-{% highlight js %}
+```javascript
 pbjs.setBidderConfig({
    bidders: ['bidderB'],
    config: {
@@ -50,7 +50,7 @@ pbjs.setBidderConfig({
       }
    }
 });
-{% endhighlight %}
+```
 
 How to interpret these examples:
 - When 'bidderA' calls `getConfig('customArg')`, it will receive the object that contains 'customArg'. If any other bidder calls `getConfig('customArg')`, it will receive nothing.

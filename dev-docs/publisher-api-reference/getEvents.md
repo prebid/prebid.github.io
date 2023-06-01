@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getEvents()
-description: 
+description: getEvents API
 sidebarType: 1
 ---
 
@@ -47,11 +47,11 @@ The available events are:
 
 The example below shows how these events can be used.
 
-{% highlight js %}
+```javascript
       pbjs.getEvents().forEach(event => {
         console.log("event: "+event.eventType)
       });
-{% endhighlight %}
+```
 
 
 ## See Also

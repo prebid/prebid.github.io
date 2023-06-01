@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getUserIdsAsync()
-description: 
+description: getUserIdsAsync API
 sidebarType: 1
 ---
 

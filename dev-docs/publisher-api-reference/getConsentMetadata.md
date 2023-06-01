@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getConsentMetadata()
-description: 
+description: getConsentMetadata API
 sidebarType: 1
 ---
 

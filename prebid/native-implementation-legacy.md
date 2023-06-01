@@ -12,7 +12,7 @@ sidebarType: 1
 
 {% capture version2 %}
 Prebid recommends new native implementations use the [OpenRTB method of defining native ads](/prebid/native-implementation.html).
-{% endcapture %}
+:::
 {% include alerts/alert_important.html content=version2 %}
 
 * TOC

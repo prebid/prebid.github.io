@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.bidderSettings
-description:
+description: bidderSettings API
 sidebarType: 1
 ---
 
@@ -11,8 +11,7 @@ sidebarType: 1
 The bidderSettings object provides a way to define some behaviors for the
 platform and specific adapters. The basic structure is a 'standard' section with defaults for all adapters, and then one or more adapter-specific sections that override behavior for that bidder:
 
-{% highlight js %}
-
+```javascript
 pbjs.bidderSettings = {
     standard: {
          [...]
@@ -24,8 +23,7 @@ pbjs.bidderSettings = {
         [...]
     },
 }
-
-{% endhighlight %}
+```
 
 Defining bidderSettings is optional; the platform has default values for all of the options.
 Adapters may specify their own default settings, though this isn't common.
@@ -72,12 +70,11 @@ The key value pair targeting is applied to the bid's corresponding ad unit. Your
 If you'd like to customize the key value pairs, you can overwrite the settings as the below example shows. *Note* that once you updated the settings, let your ad ops team know about the change, so they can update the line item targeting accordingly. See the [Ad Ops](/adops/before-you-start.html) documentation for more information.
 
 <a name="bidderSettingsDefault"></a>
-<a name="default-keywords">
+<a name="default-keywords"></a>
 
 There's no need to include the following code if you choose to use the *below default setting*.
 
-{% highlight js %}
-
+```javascript
 pbjs.bidderSettings = {
     standard: {
         adserverTargeting: [{
@@ -114,10 +111,13 @@ pbjs.bidderSettings = {
     }
 }
 
-{% endhighlight %}
+```
 
-{: .alert.alert-warning :}
+:::caution
+
 Note that the existence of `bidderSettings.adserverTargeting.standard` will prevent the system from adding the standard display targeting values: hb_bidder, hb_adid, hb_pb, hb_size, and hb_format. However, if the mediaType is video and `bidderSettings.adserverTargeting.standard` does not specify hb_uuid, hb_cache_id, or hb_cache_host, they will be added unless `bidderSettings.sendStandardTargeting` is set to false.
+
+:::
 
 <a name="key-targeting-specific-bidder"></a>
 **Keyword targeting for a specific bidder**
@@ -127,7 +127,7 @@ settings as the below example for AppNexus shows.
 
 *Note that the line item setup has to match the targeting change*
 
-{% highlight js %}
+```javascript
 pbjs.bidderSettings = {
     appnexus: {
       sendStandardTargeting: false,
@@ -146,7 +146,7 @@ pbjs.bidderSettings = {
       ]
     }
 }
-{% endhighlight %}
+```
 
 
 In other words, the above config sends 2 pairs of key/value strings targeting for every AppNexus bid and for every ad unit. The 1st pair would be `apn_pbMg` => the value of `bidResponse.pbMg`. The 2nd pair would be `apn_adId` => the value of `bidResponse.adId`. You can find the bidResponse object documentation [here](/troubleshooting/troubleshooting-guide.html#common-bid-response-parameters).
@@ -159,8 +159,7 @@ Now let's say you would like to define a bidder-specific price bucket function r
 
 *Note: this will only impact the price bucket sent to the ad server for targeting. It won't actually impact the cpm value used for ordering the bids.*
 
-{% highlight js %}
-
+```javascript
 pbjs.bidderSettings = {
     standard: {
         [...]
@@ -181,10 +180,10 @@ pbjs.bidderSettings = {
                 return "pb6"; // all bids $6 and above are assigned to price bucket 'pb6'
             }
         }]
-	[...]
+    [...]
     }
 }
-{% endhighlight %}
+```
 
 ##### 2.2. bidCpmAdjustment
 
@@ -199,8 +198,7 @@ Note that either `bidResponse` or `bidRequest` may be missing, although at least
 
 For example:
 
-{% highlight js %}
-
+```javascript
 pbjs.bidderSettings = {
   standard: { ... }
   aol: {
@@ -211,8 +209,7 @@ pbjs.bidderSettings = {
     }
   }
 };
-
-{% endhighlight %}
+```
 
 In the above example, the AOL bidder will inherit from "standard" adserverTargeting keys, so that you don't have to define the targeting keywords again.
 
@@ -223,8 +220,7 @@ For example, if the adjustment is `bidCpm * .85` as above, floors are adjusted b
 
 The automatically derived inverse function is correct only when `bidCpmAdjustment` is a simple multiplication. If it isn't, the inverse should also be provided through `inverseCpmAdjustment`. For example:
 
-{% highlight js %}
-
+```javascript
 pbjs.bidderSettings = {
     aol: {
         bidCpmAdjustment : function(cpm) {
@@ -234,10 +230,8 @@ pbjs.bidderSettings = {
           return Math.max(0.2, (cpm / .85) + 0.2)
         }
     }
-}
 };
-
-{% endhighlight %}
+```
 
 
 
@@ -265,18 +259,18 @@ either specific bid adapter(s) or all bid adapters the permission for these bids
 
 This setting defines if the bid adapter can access browser cookies or local storage. Allowed values are:
 
- - an array containing either `'html5'`, `'cookie'` or both to allow specific storage methods (e.g. `['cookie']` enables cookies but not local storage)
- - `true` to allow any storage method;
- - `false` to disable all storage.
+- an array containing either `'html5'`, `'cookie'` or both to allow specific storage methods (e.g. `['cookie']` enables cookies but not local storage)
+- `true` to allow any storage method;
+- `false` to disable all storage.
  
 <br />Default value is `true` in version 6.x
 <br />Default value is `false` in version 7.x
 
 Note that:
- - [Disabling device access](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) will prevent access to storage regardless of this setting;  
- - `storageAllowed` will only affect bid adapters and not any other type of module (such as analytics or RTD).
+- [Disabling device access](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) will prevent access to storage regardless of this setting;  
+- `storageAllowed` will only affect bid adapters and not any other type of module (such as analytics or RTD).
 
-<a id="allowAlternateBidderCodes" />
+<a id="allowAlternateBidderCodes"></a>
 
 ##### 2.8. allowAlternateBidderCodes
 
@@ -289,8 +283,7 @@ If this flag is set to `true`, bidders that have not been explicitly requested i
 
 This array will work in conjunction with `allowAlternateBidderCodes`. In this array, you can specify the names of the bidder for which an adapter can accept the bid. If the value is not specified for the array or `[‘*’]` is specified, Prebid will accept bids of all the bidders for the given adapter.
 
-{% highlight js %}
-
+```javascript
 pbjs.bidderSettings = {
     standard: {
          allowAlternateBidderCodes: false,
@@ -313,7 +306,7 @@ pbjs.bidderSettings = {
         [...]
     }
 }
-{% endhighlight %}
+```
 
 In the above example, `groupm` bid will have a bid adjustment of 80% since the `bidCpmAdjustment` function says so.<br />
 If `appnexus` bids with another bidder code, say `appnexus2`. This bidder code will adjust the bid cpm to 95% because it will apply the `bidCpmAdjustment` function from `standard` setting, since the `bidCpmAdjustment` is missing for given bidder code I.e `appnexus2`
@@ -326,8 +319,7 @@ Optionally allow alternate bidder codes originating from a specific bid adapter 
 2. Adapter bidCpmAdjustment function
 3. The standard bidCpmAdjustment function
 
-{% highlight js %}
-
+```javascript
 pbjs.bidderSettings = {
     standard: {
          allowAlternateBidderCodes: false,
@@ -348,7 +340,7 @@ pbjs.bidderSettings = {
         [...]
     }
 }
-{% endhighlight %}
+```
 
 In the above example, if PubMatic were to return the "groupm" bidder code then the bidCpmAdjustment function under `pubmatic` would be used instead of what is available under `standard`.
 

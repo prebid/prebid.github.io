@@ -58,7 +58,7 @@ pbjs.setConfig({
         syncDelay: 3000              // 3 seconds after the first auction
     }
 });
-{% endhighlight %}
+```
 
 2) Publisher supports UnifiedID with a vendor other than Trade Desk and HTML5 local storage.
 
@@ -79,7 +79,7 @@ pbjs.setConfig({
         syncDelay: 3000
     }
 });
-{% endhighlight %}
+```
 
 3) Publisher has integrated with UnifiedID on their own and wants to pass the UnifiedID directly through to Prebid.js.
 
@@ -92,4 +92,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

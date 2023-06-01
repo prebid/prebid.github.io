@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.requestBids(requestObj)
-description:
+description: requestBids API
 sidebarType: 1
 ---
 

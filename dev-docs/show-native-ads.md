@@ -13,7 +13,7 @@ sidebarType: 1
 {% capture change-notice %}
 The procedures in this document still work, but we strongly recommend
 using the [improved Prebid.js native ad](/prebid/native-implementation.html) support.
-{% endcapture %}
+:::
 
 {% include alerts/alert_warning.html content=change-notice %}
 
@@ -70,13 +70,13 @@ This section describes the implementation using code samples, but ignores some o
 
 In this example we'll store the ad slot info in a variable for reference throughout the page.  We use a 1x1 static ad slot size since AppNexus (our demand partner in this example) uses that size for native creatives.
 
-{% highlight js %}
+```javascript
 const slot = {
     code: '/19968336/prebid_native_adunit',
     div: 'div-prebid-native-test-1',
     size: [1, 1],
 };
-{% endhighlight %}
+```
 
 <a name="native-ad-keys" />
 
@@ -111,7 +111,7 @@ Each key's value is an object with several fields.  Most important is the `requi
 
 <a name="native-object" />
 
-{% highlight js %}
+```javascript
 
 pbjs.addAdUnits({
     code: slot.code,
@@ -151,7 +151,7 @@ pbjs.addAdUnits({
     }, ]
 })
 
-{% endhighlight %}
+```
 
 {: .alert.alert-danger :}
 For each native ad unit, all of the bidders within that ad unit must have declared native support in their adapter if you want ads to appear.  If there are any bidders without native support in a native ad unit, requests will not be made to those bidders.  For a list of bidders with native support, see [Bidders with Video and Native Demand]({{site.baseurl}}/dev-docs/bidders.html#bidders-with-video-and-native-demand).
@@ -198,7 +198,7 @@ const adUnits = [{
 
 ### 3. Add your native ad tag to the page body as usual:
 
-{% highlight html %}
+```html
 <div id="div-prebid-native-test-1">
     <script>
         googletag.cmd.push(function() {
@@ -206,7 +206,7 @@ const adUnits = [{
         });
     </script>
 </div>
-{% endhighlight %}
+```
 
 ## Sending Asset Placeholders
 

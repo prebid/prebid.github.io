@@ -27,7 +27,7 @@ adtelligentIdSystem adapter doesn't require any configuration or storage params.
          }]
      }
  });
-{% endhighlight %}
+```
 
 Example with a short storage for ~10 minutes and refresh in 5 minutes:
 
@@ -45,4 +45,4 @@ Example with a short storage for ~10 minutes and refresh in 5 minutes:
             }]
         }
     });
-{% endhighlight %}
+```

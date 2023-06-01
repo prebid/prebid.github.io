@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.onEvent(eventType, handler, id)
-description: 
+description: onEvent API
 sidebarType: 1
 ---
 

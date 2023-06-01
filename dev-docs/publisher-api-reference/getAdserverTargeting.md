@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getAdserverTargeting()
-description:
+description: getAdserverTargeting API
 sidebarType: 1
 ---
 
@@ -20,7 +20,7 @@ When [deals are enabled]({{site.baseurl}}/adops/deals.html), the object returned
 
 **Returned Object Example:**
 
-{% highlight js %}
+```javascript
 {
   "/9968336/header-bid-tag-0": {
     "hb_bidder": "rubicon",
@@ -39,4 +39,4 @@ When [deals are enabled]({{site.baseurl}}/adops/deals.html), the object returned
     "hb_deal_appnexus": "ABC_123"
   }
 }
-{% endhighlight %}
+```

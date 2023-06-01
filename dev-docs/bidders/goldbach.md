@@ -186,9 +186,9 @@ Enabling the Goldbach Debug Auction feature should only be done for diagnosing t
 
 To understand what is happening behind the scenes during an auction, you can enable a debug auction by adding an `apn_prebid_debug` cookie with a JSON string. For example:
 
-{% highlight js %}
+```javascript
 { "enabled": true, "dongle": "QWERTY", "debug_timeout": 1000, "member_id": 958 }
-{% endhighlight %}
+```
 
 To view the results of the debug auction, add the `pbjs_debug=true` query string parameter and open your browser's developer console.
 

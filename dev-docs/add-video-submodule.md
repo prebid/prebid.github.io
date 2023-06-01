@@ -66,7 +66,7 @@ Video provider for Example Player. Contact someone@example.com for information.
 
 Your page must link the Example Player build from our CDN. Alternatively you can use npm to load the build.
 
-{% endhighlight %}
+```
 
 ### Step 2: Add a Vendor Code
 
@@ -75,7 +75,7 @@ i.e. in `vendorCodes.js`:
 
 {% highlight text %}
 export const EXAMPLE_PLAYER_VENDOR = 3;
-{% endhighlight %}
+```
 
 ### Step 3: Build the Module
 
@@ -102,7 +102,7 @@ function exampleSubmoduleFactory(videoProviderConfig) {
 
 exampleSubmoduleFactory.vendorCode = EXAMPLE_VENDOR;
 submodule('video', exampleSubmoduleFactory);
-{% endhighlight %}
+```
 
 #### The Submodule object
 
@@ -132,7 +132,7 @@ const exampleSubmodule =  {
   offEvent: offEvent,
   destroy: destroy
 };
-{% endhighlight %}
+```
 
 <a name="event-registration" />
 
@@ -166,7 +166,7 @@ In prebid.js, add your new submodule to `.submodules.json` under the `videoModul
     ]
   }
 }
-{% endhighlight %}
+```
 
 ## Shared Resources for Developers
 

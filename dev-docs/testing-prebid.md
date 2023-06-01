@@ -80,15 +80,15 @@ Prebid.js already has lots of tests. Read them to see how Prebid.js is tested, a
 
 A test module might have the following general structure:
 
-{% highlight js %}
+```javascript
 
 // Import or require modules necessary for the test, e.g.:
 import { expect } from 'chai';  // may prefer 'assert' in place of 'expect'
-import adapter from 'src/adapters/<adapter>';
+import adapter from 'src/adapters/[adapter]';
 
-describe('<Adapter>', () => {
+describe('[Adapter]', () => {
 
-  it('<description of unit or feature being tested>', () => {
+  it('[description of unit or feature being tested]', () => {
     // Arrange - set up preconditions and inputs
     // Act - call or act on the code under test
     // Assert - use chai to check that expected results have occurred
@@ -98,7 +98,7 @@ describe('<Adapter>', () => {
 
 });
 
-{% endhighlight %}
+```
 
 ## Resources
 

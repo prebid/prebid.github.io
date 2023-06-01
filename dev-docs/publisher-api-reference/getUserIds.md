@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getUserIds()
-description: 
+description: getUserIds API
 sidebarType: 1
 ---
 

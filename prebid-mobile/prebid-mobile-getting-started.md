@@ -13,7 +13,7 @@ This page gives an overview of steps you need to take, either as an ad ops user 
 
 {% capture alertNote %}
 If this is your first time working with header bidding, we recommend that you read [What is Prebid?](/overview/intro.html) before diving into Prebid Mobile.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=alertNote %}
 

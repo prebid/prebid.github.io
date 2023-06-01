@@ -32,7 +32,7 @@ Use the `adUnit.mediaTypes` object to set up your ad units with the `video` medi
 
 For full details on video ad unit parameters, see [Ad Unit Reference for Video]({{site.baseurl}}/dev-docs/adunit-reference.html#adunitmediatypesvideo)
 
-{% highlight js %}
+```javascript
 
 var videoAdUnits = [{
     code: 'video1',
@@ -55,7 +55,7 @@ var videoAdUnits = [{
     }]
 }];
 
-{% endhighlight %}
+```
 
 ### Renderers
 
@@ -87,7 +87,7 @@ A renderer is an object containing these properties:
 
 
 In a multiFormat adUnit, you might want the renderer to only apply to only one of the mediaTypes.  You can do this by defining the renderer on the media type itself.
-{% highlight js %}
+```javascript
 
 pbjs.addAdUnit({
     code: 'video1',
@@ -120,11 +120,11 @@ pbjs.addAdUnit({
     },
     ...
 });
-{% endhighlight %}
+```
 
 Some demand partners that return a renderer with their video bid responses may support renderer configuration with the `adUnit.renderer.options` object. These configurations are bidder specific and may include options for skippability, player size, and ad text, for example. An example renderer configuration follows:
 
-{% highlight js %}
+```javascript
 
 pbjs.addAdUnit({
     code: 'video1',
@@ -143,10 +143,10 @@ pbjs.addAdUnit({
             adText: 'This text was configured in the ad unit',
         }
     },
-    ...
+    // ...
 });
 
-{% endhighlight %}
+```
 
 For more technical information about renderers, see [the pull request originally adding the 'Renderer' type](https://github.com/prebid/Prebid.js/pull/1082) and [the pull request allowing the 'renderer' type in the mediaType](https://github.com/prebid/Prebid.js/pull/5760).
 
@@ -158,8 +158,7 @@ Invoke your ad server for the outstream adUnit from the body of the page in the 
 
 For a live example, see [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html).
 
-{% highlight html %}
-
+```html
 <div id='video1'>
     <p>Prebid Outstream Video Ad</p>
     <script type='text/javascript'>
@@ -169,8 +168,7 @@ For a live example, see [Outstream with Google Ad Manager]({{site.github.url}}/e
 
     </script>
 </div>
-
-{% endhighlight %}
+```
 
 ### Option 2: Serving without an ad server
 
@@ -185,7 +183,7 @@ In the Prebid.js event queue, you'll need to add a function that:
     1. Selects the bid that will serve for the appropriate adUnit
     2. Renders the ad
 
-{% highlight js %}
+```javascript
 
 pbjs.que.push(function () {
     pbjs.addAdUnits(videoAdUnits);
@@ -198,7 +196,7 @@ pbjs.que.push(function () {
     });
 });
 
-{% endhighlight %}
+```
 
 For more information, see the API documentation for:
 

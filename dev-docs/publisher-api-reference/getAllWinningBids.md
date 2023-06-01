@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getAllWinningBids()
-description: 
+description: getAllWinningBids API
 sidebarType: 1
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.refreshUserIds(options, callback)
-description: 
+description: refreshUserIds API
 sidebarType: 1
 ---
 

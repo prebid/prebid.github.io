@@ -36,7 +36,7 @@ If you need to use an API way, ensure that all the following properties are set 
 If you need to use a CMP way, ensure that you don't set any of the following API properties. 
 
 
-{% endcapture %}
+:::
 {% include /alerts/alert_warning.html content=warning_note %}
 
 ### Subject To GPDR

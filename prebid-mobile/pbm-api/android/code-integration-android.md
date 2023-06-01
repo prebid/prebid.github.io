@@ -43,7 +43,7 @@ implementation 'org.prebid:prebid-mobile-sdk:[1,2)'
 ```
 
 please change it to the strict version. 
-{% endcapture %}
+:::
 {% include /alerts/alert_warning.html content=warning_note %}
 
 ### Build framework from source
@@ -59,7 +59,7 @@ This will output the PrebidMobile framework for Android.
 {% capture warning_note %}  
 If you see errors while building the Prebid Mobile SDK or Demo Applications, make sure that the needed Android SDK version is set up on your machine. Check the gradle build configs for the project and applications for details about the current required version.
 
-{% endcapture %}
+:::
 {% include /alerts/alert_warning.html content=warning_note %}
 
 
@@ -72,7 +72,7 @@ All integration examples for Android are written in `Kotlin`.
 
 The corresponding Java code can be found in the [Demo Java](https://github.com/prebid/prebid-mobile-android/tree/master/Example/PrebidDemoJava) application
 
-{% endcapture %}
+:::
 {% include /alerts/alert_warning.html content=warning_note %}
 
 Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add the 'account' info to Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
@@ -127,7 +127,7 @@ Check the log messages of the app. If the provided GMA SDK version is not verifi
 
 {% capture warning_note %}  
 This section applies only to scenarios when when Prebid SDK renders a winning bid: `No Ad Server`, `AdMob`, `MAX`, `GAM Event Handlers`. If you integrate Prebid with GAM using the original integration scenario skip this step.  
-{% endcapture %}
+:::
 {% include /alerts/alert_warning.html content=warning_note %}
 
 Before you start, you need to integrate the SDK by updating your Android manifest.

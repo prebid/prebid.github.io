@@ -22,7 +22,7 @@ For more information about AMP RTC, see:
 
 {% capture tipNote %}
 For ad ops setup instructions, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=tipNote %}
 
@@ -165,7 +165,7 @@ This is the creative that your Ad Ops team needs to upload to the ad server (it'
 
 {% capture tipNote %}
 You can always get the latest version of the creative code below from [the AMP example creative file in our GitHub repo](https://github.com/prebid/prebid-universal-creative/blob/master/template/amp/dfp-creative.html).
-{% endcapture %}
+:::
 
 {% include alerts/alert_tip.html content=tipNote %}
 

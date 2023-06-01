@@ -36,4 +36,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

@@ -82,7 +82,7 @@ pbjs.setConfig({
     }]
   }
 });
-{% endhighlight %}
+```
 
 In the following example, the publisher has retrieved a server-generated UID2 response, and it is currently stored in the JavaScript variable `uid2Identity`:
 
@@ -97,4 +97,4 @@ pbjs.setConfig({
     }]
   }
 });
-{% endhighlight %}
+```

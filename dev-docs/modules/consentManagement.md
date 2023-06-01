@@ -18,7 +18,7 @@ sidebarType : 1
 
 {% capture legalNotice %}
   This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
-  {% endcapture %}
+  :::
 
 {% include /alerts/alert_important.html content=legalNotice %}
 
@@ -98,7 +98,7 @@ A related parameter is `deviceAccess`, which is at the global level of Prebid.js
 
 Example 1: IAB CMP using custom timeout and setting GDPR in-scope by default.
 
-{% highlight js %}
+```javascript
      var pbjs = pbjs || {};
      pbjs.que = pbjs.que || [];
      pbjs.que.push(function() {
@@ -112,11 +112,11 @@ Example 1: IAB CMP using custom timeout and setting GDPR in-scope by default.
           }
         });
      });
-{% endhighlight %}
+```
 
 Example 2: IAB CMP using custom timeout in combination with actionTimeout and setting GDPR in-scope by default. The following will wait `500ms` for the CMP to load, if it does an additional `10000ms` will be waited for a user to provide consent (if none had yet been provided).
 
-{% highlight js %}
+```javascript
      var pbjs = pbjs || {};
      pbjs.que = pbjs.que || [];
      pbjs.que.push(function() {
@@ -131,11 +131,11 @@ Example 2: IAB CMP using custom timeout in combination with actionTimeout and se
           }
         });
      });
-{% endhighlight %}
+```
 
 Example 3: Static CMP using custom data passing.
 
-{% highlight js %}
+```javascript
      var pbjs = pbjs || {};
      pbjs.que = pbjs.que || [];
      pbjs.que.push(function() {
@@ -173,15 +173,15 @@ Example 3: Static CMP using custom data passing.
           }
         });
      });
-{% endhighlight %}
+```
 
 ## Build the Package
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the **gulp build** command:
 
-{% highlight bash %}
+```bash
 gulp build --modules=consentManagement,bidAdapter1,bidAdapter2
-{% endhighlight %}
+```
 
 You can also use the [Prebid.js Download](/download.html) page.
 
@@ -196,7 +196,7 @@ If you are submitting changes to an adapter to support TCF v2.0, please also sub
 To find the GDPR consent information to pass along to your system, adapters should look for the `bidderRequest.gdprConsent` field in their `buildRequests()` method.
 Here is a sample of how the data is structured in the `bidderRequest` object:
 
-{% highlight js %}
+```javascript
 {
   "bidderCode": "bidderA",
   "auctionId": "e3a336ad-2222-4a1c-bbbb-ecc7c5294a34",
@@ -209,7 +209,7 @@ Here is a sample of how the data is structured in the `bidderRequest` object:
   },
   ...
 }
-{% endhighlight %}
+```
 
 **gdprConsent Data Fields**
 
@@ -236,7 +236,7 @@ One of two general approaches can be taken by the adapter to populate this field
 
 The following is an example of how the integration could look for the former option:
 
-{% highlight js %}
+```javascript
 ...
 buildRequests: function (bidRequests, bidderRequest) {
   ...
@@ -250,7 +250,7 @@ buildRequests: function (bidRequests, bidderRequest) {
   ...
 }
 ...
-{% endhighlight %}
+```
 
 The implementation of the latter option is up to the adapter, but the general premise is the same.  You would check to see if the `bidderRequest.gdprConsent.gdprApplies` field is undefined and if so, set the derived value from your independent system.
 
@@ -261,11 +261,11 @@ If neither option are taken, then there is the remote chance this field's value 
 The `gdprConsent` object is also available when registering `userSync` pixels.
 The object can be accessed by including it as an argument in the `getUserSyncs` function:
 
-{% highlight js %}
+```javascript
 getUserSyncs: function(syncOptions, responses, gdprConsent, usPrivacy) {
 ...
 }
-{% endhighlight %}
+```
 
 Depending on your needs, you could include the consent information in a query of your pixel and/or, given the consent choices, determine if you should drop the pixels at all.
 
@@ -297,7 +297,7 @@ At a high level, this could be done as follows:
 
 Below is sample code for implementing the stub functions. Sample code for formatting the consent string can be obtained [here](https://github.com/appnexus/cmp).
 
-{% highlight js %}
+```javascript
 var iabConsentData;  // build the IAB consent string
 var gdprApplies;     // true if gdpr applies to the user, else false
 var responseCode;    // false if there was an error, else true
@@ -355,7 +355,7 @@ var responseCode;    // false if there was an error, else true
         }
     }
 })(window, document);
-{% endhighlight %}
+```
 
 #### Explanation of Parameters
 

@@ -219,7 +219,7 @@ For example, the adapter code might do something like:
    if (bidRequest.userId && bidRequest.userId.sharedid) {
     url+="&pubcid="+bidRequest.userId.sharedid;
    }
-{% endhighlight %}
+```
 
 ### Prebid Server Adapters
 

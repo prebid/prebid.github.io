@@ -19,7 +19,7 @@ sidebarType : 1
 {% capture legalNotice %}
 
   This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
-  {% endcapture %}
+  :::
 
 {% include /alerts/alert_important.html content=legalNotice %}
 
@@ -97,7 +97,7 @@ to the GDPR implementation, though US-Privacy doesn't specifically use that term
 
 Example 1: Support both US Privacy and GDPR
 
-{% highlight js %}
+```javascript
      var pbjs = pbjs || {};
      pbjs.que = pbjs.que || [];
      pbjs.que.push(function() {
@@ -114,11 +114,11 @@ Example 1: Support both US Privacy and GDPR
          }
        });
      });
-{% endhighlight %}
+```
 
 Example 2: Support US Privacy; timeout the api availability at zero because it is always available if it applies
 
-{% highlight js %}
+```javascript
      var pbjs = pbjs || {};
      pbjs.que = pbjs.que || [];
      pbjs.que.push(function() {
@@ -131,11 +131,11 @@ Example 2: Support US Privacy; timeout the api availability at zero because it i
          }
        });
      });
-{% endhighlight %}
+```
 
 Example 3: Static CMP using custom data passing. Placing this config call in the command queue before loading Prebid is important to ensure the string is available before Prebid begins making external calls. 
 
-{% highlight js %}
+```javascript
      var pbjs = pbjs || {};
      pbjs.que = pbjs.que || [];
      pbjs.que.push(function() {
@@ -152,11 +152,11 @@ Example 3: Static CMP using custom data passing. Placing this config call in the
           }
         });
      });
-{% endhighlight %}
+```
 
 Example 4: Static CMP with USP string set to does not apply for all fields, which may be useful to prevent excessive interaction with the `__uspapi` outside of the geographic scope. Placing this config call in the command queue before loading Prebid is important to ensure it is available early. 
 
-{% highlight js %}
+```javascript
      var pbjs = pbjs || {};
      pbjs.que = pbjs.que || [];
      pbjs.que.push(function() {
@@ -173,14 +173,14 @@ Example 4: Static CMP with USP string set to does not apply for all fields, whic
           }
         });
      });
-{% endhighlight %}
+```
 ## Build the Package
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the the **gulp build** command:
 
-{% highlight bash %}
+```
 gulp build --modules=consentManagementUsp,bidAdapter1,bidAdapter2
-{% endhighlight %}
+```
 
 ## Adapter Integration
 
@@ -191,7 +191,7 @@ If you are submitting changes to an adapter to support this approach, please als
 To find the US Privacy/CCPA notice and opt-out status information to pass along to your system, adapters should look for the `bidderRequest.uspConsent` field in their `buildRequests()` method.
 Below is a sample of how the data is structured in the `bidderRequest` object:
 
-{% highlight js %}
+```javascript
 {
   "bidderCode": "bidderA",
   "auctionId": "e3a336ad-2222-4a1c-bbbb-ecc7c5554a34",
@@ -199,18 +199,18 @@ Below is a sample of how the data is structured in the `bidderRequest` object:
   "uspConsent": "1YYY",
   ...
 }
-{% endhighlight %}
+```
 
 ### UserSync Integration
 
 The `usPrivacy` object is also available when registering `userSync` pixels.
 The object can be accessed by including it as an argument in the `getUserSyncs` function:
 
-{% highlight js %}
+```javascript
 getUserSyncs: function(syncOptions, responses, gdprConsent, usPrivacy) {
 ...
 }
-{% endhighlight %}
+```
 
 Depending on your needs, you could include the US-Privacy information in a query of your pixel and/or, given the notice and opt-out status choices, determine if you should drop the pixels at all.
 

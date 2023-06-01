@@ -65,7 +65,7 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```
 
 ### Multiple user ids
 
@@ -88,7 +88,7 @@ For example, in case 'uid2' is configured to be requested - additionally to the 
     ...
 }
 ```
-{% endhighlight %}
+```
 
 Note that 'uid2' is exposed as part of 'lipb' as well as separately as 'uid2'. 'medianet' and 'bidswitch' behave the same way.
 
@@ -110,7 +110,7 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```
 
 ## LiveIntent ID configuration
 

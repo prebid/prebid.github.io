@@ -77,7 +77,7 @@ Follow the creative setup instructions in [Add Creatives](https://docs.xandr.com
 
 ![New creative]({{ site.github.url }}/assets/images/ad-ops/appnexus-setup/prebid-creative-appnexus.png) {: .pb-lg-img :}
 
-{% highlight html %}
+```html
 <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/#{HB_FORMAT}.js"></script>
 <script>
   var ucTagData = {};
@@ -97,7 +97,7 @@ Follow the creative setup instructions in [Add Creatives](https://docs.xandr.com
     console.log(e);
   }
 </script>
-{% endhighlight %}
+```
 
 {: .alert.alert-warning :}
 **Creative Expiration**  

@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.enableAnalytics(config)
-description: 
+description: enableAnalytics API
 sidebarType: 1
 ---
 

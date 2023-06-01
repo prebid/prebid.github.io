@@ -67,7 +67,7 @@ pbjs.setConfig({
     syncDelay: 3000,
   },
 });
-{% endhighlight %}
+```
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -90,4 +90,4 @@ pbjs.setConfig({
         syncDelay: 3000
     }
 });
-{% endhighlight %}
+```

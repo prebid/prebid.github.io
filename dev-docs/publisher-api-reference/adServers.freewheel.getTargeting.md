@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.adServers.freewheel.getTargeting(options)
-description: 
+description: adServers.freewheel.getTargeting API
 sidebarType: 1
 ---
 

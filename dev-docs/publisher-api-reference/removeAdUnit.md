@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.removeAdUnit(adUnitCode)
-description:
+description: removeAdUnit API
 sidebarType: 1
 ---
 

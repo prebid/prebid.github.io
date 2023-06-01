@@ -910,7 +910,7 @@ At a high level the in app rendering process works like this:
 
 {% capture importantNote %}
 The cached assets might expire. If this occurs the publisher will receive a notification and they will have to fetch the assets again.
-{% endcapture %}
+:::
 
 ### Ad Ops Setup
 {:.no_toc}

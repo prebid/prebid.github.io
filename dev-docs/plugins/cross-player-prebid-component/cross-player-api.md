@@ -14,7 +14,7 @@ The [Cross-Player Prebid Component]({{site.baseurl}}/dev-docs/plugins/cross-play
 
 Use this API to start the Prebid process with the Prebid configuration options provided.  The Component will invoke Prebid.js using the Prebid configuration options and handle the response.  If needed, the Component will then pass the Prebid results over to the primary ad server and retrieve the final URL to be used to retrieve the selected ad.
 
-{% capture importantAlert %} When the component is loaded, it will automatically create a window variable named prebidPluginCP, which will contain the instance of the Component.  You *must* use this name when calling the API. {% endcapture %}
+{% capture importantAlert %} When the component is loaded, it will automatically create a window variable named prebidPluginCP, which will contain the instance of the Component.  You *must* use this name when calling the API. :::
 
 {% include alerts/alert_important.html content=importantAlert %}
 

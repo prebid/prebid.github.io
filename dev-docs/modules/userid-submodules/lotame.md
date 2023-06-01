@@ -45,7 +45,7 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```
 
 {: .alert.alert-info :}
 NOTE: For optimal performance, the Lotame Panorama Id module should be called at every opportunity. It is best not to use params.storage with this module as the module has its own optimal caching mechanism.

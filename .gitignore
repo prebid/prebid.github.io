@@ -15,3 +15,6 @@ node_modules/
 /.vs/prebid.github.io/v17/.suo
 /.vs/slnx.sqlite
 /.vs
+
+# docusaurus
+.docusaurus/

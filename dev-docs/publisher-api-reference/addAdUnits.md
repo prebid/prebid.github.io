@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.addAdUnits(Array|Object)
-description:
+description: addAdUnits API
 sidebarType: 1
 ---
 
@@ -11,7 +11,7 @@ Takes one ad unit object or an array of ad unit objects and adds them to the Pre
 + [Ad Unit Properties](#addAdUnits-AdUnitProperties)
 + [Examples](#addAdUnits-Examples)
 
-<a name="addAdUnits-AdUnitProperties">
+<a name="addAdUnits-AdUnitProperties"></a>
 
 #### Ad Unit Properties
 
@@ -24,11 +24,11 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | `sizes`      | Required | Array[Number] or Array[Array[Number]] | All the sizes that this ad unit can accept.  Examples: `[400, 600]`, `[[300, 250], [300, 600]]`.  For 1.0 and later, prefer [`mediaTypes.banner.sizes`](#adUnit-banner).          |
 | `bids`       | Optional | Array[Object]                         | Each bid represents a request to a bidder.  For a list of properties, see [Bids](#addAdUnits-Bids) below.                                                                         |
 | `mediaTypes` | Optional | Object                                | Defines one or multiple media types the ad unit supports.  For a list of properties, see [Media Types](#addAdUnits-MediaTypes) below.                                                                     |
-| `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
-| `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
+| `labelAny` | optional  | array[string] | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
+| `labelAll` | optional  | array[string] | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
 | `video`      | Optional | Object                                | Used to link an Ad Unit to the [Video Module]({{site.github.url}}/prebid-video/video-module.html). For allowed params see the [adUnit.video reference](#adUnit-video). |
 
-<a name="addAdUnits-Bids" />
+<a name="addAdUnits-Bids"></a>
 
 ##### Bids
 
@@ -42,10 +42,10 @@ Note that `bids` is optional only for [Prebid Server stored impressions](/dev-do
 |----------+----------+---------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `bidder` | Required | String        | Bidder code. Find the [complete reference for all supported bidders here](/dev-docs/bidders.html).                                                                                          |
 | `params` | Required | Object        | Bidder's preferred way of identifying a bid request. Find the [complete reference for all supported bidders here](/dev-docs/bidders.html).                                                  |
-| `labelAny` | optional  | array<string> | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
-| `labelAll` | optional  | array<string> | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
+| `labelAny` | optional  | array[string] | An array of string labels, used for showing responsive ads.  With the `labelAny` operator, just one label has to match for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
+| `labelAll` | optional  | array[string] | An array of string labels, used for showing responsive and conditional ads. With the `labelAll` conditional, every element of the target array must match an element of the label array in order for the condition to be true. Works with the `sizeConfig` object passed in to [pbjs.setConfig]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html).  |
 
-<a name="addAdUnits-MediaTypes" />
+<a name="addAdUnits-MediaTypes"></a>
 
 ##### Media Types
 
@@ -77,7 +77,7 @@ For the list of properties please visit the [adUnit.video reference]({{site.base
   - [Multi-format](#multi-format)
 
 
-<a name="adUnit-native">
+<a name="adUnit-native"></a>
 
 ##### Native
 
@@ -124,7 +124,7 @@ pbjs.addAdUnits({
 
 {% include dev-docs/native-image-asset-sizes.md %}
 
-<a name="adUnit-video">
+<a name="adUnit-video"></a>
 
 ##### Video
 
@@ -204,7 +204,7 @@ pbjs.addAdUnit({
 })
 ```
 
-<a name="adUnit-banner">
+<a name="adUnit-banner"></a>
 
 ##### Banner
 
@@ -229,7 +229,7 @@ pbjs.addAdUnits({
 })
 ```
 
-<a name="adUnit-multi-format">
+<a name="adUnit-multi-format"></a>
 
 ##### Multi-format
 
@@ -251,10 +251,10 @@ pbjs.addAdUnits({
     video: {
         context: 'outstream',
         playerSize: [640, 480],
-	mimes: ['video/mp4'],
-	protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-	playbackmethod: [2],
-	skip: 1
+        mimes: ['video/mp4'],
+        protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+        playbackmethod: [2],
+        skip: 1
     },
   },
   bids: [

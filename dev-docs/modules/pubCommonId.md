@@ -33,14 +33,14 @@ Add a pubcid object in the setConfig() call.
 
 Example: Changing ID expiration to 1 year
 
-{% highlight js %}
+```javascript
      var pbjs = pbjs || {};
      pbjs.que = pbjs.que || [];
      pbjs.que.push(function() {
         pbjs.setConfig({pubcid: {expInterval: 525600}});
         pbjs.addAdUnits(adUnits);
      });
-{% endhighlight %}
+```
 
 ### User Opt-Out
 
@@ -56,9 +56,9 @@ Users must be allowed to opt out of targeted advertising. When implementing this
 
 Follow the basic build instructions on the GitHub repo's main README. To include the module, an additional option must be added to the the gulp build command:
  
-{% highlight bash %}
+```
 gulp build --modules=pubCommonId,bidAdapter1,bidAdapter2
-{% endhighlight %}
+```
  
 #### Step 2: Publish the package(s) to the CDN
 
@@ -70,7 +70,7 @@ Note that there are more dynamic ways of combining these components for publishe
 
 Adapters should look for `bid.crumbs.pubcid` in buildRequests() method. 
 
-{% highlight js %}
+```javascript
 [
    {
       "bidder":"appnexus",
@@ -88,7 +88,7 @@ Adapters should look for `bid.crumbs.pubcid` in buildRequests() method.
       "auctionId":"a1a98ab2-97c9-4f42-970e-6e03040559f2"
    }
 ]
-{% endhighlight %}
+```
 
 
 ## Technical Details

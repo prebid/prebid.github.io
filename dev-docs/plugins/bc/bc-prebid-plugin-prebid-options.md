@@ -560,7 +560,7 @@ No default value. If this option is not specified with a valid value, then the p
 
 The `loggerLevel` is used to control the amount of information that is emitted by the plugin into the browser’s console.log.  These levels correspond roughly to the log levels supported by many of the browsers.
 
-{% capture noteAlert %} It is not recommended to set the `loggerLevel` to 0 (silent). {% endcapture %}
+{% capture noteAlert %} It is not recommended to set the `loggerLevel` to 0 (silent). :::
 
 {% include alerts/alert_note.html content=noteAlert %}
 

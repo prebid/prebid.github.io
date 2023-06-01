@@ -29,9 +29,9 @@ The Video Module does not load the Video Player source files on the page. The pu
 
 The first step is to include the submodules for the Video Players that you will be integrating with in your build.
 
-{% highlight bash %}
+```bash
 gulp build --modules=jwplayerVideoProvider,bidAdapter1,bidAdapter2
-{% endhighlight %}
+```
 
 The following Video Players are currently supported:
 

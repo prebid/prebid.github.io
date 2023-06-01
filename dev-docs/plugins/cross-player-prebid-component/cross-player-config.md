@@ -31,7 +31,7 @@ The path to Prebid.js that you wish to use.
 
 {% capture noteAlert %}
 By default, the plugin currently supports Prebid.js 1.0 and up.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=noteAlert %}
 

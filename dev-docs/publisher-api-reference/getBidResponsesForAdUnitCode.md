@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getBidResponsesForAdUnitCode(adUnitCode)
-description:
+description: getBidResponsesForAdUnitCode API
 sidebarType: 1
 ---
 

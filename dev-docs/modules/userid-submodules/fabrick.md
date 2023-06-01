@@ -64,7 +64,7 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```
 
 2) Publisher passes an apiKey and hashed email address and elects to store the fabrickId envelope in HTML5 localStorage.
 
@@ -85,4 +85,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

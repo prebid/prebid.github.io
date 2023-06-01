@@ -19,7 +19,7 @@ This document replaces the [previous native documentation](/prebid/native-implem
 <li>The OpenRTB response is passed to rendering code in `bid.ortb`.</li>
 </ol>
 {:/}
-{% endcapture %}
+:::
 {% include alerts/alert_tip.html content=version2 %}
 
 * TOC

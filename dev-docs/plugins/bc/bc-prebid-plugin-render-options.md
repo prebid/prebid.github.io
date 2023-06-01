@@ -27,7 +27,7 @@ When configuring prebid options for more than one ad break, create an array of p
 
 {% capture infoNote %}
 Many of the rendering options listed below are ignored when the Brightcove IMA Plugin is used to render the ads.  That plugin does not provide an API that can be used to customize the rendering characteristics. These limitations will be noted below.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 
@@ -60,19 +60,19 @@ Specifying one of the acceptable values listed below will override this behavior
 
 {% capture infoNote %}
 The prebid plugin will only use the **_first_** definition of the `adRenderer` option to control the ad renderer selection.  If you define this option more than once, the other specifications will be ignored.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 
 {% capture infoNote %}
 If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include Google Ad Manager parameters and you are not using a "custom" renderer, in this case you should explicitly specify the IMA plugin using the `adRenderer` option as shown below. Doing so seems to prevent a problem observed when multiple players are being used in the same HTML document in PC browsers (Edge and Internet Explorer) and some of the players load the IMA plugin and the others load the MailOnline plugin. You can also prevent this collision if your players are loaded into their own iFrames.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 
 {% capture infoNote %}
 If you will be using the Brightcove IMA plugin as the ad renderer, either because Google Ad Manager is the primary ad server or you have explicitly specified the IMA plugin in the `adRenderer` option, then it is *suggested* that you add the IMA plugin to your Brightcove Player configuration in the Brightcove Studio. Doing so prevents some problems observed when the Player is running on iOS and the IMA plugin is loaded at run-time. When you configure IMA in the Studio, do *not* put a URL in the `Ad Tag` field AND select `"On demand"` from the `Request Ads` field.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 
@@ -105,7 +105,7 @@ Object that specifies the publisher preferences regarding ad skipping behavior.
 
 {% capture infoNote %}
 This option is ignored if the Brightcove IMA Plugin is used to render the ad. IMA will only display a SKIP button when the XML that is passed into the IMA renderer specifies a skipOffset value.  If the creative XML containing the skipOffset is passed into a VPAID wrapper such that the skipOffset value is not visible to IMA, then no SKIP button will be displayed.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 
@@ -136,7 +136,7 @@ Specifies whether skippable behavior should be enforced regardless of the presen
 
 {% capture infoNote %}
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 
@@ -169,7 +169,7 @@ Integer that specifies the minimum length in seconds of the ad video for a skip 
 
 {% capture infoNote %}
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 
@@ -198,7 +198,7 @@ Integer that specifies the time in seconds when the skip button should be enable
 
 {% capture infoNote %}
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 
@@ -227,7 +227,7 @@ String used to customize the text that is displayed BEFORE the Skip button is en
 
 {% capture infoNote %}
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 
@@ -256,7 +256,7 @@ String used as the text displayed in the Skip button. This allows the publisher 
 
 {% capture infoNote %}
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 
@@ -344,7 +344,7 @@ This field is used to customize the text of the Ad Indicator or to provide a non
 
 {% capture infoNote %}
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 
@@ -375,7 +375,7 @@ Specifies the maximum number of XML redirects that are allowed to be considered 
 
 {% capture infoNote %}
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=infoNote %}
 

@@ -50,7 +50,7 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```
 
 2) Publisher supports both UnifiedID and SharedID and first party domain cookie storage
 
@@ -81,7 +81,7 @@ pbjs.setConfig({
         syncDelay: 5000       // 5 seconds after the first bidRequest()
     }
 });
-{% endhighlight %}
+```
 
 3) Publisher supports SharedID and first party domain cookie storage initiated by a first party server
 
@@ -101,4 +101,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

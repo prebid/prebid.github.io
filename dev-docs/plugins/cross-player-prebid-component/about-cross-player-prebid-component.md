@@ -16,7 +16,7 @@ The Component is a JavaScript file that is loaded via URL.  It can be loaded int
 
 {% capture noteAlert %}
 Users have the option of running a localized version of the Cross-Player Prebid Component by either downloading or checking out the current build from our Github repo at [https://github.com/prebid/cross-player-prebid-component](https://github.com/prebid/cross-player-prebid-component) or loading the most current production version from our CDN located at [https://acdn.adnxs.com/video/plugins/cp/PrebidPluginCP.min.js](https://acdn.adnxs.com/video/plugins/cp/PrebidPluginCP.min.js)
-{% endcapture %}
+:::
 
 {% include alerts/alert_note.html content=noteAlert %}
 

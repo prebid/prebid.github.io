@@ -1,20 +1,8 @@
 {
+
   "name": "prebid.github.io",
   "version": "1.0.0",
   "description": "This repository contains the source files for the Prebid.js documentation site at [Prebid.org](https://prebid.org).",
-  "main": "index.js",
-  "directories": {
-    "example": "examples",
-    "lib": "lib"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "bundle exec jekyll serve",
-    "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --nide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AtreNet/prebid.github.io.git"
@@ -25,21 +13,42 @@
     "url": "https://github.com/AtreNet/prebid.github.io/issues"
   },
   "homepage": "https://github.com/AtreNet/prebid.github.io#readme",
-  "devDependencies": {
-    "browser-sync": "^2.29.1",
-    "browser-sync-webpack-plugin": "^2.0.1",
-    "cross-env": "^7.0.2",
-    "laravel-mix": "^5.0.7",
-    "resolve-url-loader": "^5.0.0",
-    "sass": "^1.27.0",
-    "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.12"
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "awesomplete": "^1.1.5",
-    "bootstrap": "^4.5.3",
-    "bourbon": "^7.0.0",
-    "include-media": "^1.4.9",
-    "popper.js": "^1.16.1"
+    "@docusaurus/core": "2.4.1",
+    "@docusaurus/preset-classic": "2.4.1",
+    "@mdx-js/react": "^1.6.22",
+    "clsx": "^1.2.1",
+    "prism-react-renderer": "^1.3.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "2.4.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=16.14"
   }
 }

@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getHighestCpmBids([adUnitCode])
-description: 
+description: getHighestCpmBids API
 sidebarType: 1
 ---
 

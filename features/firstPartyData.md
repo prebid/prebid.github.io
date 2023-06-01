@@ -47,7 +47,7 @@ The Prebid First Party Data JSON structure reflects the OpenRTB standard.
 
 Here's how a publisher can let all bid adapters have access
 to first party data that might be useful in ad targeting that's good in PBJS 4.30 and later:
-{% highlight js %}
+```javascript
 pbjs.setConfig({
    ortb2: {
        site: {
@@ -103,7 +103,7 @@ pbjs.setConfig({
         }
     }
 });
-{% endhighlight %}
+```
 
 {: .alert.alert-warning :}
 Note that supplying first party **user** data may require special
@@ -120,7 +120,7 @@ for example in infinite scroll or instream video scenarios where multiple pieces
 
 To support this use case, Prebid version 7 and above accepts auction-specific first-party data as a parameter to `requestBids`. For example: 
 
-{% highlight js %}
+```javascript
 pbjs.requestBids({
     ortb2: {
         site: {
@@ -140,14 +140,14 @@ pbjs.requestBids({
         }
     }
 });
-{% endhighlight %}
+```
 
 
 ### Supplying AdUnit-Specific Data
 
 If an attribute is specific to an AdUnit, it can be passed this way:
 
-{% highlight js %}
+```javascript
 pbjs.addAdUnits({
     code: "test-div",
     mediaTypes: {
@@ -165,12 +165,12 @@ pbjs.addAdUnits({
     },
     ...
 });
-{% endhighlight %}
+```
 
 Another case is [declaring rewarded](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/422eedb76e8730c89dcac75c7427c18cfa10e8c4/2.6.md?plain=1#L993). Here is how one might do that: 
 
 
-{% highlight js %}
+```javascript
 pbjs.addAdUnits({
     code: "test-div-rewarded",
     mediaTypes: {
@@ -189,11 +189,11 @@ pbjs.addAdUnits({
     },
     ...
 });
-{% endhighlight %}
+```
 
 You may also specify adUnit-specific transaction IDs using `ortb2Imp.ext.tid`, and Prebid will use them instead of generating random new ones. This is useful if you are auctioning the same slots through multiple header bidding libraries. Note: you must take care to not re-use the same transaction IDs across different ad units or auctions. Here's a simplified example passing a tid through the [requestBids](/dev-docs/publisher-api-reference/requestBids.html) function:
 
-{% highlight js %}
+```javascript
 const tid = crypto.randomUUID();
 pbjs.requestBids({
    adUnits: [{
@@ -207,7 +207,7 @@ pbjs.requestBids({
    }]
 });
 // reuse `tid` when auctioning `test-div` through some other header bidding wrapper   
-{% endhighlight %}
+```
 
 {: .alert.alert-info :}
 Prebid does not support AdUnit-specific **user** data, nor does it support
@@ -222,7 +222,7 @@ If you're using PBJS version 4.29 or before, replace the following in the exampl
 Use the [`setBidderConfig()`](/dev-docs/publisher-api-reference/setBidderConfig.html) function to supply bidder-specific data. In this example, only bidderA and bidderB will get access to the supplied
 global data.
 
-{% highlight js %}
+```javascript
 pbjs.setBidderConfig({
    bidders: ['bidderA', 'bidderB'],
    config: {
@@ -253,13 +253,13 @@ pbjs.setBidderConfig({ // different bidders can receive different data
      ortb2: { ... }
    }
 });
-{% endhighlight %}
+```
 
 ### Supplying App or DOOH ORTB Objects
 
 Occasionally, an app which embeds a webview might run Prebid.js. In this case, the app object is often specified for OpenRTB, and the site object would be invalid. When this happens, one should specify app.content.data in place of site.content.data. We can also imagine scenarios where billboards or similar displays are running Prebid.js. In the case of a DOOH object existing, both the site object and the app object are considered invalid. 
 
-{% highlight js %}
+```javascript
 pbjs.setConfig({
   ortb2: {
     app: {
@@ -301,13 +301,13 @@ pbjs.setConfig({
   }
 )
 
-{% endhighlight %}
+```
 
 ### Supplying OpenRTB Content Data
 OpenRTB `content` object describes specific (mostly audio/video) content information, and it is useful for targeting.
 For website ad, the content object should be defined in `ortb2.site.content`, for non-browser ad, it should be defined in `ortb2.app.content`
 
-{% highlight js %}
+```javascript
 pbjs.setConfig({
     ortb2: {
         site: {
@@ -329,7 +329,7 @@ pbjs.setConfig({
         }
     }
 });
-{% endhighlight %}
+```
 
 ## Segments and Taxonomy
 
@@ -369,11 +369,11 @@ segment taxonomies they support.
 
 Prebid.js bid adapters are supplied global data in the `ortb2` property of [bid requests](/dev-docs/bidder-adaptor.html#building-the-request):
 
-{% highlight js %}
+```javascript
 buildRequests: function(validBidRequests, bidderRequest) {
    const firstPartyData = bidderRequest.ortb2;
 }
-{% endhighlight %}
+```
 
 AdUnit-specific values must be parsed out of the AdUnit object.
 

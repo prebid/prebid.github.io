@@ -74,4 +74,4 @@ pbjs.setConfig({
         syncDelay: 1000
     }
 });
-{% endhighlight %}
+```
