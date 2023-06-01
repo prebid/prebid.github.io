@@ -199,7 +199,7 @@ function get_form_data() {
 }
 
 function setPrepickedModules() {
-    var moduleCheckboxes = document.querySelectorAll('input[modulecode], input[analyticscode]');
+    var moduleCheckboxes = document.querySelectorAll('.module-check-box');
     var modules = [];
     var modulesParam = searchParams.get('modules');
     if (modulesParam) {
@@ -217,18 +217,15 @@ function setPrepickedModules() {
         });
     }
 
-    var getModuleCode = function(checkbox) {
-        return checkbox.getAttribute('modulecode') || checkbox.getAttribute('analyticscode');
-    };
     moduleCheckboxes.forEach(function(checkbox) {
         if (checkbox.checked) {
-            var module = getModuleCode(checkbox);
+            var module = checkbox.id;
             if (!modules.includes(module)) {
                 modules.push(module);
             }
         }
         checkbox.addEventListener('change', function(event) {
-            var module = getModuleCode(event.target);
+            var module = event.target.id;
             if (event.target.checked) {
                 modules.push(module);
             } else {
@@ -302,7 +299,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <div class="col-md-4">
  <div class="checkbox">
   <label>
-  {% if page.filename %} <input type="checkbox" id="{{ page.filename }}" moduleCode="{{ page.filename }}" {% elsif page.aliasCode %} <input type="checkbox" id="{{ page.biddercode }}BidAdapter" moduleCode="{{ page.aliasCode }}BidAdapter" {% else %} <input type="checkbox" id="{{ page.biddercode }}BidAdapter" moduleCode="{{ page.biddercode }}BidAdapter" {% endif %} class="bidder-check-box"><a href="{{page.url}}"> {{ page.title }}</a>
+  {% if page.filename %} <input type="checkbox" id="{{ page.filename }}" moduleCode="{{ page.filename }}" {% elsif page.aliasCode %} <input type="checkbox" id="{{ page.biddercode }}BidAdapter" moduleCode="{{ page.aliasCode }}BidAdapter" {% else %} <input type="checkbox" id="{{ page.biddercode }}BidAdapter" moduleCode="{{ page.biddercode }}BidAdapter" {% endif %} class="bidder-check-box module-check-box"><a href="{{page.url}}"> {{ page.title }}</a>
   {% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
   </label>
 </div>
@@ -314,31 +311,31 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <br>
 <h4>Analytics Adapters</h4>
 <div class="row">
-{% for page in analytics_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label><input type="checkbox" id="{{ page.modulecode }}" analyticscode="{{ page.modulecode }}" class="analytics-check-box"><a href="{{page.url}}"> {{ page.title }}</a></label></div></div>{% endfor %}
+{% for page in analytics_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label><input type="checkbox" id="{{ page.modulecode }}" analyticscode="{{ page.modulecode }}" class="analytics-check-box module-check-box"><a href="{{page.url}}"> {{ page.title }}</a></label></div></div>{% endfor %}
 </div>
 <br/>
 <h4>Recommended Modules</h4>
 Prebid.org highly recommends that publishers utilize the following modules:
 <br/>
-{% for page in module_pages %}{% if page.recommended == true %}<div class="row"><div class="checkbox" style="background-color: #e1fce2;"><label> <input type="checkbox" CHECKED id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box"> <a href="{{page.url}}" class="tip"><strong>{{ page.display_name }}</strong></a> - {{page.description}}</label></div></div>{% endif %}{% endfor %}
+{% for page in module_pages %}{% if page.recommended == true %}<div class="row"><div class="checkbox" style="background-color: #e1fce2;"><label> <input type="checkbox" CHECKED id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip"><strong>{{ page.display_name }}</strong></a> - {{page.description}}</label></div></div>{% endif %}{% endfor %}
 <br/>
 <h4>General Modules</h4>
 <div class="row">
  {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true or page.vendor_specific == true %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox">
-  <label> <input type="checkbox" id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
+  <label> <input type="checkbox" id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
 </div></div>{% endfor %}
 </div>
 
 <h4>Vendor-Specific Modules</h4>
 These modules may require accounts with a service provider.<br/>
 <div class="row">
- {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true %}{% continue %}{% endif %}{% if page.vendor_specific == true %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
+ {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true %}{% continue %}{% endif %}{% if page.vendor_specific == true %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
 </div></div>{% endif %}{% endfor %}
 </div>
 
 <h4>User ID Modules</h4>
 <div class="row">
- {% for page in userid_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.useridmodule }}" moduleCode="{{ page.useridmodule }}" class="bidder-check-box"> <a href="{{page.url}}">{{ page.title }}</a></label>{% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
+ {% for page in userid_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.useridmodule }}" moduleCode="{{ page.useridmodule }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}">{{ page.title }}</a></label>{% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
 </div></div>{% endfor %}
 </div>
 
