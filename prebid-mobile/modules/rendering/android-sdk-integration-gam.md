@@ -78,6 +78,11 @@ viewContainer?.addView(bannerView)
 bannerView?.loadAd()
 ```
 
+{% capture warning_note %}  
+Pay attention that the `loadAd()` should be called on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 #### Step 1: Create Event Handler
 {:.no_toc}
 
@@ -102,7 +107,7 @@ And assign the listeners for processing ad events.
 #### Step 3: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` method to start the In-App Bidding flow. The In-App Bidding SDK starts the bidding process immediately.
+Call the `loadAd()` method to make a bid request.
 
 ### Outstream Video
 {:.no_toc}
@@ -153,6 +158,11 @@ interstitialAdUnit?.show()
 
 ```
 
+{% capture warning_note %}  
+Pay attention that the `loadAd()` should be called on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 The **default** ad format for an interstitial ad is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ```
@@ -189,7 +199,7 @@ Also, you can assign the listeners for processing ad events.
 #### Step 3: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` method to start In-App Bidding flow. The ad unit will load an ad and will wait for explicit instructions to display the Interstitial Ad.
+Call the `loadAd()` method make a bid request. The ad unit will load an ad and will wait for explicit instructions to display the Interstitial Ad.
 
 
 #### Step 4: Show the Ad when it is ready
@@ -243,6 +253,11 @@ rewardedAdUnit?.loadAd()
 rewardedAdUnit?.show()
 ```
 
+{% capture warning_note %}  
+Pay attention that the `loadAd()` should be called on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad. The type of ad can be customized to:
 
 
@@ -280,7 +295,7 @@ You can also assign the listener for processing ad events.
 #### Step 3: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` method to start the In-App Bidding flow. The ad unit will load an ad and will wait for explicit instructions to display the Rewarded Ad.
+Call the `loadAd()` method to make a bid request. The ad unit will load an ad and will wait for explicit instructions to display the Rewarded Ad.
 
 #### Step 4: Display the Ad when it is ready
 {:.no_toc}
