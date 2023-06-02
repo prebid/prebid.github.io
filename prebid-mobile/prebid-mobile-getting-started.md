@@ -69,7 +69,7 @@ having to change the app.
 If you want to verify the SDK integration with test placements, you can add some [Stored Responses](https://docs.prebid.org/troubleshooting/pbs-troubleshooting.html#stored-responses) to your Prebid Server:
 
 1. Work with your Prebid Server provider to install the [Mobile Test Stored Requests](https://github.com/prebid/prebid-mobile-ios/tree/master/Example/PrebidDemo/stored-configs/stored-impressions) and [Mobile Test Stored Responses](https://github.com/prebid/prebid-mobile-ios/tree/master/Example/PrebidDemo/stored-configs/stored-responses). (Note: stored "impressions" are a special case of stored "requests" - your Prebid Server provider will know what to do.)
-    1. Confirm that the bid prices in the stored responses reflects what you want to test. If you're using an ad server, you'll need line items set up that reflect the test bid CPMs.
+    1. Confirm that the bid prices in the stored responses reflects what you want to test. If you're using an ad server, you'll need line items set up that reflect the test bid CPMs and your price granularity setup.
     2. The Prebid Server **stored request IDs** could be the same as the filename in the repo, or could be different. If the IDs are different, your Prebid Server provider will let you know what IDs are available for testing.
 2. Code the test mobile app setting the CONFIG_ID to the stored request ID of the relevant test, e.g. 'prebid-demo-banner-320-50'.
 3. At runtime, here's what happens within Prebid Server:
