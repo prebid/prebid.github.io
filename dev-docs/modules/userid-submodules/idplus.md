@@ -33,4 +33,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

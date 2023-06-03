@@ -39,7 +39,7 @@ pbjs.setConfig({
       }]
     }
 });
-{% endhighlight %}
+```
 
 Or if to use cleanrooms provided implementation, it can be specified by adding the provider and their configs to the config, take liveramp as an example.
 
@@ -59,7 +59,7 @@ pbjs.setConfig({
       }]
     }
 });
-{% endhighlight %}
+```
 
 
 

@@ -188,9 +188,9 @@ See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisin
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). Include the base consent management module and this enforcement module as additional options on the **gulp build** command:
 
-{% highlight bash %}
+```bash
 gulp build --modules=consentManagement,gdprEnforcement,bidAdapter1,bidAdapter2
-{% endhighlight %}
+```
 
 You can also use the [Prebid.js Download](/download.html) page.
 

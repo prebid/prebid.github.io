@@ -38,4 +38,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

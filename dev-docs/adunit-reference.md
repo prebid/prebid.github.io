@@ -410,7 +410,7 @@ pbjs.addAdUnits({
 
 For an example of a multi-format ad unit, see below.  For more detailed instructions, see [Show Multi-Format Ads]({{site.baseurl}}/dev-docs/show-multi-format-ads.html).
 
-{% highlight js %}
+```javascript
 
 pbjs.addAdUnits([{
         code: 'div-banner-native',
@@ -496,7 +496,7 @@ pbjs.addAdUnits([{
     }
 ]);
 
-{% endhighlight %}
+```
 
 <a name="adUnit-twin-codes-example">
 
@@ -509,7 +509,7 @@ where bidders have different capabilities for the same spot on the page. e.g.
 - BidderA gets one size while BidderB gets another
 
 In this example, bidderA gets both banner and outstream, while bidderB gets only banner.
-{% highlight js %}
+```javascript
     var adUnits = [
            {
                code: 'test-div',
@@ -550,7 +550,7 @@ In this example, bidderA gets both banner and outstream, while bidderB gets only
                ]
            }
        ];
-{% endhighlight %}
+```
 
 In this example, bidderA receives 2 bidRequest objects while bidderB receives one. If a bidder provides more than one bid for the same AdUnit.code, Prebid.js will use the highest bid when it's
 time to set targeting.
@@ -561,7 +561,7 @@ time to set targeting.
 
 Example of an adunit-specific block of first party data:
 
-{% highlight js %}
+```javascript
 pbjs.addAdUnits({
     code: "test-div",
     mediaTypes: {
@@ -579,7 +579,7 @@ pbjs.addAdUnits({
     },
     ...
 });
-{% endhighlight %}
+```
 
 Notes:
 - Only contextual data should be added on the AdUnit; user-related data goes in the [global first party data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) config.
@@ -591,7 +591,7 @@ Notes:
 
 Example of an adunit-specific interstitial signal:
 
-{% highlight js %}
+```javascript
 pbjs.addAdUnits({
     code: "test-div",
     mediaTypes: {
@@ -604,7 +604,7 @@ pbjs.addAdUnits({
     },
     ...
 });
-{% endhighlight %}
+```
 
 For more information on Interstitial ads, reference the [Interstitial feature page](/features/InterstitialAds.html). Additionally, to assist with billing optimization and interstitial ads, the triggerBilling and onBidBillable functionality can be utilized. See [pbjs.triggerBilling](/dev-docs/publisher-api-reference/triggerBilling.html) and [onBidBillable](/dev-docs/bidder-adaptor.html#registering-on-bid-billable) for more info.
 

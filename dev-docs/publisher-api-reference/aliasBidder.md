@@ -8,11 +8,11 @@ sidebarType: 1
 
 To define an alias for a bidder adapter, call this method at runtime:
 
-{% highlight js %}
+```javascript
 
 pbjs.aliasBidder('appnexus', 'newAlias', optionsObject );
 
-{% endhighlight %}
+```
 
 Defining an alias can help avoid user confusion since it's possible to send parameters to the same adapter but in different contexts (e.g, The publisher uses `"appnexus"` for demand and also uses `"newAlias"` which is an SSP partner that uses the `"appnexus"` adapter to serve their own unique demand).
 

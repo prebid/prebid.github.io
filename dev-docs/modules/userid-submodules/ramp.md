@@ -60,7 +60,7 @@ pbjs.setConfig({
         syncDelay: 3000                 // 3 seconds after the first auction
     }
 });
-{% endhighlight %}
+```
 
 2) Publisher passes a Placement ID and elects to store the RampID envelope in HTML5 localStorage.
 
@@ -83,4 +83,4 @@ pbjs.setConfig({
         syncDelay: 3000                 // 3 seconds after the first auction
     }
 });
-{% endhighlight %}
+```

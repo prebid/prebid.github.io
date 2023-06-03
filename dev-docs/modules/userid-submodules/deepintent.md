@@ -42,7 +42,7 @@ pbjs.setConfig({
     auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
   }
 });
-{% endhighlight %}
+```
 
 2) Publisher stores the hashed identity from healthcare identity in localstorage
 {% highlight javascript %}
@@ -58,4 +58,4 @@ pbjs.setConfig({
     auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
   }
 });
-{% endhighlight %}
+```

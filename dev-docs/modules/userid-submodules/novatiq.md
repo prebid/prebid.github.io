@@ -36,7 +36,7 @@ pbjs.setConfig({
     auctionDelay: 1000
   }
 });
-{% endhighlight %}
+```
 
 ## Parameters for the Novatiq Module
 
@@ -95,7 +95,7 @@ pbjs.setConfig({
     auctionDelay: 1000
   }
 });
-{% endhighlight %}
+```
 
 
 If you have any questions, please reach out to us at [prebid@novatiq.com](mailto:prebid@novatiq.com)

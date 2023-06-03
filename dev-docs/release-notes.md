@@ -7,6 +7,7 @@ description: Release Notes
 <div class="bs-docs-section" markdown="1">
 
 # Release Notes
+
 {:.no_toc}
 
 This page has links to release notes for each of the projects associated with Prebid.org.

@@ -44,7 +44,7 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```
 
 ex. 2. Mode `BASIC`
 
@@ -56,7 +56,7 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```
 
 ## Just ID  Disclosure
 
