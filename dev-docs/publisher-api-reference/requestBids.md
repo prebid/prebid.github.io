@@ -34,7 +34,7 @@ Request bids. When `adUnits` or `adUnitCodes` are not specified, request bids fo
 {: .table .table-bordered .table-stripped :}
 | Param     | Type    | Description                                                                    |
 | ---       | ---     | ---                                                                            |
-| bids      | Object  | Bids received; see [getBidResponses](getBidResponses.html) for details | 
+| bids      | Object  | Bids received; see [getBidResponses](getBidResponses.html) for details |
 | timedOut  | Boolean | true if any bidder timed out                                                   |
 | auctionId | String  | the auction's ID                                                               |
 
