@@ -215,7 +215,7 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 
 For example, the adapter code might do something like:
 
-{% highlight javascript %}
+```javascript
    if (bidRequest.userId && bidRequest.userId.sharedid) {
     url+="&pubcid="+bidRequest.userId.sharedid;
    }

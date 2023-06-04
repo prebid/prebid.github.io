@@ -39,7 +39,7 @@ Go to [onekey.community](https://onekey.community/) for more details.
 
 ## OneKey Exemple
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{

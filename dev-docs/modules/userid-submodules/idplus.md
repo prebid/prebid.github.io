@@ -25,7 +25,7 @@ ID+ is covered under zeotap privacy policy: [Zeotap Privacy Policy](https://zeot
 
 ## ID+ Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{

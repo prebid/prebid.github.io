@@ -53,7 +53,7 @@ Attributes other than the nonID can be requested using the `requestedAttributesO
 
 For example, with the configuration below, the nonID as well as 'uid2', the 'medianet' id and the 'bidswitch' id will be requested:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -73,7 +73,7 @@ The attributes 'uid2', 'medianet' or 'bidswitch' are treated specially by LiveIn
 
 For example, in case 'uid2' is configured to be requested - additionally to the nonID - the `request.userId` object would look like this:
 
-{% highlight javascript %}
+```javascript
 ```
 {
     ...
@@ -98,7 +98,7 @@ For the attributes 'lipbid' (nonID), 'uid2', 'medianet' and 'bidswitch' there is
 
 An attribute that requires special mention here is 'uid2'. If this attribute is resolved by the id sub-module, it will be exposed in the same format as from the Unified ID 2.0 user id module. If both the LiveIntent module and the uid2 module manage to resolve an uid2, the one from the uid2 module will be used. Enabling this option in addition to the uid2 module is an easy way to increase your uid2 resolution rates. Example configuration to enable uid2 resolution:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{

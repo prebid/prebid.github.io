@@ -52,7 +52,7 @@ To turn on A/B Testing, simply edit the configuration (see above table) to enabl
 
 Publisher wants to retrieve the ID5 ID through Prebid.js
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{

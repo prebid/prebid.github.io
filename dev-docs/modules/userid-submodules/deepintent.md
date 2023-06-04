@@ -28,7 +28,7 @@ DPES ID is free to use and requires a simple registration with DeepIntent. Pleas
 ## Deepintent DPES ID Examples
 
 1) Publisher stores the hashed identity from healthcare identity in cookie
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{
@@ -45,7 +45,7 @@ pbjs.setConfig({
 ```
 
 2) Publisher stores the hashed identity from healthcare identity in localstorage
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{

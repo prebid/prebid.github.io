@@ -20,7 +20,7 @@ gulp build --modules=cpexIdSystem
 
 ## CPExId Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{

@@ -9,6 +9,7 @@ sidebarType: 1
 
 
 # How to Add a New Prebid.js Bidder Adapter
+
 {:.no_toc}
 
 At a high level, a bidder adapter is responsible for:
@@ -23,10 +24,10 @@ This page has instructions for writing your own bidder adapter.  The instruction
 
 ## Planning your Adapter
 
-+ [Required Adapter Rules](#bidder-adaptor-Required-Adapter-Conventions)
-+ [Required Files](#bidder-adaptor-Required-Files)
-+ [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
-+ [HTTP Simple Requests](#bidder-adaptor-HTTP-simple-requests)
+* [Required Adapter Rules](#bidder-adaptor-Required-Adapter-Conventions)
+* [Required Files](#bidder-adaptor-Required-Files)
+* [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
+* [HTTP Simple Requests](#bidder-adaptor-HTTP-simple-requests)
 
 <a name="bidder-adaptor-Required-Adapter-Conventions" />
 
@@ -43,7 +44,7 @@ In order to provide a fast and safe header bidding environment for publishers, t
 {: .alert.alert-danger :}
 The above list is **not** the full list of requirements. Failure to follow any of the required conventions defined in the [Module Rules](/dev-docs/module-rules.html) could lead to delays in approving your adapter for inclusion in Prebid.js. If you'd like to apply for an exception to one of the rules, make your request in a new [Prebid.js issue](https://github.com/prebid/Prebid.js/issues).
 
-<a name="bidder-adaptor-Required-Files" />
+<a name="bidder-adaptor-Required-Files"></a>
 
 ### Required Files
 
@@ -51,16 +52,16 @@ With each adapter submission, there are two files required to be in the pull req
 
 * `modules/exampleBidAdapter.js`: the file containing the code for the adapter
 * `modules/exampleBidAdapter.md`: a markdown file containing key information about the adapter:
-   * The contact email of the adapter's maintainer.
-   * A test ad unit that will consistently return test creatives. This helps us to ensure future Prebid.js updates do not break your adapter.  Note that if your adapter supports video (instream and/or outstream context) or native, you must also provide example parameters for each type.
+  * The contact email of the adapter's maintainer.
+  * A test ad unit that will consistently return test creatives. This helps us to ensure future Prebid.js updates do not break your adapter.  Note that if your adapter supports video (instream and/or outstream context) or native, you must also provide example parameters for each type.
 
 Example markdown file:
 
-{% highlight text %}
+```md
 
 # Overview
 
-```
+```markdown
 Module Name: Example Bidder Adapter
 Module Type: Bidder Adapter
 Maintainer: prebid@example.com
@@ -71,7 +72,8 @@ Maintainer: prebid@example.com
 Module that connects to Example's demand sources
 
 # Test Parameters
-```
+
+```javascript
     var adUnits = [
         {
             code: 'test-div',
@@ -188,11 +190,11 @@ If you're the type that likes to skip to the answer instead of going through a t
 {: .alert.alert-warning :}
 If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`. 
 
-+ [Overview](#bidder-adaptor-Overview)
-+ [Building the Request](#bidder-adaptor-Building-the-Request)
-+ [Interpreting the Response](#bidder-adaptor-Interpreting-the-Response)
-+ [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs)
-+ [Registering on Timeout](#bidder-adaptor-Registering-on-Timout)
+* [Overview](#bidder-adaptor-Overview)
+* [Building the Request](#bidder-adaptor-Building-the-Request)
+* [Interpreting the Response](#bidder-adaptor-Interpreting-the-Response)
+* [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs)
+* [Registering on Timeout](#bidder-adaptor-Registering-on-Timout)
 
 <a name="bidder-adaptor-Overview" />
 
@@ -1317,5 +1319,5 @@ The Prebid.org [download page](/download.html) will automatically be updated wit
 
 ## Further Reading
 
-+ [Prebid.js Repo - Bidder Adapter Sources](https://github.com/prebid/Prebid.js/tree/master/modules)
-+ [Module Rules](/dev-docs/module-rules.html)
+* [Prebid.js Repo - Bidder Adapter Sources](https://github.com/prebid/Prebid.js/tree/master/modules)
+* [Module Rules](/dev-docs/module-rules.html)

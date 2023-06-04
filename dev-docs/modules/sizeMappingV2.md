@@ -125,7 +125,7 @@ What happens as a result of each active size bucket changes based on the media t
 
 Note that the labels are assumed to be passed in via [`pbjs.requestBids()`](/dev-docs/publisher-api-reference.html#module_pbjs.requestBids).
 
-{% highlight js%}
+```javascript
 {
   code: 'ad-code-1',
   mediaTypes: {
@@ -181,7 +181,8 @@ II. A request originating in the UK, viewport size: `[1700px, 900px]`
   3. No request will be sent to either bidder.
 
 #### Example of a Multi-Format AdUnit with Bidder-Level sizeConfig
-{% highlight js%}
+
+```javascript
 {
     code: 'ad-code-2',
     mediaTypes: {

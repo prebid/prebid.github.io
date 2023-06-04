@@ -30,7 +30,7 @@ gulp build --modules=admixerIdSystem
 
 1) Individual params may be set for the Admixer ID Submodule.
 
-{% highlight javascript %}
+```javascript
    pbjs.setConfig({
        userSync: {
            userIds: [{

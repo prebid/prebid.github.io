@@ -30,7 +30,7 @@ The Intimate Merger privacy policy is at https://corp.intimatemerger.com/privacy
 
 ## IM-UID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{

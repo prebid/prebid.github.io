@@ -35,7 +35,7 @@ The BritePool privacy policy is at [https://britepool.com/services-privacy-notic
 
 1) Individual params may be set for the BritePool User ID Submodule. At least one identifier must be set in the params.
 
-{% highlight javascript %}
+```javascript
    pbjs.setConfig({
        userSync: {
            userIds: [{

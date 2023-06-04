@@ -16,7 +16,7 @@ This page has documentation for the public API methods of Prebid.js.
 
 {% assign api_pages = site.pages | where: "layout", "api_prebidjs" %}
 
-### Find a method
+## Find a method
 
 <input type="text" id="autocomplete-filter" class="autocomplete-filter">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js" integrity="sha512-HcBl0GSJvt4Qecm4srHapirUx0HJDi2zYXm6KUKNNUGdTIN9cBwakVZHWmRVj4MKgy1AChqhWGYcMDbRKgO0zg==" crossorigin="anonymous"></script>

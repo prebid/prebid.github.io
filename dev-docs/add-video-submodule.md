@@ -9,10 +9,10 @@ sidebarType: 1
 {:.no_toc}
 
 Video submodules interact with the Video Module to integrate Prebid with Video Players, allowing Prebid to automatically:
-- render bids in the desired video player.
-- mark used bids as won.
-- trigger player and media events.
-- populate the oRTB Video Impression and Content params in the bid request.
+* render bids in the desired video player.
+* mark used bids as won.
+* trigger player and media events.
+* populate the oRTB Video Impression and Content params in the bid request.
 
 * TOC
 {:toc }
@@ -28,11 +28,12 @@ Publishers who use players from different vendors on the same page can use multi
 ## Requirements
 
 The Video Module only supports integration with Video Players that meet the following requirements:
-- Must support parsing and reproduction of VAST ads.
-  - Input can be an ad tag URL or the actual Vast XML.
-- Must expose an API that allows the procurement of [Open RTB params](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for Video (section 3.2.7) and Content (section 3.2.16).
-- Must emit javascript events for Ads and Media.
-  - see [Event Registration](#event-registration).
+
+* Must support parsing and reproduction of VAST ads.
+  * Input can be an ad tag URL or the actual Vast XML.
+* Must expose an API that allows the procurement of [Open RTB params](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for Video (section 3.2.7) and Content (section 3.2.16).
+* Must emit javascript events for Ads and Media.
+  * see [Event Registration](#event-registration).
 
 ## Creating a Submodule
 
@@ -49,7 +50,8 @@ Working with any Prebid project requires using Github. In general, we recommend 
 Create a markdown file under `modules` with the name of the module suffixed with 'VideoProvider', i.e. `exampleVideoProvider.md`.
 
 Example markdown file:
-{% highlight text %}
+
+```md
 # Overview
 
 Module Name: Example Video Provider
@@ -73,7 +75,7 @@ Your page must link the Example Player build from our CDN. Alternatively you can
 Vendor codes are required to indicate which submodule type to instantiate. Add your vendor code constant to an export const in `vendorCodes.js` in Prebid.js under `libraries/video/constants/vendorCodes.js`.
 i.e. in `vendorCodes.js`:
 
-{% highlight text %}
+```javascript
 export const EXAMPLE_PLAYER_VENDOR = 3;
 ```
 
@@ -89,7 +91,7 @@ Your submodule should also import the `submodule` function from `src/hook.js` an
 
 **Code Example**
 
-{% highlight text %}
+```javascript
 import { submodule } from '../src/hook.js';
 
 function exampleSubmoduleFactory(videoProviderConfig) {
@@ -121,7 +123,8 @@ The submodule object must adhere to the following interface:
 | destroy | function | required | Deallocates the submodule and destroys the associated video player. n/a | void | void |
 
 For example:
-{% highlight text %}
+
+```javascript
 const exampleSubmodule =  {
   init: init,
   getId: getId,
@@ -134,7 +137,7 @@ const exampleSubmodule =  {
 };
 ```
 
-<a name="event-registration" />
+<a name="event-registration"></a>
 
 #### Event Registration
 
@@ -158,7 +161,8 @@ Submodules must support attaching and detaching event listeners on the video pla
 #### Update .submodules.json
 
 In prebid.js, add your new submodule to `.submodules.json` under the `videoModule` as such:
-{% highlight text %}
+
+```json
 {
   "parentModules": {
     "videoModule": [

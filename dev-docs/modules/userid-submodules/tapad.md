@@ -29,7 +29,7 @@ gulp build --modules=userId,tapadIdSystem
 
 ## Tapad ID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
       userIds: [

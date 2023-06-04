@@ -45,7 +45,7 @@ Please find below list of parameters that could be used in configuring Intent IQ
 
 ### Configuration example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [
@@ -69,7 +69,7 @@ pbjs.setConfig({
 });
 ```
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{

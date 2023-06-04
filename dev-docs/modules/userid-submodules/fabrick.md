@@ -47,7 +47,7 @@ Please reach out to [FabrickIntegrations@team.neustar](mailto:FabrickIntegration
 
 1) Publisher passes an apiKey and hashed email address and elects to store the Fabrick ID envelope in a cookie.
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -68,7 +68,7 @@ pbjs.setConfig({
 
 2) Publisher passes an apiKey and hashed email address and elects to store the fabrickId envelope in HTML5 localStorage.
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{

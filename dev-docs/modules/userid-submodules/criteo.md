@@ -26,7 +26,7 @@ NOTE: For optimal performance, the Criteo Id module should be called at every op
 
 ## Criteo ID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
