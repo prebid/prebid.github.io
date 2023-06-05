@@ -9,6 +9,7 @@ floors_supported: true
 media_types: banner, video, native
 safeframes_ok: true
 schain_supported: true
+gvl_id: 80
 userIds: all
 usp_supported: true
 pbjs: true
