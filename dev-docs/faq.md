@@ -31,6 +31,7 @@ To get started, first talk to your lawyers to determine your legal obligations. 
 
 After you’ve determined your legal obligations, consider the tools Prebid makes available to publishers so that their pages can determine what actions are needed based on their interpretation of the user’s actions and the company’s policies:
 
+- Consider utilizing an [Activity Control](/dev-docs/activity-controls.html). These are available with Prebid.js 7.48 and may help cover a number of common privacy concerns.
 - Turn off Prebid.js usersync:
     - [for client-side adapters](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) - either completely or for certain bidders.
     - [for server-side adapters](/dev-docs/modules/prebidServer.html) - override the s2sConfig.syncEndpoint
