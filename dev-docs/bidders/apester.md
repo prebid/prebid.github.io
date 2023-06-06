@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: apester
+title: Apester
 description: Apester Bidder Adaptor
 biddercode: apester
 pbjs: true
