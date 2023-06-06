@@ -39,13 +39,16 @@ Throughout the rest of this document, substitute `{bidder}` with the name you've
 
 We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://prebid.org/code-of-conduct/) and [module rules](/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
 
-**Please take the time to read our rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
-- Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
-- Adapters must use the functions provided by the core framework for all external communication. Initiation of any form of network connection outside of what is provided by the core framework is strictly prohibited. No exceptions will be made for this rule.
-- Adapters must support the creation of multiple concurrent instances. This means adapters may not mutate global or package scoped variables.
-- Bidding server endpoints should prefer secure HTTPS to protect user privacy and should allow keep alive connections (preferably with HTTP/2 support) to increase host performance.
-- Adapters must include maintainer information with a group email address for Prebid.org to contact for ongoing support and maintenance.
-- Adapters must annotate the bid response with the proper media type, ideally based on the response from the bidding server.
+**Please take the time to read the rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
+  - Adapters must include maintainer information with a group email address for Prebid.org to contact for ongoing support and maintenance.
+  - Your bidder's endpoint domain name cannot be variable. If you want to have different endpoints in different geographical locations, Prebid Server host companies can do that for you. Publisher information can be in the query string, but not the domain.
+  - If you have a client-side adapter, all parameters (including biddercodes and aliases) must be consistent between your client- and server-side adapters. This allows publishers to utilize the PBJS [s2sTesting module](/dev-docs/modules/s2sTesting.html).
+  - Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
+  - Adapters must use the functions provided by the core framework for all external communication. Initiation of any form of network connection outside of what is provided by the core framework is strictly prohibited. No exceptions will be made for this rule.
+  - Adapters must support the creation of multiple concurrent instances. This means adapters may not mutate global or package scoped variables.
+  - Bidding server endpoints should prefer secure HTTPS to protect user privacy and should allow keep alive connections (preferably with HTTP/2 support) to increase host performance.
+  - Adapters must annotate the bid response with the proper media type, ideally based on the response from the bidding server.
+  - Bid adapters must not create their own transaction IDs or overwrite the tids supplied by Prebid.
 
 {: .alert.alert-warning :}
 Failure to follow the rules will lead to delays in approving your adapter for inclusion in Prebid Server. If you'd like to discuss an exception to a rule, please make your request by [submitting a GitHub issue](https://github.com/prebid/prebid-server-java/issues/new).
@@ -620,6 +623,53 @@ Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.
 | `.MediaType` | Either `banner`, `audio`, `video`, or `native`. This is used in the scenario where a bidder responds with a mediatype different than the stated type. e.g. native when the impression is for a banner. One use case is to help publishers determine whether the creative should be wrapped in a safeframe. |
 
 <p></p>
+
+#### Better Analytics 
+
+The [seatnonbid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) feature allows analytics adapters to piece together what happened in the auction when there's not a bid. This can be helpful to everyone involved: the publisher can get insight into why a bidder might not be bidding, which might lead them to update bid parameters or otherwise fix a setup problem.
+
+To implement this enhanced analytics, bidders just need to link errors and non-bids to a specific impression id:
+
+1. Provide impression ids that are covered by particular http request to bidder endpoint:
+   When bidder creates http requests in `makeHttpRequests` method of bidder adapter class, utilize `.impIds(Set<String>)` method of `HttpRequest<T>` class. (hint, if bidder uses ortb as its main protocol it can utilize `impIds` method of `BidderUtil` class), for example:</br>
+   ```java 
+   HttpRequest.<BidRequest>builder()
+       .method(HttpMethod.POST)
+       .uri(uri)
+       .body(mapper.encodeToBytes(bidRequest))
+       .headers(headers)
+       .payload(bidRequest)
+       .impIds(BidderUtil.impIds(bidRequest))
+       .build();
+   ```
+   or more generic case:</br>
+    ```java 
+    HttpRequest.<YourModel>builder()
+        .method(HttpMethod.POST)
+        .uri(uri)
+        .body(mapper.encodeToBytes(bidRequest))
+        .headers(headers)
+        .payload(bidRequest)
+        .impIds(Set.of(impId1, impId2))
+        .build();
+    ```
+
+2. When bidder drops impression in `makeHttpRequests` or bid in `makeBids` methods in bidder adapter class, and emits error, it should provide ids of impressions that particular error covers. Bidder adapter can do this by utilizing `BidderError.of(String message, Type type, Set<String> impIds)` method of `BidderError` class, or by creating/using specialized methods of this class, for example:
+   ```java 
+   BidderError.rejectedIpf(
+       "Bid with id '%s' was rejected by floor enforcement: price %s is below the floor %s"
+       .formatted(bid.getId(), price, floor), impId);
+   ```
+
+   (Note: list of specialized methods like this will increase as needed, but bidders can contribute by extending this list.)</br></br>or more generic case:</br>
+    ```java 
+    BidderError.of(
+        "Impression with id '%s' was dropped due to ...".formatted(impId),
+        BidderError.Type.bad_input,
+        Collections.sinleton(impId));
+    ```
+
+Note: If bidder provides PBS with impression id that was not present in provided `BidRequest`, PBS will just ignore it.
 
 ### Create Config Class 
 

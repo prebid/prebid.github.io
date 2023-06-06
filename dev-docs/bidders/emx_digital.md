@@ -10,9 +10,13 @@ gdpr_supported: true
 gvl_id: 183
 usp_supported: true
 schain_supported: true
+floors_supported: true
 userIds: identityLink, uid2
 sidebarType: 1
 ---
+
+{: .alert.alert-warning :}
+The emx_digital bidder is deprecated, and will be removed in a future release of Prebid.js and Prebid Server.
 
 ### Registration
 

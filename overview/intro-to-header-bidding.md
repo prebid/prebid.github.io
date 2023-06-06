@@ -18,6 +18,16 @@ Let’s start by saying that the term “header bidding” is a bit of a misnome
 * TOC
 {:toc}
 
+## Overview
+
+A video overview of header bidding.
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/820684821?h=d55a008b4b&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Introduction to Header Bidding"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+Further Reading:
+- [Transcript of this video overview](/overview/intro-to-header-bidding-video.html)
+- [Header Bidding with Prebid](/overview/intro.html#header-bidding-with-prebid)
+
 ## Brief Description
 
 Header bidding is a process that enables publishers to capture bids for ad units from demand sources that might otherwise have been missed. By implementing header bidding, a publisher can gather bids from multiple sources that will then compete directly with bids from the ad server. What this means is that header bidding can help you, as a publisher, make more money and improve your ad quality by making the auctions for your ad space more competitive and transparent.

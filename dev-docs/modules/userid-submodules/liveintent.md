@@ -47,15 +47,56 @@ The first-party cookie generation and identity resolution functionality is provi
 
 The LiveIntent ID sub-module follows the standard Prebid.js initialization based on the GDPR consumer opt-out choices. With regard to CCPA, the LiveConnect JS receives a us_privacy string from the Prebid US Privacy Consent Management Module and respects opt-outs.
 
-## Resolving uid2
+## Configuring requested attributes
 
-Attributes other than the nonID can be requested using the requestedAttributesOverrides configuration option.
+Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option. 
 
-One attribute that requires special mention here is 'uid2'. If this attribute is resolved by the id module
-it will be exposed in the same format as from the Unified ID 2.0 userid module. If both the LiveIntent module
-and the uid2 module manage to resolve an uid2, the one from the uid2 module will be used.
-Enabling this option in addition to the uid2 module is an easy way to increase your uid2 resolution rates.
-Example configuration to enable uid2 resolution:
+For example, with the configuration below, the nonID as well as 'uid2', the 'medianet' id and the 'bidswitch' id will be requested:
+
+{% highlight javascript %}
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            "name": "liveIntentId",
+            "params": {
+                "publisherId": "12432415",
+                "requestedAttributesOverrides": {'uid2': true, 'medianet': true, 'bidswitch': true},
+            },
+        }]
+    }
+});
+{% endhighlight %}
+
+### Multiple user ids
+
+The attributes 'uid2', 'medianet' or 'bidswitch' are treated specially by LiveIntent's user id sub-module. Each of these three attributes will result in a separate id returned by the sub-module. 
+
+For example, in case 'uid2' is configured to be requested - additionally to the nonID - the `request.userId` object would look like this:
+
+{% highlight javascript %}
+```
+{
+    ...
+    "lipb" : {
+        "lipbid": "sample-nonid-value",
+        "segments": ["999"],
+        "uid2" : "sample-uid2-value"
+    },
+    "uid2" : {
+        "id" : "sample-uid2-value"
+    }
+    ...
+}
+```
+{% endhighlight %}
+
+Note that 'uid2' is exposed as part of 'lipb' as well as separately as 'uid2'. 'medianet' and 'bidswitch' behave the same way.
+
+For the attributes 'lipbid' (nonID), 'uid2', 'medianet' and 'bidswitch' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
+
+### Requesting uid2
+
+An attribute that requires special mention here is 'uid2'. If this attribute is resolved by the id sub-module, it will be exposed in the same format as from the Unified ID 2.0 user id module. If both the LiveIntent module and the uid2 module manage to resolve an uid2, the one from the uid2 module will be used. Enabling this option in addition to the uid2 module is an easy way to increase your uid2 resolution rates. Example configuration to enable uid2 resolution:
 
 {% highlight javascript %}
 pbjs.setConfig({
@@ -82,6 +123,7 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 | name | Required | String | The name of this module. | `'liveIntentId'` |
 | params | Required | Object | Container of all module params. ||
 | params.publisherId |Optional| String | The unique identifier for each publisher (for existing LiveIntent customers)|`'12432415'`|
+| params.distributorId |Optional| String | The unique identifier for each distributor (for existing LiveIntent customers). Will be ignored if `params.liCollectConfig.appId` is provided. |`'did-0123'`|
 | params.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the IdentityResolution endpoint. By default, 1000 milliseconds.|`1000`|
 | params.partner | Optional| String |The name of the partner whose data will be returned in the response.|`'prebid'`|
 | params.identifiersToResolve |Optional| Array[String] |Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
@@ -147,6 +189,7 @@ pbjs.setConfig({
             name: "liveIntentId",
             params: {
               publisherId: "9896876",
+              distributorId: "did-0123",
               identifiersToResolve: ["my-own-cookie"],
               url: "https://publisher.liveintent.com/idex",
               partner: "prebid",
@@ -167,3 +210,5 @@ pbjs.setConfig({
     }
 })
 ```
+
+Please note: the distributorId will be ignored when liCollectConfig.appId is present. 

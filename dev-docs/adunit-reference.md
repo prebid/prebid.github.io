@@ -36,10 +36,11 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | `mediaTypes` | Optional | Object                                | Defines one or more media types that can serve into the ad unit.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                           |
 | `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                    |
 | `labelAll`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                     |
-| `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit. The ortb2Imp object currently supports [first party data](#adUnit-fpd-example) including the [Prebid Ad Slot](/features/pbAdSlot.html) and the [interstitial](#adUnit-interstitial-example) signal. |
+| `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit.|
 | `ttlBuffer`  | Optional | Number                                | TTL buffer override for this adUnit. See [setConfig({ttlBuffer})](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ttlBuffer) |
 | `renderer`   | Optional | Object                         | Custom renderer, typically used for [outstream video](/dev-docs/show-outstream-video-ads.html) |
 | `video`      | Optional | Object                                | Used to link an Ad Unit to the [Video Module][videoModule]. For allowed params see the [adUnit.video reference](#adUnit-video). |
+| `deferBilling` | Optional | Boolean | Used by a publisher to flag adUnits as being separately billable. This allows for a publisher to trigger billing manually for winning bids. See [pbjs.triggerBilling](/dev-docs/publisher-api-reference/triggerBilling.html) and [onBidBillable](/dev-docs/bidder-adaptor.html#registering-on-bid-billable) for more info. |
 
 <a name="adUnit.bids" />
 
@@ -47,15 +48,17 @@ See the table below for the list of properties on the ad unit.  For example ad u
 
 See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#adUnit-examples) below.
 
-Note that `bids` is optional only for [Prebid Server stored impressions](/dev-docs/modules/prebidServer.html#stored-imp), and required in all other cases.
+Note that `bids` is optional only for [Prebid Server stored impressions](#stored-imp), and required in all other cases. 
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Type          | Description                                                                                                                              |
 |------------+----------+---------------+------------------------------------------------------------------------------------------------------------------------------------------|
-| `bidder`   | Required | String        | Unique code identifying the bidder. For bidder codes, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html).          |
+| `bidder`   | Optional | String        | Unique code identifying the bidder. For bidder codes, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html).          |
+| `module`   | Optional | String        | Module code - for requesting bids from modules that are not bid adapters. See [Prebid Server stored impressions](#stored-imp). | 
 | `params`   | Required | Object        | Bid request parameters for a given bidder. For allowed params, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html). |
 | `labelAny` | Optional | Array[String] | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                  |
 | `labelAll` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                   |
+| `ortb2Imp` | Optional | Object        | OpenRTB first-party data specific to this bidder. This is merged with, and takes precedence over, `adUnit.ortb2Imp`.| 
 | `renderer` | Optional | Object        | Custom renderer. Takes precedence over `adUnit.renderer`, but applies only to this bidder. |
 
 <a name="adUnit.mediaTypes" />
@@ -101,6 +104,7 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 | `context`        | Recommended    | String                 | The video context, either `'instream'`, `'outstream'`, or `'adpod'` (for long-form videos).  Example: `context: 'outstream'`. Defaults to 'instream'. |
 | `useCacheKey`        | Optional    | Boolean                 | Defaults to `false`. While context `'instream'` always will return an vastUrl in bidResponse, `'outstream'` will not. Setting this `true` will use cache url defined in global options also for outstream responses. |
 | `placement`        | Recommended    | Integer                 | 1=in-stream, 2=in-banner, 3=in-article, 4=in-feed, 5=interstitial/floating. **Highly recommended** because some bidders require more than context=outstream. |
+| `plcmt`        | Recommended    | Integer                 | 1=in-stream, 2=accompanying content, 3=interstitial, 4=no content/standalone. **Highly recommended** to comply with new IAB video specifications. See [AdCOM v1 spec](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md#list_plcmtsubtypesvideo) |
 | `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                                                                  |
 | `api`            | Recommended | Array[Integer]         | List of supported API frameworks for this impression.  If an API is not explicitly listed, it is assumed not to be supported.  For list, see [OpenRTB 2.5 spec][openRTB].  If your video player or video ads SDK supports [Open Measurement][OpenMeasurement], **recommended** to set `7` for OMID-1|
 | `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                                   |
@@ -111,7 +115,6 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 | `w`      | Recommended    | Integer         | Width of the video player in device independent pixels (DIPS)., see [OpenRTB 2.5 spec][openRTB].           |
 | `h`      | Recommended    | Integer         | Height of the video player in device independent pixels (DIPS)., see [OpenRTB 2.5 spec][openRTB].           |
 | `startdelay`      | Recommended    | Integer         | Indicates the start delay in seconds, see [OpenRTB 2.5 spec][openRTB].           |
-| `placement`      | Optional    | Integer         | Placement type for the impression, see [OpenRTB 2.5 spec][openRTB].           |
 | `linearity`      | Optional    | Integer         | Indicates if the impression must be linear, nonlinear, etc, see [OpenRTB 2.5 spec][openRTB].           |
 | `skip`      | Optional    | Integer         | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes., see [OpenRTB 2.5 spec][openRTB].           |
 | `skipmin`      | Optional    | Integer         | Videos of total duration greater than this number of seconds can be skippable; only applicable if the ad is skippable., see [OpenRTB 2.5 spec][openRTB].           |
@@ -603,7 +606,72 @@ pbjs.addAdUnits({
 });
 {% endhighlight %}
 
-For more information on Interstitial ads, reference the [Interstitial feature page](/features/InterstitialAds.html).
+For more information on Interstitial ads, reference the [Interstitial feature page](/features/InterstitialAds.html). Additionally, to assist with billing optimization and interstitial ads, the triggerBilling and onBidBillable functionality can be utilized. See [pbjs.triggerBilling](/dev-docs/publisher-api-reference/triggerBilling.html) and [onBidBillable](/dev-docs/bidder-adaptor.html#registering-on-bid-billable) for more info.
+
+<a id="stored-imp" />
+
+### Prebid Server stored impressions
+
+When using [PBS stored impressions](/dev-docs/modules/prebidServer.html#stored-imp), `bids` is not required:
+
+```javascript
+pbjs.addAdUnits({
+    code: "test-div",
+    ortb2Imp: {
+        ext: {
+            prebid: {
+                storedrequest: {
+                    id: 'stored-request-id'
+                }
+            }
+        }
+    }
+})
+```
+
+To use stored impressions together with client-side bidders - or stored impressions from other instances of Prebid Server - use `bids[].module`:
+
+```javascript
+pbjs.addAdUnits({
+    code: "test-div",
+    bids: [
+        {
+            module: "pbsBidAdapter",
+            params: {
+                configName: "server-1"
+            },
+            ortb2Imp: {
+                ext: {
+                    prebid: {
+                        storedrequest: {
+                            id: 'stored-request-server-1'
+                        }
+                    }
+                }
+            }
+        },
+        {
+            module: "pbsBidAdapter",
+            params: {
+                configName: "server-2"
+            },
+            ortb2Imp: {
+                ext: {
+                    prebid: {
+                        storedrequest: {
+                            id: 'stored-request-server-2'
+                        }
+                    }
+                }
+            }
+        },
+        {
+            bidder: 'client-bidder',
+            // ...
+        }
+    ]
+});
+```
 
 ## Related Topics
 

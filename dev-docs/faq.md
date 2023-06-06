@@ -222,6 +222,18 @@ Sometimes the owner of a bid adapter or other kind of module wants to rename the
 3) The docs repo should contain both names, with the old name referring to the new name. You can add the "enable_download: false" flag to prevent installations of the old name.
 4) At the next major release the old files may be removed.
 
+## Does Prebid.js support Amazon TAM?
+
+We would love for Amazon to contribute a TAM adapter, but so far that's not happened. Publishers that want to sync IDs across multiple header bidding wrappers should be aware of these resources:
+
+- You can generate the auctionId parameter outside of Prebid and pass it when calling [pbjs.requestBids()](/dev-docs/publisher-api-reference/requestBids.html)
+- [Example of Synchronizing Transaction IDs with Another Library](/dev-docs/examples/sync-tid.html)
+
+## Should Prebid bidders be in ads.txt?
+
+Publishers should be careful to list all their bidding partners in their ads.txt file. Bidders without an entry in ads.txt may be
+perceived by DSPs as unauthorized sources of your inventory. The domain for any ads.txt [inventory partners](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/dc71586842e648e89c1bbe6c666ffac8ff010a96/2.6.md?plain=1#L1752), if one exists, should be specified with a `setConfig({ortb2.site.inventorypartnerdomain})` call. For details of the specification of ads.txt entries, see [ads.txt v1.1](https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf)
+
 ## Related Reading
 
 + [Prebid.js Troubleshooting Guide](/troubleshooting/troubleshooting-guide.html)

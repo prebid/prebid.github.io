@@ -39,6 +39,7 @@ Core config:
 + [Caching VAST XML](#setConfig-vast-cache)
 + [Site Metadata](#setConfig-site)
 + [Disable performance metrics](#setConfig-performanceMetrics)
++ [Setting alias registry to private](#setConfig-aliasRegistry)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
 
@@ -1200,8 +1201,11 @@ be retrieved. There are two different flows possible with Prebid.js around VAST 
 | Cache Attribute | Required? | Type | Description |
 |----+--------+-----+-------|
 | cache.url | yes | string | The URL of the Prebid Cache server endpoint where VAST creatives will be sent. |
+| cache.timeout | no | number | Timeout (in milliseconds) for network requests to the cache | 
 | cache.vasttrack | no | boolean | Passes additional data to the url, used for additional event tracking data. Defaults to `false`. |
 | cache.ignoreBidderCacheKey | no | boolean | If the bidder supplied their own cache key, setting this value to true adds a VAST wrapper around that URL, stores it in the cache defined by the `url` parameter, and replaces the original video cache key with the new one. This can dramatically simplify ad server setup because it means all VAST creatives reside behind a single URL. The tradeoff: this approach requires the video player to unwrap one extra level of VAST. Defaults to `false`. |
+| cache.batchSize | no | number | Enables video cache requests to be batched by a specified amount (defaults to 1) instead of making a single request per each video. |
+| cache.batchTimeout | no | number | Used in conjunction with `batchSize`, `batchTimeout` specifies how long to wait in milliseconds before sending a batch video cache request based on the value for `batchSize` (if present). A batch request will be made whether the `batchSize` amount was reached or the `batchTimeout` timer runs out. `batchTimeout` defaults to 0. |
 
 Here's an example of basic client-side caching. Substitute your Prebid Cache URL as needed:
 
@@ -1247,6 +1251,25 @@ pbjs.setConfig({
 Setting the `vasttrack` parameter to `true` supplies the POST made to the `/vtrack`
 Prebid Server endpoint with a couple of additional parameters needed
 by the analytics system to join the event to the original auction request.
+
+Optionally, `batchSize` and `batchTimeout` can be utlilized as illustrated with the example below:
+
+{% highlight js %}
+pbjs.setConfig({
+        cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache',
+            batchSize: 4,
+            batchTimeout: 50
+        }
+});
+{% endhighlight %}
+
+The example above states that a timer will be initialized and wait up to 50ms for 4 responses to have been collected and then will fire off one batch video cache request for all 4 responses. Note that the batch request will be made when the specified `batchSize` number is reached or with the number of responses that could be collected within the timeframe specified by the value for `batchTimeout`.
+
+If a batchSize is set to 2 and 5 video responses arrive (within the timeframe specified by `batchTimeout`), then three batch requests in total will be made:
+1. Batch 1 will contain cache requests for 2 videos
+2. Batch 2 will contain cache requests for 2 videos
+3. Batch 3 will contain cache requests for 1 video
 
 <a name="setConfig-instream-tracking" />
 
@@ -1459,6 +1482,21 @@ Since version 7.17, Prebid collects fine-grained performance metrics and attache
 
 ```
 pbjs.setConfig({performanceMetrics: false})
+```
+
+<a id="setConfig-aliasRegistry" />
+#### Setting alias registry to private
+
+The alias registry is made public by default during an auction.  It can be referenced in the following way:
+
+```
+pbjs.aliasRegistry or pbjs.aliasRegistry[aliasName];
+```
+
+Inversely, if you wish for the alias registry to be private you can do so by using the option below (causing `pbjs.aliasRegistry` to return undefined): 
+
+```
+pbjs.setConfig({aliasRegistry: 'private'})
 ```
 
 <a name="setConfig-Generic-Configuration" />

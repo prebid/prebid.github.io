@@ -3,7 +3,7 @@ layout: page_v2
 page_type: module
 title: Data Controller Module
 description: Filters the EIDs/SDA being transmitted to bid stream.
-module_code : dataController
+module_code : dataControllerModule
 display_name : Data Controller Module
 enable_download : true
 sidebarType : 1

@@ -16,231 +16,246 @@ sidebarType: 4
 			<p>{{page.description }}</p>
 		</div>
 
-		<!--video warning-->
-		<div class="pb-alert pb-alert-important" >
-			<p style="color:#85720f"><b>Important:</b>
-			This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
-		</div>
-
-		<!--video placeholder | this should be formatted per the needs of each player-->
-		<div class="example-video-container">
-      <video id="vid1" class="video-js vjs-default-skin vjs-big-play-centered" controls data-setup='{}' width='640' height='480'>
-            <source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
-        <source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm'/>
-        <source src="https://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/>
-      </video>
+    <div id="videoExample" class="col-md-12">
+      <h2>(Sorry, video code examples aren't available with your cookie privacy settings.)</h2>
+      <p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
     </div>
 
-		<!--video code fencing-->
+    <script>
+      const exampleHTML = `
+      <!--video warning-->
+      <div class="pb-alert pb-alert-important" >
+        <p style="color:#85720f"><b>Important:</b>
+        This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
+      </div>
 
-		<!--header code example-->
-		<div class="pb-alert pb-alert-warning" >
-			<p style="color:#a94443"><b>Warning:</b>
-			Do not forget to exchange the placementId in the code examples with your own placementId!</p>
-		</div>
+      <!--video placeholder | this should be formatted per the needs of each player-->
+      <div class="example-video-container">
+        <video id="vid1" class="video-js vjs-default-skin vjs-big-play-centered" controls data-setup='{}' width='640' height='480'>
+              <source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
+          <source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm'/>
+          <source src="https://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/>
+        </video>
+      </div>
 
-    <h4>Place this code in the page header.</h4>
-    <div class="pb-code-hl-wrap">
-      <pre class="pb-code-hl">
-<!--put javascript code here-->
-&lt;script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"&gt;&lt;/script&gt;
-&lt;!-- use recent version of videojs to ensure proper functioning with the iOS devices --&gt;
-&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.4.0/video-js.css"&gt;
-&lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.4.0/video.js"&gt;&lt;/script&gt;
-&lt;!-- videojs-vast-vpaid --&gt;
-&lt;link href="https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs.vast.vpaid.min.css" rel="stylesheet"&gt;
-&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs_5.vast.vpaid.min.js"&gt;&lt;/script&gt;
+      <!--video code fencing-->
 
-&lt;script&gt;
-    var pbjs = pbjs || {};
-    pbjs.que = pbjs.que || [];
+      <!--header code example-->
+      <div class="pb-alert pb-alert-warning" >
+        <p style="color:#a94443"><b>Warning:</b>
+        Do not forget to exchange the placementId in the code examples with your own placementId!</p>
+      </div>
 
+      <h4>Place this code in the page header.</h4>
+      <div class="pb-code-hl-wrap">
+        <pre class="pb-code-hl">
+  <!--put javascript code here-->
+  &lt;script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"&gt;&lt;/script&gt;
+  &lt;!-- use recent version of videojs to ensure proper functioning with the iOS devices --&gt;
+  &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.4.0/video-js.css"&gt;
+  &lt;script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.4.0/video.js"&gt;&lt;/script&gt;
+  &lt;!-- videojs-vast-vpaid --&gt;
+  &lt;link href="https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs.vast.vpaid.min.css" rel="stylesheet"&gt;
+  &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-vast-vpaid/2.0.2/videojs_5.vast.vpaid.min.js"&gt;&lt;/script&gt;
 
-    /* Prebid video ad unit */
-
-    var videoAdUnit = {
-        code: 'video1',
-        mediaTypes: {
-            video: {
-                context: 'instream',
-                playerSize: [640, 480],
-                mimes: ['video/mp4'],
-                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-                playbackmethod: [2],
-                skip: 1
-            }
-        },
-        bids: [{
-            bidder: 'appnexus',
-            params: {
-                placementId: 13232361
-            }
-        }]
-    };
-
-    pbjs.que.push(function() {
-        pbjs.addAdUnits(videoAdUnit);
-
-        pbjs.setConfig({
-            debug: true,
-            cache: {
-                url: 'https://prebid.adnxs.com/pbc/v1/cache'
-            }
-        });
-
-        pbjs.requestBids({
-            bidsBackHandler: function(bids) {
-                var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-                    adUnit: videoAdUnit,
-                    params: {
-                        iu: '/19968336/prebid_cache_video_adunit',
-                        cust_params: {
-                            section: 'blog',
-                            anotherKey: 'anotherValue'
-                        },
-                        output: 'vast'
-                    }
-                });
-                invokeVideoPlayer(videoUrl);
-            }
-        });
-    });
-
-&lt;/script&gt;
-      </pre>
-		</div>
-
-    <h4>Place this code in the page body.</h4>
-    <div class="pb-code-hl-wrap">
-      <!--body code example-->
-      <pre class="pb-code-hl" >
-<!--put body html and javascript here-->
-&lt;div class="example-video-container"&gt;
-  &lt;video id="vid1" class="video-js vjs-default-skin vjs-big-play-centered" controls data-setup='{}' width='640' height='480'&gt;
-    &lt;source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/&gt;
-    &lt;source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm'/&gt;
-    &lt;source src="https://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/&gt;
-  &lt;/video&gt;
-&lt;/div&gt;
+  &lt;script&gt;
+      var pbjs = pbjs || {};
+      pbjs.que = pbjs.que || [];
 
 
-&lt;script&gt;
-    var page_load_time;
+      /* Prebid video ad unit */
 
-    page_load_time = new Date().getTime() - performance.timing.navigationStart;
-    console.log(page_load_time + "ms -- Player loading!");
+      var videoAdUnit = {
+          code: 'video1',
+          mediaTypes: {
+              video: {
+                  context: 'instream',
+                  playerSize: [640, 480],
+                  mimes: ['video/mp4'],
+                  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                  playbackmethod: [2],
+                  skip: 1
+              }
+          },
+          bids: [{
+              bidder: 'appnexus',
+              params: {
+                  placementId: 13232361
+              }
+          }]
+      };
 
-    var vid1 = videojs('vid1');
+      pbjs.que.push(function() {
+          pbjs.addAdUnits(videoAdUnit);
 
-    page_load_time = new Date().getTime() - performance.timing.navigationStart;
-    console.log(page_load_time + "ms -- Player loaded!");
+          pbjs.setConfig({
+              debug: true,
+              cache: {
+                  url: 'https://prebid.adnxs.com/pbc/v1/cache'
+              }
+          });
 
-    function invokeVideoPlayer(url) {
+          pbjs.requestBids({
+              bidsBackHandler: function(bids) {
+                  var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+                      adUnit: videoAdUnit,
+                      params: {
+                          iu: '/19968336/prebid_cache_video_adunit',
+                          cust_params: {
+                              section: 'blog',
+                              anotherKey: 'anotherValue'
+                          },
+                          output: 'vast'
+                      }
+                  });
+                  invokeVideoPlayer(videoUrl);
+              }
+          });
+      });
 
-        page_load_time = new Date().getTime() - performance.timing.navigationStart;
-        console.log(page_load_time + "ms -- Prebid VAST url = " + url);
+  &lt;/script&gt;
+        </pre>
+      </div>
 
-        /* Access the player instance by calling `videojs()` and passing
-           in the player's ID. Add a `ready` listener to make sure the
-           player is ready before interacting with it. */
+      <h4>Place this code in the page body.</h4>
+      <div class="pb-code-hl-wrap">
+        <!--body code example-->
+        <pre class="pb-code-hl" >
+  <!--put body html and javascript here-->
+  &lt;div class="example-video-container"&gt;
+    &lt;video id="vid1" class="video-js vjs-default-skin vjs-big-play-centered" controls data-setup='{}' width='640' height='480'&gt;
+      &lt;source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/&gt;
+      &lt;source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm'/&gt;
+      &lt;source src="https://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/&gt;
+    &lt;/video&gt;
+  &lt;/div&gt;
 
-        videojs("vid1").ready(function() {
 
-            page_load_time = new Date().getTime() - performance.timing.navigationStart;
-            console.log(page_load_time + "ms -- Player is ready!");
+  &lt;script&gt;
+      var page_load_time;
 
-            /* PASS SETTINGS TO VAST PLUGIN
+      page_load_time = new Date().getTime() - performance.timing.navigationStart;
+      console.log(page_load_time + "ms -- Player loading!");
 
-               Pass in a JSON object to the player's `vastClient` (defined
-               by the VAST/VPAID plugin we're using). The requires an
-               `adTagUrl`, which will be the URL returned by Prebid. You
-               can view all the options available for the `vastClient`
-               here:
+      var vid1 = videojs('vid1');
 
-               https://github.com/MailOnline/videojs-vast-vpaid#options */
+      page_load_time = new Date().getTime() - performance.timing.navigationStart;
+      console.log(page_load_time + "ms -- Player loaded!");
 
-            var player = this;
-            var vastAd = player.vastClient({
-                adTagUrl: url,
-                playAdAlways: true,
-                verbosity: 4,
-                vpaidFlashLoaderPath: "https://github.com/MailOnline/videojs-vast-vpaid/blob/RELEASE/bin/VPAIDFlash.swf?raw=true",
-                autoplay: true
-            });
+      function invokeVideoPlayer(url) {
 
-            page_load_time = new Date().getTime() - performance.timing.navigationStart;
-            console.log(page_load_time + "ms -- Prebid VAST tag inserted!");
+          page_load_time = new Date().getTime() - performance.timing.navigationStart;
+          console.log(page_load_time + "ms -- Prebid VAST url = " + url);
 
-            player.muted(true);
-            player.play();
+          /* Access the player instance by calling videojs() and passing
+             in the player's ID. Add a ready listener to make sure the
+             player is ready before interacting with it. */
 
-            page_load_time = new Date().getTime() - performance.timing.navigationStart;
-            console.log(page_load_time + "ms -- invokeVideoPlayer complete!");
+          videojs("vid1").ready(function() {
 
-        });
-    }
+              page_load_time = new Date().getTime() - performance.timing.navigationStart;
+              console.log(page_load_time + "ms -- Player is ready!");
 
-&lt;/script&gt;
-      </pre>
-		</div>
+              /* PASS SETTINGS TO VAST PLUGIN
+
+                 Pass in a JSON object to the player's vastClient (defined
+                 by the VAST/VPAID plugin we're using). The requires an
+                 adTagUrl, which will be the URL returned by Prebid. You
+                 can view all the options available for the vastClient
+                 here:
+
+                 https://github.com/MailOnline/videojs-vast-vpaid#options */
+
+              var player = this;
+              var vastAd = player.vastClient({
+                  adTagUrl: url,
+                  playAdAlways: true,
+                  verbosity: 4,
+                  vpaidFlashLoaderPath: "https://github.com/MailOnline/videojs-vast-vpaid/blob/RELEASE/bin/VPAIDFlash.swf?raw=true",
+                  autoplay: true
+              });
+
+              page_load_time = new Date().getTime() - performance.timing.navigationStart;
+              console.log(page_load_time + "ms -- Prebid VAST tag inserted!");
+
+              player.muted(true);
+              player.play();
+
+              page_load_time = new Date().getTime() - performance.timing.navigationStart;
+              console.log(page_load_time + "ms -- invokeVideoPlayer complete!");
+
+          });
+      }
+
+  &lt;/script&gt;
+        </pre>
+      </div>`;
+    </script>
 	</div>
 </div>
 
 <!--video player code-->
 	<script>
-            var page_load_time;
+            window.onetrustLoaded.then(() => {
+              OneTrust.InsertHtml(exampleHTML, 'videoExample', null, {deleteSelectorContent: true}, 'C0003');
+            })
 
-            page_load_time = new Date().getTime() - performance.timing.navigationStart;
-            console.log(page_load_time + "ms -- Player loading!");
+            function runVideoJSCode() {
+              var page_load_time;
 
-            var vid1 = videojs('vid1');
+              page_load_time = new Date().getTime() - performance.timing.navigationStart;
+              console.log(page_load_time + "ms -- Player loading!");
 
-            page_load_time = new Date().getTime() - performance.timing.navigationStart;
-            console.log(page_load_time + "ms -- Player loaded!");
+              var vid1 = videojs('vid1');
 
-            function invokeVideoPlayer(url) {
+              page_load_time = new Date().getTime() - performance.timing.navigationStart;
+              console.log(page_load_time + "ms -- Player loaded!");
 
-                page_load_time = new Date().getTime() - performance.timing.navigationStart;
-                console.log(page_load_time + "ms -- Prebid VAST url = " + url);
+              window.invokeVideoPlayer = function(url) {
 
-                /* Access the player instance by calling `videojs()` and passing
-                   in the player's ID. Add a `ready` listener to make sure the
-                   player is ready before interacting with it. */
+                  page_load_time = new Date().getTime() - performance.timing.navigationStart;
+                  console.log(page_load_time + "ms -- Prebid VAST url = " + url);
 
-                videojs("vid1").ready(function() {
+                  /* Access the player instance by calling videojs()` and passing
+                     in the player's ID. Add a `ready` listener to make sure the
+                     player is ready before interacting with it. */
 
-                    page_load_time = new Date().getTime() - performance.timing.navigationStart;
-                    console.log(page_load_time + "ms -- Player is ready!");
+                  videojs("vid1").ready(function() {
 
-                    /* PASS SETTINGS TO VAST PLUGIN
+                      page_load_time = new Date().getTime() - performance.timing.navigationStart;
+                      console.log(page_load_time + "ms -- Player is ready!");
 
-                       Pass in a JSON object to the player's `vastClient` (defined
-                       by the VAST/VPAID plugin we're using). The requires an
-                       `adTagUrl`, which will be the URL returned by Prebid. You
-                       can view all the options available for the `vastClient`
-                       here:
+                      /* PASS SETTINGS TO VAST PLUGIN
 
-                       https://github.com/MailOnline/videojs-vast-vpaid#options */
+                         Pass in a JSON object to the player's `vastClient` (defined
+                         by the VAST/VPAID plugin we're using). The requires an
+                         `adTagUrl`, which will be the URL returned by Prebid. You
+                         can view all the options available for the `vastClient`
+                         here:
 
-                    var player = this;
-                    var vastAd = player.vastClient({
-                        adTagUrl: url,
-                        playAdAlways: true,
-                        verbosity: 4,
-                        vpaidFlashLoaderPath: "https://github.com/MailOnline/videojs-vast-vpaid/blob/RELEASE/bin/VPAIDFlash.swf?raw=true",
-                        autoplay: true
-                    });
+                         https://github.com/MailOnline/videojs-vast-vpaid#options */
 
-                    page_load_time = new Date().getTime() - performance.timing.navigationStart;
-                    console.log(page_load_time + "ms -- Prebid VAST tag inserted!");
+                      var player = this;
+                      var vastAd = player.vastClient({
+                          adTagUrl: url,
+                          playAdAlways: true,
+                          verbosity: 4,
+                          vpaidFlashLoaderPath: "https://github.com/MailOnline/videojs-vast-vpaid/blob/RELEASE/bin/VPAIDFlash.swf?raw=true",
+                          autoplay: true
+                      });
 
-                    player.muted(true);
-                    player.play();
+                      page_load_time = new Date().getTime() - performance.timing.navigationStart;
+                      console.log(page_load_time + "ms -- Prebid VAST tag inserted!");
 
-                    page_load_time = new Date().getTime() - performance.timing.navigationStart;
-                    console.log(page_load_time + "ms -- invokeVideoPlayer complete!");
+                      player.muted(true);
+                      player.play();
 
-                });
+                      page_load_time = new Date().getTime() - performance.timing.navigationStart;
+                      console.log(page_load_time + "ms -- invokeVideoPlayer complete!");
+
+                  });
+              }
+              window.resolveVideoJS()
             }
 
         </script>
