@@ -42,7 +42,9 @@ This module is configured as part of the `realTimeData.dataProviders` object:
             dataProviders:[{          
                 "name": "geolocation",
                 "waitForIt": true,
-                "requestPermission": true
+                "params": {
+                    "requestPermission": true
+                }
             }]
         }
     });
