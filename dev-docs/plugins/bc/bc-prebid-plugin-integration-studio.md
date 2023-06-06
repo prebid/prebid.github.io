@@ -36,7 +36,6 @@ You can specify all options needed by the plugin in the Studio:
 * **[Prebid Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options.html)**
 * **[Render Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-render-options.html)** (used to customize the playback of the ad)
 
-
 #### Getting to Brightcove Studio
 
 [https://studio.brightcove.com](https://studio.brightcove.com/)
@@ -405,5 +404,3 @@ Information about the plugin API can be found at **[Prebid Plugin for Brightcove
 ### Plugin Options
 
 Details about the options supported by the Brightcove Prebid Plugin can be found at:   **[Prebid Plugin for Brightcove (Videojs) Player - Plugin Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-options.html)**
-
-
