@@ -3,12 +3,13 @@ layout: page_v2
 title: Activity Controls
 description: How to stop Prebid.js from doing things you don't want
 sidebarType: 1
+pbjs_version: 7.52
 ---
 
 # Prebid.js Activity Controls
 {: .no_toc }
 
-Starting with version 7.48, Prebid.js introduced a centralized control mechanism for privacy-sensitive _activities_ - such as accessing device storage or sharing data with partners.
+Starting with version 7.52, Prebid.js introduced a centralized control mechanism for privacy-sensitive _activities_ - such as accessing device storage or sharing data with partners.
 These controls are intended to serve as building blocks for privacy protection mechanisms, allowing module developers or publishers to directly specify what should be permitted or avoided in any given regulatory environment.
 
 * TOC
