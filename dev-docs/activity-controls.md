@@ -234,12 +234,14 @@ This is similiar to the 'vendor exception' feature of the [GDPR Enforcement Modu
 
 ```javascript
 pbjs.setConfig({
+  allowActivities: {
     fetchBids: {
         rules: [{
             condition: ({componentName}) => componentName === 'bidderA',
             allow: true
         }]
     }
+  }
 })
 ```
 
@@ -270,12 +272,14 @@ pbjs.setConfig({
 
 ```javascript
 pbjs.setConfig({
+  allowActivities: {
     transmitEids: {
         rules: [{
             condition: ({componentName}) => componentName === 'exampleVendor',
             allow: false,
         }]
     }
+  }
 })
 ```
 
