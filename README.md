@@ -60,7 +60,7 @@ $ JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental
 
 You should see output that looks something like this:
 
-```
+```bash
 Configuration file: /Users/me/git/prebid.github.io/_config.yml  
             Source: /Users/me/git/prebid.github.io  
        Destination: /Users/me/git/prebid.github.io/_site  

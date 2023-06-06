@@ -15,15 +15,15 @@ In your MAX account go to `Mediation` -> `Manage` -> `Networks` and click `Click
 
 <img src="/assets/images/prebid-mobile/modules/rendering/max-cusom-network-setup.png" alt="Pipeline Screenshot" align="center">
 
-
-
 iOS adapter:
-```
+
+```noformat
 PrebidMAXMediationAdapter
 ```
 
-Android Adapter:  
-```
+Android Adapter:
+
+```noformat
 com.applovin.mediation.adapters.PrebidMaxMediationAdapter
 ```
 
@@ -37,10 +37,9 @@ Create or choose an existing Ad Unit. Go the the `Custom Networks & Deals` secti
 
 <img src="/assets/images/prebid-mobile/modules/rendering/max-ad-unit-setup.png" alt="Pipeline Screenshot" align="center">
 
-
 Make sure that the `Custom Parameters` field contain expecting targetting keywords of the winning bid:
 
-```
+```json
 {"hb_pb":"0.10"}
 ```
 

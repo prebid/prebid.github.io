@@ -13,7 +13,6 @@ sidebarType: 3
 
  <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-create.png" alt="Pipeline Screenshot" align="center">
 
-
 ## Step 2: Create Line Item
 
 To integrate the Prebid demand you have to create a Line Items with a specific price and targeting keywords.
@@ -142,7 +141,6 @@ Example HTML:
   let pbNativeTagData = {};
   pbNativeTagData.pubUrl = "%%PATTERN:url%%";
   pbNativeTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
-
 
   // if not DFP, use these params
   pbNativeTagData.adId = "%%PATTERN:hb_adid%%";

@@ -109,7 +109,7 @@ Module that connects to Example's demand sources
     ];
 ```
 
-```
+```html
 
 <a name="bidder-adaptor-Designing-your-Bid-Params" />
 
@@ -929,7 +929,7 @@ If the demand partner is going to use Prebid API for this process, their adapter
 
 **Example**
 
-```
+```javascript
 getMappingFileInfo: function() {
   return {
     url: '<mappingFileURL>',
@@ -943,7 +943,7 @@ The mapping file is stored locally to expedite category conversion. Depending on
 
 To get the subcategory to use, call this function, which needs to be imported from the `bidderFactory`.  
 
-```
+```javascript
 getIabSubCategory(bidderCode, pCategory)
 ```
 

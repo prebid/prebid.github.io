@@ -140,13 +140,13 @@ The dropdown_v2 YML file is used to construct the top nav when the site is viewe
 
 The YML map is divided into collections of menu sections. Menu sections are commented when they begin, for example;
 
-```Markdown
+```markdown
 #----------Product SubNav------------
 ```
 
 Each menu item is represented in the YML map as a collection of key value pairs and begins with a dash (-) symbol. An indented collection indicates it is a child of the collection above it. Example:
 
-```Markdown
+```markdown
 #-----------Overview---------------
 
 - sectionId: 0
