@@ -80,7 +80,7 @@ Here's a general template for the account config used in PBS-Java:
               "action-overrides": {
                 OVERRIDE_SETTING: [{
                   "conditions": { ... },
-		  // the value below will be the datatype of the SETTING
+          // the value below will be the datatype of the SETTING
                   "override": VALUE
                 }]
               }

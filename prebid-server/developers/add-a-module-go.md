@@ -48,30 +48,30 @@ Here's a partial example of your module-specific `module.go` file:
 package your_module_name
 
 import (
-	"context"
-	"encoding/json"
+    "context"
+    "encoding/json"
 
-	"github.com/prebid/prebid-server/hooks/hookstage"
-	"github.com/prebid/prebid-server/modules/moduledeps"
+    "github.com/prebid/prebid-server/hooks/hookstage"
+    "github.com/prebid/prebid-server/modules/moduledeps"
 )
 
 func Builder(config json.RawMessage, deps moduledeps.ModuleDeps) (interface{}, error) {
-	return Module{}, nil
+    return Module{}, nil
 }
 
 // Module must implement at least 1 hook interface.
 type Module struct{}
 
 func (m Module) HandleBidderRequestHook(
-	ctx context.Context,
-	invocationCtx hookstage.ModuleInvocationContext,
-	payload hookstage.BidderRequestPayload,
+    ctx context.Context,
+    invocationCtx hookstage.ModuleInvocationContext,
+    payload hookstage.BidderRequestPayload,
 ) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
-	result := hookstage.HookResult[hookstage.BidderRequestPayload]{}
+    result := hookstage.HookResult[hookstage.BidderRequestPayload]{}
 
-	// hook handling logic
-	
-	return result, nil
+    // hook handling logic
+    
+    return result, nil
 }
 ```
 
@@ -131,21 +131,21 @@ In a module it is not necessary to implement all mentioned interfaces but at lea
 1) To **update** the request in the `BidderRequest`, your implementation would return a hook result with a change set:
 ```
 import (
-	"context"
+    "context"
 
-	"github.com/prebid/prebid-server/hooks/hookstage"
+    "github.com/prebid/prebid-server/hooks/hookstage"
 )
 
 type Module struct{}
 
 func (m Module) HandleBidderRequestHook(
-	ctx context.Context,
-	invocationCtx hookstage.ModuleInvocationContext,
-	payload hookstage.BidderRequestPayload,
+    ctx context.Context,
+    invocationCtx hookstage.ModuleInvocationContext,
+    payload hookstage.BidderRequestPayload,
 ) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
     changeSet := hookstage.ChangeSet[hookstage.BidderRequestPayload]{}
     changeSet.BidderRequest().BAdv().Update([]string{"a.com"})
-	
+    
     return hookstage.HookResult[hookstage.BidderRequestPayload]{ChangeSet: changeSet}, nil
 }
 ```
@@ -155,9 +155,9 @@ Please note, the `hookstage.ChangeSet` has a restricted set of methods, but meth
 For more complex payload updates, you can choose another method:
 ```
 func (m Module) HandleBidderRequestHook(
-	ctx context.Context,
-	invocationCtx hookstage.ModuleInvocationContext,
-	payload hookstage.BidderRequestPayload,
+    ctx context.Context,
+    invocationCtx hookstage.ModuleInvocationContext,
+    payload hookstage.BidderRequestPayload,
 ) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
     battrByImp := map[string][]adcom1.CreativeAttribute{"imp_ID1": []adcom1.CreativeAttribute{adcom1.AttrAudioAuto}}
     changeSet := hookstage.ChangeSet[hookstage.BidderRequestPayload]{}
@@ -170,7 +170,7 @@ func (m Module) HandleBidderRequestHook(
         }
         return payload, nil
     }, hookstage.MutationUpdate, "bidrequest", "imp", "banner", "battr")
-	
+    
     return hookstage.HookResult[hookstage.BidderRequestPayload]{ChangeSet: changeSet}, nil
 }
 ```
@@ -178,11 +178,11 @@ func (m Module) HandleBidderRequestHook(
 2) To **reject** the bidder in the `BidderRequest`, your hook implementation would return a hook result with a reject flag and an NBR code:
 ```
 func (m Module) HandleBidderRequestHook(
-	ctx context.Context,
-	invocationCtx hookstage.ModuleInvocationContext,
-	payload hookstage.BidderRequestPayload,
+    ctx context.Context,
+    invocationCtx hookstage.ModuleInvocationContext,
+    payload hookstage.BidderRequestPayload,
 ) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
-	return hookstage.HookResult[hookstage.BidderRequestPayload]{Reject: true, NbrCode: 7}, nil
+    return hookstage.HookResult[hookstage.BidderRequestPayload]{Reject: true, NbrCode: 7}, nil
 }
 ```
 
@@ -191,16 +191,16 @@ Refer [here](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master
 3) To supply [analytics tags](/prebid-server/developers/module-atags.html) in the `BidderRequest`, your hook implementation would return a hook result with analytics tags:
 ```
 import (
-	"context"
+    "context"
 
-	"github.com/prebid/prebid-server/hooks/hookstage"
-	"github.com/prebid/prebid-server/hooks/hookanalytics"
+    "github.com/prebid/prebid-server/hooks/hookstage"
+    "github.com/prebid/prebid-server/hooks/hookanalytics"
 )
 
 func (m Module) HandleBidderRequestHook(
-	ctx context.Context,
-	invocationCtx hookstage.ModuleInvocationContext,
-	payload hookstage.BidderRequestPayload,
+    ctx context.Context,
+    invocationCtx hookstage.ModuleInvocationContext,
+    payload hookstage.BidderRequestPayload,
 ) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
     return hookstage.HookResult[hookstage.BidderRequestPayload]{
         AnalyticsTags: hookanalytics.Analytics{

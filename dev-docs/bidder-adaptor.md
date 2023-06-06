@@ -452,7 +452,7 @@ The `interpretResponse` function will be called when the browser has received th
             brandId: BRAND_ID,
             brandName: BRAND_NAME,
             dchain: DEMAND_CHAIN_OBJECT,
-	    demandSource: DEMAND_SOURCE
+        demandSource: DEMAND_SOURCE
             mediaType: MEDIA_TYPE,
             networkId: NETWORK_ID,
             networkName: NETWORK_NAME,
@@ -795,11 +795,11 @@ Video ad units have a publisher-defined video context, which can be either `'ins
 mediaTypes: {
     video: {
         context: 'outstream',
-	playerSize: [640, 480],
-	mimes: ['video/mp4'],
-	protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-	playbackmethod: [2],
-	skip: 1
+    playerSize: [640, 480],
+    mimes: ['video/mp4'],
+    protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+    playbackmethod: [2],
+    skip: 1
         // video params must be read from here in place of
         // or instead of bidder-specific parameters
     },
@@ -1108,8 +1108,8 @@ import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.js';
 const BIDDER_CODE = 'example';
 export const spec = {
         code: BIDDER_CODE,
-	gvlid: 0000000000,
-	supportedMediaTypes: [BANNER, VIDEO, NATIVE],
+    gvlid: 0000000000,
+    supportedMediaTypes: [BANNER, VIDEO, NATIVE],
         aliases: [{code: "myAlias", gvlid: 99999999999} ],
         /**
          * Determines whether or not the given bid request is valid.

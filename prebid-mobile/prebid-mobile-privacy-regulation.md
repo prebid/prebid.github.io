@@ -121,8 +121,8 @@ Prebid mobile supports the [IAB US Privacy signal](https://iabtechlab.com/standa
 
 The job of the Prebid SDK will:
 - Read from `UserDefaults` (iOS) or `SharedPreferences` (Android) for US Privacy signal
-	- Prebid SDK will look for the key `IABUSPrivacy_String`, all other key names or spellings will be ignored
-	- If the `IABUSPrivacy_String` key is present with a non-empty string value, the Prebid SDK will relay the privacy string to Prebid Server in the `regs.ext.us_privacy` extention
+    - Prebid SDK will look for the key `IABUSPrivacy_String`, all other key names or spellings will be ignored
+    - If the `IABUSPrivacy_String` key is present with a non-empty string value, the Prebid SDK will relay the privacy string to Prebid Server in the `regs.ext.us_privacy` extention
 - Not perform or make any attempt to validate or ensure correctness of the US Privacy string
 - Not strip any user data or signaling of the request regardless of Notice and Opt out signal
 

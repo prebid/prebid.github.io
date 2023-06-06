@@ -51,9 +51,9 @@ After you've registered with your chosen Prebid Server host, you need to create 
 ```
 [
     {
-    	"bidder": "appnexus",
-    	"params": {
-    	    "placementId": 13144370
+        "bidder": "appnexus",
+        "params": {
+            "placementId": 13144370
         }
     }
 ]
