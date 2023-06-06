@@ -12,9 +12,6 @@ sidebarType : 5
 * TOC
 {:toc }
 
-{: .alert.alert-warning :}
-Currently only available for the Java version of Prebid Server
-
 ## Overview
 
 This module helps support bidders that aren't full-service SSPs by allowing
@@ -71,7 +68,7 @@ There is no host-company level config for this module.
 
 ### Account-Level Config
 
-Here's a general template for the account config:
+Here's a general template for the account config used in PBS-Java:
 ```
 {
     "hooks": {
@@ -80,13 +77,13 @@ Here's a general template for the account config:
           "attributes": {
             "ATTRIBUTE": {    // badv, bcat, bapp, btype, battr
               DEFAULT_SETTINGS, 
-              "action-overrides": [{
+              "action-overrides": {
                 OVERRIDE_SETTING: [{
                   "conditions": { ... },
 		  // the value below will be the datatype of the SETTING
                   "override": VALUE
                 }]
-              }]
+              }
             }
           }
         }
@@ -98,10 +95,39 @@ Here's a general template for the account config:
 }
 ```
 
+PBS-Go version of the same config:
+```
+{
+    "hooks": {
+      "modules": {
+        "prebid": {
+            "ortb2blocking": {   // start of this module's config
+              "attributes": {
+                "ATTRIBUTE": {    // badv, bcat, bapp, btype, battr
+                  DEFAULT_SETTINGS, 
+                  "action_overrides": {
+                    OVERRIDE_SETTING: [{
+                      "conditions": { ... },
+              // the value below will be the datatype of the SETTING
+                      "override": VALUE
+                    }]
+                  }
+                }
+              }
+            }
+          }
+      },
+      "execution_plan": {
+        ...
+      }
+    }
+}
+```
+
 The 'ATTRIBUTE' above is one of the 5 blockable entities defined in OpenRTB. A 'SETTING' is a feature this module supports.
 The following sections detail each of the 5 blockable entities.
 
-Here's a detailed example:
+Here's a detailed example for PBS-Java:
 ```
 {
     "hooks": {
@@ -197,6 +223,102 @@ Here's a detailed example:
 }
 ```
 
+For PBS-Go:
+```
+{
+    "hooks": {
+        "modules": {
+            "prebid": {
+                "ortb2blocking": {
+                    "attributes": {
+                        "badv": {
+                            "enforce_blocks": false,
+                            "blocked_adomain": [],
+                            "action_overrides": {
+                                "blocked_adomain": [
+                                    {
+                                        "override": [ "example.com" ],
+                                        "conditions": {
+                                            "bidders": [ "bidderA" ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "bcat": {
+                            "enforce_blocks": false,
+                            "blocked_adv_cat": [],
+                            "action_overrides": {
+                                "blocked_adv_cat": [
+                                    {
+                                        "override": [ "IAB7" ],
+                                        "conditions": {
+                                            "bidders": [ "bidderA" ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "battr": {
+                            "enforce_blocks": false,
+                            "action_overrides": {
+                                "blocked_banner_attr": [
+                                    {
+                                        "override": [1,3,8,9,10,13,14,17],
+                                        "conditions": {
+                                            "bidders": [ "bidderA" ]
+                                        }
+                                    }
+                                ]
+                            },
+                            "blocked_banner_attr": []
+                        }
+                    }
+                }
+            }
+        },
+        "execution_plan": {
+            "endpoints": {
+                "/openrtb2/amp": {
+                    "stages": {
+                        "bidder_request": {
+                            "groups": [
+                                {
+                                    "timeout": 5,
+                                    "hook_sequence": [
+                                        {
+                                            "module_code": "prebid.ortb2blocking",
+                                            "hook_impl_code": "ortb2-blocking-bidder-request"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                "/openrtb2/auction": {
+                    "stages": {
+                        "bidder_request": {
+                            "groups": [
+                                {
+                                    "timeout": 5,
+                                    "hook_sequence": [
+                                        {
+                                            "module_code": "prebid.ortb2blocking",
+                                            "hook_impl_code": "ortb2-blocking-bidder-request"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
 ### Configuration Details
 
 The module supports flexibile definition of behavior surrounding the 5 blocked attributes. Here are the details.
@@ -213,7 +335,7 @@ This attribute is related to the 'badv' of the request, and the 'adomain' of the
 | block-unknown-adomain | Whether to block responses not specifying adomain. Only active if enforce-blocks is true. | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-adomain-for-deals | List of adomains allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global. |
 
-Here's an example account config with several scenarios:
+Here's an example account config for PBS-Java with several scenarios:
 ```
 {
     "hooks": {
@@ -228,7 +350,7 @@ Here's an example account config with several scenarios:
               "blocked-adomain": [ "a.com", "b.com", "c.com" ],
               // but deals can return this one
               "allowed-adomain-for-deals": [ "a.com" ],
-              "action-overrides": [{
+              "action-overrides": {
                   "blocked-adomain": [{
                       // c.com allowed on these bidders for video
                       "conditions": {
@@ -264,10 +386,71 @@ Here's an example account config with several scenarios:
                       "override": [ "b.com" ]
                     }
                   ]
-                }
-              ]
+              }
             }
           }
+        }
+      }
+    }
+}
+```
+
+For PBS-Go:
+```
+{
+    "hooks": {
+      "modules": {
+        "prebid": {
+            "ortb2blocking": {   // start of this module's config
+              "attributes": {
+                "badv": {
+                  // enforce domain blocks by default
+                  "enforce_blocks": true,
+                  "block_unknown_adomain": true,
+                  // these are the default undesirable domains
+                  "blocked_adomain": [ "a.com", "b.com", "c.com" ],
+                  // but deals can return this one
+                  "allowed_adomain_for_deals": [ "a.com" ],
+                  "action_overrides": {
+                      "blocked_adomain": [{
+                          // c.com allowed on these bidders for video
+                          "conditions": {
+                            "bidders": [ "bidderA", "bidderB" ],
+                            "media_types": [ "video" ]
+                          },
+                          "override": [ "a.com", "b.com" ]
+                        },
+                        {
+                          // more domains blocked for this bidder 
+                          "conditions": {
+                            "bidders": [ "bidderc" ]
+                          },
+                          "override": [ "a.com", "b.com", "c.com", "d.com", "e.com" ]
+                        }
+                      ],
+                      "block_unknown_adomain": [
+                        {
+                          // don't block unnknown for video bids from this bidder
+                          "conditions": {
+                            "bidders": [ "bidderA" ],
+                            "media_types": [ "video" ]
+                          },
+                          "override": false
+                        }
+                      ],
+                      "allowed_adomain_for_deals": [
+                        {
+                          // this deal is for normally blocked domain b.com
+                          "conditions": {
+                            "deal_ids": [ "12345678" ]
+                          },
+                          "override": [ "b.com" ]
+                        }
+                      ]
+                  }                  
+                }
+              }
+            }
         }
       }
     }
@@ -286,7 +469,7 @@ This attribute is related to the 'bcat' of the request and 'cat' of the response
 | block-unknown-adv-cat | Whether to block responses not specifying cat. Only active if enforce-blocks is true. | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-adv-cat-for-deals | List of adomains allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global.|
 
-Here's an example account config with several scenarios:
+Here's an example account config for PBS-Java with several scenarios:
 ```
 {
     "hooks": {
@@ -300,7 +483,7 @@ Here's an example account config with several scenarios:
               "blocked-adv-cat": [ "IAB-1", "IAB-2" ],
               // deals can return this cat
               "allowed-adv-cat-for-deals": [ "IAB-1" ],
-              "action-overrides": [ {
+              "action-overrides": {
                   "blocked-adv-cat": [
                     {
                       // block additional categories for video
@@ -337,10 +520,71 @@ Here's an example account config with several scenarios:
                       "override": [ "IAB-2" ]
                     }
                   ]
-                }
-              ]
+              }
             }
           }
+        }
+      }
+    }
+}
+```
+
+For PBS-Go
+```
+{
+    "hooks": {
+      "modules": {
+        "prebid": {
+            "ortb2blocking": {   // start of this module's config
+              "attributes": {
+                "bcat": {
+                  // don't enforce blocks
+                  "enforce_blocks": false,
+                  // block these categories by default
+                  "blocked_adv_cat": [ "IAB-1", "IAB-2" ],
+                  // deals can return this cat
+                  "allowed_adv_cat_for_deals": [ "IAB-1" ],
+                  "action_overrides": {
+                      "blocked_adv_cat": [
+                        {
+                          // block additional categories for video
+                          "conditions": {
+                            "media_types": [ "video" ]
+                          },
+                          "override": [ "IAB-1", "IAB-2", "IAB-3", "IAB-4" ]
+                        }
+                      ],
+                      "enforce_blocks": [
+                        {
+                          // enforce bcat blocks for this bidder
+                          "conditions": {
+                            "bidders": [ "bidderA" ]
+                          },
+                          "override": true
+                        }
+                      ],
+                      "block_unknown_adv_cat": [
+                        {
+                          // enforce unknown cat for this bidder
+                          "conditions": {
+                            "bidders": [ "bidderA" ]
+                          },
+                          "override": true
+                        }
+                      ],
+                      "allowed_adv_cat_for_deals": [
+                        {
+                          // this deal ID allowed to be this category
+                          "conditions": {
+                            "deal_ids": [ "1111111" ]
+                          },
+                          "override": [ "IAB-2" ]
+                        }
+                      ]
+                  }
+                }
+              }
+            }
         }
       }
     }
@@ -358,7 +602,7 @@ This attribute is related to the 'bapp' of the request and 'bundle' of the respo
 | enforce-blocks | Whether to enforce bundles in responses | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-bapp-for-deals | List of bundles allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global. |
 
-Here's an example account config:
+Here's an example account config for PBS-Java:
 ```
 {
     "hooks": {
@@ -370,8 +614,7 @@ Here's an example account config:
               "enforce-blocks": false,
               // these bundles blocked by default
               "blocked-app": [ "app1", "app2" ],
-              "action-overrides": [
-                {
+              "action-overrides": {
                   "blocked-app": [
                     {
                       // this bidder also blocked for an additional app
@@ -381,10 +624,42 @@ Here's an example account config:
                       "override": [ "app1", "app2", "app3" ]
                     }
                   ]
-                }
-              ]
+              }
             }
           }
+        }
+      }
+    }
+}
+```
+
+For PBS-Go
+```
+{
+    "hooks": {
+      "modules": {
+        "prebid": {
+            "ortb2blocking": {   // start of this module's config
+              "attributes": {
+                "bapp": {
+                  // don't enforce
+                  "enforce_blocks": false,
+                  // these bundles blocked by default
+                  "blocked_app": [ "app1", "app2" ],
+                  "action_overrides": {
+                      "blocked_app": [
+                        {
+                          // this bidder also blocked for an additional app
+                          "conditions": {
+                            "bidders": [ "bidderA" ]
+                          },
+                          "override": [ "app1", "app2", "app3" ]
+                        }
+                      ]
+                  }
+                }
+              }
+            }
         }
       }
     }
@@ -406,7 +681,7 @@ Note: no enforcement is possible because the creative type is not explictly
 part of the response and Prebid Server does not currently contain logic to
 parse creatives to derive the type.
 
-Here's an example account config:
+Here's an example account config for PBS-Java:
 ```
 {
     "hooks": {
@@ -416,8 +691,7 @@ Here's an example account config:
             "btype": {
               // block these types for all bidders
               "blocked-banner-type": [ 3, 4 ],
-              "action-overrides": [
-                {
+              "action-overrides": {
                   "blocked-banner-type": [
                     {
                       // block an additional type for this bidder
@@ -427,10 +701,40 @@ Here's an example account config:
                       "override": [ 3, 4, 5 ]
                     }
                   ]
-                }
-              ]
+              }
             }
           }
+        }
+      }
+    }
+}
+```
+
+For PBS-Go
+```
+{
+    "hooks": {
+      "modules": {
+        "prebid": {
+            "ortb2blocking": {   // start of this module's config
+              "attributes": {
+                "btype": {
+                  // block these types for all bidders
+                  "blocked_banner_type": [ 3, 4 ],
+                  "action_overrides": {
+                      "blocked_banner_type": [
+                        {
+                          // block an additional type for this bidder
+                          "conditions": {
+                            "bidders": [ "bidderA" ]
+                          },
+                          "override": [ 3, 4, 5 ]
+                        }
+                      ]
+                  }
+                }
+              }
+            }
         }
       }
     }
@@ -450,7 +754,7 @@ This attribute is related to the 'battr' of the request and 'attr' of the respon
 
 See Table 5.3 in the [OpenRTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for the possible values.
 
-Here's an example account config:
+Here's an example account config for PBS-Java:
 ```
 {
     "hooks": {
@@ -462,8 +766,7 @@ Here's an example account config:
               "enforce-blocks": false,
               // block these attributes for all bidders
               "blocked-banner-attr": [ 1, 8, 9, 10 ],
-              "action-overrides": [
-                {
+              "action-overrides": {
                   "enforce-blocks": [
                     {
                       // enforce the attr block for this bidder
@@ -473,8 +776,7 @@ Here's an example account config:
                       "override": true
                     }
                   ]
-                }
-              ]
+              }
             }
           }
         }
@@ -482,6 +784,50 @@ Here's an example account config:
     }
 }
 ```
+
+For PBS-Go
+```
+{
+    "hooks": {
+      "modules": {
+        "prebid": {
+            "ortb2blocking": {   // start of this module's config
+              "attributes": {
+                "battr": {
+                  // don't enforce
+                  "enforce_blocks": false,
+                  // block these attributes for all bidders
+                  "blocked_banner_attr": [ 1, 8, 9, 10 ],
+                  "action_overrides": {
+                      "enforce_blocks": [
+                        {
+                          // enforce the attr block for this bidder
+                          "conditions": {
+                            "bidders": [ "bidderA" ]
+                          },
+                          "override": true
+                        }
+                      ]
+                  }
+                }
+              }
+            }
+        }
+      }
+    }
+}
+```
+
+### Enable for Spring Boot
+In order to allow the module to be picked up by Prebid Server, a Spring Boot configuration property `hooks.ortb2-blocking.enabled` must be set to `true`.
+
+Here's an example of how your PBS configuration YAML should look like:
+```YAML
+hooks:
+  ortb2-blocking:
+    enabled: true
+```
+
 ## Analytics Tags
 
 There's only one analytics activity defined by this module: "enforce-blocking".

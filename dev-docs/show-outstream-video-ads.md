@@ -73,9 +73,13 @@ Prebid.js will select the `renderer` used to display the outstream video in the 
 {: .alert.alert-warning :}
 At this time, since not all demand partners return a renderer with their video bid responses, we recommend that publishers associate a `renderer` with their Prebid video adUnits, if possible.  By doing so, any Prebid adapter that supports video will be able to provide demand for a given outstream slot.
 
-Renderers are associated with adUnits in two ways.
-Primarily through the `adUnit.renderer` object. But also, especially for multiFormat adUnits, through the specified mediaType `adUnit.mediaTypes.video.renderer`.
-This object contains these fields:
+Renderers can be attached to adUnits in three ways; Prebid will pick the first that is defined as:  
+
+ 1. `adUnit.mediaTypes[type].renderer` (for example, `adUnit.mediaTypes.video.renderer`);
+ 2. `adUnit.bids[].renderer`;
+ 3. `adUnit.renderer`.
+
+A renderer is an object containing these properties:
 
 1. `url` -- Points to a file containing the renderer script.
 2. `render` -- A function that tells Prebid.js how to invoke the renderer script.

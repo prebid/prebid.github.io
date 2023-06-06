@@ -9,6 +9,7 @@ media_types: banner, video, native
 floors_supported: true
 gdpr_supported: true
 gvl_id: 676
+sidebarType: 1
 ---
 
 

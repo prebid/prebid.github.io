@@ -5,7 +5,7 @@ description: Prebid Criteo Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: criteo
-media_types: display, native, video
+media_types: display, video, native (pbjs only)
 gdpr_supported: true
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
@@ -14,7 +14,12 @@ floors_supported: true
 fpd_supported: true
 schain_supported: true
 gvl_id: 91
+coppa_supported: true
+multiformat_supported: will-bid-on-any
+sidebarType: 1
+gpp_supported: true
 ---
+
 ### Notes
 
 {: .alert.alert-warning :}
@@ -23,11 +28,6 @@ This bidder adapter automatically includes the Criteo User ID module and perform
 
 {: .alert.alert-warning :}
 Prebid-Server support is on alpha test and is currently a non-finished product. Activation requires setup and approval before beginning. Please reach out to your account manager or publishers@criteo.com for more details.
-
-### Disclosure
-
-This bidder sets `adId` on the bid response and hasn't responded to the Prebid.js team to confirm uniqueness
-of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381).
 
 ### Bid Params
 
@@ -38,11 +38,22 @@ of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381)
 | `networkId`       | required | The network ID from Criteo. Please reach out your Criteo representative for more details.                             | `456456`                                      | `integer`  |
 | `nativeCallback`  | optional | (Prebid.js only) Callback to perform render in native integrations. Please reach out your Criteo representative for more details.     | `function(payload) { console.log(payload); }` | `function` |
 | `integrationMode` | optional | (Prebid.js only) Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `'AMP'`                                       | `string`   |
-| `publisherSubId` | optional | Custom identifier for reporting. Please reach out your Criteo representative for more details. | `'adunit-1'` |  `string` |
+| `publisherSubId`  | optional | Custom identifier for reporting. Please reach out your Criteo representative for more details. | `'adunit-1'` |  `string` |
 
 ### First Party Data
 
-Criteo supports both `ortb2` (`site` and `user`) and `ortb2Imp` methods to set [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+Criteo supports both `ortb2` and `ortb2Imp` methods to set [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+
+The standard Open RTB properties supported from `ortb2` / `ortb2Imp` are described in the following table.
+
+{: .table .table-bordered .table-striped }
+| Name              | Scope    | Description                                                                                                                                                                                                                                                                  | Example | Type      |
+|-------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
+| `ortb2.user`      | optional | Details via a Open RTB User object about the human user of the device; the advertising audience.                                                                                                                                                                                      | N/A     | `object`  |
+| `ortb2.site`      | optional | Details via a Open RTB Site object about the publisher’s website.                                                                                                                                                                                                    | N/A     | `object`  |
+| `ortb2Imp.rwdd`   | optional | Indicates whether the user receives a reward for viewing the ad, where 0 = no, 1 = yes.                                                                                                                                                                                      | `1`     | `integer` |
+
+Besides these standard properties, `ext` field can be used to send any publisher specific data which may have been discussed with a Criteo representative.
 
 ### Video Object
 
@@ -65,7 +76,8 @@ In addition, Criteo adapter relies on parameters specified in the mediaTypes.vid
 | `playerSize`      | required | Width and height of the player                                                                                                                                                                                                                                               | `[640, 480]`    | `Array<integer>` |
 | `protocols`       | required | Supported video bid response protocols. VAST 1.0: `1`; VAST 2.0: `2`; VAST 3.0: `3`; VAST 1.0 Wrapper: `4`; VAST 2.0 Wrapper: `5`; VAST 3.0 Wrapper: `6`;                                                                                                                    | `|5, 6]`        | `Array<integer>` |
 | `maxduration`     | required | Maximum ad duration in seconds                                                                                                                                                                                                                                               | `20`            | `integer`        |
-| `api`             | required | API frameworks supported. VPAID 1.0: `1`; VPAID 2.0: `2`; MRAID-1: `3`; ORMMA: `4`; MRAID-2: `5`;                                                                                                                                                                            | `[1, 2]`        | `Array<integer>` |
+| `api`             | required | API frameworks supported. VPAID 1.0: `1`; VPAID 2.0: `2`; MRAID 1.0: `3`; ORMMA: `4`; MRAID 2.0: `5`; MRAID 3.0: `6`; OMID 1.0: `7`;                                                                                                                                                                            | `[1, 2]`        | `Array<integer>` |
+| `plcmt`           | optional | 1=in-stream, 2=accompanying content, 3=interstitial, 4=no content/standalone. Highly recommended to comply with new IAB video specifications.                                                                                                                                | `1`             | `integer`        |
 
 #### Example of Video Ad-unit
 ```

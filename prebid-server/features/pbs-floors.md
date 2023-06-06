@@ -12,9 +12,6 @@ title: Prebid Server | Features | Price Floors
 
 ## Overview
 
-{: .alert.alert-danger :}
-This feature is in beta. Please post [questions and issues](https://github.com/prebid/prebid-server-java/issues).
-
 {: .alert.alert-warning :}
 The Floors feature is currently only available in PBS-Java.
 
@@ -37,7 +34,7 @@ The syntax of the floors schema is so similar between Prebid.js and Prebid Serve
 
 {: .alert.alert-info :}
 The PBS floors feature isn't a formal [PBS module](/prebid-server/pbs-modules/). Yeah, that bums us out too.
-Turns out that floors just don't fit the 7-stage module architecture model.
+Turns out that floors just don't fit the module architecture model.
 Specifically, modules don't support the feature where bid adapters need access to floor data.
 
 ### Terminology
@@ -60,7 +57,7 @@ Here's the high level picture of what's happening in Prebid Server to support fl
 
 {: .alert.alert-info :}
 Vendor services generally calculate floors with optimization algorithms fed by an analytics adapter.
-Generally floors data would be updated hourly, or perhaps once per day.
+Floors data is expected to be updated hourly, or perhaps once per day.
 It is best practice is to avoid a "hardcode-and-forget" method of setting floors.
 If a publisher doesn't want to utilize a floors service, they should commit to periodically reviewing manually-defined numbers.
 

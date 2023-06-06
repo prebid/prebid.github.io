@@ -4,6 +4,7 @@ title: Gnet
 description: Prebid Gnet Bidder Adaptor
 pbjs: true
 biddercode: gnet
+sidebarType: 1
 ---
 
 ### Bid Params

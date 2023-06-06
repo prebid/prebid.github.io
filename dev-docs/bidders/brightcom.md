@@ -7,6 +7,7 @@ nav_section: reference
 pbjs: true
 biddercode: brightcom
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Note:

@@ -7,8 +7,9 @@ gdpr_supported: true
 gvl_id: 82
 usp_supported: true
 coppa_supported: true
-media_types: banner, video
-userId: criteo, pubCommonId, unifiedId
+gpp_supported: true
+media_types: banner, video, native
+userIds: all
 pbjs: true
 pbs: true
 pbs_app_supported: true
@@ -16,17 +17,23 @@ prebid_member: true
 floors_supported: true
 fpd_supported: true
 schain_supported: true
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Registration](#smaato-registration)
-- [Note](#smaato-note)
-- [Bid Params](#smaato-bid-params)
-- [App Object](#smaato-app-object)
-- [Example Ad Units](#smaato-example-ad-units)
-- [First Party Data](#smaato-first-party)
-- [Test Parameters](#smaato-test-parameters)
+- [Table of Contents](#table-of-contents)
+- [Registration](#registration)
+- [Note](#note)
+- [Bid Params](#bid-params)
+  - [App Object](#app-object)
+- [Example Ad Units](#example-ad-units)
+  - [Example Banner Ad Unit](#example-banner-ad-unit)
+  - [Example Video Ad Unit](#example-video-ad-unit)
+  - [Example Native Ad Unit](#example-native-ad-unit)
+  - [Example AdPod (long-form) Video Ad Unit](#example-adpod-long-form-video-ad-unit)
+- [First Party Data](#first-party-data)
+- [Test Parameters](#test-parameters)
 
 <a name="smaato-registration" />
 
@@ -51,6 +58,10 @@ The Smaato adapter will convert bidfloors to 'USD' currency as needed.
 | `adspaceId` | required | Your Smaato adspace id. Required for non adpod requests | `'11002234'`   | `string` |
 | `adbreakId` | required | Your Smaato adbreak id. Required for adpod (long-form video) requests | `'41002234'`   | `string` |
 | `app` | optional | Object containing mobile app parameters.  See the [App Object](#smaato-app-object) for details.| `app : { ifa: '56700000-9cf0-22bd-b23e-46b96e40003a'}` | `object` |
+
+##### Note
+
+In case of AdPods, the Smaato adapter will only read the first `imp[].skadn` entry for each AdPod, such that there should only be one `skadn` occurrence per AdPod.
 
 <a name="smaato-app-object" />
 
@@ -118,6 +129,51 @@ var adUnit = {
     }]
 };
 ```
+
+#### Example Native Ad Unit
+
+```javascript
+var adUnit = {
+    "code": "native unit",
+    "mediaTypes": {
+        native: {
+            sendTargetingKeys: false,
+            image: {
+                required: true,
+                sizes: [150, 50]
+            },
+            icon: {
+                required: true,
+                sizes: [50, 50]
+            },
+            title: {
+                required: true,
+                len: 80
+            },
+            sponsoredBy: {
+                required: true
+            },
+            body: {
+                required: true
+            },
+            cta: {
+                required: false
+            },
+            rating: {
+                required: false
+            }
+        }
+    },
+    "bids": [{
+        "bidder": "smaato",
+        "params": {
+            "publisherId": "1100012345",
+            "adspaceId": "11002234"
+        }
+    }]
+};
+```
+
 #### Example AdPod (long-form) Video Ad Unit
 
 ```javascript
@@ -159,6 +215,8 @@ Publishers should use the `ortb2` method of setting First Party Data. The follow
 - ortb2.user.yob
 - ortb2.user.gender
 - ortb2.user.ext.eids
+- ortb2.device.geo
+- ortb2.device.ifa
 
 The IAB standard taxonomies are not supported.
 
@@ -178,6 +236,13 @@ pbjs.setConfig({
             keywords: "a,b", 
             gender: "M", 
             yob: 1984
+        },
+        device: {
+            ifa: "identifier",
+            geo: {
+                lat: 53.5488,
+                lon: 9.9872
+            }
         }
     }
 });

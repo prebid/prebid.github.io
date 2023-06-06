@@ -10,12 +10,14 @@ schain_supported: true
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 floors_supported: true
-userIds: admixerId, adtelligentId, amxId, britepoolId, criteo, dapId, deepintentId, dmdId, fabrickId, flocId, hadronId, id5Id, identityLink, idxId, imuId, intentIqId, kinessoId, liveIntentId, lotamePanoramaId, merkleId, mwOpenLinkId, naveggId, netId, novatiq, parrableId, pubCommonId, publinkId, quantcastId, sharedId, tapadId, uid2, unifiedId, verizonMediaId, zeotapIdPlus
+userIds: admixerId, adtelligentId, amxId, britepoolId, criteo, dapId, deepintentId, dmdId, fabrickId, hadronId, id5Id, identityLink, idxId, imuId, intentIqId, kinessoId, liveIntentId, lotamePanoramaId, merkleId, mwOpenLinkId, naveggId, netId, novatiq, parrableId, pubCommonId, publinkId, quantcastId, sharedId, tapadId, uid2, unifiedId, verizonMediaId, zeotapIdPlus
 prebid_member: true
 fpd_supported: true
 gvl_id: 69
 fpd_supported: true
+sidebarType: 1
 ---
 
 ### Registration
@@ -34,12 +36,15 @@ IMPORTANT: only include either openxBidAdapter or openxOrtbBidAdapter in your bu
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
-| `delDomain` or `platform` | required | OpenX delivery domain or platform id provided by your OpenX representative. Both may be present. `platform` is preferred | "PUBLISHER-d.openx.net" or "555not5a-real-plat-form-id0123456789" | String |
+| `delDomain` ~~or `platform`~~** | required | OpenX delivery domain provided by your OpenX representative. | "PUBLISHER-d.openx.net" | String |
 | `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String |
 | `customParams` | optional | User-defined targeting key-value pairs. customParams applies to a specific unit. | `{key1: "v1", key2: ["v2","v3"]}` | Object |
-| `customFloor` | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 1.50 | Number |
+| `customFloor` | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue.<br/><br/>Note:<br/> OpenX suggests using the [Price Floor Module](/dev-docs/modules/floors.html) instead of customFloor. The Price Floor Module is prioritized over customFloor if both are present. | 1.50 | Number |
 | `doNotTrack` | optional | Prevents advertiser from using data for this user. <br/><br/> **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean |
 | `coppa` | optional | Enables Child's Online Privacy Protection Act (COPPA) regulations. **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean |
+
+** platform is deprecated. Please use delDomain instead. If you have any questions please contact your representative.
+
 
 ### AdUnit Format for Banner
 ```javascript
@@ -63,7 +68,7 @@ var adUnits = [
         bidder: 'openx',
         params: {
           unit: '539439964',
-          platform: 'a3aece0c-9e80-4316-8deb-faf804779bd1',
+          delDomain: 'se-demo-d.openx.net',
           customParams: {
             key1: 'v1',
             key2: ['v2', 'v3']
@@ -81,7 +86,9 @@ var adUnits = [
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String |
-| `delDomain` or `platform` | required | OpenX delivery domain or platform id provided by your OpenX representative. Both may be present. `platform` is preferred | "PUBLISHER-d.openx.net" or "555not5a-real-plat-form-id0123456789" | String |
+| `delDomain` ~~or `platform`~~** | required | OpenX delivery domain provided by your OpenX representative. | "PUBLISHER-d.openx.net" | String |
+
+** platform is deprecated. Please use delDomain instead. If you have any questions please contact your representative.
 
 #### mediaTypes.video
 
@@ -163,7 +170,7 @@ var adUnits = [
         bidder: 'openx',
         params: {
           unit: '539439964',
-          platform: 'a3aece0c-9e80-4316-8deb-faf804779bd1',
+          delDomain: 'se-demo-d.openx.net',
           customParams: {
             key1: 'v1',
             key2: ['v2', 'v3']
@@ -193,7 +200,7 @@ var adUnits = [
 ```
 
 #### First Party Data
-OpenX supports FPD configured under `ortb2.user`and `ortb2.site.content` as described [here]((/features/firstPartyData.html)).
+OpenX supports FPD configured under `ortb2.user`and `ortb2.site.content` as described [here](/features/firstPartyData.html).
 Ad unit specific FPD is not supported, and segment taxonomies (`segtax`) are simply passed through. If you have any 
 questions, please reach out to us at prebid@openx.com
 
@@ -242,6 +249,6 @@ pbjs.setConfig({
 ```
 
 ## Additional Details
-[Banner Ads](https://docs.openx.com/Content/developers/containers/prebid-adapter.html)
+[Banner Ads](https://docs.openx.com/Content/developers/containers/prebid-adapter.html) (Customer login required.)
 
-[Video Ads](https://docs.openx.com/Content/developers/containers/prebid-video-adapter.html)
+[Video Ads](https://docs.openx.com/Content/developers/containers/prebid-video-adapter.html) (Customer login required.)

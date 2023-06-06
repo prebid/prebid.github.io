@@ -9,10 +9,12 @@ media_types: banner, video
 safeframes_ok: false
 deals_supported: true
 pbjs: true
+enable_download: false
+sidebarType: 1
 ---
 ### Note:
 
-The Inmar Bidding adapter requires setup before beginning. Please contact us at prebid@inmar.com
+The Inmar bidder is no longer supported. Please be advised to stop use of this adapter in all Prebid.js versions.
 
 ### Bid Params
 

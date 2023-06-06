@@ -5,6 +5,7 @@ description: Prebid TripleLift Bidder Adapter
 biddercode: triplelift
 gdpr_supported: true
 usp_supported: true
+gpp_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
@@ -18,14 +19,22 @@ pbs: true
 pbs_app_supported: true
 fpd_supported: true
 gvl_id: 28
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Overview](#triplelift-overview)
-- [Bid Parameters](#triplelift-bid-params)
-- [Example Configuration](#triplelift-config) 
-- [First Party Data](#triplelift-first-party)
+- [Table of Contents](#table-of-contents)
+- [Overview](#overview)
+- [Bid Params](#bid-params)
+  - [Banner](#banner)
+  - [Video](#video)
+- [Example Configuration](#example-configuration)
+  - [Banner](#banner-1)
+  - [Video (Instream)](#video-instream)
+  - [Video (Outstream)](#video-outstream)
+- [First Party Data](#first-party-data)
+- [Programmatic DMP](#triplelift-programmatic-dmp)
 
 <a name="triplelift-overview" />
 
@@ -33,10 +42,8 @@ gvl_id: 28
 
 Publishers may integrate with Triplelift through our Prebid.js and/or Prebid Server adapters. See below for more information.
 
-{% capture version2 %}
+{: .alert.alert-info :}
 The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at prebid@triplelift.com.
-{% endcapture %}
-{% include alerts/alert_important.html content=version2 %}
 
 <a name="triplelift-bid-params" />
 
@@ -54,17 +61,16 @@ The Triplelift Prebid Server bidding adapter and user sync endpoint require setu
 
 #### Video
 
+Triplelift bid params for video mediaTypes are identical, but be sure to include the appropriate video.placement value to indicate instream/outstream format. Speak with your partner manager about which value to place here based on what formats are enabled.
+
+See the [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html#adunitmediatypesvideo) for more info.
 
 {: .table .table-bordered .table-striped }
 
 | Name            | Scope                        | Description                                                                          | Example                                     | Type     |
 |-----------------|------------------------------|--------------------------------------------------------------------------------------|---------------------------------------------|----------|
-| `inventoryCode` | required                     | TripleLift inventory code for this ad unit (provided to you by your partner manager) | `'pubname_instream_1'`                      | `string` |
-| `video`         | required                     | oRTB video object                                                                    | `{ mimes: ['video/mp4'], w: 640, h: 480 }`     | `object`  |
-| `video.context`         | required             | Instream or Outstream (v7.8+ for all Outstream)                           | `instream`                                      | `string`  |
-| `video.w`         | required                   | oRTB video object width dimension                                                    | `640`                                      | `int`  |
-| `video.h`         | required                   | oRTB video object height dimension                                                   | `480`                                      | `int`  |
-| `video.placement`         | optional                   | Instream: 1;      Outstream: 3, 4, 5.                                                   | `3`                                      | `int`  |
+| `adUnit.mediaTypes.video.placement`         | required                   | Instream: 1;      Outstream: 3, 4, 5.                      | `3`                                         | `int`  |
+| `adUnit.mediaTypes.video.playerSize` | required | Video player dimensions or size in pixels | `[640, 480]` | `integer array` |
 
 <a name="triplelift-config" />
 
@@ -109,11 +115,7 @@ var videoAdUnit = {
     bids: [{
         bidder: 'triplelift',
         params: {
-            inventoryCode: 'pubname_instream1',
-            video: {
-                w: 640,
-                h: 480
-            }
+            inventoryCode: 'pubname_instream1'
         }
     }]
 };
@@ -136,10 +138,6 @@ var videoAdUnit = {
         bidder: 'triplelift',
         params: {
             inventoryCode: 'pubname_outstream',
-            video: {
-                w: 640,
-                h: 480
-            }
         }
     }]
 };
@@ -154,3 +152,24 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 - `ortb2.user.*`: Standard IAB OpenRTB 2.5 user fields
 
 AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
+
+<a name="triplelift-programmatic-dmp" />
+
+### Programmatic DMP
+
+Triplelift provides audience and contextual targeting via the integration of a Programmatic DMP tag. Please reach out to your Triplelift representative to discuss specifics of the integration. 
+
+#### Requirements:
+- Prebid v7.1.0 or later
+- In Prebid's `bidderSettings`, the `storageAllowed` parameter must be set to **true**. In Prebid v7.0 and later, `storageAllowed` defaults to false, so you will need to explicitly set this value to true.
+
+    ```
+        pbjs.bidderSettings = {
+            triplelift: {
+                storageAllowed: true
+            }
+        }
+    ```
+
+- The Programmatic DMP **tag** must be included at the top of every webpage in order to collect audience and contextual information on the respective page.
+- The Programmatic DMP **tag** should be as high up in `<head>` as possible.

@@ -8,8 +8,12 @@ media_types: native
 prebid_member: true
 coppa_supported: true
 gvl_id: 69
+sidebarType: 1
+enable_download : false
 ---
 
+{: .alert.alert-warning :}
+Deprecated adapter
 
 ### Bid Params
 
