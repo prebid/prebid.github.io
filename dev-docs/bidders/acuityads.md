@@ -34,4 +34,4 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `host`      | required | Region id               | `'ep1'`    | `string` |
-| `accountid`      | required | Endpoint id | `'hash'`    | `string` |
+| `accountid`      | required | Endpoint id / Placement id | `'hash'`    | `string` |
