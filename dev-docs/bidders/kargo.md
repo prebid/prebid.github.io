@@ -19,6 +19,7 @@ fpd_supported: false
 pbs: true
 pbs_app_supported: false
 prebid_member: true
+gpp_supported: true
 multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
