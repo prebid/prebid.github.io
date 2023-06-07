@@ -13,7 +13,7 @@ gpp_supported: true
 schain_supported: true
 coppa_supported: true
 floors_supported: true
-fpd_supported: true
+fpd_supported: false
 gvl_id: 25
 userIds: All
 sidebarType: 1
