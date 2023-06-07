@@ -10,8 +10,6 @@ gdpr_supported: true
 gvl_id: 1028
 usp_supported: true
 prebid_member: false
-floors_supported: false
-fpd_supported: false
 schain_supported: false
 safeframes_ok: true
 deals_supported: false
