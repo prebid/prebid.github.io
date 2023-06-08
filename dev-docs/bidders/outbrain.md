@@ -7,7 +7,7 @@ gdpr_supported: true
 gvl_id: 164
 usp_supported: true
 coppa_supported: true
-media_types: banner, native
+media_types: banner, native, video
 safeframes_ok: true
 pbjs: true
 pbs: true
@@ -17,6 +17,7 @@ userIds: id5Id, identityLink
 floors_supported: true
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: partial
+sidebarType: 1
 ---
 
 ### Registration
@@ -148,6 +149,44 @@ var adUnits = [
       banner: {
         sizes: [[300, 250]]
       } 
+    },
+    bids: [{
+        bidder: 'outbrain',
+        params: {
+            publisher: {
+              id: '2706',
+              name: 'Publishers Name',
+              domain: 'publisher.com'
+            },
+            tagid: 'tag-id',
+            bcat: ['IAB1-1'],
+            badv: ['example.com']
+        }
+    }]
+];
+```
+
+#### Video example
+```
+var adUnits = [
+    code: '/19968336/prebid_video_example_1',
+    mediaTypes: {
+        video: {
+            context: "outstream",
+            playerSize: [[640, 480]],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [1],
+            skip: 1,
+            api: [2],
+            minbitrate: 1000,
+            maxbitrate: 3000,
+            minduration: 3,
+            maxduration: 10,
+            startdelay: 2,
+            placement: 4,
+            linearity: 1
+        },
     },
     bids: [{
         bidder: 'outbrain',

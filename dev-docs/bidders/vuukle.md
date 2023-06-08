@@ -11,6 +11,7 @@ coppa_supported: true
 schain_supported: true
 prebid_member: true
 ---
+sidebarType: 1
 
 ### Bid Params
 

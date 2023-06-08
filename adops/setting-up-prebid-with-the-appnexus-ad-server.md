@@ -78,7 +78,7 @@ Follow the creative setup instructions in [Add Creatives](https://docs.xandr.com
 ![New creative]({{ site.github.url }}/assets/images/ad-ops/appnexus-setup/prebid-creative-appnexus.png) {: .pb-lg-img :}
 
 {% highlight html %}
-<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/#{HB_FORMAT}.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = window.location.host;
@@ -148,6 +148,7 @@ It will also make it easy to turn the targeting on and off for a given placement
 
 ## Related Topics
 
-+ [Getting Started with Prebid.js for Header Bidding]({{site.github.url}}/overview/getting-started.html)
-
-+ [Using Prebid.js with Xandr as your Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html) (Developer example)
+- [Ad Ops and Prebid](/adops/before-you-start.html)
+- [Ad Ops Planning Guide](/adops/adops-planning-guide.html) 
+- [Getting Started with Prebid.js for Developers](/dev-docs/getting-started.html)
+- [Using Prebid.js with Xandr Publisher Ad Server](/dev-docs/examples/use-prebid-with-appnexus-ad-server.html) (Developer example)

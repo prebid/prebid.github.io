@@ -7,9 +7,13 @@
     <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
 
     <!--brid & prebid js code-->
-    <script type="text/javascript" src="//services.brid.tv/player/build/brid.min.js"></script>
+    <script>
+      window.onetrustLoaded.then(() => {
+        OneTrust.InsertScript("//services.brid.tv/player/build/brid.min.js", 'head', null, {}, 'C0003');
+      })
+    </script>
 
-    <script type="text/javascript">
+    <script type="text/plain" class="optanon-category-C0003">
 
 		var pbjs = pbjs || {};
 		pbjs.que = pbjs.que || [];

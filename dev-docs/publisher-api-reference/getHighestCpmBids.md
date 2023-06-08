@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.getHighestCpmBids([adUnitCode])
 description: 
+sidebarType: 1
 ---
 
 

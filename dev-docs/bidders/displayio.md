@@ -11,6 +11,7 @@ pbjs: true
 pbs: false
 prebid_member: false
 gvl_id: none
+sidebarType: 1
 ---
 
 ### Note:

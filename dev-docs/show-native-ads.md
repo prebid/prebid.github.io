@@ -54,7 +54,7 @@ The native ad responses get placed on specific keys that are sent into your ad s
 
 Note that these keys correspond directly to the `mediaTypes.native` object you define in your ad unit (which is [described in more detail below](#native-ad-keys)).
 
-The ad ops team will then reference these keys in the ad server to set up the title, body, etc.  For ad ops setup instructions, see [Set up Native Ads in your Ad Server]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html).
+The ad ops team will then reference these keys in the ad server to set up the title, body, etc.  For ad ops setup instructions, see [GAM Step by Step - Native Creatives](/adops/gam-native.html).
 
 ## Prerequisites
 
@@ -276,12 +276,12 @@ it will respond to that request with the actual asset values for that `adId` in 
 A script within the native template can listen for this response and replace the placeholder values with their actual values.
 
 {: .alert.alert-success :}
-The `native-trk.js` script from `prebid-universal-creative` can replace native placeholder values with their actual values. If a native template includes a link with a `pbAdId` attribute set to the targeting key `hb_adid`, and a `class` attribute set to `"pb-click"`, the function `pbNativeTag.startTrackers` will replace any placeholders found within the HTML template (but not CSS template) with their actual values automatically. For more on how to set this up in a native template, see [Style your native ad]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html#3-style-your-native-ad)
+The `native-trk.js` script from `prebid-universal-creative` can replace native placeholder values with their actual values. If a native template includes a link with a `pbAdId` attribute set to the targeting key `hb_adid`, and a `class` attribute set to `"pb-click"`, the function `pbNativeTag.startTrackers` will replace any placeholders found within the HTML template (but not CSS template) with their actual values automatically. For more on how to set this up in a native template, see [Style Your Native Ad](/adops/gam-native.html#style-your-native-ad)
 
 ## Working Examples
 
 + [Prebid Native Examples](/dev-docs/examples/native-ad-example.html)
 
-## Related Topics
+## Further Reading
 
-+ [Setting up Prebid Native in Google Ad Manager]({{site.github.url}}/adops/setting-up-prebid-native-in-dfp.html) (Ad Ops Setup Instructions)
++ [GAM Step by Step - Native Creatives](/adops/gam-native.html) (Ad Ops Setup Instructions)

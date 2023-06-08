@@ -7,6 +7,7 @@ biddercode: doceree
 media_types: banner
 tcf2_supported: true
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params

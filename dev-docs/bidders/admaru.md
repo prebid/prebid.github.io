@@ -8,6 +8,7 @@ media_types: banner
 gdpr_supported: false
 schain_supported: false
 usp_supported: false
+sidebarType: 1
 ---
 
 

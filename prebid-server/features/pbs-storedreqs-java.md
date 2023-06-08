@@ -14,8 +14,8 @@ title: Prebid Server | Features | Setting Up Stored Requests for Java
 ## Overview
 
 There are two different kinds of stored requests:
-- **impression-level stored requests**: these are scoped to the contents of a single OpenRTB `imp` object
-- **top-level stored requests**: these are scoped to the entire OpenRTB package, and is where you can place details in ext.prebid, tmax, site, etc. It is not recommended to place imp objects in this type of stored request.
+- **impression-level stored requests**: these are scoped to the contents of a single OpenRTB `imp` object. Prebid Server defines these in imp[].ext.prebid.storedrequest.
+- **top-level stored requests**: these are scoped to the entire OpenRTB package, and is where you can place details in ext.prebid, tmax, site, etc. It is not recommended to place imp objects in this type of stored request. Prebid Server defines these in ext.prebid.storedrequest.
 
 ## PBS-Java Stored Request Quickstart
 
@@ -141,8 +141,8 @@ HTTP request properties will overwrite the Stored Request ones.
 
 ## Top-Level Stored Requests
 
-So far, our examples have only used Stored Imp data. However, Stored Requests
-are also allowed on the [BidRequest](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=15).
+So far, our examples have only used impression-level data. However, Stored Requests
+are also allowed at the top level at ext.prebid.storedrequest.
 These work exactly the same way, but support storing properties like timeouts and price granularity.
 
 For example, assume the following `stored-requests/{id}.json`:
@@ -197,11 +197,13 @@ will produce the same auction as if the HTTP request had been:
 }
 ```
 
-Prebid Server does allow Stored BidRequests and Stored Imps in the same HTTP Request.
-The Stored BidRequest will be applied first, and then the Stored Imps after.
+Prebid Server does allow both top-level and impression-level stored requests in the same HTTP Request.
+The top-level stored request will be applied first, and then the impression-level stored request.
 
 **Beware**: Stored Request data will not be applied recursively.
-If a Stored BidRequest includes Imps with their own Stored Request IDs, then the data for those Stored Imps will not be resolved.
+If a Stored BidRequest includes Imps with their own Stored Request IDs, then the data for the contained Stored Imps will not be resolved.
+
+**Note**: However, stored requests may contain [storedresponses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses).
 
 ## Alternate backends
 
@@ -225,8 +227,8 @@ settings:
 ```
 
 The select query columns of `stored-requests-query` and `amp-stored-requests-query` properties should correspond to the specific format:
-- first column: account ID which is searched by.
-- second column: ID of stored data item which is searched by.
+- first column: account ID, which is used to make sure that storedrequests are unique to the account
+- second column: ID of stored data item
 - third column: value of stored data item.
 - forth column: type of stored data item. Can be `request` for stored requests or `imp` for stored impressions.
 
@@ -277,7 +279,7 @@ settings:
     dbname: database-name
     user: username
     password: password
-    stored-requests-query: SELECT accountId, reqid, requestData, 'request' as dataType FROM stored_requests WHERE reqid IN (%REQUEST_ID_LIST%) UNION ALL SELECT accountId, impid, impData, 'imp' as dataType FROM stored_imps WHERE impid IN (%IMP_ID_LIST%)
+    stored-requests-query: SELECT accountId, reqid, requestData, 'request' as dataType FROM stored_requests WHERE reqid IN (%REQUEST_ID_LIST%) UNION ALL SELECT accountId, impid, impData, 'imp' as dataType FROM stored_requests WHERE impid IN (%IMP_ID_LIST%)
     amp-stored-requests-query: SELECT accountId, reqid, requestData, 'request' as dataType FROM stored_requests WHERE reqid IN (%REQUEST_ID_LIST%)
   http:
     endpoint: http://stored-requests.prebid.com
@@ -296,3 +298,4 @@ Refresh rate can be negative or zero - in such case the data will be fetched onc
 
 ## Related Reading
 - [Stored Responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses)
+- [Hosting a PBS database](/prebid-server/hosting/pbs-database.html)

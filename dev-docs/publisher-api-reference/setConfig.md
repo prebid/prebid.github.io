@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.setConfig(options)
 description:
+sidebarType: 1
 ---
 
 
@@ -14,6 +15,7 @@ See below for usage examples.
 Core config:
 
 + [Debugging](#setConfig-Debugging)
++ [Allow activities](#setConfig-allow-activities)
 + [Device Access](#setConfig-deviceAccess)
 + [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 + [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
@@ -38,6 +40,7 @@ Core config:
 + [Caching VAST XML](#setConfig-vast-cache)
 + [Site Metadata](#setConfig-site)
 + [Disable performance metrics](#setConfig-performanceMetrics)
++ [Setting alias registry to private](#setConfig-aliasRegistry)
 + [Generic Configuration](#setConfig-Generic-Configuration)
 + [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
 
@@ -66,6 +69,12 @@ pbjs.setConfig({ debug: true });
 
 {: .alert.alert-warning :}
 Note that turning on debugging for Prebid Server causes most server-side adapters to consider it a test request, meaning that they won't count on reports.
+
+<a id="setConfig-allow-activities" />
+
+#### Allow activities
+
+Starting since Prebid 7.48, you can prevent Prebid, or individual modules, from performing certain activities through `allowActivities` configuration, which provides fine-grained control over a number privacy-related items, including access to device storage, first party data, or user IDs. For more information, see [activity controls](/dev-docs/activity-controls.html).
 
 <a name="setConfig-deviceAccess" />
 
@@ -477,16 +486,22 @@ See the [Prebid Server module](/dev-docs/modules/prebidServer.html).
 #### Mobile App Post-Bid
 
 To support [post-bid](/overview/what-is-post-bid.html) scenarios on mobile apps, the
-prebidServerBidAdapter module recognizes the `app` config object to
+prebidServerBidAdapter module will accept `ortb2.app` config to
 forward details through the server:
 
 {% highlight js %}
 pbjs.setConfig({
-   app: {
+  ortb2: {
+    app: {
       bundle: "org.prebid.mobile.demoapp",
       domain: "prebid.org"
-   }
+    }
+  }
+});
 {% endhighlight %}
+
+{: .alert.alert-warning :}
+In PBJS 4.29 and earlier, don't add the `ortb2` level here -- just `app` directly. Oh, and please upgrade. 4.29 was a long time ago.
 
 <a name="setConfig-Configure-User-Syncing" />
 
@@ -745,6 +760,8 @@ The targeting key names and the associated prefix value filtered by `allowTarget
 | CACHE_ID | `hb_cache_id` | yes | Network cache ID for AMP or Mobile |
 | CACHE_HOST | `hb_cache_host` | yes | |
 | ADOMAIN | `hb_adomain` | no | Set to bid.meta.advertiserDomains[0]. Use cases: report on VAST errors, set floors on certain buyers, monitor volume from a buyer, track down bad creatives. |
+| ACAT | `hb_acat` | no | Set to bid.meta.primaryCatId. Optional category targeting key that can be sent to ad servers that stores the value of the Primary IAB category ID if present. Use cases: category exclusion with an ad server order or programmatic direct deal on another ad slot (good for contextual targeting and/or brand
+safety/suitability). |
 | title | `hb_native_title` | yes | |
 | body | `hb_native_body` | yes | |
 | body2 | `hb_native_body2` | yes | |
@@ -1191,8 +1208,11 @@ be retrieved. There are two different flows possible with Prebid.js around VAST 
 | Cache Attribute | Required? | Type | Description |
 |----+--------+-----+-------|
 | cache.url | yes | string | The URL of the Prebid Cache server endpoint where VAST creatives will be sent. |
+| cache.timeout | no | number | Timeout (in milliseconds) for network requests to the cache | 
 | cache.vasttrack | no | boolean | Passes additional data to the url, used for additional event tracking data. Defaults to `false`. |
 | cache.ignoreBidderCacheKey | no | boolean | If the bidder supplied their own cache key, setting this value to true adds a VAST wrapper around that URL, stores it in the cache defined by the `url` parameter, and replaces the original video cache key with the new one. This can dramatically simplify ad server setup because it means all VAST creatives reside behind a single URL. The tradeoff: this approach requires the video player to unwrap one extra level of VAST. Defaults to `false`. |
+| cache.batchSize | no | number | Enables video cache requests to be batched by a specified amount (defaults to 1) instead of making a single request per each video. |
+| cache.batchTimeout | no | number | Used in conjunction with `batchSize`, `batchTimeout` specifies how long to wait in milliseconds before sending a batch video cache request based on the value for `batchSize` (if present). A batch request will be made whether the `batchSize` amount was reached or the `batchTimeout` timer runs out. `batchTimeout` defaults to 0. |
 
 Here's an example of basic client-side caching. Substitute your Prebid Cache URL as needed:
 
@@ -1239,6 +1259,25 @@ Setting the `vasttrack` parameter to `true` supplies the POST made to the `/vtra
 Prebid Server endpoint with a couple of additional parameters needed
 by the analytics system to join the event to the original auction request.
 
+Optionally, `batchSize` and `batchTimeout` can be utlilized as illustrated with the example below:
+
+{% highlight js %}
+pbjs.setConfig({
+        cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache',
+            batchSize: 4,
+            batchTimeout: 50
+        }
+});
+{% endhighlight %}
+
+The example above states that a timer will be initialized and wait up to 50ms for 4 responses to have been collected and then will fire off one batch video cache request for all 4 responses. Note that the batch request will be made when the specified `batchSize` number is reached or with the number of responses that could be collected within the timeframe specified by the value for `batchTimeout`.
+
+If a batchSize is set to 2 and 5 video responses arrive (within the timeframe specified by `batchTimeout`), then three batch requests in total will be made:
+1. Batch 1 will contain cache requests for 2 videos
+2. Batch 2 will contain cache requests for 2 videos
+3. Batch 3 will contain cache requests for 1 video
+
 <a name="setConfig-instream-tracking" />
 
 #### Instream tracking
@@ -1273,21 +1312,23 @@ More examples [here](/dev-docs/modules/instreamTracking.html#example-with-urlpat
 
 #### Site Configuration
 
-{: .alert.alert-info :}
-This setting is obsolete as of Prebid.js 4.30. Please set site fields in `ortb2.site` as [First Party Data](#setConfig-fpd).
-
 Adapters, including Prebid Server adapters, can support taking site parameters like language.
-The structure here is OpenRTB; the site object will be available to client- and server-side adapters.
+Just set the `ortb2.site` object as First Party Data to make it available to client- and server-side adapters.
 
 {% highlight js %}
 pbjs.setConfig({
-   site: {
+  ortb2: {
+    site: {
        content: {
            language: "en"
        }
-   }
+    }
+  }
 });
 {% endhighlight %}
+
+{: .alert.alert-warning :}
+In PBJS 4.29 and earlier, don't add the `ortb2` level here -- just `site` directly. Oh, and please upgrade. 4.29 was a long time ago.
 
 <a name="setConfig-auctionOptions" />
 
@@ -1399,6 +1440,48 @@ Notes:
 
 
 
+<a name="setConfig-topicsIframeConfig" />
+
+#### Topics Iframe Configuration
+
+Topics iframe implementation is the enhancements of existing module under topicsFpdModule.js where different bidders will call the topic API under their domain to fetch the topics for respective domain and the segment data will be part of ORTB request under user.data object. Default config is maintained in the module itself. Below are the configuration which can be used to configure and override the default config maintained in the module.
+
+```
+pbjs.setConfig({
+    userSync: {
+        ...,
+        topics: { 
+            maxTopicCaller: 3, // SSP rotation 
+            bidders: [{
+                bidder: 'pubmatic',
+                iframeURL: 'https://ads.pubmatic.com/AdServer/js/topics/topics_frame.html',
+                expiry: 7 // Configurable expiry days
+            },{
+                bidder: 'rubicon',
+                iframeURL: 'https://rubicon.com:8080/topics/fpd/topic.html', // dummy URL
+                expiry: 7 // Configurable expiry days
+            },{
+                bidder: 'appnexus',
+                iframeURL: 'https://appnexus.com:8080/topics/fpd/topic.html', // dummy URL
+                expiry: 7 // Configurable expiry days
+            }]
+        }
+        ....
+    }
+})
+
+```
+
+{: .table .table-bordered .table-striped }
+| Field | Required? | Type | Description |
+|---|---|---|---|
+| topics.maxTopicCaller | no | integer | Defines the maximum numbers of Bidders Iframe which needs to be loaded on the publisher page. Default is 1 which is hardcoded in Module. Eg: topics.maxTopicCaller is set to 3. If there are 10 bidders configured along with their iframe URLS, random 3 bidders iframe URL is loaded which will call TOPICS API. If topics.maxTopicCaller is set to 0, it will load random 1(default) bidder iframe atleast. |
+| topics.bidders | no | Array of objects  | Array of topics callers with the iframe locations and other necessary informations like bidder(Bidder code) and expiry. Default Array of topics in the module itself.|
+| topics.bidders[].bidder | yes | string  | Bidder Code of the bidder(SSP).  |
+| topics.bidders[].iframeURL | yes | string  | URL which is hosted on bidder/SSP/third-party domains which will call Topics API.  |
+| topics.bidders[].expiry | no | integer  | Max number of days where Topics data will be persist. If Data is stored for more than mentioned expiry day, it will be deleted from storage. Default is 21 days which is hardcoded in Module. |
+
+
 <a id="setConfig-performanceMetrics" />
 #### Disable performance metrics
 
@@ -1406,6 +1489,21 @@ Since version 7.17, Prebid collects fine-grained performance metrics and attache
 
 ```
 pbjs.setConfig({performanceMetrics: false})
+```
+
+<a id="setConfig-aliasRegistry" />
+#### Setting alias registry to private
+
+The alias registry is made public by default during an auction.  It can be referenced in the following way:
+
+```
+pbjs.aliasRegistry or pbjs.aliasRegistry[aliasName];
+```
+
+Inversely, if you wish for the alias registry to be private you can do so by using the option below (causing `pbjs.aliasRegistry` to return undefined): 
+
+```
+pbjs.setConfig({aliasRegistry: 'private'})
 ```
 
 <a name="setConfig-Generic-Configuration" />

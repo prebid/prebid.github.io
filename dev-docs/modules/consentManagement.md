@@ -72,6 +72,7 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr | `Object` | | |
 | gdpr.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
 | gdpr.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GDPR consent string. Default is `10000`. | `10000` |
+| gdpr.actionTimeout | `integer` | Length of time (in milliseconds) to allow the user to take action to consent if they have not already done so. The actionTimer first waits for the CMP to load, then the actionTimeout begins for the specified duration. Default is `undefined`. | `10000` |
 | gdpr.defaultGdprScope | `boolean` | Defines what the `gdprApplies` flag should be when the CMP doesn't respond in time or the static data doesn't supply. Defaults to `false`. | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 | gdpr.consentData.getTCData.tcString | `string` | Base64url-encoded TCF v2.0 string with segments. | |
@@ -95,7 +96,7 @@ A related parameter is `deviceAccess`, which is at the global level of Prebid.js
 
 ### TCF v2.0 Examples
 
-Example 1: IAB CMP using custom timeout and setting GDPR in-scope by default
+Example 1: IAB CMP using custom timeout and setting GDPR in-scope by default.
 
 {% highlight js %}
      var pbjs = pbjs || {};
@@ -113,7 +114,26 @@ Example 1: IAB CMP using custom timeout and setting GDPR in-scope by default
      });
 {% endhighlight %}
 
-Example 2: Static CMP using custom data passing.
+Example 2: IAB CMP using custom timeout in combination with actionTimeout and setting GDPR in-scope by default. The following will wait `500ms` for the CMP to load, if it does an additional `10000ms` will be waited for a user to provide consent (if none had yet been provided).
+
+{% highlight js %}
+     var pbjs = pbjs || {};
+     pbjs.que = pbjs.que || [];
+     pbjs.que.push(function() {
+        pbjs.setConfig({
+          consentManagement: {
+            gdpr: {
+              cmpApi: 'iab',
+              timeout: 500,
+              actionTimeout: 10000,
+              defaultGdprScope: true
+            }
+          }
+        });
+     });
+{% endhighlight %}
+
+Example 3: Static CMP using custom data passing.
 
 {% highlight js %}
      var pbjs = pbjs || {};

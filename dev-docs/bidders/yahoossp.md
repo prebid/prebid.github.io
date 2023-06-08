@@ -9,10 +9,14 @@ biddercode: yahoossp
 prebid_member: true
 gdpr_supported: true
 usp_supported: true
+gpp_supported: true
 schain_supported: true
 coppa_supported: true
+floors_supported: true
+fpd_supported: false
 gvl_id: 25
 userIds: All
+sidebarType: 1
 ---
 
 ### Important Notice (JS vs PBS)
@@ -35,6 +39,7 @@ For legacy "aol", "oneMobile" adapter partners/publishers.
 |------------|----------|------------------------|---------|----------|
 | dcn | Required | Site ID provided by Yahoo SSP | 'site1' | string |
 | pos | Required | Placement ID provided by Yahoo SSP | 'placement1' | string |
+
 #### PubId Integration Parameters (JS Only)
 For New partners/publishers joining Yahoo SSP
 floors_supported: true and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
@@ -60,5 +65,5 @@ For further setup details & examples please see https://github.com/prebid/Prebid
 * First Party Data (ortb2 & ortb2Imp)
 * Custom TTL (time to live)
 
-Thanks you,
+Thank you,
 Yahoo SSP

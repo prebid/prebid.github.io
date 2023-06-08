@@ -14,6 +14,7 @@ schain_supported: true
 coppa_supported: true
 userId: criteo, unifiedId, id5Id
 safeframes_ok: true
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -31,7 +32,7 @@ If you are using Google Ad Manager (GAM), it is highly recommended to make sure 
 If you absolutely want to run Duration Media in a Saferame creative, please contact your Duration Media repsentative to coordinate this setup.
 
 
-# Test Parameters
+### Test Parameters
 ```
     var adUnits = [
         {

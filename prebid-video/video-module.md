@@ -8,7 +8,7 @@ sidebarType: 4
 
 # The Video Module
 
-The Prebid Video Module allows Prebid to directly integrate with a Video Player.
+The Prebid Video Module allows Prebid to directly integrate with a Video Player. Currently the Video Module only supports instream implementations.
 
 The Video Module will allow Prebid.js to automatically:
 - render bids in the desired video player
@@ -38,7 +38,7 @@ The following Video Players are currently supported:
 {: .table .table-bordered .table-striped }
 | Video Player | Submodule Name | Vendor Code |
 |--------------|----------------|-------------|
-| [JW Player](https://www.jwplayer.com/)  | jwplayerVideoProvider | 1 |
+| [JW Player](https://info.jwplayer.com/sign-up/?utm_source=developer&utm_medium=CTA)  | jwplayerVideoProvider | 1 |
 | [video.js](https://videojs.com/)   | videojsVideoProvider | 2 |
 
 Not seeing your desired video player ? Learn how to add support by reading our [contribution guide](#Video-Module-Contributing)
@@ -62,6 +62,12 @@ To register a video player with Prebid, you must use `setConfig` to set a `video
 In order for Prebid to know which Ad Unit relates to which Video Player, you must include a `video` configuration in your Ad Unit. This allows Prebid to render the ad in the proper Video Player and obtain the Ortb data from the Video Player that will render the ad.
 For the list of properties in the `video` object of the ad unit please visit the [adUnit.video reference]({{site.baseurl}}/dev-docs/adunit-reference.html#adUnit.video).
 
+#### Implementation Examples
+
+[Video.js]({{site.baseurl}}/prebid-video/video-module/integration-examples/videojs.html)
+
+[JW Player]({{site.baseurl}}/prebid-video/video-module/integration-examples/jwplayer.html)
+
 ### Features for Publishers
 
 Integrating with the Video Module gives publishers access to the following features
@@ -81,47 +87,48 @@ The event payload includes metadata which can be used for analytics, error handl
 {: .table .table-bordered .table-striped }
 | Event Constant | Event String | Description |
 |----------------|--------------|-------------|
-| SETUP_COMPLETE | 'video_setupComplete' | Fired when the player is instantiated and the integration is complete. At this point the API is ready to be used. |
-| SETUP_FAILED | 'video_setupFailed' | Fired when the integration was unsuccessful. |
-| DESTROYED | 'video_destroyed' | Fired when the player instance has been destroyed. |
-| AD_REQUEST | 'video_adRequest' | Fired when the player is asked to load an ad. |
-| AD_BREAK_START | 'video_adBreakStart' | Fired when an ad break begins. An ad break consists of an ad, or a sequence of subsequent ads. |
-| AD_LOADED | 'video_adLoaded' | Fired when the player has finished loading the ad's VAST response. |
-| AD_STARTED | 'video_adStarted' | Fired when the ad playback has started. |
-| AD_IMPRESSION | 'video_adImpression' | Fired when an ad has been played for 2 consecutive seconds while the player is at least 50% viewable, as defined by the IAB standards for video ad impressions. |
-| AD_PLAY | 'video_adPlay' | Fired when ad playback starts and is resumed after a pause. |
-| AD_TIME | 'video_adTime' | Fired as the ad playback progresses. Frequency depends on the player. |
-| AD_PAUSE | 'video_adPause' | Fired when the ad is paused. |
-| AD_CLICK | 'video_adClick' | Fired when the ad is clicked or tapped. |
-| AD_SKIPPED | 'video_adSkipped' | Fired when the ad is skipped. |
-| AD_ERROR | 'video_adError' | Fired when an error occurred while attempting to load or render the ad. |
-| AD_COMPLETE | 'video_adComplete' | Fired when the ad has reached its end. |
-| AD_BREAK_END | 'video_adBreakEnd' | Fired when the sequence of ads in the break has ended. |
-| PLAYLIST | 'video_playlist' | Fired when a media playlist has been loaded into the player. |
-| PLAYBACK_REQUEST | 'video_playbackRequest' | Fired when an attempt to start the media playback has been made i.e. the viewer has tapped the play icon. |
-| AUTOSTART_BLOCKED | 'video_autostartBlocked' | Fired when autostart has been prevented. Generally, autostart is prevented by the browser. |
-| PLAY_ATTEMPT_FAILED | 'video_playAttemptFailed' | Fired when the user's attempt to begin playback is unsuccessful. |
-| CONTENT_LOADED | 'video_contentLoaded' | Fired when the content media is loaded into the player. |
-| PLAY | 'video_play' | Fired when the content playback begins or is resumed. |
-| PAUSE | 'video_pause' | Fired when the content playback is paused. |
-| BUFFER | 'video_buffer' | Fired when the player enters a buffer state. Usually caused by a delay in loading video segments to continue playback. |
-| TIME | 'video_time' | Fired as the content playback progresses. Frequency depends on the player. |
-| SEEK_START | 'video_seekStart' | Fired when the viewer begins seeking in content. |
-| SEEK_END | 'video_seekEnd' | Fired when the viewer has finished seeking in the content. |
-| MUTE | 'video_mute' | Fired when the player is muted. |
-| VOLUME | 'video_volume' | Fired when the player's volume has changed. |
-| RENDITION_UPDATE | 'video_renditionUpdate' | Fired when a change occurred in the video's encoded width, encoded height, reported video bitrate, reported audio bitrate or video framerate. |
-| ERROR | 'video_error' | Fired when a player experiences an unrecoverable playback error while playing or attempting to play content. |
-| COMPLETE | 'video_complete' | Fired when a media content has reached its end. |
-| PLAYLIST_COMPLETE | 'video_playlistComplete' | Fired when the last piece of content in a media playlist has ended. |
-| FULLSCREEN | 'video_fullscreen' | Fired when the player enters or exits fullscreen mode. |
-| PLAYER_RESIZE | 'video_playerResize' | Fired when the player's size is modified. |
-| VIEWABLE | 'video_viewable' | Fired when the player's viewability is changed. Viewability is a percentage of the player's size currently in view. The granularity at which this event is triggered depends on the player. |
-| CAST | 'video_cast' | Fired when casting to an external device begins or ends. |
-| AUCTION_AD_LOAD_ATTEMPT | 'video_auctionAdLoadAttempt' | Fired when Prebid attempts to load the winning ad from a Prebid auction into the player. |
-| AUCTION_AD_LOAD_ABORT | 'video_auctionAdLoadAbort' | Fired when the attempt to load the winning ad from a Prebid auction into the player is prevented. |
-| BID_IMPRESSION | 'video_bidImpression' | Fired when the ad from a bid resulted in an impression. |
-| BID_ERROR | 'video_bidError' | Fired when the ad from a bid resulted in an error. |
+| SETUP_COMPLETE | 'videoSetupComplete' | Fired when the player is instantiated and the integration is complete. At this point the API is ready to be used. |
+| SETUP_FAILED | 'videoSetupFailed' | Fired when the integration was unsuccessful. |
+| DESTROYED | 'videoDestroyed' | Fired when the player instance has been destroyed. |
+| AD_REQUEST | 'videoAdRequest' | Fired when the player is asked to load an ad. |
+| AD_BREAK_START | 'videoAdBreakStart' | Fired when an ad break begins. An ad break consists of an ad, or a sequence of subsequent ads. |
+| AD_LOADED | 'videoAdLoaded' | Fired when the player has finished loading the ad's VAST response. |
+| AD_STARTED | 'videoAdStarted' | Fired when the ad playback has started. |
+| AD_IMPRESSION | 'videoAdImpression' | Fired when an ad has been played for 2 consecutive seconds while the player is at least 50% viewable, as defined by the IAB standards for video ad impressions. |
+| AD_PLAY | 'videoAdPlay' | Fired when ad playback starts and is resumed after a pause. |
+| AD_TIME | 'videoAdTime' | Fired as the ad playback progresses. Frequency depends on the player. |
+| AD_PAUSE | 'videoAdPause' | Fired when the ad is paused. |
+| AD_CLICK | 'videoAdClick' | Fired when the ad is clicked or tapped. |
+| AD_SKIPPED | 'videoAdSkipped' | Fired when the ad is skipped. |
+| AD_ERROR | 'videoAdError' | Fired when an error occurred while attempting to load or render the ad. |
+| AD_COMPLETE | 'videoAdComplete' | Fired when the ad has reached its end. |
+| AD_BREAK_END | 'videoAdBreakEnd' | Fired when the sequence of ads in the break has ended. |
+| PLAYLIST | 'videoPlaylist' | Fired when a media playlist has been loaded into the player. |
+| PLAYBACK_REQUEST | 'videoPlaybackRequest' | Fired when an attempt to start the media playback has been made i.e. the viewer has tapped the play icon. |
+| AUTOSTART_BLOCKED | 'videoAutostartBlocked' | Fired when autostart has been prevented. Generally, autostart is prevented by the browser. |
+| PLAY_ATTEMPT_FAILED | 'videoPlayAttemptFailed' | Fired when the user's attempt to begin playback is unsuccessful. |
+| CONTENT_LOADED | 'videoContentLoaded' | Fired when the content media is loaded into the player. |
+| PLAY | 'videoPlay' | Fired when the content playback begins or is resumed. |
+| PAUSE | 'videoPause' | Fired when the content playback is paused. |
+| BUFFER | 'videoBuffer' | Fired when the player enters a buffer state. Usually caused by a delay in loading video segments to continue playback. |
+| TIME | 'videoTime' | Fired as the content playback progresses. Frequency depends on the player. |
+| SEEK_START | 'videoSeekStart' | Fired when the viewer begins seeking in content. |
+| SEEK_END | 'videoSeekEnd' | Fired when the viewer has finished seeking in the content. |
+| MUTE | 'videoMute' | Fired when the player is muted. |
+| VOLUME | 'videoVolume' | Fired when the player's volume has changed. |
+| RENDITION_UPDATE | 'videoRenditionUpdate' | Fired when a change occurred in the video's encoded width, encoded height, reported video bitrate, reported audio bitrate or video framerate. |
+| ERROR | 'videoError' | Fired when a player experiences an unrecoverable playback error while playing or attempting to play content. |
+| COMPLETE | 'videoComplete' | Fired when a media content has reached its end. |
+| PLAYLIST_COMPLETE | 'videoPlaylistComplete' | Fired when the last piece of content in a media playlist has ended. |
+| FULLSCREEN | 'videoFullscreen' | Fired when the player enters or exits fullscreen mode. |
+| PLAYER_RESIZE | 'videoPlayerResize' | Fired when the player's size is modified. |
+| VIEWABLE | 'videoViewable' | Fired when the player's viewability is changed. Viewability is a percentage of the player's size currently in view. The granularity at which this event is triggered depends on the player. |
+| CAST | 'videoCast' | Fired when casting to an external device begins or ends. |
+| AUCTION_AD_LOAD_ATTEMPT | 'videoAuctionAdLoadAttempt' | Fired when Prebid attempts to load the winning ad from a Prebid auction into the player. |
+| AUCTION_AD_LOAD_QUEUED | 'videoAuctionAdLoadQueued' | Fired when Prebid queues the winning ad from a Prebid auction. This occurs when the Video Provider is not yet instantiated. The ad will be loaded into the player once the Video Provider is instantiated. |
+| AUCTION_AD_LOAD_ABORT | 'videoAuctionAdLoadAbort' | Fired when the attempt to load the winning ad from a Prebid auction into the player is prevented. |
+| BID_IMPRESSION | 'videoBidImpression' | Fired when the ad from a bid resulted in an impression. |
+| BID_ERROR | 'videoBidError' | Fired when the ad from a bid resulted in an error. |
 
 ##### Event params
 
@@ -505,6 +512,13 @@ No additional params.
 | casting | boolean | Whether or not the current user is casting to a device |
 
 ###### AUCTION_AD_LOAD_ATTEMPT
+
+{: .table .table-bordered .table-striped }
+| argument name | type | description |
+| adTagUrl | string | The URL for the ad tag associated with the given ad event |
+| adUnitCode | string | Unique identifier that was used when creating the ad unit. |
+
+###### AUCTION_AD_LOAD_QUEUED
 
 {: .table .table-bordered .table-striped }
 | argument name | type | description |

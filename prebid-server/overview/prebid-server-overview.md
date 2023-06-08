@@ -30,6 +30,15 @@ The Prebid Cache is an adjunct to Prebid Server that stores VAST and bids as nee
 
 Explore [Prebid Server features](/prebid-server/features/pbs-feature-idx.html) in more detail.
 
+## Video Introduction
+
+A high-level overview of Prebid Server, Prebid’s solution for header bidding in the cloud.
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/822889941?h=71957861b5&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="1.5_Intro-to-PBS_v6"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+Further Reading:
+- [Transcript of this video overview](/prebid-server/overview/prebid-server-overview-video.html)
+
 ## Where to Run Prebid Server
 
 Unlike Prebid.js, Prebid Server is a server. It needs somewhere to run, and that somewhere ought to be scaleable, distributed, and fast.
@@ -40,20 +49,7 @@ The simplest route to working with Prebid Server is to sign up for a hosted solu
 
 ### DIY
 
-But of course this is open source, so you're welcome to do this on your own. If you decide to implement your own Prebid Server solution, first check out the general [Prebid Server host company overview](/prebid-server/hosting/pbs-hosting.html).
-
-Note that Prebid Server is not a turn-key solution. Whoever takes on hosting a Prebid Server also needs to take on:
-- Setting up production-quality servers, networking, monitors, etc.
-- Populating backend data such as stored requests and account-level configuration
-- Responsibility for understanding the legal implications of ad tech in your marketplace. PBS has built-in configurable support for [several privacy regulations](/prebid-server/features/pbs-privacy.html), but you need to understand and configure them with help from your lawyers.
-- Regular updates. Please don't download Prebid Server and just run the same version forever. You need to commit to checking **at least** quarterly for updates. There are new releases most every week.
-
-You'll need to decide which of the two implementations to utilize:
-
-- [Prebid Server (Go)](/prebid-server/versions/pbs-versions-go.html) - the original Prebid Server is written in the Go language.
-- [Prebid Server (Java)](/prebid-server/versions/pbs-versions-java.html) - Prebid Server with a Java language port.
-
-To choose between them, see the [Prebid Server version overview](/prebid-server/versions/pbs-versions-overview.html) and the [FAQ](/faq/prebid-server-faq.html#why-are-there-two-versions-of-prebid-server-are-they-kept-in-sync).
+But of course this is open source, so you're welcome to do this on your own. If you'd like to explore implementing your own Prebid Server solution, check out the [Prebid Server host company overview](/prebid-server/hosting/pbs-hosting.html). Be warned that installing PBS is not nearly as easy as Prebid.js.
 
 ## Which Server-Side Bidders to Utilize
 

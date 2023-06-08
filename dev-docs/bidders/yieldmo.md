@@ -11,11 +11,13 @@ schain_supported: true
 prebid_member: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
-# Registration
-### Note: In order to use Yieldmo adapter please reach out to your Yieldmo account's person or support@yieldmo.com for more information.
-<br/>
+### Registration
+
+Note: In order to use Yieldmo adapter please reach out to your Yieldmo account's person or support@yieldmo.com for more information.
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -52,6 +54,7 @@ In addition, Yieldmo adapter relies on parameters specified in the `mediaTypes.v
 |-------------------|----------|--------------------------------------------------------|-----------------|------------------|
 | `playerSize`      | required | Width and height of the player                         | `[640, 480]`    | `Array<integer>` |
 | `context`         | required | `instream` or `outstream ` are only supported                           | `instream`      | `string`         |
+
 ### Example of in-stream Video Ad-unit
 ```javascript
 var videoAdUnits = [{

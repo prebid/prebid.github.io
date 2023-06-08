@@ -35,6 +35,8 @@ a.tip:hover span {
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 
 <script>
+var currentUrl = new URL(window.location);
+var searchParams = currentUrl.searchParams;
 
   getVersionList();
 
@@ -50,6 +52,7 @@ $(function(){
 
   // show all adapters
   $('.adapters .col-md-4').show();
+  setPrepickedModules()
 });
 
 function getVersionList() {
@@ -78,6 +81,7 @@ function getVersionList() {
           }
         }
       });
+      setPrepickedVersion();
     }
     catch(e) {
       console.log(e);
@@ -132,6 +136,9 @@ function submit_download() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      if (form_data['removedModules'].length > 0) {
+	alert("The following modules were removed from your download because they aren't present in Prebid.js version "+form_data['version']+": "+JSON.stringify(form_data['removedModules']));
+      }
     })
     .fail(function(e) {
       errorO = e;
@@ -147,12 +154,30 @@ function get_form_data() {
     var bidders = [];
     var analytics = [];
     var version = $('.selectpicker').val();
+    var removedModules = [];
+
+    var version_restrictions=$('.version-restriction');
+    for (var i = 0; i < version_restrictions.length; i++) {
+        var module=version_restrictions[i].getAttribute('moduleCode');
+        var restriction_name=version_restrictions[i].getAttribute('name');
+        var restriction_value=version_restrictions[i].getAttribute('value');
+        if (restriction_name == "min-version") {
+          var module_version_array=restriction_value.split(".");
+          var pbjs_version_array=version.split(".");
+          if ((Number(pbjs_version_array[0]) < Number(module_version_array[0])) ||
+              (Number(pbjs_version_array[0]) == Number(module_version_array[0]) &&
+               Number(pbjs_version_array[1]) < Number(module_version_array[1]))) {
+              removedModules.push(module);
+          }
+        }
+    }
 
     var bidder_check_boxes = $('.bidder-check-box');
     for (var i = 0; i < bidder_check_boxes.length; i++) {
         var box = bidder_check_boxes[i];
-        if (box.checked) {
-            bidders.push(box.getAttribute('moduleCode'));
+        var module=box.getAttribute('moduleCode');
+        if (box.checked && !removedModules.includes(module)) {
+            bidders.push(module);
         }
     }
 
@@ -164,11 +189,76 @@ function get_form_data() {
         }
     }
 
+
     var form_data = {};
     form_data['modules'] = bidders.concat(analytics);
     form_data['version'] = version;
+    form_data['removedModules'] = removedModules;
 
     return form_data;
+}
+
+function setPrepickedModules() {
+    var moduleCheckboxes = document.querySelectorAll('.module-check-box');
+    var modules = [];
+    var modulesParam = searchParams.get('modules');
+    if (modulesParam) {
+        modules = modulesParam.split(',');
+    }
+    if (modules && modules.length) {
+        moduleCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+        modules.forEach(function(module) {
+            var checkbox = document.getElementById(module);
+            if (checkbox) {
+                checkbox.checked = true;
+            }
+        });
+    }
+
+    moduleCheckboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+            var module = checkbox.id;
+            if (!modules.includes(module)) {
+                modules.push(module);
+            }
+        }
+        checkbox.addEventListener('change', function(event) {
+            var module = event.target.id;
+            if (event.target.checked) {
+                modules.push(module);
+            } else {
+                modules = modules.filter(function(m) {
+                    return m !== module;
+                });
+            }
+            if (modules.length) {
+                searchParams.set('modules', modules.join(','));
+            } else {
+                searchParams.delete('modules');
+            }
+            window.history.replaceState(null, '', currentUrl);
+        });
+    });
+}
+
+function setPrepickedVersion() {
+    var version = searchParams.get('version');
+    if (version) {
+        var versionOption = document.querySelector('#version_selector option[value="' + version + '"]');
+        if (versionOption) {
+            versionOption.selected = true;
+        }
+    }
+    var versionSelector = document.getElementById('version_selector');
+    if (versionSelector) {
+        versionSelector.addEventListener('change', function(event) {
+            var version = event.target.value;
+            searchParams.set('version', version);
+            window.history.replaceState(null, '', window.location.pathname + '?' + searchParams.toString());
+        });
+    }
 }
 
 </script>
@@ -196,6 +286,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% assign module_pages = site.pages | where: "page_type", "module" %}
 {% assign analytics_pages = site.pages | where: "layout", "analytics" %}
+{% assign userid_pages = site.pages | where: "layout", "userid" %}
 
 <form>
 <h4>Select Prebid Version</h4>
@@ -208,7 +299,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <div class="col-md-4">
  <div class="checkbox">
   <label>
-  {% if page.aliasCode %} <input type="checkbox" moduleCode="{{ page.aliasCode }}BidAdapter" class="bidder-check-box"> {{ page.title }} {% else %} <input type="checkbox" moduleCode="{{ page.biddercode }}BidAdapter" class="bidder-check-box"> {{ page.title }} {% endif %}
+  {% if page.filename %} <input type="checkbox" id="{{ page.filename }}" moduleCode="{{ page.filename }}" {% elsif page.aliasCode %} <input type="checkbox" id="{{ page.biddercode }}BidAdapter" moduleCode="{{ page.aliasCode }}BidAdapter" {% else %} <input type="checkbox" id="{{ page.biddercode }}BidAdapter" moduleCode="{{ page.biddercode }}BidAdapter" {% endif %} class="bidder-check-box module-check-box"><a href="{{page.url}}"> {{ page.title }}</a>
   {% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
   </label>
 </div>
@@ -220,151 +311,36 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <br>
 <h4>Analytics Adapters</h4>
 <div class="row">
-{% for page in analytics_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label><input type="checkbox" analyticscode="{{ page.modulecode }}" class="analytics-check-box"> {{ page.title }}</label></div></div>{% endfor %}
+{% for page in analytics_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label><input type="checkbox" id="{{ page.modulecode }}" analyticscode="{{ page.modulecode }}" class="analytics-check-box module-check-box"><a href="{{page.url}}"> {{ page.title }}</a></label></div></div>{% endfor %}
 </div>
 <br/>
 <h4>Recommended Modules</h4>
 Prebid.org highly recommends that publishers utilize the following modules:
 <br/>
-{% for page in module_pages %}{% if page.recommended == true %}<div class="row"><div class="checkbox" style="background-color: #e1fce2;"><label> <input type="checkbox" CHECKED moduleCode="{{ page.module_code }}" class="bidder-check-box"> <a href="{{page.url}}"><strong>{{ page.display_name }}</strong></a> - {{page.description}}</label></div></div>{% endif %}{% endfor %}
+{% for page in module_pages %}{% if page.recommended == true %}<div class="row"><div class="checkbox" style="background-color: #e1fce2;"><label> <input type="checkbox" CHECKED id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip"><strong>{{ page.display_name }}</strong></a> - {{page.description}}</label></div></div>{% endif %}{% endfor %}
 <br/>
 <h4>General Modules</h4>
 <div class="row">
  {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true or page.vendor_specific == true %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox">
-  <label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
+  <label> <input type="checkbox" id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
 </div></div>{% endfor %}
 </div>
 
 <h4>Vendor-Specific Modules</h4>
 These modules may require accounts with a service provider.<br/>
 <div class="row">
- {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true %}{% continue %}{% endif %}{% if page.vendor_specific == true %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" moduleCode="{{ page.module_code }}" class="bidder-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
+ {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true %}{% continue %}{% endif %}{% if page.vendor_specific == true %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
 </div></div>{% endif %}{% endfor %}
 </div>
 
 <h4>User ID Modules</h4>
-<div class="row">  
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="33acrossIdSystem" class="bidder-check-box"> 33Across ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="admixerIdSystem" class="bidder-check-box"> Admixer ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="adqueryIdSystem" class="bidder-check-box"> adQuery QiD</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="amxIdSystem" class="bidder-check-box"> AMX RTB ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="akamaiDAPIdSystem" class="bidder-check-box"> Akamai DAP ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="britepoolIdSystem" class="bidder-check-box"> BritePool ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="criteoIdSystem" class="bidder-check-box"> Criteo ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="cpexIdSystem" class="bidder-check-box"> CPEx ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="deepintentDpesIdSystem" class="bidder-check-box"> Deepintent DPES ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="dmdIdSystem" class="bidder-check-box"> DMD ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="fabrickIdSystem" class="bidder-check-box"> Neustar Fabrick ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="ftrackIdSystem" class="bidder-check-box"> FTrack ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="hadronIdSystem" class="bidder-check-box"> Hadron ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="id5IdSystem" class="bidder-check-box"> ID5 ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="identityLinkIdSystem" class="bidder-check-box"> RampID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="idxIdSystem" class="bidder-check-box"> IDx</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="imuIdSystem" class="bidder-check-box"> IM-UID by Intimate Merger</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="intentIqIdSystem" class="bidder-check-box"> IntentIQ ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="justIdSystem" class="bidder-check-box"> JustId</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="kinessoIdSystem" class="bidder-check-box"> Kinesso ID</label>
-  </div></div>
-    <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="liveIntentIdSystem" class="bidder-check-box"> LiveIntent ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="lotamePanoramaIdSystem" class="bidder-check-box"> Lotame ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="mwOpenLinkIdSystem" class="bidder-check-box"> MediaWallah OpenLink ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="merkleIdSystem" class="bidder-check-box"> Merkle ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="netIdSystem" class="bidder-check-box"> NetID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="novatiqIdSystem" class="bidder-check-box"> Novatiq Hyper ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="parrableIdSystem" class="bidder-check-box"> Parrable ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="publinkIdSystem" class="bidder-check-box"> Publisher Link ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="sharedIdSystem" class="bidder-check-box"> SharedID (formerly known as PubCommon)</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="trustpidSystem" class="bidder-check-box"> Trustpid</label>
-  </div></div>  
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="pubProvidedIdSystem" class="bidder-check-box"> PubProvided ID</label>
-  </div></div>  
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="quantcastIdSystem" class="bidder-check-box"> Quantcast ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="tapadIdSystem" class="bidder-check-box"> Tapad ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="teadsIdSystem" class="bidder-check-box"> Teads ID<div style="font-size:80%">please avoid using v7.20.0 and v7.21.0</div></label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="unifiedIdSystem" class="bidder-check-box"> Unified ID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="uid2IdSystem" class="bidder-check-box"> Unified ID 2</label>
-  </div></div>  
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="connectIdSystem" class="bidder-check-box"> Yahoo ConnectID</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="zeotapIdPlusIdSystem" class="bidder-check-box"> Zeotap ID+</label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="pubCommonIdSystem" class="bidder-check-box"> PubCommon ID<div style="font-size:80%"> (not in 5.x)</div></label>
-  </div></div>
-  <div class="col-md-4"><div class="checkbox">
-  <label><input type="checkbox" moduleCode="gravitoIdSystem" class="bidder-check-box"> Gravito ID</label>
-  </div></div>
+<div class="row">
+ {% for page in userid_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.useridmodule }}" moduleCode="{{ page.useridmodule }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}">{{ page.title }}</a></label>{% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
+</div></div>{% endfor %}
 </div>
+
+{% for page in module_pages %}{% if page.enable_download == false%}{% continue %}{% endif %}{% if page.min_js_version %}<input type="hidden" class="version-restriction" moduleCode="{{ page.module_code }}" name="min-version" value="{{ page.min_js_version }}">{% endif %}
+{% endfor %}
 
 <br>
 

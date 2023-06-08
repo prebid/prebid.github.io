@@ -4,7 +4,7 @@ title: Module - Video Module
 display_name: Prebid Video Module
 description: The Prebid Video Module allows Prebid to directly integrate with a Video Player.
 page_type: module
-module_code : video
+module_code : videoModule
 enable_download : true
 vendor_specific: false
 sidebarType : 1

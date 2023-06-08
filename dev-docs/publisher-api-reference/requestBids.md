@@ -2,6 +2,7 @@
 layout: api_prebidjs
 title: pbjs.requestBids(requestObj)
 description:
+sidebarType: 1
 ---
 
 
