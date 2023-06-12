@@ -583,6 +583,14 @@
   subgroup: 8
 
 - sbSecId: 1
+  title: Activity Controls
+  link: /dev-docs/activity-controls.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
+- sbSecId: 1
   title: Interstitial Ads
   link: /features/InterstitialAds.html
   isHeader: 0
