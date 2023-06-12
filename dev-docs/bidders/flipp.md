@@ -4,9 +4,21 @@ title: flipp
 description: Prebid Flipp Bidder Adapter
 biddercode: flipp
 media_types: banner
-safeframes_ok: true
-pbjs: true
+pbjs: false
 pbs: true
+gdpr_supported: false
+usp_supported: false
+coppa_supported: false
+schain_supported: false
+floors_supported: false
+userIds: none
+prebid_member: false
+safeframes_ok: true
+deals_supported: false
+pbs_app_supported: false
+fpd_supported: false
+multiformat_supported: will-not-bid
+ortb_blocking_supported: false
 ---
 
 ### Bid Params
@@ -19,11 +31,11 @@ pbs: true
 | `siteId` | required | ID associated with the site | `123456` | `integer` |
 | `zoneIds` | optional | Zones to request from bidder | `[789, 123]` | `array[integer]` |
 | `userKey` | optional | User Key to power experience optimization and frequency capping | `4188d8a3-22d1-49cb-8624-8838a22562bd` | `uuidv4` |
-| `ip` | optional | User IP for geolocation targetting purposes. If not set here attempt to retrive from `request.Device.IP`. | `123.123.123.123` | `string` |
 | `options` | optional | Additional integration specific context | `options: {   "startCompact": true }` | `map[string]interface{}` |
 
 Current available integration options are as follows:
 
+{: .table .table-bordered .table-striped }
 | Name          | Scope    | Description  | Example   | Type     |
 |---------------|----------|--------------|-----------|----------|
 | `startCompact`      | optional | Height of the experience will be reduced | `true` | `boolean` |
