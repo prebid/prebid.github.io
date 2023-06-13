@@ -15,6 +15,7 @@ See below for usage examples.
 Core config:
 
 * [Debugging](#setConfig-Debugging)
+* [Allow activities](#setConfig-allow-activities)
 * [Device Access](#setConfig-deviceAccess)
 * [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 * [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
@@ -51,7 +52,7 @@ Module config: other options to `setConfig()` are available if the relevant modu
 * [Adpod](/dev-docs/modules/adpod.html)
 * [IAB Category Translation](/dev-docs/modules/categoryTranslation.html)
 
-<a name="setConfig-Debugging" />
+<a name="setConfig-Debugging"></a>
 
 #### Debugging
 
@@ -70,7 +71,13 @@ pbjs.setConfig({ debug: true });
 {: .alert.alert-warning :}
 Note that turning on debugging for Prebid Server causes most server-side adapters to consider it a test request, meaning that they won't count on reports.
 
-<a name="setConfig-deviceAccess" />
+<a id="setConfig-allow-activities"></a>
+
+#### Allow activities
+
+Starting since Prebid 7.48, you can prevent Prebid, or individual modules, from performing certain activities through `allowActivities` configuration, which provides fine-grained control over a number privacy-related items, including access to device storage, first party data, or user IDs. For more information, see [activity controls](/dev-docs/activity-controls.html).
+
+<a name="setConfig-deviceAccess"></a>
 
 #### Device Access
 
@@ -82,7 +89,7 @@ pbjs.setConfig({ deviceAccess: false });
 
 This can be useful in GDPR, CCPA, COPPA or other privacy scenarios where a publisher has determined that header bidding should not read from or write the user's device.
 
-<a name="setConfig-Bidder-Timeouts" />
+<a name="setConfig-Bidder-Timeouts"></a>
 
 #### Bidder Timeouts
 
@@ -100,7 +107,7 @@ For more information about the asynchronous event loop and `setTimeout`, see [Ho
 
 #### Max Requests Per Origin
 
-<a name="setConfig-Max-Requests-Per-Origin" />
+<a name="setConfig-Max-Requests-Per-Origin"></a>
 
 Since browsers have a limit of how many requests they will allow to a specific domain before they block, Prebid.js
 will queue auctions that would cause requests to a specific origin to exceed that limit.  The limit is different
@@ -118,7 +125,7 @@ pbjs.setConfig({ maxRequestsPerOrigin: 1 });
 
 #### Disable Ajax Timeout
 
-<a name="setConfig-Disable-Ajax-Timeout" />
+<a name="setConfig-Disable-Ajax-Timeout"></a>
 
 Prebid core adds a timeout on XMLHttpRequest request to terminate the request once auction is timedout. Since Prebid is ignoring all the bids after timeout it does not make sense to continue the request after timeout. However, you have the option to disable this by using `disableAjaxTimeout`.
 
@@ -128,7 +135,7 @@ pbjs.setConfig({ disableAjaxTimeout: true });
 
 #### Set Timeout Buffer
 
-<a name="setConfig-timeoutBuffer" />
+<a name="setConfig-timeoutBuffer"></a>
 
 Prebid core adds a timeout buffer to extend the time that bidders have to return a bid after the auction closes. This buffer is used to offset the "time slippage" of the setTimeout behavior in browsers. Prebid.js sets the default value to 400ms. You can change this value by setting `timeoutBuffer` to the amount of time you want to use. The following example sets the buffer to 300ms.
 
@@ -138,7 +145,7 @@ pbjs.setConfig({ timeoutBuffer: 300 });
 
 #### Set TTL Buffer
 
-<a id="setConfig-ttlBuffer" />
+<a id="setConfig-ttlBuffer"></a>
 
 When an adapter bids, it provides a TTL (time-to-live); the bid is considered expired and unusuable after that time has elapsed. Core subtracts from it a buffer of 1 second; that is, a bid with TTL of 30 seconds is considered expired after 29 seconds. You can adjust this buffer with:
 
@@ -150,7 +157,7 @@ pbjs.setConfig({
 
 #### Send All Bids
 
-<a name="setConfig-Send-All-Bids" />
+<a name="setConfig-Send-All-Bids"></a>
 
 When enableSendAllBids is **true** (the default), the page will send keywords for all bidders to your ad server. The ad server can then make the decision on which bidder will win. Some ad servers, such as Google Ad Manager, can then generate reporting on historical bid prices from all bidders.
 
@@ -219,11 +226,11 @@ pbjs.setConfig({
 });
 ```
 
-<a name="setConfig-Bidder-Order" />
+<a name="setConfig-Bidder-Order"></a>
 
 #### Configure Send Bids Control
 
-<a name="setConfig-Send-Bids-Control" />
+<a name="setConfig-Send-Bids-Control"></a>
 
 The `sendBidsControl` object passed to `pbjs.setConfig` provides the publisher with the ability to adjust the targeting behavior when [sendAllBids](#setConfig-Send-All-Bids) is enabled.
 
@@ -252,7 +259,7 @@ Note that this feature overlaps and can be used in conjunction with [targetingCo
 
 #### Use Bid Cache
 
-<a name="setConfig-Use-Bid-Cache" />
+<a name="setConfig-Use-Bid-Cache"></a>
 
 Prebid.js currently allows for [caching and reusing bids in a very narrowly defined scope](/dev-docs/faq.html#does-prebidjs-cache-bids).
 However, if you'd like, you can disable this feature and prevent Prebid.js from using anything but the latest bids for
@@ -268,7 +275,7 @@ pbjs.setConfig({ useBidCache: true })
 
 #### Bid Cache Filter Function
 
-<a name="setConfig-Bid-Cache-Filter-Function" />
+<a name="setConfig-Bid-Cache-Filter-Function"></a>
 
 When [Bid Caching](#setConfig-Use-Bid-Cache) is turned on, a custom Filter Function can be defined to gain more granular control over which "cached" bids can be used.  This function will only be called for "cached" bids from previous auctions, not "current" bids from the most recent auction.  The function should take a single bid object argument, and return `true` to use the cached bid, or `false` to not use the cached bid.  For Example, to turn on Bid Caching, but exclude cached video bids, you could do this:
 
@@ -287,7 +294,7 @@ Set the order in which bidders are called:
 pbjs.setConfig({ bidderSequence: "fixed" })   /* default is "random" */
 ```
 
-<a name="setConfig-Page-URL" />
+<a name="setConfig-Page-URL"></a>
 
 #### Page URL
 
@@ -297,7 +304,7 @@ Override the Prebid.js page referrer for some bidders.
 pbjs.setConfig({ pageUrl: "https://example.com/index.html" })
 ```
 
-<a name="setConfig-Price-Granularity" />
+<a name="setConfig-Price-Granularity"></a>
 
 #### Price Granularity
 
@@ -519,7 +526,7 @@ For more information, see the sections below.
 * [User Sync Examples](#setConfig-ConfigureUserSyncing-UserSyncExamples)
 * [How User Syncing Works](#setConfig-ConfigureUserSyncing-HowUserSyncingWorks)
 
-<a name="setConfig-ConfigureUserSyncing-UserSyncProperties" />
+<a name="setConfig-ConfigureUserSyncing-UserSyncProperties"></a>
 
 ##### User Sync Properties
 
@@ -536,7 +543,7 @@ For descriptions of all the properties that control user syncs, see the table be
 | `enableOverride` | Boolean | Enable/disable publisher to trigger user syncs by calling `pbjs.triggerUserSyncs()`. Default: `false`. |
 | `aliasSyncEnabled` | Boolean | Enable/disable registered syncs for aliased adapters. Default: `false`. |
 
-<a name="setConfig-ConfigureUserSyncing-UserSyncExamples" />
+<a name="setConfig-ConfigureUserSyncing-UserSyncExamples"></a>
 
 ##### User Sync Examples
 
@@ -653,7 +660,7 @@ As noted, there's a function available to give the page control of when register
 pbjs.triggerUserSyncs();
 ```
 
-<a name="setConfig-ConfigureUserSyncing-HowUserSyncingWorks" />
+<a name="setConfig-ConfigureUserSyncing-HowUserSyncingWorks"></a>
 
 ##### How User Syncing Works
 
@@ -665,7 +672,7 @@ The [userSync.registerSync()]({{site.baseurl}}/dev-docs/bidder-adaptor.html#bidd
 
 When user syncs are run, regardless of whether they are invoked by the platform or by the page calling pbjs.triggerUserSyncs(), the queue entries are randomized and appended to the bottom of the HTML tag.
 
-<a name="setConfig-targetingControls" />
+<a name="setConfig-targetingControls"></a>
 
 #### Configure Targeting Controls
 
@@ -723,7 +730,7 @@ Between these two values (Prebid's targeting key count and the overall ad URL qu
 
 Between this feature and the overlapping [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control), you should be able to make sure that there's not too much data going to the ad server.
 
-<a name="targetingControls-allowTargetingKeys" />
+<a name="targetingControls-allowTargetingKeys"></a>
 
 ##### Details on the allowTargetingKeys setting
 
@@ -796,7 +803,7 @@ config.setConfig({
 });
 ```
 
-<a name="targetingControls-addTargetingKeys" />
+<a name="targetingControls-addTargetingKeys"></a>
 
 ##### Details on the addTargetingKeys setting
 
@@ -912,7 +919,7 @@ For example, if a request  contained the `banner` and `video` `mediaTypes` and i
 
 If the ad unit does not include `banner` `mediaType` at all, then the sizeConfig logic will not influence that ad Unit; it will automatically be passed into the auction.
 
-<a name="sizeConfig-Example" />
+<a name="sizeConfig-Example"></a>
 
 ##### Size Config Example
 
@@ -1535,7 +1542,7 @@ ERROR: setConfig options must be an object
 
 If you don't see that message, you can assume the config object is valid.
 
-<hr class="full-rule" />
+<hr class="full-rule"></a>
 
 ## Related Reading
 
