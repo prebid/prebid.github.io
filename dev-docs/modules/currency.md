@@ -235,7 +235,7 @@ After testing, get your javascript file(s) out to your Content Delivery Network 
 
 Note that there are more dynamic ways of combining these components for publishers or integrators ready to build a more advanced infrastructure.
 
-<a name="currency-config-options" />
+<a name="currency-config-options"></a>
 
 ## Functions
 

@@ -30,13 +30,13 @@ sidebarType: 1
   - [Banner](#banner)
   - [Video](#video)
 - [Example Configuration](#example-configuration)
-  - [Banner](#banner-1)
+  - [Banner](#banner-configuration)
   - [Video (Instream)](#video-instream)
   - [Video (Outstream)](#video-outstream)
 - [First Party Data](#first-party-data)
 - [Programmatic DMP](#triplelift-programmatic-dmp)
 
-<a name="triplelift-overview" />
+<a name="triplelift-overview"></a>
 
 ### Overview
 
@@ -45,7 +45,7 @@ Publishers may integrate with Triplelift through our Prebid.js and/or Prebid Ser
 {: .alert.alert-info :}
 The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at prebid@triplelift.com.
 
-<a name="triplelift-bid-params" />
+<a name="triplelift-bid-params"></a>
 
 ### Bid Params
 
@@ -57,7 +57,6 @@ The Triplelift Prebid Server bidding adapter and user sync endpoint require setu
 |-----------------|------------------------------|--------------------------------------------------------------------------------------|---------------------------------------------|----------|
 | `inventoryCode` | required                     | TripleLift inventory code for this ad unit (provided to you by your partner manager) | `'pubname_top_banner'`                      | `string` |
 | `floor`         | optional                     | Bid floor                                                                            | `1.00`                                      | `float`  |
-
 
 #### Video
 
@@ -72,13 +71,13 @@ See the [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.ht
 | `adUnit.mediaTypes.video.placement`         | required                   | Instream: 1;      Outstream: 3, 4, 5.                      | `3`                                         | `int`  |
 | `adUnit.mediaTypes.video.playerSize` | required | Video player dimensions or size in pixels | `[640, 480]` | `integer array` |
 
-<a name="triplelift-config" />
+<a name="triplelift-config"></a>
 
 ### Example Configuration
 
-#### Banner
+#### Banner Configuration
 
-```
+```javascript
 var adUnits = [
     {
         code: 'top-banner',
@@ -101,7 +100,7 @@ var adUnits = [
 
 #### Video (Instream)
 
-```
+```javascript
 var videoAdUnit = {
     code: 'video1',
     mediaTypes: {
@@ -123,7 +122,7 @@ var videoAdUnit = {
 
 #### Video (Outstream)
 
-```
+```javascript
 var videoAdUnit = {
     code: 'video1',
     mediaTypes: {
@@ -143,27 +142,29 @@ var videoAdUnit = {
 };
 ```
 
-<a name="triplelift-first-party" />
+<a name="triplelift-first-party"></a>
 
 ### First Party Data
 
 Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html). The following fields are supported:
+
 - `ortb2.site.*`: Standard IAB OpenRTB 2.5 site fields
 - `ortb2.user.*`: Standard IAB OpenRTB 2.5 user fields
 
 AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
 
-<a name="triplelift-programmatic-dmp" />
+<a name="triplelift-programmatic-dmp"></a>
 
 ### Programmatic DMP
 
-Triplelift provides audience and contextual targeting via the integration of a Programmatic DMP tag. Please reach out to your Triplelift representative to discuss specifics of the integration. 
+Triplelift provides audience and contextual targeting via the integration of a Programmatic DMP tag. Please reach out to your Triplelift representative to discuss specifics of the integration.
 
-#### Requirements:
+#### Requirements
+
 - Prebid v7.1.0 or later
 - In Prebid's `bidderSettings`, the `storageAllowed` parameter must be set to **true**. In Prebid v7.0 and later, `storageAllowed` defaults to false, so you will need to explicitly set this value to true.
 
-    ```
+    ```javascript
         pbjs.bidderSettings = {
             triplelift: {
                 storageAllowed: true

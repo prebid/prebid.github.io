@@ -6,6 +6,7 @@ title: Prebid Server | Features | Actvity Controls
 ---
 
 # Prebid Server Activity Controls
+
 {: .no_toc }
 
 {: .alert.alert-warning :}
@@ -21,8 +22,8 @@ These controls are intended to serve as building blocks for privacy protection m
 
 There are many privacy regulations that Prebid publishers need to accomodate. Prebid Server supplies [several features](/prebid-server/features/pbs-privacy.html) to help Publishers implement their legal policies, but there are scenarios where extra control is needed:
 
-- a Publisher's lawyers want to make a particular exception
-- support hasn't been built for a regulation the Publisher needs to comply with
+* a Publisher's lawyers want to make a particular exception
+* support hasn't been built for a regulation the Publisher needs to comply with
 
 ### Prebid Server Is a Toolkit
 
@@ -39,26 +40,27 @@ Important: This resource should not be construed as legal advice and Prebid.org 
 
 We did an analysis of the things Prebid does that might be of concern to privacy regulations. We call these things "potentially restricted activities", or just "activities" for short. Some examples:
 
-- Syncing ID cookies
-- Transmitting user first party data
-- Transmitting the user's geographic location
-- etc.
+* Syncing ID cookies
+* Transmitting user first party data
+* Transmitting the user's geographic location
+* etc.
 
 The [full list of activities](#activities) is below.
 
 An activity control is a gatekeeper that makes a decision about whether the activity should be allowed in a specific context:
 
-- Should I allow this usersync for bidderB?
-- Is it ok for this data to be passed to bidderC and analyticsD?
-- Should I anonymize the geographic information for this request?
-- etc.
+* Should I allow this usersync for bidderB?
+* Is it ok for this data to be passed to bidderC and analyticsD?
+* Should I anonymize the geographic information for this request?
+* etc.
 
 Prebid Server core checks with the Activity Controls to see whether a given activity is allowed for a given situation. The configuration for the activity comes from one of two places: either account-specific configuration or if not specified there, there's a host-level default.
 
 ### Example Activity Control
 
 Here's an example account config that prevents bidderA, bidderB, and analytics adapters from receiving `user.eids[]` and `user.ext.data`:
-```
+
+```javascript
 {
   privacy: {
     allowactivities: {
@@ -78,15 +80,16 @@ Here's an example account config that prevents bidderA, bidderB, and analytics a
       }
     }
   }
+}
 ```
 
-<a id="config" />
+<a id="config"></a>
 
 ## Configuration
 
 The `privacy.allowActivities` is a new account configuration option that contains a list of activity names -- see the [full list of activities below](#activities).
 
-```
+```javascript
 {
   privacy: {
     allowactivities: {
@@ -101,12 +104,13 @@ The `privacy.allowActivities` is a new account configuration option that contain
      }
    }
  }
+}
 ```
 
 Each activity is an object that can contain these attributes:
 
 {: .table .table-bordered .table-striped }
-| Name | Type | Description | 
+| Name | Type | Description |
 |------|------|-------------|
 | `default` | boolean | Whether the activity should be allowed if no other rule applies. Defaults to true. |
 | `rules`   | array of objects | Rules for this activity |
@@ -117,7 +121,7 @@ Each activity is an object that can contain these attributes:
 
 There's more about [rules](#rules) below.
 
-<a id="activities" />
+<a id="activities"></a>
 
 ### Activities
 
@@ -133,32 +137,33 @@ Here's the list of the 'potentially restricted activities' that Prebid Server co
 | `transmitUfpd` | A bid adapter, analytics adapter, or module wants to access and/or transmit user FPD or EIDs to their endpoint | User FPD and EIDs are hidden from the adapter or module: `user.data`, `user.ext.data`, `user.{id, buyeruid, yob, gender}`, `user.eids`, `device.{device.ifa, macsha1, macmd5, dpidsha1, dpidmd5, didsha1, didmd5}` |
 | `transmitPreciseGeo` | A bid adapter, analytics adapter, or module wants to access and/or transmit precise geolocation data to their endpoint | Latitude, longitude, and IP address are rounded off. Specifically, lat and long are truncated to two decimal places, IPv4 masks rightmost 8 bits, IPv6 masks the rightmost bits based on a configured value. |
 
-<a id="rules" />
+<a id="rules"></a>
 
 ### Rules
- 
+
 There are three parts to an Activity Control's rule:
- 
+
 1. The priority - position within the array
 2. The `condition` - logic for matching the rule
 3. The `allow` status - what happens if the condition matches
 
-For example, this rule would allow bidderX to perform the activity if no higher priority rules take precedence. 
- ```
-        ...
-            rules: [{
-              condition: {
-                componentName: ["bidderX"]
-              },
-              allow: true
-           }]
-        ...
+For example, this rule would allow bidderX to perform the activity if no higher priority rules take precedence.
+
+```javascript
+...
+    rules: [{
+      condition: {
+        componentName: ["bidderX"]
+      },
+      allow: true
+    }]
+...
 ```
 
 Note: The Prebid.js version of this feature supports _explicit_ priority signals. That's not the case for the Prebid Server feature. Instead, for PBS, priority is implicit in the ordering of the array.
 
 #### Rule Conditions
- 
+
 If a `condition` in a rule evaluates to true, the `allow` attribute of the rule will be utilized. If there's no condition specified, the rule's `allow` attribute will always be utilized.
 
 These are the conditional attributes available:
@@ -183,18 +188,17 @@ If `allow` is not defined, the rule is assumed to assert **true** (i.e. allow th
 Currently, the Activity Control feature is separate from other privacy features:
 
 1. Activity Controls are run before other privacy features. So, for instance, if a bidder is removed from a request by the `fetchBids` activity, the GDPR processing for that bidder will not take place.
-1. GDPR-suppression activities must still be managed through that feature's configuration. (See details for [PBS-Go](https://github.com/prebid/prebid-server/blob/master/config/config.go) or [PBS-Java](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md))
-1. Likewise, Activity Control rules do not override USPrivacy or COPPA.
+2. GDPR-suppression activities must still be managed through that feature's configuration. (See details for [PBS-Go](https://github.com/prebid/prebid-server/blob/master/config/config.go) or [PBS-Java](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md))
+3. Likewise, Activity Control rules do not override USPrivacy or COPPA.
 
 {: .alert.alert-info :}
 While Activity Controls are currently not well integrated with other privacy features, that will change over the coming months.
-
 
 ### Examples
 
 #### Anonymize auctions and disable usersyncs for bidderA
 
-```
+```javascript
 {
   privacy: {
     allowactivities: {
@@ -221,7 +225,7 @@ While Activity Controls are currently not well integrated with other privacy fea
 
 #### Prevent User First Party Data and EIDs from going to analytics adapters
 
-```
+```javascript
 {
   privacy: {
     allowactivities: {
@@ -242,5 +246,6 @@ While Activity Controls are currently not well integrated with other privacy fea
 
 Modules that perform any 'potentially restricted activity' are responsible for confirming they are allowed to perform that activity. See [Adding a PBS Module](/prebid-server/developers/add-a-module.html) for more information.
 
-## Further Reading 
-- [Prebid Server privacy regulation support](/prebid-server/features/pbs-privacy.html)
+## Further Reading
+
+* [Prebid Server privacy regulation support](/prebid-server/features/pbs-privacy.html)

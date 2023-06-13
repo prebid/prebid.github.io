@@ -20,7 +20,7 @@ gvl_id: 32
 sidebarType: 1
 ---
 
-### Disclosure:
+### Disclosure
 
 This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
 
@@ -41,7 +41,7 @@ This adapter is known to use an HTTP 1 endpoint. Header bidding often generates 
   - [Debug Auction](#debug-auction)
   - [Prebid Server Test Request](#prebid-server-test-request)
 
-<a name="appnexus-bid-params" />
+<a name="appnexus-bid-params"></a>
 
 {: .alert.alert-danger :}
 All AppNexus (Xandr) placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the AppNexus bidder will not return any demand for those placements. <br />
@@ -77,7 +77,7 @@ The table below will reflect both formats, though it's recommended to use the lo
 | `externalImpId` or `external_imp_id`                   | optional | Specifies the unique identifier of an externally generated auction.                                                                                                           | `'bacbab02626452b097f6030b3c89ac05'`                  | `string`         |
 | `generate_ad_pod_id`                            | optional | Signal to AppNexus to split impressions by ad pod and add unique ad pod id to each request. Specific to long form video endpoint only. Supported by Prebid Server, not Prebid JS.  | `true`                                                | `boolean`        |
 
-<a name="appnexus-video-object" />
+<a name="appnexus-video-object"></a>
 
 #### Video Object
 
@@ -92,8 +92,7 @@ The table below will reflect both formats, though it's recommended to use the lo
 | `playback_method` | A string that sets the playback method supported by the publisher.  Allowed values: `"auto_play_sound_on"`; `"auto_play_sound_off"`; `"click_to_play"`; `"mouse_over"`; `"auto_play_sound_unknown"`. | `string` |
 | `frameworks` | Array of integers listing API frameworks supported by the publisher.  Allowed values: None: `0`; VPAID 1.0: `1`; VPAID 2.0: `2`; MRAID 1.0: `3`; MRAID 2.0: `4`; ORMMA: `5`; OMID 1.0 `6`. | `Array<integer>` |
 
-
-<a name="appnexus-user-object" />
+<a name="appnexus-user-object"></a>
 
 #### User Object
 
@@ -107,8 +106,7 @@ The table below will reflect both formats, though it's recommended to use the lo
 | `dnt`             | Do not track flag.  Indicates if tracking cookies should be disabled for this auction                                           | `true`                                                                   | `boolean`        |
 | `language`        | Two-letter ANSI code for this user's language.                                                                                  | `EN`                                                                     | `string`         |
 
-
-<a name="appnexus-app-object" />
+<a name="appnexus-app-object"></a>
 
 #### App Object
 
@@ -121,13 +119,13 @@ AppNexus supports using prebid within a mobile app's webview. If you are interes
 | `device_id`       | Object that contains the advertising identifiers of the user (`idfa`, `aaid`, `md5udid`, `sha1udid`, or `windowsadid`).         | `{ aaid: "38400000-8cf0-11bd-b23e-10b96e40000d" }`                       | `object`         |
 | `geo`             | Object that contains the latitude (`lat`) and longitude (`lng`) of the user.                                                    | `{ lat: 40.0964439, lng: -75.3009142 }`                                  | `object`         |
 
-<a name="custom-targeting-keys" />
+<a name="custom-targeting-keys"></a>
 
 #### Custom Targeting keys
 
 AppNexus returns custom keys that can be sent to the adserver through bidderSettings: buyerMemberId, dealPriority, and dealCode. The following snippet demonstrates how to add these custom keys as key-value pairs.
 
-```
+```javascript
 pbjs.bidderSettings = {
   appnexus: {
     adserverTargeting: [
@@ -153,14 +151,15 @@ pbjs.bidderSettings = {
 }
 ```
 
-<a name="appnexus-auction-keywords" />
+<a name="appnexus-auction-keywords"></a>
 
 #### Auction Level Keywords
 
 It's possible to pass a set of keywords for the whole request, rather than a particular adUnit.  Though they would apply to all adUnits (which include the appnexus bidder) in an auction, these keywords can work together with the bidder level keywords (if for example you want to have specific targeting for a particular adUnit).
 
 Below is an example of how to define these auction level keywords for the appnexus bidder:
-```
+
+```javascript
 pbjs.setConfig({
   appnexusAuctionKeywords: {
     genre: ['classical', 'jazz'],
@@ -171,14 +170,13 @@ pbjs.setConfig({
 
 Like in the bidder.params.keywords, the values here can be empty.  Please see the section immediately below for more details.
 
-<a name="appnexus-no-value" />
+<a name="appnexus-no-value"></a>
 
 #### Passing Keys Without Values
 
 It's possible to use the `keywords` parameter to define keys that do not have any associated values. Keys with empty values can be created in Prebid.js and can also be sent through Prebid Server to AppNexus. The following are examples of sending keys with empty values:
 
-
-```
+```javascript
 keywords: {
   myKeyword: '',
   myOtherKeyword: ['']
@@ -189,14 +187,14 @@ The preceding example passes the key `myKeyword` with an empty value. The key `m
 
 You can define keys with values and without values in the same `keywords` definition. In this next example, we've defined the key `color` with an array of values: `red`, `blue`, and `green`. We've followed that with the key `otherKeyword` with an empty value array.
 
-```
+```javascript
 keywords: {
   color: ['red', 'blue', 'green'],
   otherKeyword: ['']
 }
 ```
 
-<a name="appnexus-fpd" />
+<a name="appnexus-fpd"></a>
 
 #### First Party Data
 
@@ -206,14 +204,13 @@ At this time however, the `appnexus` bidder only reads the First Party Data when
 
 PBS/PSP supports all first party data fields: site, user, segments, and imp-level first party data.
 
-
-<a name="appnexus-amp" />
+<a name="appnexus-amp"></a>
 
 #### User Sync in AMP
 
 If you are syncing user id's with Prebid Server and are using AppNexus' managed service, see [AMP Implementation Guide cookie-sync instructions](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) for details.
 
-<a name="appnexus-debug-auction" />
+<a name="appnexus-debug-auction"></a>
 
 #### Mobile App Display Manager Version
 
@@ -251,22 +248,22 @@ The following test parameters can be used to verify that Prebid Server is workin
 server-side Appnexus adapter. This example includes an `imp` object with an Appnexus test placement ID and sizes
 that would match with the test creative.
 
-```
-	"imp": [{
-		"id": "some-impression-id",
-		"banner": {
-			"format": [{
-				"w": 600,
-				"h": 500
-			}, {
-				"w": 300,
-				"h": 600
-			}]
-		},
-		"ext": {
-			"appnexus": {
-				"placement_id": 13144370
-			}
-		}
-	}]
+```json
+"imp": [{
+  "id": "some-impression-id",
+  "banner": {
+    "format": [{
+      "w": 600,
+      "h": 500
+    }, {
+      "w": 300,
+      "h": 600
+    }]
+  },
+  "ext": {
+    "appnexus": {
+      "placement_id": 13144370
+    }
+  }
+}]
 ```

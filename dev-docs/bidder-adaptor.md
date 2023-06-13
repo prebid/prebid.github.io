@@ -29,7 +29,7 @@ This page has instructions for writing your own bidder adapter.  The instruction
 * [Designing your Bid Params](#bidder-adaptor-Designing-your-Bid-Params)
 * [HTTP Simple Requests](#bidder-adaptor-HTTP-simple-requests)
 
-<a name="bidder-adaptor-Required-Adapter-Conventions" />
+<a name="bidder-adaptor-Required-Adapter-Conventions"></a>
 
 ### Required Adapter Rules
 
@@ -111,7 +111,7 @@ Module that connects to Example's demand sources
 
 ```html
 
-<a name="bidder-adaptor-Designing-your-Bid-Params" />
+<a name="bidder-adaptor-Designing-your-Bid-Params"></a>
 
 ### Designing your Bid Params
 
@@ -148,7 +148,7 @@ For more information about the kinds of information that can be passed using the
 
 ```
 
-<a name="bidder-adaptor-HTTP-simple-requests" />
+<a name="bidder-adaptor-HTTP-simple-requests"></a>
 
 ### HTTP Simple Requests
 
@@ -196,13 +196,14 @@ If your adapter interfaces with an ORTB backend, you may take advantage of Prebi
 * [Registering User Syncs](#bidder-adaptor-Registering-User-Syncs)
 * [Registering on Timeout](#bidder-adaptor-Registering-on-Timout)
 
-<a name="bidder-adaptor-Overview" />
+<a name="bidder-adaptor-Overview"></a>
 
 ### Overview
 
 The new code will reside under the `modules` directory with the name of the bidder suffixed by 'BidAdapter', e.g., `exampleBidAdapter.js`.
 
 Here are some guidelines for choosing a bidder code:
+
 - The bidder code must be lower case alphanumeric. The only special character allowed is underscore.
 - The bidder code must be unique - make sure none of the other bid adapters is using the same code.
 - The bidder code should be unique for the first 6 characters - this consideration helps with generating unique targeting keys for use by some ad exchanges, such as Google Ad Manager.
@@ -245,13 +246,13 @@ registerBidder(spec);
 
 ```
 
-<a id="ortb-adapters" />
+<a id="ortb-adapters"></a>
 
 ### Note on ORTB adapters
 
 If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`.
 
-<a name="bidder-adaptor-Building-the-Request" />
+<a name="bidder-adaptor-Building-the-Request"></a>
 
 ### Building the Request
 
@@ -415,7 +416,7 @@ return {
 
 ```
 
-<a name="bidder-adaptor-Interpreting-the-Response" />
+<a name="bidder-adaptor-Interpreting-the-Response"></a>
 
 ### Interpreting the Response
 
@@ -521,7 +522,7 @@ bid currency. Header Bidding is a first-price auction, the best candidate for
 
 Prebid won't resolve any other macros in the creative (e.g. AUCTION_ID, AUCTION_CURRENCY).
 
-<a name="bidder-adaptor-Registering-User-Syncs" />
+<a name="bidder-adaptor-Registering-User-Syncs"></a>
 
 ### Registering User Syncs
 
@@ -562,7 +563,7 @@ See below for an example implementation.  For more examples, search for `getUser
 
 ```
 
-<a name="bidder-adaptor-Registering-on-Timout" />
+<a name="bidder-adaptor-Registering-on-Timout"></a>
 
 ### Registering on Timeout
 

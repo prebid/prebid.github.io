@@ -140,7 +140,7 @@ All prebid adapters that get merged should automatically detect if they're servi
 In other words, you shouldn't have to do anything other than make sure your own page loads Prebid.js securely, e.g.,
 
 ```html
-<script src='https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js' async=true />
+<script src='https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js' async=true></script>
 ```
 
 (Except that you should *never never never* use the copy of Prebid.js at that URL in production, it isn't meant for production use and may break everything at any time.)

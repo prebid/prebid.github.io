@@ -277,7 +277,7 @@ pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
 ]
 ```
 
-<a name="getUserIdsAsync" />
+<a name="getUserIdsAsync"></a>
 
 `pbjs.getUserIds()` and `pbjs.getUserIdsAsEids()` may return only some IDs, or none at all, if they are called before all ID providers have had a chance to initialize - depending on [`auctionDelay` and/or `syncDelay`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-UserSyncProperties), that may need to wait until an auction has completed.
 To access the complete set of IDs, you may use `getUserIdsAsync`, which returns a promise that is guaranteed to resolve only once all IDs are available:
