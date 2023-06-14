@@ -21,5 +21,5 @@ The Pubgears bidder adapter requires setup and approval from the our support tea
 | Name             | Scope    | Description                    | Example | Type      |
 |------------------|----------|--------------------------------|---------|-----------|
 | `publisherId`    | required | The publisher's unique ID      | `12345` | `integer` |
-| `keyIdtagId`     | required | Tag id                         | `4o2c4` | `string`  |
+| `tagId`     | required | Tag id                         | `4o2c4` | `string`  |
 | `serverId`       | required | Assigned serverId              | `1o23s` | `string`  |
