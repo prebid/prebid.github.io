@@ -17,6 +17,9 @@ sidebarType : 1
 
 ## Overview
 
+{: .alert.alert-warning :}
+This module does not exist in PBJS 8.0 or later.
+
 This module enables the MASS protocol for Prebid. To use it, you'll need to
 work with a MASS enabled provider.
 
