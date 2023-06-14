@@ -117,7 +117,9 @@ Here's the list of the 'potentially restricted activities' that Prebid.js core c
 | `syncUser` | A bid adapter wants to fetch a [user sync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) | User sync is skipped | [`syncType`, `syncUrl`](#params-syncUser) |
 | `transmitEids` | A bid adapter or RTD submodule wants to access and/or transmit user IDs to their endpoint | User IDs are hidden from the component | None |
 | `transmitPreciseGeo` | A bid adapter or RTD submodule wants to access and/or transmit precise geolocation data to their endpoint | Component is allowed only 2-digit precision for latitude and longitude  | None |
+| `transmitTid` | A bid adapter or RTD submodule wants to access and/or transmit globally unique transaction IDs to their endpoint | Transaction IDs are hidden from the component | None |
 | `transmitUfpd` | A bid adapter or RTD submodule wants to access and/or transmit user FPD to their endpoint | User FPD is hidden from the component | None |
+
 
 <a id="parameters" />
 
