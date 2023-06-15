@@ -43,7 +43,6 @@ Core config:
 * [Generic Configuration](#setConfig-Generic-Configuration)
 * [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
 
-
 Module config: other options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
 
 * [Currency module](/dev-docs/modules/currency.html)
@@ -71,7 +70,7 @@ pbjs.setConfig({ debug: true });
 {: .alert.alert-warning :}
 Note that turning on debugging for Prebid Server causes most server-side adapters to consider it a test request, meaning that they won't count on reports.
 
-<a name="setConfig-deviceAccess"</a>
+<a name="setConfig-deviceAccess"></a>
 
 #### Device Access
 
