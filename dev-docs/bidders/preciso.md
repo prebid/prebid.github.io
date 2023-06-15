@@ -16,6 +16,8 @@ safeframes_ok: true
 schain_supported: true
 userIds: id5Id, identityLink, pubProvidedId
 pbs_app_supported: true
+coppa_supported: true
+multiformat_supported: will-bid-on-any
 ortb_blocking_supported: partial
 sidebarType: 1
 ---
