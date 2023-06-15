@@ -5,11 +5,17 @@ description: Pubgears Bidder Adapter
 pbjs: true
 biddercode: pubgears
 gdpr_supported: true
+gvl_id: none
 usp_supported: true
 coppa_supported: true
 schain_supported: true
 userIds: digitrust, identityLink, liveIntentId, pubCommonId
 sidebarType: 1
+media_types: banner
+safeframes_ok: false
+floors_supported: true
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: partial
 ---
 
 ### Note:
