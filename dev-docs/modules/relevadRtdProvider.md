@@ -39,8 +39,8 @@ pbjs.setConfig(
           name: "RelevadRTDModule",
           waitForIt: true,
           params: { 
-          	partnerId: your_partner_id, // Your Relevad partner id.
-          	setgpt: true,               // Target or not google GAM/GPT on your page.
+              partnerId: your_partner_id, // Your Relevad partner id.
+              setgpt: true,               // Target or not google GAM/GPT on your page.
             minscore: 30,               // Minimum relevancy score (0-100). If absent, defaults to 30.
  
             // The list of bidders to target with Relevad categories and segments. If absent or empty, target all bidders.

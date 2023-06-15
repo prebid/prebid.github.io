@@ -132,7 +132,7 @@ Additionally, you will need to define a 'video' field in the 'mediaTypes' object
                 playerSize: [640, 480],
                 minduration: 1,
                 maxduration: 2,
-                linearity: 1,	// ** Change this to 2 for in-video
+                linearity: 1,  // ** Change this to 2 for in-video
                 startdelay: 1,
                 placement: 1,
                 protocols: [1, 2]

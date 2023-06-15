@@ -62,7 +62,7 @@ Please note, A full scan (Step 4 above) of the body element is configured on by 
     idImportLibrary:{
         url: 'url',
         target: 'username',
-	debounce: 250
+    debounce: 250
     }
 });
 ```
@@ -80,15 +80,15 @@ After the data is collected, it will be POSTed to the configured URL in this for
 
 ```json
 {
-	"hid":"5dd72a98c8146bafa84313fc15eb27c2",
-	"uids":
-	{
-		"id5id":"ID5-ZHMOQ7afBOa_gZxzTSelo5KFcVwCQgM7d-BUkWtjAA",
-		"sharedid":
-			{
-				"id":"01EE77EKRHXEZVJYMSQVRJ9536",
-				"third":"01EE77EKRHXEZVJYMSQVRJ9536"
-			}
-	}
+    "hid":"5dd72a98c8146bafa84313fc15eb27c2",
+    "uids":
+    {
+        "id5id":"ID5-ZHMOQ7afBOa_gZxzTSelo5KFcVwCQgM7d-BUkWtjAA",
+        "sharedid":
+            {
+                "id":"01EE77EKRHXEZVJYMSQVRJ9536",
+                "third":"01EE77EKRHXEZVJYMSQVRJ9536"
+            }
+    }
 }
 ```

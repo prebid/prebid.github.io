@@ -394,63 +394,63 @@ pbjs.setConfig({
         enforcement: { ... },
         ...
         data: {
-	    "currency": "EU",
-	    "skipRate": 20,
-	    "floorsSchemaVersion":2,
-	    "modelGroups": [
-		{
-		    "modelWeight":25,
-		    "modelVersion": "Model1",
-		    "schema": {
-			"fields": [ "domain", "gptSlot", "mediaType", "size" ]
-		    },
-		    "values": {
-			"www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
-			"www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
-			"www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
-			...
-			"www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
-			...
-			"www.publisher.com|*|*|*": 0.80,
-		    },
-		    "default": 0.75
-		},
-		{
-		    "modelWeight": 25,
-		    "modelVersion": "Model2",
-		    "schema": {
-			"fields": [ "domain", "mediaType", "size" ]
-		    },
-		    "values": {
-			"www.publisher.com|banner|728x90": 1.00,
-			"www.publisher.com|banner|300x250": 1.20,
-			"www.publisher.com|banner|300x600": 1.80,
-			...
-			"www.domain.com|banner|728x90": 2.11
-			...
-			"www.publisher.com|*|*|*": 0.80,
-		    },
-		    "default": 0.75
-		},
-		{
-		    "modelWeight": 50,
-		    "modelVersion": "Model3",
-		    "schema": {
-			"fields": [ "gptSlot", "mediaType", "size" ]
-		    },
-		    "values": {
-			"/1111/homepage/top-banner|banner|728x90": 1.00,
-			"/1111/homepage/top-rect|banner|300x250": 1.20,
-			"/1111/homepage/top-rect|banner|300x600": 1.80,
-			...
-			"/1111/homepage/top-banner|banner|728x90": 2.11
-			...
-			"*|banner|*": 0.80,
-		    },
-		    "default": 0.75
-		}
-	    ]
-	}
+        "currency": "EU",
+        "skipRate": 20,
+        "floorsSchemaVersion":2,
+        "modelGroups": [
+        {
+            "modelWeight":25,
+            "modelVersion": "Model1",
+            "schema": {
+            "fields": [ "domain", "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+            "www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
+            "www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
+            "www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
+            ...
+            "www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
+            ...
+            "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.75
+        },
+        {
+            "modelWeight": 25,
+            "modelVersion": "Model2",
+            "schema": {
+            "fields": [ "domain", "mediaType", "size" ]
+            },
+            "values": {
+            "www.publisher.com|banner|728x90": 1.00,
+            "www.publisher.com|banner|300x250": 1.20,
+            "www.publisher.com|banner|300x600": 1.80,
+            ...
+            "www.domain.com|banner|728x90": 2.11
+            ...
+            "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.75
+        },
+        {
+            "modelWeight": 50,
+            "modelVersion": "Model3",
+            "schema": {
+            "fields": [ "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+            "/1111/homepage/top-banner|banner|728x90": 1.00,
+            "/1111/homepage/top-rect|banner|300x250": 1.20,
+            "/1111/homepage/top-rect|banner|300x600": 1.80,
+            ...
+            "/1111/homepage/top-banner|banner|728x90": 2.11
+            ...
+            "*|banner|*": 0.80,
+            },
+            "default": 0.75
+        }
+        ]
+    }
     }
 });
 ```
@@ -468,47 +468,47 @@ pbjs.setConfig({
         enforcement: { ... },
         ...
         data: {
-	    "currency": "EU",
-	    "floorsSchemaVersion":2,
-	    "modelGroups": [
-		{
-		    "modelWeight":25,
-		    "skipRate": 20,
-		    "modelVersion": "Model1",
-		    "schema": {
-			"fields": [ "domain", "gptSlot", "mediaType", "size" ]
-		    },
-		    "values": {
-			"www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
-			"www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
-			"www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
-			...
-			"www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
-			...
-			"www.publisher.com|*|*|*": 0.80,
-		    },
-		    "default": 0.75
-		},
-		{
-		    "modelWeight": 50,
-		    "skipRate": 50,
-		    "modelVersion": "Model2",
-		    "schema": {
-			"fields": [ "gptSlot", "mediaType", "size" ]
-		    },
-		    "values": {
-			"/1111/homepage/top-banner|banner|728x90": 1.00,
-			"/1111/homepage/top-rect|banner|300x250": 1.20,
-			"/1111/homepage/top-rect|banner|300x600": 1.80,
-			...
-			"/1111/homepage/top-banner|banner|728x90": 2.11
-			...
-			"*|banner|*": 0.80,
-		    },
-		    "default": 0.75
-		}
-	    ]
-	}
+        "currency": "EU",
+        "floorsSchemaVersion":2,
+        "modelGroups": [
+        {
+            "modelWeight":25,
+            "skipRate": 20,
+            "modelVersion": "Model1",
+            "schema": {
+            "fields": [ "domain", "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+            "www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
+            "www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
+            "www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
+            ...
+            "www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
+            ...
+            "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.75
+        },
+        {
+            "modelWeight": 50,
+            "skipRate": 50,
+            "modelVersion": "Model2",
+            "schema": {
+            "fields": [ "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+            "/1111/homepage/top-banner|banner|728x90": 1.00,
+            "/1111/homepage/top-rect|banner|300x250": 1.20,
+            "/1111/homepage/top-rect|banner|300x600": 1.80,
+            ...
+            "/1111/homepage/top-banner|banner|728x90": 2.11
+            ...
+            "*|banner|*": 0.80,
+            },
+            "default": 0.75
+        }
+        ]
+    }
     }
 });
 ```
@@ -1214,7 +1214,7 @@ pbjs.setConfig({
              floorDeals: false //default to false
           },
           floorMin: 0.05,      // global default
-	  auctionDelay: 100,   // in milliseconds
+      auctionDelay: 100,   // in milliseconds
           endpoint: {          // where to get the dynamic floors
             url: 'https://floorprovider.com/a1001-mysite.json'
           },
@@ -1229,7 +1229,7 @@ pbjs.setConfig({
                 '*|banner': 0.98,
                 '*|video': 1.74
             }
-	  }
+      }
       }
 });
 ```
@@ -1245,11 +1245,11 @@ pbjs.addAdUnits({
     },
     ortb2Imp: {
         ext: {
-	    prebid: {
+        prebid: {
                 data: {
-		    floorMin: 0.25,
-		    floorMinCur: "USD"
-		}
+            floorMin: 0.25,
+            floorMinCur: "USD"
+        }
             }
         }
     },

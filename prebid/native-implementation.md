@@ -22,9 +22,8 @@ This document replaces the [previous native documentation](/prebid/native-implem
 {% endcapture %}
 {% include alerts/alert_tip.html content=version2 %}
 
-* TOC
+- TOC
 {:toc}
-
 
 ## Overview
 
@@ -83,7 +82,6 @@ The Prebid.js AdUnit needs to define a native mediatype object to tell bidders w
 | rendererUrl | optional | Used in the ‘Custom Renderer Scenario’, this points to javascript code that will produce the Native template. | 'https://host/path.js' | string |
 | ortb | recommended | OpenRTB configuration of the Native assets. The Native 1.2 specification can be found [here](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) | { assets: [], eventtrackers: [] } | object |
 | sendTargetingKeys | deprecated | Defines whether or not to send the hb_native_ASSET targeting keys to the ad server. Defaults to `false`. | `false` | boolean |
-
 
 ### 3.1. Prebid.js and the ORTB asset fields
 
@@ -158,21 +156,21 @@ Here's an example:
 For reference, this is the table that specifies all data types: 
 
 {: .table .table-bordered .table-striped }
-| Type ID | Name | 
-| ------- | ---- | 
-| 1 | sponsored | 
-| 2 | desc | 
+| Type ID | Name |
+| ------- | ---- |
+| 1 | sponsored |
+| 2 | desc |
 | 3 | rating |
-| 4 | likes | 
-| 5 | downloads | 
+| 4 | likes |
+| 5 | downloads |
 | 6 | price |
-| 7 | saleprice | 
+| 7 | saleprice |
 | 8 | phone |
-| 9 | address | 
-| 10 | desc2 | 
-| 11 | displayurl | 
-| 12 | ctatext | 
-| 500+ | Reserved for exchange specific usage | 
+| 9 | address |
+| 10 | desc2 |
+| 11 | displayurl |
+| 12 | ctatext |
+| 500+ | Reserved for exchange specific usage |
 
 Please consult the [OpenRTB Native spec](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) for more details.
 
@@ -181,7 +179,6 @@ Please consult the [OpenRTB Native spec](https://www.iab.com/wp-content/uploads/
 In order to fit special bidder requirements, publisher can utilize various `ext` objects provided by OpenRTB specs.
 
 Bid adapters will declare which custom assets they support in their documentation.
-
 
 {: .alert.alert-success :}
 Note: The `native.js::renderNativeAd()` function must be called with `requestAllAssets: true`.
@@ -213,6 +210,7 @@ In this scenario, the body of the native creative template is managed within the
 When the native AdUnit is defined in the page, declare `sendTargetingKeys: false` in the native Object. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
 
 Example Native AdUnit:
+
 ```javascript
 pbjs.addAdUnits({
     code: slot.code,
@@ -280,6 +278,7 @@ There are three key aspects of the native template:
     3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js rather than having to scan the template to find which specific assets are needed.
 
 Example creative HTML:
+
 ```html
 <div class="sponsored-post">
   <div class="thumbnail" style="background-image: url(##hb_native_asset_id_1##);"></div>
@@ -307,7 +306,8 @@ When using 'Send All Bids' mode you should update `pbNativeTagData.adId = "%%PAT
 Note the URL to the [Prebid Universal Creative](/overview/prebid-universal-creative.html) shown in this example uses the format where %%PATTERN:hb_format%% resolves to load native.js instead of banner.js or video.js.
 
 Example CSS:
-``` css
+
+```css
 .sponsored-post {
     background-color: #fffdeb;
     font-family: sans-serif;
@@ -351,6 +351,7 @@ See [Managing the Native Template in GAM](/adops/gam-native.html#managing-the-na
     padding: 4px;
 }
 ```
+
 ### 4.2. Implementing an AdUnit-Defined Template
 
 In this scenario, the body of the native creative template is managed within the Prebid.js AdUnit and includes special Prebid.js macros.
@@ -363,12 +364,13 @@ When the Native AdUnit is defined in the page:
 - Define the adTemplate as an escaped ES5 string using Prebid.js ##macros##. (See the appendix for an exhaustive list of assets and macros.) Note that this approach only affects the HTML body. Any CSS definitions need to be defined in the body of the template or in the AdServer.
 
 Example AdUnit:
-``` javascript
+
+```javascript
 var adUnits = [{
       code: 'native-div',
       mediaTypes: {
           native: {
-	    sendTargetingKeys: false,
+        sendTargetingKeys: false,
             adTemplate: `<div class="sponsored-post">
                 <div class="thumbnail" style="background-image: url(##hb_native_asset_id_1##);"></div>
                 <div class="content">
@@ -430,6 +432,7 @@ Even though the body of the native creative is defined in the AdUnit, an AdServe
     3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js. The rendering function cannot currently scan a template defined in the AdUnit.
 
 Example Creative HTML
+
 ```html
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist//%%PATTERN:hb_format%%.js"></script>
 <script>
@@ -459,15 +462,16 @@ In this scenario, the body of the native creative is managed from an external Ja
 When the Native AdUnit is defined in the page:
 
 - Declare`sendTargetingKeys: false` in the Native Object. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
-- Define the `rendererUrl` as a URL that defines a `window.renderAd` function in the creative iframe. The html returned by the `window.renderAd` function will be attached to the creative's DOM. 
+- Define the `rendererUrl` as a URL that defines a `window.renderAd` function in the creative iframe. The html returned by the `window.renderAd` function will be attached to the creative's DOM.
 
 Example AdUnit setup:
+
 ``` javascript
 var adUnits = [{
       code: 'native-div',
       mediaTypes: {
           native: {
-	    sendTargetingKeys: false,
+        sendTargetingKeys: false,
             rendererUrl: "https://files.prebid.org/creatives/nativeRenderFunction.js",
             ortb: {
                 assets: [{
@@ -519,6 +523,7 @@ Even though the body of the native creative is defined in the external JavaScrip
     3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js so they can be passed to the render function.
 
 Example creative HTML:
+
 ```html
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist//%%PATTERN:hb_format%%.js"></script>
 <script>
@@ -548,10 +553,11 @@ Requirements for a native rendering function:
 - The renderer can optionally expose a `window.postRenderAd()` function that can be useful to trigger javascript functions.
 
 Here's an example script:
+
 ``` javascript
 window.renderAd = function(bid) {
     const { ortb } = bid;
-	let template = `
+    let template = `
     <div class="sponsored-post">
         <div class="thumbnail" style="background-image: url(##hb_native_asset_id_1##);"></div>
         <div class="content">
@@ -588,7 +594,7 @@ window.renderAd = function(bid) {
         template = template.replace("##hb_native_privacy##", ortb.privacy);
     }
     template = template.replace("##hb_native_linkurl##", ortb.link.url);
-	return template;
+    return template;
 }
 
 window.postRenderAd(bid) {
@@ -613,15 +619,19 @@ A few details that may help understand and debug your setup:
 1. Note that native iframes will be resized to the height of the creative after render.
 
 ## 6. Event tracking
+
 Native ads support 3 different types of event tracking:
+
 - impression tracking
 - click tracking
 - viewability tracking
 
 ### 6.1. Impression Tracking
+
 Prebid supports both methods (`img` and `js`) for impression tracking. Publishers just need to specify which method is support for which adUnit. This is configured in `adUnit.mediaTypes.native.ortb.eventtrackers`. For more details take a look at the [OpenRTB spec](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf).
 
 How impression tracking works step by step:
+
 - When the `window.pbNativeTag.renderNativeAd()` is called, the Prebid Universal Creative will request OpenRTB response from Prebid.js (via postmessage).
 - Prebid.js responds with OpenRTB response that contains `eventtrackers`
 - When the Prebid Universal Creative renders the native ad, it will gather all impression trackers from the response and for each tracker it will:
@@ -632,19 +642,20 @@ The publisher doesn't need to implement anything for impression tracking to work
 
 ### 6.2 Click tracking
 
-According to the [OpenRTB spec](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf], click trackers can be found in `link` objects. There is 'master' `link` object for the entire native ad and also each asset in the response can have it's own separate `link` object.
+According to the [OpenRTB spec](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf), click trackers can be found in `link` objects. There is 'master' `link` object for the entire native ad and also each asset in the response can have it's own separate `link` object.
 
 When native ad is rendered prebid universal creative will attach `click` listeners on all DOM elements that have class `pb-click`. Which means it's up to the publisher to decide which DOM objects are 'clickable'.
 
 Furthermore, prebid universal creative can also track if some specific asset is clicked. To enable this, publisher needs to assign custom attribute to associated DOM element: `hb_native_asset_id="5"`. In that case if user clicks on asset with `id: 5` prebid universal creative will take `link` object from that asset and fire all click trackers. If asset doesn't have `link` object, prebid universal creative will fire all click trackers associated with 'master' `link` object (as described in openRTB specs).
 
-
 ```html
 <div class="pb-click" hb_native_asset_id="5">
 ```
+
 If the user clicks on this div, the Prebid Universal Creative will take the `link` object from the identified asset and fire any click trackers. If the asset doesn't have a `link` object, it will just fire the click trackers associated with 'master' `link` object.
 
 Example of how to configure a template so that the Prebid Universal Creative can fire click trackers:
+
 ``` html
 <div class="sponsored-post">
   <div class="thumbnail" style="background-image: url(##hb_native_asset_id_1##);"></div>

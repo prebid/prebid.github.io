@@ -59,7 +59,7 @@ pbjs.setConfig(
                 name: "SirdataRTDModule",
                 waitForIt: true,
                 params: {
-                	partnerId: 1,
+                    partnerId: 1,
                     key: 1,
                 }
             }
@@ -194,7 +194,7 @@ data Object format for usage in this kind of function :
 
 ```
 function overrideAppnexus (adUnit, segmentsArray, dataObject, bid) {
-	for (var i = 0; i < segmentsArray.length; i++) {
+    for (var i = 0; i < segmentsArray.length; i++) {
         if (segmentsArray[i]) {
             bid.params.user.segments.push(segmentsArray[i]);
         }
@@ -210,11 +210,11 @@ pbjs.setConfig(
                 name: "SirdataRTDModule",
                 waitForIt: true,
                 params: {
-                	partnerId: 1,
+                    partnerId: 1,
                     key: 1,
-                	setGptKeyValues: true,
-                	contextualMinRelevancyScore: 50, //Min score to keep contextual category in the bidders (0-100 scale)
-                	actualUrl: actual_url, //top location url, for contextual categories
+                    setGptKeyValues: true,
+                    contextualMinRelevancyScore: 50, //Min score to keep contextual category in the bidders (0-100 scale)
+                    actualUrl: actual_url, //top location url, for contextual categories
                     bidders: [{
                         bidder: 'appnexus',
                         customFunction: overrideAppnexus,

@@ -194,7 +194,7 @@ II. A request originating in the UK, viewport size: `[1700px, 900px]`
         },
         video: {
             context: 'instream',
-	    ... other video params ...
+        ... other video params ...
             sizeConfig: [
                 { minViewPort: [0, 0], playerSize: [] },
                 { minViewPort: [1200, 0], playerSize: [640, 400]}

@@ -137,7 +137,7 @@ function submit_download() {
       link.click();
       document.body.removeChild(link);
       if (form_data['removedModules'].length > 0) {
-	alert("The following modules were removed from your download because they aren't present in Prebid.js version "+form_data['version']+": "+JSON.stringify(form_data['removedModules']));
+        alert("The following modules were removed from your download because they aren't present in Prebid.js version "+form_data['version']+": "+JSON.stringify(form_data['removedModules']));
       }
     })
     .fail(function(e) {

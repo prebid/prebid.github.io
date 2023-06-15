@@ -11,9 +11,10 @@ sidebarType : 1
 ---
 
 # GDPR Consent Management Module
+
 {: .no_toc }
 
-* TOC
+- TOC
 {: toc }
 
 {% capture legalNotice %}
@@ -92,7 +93,6 @@ A related parameter is `deviceAccess`, which is at the global level of Prebid.js
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | deviceAccess | `boolean` | If false, Prebid.js will prevent adapters and modules from reading and setting cookies and HTML local storage. Defaults to `true`. | `false` |
-
 
 ### TCF v2.0 Examples
 
@@ -215,11 +215,11 @@ Here is a sample of how the data is structured in the `bidderRequest` object:
 
 **_consentString_**
 
-This field contains the user's choices on consent, represented as an encoded string value.  In certain scenarios, this field might come to you with an `undefined` value; normally this happens when there was an error (or timeout) during the CMP interaction and the publisher turned off GDPR enforcement.  If you don't want to pass `undefined` to your system, you can check for this value and replace it with a valid consent string.  See the *consent_required* code in the example below (under "gdprApplies") for a possible approach to checking and replacing values.
+This field contains the user's choices on consent, represented as an encoded string value.  In certain scenarios, this field might come to you with an `undefined` value; normally this happens when there was an error (or timeout) during the CMP interaction and the publisher turned off GDPR enforcement.  If you don't want to pass `undefined` to your system, you can check for this value and replace it with a valid consent string.  See the _consent_required_ code in the example below (under "gdprApplies") for a possible approach to checking and replacing values.
 
 **_addtlConsent_**
 
-If the CMP responds with additional consent data as proposed at https://support.google.com/admanager/answer/9681920?hl=en then the corresponding string is stored here.
+If the CMP responds with additional consent data as proposed at [https://support.google.com/admanager/answer/9681920?hl=en] then the corresponding string is stored here.
 
 **_vendorData_**
 
@@ -279,18 +279,18 @@ Here are some things that publishers can do to control various activities:
 
 1. If the current page view is known to be in GDPR scope, make sure the adapters are aware of it even on the first page where CMP hasn't been activated by setting the defaultGdprScope: `consentManagement.gdpr.defaultGdprScope: true`
 2. If the user hasn't consented to Purpose 1:
-  - Set [deviceAccess: false](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess)
-  - Don't enable [userSync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing)
-  - Don't enable [userId](/dev-docs/modules/userId.html) modules
+   - Set [deviceAccess: false](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess)
+   - Don't enable [userSync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing)
+   - Don't enable [userId](/dev-docs/modules/userId.html) modules
 
 3. If you're working with bidders that don't support GDPR, consider dynamically populating adunits as needed. See the list below for bidders supporting GDPR.
-
 
 ### Publishers Not Using an IAB-Compliant CMP
 
 Prebid.js and much of the ad industry rely on the IAB CMP standard for GDPR support, but there might be some publishers who have implemented a different approach to meeting the privacy rules. Those publishers can utilize Prebid.js and the whole header bidding ecosystem by building a translation layer between their consent method and the IAB method.
 
-At a high level, this could be done as follows:  
+At a high level, this could be done as follows:
+
 1. Build a `window.__tcfapi()` function, which will be seen by Prebid.
 2. If SafeFrames are in use, build a message receiver function.
 3. Format consent data in a string according to the [IAB standard](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework).
@@ -364,7 +364,8 @@ For instructions on how to generate the IAB consent string see the [IAB CMP 2 Sp
 
 **_gdprApplies_**  
 Use the following values in the _gdprApplies_ field:
-- True: the current user is in the European Economic Area (EEA) *or* the publisher wants to have all traffic considered in-scope for GDPR.
+
+- True: the current user is in the European Economic Area (EEA) _or_ the publisher wants to have all traffic considered in-scope for GDPR.
 - False: It's known that the user is outside the EEA.
 - Leave the attribute unspecified if user's location is unknown.
 
@@ -373,7 +374,7 @@ This should be false if there was some error in the consent data; otherwise set 
 
 ## Adapters Supporting GDPR
 
-Bidders on this list have self-declared their GDPR support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "gdpr_supported: true".
+Bidders on this list have self-declared their GDPR support in their [https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gdpr_supported: true".
 
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
@@ -383,10 +384,10 @@ var idx_gdpr=0;
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% for item in bidder_pages %}
     {% if item.gdpr_supported == true %}
-	adaptersSupportingGdpr[idx_gdpr]={};
-	adaptersSupportingGdpr[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
-	adaptersSupportingGdpr[idx_gdpr].text="{{item.title}}";
-	idx_gdpr++;
+    adaptersSupportingGdpr[idx_gdpr]={};
+    adaptersSupportingGdpr[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
+    adaptersSupportingGdpr[idx_gdpr].text="{{item.title}}";
+    idx_gdpr++;
     {% endif %}
 {% endfor %}
 </script>

@@ -166,18 +166,18 @@ var AdUnits = [{
         {
             bidder: "bidderA",
             sizeConfig: [
-		{ minViewPort: [0, 0], relevantMediaTypes: ['none'] },
-		{ minViewPort: [1200, 0], relevantMediaTypes: ['banner'] }
-	    ],
+                { minViewPort: [0, 0], relevantMediaTypes: ['none'] },
+                { minViewPort: [1200, 0], relevantMediaTypes: ['banner'] }
+            ],
             params: {
                 placement: "1111"
             }
        },{
             bidder: "bidderA",
             sizeConfig: [
-		{ minViewPort: [0, 0], relevantMediaTypes: ['banner'] },
-		{ minViewPort: [1200, 0], relevantMediaTypes: ['none'] }
-	    ],
+                { minViewPort: [0, 0], relevantMediaTypes: ['banner'] },
+                { minViewPort: [1200, 0], relevantMediaTypes: ['none'] }
+            ],
             params: {
                 placement: "2222"
             }

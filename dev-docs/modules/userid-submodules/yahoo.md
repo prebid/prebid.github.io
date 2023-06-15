@@ -76,7 +76,7 @@ pbjs.setConfig({
             params: {
               pixelId: "0000",
               he: "ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"
-		 puid: "ab9iibf5a231ii1db8ef911596ca297d5e3f84biii00041c580dba3baf9c1da"
+         puid: "ab9iibf5a231ii1db8ef911596ca297d5e3f84biii00041c580dba3baf9c1da"
             }
         }]
     }

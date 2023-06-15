@@ -6,9 +6,10 @@ sidebarType: 1
 ---
 
 # First Party Data - Prebid.js
+
 {: .no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 Prebid allows publishers to supply attributes related to their content
@@ -39,6 +40,7 @@ configuration or on a Prebid.js AdUnit:
 ## In-Page Examples
 
 The Prebid First Party Data JSON structure reflects the OpenRTB standard.
+
 - Arbitrary attributes should go in `ortb2.site.ext.data` or `ortb2.user.data`.
 - Fields that are meant to be standard [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) should be in `ortb2.site` or `ortb2.user`. Specfically, the standard values for 'site' are: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. For 'user' these are: yob, gender, keywords.
 - Segment taxonomy values go in `ortb2.site.content.data` or `ortb2.user.data` using the IAB standard representation.
@@ -47,6 +49,7 @@ The Prebid First Party Data JSON structure reflects the OpenRTB standard.
 
 Here's how a publisher can let all bid adapters have access
 to first party data that might be useful in ad targeting that's good in PBJS 4.30 and later:
+
 ```javascript
 pbjs.setConfig({
    ortb2: {
@@ -61,40 +64,40 @@ pbjs.setConfig({
            keywords: "power tools, drills",
            search: "drill",
            content: {
-		userrating: "4",
-		data: [{
-          	    name: "www.dataprovider1.com",
-          	    ext: {
-		        segtax: 7,
-			cids: [ "iris_c73g5jq96mwso4d8" ]
-		    },
-		    segment: [
-            		{ id: "687" },
-            		{ id: "123" }
-		    ]
+        userrating: "4",
+        data: [{
+                  name: "www.dataprovider1.com",
+                  ext: {
+                segtax: 7,
+            cids: [ "iris_c73g5jq96mwso4d8" ]
+            },
+            segment: [
+                    { id: "687" },
+                    { id: "123" }
+            ]
                 }]
-	   },
-	   ext: {
+       },
+       ext: {
                data: {   // fields that aren't part of openrtb 2.6
                    pageType: "article",
                    category: "repair"
                }
-	   }
+       }
         },
         user: {
            keywords: "a,b",
-	   data: [{
-	       name: "dataprovider.com",
-	       ext: { segtax: 4 },
+       data: [{
+           name: "dataprovider.com",
+           ext: { segtax: 4 },
                segment: [
-		  { id: "1" }
+          { id: "1" }
                ]
-	   }],
-	   ext: {
+       }],
+       ext: {
                data: {
                   registered: true,
                   interests: ["cars"]
-	       }
+           }
            }
         },
         regs: {
@@ -157,7 +160,7 @@ pbjs.addAdUnits({
     },
     ortb2Imp: {
         ext: {
-	        data: {
+            data: {
                 pbadslot: "homepage-top-rect",
                 adUnitSpecificAttribute: "123"
             }
@@ -181,7 +184,7 @@ pbjs.addAdUnits({
     ortb2Imp: {
         rwdd: 1,
         ext: {
-	        data: {
+            data: {
                 pbadslot: "my-rewarded-rectangle",
                 adUnitSpecificAttribute: "123"
             }
@@ -337,13 +340,13 @@ The [IAB](https://iab.com) offers standard content and audience taxonomies for c
 
 ```
         user: {
-	   data: [{
-	       name: "dataprovider.com", // who resolved the segments
-	       ext: { segtax: 4 },       // taxonomy used to encode the segments
+       data: [{
+           name: "dataprovider.com", // who resolved the segments
+           ext: { segtax: 4 },       // taxonomy used to encode the segments
                segment: [
-		  { id: "1" }
+          { id: "1" }
                ]
-	   }],
+       }],
 ```
 
 The new extension is `segtax`, which identifies the specific taxonomy used to

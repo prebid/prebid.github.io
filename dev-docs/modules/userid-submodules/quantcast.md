@@ -13,7 +13,7 @@ Add it to your Prebid.js package with:
 gulp build --modules=userId,quantcastIdSystem
 
 Quantcast’s privacy policies for the services rendered can be found at
- 		https://www.quantcast.com/privacy/
+         https://www.quantcast.com/privacy/
 
 Publishers deploying the module are responsible for ensuring legally required notices and choices for users.
 

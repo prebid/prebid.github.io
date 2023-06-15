@@ -43,13 +43,13 @@ pbjs.setConfig({
         bidder: "bidderA",
         // bidderA can supply up to two bids
         maxBids: 2,
-	// the second bid will go to the ad server as hb_pb_bidA2
+    // the second bid will go to the ad server as hb_pb_bidA2
         targetBiddercodePrefix: "bidA"  
     },{
         bidder: "bidderB",
         // bidderB can supply up to three bids
         maxBids: 3,
-	// additional bids will be passed as hb_pb_bidB2 and hb_pb_bidB3
+    // additional bids will be passed as hb_pb_bidB2 and hb_pb_bidB3
         targetBiddercodePrefix: "bidB"
     },{
         bidders: ["bidderC","bidderD"]

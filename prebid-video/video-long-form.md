@@ -14,8 +14,8 @@ sidebarType: 4
 
 If you’re new to header bidding and Prebid review the following to get a general understanding of Prebid.js.
 
--	[What Is Prebid?](/overview/intro.html)
--	[Getting Started with Prebid](/adops/before-you-start.html)
+- [What Is Prebid?](/overview/intro.html)
+- [Getting Started with Prebid](/adops/before-you-start.html)
 
 See [Prebid.js Video Overview](/prebid-video/video-overview.html) for a general description and high-level overview of working with video demand in Prebid.js.
 

@@ -12,6 +12,7 @@ sidebarType : 1
 ---
 
 # GPT Pre-Auction Module
+
 {:.no_toc}
 
 * TOC
@@ -24,15 +25,15 @@ This module enables bidder targeting and tracking at the ad server ad slot level
 This module is enabled by default if it's compiled into your PBJS package. It will add the [Prebid Ad Slot and GPID](/features/pbAdSlot.html) along with the matching GAM ad unit name to each ad unit's first-party data before bid requests are sent to the adapters.
 
 * **Prebid.js Adapters** - will be able to utilize these values as:
-    * AdUnit.ortb2Imp.ext.gpid="/1111/home-left"
-    * AdUnit.ortb2Imp.ext.data.adserver.name="gam"
-    * AdUnit.ortb2Imp.ext.data.adserver.adslot="/1111/home"
-    * AdUnit.ortb2Imp.ext.data.pbadslot="/1111/home-left"
+  * AdUnit.ortb2Imp.ext.gpid="/1111/home-left"
+  * AdUnit.ortb2Imp.ext.data.adserver.name="gam"
+  * AdUnit.ortb2Imp.ext.data.adserver.adslot="/1111/home"
+  * AdUnit.ortb2Imp.ext.data.pbadslot="/1111/home-left"
 * **Prebid Server Adapters** - will see the OpenRTB as:
-    * imp[].ext.gpid
-    * imp[].ext.data.adserver.name
-    * imp[].ext.data.adserver.adslot
-    * imp[].ext.data.pbadslot
+  * imp[].ext.gpid
+  * imp[].ext.data.adserver.name
+  * imp[].ext.data.adserver.adslot
+  * imp[].ext.data.pbadslot
 
 {: .alert.alert-info :}
 The Prebid Ad Slot didn't get broad adoption, so it's likely that
@@ -56,20 +57,21 @@ Optional initialization parameters:
 | mcmEnabled | no | boolean | Removes extra network IDs when Multiple Customer Management is active. Default is false. | true |
 
 For example:
-```
+
+```javascript
 pbjs.setConfig({
     gptPreAuction: {
-	enabled: true, // enabled by default
-	useDefaultPreAuction: false,
-	customPreAuction: function(adUnit, adServerAdSlot) {
-		...
-		return "customPbAdSlot";
-	},
-	customGptSlotMatching: function(gptSlotObj) {
-		...
-		return true; // or false
-	},
-	mcmEnabled: true
+    enabled: true, // enabled by default
+    useDefaultPreAuction: false,
+    customPreAuction: function(adUnit, adServerAdSlot) {
+        ...
+        return "customPbAdSlot";
+    },
+    customGptSlotMatching: function(gptSlotObj) {
+        ...
+        return true; // or false
+    },
+    mcmEnabled: true
     }
 });
 ```
@@ -128,36 +130,36 @@ If either of these isn't the case, you'll need to supply your own function.
 
 pbjs.setConfig({
     gptPreAuction: {
-	enabled: true, // enabled by default
-	customPbAdSlot: function(adUnitCode, adServerAdSlot) {
-		// get adunit object
-		au=pbjs.adUnits.filter(au => au.code==adUnitCode);
-		if (au.length==0) {
-		    return;
-		}
+    enabled: true, // enabled by default
+    customPbAdSlot: function(adUnitCode, adServerAdSlot) {
+        // get adunit object
+        au=pbjs.adUnits.filter(au => au.code==adUnitCode);
+        if (au.length==0) {
+            return;
+        }
 
-		// use pbadslot if supplied
-		if (au[0].ort2bImp && au[0].ort2bImp.ext && au[0].ort2bImp.ext.data && au[0].ort2bImp.ext.data.pbadslot) {
-		    return au[0].ort2bImp.ext.data.pbadslot;
-		}
+        // use pbadslot if supplied
+        if (au[0].ort2bImp && au[0].ort2bImp.ext && au[0].ort2bImp.ext.data && au[0].ort2bImp.ext.data.pbadslot) {
+            return au[0].ort2bImp.ext.data.pbadslot;
+        }
 
-		// confirm that GPT is set up
-		if (!(googletag && googletag.apiReady)) {
-		    return;
-		}
-		// find all GPT slots with this name
-		var gptSlots = googletag.pubads().getSlots().filter(function(gpt) {
-		    return gpt.getAdUnitPath() == adServerAdSlot;
-		});
-		if (gptSlots.length==0) {
-		    return;  // should never happen
-		}
-		if (gptSlots.length==1) {
-		    return adServerAdSlot;
-		}
-		// else the adunit code must be div id. append it.
-		return adServerAdSlot+"#"+adUnitCode;
-	}
+        // confirm that GPT is set up
+        if (!(googletag && googletag.apiReady)) {
+            return;
+        }
+        // find all GPT slots with this name
+        var gptSlots = googletag.pubads().getSlots().filter(function(gpt) {
+            return gpt.getAdUnitPath() == adServerAdSlot;
+        });
+        if (gptSlots.length==0) {
+            return;  // should never happen
+        }
+        if (gptSlots.length==1) {
+            return adServerAdSlot;
+        }
+        // else the adunit code must be div id. append it.
+        return adServerAdSlot+"#"+adUnitCode;
+    }
   });
 };
 ```
