@@ -2,6 +2,7 @@
 layout: userid
 title: Trustpid
 description: Trustpid User ID sub-module
+pbjs_version_notes: not in 8.x
 useridmodule: trustpidSystem
 ---
 
