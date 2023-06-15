@@ -15,7 +15,6 @@ See below for usage examples.
 Core config:
 
 * [Debugging](#setConfig-Debugging)
-* [Allow activities](#setConfig-allow-activities)
 * [Device Access](#setConfig-deviceAccess)
 * [Bidder Timeouts](#setConfig-Bidder-Timeouts)
 * [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
@@ -44,6 +43,7 @@ Core config:
 * [Generic Configuration](#setConfig-Generic-Configuration)
 * [Troubleshooting configuration](#setConfig-Troubleshooting-your-configuration)
 
+
 Module config: other options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
 
 * [Currency module](/dev-docs/modules/currency.html)
@@ -71,13 +71,7 @@ pbjs.setConfig({ debug: true });
 {: .alert.alert-warning :}
 Note that turning on debugging for Prebid Server causes most server-side adapters to consider it a test request, meaning that they won't count on reports.
 
-<a id="setConfig-allow-activities"></a>
-
-#### Allow activities
-
-Starting since Prebid 7.48, you can prevent Prebid, or individual modules, from performing certain activities through `allowActivities` configuration, which provides fine-grained control over a number privacy-related items, including access to device storage, first party data, or user IDs. For more information, see [activity controls](/dev-docs/activity-controls.html).
-
-<a name="setConfig-deviceAccess"></a>
+<a name="setConfig-deviceAccess"</a>
 
 #### Device Access
 

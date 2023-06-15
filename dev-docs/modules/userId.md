@@ -185,7 +185,7 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 | AudienceOne ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
 | DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
 | DMD ID | DMD | dmdId | hcn.health | "1111" |
-| CpexID | CPEx | cpexId | cpex.cz | "1111" |
+| Czech Ad ID | czechAdId | czechAdId | czechadid.cz | "1111" |
 | CriteoID | Criteo | criteoId | criteo.com | "1111" |
 | Fabrick ID | Neustar | fabrickId | neustar.biz | "1111" |
 | FLoC ID | n/a | flocId | | |
@@ -213,6 +213,7 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 | SharedID (PBJS 4.x)| Prebid | sharedid | sharedid.org | {"id":"01EAJWWN...", "third":"01EAJ..."} |
 | Unified ID | Trade Desk | tdid | adserver.org | "1111" |
 | ConnectID | Yahoo | connectId | yahoo.com | {"connectId": "72d04af6..."} |
+| FreePass ID | FreePass | freepassId | | "1111" |
 
 For example, the adapter code might do something like:
 

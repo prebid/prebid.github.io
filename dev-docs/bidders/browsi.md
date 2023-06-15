@@ -10,7 +10,6 @@ usp_supported: true
 media_types: no-display, video
 schain_supported: true
 safeframes_ok: true
-gvl_id: 329
 sidebarType: 1
 ---
 
