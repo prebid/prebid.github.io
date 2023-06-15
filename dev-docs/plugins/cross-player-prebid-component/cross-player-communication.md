@@ -7,6 +7,7 @@ nav_section: plugins
 ---
 
 # Communication Between Cross Player Prebid Component and Player
+
 {:.no_toc}
 
 The [Cross-Player Prebid Component]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component.html) communicates with the publisher's player using `window.postMessage` as supported by all browsers. The message can be initiated either by the Component or by the Player.
@@ -103,15 +104,15 @@ window.addEventListener('message', requestHandler);
             // sync request
             if (data.command === 'PPCP:prebidUrlRequest') {
                 if (this.defaultUrl) {
-                	// we have ad URL to play
+                  // we have ad URL to play
                     sendResponse(this.defaultUrl);
                 }
                 else if (this.defaultUrl === null) {
-                	// failed to get ad URL
+                  // failed to get ad URL
                     sendResponse('failed');
                 }
                 else {
-                	// prebid.js is not ready (not loaded yet)
+                  // prebid.js is not ready (not loaded yet)
                     sendResponse('unknown');
                 }
             }

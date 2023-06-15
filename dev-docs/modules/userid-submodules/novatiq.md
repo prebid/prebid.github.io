@@ -18,7 +18,7 @@ gulp build --modules=novatiqIdSystem,userId
 
 Module activation and configuration:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{
@@ -36,7 +36,7 @@ pbjs.setConfig({
     auctionDelay: 1000
   }
 });
-{% endhighlight %}
+```
 
 ## Parameters for the Novatiq Module
 
@@ -69,7 +69,7 @@ gulp build --modules=novatiqIdSystem,userId
 
 Module activation and configuration:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [
@@ -95,7 +95,7 @@ pbjs.setConfig({
     auctionDelay: 1000
   }
 });
-{% endhighlight %}
+```
 
 
 If you have any questions, please reach out to us at [prebid@novatiq.com](mailto:prebid@novatiq.com)

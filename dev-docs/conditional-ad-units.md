@@ -37,7 +37,7 @@ to send them requests from display or tablets.
 
 We'll start with how to set up the labels from `sizeConfig`:
 
-{% highlight js %}
+```javascript
 
 pbjs.setConfig({
   sizeConfig: [{
@@ -55,12 +55,12 @@ pbjs.setConfig({
   }]
 });
 
-{% endhighlight %}
+```
 
 In the above `sizeConfig`, labels are applied for each of the 3 screen sizes that can later be used in
 conditional ad unit logic. Now you need to label your AdUnits to match. For example:
 
-{% highlight js %}
+```javascript
 
 var AdUnits = [{
     code: "ad-slot-1",
@@ -85,7 +85,7 @@ var AdUnits = [{
    ]
 }]
 
-{% endhighlight %}
+```
 
 How this works:
 
@@ -113,7 +113,7 @@ Assuming the same `sizeConfig` as in the first use case above, the AdUnit would 
 placements, but the conditional `labelAny` is added to them both. This will cause the bid to be fired only if one
 or more of the strings in the array matches a defined label.
 
-{% highlight js %}
+```javascript
 
 var AdUnits = [{
     code: "ad-slot-1",
@@ -139,7 +139,7 @@ var AdUnits = [{
    ]
 }]
 
-{% endhighlight %}
+```
 
 How this works:
 
@@ -153,7 +153,7 @@ How this works:
 
 Here's another way of doing the same thing as shown in the previous section:
 
-{% highlight js %}
+```javascript
 
 var AdUnits = [{
     code: "ad-slot-1",
@@ -185,7 +185,7 @@ var AdUnits = [{
    ]
 }]
 
-{% endhighlight %}
+```
 
 
 ## Some Ad Unit Auctions Should Be Skipped Entirely for Some Devices
@@ -193,7 +193,7 @@ var AdUnits = [{
 Say there's a responsive page where one of the ad units only supports larger sizes, so it doesn't make sense
 on phones. To suppress the ad unit for mobile users, we can apply conditional logic to the entire ad unit. Here's an example using the global sizeConfig approach (banner only):
 
-{% highlight js %}
+```javascript
 
 var AdUnits = [{
     code: "ad-slot-1",
@@ -221,7 +221,7 @@ var AdUnits = [{
 
 See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) if you need to do something like this for video.
 
-{% endhighlight %}
+```
 
 ## Some Bid Requests Apply Only to Users Originating from Certain Countries
 
@@ -232,17 +232,17 @@ certain region. It's really not worth sending them bid
 requests for users outside of their geographic area. Assuming the page can figure out where the user's from,
 a label can be implemented and applied to make the bid conditional.
 
-{% highlight js %}
+```javascript
 // page logic determines the 'europeanUser' boolean
 If (europeanUser) {
     reqArgs={labels:['eur']};
 }
 pbjs.requestBids(reqArgs);
-{% endhighlight %}
+```
 
 Then this label can be applied to conditions in the AdUnit just like labels that originate from `sizeConfig`. E.g.
 
-{% highlight js %}
+```javascript
 var AdUnits = [{
     code: "ad-slot-1",
     mediaTypes: {
@@ -261,7 +261,7 @@ var AdUnits = [{
        ...
    ]
 }]
-{% endhighlight %}
+```
 
 This example shows that the 'euroMobileBidder' is only interested in receiving bids that have **both**
 labels:

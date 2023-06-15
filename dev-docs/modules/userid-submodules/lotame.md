@@ -34,7 +34,7 @@ Once you sign up, you will receive an email with your client ID and instructions
 | params | Required | Object | Configuration options for the Lotame Panorama ID Module | |
  | params.clientId | Required | String | The Lotame Client ID provided as part of your registration as noted above | "1001" |
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -45,7 +45,7 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```
 
 {: .alert.alert-info :}
 NOTE: For optimal performance, the Lotame Panorama Id module should be called at every opportunity. It is best not to use params.storage with this module as the module has its own optimal caching mechanism.

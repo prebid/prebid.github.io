@@ -37,7 +37,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 
 1) Publisher supports SharedID and first party domain cookie storage
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -50,11 +50,11 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```
 
 2) Publisher supports both UnifiedID and SharedID and first party domain cookie storage
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -81,11 +81,11 @@ pbjs.setConfig({
         syncDelay: 5000       // 5 seconds after the first bidRequest()
     }
 });
-{% endhighlight %}
+```
 
 3) Publisher supports SharedID and first party domain cookie storage initiated by a first party server
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -101,4 +101,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

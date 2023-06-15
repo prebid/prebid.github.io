@@ -6,6 +6,7 @@ sidebarType: 1
 ---
 
 # Prebid 7.0 Bidder Interface and Publisher API Changes
+
 {:.no_toc}
 
 This document describes the changes included for Prebid.js version 7.0.
@@ -74,8 +75,7 @@ The Prebid Server committee moved the ortb2 location of bidder parameters from `
 
 In later 6.x versions, an improvement in the build process introduced some undesirable behavior for users loading the library twice on the same pageview to the same global library name. If you load Prebid.js twice on a page using the same global, the second load is now prevented.
 
-
 ## Further Reading
 
-+ [Publisher API Reference](/dev-docs/publisher-api-reference.html)
-+ [First Party Data](/features/firstPartyData.html)
+* [Publisher API Reference](/dev-docs/publisher-api-reference.html)
+* [First Party Data](/features/firstPartyData.html)

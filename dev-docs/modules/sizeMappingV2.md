@@ -55,7 +55,7 @@ If you've used [`sizeConfig`](/dev-docs/publisher-api-reference/setConfig.html#s
 
 - A **sizeConfig** parameter may be specified on the AdUnit mediaType or a bidder. In these scenarios, the syntax is a little different than with the global configuration. Here's an example for a sizeConfig object for banner media type:
 
-{% highlight js %}
+```javascript
   mediaTypes: {
     banner: {
       sizeConfig: [
@@ -64,7 +64,7 @@ If you've used [`sizeConfig`](/dev-docs/publisher-api-reference/setConfig.html#s
       ];
     }
   }
-{% endhighlight %}
+```
 
 - **Labels** aren't defined in AdUnit sizeConfig objects. Instead of funneling viewport sizes into a small number of labeled scenarios, the Advanced Size Mapping approach allows each AdUnit and Bidder to define separate size buckets. Labels are still an effective way to do other tasks such as filtering AdUnits and Bidders based on their geo location. For more details on Labels, visit [Conditional Ad Units](/dev-docs/conditional-ad-units.html).
 
@@ -74,7 +74,7 @@ It may be useful to compare the globally-configured sizeConfig with the AdUnit-l
 
 Here's that same example using Advanced Size Mapping:
 
-{% highlight js %}
+```javascript
   const adUnit = {
     code: "ad-slot-1",
     mediaTypes: {
@@ -88,7 +88,7 @@ Here's that same example using Advanced Size Mapping:
       }
     }
   }
-{% endhighlight %}
+```
 
 Note the tradeoff here: If you're specifying duplicate sizeConfigs on every AdUnit, you might be better off using the global sizeConfig approach. But if the global approach isn't flexible enough for your site design, the AdUnit-level approach is the right way to go.
 
@@ -125,7 +125,7 @@ What happens as a result of each active size bucket changes based on the media t
 
 Note that the labels are assumed to be passed in via [`pbjs.requestBids()`](/dev-docs/publisher-api-reference.html#module_pbjs.requestBids).
 
-{% highlight js%}
+```javascript
 {
   code: 'ad-code-1',
   mediaTypes: {
@@ -157,7 +157,7 @@ Note that the labels are assumed to be passed in via [`pbjs.requestBids()`](/dev
       ]
   }]
 }
-{% endhighlight %}
+```
 
 Here are two requests and how they would be handled in this scenario:
 
@@ -181,7 +181,8 @@ II. A request originating in the UK, viewport size: `[1700px, 900px]`
   3. No request will be sent to either bidder.
 
 #### Example of a Multi-Format AdUnit with Bidder-Level sizeConfig
-{% highlight js%}
+
+```javascript
 {
     code: 'ad-code-2',
     mediaTypes: {
@@ -229,7 +230,7 @@ II. A request originating in the UK, viewport size: `[1700px, 900px]`
         ]
     }]
 }
-{% endhighlight %}
+```
 
 Here are two requests and how they would be handled in this scenario:
 
@@ -254,9 +255,9 @@ II. A tablet with viewport size: `[1100px, 980px]`
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the Advanced Size Mapping module, the `sizeMappingV2` module must be added to the **gulp build** command:
 
-{% highlight bash %}
+```bash
 gulp build --modules=sizeMappingV2,bidAdapter1,bidAdapter2
-{% endhighlight %}
+```
 
 ## Further Reading
 

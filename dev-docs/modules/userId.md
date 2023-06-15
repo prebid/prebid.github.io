@@ -10,6 +10,7 @@ sidebarType : 1
 ---
 
 # User ID Module
+
 {:.no_toc}
 
 * TOC
@@ -57,8 +58,8 @@ Without third-party cookies, mechanisms like the [NAI](https://optout.networkadv
 
 Publishers that want to do this should design their workflow and then set `_pbjs_id_optout` cookie or HTML5 local storage. For instance:
 
-- read from an in-page javascript variable and set `_pbjs_id_optout` to any value.
-- call an in-page function and use the results to create a `_pbjs_id_optout` cookie with any value.
+* read from an in-page javascript variable and set `_pbjs_id_optout` to any value.
+* call an in-page function and use the results to create a `_pbjs_id_optout` cookie with any value.
 
 
 ## Basic Configuration
@@ -216,11 +217,11 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 
 For example, the adapter code might do something like:
 
-{% highlight javascript %}
+```javascript
    if (bidRequest.userId && bidRequest.userId.sharedid) {
     url+="&pubcid="+bidRequest.userId.sharedid;
    }
-{% endhighlight %}
+```
 
 ### Prebid Server Adapters
 
@@ -233,14 +234,15 @@ See the [Prebid.js EIDs javascript source](https://github.com/prebid/Prebid.js/b
 
 If you need to export the user IDs stored by Prebid User ID module, the `getUserIds()` function will return an object formatted the same as bidRequest.userId.
 
-```
+```javascript
 pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
 ```
 
 <a name="getUserIdsAsEids"/>
 
 You can use `getUserIdsAsEids()` to get the user IDs stored by Prebid User ID module in ORTB Eids format. Refer [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format.
-```
+
+```javascript
 pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
 [
   {
@@ -276,12 +278,12 @@ pbjs.getUserIdsAsEids() // returns userIds in ORTB Eids format. e.g.
 ]
 ```
 
-<a name="getUserIdsAsync" />
+<a name="getUserIdsAsync"></a>
 
 `pbjs.getUserIds()` and `pbjs.getUserIdsAsEids()` may return only some IDs, or none at all, if they are called before all ID providers have had a chance to initialize - depending on [`auctionDelay` and/or `syncDelay`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-UserSyncProperties), that may need to wait until an auction has completed.
 To access the complete set of IDs, you may use `getUserIdsAsync`, which returns a promise that is guaranteed to resolve only once all IDs are available:
 
-```
+```javascript
 pbjs.getUserIdsAsync().then(function (userIds) {
    // all IDs are available here:
    pbjs.getUserIds()       // same as the `userIds` argument
@@ -293,11 +295,11 @@ pbjs.getUserIdsAsync().then(function (userIds) {
 
 If you're an ID provider that wants to get on this page:
 
-- Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
-- Add your *IdSystem name into the modules/.submodules.json file
-- Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
-- Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
-- Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify /dev-docs/modules/userId.md, /download.md, and submit a documentation Pull Request.
+* Fork Prebid.js and write a sub-module similar to one of the *IdSystem modules already in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder.
+* Add your *IdSystem name into the modules/.submodules.json file
+* Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
+* Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
+* Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify /dev-docs/modules/userId.md, /download.md, and submit a documentation Pull Request.
 
 <a name="getUserIds"></a>
 

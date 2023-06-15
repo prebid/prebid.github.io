@@ -71,7 +71,7 @@ The following parameters apply only to the Unified ID 2.0 module integration.
 
 In the following example, the publisher has set a cookie called `uid2_identity` containing the UID2 token generation response object:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{
@@ -82,11 +82,11 @@ pbjs.setConfig({
     }]
   }
 });
-{% endhighlight %}
+```
 
 In the following example, the publisher has retrieved a server-generated UID2 response, and it is currently stored in the JavaScript variable `uid2Identity`:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{
@@ -97,4 +97,4 @@ pbjs.setConfig({
     }]
   }
 });
-{% endhighlight %}
+```

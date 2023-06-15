@@ -46,7 +46,7 @@ The Prebid Interstitial flag reflects the OpenRTB standard, specifying it at the
 
 If an attribute is specific to an AdUnit, it can be passed this way:
 
-{% highlight js %}
+```javascript
 pbjs.addAdUnits({
     code: "test-div",
     mediaTypes: {
@@ -61,7 +61,7 @@ pbjs.addAdUnits({
       ... bidders that support interstitials ...
     ]
 });
-{% endhighlight %}
+```
 
 
 
@@ -69,9 +69,9 @@ pbjs.addAdUnits({
 
 To access global data, a Prebid.js bid adapter needs only to retrieve the interstitial flag from the adUnit like this:
 
-{% highlight js %}
+```javascript
 utils.deepAccess(bidRequest.ortb2Imp, 'instl')
-{% endhighlight %}
+```
 
 
 The assumption is that bid adapters will copy the values to the appropriate protocol location for their endpoint.

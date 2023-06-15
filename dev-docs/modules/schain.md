@@ -38,7 +38,7 @@ The module performs validations on the schain data provided and makes it availab
 
 Call `setConfig` with the `schain` object to be used:
 
-{% highlight js %}
+```javascript
 pbjs.setConfig({
   "schain": {
     "validation": "strict",
@@ -55,13 +55,13 @@ pbjs.setConfig({
     }
   }
 });
-{% endhighlight %}
+```
 
 ### Bidder-Specific Supply Chains
 
 This method uses the `pbjs.setBidderConfig` function, with a syntax similar to the global scenario above.
 
-{% highlight js %}
+```javascript
 pbjs.setBidderConfig({
   "bidders": ['bidderA'],   // can list more bidders here if they share the same config
   "config": {
@@ -81,7 +81,7 @@ pbjs.setBidderConfig({
     }
   }
 });
-{% endhighlight%}
+```
 
 You can find more information about the `pbjs.setBidderConfig` function in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference/setBidderConfig.html).
 

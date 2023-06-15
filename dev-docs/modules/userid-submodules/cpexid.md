@@ -19,7 +19,7 @@ gulp build --modules=czechAdIdSystem
 
 ## czechAdId Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -27,4 +27,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

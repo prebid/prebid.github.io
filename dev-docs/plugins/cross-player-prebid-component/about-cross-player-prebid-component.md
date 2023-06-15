@@ -20,7 +20,6 @@ Users have the option of running a localized version of the Cross-Player Prebid 
 
 {% include alerts/alert_note.html content=noteAlert %}
 
-
 ## Using the Component
 
 The process for using the Cross-Player Prebid Component is as follows:
@@ -38,7 +37,7 @@ The process for using the Cross-Player Prebid Component is as follows:
 
 ## Further Reading
 
-- [Cross-Player Prebid Component API]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-api.html)
-- [Cross Player Prebid Component Configuration]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-config.html)
-- [Communication Between Prebid Component and Player]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-communication.html)
-- [Download Cross-Player Prebid Component](https://github.com/prebid/cross-player-prebid-component)
+* [Cross-Player Prebid Component API]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-api.html)
+* [Cross Player Prebid Component Configuration]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-config.html)
+* [Communication Between Prebid Component and Player]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-communication.html)
+* [Download Cross-Player Prebid Component](https://github.com/prebid/cross-player-prebid-component)

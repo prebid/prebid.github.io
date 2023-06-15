@@ -34,7 +34,7 @@ The Quantcast ID module will only perform any action and return an ID in situati
 
 ## Quantcast ID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -42,4 +42,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

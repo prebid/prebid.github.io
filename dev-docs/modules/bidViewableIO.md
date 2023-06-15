@@ -50,20 +50,20 @@ Note that there are other viewability modules in Prebid.js:
 | `bidViewabilityIO.enabled` | Required | Boolean | when set to true, the module will emit BID_VIEWABLE when applicable. Default: `false` |
 
 ## Example of setting module config
-{% highlight js %}
+```javascript
 	pbjs.setConfig({
         bidViewabilityIO: {
             enabled: true,
         }
     });
-{% endhighlight %}
+```
 
 ## Example of consuming BID_VIEWABLE event
-{% highlight js %}
+```javascript
 	pbjs.onEvent('bidViewable', function(bid){
 		console.log('got bid details in bidViewable event', bid);
 	});
-{% endhighlight %}
+```
 
 ## Related Reading
 
