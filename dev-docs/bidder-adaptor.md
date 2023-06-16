@@ -728,6 +728,12 @@ If the alias entry is an object, the following attributes are supported:
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
 | `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
 
+
+{: .alert.alert-info :}
+Note on aliases and TCF Global Vendor List IDs: if an alias entry does not have its own GVLID but wishes to claim GDPR support,
+the documentation entry (The file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) must list the GVLID of the main adapter with that company's name in parentheses.
+Look for other doc entries containing an `aliasCode` metadata entry.
+
 ### Supporting Privacy Regulations
 
 If your bid adapter is going to be used in Europe, you should support GDPR:
