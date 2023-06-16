@@ -137,7 +137,7 @@ In this configuration Prebid.js calls Index directly from the browser using our 
             }
         });
     ```
-7. (Optional) If you want to monetize outstream video, you can choose among the following options. Outstream video is available from Prebid.js version 6.25 or higher.
+7. (Optional) If you want to monetize outstream video, you can choose among the following options:
     * Use Index’s outstream video player. For more information, see the [Index's outstream video player ](#indexs-outstream-video-player)section below. 
     * Use your own outstream video player. For more information, see [Prebid's documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
 8. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher. 
@@ -175,7 +175,7 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
             }
     });
 ```
-8. (Optional) If you want to monetize outstream video, you can choose among the following options. Outstream video is available from Prebid.js version 6.25 or higher.
+8. (Optional) If you want to monetize outstream video, you can choose among the following options:
     * Use Index's outstream video player. For more information, see the [Index's outstream video player ](#indexs-outstream-video-player) section below. 
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
 9. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher. 
@@ -270,47 +270,75 @@ ortb2Imp: {
 
 ## Index's outstream video player
 
-Publishers who are using Index as a bidding adapter in Prebid.js can show outstream video ads on their site using Index's outstream video player. This allows a video ad to be placed anywhere on a publisher’s site, such as in-article, in-feed, and more. Outstream video is available from Prebid.js version 6.25 or higher. <br />
+Publishers who are using Index as a bidding adapter in Prebid.js can show outstream video ads on their site using Index's outstream video player. This allows a video ad to be placed anywhere on a publisher’s site, such as in-article, in-feed, and more. To use Index's outstream renderer, you must be on Prebid.js version 5.13 or higher. However, if you are using your own outstream renderer, Index's adapter can accept video signals from version 2.41.0 or higher. <br />
 **Note:** When you use the Index renderer for outstream video, all impressions are considered viewable, which is similar to how Google's ActiveView counts impressions for outstream. This is because Index renders the outstream video as soon as it is in view and concurrently fires any impression pixels in the VAST.
 
 To use Index’s outstream video player, in your Prebid.js configuration:<br />
 
-1. Define a new video object in any of the following ways:
-    * At the `adUnit` level: Define the size using `video.playerSize`.
-    * At the `bidder` level: Define the size of the video player using the `video.h` and `video.w` parameters.  <br />
+1. Perform the following steps in your Prebid.js configuration to create a new section for Index's outstream video player:
+    * Add a new code property under `adUnits`. The code could be the `divID` or the Google Ad Manager adUnit code.
+    * Within the `adUnits`, add `ix` as a `bidder`.
+    * (Recommended) At the `adUnit` level, under `mediaTypes`, add a `video` object that supports our required video parameters. For more information about which parameters to add, see the [Bid request parameters](#video) section below. This is useful for publishers who want to apply the same settings across all SSPs.
+    * Optionally, you can add the `video` object at the bidder level under `bids.params`. This is useful for publishers who may want to set up different configurations for different SSPs.   <br />
 **Note:** The `bidder` level video configurations override the `adUnit` level configurations. The `playerConfig` is only a bidder level configuration.
-2. Configure the player according to the options in the [Bid request parameters](#bid-request-parameters) section below. <br />
+2. (Recommended) To force the Index renderer as the default renderer for Index, set `backupOnly` to true (see below example). This configuration allows you to use your own renderer only when an adapter does not provide their own renderer. This also forces any adapter that has a renderer to use their renderer by default. If no renderer is provided, by default,  we will use our own renderer script.
+3. Configure the player according to the options in the [Bid request parameters](#bid-request-parameters) section below.
+4. Depending on your existing Prebid setup, complete one of the following:
+    * If you have an existing Prebid.js integration for banner, you can use the corresponding line items in your Google Ad Manager (GAM) account to retrieve outstream video demand. For more information, see Prebid's documentation on [How to set up line items](https://docs.prebid.org/adops/step-by-step.html).
+    * If you do not have an existing Prebid.js integration for banner, create a line item in your GAM account that is capable of serving an outstream video ad. For more information about how to do this, see Prebid's documentation on Setting up [Prebid Video in Google Ad Manager](https://docs.prebid.org/adops/setting-up-prebid-video-in-dfp.html).
+5. Notify your Index Representative and provide your test page URL for validation. They will work with you to test the video player and confirm that outstream video ads are being retrieved.<br />
+
 For more information on how to structure the video object, refer to the following code example:<br />
 
 ```javascript
-var adUnits = [{
-    code: 'div-gpt-ad-1571167646410-1',
+pbjs.addAdUnit({
+    code: 'video1',
+    // This renderer would apply to all prebid creatives...
+    renderer: {
+        url: 'example.com/publishersCustomRenderer.js',
+	   backupOnly: true,
+        render: function(bid) { renderAdUnit(...)  }
+    },
     mediaTypes: {
+    // Pub renderer video settings...
         video: {
-            playerSize: [640, 360],
             context: 'outstream',
-            api: [2],
-            protocols: [2, 3, 5, 6],
-            minduration: 5,
-            maxduration: 30,
-            mimes: ['video/mp4', 'application/javascript'],
-            placement: 5
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
+            plcmt: 2
+        
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '715964'
+            siteId: '12345',
+		 // Index renderer video settings...
             video: {
-                playerConfig: {
-                    floatOnScroll: true,
-                    floatSize: [300,250]
-                }
+			 //minimum size for Video Player size is 144x144 in pixel
+			//maxduration can be any.
+		 context: 'outstream',
+            playerSize: [640, 480],
+            mimes: ['video/mp4','video/webm', 'applications/javascript'],
+            protocols: [2, 3, 5, 6],
+		 api: [2,7],
+            playbackmethod: [6],
+            skip: 1,
+		 w: 640,
+		 h: 480,
+		 minduration: 5,
+		 maxduration: 60,
+			 delivery: [2],
+			 linearity: 1
             }
         }
     }]
-```
+});
 
+```
 *Please note that your use of the outstream video player will be governed by and subject to the terms and conditions of i) any master services or license agreement entered into by you and Index Exchange; ii) the information provided on our knowledge base linked [here](https://kb.indexexchange.com/publishers/prebid_integration/outstream_video_prebidjs.htm) and [here](https://kb.indexexchange.com/publishers/guidelines/standard_contractual_clauses.htm), and iii) our [Privacy Policy](https://www.indexexchange.com/privacy/). Your use of Index's outstream video player constitutes your acknowledgement and acceptance of the foregoing.*
 
 <a name="prebid-native-configuration"></a>
@@ -399,6 +427,7 @@ If you are using Index's outstream player and have placed the video object at th
 | `video.playerConfig` | Optional | Hash | The Index-specific outstream player configurations. |
 | `video.playerConfig.floatOnScroll` | Optional | Boolean | A boolean specifying whether you want to use the player's floating capabilities, where:<br />- `true`: Use the Index player's float capabilities.<br /> **Note:** If you set `floatOnScroll` to `true`, Index updates the placement value to `5`.<br /> **Note:** We do not recommend using the player's default float capabilities if you have more than one outstream ad unit per page. <br /> -`false`: Do not use the Index player's float capabilities (default). |
 | `video.playerConfig.floatSize` | Optional | Integer[] | The height and width of the floating player in pixels. If you do not specify a float size, the player adjusts to the aspect ratio of the player size that is defined when it is not floating. Index recommends that you review and test the float size to your user experience preference. |
+| `video.plcmt` | Required | Integer[] | The video's placement type, where: <br /> - `1` = Instream<br /> - `2` = Accompanying Content <br /> - `3` = Interstitial <br /> - `4` = No Content/Standalone |
 
 ### Native
 
