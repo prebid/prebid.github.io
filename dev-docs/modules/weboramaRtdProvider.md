@@ -90,7 +90,7 @@ pbjs.setConfig({
 
 Each module can perform two actions:
 
-* set targeting on [GPT](https://docs.prebid.org/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) / [AST](https://docs.prebid.org/dev-docs/publisher-api-reference/setTargetingForAst.html) via `prebid.js`
+* set targeting on [GPT](https://docs.prebid.org/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) / [AST](https://docs.prebid.org/dev-docs/publisher-api-reference/setTargetingForAst.html]) via `prebid.js`
 
 * send data to other `prebid.js` bidder modules (check the complete list at the end of this page)
 
@@ -586,12 +586,9 @@ pbjs.que.push(function () {
 
 ### Supported Bidders
 
-We currently support the following bidder adapters:
+We currently support the following bidder adapters with dedicated code:
 
-* SmartADServer SSP
-* PubMatic SSP
 * AppNexus SSP
-* Rubicon SSP
 
 We also set the bidder (and global, if no specific bidders are set on `sendToBidders`) ortb2 `site.ext.data` and `user.ext.data` sections (as arbitrary data). The following bidders may support it, to be sure, check the `First Party Data Support` on the feature list for the particular bidder from [here](https://docs.prebid.org/dev-docs/bidders).
 
@@ -616,8 +613,11 @@ We also set the bidder (and global, if no specific bidders are set on `sendToBid
 * Opt Out Advertising
 * Ozone Project
 * Proxistore
+* PubMatic SSP
 * Rise
+* Rubicon SSP
 * Smaato
+* Smart ADServer SSP
 * Sonobi
 * TheMediaGrid
 * TripleLift
