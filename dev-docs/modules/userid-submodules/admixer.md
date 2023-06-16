@@ -30,7 +30,7 @@ gulp build --modules=admixerIdSystem
 
 1) Individual params may be set for the Admixer ID Submodule.
 
-{% highlight javascript %}
+```javascript
    pbjs.setConfig({
        userSync: {
            userIds: [{
@@ -49,4 +49,4 @@ gulp build --modules=admixerIdSystem
            auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
        }
    });
-{% endhighlight %}
+```

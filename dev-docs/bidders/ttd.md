@@ -182,3 +182,10 @@ Lists of `api`, `playbackmethod`, `protocols`, `pos`, and `expdir` potential val
 - `3` : Up
 - `4` : Down
 - `5` : Full Screen
+
+### First Party Data (Supported starting prebid v7.49)
+Publishers should set [First Party Data](https://docs.prebid.org/features/firstPartyData.html) in the `ortb2` and `ortb2Imp` objects. These fields are supported: 
+
+- `ortb2.site.ext.data`
+- `ortb2.user.ext.data`
+- `AdUnit.ortb2Imp.ext.data` (for AdUnit data)

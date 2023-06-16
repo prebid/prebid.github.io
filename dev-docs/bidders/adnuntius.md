@@ -25,6 +25,7 @@ sidebarType: 1
 | `auId` | required | The ad unit ID `'0000000000072345'` leading zeros can be omitted. | `'0000000000072345'` | `string` |
 | `network` | optional | Used if you want to make requests to multiple networks in adnuntius. | `'adnuntius'` | `string`|
 | `targeting` | optional | Targeting to be sent through to adnuntius with the request. | `{ c: ['prebids'] }` | `string`|
+| `maxDeals` | optional | The maximum number of deal bids to include. Default 0. | `1` | `Integer` |
 
 #### Targeting
 

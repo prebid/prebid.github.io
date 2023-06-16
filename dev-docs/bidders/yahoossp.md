@@ -7,18 +7,17 @@ pbjs: true
 media_types: banner, video
 biddercode: yahoossp
 prebid_member: true
-gdpr_supported: false
+gdpr_supported: true
 usp_supported: true
+gpp_supported: true
 schain_supported: true
 coppa_supported: true
+floors_supported: true
+fpd_supported: false
 gvl_id: 25
 userIds: All
 sidebarType: 1
 ---
-
-### Disclosure
-
-This adapter may not handle user syncs for TCF2 or GPP correctly. The user sync consent querystring parameters are generated at the time of the bid request and might be stale at the time of the user sync. See https://github.com/prebid/Prebid.js/pull/9345#issuecomment-1362887086
 
 ### Important Notice (JS vs PBS)
 There are differences between our Prebid.js & Prebid-Server Yahoo SSP adapters.
@@ -66,5 +65,5 @@ For further setup details & examples please see https://github.com/prebid/Prebid
 * First Party Data (ortb2 & ortb2Imp)
 * Custom TTL (time to live)
 
-Thanks you,
+Thank you,
 Yahoo SSP

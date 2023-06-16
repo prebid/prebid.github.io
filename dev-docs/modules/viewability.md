@@ -94,7 +94,7 @@ When a tracker needs to be stopped without direct access to Prebid.js, postMessa
 ## Examples
 
 ### Starting a viewability measurement when you have direct access to Prebid.js
-{% highlight js %}
+```javascript
 
     pbjs.viewability.startMeasurement(
         'test-div-1', 
@@ -103,10 +103,10 @@ When a tracker needs to be stopped without direct access to Prebid.js, postMessa
         { inViewThreshold: 0.5, timeInView: 1000 }
     );
 
-{% endhighlight %}
+```
 
 ### Starting a viewability measurement from within a rendered creative
-{% highlight js %}
+```javascript
 
     let viewabilityRecord = {
       vid: 'ae0f9',
@@ -118,17 +118,17 @@ When a tracker needs to be stopped without direct access to Prebid.js, postMessa
 
     window.parent.postMessage(JSON.stringify(viewabilityRecord), '*');
 
-{% endhighlight %}
+```
 
 ### Stopping the viewability measurement when you have direct access to Prebid.js
-{% highlight js %}
+```javascript
 
     pbjs.viewability.stopMeasurement('test-div-1');
 
-{% endhighlight %}
+```
 
 ### Stopping the viewability measurement from within a rendered creative
-{% highlight js %}
+```javascript
 
     let viewabilityRecord = {
       vid: 'ae0f9',
@@ -138,7 +138,7 @@ When a tracker needs to be stopped without direct access to Prebid.js, postMessa
 
     window.parent.postMessage(JSON.stringify(viewabilityRecord), '*');
 
-{% endhighlight %}
+```
 
 ## Related Reading
 - Alternate module: [Bid Viewability - Ad Server Independent](/dev-docs/modules/bidViewableIO.html)

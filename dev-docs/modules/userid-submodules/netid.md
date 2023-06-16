@@ -14,7 +14,7 @@ The EnID is a non-profit organization which is open to any contributing party on
 
 1) Publisher stores netID via his own logic
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -25,4 +25,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

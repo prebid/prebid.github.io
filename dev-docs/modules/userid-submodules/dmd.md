@@ -32,7 +32,7 @@ Please reach out to [prebid@dmdconnects.com](mailto:prebid@dmdconnects.com) to r
 
 ## DMD ID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -43,4 +43,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

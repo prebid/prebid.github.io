@@ -56,7 +56,7 @@ All configured timezones should follow the `TZ database name` column from the [I
 
 ## Parrable ID Examples
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -74,4 +74,4 @@ pbjs.setConfig({
         syncDelay: 1000
     }
 });
-{% endhighlight %}
+```

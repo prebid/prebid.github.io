@@ -25,7 +25,7 @@ gulp build --modules=dacIdSystem
 
 ## AudienceOne ID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -36,4 +36,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

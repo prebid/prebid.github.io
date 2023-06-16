@@ -2,9 +2,12 @@
 layout: userid
 title: Trustpid
 description: Trustpid User ID sub-module
+pbjs_version_notes: not in 8.x
 useridmodule: trustpidSystem
 ---
 
+{: .alert.alert-info :}
+This ID module has been renamed [utiq](/dev-docs/modules/userid-submodules/utiq.html) as of Prebid.js 8.0.
 
 Trustpid generates unique tokens, enabling improved efficiency in programmatic advertising while safeguarding transparency and control for end customers via `trustpid.com`. A website visitor’s Trustpid is generated based on network identifiers provided by network operators and requires explicit user consent.
 

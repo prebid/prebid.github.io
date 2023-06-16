@@ -22,7 +22,7 @@ Related Videos:
 - [Introduction to Header Bidding](/overview/intro-to-header-bidding-video.html)
 - [Introduction to Prebid.js](/prebid/prebidjs-video.html)
 - [Introduction to Prebid Mobile](/prebid-mobile/prebid-mobile-video.html)
-- Introduction to Prebid Server (coming soon)
+- [Introduction to Prebid Server](/prebid-server/overview/prebid-server-overview-video.html)
 
 ## Transcript
 

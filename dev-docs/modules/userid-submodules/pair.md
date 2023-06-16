@@ -22,13 +22,13 @@ gulp build --modules=pairIdSystem
 | name | Required | String | The name of PAIR ID user ID module. | `"pairId"` |
 | params | Optional | Object | Container of all module params. |  |
 | params.liveramp | Optional | Object | Container of all liveramp cleanroom specified params. |  |
-| params.liveramp.storageKey | Optional | String | storage key to fetch liveramp provided PAIR Id, the default key is `"_lr_pairId_"` | `"_lr_pairId_custom"` |
+| params.liveramp.storageKey | Optional | String | storage key to fetch liveramp provided PAIR Id, the default value is `"_lr_pairId"` | `"_lr_pairId_custom"` |
 
 ## PAIR ID Examples
 
 Publishers manage PAIR Ids themselves can store pairIds as a byte64 encoded array of ids in local storage and/or 1st party cookies entry `pairId`.
 
-{% highlight javascript %}
+```javascript
 
 // should have byte64 value ready in 'pairId' local storage/cookie entry
 
@@ -39,11 +39,11 @@ pbjs.setConfig({
       }]
     }
 });
-{% endhighlight %}
+```
 
 Or if to use cleanrooms provided implementation, it can be specified by adding the provider and their configs to the config, take liveramp as an example.
 
-{% highlight javascript %}
+```javascript
 
 // value in 'pairid' local storage/cookie entry will be combined with ids provided by cleamroom liveramp
 
@@ -59,7 +59,7 @@ pbjs.setConfig({
       }]
     }
 });
-{% endhighlight %}
+```
 
 
 

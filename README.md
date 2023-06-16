@@ -2,15 +2,15 @@ This repository contains the source files for the Prebid.js documentation site a
 
 Please see the sections below for more information:
 
-+ [Contributing](#contributing)
-+ [License](#license)
-+ [Prerequisites](#prerequisites)
-+ [Running Jekyll Locally](#running-jekyll-locally)
-+ [Building Assets](#building-assets)
-+ [The Downloads Page](#the-downloads-page)
-+ [Thanks](#thanks)
+* [Contributing](#contributing)
+* [License](#license)
+* [Prerequisites](#prerequisites)
+* [Running Jekyll Locally](#running-jekyll-locally)
+* [Building Assets](#building-assets)
+* [The Downloads Page](#the-downloads-page)
+* [Thanks](#thanks)
 
-<a name="contributing" />
+<a name="contributing"></a>
 
 ## Contributing
 
@@ -20,16 +20,16 @@ For smaller changes, such as fixing a typo or adding a new section to an existin
 
 For larger changes such as reorganizing the site and moving/removing content, you may want to open an issue so we can discuss the work beforehand.  This is a good idea because:
 
-+ We want to value your time, so you don't do unnecessary work
-+ We want to value our users' time; we don't want to break links and bookmarks for users
+* We want to value your time, so you don't do unnecessary work
+* We want to value our users' time; we don't want to break links and bookmarks for users
 
-<a name="license" />
+<a name="license"></a>
 
 ## License
 
 All docs are under the license shown in the `LICENSE` file in this directory.
 
-<a name="prerequisites" />
+<a name="prerequisites"></a>
 
 ## Prerequisites
 
@@ -45,7 +45,7 @@ For CSS, the site uses Laravel Mix to build CSS from Sass (scss-flavored) source
 1. `npm ci` to install packages for building assets
 1. build assets as described below
 
-<a name="running-jekyll-locally" />
+<a name="running-jekyll-locally"></a>
 
 ## Running Jekyll Locally
 
@@ -54,13 +54,12 @@ Before submitting a pull request, you should run the site locally to make sure y
 To get started editing the site and seeing your changes, clone this repo and enter the following commands in your terminal:
 
 ```bash
-$ JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental
+JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental
 ```
-
 
 You should see output that looks something like this:
 
-```
+```bash
 Configuration file: /Users/me/git/prebid.github.io/_config.yml  
             Source: /Users/me/git/prebid.github.io  
        Destination: /Users/me/git/prebid.github.io/_site  
@@ -77,13 +76,13 @@ Configuration file: /Users/me/git/prebid.github.io/_config.yml
 
 Open the `Server address` URL in your browser, and you should see a locally running copy of the site.
 
-<a name="building-assets"/>
+<a name="building-assets"></a>
 
 ## Building Assets
 
-- `npm run dev` to build unminified CSS for development
-- `npm run prod` to build minified CSS for production
-- `npm run watch` to use [Browsersync](https://browsersync.io) to rebuild CSS on demand and reload the browser
+* `npm run dev` to build unminified CSS for development
+* `npm run prod` to build minified CSS for production
+* `npm run watch` to use [Browsersync](https://browsersync.io) to rebuild CSS on demand and reload the browser
 
 ## The Downloads Page
 
@@ -98,7 +97,7 @@ The Downloads page is generated from [the Markdown bidder adapter docs](https://
 
 This means an adaptor is not available to download from Prebid.org as soon as the code gets merged into Prebid.js - it will be available after the next release (usually in a couple of weeks).
 
-<a name="thanks" />
+<a name="thanks"></a>
 
 ## Thanks
 

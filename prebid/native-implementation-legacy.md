@@ -147,7 +147,7 @@ pbjs.addAdUnits({
     code: slot.code,
     mediaTypes: {
         native: {
-	    sendTargetingKeys: false,
+        sendTargetingKeys: false,
             image: {
                 required: true,
                 sizes: [150, 50]
@@ -186,7 +186,7 @@ Here’s an example native AdUnit using the ‘type’ feature, which implies a 
 const adUnits = [{
     code: 'adUnit-code',
     mediaTypes: {
-	sendTargetingKeys: false,
+    sendTargetingKeys: false,
         native: {
             type: 'image'
         }
@@ -296,7 +296,7 @@ var adUnits = [{
       code: 'native-div',
       mediaTypes: {
           native: {
-	    sendTargetingKeys: false,
+        sendTargetingKeys: false,
             adTemplate: "<div class=\"sponsored-post\">\r\n  <div class=\"thumbnail\" style=\"background-image: url(##hb_native_image##);\"><\/div>\r\n  <div class=\"content\">\r\n  <h1>\r\n    <a href=\"%%CLICK_URL_UNESC%%##hb_native_linkurl##\" target=\"_blank\" class=\"pb-click\">\r\n  ##hb_native_title##\r\n    <\/a>\r\n   <\/h1>\r\n    <p>##hb_native_body##<\/p>\r\n    \t<div class=\"attribution\">\r\n \t##hb_native_brand##\r\n           \t<\/div>\r\n\t<\/div>\r\n<\/div>",
             title: {
               required: true,
@@ -357,7 +357,7 @@ var adUnits = [{
       code: 'native-div',
       mediaTypes: {
           native: {
-	    sendTargetingKeys: false,
+        sendTargetingKeys: false,
             rendererUrl: "https://files.prebid.org/creatives/nativeRenderFunction.js",
             title: {
               required: true,
@@ -412,32 +412,32 @@ Requirements for a native rendering function:
 Here's an example script:
 ```
 window.renderAd=function(data){
-	let template = "<div class=\"sponsored-post\"><div class=\"thumbnail\"><\/div><div class=\"content\"><h1> <a href=\"##hb_native_linkurl##\" target=\"_blank\" class=\"pb-click\">##hb_native_title##<\/a><\/h1><p>##hb_native_body##<\/p> <div class=\"attribution\"> ##hb_native_brand## <\/div> <\/div> <\/div>";
-	const map = {
-	    title: 'hb_native_title',
-	    body: 'hb_native_body',
-	    body2: 'hb_native_body2',
-	    privacyLink: 'hb_native_privacy',
-	    sponsoredBy: 'hb_native_brand',
-	    image: 'hb_native_image',
-	    icon: 'hb_native_icon',
-	    clickUrl: 'hb_native_linkurl',
-	    displayUrl: 'hb_native_displayurl',
-	    cta: 'hb_native_cta',
-	    rating: 'hb_native_rating',
-	    address: 'hb_native_address',
-	    downloads: 'hb_native_downloads',
-	    likes: 'hb_native_likes',
-	    phone: 'hb_native_phone',
-	    price: 'hb_native_price',
-	    salePrice: 'hb_native_saleprice'
-	}
-	for (var i = 0; i < data.length; i++){
-		if (map[data[i].key]) {
-			template = template.replace("##"+map[data[i].key]+"##",data[i].value);
-		}
-	}
-	return template;
+    let template = "<div class=\"sponsored-post\"><div class=\"thumbnail\"><\/div><div class=\"content\"><h1> <a href=\"##hb_native_linkurl##\" target=\"_blank\" class=\"pb-click\">##hb_native_title##<\/a><\/h1><p>##hb_native_body##<\/p> <div class=\"attribution\"> ##hb_native_brand## <\/div> <\/div> <\/div>";
+    const map = {
+        title: 'hb_native_title',
+        body: 'hb_native_body',
+        body2: 'hb_native_body2',
+        privacyLink: 'hb_native_privacy',
+        sponsoredBy: 'hb_native_brand',
+        image: 'hb_native_image',
+        icon: 'hb_native_icon',
+        clickUrl: 'hb_native_linkurl',
+        displayUrl: 'hb_native_displayurl',
+        cta: 'hb_native_cta',
+        rating: 'hb_native_rating',
+        address: 'hb_native_address',
+        downloads: 'hb_native_downloads',
+        likes: 'hb_native_likes',
+        phone: 'hb_native_phone',
+        price: 'hb_native_price',
+        salePrice: 'hb_native_saleprice'
+    }
+    for (var i = 0; i < data.length; i++){
+        if (map[data[i].key]) {
+            template = template.replace("##"+map[data[i].key]+"##",data[i].value);
+        }
+    }
+    return template;
 }
 ```
 

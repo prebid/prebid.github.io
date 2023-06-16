@@ -118,7 +118,6 @@ The base CSS file used is Bootstrap (version 3.7.1) Custom CSS and modifications
 
 The JS directory contains the Javascript files required for the Prebid.org site. It includes JQuery and Bootstrap javascript frameworks as well as other third party libraries and custom javascript written specifically for the Prebid site. For JQuery and Bootstrap both the expanded and minified versions of the javascript files are included but only the minified files are linked from the site header.
 
-
 #### CSS
 
 1. Styles all come from /assets/css/main-bundle.css
@@ -140,13 +139,13 @@ The dropdown_v2 YML file is used to construct the top nav when the site is viewe
 
 The YML map is divided into collections of menu sections. Menu sections are commented when they begin, for example;
 
-```Markdown
+```markdown
 #----------Product SubNav------------
 ```
 
 Each menu item is represented in the YML map as a collection of key value pairs and begins with a dash (-) symbol. An indented collection indicates it is a child of the collection above it. Example:
 
-```Markdown
+```markdown
 #-----------Overview---------------
 
 - sectionId: 0

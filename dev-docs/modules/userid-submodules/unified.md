@@ -41,7 +41,7 @@ The Unified ID privacy is covered under the [TradeDesk Services Privacy Policy](
 Bug: The default URL did not support HTTPS in Prebid.js 2.10-2.14. So instead of using
 the 'partner' parameter, it's best to supply the Trade Desk URL as shown in this example.
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -58,11 +58,11 @@ pbjs.setConfig({
         syncDelay: 3000              // 3 seconds after the first auction
     }
 });
-{% endhighlight %}
+```
 
 2) Publisher supports UnifiedID with a vendor other than Trade Desk and HTML5 local storage.
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -79,11 +79,11 @@ pbjs.setConfig({
         syncDelay: 3000
     }
 });
-{% endhighlight %}
+```
 
 3) Publisher has integrated with UnifiedID on their own and wants to pass the UnifiedID directly through to Prebid.js.
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -92,4 +92,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

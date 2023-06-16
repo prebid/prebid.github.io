@@ -55,25 +55,25 @@ Set the `Label` and `eCPM` for the custom event. Press `CONTINUE`.
 
 The fields in this dialog are critical for the proper integration:
 
-- `Class Name` is a name of respective adapter.
-    - Banner:
-        - iOS: `PrebidAdMobBannerAdapter`
-        - Android: `org.prebid.mobile.admob.PrebidBannerAdapter`
-    - Interstitial Display:
-        - iOS: `PrebidAdMobInterstitialAdapter`
-        - Android: `org.prebid.mobile.admob.PrebidInterstitialAdapter`
-    - Interstitial Video:
-        - iOS: `PrebidAdMobVideoInterstitialAdapter`
-        - Android: `org.prebid.mobile.admob.PrebidInterstitialAdapter`
-    - Rewarded:
-        - iOS: `PrebidAdMobRewardedVideoAdapter `
-        - Android: `org.prebid.mobile.admob.PrebidRewardedAdapter`
-    - Native:
-        - iOS: `PrebidAdMobNativeAdapter `
-        - Android: `org.prebid.mobile.admob.PrebidNativeAdapter`
-- `Parameter` is a keywords for the current ad source. **Important**: make sure that the price of the ad source is the same as the price in this keyword. For example:
+* `Class Name` is a name of respective adapter.
+    * Banner:
+        * iOS: `PrebidAdMobBannerAdapter`
+        * Android: `org.prebid.mobile.admob.PrebidBannerAdapter`
+    * Interstitial Display:
+        * iOS: `PrebidAdMobInterstitialAdapter`
+        * Android: `org.prebid.mobile.admob.PrebidInterstitialAdapter`
+    * Interstitial Video:
+        * iOS: `PrebidAdMobVideoInterstitialAdapter`
+        * Android: `org.prebid.mobile.admob.PrebidInterstitialAdapter`
+    * Rewarded:
+        * iOS: `PrebidAdMobRewardedVideoAdapter `
+        * Android: `org.prebid.mobile.admob.PrebidRewardedAdapter`
+    * Native:
+        * iOS: `PrebidAdMobNativeAdapter `
+        * Android: `org.prebid.mobile.admob.PrebidNativeAdapter`
+* `Parameter` is a keywords for the current ad source. **Important**: make sure that the price of the ad source is the same as the price in this keyword. For example:
 
-```
+```json
 {"hb_pb":"0.10"}
 ```
 
@@ -81,7 +81,6 @@ Prebid SDK will compare the keywords in the winning bids with keywords provided 
 
 {: .alert.alert-warning :}
 The adapter will render the winning bid only if the bid's targeting keywords contain `all` keywords from the Parameter field.
-
 
 Press `DONE` and repeat the adding of the custom events for all needed prices.
 

@@ -22,7 +22,7 @@ sidebarType: 1
 
 ### Registration
 
-If you have any questions regarding set up, please reach out to your account manager or support@openx.com.
+If you have any questions regarding set up, please reach out to your account manager or [support@openx.com].
 
 Please note that OpenX is transitioning its serving architecture and currently has 2 bid adapters as of Prebid 7. The legacy adapter is named openxBidAdapter.
 The newer of the two is openxOrtbBidAdapter. Publishers are welcome to test with openxOrtbBidAdapter and give feedback.
@@ -31,6 +31,7 @@ After the transition openxOrtbBidAdapter will replace openxBidAdapter.
 IMPORTANT: only include either openxBidAdapter or openxOrtbBidAdapter in your build.
 
 ### Bid Parameters
+
 #### Banner
 
 {: .table .table-bordered .table-striped }
@@ -45,8 +46,8 @@ IMPORTANT: only include either openxBidAdapter or openxOrtbBidAdapter in your bu
 
 ** platform is deprecated. Please use delDomain instead. If you have any questions please contact your representative.
 
-
 ### AdUnit Format for Banner
+
 ```javascript
 var adUnits = [
   {
@@ -113,8 +114,8 @@ The following video parameters are supported here so publishers may fully declar
 | placement | recommended | Placement type for the impression. (see openRTB v2.5 section 5.9 for options) | 1 | integer |
 | | | | | |
 
-
 ### AdUnit Format for Video
+
 ```javascript
 var videoAdUnits = [
 {
@@ -147,8 +148,8 @@ var videoAdUnits = [
 }]
 ```
 
-
 ## Example
+
 ```javascript
 var adUnits = [
   {
@@ -199,13 +200,14 @@ var adUnits = [
 ];
 ```
 
-#### First Party Data
-OpenX supports FPD configured under `ortb2.user`and `ortb2.site.content` as described [here](/features/firstPartyData.html).
-Ad unit specific FPD is not supported, and segment taxonomies (`segtax`) are simply passed through. If you have any 
-questions, please reach out to us at prebid@openx.com
+### First Party Data
 
-Example: 
-```
+OpenX supports FPD configured under `ortb2.user`and `ortb2.site.content` as described [here](/features/firstPartyData.html).
+Ad unit specific FPD is not supported, and segment taxonomies (`segtax`) are simply passed through. If you have any questions, please reach out to us at [prebid@openx.com]
+
+Example:
+
+```javascript
 pbjs.setConfig({
    ...
    ortb2: {
@@ -236,6 +238,7 @@ pbjs.setConfig({
 ```
 
 ### Configuration
+
 Add the following code to enable user syncing. By default, Prebid.js version 0.34.0+ turns off user syncing through iframes.
 OpenX strongly recommends enabling user syncing through iframes. This functionality improves DSP user match rates and increases the
 OpenX bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
@@ -249,6 +252,6 @@ pbjs.setConfig({
 ```
 
 ## Additional Details
-[Banner Ads](https://docs.openx.com/Content/developers/containers/prebid-adapter.html) (Customer login required.)
 
-[Video Ads](https://docs.openx.com/Content/developers/containers/prebid-video-adapter.html) (Customer login required.)
+* [Banner Ads](https://docs.openx.com/Content/developers/containers/prebid-adapter.html) (Customer login required.)
+* [Video Ads](https://docs.openx.com/Content/developers/containers/prebid-video-adapter.html) (Customer login required.)

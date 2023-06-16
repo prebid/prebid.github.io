@@ -219,6 +219,11 @@ utilize the new location.
 
 No, Prebid Server is intended to run behind a load balancer or proxy, so it does not currently support defining a security certificate.
 
+## Should Prebid bidders be in ads.txt?
+
+Publishers should be careful to list all their bidding partners in their ads.txt file. Bidders without an entry in ads.txt may be
+perceived by DSPs as unauthorized sources of your inventory. The domain for any ads.txt [inventory partners](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/dc71586842e648e89c1bbe6c666ffac8ff010a96/2.6.md?plain=1#L1752), if one exists, should be specified with a `setConfig({ortb2.site.inventorypartnerdomain})` call. For details of the specification of ads.txt entries, see [ads.txt v1.1](https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf)
+
 ## How can I help with Prebid Server?
 
 Generally, people and companies will work on features and bug fixes that directly affect them. The process is:

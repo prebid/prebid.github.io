@@ -41,10 +41,11 @@ Please find below list of parameters that could be used in configuring Intent IQ
 | params.percentage              | Required | Number | This a percentage value for our A/B testing group distribution. The values supposed to be in range of 0 to 100. We suggest to set it to 95 percent for optimal balance ofbetween prefromance and preceision. | `95`            |
 | params.pcid                    | Optional | String | This is the partner cookie ID, it is a dynamic value attached to the request.                                                                                                                                | `"g3hC52b"`     |
 | params.pai                     | Optional | String | This is the partner customer ID / advertiser ID, it is a dynamic value attached to the request.                                                                                                              | `"advertiser1"` |
+| params.enableCookieStorage     | Optional | Boolean | This is a parameter allowing to enable or disable cookie storage. Defaults to false.                                                                                                             | `"true"` |
 
 ### Configuration example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [
@@ -53,6 +54,7 @@ pbjs.setConfig({
         params: {
           partner: 123456, // valid partner id
           percentage: 95,
+          enableCookieStorage: true
         },
         storage: {
           type: "html5",
@@ -65,9 +67,9 @@ pbjs.setConfig({
     syncDelay: 3000,
   },
 });
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -76,7 +78,8 @@ pbjs.setConfig({
                 partner: 123456     // valid partner id
                 pcid: PCID_VARIABLE,   // string value, dynamically loaded into a variable before setting the configuration
                 pai: PAI_VARIABLE ,  // string value, dynamically loaded into a variable before setting the configuration
-                percentage: 95
+                percentage: 95,
+                enableCookieStorage: false
             },
             storage: {
                 type: "html5",
@@ -87,4 +90,4 @@ pbjs.setConfig({
         syncDelay: 3000
     }
 });
-{% endhighlight %}
+```

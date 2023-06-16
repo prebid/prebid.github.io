@@ -26,7 +26,7 @@ This is an analytics adapter that can interface with any backend, meant for publ
 | `gvlid`      | optional | Number   | Global vendor list ID to use for the purpose of GDPR purpose 7 enforcement - see [note](#gdpr) |
 | `sampling`   | optional | Number   | Sampling rate, expressed as a number between 0 and 1. Data is collected only on this ratio of browser sessions. Defaults to `1`                                                               |
 
-<a id="gdpr" />
+<a id="gdpr"></a>
 
 ### Note on GDPR enforcement
 
@@ -64,7 +64,7 @@ pbjs.enableAnalytics({
 
 Example request payload:
 
-```
+```json
 {
   "eventType": "auctionInit",
   "args": {
@@ -102,7 +102,7 @@ pbjs.enableAnalytics({
 
 Example request payload:
 
-```
+```json
 [
     {
         "eventType": "auctionInit",
@@ -154,7 +154,7 @@ Example request payload:
 ]
 ```
 
-<a id="event-formatters" />
+<a id="event-formatters"></a>
 
 #### Custom formatting
 
@@ -186,7 +186,7 @@ pbjs.enableAnalytics({
 
 Example request payload:
 
-```
+```json
 [
   {
     "auctionId": "e41e3fcb-6209-4995-b0be-2aed21a8bdf6",
@@ -202,7 +202,7 @@ Example request payload:
 ]
 ```
 
-<a id="custom-handler" />
+<a id="custom-handler"></a>
 
 #### Custom handler
 

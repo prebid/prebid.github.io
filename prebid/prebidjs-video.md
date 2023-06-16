@@ -2,7 +2,7 @@
 layout: page_v2
 title: Video Intro to Prebid.js
 description: A video overview of Prebid org and products
-sidebarType: 0
+sidebarType: 1
 ---
 
 # A Video Overview of Prebid.js
@@ -21,9 +21,9 @@ Further Content:
 Related Videos
 - [Introduction to Prebid](/overview/intro-video.html)
 - [Introduction to Header Bidding](/overview/intro-to-header-bidding-video.html)
-- Prebid.js Impression Flow (coming soon)
-- Components of Prebid.js (coming soon)
-- Identity in Prebid.js (coming soon)
+- [Prebid.js Impression Flow](/prebid/prebidjs-flow-video.html)
+- [Components of Prebid.js](/prebid/prebidjs-components-video.html)
+- [Identity in Prebid.js](/identity/prebid-identity-video.html)
 
 ## Transcript
 

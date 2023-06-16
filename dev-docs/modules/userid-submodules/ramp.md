@@ -41,7 +41,7 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 
 1) Publisher passes a Placement ID and elects to store the RampID envelope in a first-party cookie.
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -60,11 +60,11 @@ pbjs.setConfig({
         syncDelay: 3000                 // 3 seconds after the first auction
     }
 });
-{% endhighlight %}
+```
 
 2) Publisher passes a Placement ID and elects to store the RampID envelope in HTML5 localStorage.
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -83,4 +83,4 @@ pbjs.setConfig({
         syncDelay: 3000                 // 3 seconds after the first auction
     }
 });
-{% endhighlight %}
+```
