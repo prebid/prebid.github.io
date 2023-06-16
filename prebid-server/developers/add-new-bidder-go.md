@@ -973,6 +973,11 @@ Notes:
 - The alias name must be unique for the first 6 chars as noted above for biddercodes.
 - This process will be simplified someday.
 
+{: .alert.alert-info :}
+Note on aliases and TCF Global Vendor List IDs: if an alias entry does not have its own GVLID but wishes to claim GDPR support,
+the documentation entry (The file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) must list the GVLID of the main adapter with that company's name in parentheses.
+Look for other doc entries containing an `aliasCode` metadata entry.
+
 ## Test Your Adapter
 
 This section will guide you through the creation of automated unit tests to cover your bid adapter code and bidder parameters JSON Schema. We use GitHub Action Workflows to ensure the code you submit passes validation. You can run the same validation locally with this command:

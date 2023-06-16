@@ -188,6 +188,11 @@ However aliases could narrow down media types they support.<br />
 For example: if the bidder is written to not support native site requests, then an alias cannot magically decide to change that;
 However, if a bidder supports native site requests, and the alias does not want to for some reason, it has the ability to remove that support.
 
+{: .alert.alert-info :}
+Note on aliases and TCF Global Vendor List IDs: if an alias entry does not have its own GVLID but wishes to claim GDPR support,
+the documentation entry (The file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) must list the GVLID of the main adapter with that company's name in parentheses.
+Look for other doc entries containing an `aliasCode` metadata entry.
+
 ### Bidder Parameters
 
 Your bid adapter might require extra information from the publisher to form a request to your bidding server. The bidder parameters JSON Schema codifies this information to allow Prebid Server to verify requests and to provide an API for third party configuration systems.
