@@ -5,7 +5,6 @@ description: Pubgears Bidder Adapter
 pbjs: true
 biddercode: pubgears
 gdpr_supported: true
-gvl_id: none
 usp_supported: true
 coppa_supported: true
 schain_supported: true
