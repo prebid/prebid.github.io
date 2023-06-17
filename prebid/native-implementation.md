@@ -8,6 +8,7 @@ sidebarType: 1
 ---
 
 # Prebid.js Native Implementation Guide
+
 {: .no_toc}
 
 {% capture version2 %}
@@ -53,7 +54,7 @@ have any instructions handy. Ad server vendors are welcome to submit documentati
 There are three options for defining the native template:
 
 - If you want to manage your creative within the ad server (e.g. Google Ad Manager), follow the instructions for [AdServer-Defined Template](#41-implementing-adserver-defined-template).
-- If you’d prefer to manage your creative within the Prebid.js AdUnit, follow the instructions for [AdUnit-Defined Template](#42-implementing-adunit-defined-template).
+- If you’d prefer to manage your creative within the Prebid.js AdUnit, follow the instructions for [AdUnit-Defined Template](#42-implementing-an-adunit-defined-template).
 - If you’d prefer to manage your creative from a separate piece of JavaScript, follow the instructions for the [Custom Renderer](#43-implementing-the-custom-renderer-scenario).
 
 This table summarizes how the 3 approaches work:
@@ -78,8 +79,8 @@ The Prebid.js AdUnit needs to define a native mediatype object to tell bidders w
 {: .table .table-bordered .table-striped }
 | Attribute | Scope | Description | Example | Type |
 | --- | --- | --- | --- | --- |
-| adTemplate | optional | Used in the ‘AdUnit-Defined Creative Scenario’, this value will contain the Native template right in the page. | See [example](#42-implementing-adunit-defined-template) below. | escaped ES5 string |
-| rendererUrl | optional | Used in the ‘Custom Renderer Scenario’, this points to javascript code that will produce the Native template. | 'https://host/path.js' | string |
+| adTemplate | optional | Used in the ‘AdUnit-Defined Creative Scenario’, this value will contain the Native template right in the page. | See [example](#42-implementing-an-adunit-defined-template) below. | escaped ES5 string |
+| rendererUrl | optional | Used in the ‘Custom Renderer Scenario’, this points to javascript code that will produce the Native template. | `'https://host/path.js'` | string |
 | ortb | recommended | OpenRTB configuration of the Native assets. The Native 1.2 specification can be found [here](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) | { assets: [], eventtrackers: [] } | object |
 | sendTargetingKeys | deprecated | Defines whether or not to send the hb_native_ASSET targeting keys to the ad server. Defaults to `false`. | `false` | boolean |
 
@@ -109,7 +110,7 @@ Each asset should have one of the following properties:
 
 #### 3.1.1. Title Asset
 
-This is a regular title and the most important property is `len`, to specify the length. Here's an example: 
+This is a regular title and the most important property is `len`, to specify the length. Here's an example:
 
 ```javascript
 {
@@ -123,7 +124,7 @@ This is a regular title and the most important property is `len`, to specify the
 
 #### 3.1.2. Image Asset
 
-Contains an image request. Images can be of type `1` (Icon) or `3` (Main image). There are several ways to specify the image size or aspect ratio; the [OpenRTB spec](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) contains all the possibilities. Here's an example: 
+Contains an image request. Images can be of type `1` (Icon) or `3` (Main image). There are several ways to specify the image size or aspect ratio; the [OpenRTB spec](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) contains all the possibilities. Here's an example:
 
 ```javascript
 {
@@ -139,9 +140,9 @@ Contains an image request. Images can be of type `1` (Icon) or `3` (Main image)
 
 #### 3.1.3. Data Asset
 
-A 'data' asset is a 'misc' component like "sponsored by", "rating", likes", or other fields that have been standardized in OpenRTB 1.2. Each data asset has a `type`, and based on that type the bidders will respond with the appropriate data. For example, you can request for the name of the sponsoring company by using the type `1`. 
+A 'data' asset is a 'misc' component like "sponsored by", "rating", likes", or other fields that have been standardized in OpenRTB 1.2. Each data asset has a `type`, and based on that type the bidders will respond with the appropriate data. For example, you can request for the name of the sponsoring company by using the type `1`.
 
-Here's an example: 
+Here's an example:
 
 ```javascript
 {
@@ -153,7 +154,7 @@ Here's an example:
 },
 ```
 
-For reference, this is the table that specifies all data types: 
+For reference, this is the table that specifies all data types:
 
 {: .table .table-bordered .table-striped }
 | Type ID | Name |

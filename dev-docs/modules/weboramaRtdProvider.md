@@ -12,6 +12,7 @@ sidebarType : 1
 ---
 
 # Weborama RTD Segmentation Module
+
 {:.no_toc}
 
 * TOC
@@ -27,7 +28,7 @@ Weborama provides a Real-Time Data Submodule for `Prebid.js`, allowing to easy i
 
 * LiTE by SFBX® (Local inApp Trust Engine) provides “Zero Party Data” given by users, stored and calculated only on the user’s device. Through a unique cohorting system, it enables better monetization in a consent/consentless and identity-less mode.
 
-Contact prebid-support@weborama.com for more information.
+Contact [prebid-support@weborama.com] for more information.
 
 ### Publisher Usage
 

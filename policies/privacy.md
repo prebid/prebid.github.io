@@ -43,7 +43,7 @@ The personal information that we may collect from our Website or through our mar
 
 Certain parts of our Website may ask you to provide personal information voluntarily: for example, we may ask you to provide your name and contact details in order to download files or code from us, sign up for an email newsletter, register for or attend one of our events, contribute code, and/or to submit enquiries or emails to us.  When you submit code to us, we may ask you to sign our Code Contributor Licensing Agreement. If you are contributing code on behalf of your employer, then we may ask your employer to sign a similar agreement too.
 
-Our Website also includes links to third party sites such as GitHub, Stack, Slack, Reddit, Quora and Twitter to enable you to submit questions and requests to us on those third party sites if you so choose; for example, by using certain tags or by following our profiles on those sites. 
+Our Website also includes links to third party sites such as GitHub, Stack, Slack, Reddit, Quora and Twitter to enable you to submit questions and requests to us on those third party sites if you so choose; for example, by using certain tags or by following our profiles on those sites.
 
 From time-to-time, Prebid.org may also host events, online or offline, and invite people to register for these events.
 

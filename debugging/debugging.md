@@ -8,6 +8,7 @@ sidebarType: 1
 ---
 
 # Debugging Prebid.js
+
 {:.no_toc}
 
 * TOC
@@ -23,4 +24,4 @@ The Prebid.js debugging module enables the "intercepting" of bids and replacing 
 
 ## Related Reading
 
-+ [Prebid.js Troubleshooting Guide](/dev-docs/prebid-troubleshooting-guide.html)
+- [Prebid.js Troubleshooting Guide](/dev-docs/prebid-troubleshooting-guide.html)

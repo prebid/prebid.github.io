@@ -22,7 +22,7 @@ If publishers will enable this module and provide placementId and Google Ad Mana
 
 Build the Yieldmo Synthetic Inventory Module into the Prebid.js package with:
 
-```
+```bash
 gulp build --modules=yieldmoSyntheticInventoryModule,...
 ```
 
@@ -73,8 +73,9 @@ Yieldmo Synthetic Inventory Module is designed to be used along with Google Ad M
 - Ad unit size should be 1x1
 - Creative should NOT be served into a SafeFrame and also should have 1x1 size
 - Synthetic Inventory Universal Tag should be used as 3rd party creative code
+
 ### Synthetic Inventory Universal Tag
 
-```js
+```html
 <div id="ym_%%PATTERN:ym_sim_p_id%%" class="ym"></div><script type="text/javascript">(function(e,t){if(t._ym===void 0){t._ym="";var m=e.createElement("script");m.type="text/javascript",m.async=!0,m.src="//static.yieldmo.com/ym."+Math.round(5*Math.random()/3)+".js",(e.getElementsByTagName("head")[0]||e.getElementsByTagName("body")[0]).appendChild(m)}else t._ym instanceof String||void 0===t._ym.chkPls||t._ym.chkPls()})(document,window);</script>
 ```

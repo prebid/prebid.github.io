@@ -189,7 +189,6 @@ function get_form_data() {
         }
     }
 
-
     var form_data = {};
     form_data['modules'] = bidders.concat(analytics);
     form_data['version'] = version;
@@ -281,7 +280,7 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 {: .alert.alert-danger :}
 **Note:** recommended modules are now checked by default. Please uncheck them as desired.
 
-### Option 1: Customize your download here
+## Option 1: Customize your download here
 
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% assign module_pages = site.pages | where: "page_type", "module" %}
@@ -306,7 +305,6 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 </div>
 {% endif %}{% endfor %}
 </div>
-
 
 <br>
 <h4>Analytics Adapters</h4>
@@ -356,7 +354,6 @@ These modules may require accounts with a service provider.<br/>
 Note: If you receive an error during download you most likely selected a configuration that is not supported. Verify that each bidder / module is available in the selected version. Also please note that even though you can download older versions of Prebid.js,
 Prebid only supports the most recent major version. Within a month or so after a major release (e.g. 3.x), we won't patch the previous major release (e.g. 2.x).
 
-
 </div>
 
 <!-- Modal -->
@@ -396,7 +393,7 @@ Prebid only supports the most recent major version. Within a month or so after a
 
 <div class="bs-docs-section" markdown="1">
 
-### Option 2: Build from Source Code (More Advanced)
+## Option 2: Build from Source Code (More Advanced)
 
 {: .lead :}
 Alternatively, you can build Prebid.js from the source code. For instructions, see the [Prebid.js README on GitHub](https://github.com/prebid/Prebid.js/blob/master/README.md).

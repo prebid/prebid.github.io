@@ -19,3 +19,4 @@ jobs:
         with:
           files: .
           config_file: .markdownlint.json
+          ignore_path: .markdownlintignore
