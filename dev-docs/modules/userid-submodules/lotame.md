@@ -21,7 +21,7 @@ gulp build --modules=lotamePanoramaIdSystem
 
 ## Lotame Panorama ID Registration & Implementation
 
-To get started, you will need to register with Lotame in order to receive your unique client ID for the userID module. You can [register here](https://www.cognitoforms.com/LotameSolutionsInc/PanoramaIDOfferingEnrollment) or contact [prebid@lotame.com](mailto:prebid@lotame.com) for any questions that you may have. 
+To get started, you will need to register with Lotame in order to receive your unique client ID for the userID module. You can [register here](https://www.cognitoforms.com/LotameSolutionsInc/PanoramaIDOfferingEnrollment) or contact [prebid@lotame.com](mailto:prebid@lotame.com) for any questions that you may have.
 
 Once you sign up, you will receive an email with your client ID and instructions for implementation.
 

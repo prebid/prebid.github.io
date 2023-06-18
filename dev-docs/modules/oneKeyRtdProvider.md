@@ -27,15 +27,14 @@ Both modules are required. This module will pass transmission requests to your p
 while the oneKeyIdSystem will pass the oneKeyData.
 
 Background information:
-- [OneKey-Network/addressability-framework](https://github.com/OneKey-Network/addressability-framework)
-- [OneKey-Network/OneKey-implementation](https://github.com/OneKey-Network/OneKey-implementation)
-
+* [OneKey-Network/addressability-framework](https://github.com/OneKey-Network/addressability-framework)
+* [OneKey-Network/OneKey-implementation](https://github.com/OneKey-Network/OneKey-implementation)
 
 ## Implementation for Publishers
 
 ### Integration
 
-1) Compile the OneKey RTD Provider and the OneKey UserID sub-module into your Prebid build. 
+1) Compile the OneKey RTD Provider and the OneKey UserID sub-module into your Prebid build.
 
 {: .alert.alert-info :}
 gulp build --modules=rtdModule,oneKeyRtdProvider
@@ -56,7 +55,7 @@ pbjs.setConfig({
         ]
     }
 });
-``` 
+```
 
 3) Configure the OneKey RTD Provider with the bidders that are part of the OneKey community. If there is no bidders specified, the RTD provider
 will share OneKey data with all adapters.

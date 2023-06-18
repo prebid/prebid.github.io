@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The diDNA Display bidding adapter requires setup and approval before implementation. Please reach out to <ops@didna.io> for more details.
 

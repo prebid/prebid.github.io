@@ -17,7 +17,7 @@ floors_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Livewrapped Bidder Adapter requires setup and approval from Livewrapped AB.
 Please reach out to <sales@livewrapped.com> for more information.

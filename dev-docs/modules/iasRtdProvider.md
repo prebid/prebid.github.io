@@ -53,7 +53,7 @@ Configuration example for using RTD module with the `ias` provider:
         }
       ]
     }
-``` 
+```
 
 Parameters details:
 

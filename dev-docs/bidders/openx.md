@@ -98,7 +98,7 @@ The following video parameters are supported here so publishers may fully declar
 {: .table .table-bordered .table-striped }
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
-| context | required | instream or outstream |"outstream" | string | 
+| context | required | instream or outstream |"outstream" | string |
 | playerSize| required | width, height of the player in pixels | [640,360] - will be translated to w and h in bid request | array<integers> |
 | mimes | required | List of content MIME types supported by the player (see openRTB v2.5 for options) | ["video/mp4"]| array<string>|
 | protocols | recommended | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | [2,3,5,6] | array<integers>|

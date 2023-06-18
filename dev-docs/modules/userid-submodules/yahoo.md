@@ -16,8 +16,8 @@ gulp build --modules=userId,connectIdSystem
 
 A Yahoo-supplied publisher-specific pixel ID is required. Reach out to [connectid.support@yahooinc.com](mailto:connectid.support@yahooinc.com) for assistance with setup.
 
-
 ## Yahoo ConnectID Configuration
+
 Note: Parameters are case-sensitive. ConnectID is the proper name of our product, however, when used in code it is spelled as connect**I**d. Follow the example in the table below.
 
 <div class="table-responsive" markdown="1">
@@ -31,7 +31,6 @@ The Yahoo-supplied publisher-specific pixel ID. | `"0000"` |
 | params.puid | Optional | String | A domain-specific user identifier such as a first-party cookie. If not passed, a puid value will be auto-generated and stored in local and / or cookie storage.  | `"ab9iibf5a231ii1db8ef911596ca297d5e3f84biii00041c5880dba3baf9c1da"` |
 {: .table .table-bordered .table-striped }
 </div>
-
 
 ## Yahoo ConnectID Examples
 
@@ -84,7 +83,9 @@ pbjs.setConfig({
 ```
 
 ## Implementation Verification
+
 Follow the steps below to check that ConnectIDs are being successfully retrieved and included on ad requests.
+
 1) Open a Prebid-enabled page on the website.
 2) Open the browser console and enter pbjs.getUserIds().
 3) Verify connectId is in the list.
@@ -103,6 +104,7 @@ When desired, additional privacy control can be provided to your users. Within y
 Finally, ConnectID follows all global privacy laws (such as the CCPA) and industry frameworks (such as NAI, DAA and IAB). Yahoo will auto-detect most privacy signals present on the page (including those set by Prebid libraries) and not generate a ConnectID for users that have opted-out.
 
 ## Yahoo ConnectID Optional Parameters
+
 Please note that the storage related parameters are optional. We recommend that you omit them, since ConnectID module is pre-configured with the most optimal storage parameters already.
 
 <div class="table-responsive" markdown="1">

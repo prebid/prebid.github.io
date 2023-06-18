@@ -13,9 +13,9 @@ Both modules are required. This module will pass oneKeyData to your partners
 while the oneKeyRtdProvider will pass the transmission requests.
 
 Background information:
+
 - [OneKey-Network/addressability-framework](https://github.com/OneKey-Network/addressability-framework)
 - [OneKey-Network/OneKey-implementation](https://github.com/OneKey-Network/OneKey-implementation)
-
 
 It can be added to you Prebid.js package with:
 
@@ -35,7 +35,6 @@ Go to [onekey.community](https://onekey.community/) for more details.
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module | `"oneKeyData"` |
-
 
 ## OneKey Exemple
 

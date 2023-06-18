@@ -50,7 +50,7 @@ Configuration example for using RTD module with the `optimeraRTD` provider:
         }
       ]
     }
-``` 
+```
 
 ## Migration From the Optimera Bidder Adapter
 
@@ -73,7 +73,7 @@ Contact Optimera to get assistance with the params.
 ## Example
 
 To view an integration example:
- 
+
 1) in your cli run:
 
 ```

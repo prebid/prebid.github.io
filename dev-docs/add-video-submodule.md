@@ -6,9 +6,11 @@ sidebarType: 1
 ---
 
 # How to Add a Video Submodule
+
 {:.no_toc}
 
 Video submodules interact with the Video Module to integrate Prebid with Video Players, allowing Prebid to automatically:
+
 * render bids in the desired video player.
 * mark used bids as won.
 * trigger player and media events.
@@ -22,7 +24,7 @@ Video submodules interact with the Video Module to integrate Prebid with Video P
 The Prebid Video Module simplifies the way Prebid integrates with video players by acting as a single point of contact for everything video.
 In order for the Video Module to connect to a video player, a submodule must be implemented. The submodule acts as a bridge between the Video Module and the video player.
 The Video Module will route commands and tasks to the appropriate submodule instance.
-A submodule is expected to work for a specific video player. i.e. the JW Player submodule is used to integrate Prebid with JW Player. The video.js submdule connects to video.js. 
+A submodule is expected to work for a specific video player. i.e. the JW Player submodule is used to integrate Prebid with JW Player. The video.js submdule connects to video.js.
 Publishers who use players from different vendors on the same page can use multiple video submodules.
 
 ## Requirements

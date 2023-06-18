@@ -12,16 +12,17 @@ sidebarType : 1
 ---
 
 # GrowthCode Real-time Data Submodule
+
 {:.no_toc}
 
 * TOC
 {:toc}
 
-The <a href="https://growthcode.io">GrowthCode</a> real-time data module in Prebid enables publishers to fully 
-leverage the potential of their first-party audiences and contextual data. 
-With an integrated cookieless GrowthCode identity, this module offers real-time 
-contextual and audience segmentation capabilities that can seamlessly 
-integrate into your existing Prebid deployment, making it easy to maximize 
+The <a href="https://growthcode.io">GrowthCode</a> real-time data module in Prebid enables publishers to fully
+leverage the potential of their first-party audiences and contextual data.
+With an integrated cookieless GrowthCode identity, this module offers real-time
+contextual and audience segmentation capabilities that can seamlessly
+integrate into your existing Prebid deployment, making it easy to maximize
 your advertising strategies.
 
 ## Building Prebid with GrowthCode Support
@@ -50,7 +51,6 @@ pbjs.setConfig(
     ...
 }
 ```
-
 
 ### Parameter Descriptions for the GrowthCode Configuration Section
 

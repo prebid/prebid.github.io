@@ -14,7 +14,7 @@ sidebarType: 1
 
 ### Preliminaries
 
-The Vibrant Media Adapter requires set-up before being enabled. Please contact us at intellitxtsupport@vibrantmedia.com.
+The Vibrant Media Adapter requires set-up before being enabled. Please contact us at <intellitxtsupport@vibrantmedia.com>.
 
 Note: For video, we support outstream only.
 

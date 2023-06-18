@@ -14,7 +14,7 @@ pbs_app_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Synacor Media bidder adapter requires setup and approval from Synacor. Please reach out to your account manager for more information and to start using it.
 
@@ -38,6 +38,7 @@ pbjs.setConfig({
 ```
 
 ### DFP Video Creative
+
 To use video, setup a `VAST redirect` creative within Google AdManager (DFP) with the following VAST tag URL:
 
 ```
@@ -56,6 +57,7 @@ https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_cache_id_synacorm
 | `video` | optional | Optional properties specific to video, see next table | `{ }` | Object |
 
 ### Example Ad Unit
+
 ```javascript
 var adUnits = [{
     "code": "test-div",

@@ -12,6 +12,7 @@ sidebarType : 1
 ---
 
 # JW Player RTD Provider
+
 {:.no_toc}
 
 * TOC
@@ -19,10 +20,10 @@ sidebarType : 1
 
 ## Overview
 
-The JW Player RTD module passes contextual and performance based information about individual video impression opportunities to bid adapters in order to increase monetization. 
+The JW Player RTD module passes contextual and performance based information about individual video impression opportunities to bid adapters in order to increase monetization.
 To use this module, you'll need to work with [JW Player](https://www.jwplayer.com/video-monetization/) to get an account and discuss the best integration path.
 
-## Implementation for Publishers:
+## Implementation for Publishers
 
 1) Compile the JW Player RTD Provider into your Prebid build:
 
@@ -44,7 +45,7 @@ pbjs.setConfig({
       }]
     }
 });
-``` 
+```
 
 3) Optionally, if you would like to prefetch the targeting information for certain media, you must include the media IDs in `params.mediaIDs`, as displayed above. You must also set `waitForIt` to `true` and make sure that a value is set to `realTimeData.auctionDelay`.
 
@@ -87,6 +88,7 @@ Setting an `auctionDelay` in the `realTimeData` object is required to ensure the
        pbjs.requestBids({...});
    });
 ```
+
 **Note**: You may also include `jwTargeting` information in the prebid config's `ortb2.site.ext.data`. Information provided in the adUnit will always supersede the information in the config; use the config to set fallback information or information that applies to all adUnits.
 
 **AdUnit Syntax details:**
@@ -98,7 +100,7 @@ Setting an `auctionDelay` in the `realTimeData` object is required to ensure the
 | ortb2Imp.ext.data.jwTargeting.mediaID | String | Media Id of the content associated to the Ad Unit | Optional but highly recommended |
 | ortb2Imp.ext.data.jwTargeting.playerID | String | the ID of the HTML div element used when instantiating the JW Player instance that will render the content associated with the Ad Unit | Optional but recommended. You can retrieve this ID by calling `player.id`, where player is the JW Player instance variable. |
 
-## Implementation for Bid Adapters:
+## Implementation for Bid Adapters
 
 This section contains guidelines for bid adapters that are working with JW Player to utilize the additional targeting.
 
@@ -136,6 +138,7 @@ Each bidRequest for which targeting information was found will conform to the fo
   }
 }
 ```
+
 Each bid for which targeting information was found will have a ortb2 param conforming to the [oRTB v2 object structure](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf). The `ortb2` object will contain our proprietaty targeting segments in a format compliant with the [IAB's segment taxonomy structure](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/extensions/community_extensions/segtax.md).
 
 The content's ID can be obtained in the `bid.ortb2.site.content.id` property path and the targeting segments can be found in `bid.ortb2.site.content.data.segment`.
@@ -157,12 +160,12 @@ The content's ID can be obtained in the `bid.ortb2.site.content.id` property pat
 ## Example
 
 To view an example:
- 
-- in the Prebid repo, run in your cli:
+
+* in the Prebid repo, run in your cli:
 
 `gulp serve --modules=jwplayerRtdProvider`
 
-- in your browser, navigate to:
+* in your browser, navigate to:
 
 `http://localhost:9999/integrationExamples/gpt/jwplayerRtdProvider_example.html`
 

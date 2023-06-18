@@ -22,6 +22,6 @@ sidebarType: 1
 
 Project Agora is an aliased bidder for AppNexus.
 
-### Note:
+### Note
 
-The Project Agora bidder adapter requires setup before beginning. Please contact us at pub_support@projectagora.com.
+The Project Agora bidder adapter requires setup before beginning. Please contact us at <pub_support@projectagora.com>.

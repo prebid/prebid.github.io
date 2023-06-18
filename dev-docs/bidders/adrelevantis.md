@@ -11,7 +11,7 @@ sidebarType: 1
 
 ### Note
 
-This adapter is for displaying ads relevant to page content. Page content is analyzed dynamically in realtime to get its IAB Categories and keywords. The IAB Categories and keywords are sent as First Party Data of the bidder. DSP can, then, bid on the IAB Categories and keywords. You can find more info at (https://adrelevantis.xyz/2020/06/28/content-driven-header-bidding-with-prebid-js/).
+This adapter is for displaying ads relevant to page content. Page content is analyzed dynamically in realtime to get its IAB Categories and keywords. The IAB Categories and keywords are sent as First Party Data of the bidder. DSP can, then, bid on the IAB Categories and keywords. You can find more info at (<https://adrelevantis.xyz/2020/06/28/content-driven-header-bidding-with-prebid-js/>).
 
 ### Bid Params
 

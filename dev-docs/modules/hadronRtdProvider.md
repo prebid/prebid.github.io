@@ -12,6 +12,7 @@ sidebarType : 1
 ---
 
 # Audigent Hadron Real-time Data Submodule
+
 {:.no_toc}
 
 * TOC
@@ -32,10 +33,9 @@ Users, devices, content, cohorts and other features are identified and utilized
 to augment every bid request with targeted, first-party data-derived segments
 before being submitted to supply-side platforms. Enriching the bid request with
 robust first-party audience and contextual data, Audigent's Hadron RTD module
-helps optimize targeting and header-bidding performance.  For more information, 
+helps optimize targeting and header-bidding performance.  For more information,
 please visit <a href="https://audigent.com">https://audigent.com</a> or contact our Prebid integration team at
-prebid@audigent.com.
-
+<prebid@audigent.com>.
 
 ## Publisher Usage
 
@@ -47,7 +47,7 @@ Add the Hadron RTD provider to your Prebid config. In this example we will confi
 publisher 1234 to retrieve segments from Audigent. See the
 "Parameter Descriptions" below for more detailed information of the
 configuration parameters. Please work with your Audigent Prebid support team
-(prebid@audigent.com) on which version of Prebid.js supports different bidder
+(<prebid@audigent.com>) on which version of Prebid.js supports different bidder
 and segment configurations.
 
 ```
@@ -128,7 +128,7 @@ pbjs.setConfig(
 
 The handleRtd function can also be used to configure custom ortb2 data
 processing. Please see the examples available in the hadronRtdProvider_spec.js
-tests and work with your Audigent Prebid integration team (prebid@audigent.com)
+tests and work with your Audigent Prebid integration team (<prebid@audigent.com>)
 on how to best configure your own Hadron RTD & Open RTB data handlers.
 
 ## Testing

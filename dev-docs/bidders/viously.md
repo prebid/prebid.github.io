@@ -20,8 +20,9 @@ multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
-### Note:
-Viously Header Bidding adapter requires setup and approval. Please reach out to prebid@viously.com for more details.
+### Note
+
+Viously Header Bidding adapter requires setup and approval. Please reach out to <prebid@viously.com> for more details.
 
 ### Bid params
 

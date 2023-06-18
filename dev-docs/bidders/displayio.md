@@ -14,9 +14,9 @@ gvl_id: none
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-Before configuring the display.io adapter you must reach out your account manager from display.io team  (or send a request to contact@display.io) for approval and setup steps.
+Before configuring the display.io adapter you must reach out your account manager from display.io team  (or send a request to <contact@display.io>) for approval and setup steps.
 
 ### Bid Params
 
@@ -28,7 +28,7 @@ Before configuring the display.io adapter you must reach out your account manage
 | `placementId`  | required | Number | SiteId and PlacementID are your inventory IDs on the display.io platform (please ask your Account Manager for your site and placement IDs).                                       | 5375                                                         |
 | `adsSrvDomain` | required | String |                                        | "appsrv.display.io"                                          |
 | `cdnDomain`    | required | String |                                        | "cdn.display.io"                                             |
-| `renderURL`    | optional | String |                                        | "https://cdn.display.io/webis/webis-prebid.min.js"                               |
+| `renderURL`    | optional | String |                                        | "<https://cdn.display.io/webis/webis-prebid.min.js>"                               |
 | `pageCategory` | optional | String | Comma-separated list of IAB content categories that describe the current page or view of the site, list of available values. | "pageCategory1, pageCategory2"                               |
 | `keywords`     | optional | String | Comma-separated list of keywords describing the content. | "keyword1, keyword2, keyword3"                               |
 | `custom`       | optional | Object | User-defined targeting key-value pairs. custom applies to a specific unit. | `{headerTextColor: "red", fixedHeaderSelector: '.site-header'}` |

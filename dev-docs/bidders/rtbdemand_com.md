@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The RtbDemand.com bidding adaptor requires setup and approval before beginning. Please reach out to <shreyanschopra@rtbdemand.com> for more details
 

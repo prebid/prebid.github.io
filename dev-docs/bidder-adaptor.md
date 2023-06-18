@@ -156,26 +156,26 @@ When defining the HTTP headers for your endpoint, it is important from a perform
 
 A 'Simple Request' meets **all** of the following conditions:
 
-- Must be one of 3 following allowed methods
-    - GET
-    - HEAD
-    - POST
+* Must be one of 3 following allowed methods
+  * GET
+  * HEAD
+  * POST
 
-- Only headers that are allowed to be manually set apart from the headers automatically set by the user-agent
-    - `Accept`
-    - `Accept-Language`
-    - `Content-Language`
-    - `Content-Type`
-    - `Range`
+* Only headers that are allowed to be manually set apart from the headers automatically set by the user-agent
+  * `Accept`
+  * `Accept-Language`
+  * `Content-Language`
+  * `Content-Type`
+  * `Range`
 
-- For the `Content-Type` header the only type/subtype combinations allowed are the following
-    - application/x-www-form-urlencoded
-    - multipart/form-data
-    - text/plain
+* For the `Content-Type` header the only type/subtype combinations allowed are the following
+  * application/x-www-form-urlencoded
+  * multipart/form-data
+  * text/plain
 
-- If the request is made using `XMLHttpRequest` object, no event listeners are registered on the object returned by the `XMLHttpRequest.upload` property used in the request
+* If the request is made using `XMLHttpRequest` object, no event listeners are registered on the object returned by the `XMLHttpRequest.upload` property used in the request
 
-- No `ReadableStream` object is used in the request
+* No `ReadableStream` object is used in the request
 
 Prebid recommends keeping module HTTP requests 'simple' if at all possible. The default content-type used by Prebid.js is text/plain.
 
@@ -185,10 +185,11 @@ Prebid recommends keeping module HTTP requests 'simple' if at all possible. The 
 If you're the type that likes to skip to the answer instead of going through a tutorial, see the <a href="#bidder-example">Full Bid Adapter Example</a> below.
 
 {: .alert.alert-warning :}
+
 ### Note on ORTB adapters
 
 {: .alert.alert-warning :}
-If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`. 
+If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which provides most of the implementation for `buildRequests` and `interpretResponse`.
 
 * [Overview](#bidder-adaptor-Overview)
 * [Building the Request](#bidder-adaptor-Building-the-Request)
@@ -204,10 +205,10 @@ The new code will reside under the `modules` directory with the name of the bidd
 
 Here are some guidelines for choosing a bidder code:
 
-- The bidder code must be lower case alphanumeric. The only special character allowed is underscore.
-- The bidder code must be unique - make sure none of the other bid adapters is using the same code.
-- The bidder code should be unique for the first 6 characters - this consideration helps with generating unique targeting keys for use by some ad exchanges, such as Google Ad Manager.
-- There are several reserved words that cannot be used as bidder names: all, context, data, general, prebid, and skadn.
+* The bidder code must be lower case alphanumeric. The only special character allowed is underscore.
+* The bidder code must be unique - make sure none of the other bid adapters is using the same code.
+* The bidder code should be unique for the first 6 characters - this consideration helps with generating unique targeting keys for use by some ad exchanges, such as Google Ad Manager.
+* There are several reserved words that cannot be used as bidder names: all, context, data, general, prebid, and skadn.
 
 Compared to previous versions of Prebid, the new `BaseAdapter` model saves the adapter from having to make the AJAX call and provides consistency in how adapters are structured. Instead of a single entry point, the `BaseAdapter` approach defines the following entry points:
 
@@ -258,8 +259,8 @@ If your adapter interfaces with an ORTB backend, you may take advantage of Prebi
 
 When the page asks Prebid.js for bids, your module's `buildRequests` function will be executed and passed two parameters:
 
-- `validBidRequests[]` - An array of bidRequest objects, one for each AdUnit that your module is involved in. This array has been processed for special features like sizeConfig, so it's the list that you should be looping through.
-- `bidderRequest` - The master bidRequest object. This object is useful because it carries a couple of bid parameters that are global to all the bids.
+* `validBidRequests[]` - An array of bidRequest objects, one for each AdUnit that your module is involved in. This array has been processed for special features like sizeConfig, so it's the list that you should be looping through.
+* `bidderRequest` - The master bidRequest object. This object is useful because it carries a couple of bid parameters that are global to all the bids.
 
 ```javascript
 buildRequests: function(validBidRequests, bidderRequest) {
@@ -273,7 +274,6 @@ Building the request will use data from several places:
 * **Ad Unit Params**: The arguments provided by the page are in `validBidRequests[]`.
 * **BidRequest Params**: Several important parameters such as first-party data, userId, GDPR, USP, and supply chain values are on the `bidderRequest` object.
 * **Prebid Config**: Publishers can set a number of config values that bid adapters should consider reading.
-
 
 #### Ad Unit Params in the validBidRequests Array
 
@@ -302,14 +302,14 @@ Here is a sample array entry for `validBidRequests[]`:
 Retrieve your bid parameters from the `params` object.
 
 Other notes:
-- **Bid ID** is unique across ad units and bidders.
-- **Transaction ID** is unique for each ad unit with a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
-- **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
-- **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
-- **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
-- **userIdAsEid** is the EID-formatted version of `userId`.
-- **ortb2** a copy of `bidderRequest.ortb2` (see below), provided here for convenience.
-- **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
+* **Bid ID** is unique across ad units and bidders.
+* **Transaction ID** is unique for each ad unit with a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
+* **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
+* **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
+* **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
+* **userIdAsEid** is the EID-formatted version of `userId`.
+* **ortb2** a copy of `bidderRequest.ortb2` (see below), provided here for convenience.
+* **schain** is where bidders can look for any [Supply Chain](/dev-docs/modules/schain.html) data that they should pass through to the endpoint.
 
 #### bidderRequest Parameters
 
@@ -338,24 +338,24 @@ Here is a sample bidderRequest object:
 ```
 
 Notes on parameters in the bidderRequest object:
-- **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
-- **ortb2** is the global (not specific to any adUnit) [first party data](/features/firstPartyData.html) to use for all requests in this auction. Note that Prebid allows any standard ORTB field or extension as first party data - including items that typically wouldn't be considered as such, for example user agent client hints (`device.sua`) or information on the regulatory environment (`regs.ext.gpc`).
+* **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
+* **ortb2** is the global (not specific to any adUnit) [first party data](/features/firstPartyData.html) to use for all requests in this auction. Note that Prebid allows any standard ORTB field or extension as first party data - including items that typically wouldn't be considered as such, for example user agent client hints (`device.sua`) or information on the regulatory environment (`regs.ext.gpc`).
 
     {: .alert.alert-warning :}
     If your adapter generates an ORTB request, we recommend that you include _everything_ contained in `bidderRequest.ortb2` (and `bidRequest.ortb2Imp`); or, use the [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md) which does this by default.  
 
     Since version 7.29, if Prebid finds appropriate values for the following fields, `ortb2` is guaranteed to contain:
 
-    - under `site`: `page`, `ref`, `domain`, `publisher.domain`, `keywords`;
-    - under `device`: `w`, `h`, `dnt`, `ua`, `sua`, `language`;
-    - under `regs`: `coppa`, `ext.gdpr`, `ext.us_privacy`;
-    - under `user`: `user.ext.consent`
+  * under `site`: `page`, `ref`, `domain`, `publisher.domain`, `keywords`;
+  * under `device`: `w`, `h`, `dnt`, `ua`, `sua`, `language`;
+  * under `regs`: `coppa`, `ext.gdpr`, `ext.us_privacy`;
+  * under `user`: `user.ext.consent`
 
-Some of the data in `ortb2` is also made available through other `bidderRequest` fields:   
+Some of the data in `ortb2` is also made available through other `bidderRequest` fields:
 
-- **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
-- **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
-- **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module.
+* **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
+* **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
+* **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module.
 
 <a name="std-param-location"></a>
 
@@ -379,16 +379,16 @@ There are a number of important values that a publisher expects to be handled in
 
 Referrer information should be passed to your endpoint in contexts where the original page referrer isn't available directly to the adapter. Use the `bidderRequest.refererInfo` property to pass in referrer information. This property contains the following parameters:
 
-- `location`: a string containing the detected top-level URL, or null when the top window is inaccessible.
-- `topmostLocation`: a string containing the URL of the topmost accessible frame.
-- `canonicalUrl`: a string containing the canonical (search engine friendly) URL, as set by the publisher.
-- `page`: the best candidate for the top level URL - or null when the top window is inaccessible. Equivalent to `canonicalUrl` || `location`.
-- `domain`: the domain (hostname and port) portion of `page`.
-- `ref`: referrer to the top window (`window.top.document.referrer`), or null when the top window is inaccessible.
-- `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
-- `numIframes`: the number of iFrames.
-- `stack`: an array of URLs of all windows from the top window down to the current window.
-- `isAmp`: a boolean specifying whether the detected referer was determined based on AMP page information.
+* `location`: a string containing the detected top-level URL, or null when the top window is inaccessible.
+* `topmostLocation`: a string containing the URL of the topmost accessible frame.
+* `canonicalUrl`: a string containing the canonical (search engine friendly) URL, as set by the publisher.
+* `page`: the best candidate for the top level URL - or null when the top window is inaccessible. Equivalent to `canonicalUrl` || `location`.
+* `domain`: the domain (hostname and port) portion of `page`.
+* `ref`: referrer to the top window (`window.top.document.referrer`), or null when the top window is inaccessible.
+* `reachedTop`: a boolean specifying whether Prebid was able to walk up to the top window.
+* `numIframes`: the number of iFrames.
+* `stack`: an array of URLs of all windows from the top window down to the current window.
+* `isAmp`: a boolean specifying whether the detected referer was determined based on AMP page information.
 
 The URLs returned by `refererInfo` are in raw format. We recommend encoding the URL before adding it to the request payload to ensure it will be sent and interpreted correctly.
 
@@ -500,7 +500,7 @@ The parameters of the `bidResponse` object are:
 | `meta.advertiserDomains`     | Required(*)                                    | Array of Advertiser Domains for the landing page(s). This is an array that aligns with the OpenRTB 'adomain' field. See note below this table. | `["advertisera.com"]`     |
 | `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | 4444                    |
 | `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
-| `meta.demandSource`     | Optional                                    | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`                          
+| `meta.demandSource`     | Optional                                    | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`
 | `meta.dchain`     | Optional                                    | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
 | `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
 | `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
@@ -734,14 +734,14 @@ If the alias entry is an object, the following attributes are supported:
 ### Supporting Privacy Regulations
 
 If your bid adapter is going to be used in Europe, you should support GDPR:
-- Get a [Global Vendor ID](https://iabeurope.eu/vendor-list-tcf-v2-0/) from the IAB-Europe
-- Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
-- Read the gdprConsent string from the bid request object and pass it through to your endpoint
+* Get a [Global Vendor ID](https://iabeurope.eu/vendor-list-tcf-v2-0/) from the IAB-Europe
+* Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
+* Read the gdprConsent string from the bid request object and pass it through to your endpoint
 
 If your bid adapter is going to be used in the United States, you should support COPPA and CCPA:
-- Read the uspConsent string from the bid request object and pass it through t
+* Read the uspConsent string from the bid request object and pass it through t
 o your endpoint
-- Call config.getConfig('coppa') and forward to your endpoint
+* Call config.getConfig('coppa') and forward to your endpoint
 
 ## Supporting Video
 
@@ -768,20 +768,20 @@ If your adapter supports banner and video media types, make sure to include `'ba
 
 Video parameters are often passed in from the ad unit in a `video` object. As of Prebid 4.0 the following paramters should be read from the ad unit when available; bidders can accept overrides of the ad unit on their bidder configuration parameters but should read from the ad unit configuration when their bidder parameters are not set. Parameters one should expect on the ad unit include:
 
-- mimes
-- minduration
-- maxduration
-- protocols
-- startdelay
-- placement
-- skip
-- skipafter
-- minbitrate
-- maxbitrate
-- delivery
-- playbackmethod
-- api
-- linearity
+* mimes
+* minduration
+* maxduration
+* protocols
+* startdelay
+* placement
+* skip
+* skipafter
+* minbitrate
+* maxbitrate
+* delivery
+* playbackmethod
+* api
+* linearity
 
 The design of these parameters may vary depending on what your server-side bidder accepts.  If possible, we recommend using the video parameters in the [OpenRTB specification](https://iabtechlab.com/specifications-guidelines/openrtb/).
 
@@ -827,6 +827,7 @@ The following is Prebid's way to setup bid request for long-form, adapters are f
 Prebid now accepts multiple bid responses for a single `bidRequest.bids` object. For each Ad pod Prebid expects you to send back n bid responses. It is up to you how bid responses are returned. Prebid's recommendation is that you expand an Ad pod placement into a set of request objects according to the total adpod duration and the range of duration seconds. It also depends on your endpoint as well how you may want to create your request for long-form. Appnexus adapter follows below algorithm to expand its placement.
 
 #### Use case 1: I want to request my endpoint to return bids with varying ranges of durations
+
 ```
 AdUnit config
 {
@@ -854,12 +855,14 @@ Your endpoint responds with:
 In Use case 1, you are asking endpoint to respond with 20 bids between min duration 0 and max duration 30 seconds. If you get bids with duration which does not match duration in `durationRangeSec` array, Prebid will evaluate the bid's duration and will match into the appropriate duration bucket by using a rounding-type logic. This new duration will be used in sending bids to Ad server.
 
 Prebid creates virtual duration buckets based on `durationRangeSec` value. Prebid will
-  - round the duration to the next highest specified duration value based on adunit. If the duration is above a range within a set buffer (hardcoded to 2s in prebid-core), that bid falls down into that bucket. (eg if `durationRangeSec` was [5, 15, 30] -> 2s is rounded to 5s; 17s is rounded back to 15s; 18s is rounded up to 30s)
-  - reject bid if the bid is above the range of the listed durations (and outside the buffer)
+
+* round the duration to the next highest specified duration value based on adunit. If the duration is above a range within a set buffer (hardcoded to 2s in prebid-core), that bid falls down into that bucket. (eg if `durationRangeSec` was [5, 15, 30] -> 2s is rounded to 5s; 17s is rounded back to 15s; 18s is rounded up to 30s)
+* reject bid if the bid is above the range of the listed durations (and outside the buffer)
 
 Prebid will set the rounded duration value in the `bid.video.durationBucket` field for accepted bids
 
 #### Use case 2: I want to request my endpoint to return bids that exactly match the durations I want
+
 ```
 AdUnit config
 {
@@ -911,7 +914,6 @@ Adapter must add following new properties to bid response
 }
 ```
 
-
 Appnexus Adapter uses above explained approach. You can refer [here](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
 
 Adapter must return one [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
@@ -926,7 +928,6 @@ If the demand partner is going to use Prebid API for this process, their adapter
 | `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
 | `refreshInDays`   | Optional | A number representing the number of days before the mapping values are updated. Default value is 1 | `7`                        |
 | `localStorageKey` | Optional | A unique key to store the mapping file in local storage. Default value is bidder code.             | `"uniqueKey"`                  |
-
 
 **Example**
 
@@ -1011,8 +1012,8 @@ In order for your bidder to support the native media type:
 5. Your spec must declare NATIVE in the supportedMediaTypes array.
 
 There are two ways Prebid supports native:
-- The preferred method is for publishers to [define their native assets directly in OpenRTB format](/prebid/native-implementation.html).
-- The legacy way is for pubs to supply a [Prebid-proprietary native asset syntax](/prebid/native-implementation-legacy.html).
+* The preferred method is for publishers to [define their native assets directly in OpenRTB format](/prebid/native-implementation.html).
+* The legacy way is for pubs to supply a [Prebid-proprietary native asset syntax](/prebid/native-implementation-legacy.html).
 
 ### ORTB Native
 
@@ -1084,9 +1085,9 @@ For some time, Prebid engineers will try to ensure that legacy-style request def
 
 We assume that in the first times all adapters will only understand legacy-style native, so we expose two functions in `native.js`:
 
-- `convertOrtbRequestToProprietaryNative(bidRequests)` - this function will convert OpenRTB-style native requests to legacy format. Actually, we've already added this conversion to all adapters so they will not fail when an OpenRTB definition is used by publisher.
+* `convertOrtbRequestToProprietaryNative(bidRequests)` - this function will convert OpenRTB-style native requests to legacy format. Actually, we've already added this conversion to all adapters so they will not fail when an OpenRTB definition is used by publisher.
 
-- `toOrtbNativeRequest(legacyNativeAssets)` - In the future, you should convert your bid adapter to assume that OpenRTB is the standard. If, however, you encounter a native bid without the `ortb` property, you can call this function to convert legacy assets to OpenRTB.
+* `toOrtbNativeRequest(legacyNativeAssets)` - In the future, you should convert your bid adapter to assume that OpenRTB is the standard. If, however, you encounter a native bid without the `ortb` property, you can call this function to convert legacy assets to OpenRTB.
 
 For the bid response, Prebid expects to find your OpenRTB bid response under `bid.native.ortb` property.
 
@@ -1244,36 +1245,36 @@ registerBidder(spec);
 
 ```
 
-
 ## Submitting your adapter
 
-- [Write unit tests](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md)
-- Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
-  - Fork the repo
-  - Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and name it to exactly the same as your biddercode. Add the following metadata to the header of your .md file:
-    - Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. *This needs to be the same name as the docs file!*
-    - Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
-    - Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
-    - If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
-    - If you support the GDPR consentManagement module and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
-    - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
-    - If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
-    - If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
-    - If you support COPPA, add `coppa_supported: true`. Default is false.
-    - If you support GPP, add `gpp_supported: true`. Default is false.
-    - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
-    - If you support passing a demand chain on the response, add `dchain_supported: true`. Default is false.
-    - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
-    - If you support deals, set `deals_supported: true`. No default value..
-    - If you support floors, set `floors_supported: true`. No default value..
-    - If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
-    - If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to 'true','partial', or 'false'. No default value. In order to set 'true', you must support: bcat, badv, battr, and bapp.
-    - Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
-    - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
-    - Always add `sidebarType: 1`. This is required for docs.prebid.org site navigation.
-- Submit both the code and docs pull requests
+* [Write unit tests](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md)
+* Create a docs pull request against [prebid.github.io](https://github.com/prebid/prebid.github.io)
+  * Fork the repo
+  * Copy a file in [dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) and name it to exactly the same as your biddercode. Add the following metadata to the header of your .md file:
+    * Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. _This needs to be the same name as the docs file!_
+    * Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
+    * Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
+    * If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
+    * If you support the GDPR consentManagement module and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
+    * If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
+    * If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
+    * If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
+    * If you support COPPA, add `coppa_supported: true`. Default is false.
+    * If you support GPP, add `gpp_supported: true`. Default is false.
+    * If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
+    * If you support passing a demand chain on the response, add `dchain_supported: true`. Default is false.
+    * If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
+    * If you support deals, set `deals_supported: true`. No default value..
+    * If you support floors, set `floors_supported: true`. No default value..
+    * If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
+    * If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to 'true','partial', or 'false'. No default value. In order to set 'true', you must support: bcat, badv, battr, and bapp.
+    * Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
+    * If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
+    * Always add `sidebarType: 1`. This is required for docs.prebid.org site navigation.
+* Submit both the code and docs pull requests
 
 For example:
+
 ```
 ---
 layout: bidder

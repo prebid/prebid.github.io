@@ -16,6 +16,7 @@ Add the **full** LiveIntent Identity module to your Prebid.js package with:
 gulp build --modules=userId,liveIntentIdSystem
 
 The `request.userId.lipb` object would look like:
+
 ```
 {
   "lipbid": "T7JiRRvsRAmh88",
@@ -36,6 +37,7 @@ LiveIntent’s privacy policies for the services rendered can be found at [https
 The LiveIntent ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier - the nonID. In order to provide resolution one or more first-party cookies are used to create a stable identifier.
 
 How does LiveIntent ID sub-module decide, which first-party cookies to use:
+
 1. By default LiveIntent ID sub-module generates its own first-party identifier on the publisher’s domain. Publishers have the option to disable the cookie generation when configuring the LiveIntent ID sub-module.
 2. A publisher can also define in the configuration which additional first-party cookies should be used. These can be used in a combination with the LiveIntent first-party cookie.
 
@@ -49,7 +51,7 @@ The LiveIntent ID sub-module follows the standard Prebid.js initialization based
 
 ## Configuring requested attributes
 
-Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option. 
+Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option.
 
 For example, with the configuration below, the nonID as well as 'uid2', the 'medianet' id and the 'bidswitch' id will be requested:
 
@@ -69,12 +71,13 @@ pbjs.setConfig({
 
 ### Multiple user ids
 
-The attributes 'uid2', 'medianet' or 'bidswitch' are treated specially by LiveIntent's user id sub-module. Each of these three attributes will result in a separate id returned by the sub-module. 
+The attributes 'uid2', 'medianet' or 'bidswitch' are treated specially by LiveIntent's user id sub-module. Each of these three attributes will result in a separate id returned by the sub-module.
 
 For example, in case 'uid2' is configured to be requested - additionally to the nonID - the `request.userId` object would look like this:
 
 ```javascript
 ```
+
 {
     ...
     "lipb" : {
@@ -87,6 +90,7 @@ For example, in case 'uid2' is configured to be requested - additionally to the 
     }
     ...
 }
+
 ```
 ```
 
@@ -143,6 +147,7 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 ## LiveIntent ID examples
 
 1. To receive the LiveIntent ID, the setup looks like this.
+
 ```
 pbjs.setConfig({
     userSync: {
@@ -162,6 +167,7 @@ pbjs.setConfig({
 ```
 
 2. If you are passing additional identifiers that you want to resolve to the LiveIntent ID, add those under the `identifiersToResolve` array in the configuration parameters.
+
 ```
 pbjs.setConfig({
     userSync: {
@@ -182,6 +188,7 @@ pbjs.setConfig({
 ```
 
 3. If all the supported configuration params are passed, then the setup looks like this.
+
 ```
 pbjs.setConfig({
     userSync: {
@@ -211,4 +218,4 @@ pbjs.setConfig({
 })
 ```
 
-Please note: the distributorId will be ignored when liCollectConfig.appId is present. 
+Please note: the distributorId will be ignored when liCollectConfig.appId is present.

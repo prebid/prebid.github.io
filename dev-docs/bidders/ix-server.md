@@ -77,7 +77,7 @@ If you are using an existing Prebid Server instance that is already configured t
 
 ### Call Index from a web browser
 
-If you want to call Index from a web environment, you can use Prebid.js to call Prebid Server and then Prebid Server uses our server-side adapter to call Index. For setup instructions, see the Index-specific configuration steps in [Set up instructions for Prebid.js](https://docs.prebid.org/dev-docs/bidders/ix.html) in our Prebid.js documentation on the Prebid site. 
+If you want to call Index from a web environment, you can use Prebid.js to call Prebid Server and then Prebid Server uses our server-side adapter to call Index. For setup instructions, see the Index-specific configuration steps in [Set up instructions for Prebid.js](https://docs.prebid.org/dev-docs/bidders/ix.html) in our Prebid.js documentation on the Prebid site.
 
 <a name="call-index-from-prebid-mobile-sdk"></a>
 
@@ -85,7 +85,7 @@ If you want to call Index from a web environment, you can use Prebid.js to call 
 
 **Before you begin:** Contact your Index Exchange representative to get your `siteId`. You must provide this site ID to your Prebid Server host company.
 
-**Note:** To implement Prebid Mobile SDK, follow Prebid's [Getting Started with Prebid Mobile](https://docs.prebid.org/prebid-mobile/prebid-mobile-getting-started.html) documentation. 
+**Note:** To implement Prebid Mobile SDK, follow Prebid's [Getting Started with Prebid Mobile](https://docs.prebid.org/prebid-mobile/prebid-mobile-getting-started.html) documentation.
 
 To add Index as a bidder to your mobile app:
 

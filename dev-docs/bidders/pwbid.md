@@ -20,7 +20,7 @@ sidebarType: 1
 
 ### Note
 
-The PubWise bid adapter is now availalbe self service. Visit http://www.PubWise.io/ to get started.
+The PubWise bid adapter is now availalbe self service. Visit <http://www.PubWise.io/> to get started.
 
 ### Global Bid params
 
@@ -79,7 +79,6 @@ var adUnits = [
 ```
 
 #### Native
-
 
 ```javascript
 var adUnits = [

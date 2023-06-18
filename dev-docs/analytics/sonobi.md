@@ -9,4 +9,3 @@ enable_download: false
 #### Registration
 
 Please visit [https://sonobi.com/](https://sonobi.com/) for more information.
-

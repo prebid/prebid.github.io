@@ -9,4 +9,3 @@ prebid_member: true
 #### Registration
 
 Please visit [https://www.media.net/](https://www.media.net/) for more information.
-

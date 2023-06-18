@@ -23,7 +23,6 @@ sidebarType: 1
 | `placementId` | required | Your placement ID (provided by undertone) | `"13as14d0"` | `string`  |
 | `publisherId` | required | publisher ID (provided by undertone)      | `12345`    | `integer` |
 
-
 #### Video Object
 
 {: .table .table-bordered .table-striped }

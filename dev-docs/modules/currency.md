@@ -13,6 +13,7 @@ sidebarType : 1
 
 
 # Currency Module
+
 {:.no_toc}
 
 This module supports the conversion of multiple bidder currencies into a single currency
@@ -35,7 +36,6 @@ be provided in the page.
 The numbered circles in this diagram are explained below.
 
 ![Currency Architecture]({{site.baseurl}}/assets/images/dev-docs/currency_architecture.png){:class="pb-lg-img"}
-
 
 ### 1. Line Item Creation
 
@@ -122,7 +122,6 @@ to all currencies.
 For instance, if the current conversion rate is &yen;110 to the dollar, then a bid of USD$1.55 would be converted to &yen;170.50, which gets put into the
 low granularity bucket hb_pb=162.
 
-
 ### 5. Ad Request and Decision
 
 Finally, the scaled and quantized bids are sent to the ad server, where they will match
@@ -130,7 +129,6 @@ the line items set up initially.
 
 {: .alert.alert-success :}
 No other part of the Prebid process has changed due to currency support: creation of AdUnits, creative display, analytics, etc.
-
 
 ### Full Example
 
@@ -167,11 +165,11 @@ from USD to JPY is 110.
 | B | 151 | JPY | 151 | hb_pb_b=108 |
 | C | 0.90 | ? (USD assumed) | 99.9 | hb_pb_b=54 |
 
-
 ## Page integration
 
 Adding the currency module to a page is done with a call to the setConfig API with one or
 more parameters. The simplest recommended implementation would be:
+
 ```javascript
 pbjs.setConfig({
     "currency": {
@@ -186,6 +184,7 @@ pbjs.setConfig({
 Note that the `defaultRates` attribute is optional, but recommended in case there's an issue loading the currency file.
 
 In this example, the publisher is providing their own `conversionRateFile`:
+
 ```javascript
 pbjs.setConfig({
 "currency": {
@@ -199,8 +198,10 @@ pbjs.setConfig({
    }
 });
 ```
+
 And finally, here's an example where the conversion rate is specified right in the config, so
 the external file won't be loaded:
+
 ```javascript
 pbjs.setConfig({
     "currency": {
@@ -210,7 +211,6 @@ pbjs.setConfig({
     }
 });
 ```
-
 
 ## Building the Prebid package with Currency Support
 
@@ -224,10 +224,10 @@ gulp build --modules=currency,exampleBidAdapter
 
 This command will build the following files:
 
-- build/dist/prebid-core.js - the base Prebid code
-- build/dist/currency.js - additional code for the currency feature
-- build/dist/exampleBidAdapter.js - a specified bidder adapter
-- build/dist/prebid.js - a combined file with the base Prebid core code, bidder adapter code, and the currency module code.
+* build/dist/prebid-core.js - the base Prebid code
+* build/dist/currency.js - additional code for the currency feature
+* build/dist/exampleBidAdapter.js - a specified bidder adapter
+* build/dist/prebid.js - a combined file with the base Prebid core code, bidder adapter code, and the currency module code.
 
 ### Step 2: Publish the package(s) to the CDN
 

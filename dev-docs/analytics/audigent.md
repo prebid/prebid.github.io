@@ -12,8 +12,8 @@ enable_download: false
 
 #### Use
 
-The Audigent analytics adapter can be used by all clients after approval. For more information, 
-please visit <a href="https://audigent.com">https://audigent.com</a> or contact our Prebid integration team at prebid@audigent.com.
+The Audigent analytics adapter can be used by all clients after approval. For more information,
+please visit <a href="https://audigent.com">https://audigent.com</a> or contact our Prebid integration team at <prebid@audigent.com>.
 
 The Audigent privacy policy is at [https://audigent.com/privacypolicy/](https://audigent.com/privacypolicy/).
 
@@ -25,7 +25,6 @@ The Audigent privacy policy is at [https://audigent.com/privacypolicy/](https://
 | provider | Required | String | The name of this module: `hadronAnalytics` | `hadronAnalytics` |
 | options.partnerID | Required | Number | This is the Audigent Partner ID obtained from Audigent. | `1234` |
 | options.eventsToTrack | Required | Array of strings | Filters the set of tracked events | `['auctionEnd','bidWon']` |
-
 
 ### Example Configuration
 

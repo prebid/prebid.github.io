@@ -11,6 +11,7 @@ sidebarType : 1
 ---
 
 # Intersection Module
+
 {:.no_toc}
 
 * TOC
@@ -51,6 +52,7 @@ This module is configured as part of the `realTimeData.dataProviders` object:
 
 For each bidder, the module adds intersection in a JSON format.
 Example:
+
 ```
 {
   "intersection":{
@@ -72,4 +74,3 @@ Example:
   }
 }
 ```
-

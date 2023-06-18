@@ -16,9 +16,9 @@ multiformat_supported: will-bid-on-one
 userIds: all
 sidebarType: 1
 ---
-### Note:
+### Note
 
-The BCM International adapter requires approval and setup. Please reach out to contact@bcm.ltd or visit us at [bcm.ltd](https://bcm.ltd) for more details.
+The BCM International adapter requires approval and setup. Please reach out to <contact@bcm.ltd> or visit us at [bcm.ltd](https://bcm.ltd) for more details.
 
 ### Bid Params
 

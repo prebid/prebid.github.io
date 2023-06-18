@@ -24,6 +24,7 @@ sidebarType: 1
 The Smartadline bidder adaptor requires setup and approval from the Smartadline team. Please reach out to [smartadline@gmail.com](mailto:smartadline@gmail.com) for more information.<br>
 
 ### Banner - Ad Unit Setup
+
 ```javascript
 var adUnits = [
         {
@@ -43,4 +44,4 @@ var adUnits = [
             ]
         }
     ]
-``` 
+```

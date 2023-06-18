@@ -141,7 +141,6 @@ pbjs.bidderSettings = {
 
 It's possible to use the `keywords` parameter to define keys that do not have any associated values. Keys with empty values can be created in Prebid.js and can also be sent through Prebid Server to Goldbach. The following are examples of sending keys with empty values:
 
-
 ```javascript
 keywords: {
   myKeyword: '',

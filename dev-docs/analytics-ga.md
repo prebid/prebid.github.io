@@ -12,6 +12,7 @@ nav_section: reference
 
 
 # Prebid Analytics with GA
+
 {: .no_toc}
 
 * TOC
@@ -69,7 +70,7 @@ pbjs.que.push(function() {
 });
 ```
 
-At the start of each page, Prebid chooses a random number between 0 and 1 
+At the start of each page, Prebid chooses a random number between 0 and 1
 and logs the analytics only if the number is less than the supplied sample rate, which defaults to 1 (100%).
 Of course a smaller sample rate means that reported numbers will be correspondingly lower, so a scaling factor in reports may be useful, but is outside the scope of Prebid.
 
@@ -90,7 +91,6 @@ In this example, the page has 1 ad unit with 3 bidders. The timeout is set to 40
 | 415ms | Timeout is up because 400ms has passed since bid requests were sent. OpenX has timed out. | Event 1: Category=`Prebid.js Bids`, Action=`Timeouts`, Label=`openx`, Value=1 |
 | 476ms | OpenX's bid came back with a CPM of $2.831 and a latency of 461ms (a bid may still come back after a timeout). | Event 1: Category=`Prebid.js Bids`, Action=`Bids`, Label=`openx`, Value=283. <br> Event 2: Category=`Prebid.js Bids`, Action=`Bid Load Time`, Label=`openx`, Value=461 |
 | 572ms | Google Ad Manager completed its auction and the AppNexus $2.314 bid won. | Event 3: Category=`Prebid.js Bids`, Action=`Wins`, Label=`appnexus`, Value=231 |
-
 
 Note that a Win event is a true win, meaning that it is not just the highest bid in the header bidding auction, but the winning bid across the entire auction hosted by the ad server and its creative is served back to the page.
 
@@ -114,16 +114,16 @@ After you've implemented the above code snippet, load the page a few times, wait
 
 ![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/GA-event-labels.png)
 
-As you can see, this reporting screen cannot help you answer questions such as: 
+As you can see, this reporting screen cannot help you answer questions such as:
 
-+ What's the AppNexus bidder's avg. bid CPM
-+ What's the AppNexus bidder's avg. bid load time?
+* What's the AppNexus bidder's avg. bid CPM
+* What's the AppNexus bidder's avg. bid load time?
 
 To see how to answer these questions, see the following sections.
 
 ### Better Reports within GA
 
-With a custom report in GA, you can get: 
+With a custom report in GA, you can get:
 
 ![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/GA-custom-report.png)
 
@@ -168,5 +168,3 @@ In your local copy, go to the **Report Configuration** tab, update the GA profil
 #### Step 5. (Optional) Schedule a Daily Report
 
 ![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/sheet-schedule-report.png){: .pb-lg-img :}
-
-

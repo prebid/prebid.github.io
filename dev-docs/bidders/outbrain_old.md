@@ -21,7 +21,7 @@ sidebarType: 1
 
 ### Registration
 
-The Outbrain Adapter requires setup before beginning. Please contact us at prebid.org@outbrain.com.
+The Outbrain Adapter requires setup before beginning. Please contact us at <prebid.org@outbrain.com>.
 
 ### Configuration
 
@@ -29,6 +29,7 @@ The Outbrain Adapter requires setup before beginning. Please contact us at prebi
 
 The Outbrain adapter does not work without setting the correct bidder and usersync URLs.
 You will receive the URLs when contacting us.
+
 ```
 pbjs.setConfig({
     outbrain: {
@@ -41,9 +42,10 @@ pbjs.setConfig({
 #### Prebid server
 
 Similar to the Prebid.js configuration described above, our prebid server adapter requires you to configure the bidder and usersync URLs.
-You will receive the URLs when contacting us. 
+You will receive the URLs when contacting us.
 
 Please note that you need to replace the `<PREBID_SERVER_EXTERNAL_URL>` part with the actual external URL of the prebid server host.
+
 ```
 adapters:
   outbrain:
@@ -53,9 +55,11 @@ adapters:
 ```
 
 ### First Party Data
+
 Publishers can use the `ortb2` configuration parameter to provide First Party Data.
 
 #### OpenRTB Parameters
+
 The following table contains currently supported parameters.
 
 {: .table .table-bordered .table-striped }
@@ -66,8 +70,8 @@ The following table contains currently supported parameters.
 | `badv`             | optional | Block list of advertisers by their domains                                                                | `['example.com']`  | `string array` |
 | `wlang`            | optional | Allow list of languages for creatives using ISO-639-1-alpha-2. Omission implies no specific restrictions. | `['en', 'de']`     | `string array` |
 
-
 Example configuration:
+
 ```
 pbjs.setConfig({
     ortb2: {
@@ -140,6 +144,7 @@ var adUnits = [
 ```
 
 #### Banner example
+
 ```
 var adUnits = [
     code: '/19968336/prebid_display_example_1',

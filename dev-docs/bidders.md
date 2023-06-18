@@ -20,7 +20,6 @@ For each bidder listed below, you'll find the following information:
 
 You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV data file</a>.
 
-
 {% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "pbjs", true | sort_natural: "title" %}
 
 {: .alert.alert-warning :}
@@ -39,6 +38,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 ### Full List
 
 #### #-A
+
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
   {% assign firstletter = page.title | slice:0 | downcase %}
@@ -50,6 +50,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 </ul>
 
 #### B-C
+
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
   {% assign firstletter = page.title | slice:0 | downcase %}
@@ -61,6 +62,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 </ul>
 
 #### D-G
+
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
   {% assign firstletter = page.title | slice:0 | downcase %}
@@ -72,6 +74,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 </ul>
 
 #### H-L
+
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
   {% assign firstletter = page.title | slice:0 | downcase %}
@@ -83,6 +86,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 </ul>
 
 #### M-O
+
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
   {% assign firstletter = page.title | slice:0 | downcase %}
@@ -94,6 +98,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 </ul>
 
 #### P-R
+
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
   {% assign firstletter = page.title | slice:0 | downcase %}
@@ -105,6 +110,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 </ul>
 
 #### S-T
+
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
   {% assign firstletter = page.title | slice:0 | downcase %}
@@ -116,6 +122,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 </ul>
 
 #### U-Z
+
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
   {% assign firstletter = page.title | slice:0 | downcase %}

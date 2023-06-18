@@ -59,6 +59,7 @@ A page needs to define configuration rules about how Prebid.js should enforce ea
 
 {: .alert.alert-info :}
 To turn on Prebid.js enforcement you must:
+
 1) Include the gdprEnforcement module in the Prebid.js build
 and 2) setConfig `consentManagement.gdpr.cmpApi` to either 'iab' or 'static'
 
@@ -77,9 +78,9 @@ The following fields related to GDPR enforcement are supported in the [`consentM
 
 Notes:
 
-- <a id="strictStorageEnforcement"></a> By default, Prebid allows some limited use of storage even when purpose 1 consent was not given: this is limited to non-PII, such as [category translation mappings](/dev-docs/modules/categoryTranslation.html), or temporary test data used to probe the browser's storage features. If `strictStorageEnforcement` is true, purpose 1 consent will always be enforced for any access to storage.      
-- To accomodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345").
-- An alternate way of establishing a GVL mapping is to define a 'gvlMapping' object:
+* <a id="strictStorageEnforcement"></a> By default, Prebid allows some limited use of storage even when purpose 1 consent was not given: this is limited to non-PII, such as [category translation mappings](/dev-docs/modules/categoryTranslation.html), or temporary test data used to probe the browser's storage features. If `strictStorageEnforcement` is true, purpose 1 consent will always be enforced for any access to storage.
+* To accomodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345").
+* An alternate way of establishing a GVL mapping is to define a 'gvlMapping' object:
 
 ```javascript
 pbjs.setConfig({
@@ -173,14 +174,14 @@ A goal of 'basic enforcement' is to confirm that there's enough evidence of cons
 
 Before allowing an activity tied to a TCF-protected Purpose for a given vendor, one of these scenarios must be true:
 
-- Configuration rules enforce both consent and vendor signals and either:
-  - Prebid.js has the user’s purpose consent and the user’s vendor consent, or
-  - (for Purpose 2 only) we've confirmed the user’s Legitimate Interest (LI) Transparency is established for this purpose
-- Configuration rules enforce only purpose consent and either:
-  - Prebid.js has the user’s purpose consent, or
-  - (for Purpose 2 only) we confirmed the user’s LI Transparency is established for this purpose.
-- Configuration rules enforce only vendor signals and we have the user’s vendor consent
-- Configuration rules enforce neither purpose consent nor vendor signal.
+* Configuration rules enforce both consent and vendor signals and either:
+  * Prebid.js has the user’s purpose consent and the user’s vendor consent, or
+  * (for Purpose 2 only) we've confirmed the user’s Legitimate Interest (LI) Transparency is established for this purpose
+* Configuration rules enforce only purpose consent and either:
+  * Prebid.js has the user’s purpose consent, or
+  * (for Purpose 2 only) we confirmed the user’s LI Transparency is established for this purpose.
+* Configuration rules enforce only vendor signals and we have the user’s vendor consent
+* Configuration rules enforce neither purpose consent nor vendor signal.
 
 See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) for details.
 
@@ -196,8 +197,8 @@ You can also use the [Prebid.js Download](/download.html) page.
 
 ## Further Reading
 
-- [EU GDPR Consent Management Module](/dev-docs/modules/consentManagement.html)
-- [IAB TCF Implementation Guidelines](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md)
-- [IAB TCF2 Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md)
-- [Prebid TCF2 Support](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#)
-- [CMP Best Practices](/dev-docs/cmp-best-practices.html)
+* [EU GDPR Consent Management Module](/dev-docs/modules/consentManagement.html)
+* [IAB TCF Implementation Guidelines](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md)
+* [IAB TCF2 Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md)
+* [Prebid TCF2 Support](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#)
+* [CMP Best Practices](/dev-docs/cmp-best-practices.html)

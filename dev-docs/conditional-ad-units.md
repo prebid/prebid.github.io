@@ -11,6 +11,7 @@ sidebarType: 1
 
 
 # Conditional Ad Units
+
 {:.no_toc}
 
 The [global sizeConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads) and [Advanced Size Mapping](/dev-docs/modules/sizeMappingV2.html) features are useful for standard responsive ad designs, but a number of other scenarios are supported as well.
@@ -187,7 +188,6 @@ var AdUnits = [{
 
 ```
 
-
 ## Some Ad Unit Auctions Should Be Skipped Entirely for Some Devices
 
 Say there's a responsive page where one of the ad units only supports larger sizes, so it doesn't make sense
@@ -271,6 +271,6 @@ labels:
 
 ## Further Reading
 
-+ [Responsive ad designs](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads)
-+ [Advanced Size Mapping Module](/dev-docs/modules/sizeMappingV2.html)
-+ [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
+* [Responsive ad designs](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads)
+* [Advanced Size Mapping Module](/dev-docs/modules/sizeMappingV2.html)
+* [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)

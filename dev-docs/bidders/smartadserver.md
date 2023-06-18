@@ -67,7 +67,7 @@ The Smart AdServer bidder adapter requires setup and approval from the Equativ (
 | `video`  | Supported |
 | `native` | Supported |
 
-### Examples 
+### Examples
 
 Without site/page/format :
 

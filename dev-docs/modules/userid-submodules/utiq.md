@@ -50,4 +50,4 @@ pbjs.setConfig({
 
 ## Utiq onboarding
 
-If you wish to find out more about Utiq, please contact onboarding@utiq.com
+If you wish to find out more about Utiq, please contact <onboarding@utiq.com>

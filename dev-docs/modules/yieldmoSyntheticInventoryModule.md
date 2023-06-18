@@ -64,7 +64,7 @@ googletag.defineSlot('/1234567/ad_unit_name_used_in_gam', [1, 1], 'ad-container-
 
 ### How to get Yieldmo placement id
 
-Please reach out to your Yieldmo account's person or email to support@yieldmo.com
+Please reach out to your Yieldmo account's person or email to <support@yieldmo.com>
 
 ### Google Ad Manager setup
 

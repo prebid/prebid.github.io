@@ -80,15 +80,15 @@ pbjs.setConfig({
 
 When this module is turned on, it uses the BEFORE_REQUEST_BIDS event to insert functionality that:
 
-- loops through each adunit in the auction
-- maps the PBJS adunit to the GPT slot using the same algorithm as setTargetingForGPTAsync including customGptSlotMatching
+* loops through each adunit in the auction
+* maps the PBJS adunit to the GPT slot using the same algorithm as setTargetingForGPTAsync including customGptSlotMatching
 
 ### Defining the AdServer name and adslot
 
 If GPT slot matching succeeds:
 
-- it sets the Adunit ortb2Imp.ext.data.adserver.name to 'gam'
-- it copies the resulting GPT slot name to ortb2Imp.ext.data.adserver.adslot
+* it sets the Adunit ortb2Imp.ext.data.adserver.name to 'gam'
+* it copies the resulting GPT slot name to ortb2Imp.ext.data.adserver.adslot
 
 ### Defining PbAdSlot and GPID
 
@@ -109,16 +109,15 @@ Here's what the module does to define these values:
 1. Otherwise, if the AdUnit.code matched one or more GAM AdSlots, use that for both PbAdSlot and GPID
 1. Otherwise use the AdUnit.code for PbAdSlot.
 
-
 ## Example customPbAdSlot function
 
 {: .alert.alert-info :}
 In PBJS 6.5 and later, we recommend using the useDefaultPreAuction flag or the customPreAuction function.
 
 The following customPbAdSlot function will work for many publishers. Assumptions:
-- AdUnits have been registered with [pbjs.addAdUnits](/dev-docs/publisher-api-reference/addAdUnits.html).
-- AdUnit.code is either the GPT slot name or the div-id.
-- The site has unique (non-random) div-ids.
+* AdUnits have been registered with [pbjs.addAdUnits](/dev-docs/publisher-api-reference/addAdUnits.html).
+* AdUnit.code is either the GPT slot name or the div-id.
+* The site has unique (non-random) div-ids.
 
 If either of these isn't the case, you'll need to supply your own function.
 
@@ -165,4 +164,4 @@ pbjs.setConfig({
 ```
 
 # Further Reading
-- [Prebid Ad Slot and GPID](/features/pbAdSlot.html)
+* [Prebid Ad Slot and GPID](/features/pbAdSlot.html)

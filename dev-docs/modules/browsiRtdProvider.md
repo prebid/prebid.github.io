@@ -12,6 +12,7 @@ sidebarType : 1
 ---
 
 # Browsi Viewability Module
+
 {:.no_toc}
 
 * TOC
@@ -51,7 +52,7 @@ This module is configured as part of the `realTimeData.dataProviders` object:
             }]
         }
     });
-```    
+```
 
 Syntax details:
 
@@ -65,15 +66,13 @@ Syntax details:
 | params.url  |String   |Server URL|   |
 | params.keyName  |String   |Key value name| Optional. Defaults to 'bv'. |
 
-
-
-
 ## Output
 
 For each ad slot, the module returns expected viewability prediction in a JSON format.
 When the data is received, it calls `pbjs.setTargetingForGPT` to set the defined `keyName` for each adunit.
 
 Example:
+
 ```
 {
   "slotA":{
@@ -84,4 +83,3 @@ Example:
   }
 }
 ```
-
