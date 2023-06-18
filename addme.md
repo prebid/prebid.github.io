@@ -11,9 +11,9 @@ isNavParent: true
 
 <div class="bs-docs-section" markdown="1">
 
-#Best Practices
+# Best Practices
 
-#### Best Practices Listserv
+## Best Practices Listserv
 
 Stay informed of publisher best practices for header bidding and the latest for prebid.js.
 
@@ -24,20 +24,17 @@ Stay informed of publisher best practices for header bidding and the latest for 
   </div>
   <div class="form-group">
     <button class="btn btn-primary" id="submit-email" onclick="submitEmail()">Join Best Practices Group</button>
-  </div>        
+  </div>
 </div>
-
-
 </div>
 
 <div class="bs-docs-section" markdown="1">
 
-#Contact Companies
+# Contact Companies
 
+## Share your company
 
-#### Share your company
-
-If you are a publisher that'd like to be contacted by bidders, or if you're a bidder and want to share more about yourself, use the below form. Note that the information you entered here will be shared in this page after your approval. 
+If you are a publisher that'd like to be contacted by bidders, or if you're a bidder and want to share more about yourself, use the below form. Note that the information you entered here will be shared in this page after your approval.
 
 <form class="form row" id="form-company">
 
@@ -85,14 +82,12 @@ If you are a publisher that'd like to be contacted by bidders, or if you're a bi
     <button class="btn btn-primary" id="submit-company">Add Company</button>
   </div>
 
-
 </form>
 
 <!--
 ### Publisher Companies
 
 If you'd like to edit existing entries, email support@prebid.org. 
-
 
 ### "Bidder" Companies
 

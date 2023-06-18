@@ -11,7 +11,7 @@ sidebarType: 1
 
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 ## Professor Prebid Chrome Extension for Debugging Prebid.js

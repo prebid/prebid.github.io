@@ -27,9 +27,7 @@ Android Adapter:
 com.applovin.mediation.adapters.PrebidMaxMediationAdapter
 ```
 
-
 ## Add Placements
-
 
 Now you have to add placements for Prebid Custom Network into the respective ad unit's waterfall.
 

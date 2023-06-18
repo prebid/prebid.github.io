@@ -8,6 +8,7 @@ sidebarType: 3
 ---
 
 # General Ad Server Prebid Setup
+
 {: .no_toc }
 
 * TOC

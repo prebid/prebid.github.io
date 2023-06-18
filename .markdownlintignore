@@ -5,7 +5,7 @@ vendor/
 node_modules/
 
 # Directories which remain to be fixed
-dev_docs/
+dev-docs/
 faq/
 examples/
 partners/
