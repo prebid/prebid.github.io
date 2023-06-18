@@ -17,6 +17,4 @@ jobs:
       - uses: actions/checkout@master
       - name: markdownlint-cli
         run: |
-          echo "$PATH"
-          /usr/local/bin/markdownlint --version
-          markdownlint --config .markdownlint.json --ignore-path .markdownlintignore
+          markdownlint --config .markdownlint.json --ignore-path .markdownlintignore "**/*.md"
