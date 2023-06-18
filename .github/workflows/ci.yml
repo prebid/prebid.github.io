@@ -12,7 +12,7 @@ jobs:
   markdownlint:
     name: run markdownlint
     runs-on: ubuntu-latest
-    container: ghcr.io/igorshubovych/markdownlint-cli:0.35.0
+    container: ghcr.io/igorshubovych/markdownlint-cli:v0.35.0
     steps:
       - uses: actions/checkout@master
       - name: markdownlint-cli
