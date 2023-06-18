@@ -10,13 +10,13 @@ on:
 
 jobs:
   markdownlint:
-    name: Deploy to GitHub Pages
+    name: run markdownlint
     runs-on: ubuntu-latest
+    container: ghcr.io/igorshubovych/markdownlint-cli:0.35.0
     steps:
       - uses: actions/checkout@master
       - name: markdownlint-cli
-        uses: nosborn/github-action-markdown-cli@v3.3.0
-        with:
-          files: .
-          config_file: .markdownlint.json
-          ignore_path: .markdownlintignore
+        run: |
+          echo "$PATH"
+          /usr/local/bin/markdownlint --version
+          markdownlint --config .markdownlint.json --ignore-path .markdownlintignore
