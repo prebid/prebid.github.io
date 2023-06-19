@@ -287,11 +287,11 @@ there's only one documentation file and of course one PBJS adapter file. An rela
 long bidderCode, but found it awkward to set up ad server targeting variables because GAM limits you to 20 chars, which is easy to exceed
 with a prefix like `hb_cache_host`. So they wanted to have shorter bidderCode for new customers while supporting the legacy targeting variables. In that scenario, they:
 
-1) add the shorter code as an alias in their PBJS file, which can stay the old longer name
-2) change the biddercode to the shorter name as it's the new preferred code
-3) add aliasCode so the Download page will pull in the right module
-4) optionally add prevBiddercode to add a note to the page about the legacy value
-5) optionally add filename if the bid adapter was created using a filename that's different than their bidder code. e.g. if the biddercode is "biddera" but they named the file "bidderABidAdapter", set the biddercode to "biddera" and the filename to "bidderABidAdapter".
+1. add the shorter code as an alias in their PBJS file, which can stay the old longer name
+2. change the biddercode to the shorter name as it's the new preferred code
+3. add aliasCode so the Download page will pull in the right module
+4. optionally add prevBiddercode to add a note to the page about the legacy value
+5. optionally add filename if the bid adapter was created using a filename that's different than their bidder code. e.g. if the biddercode is "biddera" but they named the file "bidderABidAdapter", set the biddercode to "biddera" and the filename to "bidderABidAdapter".
 
 ## Algolia Search
 

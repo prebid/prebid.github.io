@@ -50,9 +50,9 @@ configuration parameters. Please work with your Audigent Prebid support team
 (<prebid@audigent.com>) on which version of Prebid.js supports different bidder
 and segment configurations.
 
-```
-pbjs.setConfig(
-    ...
+```javascript
+pbjs.setConfig({
+    // ...
     realTimeData: {
         auctionDelay: auctionDelay,
         dataProviders: [
@@ -66,8 +66,8 @@ pbjs.setConfig(
             }
         ]
     }
-    ...
-}
+    // ...
+});
 ```
 
 **Config Syntax details:**
@@ -94,9 +94,9 @@ optional handleRtd parameter and provide your custom RTD handling logic there.
 Please see the following example, which provides a function to modify bids for
 a bid adapter called adBuzz and perform custom logic on bidder parameters.
 
-```
-pbjs.setConfig(
-    ...
+```javascript
+pbjs.setConfig({
+    // ...
     realTimeData: {
         auctionDelay: auctionDelay,
         dataProviders: [
@@ -122,8 +122,8 @@ pbjs.setConfig(
             }
         ]
     }
-    ...
-}
+    // ...
+});
 ```
 
 The handleRtd function can also be used to configure custom ortb2 data

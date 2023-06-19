@@ -17,7 +17,7 @@ gulp build --modules=userId,hadronIdSystem
 
 Add HadronId to the userSync configuration.
 
-```
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -36,7 +36,7 @@ pbjs.setConfig({
 
 The `request.userId.hadronId` will contain the Audigent HadronId:
 
-```
+```json
 {
   "hadronId": "0201chpvai07jv2yg08xizqr0bwpa1w0evvmq014d2ykn0b5oe"
 }

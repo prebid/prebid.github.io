@@ -104,7 +104,7 @@ Use the optional `bidders` parameter to define an array of bidder codes to which
 
 In this example the SharedID sub adapter is only allowed to be sent to the Rubicon adapter.
 
-```
+```javascript
 userIds: [
   {
     name: "sharedId",
@@ -126,10 +126,10 @@ userIds: [
 
 The Rubicon bid adapter would then receive
 
-```
+```javascript
 {
   "bidder": "rubicon",
-  ...
+  // ...
   "userId": {
     "sharedid": {
       "id": "01*******",
@@ -150,7 +150,7 @@ The Rubicon bid adapter would then receive
       ]
     }
   ],
-  ...
+  // ...
 }
 ```
 

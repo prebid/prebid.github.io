@@ -32,13 +32,13 @@ highest bid will be considered for sending to the ad server.
 
 There are two specific actions enabled by this module:
 
-1) It tells bidders how many bids will be considered. If [useBidCache](https://docs.prebid.org/dev-docs/publisher-api-reference.html#setConfig-Use-Bid-Cache) is on, more than one bid response per adapter can be registered. (Note that this is the case even without this module, but bid adapters might not know they can supply extra bids without the `multibid` config.)
+1. It tells bidders how many bids will be considered. If [useBidCache](https://docs.prebid.org/dev-docs/publisher-api-reference.html#setConfig-Use-Bid-Cache) is on, more than one bid response per adapter can be registered. (Note that this is the case even without this module, but bid adapters might not know they can supply extra bids without the `multibid` config.)
 
-2) It expands the number of ad server targeting values that can go to the ad server.
+2. It expands the number of ad server targeting values that can go to the ad server.
 
 Here's an example configuration:
 
-```
+```javascript
 pbjs.setConfig({
     multibid: [{
         bidder: "bidderA",
@@ -81,7 +81,7 @@ become subject to the `maxBids` limit.
 
 The MultiBid module is not included with Prebid.js by default. To get this behavior, you must include the module in the build:
 
-```
+```bash
 gulp build --modules=multibid,exampleBidAdapter
 ```
 

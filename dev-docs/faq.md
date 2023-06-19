@@ -220,10 +220,10 @@ What we know about yield group feature:
 Sometimes the owner of a bid adapter or other kind of module wants to rename their module. However, Prebid considers module renames a
 'breaking change' -- publishers' build processes and pages could break as a result of a renaming, so Prebid's policy on renaming is:
 
-1) Create the new Prebid.js module files (js and md)
-2) If they're basically the same code base, change the old file so that it includes the new file. This prevents duplicate maintenance of code. In general we don't approve modules including each other, but we'll approve it to avoid repetition.
-3) The docs repo should contain both names, with the old name referring to the new name. You can add the "enable_download: false" flag to prevent installations of the old name.
-4) At the next major release the old files may be removed.
+1. Create the new Prebid.js module files (js and md)
+2. If they're basically the same code base, change the old file so that it includes the new file. This prevents duplicate maintenance of code. In general we don't approve modules including each other, but we'll approve it to avoid repetition.
+3. The docs repo should contain both names, with the old name referring to the new name. You can add the "enable_download: false" flag to prevent installations of the old name.
+4. At the next major release the old files may be removed.
 
 ## Does Prebid.js support Amazon TAM?
 

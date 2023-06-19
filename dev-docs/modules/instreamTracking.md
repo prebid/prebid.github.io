@@ -34,7 +34,7 @@ This module uses `window.performance.getEntriesByType('resource')` to check the 
 | `instreamTracking.pollingFreq` | Optional | Integer |The frequency of polling. Default: `500`ms |
 | `instreamTracking.urlPattern` | Optional | RegExp | Regex for cache url patterns, to avoid false positives. |
 
-#### Basic Example
+### Basic Example
 
 ```javascript
 pbjs.setConfig({
@@ -44,7 +44,7 @@ pbjs.setConfig({
 });
 ```
 
-#### Example with urlPattern
+### Example with urlPattern
 
 While checking for URLs having `videoCacheKey`, there are chances of false positives. To avoid those cases, we can set `instreamTracking.urlPattern: /REGEX_PATTERN/`.
 
@@ -61,13 +61,13 @@ pbjs.setConfig({
 
 To install the module, follow these instructions:
 
-#### Step 1: Prepare the base Prebid file
+### Step 1: Prepare the base Prebid file
 
 * Option 1: Use Prebid [Download](/download.html) page to build the prebid package. Ensure that you do check *Instream Tracking* module
 
 * Option 2: From the command line, run `gulp build --modules=instreamTracking,...`
 
-#### Step 2: Set configuration
+### Step 2: Set configuration
 
 Enable `instreamTracking` using `pbjs.setConfig`
 

@@ -162,6 +162,7 @@ Note that the labels are assumed to be passed in via [`pbjs.requestBids()`](/dev
 Here are two requests and how they would be handled in this scenario:
 
 I. A request originating in the US, viewport size: `[1400px, 800px]`
+
 * Steps for **bidderA**:
   1. AdUnit passes label check.
   2. Size bucket `[1200, 0]` gets activated. Sizes: `[[970, 400], [300, 200], [300, 250]]` are active at AdUnit level.
@@ -175,6 +176,7 @@ I. A request originating in the US, viewport size: `[1400px, 800px]`
   4. No bid request is sent for bidderB.
 
 II. A request originating in the UK, viewport size: `[1700px, 900px]`
+
 * Steps for both bidders:
   1. AdUnit passes label check.
   2. Size bucket `[1600, 0]` gets activated. Sizes is `[]`, and an empty array indicates no sizes for the current viewport, which disables the Ad Unit.
@@ -235,12 +237,14 @@ II. A request originating in the UK, viewport size: `[1700px, 900px]`
 Here are two requests and how they would be handled in this scenario:
 
 I. A mobile device with viewport size: `[460px, 300px]`
+
 * Steps for both bidders:
     1. Size bucket `[0, 0]` activates for all three media types. Banner is deactivated due to `sizes: []`. Video is deactivated since `playerSize: []`. Native is deactivated since `active: false`.
     2. Since no media type is active, the AdUnit is deactivated.
     3. No request is sent for either bidder, even though bidderB's minViewPort would have allowed video or native.
 
 II. A tablet with viewport size: `[1100px, 980px]`
+
 * Steps for **bidderA**:
   1. Size bucket `[900, 0]` activates for banner media type, so the associated sizes are active. Size bucket `[0, 0]` activates for video media type. Its associated property is `playerSize: []`, so the video media type gets disabled. Size bucket `[600, 0]` activates for native media type. Its associated property is `active: true`, which keeps native media type active at the AdUnit level.
   2. At the Bidder level, size bucket `[700, 0]` activates. Associated property `relevantMediaTypes` is set to `['banner']`.

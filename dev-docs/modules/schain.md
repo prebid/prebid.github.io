@@ -30,7 +30,7 @@ Two modes are supported:
 
 First, build the schain module into your Prebid.js package:
 
-```
+```bash
 gulp build --modules=schain,...
 ```
 

@@ -18,7 +18,7 @@ The Konduit Accelerate module applies the [Konduit](https://konduitvideo.com/) v
 
 To install the module, follow these instructions:
 
-### Step 1: Prepare the base Prebid file
+## Step 1: Prepare the base Prebid file
 
 Build your Prebid.js package in one of two ways:
 
@@ -27,7 +27,7 @@ Build your Prebid.js package in one of two ways:
 - From the command line, run  
    `gulp build --modules=konduitWrapper,...`
 
-### Step 2: Implement module code on page
+## Step 2: Implement module code on page
 
 - Add konduitId as config using `setConfig` prebid method (`pbjs.setConfig({ konduit: { konduitId: your_konduit_id } })`)
 
@@ -57,7 +57,7 @@ pbjs.setConfig({
 
 Please refer to [Publisher API Reference (Send All Bids)](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids) for more information on the Send All Bids settings.
 
-### Step 3: Configure Google Ad Manager (GAM)
+## Step 3: Configure Google Ad Manager (GAM)
 
 In order for Konduit’s module to be completely integrated, line item creatives need to be adjusted in GAM.
 Please contact [support@konduit.me](mailto:support@konduit.me) for assistance.
@@ -88,7 +88,7 @@ Note that the creative URL contains a few custom macros that allow Konduit platf
 Refer to the following documentation for more information on Google Ad Manager setup:  
 [Step By Step Guide to Google Ad Manager Setup](https://prebid.org/adops/step-by-step.html)  
 
-### Sample Code
+## Sample Code
 
 We recommended using the Konduit module function call in the `bidsBackHandler` callback function.
 
@@ -121,10 +121,7 @@ pbjs.que.push(function() {
 });
 ```
 
-​
+# Further Reading
 
-## Further Reading
-
-​
-[Getting Started Example]({{site.baseurl}}/dev-docs/getting-started.html)  
-[Prebid.js for Video]({{site.baseurl}}/prebid-video/video-overview.html)
+- [Getting Started Example]({{site.baseurl}}/dev-docs/getting-started.html)
+- [Prebid.js for Video]({{site.baseurl}}/prebid-video/video-overview.html)

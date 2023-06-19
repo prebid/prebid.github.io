@@ -25,13 +25,13 @@ Disclosure: When configured, this module will insert a script, that is loaded fr
 
 ## Integration
 
-1) Build Prebid bundle with Confiant module included:
+1. Build Prebid bundle with Confiant module included:
 
-```
-gulp build --modules=confiantRtdProvider,...
-```
+    ```bash
+    gulp build --modules=confiantRtdProvider,...
+    ```
 
-2) Include the resulting bundle on your page.
+2. Include the resulting bundle on your page.
 
 # Configuration
 

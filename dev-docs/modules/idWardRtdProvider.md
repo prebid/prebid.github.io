@@ -18,17 +18,17 @@ ID Ward’s Real-time Data Provider automatically obtains segment IDs from the I
 
 ## Publisher Usage
 
-1) Build the idWardRtd module into the Prebid.js package with:
+1. Build the idWardRtd module into the Prebid.js package with:
 
-```
-gulp build --modules=idWardRtdProvider,...
-```
+    ```bash
+    gulp build --modules=idWardRtdProvider,...
+    ```
 
-2) Use `setConfig` to instruct Prebid.js to initilaize the idWardRtdProvider module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initilaize the idWardRtdProvider module, as specified below.
 
 ### Configuration
 
-```
+```javascript
  pbjs.setConfig({
    realTimeData: {
      dataProviders: [

@@ -45,6 +45,7 @@ Adding the module to a page is done by adding just one line of javascript:
 The prebid.js file needs to be loaded before the GPT library loads, unless you're willing to manage the timing with additional queue functions. The examples here assume the easiest integration, which is synchronous.
 
 The prebid.js file must also be constructed so that it contains:
+
 * the Prebid.js adunits with the code keyed to the GAM slot name or the div element ID
 * a call to pbjs.express()
 
@@ -144,33 +145,33 @@ The practice of intercepting GPT ad calls has precedence in the industry, but ma
 
 ## Minimal Example
 
-1) Build a version of your prebid.js file
+1. Build a version of your prebid.js file
 
-2) Append the following lines to the file:
+2. Append the following lines to the file:
 
-```
-var adUnits = [
-  {
-    code: '/111111/slot-name',
-    mediaTypes: {
-      banner: {
-        sizes: [[300,250]]
-      }
-    },
-    bids: [
-    {
-      bidder: 'rubicon',
-      params: { account: 1001, siteId: 113932, zoneId: 535510 }
-    }
-  }];
-pbjs.express(adUnits);
-```
+    ```javascript
+    var adUnits = [
+      {
+        code: '/111111/slot-name',
+        mediaTypes: {
+          banner: {
+            sizes: [[300,250]]
+          }
+        },
+        bids: [
+        {
+          bidder: 'rubicon',
+          params: { account: 1001, siteId: 113932, zoneId: 535510 }
+        }
+      }];
+    pbjs.express(adUnits);
+    ```
 
-3) Two things to note: first, the AdUnit.code field must match an actual GPT slot name. Second, the call to `pbjs.express(adUnits)` is what kicks off header bidding.
+3. Two things to note: first, the AdUnit.code field must match an actual GPT slot name. Second, the call to `pbjs.express(adUnits)` is what kicks off header bidding.
 
-4) Integrate your Prebid.js file into the page
+4. Integrate your Prebid.js file into the page
 
-```
+```html
 <meta charset="UTF8">
 <html>
 <head>

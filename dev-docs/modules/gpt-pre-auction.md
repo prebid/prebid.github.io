@@ -115,13 +115,14 @@ Here's what the module does to define these values:
 In PBJS 6.5 and later, we recommend using the useDefaultPreAuction flag or the customPreAuction function.
 
 The following customPbAdSlot function will work for many publishers. Assumptions:
+
 * AdUnits have been registered with [pbjs.addAdUnits](/dev-docs/publisher-api-reference/addAdUnits.html).
 * AdUnit.code is either the GPT slot name or the div-id.
 * The site has unique (non-random) div-ids.
 
 If either of these isn't the case, you'll need to supply your own function.
 
-```
+```javascript
 // Use adunit.ortb2Imp.ext.data.pbadslot if it exists.
 // compare adunit.code to find a single matching slot in GPT
 // if there is a single slot match, just use that slot name
@@ -129,39 +130,40 @@ If either of these isn't the case, you'll need to supply your own function.
 
 pbjs.setConfig({
     gptPreAuction: {
-    enabled: true, // enabled by default
-    customPbAdSlot: function(adUnitCode, adServerAdSlot) {
-        // get adunit object
-        au=pbjs.adUnits.filter(au => au.code==adUnitCode);
-        if (au.length==0) {
-            return;
-        }
+        enabled: true, // enabled by default
+        customPbAdSlot: function(adUnitCode, adServerAdSlot) {
+            // get adunit object
+            au=pbjs.adUnits.filter(au => au.code==adUnitCode);
+            if (au.length==0) {
+                return;
+            }
 
-        // use pbadslot if supplied
-        if (au[0].ort2bImp && au[0].ort2bImp.ext && au[0].ort2bImp.ext.data && au[0].ort2bImp.ext.data.pbadslot) {
-            return au[0].ort2bImp.ext.data.pbadslot;
-        }
+            // use pbadslot if supplied
+            if (au[0].ort2bImp && au[0].ort2bImp.ext && au[0].ort2bImp.ext.data && au[0].ort2bImp.ext.data.pbadslot) {
+                return au[0].ort2bImp.ext.data.pbadslot;
+            }
 
-        // confirm that GPT is set up
-        if (!(googletag && googletag.apiReady)) {
-            return;
+            // confirm that GPT is set up
+            if (!(googletag && googletag.apiReady)) {
+                return;
+            }
+            // find all GPT slots with this name
+            var gptSlots = googletag.pubads().getSlots().filter(function(gpt) {
+                return gpt.getAdUnitPath() == adServerAdSlot;
+            });
+            if (gptSlots.length==0) {
+                return;  // should never happen
+            }
+            if (gptSlots.length==1) {
+                return adServerAdSlot;
+            }
+            // else the adunit code must be div id. append it.
+            return adServerAdSlot+"#"+adUnitCode;
         }
-        // find all GPT slots with this name
-        var gptSlots = googletag.pubads().getSlots().filter(function(gpt) {
-            return gpt.getAdUnitPath() == adServerAdSlot;
-        });
-        if (gptSlots.length==0) {
-            return;  // should never happen
-        }
-        if (gptSlots.length==1) {
-            return adServerAdSlot;
-        }
-        // else the adunit code must be div id. append it.
-        return adServerAdSlot+"#"+adUnitCode;
     }
-  });
-};
+});
 ```
 
 # Further Reading
+
 * [Prebid Ad Slot and GPID](/features/pbAdSlot.html)

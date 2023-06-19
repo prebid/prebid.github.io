@@ -40,8 +40,8 @@ This base EU GDPR consent management module performs these actions:
 
 The optional [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) adds on these actions:
 
-3. Allows the page to define which activities should be enforced at the Prebid.js level.
-4. Actively enforces those activities based on user consent data (in the TCF string, not the AC string).
+1. Allows the page to define which activities should be enforced at the Prebid.js level.
+2. Actively enforces those activities based on user consent data (in the TCF string, not the AC string).
 
 In the case of a new user, CMPs will generally respond only after there is consent information available (i.e., the user has made their consent choices).
 Making these selections can take some time for the average user, so the module provides timeout settings.

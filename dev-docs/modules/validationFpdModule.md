@@ -19,13 +19,13 @@ For this reason, publishers sensitive to javascript size may want to consider ru
 
 Add it to the Prebid.js build with this command:
 
-```
+```bash
 gulp build --modules=validationFpdModule
 ```
 
 If included in the build, it will automatically perform the defined validations unless controlled with setConfig:
 
-```
+```javascript
 pbjs.setConfig({
     firstPartyData: {
         skipValidations: true    // defaults to false

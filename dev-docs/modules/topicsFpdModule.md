@@ -23,7 +23,7 @@ the configuration needed to override topics Iframe Default implementation
 Publishers wishing to enable must compile Prebid.js with support for this module.
 This is accomplished by adding the `topicsFpdModule` module to the list of modules they are already using:
 
-```
+```bash
 gulp build --modules=topicsFpdModule,...
 ```
 
@@ -34,7 +34,7 @@ The intent of the Topics API is to provide callers (including third-party ad-tec
 Topics Module(topicsFpdModule) should be included in prebid final package to call topics API.
 Module topicsFpdModule helps to call the Topics API which will send topics data in bid stream (onto user.data)
 
-```
+```javascript
 try {
     if ('browsingTopics' in document && document.featurePolicy.allowsFeature('browsing-topics')) {
         topics = document.browsingTopics();
@@ -50,10 +50,10 @@ Topics iframe implementation is the enhancements of existing module under topics
 
 Below are the configuration which can be used to configure and override the default config maintained in the module.
 
-```
+```javascript
 pbjs.setConfig({
     userSync: {
-        ...,
+        // ...,
         topics: { 
             maxTopicCaller: 3, // SSP rotation 
             bidders: [{
@@ -70,7 +70,7 @@ pbjs.setConfig({
                 expiry: 7 // Configurable expiry days
             }]
         }
-        ....
+        // ...
     }
 })
 ```

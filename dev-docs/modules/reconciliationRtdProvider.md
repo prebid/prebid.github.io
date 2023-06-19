@@ -29,30 +29,30 @@ Contact us: <consultation@tagtoday.net>
 
 Implementation works like this:
 
-1) Build the Reconciliation module into the Prebid.js package with:
+1. Build the Reconciliation module into the Prebid.js package with:
 
-```
-gulp build --modules=reconciliationRtdProvider&...
-```
+    ```bash
+    gulp build --modules=reconciliationRtdProvider&...
+    ```
 
-2) Use `setConfig` to pass parameters to module
+2. Use `setConfig` to pass parameters to module
 
 ## Configuration
 
 This module is configured as part of the `realTimeData.dataProviders` object:
 
-```
-    pbjs.setConfig({
-        "realTimeData": {
-            dataProviders:[{          
-                name: "reconciliation",
-                params: {
-                    publisherMemberId: "test_prebid_publisher",
-                    allowAccess: true, //optional - false by default
-                }
-            }]
-        }
-    });
+```javascript
+pbjs.setConfig({
+    "realTimeData": {
+        dataProviders:[{          
+            name: "reconciliation",
+            params: {
+                publisherMemberId: "test_prebid_publisher",
+                allowAccess: true, //optional - false by default
+            }
+        }]
+    }
+});
 ```
 
 Syntax details:
@@ -72,7 +72,7 @@ The module also tracks AdUnit initialization and impressions ('impression' messa
 
 Custom targetings example:
 
-```
+```json
 {
   "slotA":{
       "RSDK_AUID": "/slotA-Unit",

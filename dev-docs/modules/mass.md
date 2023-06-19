@@ -46,7 +46,7 @@ You can specify your own `dealIdPattern` and `renderUrl` by adding one or more e
 
 Build the MASS module into the Prebid.js package with:
 
-```
+```bash
 gulp build --modules=mass,...
 ```
 
@@ -148,17 +148,17 @@ There are two options to view the integration example:
 
 To view the integration example:
 
-1) Build Prebid using the following required options
+1. Build Prebid using the following required options
 
-```
-gulp build --modules=ixBidAdapter,mass
-```
+    ```bash
+    gulp build --modules=ixBidAdapter,mass
+    ```
 
-2) Use a http server with a valid hostname to access its content. It is not advised to run the bid simulation using localhost or 127.0.0.1
+2. Use a http server with a valid hostname to access its content. It is not advised to run the bid simulation using localhost or 127.0.0.1
 
-```
-http://hostname/integrationExamples/mass/index.html
-```
+    ```text
+    http://hostname/integrationExamples/mass/index.html
+    ```
 
 ### Option 2 - Hosted online
 
@@ -176,7 +176,7 @@ The bidsim tool ships with working DSP example tags that can be found under the 
 
 A quick way to test the Integration test page in combination with the official bootloader is to use the following command:
 
-```
+```bash
 node bidsim --inject --bid 2000 --width 300 --height 250 --dealid 'MASS' --tag "tags/inskin-housead-desktop.js" -o https://demo.massplatform.net/ix/prebid
 ```
 
@@ -184,7 +184,7 @@ node bidsim --inject --bid 2000 --width 300 --height 250 --dealid 'MASS' --tag "
 
 Third-parties that wish to integrate with the official MASS bootloader can get started by running the following command:
 
-```
+```bash
 node bidsim --inject --bid 2000 --width 300 --height 250 --dealid 'MASS' --tag "tags/test.js" -o https://demo.massplatform.net/ix/prebid
 ```
 

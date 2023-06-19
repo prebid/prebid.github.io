@@ -24,15 +24,15 @@ Make sure to have the following modules listed while building prebid : `rtdModul
 `rtbModule` is required to activate real-time-data submodules.
 For example :
 
-```
+```bash
 gulp build --modules=rtdModule,oxxionRtdProvider
 ```
 
 Then add the oxxion Rtd module to your prebid configuration :
 
-```
-pbjs.setConfig(
-  ...
+```javascript
+pbjs.setConfig({
+  //...
   realTimeData: {
     auctionDelay: 200,
     dataProviders: [
@@ -46,8 +46,8 @@ pbjs.setConfig(
        }
     ]
   }
-  ...
-)
+  // ...
+});
 ```
 
 ## setConfig Parameters

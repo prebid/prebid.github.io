@@ -101,8 +101,8 @@ For Prebid.js-initated server requests, we've found that cookie match rates are 
 
 If a bidder adapter supplies 'nurl' in the bidResponse object, there are two paths:
 
-1) If it's cached in Prebid Cache (e.g. AMP and App), then the 'nurl' is cached along with the 'adm' and utilized by the Prebid Universal Creative.
-2) If it's not cached, the Prebid.js PrebidServerBidAdapter will append the 'nurl' to the bottom of the creative in a new div.
+1. If it's cached in Prebid Cache (e.g. AMP and App), then the 'nurl' is cached along with the 'adm' and utilized by the Prebid Universal Creative.
+2. If it's not cached, the Prebid.js PrebidServerBidAdapter will append the 'nurl' to the bottom of the creative in a new div.
 
 **Video**
 

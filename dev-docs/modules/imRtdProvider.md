@@ -31,9 +31,9 @@ Add it to your Prebid.js package with:
 
 The following configuration parameters are available:
 
-```
-pbjs.setConfig(
-    ...
+```javascript
+pbjs.setConfig({
+    // ...
     realTimeData: {
         auctionDelay: 5000,
         dataProviders: [
@@ -47,8 +47,8 @@ pbjs.setConfig(
             }
         ]
     }
-    ...
-}
+    // ...
+}):
 ```
 
 ## Parameters

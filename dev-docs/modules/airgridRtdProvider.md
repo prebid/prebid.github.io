@@ -81,7 +81,7 @@ gulp serve-fast --modules=rtdModule,airgridRtdProvider,appnexusBidAdapter
 
 Then in your browser access:
 
-```
+```text
 http://localhost:9999/integrationExamples/gpt/airgridRtdProvider_example.html
 ```
 
@@ -94,6 +94,7 @@ gulp test --file "test/spec/modules/airgridRtdProvider_spec.js"
 ## Support
 
 If you require further assistance or are interested in discussing the module functionality please reach out to:
+
 * [hello@airgrid.io](mailto:hello@airgrid.io) for general questions.
 * [support@airgrid.io](mailto:support@airgrid.io) for technical questions.
 
