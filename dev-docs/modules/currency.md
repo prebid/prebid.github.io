@@ -256,7 +256,7 @@ a currency object that may contain several parameters:
 
 ### Prebid.org's currency file
 
-Prebid.org hosts a conversion file at [https://cdn.jsdelivr.net/gh/prebid/currency-file@1/latest.json](https://cdn.jsdelivr.net/gh/prebid/currency-file@1/latest.json). The currencies currently supported are: AUD, BGN, BRL, CAD, CHF, CNY, CZK, DKK, EUR, GBP, HKD, HRK, HUF, IDR, ILS, INR, ISK, JPY, KRW, MXN, MYR, NOK, NZD, PHP, PLN, RON, RUB, SEK, SGD, THB, TRY, USD, ZAR.
+Prebid.org hosts a conversion file at [cdn.jsdelivr.net/gh/prebid/currency-file@1/latest.json](https://cdn.jsdelivr.net/gh/prebid/currency-file@1/latest.json). The currencies currently supported are: AUD, BGN, BRL, CAD, CHF, CNY, CZK, DKK, EUR, GBP, HKD, HRK, HUF, IDR, ILS, INR, ISK, JPY, KRW, MXN, MYR, NOK, NZD, PHP, PLN, RON, RUB, SEK, SGD, THB, TRY, USD, ZAR.
 
 {: .alert.alert-warning :}
 The currencies on this list could change if the underlying API source changes. If a desired currency isn't on this list, you will need to generate and host your own conversion file.

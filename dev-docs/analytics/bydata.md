@@ -9,7 +9,7 @@ prebid_member: false
 #### Registration
 
 The byData Analytics adapter requires setup and approval from the
-byData team. Please visit [https://bydata.com/](https://bydata.com/) for more information.
+byData team. Please visit [bydata.com](https://bydata.com/) for more information.
 
 #### Analytics Options
 

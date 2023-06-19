@@ -65,7 +65,7 @@ Not required but recommended.
 
 **Default Value:**
 
-[https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js]
+<https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js>
 
 **Example:**
 
@@ -199,7 +199,7 @@ For example:
 ...
 ```
 
-A Brightcove Prebid Plugin : Bidder Settings JSON Converter tool has been created that you can use to convert bidder settings as they would be defined on the page into the format acceptable in Brightcove Studio. You can access this tool directly from the GitHub repository for the plugin: [https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html](https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html)
+A Brightcove Prebid Plugin : Bidder Settings JSON Converter tool has been created that you can use to convert bidder settings as they would be defined on the page into the format acceptable in Brightcove Studio. You can access this tool directly from the GitHub repository for the plugin: [github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html](https://github.com/prebid/prebid-js-plugin-brightcove/blob/master/tools/biddersettings.html)
 
 See "bidderSettings" at [Prebid.org]({{site.baseurl}}/dev-docs/publisher-api-reference.html) for details.
 
@@ -529,7 +529,7 @@ No.
 
 **Default Value:**
 
-[https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js]
+<https://acdn.adnxs.com/video/plugins/bc/prebid/bc_prebid_vast_plugin.min.js>
 
 **Example:**
 
@@ -604,7 +604,8 @@ No
 
 `options.loggerLevel = 6`
 
-<a name="set-up-params">
+<a name="set-up-params"></a>
+
 ### Setting Up Prebid Parameters
 
 The publisher must pass the prebid parameters to the plugin, via the `biddersSpec` option, if the plugin is expected to invoke the prebid process.  The syntax for these parameters is defined in [Bidders' Params]({{site.baseurl}}/dev-docs/bidders.html) on Prebid.org.

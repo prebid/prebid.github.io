@@ -13,9 +13,9 @@ enable_download: false
 #### Use
 
 The Audigent analytics adapter can be used by all clients after approval. For more information,
-please visit <a href="https://audigent.com">https://audigent.com</a> or contact our Prebid integration team at <prebid@audigent.com>.
+please visit <https://audigent.com> or contact our Prebid integration team at <prebid@audigent.com>.
 
-The Audigent privacy policy is at [https://audigent.com/privacypolicy/](https://audigent.com/privacypolicy/).
+The Audigent privacy policy is at [audigent.com/privacypolicy/](https://audigent.com/privacypolicy/).
 
 #### Analytics Options
 

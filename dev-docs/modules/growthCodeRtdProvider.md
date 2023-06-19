@@ -31,7 +31,7 @@ Compile the GrowthCode RTD module into your Prebid build:
 
 `gulp build --modules=userId,rtdModule,growthCodeRtdProvider,appnexusBidAdapter`
 
-Please visit [https://growthcode.io/](https://growthcode.io) for more information.
+Please visit [growthcode.io](https://growthcode.io) for more information.
 
 ```javascript
 pbjs.setConfig({

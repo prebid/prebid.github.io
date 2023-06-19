@@ -107,6 +107,6 @@ As we’ve already seen, much of a Prebid.js integration’s parameters are conf
 
 Many of Prebid’s most important settings live here, including bidder timeout, user sync settings, and price granularity.
 
-Detailed documentation of the Prebid.js configuration can be found in the publisher API reference. [https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html]
+Detailed documentation of the Prebid.js configuration can be found in the publisher API reference. <https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html>
 
 That’s it for this overview of Prebid.js for more information, check the links in the description below or visit docs.prebid.org.

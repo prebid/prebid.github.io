@@ -31,7 +31,7 @@ sidebarType: 1
 
 ### Registration
 
-The Taboola Adapter requires setup before beginning. Please contact us at [prebid@taboola.com].
+The Taboola Adapter requires setup before beginning. Please contact us at <prebid@taboola.com>.
 
 ### First Party Data
 

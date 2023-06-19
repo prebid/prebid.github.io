@@ -7,4 +7,4 @@ modulecode: invisibly
 
 #### Registration
 
-Please visit [https://invisibly.com/](https://invisibly.com/) for more information.
+Please visit [invisibly.com](https://invisibly.com/) for more information.

@@ -128,7 +128,7 @@ In order for FreeWheel SDK to send the correct Creative to the video player it n
 To ensure the cache URL is correct there are two macros that dynamically  populate the URL query. To confirm the dynamic URL is formatted correctly click on the URL link in the Detail field. A pop over will display with the dynamic URL.  
 
 The scheme, host, and path should read as follows:
-[https://prebid.adnxs.com/pbc/v1/cache]
+<https://prebid.adnxs.com/pbc/v1/cache>
 
 The query should have one key-value items:
 
@@ -142,7 +142,9 @@ The second macro, `#{request.keyValue(“hb_cache_id”)`, formats the unique Pr
 
 In real-time, when the dynamic URL is formatted it will appear like:
 
-[https://prebid.adnxs.com/pbc/v1/cache?uuid=12.00_391_30s_6c422e51-46cf-4b0a-ae41-64c61c1ca125]
+```text
+https://prebid.adnxs.com/pbc/v1/cache?uuid=12.00_391_30s_6c422e51-46cf-4b0a-ae41-64c61c1ca125
+```
 
 In order for the above URL to format correctly ensure that the URL in the text box appears as:  
 

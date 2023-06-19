@@ -219,7 +219,7 @@ This field contains the user's choices on consent, represented as an encoded str
 
 **_addtlConsent_**
 
-If the CMP responds with additional consent data as proposed at [https://support.google.com/admanager/answer/9681920?hl=en] then the corresponding string is stored here.
+If the CMP responds with additional consent data as proposed at [support.google.com/admanager/answer/9681920?hl=en] then the corresponding string is stored here.
 
 **_vendorData_**
 
@@ -374,7 +374,7 @@ This should be false if there was some error in the consent data; otherwise set 
 
 ## Adapters Supporting GDPR
 
-Bidders on this list have self-declared their GDPR support in their [https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gdpr_supported: true".
+Bidders on this list have self-declared their GDPR support in their [github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gdpr_supported: true".
 
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 

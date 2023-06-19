@@ -14,7 +14,7 @@ pbjs_version_notes: v6.5.0 and later
 
 #### Registration
 
-Please visit [https://zetaglobal.com/](https://zetaglobal.com/) for more information.
+Please visit [zetaglobal.com](https://zetaglobal.com/) for more information.
 
 #### Analytics Options
 
@@ -26,7 +26,7 @@ Please visit [https://zetaglobal.com/](https://zetaglobal.com/) for more informa
 
 ### Example Configuration
 
-```
+```javascript
 pbjs.enableAnalytics({
      provider: 'zeta_global_ssp',
      options: {

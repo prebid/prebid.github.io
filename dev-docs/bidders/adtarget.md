@@ -16,7 +16,7 @@ sidebarType: 1
 
 ### Registration
 
-To use the Adtarget bidder you will need an aid from an exchange account on [https://adtarget.com.tr](https://adtarget.com.tr). For further information, please contact <kamil@adtarget.com.tr>.
+To use the Adtarget bidder you will need an aid from an exchange account on [adtarget.com.tr](https://adtarget.com.tr). For further information, please contact <kamil@adtarget.com.tr>.
 
 ### Bid params
 

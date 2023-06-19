@@ -39,7 +39,7 @@ sidebarType: 1
 
 ### Registration
 
-The Smaato adapter requires setup and approval from the Smaato team, even for existing Smaato publishers. Please reach out to your account team or [prebid@smaato.com] for more information.
+The Smaato adapter requires setup and approval from the Smaato team, even for existing Smaato publishers. Please reach out to your account team or <prebid@smaato.com> for more information.
 
 <a name="smaato-note"></a>
 

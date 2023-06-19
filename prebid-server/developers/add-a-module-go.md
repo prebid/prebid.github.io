@@ -233,7 +233,7 @@ In a module it is not necessary to implement all mentioned interfaces but at lea
     }
     ```
 
-More test implementations for each hook can be found in unit-tests at [https://github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking](https://github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking) folder.
+More test implementations for each hook can be found in unit-tests at [github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking](https://github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking) folder.
 
 ### Configuration
 

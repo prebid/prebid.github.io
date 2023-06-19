@@ -18,7 +18,7 @@ gulp build --modules=britepoolIdSystem
 
 Please reach out to [prebid@britepool.com](mailto:prebid@britepool.com) and request your `api_key`.
 
-The BritePool privacy policy is at [https://britepool.com/services-privacy-notice/](https://britepool.com/services-privacy-notice/).
+The BritePool privacy policy is at [britepool.com/services-privacy-notice/](https://britepool.com/services-privacy-notice/).
 
 ## BritePool Configuration
 

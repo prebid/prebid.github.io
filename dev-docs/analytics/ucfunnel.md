@@ -7,4 +7,4 @@ modulecode: ucfunnel
 
 #### Registration
 
-Please visit [https://www.ucfunnel.com/](https://www.ucfunnel.com/) for more information.
+Please visit [www.ucfunnel.com](https://www.ucfunnel.com/) for more information.
