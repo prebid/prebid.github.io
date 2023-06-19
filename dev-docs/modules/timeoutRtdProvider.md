@@ -17,7 +17,7 @@ certain features. It supports rules dynamically retrieved from a timeout provide
 set directly via configuration.
 Build the timeout RTD module into the Prebid.js package with:
 
-```
+```bash
 gulp build --modules=timeoutRtdProvider,rtdModule...
 ```
 
@@ -32,9 +32,9 @@ The timeout RTD module provides an interface of dynamically fetching timeout rul
 a data provider just before the auction begins. The endpoint url is set in the config just as in
 the example below, and the timeout data will be used when making bid requests.
 
-```
+```javascript
 pbjs.setConfig({
-    ...
+    // ...
     "realTimeData": {
         "dataProviders": [{
             "name": 'timeout',
@@ -49,19 +49,19 @@ pbjs.setConfig({
     // This value below will be modified by the timeout RTD module if it successfully 
     // fetches the timeout data.  
     "bidderTimeout": 1500, 
-    ...
+    // ...
 });
 ```
 
 Sample Endpoint Response:
 
-```
+```json
 {
     "rules": {
         "includesVideo": {
             "true": 200,
             "false": 50
-          },
+            },
         "numAdUnits" : {
             "1-5": 100,
             "6-10": 200,
@@ -78,6 +78,7 @@ Sample Endpoint Response:
             "fast": 50,
             "unknown": 10
         },
+    }
 }
 ```
 
@@ -88,7 +89,7 @@ the user's deviceType, connection speed, etc. These rules can also be configured
 Note that the timeout Module will ignore the static rules if an endpoint url is provided. The timeout rules follow the
 format:
 
-```
+```javascript
 {
   '<feature>': {
     '<key>': <milliseconds to be added to timeout>
@@ -109,7 +110,7 @@ Currently supported features:
 
 If there are multiple rules set, all of them would be used and any that apply will be added to the base timeout. For example, if the rules object contains:
 
-```
+```javascript
 {
   "includesVideo": {
       "true": 200,
@@ -126,9 +127,9 @@ and there are 3 ad units in the auction, all of which are banner, then the timeo
 
 Full example:  
 
-```
+```javascript
 pbjs.setConfig({
-    ...
+    // ...
     "realTimeData": {
         "dataProviders": [{
             "name": 'timeout',
@@ -156,11 +157,12 @@ pbjs.setConfig({
                     }
                 }
             }
-        ]}
+        }]
     }
-    ...
+    // ...
     // The timeout RTD module will add time to `bidderTimeout` based on the rules set above.  
     "bidderTimeout": 1500, 
+})
 ```
 
 ## Timeout Providers

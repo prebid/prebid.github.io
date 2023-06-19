@@ -60,10 +60,12 @@ As of January 1st 2023, CCPA will require that requests to "delete my personal i
 Prebid Modules that receive user data (bid adapters, analytics adapters), or set user data (UserId, RTD) may define a new method called `onDataDeletionRequest`. The US Privacy Consent Management Module will attach a `registerDeletion` event handler with the CMP, when triggered it will:
 
 The USP module attaches a 'registerDeletion' event handler with the CMP; when triggered, it will:
+
 * invoke the methods above on all adapters
 * delete all IDs from cookies/localStorage
 
 3rd parties can define the method like this:
+
 * UserID submodules can define a method onDataDeletionRequest(config, idValue)
 * Bid adapters can define a method spec.onDataDeletionRequest(bidderRequests)
 * Analytics adapters can define a method onDataDeletionRequest()

@@ -36,8 +36,8 @@ The [base consent module](/dev-docs/modules/consentManagement.html) performs the
 
 The GDPR Enforcement Module adds the following:
 
-3. Allows the page to define which activities should be enforced at the Prebid.js level.
-4. Actively enforces those activities based on user consent data.
+1. Allows the page to define which activities should be enforced at the Prebid.js level.
+2. Actively enforces those activities based on user consent data.
 
 The following table details the Prebid.js activities that fall under the [Transparency and Consent Framework (TCF)](https://iabeurope.eu/iab-europe-transparency-consent-framework-policies/) scope:
 
@@ -60,8 +60,8 @@ A page needs to define configuration rules about how Prebid.js should enforce ea
 {: .alert.alert-info :}
 To turn on Prebid.js enforcement you must:
 
-1) Include the gdprEnforcement module in the Prebid.js build
-and 2) setConfig `consentManagement.gdpr.cmpApi` to either 'iab' or 'static'
+(1) Include the gdprEnforcement module in the Prebid.js build
+and (2) setConfig `consentManagement.gdpr.cmpApi` to either 'iab' or 'static'
 
 The following fields related to GDPR enforcement are supported in the [`consentManagement`](/dev-docs/modules/consentManagement.html) object:
 
@@ -89,41 +89,42 @@ pbjs.setConfig({
         bidderB: 67890
     }
 });
-````
+```
 
 ### Examples
 
 The following examples cover a range of use cases and show how Prebid.js supports
 configuration of different business rules.
 
-1) Restrict device access activity and basic ads. These are the default values (in Prebid.js 4.0) if the module is included in the build.
+1. Restrict device access activity and basic ads. These are the default values (in Prebid.js 4.0) if the module is included in the build.
 
-```javascript
-pbjs.setConfig({
-  consentManagement: {
-    gdpr: {
-      cmpApi: 'iab',   // activates the enforcement module
-      defaultGdprScope: true,
-      rules: [{        // these are the default values
-        purpose: "storage",
-        enforcePurpose: true,
-        enforceVendor: true
-      },{
-        purpose: "basicAds",
-        enforcePurpose: true,
-        enforceVendor: true
-      },{
-        purpose: "measurement",
-        enforcePurpose: true,
-        enforceVendor: true
-      }]
-    }
-  }
-});
-```
+    ```javascript
+    pbjs.setConfig({
+      consentManagement: {
+        gdpr: {
+          cmpApi: 'iab',   // activates the enforcement module
+          defaultGdprScope: true,
+          rules: [{        // these are the default values
+            purpose: "storage",
+            enforcePurpose: true,
+            enforceVendor: true
+          },{
+            purpose: "basicAds",
+            enforcePurpose: true,
+            enforceVendor: true
+          },{
+            purpose: "measurement",
+            enforcePurpose: true,
+            enforceVendor: true
+          }]
+        }
+      }
+    });
+    ```
 
-2) Restrict that the user consents to DeviceAccess as an activity and consider their per-vendor selection. However, idSystemA is a special case - the publisher has confirmed that this system obtains a user ID every auction and does not write to the local device.
+2. Restrict that the user consents to DeviceAccess as an activity and consider their per-vendor selection. However, idSystemA is a special case - the publisher has confirmed that this system obtains a user ID every auction and does not write to the local device.
 
+    ```javascript
       ...
       rules: [{
         purpose: "storage",
@@ -131,9 +132,11 @@ pbjs.setConfig({
         enforceVendor: true,
         vendorExceptions: ["idSystemA"]
       }]
+    ```
 
-3) Restrict for both storage and basicAds, with the exception of "firstPartyBidder", which is always allowed to run an auction. Assumes the publisher has special legal basis for this entity.
+3. Restrict for both storage and basicAds, with the exception of "firstPartyBidder", which is always allowed to run an auction. Assumes the publisher has special legal basis for this entity.
 
+    ```javascript
       ...
       rules: [{
         purpose: "storage",
@@ -145,18 +148,22 @@ pbjs.setConfig({
     enforceVendor: true,
         vendorExceptions: ["firstPartyBidder"]
       }]
+    ```
 
-4) Turn off restriction of Purpose 1: don't enforce either the user's DeviceAccess consent or their per-vendor selection.
+4. Turn off restriction of Purpose 1: don't enforce either the user's DeviceAccess consent or their per-vendor selection.
 
+    ```javascript
       ...
       rules: [{
         purpose: "storage",
         enforcePurpose: false,
         enforceVendor: false
       }]
+    ```
 
-5) Allow the user to suppress analtyics provider A, but make an exception for analytics provider B.
+5. Allow the user to suppress analtyics provider A, but make an exception for analytics provider B.
 
+    ```javascript
       ...
       rules: [{
         purpose: "measurement",
@@ -164,6 +171,7 @@ pbjs.setConfig({
         enforceVendor: true,
     vendorExceptions: ["analyticsB"]
       }]
+    ```
 
 ## Basic Enforcement
 

@@ -23,13 +23,13 @@ The module hooks in to brandmetrics events and requires a brandmetrics script to
 
 ## Publisher Usage
 
-1) Build the brandmetricsRtd module into the Prebid.js package with:
+1. Build the brandmetricsRtd module into the Prebid.js package with:
 
-```
-gulp build --modules=brandmetricsRtdProvider,...
-```
+    ```bash
+    gulp build --modules=brandmetricsRtdProvider,...
+    ```
 
-2) Use `setConfig` to instruct Prebid.js to initilaize the brandmetricsRtdProvider module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initilaize the brandmetricsRtdProvider module, as specified below.
 
 ### Configuration
 

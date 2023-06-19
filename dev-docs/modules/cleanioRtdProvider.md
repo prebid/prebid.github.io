@@ -24,7 +24,7 @@ Using this module requires prior agreement with [clean.io](https://clean.io) to 
 
 clean.io Realtime module can be built just like any other prebid module:
 
-```
+```bash
 gulp build --modules=cleanioRtdProvider,...
 ```
 

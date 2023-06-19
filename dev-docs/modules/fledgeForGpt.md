@@ -24,7 +24,7 @@ the changes Bid Adapters need to implement in order to support FLEDGE.
 Publishers wishing to enable FLEDGE support must do two things. First, they must compile Prebid.js with support for this module.
 This is accomplished by adding the `fledgeForGpt` module to the list of modules they are already using:
 
-```
+```bash
 gulp build --modules=fledgeForGpt,...
 ```
 

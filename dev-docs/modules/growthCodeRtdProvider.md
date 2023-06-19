@@ -18,7 +18,7 @@ sidebarType : 1
 * TOC
 {:toc}
 
-The <a href="https://growthcode.io">GrowthCode</a> real-time data module in Prebid enables publishers to fully
+The [GrowthCode](https://growthcode.io) real-time data module in Prebid enables publishers to fully
 leverage the potential of their first-party audiences and contextual data.
 With an integrated cookieless GrowthCode identity, this module offers real-time
 contextual and audience segmentation capabilities that can seamlessly
@@ -31,11 +31,11 @@ Compile the GrowthCode RTD module into your Prebid build:
 
 `gulp build --modules=userId,rtdModule,growthCodeRtdProvider,appnexusBidAdapter`
 
-Please visit <a href="https://growthcode.io">https://growthcode.io/</a> for more information.
+Please visit [https://growthcode.io/](https://growthcode.io) for more information.
 
-```
-pbjs.setConfig(
-    ...
+```javascript
+pbjs.setConfig({
+    // ...
     realTimeData: {
          auctionDelay: 200,
           dataProviders: [
@@ -48,8 +48,8 @@ pbjs.setConfig(
           }
        ]
     }
-    ...
-}
+    // ...
+});
 ```
 
 ### Parameter Descriptions for the GrowthCode Configuration Section

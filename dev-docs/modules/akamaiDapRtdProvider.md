@@ -22,17 +22,17 @@ The Akamai Data Activation Platform (DAP) is a privacy-first system that protect
 
 ## Publisher Usage
 
-1) Build the akamaiDapRTD module into the Prebid.js package with:
+1. Build the akamaiDapRTD module into the Prebid.js package with:
 
-```
-gulp build --modules=akamaiDapRtdProvider,...
-```
+    ```bash
+    gulp build --modules=akamaiDapRtdProvider,...
+    ```
 
-2) Use `setConfig` to instruct Prebid.js to initilaize the akamaiDapRtdProvider module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initilaize the akamaiDapRtdProvider module, as specified below.
 
 ### Configuration
 
-```
+```javascript
 pbjs.setConfig({
   realTimeData: {
     auctionDelay: 2000,
@@ -76,8 +76,8 @@ Please reach out to your Akamai account representative(<Prebid@akamai.com>) to g
 
 To view an example of available segments returned by dap:
 
-```
-‘gulp serve --modules=rtdModule,akamaiDapRtdProvider,appnexusBidAdapter,sovrnBidAdapter’
+```bash
+gulp serve --modules=rtdModule,akamaiDapRtdProvider,appnexusBidAdapter,sovrnBidAdapter
 ```
 
 and then point your browser at:

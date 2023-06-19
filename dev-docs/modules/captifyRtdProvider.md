@@ -32,13 +32,13 @@ Contact <prebid@captify.tech> for more information.
 
 ## Integration
 
-1) Compile the Captify RTD Module along with your bid adapter and other modules into your Prebid build:  
+1. Compile the Captify RTD Module along with your bid adapter and other modules into your Prebid build:  
 
-```
-gulp build --modules="rtdModule,captifyRtdProvider,appnexusBidAdapter,..."  
-```
+    ```bash
+    gulp build --modules="rtdModule,captifyRtdProvider,appnexusBidAdapter,..."  
+    ```
 
-2) Use `setConfig` to instruct Prebid.js to initialize the Captify RTD module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initialize the Captify RTD module, as specified below.
 
 ## Configuration
 

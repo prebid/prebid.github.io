@@ -17,7 +17,7 @@ gulp build --modules=userId,liveIntentIdSystem
 
 The `request.userId.lipb` object would look like:
 
-```
+```json
 {
   "lipbid": "T7JiRRvsRAmh88",
   "segments": ["999"]
@@ -76,10 +76,8 @@ The attributes 'uid2', 'medianet' or 'bidswitch' are treated specially by LiveIn
 For example, in case 'uid2' is configured to be requested - additionally to the nonID - the `request.userId` object would look like this:
 
 ```javascript
-```
-
 {
-    ...
+    // ...
     "lipb" : {
         "lipbid": "sample-nonid-value",
         "segments": ["999"],
@@ -88,10 +86,8 @@ For example, in case 'uid2' is configured to be requested - additionally to the 
     "uid2" : {
         "id" : "sample-uid2-value"
     }
-    ...
+    //...
 }
-
-```
 ```
 
 Note that 'uid2' is exposed as part of 'lipb' as well as separately as 'uid2'. 'medianet' and 'bidswitch' behave the same way.
@@ -148,74 +144,74 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 
 1. To receive the LiveIntent ID, the setup looks like this.
 
-```
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "liveIntentId",
-            params: {
-              publisherId: "9896876"
-            },
-            storage: {
-            type: “cookie”,
-            name: “pbjs_li_nonid”,    //create a cookie with this name
-            expires: 1                // cookie is stored for 1 day
-            }
-        }]
-    }
-})
-```
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: "liveIntentId",
+                params: {
+                publisherId: "9896876"
+                },
+                storage: {
+                type: “cookie”,
+                name: “pbjs_li_nonid”,    //create a cookie with this name
+                expires: 1                // cookie is stored for 1 day
+                }
+            }]
+        }
+    })
+    ```
 
 2. If you are passing additional identifiers that you want to resolve to the LiveIntent ID, add those under the `identifiersToResolve` array in the configuration parameters.
 
-```
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "liveIntentId",
-            params: {
-              publisherId: "9896876",
-              identifiersToResolve: ["my-own-cookie"]
-            },
-            storage: {
-            type: “cookie”,
-            name: “pbjs_li_nonid”,    //create a cookie with this name
-            expires: 1                // cookie is stored for 1 day
-            }
-        }]
-    }
-})
-```
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: "liveIntentId",
+                params: {
+                publisherId: "9896876",
+                identifiersToResolve: ["my-own-cookie"]
+                },
+                storage: {
+                type: “cookie”,
+                name: “pbjs_li_nonid”,    //create a cookie with this name
+                expires: 1                // cookie is stored for 1 day
+                }
+            }]
+        }
+    })
+    ```
 
 3. If all the supported configuration params are passed, then the setup looks like this.
 
-```
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "liveIntentId",
-            params: {
-              publisherId: "9896876",
-              distributorId: "did-0123",
-              identifiersToResolve: ["my-own-cookie"],
-              url: "https://publisher.liveintent.com/idex",
-              partner: "prebid",
-              ajaxTimeout: 1000,
-              liCollectConfig: {
-                fpiStorageStrategy: "cookie",
-                fpiExpirationDays: 730,
-                collectorUrl: "https://rp.liadm.com",
-                appId: "a-0012"
-              }
-            },
-            storage: {
-            type: “cookie”,
-            name: “pbjs_li_nonid”,    //create a cookie with this name
-            expires: 1                // cookie is stored for 1 day
-            }
-        }]
-    }
-})
-```
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: "liveIntentId",
+                params: {
+                publisherId: "9896876",
+                distributorId: "did-0123",
+                identifiersToResolve: ["my-own-cookie"],
+                url: "https://publisher.liveintent.com/idex",
+                partner: "prebid",
+                ajaxTimeout: 1000,
+                liCollectConfig: {
+                    fpiStorageStrategy: "cookie",
+                    fpiExpirationDays: 730,
+                    collectorUrl: "https://rp.liadm.com",
+                    appId: "a-0012"
+                }
+                },
+                storage: {
+                type: “cookie”,
+                name: “pbjs_li_nonid”,    //create a cookie with this name
+                expires: 1                // cookie is stored for 1 day
+                }
+            }]
+        }
+    })
+    ```
 
 Please note: the distributorId will be ignored when liCollectConfig.appId is present.

@@ -29,7 +29,7 @@ Disclosure: This module loads external code that is not open source and has not 
 
 Compile the ArcSpan RTD Module into your Prebid build:
 
-```
+```bash
 gulp build --modules=rtdModule,arcspanRtdProvider
 ```
 

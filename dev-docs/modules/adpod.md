@@ -22,7 +22,7 @@ The adpod module enables developers to add support for a new adserver that handl
 
 There is a flag available for publishers to influence how this module behaves.  This field can be set by adding the following to the Prebid.js configuration:
 
-```
+```javascript
 pbjs.setConfig({
   "adpod": {
     "brandCategoryExclusion": true
@@ -34,7 +34,7 @@ When this setting is enabled, it requires the bidder to include a brand category
 
 Below is an example of the targeting key's value with the setting enabled (where `123` is the category id):
 
-```
+```javascript
 '10.00_123_10s'
 ```
 
@@ -42,7 +42,7 @@ When the setting is disabled (which is the default state), bidder's don't have t
 
 Below is an example of the targeting keys with the setting not enabled:
 
-```
+```javascript
 hb_pb_cat_dur = '10.00_10s'
 ```
 
@@ -50,7 +50,7 @@ hb_pb_cat_dur = '10.00_10s'
 
 In the user's equivalent `<name>AdServerVideo` module, import the `initAdpodHooks` function and call it from within their module. Executing the init function will initialize several key functions from the module that are designed to handle `adpod` objects (ie. adUnits, bids, etc.) as the auction proceeds. These functions will only affect `adpod` objects, other `mediaTypes` will be handled by the base Prebid code.
 
-```
+```javascript
 initAdpodHooks();
 ```
 
