@@ -113,7 +113,7 @@ Once you set the account ID and the Prebid Server host, you should initialize th
 
 If you integrate Prebid Mobile with GMA SDK, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app: 
 
-``` swift
+```swift
 Prebid.initializeSDK(GADMobileAds.sharedInstance()) { status, error in
     switch status {
     case .succeeded:
@@ -136,7 +136,7 @@ Check the log messages of the app. If the provided GMA SDK version is not verifi
 
 For the No Ad Server scenario, use the following initialization: 
 
-``` swift
+```swift
 Prebid.initializeSDK { status, error in
     // ....
 }
@@ -173,7 +173,7 @@ The `Prebid` class is a singleton that enables the user to apply global settings
 
 `logLevel`: Optional level of logging to output in the console. Options are one of the following sorted by a verbosity of the log:
 
-``` swift
+```swift
 public static let debug = LogLevel(stringValue: "[💬]", rawValue: 0)
 public static let verbose = LogLevel(stringValue: "[🔬]", rawValue: 1)
 public static let info = LogLevel(stringValue: "[ℹ️]", rawValue: 2)
