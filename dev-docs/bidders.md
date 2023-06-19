@@ -25,7 +25,7 @@ You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV 
 {: .alert.alert-warning :}
 Publishers are advised to check with legal counsel before doing business with any particular bidder.
 
-### Search a bidder
+## Search a bidder
 
 <input type="text" id="autocomplete-filter" class="autocomplete-filter">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js" integrity="sha512-HcBl0GSJvt4Qecm4srHapirUx0HJDi2zYXm6KUKNNUGdTIN9cBwakVZHWmRVj4MKgy1AChqhWGYcMDbRKgO0zg==" crossorigin="anonymous"></script>
@@ -35,9 +35,9 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 <script src="{{site.baseurl}}/assets/js/autocomplete.js"></script>
 <div class="c-bidder-list-group" markdown="1">
 
-### Full List
+## Full List
 
-#### #-A
+### #-A
 
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
@@ -49,7 +49,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 {% endfor %}
 </ul>
 
-#### B-C
+### B-C
 
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
@@ -61,7 +61,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 {% endfor %}
 </ul>
 
-#### D-G
+### D-G
 
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
@@ -73,7 +73,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 {% endfor %}
 </ul>
 
-#### H-L
+### H-L
 
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
@@ -85,7 +85,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 {% endfor %}
 </ul>
 
-#### M-O
+### M-O
 
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
@@ -97,7 +97,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 {% endfor %}
 </ul>
 
-#### P-R
+### P-R
 
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
@@ -109,7 +109,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 {% endfor %}
 </ul>
 
-#### S-T
+### S-T
 
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
@@ -121,7 +121,7 @@ var AutocompleteList = [{% for page in bidder_pages %}{ label: '{{ page.title }}
 {% endfor %}
 </ul>
 
-#### U-Z
+### U-Z
 
 <ul class="c-bidder-list">
 {% for page in bidder_pages %}
