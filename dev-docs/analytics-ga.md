@@ -18,7 +18,7 @@ nav_section: reference
 * TOC
 {:toc }
 
-### Code Example
+## Code Example
 
 ```javascript
 
@@ -41,19 +41,19 @@ pbjs.que.push(function() {
 
 ```
 
-##### A Few Requirements
+### A Few Requirements
 
 1. This code snippet has to be inserted after the `'ga'` param is available.
 2. This code snippet has to be inserted after pbjs.que has been defined.
 3. You must include `"ga"` in the `"analytics"` array in `package.json`.
 
-##### Distribution Data
+### Distribution Data
 
 Note: we recommend disabling `enableDistribution` if you are using more than 4 bidders. This is because GA throttles the number of events that can be logged (20 initial + 2/second). Distribution data provides you with a histogram of CPM distribution and bid load time (latency) for each bidder. See distribution data [demo here](https://prebid.org/blog/header-bidding-analytics-coming-soon/#histogram-analysis-of-latency-and-cpm-distribution).
 
 See [this link](https://developers.google.com/analytics/devguides/collection/protocol/v1/limits-quotas) for details on GA's throttling.
 
-##### Sampling
+### Sampling
 
 To track a lower volume of traffic in Google Analytics, you may specify a sample rate in the options. For example, to set up a 5% sample rate:
 
@@ -76,7 +76,7 @@ Of course a smaller sample rate means that reported numbers will be correspondin
 
 It should also be noted that all events on a given page are subject to the same analytics behavior. This means that all requests, responses, and renders on a page are either logged or not logged.
 
-### How Prebid.js uses GA's Events
+## How Prebid.js uses GA's Events
 
 Prebid.js sends out GA-compatible [Events](https://support.google.com/analytics/answer/1033068). (For more information, see the GA docs on [Event Tracking](https://developers.google.com/analytics/devguides/collection/analyticsjs/events)).
 
@@ -94,7 +94,7 @@ In this example, the page has 1 ad unit with 3 bidders. The timeout is set to 40
 
 Note that a Win event is a true win, meaning that it is not just the highest bid in the header bidding auction, but the winning bid across the entire auction hosted by the ad server and its creative is served back to the page.
 
-### How to Verify it Works
+## How to Verify it Works
 
 After you've implemented the above code snippet, load the page a few times, wait 1-2 hours for GA's data pipeline to finish, and go to your GA Reporting screen. Navigate to **Behavior > Events**. You should be able to find the Prebid.js events (if you have many other events, filter **Event Category** by `Prebid.js`)
 

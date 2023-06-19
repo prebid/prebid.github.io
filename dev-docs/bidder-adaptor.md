@@ -109,48 +109,43 @@ Module that connects to Example's demand sources
     ];
 ```
 
-```html
-
 <a name="bidder-adaptor-Designing-your-Bid-Params"></a>
 
-### Designing your Bid Params
+## Designing your Bid Params
 
 The parameters of your ad request will be stored in the ad unit's `bid.params` object.  You can include tag info, ad size, keywords, and other data such as video parameters.
 
 For more information about the kinds of information that can be passed using these parameters, see the example below, as well as [the existing bidder parameters]({{site.baseurl}}/dev-docs/bidders.html).
 
 ```javascript
-
-{
-    var adUnits = [{
-        code: "top-med-rect",
-        mediaTypes: {
-            banner: {
-                sizes: [
-                    [300, 250],
-                    [300, 600]
-                ]
+var adUnits = [{
+    code: "top-med-rect",
+    mediaTypes: {
+        banner: {
+            sizes: [
+                [300, 250],
+                [300, 600]
+            ]
+        }
+    },
+    bids: [{
+        bidder: "example",
+        // params is custom to the bidder adapter and will be
+        // passed through from the configuration as is.
+        params: {
+            unit: '3242432',
+            pgid: '123124',
+            custom: {
+                other: "xyz"
             }
         },
-        bids: [{
-            bidder: "example",
-            // params is custom to the bidder adapter and will be
-            // passed through from the configuration as is.
-            params: {
-                unit: '3242432',
-                pgid: '123124',
-                custom: {
-                    other: "xyz"
-                }
-            },
-        }]
-    }];
-
+    }]
+}];
 ```
 
 <a name="bidder-adaptor-HTTP-simple-requests"></a>
 
-### HTTP Simple Requests
+## HTTP Simple Requests
 
 When defining the HTTP headers for your endpoint, it is important from a performance perspective to consider what forces the browser to initiate a [CORS preflight request](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request). We encourage learning more about [Simple Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests) & [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) as it relates to your specific development configuration.
 
@@ -302,6 +297,7 @@ Here is a sample array entry for `validBidRequests[]`:
 Retrieve your bid parameters from the `params` object.
 
 Other notes:
+
 * **Bid ID** is unique across ad units and bidders.
 * **Transaction ID** is unique for each ad unit with a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
 * **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
@@ -338,6 +334,7 @@ Here is a sample bidderRequest object:
 ```
 
 Notes on parameters in the bidderRequest object:
+
 * **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
 * **ortb2** is the global (not specific to any adUnit) [first party data](/features/firstPartyData.html) to use for all requests in this auction. Note that Prebid allows any standard ORTB field or extension as first party data - including items that typically wouldn't be considered as such, for example user agent client hints (`device.sua`) or information on the regulatory environment (`regs.ext.gpc`).
 
@@ -731,22 +728,22 @@ If the alias entry is an object, the following attributes are supported:
 | `gvlid` | optional | global vendor list id of company scoped to alias | `integer` |
 | `skipPbsAliasing` | optional | ability to skip passing spec.code to prebid server in request extension. In case you have a prebid server adapter with the name same as the alias/shortcode. Default value: `false` | `boolean` |
 
-
 {: .alert.alert-info :}
 Note on aliases and TCF Global Vendor List IDs: if an alias entry does not have its own GVLID but wishes to claim GDPR support,
-the documentation entry (The file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) must list the GVLID of the main adapter with that company's name in parentheses.
+the documentation entry (The file in [https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders]) must list the GVLID of the main adapter with that company's name in parentheses.
 Look for other doc entries containing an `aliasCode` metadata entry.
 
 ### Supporting Privacy Regulations
 
 If your bid adapter is going to be used in Europe, you should support GDPR:
+
 * Get a [Global Vendor ID](https://iabeurope.eu/vendor-list-tcf-v2-0/) from the IAB-Europe
 * Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
 * Read the gdprConsent string from the bid request object and pass it through to your endpoint
 
 If your bid adapter is going to be used in the United States, you should support COPPA and CCPA:
-* Read the uspConsent string from the bid request object and pass it through t
-o your endpoint
+
+* Read the uspConsent string from the bid request object and pass it through to your endpoint
 * Call config.getConfig('coppa') and forward to your endpoint
 
 ## Supporting Video
@@ -758,13 +755,11 @@ Follow the steps in this section to ensure that your adapter properly supports v
 Add the `supportedMediaTypes` argument to the spec object, and make sure VIDEO is in the list:
 
 ```javascript
-
 export const spec = {
     code: BIDDER_CODE,
     supportedMediaTypes: [VIDEO],
-    ...
+    // ...
 }
-
 ```
 
 {: .alert.alert-info :}
@@ -834,7 +829,7 @@ Prebid now accepts multiple bid responses for a single `bidRequest.bids` object.
 
 #### Use case 1: I want to request my endpoint to return bids with varying ranges of durations
 
-```
+```text
 AdUnit config
 {
   ...
@@ -869,7 +864,7 @@ Prebid will set the rounded duration value in the `bid.video.durationBucket` fie
 
 #### Use case 2: I want to request my endpoint to return bids that exactly match the durations I want
 
-```
+```text
 AdUnit config
 {
   ...
@@ -1018,6 +1013,7 @@ In order for your bidder to support the native media type:
 5. Your spec must declare NATIVE in the supportedMediaTypes array.
 
 There are two ways Prebid supports native:
+
 * The preferred method is for publishers to [define their native assets directly in OpenRTB format](/prebid/native-implementation.html).
 * The legacy way is for pubs to supply a [Prebid-proprietary native asset syntax](/prebid/native-implementation-legacy.html).
 
@@ -1281,7 +1277,7 @@ registerBidder(spec);
 
 For example:
 
-```
+```markdown
 ---
 layout: bidder
 title: example
