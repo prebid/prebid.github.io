@@ -40,7 +40,7 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit.|
 | `ttlBuffer`  | Optional | Number                                | TTL buffer override for this adUnit. See [setConfig({ttlBuffer})](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ttlBuffer) |
 | `renderer`   | Optional | Object                         | Custom renderer, typically used for [outstream video](/dev-docs/show-outstream-video-ads.html) |
-| `video`      | Optional | Object                                | Used to link an Ad Unit to the [Video Module][videoModule]. For allowed params see the [adUnit.video reference](#adUnit-video). |
+| `video`      | Optional | Object                                | Used to link an Ad Unit to the [Video Module][videoModule]. For allowed params see the [adUnit.video reference](#adunitvideo). |
 | `deferBilling` | Optional | Boolean | Used by a publisher to flag adUnits as being separately billable. This allows for a publisher to trigger billing manually for winning bids. See [pbjs.triggerBilling](/dev-docs/publisher-api-reference/triggerBilling.html) and [onBidBillable](/dev-docs/bidder-adaptor.html#registering-on-bid-billable) for more info. |
 
 <a name="adUnit.bids"></a>
