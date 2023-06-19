@@ -4,7 +4,7 @@ title: AIDEM
 description: AIDEM Bidder Adapter
 biddercode: aidem
 gdpr_supported: true
-gvl_id: none
+gvl_id: 1218
 usp_supported: true
 coppa_supported: true
 schain_supported: false
