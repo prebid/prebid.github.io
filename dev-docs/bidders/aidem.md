@@ -6,7 +6,7 @@ biddercode: aidem
 gdpr_supported: true
 gvl_id: none
 usp_supported: true
-coppa_supported: false
+coppa_supported: true
 schain_supported: false
 dchain_supported: false
 userId: none
@@ -14,10 +14,10 @@ media_types: banner, video
 safeframes_ok: true
 deals_supported: true
 floors_supported: true
-fpd_supported: false
+fpd_supported: true
 pbjs: true
 pbs: true
-prebid_member: false
+prebid_member: true
 ortb_blocking_supported: false
 sidebarType: 1
 ---
