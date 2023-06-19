@@ -8,4 +8,4 @@ prebid_member: true
 
 #### Registration
 
-Please visit [https://www.pubwise.io/](https://www.pubwise.io/) for more information.
+Please visit [www.pubwise.io](https://www.pubwise.io/) for more information.

@@ -730,7 +730,7 @@ If the alias entry is an object, the following attributes are supported:
 
 {: .alert.alert-info :}
 Note on aliases and TCF Global Vendor List IDs: if an alias entry does not have its own GVLID but wishes to claim GDPR support,
-the documentation entry (The file in [https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders]) must list the GVLID of the main adapter with that company's name in parentheses.
+the documentation entry (The file in <https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders>) must list the GVLID of the main adapter with that company's name in parentheses.
 Look for other doc entries containing an `aliasCode` metadata entry.
 
 ### Supporting Privacy Regulations

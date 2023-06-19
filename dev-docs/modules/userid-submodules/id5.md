@@ -12,7 +12,7 @@ The ID5 ID is a shared, neutral identifier that publishers and ad tech platforms
 
 The ID5 ID is free to use, but requires a simple registration with ID5. Please visit [our website](https://id5.io/solutions/#publishers) to sign up and request your ID5 Partner Number to get started.
 
-The ID5 privacy policy is at [https://id5.io/platform-privacy-policy](https://id5.io/platform-privacy-policy).
+The ID5 privacy policy is at [id5.io/platform-privacy-policy](https://id5.io/platform-privacy-policy).
 
 ## ID5 ID Configuration
 

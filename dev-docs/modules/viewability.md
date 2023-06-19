@@ -28,7 +28,7 @@ Features:
 
 - Does not depend on publishers using GAM ad server (i.e. does not use GPT's ImpressionViewableEvent).
 - Enables custom viewability criteria (timeInView and inViewThreshold).
-- Aims to provide (and in some ways extend) functionality of [https://github.com/InteractiveAdvertisingBureau/openvv-html] , but keeping the size to the bare minimun (openvv-html is ~26kb in size).
+- Aims to provide (and in some ways extend) functionality of <https://github.com/InteractiveAdvertisingBureau/openvv-html> , but keeping the size to the bare minimun (openvv-html is ~26kb in size).
 - Enables publishers to track viewability through callbacks or img/js pixels.
 - Supports all mediatypes.
 - Enables buy side to track viewability by posting a message from within the creative iframe (including the postMessage call in the ad markup), thus avoiding custom viewability scripts.

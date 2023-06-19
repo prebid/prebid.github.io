@@ -14,7 +14,7 @@ enable_download: false
 
 The ID5 Analytics Adapter is free to use during our Beta period, but requires a simple registration with ID5. Please visit [id5.io/solutions](https://id5.io/solutions#publishers) to sign up and request your ID5 Partner Number to get started. If you're already using the ID5 Universal ID, you may use your existing Partner Number with the analytics adapter.
 
-The ID5 privacy policy is at [https://id5.io/platform-privacy-policy](https://id5.io/platform-privacy-policy).
+The ID5 privacy policy is at [id5.io/platform-privacy-policy](https://id5.io/platform-privacy-policy).
 
 #### Analytics Options
 

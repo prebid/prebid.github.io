@@ -45,8 +45,8 @@ For CSS, the site uses Laravel Mix to build CSS from Sass (scss-flavored) source
 1. `npm ci` to install packages for building assets
 1. build assets as described below
 
-The markdown files are linted via [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli). VSCode supports the [.markdownlintignore] file.
-You may need to configure the disabled rules specified in [.markdownlint.json] directly in your project settings. You can invoke linting in CLI via
+The markdown files are linted via [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli). VSCode supports the [.markdownlintignore](.markdownlintignore) file.
+You may need to configure the disabled rules specified in [.markdownlint.json](.markdownlint.json) directly in your project settings. You can invoke linting in CLI via
 
 ```bash
 markdownlint --config .markdownlint.json --ignore-path .markdownlintignore "**/*.md"

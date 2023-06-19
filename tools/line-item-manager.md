@@ -180,7 +180,7 @@ All commands can use the `--help` modifier to see various options for the comman
 
 ## Git Repository
 
-[https://github.com/prebid/line-item-manager](https://github.com/prebid/line-item-manager)
+[github.com/prebid/line-item-manager](https://github.com/prebid/line-item-manager)
 
 Contributing code? Found a bug? If you wish to push changes, please create a [Pull Request](https://github.com/prebid/line-item-manager/pulls) so we can review the change and approve.
 

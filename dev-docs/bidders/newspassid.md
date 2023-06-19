@@ -71,4 +71,4 @@ const adUnits = [{
 
 ### Note
 
-Please contact us at [techsupport@newspassid.com] for any assistance testing your implementation before going live into production.
+Please contact us at <techsupport@newspassid.com> for any assistance testing your implementation before going live into production.

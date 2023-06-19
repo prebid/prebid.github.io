@@ -17,7 +17,7 @@ gulp build --modules=parrableIdSystem
 
 Please contact Parrable to obtain a Parrable Partner Client ID and/or use the Parrable Partner Client ID provided by the vendor for each Parrable-aware bid adapter you will be using.  Note that if you are working with multiple Parrable-aware bid adapters you may use multiple Parrable Partner Client IDs.
 
-The Parrable privacy policy as at [https://www.parrable.com/privacy-policy/](https://www.parrable.com/privacy-policy/).
+The Parrable privacy policy as at [www.parrable.com/privacy-policy/](https://www.parrable.com/privacy-policy/).
 
 ## Parrable ID Configuration
 

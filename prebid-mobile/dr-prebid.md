@@ -118,7 +118,7 @@ IDs for ad units and Prebid Server accounts and configurations are long strings 
 
 To set up a QR code, follow these steps:
 
-1.    Go to any QR code generator. (There are many free options for QR code generation. Examples include [https://www.qr-code-generator.com/](https://www.qr-code-generator.com/) and [https://www.the-qrcode-generator.com/](https://www.the-qrcode-generator.com/).)
+1.    Go to any QR code generator. (There are many free options for QR code generation. Examples include [www.qr-code-generator.com/](https://www.qr-code-generator.com) and [www.the-qrcode-generator.com](https://www.the-qrcode-generator.com/).)
 
 2.    Copy the ID you want to use from your Ad Server or from Prebid Server, depending on which ID you’re working with.
 

@@ -38,7 +38,7 @@ You can specify all options needed by the plugin in the Studio:
 
 #### Getting to Brightcove Studio
 
-[https://studio.brightcove.com](https://studio.brightcove.com/)
+[studio.brightcove.com](https://studio.brightcove.com/)
 
 #### Integration in Brightcove Studio
 

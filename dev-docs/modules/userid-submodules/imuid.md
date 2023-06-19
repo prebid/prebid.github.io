@@ -14,7 +14,7 @@ gulp build --modules=imuIdSystem
 
 ## IM-UID Registration
 
-Please visit [https://lp.intimatemerger.com/im-uid](https://lp.intimatemerger.com/im-uid) and request your Customer ID to get started.
+Please visit [lp.intimatemerger.com/im-uid](https://lp.intimatemerger.com/im-uid) and request your Customer ID to get started.
 
 The Intimate Merger privacy policy is at <https://corp.intimatemerger.com/privacypolicy/>
 

@@ -14,7 +14,7 @@ enable_download: false
 #### Registration
 
 The Adxcg analytics adapter requires setup and approval from the Adxcg team, even for existing accounts.
-Please reach out to your account team or visit [https://www.adxcg.com/](https://www.adxcg.com/) for more information.
+Please reach out to your account team or visit [www.adxcg.com](https://www.adxcg.com/) for more information.
 
 #### Analytics Options
 

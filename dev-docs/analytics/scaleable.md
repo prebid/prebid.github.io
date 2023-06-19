@@ -7,4 +7,4 @@ modulecode: scaleable
 
 #### Registration
 
-Please visit [https://scaleable.ai/](https://scaleable.ai/) for more information.
+Please visit [scaleable.ai](https://scaleable.ai/) for more information.
