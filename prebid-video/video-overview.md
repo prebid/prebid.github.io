@@ -11,14 +11,15 @@ sidebarType: 4
 
 
 # Prebid.js for Video Overview
+{:.no_toc}
+
+* TOC
+{:toc}
 
 Prebid.js provides tools that allow header bidding video demand to compete with your ad server video demand. Prebid video demand can be incorporated for both instream, outstream, and long-form video slots.
 
--	Instream - Instream video ads serve in-line with existing video content on your page. The ads can serve before, during, or after a piece of video content. As the publisher, you must provide your own video player that can be used to render the ads.
+Prebid.js supports all the latest [OpenRTB Video types and subtypes](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md#list--placement-subtypes---video-).
 
--	Outstream – Outstream video ads serve separately from any existing video content.  Often, outstream video ad units are used to create video inventory on pages that do not include any video content. The outstream video ad is displayed through an associated outstream video renderer, which usually ingests configuration options that control the user experience. (For example, the outstream video player can be configured to expand within a text body on-page when in view, and collapse when the video is finished).
-
-- Long-form - Long-form video content always has a content arc with a beginning, middle and end. Ads display in an ad pod, a grouping of individual ads that appear either in the beginning, end or during the video content. As the publisher you must provide your own video player that can be used to render the ads.
 
 ## Implementation
 
@@ -28,6 +29,8 @@ Here’s a high-level overview of the steps required to start using Prebid.js fo
 ![Video Overview]({{site.baseurl}}/assets/images/prebid-video/video-overview.png){:class="pb-lg-img"}
 
 For implementation details, see [Getting Started with Video for Prebid.js]({{site.github.url}}/prebid-video/video-getting-started.html).
+
+The [Prebid Video Module]({{site.github.url}}/prebid-video/video-getting-started.html#prebid-video-module) is the recommended way to implement video.
 
 ## How It Works
 
@@ -118,8 +121,8 @@ The video player loads the master video ad server tag URL, which makes a call to
 
 ## Further Reading
 
--   [Getting Started with Video for Prebid.js]({{site.github.url}}/prebid-video/video-getting-started.html)
--   [Getting Started with Long-Form Video for Prebid.js]({{site.github.url}}/prebid-video/video-long-form.html)
--   [What is Prebid?]({{site.github.url}}/overview/intro.html)
--   [AdOps - Before You Start]({{site.github.url}}/overview/getting-started.html)
--   [Getting Started for Developers]({{site.github.url}}/dev-docs/getting-started.html)
+-   [Getting Started with Video for Prebid.js](/prebid-video/video-getting-started.html)
+-   [Getting Started with Long-Form Video for Prebid.js](/prebid-video/video-long-form.html)
+-   [What is Prebid?](/overview/intro.html)
+-   [AdOps - Before You Start](/adops/before-you-start.html)
+-   [Getting Started for Developers](/dev-docs/getting-started.html)

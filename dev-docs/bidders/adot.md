@@ -4,11 +4,14 @@ title: Adot
 description: Prebid Adot Bidder Adapter
 biddercode: adot
 media_types: banner, video, native
+userIds: pubProvidedId
 gdpr_supported: true
 gvl_id: 272
 pbjs: true
 pbs: true
 floors_supported: true
+schain_supported: true
+sidebarType: 1
 ---
 
 ### Prebid JS
@@ -19,20 +22,14 @@ floors_supported: true
 | Name                | Scope                             | Description                                                                                                                                                                   | Example                                               | Type             |
 |---------------------|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|------------------|
 | `placementId`       | optional                          | The placement ID from Adot.                                                      | `'adot_placement_224521'`                                            | `string`         |
-| `position`          | optional                          | Specify the position of the ad as a relative measure of visibility or prominence. Allowed values: Unknown: `0` (default); Above the fold: `1` ; Below the fold: `3`.                                                                                                                   | `0`                                             | `integer-`         |
-| `video`             | required if the adUnit is a video | Object containing video targeting parameters. See [Video Object](#adot-video-object) for details.                                                                        | `video: { mimes: ['video/mp4'] }` | `object`         |
+| `video`             | optional | Object containing video targeting parameters. See [Video Object](#adot-video-object) for details.                                                                        |  | `object`         |
 
 #### Video Object
 
 {: .table .table-bordered .table-striped }
 | Name              | Scope                                     | Description                                                                                                                                                                                                                                  | Type             |
 |-------------------|-------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
-| `mimes`           | required                                  | Array of strings listing the content MIME types supported, e.g., `['video/mp4']`.                                                                                                                                                            | `Array<string>`  |
-| `minduration`     | optional                                  | Integer that defines the minimum video ad duration in seconds.                                                                                                                                                                               | `integer`        |
-| `maxduration`     | optional                                  | Integer that defines the maximum video ad duration in seconds.                                                                                                                                                                               | `integer`        |
-| `protocols`       | required                                  | Array of supported video protocols, e.g., `[2, 3]`                                                                                                                                                                                           | `Array<integer>` |
 | `container`       | optional                                  | Selector used for finding the element in which the video player will be displayed, e.g., `#div-1`. The `ad unit code` will be used if no `container` is provided.                                                                            | `string`         |
-| `instreamContext` | required if `video.context` is `instream` | String used to define the type of instream video. Allowed values: Pre-roll: `pre-roll`; Mid-roll: `mid-roll` ; Post-roll: `post-roll`.                                                                                                       | `string`         |
 
 #### Bid Config
 #### PublisherId
@@ -80,6 +77,7 @@ pbjs.setBidderConfig({
 |---------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|------------------|
 | `placementId`       | optional | An ID which identifies this placement of the impression.                                   | `'adot_placement_224521'`                                            | `string`         |
 | `parallax`          | optional (only for prebid-server) | Specify if the wanted advertising's creative is a parallax.                                                                        | `true/false` | `boolean`         |
+| `publisherPath`          | optional | Specific to each integration. Do not use until asked by someone from adot.                                                                      | `/hubvisor` | `string`         |
 
 #### Testing Bid Request
 

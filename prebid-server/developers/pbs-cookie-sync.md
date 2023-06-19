@@ -58,21 +58,18 @@ POST https://prebid-server.example.com/cookie_sync
 
 Cookie sync for AMP works in a way quite similar to Prebid.js.
 
-1) The Prebid Server hosting company places a modified version of the `load-cookie` script onto a CDN. This script is part of the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative/blob/master/src/cookieSync.js) repo.
-
-{: .alert.alert-warning :}
-The only two values currently valid for 'endpoint' are 'appnexus' and 'rubicon' -- other host companies should update their copy to include their endpoint.
+1) The Prebid Server hosting company places the [load-cookie.html](#manually-initiating-a-sync) file onto a CDN. This script is part of the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative/blob/master/src/cookieSync.js) repo.
 
 See [the AMP implementation guide](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) for more information.
 
-2) The publisher places the 'load-cookie' script into the page:
+2) The publisher places the 'load-cookie' iframe into the page:
 
 ```
 <amp-iframe width="1" title="User Sync"
   height="1"
   sandbox="allow-scripts allow-same-origin"
   frameborder="0"
-  src="https://PROVIDED_BY_HOSTCOMPANY/load-cookie.html?endpoint=HOSTCOMPANY&max_sync_count=5">
+  src="https://PROVIDED_BY_HOSTCOMPANY/load-cookie.html?source=amp&endpoint=HOSTCOMPANY&max_sync_count=5">
   <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
 </amp-iframe>
 ```
@@ -80,8 +77,24 @@ See [the AMP implementation guide](/dev-docs/show-prebid-ads-on-amp-pages.html#u
 {: .alert.alert-info :}
 If the publisher has an AMP Consent Management Platform, they should use `load-cookie-with-consent.html`.
 
-3) At runtime, the `load-cookie` script just calls the Prebid Server /cookie_sync endpoint. The rest works the same as described for Prebid.js above.
+3) At runtime, the `load-cookie` script just calls the Prebid Server /cookie_sync endpoint. The rest works similar to what's described for Prebid.js above. One difference is that the bidders are not known on the AMP page so those aren't passed. Another difference is that AMP doesn't support iframe syncs, so load-cookie passes instructions to PBS so only pixel syncs are returned.
 
+### Cooperative Syncing
+
+Prebid Server supports a 'Cooperative Syncing' mode where all enabled bidders may be returned in a sync request even if they aren't on this particular page. This allows bidders to get their IDs in place for the next page where they are utilized.
+
+Cooperative syncing can be configured at the host level. See the doc for [PBS-Java](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md) and [PBS-Go](https://github.com/prebid/prebid-server/blob/master/config/usersync.go).
+
+This is how to control the coop syncing behavior from Prebid.js:
+```
+pbjs.setConfig({
+  s2sConfig: {
+    ...
+    coopSync: true,
+    userSyncLimit: 5
+    ...
+  }
+```
 
 ## Bidder Instructions for Building a Sync Endpoint
 
@@ -126,6 +139,39 @@ Here's how this all comes together:
 5. Prebid Server then saves this ID mapping of `mybidder: 132` under the cookie at `prebid-domain.com`.
 
 Then the next time the client then calls `www.prebid-domain.com/openrtb2/auction`, the ID for `mybidder` will be available in the Cookie. Prebid Server will then stick this value into `request.user.buyeruid` in the OpenRTB request it sends to `mybidder`'s bid adapter.
+
+## Manually initiating a sync
+
+Where Prebid.js isn't present, like in the AMP scenario, the call to /cookie_sync doesn't happen automatically.
+If there are scenarios where Prebid.js isn't around to initiate the /cookie_sync call, publishers can choose to put an iframe on their page.
+Here's how you could invoke it with an iframe:
+
+```
+<iframe
+  height="1"
+  frameborder="0"
+  src="https://HOST/HTMLFILE?endpoint=PBSHOST&max_sync_count=5">
+>
+```
+Where:
+- HOST is the location where the HTMLFILE is stored
+- HTMLFILE can be load-cookie.html or load-cookie-with-consent.html, which interacts with an AMP-compatible CMP.
+- PBSHOST is the (encoded) main URL for your Prebid Server, e.g. https%3A%2F%2Fprebid-server.example.com%2Fcookie_sync
+
+Here are all the arguments supported:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+|----|-----|-----|-----|-------- |
+| endpoint | recommended | string | A URL-encoded pointer to Prebid Server | https%3A%2F%2Fprebid-server.example.com%2Fcookie_sync |
+| max_sync_count | optional | integer | How many syncs are allowed. See the userSyncLimit option above. | 5 |
+| bidders | optional(*) | string | Which bidders are in the page. Required if coop-sync is not on for Prebid Server. This is a URL-encoded comma-separate list of bidder codes. | bidderA%2CbidderB |
+| source | optional(*) | string | Recommended for AMP. If set to 'amp', will force the response to be pixels only. | amp |
+| gdpr | optional | integer | 0 if the request is in GDPR-scope, 1 if not. | 0 |
+| gdpr_consent | optional | string | TCF consent string | |
+| args | optional | string | Passed through to the /cookie_sync call query string. Used by some host companies. | |
+
+Note that enabling or disabling [Cooperative Sync](#cooperative-syncing) is not currently supported in load-cookie. Please make sure the account default is set up appropriately in PBS config.
 
 ## Further Reading
 

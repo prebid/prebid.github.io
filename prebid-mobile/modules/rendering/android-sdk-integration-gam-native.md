@@ -97,7 +97,7 @@ To create the event handler you should provide a GAM Ad Unit Id and the list of 
 
 **BannerView** - is a view that will display the particular ad. It should be added to the UI. To create it you should provide:
 
-- **configId** - an ID of Stored Impression on the Prebid server
+- **configId** - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
 - **eventHandler** - the instance of the banner event handler
 
 Also, you should add the instance of `BannerView` to the UI.

@@ -11,6 +11,9 @@ safeframes_ok: false
 prebid_member: true
 pbjs: true
 pbs: true
+schain_supported: true
+floors_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -25,8 +28,8 @@ pbs: true
 | `keywords`  | optional        | A key-value applied only to the configured bid. This value is optional. Strings separated by semicolon.  | `car=mercedes;car=audi;`                                                                                | `string`   |
 | `player`    | optional        | Object containing video targeting parameters. See [Video Object](#ra-video-object) for details.          | `player: {init: 'open', end: 'close', skin: 'dark'}`                                                    | `object`   |
 
+<a name="ra-video-object"></a>
 
-<a name="ra-video-object" />
 ### Video Object
 
 {: .table .table-bordered .table-striped }

@@ -53,7 +53,7 @@ For example, the default Prebid "low granularity" bucket is:
 The following config translates the "low granularity" bucket with a conversion rate of
 108 yen to 1 US dollar. It also defines the default conversion rate as being 110 yen to the dollar.
 
-{% highlight js %}
+```javascript
 pbjs.setConfig({
     "priceGranularity": "low",
     "currency": {
@@ -62,7 +62,7 @@ pbjs.setConfig({
        "defaultRates": { "USD": { "JPY": 110 }}
     }
 });
-{% endhighlight %}
+```
 
 This results in a granularity rule that's scaled up to make sense in Yen:
 
@@ -172,7 +172,7 @@ from USD to JPY is 110.
 
 Adding the currency module to a page is done with a call to the setConfig API with one or
 more parameters. The simplest recommended implementation would be:
-{% highlight js %}
+```javascript
 pbjs.setConfig({
     "currency": {
        "adServerCurrency": "JPY",
@@ -180,13 +180,13 @@ pbjs.setConfig({
        "defaultRates": { "USD": { "JPY": 110 }}
     }
 });
-{% endhighlight %}
+```
 
 {: .alert.alert-warning :}
 Note that the `defaultRates` attribute is optional, but recommended in case there's an issue loading the currency file.
 
 In this example, the publisher is providing their own `conversionRateFile`:
-{% highlight js %}
+```javascript
 pbjs.setConfig({
 "currency": {
       // enables currency feature
@@ -198,10 +198,10 @@ pbjs.setConfig({
       "defaultRates": { "USD": { "GPB": 0.75 }}
    }
 });
-{% endhighlight %}
+```
 And finally, here's an example where the conversion rate is specified right in the config, so
 the external file won't be loaded:
-{% highlight js %}
+```javascript
 pbjs.setConfig({
     "currency": {
        "adServerCurrency": "JPY",
@@ -209,7 +209,7 @@ pbjs.setConfig({
        "rates": { "USD": { "JPY": 110.21 }}
     }
 });
-{% endhighlight %}
+```
 
 
 ## Building the Prebid package with Currency Support
@@ -218,9 +218,9 @@ pbjs.setConfig({
 
 Follow the basic build instructions on the Gihub repo's main README. To include the module, an additional option must be added to the the gulp build command:
 
-{% highlight js %}
+```javascript
 gulp build --modules=currency,exampleBidAdapter
-{% endhighlight %}
+```
 
 This command will build the following files:
 
@@ -235,7 +235,7 @@ After testing, get your javascript file(s) out to your Content Delivery Network 
 
 Note that there are more dynamic ways of combining these components for publishers or integrators ready to build a more advanced infrastructure.
 
-<a name="currency-config-options" />
+<a name="currency-config-options"></a>
 
 ## Functions
 

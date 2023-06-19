@@ -38,24 +38,24 @@ granularities for banner and video
 #### Auto Granularity
 
 {: .table .table-bordered .table-striped }
-| CPM                 | 	Granularity                  |  Example |
+| CPM                 |     Granularity                  |  Example |
 |---------------------+----------------------------------+--------|
-| CPM <= $5            | 	$0.05 increments             | $1.87 floored to $1.85 |
-| CPM <= $10 and > $5  | 	$0.10 increments             | $5.09 floored to $5.00 |
-| CPM <= $20 and > $10 | 	$0.50 increments             | $14.26 floored to $14.00 |
-| CPM > $20           | 	Caps the price bucket at $20 | $24.82 floored to $20.00 |
+| CPM <= $5            |     $0.05 increments             | $1.87 floored to $1.85 |
+| CPM <= $10 and > $5  |     $0.10 increments             | $5.09 floored to $5.00 |
+| CPM <= $20 and > $10 |     $0.50 increments             | $14.26 floored to $14.00 |
+| CPM > $20           |     Caps the price bucket at $20 | $24.82 floored to $20.00 |
 
 <a name="denseGranularityBucket"></a>
 
 #### Dense Granularity
 
 {: .table .table-bordered .table-striped }
-| CPM        | 	Granularity                  | Example |
+| CPM        |     Granularity                  | Example |
 |------------+-------------------------------+---------|
-| CPM <= $3  | 	$0.01 increments             | $1.87 floored to $1.87 |
-| CPM <= $8 and >$3  | 	$0.05 increments             | $5.09 floored to $5.05 |
-| CPM <= $20 and >$8 | 	$0.50 increments             | $14.26 floored to $14.00 |
-| CPM >  $20 | 	Caps the price bucket at $20 | $24.82 floored to $20.00 |
+| CPM <= $3  |     $0.01 increments             | $1.87 floored to $1.87 |
+| CPM <= $8 and >$3  |     $0.05 increments             | $5.09 floored to $5.05 |
+| CPM <= $20 and >$8 |     $0.50 increments             | $14.26 floored to $14.00 |
+| CPM >  $20 |     Caps the price bucket at $20 | $24.82 floored to $20.00 |
 
 
 Please contact your Prebid Mobile host company for details about how to implement granularity.

@@ -7,6 +7,7 @@ description: Release Notes
 <div class="bs-docs-section" markdown="1">
 
 # Release Notes
+
 {:.no_toc}
 
 This page has links to release notes for each of the projects associated with Prebid.org.
@@ -14,6 +15,12 @@ This page has links to release notes for each of the projects associated with Pr
 ## Prebid.js
 
 + [Release notes on GitHub](https://github.com/prebid/Prebid.js/releases)
++ [Prebid.js 8 Release Notes](/dev-docs/pb8-notes.html)
++ [Prebid.js 7 Release Notes](/dev-docs/pb7-notes.html)
++ [Prebid.js 6 Blog Post](https://prebid.org/blog/prebid-6-0-release/)
++ [Prebid.js 5 Blog Post](https://prebid.org/blog/prebid-5-0-release/)
++ [Prebid.js 4 Blog Post](https://prebid.org/blog/prebid-js-release-4-0/)
++ [Prebid.js before 4.0](/prebid/prebidjsReleases.html)
 
 ## Prebid Server
 

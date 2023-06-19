@@ -49,7 +49,7 @@ The default logic used to find a matching Prebid.js bid for a GPT slot is
 | `bidViewability.customMatchFunction` | Optional | function(bid, slot) | this function will be used to find the matching winning bid for the GPT slot. See above for the default. |
 
 ## Example of setting module config
-{% highlight js %}
+```javascript
     pbjs.setConfig({
         bidViewability: {
             enabled: true,
@@ -60,14 +60,14 @@ The default logic used to find a matching Prebid.js bid for a GPT slot is
             }
         }
     });
-{% endhighlight %}
+```
 
 ## Example of consuming BID_VIEWABLE event
-{% highlight js %}
+```javascript
 	pbjs.onEvent('bidViewable', function(bid){
 		console.log('got bid details in bidViewable event', bid);
 	});
-{% endhighlight %}
+```
 
 ## Related Reading
 

@@ -11,8 +11,9 @@ schain_supported: true
 usp_supported: true
 safeframes_ok: false
 pbjs: true
-gvl_id: 52
+gvl_id: 165
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Registration
@@ -40,8 +41,7 @@ The SpotX adapter requires setup and approval from your Magnite account manager.
 | `position`           | optional | Number corresponding to the position of the ad. See SpotX documentation [here](https://developer.spotxchange.com/content/local/docs/sdkDocs/EASI/easi-integration.md#common-javascript-attributes)                                                                                                                         |                                                                                                                                                                                                      | `integer`   |
 | `page`               | optional | The URL of the page the ad is being displayed on. Used to override the detected referrer if necessary                                                                                                                          | `'https://www.spotx.tv'`                                                                                                                                                                                         | `string`   |
 
-
-<a name="spotx-outstream-options-object" />
+<a name="spotx-outstream-options-object"></a>
 
 #### outstream_options Object
 

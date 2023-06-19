@@ -12,8 +12,8 @@ prebid_member: true
 schain_supported: true
 gvl_id: 13
 floors_supported: true
-fpd_supported: true
 media_types: banner, video
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -27,36 +27,36 @@ media_types: banner, video
 Bid Params for video ads. These params should be added to `mediatype.video`.
 
 {: .table .table-bordered .table-striped }
-| Name             | Scope    | Description                                                                                                                    | Example         | Type            |
-|------------------|----------|--------------------------------------------------------------------------------------------------------------------------------|-----------------|-----------------|
-| `mimes`          | required | Content MIME types supported                                                                                                   | `['video/mp4']` | `string array`  |
-| `minduration`    | required | Minimum video ad duration in seconds                                                                                           | `5`             | `integer`       |
-| `maxduration`    | required | Maximum video ad duration in seconds                                                                                           | `10`            | `integer`       |
-| `protocols`      | optional | The array of supported video protocols                                                                                         | `[1, 2]`        | `integer array` |
-| `w`              | optional | Width of the video player in device independent pixels (DIPS)                                                                  | `5`             | `integer`       |
-| `h`              | optional | Height of the video player in device independent pixels (DIPS)                                                                 | `5`             | `integer`       |
-| `startdelay`     | optional | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements                                        | `5`             | `integer`       |
-| `placement`      | optional | Placement type for the impression. Refer to List 5.9                                                                           | `5`             | `integer`       |
-| `linearity`      | optional | Indicates if the impression must be linear, nonlinear, etc. Allowed by default                                                 | `0`             | `integer`       |
-| `skip`           | optional | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes                                              | `0`             | `integer`       |
-| `skipmin`        | optional | Only if the ad is skippable. Videos of total duration greater than this number of seconds can be skippable                     | `5`             | `integer`       |
-| `skipafter`      | optional | Only if the ad is skippable. Number of seconds a video must play before skipping is enabled                                    | `5`             | `integer`       |
-| `sequence`       | optional | For multiple ad in the same bid request. This value allow will for the coordinated delivery of multiple ad                     | `5`             | `integer`       |
-| `battr`          | optional | Blocked creative attributes                                                                                                    | `[1]`           | `integer array` |
-| `maxextended`    | optional | Max extended ad duration beyond the maxduration if extension is allowed. Blank or 0 - blocked. -1 - allowed without time limit | `5`             | `integer`       |
-| `minbitrate`     | optional | Minimum bit rate in Kbps                                                                                                       | `5`             | `integer`       |
-| `maxbitrate`     | optional | Maximum bit rate in Kbps                                                                                                       | `5`             | `integer`       |
-| `boxingallowed`  | optional | Indicates if letter-boxing of 4:3 content into a 16:9 window is allowed, where 0 = no, 1 = yes                                 | `5`             | `integer`       |
-| `playbackmethod` | optional | Playback methods that may be in use. See [Video Playback Methods](#video-playback-methods)                                     | `[1]`           | `integer array` |
-| `playbackend`    | optional | The event that causes playback to end. Refer to Playback Cessation Modes                                                       | `5`             | `integer`       |
-| `delivery`       | optional | Supported delivery methods (1 = streaming, 2 = progressive, 3 = download). If none specified, assume all are supported.        | `[1, 2]`        | `integer array` |
-| `pos`            | optional | Ad position on screen. Refer to [Ad Position](#ad-position)                                                                    | `5`             | `integer`       |
-| `api`            | optional | List of supported API frameworks for this impression. Refer to [API Frameworks](api-frameworks)                                | `[1, 2, 3]`     | `integer array` |
+| Name             | Scope       | Description                                                                                                                    | Example         | Type            |
+|------------------|-------------|--------------------------------------------------------------------------------------------------------------------------------|-----------------|-----------------|
+| `mimes`          | required    | Content MIME types supported                                                                                                   | `['video/mp4']` | `string array`  |
+| `minduration`    | required    | Minimum video ad duration in seconds                                                                                           | `5`             | `integer`       |
+| `maxduration`    | required    | Maximum video ad duration in seconds                                                                                           | `10`            | `integer`       |
+| `protocols`      | required    | The array of supported video protocols                                                                                         | `[1, 2]`        | `integer array` |
+| `w`              | recommended | Width of the video player in device independent pixels (DIPS)                                                                  | `5`             | `integer`       |
+| `h`              | recommended | Height of the video player in device independent pixels (DIPS)                                                                 | `5`             | `integer`       |
+| `startdelay`     | recommended | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements                                        | `5`             | `integer`       |
+| `placement`      | recommended | Placement type for the impression. Refer to List 5.9                                                                           | `5`             | `integer`       |
+| `linearity`      | recommended | Indicates if the impression must be linear, nonlinear, etc. Allowed by default                                                 | `0`             | `integer`       |
+| `skip`           | optional    | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes                                              | `0`             | `integer`       |
+| `skipmin`        | optional    | Only if the ad is skippable. Videos of total duration greater than this number of seconds can be skippable                     | `5`             | `integer`       |
+| `skipafter`      | optional    | Only if the ad is skippable. Number of seconds a video must play before skipping is enabled                                    | `5`             | `integer`       |
+| `sequence`       | optional    | For multiple ad in the same bid request. This value allow will for the coordinated delivery of multiple ad                     | `5`             | `integer`       |
+| `battr`          | optional    | Blocked creative attributes                                                                                                    | `[1]`           | `integer array` |
+| `maxextended`    | optional    | Max extended ad duration beyond the maxduration if extension is allowed. Blank or 0 - blocked. -1 - allowed without time limit | `5`             | `integer`       |
+| `minbitrate`     | optional    | Minimum bit rate in Kbps                                                                                                       | `5`             | `integer`       |
+| `maxbitrate`     | optional    | Maximum bit rate in Kbps                                                                                                       | `5`             | `integer`       |
+| `boxingallowed`  | optional    | Indicates if letter-boxing of 4:3 content into a 16:9 window is allowed, where 0 = no, 1 = yes                                 | `5`             | `integer`       |
+| `playbackmethod` | optional    | Playback methods that may be in use. See [Video Playback Methods](#video-playback-methods)                                     | `[1]`           | `integer array` |
+| `playbackend`    | optional    | The event that causes playback to end. Refer to Playback Cessation Modes                                                       | `5`             | `integer`       |
+| `delivery`       | optional    | Supported delivery methods (1 = streaming, 2 = progressive, 3 = download). If none specified, assume all are supported.        | `[1, 2]`        | `integer array` |
+| `pos`            | recommended | Ad position on screen. Refer to [Ad Position](#ad-position)                                                                    | `5`             | `integer`       |
+| `api`            | recommended | List of supported API frameworks for this impression. Refer to [API Frameworks](#sovrn-api-frameworks)                               | `[1, 2, 3]`     | `integer array` |
  
 
 ### Note
 
-[Protocols list](https://docs.prebid.org/dev-docs/bidders/conversant.html#protocols)
+[Protocols list](#epsilon-protocols)
 
 #### MIME types:
 
@@ -106,6 +106,7 @@ video/3gpp
 | `6`   | Sidebar        |
 | `7`   | Full Screen    |
 
+<a id="sovrn-api-frameworks"></a>
 #### API Frameworks:
 
 {: .table .table-bordered .table-striped }

@@ -9,10 +9,11 @@ media_types: banner, video, native
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
-fpd_supported: true
 gvl_id: 511
 userIds: AdmixerID
 prebid_member: true
+floors_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params

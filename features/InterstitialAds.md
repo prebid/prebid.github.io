@@ -46,7 +46,7 @@ The Prebid Interstitial flag reflects the OpenRTB standard, specifying it at the
 
 If an attribute is specific to an AdUnit, it can be passed this way:
 
-{% highlight js %}
+```javascript
 pbjs.addAdUnits({
     code: "test-div",
     mediaTypes: {
@@ -61,7 +61,7 @@ pbjs.addAdUnits({
       ... bidders that support interstitials ...
     ]
 });
-{% endhighlight %}
+```
 
 
 
@@ -69,12 +69,21 @@ pbjs.addAdUnits({
 
 To access global data, a Prebid.js bid adapter needs only to retrieve the interstitial flag from the adUnit like this:
 
-{% highlight js %}
+```javascript
 utils.deepAccess(bidRequest.ortb2Imp, 'instl')
-{% endhighlight %}
+```
 
 
 The assumption is that bid adapters will copy the values to the appropriate protocol location for their endpoint.
+
+## Billing Deferral
+
+Optimizing when billing occurs for an interstitial ad can sometimes be tricky.  The following built-in Prebid.js functionality can help assist with this:
+- Bid adapters can provide a method called `onBidBillable(bid)` which will be invoked by Prebid.js when it deems a bid to be billable (Note: A bid adapter must have the onBidBillable method configured for this to work).
+- When a bid wins, it is by default also billable. That is, by default, Prebid.js will invoke the bid adapter methods onBidWon and onBidBillable one after the other.
+- A publisher can flag individual adUnits as being separately billable with the following configuration: `pbjs.addAdUnits({deferBilling: true, ...})`
+- Winning bids for adUnits with deferBilling set to true will trigger a bid adapters onBidWon method but not their onBidBillable method.
+- Finally, when appropriate (e.g. an interstitial is displayed), the publisher may call `pbjs.triggerBilling(winningBidObjectToBill)` with the winning bid to be billed, which would trigger a bid adapters onBidBillable method.
 
 ## Related Topics
 

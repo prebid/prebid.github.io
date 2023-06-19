@@ -37,7 +37,8 @@ Check the bid prices. If they are low and are getting reduced to $0 due to price
 ## Related Reading
 {:toc}
 
-+ [Prebid.js FAQ](/dev-docs/faq.html)
-+ [Prebid Tips for Troubleshooting](/troubleshooting/troubleshooting-guide.html)
+- [Prebid.js FAQ](/dev-docs/faq.html)
+- [Prebid Tips for Troubleshooting](/troubleshooting/troubleshooting-guide.html)
+- [Price Granularity](/adops/price-granularity.html)
 
 

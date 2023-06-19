@@ -7,8 +7,10 @@ pbs: true
 biddercode: adman
 gdpr_supported: true
 usp_supported: true
+schain_supported: true
 media_types: banner, video, native
-userIds: uid2, lotamePanoramaId
+userIds: uid2, lotamePanoramaId, idx
+sidebarType: 1
 ---
 
 ### Note:

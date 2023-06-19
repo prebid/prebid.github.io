@@ -17,6 +17,9 @@ sidebarType : 1
 
 ## Overview
 
+{: .alert.alert-warning :}
+This module does not exist in PBJS 8.0 or later.
+
 This module enables the MASS protocol for Prebid. To use it, you'll need to
 work with a MASS enabled provider.
 
@@ -28,7 +31,6 @@ This modules is designed to work with MASS enabled Exchanges and DSP's.
 This module only loads external JavaScript resources if the publisher ad server has 
 selected a MASS enabled bid as a winner. 
 
-Find out more [here](https://massplatform.net).
 
 {: .alert.alert-warning :}
 ## Disclosure
@@ -71,6 +73,7 @@ pbjs.que.push(function() {
 
 ### Configuration Parameters
 
+{: .table .table-bordered .table-striped }
 |Name |Type |Description |Notes |
 | :------------ | :------------ | :------------ |:------------ |
 |enabled | Boolean |Enable/disable the module |Defaults to `true` |

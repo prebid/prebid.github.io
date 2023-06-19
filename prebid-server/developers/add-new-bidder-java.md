@@ -19,7 +19,7 @@ This document guides you through the process of developing a new bid adapter for
 **NOTE:** There are two implementations of Prebid Server, [PBS-Go](https://github.com/prebid/prebid-server) and [PBS-Java](https://github.com/prebid/prebid-server-java). We recommend you build new adapters for PBS-Go and allow us to port it to PBS-Java within a couple of months.
 
 
-## Overview
+## Introduction
 
 Bid adapters are responsible for translating an [OpenRTB 2.5 Bid Request](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=13) to your bidding server's protocol and mapping your server's response to an [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=32).
 
@@ -29,7 +29,7 @@ An OpenRTB 2.5 Bid Request contains one or more Impressions, each representing a
 
 ### Choose A Name
 
-You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `general`, `context`, or `prebid` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder).
+You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `data`, `general`, `prebid`, `skadn` or `tid` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder).
 
 We ask that the first 6 letters of the name you choose be unique among the existing bid adapters. This consideration helps with generating targeting keys for use by some ad exchanges, such as Google Ad Manager.
 
@@ -39,13 +39,16 @@ Throughout the rest of this document, substitute `{bidder}` with the name you've
 
 We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://prebid.org/code-of-conduct/) and [module rules](/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
 
-**Please take the time to read our rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
-- Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
-- Adapters must use the functions provided by the core framework for all external communication. Initiation of any form of network connection outside of what is provided by the core framework is strictly prohibited. No exceptions will be made for this rule.
-- Adapters must support the creation of multiple concurrent instances. This means adapters may not mutate global or package scoped variables.
-- Bidding server endpoints should prefer secure HTTPS to protect user privacy and should allow keep alive connections (preferably with HTTP/2 support) to increase host performance.
-- Adapters must include maintainer information with a group email address for Prebid.org to contact for ongoing support and maintenance.
-- Adapters must annotate the bid response with the proper media type, ideally based on the response from the bidding server.
+**Please take the time to read the rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
+  - Adapters must include maintainer information with a group email address for Prebid.org to contact for ongoing support and maintenance.
+  - Your bidder's endpoint domain name cannot be variable. If you want to have different endpoints in different geographical locations, Prebid Server host companies can do that for you. Publisher information can be in the query string, but not the domain.
+  - If you have a client-side adapter, all parameters (including biddercodes and aliases) must be consistent between your client- and server-side adapters. This allows publishers to utilize the PBJS [s2sTesting module](/dev-docs/modules/s2sTesting.html).
+  - Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
+  - Adapters must use the functions provided by the core framework for all external communication. Initiation of any form of network connection outside of what is provided by the core framework is strictly prohibited. No exceptions will be made for this rule.
+  - Adapters must support the creation of multiple concurrent instances. This means adapters may not mutate global or package scoped variables.
+  - Bidding server endpoints should prefer secure HTTPS to protect user privacy and should allow keep alive connections (preferably with HTTP/2 support) to increase host performance.
+  - Adapters must annotate the bid response with the proper media type, ideally based on the response from the bidding server.
+  - Bid adapters must not create their own transaction IDs or overwrite the tids supplied by Prebid.
 
 {: .alert.alert-warning :}
 Failure to follow the rules will lead to delays in approving your adapter for inclusion in Prebid Server. If you'd like to discuss an exception to a rule, please make your request by [submitting a GitHub issue](https://github.com/prebid/prebid-server-java/issues/new).
@@ -83,6 +86,7 @@ Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with th
 adapters:
   yourBidderCode:
     endpoint: http://possible.endpoint
+    endpoint-compression: gzip (or none)
     meta-info:
       maintainer-email: maintainer@email.com
       app-media-types:
@@ -98,11 +102,15 @@ adapters:
       supported-vendors:
       vendor-id: your_vendor_id
     usersync:
-      url: your_bid_adapter_usersync_url
-      redirect-url: /setuid?bidder=yourBidderCode&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}
       cookie-family-name: yourBidderCode
-      type: redirect
-      support-cors: false
+      iframe:
+        url: https://some-bidder-domain.com/usersync-url?gdpr={{gdpr}}&consent={{gdpr_consent}}&us_privacy={{us_privacy}}&redirect={{redirect_url}}
+        uid-macro: 'YOURMACRO'
+        support-cors: false
+      redirect:
+        url: https://some-bidder-domain.com/usersync-url?gdpr={{gdpr}}&consent={{gdpr_consent}}&us_privacy={{us_privacy}}&redirect={{redirect_url}}
+        uid-macro: 'YOURMACRO'
+        support-cors: false
 ```
 
 Modify this template for your bid adapter:
@@ -110,17 +118,24 @@ Modify this template for your bid adapter:
 - Change the `modifying-vast-xml-allowed` value to `false` if you'd like to opt out of video impression tracking. It defaults to `true`.
 - Change the `pbs-enforces-ccpa` to `false` if you'd like to disable ccpa enforcement. Defaults to `true`.
 - Change the `vendor-id` value to id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/). Leave this as `0` if you are not registered with IAB Europe.
+- Choose the `supported-vendors` constants: These constants should be unique. The list of existing vendor constants can be found [here](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/bidder/ViewabilityVendors.java).
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
-- Change the `cookie-family-name` to the name which will be used for storing your user sync id within the federated cookie. Please keep this the same as your bidder name.
-  If you implemented a user syncer, you'll need to provide a default endpoint.
-  The user sync endpoint is composed of two main parts, the url of your user syncer and a redirect back(redirect-url) to Prebid Server. The url of your user syncer is responsible for reading the user id from the client's cookie and redirecting to Prebid Server with a user id macro resolved.
+- If your auction endpoint supports gzip compression, setting 'endpoint-compression' to 'gzip' will save on network fees.
 
-The url of your user syncer can make use of the following privacy policy macros which will be resolved by Prebid Server before sending the url to your server:
+If you does not support user syncing, you can remove `usersync` section of configuration.
+- Change the `cookie-family-name` to the name which will be used for storing your user sync id within the federated cookie. Please keep this the same as your bidder name.
+- Choose appropriate section for your usersync type(iframe/redirect). If both iframe and redirect endpoints are provided, the iframe endpoint will be used by default.
+
+In appropriate usersync section:
+- Change the `url` to url of your usersync endpoint
+- Change the `uid-macro` to macro that will be placed in callback endpoint, to be resolved by your usersyncer. Defaults to empty string. 
+- Change the `support-cors` to true if your endpoint supports cors.
+
+The url of your user syncer can make use of the following macros which will be resolved by Prebid Server before sending the url to your server:
 - `{%raw%}{{us_privacy}}{%endraw%}`: Client's CCPA consent string.
 - `{%raw%}{{gdpr}}{%endraw%}`: Client's GDPR TCF enforcement flag.
 - `{%raw%}{{gdpr_consent}}{%endraw%}`: Client's GDPR TCF consent string.
-
-- Change the `usersync:type` value to `redirect` or `iframe` specific to your bidder.
+- `{%raw%}{{redirect_url}}{%endraw%}`: Url to redirect back to Prebid Server.
 
 ### Default bidder configuration
 
@@ -172,6 +187,11 @@ to declare alias of an alias).
 However aliases could narrow down media types they support.<br />
 For example: if the bidder is written to not support native site requests, then an alias cannot magically decide to change that;
 However, if a bidder supports native site requests, and the alias does not want to for some reason, it has the ability to remove that support.
+
+{: .alert.alert-info :}
+Note on aliases and TCF Global Vendor List IDs: if an alias entry does not have its own GVLID but wishes to claim GDPR support,
+the documentation entry (The file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) must list the GVLID of the main adapter with that company's name in parentheses.
+Look for other doc entries containing an `aliasCode` metadata entry.
 
 ### Bidder Parameters
 
@@ -342,7 +362,7 @@ Now it's time to write the bulk of your bid adapter code.
 Each adapter has its own directory (a 'package' in java parlance) for all code and tests associated with translating an OpenRTB 2.5 Bid Request to your bidding server's protocol and mapping your server's response to an OpenRTB 2.5 Bid Response. The use of separate packages provide each adapter with its own naming scope to avoid conflicts and gives the freedom to organize files as you best see fit (although we make suggestions in this guide).
 
 Create a file with the path `org.prebid.server.bidder.{bidder}/{bidder}Bidder.java`. Your bid adapter code will need to implement Bidder<T> interface where `T` is a model which will represent HttpRequest body.
-- The `Bidder<T>` interface consisting of the `MakeRequests` method to create outgoing requests to your bidding server and the `MakeBids` method to create bid responses.
+- The `Bidder<T>` interface consisting of the `MakeHttpRequests` method to create outgoing requests to your bidding server and the `MakeBids` method to create bid responses.
 
 Here is a reference implementation for a bidding server which uses the OpenRTB 2.5 protocol:
 
@@ -389,20 +409,20 @@ public class {bidder}Bidder implements Bidder<BidRequest> {
     @Override
     public Result<List<HttpRequest<BidRequest>>> makeHttpRequests(BidRequest request) {
 
-        return Result.of(Collections.singletonList(HttpRequest.<BidRequest>builder()
+        return Result.withValue(HttpRequest.<BidRequest>builder()
                 .method(HttpMethod.POST)
                 .uri(endpointUrl)
                 .headers(HttpUtil.headers())
                 .payload(request)
                 .body(mapper.encode(request))
-                .build()), Collections.emptyList());
+                .build()));
     }
 
     @Override
     public final Result<List<BidderBid>> makeBids(HttpCall<BidRequest> httpCall, BidRequest bidRequest) {
         try {
             final BidResponse bidResponse = mapper.decodeValue(httpCall.getResponse().getBody(), BidResponse.class);
-            return Result.of(extractBids(httpCall.getRequest().getPayload(), bidResponse), Collections.emptyList());
+            return Result.withValues(extractBids(httpCall.getRequest().getPayload(), bidResponse));
         } catch (DecodeException | PreBidException e) {
             return Result.withError(BidderError.badServerResponse(e.getMessage()));
         }
@@ -447,9 +467,9 @@ public class {bidder}Bidder implements Bidder<BidRequest> {
 ```
 
 
-#### MakeRequests
+#### MakeHttpRequests
 
-The `MakeRequests` method is responsible for returning zero or more HTTP requests to be sent to your bidding server. Bid adapters are forbidden from directly initiating any form of network communication and must entirely rely upon the core framework. This allows the core framework to optimize outgoing connections using a managed pool and record networking metrics. The return type `adapters.RequestData` allows your adapter to specify the HTTP method, url, body, and headers.
+The `MakeHttpRequests` method is responsible for returning zero or more HTTP requests to be sent to your bidding server. Bid adapters are forbidden from directly initiating any form of network communication and must entirely rely upon the core framework. This allows the core framework to optimize outgoing connections using a managed pool and record networking metrics. The return type `adapters.RequestData` allows your adapter to specify the HTTP method, url, body, and headers.
 
 This method is called once by the core framework for bid requests which have at least one valid Impression for your adapter. Impressions not configured for your adapter will be removed and are not accessible.
 
@@ -471,7 +491,7 @@ The argument, `request`, is the OpenRTB 2.5 Bid Request object. Extension inform
 </details>
 <p></p>
 
-The `MakeRequests` method is expected to return a  `List<HttpRequest<BidRequest>` object representing the HTTP calls to be sent to your bidding server and a `List<BidderError> errors` for any issues encountered creating them. If there are no HTTP calls or if there are no errors, please use different methods in `Result` class specific to your case.
+The `MakeHttpRequests` method is expected to return a  `List<HttpRequest<BidRequest>` object representing the HTTP calls to be sent to your bidding server and a `List<BidderError> errors` for any issues encountered creating them. If there are no HTTP calls or if there are no errors, please use different methods in `Result` class specific to your case.
 
 An Impression may define multiple sizes and/or multiple ad formats. If your bidding server limits requests to a single ad placement, size, or format, then your adapter will need to split the Impression into multiple calls and merge the responses.
 
@@ -609,32 +629,52 @@ Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.
 
 <p></p>
 
-### Simple Bidder Creation
-Remember if your bidder does not have much specific logic beyond standard OpenRTB 2.5, you don't have to implement `Bidder<BidRequest>`
-but could choose to extend OpenrtbBidder<T>(where T is ImpExt type), which already implements Bidder<BidRequest> and has a default implementation of different methods. You can override each of them with your own implementation as needed.
+#### Better Analytics 
 
-Here is the list of methods in OpenrtbBidder which you can override:
+The [seatnonbid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) feature allows analytics adapters to piece together what happened in the auction when there's not a bid. This can be helpful to everyone involved: the publisher can get insight into why a bidder might not be bidding, which might lead them to update bid parameters or otherwise fix a setup problem.
 
-1) `void validateRequest(BidRequest bidRequest)`
-    - A hook for bidder-specific request validation if any is required.
+To implement this enhanced analytics, bidders just need to link errors and non-bids to a specific impression id:
 
+1. Provide impression ids that are covered by particular http request to bidder endpoint:
+   When bidder creates http requests in `makeHttpRequests` method of bidder adapter class, utilize `.impIds(Set<String>)` method of `HttpRequest<T>` class. (hint, if bidder uses ortb as its main protocol it can utilize `impIds` method of `BidderUtil` class), for example:</br>
+   ```java 
+   HttpRequest.<BidRequest>builder()
+       .method(HttpMethod.POST)
+       .uri(uri)
+       .body(mapper.encodeToBytes(bidRequest))
+       .headers(headers)
+       .payload(bidRequest)
+       .impIds(BidderUtil.impIds(bidRequest))
+       .build();
+   ```
+   or more generic case:</br>
+    ```java 
+    HttpRequest.<YourModel>builder()
+        .method(HttpMethod.POST)
+        .uri(uri)
+        .body(mapper.encodeToBytes(bidRequest))
+        .headers(headers)
+        .payload(bidRequest)
+        .impIds(Set.of(impId1, impId2))
+        .build();
+    ```
 
-2) `Imp modifyImp(Imp imp, T impExt)`
-    - A hook for bidder-specific impression changes, impression validation and impression extension validation if any are required
+2. When bidder drops impression in `makeHttpRequests` or bid in `makeBids` methods in bidder adapter class, and emits error, it should provide ids of impressions that particular error covers. Bidder adapter can do this by utilizing `BidderError.of(String message, Type type, Set<String> impIds)` method of `BidderError` class, or by creating/using specialized methods of this class, for example:
+   ```java 
+   BidderError.rejectedIpf(
+       "Bid with id '%s' was rejected by floor enforcement: price %s is below the floor %s"
+       .formatted(bid.getId(), price, floor), impId);
+   ```
 
+   (Note: list of specialized methods like this will increase as needed, but bidders can contribute by extending this list.)</br></br>or more generic case:</br>
+    ```java 
+    BidderError.of(
+        "Impression with id '%s' was dropped due to ...".formatted(impId),
+        BidderError.Type.bad_input,
+        Collections.sinleton(impId));
+    ```
 
-3) `void modifyRequest(BidRequest bidRequest, BidRequest.BidRequestBuilder requestBuilder, List<ImpWithExt<T>> impsWithExts)`
-    - A hook for any request changes other than Imps (although Impressions can be modified as well)
-
-
-4) `BidType getBidType(String impId, List<Imp> imps)`
-    - A hook for resolving bidder-specific bid type.
-
----
-Using this class(OpenrtbBidder), you can define whether the outgoing
-requests can contain multiple impressions (`RequestCreationStrategy.SINGLE_REQUEST`) or whether each each request should have only one impression (`RequestCreationStrategy.REQUEST_PER_IMP`). Pass this value to parent constructor as the second argument.
-
-Check the class file to find which methods are overridable.
+Note: If bidder provides PBS with impression id that was not present in provided `BidRequest`, PBS will just ignore it.
 
 ### Create Config Class 
 
@@ -648,13 +688,9 @@ import org.prebid.server.bidder.BidderDeps;
 import org.prebid.server.bidder.{bidder}.{bidder}Bidder;
 import org.prebid.server.json.JacksonMapper;
 import org.prebid.server.spring.config.bidder.model.BidderConfigurationProperties;
-import org.prebid.server.spring.config.bidder.model.UsersyncConfigurationProperties;
 import org.prebid.server.spring.config.bidder.util.BidderDepsAssembler;
-import org.prebid.server.spring.config.bidder.util.BidderInfoCreator;
 import org.prebid.server.spring.config.bidder.util.UsersyncerCreator;
 import org.prebid.server.spring.env.YamlPropertySourceFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -668,18 +704,7 @@ import javax.validation.constraints.NotBlank;
 public class {bidder}Configuration {
 
     private static final String BIDDER_NAME = "{bidder}";
-
-    @Value("${external-url}")
-    @NotBlank
-    private String externalUrl;
-
-    @Autowired
-    private JacksonMapper mapper;
-
-    @Autowired
-    @Qualifier("{bidder}ConfigurationProperties")
-    private BidderConfigurationProperties configProperties;
-
+    
     @Bean("{bidder}ConfigurationProperties")
     @ConfigurationProperties("adapters.{bidder}")
     BidderConfigurationProperties configurationProperties() {
@@ -687,14 +712,14 @@ public class {bidder}Configuration {
     }
 
     @Bean
-    BidderDeps {bidder}BidderDeps() {
-        final UsersyncConfigurationProperties usersync = configProperties.getUsersync();
-
+    BidderDeps{bidder}BidderDeps(BidderConfigurationProperties {bidder}ConfigurationProperties,
+                                  @NotBlank @Value("${external-url}") String externalUrl,
+                                  JacksonMapper mapper) {
+        
         return BidderDepsAssembler.forBidder(BIDDER_NAME)
-                .withConfig(configProperties)
-                .bidderInfo(BidderInfoCreator.create(configProperties))
-                .usersyncerCreator(UsersyncerCreator.create(usersync, externalUrl))
-                .bidderCreator(() -> new {bidder}Bidder(configProperties.getEndpoint(), mapper))
+                .withConfig({bidder}ConfigurationProperties)
+                .usersyncerCreator(UsersyncerCreator.create(externalUrl))
+                .bidderCreator(config -> new {bidder}Bidder(config.getEndpoint(), mapper))
                 .assemble();
     }
 }
@@ -765,6 +790,100 @@ public {bidder}Bidder(String endpointUrl,  CurrencyConversionService currencyCon
 </details>
 <p></p>
 
+### Price Floors
+
+Prebid server manages the OpenRTB floors values (imp.bidfloor and imp.bidfloorcur) at the core level using the [Price Floors feature](/prebid-server/features/pbs-floors.html). Minimally, bid adapters are expected to read these values and pass them to the endpoint.
+
+However, as described in the feature documentation, some adapters may benefit from access to more granular values. The primary use case is for multi-format as [detailed in the document](/prebid-server/features/pbs-floors.html#bid-adapter-floor-interface). To implement this, you may use the overloaded `getFloor()` function which can use more specific values for certain fields.
+
+Here are the instructions:
+
+1) Inject `PriceFloorResolver` to your {bidder}Configuration class and pass it to your bidder constructor.
+
+```java
+BidderDeps {bidder}BidderDeps(BidderConfigurationProperties {bidder}ConfigurationProperties,
+                              @NotBlank @Value("${external-url}") String externalUrl,
+                              PriceFloorResolver floorResolver,
+                              JacksonMapper mapper) {
+
+...
+
+.bidderCreator(() -> new {bidder}Bidder(configProperties.getEndpoint(), floorResolver, mapper))
+```
+
+2) Create an additional class variable `private final PriceFloorResolver floorResolver` and update constructor in your {bidder}Bidder class to set this variable.
+
+```java
+private final PriceFloorResolver floorResolver;
+private final String endpointUrl;
+private final JacksonMapper mapper;
+
+public {bidder}Bidder(String endpointUrl, PriceFloorResolver floorResolver, JacksonMapper mapper) {
+        this.endpointUrl = HttpUtil.validateUrl(Objects.requireNonNull(endpointUrl));
+        this.floorResolver = Objects.requireNonNull(floorResolver);
+        this.mapper = Objects.requireNonNull(mapper);
+    }
+```
+
+3) Use `floorResolver.resolve(BidRequest bidRequest,
+   PriceFloorRules floorRules,
+   Imp imp,
+   ImpMediaType mediaType,
+   Format format,
+   List<String> warnings)` for resolving specific floor values in your {bidder}Bidder class.
+
+<details markdown="1">
+  <summary>Example: Updating bidFloor values.</summary>
+
+```java
+  private Imp makeImp(Imp imp, BidRequest bidRequest) {
+        final PriceFloorResult priceFloorResult = resolvePriceFloors(
+                bidRequest, 
+                imp,                        // com.iab.openrtb.request.Imp
+                specificMediatype,          // org.prebid.server.proto.openrtb.ext.request.ImpMediaType
+                specificFormat,             // com.iab.openrtb.request.Format (size)
+                priceFloorsWarnings);
+                
+        return imp.toBuilder()
+                .bidfloor(ObjectUtil.getIfNotNull(priceFloorResult, PriceFloorResult::getFloorValue))
+                .bidfloorcur(ObjectUtil.getIfNotNull(priceFloorResult, PriceFloorResult::getCurrency))
+                .build();
+    }
+    
+  private PriceFloorResult resolvePriceFloors(BidRequest bidRequest,
+                                                Imp imp,
+                                                ImpMediaType mediaType,
+                                                Format format,
+                                                List<String> warnings) {
+
+        return floorResolver.resolve(
+                bidRequest,
+                extractFloorRules(bidRequest),
+                imp,
+                mediaType,
+                format,
+                warnings);
+    }
+```
+</details>
+
+4) Let the Price Floors feature know about the floors you're using. To do that, enrich BidderBid with `priceFloorInfo`
+
+```java
+private static BidderBid createBidderBid(Bid bid, Imp imp, BidType bidType, String currency) {
+
+        return BidderBid.builder()
+                .bid(bid)
+                .type(bidType)
+                .bidCurrency(currency)
+                .priceFloorInfo(imp != null ? PriceFloorInfo.of(imp.getBidfloor(), imp.getBidfloorcur()) : null)
+                .build();
+    }
+```
+<p></p>
+
+2. Test: 
+
 ## Test Your Adapter
 
 This chapter will guide you through the creation of automated unit and integration tests to cover your bid adapter code. We use GitHub Action Workflows to ensure the code you submit passes validation. You can run the same validation locally with this command:
@@ -783,25 +902,25 @@ Try to create models by using following methods specified to your case in your t
 
 ```java
 private static BidRequest givenBidRequest(
-            Function<BidRequest.BidRequestBuilder, BidRequest.BidRequestBuilder> bidRequestCustomizer,
-            Function<Imp.ImpBuilder, Imp.ImpBuilder> impCustomizer) {
+            UnaryOperator<BidRequest.BidRequestBuilder> bidRequestCustomizer,
+            UnaryOperator<Imp.ImpBuilder> impCustomizer) {
 
         return bidRequestCustomizer.apply(BidRequest.builder()
                 .imp(singletonList(givenImp(impCustomizer))))
                 .build();
     }
 
-    private static BidRequest givenBidRequest(Function<Imp.ImpBuilder, Imp.ImpBuilder> impCustomizer) {
+    private static BidRequest givenBidRequest(UnaryOperator<Imp.ImpBuilder> impCustomizer) {
         return givenBidRequest(identity(), impCustomizer);
     }
 
-    private static Imp givenImp(Function<Imp.ImpBuilder, Imp.ImpBuilder> impCustomizer) {
+    private static Imp givenImp(UnaryOperator<Imp.ImpBuilder> impCustomizer) {
         return impCustomizer.apply(Imp.builder()
                 .ext(mapper.valueToTree(ExtPrebid.of(null, ExtImp{bidder}.of(param, secondParam)))))
                 .build();
     }
 
-    private static BidResponse givenBidResponse(Function<Bid.BidBuilder, Bid.BidBuilder> bidCustomizer) {
+    private static BidResponse givenBidResponse(UnaryOperator<Bid.BidBuilder> bidCustomizer) {
         return BidResponse.builder()
                 .seatbid(singletonList(SeatBid.builder().bid(singletonList(bidCustomizer.apply(Bid.builder()).build()))
                         .build()))
@@ -1106,8 +1225,6 @@ import io.restassured.response.Response;
 import org.json.JSONException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
@@ -1117,7 +1234,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
-import static io.restassured.RestAssured.given;
 import static java.util.Collections.singletonList;
 
 @RunWith(SpringRunner.class)
@@ -1127,8 +1243,6 @@ public class {bidder}Test extends IntegrationTest {
     public void openrtb2AuctionShouldRespondWithBidsFrom{bidder}() throws IOException, JSONException {
         // given
         WIRE_MOCK_RULE.stubFor(post(urlPathEqualTo("/{bidder}-exchange"))
-                .withHeader("Accept", equalTo("application/json"))
-                .withHeader("Content-Type", equalTo("application/json;charset=UTF-8"))
                 .withRequestBody(equalToJson(jsonFrom("openrtb2/{bidder}/test-{bidder}-bid-request.json")))
                 .willReturn(aResponse().withBody(jsonFrom("openrtb2/{bidder}/test-{bidder}-bid-response.json"))));
 
@@ -1138,22 +1252,11 @@ public class {bidder}Test extends IntegrationTest {
                 .willReturn(aResponse().withBody(jsonFrom("openrtb2/{bidder}/test-cache-{bidder}-response.json"))));
 
         // when
-        final Response response = given(SPEC)
-                .header("Referer", "http://www.example.com")
-                .header("X-Forwarded-For", "193.168.244.1")
-                .header("User-Agent", "userAgent")
-                .header("Origin", "http://www.example.com")
-                // this uids cookie value stands for {"uids":{"{bidder}":"BTW-UID"}}
-                .cookie("uids", "eyJ1aWRzIjp7ImJldHdlZW4iOiJCVFctVUlEIn19")
-                .body(jsonFrom("openrtb2/{bidder}/test-auction-{bidder}-request.json"))
-                .post("/openrtb2/auction");
+        final Response response = responseFor("openrtb2/{bidder}/test-auction-{bidder}-request.json",
+                Endpoint.OPENRTB2_AUCTION);
 
         // then
-        final String expectedAuctionResponse = openrtbAuctionResponseFrom(
-                "openrtb2/{bidder}/test-auction-{bidder}-response.json",
-                response, singletonList("{bidder}"));
-
-        JSONAssert.assertEquals(expectedAuctionResponse, response.asString(), JSONCompareMode.NON_EXTENSIBLE);
+        assertJsonEquals("openrtb2/{bidder}/test-auction-{bidder}-response.json", response, singletonList("{bidder}"));
     }
 }
 
@@ -1176,8 +1279,8 @@ The next time you use `/openrtb2/auction`, the OpenRTB request sent to your Bidd
 
 Human readable documentation for bid adapters is required in the separate [prebid.github.io](https://github.com/prebid/prebid.github.io) repository. We will not merge your bid adapter until you've at least opened a documentation PR and comment with a link to it.
 
-1. If you already have a Prebid.js bid adapter, update your existing bidder file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/modules to add the `pbs: true` variable in the header section. If your Prebid Server bidding parameters are different from your Prebid.js parameters, please include the differences in this document for publishers to be aware.
-1. If you don't have a Prebid.js bid adapter, create a new file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/modules using this template:
+1. If you already have a Prebid.js bid adapter, update your existing bidder file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders to add the `pbs: true` variable in the header section. If your Prebid Server bidding parameters are different from your Prebid.js parameters, please include the differences in this document for publishers to be aware.
+1. If you don't have a Prebid.js bid adapter, create a new file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders using this template:
 
 ```
 ---
@@ -1189,6 +1292,7 @@ gdpr_supported: true/false
 gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
+gpp_supported: true/false
 schain_supported: true/false
 dchain_supported: true/false
 userId: <list of supported vendors>
@@ -1201,9 +1305,11 @@ pbjs: true/false
 pbs: true/false
 pbs_app_supported: true/false
 prebid_member: true/false
+multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
+ortb_blocking_supported: true/partial/false
 ---
 
-### Note:
+### Registration
 
 The Example Bidding adapter requires setup before beginning. Please contact us at setup@example.com
 
@@ -1220,15 +1326,18 @@ Notes on the metadata fields:
 - If you support GDPR and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
 - If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
-- If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
+- If you support video, native, or audio mediaTypes add `media_types: video, native, audio`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 - If you support COPPA, add `coppa_supported: true`. Default is false.
+- If you support GPP, add `gpp_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
 - If your bidder supports mobile apps, set `pbs_app_supported`: true. No default value.
 - If your bidder supports deals, set `deals_supported: true`. No default value.
 - If your bidder supports floors, set `floors_supported: true`. No default value.
-- If your bidder supports first party data, set `fpd_supported: true`. No default value.
+- If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
+- If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to ‘true’,’partial’, or ‘false’. No default value. In order to set ‘true’, you must support: bcat, badv, battr, and bapp.
+- Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
 - If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
 
 
@@ -1242,8 +1351,8 @@ Notes on the metadata fields:
 - Adapter Code
   - `org/prebid/server/bidder/{bidder}/{bidder}Bidder.java`
   - `org/prebid/server/bidder/{bidder}/{bidder}BidderTest.java` (test directory)
-  - `org/prebid/server/it/{bidder}Test.java` (test directory)
 - Integration test files
+  - `org/prebid/server/it/{bidder}Test.java` (test directory)
   - `resources/org/prebid/server/it/openrtb2/{bidder}/test-auction-{bidder}-request.json` (test directory)
   - `resources/org/prebid/server/it/openrtb2/{bidder}/test-auction-{bidder}-response.json` (test directory)
   - `resources/org/prebid/server/it/openrtb2/{bidder}/test-{bidder}-bid-request.json` (test directory)
@@ -1255,7 +1364,7 @@ Notes on the metadata fields:
 
 ## Contribute
 
-Whew! You're almost done. Thank you for taking the time to develop a Prebid Server bid adapter. When you're ready, [contribute](https://github.com/prebid/prebid-server-java/blob/master/docs/contributing.md) your new bid adapter by opening a PR to the [PBS-Java GitHub repository](https://github.com/prebid/prebid-server-java) with the name "New Adapter: {Bidder}".
+Whew! You're almost done. Thank you for taking the time to develop a Prebid Server bid adapter. When you're ready, [contribute](https://github.com/prebid/prebid-server-java/blob/master/docs/developers/contributing.md) your new bid adapter by opening a PR to the [PBS-Java GitHub repository](https://github.com/prebid/prebid-server-java) with the name "New Adapter: {Bidder}".
 
 {: .alert.alert-warning :}
 You don't need to ask permission or open a GitHub issue before submitting an adapter.

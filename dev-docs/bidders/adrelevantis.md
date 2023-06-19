@@ -6,6 +6,7 @@ biddercode: adrelevantis
 media_types: banner, video, native
 fpd_supported: true
 pbjs: true
+sidebarType: 1
 ---
 
 ### Note:
@@ -27,9 +28,13 @@ pbjs.setBidderConfig({
 	bidders: ['adrelevantis'],
 	config: {
 		ortb2: {
-			context: {
+			site: {
 				keywords: keywords,
-				category: categories
+				ext: {
+					data: {
+						category: categories
+					}
+				}
 			}
 		}
 	}

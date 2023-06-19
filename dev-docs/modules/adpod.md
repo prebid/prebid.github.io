@@ -75,7 +75,7 @@ To enable publishers to prioritize video deals with direct buys and over deals a
 
 ### Examples:
 
-{% highlight js %}
+```javascript
 // This will replace the cpm with dealId in cache key as well as targeting kv pair when prioritizeDeals flag is set to true.
 pbjs.setConfig({
   adpod: {
@@ -92,10 +92,10 @@ pbjs.setConfig({
     }
   }
 })
-{% endhighlight %}
+```
 If the bidder returns multiple bid, each bid can have a different priority/deal tier set. To give publishers control over the deal tier a `filterBids` option has been added to `pbjs.adServers.freewheel.getTargeting` to select certain deal bids.
 
-{% highlight js %}
+```javascript
 pbjs.adServers.freewheel.getTargeting({
 
     codes: [adUnitCode1],
@@ -103,11 +103,11 @@ pbjs.adServers.freewheel.getTargeting({
         //pass targeting to player api
     }
 });
-{% endhighlight %}
+```
 
 #### Return
 
-{% highlight js %}
+```javascript
 // Sample return targeting key value pairs
 {
   'adUnitCode-1': [
@@ -125,7 +125,7 @@ pbjs.adServers.freewheel.getTargeting({
     }
   ]
 }
-{% endhighlight %}
+```
 
 ## Further Reading
 
