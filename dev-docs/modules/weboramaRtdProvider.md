@@ -27,7 +27,7 @@ Weborama provides a Real-Time Data Submodule for `Prebid.js`, allowing to easy i
 
 * LiTE by SFBX® (Local inApp Trust Engine) provides “Zero Party Data” given by users, stored and calculated only on the user’s device. Through a unique cohorting system, it enables better monetization in a consent/consentless and identity-less mode.
 
-Contact prebid-support@weborama.com for more information.
+Contact [prebid-support@weborama.com] for more information.
 
 ### Publisher Usage
 
@@ -90,7 +90,7 @@ pbjs.setConfig({
 
 Each module can perform two actions:
 
-* set targeting on [GPT](https://docs.prebid.org/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) / [AST](https://docs.prebid.org/dev-docs/publisher-api-reference/setTargetingForAst.html]) via `prebid.js`
+* set targeting on [GPT](https://docs.prebid.org/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) / [AST](https://docs.prebid.org/dev-docs/publisher-api-reference/setTargetingForAst.html) via `prebid.js`
 
 * send data to other `prebid.js` bidder modules (check the complete list at the end of this page)
 
