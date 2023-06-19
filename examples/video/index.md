@@ -25,22 +25,22 @@ The following examples are available:
 
 ## Instream
 
-  - [Brightcove](/examples/video/instream/brightcove/pb-ve-brightcove.html)
-  - [Flowplayer](/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
-  - [JW Player](/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
-  - [JW Player (Self-Hosted)](/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
-  - [Kaltura](/examples/video/instream/kaltura/pb-ve-kaltura.html)
-  - [VideoJS](/examples/video/instream/videojs/pb-ve-videojs.html)
+- [Brightcove](/examples/video/instream/brightcove/pb-ve-brightcove.html)
+- [Flowplayer](/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
+- [JW Player](/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
+- [JW Player (Self-Hosted)](/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
+- [Kaltura](/examples/video/instream/kaltura/pb-ve-kaltura.html)
+- [VideoJS](/examples/video/instream/videojs/pb-ve-videojs.html)
 
 ## Instream and Banner Mixed Page
 
-  - [Instream/Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
+- [Instream/Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
 
 ## Outstream
 
-  - [Google Ad Manager](/examples/video/outstream/pb-ve-outstream-dfp.html)
-  - [No Server](/examples/video/outstream/pb-ve-outstream-no-server.html)
+- [Google Ad Manager](/examples/video/outstream/pb-ve-outstream-dfp.html)
+- [No Server](/examples/video/outstream/pb-ve-outstream-no-server.html)
 
 ## Long-Form (Ad Pods)
 
-  - [Freewheel](/examples/video/long-form/pb-ve-lf-freewheel.html)
+- [Freewheel](/examples/video/long-form/pb-ve-lf-freewheel.html)
