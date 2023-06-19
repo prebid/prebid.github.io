@@ -44,7 +44,7 @@ The **Custom targeting** property should contain a special keyword with the pric
 
 ## Step 3: Prepare Prebid Creative
 
-### Display Banner, Video Banner, Display Interstitial, Video Interstitial.
+### Display Banner, Video Banner, Display Interstitial, Video Interstitial
 
 The Prebid SDK integrates with GAM basing on [App Events](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner#app_events) feature, almost for all ad formats. That means that creative should contain a special tag that will be processed by Prebid's GAM Event Handlers.
 

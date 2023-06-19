@@ -34,7 +34,6 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | params.timezoneFilter.blockedZones | Optional | Array[String] | description | `[ 'America/New_York' ]` |
 | params.timezoneFilter.blockedOffsets | Optional | Array[Number] | description | `[ -5 ]` |
 
-
 {: .alert.alert-info :}
 NOTE: The Parrable ID that is delivered to Prebid is encrypted by Parrable with a time-based key and updated frequently in the browser to enforce consumer privacy requirements and thus will be different on every page view, even for the same user.
 

@@ -10,9 +10,9 @@ usp_supported: false
 media_types: banner, native
 ---
 
-### Note:
+### Note
 
-The BEdigitech Bidding adapter requires setup before beginning. Please contact us at yogesh@thebeglobal.com
+The BEdigitech Bidding adapter requires setup before beginning. Please contact us at <yogesh@thebeglobal.com>
 Due to different integration API prebid.js and prebid-server api params are different
 
 ### Prebid.JS Bid Params

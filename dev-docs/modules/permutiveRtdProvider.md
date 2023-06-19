@@ -12,6 +12,7 @@ sidebarType : 1
 ---
 
 # Permutive RTD Provider
+
 {:.no_toc}
 
 * TOC
@@ -24,7 +25,9 @@ This module reads cohorts from Permutive and attaches them as targeting keys to 
 ### _Permutive Real-time Data Submodule_
 
 #### Usage
+
 Compile the Permutive RTD module into your Prebid build:
+
 ```
 gulp build --modules=rtdModule,permutiveRtdProvider
 ```
@@ -77,6 +80,7 @@ As Prebid utilizes TCF vendor consent, for the Permutive RTD module to load, Per
 
 1. Publisher enables rules within Prebid GDPR module
 2. Label Permutive as an exception, as shown below.
+
 ```javascript
 [
   {
@@ -106,11 +110,12 @@ Before making any updates to this configuration, please ensure that this approac
 
 The Permutive RTD module sets Standard Cohort IDs as bidder-specific ortb2.user.data first-party data, following the Prebid ortb2 convention. Cohorts will be sent in the `p_standard` key-value.
 
-For Prebid versions below 7.29.0, populate the acbidders config in the Permutive RTD with an array of bidder codes with whom you wish to share Standard Cohorts with. You also need to permission the bidders by communicating the bidder list to the Permutive team at strategicpartnershipops@permutive.com.
+For Prebid versions below 7.29.0, populate the acbidders config in the Permutive RTD with an array of bidder codes with whom you wish to share Standard Cohorts with. You also need to permission the bidders by communicating the bidder list to the Permutive team at <strategicpartnershipops@permutive.com>.
 
-For Prebid versions 7.29.0 and above, do not populate bidder codes in acbidders for the purpose of sharing Standard Cohorts (Note: there may be other business needs that require you to populate acbidders for Prebid versions 7.29.0+, see Advertiser Cohorts below). To share Standard Cohorts with bidders in Prebid versions 7.29.0 and above, communicate the bidder list to the Permutive team at strategicpartnershipops@permutive.com.
+For Prebid versions 7.29.0 and above, do not populate bidder codes in acbidders for the purpose of sharing Standard Cohorts (Note: there may be other business needs that require you to populate acbidders for Prebid versions 7.29.0+, see Advertiser Cohorts below). To share Standard Cohorts with bidders in Prebid versions 7.29.0 and above, communicate the bidder list to the Permutive team at <strategicpartnershipops@permutive.com>.
 
 #### _Bidder Specific Requirements for Standard Cohorts_
+
 For PubMatic or OpenX: Please ensure you are using Prebid.js 7.13 (or later)
 For Xandr: Please ensure you are using Prebid.js 7.29 (or later)
 For Equativ: Please ensure you are using Prebid.js 7.26 (or later)
@@ -122,13 +127,12 @@ e.g. setting up publisher deals. For these activations, cohort IDs are set in bi
 
 Currently, bidders with known support for custom cohort targeting are:
 
-- Xandr
-- Magnite
+* Xandr
+* Magnite
 
 When enabling the respective Activation for a cohort in Permutive, this module will automatically attach that cohort ID to the bid request.
 There is no need to enable individual bidders in the module configuration, it will automatically reflect which SSP integrations you have enabled in your Permutive dashboard.
 Permutive cohorts will be sent in the permutive key-value.
-
 
 ### _Enabling Advertiser Cohorts_
 
@@ -142,7 +146,7 @@ If your business needs require you to populate acbidders with bidder codes based
 
 If you are using Prebid.js v7.13.0+, bidders may be added to or removed from the acbidders config directly within the Permutive Dashboard.
 
-**Permutive can do this on your behalf**. Simply contact your Permutive CSM with strategicpartnershipops@permutive.com on cc,
+**Permutive can do this on your behalf**. Simply contact your Permutive CSM with <strategicpartnershipops@permutive.com> on cc,
 indicating which bidders you would like added.
 
 Or, a publisher may do this themselves within the Permutive Dashboard using the below instructions.

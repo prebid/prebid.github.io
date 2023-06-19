@@ -18,6 +18,7 @@ Relevad is a contextual semantic analytics company. Our privacy-first, cookieles
 This real-time data processing module provides quality contextual IAB categories and segments to prebid.js auction bidders. Every category and segment comes with a score measuring its relevance to the publisher’s web page. Publishers may configure their preferred minimum score setting with the module parameter “minscore”. Relevad service does not use browser cookies and is fully GDPR compliant.
 
 {:.no_toc}
+
 * TOC
 {:toc}
 
@@ -27,7 +28,7 @@ Compile the Relevad RTD module (`relevaddRtdProvider`) into your Prebid build, a
 
 `gulp build --modules=rtdModule,relevadRtdProvider`
 
-Next we configure the module, via `pbjs.setConfig`. See the **Parameter Descriptions** below for more detailed information of the configuration parameters. 
+Next we configure the module, via `pbjs.setConfig`. See the **Parameter Descriptions** below for more detailed information of the configuration parameters.
 
 ```js
 pbjs.setConfig(
@@ -39,8 +40,8 @@ pbjs.setConfig(
           name: "RelevadRTDModule",
           waitForIt: true,
           params: { 
-          	partnerId: your_partner_id, // Your Relevad partner id.
-          	setgpt: true,               // Target or not google GAM/GPT on your page.
+              partnerId: your_partner_id, // Your Relevad partner id.
+              setgpt: true,               // Target or not google GAM/GPT on your page.
             minscore: 30,               // Minimum relevancy score (0-100). If absent, defaults to 30.
  
             // The list of bidders to target with Relevad categories and segments. If absent or empty, target all bidders.
@@ -59,13 +60,9 @@ pbjs.setConfig(
 }
 ```
 
-
-
 ## Parameter Descriptions
 
 {: .table .table-bordered .table-striped }
-
-
 
 | Name               | Type       | Description                                                  | Notes                                                        |
 | :----------------- | :--------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -79,8 +76,6 @@ pbjs.setConfig(
 | params.setgpt      | Boolean    | Target or not Google GPT/GAM when it is configured on your page | Optional, defaults to true.                                  |
 | params.minscore    | Integer    | Minimum categorization relevancy score in the range of 0-100. Our categories and segments come  with their relevancy scores. We’ll send to the bidders only categories and segments with the scores higher than the minscore. | Optional, defaults to 30                                     |
 | params.bidders     | Dictionary | Bidders with which to share category and segment information | Optional. If empty or absent, target all bidders.            |
-
-
 
 ### Bidder-specific configuration. Every bidder may have these configuration parameters
 
@@ -111,7 +106,6 @@ Run the unit tests for Relevad RTD module:
 ```bash
 gulp test --file "test/spec/modules/relevadRtdProvider_spec.js"
 ```
-
 
 ## Support
 

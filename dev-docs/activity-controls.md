@@ -7,6 +7,7 @@ pbjs_version: 7.52
 ---
 
 # Prebid.js Activity Controls
+
 {: .no_toc }
 
 Starting with version 7.52, Prebid.js introduced a centralized control mechanism for privacy-sensitive _activities_ - such as accessing device storage or sharing data with partners.
@@ -119,7 +120,6 @@ Here's the list of the 'potentially restricted activities' that Prebid.js core c
 | `transmitPreciseGeo` | A bid adapter or RTD submodule wants to access and/or transmit precise geolocation data to their endpoint | Component is allowed only 2-digit precision for latitude and longitude  | [`configName`](#params-fetchBids) |
 | `transmitTid` | A bid adapter or RTD submodule wants to access and/or transmit globally unique transaction IDs to their endpoint | Transaction IDs are hidden from the component | [`configName`](#params-fetchBids) |
 | `transmitUfpd` | A bid adapter or RTD submodule wants to access and/or transmit user FPD to their endpoint | User FPD is hidden from the component | [`configName`](#params-fetchBids) |
-
 
 <a id="parameters"></a>
 

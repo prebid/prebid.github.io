@@ -18,11 +18,12 @@ ortb_blocking_supported: partial
 sidebarType: 1
 ---
 
-### Disclosure:
+### Disclosure
 
 This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
 
-### Note:
+### Note
+
 The Sharethrough bidder adapter requires additional setup and approval from the Sharethrough Integrations team. Please reach out to your account manager for more information to start using it.
 
 ### Bid Params
@@ -34,15 +35,18 @@ The Sharethrough bidder adapter requires additional setup and approval from the 
 | `bcat`      | optional | (deprecated) Array of blocked IAB Categories               | `['IAB1-2', 'IAB1-3']`       | `string[]`           |
 | `badv`      | optional | (deprecated) Array of blocked Advertisers by their domains | `['ford.com', 'pepsi.com']`  | `string[]`           |
 
-Note: Providing `bcat` and `badv` via Bid Params is deprecated, the First Party Data method should be preferred (see below). 
+Note: Providing `bcat` and `badv` via Bid Params is deprecated, the First Party Data method should be preferred (see below).
 When both methods are provided, first party data values will be used and bid param values will be ignored.
 
 #### First Party Data
+
 Publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
+
 - `ortb2.site.*`
 - `ortb2.user.*`
 
 For example:
+
 ```js
 pbjs.setConfig({
   ortb2: {
@@ -70,9 +74,11 @@ pbjs.setConfig({
 ```
 
 #### ORTB Blocking
+
 Sharethrough supports blocking advertiser domains (`badv`) and/or IAB Categories (`bcat`) via First Party Data.
 
 For example:
+
 ```js
 pbjs.setConfig({
   ortb2: {

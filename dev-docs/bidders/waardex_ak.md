@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The WaardeX Bidding adaptor requires setup and approval before beginning. Please reach out to <welcome@waardex.com> for more details
 

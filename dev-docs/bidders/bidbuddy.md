@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Bidbuddy bidding adapter requires setup and approval before implementation. Please reach out to <founders@bidbuddy.co.in> for more details.
 

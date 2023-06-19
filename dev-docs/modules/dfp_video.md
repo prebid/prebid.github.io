@@ -13,6 +13,7 @@ sidebarType : 1
 
 
 # Google Ad Manager Video
+
 {:.no_toc}
 
 This module is required to use the Prebid Instream video examples with Google Ad Manager. For instructions showing how to add this module to Prebid.js, see below.
@@ -30,4 +31,4 @@ The method exposes the [`pbjs.adServers.dfp.buildVideoUrl`]({{site.baseurl}}/dev
 
 ## Further Reading
 
-+ [Show Video Ads with GAM](/dev-docs/show-video-with-a-dfp-video-tag.html)
+- [Show Video Ads with GAM](/dev-docs/show-video-with-a-dfp-video-tag.html)

@@ -11,8 +11,9 @@ enable_download : false
 sidebarType: 1
 ---
 
-### Note:
-For more information about [LKQD Ad Serving and Management](https://www.nexstardigital.com/), please contact info@lkqd.com.
+### Note
+
+For more information about [LKQD Ad Serving and Management](https://www.nexstardigital.com/), please contact <info@lkqd.com>.
 
 ### Bid Params
 
@@ -22,8 +23,8 @@ For more information about [LKQD Ad Serving and Management](https://www.nexstard
 | `siteId`         | required |                  | `'662921'`     | `string` |
 | `placementId`    | required |                  | `'263'`        | `string` |
 
-
 ### Ad Unit Setup for Instream Video
+
 ```javascript
 var adUnits = [
 {

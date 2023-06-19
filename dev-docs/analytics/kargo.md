@@ -10,7 +10,6 @@ enable_download: false
 
 Please visit [https://kargo.com/](https://kargo.com/) or contact your Kargo account manager for more information.
 
-
 #### Example Configuration
 
 ```js

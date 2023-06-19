@@ -23,8 +23,8 @@ sidebarType: 1
 | `pubdata`              | optional | publisher data, will be used by JW Player to pass their info                                                           | `{"jwpseg" : ["1111", "2222"]})`  | `object`        |
 | `floorcpm`             | optional | floor cpm                                                                                                              | `0.56`                            | `float`         |
 | `video`                | optional | video parameters which should be passed for no-mapping approach                                                        |                                   | `object`        |
-| `video.mimes`	         | optional | Content MIME types supported	                                                                                         | `['video/mp4', 'video/x-ms-wmv']` | `string array`  |
-| `video.mind` 	         | optional | Minimum video ad duration in seconds.                                                                                  | `1`                               | `integer`       |
+| `video.mimes`             | optional | Content MIME types supported                                                                                             | `['video/mp4', 'video/x-ms-wmv']` | `string array`  |
+| `video.mind`              | optional | Minimum video ad duration in seconds.                                                                                  | `1`                               | `integer`       |
 | `video.maxd`           | optional | Maximum video ad duration in seconds                                                                                   | `60`                              | `int`           |
 | `video.protocols`      | optional | Array of supported video protocols                                                                                     | `[1,2,3,4,5,6]`                   | `integer array` |
 | `video.size`           | optional | player size wxh                                                                                                        | `'300x250'`                       | `string`        |

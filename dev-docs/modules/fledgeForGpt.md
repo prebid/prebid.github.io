@@ -10,6 +10,7 @@ sidebarType : 1
 ---
 
 # Fledge for GPT Module
+
 This module allows Prebid.js to support FLEDGE by integrating it with GPT's [experimental FLEDGE
 support](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing).
 
@@ -19,6 +20,7 @@ This document covers the steps necessary for publishers to enable FLEDGE on thei
 the changes Bid Adapters need to implement in order to support FLEDGE.
 
 ## Publisher Integration
+
 Publishers wishing to enable FLEDGE support must do two things. First, they must compile Prebid.js with support for this module.
 This is accomplished by adding the `fledgeForGpt` module to the list of modules they are already using:
 
@@ -30,6 +32,7 @@ Second, they must enable FLEDGE in their Prebid.js configuration. To provide a h
 settings exist at the module level, the bidder level, and the adunit level.
 
 ### Module Configuration
+
 This module exposes the following settings:
 
 {: .table .table-bordered .table-striped }
@@ -51,6 +54,7 @@ pbjs.que.push(function() {
 ```
 
 ### Bidder Configuration
+
 This module adds the following setting for bidders:
 
 {: .table .table-bordered .table-striped }
@@ -72,6 +76,7 @@ pbjs.setBidderConfig({
 ```
 
 ### AdUnit Configuration
+
 Enabling an adunit for FLEDGE eligibility is accomplished by setting an attribute of the `ortb2Imp` object for that
 adunit.
 
@@ -98,6 +103,7 @@ pbjs.addAdUnits({
 ```
 
 ## Bid Adapter Integration
+
 Chrome has enabled a two-tier auction in FLEDGE. This allows multiple sellers (frequently SSPs) to act on behalf of the publisher with
 a single entity serving as the final decision maker. In their [current approach](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing),
 GPT has opted to run the final auction layer while allowing other SSPs/sellers to participate as
@@ -110,6 +116,7 @@ seller. This module enables FLEDGE support by allowing bid adaptors to return `A
 FLEDGE auction for that slot. More details on the GPT API can be found [here](https://developers.google.com/publisher-tag/reference#googletag.config.componentauctionconfig).
 
 Modifying a bid adapter to support FLEDGE is a straightforward process and consists of the following steps:
+
 1. Detecting when a bid request is FLEDGE eligible
 2. Responding with AuctionConfig
 
@@ -153,5 +160,6 @@ Other than the addition of the `bidId` field, the `AuctionConfig` object should 
 `AuctionConfig` object are beyond the scope of this document.
 
 ## Related Reading
+
 - [FLEDGE](https://github.com/WICG/turtledove/blob/main/FLEDGE.md)
 - [Component Auctions](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction)

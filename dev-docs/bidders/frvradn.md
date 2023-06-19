@@ -21,7 +21,7 @@ sidebarType: 1
 
 ### Registration
 
-FRVR Ad Network Bidding adapter requires setup before beginning. Please contact us at info@frvr.com
+FRVR Ad Network Bidding adapter requires setup before beginning. Please contact us at <info@frvr.com>
 
 ### Bid Params
 

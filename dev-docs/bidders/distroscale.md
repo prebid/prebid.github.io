@@ -27,17 +27,16 @@ sidebarType: 1
 | `pubid`       | required | Publisher ID       | `'12345'`       | `string` |
 | `zoneid`      | optional | Zone ID            | `'67890'`       | `string` |
 
-
 ### Prebid Test Request
 
-```
+```javascript
 var adUnits = [{
   code: 'banner-1',
-	mediaTypes: {
-		banner: {
-			sizes: [[300, 250]],
-		}
-	},
+    mediaTypes: {
+        banner: {
+            sizes: [[300, 250]],
+        }
+    },
   bids: [{
     bidder: 'distroscale',
     params: {

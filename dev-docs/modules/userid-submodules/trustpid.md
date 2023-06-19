@@ -53,4 +53,4 @@ pbjs.setConfig({
 
 ## Truspid onboarding
 
-If you wish to find out more about Trustpid, please contact onboarding@trustpid.com
+If you wish to find out more about Trustpid, please contact <onboarding@trustpid.com>

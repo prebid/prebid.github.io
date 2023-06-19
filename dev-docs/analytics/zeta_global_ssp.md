@@ -22,7 +22,7 @@ Please visit [https://zetaglobal.com/](https://zetaglobal.com/) for more informa
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
 | sid | required  | The Zeta Global Ssp Publisher ID | `111`  | `int` |
-| tags | optional | The object containing set of Zeta's custom tags witch the publisher has to supply | `tags: {}` | `object` | 
+| tags | optional | The object containing set of Zeta's custom tags witch the publisher has to supply | `tags: {}` | `object` |
 
 ### Example Configuration
 

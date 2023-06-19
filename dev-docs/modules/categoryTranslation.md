@@ -21,15 +21,15 @@ The module provides the following:
 
 - Converts IAB subcategories to Ad server group identifier.
 
-## How to use the module:
+## How to use the module
 
 1. A Prebid.js package is built that contains this module and the Ad server module. Prebid supports [FreeWheel](/dev-docs/modules/freewheel.html) and Google Ad Manager ad servers.
-2. The inclusion of this module and long-form ad server module causes Prebid to download a mapping file to local storage. The user also has the option to provide their own mapping file. The default ad server is Freewheel. To hook to the DFP video ad server module you must configure it in the mapping url. 
+2. The inclusion of this module and long-form ad server module causes Prebid to download a mapping file to local storage. The user also has the option to provide their own mapping file. The default ad server is Freewheel. To hook to the DFP video ad server module you must configure it in the mapping url.
 3. At runtime, brand category translation happens as needed.
 
-
 ## Using A Custom Map File
-The IAB Category Translation module uses a default mapping file to convert adserver categories or labels to IAB sub categories. If a publisher prefers to use their own mapping file they will need to set the URL location of that file. They can do so by adding the following to their Prebid.js configuration: 
+
+The IAB Category Translation module uses a default mapping file to convert adserver categories or labels to IAB sub categories. If a publisher prefers to use their own mapping file they will need to set the URL location of that file. They can do so by adding the following to their Prebid.js configuration:
 
 ```
 pbjs.setConfig({
@@ -57,10 +57,9 @@ Publishers should ensure that the JSON returned from their custom file is valid 
 
 Refer to Prebid Github repository for a [custom file reference](https://github.com/prebid/category-mapping-file).
 
-
 ## Further Reading
 
-[Prebid.js](/dev-docs/getting-started.html)   
+[Prebid.js](/dev-docs/getting-started.html)
 [Prebid Video](/prebid-video/video-overview.html)  
 [FreeWheel Module](/dev-docs/modules/freewheel.html)  
 [Adapter Integration](/dev-docs/bidder-adaptor.html)

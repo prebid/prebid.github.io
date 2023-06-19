@@ -8,10 +8,9 @@ gdpr_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Padsquad Header Bidding adapter requires approval from the Padsquad team. Please reach out to  <yeeldpadsquad@gmail.com> for more information.
-
 
 ### Bid Params
 

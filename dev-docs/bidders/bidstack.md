@@ -23,7 +23,7 @@ sidebarType: 1
 
 ### Registration
 
-The Bidstack Bidding adapter requires setup before beginning. Please contact us at tech@bidstack.com
+The Bidstack Bidding adapter requires setup before beginning. Please contact us at <tech@bidstack.com>
 
 ### Bid Params
 

@@ -10,8 +10,8 @@ enable_download: true
 #### Registration
 
 Please visit [https://yuktamedia.com/prebid/](https://yuktamedia.com/prebid/) for more information.
-The YuktaMedia Analytics adapter requires setup and approval from the YuktaMedia team. 
-Please reach out at info@yuktamedia.com for more information.
+The YuktaMedia Analytics adapter requires setup and approval from the YuktaMedia team.
+Please reach out at <info@yuktamedia.com> for more information.
 
 #### Analytics Options
 
@@ -20,7 +20,6 @@ Please reach out at info@yuktamedia.com for more information.
 |--------|----------|--------------------------|-------------|--------|
 | pubId  | required |  YuktaMedia Publisher ID |    1001     |  int   |
 | pubKey | required | YuktaMedia Publisher Key | bsbbksbkbJB | string |
-
 
 ### Configuration Example
 

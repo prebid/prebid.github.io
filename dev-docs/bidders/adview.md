@@ -20,11 +20,11 @@ prebid_member: false
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 Currently adapter doesn’t support multi impression and can not perform impression splitting, so only the first impression will be delivered.
 
-The Example Bidding adapter requires setup before beginning. Please contact us at partner@adview.com
+The Example Bidding adapter requires setup before beginning. Please contact us at <partner@adview.com>
 
 ### Bid Params
 

@@ -25,6 +25,6 @@ sidebarType: 1
 pbjs_version_notes: use imds after 8.0
 ---
 
-### Note:
+# Note
 
 The Synacor Media bidder adapter has been renamed to the [iMedia Digital Services (iMDS)](/dev-docs/bidders/imds.html) adapter, using an bidder code of `imds`. Please update your implementation accordingly.

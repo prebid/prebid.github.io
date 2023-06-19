@@ -6,6 +6,7 @@ sidebarType: 0
 ---
 
 # Prebid.org Privacy Policy
+
 {:.no_toc}
 
 Last updated Aug 5, 2020
@@ -16,6 +17,7 @@ This Privacy Notice does not apply to any information collected by third parties
 If you have any questions or concerns about our use of your personal information, then please contact us using the contact details provided at the bottom of this Privacy Notice.
 
 ## Quick Links
+
 {:.no_toc}
 
 We recommend that you read this Privacy Notice in full to ensure you are fully informed.  However, if you only want to access a particular section of this Privacy Notice, then you can click on the relevant link below to jump to that section.
@@ -23,24 +25,25 @@ We recommend that you read this Privacy Notice in full to ensure you are fully i
 * TOC
 {:toc}
 
-## What does Prebid.org do?	
+## What does Prebid.org do?
 
 Prebid.org is an industry consortium that provides free and open source solutions to implement header bidding. We’re utilized globally and headquartered in the United States. We seek to ensure and promote fair, transparent, and efficient header bidding across the ad tech industry, representing all parts of the programmatic ecosystem, from ad tech vendors to publishers and others.
 
 The open source software products we make available may be utilized by third parties for the purposes of serving online advertisements. These third parties may configure the software to enable pseudonymized data included in bid requests to be transmitted within the online advertising ecosystem. However, Prebid.org has no involvement in these transactions and does not itself transmit, store or otherwise process the pseudonymized data in these transactions.  Prebid.org is not responsible for the privacy practices of third parties that use our software and it is the responsibility of the third party concerned to handle data in accordance with applicable privacy laws.  
 
-For more information about Prebid.org, please see the “About” section of our Website at [https://prebid.org/overview/what-is-prebid-org.html](/overview/what-is-prebid-org.html). 
+For more information about Prebid.org, please see the “About” section of our Website at [https://prebid.org/overview/what-is-prebid-org.html](/overview/what-is-prebid-org.html).
 
 <a name="what-personal-info"></a>
+
 ## What personal information does Prebid.org collect and why?
 
 The personal information that we may collect from our Website or through our marketing activities broadly falls into the following categories:
 
 **Information that you provide voluntarily**
 
-Certain parts of our Website may ask you to provide personal information voluntarily: for example, we may ask you to provide your name and contact details in order to download files or code from us, sign up for an email newsletter, register for or attend one of our events, contribute code, and/or to submit enquiries or emails to us.  When you submit code to us, we may ask you to sign our Code Contributor Licensing Agreement. If you are contributing code on behalf of your employer, then we may ask your employer to sign a similar agreement too. 
+Certain parts of our Website may ask you to provide personal information voluntarily: for example, we may ask you to provide your name and contact details in order to download files or code from us, sign up for an email newsletter, register for or attend one of our events, contribute code, and/or to submit enquiries or emails to us.  When you submit code to us, we may ask you to sign our Code Contributor Licensing Agreement. If you are contributing code on behalf of your employer, then we may ask your employer to sign a similar agreement too.
 
-Our Website also includes links to third party sites such as GitHub, Stack, Slack, Reddit, Quora and Twitter to enable you to submit questions and requests to us on those third party sites if you so choose; for example, by using certain tags or by following our profiles on those sites. 
+Our Website also includes links to third party sites such as GitHub, Stack, Slack, Reddit, Quora and Twitter to enable you to submit questions and requests to us on those third party sites if you so choose; for example, by using certain tags or by following our profiles on those sites.
 
 From time-to-time, Prebid.org may also host events, online or offline, and invite people to register for these events.
 
@@ -59,11 +62,12 @@ Collecting this information enables us to better understand the visitors who com
 Some of this information may be collected using cookies and similar tracking technology, as explained further in our [Cookies Notice](/policies/cookies.html).
 
 <a name="share-personal-info"></a>
+
 ## Who does Prebid.org share my personal information with?
 
 We may disclose your personal information to the following categories of recipients:
 
-* to our **third party services providers and partners** who provide data processing services to us (for example, to support the delivery of, provide functionality on, or help to enhance the security of our Website or email newsletters), or who otherwise process personal information for purposes that are described in this Privacy Notice or notified to you when we collect your personal information. 
+* to our **third party services providers and partners** who provide data processing services to us (for example, to support the delivery of, provide functionality on, or help to enhance the security of our Website or email newsletters), or who otherwise process personal information for purposes that are described in this Privacy Notice or notified to you when we collect your personal information.
 
 * to any **competent law enforcement body, regulatory, government agency, court or other third party** where we believe disclosure is necessary (i) as a matter of applicable law or regulation, (ii) to exercise, establish or defend our legal rights, or (iii) to protect your vital interests or those of any other person;
 
@@ -85,15 +89,15 @@ If you have questions about or need further information concerning the legal bas
 
 ## Third-Party Websites
 
-This Notice only applies to the Prebid.org Website. We are not responsible for the privacy practices or disclosures of third party websites which may be linked from our Website. Any access to and use of such linked websites is governed by the privacy policies of those third parties. We are not responsible for the information practices of such third parties. 
+This Notice only applies to the Prebid.org Website. We are not responsible for the privacy practices or disclosures of third party websites which may be linked from our Website. Any access to and use of such linked websites is governed by the privacy policies of those third parties. We are not responsible for the information practices of such third parties.
 
 ## How does Prebid.org keep my personal information secure?
 
-We use appropriate technical and organisational measures to protect the personal information that we collect and process about you.  The measures we use are designed to provide a level of security appropriate to the risk of processing your personal information. 
+We use appropriate technical and organisational measures to protect the personal information that we collect and process about you.  The measures we use are designed to provide a level of security appropriate to the risk of processing your personal information.
 
 ## International data transfers
 
-Your personal information may be transferred to, and processed in, countries other than the country in which you are resident.  We are headquartered in the US, and our member companies and third party service providers and partners operate around the world. Therefore, when we collect your personal information, we may process it in countries that have data protection laws that are different to the laws of your country and in some cases, may not be as protective. 
+Your personal information may be transferred to, and processed in, countries other than the country in which you are resident.  We are headquartered in the US, and our member companies and third party service providers and partners operate around the world. Therefore, when we collect your personal information, we may process it in countries that have data protection laws that are different to the laws of your country and in some cases, may not be as protective.
 
 We will take appropriate safeguards to ensure that your personal information will remain protected in accordance with this Privacy Notice, including signing standard contractual clauses with our third party service providers. Further details can be provided upon request – please write to us using the contact details further below.
 
@@ -101,14 +105,15 @@ We will take appropriate safeguards to ensure that your personal information wil
 
 We retain personal information we collect from you where we have an ongoing legitimate business need to do so (for example, to provide you with a service you have requested or to comply with applicable legal requirements).  
 
-When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymise it or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible. 
+When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymise it or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible.
 
 <a name="data-protection-rights"></a>
+
 ## Your data protection rights
 
 If you are a resident of the European Economic Area or California, you have the right to request to access or request deletion of your personal information. You may exercise this right at any time by using the contact details provided under the ["How to contact us"](#contact) heading below.  
 
-In addition, if you are a resident of the European Economic Area, you have the following additional data protection rights: 
+In addition, if you are a resident of the European Economic Area, you have the following additional data protection rights:
 
 * You may object to processing of your personal information, ask us to restrict processing of your personal information or request portability or correction of your personal information. Again, you can exercise these rights by contacting us using the contact details provided under the ["How to contact us"](#contact) heading below.
 * If we have collected and processed your personal information with your consent, then you can withdraw your consent at any time.  Withdrawing your consent will not affect the lawfulness of any processing we conducted prior to your withdrawal, nor will it affect processing of your personal information conducted in reliance on lawful processing grounds other than consent.
@@ -122,10 +127,10 @@ out by using the contact details provided under the ["How to contact us"](#conta
 We respond to all requests we receive from individuals wishing to exercise their data protection rights in accordance with applicable data protection laws.
 
 ## Additional information for California residents
- 
+
 If you are a California resident, please review the following additional privacy disclosures under the California Consumer Privacy Act ("CCPA").
 
-You have the right to understand how we collect, use, and disclose your personal information, to access your information, to request that we delete certain information, and to not be discriminated against for exercising your privacy rights. You may exercise these rights as described in the ["Your data protection rights"](#data-protection-rights) section above. 
+You have the right to understand how we collect, use, and disclose your personal information, to access your information, to request that we delete certain information, and to not be discriminated against for exercising your privacy rights. You may exercise these rights as described in the ["Your data protection rights"](#data-protection-rights) section above.
 
 You also have the right to understand what information we collect, for what purpose, and how we disclose personal information to third parties. As described in the [What personal information does Prebid.org collect and why?](#what-personal-info) section, we collect the categories of personal information listed below, and we use and disclose these categories of information for the business purposes described in that section. The categories are:
 
@@ -136,10 +141,9 @@ You also have the right to understand what information we collect, for what purp
 
 We share these categories of personal information as described in the [Who does Prebid.org share my personal information with?](#share-personal-info) section. We never sell the personal information we collect.
 
-
 ## Updates to this Privacy Notice
 
-We may update this Privacy Notice from time to time in response to changing legal, technical or business developments. When we update our Privacy Notice, we will take appropriate measures to inform you, consistent with the significance of the changes we make.  We will obtain your consent to any material Privacy Notice changes if and where this is required by applicable data protection laws. 
+We may update this Privacy Notice from time to time in response to changing legal, technical or business developments. When we update our Privacy Notice, we will take appropriate measures to inform you, consistent with the significance of the changes we make.  We will obtain your consent to any material Privacy Notice changes if and where this is required by applicable data protection laws.
 
 You can see when this Privacy Notice was last updated by checking the "last updated" date displayed at the top of this Privacy Notice.  
 
@@ -147,7 +151,6 @@ You can see when this Privacy Notice was last updated by checking the "last upda
 
 ## How to contact us
 
-If you have any questions or concerns about our use of your personal information, please contact privacy@prebid.org .
+If you have any questions or concerns about our use of your personal information, please contact [privacy@prebid.org] .
 
 The data controller of your personal information is Prebid.org, Inc.
-

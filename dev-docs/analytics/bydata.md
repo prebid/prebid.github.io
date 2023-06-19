@@ -16,12 +16,12 @@ byData team. Please visit [https://bydata.com/](https://bydata.com/) for more in
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| clientId | Required  | String | The byData Client ID  | `asc10001` | 
-| logFrequency | Optional  | Int | Sample rate  | 100 |   
+| clientId | Required  | String | The byData Client ID  | `asc10001` |
+| logFrequency | Optional  | Int | Sample rate  | 100 |
   
-### Example Configuration 
+### Example Configuration
 
-```js 
+```js
     pbjs.enableAnalytics({
         provider: "bydata",  
         options: {
@@ -29,4 +29,4 @@ byData team. Please visit [https://bydata.com/](https://bydata.com/) for more in
             logFrequency : 100,    // Default - 1%       
         }
     });
-``` 
+```

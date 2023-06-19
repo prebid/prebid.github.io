@@ -15,7 +15,7 @@ sidebarType: 1
 
 ### Registration
 
-Please contact Avocet at info@avocet.io if you would like to get started selling inventory via the Avocet platform.
+Please contact Avocet at <info@avocet.io> if you would like to get started selling inventory via the Avocet platform.
 
 ### Bid Params
 

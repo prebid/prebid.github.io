@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The RtbAnalytica bidding adapter requires setup and approval before implementation. Please reach out to <vivek@rtbanalytica.com> for more details.
 

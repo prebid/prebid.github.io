@@ -45,6 +45,7 @@ Note that for Prebid Server, use "viewdeos" bidder code.
 | `detach_height` | optional | detached player's height in pixels | `200` | `integer` |
 
 ### Test Parameters
+
 ```
     var adUnits = [
 

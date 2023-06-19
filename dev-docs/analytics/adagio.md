@@ -9,4 +9,3 @@ prebid_member: true
 #### Registration
 
 Please visit [https://adagio.io/](https://adagio.io/) for more information.
-

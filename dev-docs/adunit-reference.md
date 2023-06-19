@@ -49,17 +49,17 @@ See the table below for the list of properties on the ad unit.  For example ad u
 
 See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#adUnit-examples) below.
 
-Note that `bids` is optional only for [Prebid Server stored impressions](#stored-imp), and required in all other cases. 
+Note that `bids` is optional only for [Prebid Server stored impressions](#stored-imp), and required in all other cases.
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Type          | Description                                                                                                                              |
 |------------+----------+---------------+------------------------------------------------------------------------------------------------------------------------------------------|
 | `bidder`   | Optional | String        | Unique code identifying the bidder. For bidder codes, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html).          |
-| `module`   | Optional | String        | Module code - for requesting bids from modules that are not bid adapters. See [Prebid Server stored impressions](#stored-imp). | 
+| `module`   | Optional | String        | Module code - for requesting bids from modules that are not bid adapters. See [Prebid Server stored impressions](#stored-imp). |
 | `params`   | Required | Object        | Bid request parameters for a given bidder. For allowed params, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html). |
 | `labelAny` | Optional | Array[String] | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                  |
 | `labelAll` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                   |
-| `ortb2Imp` | Optional | Object        | OpenRTB first-party data specific to this bidder. This is merged with, and takes precedence over, `adUnit.ortb2Imp`.| 
+| `ortb2Imp` | Optional | Object        | OpenRTB first-party data specific to this bidder. This is merged with, and takes precedence over, `adUnit.ortb2Imp`.|
 | `renderer` | Optional | Object        | Custom renderer. Takes precedence over `adUnit.renderer`, but applies only to this bidder. |
 
 <a name="adUnit.mediaTypes"></a>
@@ -691,7 +691,6 @@ pbjs.addAdUnits({
 <!-- Reference Links -->
 
 [conditionalAds]: /dev-docs/conditional-ad-units.html
-[setConfig]: /dev-docs/publisher-api-reference/setConfig.html
 [configureResponsive]: /dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads
 [openRTB]: https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf
 [pbServer]: /prebid-server/overview/prebid-server-overview.html

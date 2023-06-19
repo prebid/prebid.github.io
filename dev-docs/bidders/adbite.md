@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The adbite Bidding adaptor requires setup and approval before beginning. Please reach out to <support@adbite.com> for more details
 

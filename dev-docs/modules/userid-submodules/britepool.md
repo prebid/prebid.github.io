@@ -28,7 +28,7 @@ The BritePool privacy policy is at [https://britepool.com/services-privacy-notic
 | name | Required | String | `"britepoolId"` | `"britepoolId"` |
 | params | Required | Object | Details for britepool initialization. | |
 | params.api_key | Required | String | BritePool API Key provided by BritePool | "458frgde-djd7-3ert-gyhu-12fghy76dnmko" |
-| params.url | Optional | String | BritePool API url | "https://sandbox-api.britepool.com/v1/britepool/id" |
+| params.url | Optional | String | BritePool API url | "<https://sandbox-api.britepool.com/v1/britepool/id>" |
 | params.identifier | Required | String | Where identifier in the params object is the key name. At least one identifier is required. Available Identifiers `aaid` `dtid` `idfa` `ilid` `luid` `mmid` `msid` `mwid` `rida` `ssid` `hash` | `params.ssid` `params.aaid` |
 
 ## BritePool Examples

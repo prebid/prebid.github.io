@@ -10,6 +10,7 @@ sidebarType : 1
 ---
 
 # Instream Video Ads Tracking
+
 {:.no_toc}
 
 * TOC
@@ -34,6 +35,7 @@ This module uses `window.performance.getEntriesByType('resource')` to check the 
 | `instreamTracking.urlPattern` | Optional | RegExp | Regex for cache url patterns, to avoid false positives. |
 
 #### Basic Example
+
 ```javascript
 pbjs.setConfig({
         'instreamTracking': {
@@ -61,9 +63,9 @@ To install the module, follow these instructions:
 
 #### Step 1: Prepare the base Prebid file
 
-- Option 1: Use Prebid [Download](/download.html) page to build the prebid package. Ensure that you do check *Instream Tracking* module
+* Option 1: Use Prebid [Download](/download.html) page to build the prebid package. Ensure that you do check *Instream Tracking* module
 
-- Option 2: From the command line, run `gulp build --modules=instreamTracking,...`
+* Option 2: From the command line, run `gulp build --modules=instreamTracking,...`
 
 #### Step 2: Set configuration
 
@@ -78,6 +80,7 @@ pbjs.setConfig({
 ```
 
 ## Further Reading
+
 ​
 [Prebid.js for Video]({{site.baseurl}}/prebid-video/video-overview.html)  
 [Client-side Caching of VAST XML]({{site.baseurl}}/dev-docs/publisher-api-reference/setConfig.html#setConfig-vast-cache)

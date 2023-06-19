@@ -12,7 +12,8 @@ userIds: digitrust, identityLink, liveIntentId, pubCommonId
 sidebarType: 1
 ---
 
-### Note:
+### Note
+
 The LuponMedia bidder adapter requires setup and approval from the LuponMedia support team, even for existing LuponMedia publishers. Please contact us for more information.
 
 ### Bid Params

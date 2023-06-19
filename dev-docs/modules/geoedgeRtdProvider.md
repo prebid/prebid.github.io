@@ -12,6 +12,7 @@ sidebarType : 1
 ---
 
 # Geoedge Realtime Module
+
 {:.no_toc}
 
 * TOC
@@ -71,7 +72,7 @@ Parameters details:
 ## Example
 
 To view an integration example:
- 
+
 1) in your cli run:
 
 ```

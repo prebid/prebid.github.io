@@ -7,9 +7,10 @@ sbUUID: 3.2
 ---
 
 # Creative Considerations
+
 {: .no_toc }
 
-* TOC
+- TOC
 {: toc }
 
 Some of the major decisions you need to make as you’re setting up your campaigns have to do with creatives. This document will provide information to help you make those decisions.
@@ -33,7 +34,6 @@ The primary disadvantage to using the PUC is that it takes an extra fetch to loa
 
 You’ll need to determine whether the ease of implementation is worth the small performance penalty.
 
-
 ## Creative Naming
 
 You can name your creatives whatever makes sense to your organization. We recommend names in the following format: Prebid - Type - Size - N. For example, a banner creative using the PUC would be `Prebid - banner - 1x1 - 1`.
@@ -42,9 +42,9 @@ You can name your creatives whatever makes sense to your organization. We recomm
 
 No matter what type of media you’re working with, you need to decide how you’re going to represent the size options in the ad server. There are three creative size modes:
 
--  Creatives are all sized 1x1
--  Creatives are sized their actual size
--  Line items are targeted per size
+- Creatives are all sized 1x1
+- Creatives are sized their actual size
+- Line items are targeted per size
 
 ### All Creatives 1x1
 
@@ -64,11 +64,11 @@ With this mode, you set specific sizes on the creatives. This mode allows for mo
 
 We recommend against using this mode, but are aware some publishers use it for reporting purposes. With this mode, you would target your line item based on the value of the hb_size key. This would require you to create one line item for every size, for every bidder, for every price. The number of line items required could get extremely large. Here’s an example (see [Price Granularity](/adops/price-granularity.html) for more details):
 
--  Bidders: 10
--  Price Increment: 0.10
--  Price Cap: 20
--  Sizes: 5
--  Send all bids
+- Bidders: 10
+- Price Increment: 0.10
+- Price Cap: 20
+- Sizes: 5
+- Send all bids
 
 This scenario would require you to create 10,000 line items (10 x 200 x 5). If you were to use either 1x1 mode or creative-level sizing you would need only 2,000 line items.
 
@@ -82,11 +82,12 @@ One decision you'll want to make is which version of the PUC you want to use. Pr
 Engineers can find the PUC code in the [Prebid Github repository](https://github.com/prebid/prebid-universal-creative).
 
 ## Native
+
 Native ads require close collaboration between web designers, engineering, and ad ops. The primary decision to be made that affects ad ops is where to store the rendering template. Your options are:
 
--  The ad server
--  The page's Prebid.js adunit
--  An external script
+- The ad server
+- The page's Prebid.js adunit
+- An external script
 
 If you already have templates stored in your ad server for some native ads, it might make sense to also store the templates for Prebid there and keep everything together and consistent. This also gives ad ops control over when templates change.
 
@@ -98,9 +99,10 @@ Each option requires a different PUC ad tag to be used in the associated creativ
 Engineering details outlining each template storage option can be found in the [Prebid.js Native Implementation Guide](/prebid/native-implementation.html).
 
 ## VAST Video
+
 VAST video (instream and long-form video) does not use the PUC. Instead, video bids provide VAST that Prebid caches to obtain a cache ID that can be retrieved with a URL. The cache ID is passed as a key value to the ad server. (See [Video Overview](/prebid-video/video-overview.html) for details.)
 
-When you’re running campaigns with video creatives, the primary decision you need to make is where to cache your video bids. You’ll enter this location in the creative you add to the line item. The cache location is typically independent of the bidders. The most common cache location is https://prebid.adnxs.com. See [Setting Up Video In GAM](/adops/setting-up-prebid-video-in-dfp.html) for detailed instructions on configuring a video creative in GAM.
+When you’re running campaigns with video creatives, the primary decision you need to make is where to cache your video bids. You’ll enter this location in the creative you add to the line item. The cache location is typically independent of the bidders. The most common cache location is [https://prebid.adnxs.com]. See [Setting Up Video In GAM](/adops/setting-up-prebid-video-in-dfp.html) for detailed instructions on configuring a video creative in GAM.
 
 ## SafeFrames
 
@@ -108,8 +110,8 @@ Another decision you need to make with regards to banner and native creatives is
 
 We recommend using SafeFrames for banner and native creatives, but there are some things to keep in mind if you do this. For example:
 
--  Some creatives, such as richmedia formats, can’t render in SafeFrames.
--  Some bidders do not support the use of SafeFrames.
+- Some creatives, such as richmedia formats, can’t render in SafeFrames.
+- Some bidders do not support the use of SafeFrames.
 
 If you don't trust all your bidders to provide creatives that can safely run inside of SafeFrames, then you'll want to consider using [Send All Bids](/adops/send-all-vs-top-price.html) (the default), which will enable you to allow some bidders to use SafeFrames and some not.
 
@@ -119,7 +121,7 @@ Be sure to check with bidders directly if you have questions about their SafeFra
 
 ## Related Reading
 
--  [Planning Guide](/adops/adops-planning-guide.html)
--  [Key Values for Ad Ops](/adops/key-values.html)
--  [Prebid Universal Creative](/overview/prebid-universal-creative.html)
--  [Deals in Prebid](/adops/deals.html)
+- [Planning Guide](/adops/adops-planning-guide.html)
+- [Key Values for Ad Ops](/adops/key-values.html)
+- [Prebid Universal Creative](/overview/prebid-universal-creative.html)
+- [Deals in Prebid](/adops/deals.html)

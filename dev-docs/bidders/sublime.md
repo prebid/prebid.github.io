@@ -13,7 +13,6 @@ sidebarType: 1
 
 Please contact your Sublime account manager before using this adapter.
 
-
 ### Bid params
 
 {: .table .table-bordered .table-striped }

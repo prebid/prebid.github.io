@@ -28,9 +28,8 @@ sidebarType: 1
 
 ### Note
 
-If you are using Google Ad Manager (GAM), it is highly recommended to make sure the “Serve in Safeframe” box in creative settings is unchecked. 
+If you are using Google Ad Manager (GAM), it is highly recommended to make sure the “Serve in Safeframe” box in creative settings is unchecked.
 If you absolutely want to run Duration Media in a Saferame creative, please contact your Duration Media repsentative to coordinate this setup.
-
 
 ### Test Parameters
 

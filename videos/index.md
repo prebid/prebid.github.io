@@ -8,6 +8,7 @@ sidebarType: 7
 <div class="bs-docs-section" markdown="1">
 
 # Header Bidding Videos - All
+
 {:.no_toc}
 
 This page has a collection of header bidding training videos.

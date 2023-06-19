@@ -20,7 +20,6 @@ For each bidder listed below, you'll find the following information:
 
 You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV data file</a>.
 
-
 {% assign bidder_pages = site.pages | where: "layout", "bidder" | where: "pbs", true %}
 
 {: .alert.alert-warning :}
@@ -57,7 +56,6 @@ Publishers are advised to check with legal counsel before doing business with an
 | **Floors Support** | {% if page.floors_supported == false %}no{% elsif page.floors_supported == true %}yes{% else %}check with bidder{% endif %} | **First Party Data Support** | {% if page.fpd_supported == true %}yes{% elsif page.fpd_supported == false %}no{% else %}check with bidder{% endif %} |
 | **Multi Format Support** | {% if page.multiformat_supported %}{{page.multiformat_supported}}{% else %}check with bidder{% endif %} | **ORTB Blocking Support** | {% if page.ortb_blocking_supported == true %}yes{% elsif page.ortb_blocking_supported == false %}no{% elsif page.ortb_blocking_supported == 'partial' %}partial{% else %}check with bidder{% endif %} |
 | **GPP Support** | {% if page.gpp_supported == true %}yes{% else %}no{% endif %} |
-
 
 <h3>"Send All Bids" Ad Server Keys</h3>
 

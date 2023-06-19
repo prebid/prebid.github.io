@@ -11,7 +11,7 @@ deals_supported: false
 
 ### Registration
 
-The AdsInteractive adapter requires setup and approval. Please reach out to it@adsinteractive.com to setup your account.
+The AdsInteractive adapter requires setup and approval. Please reach out to <it@adsinteractive.com> to setup your account.
 
 ### Bid Params
 

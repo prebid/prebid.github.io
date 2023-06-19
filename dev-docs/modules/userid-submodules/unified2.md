@@ -26,6 +26,7 @@ Each publisher’s privacy policy should take UnifiedID 2.0 into account.
 ## Unified ID 2.0 Tokens
 
 UID2 tokens are generated on the server side by making an API call to a UID2 operator using details provided when you receive UID2 publisher access. This API returns a JSON data structure with multiple values, including an advertising token and a refresh token. For full functionality, provide the entire object in one of these ways:
+
 - JSON-encoded as a cookie.
 - Included in the configuration object.
 

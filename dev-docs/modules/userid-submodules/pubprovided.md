@@ -24,6 +24,7 @@ pbjs.setConfig({
 ```
 
 Or, the eids values can be passed directly into the `setConfig` call:
+
 ```
 pbjs.setConfig({
     userSync: {
@@ -74,7 +75,6 @@ Add it to your Prebid.js package with:
 
 {: .alert.alert-info :}
 gulp build --modules=pubProvidedIdSystem
-
 
 ## PubProvided Configuration
 

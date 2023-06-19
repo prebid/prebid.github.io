@@ -31,6 +31,7 @@ The following configuration parameters are available:
 | storage.refreshInSeconds | Strongly Recommended | Number | How many seconds until the ID is refreshed | `8 * 3600` (recommended) |
 
 ## 33Across ID Example
+
 ```
 pbjs.setConfig({
   userSync: {

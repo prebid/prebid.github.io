@@ -13,9 +13,8 @@ sidebarType : 1
 
 # ID Ward Real Time Data Provider Module
 
-ID Ward is a data anonymization technology for privacy-preserving advertising. Publishers and advertisers are able to target and retarget custom audience segments covering 100% of consented audiences. 
+ID Ward is a data anonymization technology for privacy-preserving advertising. Publishers and advertisers are able to target and retarget custom audience segments covering 100% of consented audiences.
 ID Ward’s Real-time Data Provider automatically obtains segment IDs from the ID Ward on-domain script (via `localStorage`) and passes them to the bid-stream.
-
 
 ## Publisher Usage
 
@@ -47,8 +46,7 @@ gulp build --modules=idWardRtdProvider,...
 ```
 
 Please note that idWardRtdProvider should be integrated into the publisher website along with the [ID Ward Pixel](https://publishers-web.id-ward.com/pixel-integration).
-Please reach out to Id Ward representative(support@id-ward.com) if you have any questions or need further help to integrate Prebid, idWardRtdProvider, and Id Ward Pixel
-
+Please reach out to Id Ward representative(<support@id-ward.com>) if you have any questions or need further help to integrate Prebid, idWardRtdProvider, and Id Ward Pixel
 
 **Config Syntax details:**
 

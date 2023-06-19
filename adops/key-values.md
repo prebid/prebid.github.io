@@ -7,9 +7,10 @@ sbUUID: 3.2
 ---
 
 # Key Values
+
 {: .no_toc }
 
-* TOC
+- TOC
 {: toc }
 
 Prebid uses key-value pairs to pass bid information to the ad server. This puts key values at the core of how Prebid works. Without key values, Prebid would have no way of communicating with ad servers, and therefore no way to make header bidding part of the auction. This document explains how bid information is sent to the ad server, what information is sent, and options for modifying the amount and types of information that is sent.
@@ -40,11 +41,10 @@ You can work with your engineers to modify the default list. See [Restricting Da
 | hb_deal | targeting | All | Target private marketplace deals | 7777777 |
 | hb_uuid | rendering | Video only | Carries the cache retrieval ID for VAST video creatives | 1111-2222-3333-4444 |
 | hb_cache_id | rendering | Banner, native, outstream; mobile app only | Carries the cache retrieval ID for mobile bids | 2222-3333-4444-5555 |
-| hb_cache_host | rendering | Banner, native, outstream; mobile app only | The host where the cached creative lives | https://mycachehost.example.com |
+| hb_cache_host | rendering | Banner, native, outstream; mobile app only | The host where the cached creative lives | [https://mycachehost.example.com] |
 | hb_cache_path | rendering | Banner, native, outstream; mobile app only | The web path where the cached creative lives | /cache |
 | hb_source | reporting | Server-to-server testing | Used to report the A/B test results for client- vs server-side performance. | s2s |
 | hb_adomain | reporting and special | All | Used to report on VAST errors, set floors on certain buyers, monitor volume from a buyer, or track down bad creatives | example.com |
-
 
 When you’re sending the [Top Price Bid](/adops/send-all-vs-top-price.html) to the ad server, the preceding keys are the only keys that will be sent. If you’re [Sending All Bids](/adops/send-all-vs-top-price.html), the preceding keys will be sent, plus the same set of keys specific to each bidder, with the bidder name appended. For example, if you receive bids from BidderA and BidderB, the keys hb_pb, hb_pb_BidderA, and hb_pb_BidderB will all be sent to the ad server with the values provided by the associated bidders. (Even in that scenario, the "winning" keys [hb_pb, etc.] will still have the values for the top bid.)
 
@@ -70,7 +70,6 @@ These values are needed for rendering the creative properly when the Prebid line
 ### Special Usage
 
 The hb_adomain key was created to provide additional information about a bid or to help with troubleshooting. See [setConfig](/dev-docs/publisher-api-reference/setConfig.html#details-on-the-allowtargetingkeys-setting) for engineering information on using the hb_adomain key.
-
 
 ## Restricting Data Sent to the Ad Server
 
@@ -104,6 +103,6 @@ For engineering information on configuration options, see  [Prebid.js Controls](
 
 ## Further Reader
 
- -  [Planning Guide](/adops/adops-planning-guide.html)
- -  [Prebid Universal Creative](/overview/prebid-universal-creative.html)
- -  [Deals in Prebid](/adops/deals.html)
+- [Planning Guide](/adops/adops-planning-guide.html)
+- [Prebid Universal Creative](/overview/prebid-universal-creative.html)
+- [Deals in Prebid](/adops/deals.html)

@@ -22,9 +22,9 @@ ortb_blocking_supported: true
 userIds: all
 ---
 
-### Note:
+### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at support@motorik.io.
+The Example Bidding adapter requires setup before beginning. Please contact us at <support@motorik.io>.
 Motorik will only respond to the first impression. Multiple ad formats in single request are not supported.
 
 ### Bid Params

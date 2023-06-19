@@ -16,9 +16,9 @@ multiformat_supported: will-bid-on-one
 userIds: all
 sidebarType: 1
 ---
-### Note:
+### Note
 
-For more information about [Adserver.Online](https://adserver.online), please contact support@adsrv.org.
+For more information about [Adserver.Online](https://adserver.online), please contact <support@adsrv.org>.
 
 ### Bid Params
 

@@ -11,6 +11,7 @@ sidebarType : 1
 ---
 
 # Konduit Accelerate Module
+
 {:.no_toc}
 
 The Konduit Accelerate module applies the [Konduit](https://konduitvideo.com/) video acceleration optimization to a publisher’s existing Prebid setup. This optimization provides publishers with tools to monetize previously lost revenue and drive higher fill rates on their video inventory.
@@ -25,7 +26,6 @@ Build your Prebid.js package in one of two ways:
 
 - From the command line, run  
    `gulp build --modules=konduitWrapper,...`
-
 
 ### Step 2: Implement module code on page
 
@@ -48,11 +48,13 @@ Build your Prebid.js package in one of two ways:
 Konduit Accelerate module respects the Prebid `enableSendAllBids` flag and supports both ‘Send All Bids’ and ‘Use only the winning bid’ scenarios.
 
 Prebid set the `enableSendAllBids` flag to true by default and it can be explicitly disabled in Prebid config if needed.
+
 ```javascript
 pbjs.setConfig({
   enableSendAllBids: false
 });  
 ```
+
 Please refer to [Publisher API Reference (Send All Bids)](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids) for more information on the Send All Bids settings.
 
 ### Step 3: Configure Google Ad Manager (GAM)
@@ -118,8 +120,11 @@ pbjs.que.push(function() {
   });
 });
 ```
+
 ​
+
 ## Further Reading
+
 ​
 [Getting Started Example]({{site.baseurl}}/dev-docs/getting-started.html)  
 [Prebid.js for Video]({{site.baseurl}}/prebid-video/video-overview.html)

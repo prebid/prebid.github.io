@@ -61,7 +61,6 @@ Publishers that want to do this should design their workflow and then set `_pbjs
 * read from an in-page javascript variable and set `_pbjs_id_optout` to any value.
 * call an in-page function and use the results to create a `_pbjs_id_optout` cookie with any value.
 
-
 ## Basic Configuration
 
 By including this module and one or more of the sub-modules, a number of new options become available in `setConfig()`,
@@ -97,7 +96,6 @@ The table below has the options that are common across ID systems. See the secti
 | storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
-
 ## Permissions
 
 Publishers can control which user ids are shared with the bid adapters they choose to work with by using the bidders array.  The bidders array is part of the User id module config, publisher may choose to send an id to some bidders but not all, the default behavior is that each user id go to all bid adapters the publisher is working with.
@@ -105,6 +103,7 @@ Publishers can control which user ids are shared with the bid adapters they choo
 Use the optional `bidders` parameter to define an array of bidder codes to which this user ID may be sent.
 
 In this example the SharedID sub adapter is only allowed to be sent to the Rubicon adapter.
+
 ```
 userIds: [
   {
@@ -124,7 +123,9 @@ userIds: [
   }
 ]
 ```
+
 The Rubicon bid adapter would then receive
+
 ```
 {
   "bidder": "rubicon",
@@ -160,7 +161,6 @@ The Rubicon bid adapter would then receive
 {% for page in userid_pages %}
 <li><a href="/{{ page.path | replace: '.md', '.html'}}">{{page.title}}</a></li>
 {% endfor %}
-
 
 ## Bidder Adapter Implementation
 
@@ -360,7 +360,6 @@ pbjs.setConfig({
 
 This will have no effect until you call the `registerSignalSources` API. This method must be called
 **after** the `pbjs.setConfig` and `gpt.js` has loaded. See [API reference for `registerSignalSources`](/dev-docs/publisher-api-reference/registerSignalSources.html)
-
 
 ## Further Reading
 

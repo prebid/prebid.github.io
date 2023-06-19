@@ -35,6 +35,7 @@ period is complete, regardless of outcome, A/B testing would be turned off
 and this module no longer included in the PrebidJS build.
 
 ## Features
+
 With the Server-to-Server Testing module, the following enhancements are provided:
 
 New 'bidderControl' options in s2sConfig. E.g.
@@ -74,6 +75,7 @@ more advanced reporting.
 ```
 hb_source_BIDDER=client
 ```
+
 OR
 
 ```
@@ -95,13 +97,12 @@ AdUnit={
 
 ## Analysis
 
-Determining the success of the test is up to each publisher, but 
+Determining the success of the test is up to each publisher, but
 keep in mind the various data sources you may have access to:
 
 * Ad Server reports - the additional `hb_source` key value pair can be used to confirm some elements on the performance.
 * Prebid Analytics Adapter - if you're already monitoring header bidding, those reports should be monitored for impacts in key metrics from the A/B test.
 * Bidder data - SSPs should be able to provide data about cookie match rates and general performance during the test period.
-
 
 ## Usage Examples
 
@@ -128,6 +129,7 @@ pbjs.setConfig(
      }
 });
 ```
+
 The additional hb_source_rubicon KVP will be sent to the ad server for additional reporting.
 
 ### 2. A/B Test for one AdUnit
@@ -153,6 +155,7 @@ pbjs.setConfig(
      }
 });
 ```
+
 And then changes to override one particular AdUnit for server testing:
 
 ```
@@ -165,11 +168,12 @@ AdUnit={
     }]
 }
 ```
+
 Requests will go to the Rubicon Exchange on the server path 25% of the time
 and the client path the rest of the time.  The additional hb_source_rubicon
 KVP will be sent to the ad server for additional reporting.
 
-### 3. A/B Test isolating the server 
+### 3. A/B Test isolating the server
 
 *As a Publisher, I want to get metrics on the difference between a 'pure server'
 approach and a mixed client-server approach so we can gauge the impact of Prebid Server running alone, without any client requests. I'll use the `testServerOnly: true` flag to suppress all client requests whenever the 'A/B test group' results in a server request.*
@@ -214,10 +218,11 @@ AdUnit={
     }]
 }
 ```
+
 5% of the time rubicon, and criteo will use s2s bid requests while index does not bid, and the other 95% of the time rubicon, criteo, and index use client bid requests.
 
 Addtional details:
-- If a bidder is always 100% server-side -- i.e. doesn't have either `s2sConfig.bidderControl` or `AdUnit.bids[].bidSource`, then it will not affect `testServerOnly`. i.e. It's going on the server path will not exclude client side adapters.
+* If a bidder is always 100% server-side -- i.e. doesn't have either `s2sConfig.bidderControl` or `AdUnit.bids[].bidSource`, then it will not affect `testServerOnly`. i.e. It's going on the server path will not exclude client side adapters.
 
 ### 4. Turn on Test KVP, but no server requests
 
@@ -242,10 +247,9 @@ pbjs.setConfig(
      }
 });
 ```
+
 The test KVP hb_source_rubicon on this page will always sent with the value "client".
 
 ## Further Reading
 
-+ [Prebid Server](/prebid-server/overview/prebid-server-overview.html)
-
-
+* [Prebid Server](/prebid-server/overview/prebid-server-overview.html)

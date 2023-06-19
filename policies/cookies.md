@@ -18,4 +18,3 @@ The docs.prebid.org website may store or retrieve information on your browser in
 <!-- OneTrust Cookies List start -->
 <div id="optanon-cookie-policy"></div>
 <!-- OneTrust Cookies List end -->
-

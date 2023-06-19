@@ -16,9 +16,9 @@ multiformat_supported: will-bid-on-one
 userIds: all
 sidebarType: 1
 ---
-### Note:
+### Note
 
-The Bidgency Group adapter requires approval and setup. Please reach out to aso@bidgency.com or visit us at [bidgency.com](https://bidgency.com) for more details.
+The Bidgency Group adapter requires approval and setup. Please reach out to <aso@bidgency.com> or visit us at [bidgency.com](https://bidgency.com) for more details.
 
 ### Bid Params
 

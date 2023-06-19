@@ -48,7 +48,6 @@ pbjs.setConfig({
 })
 ```
 
-
 ### Examples
 
 #### Send all data to given URL using single requests

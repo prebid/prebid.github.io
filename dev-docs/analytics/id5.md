@@ -25,7 +25,6 @@ The ID5 privacy policy is at [https://id5.io/platform-privacy-policy](https://id
 | options.partnerId | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `1234` |
 | options.eventsToTrack | Optional | Array of strings | Overrides the set of tracked events | `['auctionEnd','bidWon']` |
 
-
 ### Example Configuration
 
 ```javascript
