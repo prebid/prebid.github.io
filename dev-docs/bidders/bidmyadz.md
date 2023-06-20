@@ -15,6 +15,7 @@ sidebarType: 1
 ---
 
 ### Prebid Server Bid Params
+
 Currently adapter doesn't support multiimpression, so only the first impression will be delivered
 
 {: .table .table-bordered .table-striped }

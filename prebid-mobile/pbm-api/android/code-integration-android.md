@@ -56,7 +56,16 @@ scripts/buildPrebidMobile.sh
 
 This will output the PrebidMobile framework for Android.
 
-## Initialize SDK
+{% capture warning_note %}  
+If you see errors while building the Prebid Mobile SDK or Demo Applications, make sure that the needed Android SDK version is set up on your machine. Check the gradle build configs for the project and applications for details about the current required version.
+
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
+
+## Add SDK
+
+### Set Prebid Server
 
 {% capture warning_note %}  
 All integration examples for Android are written in `Kotlin`. 
@@ -73,27 +82,44 @@ PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
 ```
 
-If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app.
+If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+
 
 ```
-PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebid-server-test-j.prebid.org/openrtb2/auction"))
+PrebidMobile.setPrebidServerHost(Host.createCustomHost(PREBID_SERVER_AUCTION_ENDPOINT))
 ```
 
-Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. There are several options for how to do it. 
+### Initialize SDK
 
-Use the following initialization for Prebid SDK: 
+Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. Use the following initialization for Prebid SDK: 
 
 ```kotlin
-PrebidMobile.initializeSdk(applicationContext, object : SdkInitializationListener {
-    override fun onSdkInit() {
-        TODO("Not yet implemented")
+PrebidMobile.initializeSdk(applicationContext) { status ->
+    if (status == InitializationStatus.SUCCEEDED) {
+        Log.d(TAG, "SDK initialized successfully!")
+    } else if (status == InitializationStatus.SERVER_STATUS_WARNING) {
+        Log.e(TAG, "Prebid Server status checking failed: $status\n${status.description}")
     }
-
-    override fun onSdkFailedToInit(error: InitError?) {
-        TODO("Not yet implemented")
+    else {
+        Log.e(TAG, "SDK initialization error: $status\n${status.description}")
     }
-})
+}
 ```
+
+{% capture warning_note %}  
+Pay attention that SDK should be initialized on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
+During the initialization, SDK creates internal classes and performs the health check request to the [/status](https://docs.prebid.org/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If you use a custom PBS host you should provide a custom status endpoint as well:
+
+```
+PrebidMobile.setCustomStatusEndpoint(PREBID_SERVER_STATUS_ENDPOINT)
+```
+
+If something goes wrong with the request, the status of the initialization callback will be `SERVER_STATUS_WARNING`. It doesn't affect an SDK flow and just informs you about the health check result.
+
+### Check compatibility with your GMA SDK
 
 If you integrate Prebid Mobile with GMA SDK, use the following method, which checks the compatibility of Prebid SDK with GMA SDK used in the app: 
 
@@ -175,7 +201,7 @@ Apply global settings with the `PrebidMobile` object.
 String containing the Prebid Server account ID.
 
 ```kotlin
-PrebidMobile.setPrebidServerAccountId("123321")
+PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 var pbsAccountId = PrebidMobile.getPrebidServerAccountId()
 ```
 
@@ -271,3 +297,25 @@ Follow the corresponding guide to integrate Prebid Mobile:
 - [GAM using Rendering API](../../modules/rendering/android-sdk-integration-gam.html)
 - [AdMob](../../modules/rendering/android-sdk-integration-admob)
 - [AppLovin MAX](../../modules/rendering/android-sdk-integration-max.html)
+
+### Test configs
+
+In the table below, you can find Prebid's test IDs that are used in the Demo Applications and that you can utilize for SDK integration validation.
+
+{: .table .table-bordered .table-striped }
+
+| Config ID            | Ad Format        | Description            |
+| -------------------- | ---------------- | ---------------------- | 
+|`https://prebid-server-test-j.prebid.org/openrtb2/auction` | **Custom Prebid Server Host**|A PBS instance that is dedicated to testing purposes.|
+|`0689a263-318d-448b-a3d4-b02e8a709d9d`| **Stored Request ID**|The test account ID on the test server.|
+|`imp-prebid-banner-320-50`|**HTML Banner**|Returns a stored response that contains a Banner 320x50 winning bid.|
+|`imp-prebid-display-interstitial-320-480`|**HTML Interstitial**|Returns a stored response that contains a Interstitial 320x480 winning bid.|
+|`imp-prebid-video-outstream-original-api`|**Outstream Video** (Original API)|Returns a stored response that contains a Video 320x50 winning bid.|
+|`imp-prebid-video-outstream`|**Outstream Video** (Rendering API)|Returns a stored response that contains a Video 320x50 winning bid.|
+|`imp-prebid-video-interstitial-320-480-original-api`|**Video Interstitial** (Original API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
+|`imp-prebid-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
+|`imp-prebid-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
+|`imp-prebid-video-rewarded-320-480`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
+|`sample_video_response`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid. Note: on Android we have an [issue](https://github.com/prebid/prebid-mobile-android/issues/517) with Instream Video demo example. When it is fixed the config id will be updated to the new one.|
+|`imp-prebid-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
+|`imp-prebid-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|

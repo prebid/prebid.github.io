@@ -8,7 +8,8 @@ gdpr_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
+
 The Inskin bidder adapter requires additional setup and approval from the Inskin Media Integrations team. Please reach out to your account manager for more information and to start using it.
 
 ### Bid Params

@@ -15,9 +15,9 @@ pbjs: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at support@gothamads.com 
+The Example Bidding adapter requires setup before beginning. Please contact us at <support@gothamads.com>
 
 ### Bid Params
 

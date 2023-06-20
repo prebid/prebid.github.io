@@ -7,6 +7,10 @@ biddercode: beop
 sidebarType: 1
 ---
 
+### Disclosure
+
+Note: This bidder never sends gdprApplies to its endpoint. This may result in some incorrect GDPR processing, such as when the consent string is not yet available but the publisher has decided GDPR always applies. See <https://github.com/prebid/Prebid.js/issues/7775>
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }

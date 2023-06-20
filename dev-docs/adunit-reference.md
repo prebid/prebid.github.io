@@ -6,18 +6,19 @@ sidebarType: 1
 ---
 
 # Ad Unit Reference
+
 {:.no_toc}
 
 The ad unit object is where you configure what kinds of ads you will show in a given ad slot on your page, including:
 
-+ Allowed media types (e.g., banner, native, and/or video)
-+ Allowed sizes
-+ AdUnit-specific first party data
+* Allowed media types (e.g., banner, native, and/or video)
+* Allowed sizes
+* AdUnit-specific first party data
 
 It's also where you will configure bidders, e.g.:
 
-+ Which bidders are allowed to bid for that ad slot
-+ What information is passed to those bidders via their [parameters]({{site.baseurl}}/dev-docs/bidders.html)
+* Which bidders are allowed to bid for that ad slot
+* What information is passed to those bidders via their [parameters]({{site.baseurl}}/dev-docs/bidders.html)
 
 This page describes the properties of the `adUnit` object.
 
@@ -36,29 +37,32 @@ See the table below for the list of properties on the ad unit.  For example ad u
 | `mediaTypes` | Optional | Object                                | Defines one or more media types that can serve into the ad unit.  For a list of properties, see [`adUnit.mediaTypes`](#adUnit.mediaTypes) below.                                           |
 | `labelAny`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                    |
 | `labelAll`   | Optional | Array[String]                         | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                                                                     |
-| `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit. The ortb2Imp object currently supports [first party data](#adUnit-fpd-example) including the [Prebid Ad Slot](/features/pbAdSlot.html) and the [interstitial](#adUnit-interstitial-example) signal. |
+| `ortb2Imp`   | Optional | Object                         | ortb2Imp is used to signal OpenRTB Imp objects at the adUnit grain. Similar to the global ortb2 field used for [global first party data configuration](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd), but specific to this adunit.|
 | `ttlBuffer`  | Optional | Number                                | TTL buffer override for this adUnit. See [setConfig({ttlBuffer})](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ttlBuffer) |
 | `renderer`   | Optional | Object                         | Custom renderer, typically used for [outstream video](/dev-docs/show-outstream-video-ads.html) |
-| `video`      | Optional | Object                                | Used to link an Ad Unit to the [Video Module][videoModule]. For allowed params see the [adUnit.video reference](#adUnit-video). |
+| `video`      | Optional | Object                                | Used to link an Ad Unit to the [Video Module][videoModule]. For allowed params see the [adUnit.video reference](#adunitvideo). |
+| `deferBilling` | Optional | Boolean | Used by a publisher to flag adUnits as being separately billable. This allows for a publisher to trigger billing manually for winning bids. See [pbjs.triggerBilling](/dev-docs/publisher-api-reference/triggerBilling.html) and [onBidBillable](/dev-docs/bidder-adaptor.html#registering-on-bid-billable) for more info. |
 
-<a name="adUnit.bids" />
+<a name="adUnit.bids"></a>
 
 ### adUnit.bids
 
 See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#adUnit-examples) below.
 
-Note that `bids` is optional only for [Prebid Server stored impressions](/dev-docs/modules/prebidServer.html#stored-imp), and required in all other cases.
+Note that `bids` is optional only for [Prebid Server stored impressions](#stored-imp), and required in all other cases.
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Type          | Description                                                                                                                              |
 |------------+----------+---------------+------------------------------------------------------------------------------------------------------------------------------------------|
-| `bidder`   | Required | String        | Unique code identifying the bidder. For bidder codes, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html).          |
+| `bidder`   | Optional | String        | Unique code identifying the bidder. For bidder codes, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html).          |
+| `module`   | Optional | String        | Module code - for requesting bids from modules that are not bid adapters. See [Prebid Server stored impressions](#stored-imp). |
 | `params`   | Required | Object        | Bid request parameters for a given bidder. For allowed params, see the [bidder param reference]({{site.baseurl}}/dev-docs/bidders.html). |
 | `labelAny` | Optional | Array[String] | Used for [conditional ads][conditionalAds].  Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                  |
 | `labelAll` | Optional | Array[String] | Used for [conditional ads][conditionalAds]. Works with `sizeConfig` argument to [pbjs.setConfig][configureResponsive].                   |
+| `ortb2Imp` | Optional | Object        | OpenRTB first-party data specific to this bidder. This is merged with, and takes precedence over, `adUnit.ortb2Imp`.|
 | `renderer` | Optional | Object        | Custom renderer. Takes precedence over `adUnit.renderer`, but applies only to this bidder. |
 
-<a name="adUnit.mediaTypes" />
+<a name="adUnit.mediaTypes"></a>
 
 ### adUnit.mediaTypes
 
@@ -71,7 +75,7 @@ See the table below for the list of properties in the `mediaTypes` object of the
 | [`native`](#adUnit.mediaTypes.native) | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a native ad.  For properties, see [`adUnit.mediaTypes.native`](#adUnit.mediaTypes.native). |
 | [`video`](#adUnit.mediaTypes.video)   | At least one of the `banner`, `native`, or `video` objects are required. | Object | Defines properties of a video ad.  For examples, see [`adUnit.mediaTypes.video`](#adUnit.mediaTypes.video).      |
 
-<a name="adUnit.mediaTypes.banner" />
+<a name="adUnit.mediaTypes.banner"></a>
 
 #### adUnit.mediaTypes.banner
 
@@ -82,7 +86,7 @@ See the table below for the list of properties in the `mediaTypes` object of the
 | `pos`  | Optional | Integer                                | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen   |
 | `name`  | Optional | String                                | Name for this banner ad unit.  Can be used for testing and debugging.                   |
 
-<a name="adUnit.mediaTypes.native" />
+<a name="adUnit.mediaTypes.native"></a>
 
 #### adUnit.mediaTypes.native
 
@@ -90,7 +94,7 @@ The `native` object contains properties that correspond to the assets of the nat
 
 See [Prebid Native Implementation](/prebid/native-implementation.html) for details.
 
-<a name="adUnit.mediaTypes.video" />
+<a name="adUnit.mediaTypes.video"></a>
 
 #### adUnit.mediaTypes.video
 
@@ -101,6 +105,7 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 | `context`        | Recommended    | String                 | The video context, either `'instream'`, `'outstream'`, or `'adpod'` (for long-form videos).  Example: `context: 'outstream'`. Defaults to 'instream'. |
 | `useCacheKey`        | Optional    | Boolean                 | Defaults to `false`. While context `'instream'` always will return an vastUrl in bidResponse, `'outstream'` will not. Setting this `true` will use cache url defined in global options also for outstream responses. |
 | `placement`        | Recommended    | Integer                 | 1=in-stream, 2=in-banner, 3=in-article, 4=in-feed, 5=interstitial/floating. **Highly recommended** because some bidders require more than context=outstream. |
+| `plcmt`        | Recommended    | Integer                 | 1=in-stream, 2=accompanying content, 3=interstitial, 4=no content/standalone. **Highly recommended** to comply with new IAB video specifications. See [AdCOM v1 spec](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md#list_plcmtsubtypesvideo) |
 | `playerSize`     | Optional    | Array[Integer,Integer] | The size (width, height) of the video player on the page, in pixels.  Example: `playerSize: [640, 480]`                                                                                                  |
 | `api`            | Recommended | Array[Integer]         | List of supported API frameworks for this impression.  If an API is not explicitly listed, it is assumed not to be supported.  For list, see [OpenRTB 2.5 spec][openRTB].  If your video player or video ads SDK supports [Open Measurement][OpenMeasurement], **recommended** to set `7` for OMID-1|
 | `mimes`          | Recommended | Array[String]          | Content MIME types supported, e.g., `"video/x-ms-wmv"`, `"video/mp4"`. **Required by OpenRTB when using [Prebid Server][pbServer]**.                                                                                   |
@@ -111,7 +116,6 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 | `w`      | Recommended    | Integer         | Width of the video player in device independent pixels (DIPS)., see [OpenRTB 2.5 spec][openRTB].           |
 | `h`      | Recommended    | Integer         | Height of the video player in device independent pixels (DIPS)., see [OpenRTB 2.5 spec][openRTB].           |
 | `startdelay`      | Recommended    | Integer         | Indicates the start delay in seconds, see [OpenRTB 2.5 spec][openRTB].           |
-| `placement`      | Optional    | Integer         | Placement type for the impression, see [OpenRTB 2.5 spec][openRTB].           |
 | `linearity`      | Optional    | Integer         | Indicates if the impression must be linear, nonlinear, etc, see [OpenRTB 2.5 spec][openRTB].           |
 | `skip`      | Optional    | Integer         | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes., see [OpenRTB 2.5 spec][openRTB].           |
 | `skipmin`      | Optional    | Integer         | Videos of total duration greater than this number of seconds can be skippable; only applicable if the ad is skippable., see [OpenRTB 2.5 spec][openRTB].           |
@@ -137,10 +141,9 @@ If `'video.context'` is set to `'adpod'` then the following parameters are also 
 | `contentLengthSec`        | Optional    | Number                 | A number representing the length of the video in seconds. Example: `contentLengthSec = 1` |
 | `contentMode`        | Optional    | String                 | A string indicating the type of content being displayed in the video player. There are two options, `live` and `on-demand`. Example: `contentMode = 'on-demand'` |
 
+<a name="adUnit-examples"></a>
 
-<a name="adUnit-examples" />
-
-<a name="adUnit.video" />
+<a name="adUnit.video"></a>
 
 ### adUnit.video
 
@@ -160,18 +163,18 @@ When using the Video Module, the mediaTypes.video properties get filled out auto
 
 ## Examples
 
-+ [Banner](#adUnit-banner-example)
-+ [Video](#adUnit-video-example)  
-  - [With the Video Module](#adUnit-video-module-example)
-  - [Instream](#adUnit-video-example-instream)  
-  - [Outstream](#adUnit-video-example-outstream)  
-  - [Adpod (Long-Form)](#adUnit-video-example-adpod)
-+ [Native](#adUnit-native-example)
-+ [Multi-Format](#adUnit-multi-format-example)
-+ [Twin Codes](#adUnit-twin-codes-example)
-+ [First Party Data](#adUnit-fpd-example)
+* [Banner](#adUnit-banner-example)
+* [Video](#adUnit-video-example)  
+  * [With the Video Module](#adUnit-video-module-example)
+  * [Instream](#adUnit-video-example-instream)  
+  * [Outstream](#adUnit-video-example-outstream)  
+  * [Adpod (Long-Form)](#adUnit-video-example-adpod)
+* [Native](#adUnit-native-example)
+* [Multi-Format](#adUnit-multi-format-example)
+* [Twin Codes](#adUnit-twin-codes-example)
+* [First Party Data](#adUnit-fpd-example)
 
-<a name="adUnit-banner-example">
+<a name="adUnit-banner-example"></a>
 
 ### Banner
 
@@ -205,6 +208,7 @@ pbjs.addAdUnits({
 #### With the Video Module
 
 For an example of a video ad unit linked to the Video Module, see below. For more detailed instructions see the [Video Module docs][videoModule].
+
 ```javascript
 pbjs.addAdUnits({
     code: slot.code,
@@ -227,7 +231,7 @@ pbjs.addAdUnits({
 });
 ```
 
-<a name="adUnit-video-example-instream">
+<a name="adUnit-video-example-instream"></a>
 
 #### Instream
 
@@ -255,7 +259,7 @@ pbjs.addAdUnits({
 });
 ```
 
-<a name="adUnit-video-example-outstream">
+<a name="adUnit-video-example-outstream"></a>
 
 #### Outstream
 
@@ -309,7 +313,8 @@ pbjs.addAdUnits({
     ...
 });
 ```
-<a name="adUnit-video-example-adpod">
+
+<a name="adUnit-video-example-adpod"></a>
 
 #### Adpod (Long-Form)
 
@@ -343,7 +348,7 @@ var longFormatAdUnit = {
 }
 ```
 
-<a name="adUnit-native-example">
+<a name="adUnit-native-example"></a>
 
 ### Native
 
@@ -359,27 +364,27 @@ pbjs.addAdUnits({
                 assets: [{
                     required: 1,
                     img: {
-		        type: 1,
+                type: 1,
                         hmin: 50
                     },
-		},{
+        },{
                     required: 1,
                     title: {
                         len: 80
                     },
-		},{
+        },{
                     required: 1,
                     data: {
                         type: 1,
                         len: 30
                     },
-		},{
+        },{
                     required: 1,
                     data: {
                         type: 2,
                         len: 100
                     },
-		},{
+        },{
                     required: 1,
                     img: {
                         type: 3,
@@ -387,8 +392,8 @@ pbjs.addAdUnits({
                         wmin: 267
                     }
                 }]
-	    }
-	}
+        }
+    }
     },
     bids: [
         {
@@ -401,13 +406,13 @@ pbjs.addAdUnits({
 });
 ```
 
-<a name="adUnit-multi-format-example">
+<a name="adUnit-multi-format-example"></a>
 
 ### Multi-Format
 
 For an example of a multi-format ad unit, see below.  For more detailed instructions, see [Show Multi-Format Ads]({{site.baseurl}}/dev-docs/show-multi-format-ads.html).
 
-{% highlight js %}
+```javascript
 
 pbjs.addAdUnits([{
         code: 'div-banner-native',
@@ -418,16 +423,16 @@ pbjs.addAdUnits([{
                 ]
             },
             native: {
-		ortb: {
-		    ver: "1.2",
-		    assets: [{
-			required: 1,
-                	img: {
-			    type: 1,
-			    hmin: 50
-			}
-		    }]
-		}
+        ortb: {
+            ver: "1.2",
+            assets: [{
+            required: 1,
+                    img: {
+                type: 1,
+                hmin: 50
+            }
+            }]
+        }
             },
         },
         bids: [{
@@ -468,16 +473,16 @@ pbjs.addAdUnits([{
                 ]
             },
             native: {
-		ortb: {
-		    ver: "1.2",
-		    assets: [{
-			required: 1,
-                	img: {
-			    type: 1,
-			    hmin: 50
-			}
-		    }]
-		}
+        ortb: {
+            ver: "1.2",
+            assets: [{
+            required: 1,
+                    img: {
+                type: 1,
+                hmin: 50
+            }
+            }]
+        }
             },
             video: {
                 context: 'outstream',
@@ -493,20 +498,21 @@ pbjs.addAdUnits([{
     }
 ]);
 
-{% endhighlight %}
+```
 
-<a name="adUnit-twin-codes-example">
+<a name="adUnit-twin-codes-example"></a>
 
 ### Twin AdUnit Codes
 
 It's ok to have multiple AdUnits with the same `code`. This can be useful in scenarios
 where bidders have different capabilities for the same spot on the page. e.g.
 
-- BidderA should receive both media types, while BidderB gets only one
-- BidderA gets one size while BidderB gets another
+* BidderA should receive both media types, while BidderB gets only one
+* BidderA gets one size while BidderB gets another
 
 In this example, bidderA gets both banner and outstream, while bidderB gets only banner.
-{% highlight js %}
+
+```javascript
     var adUnits = [
            {
                code: 'test-div',
@@ -547,18 +553,18 @@ In this example, bidderA gets both banner and outstream, while bidderB gets only
                ]
            }
        ];
-{% endhighlight %}
+```
 
 In this example, bidderA receives 2 bidRequest objects while bidderB receives one. If a bidder provides more than one bid for the same AdUnit.code, Prebid.js will use the highest bid when it's
 time to set targeting.
 
-<a name="adUnit-fpd-example">
+<a name="adUnit-fpd-example"></a>
 
 ### First Party Data
 
 Example of an adunit-specific block of first party data:
 
-{% highlight js %}
+```javascript
 pbjs.addAdUnits({
     code: "test-div",
     mediaTypes: {
@@ -568,27 +574,28 @@ pbjs.addAdUnits({
     },
     ortb2Imp: {
          ext: {
-	    data: {
+        data: {
                 pbadslot: "homepage-top-rect",
                 adUnitSpecificContextAttribute: "123"
-	    }
+        }
          }
     },
     ...
 });
-{% endhighlight %}
+```
 
 Notes:
-- Only contextual data should be added on the AdUnit; user-related data goes in the [global first party data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) config.
-- For additional help with analytics and reporting you can use the [Prebid Ad Slot](/features/pbAdSlot.html), a special type of first party data.
 
-<a name="adUnit-interstitial-example">
+* Only contextual data should be added on the AdUnit; user-related data goes in the [global first party data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) config.
+* For additional help with analytics and reporting you can use the [Prebid Ad Slot](/features/pbAdSlot.html), a special type of first party data.
+
+<a name="adUnit-interstitial-example"></a>
 
 ### Interstitial Ads
 
 Example of an adunit-specific interstitial signal:
 
-{% highlight js %}
+```javascript
 pbjs.addAdUnits({
     code: "test-div",
     mediaTypes: {
@@ -597,31 +604,93 @@ pbjs.addAdUnits({
         }
     },
     ortb2Imp: {
-    	instl:1
+        instl:1
     },
     ...
 });
-{% endhighlight %}
+```
 
-For more information on Interstitial ads, reference the [Interstitial feature page](/features/InterstitialAds.html).
+For more information on Interstitial ads, reference the [Interstitial feature page](/features/InterstitialAds.html). Additionally, to assist with billing optimization and interstitial ads, the triggerBilling and onBidBillable functionality can be utilized. See [pbjs.triggerBilling](/dev-docs/publisher-api-reference/triggerBilling.html) and [onBidBillable](/dev-docs/bidder-adaptor.html#registering-on-bid-billable) for more info.
+
+<a id="stored-imp"></a>
+
+### Prebid Server stored impressions
+
+When using [PBS stored impressions](/dev-docs/modules/prebidServer.html#stored-imp), `bids` is not required:
+
+```javascript
+pbjs.addAdUnits({
+    code: "test-div",
+    ortb2Imp: {
+        ext: {
+            prebid: {
+                storedrequest: {
+                    id: 'stored-request-id'
+                }
+            }
+        }
+    }
+})
+```
+
+To use stored impressions together with client-side bidders - or stored impressions from other instances of Prebid Server - use `bids[].module`:
+
+```javascript
+pbjs.addAdUnits({
+    code: "test-div",
+    bids: [
+        {
+            module: "pbsBidAdapter",
+            params: {
+                configName: "server-1"
+            },
+            ortb2Imp: {
+                ext: {
+                    prebid: {
+                        storedrequest: {
+                            id: 'stored-request-server-1'
+                        }
+                    }
+                }
+            }
+        },
+        {
+            module: "pbsBidAdapter",
+            params: {
+                configName: "server-2"
+            },
+            ortb2Imp: {
+                ext: {
+                    prebid: {
+                        storedrequest: {
+                            id: 'stored-request-server-2'
+                        }
+                    }
+                }
+            }
+        },
+        {
+            bidder: 'client-bidder',
+            // ...
+        }
+    ]
+});
+```
 
 ## Related Topics
 
-+ [Publisher API Reference](/dev-docs/publisher-api-reference)
-+ [Conditional Ad Units][conditionalAds]
-+ [Show Native Ads](/prebid/native-implementation.html)
-+ [Show Video Ads](/dev-docs/show-video-with-a-dfp-video-tag.html)
-+ [Show Outstream Video Ads](/dev-docs/show-outstream-video-ads.html)
-+ [Show Long-Form Video Ads](/prebid-video/video-long-form.html)
-+ [Prebid.org Video Examples](/examples/video/)
-+ [Prebid.org Native Examples](/dev-docs//examples/native-ad-example.html)
-
-
+* [Publisher API Reference](/dev-docs/publisher-api-reference)
+* [Conditional Ad Units][conditionalAds]
+* [Show Native Ads](/prebid/native-implementation.html)
+* [Show Video Ads](/dev-docs/show-video-with-a-dfp-video-tag.html)
+* [Show Outstream Video Ads](/dev-docs/show-outstream-video-ads.html)
+* [Show Long-Form Video Ads](/prebid-video/video-long-form.html)
+* [Prebid.org Video Examples](/examples/video/)
+* [Prebid.org Native Examples](/dev-docs//examples/native-ad-example.html)
 
 <!-- Reference Links -->
 
 [conditionalAds]: /dev-docs/conditional-ad-units.html
-[setConfig]: /dev-docs/publisher-api-reference/setConfig.html
 [configureResponsive]: /dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads
 [openRTB]: https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf
 [pbServer]: /prebid-server/overview/prebid-server-overview.html

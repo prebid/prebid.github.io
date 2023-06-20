@@ -11,6 +11,19 @@ sidebarType: 1
 
 Prebid.js is a feature-rich header bidding platform for the web, including more than 300 demand sources and 50 analytics adapters. It supports currency conversion, GDPR, common ID systems, and multiple ad servers.
 
+## Video Overview of Prebid.js
+
+A high-level overview of Prebid.js, Prebid’s header bidding product for websites.
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/822153705?h=164ad73316&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="1.3_IntroToPBJS_v5"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+Further Reading:
+
+- [Transcript of this video overview](/prebid/prebidjs-video.html)
+- [Intro to Header Bidding](/overview/intro-to-header-bidding.html)
+- [Header Bidding with Prebid](/overview/intro.html#header-bidding-with-prebid)
+- [Prebid.js Developer Quick Start](/dev-docs/getting-started.html)
+
 ## How Does Prebid.js Work?
 
 At a high level, header bidding with Prebid.js involves just a few steps:
@@ -18,7 +31,7 @@ At a high level, header bidding with Prebid.js involves just a few steps:
 1. The ad server's tag on page is paused, bound by a timer, while the Prebid.js library fetches bids and creatives from various SSPs & exchanges you want to work with.
 1. Prebid.js passes information about those bids (including price) to the ad server's tag on page, which passes it to the ad server as query string parameters.
 1. The ad server has line items targeting those bid parameters.
-2. If the ad server decides Prebid wins, the ad server returns a signal to Prebid.js telling the library to write the winning creative to the page.
+1. If the ad server decides Prebid wins, the ad server returns a signal to Prebid.js telling the library to write the winning creative to the page.
 
 ![Ad Ops Diagram](/assets/images/adops-intro.png){: .pb-lg-img}
 
@@ -61,6 +74,7 @@ in the Core that not every publisher needs. Example modules:
 ## Cookies and Local Storage
 
 On behalf of publishers or third parties, Prebid.js may set cookies or local storage in your browser. These are the first-party cookies it can set on behalf of publishers:
+
 - prebid.cookieTest - used to verify whether other cookies should be set.
 - _pbjs_userid_consent_data - used to make consent data conveniently available through various modules.
 

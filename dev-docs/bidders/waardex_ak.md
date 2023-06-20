@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The WaardeX Bidding adaptor requires setup and approval before beginning. Please reach out to <welcome@waardex.com> for more details
 
@@ -31,4 +31,4 @@ The WaardeX Bidding adaptor requires setup and approval before beginning. Please
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Ad network's RTB host | `'cpm.webtradingspot.com'` | `string` |
-| `zoneId` | required | RTB zone id           | `'30164'`                 | `string` |
+| `zoneId` | required | RTB zone id           | `30164`                 | `integer` |

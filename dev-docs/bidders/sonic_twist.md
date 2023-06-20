@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Sonic Twist Media Bidding adaptor requires setup and approval before beginning. Please reach out to <publishers@sonictwist.media> for more details
 
@@ -31,4 +31,4 @@ The Sonic Twist Media Bidding adaptor requires setup and approval before beginni
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Our Host | `'cpm.andbeyond.media'` | `string` |
-| `zoneId` | required | Example RTB zone id           | `'12345'`                 | `string` |
+| `zoneId` | required | Example RTB zone id           | `12345`                 | `integer` |

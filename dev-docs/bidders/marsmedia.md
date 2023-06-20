@@ -22,8 +22,8 @@ sidebarType: 1
 |---------------|----------|-------------|---------|----------|
 | zoneId | required | The zone ID from Mars Media Group. | 9999 | integer |
 
-
 ### Banner - Ad Unit Setup
+
 ```javascript
 var adUnits = [
 {
@@ -42,9 +42,10 @@ var adUnits = [
     }
   }]
 }
-``` 
+```
 
 ### Instream Video - Ad Unit Setup
+
 ```javascript
 var adUnits = [
 {

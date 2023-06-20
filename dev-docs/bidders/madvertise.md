@@ -38,13 +38,13 @@ sidebarType: 1
     }
 }
 ```
+
 ### Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Description                                                                                             | Example                                 | Type      |
 |--------------|----------|---------------------------------------------------------------------------------------------------------|-----------------------------------------|-----------|
 |`zoneId`      | required | The zone ID provided by Madvertise.                                                                     | `'/1111111/banner'`                     | `string`  |
-
 
 #### Example
 
@@ -80,4 +80,3 @@ sidebarType: 1
     "tmax": 1000
 }
 ```
-

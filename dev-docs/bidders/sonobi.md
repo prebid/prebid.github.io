@@ -12,12 +12,14 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 pbs_app_supported: true
+floors_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
+
 The Sonobi Bidder adapter requires setup and approval from your Sonobi Account Manager. If you require assistance
-implementing our adapter please don't hesitate to contact us at apex.prebid@sonobi.com.
+implementing our adapter please don't hesitate to contact us at <apex.prebid@sonobi.com>.
 
 ### Bid Params
 
@@ -34,7 +36,7 @@ implementing our adapter please don't hesitate to contact us at apex.prebid@sono
 | `bid_request_url`| optional | String representing the url the Sonobi adapter should make to request bids | `'https://iad-2-apex.go.sonobi.com/trinity.json'`             | `string`       |
 
 ### Configuration
-*You *must* only include one ID field - either `placement_id` or `ad_unit`, not both. If you have questions on which parameter to use, please reach out to your Account Manager.
+*You*must* only include one ID field - either `placement_id` or `ad_unit`, not both. If you have questions on which parameter to use, please reach out to your Account Manager.
 
 The `ad_unit` and `placement_id` are **mutually exclusive** but at least one is required. If you pass both, `ad_unit` takes precedence.
 

@@ -9,6 +9,7 @@ usp_supported: true
 schain_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 pbjs: true
+pbs: true
 sidebarType: 1
 ---
 
@@ -21,7 +22,6 @@ sidebarType: 1
 |---------------|----------|-------------------------------------------|------------|-----------|
 | `placementId` | required | Your placement ID (provided by undertone) | `"13as14d0"` | `string`  |
 | `publisherId` | required | publisher ID (provided by undertone)      | `12345`    | `integer` |
-
 
 #### Video Object
 

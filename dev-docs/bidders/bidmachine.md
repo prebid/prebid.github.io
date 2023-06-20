@@ -19,8 +19,9 @@ prebid_member: false
 sidebarType: 1
 ---
 
-### Prebid Server Note:
-The Bidmachine Bidding adapter requires setup before beginning. Please contact us at hi@bidmachine.io .
+### Prebid Server Note
+
+The Bidmachine Bidding adapter requires setup before beginning. Please contact us at <hi@bidmachine.io> .
 
 ### Bid Params
 

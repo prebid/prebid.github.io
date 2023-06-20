@@ -11,9 +11,9 @@ pbs_app_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The BidsCube Bidding adapter requires setup before beginning. Please contact us at support@bidscube.com
+The BidsCube Bidding adapter requires setup before beginning. Please contact us at <support@bidscube.com>
 
 ### Bid Params
 

@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The RtbDemand.com bidding adaptor requires setup and approval before beginning. Please reach out to <shreyanschopra@rtbdemand.com> for more details
 
@@ -31,4 +31,4 @@ The RtbDemand.com bidding adaptor requires setup and approval before beginning. 
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Our Host | `' cpm.rtbdemand.com'` | `string` |
-| `zoneId` | required | Example RTB zone id           | `'12345'`                 | `string` |
+| `zoneId` | required | Example RTB zone id           | `12345`                 | `integer` |

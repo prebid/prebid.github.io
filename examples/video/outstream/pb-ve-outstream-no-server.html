@@ -7,108 +7,111 @@ isVideo: true
 sidebarType: 4
 ---
 
-
-
 <div class="container">
-	<div class="row">
-		<div class="vidHeader" style="width:75vw;">
-			<h1>{{ page.title }}</h1>
-			<p>{{page.description }}</p>
-		</div>
+    <div class="row">
+        <div class="vidHeader" style="width:75vw;">
+            <h1>{{ page.title }}</h1>
+            <p>{{page.description }}</p>
+        </div>
 
-		<!--video warning-->
-		<div class="pb-alert pb-alert-important">
-			<p style="color:#85720f"><b>Important:</b>
-			This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
-		</div>
-
-		<div>
-
-			<div>
-
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			</div>
-
-			<div id='video1'>
-				<p>Prebid Outstream Video Ad</p>
-            </div>
-
-	        <div>
-	            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-            </div>
-		</div>
-
-
-
-
-		<!--video code fencing-->
-
-		<!--header code example-->
-		<div class="pb-alert pb-alert-warning">
-			<p style="color:#a94443"><b>Warning:</b>
-			Do not forget to exchange the placementId in the code examples with your own placementId!</p>
-		</div>
-
-    <h4>Place this code in the page header.</h4>
-		<div class="pb-code-hl-wrap">
-      <pre class="pb-code-hl">
-<!--put javascript code here-->
-&lt;script&gt;
-    var pbjs = pbjs || {};
-    pbjs.que = pbjs.que || [];
-
-    var adUnits = [{
-        code: 'video1',
-        mediaTypes: {
-            video: {
-                context: 'outstream',
-                playerSize: [640, 480],
-                mimes: ['video/mp4'],
-                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-                playbackmethod: [2],
-                skip: 1
-            }
-        },
-        bids: [{
-            bidder: 'appnexus',
-            params: {
-                placementId: 13232385
-            }
-        }]
-    }];
-
-    pbjs.que.push(function() {
-        pbjs.addAdUnits(adUnits);
-        pbjs.requestBids({
-            timeout: 1000,
-            bidsBackHandler: function(bids) {
-                var highestCpmBids = pbjs.getHighestCpmBids('video1');
-                pbjs.renderAd(document, highestCpmBids[0].adId);
-            }
-        });
-    });
-
-&lt;/script&gt;
-
-      </pre>
+    <div id="videoExample" class="col-md-12">
+      <h2>(Sorry, video code examples aren't available with your cookie privacy settings.)</h2>
+      <p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
     </div>
 
-			<h4>Place this code in the page body.</h4>
+    <script>
+      const exampleHTML = `
+      <!--video warning-->
+      <div class="pb-alert pb-alert-important">
+        <p style="color:#85720f"><b>Important:</b>
+        This example uses a test version of Prebid.js hosted on our CDN that is not recommended for production use. It includes all available adapters. Production implementations should build from source or customize the build using the Download page to make sure only the necessary bidder adapters are included.</p>
+      </div>
+
+      <div>
+
+        <div>
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <div id='video1'>
+          <p>Prebid Outstream Video Ad</p>
+              </div>
+
+            <div>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+              </div>
+      </div>
+
+
+
+
+      <!--video code fencing-->
+
+      <!--header code example-->
+      <div class="pb-alert pb-alert-warning">
+        <p style="color:#a94443"><b>Warning:</b>
+        Do not forget to exchange the placementId in the code examples with your own placementId!</p>
+      </div>
+
+      <h4>Place this code in the page header.</h4>
       <div class="pb-code-hl-wrap">
-        <!--body code example-->
         <pre class="pb-code-hl">
-<!--put body html and javascript here-->
-&lt;div id='video1'&gt;
-  &lt;p&gt;Prebid Outstream Video Ad&lt;/p&gt;
-&lt;/div&gt;
+  <!--put javascript code here-->
+  &lt;script&gt;
+      var pbjs = pbjs || {};
+      pbjs.que = pbjs.que || [];
+
+      var adUnits = [{
+          code: 'video1',
+          mediaTypes: {
+              video: {
+                  context: 'outstream',
+                  playerSize: [640, 480],
+                  mimes: ['video/mp4'],
+                  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                  playbackmethod: [2],
+                  skip: 1
+              }
+          },
+          bids: [{
+              bidder: 'appnexus',
+              params: {
+                  placementId: 13232385
+              }
+          }]
+      }];
+
+      pbjs.que.push(function() {
+          pbjs.addAdUnits(adUnits);
+          pbjs.requestBids({
+              timeout: 1000,
+              bidsBackHandler: function(bids) {
+                  var highestCpmBids = pbjs.getHighestCpmBids('video1');
+                  pbjs.renderAd(document, highestCpmBids[0].adId);
+              }
+          });
+      });
+
+  &lt;/script&gt;
+
         </pre>
-		</div>
-	</div>
-</div>
+      </div>
 
-<!--video player code-->
-<div id='video1'>
-	<p>Prebid Outstream Video Ad<p>
-</div>
+        <h4>Place this code in the page body.</h4>
+        <div class="pb-code-hl-wrap">
+          <!--body code example-->
+          <pre class="pb-code-hl">
+  <!--put body html and javascript here-->
+  &lt;div id='video1'&gt;
+    &lt;p&gt;Prebid Outstream Video Ad&lt;/p&gt;
+  &lt;/div&gt;
+          </pre>
+      </div>`;
 
-<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
+      window.onetrustLoaded.then(() => {
+        OneTrust.InsertHtml(exampleHTML, 'videoExample', null, {deleteSelectorContent: true}, 'C0003');
+      })
+    </script>
+    </div>
+</div>

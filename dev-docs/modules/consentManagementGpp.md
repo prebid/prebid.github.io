@@ -12,9 +12,10 @@ sidebarType : 1
 ---
 
 # GPP Consent Management Module
+
 {: .no_toc }
 
-* TOC
+- TOC
 {: toc }
 
 {% capture legalNotice %}
@@ -78,7 +79,7 @@ In addition to the static approach described above, there is another means to pa
 
 Example 1: IAB CMP using a custom timeout
 
-{% highlight js %}
+```javascript
      var pbjs = pbjs || {};
      pbjs.que = pbjs.que || [];
      pbjs.que.push(function() {
@@ -91,11 +92,11 @@ Example 1: IAB CMP using a custom timeout
           }
         });
      });
-{% endhighlight %}
+```
 
 Example 2: Static CMP using custom data passing.
 
-{% highlight js %}
+```javascript
      var pbjs = pbjs || {};
      pbjs.que = pbjs.que || [];
      pbjs.que.push(function() {
@@ -115,15 +116,15 @@ Example 2: Static CMP using custom data passing.
           }
         });
      });
-{% endhighlight %}
+```
 
 ## Build the Package
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the **gulp build** command:
 
-{% highlight bash %}
+```bash
 gulp build --modules=consentManagementGpp,bidAdapter1,bidAdapter2
-{% endhighlight %}
+```
 
 You can also use the [Prebid.js Download](/download.html) page.
 
@@ -138,7 +139,7 @@ If you are submitting changes to an adapter to support GPP, please also submit a
 To find the GPP consent information to pass along to your system, adapters should look for the `bidderRequest.gppConsent` field in their `buildRequests()` method; this field includes a copy of the full GPPData object from the CMP, in case additional information (beyond the gppString and applicableSections values) is needed.  Alternatively if only the consent string and/or the applicableSections values are needed, these two values can also be found in the `bidderRequest.ortb2.regs` field under the OpenRTB 2.6 field names (`gpp` and `gpp_sid`).
 Here is a sample of how the data is structured in the `bidderRequest` object:
 
-{% highlight js %}
+```javascript
 {
   "bidderCode": "bidderA",
   "auctionId": "e3a336ad-2222-4a1c-bbbb-ecc7c5294a34",
@@ -157,24 +158,24 @@ Here is a sample of how the data is structured in the `bidderRequest` object:
   },
   ...
 }
-{% endhighlight %}
+```
 
 ### UserSync Integration
 
 The `gppConsent` object is also available when registering `userSync` pixels.
 The object can be accessed by including it as an argument in the `getUserSyncs` function:
 
-{% highlight js %}
+```javascript
 getUserSyncs: function(syncOptions, responses, gdprConsent, usPrivacy, gppConsent) {
 ...
 }
-{% endhighlight %}
+```
 
 Depending on your needs, you could include the consent information in a query of your pixel and/or, given the consent choices, determine if you should drop the pixels at all.
 
 ## Adapters Supporting GPP
 
-Bidders on this list have self-declared their GPP support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "gpp_supported: true".
+Bidders on this list have self-declared their GPP support in their [github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gpp_supported: true".
 
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
@@ -184,10 +185,10 @@ var idx_gdpr=0;
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% for item in bidder_pages %}
     {% if item.gpp_supported == true %}
-	adaptersSupportingGpp[idx_gdpr]={};
-	adaptersSupportingGpp[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
-	adaptersSupportingGpp[idx_gdpr].text="{{item.title}}";
-	idx_gdpr++;
+    adaptersSupportingGpp[idx_gdpr]={};
+    adaptersSupportingGpp[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
+    adaptersSupportingGpp[idx_gdpr].text="{{item.title}}";
+    idx_gdpr++;
     {% endif %}
 {% endfor %}
 </script>
