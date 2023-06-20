@@ -1,11 +1,11 @@
 ---
 layout: bidder
-title: Yahoo SSP
-description: Yahoo SSP Bid Adapter
+title: Yahoo Advertising
+description: Yahoo Advertising Bid Adapter
 pbs: true
 pbjs: true
 media_types: banner, video
-biddercode: yahoossp
+biddercode: yahooAdvertising
 prebid_member: true
 gdpr_supported: true
 usp_supported: true
@@ -21,21 +21,21 @@ sidebarType: 1
 
 ### Important Notice (JS vs PBS)
 
-There are differences between our Prebid.js & Prebid-Server Yahoo SSP adapters.
+There are differences between our Prebid.js & Prebid-Server Yahoo Advertising adapters.
 The Prebid-server adapter currently does not support:
 
 1. Integration via the `pubId` method.
 
-### yahoossp Prebid.js Mandatory Bid Params
+### Prebid.js Mandatory Bid Params
 
-The 'yahoossp' bid adapter supports 2 alternate integration types:
+The Prebid.js Yahoo Advertising bid adapter supports 2 alternate integration types:
 
 1. **dcn & pos** (Site/App & Position explicit targeting) - For legacy "aol", "oneMobile" adapter partners/publishers.
-2. **pubId** (Publisher ID) - For New partners/publishers joining Yahoo SSP and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
+2. **pubId** (Publisher ID) - For new partners/publishers joining Yahoo Advertising and legacy "oneVideo" partners/publishers migrating to Yahoo Advertising.
 
-### yahoossp Prebid-Server Mandatory Bid Params
+### Prebid-Server Mandatory Bid Params
 
-Prebid-server adapter supports one integration method:
+Prebid-server Yahoo Advertising bid adapter supports one integration method:
 
 * **dcn & pos** (Site/App & Position explicit targeting) - For legacy "aol", "oneMobile" adapter partners/publishers.
 
@@ -46,24 +46,23 @@ For legacy "aol", "oneMobile" adapter partners/publishers.
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
-| dcn | Required | Site ID provided by Yahoo SSP | 'site1' | string |
-| pos | Required | Placement ID provided by Yahoo SSP | 'placement1' | string |
+| dcn | Required | Site ID provided by Yahoo Advertising | 'site1' | string |
+| pos | Required | Placement ID provided by Yahoo Advertising | 'placement1' | string |
 
 #### PubId Integration Parameters (JS Only)
 
-For New partners/publishers joining Yahoo SSP
-floors_supported: true and legacy "oneVideo" partners/publishers migrating to the Yahoo SSP.
+For new partners/publishers joining Yahoo Advertising and legacy "oneVideo" partners/publishers migrating to Yahoo Advertising.
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description            | Example | Type     |
 |------------|----------|------------------------|---------|----------|
-| pubId | Required | Your Publisher External ID provided by Yahoo SSP | 'DemoPublisher' | string |
-| siteId | Optional | Ability to target a specific Site using an External ID provided by Yahoo SSP | '1234567' | string |
-| placementId | Optional | Ability to target a specific Placement using an External ID provided by Yahoo SSP | 'header' | string |
+| pubId | Required | Your Publisher External ID provided by Yahoo Advertising | 'DemoPublisher' | string |
+| siteId | Optional | Ability to target a specific Site using an External ID provided by Yahoo Advertising | '1234567' | string |
+| placementId | Optional | Ability to target a specific Placement using an External ID provided by Yahoo Advertising | 'header' | string |
 
 ### Prebid.js Adapter Supported Features
 
-For further setup details & examples please see <https://github.com/prebid/Prebid.js/blob/master/modules/yahoosspBidAdapter.md>
+For further setup details & examples please see <https://github.com/prebid/Prebid.js/blob/master/modules/yahooAdvertisingBidAdapter.md>
 
 * Media Types: Banner & Video
 * Outstream renderer
@@ -77,5 +76,3 @@ For further setup details & examples please see <https://github.com/prebid/Prebi
 * First Party Data (ortb2 & ortb2Imp)
 * Custom TTL (time to live)
 
-Thank you,
-Yahoo SSP
