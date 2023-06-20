@@ -7,7 +7,7 @@ gvl_id: 874
 media_types: display, video, native 
 gdpr_supported: true
 usp_supported: true
-pbjs: false
+pbjs: true
 pbs: true
 biddercode: preciso
 prebid_member: true
