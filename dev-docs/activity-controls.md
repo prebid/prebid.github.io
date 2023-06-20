@@ -171,7 +171,7 @@ So this means that when `priority` is omitted from `allowActivities` configurati
 
 ```javascript
 pbjs.setConfig({
-    deviceAccess: false,      // this would have the effect of disabling device storage, but... 
+    accessDevice: false,      // this would have the effect of disabling device storage, but... 
     allowActivities: {
         accessDevice: {
             rules: [
