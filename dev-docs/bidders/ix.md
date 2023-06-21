@@ -146,7 +146,6 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
 3. Define the Index-specific parameters at the bidder level. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.
 5. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.   <br />
-
 ```javascript
     pbjs.setConfig({
         userSync: {
@@ -160,10 +159,8 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
          }
      });
 ```
-
 6. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
 7. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
-
 ```javascript
     pbjs.setConfig({
         cache: {
