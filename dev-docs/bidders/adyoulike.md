@@ -15,9 +15,9 @@ schain_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Adyoulike Header Bidding adaptor requires setup and approval from the Adyoulike team. Please reach out to your account manager or prebid@adyoulike.com for more information.
+The Adyoulike Header Bidding adaptor requires setup and approval from the Adyoulike team. Please reach out to your account manager or <prebid@adyoulike.com> for more information.
 
 ### Bid Params
 

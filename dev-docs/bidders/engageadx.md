@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The EngageADX bidding adapter requires setup and approval before implementation. Please reach out to <admin@engageadx.com> for more details.
 

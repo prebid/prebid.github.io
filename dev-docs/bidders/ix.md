@@ -44,7 +44,6 @@ sidebarType: 1
 * [Multi-format ad units](#multi-format-ad-units)
 * [Examples](#examples)
 
-
 <a name="introduction"></a>
 
 ## Introduction
@@ -56,12 +55,12 @@ Publishers can use Prebid.js to call Index Exchange (Index) in any of the follow
 
 **Notes:**
 
-* **Send multiple ad slots in a single bid request**: Index accepts up to 100 valid ad slots in a single bid request. If a single bid request contains more than 100 ad slots (including invalid ad slots), only the first 100 valid ad slots are accepted and the rest are ignored. For example streaming TV media owners can signal multiple ad pods for long-form programming in a single request. 
-* **How to view bid requests sent to Index:** 
+* **Send multiple ad slots in a single bid request**: Index accepts up to 100 valid ad slots in a single bid request. If a single bid request contains more than 100 ad slots (including invalid ad slots), only the first 100 valid ad slots are accepted and the rest are ignored. For example streaming TV media owners can signal multiple ad pods for long-form programming in a single request.
+* **How to view bid requests sent to Index:**
   * In your browser, open a new tab.
-  * Open the **Developer tools**. 
-  * In **Developer tools**, click the **Network** tab. 
-  * In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index. 
+  * Open the **Developer tools**.
+  * In **Developer tools**, click the **Network** tab.
+  * In the **Network** tab, search for requests sent to `casalemedia.com/cygnus` (from version 6.28.0 and earlier) or `casalemedia.com/openrtb/pbjs` (from version 6.29.0 and later). These are the bid requests sent to Index.
 * **Recommended Global Bidder settings:** For our adapter, Index recommends enabling local storage. As of Prebid.js 7.x, local storage access must be explicitly specified. By leveraging local storage, Index is able to take advantage of the latest features our exchange has to offer. For instructions on enabling local storage, see Prebid’s [pbjs.bidderSettings](https://docs.prebid.org/dev-docs/publisher-api-reference/bidderSettings.html) documentation.
 
 ### Example
@@ -123,6 +122,7 @@ In this configuration Prebid.js calls Index directly from the browser using our 
   ```
 5. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
 6. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the [pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) function as follows: <br />
+
     ```javascript
         pbjs.setConfig({
             cache: {
@@ -133,7 +133,7 @@ In this configuration Prebid.js calls Index directly from the browser using our 
 7. (Optional) If you want to monetize outstream video, you can choose among the following options:
     * Use Index's outstream video player. For more information, see the [Index's outstream video player ](#indexs-outstream-video-player)section below. 
     * Use your own outstream video player. For more information, see [Prebid's documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
-8. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher. 
+8. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
 <a name="server-side-adapter"></a>
 
@@ -142,10 +142,11 @@ In this configuration Prebid.js calls Index directly from the browser using our 
 In this configuration, Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Index. Complete the following steps to configure Index as a demand source:
 
 1. If you are hosting your own Prebid Server instance, see [Setup instructions to call Index through Prebid Server](https://docs.prebid.org/dev-docs/pbs-bidders.html#setup-instructions-to-call-index-through-prebid-server).
-2. In the `[pbjs.setConfig()]` function, within the `s2sConfig` property, add `ix` to the `bidders` attribute. 
+2. In the `[pbjs.setConfig()]` function, within the `s2sConfig` property, add `ix` to the `bidders` attribute.
 3. Define the Index-specific parameters at the bidder level. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
-4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html) documentation. 
+4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](https://docs.prebid.org/dev-docs/adunit-reference.html) documentation.
 5. Enable user syncing by adding the following code in the [pbjs.setConfig()](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.   <br />
+
 ```javascript
     pbjs.setConfig({
         userSync: {
@@ -159,8 +160,10 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
          }
      });
 ```
+
 6. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
 7. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
+
 ```javascript
     pbjs.setConfig({
         cache: {
@@ -171,13 +174,11 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
 8. (Optional) If you want to monetize outstream video, you can choose among the following options:
     * Use Index's outstream video player. For more information, see the [Index's outstream video player ](#indexs-outstream-video-player) section below. 
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
-9. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher. 
-
-
+9. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
 <a name="modules-to-include-in-your-build-process"></a>
 
-## Modules to include in your build process 
+## Modules to include in your build process
 
 If you are building the JS binary on your own from source code, follow the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). You will need to include the `ixBidAdapter`. If you want to show video ads with Google Ad Manager, also include the `dfpAdServerVideo` module. We highly recommend adding the `gptPreAuction` module as well, which improves a DSP's ability to bid accurately on your supply. The following is an example build command that include these modules: <br />
 `gulp build --modules=ixBidAdapter,dfpAdServerVideo,gptPreAuction,fooBidAdapter,bazBidAdapter`
@@ -193,21 +194,20 @@ If you are using a JSON file to specify modules, add `ixBidAdapter` and `dfpAdSe
     "bazBidAdapter"
 ]
 ```
- 
 
 <a name="set-up-first-party-data-fpd"></a>
 
 ## Set up First Party Data (FPD)
- 
+
 You can set up the Prebid.js FPD module using Global data, Index bidder-specific site data, or ad unit-specific data. Index supports deal targeting in all the three FPD types.
 
 <a name="prebid-fpd-module"></a>
 
 ### Global data
 
-Use this data type to allow all bid adapters to have access to first party data that might be useful in ad targeting. This is available from Prebid.js version 4.30 and above. 
+Use this data type to allow all bid adapters to have access to first party data that might be useful in ad targeting. This is available from Prebid.js version 4.30 and above.
 
-To supply data that is accessible to all bidders, use the `[pbjs.setConfig()]` object as illustrated below. Use the `[setBidderConfig()]` function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation. 
+To supply data that is accessible to all bidders, use the `[pbjs.setConfig()]` object as illustrated below. Use the `[setBidderConfig()]` function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](https://docs.prebid.org/features/firstPartyData.html) documentation.
 
 ```javascript
 pbjs.setConfig({
@@ -228,7 +228,7 @@ pbjs.setConfig({
 
 This data type is available from Prebid version 7.49.0 and above. You can use it to specify key-value pairs that will be included in your query string when targeting deals. For example, if a user visits a news page, you can pass that information by submitting a key-value pair for `category = news`. You can then create a deal in the Index UI and activate the deal only on pages that contain `category = news` as the key-value pair.
 
-To include the FPD in a bid request, in the `[pbjs.setConfig()]` object at the `ix` bidder level, provide the key-values in the `firstPartyData` parameter. Make sure that you set it before the `pbjs.requestBids` configuration. If you want to change the values, you can update the `pbjs.setConfig` once again. The change will be reflected in all future bid requests. 
+To include the FPD in a bid request, in the `[pbjs.setConfig()]` object at the `ix` bidder level, provide the key-values in the `firstPartyData` parameter. Make sure that you set it before the `pbjs.requestBids` configuration. If you want to change the values, you can update the `pbjs.setConfig` once again. The change will be reflected in all future bid requests.
 
 ```javascript
  pbjs.setConfig({
@@ -408,7 +408,6 @@ You must include these parameters at the bidder level.
 | `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
 
 If you are using Index's outstream player and have placed the video object at the bidder level, you must include the Index required parameters at the bidder level. You can include the optional parameters to specify the outstream player configurations.
-
 
 {: .table .table-bordered .table-striped }
 

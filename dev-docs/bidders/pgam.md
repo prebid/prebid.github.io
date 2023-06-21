@@ -24,11 +24,12 @@ sidebarType: 1
 | `aid` | required | The source ID from PGAM.   | `529814` | `integer` |
 
 ### Description
+
 PGAM header bidding adapter connects with PGAM demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-
 ### Test Parameters
+
 ```
     var adUnits = [
 

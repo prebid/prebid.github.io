@@ -40,7 +40,7 @@ pbjs.setConfig({
 });
 ```
 
-To use multiple prebid servers, just define `s2sConfig` as an array. 
+To use multiple prebid servers, just define `s2sConfig` as an array.
 The same bidder cannot be set in both configs. For example:
 
 ```javascript
@@ -70,7 +70,7 @@ There are many configuration options for s2sConfig:
 | Attribute | Scope | Type | Description                                                                                   |
 |------------+---------+---------+---------------------------------------------------------------|
 | `accountId` | Required | String | Your Prebid Server account ID. This is obtained from whoever's hosting your Prebid Server. |
-| `name` | Optional | String | A handle for this configuration, used to reference a specific server (when multiple are present) from [ad unit configuration](/dev-docs/adunit-reference.html#stored-imp) | 
+| `name` | Optional | String | A handle for this configuration, used to reference a specific server (when multiple are present) from [ad unit configuration](/dev-docs/adunit-reference.html#stored-imp) |
 | `bidders` | Optional | Array of Strings | Which bidders auctions should take place on the server side |
 | `allowUnknownBidderCodes` | Optional | Boolean | Allow Prebid Server to bid on behalf of bidders that are not explicitly listed in the adUnit. See important [note](#allowUnknownBidderCodes) below. Defaults to `false`. |
 | `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.  Individual properties can be overridden by including them in the config along with this setting. See the Additional Notes below for more information. |

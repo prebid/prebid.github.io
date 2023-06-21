@@ -9,14 +9,14 @@ useridmodule: intentIqIdSystem
 
 By leveraging the Intent IQ identity graph, our module helps publishers, SSPs, and DSPs overcome the challenges of monetizing cookie-less inventory and preparing for a future without 3rd-party cookies. Our solution implements 1st-party data clustering and provides Intent IQ person IDs with over 90% coverage and unmatched accuracy in supported countries while remaining privacy-friendly and CCPA compliant. This results in increased CPMs, higher fill rates, and, ultimately, lifting overall revenue
 
-# All you need is a few basic steps to start using our solution.
+# All you need is a few basic steps to start using our solution
 
 ## Registration
 
-Navigate to [our portal ](https://www.intentiq.com/) and contact our team for partner ID.
-check our [documentation](https://pbmodule.documents.intentiq.com/) to get more information about our solution and how utilze it's full potential 
+Navigate to [our portal](https://www.intentiq.com/) and contact our team for partner ID.
+check our [documentation](https://pbmodule.documents.intentiq.com/) to get more information about our solution and how utilze it's full potential
 
-## Integration     
+## Integration
 
 {: .alert.alert-info :}
 gulp build –modules=intentIqIdSystem
@@ -28,8 +28,6 @@ We recommend including the Intent IQ Analytics adapter module for improved visib
 ### Parameters
 
 Please find below list of parameters that could be used in configuring Intent IQ Universal ID module
-
-
 
 {: .table .table-bordered .table-striped }
 

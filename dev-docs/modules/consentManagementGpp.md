@@ -12,9 +12,10 @@ sidebarType : 1
 ---
 
 # GPP Consent Management Module
+
 {: .no_toc }
 
-* TOC
+- TOC
 {: toc }
 
 {% capture legalNotice %}
@@ -174,7 +175,7 @@ Depending on your needs, you could include the consent information in a query of
 
 ## Adapters Supporting GPP
 
-Bidders on this list have self-declared their GPP support in their https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders md file by adding "gpp_supported: true".
+Bidders on this list have self-declared their GPP support in their [github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gpp_supported: true".
 
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
@@ -184,10 +185,10 @@ var idx_gdpr=0;
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% for item in bidder_pages %}
     {% if item.gpp_supported == true %}
-	adaptersSupportingGpp[idx_gdpr]={};
-	adaptersSupportingGpp[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
-	adaptersSupportingGpp[idx_gdpr].text="{{item.title}}";
-	idx_gdpr++;
+    adaptersSupportingGpp[idx_gdpr]={};
+    adaptersSupportingGpp[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
+    adaptersSupportingGpp[idx_gdpr].text="{{item.title}}";
+    idx_gdpr++;
     {% endif %}
 {% endfor %}
 </script>

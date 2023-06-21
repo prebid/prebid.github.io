@@ -25,7 +25,7 @@ sidebarType: 1
 
 ### Registration
 
-For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account team or [globalsupport@magnite.com] for more information.
+For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account team or <globalsupport@magnite.com> for more information.
 
 ### Bid Params
 
@@ -249,7 +249,7 @@ pbjs.setConfig({
 
 ### Setting up the Prebid Server Adapter
   
-If you're a Prebid Server host company looking to enable the Rubicon server-side adapter, you'll need to contact [globalsupport@magnite.com]. They will provide:
+If you're a Prebid Server host company looking to enable the Rubicon server-side adapter, you'll need to contact <globalsupport@magnite.com>. They will provide:
 
 * a Magnite DV+ XAPI login and password that you'll place in the PBS config
 * a partner code you can use for cookie-syncing with Magnite's service
@@ -270,11 +270,11 @@ pbjs.setConfig({
 
 ### Notes
 
-1) There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
+1. There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
 
 <a name="rubicon-revenue-type"></a>
 
-2) Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for publishers to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
+2. Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for publishers to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
 
 For Prebid, the Rubicon Project bid adapter reports the revenue type as ‘gross’ by default before 2.35 and ‘net’ by default in 2.35 and later (as the vast majority of accounts are net and all new accounts are net).
 

@@ -38,7 +38,7 @@ You can specify all options needed by the plugin in the Studio:
 
 #### Getting to Brightcove Studio
 
-[https://studio.brightcove.com](https://studio.brightcove.com/)
+[studio.brightcove.com](https://studio.brightcove.com/)
 
 #### Integration in Brightcove Studio
 
@@ -238,7 +238,7 @@ In Brightcove Studio:
 7. To retrieve the player embed code to put on your publisher page, click the `EMBED CODE & URL` button at the top of the page. Select `PUBLISHED PLAYER` from the options provided.
 8. Use the code provided in the `ADVANCED CODE` field
 
-#### Code To Add to Your Publisher Page:
+#### Code To Add to Your Publisher Page
 
 None
 

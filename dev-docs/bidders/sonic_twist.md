@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Sonic Twist Media Bidding adaptor requires setup and approval before beginning. Please reach out to <publishers@sonictwist.media> for more details
 

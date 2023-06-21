@@ -6,9 +6,10 @@ sidebarType: 1
 ---
 
 # First Party Data - Prebid.js
+
 {: .no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 Prebid allows publishers to supply attributes related to their content
@@ -39,6 +40,7 @@ configuration or on a Prebid.js AdUnit:
 ## In-Page Examples
 
 The Prebid First Party Data JSON structure reflects the OpenRTB standard.
+
 - Arbitrary attributes should go in `ortb2.site.ext.data` or `ortb2.user.data`.
 - Fields that are meant to be standard [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) should be in `ortb2.site` or `ortb2.user`. Specfically, the standard values for 'site' are: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. For 'user' these are: yob, gender, keywords.
 - Segment taxonomy values go in `ortb2.site.content.data` or `ortb2.user.data` using the IAB standard representation.
@@ -47,6 +49,7 @@ The Prebid First Party Data JSON structure reflects the OpenRTB standard.
 
 Here's how a publisher can let all bid adapters have access
 to first party data that might be useful in ad targeting that's good in PBJS 4.30 and later:
+
 ```javascript
 pbjs.setConfig({
    ortb2: {
@@ -61,40 +64,40 @@ pbjs.setConfig({
            keywords: "power tools, drills",
            search: "drill",
            content: {
-		userrating: "4",
-		data: [{
-          	    name: "www.dataprovider1.com",
-          	    ext: {
-		        segtax: 7,
-			cids: [ "iris_c73g5jq96mwso4d8" ]
-		    },
-		    segment: [
-            		{ id: "687" },
-            		{ id: "123" }
-		    ]
+        userrating: "4",
+        data: [{
+                  name: "www.dataprovider1.com",
+                  ext: {
+                segtax: 7,
+            cids: [ "iris_c73g5jq96mwso4d8" ]
+            },
+            segment: [
+                    { id: "687" },
+                    { id: "123" }
+            ]
                 }]
-	   },
-	   ext: {
+       },
+       ext: {
                data: {   // fields that aren't part of openrtb 2.6
                    pageType: "article",
                    category: "repair"
                }
-	   }
+       }
         },
         user: {
            keywords: "a,b",
-	   data: [{
-	       name: "dataprovider.com",
-	       ext: { segtax: 4 },
+       data: [{
+           name: "dataprovider.com",
+           ext: { segtax: 4 },
                segment: [
-		  { id: "1" }
+          { id: "1" }
                ]
-	   }],
-	   ext: {
+       }],
+       ext: {
                data: {
                   registered: true,
                   interests: ["cars"]
-	       }
+           }
            }
         },
         regs: {
@@ -115,10 +118,10 @@ If you're using PBJS version 4.29 or before, replace the following in the exampl
 
 ### Supplying Auction-Specific Data
 
-In some situations the same page may wish to supply different `site` data for some of its sections, 
+In some situations the same page may wish to supply different `site` data for some of its sections,
 for example in infinite scroll or instream video scenarios where multiple pieces of content that would benefit from different contexts are served together.
 
-To support this use case, Prebid version 7 and above accepts auction-specific first-party data as a parameter to `requestBids`. For example: 
+To support this use case, Prebid version 7 and above accepts auction-specific first-party data as a parameter to `requestBids`. For example:
 
 ```javascript
 pbjs.requestBids({
@@ -142,7 +145,6 @@ pbjs.requestBids({
 });
 ```
 
-
 ### Supplying AdUnit-Specific Data
 
 If an attribute is specific to an AdUnit, it can be passed this way:
@@ -157,7 +159,7 @@ pbjs.addAdUnits({
     },
     ortb2Imp: {
         ext: {
-	        data: {
+            data: {
                 pbadslot: "homepage-top-rect",
                 adUnitSpecificAttribute: "123"
             }
@@ -167,8 +169,7 @@ pbjs.addAdUnits({
 });
 ```
 
-Another case is [declaring rewarded](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/422eedb76e8730c89dcac75c7427c18cfa10e8c4/2.6.md?plain=1#L993). Here is how one might do that: 
-
+Another case is [declaring rewarded](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/422eedb76e8730c89dcac75c7427c18cfa10e8c4/2.6.md?plain=1#L993). Here is how one might do that:
 
 ```javascript
 pbjs.addAdUnits({
@@ -181,7 +182,7 @@ pbjs.addAdUnits({
     ortb2Imp: {
         rwdd: 1,
         ext: {
-	        data: {
+            data: {
                 pbadslot: "my-rewarded-rectangle",
                 adUnitSpecificAttribute: "123"
             }
@@ -257,7 +258,7 @@ pbjs.setBidderConfig({ // different bidders can receive different data
 
 ### Supplying App or DOOH ORTB Objects
 
-Occasionally, an app which embeds a webview might run Prebid.js. In this case, the app object is often specified for OpenRTB, and the site object would be invalid. When this happens, one should specify app.content.data in place of site.content.data. We can also imagine scenarios where billboards or similar displays are running Prebid.js. In the case of a DOOH object existing, both the site object and the app object are considered invalid. 
+Occasionally, an app which embeds a webview might run Prebid.js. In this case, the app object is often specified for OpenRTB, and the site object would be invalid. When this happens, one should specify app.content.data in place of site.content.data. We can also imagine scenarios where billboards or similar displays are running Prebid.js. In the case of a DOOH object existing, both the site object and the app object are considered invalid.
 
 ```javascript
 pbjs.setConfig({
@@ -304,6 +305,7 @@ pbjs.setConfig({
 ```
 
 ### Supplying OpenRTB Content Data
+
 OpenRTB `content` object describes specific (mostly audio/video) content information, and it is useful for targeting.
 For website ad, the content object should be defined in `ortb2.site.content`, for non-browser ad, it should be defined in `ortb2.app.content`
 
@@ -335,15 +337,16 @@ pbjs.setConfig({
 
 The [IAB](https://iab.com) offers standard content and audience taxonomies for categorizing sites and users. Prebid supports defining these values as first party data in `site.content.data` or `user.data` as shown in examples above and below.
 
-```
-        user: {
-	   data: [{
-	       name: "dataprovider.com", // who resolved the segments
-	       ext: { segtax: 4 },       // taxonomy used to encode the segments
-               segment: [
-		  { id: "1" }
-               ]
-	   }],
+```javascript
+user: {
+    data: [{
+        name: "dataprovider.com", // who resolved the segments
+        ext: { segtax: 4 },       // taxonomy used to encode the segments
+            segment: [
+        { id: "1" }
+            ]
+    }],
+}
 ```
 
 The new extension is `segtax`, which identifies the specific taxonomy used to

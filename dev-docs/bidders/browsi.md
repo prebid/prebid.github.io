@@ -13,7 +13,8 @@ safeframes_ok: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
+
 For more information about [Browsi](https://www.browsi.com), please contact [support@browsi.com](support@browsi.com).
 
 ### Bid Params
@@ -25,6 +26,7 @@ For more information about [Browsi](https://www.browsi.com), please contact [sup
 | `tagId`   | required | Tag ID       | `'1'` | `string` |
 
 # Sample Ad Unit: For Publishers
+
 ```javascript
 let videoAdUnit = [
     {

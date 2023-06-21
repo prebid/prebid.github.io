@@ -11,6 +11,7 @@ sidebarType: 1
 
 
 # Conditional Ad Units
+
 {:.no_toc}
 
 The [global sizeConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads) and [Advanced Size Mapping](/dev-docs/modules/sizeMappingV2.html) features are useful for standard responsive ad designs, but a number of other scenarios are supported as well.
@@ -166,18 +167,18 @@ var AdUnits = [{
         {
             bidder: "bidderA",
             sizeConfig: [
-		{ minViewPort: [0, 0], relevantMediaTypes: ['none'] },
-		{ minViewPort: [1200, 0], relevantMediaTypes: ['banner'] }
-	    ],
+                { minViewPort: [0, 0], relevantMediaTypes: ['none'] },
+                { minViewPort: [1200, 0], relevantMediaTypes: ['banner'] }
+            ],
             params: {
                 placement: "1111"
             }
        },{
             bidder: "bidderA",
             sizeConfig: [
-		{ minViewPort: [0, 0], relevantMediaTypes: ['banner'] },
-		{ minViewPort: [1200, 0], relevantMediaTypes: ['none'] }
-	    ],
+                { minViewPort: [0, 0], relevantMediaTypes: ['banner'] },
+                { minViewPort: [1200, 0], relevantMediaTypes: ['none'] }
+            ],
             params: {
                 placement: "2222"
             }
@@ -186,7 +187,6 @@ var AdUnits = [{
 }]
 
 ```
-
 
 ## Some Ad Unit Auctions Should Be Skipped Entirely for Some Devices
 
@@ -271,6 +271,6 @@ labels:
 
 ## Further Reading
 
-+ [Responsive ad designs](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads)
-+ [Advanced Size Mapping Module](/dev-docs/modules/sizeMappingV2.html)
-+ [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
+* [Responsive ad designs](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads)
+* [Advanced Size Mapping Module](/dev-docs/modules/sizeMappingV2.html)
+* [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)

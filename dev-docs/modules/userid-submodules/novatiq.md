@@ -15,7 +15,6 @@ Enable by adding the Novatiq submodule to your Prebid.js package with:
 {: .alert.alert-info :}
 gulp build --modules=novatiqIdSystem,userId
 
-
 Module activation and configuration:
 
 ```javascript
@@ -57,7 +56,6 @@ pbjs.setConfig({
 {: .table .table-bordered .table-striped }
 </div>
 
-
 ## Novatiq Hyper ID with Prebid SharedID Support
 
 You can make use of the Prebid.js SharedId module as follows.
@@ -96,6 +94,5 @@ pbjs.setConfig({
   }
 });
 ```
-
 
 If you have any questions, please reach out to us at [prebid@novatiq.com](mailto:prebid@novatiq.com)

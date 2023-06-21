@@ -9,7 +9,7 @@ useridmodule: criteoIdSystem
 Criteo is the leading advertising platform for the Open Internet. The Criteo ID for Exchanges module enables publishers to access Criteo’s unique demand - more than 20.000 advertisers & brands -  to monetize their exchange inventory with an optimal take rate across all browsing environments.
 Note that direct access to that demand is also available through [Criteo Direct Bidder](https://www.criteo.com/products/criteo-direct-bidder/), in which case this module is unnecessary.
 
-The Criteo privacy policy is at [https://www.criteo.com/privacy/](https://www.criteo.com/privacy/).
+The Criteo privacy policy is at [www.criteo.com/privacy/](https://www.criteo.com/privacy/).
 
 Add it to your Prebid.js package with:
 

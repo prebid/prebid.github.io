@@ -24,6 +24,7 @@ TE Medya header bidding adapter connects with TE Medya demand sources to fetch b
 ### Test Parameters
 
 300x250 banner test
+
 ```
 var adUnits = [{
   code: 'div-prebid',
@@ -43,6 +44,7 @@ var adUnits = [{
 ```
 
 native test
+
 ```
 var adUnits = [{
   code: 'div-prebid',

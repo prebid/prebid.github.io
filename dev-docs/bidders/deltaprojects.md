@@ -13,7 +13,8 @@ sidebarType: 1
 ---
 
 ### Note
-Contact publishers@deltaprojects.com to get a publisher id and to agree on a currency. Delta Projects
+
+Contact <publishers@deltaprojects.com> to get a publisher id and to agree on a currency. Delta Projects
 will always bid and log values in the agreed upon currency, utilizing the currency module if necessary and available.
 
 ### Bid Params
@@ -21,14 +22,16 @@ will always bid and log values in the agreed upon currency, utilizing the curren
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                                              | Example         | Type     |
 |----------------|----------|--------------------------------------------------------------------------|-----------------|----------|
-| `publisherId`  | required | Publisher ID from Delta Projects. Contact publishers@deltaprojects.com   | `'4'`           | `string` |
+| `publisherId`  | required | Publisher ID from Delta Projects. Contact <publishers@deltaprojects.com>   | `'4'`           | `string` |
 | `currency`     | optional | The bid currency agreed with Delta Projects.                             | `'SEK'`         | `string` |
 | `siteId`       | optional | Site ID from Delta Projects.                                             | `'example.com'` | `string` |
 | `tagId`        | optional | Identifier for specific ad placement or ad tag.                          | `'1234'`        | `string` |
 | `test`         | optional | Indicate test model. Don't set anything if it is not in test mode.       | `'true'`        | `string` |
 
 ### Example
+
 #### Banner
+
 ```
 var adUnits = [
   {

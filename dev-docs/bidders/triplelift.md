@@ -43,7 +43,7 @@ sidebarType: 1
 Publishers may integrate with Triplelift through our Prebid.js and/or Prebid Server adapters. See below for more information.
 
 {: .alert.alert-info :}
-The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at prebid@triplelift.com.
+The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at <prebid@triplelift.com>.
 
 <a name="triplelift-bid-params"></a>
 
