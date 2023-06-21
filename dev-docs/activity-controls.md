@@ -291,7 +291,7 @@ pbjs.setConfig({
 
 Reference: [US Privacy User Signal Mechanism “USP API” Specification](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md)
 
-```
+```javascript
 function isCCPAConsentDenied() {
 ### assumes uspapi is properly implemented and available in your environment.
 ### check usp string for the second character (notice) is not 'Y' or third character (opt out) is not 'N' or first character (version) is not '1'
