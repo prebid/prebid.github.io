@@ -287,6 +287,66 @@ pbjs.setConfig({
 })
 ```
 
+### __uspapi CCPA/CPRA based contol
+
+Reference: [US Privacy User Signal Mechanism “USP API” Specification (https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md)
+
+```
+function isCCPAConsentDenied() {
+### assumes uspapi is properly implemented and available in your environment.
+### check usp string for second character (notice) is not 'Y' or third character (opt out) is not 'N' or first character (version) is not '1'
+   __uspapi('getUSPData', 1 , (uspData, success) => { if(uspData.uspString.charAt(2) ==='Y' || uspData.uspString.charAt(1) !=='Y'|| uspData.uspString.charAt(0) !=='1') { return true } else { return false }});
+}
+
+pbjs.setConfig({
+    allowActivities: {
+          enrichUfpd: {
+                 rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                 }]
+          },
+          enrichEids: {
+                rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                }]
+          },
+          reportAnalytics: {
+                rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                }]
+          },
+          syncUser: {
+                rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                }]
+          },
+          transmitEids: {
+                rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                }]
+          },
+          transmitPreciseGeo: {
+                rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                }]
+          },
+          transmitUfpd: {
+                rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                }]
+          }
+          
+    }
+})
+```
+
 ## Further Reading
 
 * [FAQ: How does Prebid.js support privacy regulations](/dev-docs/faq.html#how-does-prebid-support-privacy-regulations)
