@@ -287,7 +287,7 @@ pbjs.setConfig({
 })
 ```
 
-### __uspapi CCPA/CPRA based contol
+#### __uspapi CCPA/CPRA based contol
 
 Reference: [US Privacy User Signal Mechanism “USP API” Specification (https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md)
 
