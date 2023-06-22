@@ -4,6 +4,7 @@ title: Rubicon Project
 description: Rubicon Project Prebid Bidder Adaptor
 biddercode: rubicon
 gdpr_supported: true
+gpp_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
