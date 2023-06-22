@@ -50,10 +50,10 @@ pbjs.setConfig({
   }
 )};
 ```
-#### ORTB Blocking specific only to rtbhouse bidder:
+#### ORTB Blocking specific only to preciso bidder:
 ```javascript
 pbjs.setBidderConfig({
-  bidders: ['rtbhouse'],
+  bidders: ['preciso'],
   config:{
     ortb2: {
       badv: ["domain1.com", "domain2.com"],
