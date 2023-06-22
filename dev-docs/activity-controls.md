@@ -18,7 +18,7 @@ These controls are intended to serve as building blocks for privacy protection m
 
 ## Overview
 
-There are many privacy regulations that Prebid publishers need to accomodate. Prebid supplies [modules](/dev-docs/faq.html#how-does-prebid-support-privacy-regulations) to help Publishers implement their legal policies, but there are scenarios where extra control is needed:
+There are many privacy regulations that Prebid publishers need to accommodate. Prebid supplies [modules](/dev-docs/faq.html#how-does-prebid-support-privacy-regulations) to help Publishers implement their legal policies, but there are scenarios where extra control is needed:
 
 * a Publisher's lawyers want to make a particular exception
 * a module hasn't been built for a regulation the Publisher needs to support
@@ -40,7 +40,7 @@ We did an analysis of the things Prebid.js does and identified those related to 
 
 * Setting a cookie
 * Syncing ID cookies
-* Transmitting user first party data
+* Transmitting user first-party data
 * etc.
 
 The [full list of activities Prebid.js supports](#activities) is below.
@@ -92,12 +92,12 @@ pbjs.setConfig({
 | `rules[].allow`    | Boolean | Whether the activity should be allowed when this rule applies. Defaults to true. |  
 | `rules[].priority` | Number | Priority of this rule compared to other rules; a lower number means higher priority. See [note on rule priority](#priority) below. Defaults to 1. |  
 
-`Rules` is an array of objects that a publisher can contruct to provide fine-grained control over a given activity. For instance, you could set up a series of rules that says:
+`Rules` is an array of objects that a publisher can construct to provide fine-grained control over a given activity. For instance, you could set up a series of rules that says:
 
-* Amongst the bid adapters, BidderA is always allowed to receive user first party data
-* Always let analytics adapters receive user first party data
-* otherwise, let the active privacy modules decide
-* if they refuse to decide, then the overall default is to allow the transmitting of user first party data
+* Amongst the bid adapters, BidderA is always allowed to receive user first-party data
+* Always let analytics adapters receive user first-party data
+* Otherwise, let the active privacy modules decide
+* if they refuse to decide, then the overall default is to allow the transmitting of user first-party data
 
 There's more about [rules](#parameters) below.
 
@@ -112,7 +112,7 @@ Here's the list of the 'potentially restricted activities' that Prebid.js core c
 |----------------|-------------|---------------------------|--------------------------------|
 | `accessDevice` | A component wants to use device storage  | Storage is disabled | [`storageType`](#params-accessDevice) |
 | `enrichEids` | A user ID or RTD submodule wants to add user IDs to outgoing requests | User IDs are discarded | None |
-| `enrichUfpd` | A Real Time Data (RTD) submodule wants to add user first party data to outgoing requests (`user.data` in ORTB) | User FPD is discarded | None |
+| `enrichUfpd` | A Real-Time Data (RTD) submodule wants to add user first-party data to outgoing requests (`user.data` in ORTB) | User FPD is discarded | None |
 | `fetchBids`  | A bid adapter wants to participate in an auction | Bidder is removed from the auction | [`configName`](#params-fetchBids) |
 | `reportAnalytics` | An analytics adapter is being enabled through `pbjs.enableAnalytics` | Adapter remains disabled | None |
 | `syncUser` | A bid adapter wants to fetch a [user sync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) | User sync is skipped | [`syncType`, `syncUrl`](#params-syncUser) |
@@ -151,20 +151,20 @@ For example, this rule would allow bidderX to perform the activity if no higher 
 
 Activity control rules in Prebid.js can be created by two main sources:
 
-* Publisher `setConfig({allowActivities})` as in the examples shown here. When set this way, rules are consider the highest priority value of 1.
+* Publisher `setConfig({allowActivities})` as in the examples shown here. When set this way, rules are considered the highest priority value of 1.
 * Modules can set activity control rules, e.g. [usersync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing), [bidderSettings](/dev-docs/publisher-api-reference/bidderSettings.html), the [GPP](/dev-docs/modules/consentManagementGpp.html) or [GDPR](/dev-docs/modules/gdprEnforcement.html) modules. Rules set by modules have a less urgent priority of 10.
 
 When rules are processed, they are sorted by priority, and all rules of the same priority are considered to happen at the same time. The details:
 
 1. The highest rule priority is 1
 2. There's no defined lowest priority other than MAXINT
-3. Default priority for rules defined with setConfig is 1. Default priority for other rules is 10.
+3. Default priority for rules defined with setConfig is 1. The default priority for other rules is 10.
 4. When processing, group the rules by priority
 5. Then, in descending order of priority:
-    1. If any rule that matching the condition defines `allow: false`, the activity is DENIED.
+    1. If any rule that matches the condition defines `allow: false`, the activity is DENIED.
     2. Otherwise, if at least one rule that matches the condition defines `allow: true`, the activity is ALLOWED.
-    3. If any rule matched, break out of the priority loop.
-6. If none of rules match, and the activity defines `default: false`, the activity is DENIED.
+    3. If any rule matches, break out of the priority loop.
+6. If none of the rules match, and the activity defines `default: false`, the activity is DENIED.
 7. Otherwise, the activity is ALLOWED.
 
 So this means that when `priority` is omitted from `allowActivities` configuration, it acts as an override over other control mechanisms. For example:
@@ -175,7 +175,7 @@ pbjs.setConfig({
     allowActivities: {
         accessDevice: {
             rules: [
-                {allow: true} // ... it's overridden by this conditionless rule with default priority of 1
+                {allow: true} // ... it's overridden by this condition-less rule with a default priority of 1
             ]
         }
     } 
@@ -284,6 +284,66 @@ pbjs.setConfig({
         }]
     }
   }
+})
+```
+
+#### __uspapi CCPA/CPRA based control
+
+Reference: [US Privacy User Signal Mechanism “USP API” Specification](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md)
+
+```javascript
+function isCCPAConsentDenied() {
+### assumes uspapi is properly implemented and available in your environment.
+### check usp string for the second character (notice) is not 'Y' or third character (opt out) is not 'N' or first character (version) is not '1'
+   __uspapi('getUSPData', 1 , (uspData, success) => { if(uspData.uspString.charAt(2) ==='Y' || uspData.uspString.charAt(1) !=='Y'|| uspData.uspString.charAt(0) !=='1') { return true } else { return false }});
+}
+
+pbjs.setConfig({
+    allowActivities: {
+          enrichUfpd: {
+                 rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                 }]
+          },
+          enrichEids: {
+                rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                }]
+          },
+          reportAnalytics: {
+                rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                }]
+          },
+          syncUser: {
+                rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                }]
+          },
+          transmitEids: {
+                rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                }]
+          },
+          transmitPreciseGeo: {
+                rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                }]
+          },
+          transmitUfpd: {
+                rules: [{
+                       condition: isCCPAConsentDenied,
+                       allow: false
+                }]
+          }
+          
+    }
 })
 ```
 
