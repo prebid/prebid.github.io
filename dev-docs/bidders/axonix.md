@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Axonix
-description: Axonix Prebid Adaptor
+title: Emodo
+description: Emodo Prebid Adaptor
 biddercode: axonix
 media_types: banner, video
 pbjs: true
@@ -12,7 +12,7 @@ sidebarType: 1
 
 ### Prebid Server Note
 
-The Axonix Bidding adapter requires setup before beginning. Please contact us at <support.axonix@emodoinc.com>.
+The Emodo Bidding adapter requires setup before beginning. Please contact us at <support.axonix@emodoinc.com>. Please note that Emodo <www.emodo-inc.com> is the new name for Axonix
 
 ### Bid Params
 
