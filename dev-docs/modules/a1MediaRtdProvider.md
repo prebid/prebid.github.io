@@ -41,7 +41,8 @@ pbjs.setConfig({
                 name: "a1MediaRtdProvider",
                 waitForIt: true,
                 params: {
-                    tagId: 'lb4test.min.js'
+                    // 'tagId' is unique value for each account.
+                    tagId: 'lb4test'
                 }
             }
         ]
