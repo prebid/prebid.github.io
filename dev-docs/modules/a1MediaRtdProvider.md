@@ -38,7 +38,7 @@ pbjs.setConfig({
         auctionDelay: 1000,
         dataProviders: [
             {
-                name: "a1MediaRtdProvider",
+                name: "a1Media",
                 waitForIt: true,
                 params: {
                     // 'tagId' is unique value for each account.
@@ -58,7 +58,7 @@ pbjs.setConfig({
 | `name`           | String        | Real time data module name                                          | yes     | Always 'a1Media' |
 | `waitForIt`      | Boolean       | Should be `true` if there's an `auctionDelay` defined (recommended) | no      | Default `false` |
 | `params`         | Object        | |  | |
-| `params.tagId`     | String        | Publisher specific script name                             | no       | Defaults to `https://live-classification.cpx.to/prebid-segments`
+| `params.tagId`     | String        | Publisher specific script name                             | yes       | 
 
 
 {: .alert.alert-warning :}
