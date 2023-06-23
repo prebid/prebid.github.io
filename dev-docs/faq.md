@@ -163,9 +163,9 @@ If you need different [price granularities](/dev-docs/publisher-api-reference/se
 1. Call `setConfig` to define the priceGranularity for the first set of AdUnits
 1. Initiate the first auction with `requestBids`
 1. In the bidsBackHandler
-  1. Set the adserver targeting for the first auction
-  1. Call `setConfig` to define the priceGranularity for the second set of AdUnits
-  1. Initiate the second auction with `requestBids`
+   1. Set the adserver targeting for the first auction
+   1. Call `setConfig` to define the priceGranularity for the second set of AdUnits
+   1. Initiate the second auction with `requestBids`
 
 The handling of this scenario will be improved in a future release.
 
