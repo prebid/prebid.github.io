@@ -62,4 +62,4 @@ pbjs.setConfig({
 
 
 {: .alert.alert-warning :}
-tagId is publisher specific script name ...
+tagId is publisher specific tag ID.
