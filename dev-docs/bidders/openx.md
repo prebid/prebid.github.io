@@ -16,7 +16,6 @@ userIds: admixerId, adtelligentId, amxId, britepoolId, criteo, dapId, deepintent
 prebid_member: true
 fpd_supported: true
 gvl_id: 69
-fpd_supported: true
 sidebarType: 1
 ---
 
