@@ -22,7 +22,7 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description            | Example | Type     |
-|------------|----------|------------------------|---------|----------|
-| placement_id | required | An ID which identifies this specific inventory placement | 1111 | integer |
-| pub_id | required | An ID which identifies the publisher selling the inventory| 2222 | integer |
+| Name         | Scope    | Description                                                | Example | Type    |
+| ------------ | -------- | ---------------------------------------------------------- | ------- | ------- |
+| placement_id | required | An ID which identifies this specific inventory placement   | 1111    | integer |
+| pub_id       | required | An ID which identifies the publisher selling the inventory | 2222    | integer |
