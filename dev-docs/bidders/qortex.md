@@ -26,5 +26,5 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
-| `host`   | required | RTB host              | `'cpm.qortex.ai'`		| `string` |
+| `host`   | required | RTB host              | `'cpm.qortex.ai'`	| `string` |
 | `zoneId` | required | Zone Id               | 76156                     | `integer`|
