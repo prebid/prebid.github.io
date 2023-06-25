@@ -17,7 +17,7 @@ prebid_member: false
 ortb_blocking_supported: true
 multiformat_supported: will-bid-on-one
 floors_supported: true
-aliasCode: adkernel
+aliasCode: adkerne
 sidebarType: 1
 ---
 
