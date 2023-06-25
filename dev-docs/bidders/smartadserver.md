@@ -39,7 +39,7 @@ The Smart AdServer bidder adapter requires setup and approval from the Equativ (
 
 **Note:** The site, page and format identifiers have to all be provided or all empty.
 
-<a name="smartadserver-video-object" />
+<a name="smartadserver-video-object"></a>
 
 #### Video Object
 
@@ -67,50 +67,51 @@ The Smart AdServer bidder adapter requires setup and approval from the Equativ (
 | `video`  | Supported |
 | `native` | Supported |
 
-### Examples 
+### Examples
 
 Without site/page/format :
-```
-	"imp": [{
-		"id": "some-impression-id",
-		"banner": {
-			"format": [{
-				"w": 600,
-				"h": 500
-			}, {
-				"w": 300,
-				"h": 600
-			}]
-		},
-		"ext": {
-			"smartadserver": {
-				"networkId": 73
-			}
-		}
-	}]
+
+```json
+  "imp": [{
+    "id": "some-impression-id",
+    "banner": {
+      "format": [{
+        "w": 600,
+        "h": 500
+      }, {
+        "w": 300,
+        "h": 600
+      }]
+    },
+    "ext": {
+      "smartadserver": {
+        "networkId": 73
+      }
+    }
+  }]
 ```
 
 With site/page/format :
 
-```
-	"imp": [{
-		"id": "some-impression-id",
-		"banner": {
-			"format": [{
-				"w": 600,
-				"h": 500
-			}, {
-				"w": 300,
-				"h": 600
-			}]
-		},
-		"ext": {
-			"smartadserver": {
+```json
+  "imp": [{
+    "id": "some-impression-id",
+    "banner": {
+      "format": [{
+        "w": 600,
+        "h": 500
+      }, {
+        "w": 300,
+        "h": 600
+      }]
+    },
+    "ext": {
+      "smartadserver": {
                             "networkId": 73
                             "siteId": 1,
                             "pageId": 2,
                             "formatId": 3
-			}
-		}
-	}]
+      }
+    }
+  }]
 ```

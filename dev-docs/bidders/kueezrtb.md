@@ -33,8 +33,8 @@ sidebarType: 1
 | `pId`      | required | The publisher ID from KueezRTB.                                                           | `'59ac17c192832d0011283fe3'` | `string` |
 | `bidFloor` | optional | The minimum bid value desired. KueezRTB will not respond with bids lower than this value. | `0.90`                       | `float`  |
 
-
 ## Example
+
   ```javascript
 var adUnits = [{
         code: 'banner-div',

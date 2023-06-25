@@ -27,23 +27,26 @@ sidebarType: 1
 | `page_category`         | optional | Allowed page categories             | `[ 'IAB1-5', 'IAB1-6' ]`            | `array of strings` |
 
 ### Description
+
 Get access to multiple demand partners across lemmadigital AdExchange and maximize your yield with lemmadigital header bidding adapter.
 
 lemmadigital header bidding adapter connects with lemmadigital demand sources in order to fetch bids. This adapter provides a solution for accessing Video demand and display demand.
 
 ### video parameters
+
 The Lemmadigital adapter supports video
 
 {: .table .table-bordered .table-striped }
-| Name 					 | Scope    | Description        										  | Example |
+| Name                   | Scope    | Description                                                 | Example |
 | :----------------------| :------- | :---------------------------------------------------------- | :------ |
-| `video.mimes` 		 | required | Video MIME types 											  | `['video/mp4','video/x-flv']` |
-| `video.skippable` 	 | optional | If 'true', user can skip ad 								  | `true` |
-| `video.minduration` 	 | optional | Minimum ad duration in seconds							  | `5` |
-| `video.maxduration`  	 | optional | Maximum ad duration in seconds 							  | `30` |
-| `video.protocols` 	 | optional |  Supported video bid response protocols<br/>Values<br/>`1`: VAST 1.0<br/>`2`: VAST 2.0<br/>`3`: VAST 3.0<br/> `4`: VAST 1.0 Wrapper<br/>`5`: VAST 2.0 Wrapper<br/>`6`: VAST 3.0 Wrapper			| `[5, 6]` |
+| `video.mimes`          | required | Video MIME types                                            | `['video/mp4','video/x-flv']` |
+| `video.skippable`      | optional | If 'true', user can skip ad                                 | `true` |
+| `video.minduration`    | optional | Minimum ad duration in seconds                              | `5` |
+| `video.maxduration`    | optional | Maximum ad duration in seconds                              | `30` |
+| `video.protocols`      | optional |  Supported video bid response protocols<br/>Values<br/>`1`: VAST 1.0<br/>`2`: VAST 2.0<br/>`3`: VAST 3.0<br/> `4`: VAST 1.0 Wrapper<br/>`5`: VAST 2.0 Wrapper<br/>`6`: VAST 3.0 Wrapper            | `[5, 6]` |
 
 ### AdUnit Format for Video
+
 ```javascript
 var videoAdUnits = [
 {
@@ -75,6 +78,7 @@ var videoAdUnits = [
 ```
 
 ### AdUnit Format for Banner
+
 ```javascript
 var bannerAdUnits = [
 {
@@ -96,5 +100,7 @@ var bannerAdUnits = [
     }]
 }]
 ```
+
 ### Additional Configuration
+
 Lemmadigital recommends setting UserSync by iframe for monetization.

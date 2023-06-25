@@ -18,9 +18,9 @@ prebid_member: false
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Epom Bidding adapter requires setup before beginning. Please contact us at support@epom.com
+The Epom Bidding adapter requires setup before beginning. Please contact us at <support@epom.com>
 
 ### Bid Params
 

@@ -8,25 +8,23 @@ sidebarType: 2
 ---
 
 # Ad Experience Controls
+
 {:.no_toc}
 
-If you use Prebid SDK to render the winning bid you can customize behaviour using the following API. 
+If you use Prebid SDK to render the winning bid you can customize behaviour using the following API.
 
-> NOTE: Planned future enhancements will support Server Side Configuration. Follow this [feature request](https://github.com/prebid/prebid-server/issues/2186) for the details. 
+> NOTE: Planned future enhancements will support Server Side Configuration. Follow this [feature request](https://github.com/prebid/prebid-server/issues/2186) for the details.
 
 * TOC
 {:toc}
 
-
 ## Rendering Controls
-
 
 The following properties enable rendering customization of Video Interstitial Ads.
 
 ### Max Video Duration
 
 This control sets the maximum available video duration in seconds. Prebid SDK sends the value of this property in the  `imp.video.maxduration` object of the bid request. If the value in the received VAST tag `<Duration>` is larger than the given number the SDK will not load the media file, the ad load will fail and an error message will be generated.
-
 
 {: .table .table-bordered .table-striped }
 
@@ -53,7 +51,7 @@ This control sets the percent of device screen which the close button should occ
 {: .table .table-bordered .table-striped }
 
 |**API Object**         | `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
-|**Ad Unit Property**   | `adUnit.setCloseButtonArea(factor) `|
+|**Ad Unit Property**   | `adUnit.setCloseButtonArea(factor)`|
 |**Server Property**    | `closebuttonarea` *(pending for PBS implementation)*|
 |**Allowed Values**     | `0..1`|
 |**Default Size**       | `70dp`|
@@ -64,7 +62,6 @@ Customization Example
 
 |**Default**|**Custom**|
 |![Close Button Area - Default](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-close-button-area-default.jpg){:width="250px"}|![Close Button Area - Custom](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-close-button-area-custom.jpg){:width="250px"}|
-
 
 ### Close Button Position
 
@@ -78,14 +75,12 @@ This control sets the position of the close button on the screen.
 |**Allowed Values**     | `Position.TOP_LEFT, Position.TOP_RIGHT`|
 |**Default Value**      | `Position.TOP_RIGHT`|
 
-
 Customization Example
 
 {: .table .table-bordered .table-striped }
 
 |**Default**|**Custom**|
 |![Close Button Position - Default](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-close-button-position-default.jpg){:width="250px"}|![Close Button Position - Custom](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-close-button-position-custom.jpg){:width="250px"}|
-
 
 ### Skip Button Area
 
@@ -105,7 +100,6 @@ Customization Example
 
 |**Default**|**Custom**|
 |![Close Button Position - Default](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-skip-button-area-default.jpg){:width="250px"}|![Close Button Position - Custom](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-skip-button-area-custom.jpg){:width="250px"}|
-
 
 ### Skip Button Position
 
@@ -144,7 +138,6 @@ Customization Example
 |**Custom**|
 |![Close Button Area - Default](/assets/images/prebid-mobile/modules/rendering/ad-experience/android-sound-button.jpg){:width="250px"}|
 
-
 ### Skip Delay
 
 This control sets number of seconds which should be passed from the start of playback until the skip or close button should be shown.
@@ -156,13 +149,11 @@ This control sets number of seconds which should be passed from the start of pla
 |**Server Property**    | `skipdelay` *(pending for PBS implementation)*|
 |**Default Value**      | `10 seconds`|
 
-
 ### Customization examples
 
 The code sample:
 
-
-``` kotlin
+```kotlin
 adUnit = MediationInterstitialAdUnit(
     activity,
     configId,
@@ -177,4 +168,3 @@ adUnit?.setSkipButtonArea(0.1)
 adUnit?.setSkipButtonPosition(Position.TOP_RIGHT)
 adUnit?.setCloseButtonPosition(Position.TOP_LEFT)
 ```
-

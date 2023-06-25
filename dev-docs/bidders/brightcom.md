@@ -10,13 +10,13 @@ gdpr_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Brightcom bidder adapter requires setup and approval from the Brightcom team. Please reach out to your account manager for more information and to start using it.
 
 ### Bid params
 
-{: .table .table-bordered .table-striped } 
+{: .table .table-bordered .table-striped }
 
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |

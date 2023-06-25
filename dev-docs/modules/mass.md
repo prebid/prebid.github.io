@@ -10,6 +10,7 @@ sidebarType : 1
 ---
 
 # MASS Module
+
 {:.no_toc}
 
 * TOC
@@ -17,19 +18,22 @@ sidebarType : 1
 
 ## Overview
 
+{: .alert.alert-warning :}
+This module does not exist in PBJS 8.0 or later.
+
 This module enables the MASS protocol for Prebid. To use it, you'll need to
 work with a MASS enabled provider.
 
-This module scans incoming bids for the presence of a "mass" flag being set to 
-true in the bid meta or a publisher specified DealID pattern and uses 
+This module scans incoming bids for the presence of a "mass" flag being set to
+true in the bid meta or a publisher specified DealID pattern and uses
 external resources to decypher and process the MASS:// URI found within the ad markup.
 This modules is designed to work with MASS enabled Exchanges and DSP's.
 
-This module only loads external JavaScript resources if the publisher ad server has 
-selected a MASS enabled bid as a winner. 
-
+This module only loads external JavaScript resources if the publisher ad server has
+selected a MASS enabled bid as a winner.
 
 {: .alert.alert-warning :}
+
 ## Disclosure
 
 This module loads external JavaScript to render creatives
@@ -42,10 +46,9 @@ You can specify your own `dealIdPattern` and `renderUrl` by adding one or more e
 
 Build the MASS module into the Prebid.js package with:
 
-```
+```bash
 gulp build --modules=mass,...
 ```
-
 
 ## Module Configuration
 
@@ -142,43 +145,52 @@ pbjs.que.push(function() {
 There are two options to view the integration example:
 
 ### Option 1 - Your own development environment
+
 To view the integration example:
- 
-1) Build Prebid using the following required options
 
-```
-gulp build --modules=ixBidAdapter,mass
-```
+1. Build Prebid using the following required options
 
-2) Use a http server with a valid hostname to access its content. It is not advised to run the bid simulation using localhost or 127.0.0.1
+    ```bash
+    gulp build --modules=ixBidAdapter,mass
+    ```
 
-```
-http://hostname/integrationExamples/mass/index.html
-```
+2. Use a http server with a valid hostname to access its content. It is not advised to run the bid simulation using localhost or 127.0.0.1
+
+    ```text
+    http://hostname/integrationExamples/mass/index.html
+    ```
 
 ### Option 2 - Hosted online
-Mass Platform Limited hosts an official integration and demo page that can be accessed using the following link: https://demo.massplatform.net/ix/prebid/
+
+Mass Platform Limited hosts an official integration and demo page that can be accessed using the following link: <https://demo.massplatform.net/ix/prebid/>
 
 ## Testing MASS
-Testing requires valid bids to be returned to Prebid. To assist with this process, we recommend you use the MASS Bid Simulation tool found at https://github.com/massplatform/bidsim. Your Exchange partner might be able to assist you with other specialist tools and browser plugins to achieve similar resuls.
 
-The instructions below assume that you have followed the installation instructions for the MASS Bidsim tool found at https://github.com/massplatform/bidsim/blob/master/README.md.
+Testing requires valid bids to be returned to Prebid. To assist with this process, we recommend you use the MASS Bid Simulation tool found at <https://github.com/massplatform/bidsim>. Your Exchange partner might be able to assist you with other specialist tools and browser plugins to achieve similar resuls.
+
+The instructions below assume that you have followed the installation instructions for the MASS Bidsim tool found at <https://github.com/massplatform/bidsim/blob/master/README.md>.
 
 ### Testing using MASS compliant tags
+
 The bidsim tool ships with working DSP example tags that can be found under the bidsim/tags folder.
 
 A quick way to test the Integration test page in combination with the official bootloader is to use the following command:
-```
+
+```bash
 node bidsim --inject --bid 2000 --width 300 --height 250 --dealid 'MASS' --tag "tags/inskin-housead-desktop.js" -o https://demo.massplatform.net/ix/prebid
 ```
+
 ### For third-party technology companies
+
 Third-parties that wish to integrate with the official MASS bootloader can get started by running the following command:
-```
+
+```bash
 node bidsim --inject --bid 2000 --width 300 --height 250 --dealid 'MASS' --tag "tags/test.js" -o https://demo.massplatform.net/ix/prebid
 ```
 
-Explanation: The tags/test.js tag calls a reference endpoint for developers that can be accessed here: https://demo.massplatform.net/reference/endpoint.js.
+Explanation: The tags/test.js tag calls a reference endpoint for developers that can be accessed here: <https://demo.massplatform.net/reference/endpoint.js>.
 When running the above command to invoke this reference endpoint, you will see all the params that MASS collected and passed onto your endpoint. This includes inputs, parsed inputs, tag parameters and MASS/Provider specific configurations.
 
 ### Testing on live sites
+
 Any sites that have been MASS configured will work with the Bidsim tool. This is a convenient way to test whether your publisher ad server and slot is correctly configured.

@@ -22,7 +22,7 @@ The benefit of Neuwo AI RTD module is that it provides an alternative solution f
 
 The RTD module uses cutting-edge algorithms to process real-time data, allowing advertisers to target their audiences based on contextual information, such as segments, IAB Tiers and brand safety. The RTD module is designed to be flexible and scalable, making it an ideal solution for advertisers looking to stay ahead of the curve in the post-cookie era.
 
-Generate your token at: [https://neuwo.ai/generatetoken/]
+Generate your token at: [neuwo.ai/generatetoken/]
 
 ## Configuration
 

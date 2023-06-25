@@ -11,7 +11,7 @@ sidebarType: 1
 
 ### Note
 
-The Missena Bidding adapter requires setup before beginning. Please contact us at jney@missena.com
+The Missena Bidding adapter requires setup before beginning. Please contact us at <jney@missena.com>
 
 ### Bid params
 

@@ -12,7 +12,7 @@ schain_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The VideoByte Prebid.js client adapter only supports video ads while our Prebid Server adapter supports both display and video.
 
@@ -21,7 +21,6 @@ for more details about Prebid Client integration.
 
 See [Videobyte Prebid Server Documentation](https://videobyte.readme.io/reference/vbx-integration-prebid-server)
 for more details about Prebid Server integration.
-
 
 ### Bid Params
 

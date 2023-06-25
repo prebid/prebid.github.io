@@ -1,0 +1,20 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  markdownlint:
+    name: run markdownlint
+    runs-on: ubuntu-latest
+    container: ghcr.io/igorshubovych/markdownlint-cli:v0.35.0
+    steps:
+      - uses: actions/checkout@master
+      - name: markdownlint-cli
+        run: |
+          markdownlint --config .markdownlint.json --ignore-path .markdownlintignore "**/*.md"

@@ -376,8 +376,8 @@
   subgroup: 3
 
 - sbSecId: 1
-  title: Prebid.js Releases
-  link: /prebid/prebidjsReleases.html
+  title: Prebid.js Release Notes
+  link: /dev-docs/release-notes.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -577,6 +577,14 @@
 - sbSecId: 1
   title: First Party Data
   link: /features/firstPartyData.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
+- sbSecId: 1
+  title: Activity Controls
+  link: /dev-docs/activity-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

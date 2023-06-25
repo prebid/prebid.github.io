@@ -16,7 +16,7 @@ pbjs_version_notes: v5.20.0 and later
 
 LiveRamp's ATS Analytics is free of charge and only requires a simple registration with Liveramp. Please sign up through our [Console](https://launch.liveramp.com) platform and create the analytics adapter to get started.
 
-The LiveRamp privacy policy is at [https://liveramp.com/privacy/service-privacy-policy/](https://liveramp.com/privacy/service-privacy-policy/).
+The LiveRamp privacy policy is at [liveramp.com/privacy/service-privacy-policy/](https://liveramp.com/privacy/service-privacy-policy/).
 
 #### Analytics Options
 

@@ -20,9 +20,9 @@ prebid_member: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The TrafficGate Bidding adapter requires setup before beginning. Please contact us at support@bidscube.com
+The TrafficGate Bidding adapter requires setup before beginning. Please contact us at <support@bidscube.com>
 
 ### Bid Params
 

@@ -17,9 +17,9 @@ pbs_app_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The VideoHeroes Header Bidding adapter requires setup and approval from the VideoHeroes team. Please reach out to your account manager or support@videoheroes.tv for more information
+The VideoHeroes Header Bidding adapter requires setup and approval from the VideoHeroes team. Please reach out to your account manager or <support@videoheroes.tv> for more information
 
 ### Bid Params
 

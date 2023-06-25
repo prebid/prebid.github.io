@@ -17,9 +17,9 @@ pbs: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at rafi.babler@acuityads.com
+The Example Bidding adapter requires setup before beginning. Please contact us at <rafi.babler@acuityads.com>
 
 ### Prebid.JS Bid Params
 

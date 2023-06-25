@@ -16,10 +16,9 @@ multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Xe.works adapter requires setup before beginning. Please contact us at team@xe.works
-
+The Xe.works adapter requires setup before beginning. Please contact us at <team@xe.works>
 
 ### Prebid.js Bid params
 
