@@ -36,7 +36,7 @@ The Geolocation module lets publishers get user's precise location with their pe
 
 This module is configured as part of the `realTimeData.dataProviders` object:
 
-```
+```javascript
 
 pbjs.setConfig({
     realTimeData: {
@@ -62,7 +62,8 @@ Parameters details:
 |params.requestPermission | Boolean | Customer permission |Required, always true  |
 
 Geolocation is set in ortb2Fragments.global.device.geo in requestBidsObject and looks like this:
-```
+
+```javascript
 
 {
     lat: 1, //geolocation.coords.latitude
