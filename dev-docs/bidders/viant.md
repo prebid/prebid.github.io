@@ -6,7 +6,7 @@ biddercode: viant
 media_types: banner, video, native
 gdpr_supported: true
 coppa_supported: true
-usp_supported: false
+usp_supported: true
 gpp_supported: false
 schain_supported: false
 userIds: uid2, unifiedId
