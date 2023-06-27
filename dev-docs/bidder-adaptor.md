@@ -1265,7 +1265,7 @@ registerBidder(spec);
     * Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. _This needs to be the same name as the docs file!_
     * Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
     * Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
-    * If you're on the IAB Global Vendor List (including just [Canada](https://vendor-list.consensu.org/v2/ca/vendor-list.json), add your ID number in `gvl_id`.
+    * If you're on the IAB Global Vendor List (including just [Canada](https://vendor-list.consensu.org/v2/ca/vendor-list.json)), add your ID number in `gvl_id`.
     * If you support the GDPR consentManagement module and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
     * If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
     * If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
