@@ -7,7 +7,6 @@ pbjs_version: 7.52
 ---
 
 # Prebid.js Activity Controls
-
 {: .no_toc }
 
 Starting with version 7.52, Prebid.js introduced a centralized control mechanism for privacy-sensitive _activities_ - such as accessing device storage or sharing data with partners.
@@ -368,9 +367,11 @@ if (in-page code to detect that GPP SID 7 through 12 are in-scope or if the GPC 
   });
 }
 ```
+
 #### Always allow sharedId to be passed, others determined by privacy regs
 
 To make exceptions for certain IDs, there are two steps:
+
 1. Always allow the transmitEids activity to take place
 1. Configure the enrichEids activity to allow only the desired IDs
 
