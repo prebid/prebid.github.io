@@ -26,9 +26,11 @@ sidebarType : 1
 
 ## Overview
 
-This consent management control module is designed to support the Global Privacy Platform section 7 string, usnat. ([GPP](https://iabtechlab.com/gpp/)) The usnat string is intended to unify various state laws into a single privacy string, with participants' behavior governed by the ([MSPA](https://www.iabprivacy.com/#)). It is intended to complement, not replace, the GPP consent management module, which gathers GPP consent strings and makes them available to vendor integrations. It also works with statically provided GPP section 7 strings. The goal is to gather sensible and conservative [activity control](/dev-docs/dev-docs/activity-controls.html) for elements of Prebid.js given various expressions of the [usnat consent string](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md). 
+This consent management control module is designed to support the Global Privacy Platform section 7 string, usnat. ([GPP](https://iabtechlab.com/gpp/)) The usnat string is intended to unify various state laws into a single privacy string, with participants' behavior governed by the ([MSPA](https://www.iabprivacy.com/#)). It is intended to complement, not replace, the GPP consent management module, which gathers GPP consent strings and makes them available to vendor integrations. The goal is to gather sensible and conservative [activity control](/dev-docs/dev-docs/activity-controls.html) for elements of Prebid.js given various expressions of the [usnat consent string](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md). 
 
 This module does not support any other GPP section id or local GPP api. Default controls for each section will be added as the section list grows and publishers request support. In order to control activities in a section without a control module, publishers can express their controls directly in the syntax of the [activity control infrastructure](/dev-docs/dev-docs/activity-controls.html).
+
+
 
 {: .alert.alert-warning :}
 Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws.
@@ -36,7 +38,7 @@ Prebid functionality created to address regulatory requirements does not replace
 
 ## Page Integration
 
-Here are the parameters supported in the `consentManagement` object specific to the GPP consent module:
+This module activates if the `gpp` object in the consent management configuration section exists and the consentManagementGpp module exists. See that module's documentation for parameter definitions. This module does not work with statically provided GPP section 7 strings into the first-party data `regs.gpp` object, but does work if the `gpp.cmpApi` is set to `static` and `gpp.consentData` is fully populated via setConfig.
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
