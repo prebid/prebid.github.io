@@ -26,7 +26,9 @@ sidebarType : 1
 
 ## Overview
 
-This consent management control module is designed to support the Global Privacy Platform section 7 string, usnat. ([GPP](https://iabtechlab.com/gpp/)) The usnat string is intended to unify various state laws into a single privacy string, with participants' behavior governed by the ([MSPA](https://www.iabprivacy.com/#)). It is intended to complement, not replace, the GPP consent management module, which gathers GPP consent strings and makes them available to vendor integrations. It also works with statically provided GPP section 7 strings. The goal is to gather sensible and conservative [activity control](/dev-docs/dev-docs/activity-controls.html) for elements of Prebid.js given various expressions of the [usnat consent string](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md).
+This consent management control module is designed to support the Global Privacy Platform section 7 string, usnat. ([GPP](https://iabtechlab.com/gpp/)) The usnat string is intended to unify various state laws into a single privacy string, with participants' behavior governed by the ([MSPA](https://www.iabprivacy.com/#)). It is intended to complement, not replace, the GPP consent management module, which gathers GPP consent strings and makes them available to vendor integrations. It also works with statically provided GPP section 7 strings. The goal is to gather sensible and conservative [activity control](/dev-docs/dev-docs/activity-controls.html) for elements of Prebid.js given various expressions of the [usnat consent string](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md). 
+
+This module does not support any other GPP section id or local GPP api. Default controls for each section will be added as the section list grows and publishers request support. In order to control activities in a section without a control module, publishers can express their controls directly in the syntax of the [activity control infrastructure](/dev-docs/dev-docs/activity-controls.html).
 
 {: .alert.alert-warning :}
 Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws.
@@ -34,13 +36,7 @@ Prebid functionality created to address regulatory requirements does not replace
 
 ## Page Integration
 
-To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB GPP CMP spec](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md) needs to be implemented on the site to interact with the user and obtain their consent choices.  It's important to understand the details of how the CMP works before integrating it with Prebid.js.
-
-In general, implementation details for CMPs are not covered by Prebid.org, but we do recommend that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes.  In addition, the community is collecting a set of [CMP best practices](/dev-docs/cmp-best-practices.html).
-
-Once the CMP is implemented, simply include this module into your build and add a `consentManagement` object in the `setConfig()` call.  Adapters that support this feature will then be able to retrieve the consent information and incorporate it in their requests.
-
-Here are the parameters supported in the `consentManagement` object specific for the GPP consent module:
+Here are the parameters supported in the `consentManagement` object specific to the GPP consent module:
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
@@ -56,8 +52,6 @@ Here are the parameters supported in the `consentManagement` object specific for
 | gpp.consentData.gppString | `String` | The complete encoded GPP string. | |
 | gpp.consentData.pingData | `Object` | An object representing the current status of the CMP at the time consent data was fetched.  See PingReturn in [IAB's CMP API doc](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md#ping) for further information. |  |
 
-{: .alert.alert-info :}
-In addition to the static approach described above, there is another means to pass already known GPP consent data of a user via the Prebid.js [First Party Data](https://docs.prebid.org/features/firstPartyData.html) feature.  The values for `gppString` and `applicableSections` can be passed via the `ortb2.regs.gpp` and `ortb2.regs.gpp_sid` fields respectively; other fields in the GPP data object listed above are not available via the `ortb2` structure.  If the GPP consent module is present and successfully obtains the consent information from the CMP, it will override the GPP values set originally in the `ortb2` object (as we assume the CMP's values will be more up-to-date).  Please visit the [First Party Data](https://docs.prebid.org/features/firstPartyData.html) page for more overall information and examples.
 
 ### Examples
 
@@ -67,11 +61,6 @@ Example 1:
 
 ```
 
-Example 2: 
-
-```javascript
- 
-```
 
 ## Build the Package
 
@@ -88,7 +77,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 
 - [IAB Global Privacy Platform Full Specification Repository](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform)
 - [IAB Global Privacy Platform CMP API Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md)
-- [IAB Global Privacy Platform usnat string Specification]([https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md))
+- [IAB Global Privacy Platform usnat string Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)
 - [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)
 - [Prebid Consent Management - GPP Module](/dev-docs/modules/consentManagementGpp.html)
 - [Prebid Activity Controls](/dev-docs/dev-docs/activity-controls.html)
