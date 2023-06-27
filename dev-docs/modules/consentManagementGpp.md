@@ -26,7 +26,7 @@ sidebarType : 1
 
 ## Overview
 
-This consent management module is designed to support the Global Privacy Platform ([GPP](https://iabtechlab.com/gpp/))
+This consent management module is designed to support the Global Privacy Platform ([GPP](https://iabtechlab.com/gpp/)). GPP API 1.0 support is available; GPP 1.1 support is scheduled to be added in July 2023 in the approximate version Prebid.js 8.6.
 
 This module works with supported [Consent Management Platforms](https://www.cmswire.com/information-management/what-is-a-consent-management-platform/) (CMPs) to fetch an encoded string representing the user's consent choices (for their respective region) and make it available for adapters to consume and process.
 
