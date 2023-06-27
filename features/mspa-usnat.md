@@ -12,7 +12,7 @@ sidebarType: 0
 {:toc}
 
 {: .alert.alert-warning :}
-This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and/or US regulations, including the GDPR, the ePrivacy Directive, CCPA, other state privacy laws, etc, and how you implement the tools outlined in this document. Only your lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business. 
+This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and/or US regulations, including the GDPR, the ePrivacy Directive, CCPA, other state privacy laws, etc, and how you implement the tools outlined in this document. Only your lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
 
 ## Overview
 
@@ -69,9 +69,9 @@ Here's a summary of the privacy features in Prebid.js that publishers may use to
 | Prebid.js Version | USNat-Related Features | Notes |
 | ----------------- | ---------------------- | ----- |
 | before 7.30 | None | If you operate in the US, you should consider upgrading. |
-| 7.30-7.51 | **GPP module** | This module reads the GPP string from a compliant CMP and passes to compliant bid adapters. Not many bid adapters supported GPP in earlier versions. |
+| 7.30-7.51 | **GPP module** | The [GPP module](/dev-docs/modules/consentManagementGpp.html) reads the GPP string from a compliant CMP and passes to compliant bid adapters. Not many bid adapters supported GPP in earlier versions. |
 | 7.52-8.1 | GPP module <br/> **Activity&nbsp;Controls** | Ability for publishers to allow or restrict certain privacy-sensitive activities for particular bidders and modules. Allows for CCPA activity control. |
-| 8.2-8.x | GPP module<br/>Activity Controls<br/>**USNat module** | The USNat module processes SID 7. |
+| 8.2-8.x | GPP module<br/>Activity Controls<br/>**USNat module** | The [USNat module](/dev-docs/modules/gppControl_usnat.html) processes SID 7. |
 | After 8.x | GPP module<br/>Activity Controls<br/>USNat module<br/>**US&nbsp;State&nbsp;module** | The US State module processes SIDs 8 through 12 after normalizing protocol differences. |
 
 ### Prebid Server
@@ -151,11 +151,11 @@ To make sense of the specific values below, please refer to the [IAB's USNat tec
         1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12]
         1. KnownChild:
             1. If CT string KnownChildSensitiveDataConsents[2]=0 and CT string KnownChildSensitiveDataConsents[3]=0, then set the normalized KnownChildSensitiveDataConsents[1]=0 (not age 13-16)
-            1. Let ages 13-16 state their consent - if CT string KnownChildSensitiveDataConsents[2]=2 and CT string KnownChildSensitiveDataConsents[3]=2, then set the normalized KnownChildSensitiveDataConsents[1]=2 
+            1. Let ages 13-16 state their consent - if CT string KnownChildSensitiveDataConsents[2]=2 and CT string KnownChildSensitiveDataConsents[3]=2, then set the normalized KnownChildSensitiveDataConsents[1]=2
             1. Otherwise, if normalized KnownChildSensitiveDataConsents[1] is not yet set, set it to 1 (no consent)
             1. If CT string KnownChildSensitiveDataConsents[1]<>0, then normalize KnownChildSensitiveDataConsents[2]=1 (no consent for under 13)
         1. All other fields passthrough.
-    1. If the CMP provides a non-zero/null value for any of the following sensitive data categories, the module should suppress the activity. In other words, if there's any hint that data of these categories is associated with advertising, Prebid should anonymize first party data. 
+    1. If the CMP provides a non-zero/null value for any of the following sensitive data categories, the module should suppress the activity. In other words, if there's any hint that data of these categories is associated with advertising, Prebid should anonymize first party data.
         1. Genetic (6)
         1. Biometric (7)
         1. Personal Info (9)
@@ -266,11 +266,13 @@ If a pubisher's legal team disagrees with any of these intrepretations, both Pre
 support overriding this default logic.
 
 The `transmitGeo` activity has one additional clause:
+
 ```javascript
 // Consent was not given for the use of "precise geographic" information
 SensitiveDataProcessing[8]=1 OR
 ```
 
 ## Related Topics
-- Prebid.js: [Activity Controls](/dev-docs/activity-controls.html), [GPP module](/dev-docs/modules/consentManagementGpp.html)
+
+- Prebid.js: [Activity Controls](/dev-docs/activity-controls.html), [GPP module](/dev-docs/modules/consentManagementGpp.html), [GPP USNat module](/dev-docs/modules/gppControl_usnat.html)
 - Prebid Server: [Activity Controls](/prebid-server/features/pbs-activitycontrols.html)
