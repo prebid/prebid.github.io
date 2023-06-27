@@ -26,7 +26,7 @@ sidebarType : 1
 
 ## Overview
 
-This consent management control module is designed to support the Global Privacy Platform section 7 string, usnat. ([GPP](https://iabtechlab.com/gpp/)) The usnat string is intended to unify various state laws into a single privacy string, with participants' behavior governed by the ([MSPA](https://www.iabprivacy.com/#)). It is intended to complement, not replace, the GPP consent management module, which gathers GPP consent strings and makes them available to vendor integrations. The goal is to gather sensible and conservative [activity control](/dev-docs/dev-docs/activity-controls.html) for elements of Prebid.js given various expressions of the [usnat consent string](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md).
+This consent management control module is designed to support the Global Privacy Platform section 7 string, usnat. ([GPP](https://iabtechlab.com/gpp/)) The usnat string is intended to unify various state laws into a single privacy string, with participants' behavior governed by the ([MSPA](https://www.iabprivacy.com/#)). It is intended to complement, not replace, the GPP consent management module, which gathers GPP consent strings and makes them available to vendor integrations. It also works with statically provided GPP section 7 strings. The goal is to gather sensible and conservative [activity control](/dev-docs/dev-docs/activity-controls.html) for elements of Prebid.js given various expressions of the [usnat consent string](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md).
 
 {: .alert.alert-warning :}
 Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws.
@@ -61,134 +61,36 @@ In addition to the static approach described above, there is another means to pa
 
 ### Examples
 
-Example 1: IAB CMP using a custom timeout
+Example 1: 
 
 ```javascript
-     var pbjs = pbjs || {};
-     pbjs.que = pbjs.que || [];
-     pbjs.que.push(function() {
-        pbjs.setConfig({
-          consentManagement: {
-            gpp: {
-              cmpApi: 'iab',
-              timeout: 8000
-            }
-          }
-        });
-     });
+
 ```
 
-Example 2: Static CMP using custom data passing.
+Example 2: 
 
 ```javascript
-     var pbjs = pbjs || {};
-     pbjs.que = pbjs.que || [];
-     pbjs.que.push(function() {
-        pbjs.setConfig({
-          consentManagement: {
-            gpp: {
-              cmpApi: 'static',
-              consentData: {
-                sectionId: 3,
-                gppVersion: 1,
-                sectionList: [5, 7]
-                applicableSections: [7]
-                gppString: 'DBACNYA~CPXxRfAPXxRfAAfKABENB-CgAAAAAAAAAAYgAAAAAAAA~1YNN',
-                pingData: {...}
-              }
-            }
-          }
-        });
-     });
+ 
 ```
 
 ## Build the Package
 
-Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the **gulp build** command:
+Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module and the GPP Control - usnat module, an additional option must be added to the **gulp build** command:
 
 ```bash
-gulp build --modules=consentManagementGpp,bidAdapter1,bidAdapter2
+gulp build --modules=consentManagementGpp,gppContol_usnat,bidAdapter1,bidAdapter2
 ```
 
 You can also use the [Prebid.js Download](/download.html) page.
 
 ## Adapter Integration
-
-{: .alert.alert-info :}
-
-If you are submitting changes to an adapter to support GPP, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gpp_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GPP.**
-
-### Bidder Adapter GPP Integration
-
-To find the GPP consent information to pass along to your system, adapters should look for the `bidderRequest.gppConsent` field in their `buildRequests()` method; this field includes a copy of the full GPPData object from the CMP, in case additional information (beyond the gppString and applicableSections values) is needed.  Alternatively if only the consent string and/or the applicableSections values are needed, these two values can also be found in the `bidderRequest.ortb2.regs` field under the OpenRTB 2.6 field names (`gpp` and `gpp_sid`).
-Here is a sample of how the data is structured in the `bidderRequest` object:
-
-```javascript
-{
-  "bidderCode": "bidderA",
-  "auctionId": "e3a336ad-2222-4a1c-bbbb-ecc7c5294a34",
-  ...
-  "timeout": 3000,
-  "gppConsent": {
-    "gppString": "BOJ/P2HOJ/P2HABABMAAAAAZ+A==",
-    "fullGppData": {...},
-    "applicableSections": [7]
-  },
-  "ortb2": {
-    "regs": {
-      "gpp": "BOJ/P2HOJ/P2HABABMAAAAAZ+A==",
-      "gpp_sid": [7]
-    }
-  },
-  ...
-}
-```
-
-### UserSync Integration
-
-The `gppConsent` object is also available when registering `userSync` pixels.
-The object can be accessed by including it as an argument in the `getUserSyncs` function:
-
-```javascript
-getUserSyncs: function(syncOptions, responses, gdprConsent, usPrivacy, gppConsent) {
-...
-}
-```
-
-Depending on your needs, you could include the consent information in a query of your pixel and/or, given the consent choices, determine if you should drop the pixels at all.
-
-## Adapters Supporting GPP
-
-Bidders on this list have self-declared their GPP support in their [github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gpp_supported: true".
-
-<script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-var adaptersSupportingGpp=[];
-var idx_gdpr=0;
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-{% for item in bidder_pages %}
-    {% if item.gpp_supported == true %}
-    adaptersSupportingGpp[idx_gdpr]={};
-    adaptersSupportingGpp[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
-    adaptersSupportingGpp[idx_gdpr].text="{{item.title}}";
-    idx_gdpr++;
-    {% endif %}
-{% endfor %}
-</script>
-
-<div id="adaptersTableGpp">
-        <script>
-           writeDynamicTable({div: "adaptersTableGpp", data: "adaptersSupportingGpp", sort: "rowFirst", striped: false} );
-        </script>
-</div>
-
 ## Further Reading
 
 - [IAB Global Privacy Platform Full Specification Repository](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform)
 - [IAB Global Privacy Platform CMP API Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md)
-- [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagement.html)
+- [IAB Global Privacy Platform usnat string Specification]([https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md))
 - [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)
+- [Prebid Consent Management - GPP Module](/dev-docs/modules/consentManagementGpp.html)
 - [Prebid Activity Controls](/dev-docs/dev-docs/activity-controls.html)
 - [Prebid Activity Controls -- GPP control module - usnat](/dev-docs/modules/gppControl_usnat.html)
 - [CMP Best Practices](https://docs.prebid.org/dev-docs/cmp-best-practices.html)
