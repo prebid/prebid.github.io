@@ -1,17 +1,17 @@
 ---
 layout: page_v2
 page_type: module
-title: Consent Management - GPP
-description: If you have users in regions of the world that adhere to the Global Privacy Platform, this module works with your Consent Management Platform to pass consent info to bidders and help align with regional regulations.
-module_code : consentManagementGpp
-display_name : Consent Management - GPP
+title: GPP Control - usnat
+description: If your CMP populates section 7 of the Global Privacy Platform, the usnat string, this module complements the `consentManagementGpp` module to control Prebid.js accordingly.
+module_code : gppControl_usnat
+display_name : GPP Control - usnat
 enable_download : true
 recommended: true
-min_js_version: 7.30.0
+min_js_version: 8.2.0
 sidebarType : 1
 ---
 
-# GPP Consent Management Module
+# GPP Control Module - usnat string
 
 {: .no_toc }
 
@@ -26,27 +26,11 @@ sidebarType : 1
 
 ## Overview
 
-This consent management module is designed to support the Global Privacy Platform ([GPP](https://iabtechlab.com/gpp/))
-
-This module works with supported [Consent Management Platforms](https://www.cmswire.com/information-management/what-is-a-consent-management-platform/) (CMPs) to fetch an encoded string representing the user's consent choices (for their respective region) and make it available for adapters to consume and process.
+This consent management control module is designed to support the Global Privacy Platform section 7 string, usnat. ([GPP](https://iabtechlab.com/gpp/)) The usnat string is intended to unify various state laws into a single privacy string, with participants' behavior governed by the ([MSPA](https://www.iabprivacy.com/#)). It is intended to complement, not replace, the GPP consent management module, which gathers GPP consent strings and makes them available to vendor integrations. The goal is to gather sensible and conservative [activity control](/dev-docs/dev-docs/activity-controls.html) for elements of Prebid.js given various expressions of the [usnat consent string](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md).
 
 {: .alert.alert-warning :}
 Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws.
 **We recommend consulting with your legal counsel before determining how to utilize these features in support of your overall privacy approach. This module is not yet intended to replace other consent modules; it supplements them.**
-
-Below is a summary of the actions performed by the GPP consent management module:
-
-1. Fetch the user's GPP consent data from the IAB-compliant CMP.
-2. Incorporate this data into the auction objects for adapters to collect.
-3. Proceed with the auction.
-
-In the case of a new user, CMPs will generally respond only after there is consent information available (i.e., the user has made their consent choices).
-Making these selections can take some time for the average user, so the module provides timeout settings.
-
-If the timeout period expires or an error from the CMP is thrown, one of these actions occurs:
-
-- The auction is canceled outright.
-- The auction proceeds without the user's consent information.
 
 ## Page Integration
 
