@@ -305,15 +305,17 @@ If you're an ID provider that wants to get on this page:
 
 ## ESP Configurations
 
-Google now supports Encrypted Signals for Publishers(ESP), a program that allows publishers can explicitly share encrypted signals on bid requests with third-party bidders. User ID modules now support code which will register the signal sources and encrypted signal are created and is sent to GAM request in a3p parameter. 'encryptedSignal' configuration under userSync Module will help to configure signal sources.
+Google now supports Encrypted Signals for Publishers(ESP), a program that allows publishers can explicitly share encrypted signals on bid requests with third-party bidders. User ID modules now support code which will register the signal sources and encrypted signals are created and are sent to GAM request in a3p parameter. 'encryptedSignal' configuration under userSync Module will help to configure signal sources.
 
-Please find more details [Share encrypted signals with bidders (Beta)](https://support.google.com/admanager/answer/10488752?hl=en)
+Please find more details [Share encrypted signals with bidders (Beta)](https://support.google.com/admanager/answer/10488752?hl=en).
+
+Alternatively, GAM can now pull IDs from Prebid for UserId submodules that [register with GAM](https://services.google.com/fb/forms/encryptedsignalsforpublishers-signalcollectorform/) For those registered submodules, publishers can [select Prebid UserID module (Beta)  under "Signal collection deployment."](https://support.google.com/admanager/answer/10488752?hl=en). Publishers selecting this option should not also select those identifiers in the `encryptedSignalSources.sources.source` array.
 
 {: .table .table-bordered .table-striped }
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | encryptedSignalSources | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
-| encryptedSignalSources.sources | Required | Object |  An array of Object consist of sources list and encryption flag | Check below config as an example  |
+| encryptedSignalSources.sources | Required | Object |  An array of Object consisting of a sources list and encryption flag | Check below config as an example  |
 | encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
 | encryptedSignalSources.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
 | encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
