@@ -26,9 +26,9 @@ sidebarType : 1
 
 ## Overview
 
-This consent management control module is designed to support the Global Privacy Platform section 7 string, usnat. ([GPP](https://iabtechlab.com/gpp/)) The usnat string is intended to unify various state laws into a single privacy string, with participants' behavior governed by the ([MSPA](https://www.iabprivacy.com/#)). It is intended to complement, not replace, the GPP consent management module, which gathers GPP consent strings and makes them available to vendor integrations. The goal is to gather sensible and conservative [activity control](/dev-docs/dev-docs/activity-controls.html) for elements of Prebid.js given various expressions of the [usnat consent string](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md). 
+This consent management control module is designed to support the Global Privacy Platform section 7 string, usnat. ([GPP](https://iabtechlab.com/gpp/)) The usnat string is intended to unify various state laws into a single privacy string, with participants' behavior governed by the ([MSPA](https://www.iabprivacy.com/#)). It is intended to complement, not replace, the GPP consent management module, which gathers GPP consent strings and makes them available to vendor integrations. The goal is to gather sensible and conservative [activity control](/dev-docs/dev-docs/activity-controls.html) for elements of Prebid.js given various expressions of the [usnat consent string](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md).
 
-This module does not support any other GPP section id or local GPP api. Default controls for each section will be added as the section list grows and publishers request support. In order to control activities in a section without a control module, publishers can express their controls directly in the syntax of the [activity control infrastructure](/dev-docs/dev-docs/activity-controls.html). If a publisher wants finer control over section 7 implications on Prebid.js behavior than this module provides (eg not invalidating certain strings), they are able to achieve that using the activity control syntax as an alternative to this module. 
+This module does not support any other GPP section id or local GPP api. Default controls for each section will be added as the section list grows and publishers request support. In order to control activities in a section without a control module, publishers can express their controls directly in the syntax of the [activity control infrastructure](/dev-docs/dev-docs/activity-controls.html). If a publisher wants finer control over section 7 implications on Prebid.js behavior than this module provides (eg not invalidating certain strings), they are able to achieve that using the activity control syntax as an alternative to this module.
 
 {: .alert.alert-warning :}
 Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws.
@@ -37,20 +37,6 @@ Prebid functionality created to address regulatory requirements does not replace
 ## Page Integration
 
 This module activates if the `gpp` object in the consent management configuration section exists and the consentManagementGpp module exists. See that module's documentation for parameter definitions. This module does not work with statically provided GPP section 7 strings into the first-party data `regs.gpp` object, but does work if the `gpp.cmpApi` is set to `static` and `gpp.consentData` is fully populated via setConfig.
-
-{: .table .table-bordered .table-striped }
-| Param | Type | Description | Example |
-| --- | --- | --- | --- |
-| gpp | `Object` | | |
-| gpp.cmpApi | `string` | The CMP interface that is in use. Supported values are **'iab'** or **'static'**. Static allows integrations where IAB-formatted consent strings are provided in a non-standard way. Default is `'iab'`. | `'iab'` |
-| gpp.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GPP consent information. Default is `10000`. | `10000` |
-| gpp.consentData | `Object` | An object representing the IAB GPP consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
-| gpp.consentData.sectionId | `integer` | Indicates the header section of the GPP consent string, recommended to be `3`. | |
-| gpp.consentData.gppVersion | `integer` | The version number parsed from the header of the GPP consent string. | |
-| gpp.consentData.sectionList | `Array of integers` | The sections contained within the encoded GPP string as parsed from the header. | |
-| gpp.consentData.applicableSections | `Array of integers` | Section ID considered to be in force for this transaction.  In most cases, this field should have a single section ID. In rare occasions where such a single section ID can not be determined, the field may contain up to 2 values. The value can be 0 or a Section ID specified by the Publisher / Advertiser, during stub / load. When no section is applicable, the value will be -1. | |
-| gpp.consentData.gppString | `String` | The complete encoded GPP string. | |
-| gpp.consentData.pingData | `Object` | An object representing the current status of the CMP at the time consent data was fetched.  See PingReturn in [IAB's CMP API doc](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md#ping) for further information. |  |
 
 ## Build the Package
 
@@ -62,7 +48,6 @@ gulp build --modules=consentManagementGpp,gppContol_usnat,bidAdapter1,bidAdapter
 
 You can also use the [Prebid.js Download](/download.html) page.
 
-## Adapter Integration
 ## Further Reading
 
 - [IAB Global Privacy Platform Full Specification Repository](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform)
