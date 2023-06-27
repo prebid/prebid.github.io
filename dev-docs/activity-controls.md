@@ -401,4 +401,4 @@ This approach works in conjunction with other activity-control compiant modules 
 
 ## Further Reading
 
-- [FAQ: How does Prebid.js support privacy regulations](/dev-docs/faq.html#how-does-prebid-support-privacy-regulations)
+* [FAQ: How does Prebid.js support privacy regulations](/dev-docs/faq.html#how-does-prebid-support-privacy-regulations)
