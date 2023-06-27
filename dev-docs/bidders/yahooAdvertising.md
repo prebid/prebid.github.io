@@ -5,7 +5,7 @@ description: Yahoo Advertising Bid Adapter
 pbs: true
 pbjs: true
 media_types: banner, video
-biddercode: yahooAdvertising
+biddercode: yahooAds
 prebid_member: true
 gdpr_supported: true
 usp_supported: true
@@ -62,7 +62,7 @@ For new partners/publishers joining Yahoo Advertising and legacy "oneVideo" part
 
 ### Prebid.js Adapter Supported Features
 
-For further setup details & examples please see <https://github.com/prebid/Prebid.js/blob/master/modules/yahooAdvertisingBidAdapter.md>
+For further setup details & examples please see <https://github.com/prebid/Prebid.js/blob/master/modules/yahoosspBidAdapter.md>
 
 * Media Types: Banner & Video
 * Outstream renderer
