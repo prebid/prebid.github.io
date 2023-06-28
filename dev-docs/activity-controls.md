@@ -7,6 +7,7 @@ pbjs_version: 7.52
 ---
 
 # Prebid.js Activity Controls
+
 {: .no_toc }
 
 Starting with version 7.52, Prebid.js introduced a centralized control mechanism for privacy-sensitive _activities_ - such as accessing device storage or sharing data with partners.

@@ -6,6 +6,7 @@ sidebarType: 0
 ---
 
 # Prebid Multi-State Privacy Agreement Support
+
 {: .no_toc}
 
 - TOC
