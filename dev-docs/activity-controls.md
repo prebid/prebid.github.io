@@ -22,6 +22,8 @@ There are many privacy regulations that Prebid publishers need to accommodate. P
 * a Publisher's lawyers want to make a particular exception
 * a module hasn't been built for a regulation the Publisher needs to support
 
+Several, but not all, of the popular consent strings have modules (eg [Prebid Activity Controls -- GPP control module - usnat](/dev-docs/modules/gppControl_usnat.html)) that translate their contents into activity controls. These modules may have some overrides to default string interpretations available. When these overrides are insufficient for a publisher, or case law has abruptly changed, publishers may prefer direct control.
+
 ### Prebid Is a Toolkit
 
 {: .alert.alert-danger :}
