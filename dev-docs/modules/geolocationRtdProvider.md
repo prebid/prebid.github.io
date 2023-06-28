@@ -2,13 +2,12 @@
 layout: page_v2
 title: Geolocation Module
 display_name: Geolocation
-description: Geolocation module helps to get user`s precise position
+description: Real Time Geolocation
 page_type: module
 module_type: rtd
-module_code : geoedgeRtdProvider
-enable_download : true
-vendor_specific: true
-sidebarType : 1
+module_code: geolocationRtdProvider
+enable_download: true
+sidebarType: 1
 ---
 
 # Geolocation Module
@@ -21,6 +20,8 @@ sidebarType : 1
 ## Overview
 
 The Geolocation module lets publishers get user's precise location with their permissions. The first permission that is needed is directly asked from site's navigator alert. Then if site has installed CMP(Consent Management Platform) module checks the geolocation permission from consent data.
+The Geolocation module provides Geolocation coords using
+[Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
 
 ## Integration
 
