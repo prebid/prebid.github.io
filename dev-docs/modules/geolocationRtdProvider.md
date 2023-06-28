@@ -20,8 +20,7 @@ sidebarType: 1
 ## Overview
 
 The Geolocation module lets publishers get user's precise location with their permissions. The first permission that is needed is directly asked from site's navigator alert. Then if site has installed CMP(Consent Management Platform) module checks the geolocation permission from consent data.
-The Geolocation module provides Geolocation coords using
-[Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
+The Geolocation module provides Geolocation coords using [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
 
 ## Integration
 
