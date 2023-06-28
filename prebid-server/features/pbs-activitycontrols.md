@@ -6,7 +6,6 @@ title: Prebid Server | Features | Actvity Controls
 ---
 
 # Prebid Server Activity Controls
-
 {: .no_toc }
 
 {: .alert.alert-warning :}

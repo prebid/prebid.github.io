@@ -224,9 +224,9 @@ import {BANNER, VIDEO, NATIVE} from 'src/mediaTypes.js';
 const BIDDER_CODE = 'example';
 export const spec = {
     code: BIDDER_CODE,
-    gvlid: IAB_GVL_ID_FOR_GDPR,
+    gvlid: IAB_GVL_ID,
     aliases: [
-      { code: "myalias", gvlid: IAB_GVL_ID_FOR_GDPR_IF_DIFFERENT }
+      { code: "myalias", gvlid: IAB_GVL_ID_IF_DIFFERENT }
     ],
     isBidRequestValid: function(bid) {},
     buildRequests: function(validBidRequests[], bidderRequest) {},
@@ -741,10 +741,19 @@ If your bid adapter is going to be used in Europe, you should support GDPR:
 * Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
 * Read the gdprConsent string from the bid request object and pass it through to your endpoint
 
-If your bid adapter is going to be used in the United States, you should support COPPA and CCPA:
+If your bid adapter is going to be used in Canada, you should support GPP:
+
+* Get a [Global Vendor ID](https://vendor-list.consensu.org/v2/ca/vendor-list.json) from the IAB-Canada
+* Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
+* Read the gppConsent string from the bid request object and pass it through to your endpoint
+* If you are registered in Canada, but not in Europe, you put the gvlid in the same place. Prebid will check the CMP for consent to a specific vendor id and expect the correct processing in both Canada and Europe, as there are no collisions.
+
+If your bid adapter is going to be used in the United States, you should support COPPA, GPP and CCPA:
 
 * Read the uspConsent string from the bid request object and pass it through to your endpoint
-* Call config.getConfig('coppa') and forward to your endpoint
+* Read the gppConsent from the bid request object and pass it through to your endpoint
+* Read coppa from the request object and forward it to your endpoint
+* Consider handling data deletion events
 
 ## Supporting Video
 
@@ -1256,7 +1265,7 @@ registerBidder(spec);
     * Add 'biddercode' and set it to the code that publishers should be using to reference your bidder in an AdUnit. _This needs to be the same name as the docs file!_
     * Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
     * Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
-    * If you're on the IAB Global Vendor List, add your ID number in `gvl_id`.
+    * If you're on the IAB Global Vendor List (including just [Canada](https://vendor-list.consensu.org/v2/ca/vendor-list.json)), add your ID number in `gvl_id`.
     * If you support the GDPR consentManagement module and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
     * If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
     * If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
