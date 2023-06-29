@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.onEvent(eventType, handler, id)
-description: 
+description: onEvent API
 sidebarType: 1
 ---
 
@@ -31,39 +31,42 @@ this method registers the callback for every `bidWon` event.
 Currently, `bidWon` is the only event that accepts the `id` parameter.
 
 Example 1: Basic event logging
-```
-        /* Log when ad units are added to Prebid */
-        pbjs.onEvent('addAdUnits', function() {
-          console.log('Ad units were added to Prebid.')
-          console.log(pbjs.adUnits);
-        });
 
-        /* Log when Prebid wins the ad server auction */
-        pbjs.onEvent('bidWon', function(data) {
-          console.log(data.bidderCode+ ' won the ad server auction for ad unit ' +data.adUnitCode+ ' at ' +data.cpm+ ' CPM');
-        });
+```javascript
+/* Log when ad units are added to Prebid */
+pbjs.onEvent('addAdUnits', function() {
+  console.log('Ad units were added to Prebid.')
+  console.log(pbjs.adUnits);
+});
 
+/* Log when Prebid wins the ad server auction */
+pbjs.onEvent('bidWon', function(data) {
+  console.log(data.bidderCode+ ' won the ad server auction for ad unit ' +data.adUnitCode+ ' at ' +data.cpm+ ' CPM');
+});
 ```
 
 Example 2: Dynamically modify the auction
-```
-        var bidderFilter = function bidderFilter(adunits) {
-            // pub-specific logic to optimize bidders
-            // e.g. "remove any that haven't bid in the last 4 refreshes"
-        };
-        pbjs.onEvent('beforeRequestBids', bidderFilter);
+
+```javascript
+var bidderFilter = function bidderFilter(adunits) {
+    // pub-specific logic to optimize bidders
+    // e.g. "remove any that haven't bid in the last 4 refreshes"
+};
+pbjs.onEvent('beforeRequestBids', bidderFilter);
 ```
 
 Example 3: Log errors and render fails to your own endpoint
-```
-        pbjs.onEvent('adRenderFailed', function () {
-              // pub-specific logic to call their own endpoint
-            });
-        pbjs.onEvent('auctionDebug', function () {
-              // pub-specific logic to call their own endpoint
-            });
+
+```javascript
+pbjs.onEvent('adRenderFailed', function () {
+      // pub-specific logic to call their own endpoint
+    });
+pbjs.onEvent('auctionDebug', function () {
+      // pub-specific logic to call their own endpoint
+    });
 ```
 
 ## See Also
-- [getEvents](/dev-docs/publisher-api-reference/getEvents.html)
-- [offEvent](/dev-docs/publisher-api-reference/offEvent.html)
+
+* [getEvents](/dev-docs/publisher-api-reference/getEvents.html)
+* [offEvent](/dev-docs/publisher-api-reference/offEvent.html)

@@ -12,10 +12,9 @@ sidebarType: 1
 
 ---
 
-### Integration Note:
+### Integration Note
 
 The KultureMedia Header Bidding adapter requires approval from the KultureMedia team. Please reach out to  <devops@kulture.media> for more information.
-
 
 ### Bid Params
 

@@ -20,8 +20,8 @@ sidebarType: 1
 ---
 
 ### Registration
-The Example Bidding adapter requires setup before beginning. Please contact us at prebid@silverpush.co.
 
+The Example Bidding adapter requires setup before beginning. Please contact us at <prebid@silverpush.co>.
 
 ### Bid Parameters
 
@@ -33,7 +33,6 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 | `publisherId` | required | Publisher id provided by silverpush | "123456" | String |
 | `bidFloor` | optional | Minimum price in USD. bidFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50. <br/> | 1.50 | Number |
 
-
 #### mediaTypes.banner
 
 The following banner parameters are supported here so publishers may fully declare their banner inventory:
@@ -41,10 +40,10 @@ The following banner parameters are supported here so publishers may fully decla
 {: .table .table-bordered .table-striped }
 |    Name   |    Scope    |                      Description                                  |  Example  |    Type   |
 | --------- | ------------| ----------------------------------------------------------------- | --------- | --------- |
-| sizes | required | Avalaible sizes supported for banner ad unit | [ [300, 250], [300, 600] ] | [[Integer, Integer], [Integer, Integer]] | 
-
+| sizes | required | Avalaible sizes supported for banner ad unit | [ [300, 250], [300, 600] ] | [[Integer, Integer], [Integer, Integer]] |
 
 ### AdUnit Format for Banner
+
 ```javascript
 const adUnits = [{
     code: 'div-1',
@@ -73,14 +72,13 @@ const adUnits = [{
 
 #### mediaTypes.video
 
-
 The following video parameters are supported here so publishers may fully declare their video inventory:
 
 {: .table .table-bordered .table-striped }
 |    Name   |    Scope    |                      Description                                  |  Example  |    Type   |
 | --------- | ------------| ----------------------------------------------------------------- | --------- | --------- |
-| context | required | instream or outstream |"outstream" | string | 
-| playerSize | required | Avalaible sizes supported for video ad unit. | [300, 250] | [Integer, Integer] | 
+| context | required | instream or outstream |"outstream" | string |
+| playerSize | required | Avalaible sizes supported for video ad unit. | [300, 250] | [Integer, Integer] |
 | mimes | required | List of content MIME types supported by the player. | ["video/mp4"]| [String]|
 | protocols | required | Supported video bid response protocol values. | [2,3,5,6] | [integers]|
 | api | required | Supported API framework values. | [2] |  [integers] |
@@ -96,10 +94,8 @@ The following video parameters are supported here so publishers may fully declar
 | skipafter | optional | Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable. | 5 | Integer |
 | delivery | optional | OpenRTB2 delivery. Supported delivery methods (e.g., streaming, progressive). If none specified, assume all are supported.  | 1 | [Integer] |
 
-
-
-
 ### AdUnit Format for Video
+
 ```javascript
 var videoAdUnits = [{
     code: 'video-1',
@@ -128,6 +124,6 @@ var videoAdUnits = [{
 }]
 ```
 
-
 ## Additional Details
-For any queries, reach us at prebid@silverpush.co.
+
+For any queries, reach us at <prebid@silverpush.co>.

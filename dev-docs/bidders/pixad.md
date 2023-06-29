@@ -34,6 +34,7 @@ Pixad header bidding adapter connects with Pixad demand sources to fetch bids fo
 ### Test Parameters
 
 300x250 banner test
+
 ```
 var adUnits = [{
   code: 'your-slot_1-div', //use exactly the same code as your slot div id.

@@ -22,6 +22,6 @@ sidebarType: 1
 
 Uol is an aliased bidder for AppNexus.
 
-### Note:
+### Note
 
-The UOL bidder adapter requires setup before beginning. Please contact us at l-dev-techops@uolinc.com.
+The UOL bidder adapter requires setup before beginning. Please contact us at <l-dev-techops@uolinc.com>.

@@ -26,11 +26,12 @@ sidebarType: 1
 | `aid` | required | The source ID from Copper6 Media.   | `12412` | `integer` |
 
 ### Description
+
 Copper6 Media header bidding adapter connects with Copper6 Media demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-
 ### Test Parameters
+
 ```
     var adUnits = [
 

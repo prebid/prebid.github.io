@@ -8,6 +8,7 @@ sidebarType: 1
 <div class="bs-docs-section" markdown="1">
 
 # Header Bidding Videos - Setup
+
 {: .no_toc :}
 
 * TOC

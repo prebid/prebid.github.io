@@ -26,11 +26,12 @@ sidebarType: 1
 | `aid` | required | The source ID from 9Dots Media.   | `12412` | `integer` |
 
 ### Description
+
 9Dots Media header bidding adapter connects with 9Dots Media demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-
 ### Test Parameters
+
 ```
     var adUnits = [
 

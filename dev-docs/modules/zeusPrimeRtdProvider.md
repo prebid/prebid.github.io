@@ -13,9 +13,11 @@ sidebarType: 1
 
 # Zeus Prime Real Time Data Module
 
-# NOTE: ZEUS PRIME HAS BEEN DEPRECATED!
+# NOTE: ZEUS PRIME HAS BEEN DEPRECATED
+
 # THIS MODULE NO LONGER FUNCTIONS AND WILL BE REMOVED FROM A
-# FUTURE VERSION OF PREBID.
+
+# FUTURE VERSION OF PREBID
 
 The Zeus Prime RTD Provider provides integration of Zeus Prime onto sites with Prebid. This module will request information from Zeus Prime servers to add the page level targeting required for Prime into the customer's ad setup.
 
@@ -27,7 +29,7 @@ For more information and help with setting up Zeus Prime, see the [onboarding do
 
 To use Zeus Prime, add `zeusPrimeRtdProvider` into your Prebid build:
 
-```
+```bash
 gulp build --modules=rtdModule,zeusPrimeRtdProvider
 ```
 

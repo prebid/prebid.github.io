@@ -12,10 +12,9 @@ sidebarType: 1
 
 ---
 
-### Integration Note:
+### Integration Note
 
 The YieldLift Header Bidding adapter requires approval from the YieldLift team. Please reach out to  <info@yieldlift.com> for more information.
-
 
 ### Bid Params
 

@@ -74,13 +74,13 @@ hooks:
                   }
                 ]
               },{ // this group depends on the results of the first group
-		            "timeout": 5,  # in milliseconds
-		            "hook-sequence": [
+                    "timeout": 5,  # in milliseconds
+                    "hook-sequence": [
                   {
                     "modulecode": "modulecode3",
                     "hookimplcode": "hook3-depends-on-hook1"
                   }
-		]
+        ]
               }
             ]
           }

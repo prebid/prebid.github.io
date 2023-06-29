@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The felixads Bidding adaptor requires setup and approval before beginning. Please reach out to <ops@felixads.com> for more details
 

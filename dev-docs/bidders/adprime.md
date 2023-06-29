@@ -13,9 +13,9 @@ pbs_app_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Adprime Bidding adapter requires setup before beginning. Please contact us at rafal@adprime.com
+The Adprime Bidding adapter requires setup before beginning. Please contact us at <rafal@adprime.com>
 
 ### Prebid.js Bid Params
 

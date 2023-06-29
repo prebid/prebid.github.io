@@ -14,7 +14,7 @@ pbs: false
 sidebarType: 1
 ---
 
-*NOTE*: The AdBookPSP Bidder Adapter requires setup and approval before use. The adapter uses custom targeting keys that require a dedicated Google Ad Manager setup to work. Please reach out to your AdbookPSP representative for more details. 
+*NOTE*: The AdBookPSP Bidder Adapter requires setup and approval before use. The adapter uses custom targeting keys that require a dedicated Google Ad Manager setup to work. Please reach out to your AdbookPSP representative for more details.
 
 ### Bid Params
 
@@ -118,7 +118,7 @@ var adUnits = [
 
 #### Testing params
 
-To test the adapter, either `placementId: 'example-placement-id'` or `orgId: 'example-org-id'` can be used. 
+To test the adapter, either `placementId: 'example-placement-id'` or `orgId: 'example-org-id'` can be used.
 
 *NOTE*: If any adUnit uses the testing params, all adUnits will receive testing responses.
 

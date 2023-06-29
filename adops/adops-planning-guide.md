@@ -7,6 +7,7 @@ sbUUID: 3.2
 ---
 
 # Ad Ops Planning Guide
+
 {: .no_toc }
 
 * TOC
@@ -64,4 +65,5 @@ Throughout this planning guide, we use the following terms to describe elements 
 **Key Value Pair (KVP)**: Additional parameters sent to the ad server to provide additional targeting or reporting information. Prebid sends keys with associated values that enable the ad server to match a line item to the bid and display the winning creative. A key value pair for a Prebid parameter can include things like the bid price or the name of the bidder. See [Key Values](/adops/key-values.html) for more information.
 
 ## Next Step
-[Ad Server Integration](/adops/ad-server-integration.html)
+
+* [Ad Server Integration](/adops/ad-server-integration.html)

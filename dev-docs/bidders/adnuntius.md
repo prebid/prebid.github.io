@@ -143,6 +143,7 @@ publishers can use the `ortb2` configuration parameter to provide First Party Da
 These fields are optional and only needed for user identification and contextual targeting. How to use it can be read here: [Prebid ortb2](https://docs.prebid.org/features/firstPartyData.html). Currently we only support this for our prebid server bidder, but will add it to the client bidder in the future.
 
 ### Video requests
+
 Currently we only support client requests and instream context. An example request would look like this:
 
 ```

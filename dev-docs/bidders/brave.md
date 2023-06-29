@@ -17,14 +17,13 @@ floors_supported: true
 pbs_app_supported: true
 fpd_supported: false
 dchain_supported: false
-deals_supported: true
 ortb_blocking_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Brave Header Bidding adapter requires setup and approval from the Brave team. Please reach out to your account manager or support@thebrave.io for more information
+The Brave Header Bidding adapter requires setup and approval from the Brave team. Please reach out to your account manager or <support@thebrave.io> for more information
 
 ### Bid Params
 

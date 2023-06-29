@@ -22,7 +22,7 @@ safeframes_ok: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Türk Telekom bidding adapter requires setup and approval before implementation. Please reach out to <ad-ops@turktelekom.com.tr> for more details.
 

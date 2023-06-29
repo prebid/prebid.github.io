@@ -20,5 +20,5 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example                              | Type      |
 |---------------|----------|-----------------------|--------------------------------------|-----------|
-| `owner `      | required | Mediasquare owner ID  | `'test'`                               | `string`  |
+| `owner`      | required | Mediasquare owner ID  | `'test'`                               | `string`  |
 | `code`        | required | Mediasquare code ID   | `'publishername_atf_desktop_rg_pave'`  | `string`  |
