@@ -246,8 +246,8 @@ pbjs.setConfig({
 });
 ```
 
-* The Rubicon Project exchange does not make multi-format requests. If multiple mediatypes are defined, we bid on banner first, then video. Native bids will only be made if it's the only mediatype present.
-* Note that only the Prebid-Server-side rubicon adapter currently supports native.
+* The Rubicon Project exchange does not make multi-format requests unless the `bidonmultiformat` parameter is set to true. By default, if multiple mediatypes are defined, we bid on banner first, then video. Native bids will only be made if it's the only mediatype present.
+* The client-side adapter supports native as of PBJS 7.39.
 
 ### Setting up the Prebid Server Adapter
   
