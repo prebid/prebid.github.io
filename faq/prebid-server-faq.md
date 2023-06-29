@@ -6,7 +6,6 @@ sidebarType: 5
 ---
 
 # Prebid Server FAQ
-
 {:.no_toc}
 
 This page has answers to some frequently asked questions about Prebid Server. If you don't find what you're looking for here, there are other ways to [get help](/support/index.html).
@@ -219,6 +218,18 @@ other fields in imp[].ext that aren't bidders, like `skadn`, `data`, etc.
 
 Bidders are copied from imp[].ext to imp[].ext.prebid.bidder, and they will be copied for years to come, but we would ask that new implementations of stored requests
 utilize the new location.
+
+## Does PBS do a geo-lookup?
+
+PBS-Go does not currently support integration with a geo-lookup service.
+
+PBS-Java supports MaxMind and Netacuity. It performs the geo-lookup on every request **unless**:
+
+1. The config `gdpr.consent-string-means-in-scope` is true and provided `user.consent` string is valid
+2. `regs.gdpr` is specified in the request
+3. `device.geo.country` is specified in the request
+4. It is unable to determine the IP address from the header or `device.ip`
+5. There's no geo-location service configured
 
 ## Does PBS support SSL?
 
