@@ -17,7 +17,7 @@ sidebarType: 1
 
 ### Registration
 
-To use this bidder you will need an account and a valid tagid from our exchange.  For further information, please contact your Account Manager or <adops@emxdigital.com>.
+To use this bidder you will need an account and a valid tagid from our exchange.  For further information, please contact your Account Manager or <contactaperturemx@cadent.tv>.
 
 ### Bid Params
 
