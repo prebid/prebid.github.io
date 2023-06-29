@@ -11,12 +11,13 @@ coppa_supported: true
 ccpa_supported: true
 schain_supported: true
 pbs_app_supported: false
+sidebarType: 1
 ---
 
 ### Registration
 
 Brightroll requires registration for each Prebid Server host company
-and each publisher. Contact dsp-supply-prebid@verizonmedia.com
+and each publisher. Contact <dsp-supply-prebid@verizonmedia.com>
 
 ### Bid Params
 

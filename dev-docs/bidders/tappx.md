@@ -12,11 +12,12 @@ schain_supported: true
 pbs_app_supported: true
 gvl_id: 628
 userIds: all
+sidebarType: 1
 ---
 
 ### Registration
 
-Please contact tappx@tappx.com to get set up.
+Please contact <tappx@tappx.com> to get set up.
 
 ### Bid Params
 
@@ -33,7 +34,8 @@ Please contact tappx@tappx.com to get set up.
 
 ### Test Parameters
 
-Use the official test parameter specified in the oRTB standard (https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/OpenRTB%20v3.0%20FINAL.md#object_request)
+Use the official test parameter specified in the oRTB standard (<https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/OpenRTB%20v3.0%20FINAL.md#object_request>)
 
 ### Other notes
+
 - Parameters host is required in prebidjs and the old versions of prebid server. In case of doubt, always add the parameter.

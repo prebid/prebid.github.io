@@ -12,6 +12,7 @@ schain_supported: true
 usp_supported: true
 coppa_supported: true
 gvl_id: 776
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -21,8 +22,8 @@ gvl_id: 776
 |---------------|----------|-------------|---------|----------|
 | zoneId | required | The zone ID from Mars Media Group. | 9999 | integer |
 
-
 ### Banner - Ad Unit Setup
+
 ```javascript
 var adUnits = [
 {
@@ -41,9 +42,10 @@ var adUnits = [
     }
   }]
 }
-``` 
+```
 
 ### Instream Video - Ad Unit Setup
+
 ```javascript
 var adUnits = [
 {

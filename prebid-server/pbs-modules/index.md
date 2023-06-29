@@ -12,9 +12,6 @@ The core of Prebid Server contains the foundational code needed for header biddi
 
 If you're looking for bidder adapter parameters, see [Bidders' Params](/dev-docs/pbs-bidders.html).
 
-{: .alert.alert-info :}
-Only the Java version of PBS currently supports the module infrastructure.
-
 * TOC
 {:toc}
 
@@ -23,7 +20,7 @@ Only the Java version of PBS currently supports the module infrastructure.
 {: .table .table-bordered .table-striped }
 | Module              | Description  | PBS-Go | PBS-Java |
 |---------------------+--------------+--------+----------|
-| [**ORTB2 Blocking**](/prebid-server/pbs-modules/ortb2-blocking.html) | Support bidders that aren't full-service SSPs. | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
+| [**ORTB2 Blocking**](/prebid-server/pbs-modules/ortb2-blocking.html) | Support bidders that aren't full-service SSPs. | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
 
 ## Installing a PBS Module
 
@@ -77,13 +74,13 @@ hooks:
                   }
                 ]
               },{ // this group depends on the results of the first group
-		            "timeout": 5,  # in milliseconds
-		            "hook-sequence": [
+                    "timeout": 5,  # in milliseconds
+                    "hook-sequence": [
                   {
                     "modulecode": "modulecode3",
                     "hookimplcode": "hook3-depends-on-hook1"
                   }
-		]
+        ]
               }
             ]
           }

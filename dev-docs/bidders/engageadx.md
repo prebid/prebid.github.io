@@ -2,19 +2,26 @@
 layout: bidder
 title: EngageADX
 description: EngageADX Bidder Adaptor
-pbjs: true
-pbs: true
 biddercode: engageadx
+pbjs: true
+pbs: false
 media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 pbs_app_supported: true
 schain_supported: true
-aliasCode : adkernel
+userIds: all
+fpd_supported: true
+prebid_member: false
+ortb_blocking_supported: true
+multiformat_supported: will-bid-on-one
+floors_supported: true
+aliasCode: adkernel
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The EngageADX bidding adapter requires setup and approval before implementation. Please reach out to <admin@engageadx.com> for more details.
 

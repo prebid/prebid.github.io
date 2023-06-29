@@ -11,7 +11,9 @@ coppa_supported: true
 usp_supported: true
 safeframes_ok: true
 prebid_member: true
+pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
 ### Bid params
@@ -22,11 +24,12 @@ pbs: true
 | `aid` | required | The source ID from PGAM.   | `529814` | `integer` |
 
 ### Description
+
 PGAM header bidding adapter connects with PGAM demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-
 ### Test Parameters
+
 ```
     var adUnits = [
 

@@ -3,19 +3,21 @@ layout: bidder
 title: Teads
 description: Prebid Teads Bidder Adapter
 pbjs: true
+pbjs_version_notes: please avoid using v7.20.0 and v7.21.0
 biddercode: teads
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
-userIds: flocId, uid2Id
+userIds: uid2Id, identityLinkId, lotamePanoramaId, id5Id, criteoId, connectId, quantcastId, publinkId, sharedId, merkleId, kinessoId
 media_types: banner, video
 gvl_id: 132
 deals_supported: true
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Teads Bidding adapter requires setup before beginning. Please contact us on https://teads.tv/teads-contact/
+The Teads Bidding adapter requires setup before beginning. Please contact us on <https://teads.tv/teads-contact/>
 
 ### Bid Params
 

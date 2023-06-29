@@ -15,11 +15,12 @@ deals_supported: false
 pbjs: true
 pbs: true
 prebid_member: false
+sidebarType: 1
 ---
 
 ### Registration
 
-If you have any questions regarding set up, please reach out to your account manager or adtech-prebid-group@opera.com.
+If you have any questions regarding set up, please reach out to your account manager or <adtech-prebid-group@opera.com>.
 
 ### Bid Parameters
 

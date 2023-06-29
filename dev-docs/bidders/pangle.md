@@ -13,11 +13,12 @@ pbjs: false
 pbs: true
 pbs_app_supported: true
 prebid_member: false
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Pangle Bidding adapter requires setup before beginning. Please contact us at pangle_dsp@bytedance.com.
+The Pangle Bidding adapter requires setup before beginning. Please contact us at <pangle_dsp@bytedance.com>.
 
 ### Bid Params
 

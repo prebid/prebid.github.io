@@ -11,9 +11,11 @@ pbjs: false
 pbs: true
 pbs_app_supported: true
 pbjs_version_notes: not in 5.x
+sidebarType: 1
 ---
 
 ### Prebid Server Bid Params
+
 Currently adapter doesn't support multiimpression, so only the first impression will be delivered
 
 {: .table .table-bordered .table-striped }

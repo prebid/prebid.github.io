@@ -6,9 +6,11 @@ pbjs: true
 biddercode: adWMG
 media_types: banner
 gdpr_supported: true
+sidebarType: 1
 ---
 
 ### BidParams
+
 {: .table .table-bordered .table-striped }
 | Name            | Scope    | Description                     | Example                      | Type               |
 |-----------------|----------|---------------------------------|------------------------------|--------------------|
@@ -16,8 +18,8 @@ gdpr_supported: true
 | `IABCategories` | optional | IAB ad categories for adUnit    | `['IAB1', 'IAB5']`           | `array of strings` |
 | `floorCPM`      | optional | Floor price for adUnit          | `0.5`                        | `float`            |
 
-
 ### Ad Unit Setup for Banner
+
 ```javascript
 var adUnits = [
 {

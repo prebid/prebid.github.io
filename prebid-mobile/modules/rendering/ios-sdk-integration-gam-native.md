@@ -22,7 +22,7 @@ The general integration scenario requires these steps from publishers:
 6. After receiving response from GAM  - check if prebid has won and find native ad using `GAMUtils`
 7. Bind the winner data from the native ad response with the layout.
 
-``` swift
+```swift
 func loadAd() {
     guard let nativeAdConfig = nativeAdConfig else {
         return
@@ -50,7 +50,7 @@ func loadAd() {
 
 Example of handling NativeAd response (the same applies to Custom Native Ads):
 
-``` swift
+```swift
 func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
     unifiedAdRequestSuccessful.isEnabled = true
     customTemplateAd = nil
@@ -92,13 +92,13 @@ func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
 }
 ```
 
-## Native Styles 
+## Native Styles
 
-The Native Styles ads are integrated with Baner API. 
+The Native Styles ads are integrated with Baner API.
 
 Integration Example:
 
-``` swift
+```swift
 // 1. Create an Event Handler
 let eventHandler = BannerEventHandler(adUnitID: GAM_AD_UNIT_ID,
                                             validGADAdSizes: [NSValueFromGADAdSize(adSize)])
@@ -115,7 +115,7 @@ banner.nativeAdConfig = NativeAdConfiguration(testConfigWithAssets: assets)
 banner.loadAd()
 ```
 
-#### Step 1: Create Event Handler
+### Step 1: Create Event Handler
 
 To create the event handler you should provide a GAM Ad Unit Id and the list of available sizes for this ad unit.
 
@@ -123,16 +123,16 @@ To create the event handler you should provide a GAM Ad Unit Id and the list of 
 
 **BannerView** - is a view that will display the particular ad. It should be added to the UI. To create it you should provide:
 
-- **configID** - an ID of Stored Impression on the Prebid server
-- **eventHandler** - the instance of the banner event handler
+* **configID** - an ID of Stored Impression on the Prebid server
+* **eventHandler** - the instance of the banner event handler
 
 Also, you should add the instance of `BannerView` to the UI.
 
-#### Step 3: Create and provide Native Assets
+### Step 3: Create and provide Native Assets
 
 To make a proper bid request publishers should provide the needed assets to the NativeAdConfiguration class. Each asset describes the UI element of the ad according to the [OpenRTB standarts](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf).
 
-``` swift
+```swift
 let assets = [
     {
         let title = NativeAssetTitle(length: 90)
@@ -175,6 +175,6 @@ let assets = [
 
 See the full description of NativeAdConfiguration options [here](rendering-native-ad-configuration.md).
 
-#### Step 4: Load the Ad
+### Step 4: Load the Ad
 
 Call the `loadAd()` method in order to make bid request and render the winning bid.

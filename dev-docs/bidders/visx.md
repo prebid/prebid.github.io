@@ -7,16 +7,18 @@ gdpr_supported: true
 tcf2_supported: true
 gvl_id: 154
 schain_supported: true
-userIds: id5Id, unifiedId
+userIds: all
 media_types: banner, video
 deals_supported: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
 ### Note
 
 To be able to use the full bandwidth of VIS.X high impact ad products, we strongly recommend disabling SafeFrames:
+
 - If you are using Google Ad Manager (GAM), make sure the "Serve in Safeframe" box in creative settings is unchecked,
 - If you are using AppNexus Seller Tag, make sure the enableSafeFrame parameter is set to False.
 
@@ -28,6 +30,13 @@ The YOC VIS.X adapter requires setup and approval from your YOC account manager 
 Please reach out to your account manager to enable Prebid.js for your account.
 
 ### Configuration: Currency
+
+{: .table .table-bordered .table-striped }
+| Name  | Scope    | Description                                                                                                                              | Example  | Type      |
+| ----- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
+| `uid` | required | The publisher's ad unit ID in VIS.X. The parameter can be either an `integer` or `string` for Prebid.js, however `integer` is preferred. | `903536` | `integer` |
+
+### Configuration
 
 The YOC VIS.X adapter has the ability to work in different currencies. Currently, this adapter supports `EUR`, `USD`,
 `GBP`, `PLN`. Defaults to `EUR`. If your Ad Server uses `EUR`, you don't need any additional currency settings.
@@ -66,6 +75,7 @@ pbjs.setConfig({
 ```
 
 Best practices:
+
 - Please make sure that the currency module is set up and configured in order to trade with YOC in a currency that is not supported by the YOC VIS.X bidder.
 - You should set `EUR` in `bidderCurrencyDefault` parameter if you use unsupported currencies for VIS.X.
 - Feel free to reach out to your contact at YOC if you need additional support setting up Prebid.js and the currency config.
@@ -82,28 +92,41 @@ pbjs.setConfig({
 });
 ```
 
+### Requirements:
+
+- In Prebid's `bidderSettings`, the `storageAllowed` parameter must be set to **true**. In Prebid v7.0 and later, `storageAllowed` defaults to false, so you will need to explicitly set this value to true.
+
+    ```javascript
+        pbjs.bidderSettings = {
+            visx: {
+                storageAllowed: true
+            }
+        }
+    ```
+
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                         | Example    | Type     |
-|-------|----------|-------------------------------------|------------|----------|
-| `uid`   | required | The publisher's Ad unit ID in VIS.X. | `'903536'` | `string` |
+
+| Name  | Scope    | Description                                                                                                                              | Example  | Type      |
+| ----- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------- |
+| `uid` | required | The publisher's ad unit ID in VIS.X. The parameter can be either an `integer` or `string` for Prebid.js, however `integer` is preferred. | `903536` | `integer` |
 
 ### Media type Banner object params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                         | Example    | Type     |
-|-------|----------|-------------------------------------|------------|----------|
-| `sizes`  | required | All sizes this ad unit can accept. | `[[300, 250], [300, 600]]` | `array of integer arrays` |
+| Name    | Scope    | Description                        | Example                    | Type                      |
+| ------- | -------- | ---------------------------------- | -------------------------- | ------------------------- |
+| `sizes` | required | All sizes this ad unit can accept. | `[[300, 250], [300, 600]]` | `array of integer arrays` |
 
 ### Media type Video object params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                         | Example    | Type     |
-|-------|----------|-------------------------------------|------------|----------|
-| `context`     | required | The video context, only 'instream' is allowed. | `'instream'` | `string` |
-| `playerSize`  | required | The size (width, height) of the video player on the page, in pixels. | `[640, 480]` | `integer array` |
-| `mimes`       | optional | Content MIME types supported. | `['video/mp4', 'video/x-ms-wmv']` | `string array` |
+| Name         | Scope    | Description                                                          | Example                           | Type            |
+| ------------ | -------- | -------------------------------------------------------------------- | --------------------------------- | --------------- |
+| `context`    | required | The video context, only 'instream' is allowed.                       | `'instream'`                      | `string`        |
+| `playerSize` | required | The size (width, height) of the video player on the page, in pixels. | `[640, 480]`                      | `integer array` |
+| `mimes`      | optional | Content MIME types supported.                                        | `['video/mp4', 'video/x-ms-wmv']` | `string array`  |
 
 ### Example of Banner Ad unit
 
@@ -118,7 +141,7 @@ var bannerAdUnit = {
     bids: [{
         bidder: 'visx',
         params: {
-            uid: '903536'                     // required
+            uid: 903536                     // required
         }
     }]
 };
@@ -139,7 +162,7 @@ var videoAdUnit = {
     bids: [{
         bidder: 'visx',
         params: {
-            uid: '921068'                     // required
+            uid: 921068                     // required
         }
     }]
 };

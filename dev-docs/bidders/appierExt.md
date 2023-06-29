@@ -7,6 +7,7 @@ aliasCode: appier
 pbjs: true
 media_types: banner
 gdpr_supported: true
+sidebarType: 1
 ---
 
 #### Bid Params
@@ -42,4 +43,5 @@ pbjs.que.push(function() {
   });
 });
 ```
+
 AppierExt is an aliased bidder for Appier

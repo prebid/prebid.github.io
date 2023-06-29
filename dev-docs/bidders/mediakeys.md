@@ -14,6 +14,7 @@ usp_supported: true
 safeframes_ok: true
 userIds: all
 fpd_supported: true
+sidebarType: 1
 ---
 <a name="table-of-contents" ></a>
 
@@ -36,7 +37,7 @@ fpd_supported: true
 
 The Mediakeys Bidding adapter requires setup before beginning and will respond with bids for whitelisted domains only.
 
-Please contact us at prebidjs@mediakeys.com.
+Please contact us at <prebidjs@mediakeys.com>.
 
 <a name="bid-params"></a>
 
@@ -167,9 +168,9 @@ Mediakeys fully supports the following [Prebid.js Modules](https://docs.prebid.o
 |-------------------------------------------------------------------------------------------------------|-----------------------------|
 | [Consent Management - GDPR](https://docs.prebid.org/dev-docs/modules/consentManagement.html)          | Required in Europe          |
 | [Consent Management - US Privacy](https://docs.prebid.org/dev-docs/modules/consentManagementUsp.html) | Required in US - California |
+| [Supply Chain Object](https://docs.prebid.org/dev-docs/modules/schain.html)                           | Required for all traffic    |
 | [Instream Tracking](https://docs.prebid.org/dev-docs/modules/instreamTracking.html)                   | Required for Instream Video |
 | [First Party Data Enrichment](https://docs.prebid.org/dev-docs/modules/enrichmentFpdModule.html)      | Recommended for all traffic |
-| [Supply Chain Object](https://docs.prebid.org/dev-docs/modules/schain.html)                           | Recommended for all traffic |
 
 Publishers must utilize the required modules in described scope to be able to receive bid responses.
 
@@ -308,7 +309,7 @@ const adUnits = [{
 
 Required Prebid configuration:
 
-You must set up your preferred outstream renderer in the ad unit and use the following example code to fetch the 
+You must set up your preferred outstream renderer in the ad unit and use the following example code to fetch the
 `vast xml` document from mediakeys ad-server.
 
 Example Ad Unit:

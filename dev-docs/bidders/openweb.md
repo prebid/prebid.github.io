@@ -14,6 +14,7 @@ prebid_member: true
 pbjs: true
 pbs: true
 gvl_id: 280
+sidebarType: 1
 ---
 
 ### Bid params
@@ -24,10 +25,12 @@ gvl_id: 280
 | `aid` | required | The source ID from OpenWeb. | `650342` | `integer` |
 
 ### Description
+
 OpenWeb.com official prebid adapter. Available in both client and server side versions.
 OpenWeb header bidding adapter provides solution for accessing banner demand.
 
 ### Test Parameters
+
 ```
 var adUnits = [
     // Banner adUnit

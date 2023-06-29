@@ -12,6 +12,7 @@ schain_supported: true
 usp_supported: true
 userIds: all
 gvl_id: 58
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -23,6 +24,7 @@ gvl_id: 58
 | `productId` | required | 33Across Product ID that the Publisher has registered for (use `'siab'` for Banner or Outstream Video , `'inview'` for Adhesion, `'instream'` for Instream Video) | `'siab'`   | `string` |
 
 ### Ad Unit Setup for Banner
+
 ```javascript
 var adUnits = [
 {
@@ -43,9 +45,10 @@ var adUnits = [
     }
   }]
 }
-``` 
+```
 
 ### Ad Unit Setup for Outstream Video
+
 ```javascript
 var adUnits = [
 {
@@ -81,6 +84,7 @@ var adUnits = [
 ```
 
 ### Ad Unit Setup for Instream Video
+
 ```javascript
 var adUnits = [
 {
@@ -117,6 +121,7 @@ var adUnits = [
 ```
 
 ### Ad Unit Setup for Multi-format: Banner, Video (Outstream)
+
 ```javascript
 var adUnits = [
 {
@@ -156,8 +161,11 @@ var adUnits = [
   ...
 }
 ```
+
 ### SRA Mode
+
 We recommend using SRA mode to optimize the bidding process as this allows our adapter to group together bid requests for Ad Units pertaining to the same product and site ID thereby minimizing the number of http requests made to our endpoint. To enable SRA set the following bidder specific config under 33Across
+
 ```
 pbjs.setBidderConfig({
    bidders: ['33across'],

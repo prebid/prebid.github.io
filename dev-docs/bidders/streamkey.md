@@ -7,6 +7,7 @@ pbs: true
 biddercode: streamkey
 aliasCode: adtelligent
 media_types: video
+sidebarType: 1
 ---
 
 ### Bid params
@@ -16,8 +17,8 @@ media_types: video
 |-------|----------|---------------------------------|----------|-----------|
 | `aid` | required | The traffic source ID | `232131` | `integer` |
 
-
 ### Test Parameters
+
 ```
     var adUnits = [
 

@@ -10,9 +10,11 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: true
+sidebarType: 1
 ---
 
-### Note:
+### Note
+
 For more information about [ottadvisors](http://ottadvisors.com/).
 
 ### Bid Params
@@ -24,6 +26,7 @@ For more information about [ottadvisors](http://ottadvisors.com/).
 | `AV_CHANNELID`   | required | Channel id       | `'5a5f17a728a06102d14c2718'` | `string` |
 
 ### Test Parameters
+
 ```
 videoAdUnit = [
 {

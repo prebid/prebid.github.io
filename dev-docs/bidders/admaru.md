@@ -8,6 +8,7 @@ media_types: banner
 gdpr_supported: false
 schain_supported: false
 usp_supported: false
+sidebarType: 1
 ---
 
 
@@ -20,6 +21,7 @@ usp_supported: false
 | `adspace_id`   | required | Adspace id       | `'a3j5n6b1'` | `string` |
 
 ### Test Parameters
+
 ```
 var adUnits = [
     {

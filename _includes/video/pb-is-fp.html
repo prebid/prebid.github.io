@@ -8,9 +8,9 @@
 
     <!--pbjs and player code -->
 
-    <link rel="stylesheet" href="//cdn.flowplayer.com/releases/native/stable/style/flowplayer.css">
-    <script src="//cdn.flowplayer.com/releases/native/stable/flowplayer.min.js"></script>
-    <script src="//cdn.flowplayer.com/releases/native/stable/plugins/ads.min.js"></script>
+    <link rel="stylesheet" href="//cdn.flowplayer.com/releases/native/3/stable/style/flowplayer.css">
+    <script src="//cdn.flowplayer.com/releases/native/3/stable/flowplayer.min.js"></script>
+    <script src="//cdn.flowplayer.com/releases/native/3/stable/plugins/ads.min.js"></script>
     <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
 
     <style>
@@ -28,78 +28,81 @@
 
     <script type="text/javascript">
 
-      var pbjs = pbjs || {};
-      pbjs.que = pbjs.que || [];
+var pbjs = pbjs || {};
+  pbjs.que = pbjs.que || [];
 
-      // The ad tag in Flowplayer can be actual ad tag or promise to an ad tag.
-      // We return the ad tag if it is available before the player is ready to play
-      // Otherwise the player waits for 2 secs for tag to be available.
-      var adtag = null
-      var timeout = 2000
-      var asyncTag = function() {
-        if (adtag) return Promise.resolve(adtag)
+  const BIDDER1_PROVIDER = 'appnexus';
+  const BIDDER1_PLACEMENT_ID = '13232361';
 
-        return new Promise(function (resolve) {
-          setTimeout(function() {
-            resolve(adtag)
-          }, timeout)
-        })
+  // The ad tag in Flowplayer can be actual ad tag or promise to an ad tag. &nbsp;
+  // We return the ad tag if it is available before the player is ready to play &nbsp;
+  // Otherwise the player waits for 2 secs for tag to be available.<br>
+  var adtag = null
+  var timeout = 2000
+  window.prebid_fetcher = function() {
+    if (adtag) return Promise.resolve(adtag)
+
+    return new Promise(function (resolve) {
+      setTimeout(function() {
+        resolve(adtag)
+      }, timeout)
+    })
+  }
+
+  /*
+   Prebid Video adUnit
+   */
+
+  var videoAdUnit = {
+    code: 'video1',
+    sizes: [640,480],
+    mediaTypes: {
+      video: {
+          context: 'instream',
+          playerSize: [640, 480],
+          mimes: ['video/mp4'],
+          protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+          playbackmethod: [2],
+          skip: 1
       }
+    },
+    bids: [
+      {
+        bidder: BIDDER1_PROVIDER,
+        params: {
+          placementId: BIDDER1_PLACEMENT_ID
+        }
+      }
+    ]
+  };
 
-      /*
-       Prebid Video adUnit
-       */
+  pbjs.que.push(function(){
+    pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request<br>
 
-      var videoAdUnit = {
-        code: 'video1',
-        sizes: [640,480],
-        mediaTypes: {
-          video: {
-                context: 'instream',
-                playerSize: [640, 480],
-                mimes: ['video/mp4'],
-                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-                playbackmethod: [2],
-                skip: 1
-          }
-        },
-        bids: [
-          {
-            bidder: 'appnexus',
-            params: {
-              placementId: '13232361' // Add your own placement id here
-            }
-          }
-        ]
-      };
+    pbjs.setConfig({
+      debug: true,
+      cache: {
+        url: 'https://prebid.adnxs.com/pbc/v1/cache'
+      }
+    });
 
-      pbjs.que.push(function(){
-        pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
-
-        pbjs.setConfig({
-          debug: true,
-          cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+    pbjs.requestBids({
+      bidsBackHandler: function(bids) {
+        var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
+          adUnit: videoAdUnit,
+          params: {
+            iu: '/19968336/prebid_cache_video_adunit',
+            cust_params: {
+              section: "blog",
+              anotherKey: "anotherValue"
+            },
+            output: "vast"
           }
         });
-
-        pbjs.requestBids({
-          bidsBackHandler: function(bids) {
-            var videoUrl = pbjs.adServers.dfp.buildVideoUrl({
-              adUnit: videoAdUnit,
-              params: {
-                iu: '/19968336/prebid_cache_video_adunit',
-                cust_params: {
-                  section: "blog",
-                  anotherKey: "anotherValue"
-                },
-                output: "vast"
-              }
-            });
-            adtag = videoUrl;
-          }
-        });
-      });
+        adtag = videoUrl;
+      }
+    });
+  }); 
 
 	</script>
 

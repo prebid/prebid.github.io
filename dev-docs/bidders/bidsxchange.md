@@ -14,6 +14,7 @@ safeframes_ok: true
 prebid_member: true
 pbjs: true
 pbs: false
+sidebarType: 1
 ---
 
 ### Bid params
@@ -24,14 +25,16 @@ pbs: false
 | `aid` | required | The source ID from bidsxchange.   | `529814` | `integer` |
 
 ### Description
+
 Get access to multiple demand partners across Bidsxchange AdExchange and maximize your yield with Bidsxchange header bidding adapter.
 
 Bidsxchange header bidding adapter connects with Bidsxchange demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-Bidsxchange now supports adpod. 
+Bidsxchange now supports adpod.
 
 ### Test Parameters
+
 ```
     var adUnits = [
 
@@ -107,7 +110,7 @@ Bidsxchange now supports adpod.
 
 ### Additional Configuration
 
-It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request 
+It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request
 (default value is 10).
 
 ```

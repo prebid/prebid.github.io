@@ -99,6 +99,10 @@
     }
   }
 
+  .pb-code-hl-wrap {
+    width: 100%;
+  }
+
   .highlight, .pb-code-hl {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -146,4 +150,10 @@
   @extend .table;
   @extend .table-bordered;
   @extend .table-striped;
+}
+
+.center-image
+{
+    margin: 0 auto;
+    display: block;
 }

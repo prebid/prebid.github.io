@@ -92,7 +92,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | user.ext.prebid.buyeruids | Optional   | `Object` |  Container objects for all the SSP UserIDs to send to the SSPs endpoint.  |
 | device | Optional  (recommended) | `Object` | Container object for device specific data. |
 | device.ua | Optional  | `String` | Browser user agent string. |
-| device.dnt | Optional  | `Integer` | 	Standard “Do Not Track” flag as set in the header by the browser, where 0 = tracking is unrestricted, 1 = do not track. |
+| device.dnt | Optional  | `Integer` |     Standard “Do Not Track” flag as set in the header by the browser, where 0 = tracking is unrestricted, 1 = do not track. |
 | device.lmt | Optional  | `Integer` | “Limit Ad Tracking” signal commercially endorsed (e.g., iOS, Android), where 0 = tracking is unrestricted, 1 = tracking must be limited per commercial guidelines. |
 | device.ip | Optional  | `String` | IP address of the device making the ad request. |
 | device.os | Optional  | `String` | Device operating system. Example "iOS". |
@@ -105,7 +105,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | device.dpidmd5 | Optional  | `String` | Platform device ID (e.g., Android ID); hashed via MD5. |
 | device.macsha1 | Optional  | `String` | MAC address of the device; hashed via SHA1. |
 | device.macmd5 | Optional  | `String` | MAC address of the device; hashed via MD5. |
-| pricegranularity | Optional  (recommended)   | `Object` | The price range in varying increments that the CPM of the ad unit will fall into. Visit our [price granualarity](/prebid-mobile/adops-price-granularity.html) overview for more details. |
+| pricegranularity | Optional  (recommended)   | `Object` | The price range in varying increments that the CPM of the ad unit will fall into. Visit our [price granualarity](/adops/price-granularity.html) overview for more details. |
 | pricegranularity.precision | Optional  | `Object` | If precision is omitted, it will default to 2. |
 | pricegranularity.ranges | Optional  (recommended)   | `Object[]` | See [price range](#price-range) for details. |
 | regs | Optional   | `Object` |  Container object for data related to various regulations. See the [Regulations](#price-range) section below for more details. |
@@ -173,8 +173,8 @@ These are the supported (registered) bidder names.
 - "audienceNetwork"  
 - "beachfront"
 - "brightroll"
-- "conversant"
 - "eplanning"
+- "epsilon"
 - "grid"
 - "gumgum"
 - "ix"
@@ -191,7 +191,7 @@ These are the supported (registered) bidder names.
 
 ### Price Range
 
-The `pricegranularity` sub-object `range` describes the maximum price point for the price range and the increments to traverse that range. Visit our [price granualarity](/prebid-mobile/adops-price-granularity.html) overview for more details.
+The `pricegranularity` sub-object `range` describes the maximum price point for the price range and the increments to traverse that range. Visit our [price granualarity](/adops/price-granularity.html) overview for more details.
 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
@@ -213,7 +213,7 @@ In order for publishers to meet their transparency, notice and choice/consent re
 
 Publishers can enable GDPR regulations by setting `regs.ext.gdpr` to `1`. To disable GDPR, change the setting to `0`. The default setting is `0`.
 
-Publishers can comply with CCPA regulations by setting `regs.ext.us.privacy` to one of the accepted string formats outlined in [IAB's CCPA Framework](https://iabtechlab.com/wp-content/uploads/2019/11/OpenRTB-Extension-U.S.-Privacy-IAB-Tech-Lab.pdf) such as `1YNN`.
+Publishers can comply with CCPA regulations by setting `regs.ext.us.privacy` to one of the accepted string formats outlined in [IAB's CCPA Framework](https://iabtechlab.com/standards/ccpa/) such as `1YNN`.
 
 
 
@@ -353,7 +353,7 @@ The SSAI should take the key-values from the response `adPods.[].targeting.[]${k
 ## Further Reading:
 
 - [Prebid Server overview](/prebid-server/overview/prebid-server-overview.html)  
-- [OpenRTB auction endpoint ](/prebid-server/endpoints/openrtb2/auction.html)  
+- [OpenRTB auction endpoint ](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html)  
 - [Category Translation module](/dev-docs/modules/categoryTranslation.html)  
 - [Freewheel module](/dev-docs/modules/freewheel.html)  
 - [Ad Pod module](/dev-docs/modules/adpod.html)  

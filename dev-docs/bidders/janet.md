@@ -13,7 +13,8 @@ usp_supported: true
 safeframes_ok: true
 prebid_member: true
 pbjs: true
-pbs: false
+pbs: true
+sidebarType: 1
 ---
 
 ### Bid params
@@ -24,11 +25,12 @@ pbs: false
 | `aid` | required | The source ID from janet.   | `529814` | `integer` |
 
 ### Description
+
 JANet header bidding adapter connects with JANet demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-
 ### Test Parameters
+
 ```
     var adUnits = [
 
@@ -104,7 +106,7 @@ This adapter provides a solution for accessing Video demand and display demand.
 
 ### Additional Configuration
 
-It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request 
+It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request
 (default value is 10).
 
 ```

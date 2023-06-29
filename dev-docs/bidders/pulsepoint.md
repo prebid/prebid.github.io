@@ -11,6 +11,7 @@ userIds: all
 pbjs: true
 pbs: true
 gvl_id: 81
+sidebarType: 1
 ---
 
 ### Disclosure
@@ -33,9 +34,9 @@ of this value. See [Issue 6381](https://github.com/prebid/Prebid.js/issues/6381)
 | `video`    | required | Required for video requests. OpenRTB Video object.    | `{ w: 400, h: 300 }`         | `object`            |
 
 ### Video parameters
+
 Parameters on the Video object in Bid params for PulsePoint. [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) Video object specification is used. Below are some sample parameters from the OpenRTB Video specs.
 Please use `mediaTypes.video` to specify video params in place of this parameter for PBJS 5.0 and later.
-
 
 {: .table .table-bordered .table-striped }
 | Name                   | Scope    | Description                                                | Example                       |
@@ -51,4 +52,3 @@ Please use `mediaTypes.video` to specify video params in place of this parameter
 | `video.minbitrate`     | optional | Minumim bit rate in Kbps.                                  | `200`                         |
 | `video.maxbitrate`     | optional | Maximum bit rate in Kbps.                                  | `500`                         |
 | `video.api`            | optional | List of supported API frameworks for this impression       | `[1, 2]`                      |
-
