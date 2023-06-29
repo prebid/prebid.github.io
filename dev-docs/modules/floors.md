@@ -615,14 +615,14 @@ Priority order behavior where “\_” is a specific value, and the “\*” is 
 
 Priority order for one column rule sets:  
 
-```javascript
+```text
  _   
  *
 ```
 
 Priority order for two column rule set:
 
-```javascript
+```text
  _ | _  
  _ | *  
  * | _   
@@ -631,7 +631,7 @@ Priority order for two column rule set:
 
 Priority order for three column rule sets:
 
-```javascript
+```text
  _ | _ | _  
  _ | _ | *  
  _ | * | _  
@@ -644,7 +644,7 @@ Priority order for three column rule sets:
 
 Priority order for four column rule sets:
 
-```javascript
+```text
  _ | _ | _ | _
  _ | _ | _ | *
  _ | _ | * | _
