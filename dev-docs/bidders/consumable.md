@@ -11,6 +11,7 @@ biddercode: consumable
 gdpr_supported: true
 schain_supported: true
 coppa_supported: true
+gpp_supported: true
 media_types: banner, video
 gvl_id: 591
 floors_supported: true
