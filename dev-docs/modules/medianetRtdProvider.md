@@ -40,7 +40,7 @@ This module is configured as part of the `realTimeData.dataProviders` object.
 | `params`      | required |  | | `Object` |
 | `params.cid`      | required | The customer id is provided by Media.net. | `'8CUX0H51C'` | `string` |
 
-#### Basic Example
+### Basic Example
 
 ```javascript
 pbjs.setConfig({
@@ -93,13 +93,13 @@ var targeting = {
 
 To install the module, follow these instructions:
 
-#### Step 1: Prepare the base Prebid file
+### Step 1: Prepare the base Prebid file
 
 * Option 1: Use Prebid [Download](/download.html) page to build the prebid package. Ensure that you do check *Media.net Realtime Module* module
 
 * Option 2: From the command line, run `gulp build --modules=medianetRtdProvider,...`
 
-#### Step 2: Set configuration
+### Step 2: Set configuration
 
 Enable Media.net Real Time Module using `pbjs.setConfig`
 

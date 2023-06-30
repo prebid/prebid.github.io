@@ -50,9 +50,9 @@ Should you want to allow a SSP or a partner to curate your media and operate cro
 
 #### Minimal configuration
 
-```
-pbjs.setConfig(
-    ...
+```javascript
+pbjs.setConfig({
+    // ...
     realTimeData: {
         auctionDelay: 1000,
         dataProviders: [
@@ -66,15 +66,15 @@ pbjs.setConfig(
             }
         ]
     }
-    ...
-}
+    // ...
+});
 ```
 
 #### Advanced configuration
 
-```
-pbjs.setConfig(
-    ...
+```javascript
+pbjs.setConfig({
+    // ...
     realTimeData: {
         auctionDelay: 1000,
         dataProviders: [
@@ -105,8 +105,8 @@ pbjs.setConfig(
             }
         ]
     }
-    ...
-}
+    // ...
+});
 ```
 
 ### Parameter Descriptions for the Sirdata Configuration Section
@@ -137,9 +137,9 @@ Bidders can receive common setting :
 As indicated above, it is possible to provide your own bid augmentation functions. This is useful if you know a bid adapter's API supports segment fields which aren't specifically being added to request objects in the Prebid bid adapter.
 
 Please see the following example, which provides a function to modify bids for a bid adapter called ix and overrides the appnexus.
-
-```
 data Object format for usage in this kind of function :
+
+```json
 {
   "segments": [
     111111,
@@ -192,7 +192,7 @@ data Object format for usage in this kind of function :
 }
 ```
 
-```
+```javascript
 function overrideAppnexus (adUnit, segmentsArray, dataObject, bid) {
     for (var i = 0; i < segmentsArray.length; i++) {
         if (segmentsArray[i]) {
@@ -201,8 +201,8 @@ function overrideAppnexus (adUnit, segmentsArray, dataObject, bid) {
     }
 }
 
-pbjs.setConfig(
-    ...
+pbjs.setConfig({
+    // ...
     realTimeData: {
         auctionDelay: 1000,
         dataProviders: [
@@ -231,15 +231,17 @@ pbjs.setConfig(
         ]
     }
     ...
-}
+});
 ```
 
 ### Testing
 
 To view an example of available segments returned by Sirdata's backends:
 
-`gulp serve --modules=rtdModule,sirdataRtdProvider,appnexusBidAdapter`
+```bash
+gulp serve --modules=rtdModule,sirdataRtdProvider,appnexusBidAdapter
+```
 
 and then point your browser at:
 
-`http://localhost:9999/integrationExamples/gpt/sirdataRtdProvider_example.html`
+[http://localhost:9999/integrationExamples/gpt/sirdataRtdProvider_example.html]

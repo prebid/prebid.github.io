@@ -21,7 +21,7 @@ sidebarType: 1
 ## Overview
 
 The purpose of Reconciliation Real Time Data Provider is to allow publishers to collect supply chain structure information and vendor-specific impression IDs from ad creative suppliers. It reports the data to the Reconciliation Service, allowing publishers, advertisers and other supply chain participants to match and reconcile ad server, SSP, DSP and verification system log file records.
-Reconciliation SDK was created as part of TAG DLT initiative ([https://www.tagtoday.net/pressreleases/dlt_9_7_2020](https://www.tagtoday.net/pressreleases/dlt_9_7_2020)).
+Reconciliation SDK was created as part of TAG DLT initiative ([www.tagtoday.net/pressreleases/dlt_9_7_2020](https://www.tagtoday.net/pressreleases/dlt_9_7_2020)).
 TAG recently led a twelve-month, cross-industry pilot in the UK that evaluated the feasibility and benefits of using Distributed Ledger Technology (DLT) to increase trust and transparency in digital advertising.
 
 More information: <https://www.tagtoday.net/brand-safety#dltnetwork>
@@ -29,30 +29,30 @@ Contact us: <consultation@tagtoday.net>
 
 Implementation works like this:
 
-1) Build the Reconciliation module into the Prebid.js package with:
+1. Build the Reconciliation module into the Prebid.js package with:
 
-```
-gulp build --modules=reconciliationRtdProvider&...
-```
+    ```bash
+    gulp build --modules=reconciliationRtdProvider&...
+    ```
 
-2) Use `setConfig` to pass parameters to module
+2. Use `setConfig` to pass parameters to module
 
 ## Configuration
 
 This module is configured as part of the `realTimeData.dataProviders` object:
 
-```
-    pbjs.setConfig({
-        "realTimeData": {
-            dataProviders:[{          
-                name: "reconciliation",
-                params: {
-                    publisherMemberId: "test_prebid_publisher",
-                    allowAccess: true, //optional - false by default
-                }
-            }]
-        }
-    });
+```javascript
+pbjs.setConfig({
+    "realTimeData": {
+        dataProviders:[{          
+            name: "reconciliation",
+            params: {
+                publisherMemberId: "test_prebid_publisher",
+                allowAccess: true, //optional - false by default
+            }
+        }]
+    }
+});
 ```
 
 Syntax details:
@@ -72,7 +72,7 @@ The module also tracks AdUnit initialization and impressions ('impression' messa
 
 Custom targetings example:
 
-```
+```json
 {
   "slotA":{
       "RSDK_AUID": "/slotA-Unit",

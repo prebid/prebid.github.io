@@ -102,7 +102,7 @@ Engineering details outlining each template storage option can be found in the [
 
 VAST video (instream and long-form video) does not use the PUC. Instead, video bids provide VAST that Prebid caches to obtain a cache ID that can be retrieved with a URL. The cache ID is passed as a key value to the ad server. (See [Video Overview](/prebid-video/video-overview.html) for details.)
 
-When you’re running campaigns with video creatives, the primary decision you need to make is where to cache your video bids. You’ll enter this location in the creative you add to the line item. The cache location is typically independent of the bidders. The most common cache location is [https://prebid.adnxs.com]. See [Setting Up Video In GAM](/adops/setting-up-prebid-video-in-dfp.html) for detailed instructions on configuring a video creative in GAM.
+When you’re running campaigns with video creatives, the primary decision you need to make is where to cache your video bids. You’ll enter this location in the creative you add to the line item. The cache location is typically independent of the bidders. The most common cache location is <https://prebid.adnxs.com>. See [Setting Up Video In GAM](/adops/setting-up-prebid-video-in-dfp.html) for detailed instructions on configuring a video creative in GAM.
 
 ## SafeFrames
 

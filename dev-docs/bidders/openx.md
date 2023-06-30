@@ -16,13 +16,12 @@ userIds: admixerId, adtelligentId, amxId, britepoolId, criteo, dapId, deepintent
 prebid_member: true
 fpd_supported: true
 gvl_id: 69
-fpd_supported: true
 sidebarType: 1
 ---
 
 ### Registration
 
-If you have any questions regarding set up, please reach out to your account manager or [support@openx.com].
+If you have any questions regarding set up, please reach out to your account manager or <support@openx.com>.
 
 Please note that OpenX is transitioning its serving architecture and currently has 2 bid adapters as of Prebid 7. The legacy adapter is named openxBidAdapter.
 The newer of the two is openxOrtbBidAdapter. Publishers are welcome to test with openxOrtbBidAdapter and give feedback.

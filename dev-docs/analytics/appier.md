@@ -7,4 +7,4 @@ modulecode: appier
 
 #### Registration
 
-Please visit [https://www.appier.com/](https://www.appier.com/) for more information.
+Please visit [www.appier.com](https://www.appier.com/) for more information.

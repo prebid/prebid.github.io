@@ -28,25 +28,25 @@ gulp build --modules=admixerIdSystem
 
 ## AdmixerID Examples
 
-1) Individual params may be set for the Admixer ID Submodule.
+### Individual params may be set for the Admixer ID Submodule
 
 ```javascript
-   pbjs.setConfig({
-       userSync: {
-           userIds: [{
-               name: "admixerId",
-               storage: {
-                   name: "admixerId",
-                   type: "cookie",
-                   expires: 30
-               },
-               params: {
-                   pid: "4D393FAC-B6BB-4E19-8396-0A4813607316", // example id
-                   e: "3d400b57e069c993babea0bd9efa79e5dc698e16c042686569faae20391fd7ea", // example hashed email (sha256)
-                   p: "05de6c07eb3ea4bce45adca4e0182e771d80fbb99e12401416ca84ddf94c3eb9" //example hashed phone (sha256)
-               }
-           }],
-           auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
-       }
-   });
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "admixerId",
+            storage: {
+                name: "admixerId",
+                type: "cookie",
+                expires: 30
+            },
+            params: {
+                pid: "4D393FAC-B6BB-4E19-8396-0A4813607316", // example id
+                e: "3d400b57e069c993babea0bd9efa79e5dc698e16c042686569faae20391fd7ea", // example hashed email (sha256)
+                p: "05de6c07eb3ea4bce45adca4e0182e771d80fbb99e12401416ca84ddf94c3eb9" //example hashed phone (sha256)
+            }
+        }],
+        auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
+    }
+});
 ```

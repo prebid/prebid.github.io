@@ -14,7 +14,7 @@ sidebarType: 3
 
 Dr. Prebid is a validation and troubleshooting app for publishers implementing Prebid Mobile. With this app you can validate your settings for your ad server setup, your Prebid Server configuration, and your end-to-end Prebid Mobile SDK implementation.
 
-* TOC
+- TOC
 {:toc }
 
 ## Get the App
@@ -53,10 +53,11 @@ In this section, define the ad format and size of the ad server ad unit you’ll
 The type of ad you want to test. This will be the ad type that is associated with the line item you’re testing against in your ad server setup.
 
 Select from:
--    *Banner*
--    *Interstitial*
--    *Native*
--    *Video*
+
+- *Banner*
+- *Interstitial*
+- *Native*
+- *Video*
 
 **Ad Size**
 
@@ -71,7 +72,8 @@ These settings will enable you to test whether the Prebid Mobile line item in yo
 The primary ad server you’re using to serve your ads.
 
 Select:
--    *DFP*
+
+- *DFP*
 
 **Bid Price**
 
@@ -93,12 +95,12 @@ These settings will help verify that Prebid Mobile and Prebid Server are connect
 
 Select your Prebid Server host:
 
--    *AppNexus*
--    *Rubicon*
--    *Custom*
+- *AppNexus*
+- *Rubicon*
+- *Custom*
 
 **Custom Server Host**
-Provide the url of the custom hosted prebid server 
+Provide the url of the custom hosted prebid server
 
 **Account ID**
 
@@ -118,15 +120,15 @@ IDs for ad units and Prebid Server accounts and configurations are long strings 
 
 To set up a QR code, follow these steps:
 
-1.    Go to any QR code generator. (There are many free options for QR code generation. Examples include [https://www.qr-code-generator.com/](https://www.qr-code-generator.com/) and [https://www.the-qrcode-generator.com/](https://www.the-qrcode-generator.com/).)
+1. Go to any QR code generator. (There are many free options for QR code generation. Examples include [www.qr-code-generator.com/](https://www.qr-code-generator.com) and [www.the-qrcode-generator.com](https://www.the-qrcode-generator.com/).)
 
-2.    Copy the ID you want to use from your Ad Server or from Prebid Server, depending on which ID you’re working with.
+2. Copy the ID you want to use from your Ad Server or from Prebid Server, depending on which ID you’re working with.
 
-3.    In the QR code generator, select the Text option, paste in the ID, and generate the code.
+3. In the QR code generator, select the Text option, paste in the ID, and generate the code.
 
-4.    In Dr. Prebid, tap **Scan QR code** for the appropriate ID. This will open your QR code scanner (your camera).
+4. In Dr. Prebid, tap **Scan QR code** for the appropriate ID. This will open your QR code scanner (your camera).
 
-5.    Scan the code. The ID will now be in the ID field in Dr. Prebid.
+5. Scan the code. The ID will now be in the ID field in Dr. Prebid.
 
 {: .alert.alert-info :}
 **IMPORTANT:** Make sure you copy the full ID into the QR code generator. Also check to make sure you don’t copy in any extra trailing spaces. These will cause your validation tests to fail.
@@ -157,22 +159,23 @@ This test determines whether your Prebid Mobile line items are configured correc
 
 The test generates Prebid-specific key-value pairs representing the bid price you specified in the **Bid Price** field of your setup. Based on the **Ad Format** you selected, these key-values are set on the banner ad views or interstitials, and a test ad is loaded to determine whether any matching Prebid line items will be selected.
 
--    **Ad Server Request sent and Key-Value targeting sent**  
+- **Ad Server Request sent and Key-Value targeting sent**  
   Verifies that the ad server request was sent. (Note: If Google Ad Manager was selected as the Ad Server on the Setup page and the IDs you entered on the Setup page are incorrect, the request will not be sent.) Tap this entry to see a list of key-value pairs that were sent with this request.
-     - Select **Prebid Key-Value Pairs** to view only the key-values sent that apply to prebid.
-     - Select **Ad Server Request** to view the full list of key-values sent in the ad request.
--    **Prebid Mobile creative HTML served**  
+  - Select **Prebid Key-Value Pairs** to view only the key-values sent that apply to prebid.
+  - Select **Ad Server Request** to view the full list of key-values sent in the ad request.
+- **Prebid Mobile creative HTML served**  
   Tap this entry to view:
-    - The HTML code for the Prebid Mobile creative.
-    - A rendering of the creative returned from the ad server (Received Creative) and a rendering of the Prebid.org test creative (Expected Creative). Tap the buttons to view each creative. In a successful test these two creatives will be the same.
+  - The HTML code for the Prebid Mobile creative.
+  - A rendering of the creative returned from the ad server (Received Creative) and a rendering of the Prebid.org test creative (Expected Creative). Tap the buttons to view each creative. In a successful test these two creatives will be the same.
 
 **Results**
 
 *Success*: If the test is successful, all steps will display green check marks. Tap into the **Prebid Mobile creative HTML served** screen to compare the ad server creative to the Prebid.org test creative. The **Received Creative** and the **Expected Creative** should be identical.
 
 *Failure*: If the test fails, either no **Received Creative** will appear, or the **Received Creative** will not match the **Expected Creative**. In either case, check the following:
--    The key-value targeting sent to the ad server. Ensure that you have a Prebid Mobile line item targeting the `hb_pb` value with an active creative of the appropriate size and format.
--    Line item contention. Ensure that no other line items are expected to contend with the Prebid Mobile line item during testing.
+
+- The key-value targeting sent to the ad server. Ensure that you have a Prebid Mobile line item targeting the `hb_pb` value with an active creative of the appropriate size and format.
+- Line item contention. Ensure that no other line items are expected to contend with the Prebid Mobile line item during testing.
 
 ### Real-Time Demand Validation
 
@@ -180,29 +183,30 @@ This test validates that the real-time requests generated using your Prebid Serv
 
 A summary of results will be displayed:
 
--    **Bid requests sent**  
+- **Bid requests sent**  
   The number of bid requests that were sent. Dr. Prebid will always attempt to send 100 requests.
--    **Bid responses received**  
+- **Bid responses received**  
   The number of responses received from demand partners. Tap this entry to view a summary of bid responses from each demand partner. From the summary page you'll be able to navigate to detailed request and response information. NOTE: If your configuration includes more than one demand partner, this number may exceed the number of bid requests sent.
--    **Avg CPM**  
+- **Avg CPM**  
   The average CPM (in USD) of all received bid responses.
--    **Avg response time**  
+- **Avg response time**  
   The average amount of time (in milliseconds) it took for demand partners to respond.
 
 **Bid Response Summary**
 
-Tap **_n_ bid responses received** to see a breakdown of bid responses by demand partner. For each demand partner you'll see the following details:
--    *# of Requests*  
+Tap ***n* bid responses received** to see a breakdown of bid responses by demand partner. For each demand partner you'll see the following details:
+
+- *# of Requests*  
   The total number of bid requests sent. The test is configured to send 100 requests.
--    *Valid Bid Rate*  
+- *Valid Bid Rate*  
   The percentage of bid requests for which the demand partner returned a valid response.
--    *Avg Bid CPM*  
+- *Avg Bid CPM*  
   The average CPM (in USD) of all valid bid responses from the demand partner.
--    *No-Bid Rate*  
+- *No-Bid Rate*  
   The percentage of bid requests for which the demand partner did not return a bid response.
--    *Timeout Rate*  
+- *Timeout Rate*  
   The percentage of bid requests that timed out before a bid response could be sent.
--    *Error Rate*  
+- *Error Rate*  
   The percentage of bid requests that resulted in errors from the demand partner.
 
 On the Bid Response Summary screen, tap **Request & Response** for a demand partner to see the bid request sent to the demand partner and a response received (if any).
@@ -216,8 +220,9 @@ There are three possible outcomes from this validation test:
 *Failure*: The auctions ran successfully, but no successful bid responses were returned.
 
 *Failure*: No auctions were run. If no auctions were run, verify the following in your setup:
-  - Check to make sure the Prebid Server Account ID and Prebid Server Configuration ID you entered on the Dr. Prebid Setup page are correct. Ensure they don’t contain leading or trailing spaces.
-  - Ensure that your Prebid Server Configuration is correct. See [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-getting-started.html#configure-prebid-server) for more information.
+
+- Check to make sure the Prebid Server Account ID and Prebid Server Configuration ID you entered on the Dr. Prebid Setup page are correct. Ensure they don’t contain leading or trailing spaces.
+- Ensure that your Prebid Server Configuration is correct. See [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-getting-started.html#configure-prebid-server) for more information.
 
 ### End-to-End SDK Validation
 
@@ -225,22 +230,22 @@ This test is a full end-to-end validation in which the Prebid Mobile SDK communi
 
 The summary screen displays the following information:
 
--    **Ad unit registered**  
+- **Ad unit registered**  
   This first step is successful if the Prebid Mobile API call was made to register the ad unit.
--    **Request to Prebid Server sent**  
+- **Request to Prebid Server sent**  
   This step is successful if a bid request was sent from Prebid Mobile to Prebid Server.
--    **Prebid Server response received**  
+- **Prebid Server response received**  
   This test passes if a bid response was received from Prebid Server.
--    **Creative content cached**  
+- **Creative content cached**  
   This test passes if the creative content from the bid received from Prebid Server was cached.
--    **Ad server request sent and Key-value targeting sent**  
+- **Ad server request sent and Key-value targeting sent**  
   Verifies whether the bid request was sent. (Note: If your ad server is Google Ad Manager, the request will not be sent if the IDs you entered on the Setup page are incorrect.) Tap this entry to see a list of key-value pairs that were sent with this request.
-    - Select **Prebid Key-Value Pairs** to view the specific key-value pairs that were generated by Prebid Mobile and sent to the ad server.
-    - Select **Ad Server Request** to view the full ad request sent to the ad server.
--    **Prebid Mobile creative HTML served**  
+  - Select **Prebid Key-Value Pairs** to view the specific key-value pairs that were generated by Prebid Mobile and sent to the ad server.
+  - Select **Ad Server Request** to view the full ad request sent to the ad server.
+- **Prebid Mobile creative HTML served**  
   Tap this entry to view:
-    - Prebid Mobile creative HTML.
-    - The rendering of the creative returned from the ad server.
+  - Prebid Mobile creative HTML.
+  - The rendering of the creative returned from the ad server.
 
 **Results**
 
@@ -250,24 +255,26 @@ Possible outcomes from this test:
 
 *Failure*: There are many steps throughout this validation. If a problem is encountered at any step, the validation will be marked as failed.
 Some general things to check if this test fails include:
--    Check all your settings on the Setup screen. In particular, make sure all the IDs you entered are correct and valid.
--    Make sure your ad unit has been registered correctly. (See [Code Integration]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html#configure-prebid-server) for more information.)
--    Verify that your Prebid Mobile line items are set up correctly on your ad server.
--    Look through your bid request and bid response (if any). Check the key-value targeting.
--    If a creative was returned, ensure that the HTML returned is the same as the Prebid Mobile creative code associated with your Prebid Mobile line item. (NOTE: The ad server should have replaced the macro placeholder for `hb_cache_id` with an alphanumeric GUID.)
+
+- Check all your settings on the Setup screen. In particular, make sure all the IDs you entered are correct and valid.
+- Make sure your ad unit has been registered correctly. (See [Code Integration]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html#configure-prebid-server) for more information.)
+- Verify that your Prebid Mobile line items are set up correctly on your ad server.
+- Look through your bid request and bid response (if any). Check the key-value targeting.
+- If a creative was returned, ensure that the HTML returned is the same as the Prebid Mobile creative code associated with your Prebid Mobile line item. (NOTE: The ad server should have replaced the macro placeholder for `hb_cache_id` with an alphanumeric GUID.)
 
 Here are some more specific things to look for and actions to take based on which step(s) of the validation failed.
--    **Ad unit registered**  
+
+- **Ad unit registered**
   Be sure you’ve implemented your ad unit code correctly. See [Ad Unit Setup for iOS]({{site.github.url}}/prebid-mobile/pbm-api/ios/code-integration-ios.html) or [Ad Unit Setup for Android]({{site.github.url}}/prebid-mobile/pbm-api/android/code-integration-android.html) for information.
--    **Request to Prebid Server sent**  
+- **Request to Prebid Server sent**  
   Make sure your account ID and configuration ID were entered correctly on the Setup screen. For more on integrating with Prebid Server see [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-pbs.html).
--    **Prebid Server response received**  
+- **Prebid Server response received**  
   Review the requests and responses from the Real-Time Demand Validation.
--    **Creative content cached**  
+- **Creative content cached**  
   This step is built into Dr. Prebid and should always pass. If it doesn’t, contact your account team.
--    **Ad server request sent and Key-value targeting sent**  
+- **Ad server request sent and Key-value targeting sent**  
   Tap on this step for more information. Review the Prebid-specific key-value targeting and verify that they match the values targeted by the Prebid Mobile line item in your ad server.
--    **Prebid Mobile creative HTML served**  
+- **Prebid Mobile creative HTML served**  
   Tap on this step to review the HTML and to see the creative that served (if any). Ensure that the HTML returned is the same as the Prebid Mobile creative code associated with your Prebid Mobile line item. NOTE: The ad server should have replaced the macro placeholder for `hb_cache_id` with an alphanumeric GUID.
 
 ## Further Reading

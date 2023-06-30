@@ -20,7 +20,7 @@ The module attempts to filter/supress the EIDs/SDA being transmitted to bid stre
 
 The module can be added to the Prebid.js build with this command:
 
-```
+```bash
 gulp build --modules=dataControllerModule
 ```
 

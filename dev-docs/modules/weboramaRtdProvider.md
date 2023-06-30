@@ -576,7 +576,7 @@ pbjs.que.push(function () {
 
 ### Supported Bidders
 
-We currently support the following bidder adapters using `First Party Data Support` but using ortb2 keywords `site.content.keywords` and`user.keywords`:
+We currently support the following bidder adapters with dedicated code:
 
 * AppNexus SSP
 

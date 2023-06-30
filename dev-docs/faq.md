@@ -43,8 +43,11 @@ After you’ve determined your legal obligations, consider the tools Prebid make
   * Alternatively, the page can just avoid turning on certain bidders or modules.
 * For CCPA / CPRA / US-Privacy:
   * Consider the [US-Privacy](/dev-docs/modules/consentManagementUsp.html) module, which passes the IAB USP string through to bid adapters and supports data deletion events for User ID modules and other interested adapters and modules.
+  * Also consider implementing an [Activity Control](/dev-docs/activity-controls.html) to suppress activities upon opt-out or in environments without legal notice. An example implementation is available on the activity control documentation page.
+  * Also consider implementing the [GPP control module - usnat section](/dev-docs/modules/gppControl_usnat.html) to implement reasonable default expressions of activity controls when a usnat string is available as section 7 of a GPP string.
 * Set the [COPPA flag](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa), which passes this value through to modules and bid adapters.
-* The IAB is still refining the definition of [GPP](https://iabtechlab.com/gpp/). Once that has settled, Prebid will build a GPP module. In the meantime, a few bid adapters have added support for statically setting GPP strings, e.g. pbjs.setConfig({ortb2: {regs: {gpp: "blah", gpp_sid: [1,2]}}});
+  * Also consider implementing an [Activity Control](/dev-docs/activity-controls.html) to suppress activities when COPPA applies. The implementation is very similar to the example CCPA implementation available on the activity control documentation page.
+* The IAB is still refining the definition of [GPP](https://iabtechlab.com/gpp/). Prebid has built a GPP module that supports GPP 1.0, with 1.1 support coming soon after the specification is finalized and merged. Many bid adapters support both statically setting GPP strings, e.g. `pbjs.setConfig({ortb2: {regs: {gpp: "blah", gpp_sid: [1,2]}}});` and module-read consent.
 * Avoid adding certain bidders or modules to the AdUnit.
 * Turn off header bidding altogether.
 
@@ -220,10 +223,10 @@ What we know about yield group feature:
 Sometimes the owner of a bid adapter or other kind of module wants to rename their module. However, Prebid considers module renames a
 'breaking change' -- publishers' build processes and pages could break as a result of a renaming, so Prebid's policy on renaming is:
 
-1) Create the new Prebid.js module files (js and md)
-2) If they're basically the same code base, change the old file so that it includes the new file. This prevents duplicate maintenance of code. In general we don't approve modules including each other, but we'll approve it to avoid repetition.
-3) The docs repo should contain both names, with the old name referring to the new name. You can add the "enable_download: false" flag to prevent installations of the old name.
-4) At the next major release the old files may be removed.
+1. Create the new Prebid.js module files (js and md)
+2. If they're basically the same code base, change the old file so that it includes the new file. This prevents duplicate maintenance of code. In general we don't approve modules including each other, but we'll approve it to avoid repetition.
+3. The docs repo should contain both names, with the old name referring to the new name. You can add the "enable_download: false" flag to prevent installations of the old name.
+4. At the next major release the old files may be removed.
 
 ## Does Prebid.js support Amazon TAM?
 

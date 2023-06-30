@@ -7,4 +7,4 @@ modulecode: realvu
 
 #### Registration
 
-Please visit [https://www.realvu.com/rvaa/](https://www.realvu.com/rvaa/) for more information.
+Please visit [www.realvu.com/rvaa](https://www.realvu.com/rvaa/) for more information.

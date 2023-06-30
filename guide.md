@@ -246,7 +246,7 @@ This data file is read in the left_nav.html file using Liquid. (__includes/left_
 **Files Not in the Sidebar**  
 If a page is open that is not listed in the sidebar.yml file, by default the sidebar will display only top-level options, with no options expanded or selected.
 
-In certain cases, it is helpful to the user to highlight a page in the left navigation that is not currently open. For example, when a bidder page is open (such as [https://docs.prebid.org/dev-docs/bidders/1ad4good.html](https://docs.prebid.org/dev-docs/bidders/1ad4good.html)), we don't want hundreds of bidders displayed in the left nav, but we want the user to be oriented to where they are in the documentation. In this case, that would be under Prebid.js > Reference > Bidder Params. To accomplish this, you must do two things:
+In certain cases, it is helpful to the user to highlight a page in the left navigation that is not currently open. For example, when a bidder page is open (such as [docs.prebid.org/dev-docs/bidders/1ad4good.html](https://docs.prebid.org/dev-docs/bidders/1ad4good.html)), we don't want hundreds of bidders displayed in the left nav, but we want the user to be oriented to where they are in the documentation. In this case, that would be under Prebid.js > Reference > Bidder Params. To accomplish this, you must do two things:
 
 - Add `sidebarType: 1` to all bidder pages. This opens the Prebid.js menu. (If you want to extend this functionality to other pages, use the sbSecId in the sidebar.yml file of the top-level menu as the value for sidebarType.)
 - Modified the left_nav.html file's Liquid code to highlight Reference > Bidder Params anytime a page with layout=bidder is open.
@@ -261,8 +261,8 @@ TBD
 
 There are 200+ bidder files in the /dev-docs/bidders directory describing the parameters for each Prebid.js bidder. There are two unfortunately identical pieces of code that process them:
 
-- /\_layouts/bidder.html - this is used to generate the single-bidder version of the page like [https://prebid.org/dev-docs/bidders/rubicon.html]
-- /dev-docs/bidders.md - this is used to generate the (large) combined page at [https://prebid.org/dev-docs/bidders.html]
+- /\_layouts/bidder.html - this is used to generate the single-bidder version of the page like <https://prebid.org/dev-docs/bidders/rubicon.html>
+- /dev-docs/bidders.md - this is used to generate the (large) combined page at <https://prebid.org/dev-docs/bidders.html>
 
 The attributes in the Jekyll 'front matter' drive various behaviors and dynamic tables elsewhere on the site.
 
@@ -287,17 +287,17 @@ there's only one documentation file and of course one PBJS adapter file. An rela
 long bidderCode, but found it awkward to set up ad server targeting variables because GAM limits you to 20 chars, which is easy to exceed
 with a prefix like `hb_cache_host`. So they wanted to have shorter bidderCode for new customers while supporting the legacy targeting variables. In that scenario, they:
 
-1) add the shorter code as an alias in their PBJS file, which can stay the old longer name
-2) change the biddercode to the shorter name as it's the new preferred code
-3) add aliasCode so the Download page will pull in the right module
-4) optionally add prevBiddercode to add a note to the page about the legacy value
-5) optionally add filename if the bid adapter was created using a filename that's different than their bidder code. e.g. if the biddercode is "biddera" but they named the file "bidderABidAdapter", set the biddercode to "biddera" and the filename to "bidderABidAdapter".
+1. add the shorter code as an alias in their PBJS file, which can stay the old longer name
+2. change the biddercode to the shorter name as it's the new preferred code
+3. add aliasCode so the Download page will pull in the right module
+4. optionally add prevBiddercode to add a note to the page about the legacy value
+5. optionally add filename if the bid adapter was created using a filename that's different than their bidder code. e.g. if the biddercode is "biddera" but they named the file "bidderABidAdapter", set the biddercode to "biddera" and the filename to "bidderABidAdapter".
 
 ## Algolia Search
 
 We use Algolia for site search.
 
-- The configuration defining the search parameters is at [https://github.com/algolia/docsearch-configs/blob/master/configs/prebid.json]
+- The configuration defining the search parameters is at <https://github.com/algolia/docsearch-configs/blob/master/configs/prebid.json>
 - Only elements p, th, td, li, code, and h1-h3 are indexed
 - Code implementation in _includes/body-end.html and a the 'site-search' div in the header.
 

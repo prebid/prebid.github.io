@@ -34,9 +34,9 @@ configuration parameters. Please work with your BlueConic Prebid support team
 (<info@blueconic.com>) on which version of Prebid.js supports different bidder
 and segment configurations.
 
-```
+```javascript
 pbjs.setConfig(
-    ...
+    // ...
     realTimeData: {
         auctionDelay: 1000,
         dataProviders: [
@@ -51,7 +51,7 @@ pbjs.setConfig(
             }
         ]
     }
-    ...
+    //...
 }
 ```
 

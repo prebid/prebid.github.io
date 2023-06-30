@@ -34,7 +34,7 @@ The Yahoo-supplied publisher-specific pixel ID. | `"0000"` |
 
 ## Yahoo ConnectID Examples
 
-```
+```javascript
 // [Sample #1]: Using a hashed email only.
 
 pbjs.setConfig({
@@ -50,7 +50,7 @@ pbjs.setConfig({
 })
 ```
 
-```
+```javascript
 // [Sample #2]: Neither a hashed email nor a publisher user identifier is passed.
 
 pbjs.setConfig({
@@ -65,7 +65,7 @@ pbjs.setConfig({
 })
 ```
 
-```
+```javascript
 // [Sample #3]: Using a hashed email and a publisher user identifier such as a first-party cookie.
 
 pbjs.setConfig({
@@ -86,14 +86,14 @@ pbjs.setConfig({
 
 Follow the steps below to check that ConnectIDs are being successfully retrieved and included on ad requests.
 
-1) Open a Prebid-enabled page on the website.
-2) Open the browser console and enter pbjs.getUserIds().
-3) Verify connectId is in the list.
+1. Open a Prebid-enabled page on the website.
+2. Open the browser console and enter pbjs.getUserIds().
+3. Verify connectId is in the list.
    - If connectId is not in the list, the correct pixelId parameter is likely not being passed. Verify you are using the correct value provided by Yahoo. Reach out to [connectid.support@yahooinc.com](mailto:connectid.support@yahooinc.com) for assistance.
-4) Verify that ConnectID is successfully included in the ad requests.
+4. Verify that ConnectID is successfully included in the ad requests.
    - Go to the Network tab and search for an ad call event to any of the SSPs that you are using (e.g., “prebid-client”).
    - Navigate to the Payload tab. Check that yahoo.com is listed as a source in the user.ext.eids array.
-5) Repeat steps 1-4 after an email is provided via login or some other mechanism used to collect user registration on the website.
+5. Repeat steps 1-4 after an email is provided via login or some other mechanism used to collect user registration on the website.
 
 ## Honoring Privacy Choices
 

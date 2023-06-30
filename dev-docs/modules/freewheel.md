@@ -20,7 +20,7 @@ This module returns the targeting key value pairs for the FreeWheel ad server.
 
 If you are using FreeWheel as your ad server for long-form header bidding then include this module while creating Prebid.js build. Use the exposed getTargeting method to get targeting key value pairs.
 
-#### Example
+### Example
 
 ```javascript
 pbjs.adServers.freewheel.getTargeting({
@@ -63,7 +63,7 @@ pbjs.adServers.freewheel.getTargeting({
 
 The values returned by `getTargeting` are concatenation of CPM, industy code, and video duration. FreeWheel SDK will send those values to FreeWheel Ad Server within the following query:
 
-```
+```text
 http://[customerId].v.fwmrm.net/ad/g/1[globalParams];hb_pb_cat_dur=10.00_400_15s&hb_pb_cat_dur=15.00_402_30s&hb_cacheid=123;[ParamsForSlot1];[ParamsForSlot2];...;[ParamsForSlotN];
 ```
 

@@ -7,6 +7,7 @@ sidebarType: 2
 
 
 # Getting Started with Prebid Mobile
+
 {:.no_toc}
 
 This page gives an overview of steps you need to take, either as an ad ops user or as a developer, to start using Prebid Mobile.
@@ -17,15 +18,15 @@ If this is your first time working with header bidding, we recommend that you re
 
 {% include alerts/alert_note.html content=alertNote %}
 
-* TOC
+- TOC
 {:toc}
 
 ## Set Up Prebid Server
 
 Before you begin using Prebid Mobile in your apps, you need to prepare your end-to-end system. The first step is to set up your Prebid Server host. Prebid Mobile works in conjunction with Prebid Server to request and receive bids. Here are the options:
 
--   Register with a [Prebid.org member that hosts Prebid Server](https://prebid.org/product-suite/managed-services/). While you're waiting for your account, you can continue with the steps below.
--   Set up your own Prebid Server host
+- Register with a [Prebid.org member that hosts Prebid Server](https://prebid.org/product-suite/managed-services/). While you're waiting for your account, you can continue with the steps below.
+- Set up your own Prebid Server host
 
 ### Implement Your Own Prebid Server Host
 
@@ -48,7 +49,7 @@ If you’re hosting your own Prebid Server, this value can be whatever value you
 
 After you've registered with your chosen Prebid Server host, you need to create at least one Prebid Server bidder configuration in a [stored request](/prebid-server/features/pbs-storedreqs.html). Each stored request configuration contains a list of bidders and their parameters. The configuration will be in the form of a JSON structure, similar to this:
 
-```
+```json
 [
     {
         "bidder": "appnexus",
@@ -81,15 +82,14 @@ If you want to verify the SDK integration with test placements, you can add some
 
 Ad ops users configure the primary ad server with Prebid Mobile line items targeted to key/values.
 
--   [Set Up Line Items for Google Ad Manager](/adops/step-by-step.html)
+- [Set Up Line Items for Google Ad Manager](/adops/step-by-step.html)
 
 ## Developers - Using the SDK
 
 To begin using Prebid Mobile follow the instructions for the respective platforms and integration approach:
 
--   [iOS Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/ios/code-integration-ios.html)
--   [Android Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/android/code-integration-android.html)
-
+- [iOS Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/ios/code-integration-ios.html)
+- [Android Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/android/code-integration-android.html)
 
 ## Additional Information
 
@@ -97,14 +97,14 @@ The following resources are available for further information on working with Pr
 
 ### Ad Ops
 
--   [Price Granularity](/adops/price-granularity.html) Additional details to help you ensure your line items are set up to target bid prices at an appropriate level of granularity.
-
+- [Price Granularity](/adops/price-granularity.html) Additional details to help you ensure your line items are set up to target bid prices at an appropriate level of granularity.
 
 ### Mobile Developers
 
 #### Targeting Parameters
 
 Learn about the parameters available in the Prebid SDK
+
 - [iOS Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html) Learn about the parameters available in the iOS Prebid Mobile SDK.
 - [Android  Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html) Learn about the parameters available in the Android Prebid Mobile SDK.
 
@@ -113,5 +113,3 @@ Learn about the parameters available in the Prebid SDK
 Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Transparency & Consent Framework](https://www.iab.com/topics/consumer-privacy/gdpr/).
 
 For general information on these APIs see [Prebid Mobile Guide to Privacy Regulation]({{site.baseurl}}/prebid-mobile/prebid-mobile-privacy-regulation.html).
-
-

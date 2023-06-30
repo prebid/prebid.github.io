@@ -31,7 +31,7 @@ The module provides the following:
 
 The IAB Category Translation module uses a default mapping file to convert adserver categories or labels to IAB sub categories. If a publisher prefers to use their own mapping file they will need to set the URL location of that file. They can do so by adding the following to their Prebid.js configuration:
 
-```
+```javascript
 pbjs.setConfig({
     "brandCategoryTranslation": {
        "translationFile": "<url_to_file>"

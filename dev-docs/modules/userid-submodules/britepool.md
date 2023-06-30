@@ -18,7 +18,7 @@ gulp build --modules=britepoolIdSystem
 
 Please reach out to [prebid@britepool.com](mailto:prebid@britepool.com) and request your `api_key`.
 
-The BritePool privacy policy is at [https://britepool.com/services-privacy-notice/](https://britepool.com/services-privacy-notice/).
+The BritePool privacy policy is at [britepool.com/services-privacy-notice/](https://britepool.com/services-privacy-notice/).
 
 ## BritePool Configuration
 
@@ -33,26 +33,26 @@ The BritePool privacy policy is at [https://britepool.com/services-privacy-notic
 
 ## BritePool Examples
 
-1) Individual params may be set for the BritePool User ID Submodule. At least one identifier must be set in the params.
+### Individual params may be set for the BritePool User ID Submodule. At least one identifier must be set in the params
 
 ```javascript
-   pbjs.setConfig({
-       userSync: {
-           userIds: [{
-               name: "britepoolId",
-               storage: {
-                   name: "britepoolid",
-                   type: "cookie",
-                   expires: 30
-               },
-               params: {
-                   url: "https://sandbox-api.britepool.com/v1/britepool/id", // optional. used for testing
-                   api_key: "xxx", // provided by britepool
-                   hash: "yyyy", // example identifier
-                   ssid: "r894hvfnviurfincdejkencjcv" // example identifier
-               }
-           }],
-           syncDelay: 3000 // 3 seconds after the first auction
-       }
-   });
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "britepoolId",
+            storage: {
+                name: "britepoolid",
+                type: "cookie",
+                expires: 30
+            },
+            params: {
+                url: "https://sandbox-api.britepool.com/v1/britepool/id", // optional. used for testing
+                api_key: "xxx", // provided by britepool
+                hash: "yyyy", // example identifier
+                ssid: "r894hvfnviurfincdejkencjcv" // example identifier
+            }
+        }],
+        syncDelay: 3000 // 3 seconds after the first auction
+    }
+});
 ```

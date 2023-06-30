@@ -91,7 +91,7 @@ the simple approach of just calling the Prebid.js `renderAd` function directly:
 
 ### Alternate Method for Banner Safeframes
 
-See the example at [https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html)
+See the example at [github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html)
 
 This is basically just part of the PUC that's been isolated to be standalone.
 

@@ -9,7 +9,7 @@ enable_download: true
 
 #### Registration
 
-Please visit [https://yuktamedia.com/prebid/](https://yuktamedia.com/prebid/) for more information.
+Please visit [yuktamedia.com/prebid/](https://yuktamedia.com/prebid/) for more information.
 The YuktaMedia Analytics adapter requires setup and approval from the YuktaMedia team.
 Please reach out at <info@yuktamedia.com> for more information.
 

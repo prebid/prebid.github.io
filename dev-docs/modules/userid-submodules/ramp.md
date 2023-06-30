@@ -17,7 +17,7 @@ gulp build --modules=identityLinkIdSystem
 
 LiveRamp's RampID is free of charge and only requires a simple registration with Liveramp. Please sign up through our [Console](https://launch.liveramp.com) platform and request a Placement ID, a unique identifier that is used to identify each publisher, to get started.
 
-The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-policy/](https://liveramp.com/privacy/service-privacy-policy/).
+The RampID privacy policy is at [liveramp.com/privacy/service-privacy-policy/](https://liveramp.com/privacy/service-privacy-policy/).
 
 ## RampID Configuration
 
@@ -39,48 +39,48 @@ The RampID privacy policy is at [https://liveramp.com/privacy/service-privacy-po
 
 ## RampID Examples
 
-1) Publisher passes a Placement ID and elects to store the RampID envelope in a first-party cookie.
+1. Publisher passes a Placement ID and elects to store the RampID envelope in a first-party cookie.
 
-```javascript
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "identityLink",
-            params: {
-                pid: "999",             // Set your Placement ID here
-                notUse3P: false
-            },
-            storage: {
-                type: "cookie",
-                name: "idl_env",        // "idl_env" is the required storage name
-                expires: 15,            // RampID envelope can last for 15 days
-                refreshInSeconds: 1800  // RampID envelope will be updated every 30 minutes
-            }
-        }],
-        syncDelay: 3000                 // 3 seconds after the first auction
-    }
-});
-```
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: "identityLink",
+                params: {
+                    pid: "999",             // Set your Placement ID here
+                    notUse3P: false
+                },
+                storage: {
+                    type: "cookie",
+                    name: "idl_env",        // "idl_env" is the required storage name
+                    expires: 15,            // RampID envelope can last for 15 days
+                    refreshInSeconds: 1800  // RampID envelope will be updated every 30 minutes
+                }
+            }],
+            syncDelay: 3000                 // 3 seconds after the first auction
+        }
+    });
+    ```
 
-2) Publisher passes a Placement ID and elects to store the RampID envelope in HTML5 localStorage.
+2. Publisher passes a Placement ID and elects to store the RampID envelope in HTML5 localStorage.
 
-```javascript
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "identityLink",
-            params: {
-                pid: "999",             // Set your Placement ID here
-                notUse3P: false
-            },
-            storage: {
-                type: "html5",
-                name: "idl_env",        // "idl_env" is the required storage name
-                expires: 15,            // RampID envelope can last for 15 days
-                refreshInSeconds: 1800  // RampID envelope will be updated every 30 minutes
-            }
-        }],
-        syncDelay: 3000                 // 3 seconds after the first auction
-    }
-});
-```
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: "identityLink",
+                params: {
+                    pid: "999",             // Set your Placement ID here
+                    notUse3P: false
+                },
+                storage: {
+                    type: "html5",
+                    name: "idl_env",        // "idl_env" is the required storage name
+                    expires: 15,            // RampID envelope can last for 15 days
+                    refreshInSeconds: 1800  // RampID envelope will be updated every 30 minutes
+                }
+            }],
+            syncDelay: 3000                 // 3 seconds after the first auction
+        }
+    });
+    ```

@@ -6,7 +6,6 @@ title: Prebid Server | Features | Actvity Controls
 ---
 
 # Prebid Server Activity Controls
-
 {: .no_toc }
 
 {: .alert.alert-warning :}
@@ -173,9 +172,17 @@ These are the conditional attributes available:
 |------|------|-------------|-------|-------|
 | componentType | optional | Can be "bidder", "analytics", or "module". | array of strings | ["bidder"] |
 | componentName | optional | Name of a specific bid adapter, analytics adapter, or module. | array of strings | ["bidderX"] |
+| gppSid | optional | Resolves to true if regs.gpp_sid exists and intersects with the supplied array of values. (PBS-Java 1.21) | array of ints | [7,8,9,10,11,12] |
+| geo | optional | Combines device.geo.country and device.geo.region and resolves to true if that country/reion combination is in the supplied array. (PBS-Java 1.21) | array of strings | ["USA","CAN.ON"] |
 
 {: .alert.alert-info :}
 Note on names: if two components share a name (e.g. "ssp1") for both a bid adapter and an analytics adapter, the rule may need to distinguish between them by providing both `componentName` and `componentType`.
+
+Here's how the `geo` condition works:
+
+1. If the value in the supplied array (e.g. ["USA"]) does not have a dot, then PBS looks only at device.geo.country for a case-sensitive match.
+2. If the value in the supplied array (e.g. ["CAN.ON"]) does have a dot, PBS splits the value on the dot and looks for the left-hand side in device.geo.country and the right-hand side in device.geo.region. Both have to match.
+3. Note that the specific values and cases of the country/region will depend on your geo-lookup service. i.e. you'll have to get the table of allowed values from MaxMind, Netacuity, or whichever geo-lookup service is in use.
 
 #### Allow
 
@@ -233,6 +240,28 @@ While Activity Controls are currently not well integrated with other privacy fea
         rules: [{
             condition: {
                 componentType: ["analytics"]
+            },
+            allow: false
+        }]
+      }
+    }
+  }
+}
+```
+
+#### Anonymize when in the US states of Virginia or California when a relevant SID is active
+
+This scenario is mainly for a transition period when the Prebid Server USNat module is not available, providing a configurable way for publishers to implement anonymization if advised by their legal team.
+
+```javascript
+{
+  privacy: {
+    allowactivities: {
+      ACTIVITY: {
+        rules: [{
+            condition: {
+                gppSid: [7,8,9]
+                geo: ["USA.CA", "USA.VA"]
             },
             allow: false
         }]

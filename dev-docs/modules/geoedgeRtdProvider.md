@@ -28,13 +28,13 @@ Disclosure: This module loads external code that is not open source and has not 
 
 ## Integration
 
-1) Build the geoedge RTD module into the Prebid.js package with:
+1. Build the geoedge RTD module into the Prebid.js package with:
 
-```
-gulp build --modules=geoedgeRtdProvider,...
-```
+    ```bash
+    gulp build --modules=geoedgeRtdProvider,...
+    ```
 
-2) Use `setConfig` to instruct Prebid.js to initilize the geoedge module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initilize the geoedge module, as specified below.
 
 ## Configuration
 
@@ -73,14 +73,14 @@ Parameters details:
 
 To view an integration example:
 
-1) in your cli run:
+1. in your cli run:
 
-```
-gulp serve --modules=appnexusBidAdapter,geoedgeRtdProvider
-```
+    ```bash
+    gulp serve --modules=appnexusBidAdapter,geoedgeRtdProvider
+    ```
 
-2) in your browser, navigate to:
+2. in your browser, navigate to:
 
-```
+```text
 http://localhost:9999/integrationExamples/gpt/geoedgeRtdProvider_example.html
 ```

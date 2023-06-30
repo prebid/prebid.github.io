@@ -57,14 +57,14 @@ There are several places where the Floor module changes the behavior of the Preb
 1. When building the Prebid.js package, the Price Floors Module (and any analytics adapters) needs to be included with 'gulp build --modules=priceFloors,...'
 2. As soon as the setConfig({floors}) call is initiated, the Price Floors Module will build an internal hash table for each auction derived from a Rule Location (one of Dynamic, setConfig or adUnit)
 
-* a. If an endpoint URL (a Dynamic Floor) is defined, the Price Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Price Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data, whichever is first.
-* If the `skipRate` flag is specified, there's an A/B test in progress, so the module will decide for this request whether floors processing should be 'skipped' or not.
+    * If an endpoint URL (a Dynamic Floor) is defined, the Price Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Price Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data, whichever is first.
+    * If the `skipRate` flag is specified, there's an A/B test in progress, so the module will decide for this request whether floors processing should be 'skipped' or not.
 
 3. Bid Adapters are responsible for utilizing the getFloor() from the bidRequest object for each ad slot media type, size combination. The Price Floors Module will perform currency conversion if the bid adapter requests floors in a different currency from the defined floor data currency.
 4. Bid Adapters will pass the floor values to their bidding endpoints, to request bids, responding with any bids that meet or exceed the provided floor
 5. Bid adapters will submit bids to back to Prebid core, where the Price Floors Module will perform enforcement on each bid
 6. The Price Floors Module will mark all bids below the floor as bids rejected. Prebid core will submit all eligible bids to the publisher ad server
-    * a. The Price Floors Module emits floor event / bid data to Analytics adapters to allow Floor Providers a feedback loop on floor performance for model training
+    * The Price Floors Module emits floor event / bid data to Analytics adapters to allow Floor Providers a feedback loop on floor performance for model training
 
 ## Defining Floors
 
@@ -327,6 +327,7 @@ When you see 'skipped' in the floors data, it indicates the status of the `skipR
 Schema 2 allows floors providers to A/B-test one or more floor groups, determined at auction time.
 
 The following principles apply to Schema 2:
+
 * These attributes are required:
   * data.floorsSchemaVersion to be set to 2
   * A valid modelGroups object must be set
@@ -614,26 +615,53 @@ Priority order behavior where “\_” is a specific value, and the “\*” is 
 
 Priority order for one column rule sets:  
 
- \_
- \*
+```text
+ _   
+ *
+```
 
 Priority order for two column rule set:
 
- \_ \| \_  
- \_ \| \*  
- \* \|\_
- \* \| \*
+```text
+ _ | _  
+ _ | *  
+ * | _   
+ * | *
+```
 
 Priority order for three column rule sets:
 
- \_ \| \_ \| \_  
- \_ \| \_ \| \*  
- \_ \| \* \| \_  
- \* \| \_ \| \_  
- \_ \| \* \| \*  
- \* \| \_ \| \*  
- \* \| \* \| \_  
- \* \| \* \| \*  
+```text
+ _ | _ | _  
+ _ | _ | *  
+ _ | * | _  
+ * | _ | _  
+ _ | * | *  
+ * | _ | *  
+ * | * | _  
+ * | * | *  
+```
+
+Priority order for four column rule sets:
+
+```text
+ _ | _ | _ | _
+ _ | _ | _ | *
+ _ | _ | * | _
+ _ | * | _ | _
+ * | _ | _ | _
+ _ | _ | * | *
+ _ | * | _ | *
+ _ | * | * | _
+ * | _ | _ | *
+ * | _ | * | _
+ * | * | _ | _
+ _ | * | * | *
+ * | _ | * | *
+ * | * | _ | *
+ * | * | * | _
+ * | * | * | *
+```
 
 Below are some real example behaviors.
 
@@ -1200,7 +1228,7 @@ Even if a publisher is using a floors provider, they may wish to provide additio
 
 Here's an example covering the first two scenarios:
 
-```
+```javascript
 pbjs.setConfig({
       floors: {
           enforcement: {
@@ -1229,7 +1257,7 @@ pbjs.setConfig({
 
 And here's an example of imp-level floorMin, which is like a form of imp-level [first party data](/features/firstPartyData.html#supplying-adunit-specific-data):
 
-```
+```javascript
 pbjs.addAdUnits({
     code: "test-div",
     mediaTypes: {
@@ -1261,6 +1289,7 @@ For publishers requiring currency conversions (for example if the floors data cu
 {% include /alerts/alert_warning.html content=warning_note %}
 
 Currency conversion can occur in two areas of the Floor Module code:
+
 * On the **getFloor()** call when Bid Adapters request a floor
 * On the **enforcement** side when each bidder submits a bidResponse
 
@@ -1301,6 +1330,7 @@ If currency conversion is unsuccessful:
 ```
 
 Currency conversion can fail for the following reasons:
+
 * Currency module is not included in the prebid bundle.
 * Currency module is included but not enabled
 * Currency module is included and enabled but:
@@ -1353,4 +1383,5 @@ If the currency function is unable to derive the correct cpm in any of the scena
 | pubx.ai | [hello@pubx.ai](mailto:hello@pubx.ai) | AI-powered dynamic floor optimization |
 
 ## Further Reading
+
 * [Prebid Server Price Floors](/prebid-server/features/pbs-floors.html)

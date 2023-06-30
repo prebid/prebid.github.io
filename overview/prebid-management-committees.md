@@ -9,7 +9,7 @@ sidebarType: 0
 
 {: .no_toc}
 
-This page has moved to [https://prebid.org/project-management-committees/](https://prebid.org/project-management-committees/)!
+This page has moved to [prebid.org/project-management-committees/](https://prebid.org/project-management-committees/)!
 
 ## Further Reading
 

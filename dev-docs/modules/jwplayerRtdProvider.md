@@ -25,69 +25,71 @@ To use this module, you'll need to work with [JW Player](https://www.jwplayer.co
 
 ## Implementation for Publishers
 
-1) Compile the JW Player RTD Provider into your Prebid build:
+1. Compile the JW Player RTD Provider into your Prebid build:
 
-`gulp build --modules=jwplayerRtdProvider`
+    ```bash
+    gulp build --modules=jwplayerRtdProvider
+    ```
 
-2) Publishers must register JW Player as a Real Time Data provider by using `setConfig` to load a Prebid Config containing a `realTimeData.dataProviders` array:
+2. Publishers must register JW Player as a Real Time Data provider by using `setConfig` to load a Prebid Config containing a `realTimeData.dataProviders` array:
 
-```javascript
-pbjs.setConfig({
-    ...,
-    realTimeData: {
-      auctionDelay: 100,
-      dataProviders: [{
-          name: "jwplayer",
-          waitForIt: true,
-          params: {
-            mediaIDs: ['abc', 'def', 'ghi', 'jkl']
+    ```javascript
+    pbjs.setConfig({
+        ...,
+        realTimeData: {
+          auctionDelay: 100,
+          dataProviders: [{
+              name: "jwplayer",
+              waitForIt: true,
+              params: {
+                mediaIDs: ['abc', 'def', 'ghi', 'jkl']
+              }
+          }]
+        }
+    });
+    ```
+
+3. Optionally, if you would like to prefetch the targeting information for certain media, you must include the media IDs in `params.mediaIDs`, as displayed above. You must also set `waitForIt` to `true` and make sure that a value is set to `realTimeData.auctionDelay`.
+
+    `waitForIt` is required to ensure the auction waits for the prefetching of the relvant targeting information to complete. It signals to Prebid that you allow the module to delay the auction if necessary.
+    Setting an `auctionDelay` in the `realTimeData` object is required to ensure the auction waits for prefetching to complete. The `auctionDelay` is the max time in ms that the auction will wait for the requested targeting information.
+
+    **Note:** Though prefetch is optional, we highly recommend enabling it to ensure that the targeting information is available before bids are requested.
+
+    **Config Syntax details:**
+
+    {: .table .table-bordered .table-striped }
+    | Name  |Type | Description   | Notes  |
+    | :------------ | :------------ | :------------ |:------------ |
+    | name | String | Real time data module name | Always 'jwplayer' |
+    | waitForIt | Boolean | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
+    | params | Object | | |
+    | params.mediaIDs | Array of Strings | Media Ids for prefetching | Optional |
+
+4. Include the content's media ID and/or the player's ID in the matching AdUnit's `fpd.context.data.jwTargeting` before calling `addAdUnits`:
+
+    ```javascript
+    const adUnit = {1
+      code: '/19968336/prebid_native_example_1',
+      ...,
+      ortb2Imp: {
+        ext: {
+          data: {
+            jwTargeting: {
+              // Note: the following Ids are placeholders and should be replaced with your Ids.
+              playerID: 'abcd',
+              mediaID: '1234'
+            }
           }
-      }]
-    }
-});
-```
+        }
+      }
+    };
 
-3) Optionally, if you would like to prefetch the targeting information for certain media, you must include the media IDs in `params.mediaIDs`, as displayed above. You must also set `waitForIt` to `true` and make sure that a value is set to `realTimeData.auctionDelay`.
-
-`waitForIt` is required to ensure the auction waits for the prefetching of the relvant targeting information to complete. It signals to Prebid that you allow the module to delay the auction if necessary.
-Setting an `auctionDelay` in the `realTimeData` object is required to ensure the auction waits for prefetching to complete. The `auctionDelay` is the max time in ms that the auction will wait for the requested targeting information.
-
-**Note:** Though prefetch is optional, we highly recommend enabling it to ensure that the targeting information is available before bids are requested.
-
-**Config Syntax details:**
-
-{: .table .table-bordered .table-striped }
-| Name  |Type | Description   | Notes  |
-| :------------ | :------------ | :------------ |:------------ |
-| name | String | Real time data module name | Always 'jwplayer' |
-| waitForIt | Boolean | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
-| params | Object | | |
-| params.mediaIDs | Array of Strings | Media Ids for prefetching | Optional |
-
-4) Include the content's media ID and/or the player's ID in the matching AdUnit's `fpd.context.data.jwTargeting` before calling `addAdUnits`:
-
-```javascript
-   const adUnit = {
-     code: '/19968336/prebid_native_example_1',
-     ...,
-     ortb2Imp: {
-       ext: {
-         data: {
-           jwTargeting: {
-             // Note: the following Ids are placeholders and should be replaced with your Ids.
-             playerID: 'abcd',
-             mediaID: '1234'
-           }
-         }
-       }
-     }
-   };
-   
-   pbjs.que.push(function() {
-       pbjs.addAdUnits([adUnit]);
-       pbjs.requestBids({...});
-   });
-```
+    pbjs.que.push(function() {
+        pbjs.addAdUnits([adUnit]);
+        pbjs.requestBids({...});
+    });
+    ```
 
 **Note**: You may also include `jwTargeting` information in the prebid config's `ortb2.site.ext.data`. Information provided in the adUnit will always supersede the information in the config; use the config to set fallback information or information that applies to all adUnits.
 
@@ -107,7 +109,7 @@ This section contains guidelines for bid adapters that are working with JW Playe
 Those bidders should implement the `buildRequests` function. When it is called, the `bidRequests` param will be an array of bids.
 Each bidRequest for which targeting information was found will conform to the following object structure:
 
-```json
+```javascript
 {
   adUnitCode: 'xyz',
   bidId: 'abc',

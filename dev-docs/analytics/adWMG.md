@@ -31,4 +31,4 @@ gvl_id: 959
 
 #### Registration
 
-Please visit [https://adwmg.com/](https://adwmg.com/) for more information.
+Please visit [adwmg.com](https://adwmg.com/) for more information.

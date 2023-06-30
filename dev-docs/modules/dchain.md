@@ -22,7 +22,7 @@ Publishers that interact with bidders that support the [IAB Buyers.json and Dema
 
 First, build the dchain module into your Prebid.js package:
 
-```
+```bash
 gulp build --modules=dchain,...
 ```
 
@@ -37,7 +37,7 @@ The module will then automatically perform validations on the dchain data, provi
 
 For example:
 
-```
+```javascript
 pbjs.setConfig({
   "dchain": {
     "validation": "strict"
@@ -49,20 +49,21 @@ pbjs.setConfig({
 
 Adapters who choose to support DChain should assign their ad server's IAB compliant dchain config object to the `bid.meta.dchain` field when creating their Prebid.js bidresponse object.  When the module is enabled, this dchain object will be evaluated per the publisher's config settings.
 
-```
+```javascript
 bid.meta.dchain: {
   "complete": 0,
   "ver": "1.0",
   "ext": {...},
   "nodes": [
-  ...,
+  // ...,
   {
     "asi": "domain.com",
     "bsid": "123",
     "name": "companyname",
     ...
   },
-  ...]
+  //...
+  ]
 }
 ```
 

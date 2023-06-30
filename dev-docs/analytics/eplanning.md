@@ -7,4 +7,4 @@ modulecode: eplanning
 
 #### Registration
 
-Please visit [https://www.e-planning.net/](https://www.e-planning.net/) for more information.
+Please visit [ww.e-planning.net/](https://www.e-planning.net/) for more information.

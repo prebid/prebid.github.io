@@ -40,8 +40,8 @@ This base EU GDPR consent management module performs these actions:
 
 The optional [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) adds on these actions:
 
-3. Allows the page to define which activities should be enforced at the Prebid.js level.
-4. Actively enforces those activities based on user consent data (in the TCF string, not the AC string).
+1. Allows the page to define which activities should be enforced at the Prebid.js level.
+2. Actively enforces those activities based on user consent data (in the TCF string, not the AC string).
 
 In the case of a new user, CMPs will generally respond only after there is consent information available (i.e., the user has made their consent choices).
 Making these selections can take some time for the average user, so the module provides timeout settings.
@@ -219,7 +219,7 @@ This field contains the user's choices on consent, represented as an encoded str
 
 **_addtlConsent_**
 
-If the CMP responds with additional consent data as proposed at [https://support.google.com/admanager/answer/9681920?hl=en] then the corresponding string is stored here.
+If the CMP responds with additional consent data as proposed at [support.google.com/admanager/answer/9681920?hl=en] then the corresponding string is stored here.
 
 **_vendorData_**
 
@@ -374,7 +374,7 @@ This should be false if there was some error in the consent data; otherwise set 
 
 ## Adapters Supporting GDPR
 
-Bidders on this list have self-declared their GDPR support in their [https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gdpr_supported: true".
+Bidders on this list have self-declared their GDPR support in their [github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gdpr_supported: true".
 
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 

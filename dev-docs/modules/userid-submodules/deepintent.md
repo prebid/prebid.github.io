@@ -27,37 +27,37 @@ DPES ID is free to use and requires a simple registration with DeepIntent. Pleas
 
 ## Deepintent DPES ID Examples
 
-1) Publisher stores the hashed identity from healthcare identity in cookie
+1. Publisher stores the hashed identity from healthcare identity in cookie
 
-```javascript
-pbjs.setConfig({
-  userSync: {
-    userIds: [{
-      name: 'deepintentId',
-      storage: {
-        type: 'cookie',           // "html5" is the required storage type option is "html5"
-        name: '_dpes_id',
-        expires: 90             // storage lasts for 90 days, optional if storage type is html5
+    ```javascript
+    pbjs.setConfig({
+      userSync: {
+        userIds: [{
+          name: 'deepintentId',
+          storage: {
+            type: 'cookie',           // "html5" is the required storage type option is "html5"
+            name: '_dpes_id',
+            expires: 90             // storage lasts for 90 days, optional if storage type is html5
+          }
+        }],
+        auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
       }
-    }],
-    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
-  }
-});
-```
+    });
+    ```
 
-2) Publisher stores the hashed identity from healthcare identity in localstorage
+2. Publisher stores the hashed identity from healthcare identity in localstorage
 
-```javascript
-pbjs.setConfig({
-  userSync: {
-    userIds: [{
-      name: 'deepintentId',
-      storage: {
-        type: 'html5'           // "html5" is the required storage type option is "html5"
-        name: '_dpes_id'
+    ```javascript
+    pbjs.setConfig({
+      userSync: {
+        userIds: [{
+          name: 'deepintentId',
+          storage: {
+            type: 'html5'           // "html5" is the required storage type option is "html5"
+            name: '_dpes_id'
+          }
+        }],
+        auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
       }
-    }],
-    auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
-  }
-});
-```
+    });
+    ```

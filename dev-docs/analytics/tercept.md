@@ -7,4 +7,4 @@ modulecode: tercept
 
 #### Registration
 
-Please visit [https://www.tercept.com/](https://www.tercept.com/) for more information.
+Please visit [www.tercept.com](https://www.tercept.com/) for more information.

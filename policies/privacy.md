@@ -11,7 +11,7 @@ sidebarType: 0
 
 Last updated Aug 5, 2020
 
-Prebid.org, Inc. respects your right to privacy.  This Privacy Notice explains who we are, how we collect, share and use personal information about you, and how you can exercise your privacy rights.  This Privacy Notice applies to personal information that we collect through our website at [https://prebid.org/](https://prebid.org/) and its subdomains ("**Website**") and via our marketing activities and events.  
+Prebid.org, Inc. respects your right to privacy.  This Privacy Notice explains who we are, how we collect, share and use personal information about you, and how you can exercise your privacy rights.  This Privacy Notice applies to personal information that we collect through our website at [prebid.org](https://prebid.org/) and its subdomains ("**Website**") and via our marketing activities and events.  
 This Privacy Notice does not apply to any information collected by third parties using our open source software.
 
 If you have any questions or concerns about our use of your personal information, then please contact us using the contact details provided at the bottom of this Privacy Notice.
@@ -31,7 +31,7 @@ Prebid.org is an industry consortium that provides free and open source solution
 
 The open source software products we make available may be utilized by third parties for the purposes of serving online advertisements. These third parties may configure the software to enable pseudonymized data included in bid requests to be transmitted within the online advertising ecosystem. However, Prebid.org has no involvement in these transactions and does not itself transmit, store or otherwise process the pseudonymized data in these transactions.  Prebid.org is not responsible for the privacy practices of third parties that use our software and it is the responsibility of the third party concerned to handle data in accordance with applicable privacy laws.  
 
-For more information about Prebid.org, please see the “About” section of our Website at [https://prebid.org/overview/what-is-prebid-org.html](/overview/what-is-prebid-org.html).
+For more information about Prebid.org, please see the “About” section of our Website at [prebid.org/overview/what-is-prebid-org.html](/overview/what-is-prebid-org.html).
 
 <a name="what-personal-info"></a>
 
@@ -151,6 +151,6 @@ You can see when this Privacy Notice was last updated by checking the "last upda
 
 ## How to contact us
 
-If you have any questions or concerns about our use of your personal information, please contact [privacy@prebid.org] .
+If you have any questions or concerns about our use of your personal information, please contact <privacy@prebid.org>.
 
 The data controller of your personal information is Prebid.org, Inc.

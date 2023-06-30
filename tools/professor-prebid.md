@@ -99,11 +99,11 @@ Here's an example of an overlay:
 
 ## How can I submit a feature request ?
 
-Please open an GitHub issue on [https://github.com/prebid/professor-prebid/issues](https://github.com/prebid/professor-prebid/issues).
+Please open an GitHub issue on [github.com/prebid/professor-prebid/issues](https://github.com/prebid/professor-prebid/issues).
 
 ## How can I report a bug ?
 
-Please submit a GitHub issue on [https://github.com/prebid/professor-prebid/issues](https://github.com/prebid/professor-prebid/issues) providing as much details as possible:
+Please submit a GitHub issue on [github.com/prebid/professor-prebid/issues](https://github.com/prebid/professor-prebid/issues) providing as much details as possible:
 
 * Steps to reproduce the issue
 * Example of website where you face the issue

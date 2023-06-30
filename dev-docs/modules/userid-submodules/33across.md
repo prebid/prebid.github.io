@@ -32,7 +32,7 @@ The following configuration parameters are available:
 
 ## 33Across ID Example
 
-```
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{

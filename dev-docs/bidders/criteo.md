@@ -26,7 +26,7 @@ gpp_supported: true
 This bidder adapter automatically includes the Criteo User ID module and performs iFrame syncs.
 
 {: .alert.alert-warning :}
-Prebid-Server support is on alpha test and is currently a non-finished product. Activation requires setup and approval before beginning. Please reach out to your account manager or [publishers@criteo.com] for more details.
+Prebid-Server support is on alpha test and is currently a non-finished product. Activation requires setup and approval before beginning. Please reach out to your account manager or <publishers@criteo.com> for more details.
 
 ### Bid Params
 

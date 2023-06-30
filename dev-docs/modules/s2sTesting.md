@@ -24,7 +24,7 @@ additional options for controlling how requests are sent:
 
 The package is built by specifying the `s2sTesting` module on the build command. For example:
 
-```
+```bash
 gulp build --modules=rubiconBidAdapter,appnexusAstBidAdapter,prebidServerBidAdapter,s2sTesting
 ```
 
@@ -40,7 +40,7 @@ With the Server-to-Server Testing module, the following enhancements are provide
 
 New 'bidderControl' options in s2sConfig. E.g.
 
-```
+```javascript
 pbjs.setConfig(
   s2sConfig: {
      bidders: [ "rubicon", "appnexus" ],
@@ -72,19 +72,19 @@ additional Key Value Pair (KVP) to the ad server. This will allow reporting
 to confirm the ratio of client-vs-server administered requests, as well as
 more advanced reporting.
 
-```
+```javascript
 hb_source_BIDDER=client
 ```
 
 OR
 
-```
+```javascript
 hb_source_BIDDER=s2s
 ```
 
 There's also a new `bidSource` option in AdUnits that overrides the global bidSource. E.g.
 
-```
+```javascript
 AdUnit={
     [...]
     bids=[{
@@ -114,7 +114,7 @@ I don't want to modify AdUnits because that's time consuming in the CMS.*
 
 Example S2S Config defining that 10% of Rubicon requests and 100% of AppNexus requests go through the server:
 
-```
+```javascript
 pbjs.setConfig(
   s2sConfig: {
      account: "PREBID-SERVER-ACCOUNT",
@@ -140,7 +140,7 @@ but we want to do this on a small number of AdUnits.*
 
 Example S2S Config defining that the client route is the default path for the rubicon adapter:
 
-```
+```javascript
 pbjs.setConfig(
   s2sConfig: {
      account: "PREBID-SERVER-ACCOUNT",
@@ -158,7 +158,7 @@ pbjs.setConfig(
 
 And then changes to override one particular AdUnit for server testing:
 
-```
+```javascript
 AdUnit={
     [...]
     bids=[{
@@ -184,7 +184,7 @@ For best results, all bidders/bids in the 'A/B test group' should be configured 
 
 Example S2S Config defining that 5% of the time all bid requests will go 'server' and 95% of the time a mix of 'server' and 'client':
 
-```
+```javascript
 pbjs.setConfig(
   s2sConfig: {
      account: "PREBID-SERVER-ACCOUNT",
@@ -222,6 +222,7 @@ AdUnit={
 5% of the time rubicon, and criteo will use s2s bid requests while index does not bid, and the other 95% of the time rubicon, criteo, and index use client bid requests.
 
 Addtional details:
+
 * If a bidder is always 100% server-side -- i.e. doesn't have either `s2sConfig.bidderControl` or `AdUnit.bids[].bidSource`, then it will not affect `testServerOnly`. i.e. It's going on the server path will not exclude client side adapters.
 
 ### 4. Turn on Test KVP, but no server requests
@@ -233,7 +234,7 @@ the server test isn't running.*
 
 Example S2S Config defining that client is the default path for the rubicon adapter:
 
-```
+```javascript
 pbjs.setConfig(
   s2sConfig: {
      ...

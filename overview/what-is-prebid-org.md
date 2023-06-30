@@ -22,7 +22,7 @@ Managed through Product Management Committees (PMCs)
 - Each PMC has a Chair and Members.
 - The Chair manages the PMC process and facilitates how the members contribute.  
 - PMCs drive open source software development as well as events and activities.  
-- To obtain more information about becoming a member of Prebid.org, email [membership@prebid.org].
+- To obtain more information about becoming a member of Prebid.org, email <membership@prebid.org>.
 
 ## Focus on Value
 

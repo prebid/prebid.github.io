@@ -7,13 +7,5 @@ node_modules/
 # Directories which remain to be fixed
 dev-docs/analytics/
 dev-docs/bidders/
-dev-docs/examples/
-dev-docs/modules/
-dev-docs/plugins/
-dev-docs/publisher-api-reference/
-dev-docs/requirements/
-faq/
-examples/
-partners/
 prebid-mobile/
 prebid-server/

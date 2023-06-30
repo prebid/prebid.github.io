@@ -33,7 +33,7 @@ The following modules have been removed from Prebid.js as part of the 8.0 releas
 | Google Analytics Adapter | Recommend publishers explore the Generic Analytics Adapter
 | Inmar Bid Adapter
 | Inskin Bid Adapter
-| MASS Deal Rendering Module | Replaced by (documentation) [https://github.com/prebid/prebid.github.io/issues/4535]
+| MASS Deal Rendering Module | Replaced by (documentation) <https://github.com/prebid/prebid.github.io/issues/4535>
 | AOL Bid Adapter | Reach out to Yahoo
 | CPEX ID submodule | CzechAdId Module
 | PubcommonID module | SharedID Userid Submodule
@@ -45,7 +45,7 @@ The following modules have been removed from Prebid.js as part of the 8.0 releas
 | OpenX ORTB Bid Adapter | OpenX Bid Adapter
 | Synacor Bid Adapter | IMDS Bid Adapter
 | AdGeneration Bid Adapter
-| EMX Bid Adapter | Cadent Bid Adapter
+| EMX Bid Adapter | Cadent Aperture MX Bid Adapter
 | Rubicon Analytics Adapter | Magnite Analytics Adapter
 
 ## Transaction identifiers are now reliable and opt in
@@ -71,15 +71,15 @@ Several activity control translation modules will be released in the near future
 
 ## Size Mapping
 
-Users of the [label](/dev-docs/conditional-ad-units.html) feature should be careful to examine the new size mapping module. We moved it out of core to improve the build size. See [https://github.com/prebid/Prebid.js/issue/9597](https://github.com/prebid/Prebid.js/issue/9597)
+Users of the [label](/dev-docs/conditional-ad-units.html) feature should be careful to examine the new size mapping module. We moved it out of core to improve the build size. See [github.com/prebid/Prebid.js/issue/9597](https://github.com/prebid/Prebid.js/issue/9597)
 
 ## Misc changes
 
-* `auctionInit` event payload is now less bloated. See [https://github.com/prebid/Prebid.js/pull/9897](https://github.com/prebid/Prebid.js/pull/9897)
-* Bidder `categoryTranslation` is no longer in core. See [https://github.com/prebid/Prebid.js/pull/9898](https://github.com/prebid/Prebid.js/pull/9898)
-* `bidderCode` can no longer come from the bid response, as this was breaking aliasing. See [https://github.com/prebid/Prebid.js/pull/9905](https://github.com/prebid/Prebid.js/pull/9905)
-* `onBidWon` was often listened to by client side bid adapters and would get fired when a server side bid was won. This has been cleaned up. See [https://github.com/prebid/Prebid.js/pull/9919](https://github.com/prebid/Prebid.js/pull/9919)
-* `ext.prebid.floorMin` has been dropped in favor of `ext.prebid.floors.floorMin` as a parameter on the PBS Bid adapter call See [https://github.com/prebid/Prebid.js/pull/9899](https://github.com/prebid/Prebid.js/pull/9899)
-* `bidResponse` is emitted immediately after adding the bidResponse instead of immediately before. See  [https://github.com/prebid/Prebid.js/pull/9847](https://github.com/prebid/Prebid.js/pull/9847)
-* PBS bid adapter now supports native javascript trackers. See [https://github.com/prebid/Prebid.js/pull/9900](https://github.com/prebid/Prebid.js/pull/9900)
-* `NO_BID` events no longer occur on bid rejections and zero-cpm bids. See [https://github.com/prebid/Prebid.js/pull/9902](https://github.com/prebid/Prebid.js/pull/9902)
+* `auctionInit` event payload is now less bloated. See [github.com/prebid/Prebid.js/pull/9897](https://github.com/prebid/Prebid.js/pull/9897)
+* Bidder `categoryTranslation` is no longer in core. See [github.com/prebid/Prebid.js/pull/9898](https://github.com/prebid/Prebid.js/pull/9898)
+* `bidderCode` can no longer come from the bid response, as this was breaking aliasing. See [github.com/prebid/Prebid.js/pull/9905](https://github.com/prebid/Prebid.js/pull/9905)
+* `onBidWon` was often listened to by client side bid adapters and would get fired when a server side bid was won. This has been cleaned up. See [github.com/prebid/Prebid.js/pull/9919](https://github.com/prebid/Prebid.js/pull/9919)
+* `ext.prebid.floorMin` has been dropped in favor of `ext.prebid.floors.floorMin` as a parameter on the PBS Bid adapter call See [github.com/prebid/Prebid.js/pull/9899](https://github.com/prebid/Prebid.js/pull/9899)
+* `bidResponse` is emitted immediately after adding the bidResponse instead of immediately before. See  [github.com/prebid/Prebid.js/pull/9847](https://github.com/prebid/Prebid.js/pull/9847)
+* PBS bid adapter now supports native javascript trackers. See [github.com/prebid/Prebid.js/pull/9900](https://github.com/prebid/Prebid.js/pull/9900)
+* `NO_BID` events no longer occur on bid rejections and zero-cpm bids. See [github.com/prebid/Prebid.js/pull/9902](https://github.com/prebid/Prebid.js/pull/9902)

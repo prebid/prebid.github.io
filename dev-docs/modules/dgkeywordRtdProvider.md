@@ -20,13 +20,13 @@ sidebarType : 1
 
 ## Integration
 
-1) Compile the Digital Garage Keyword Module and Appnexus Bid Adapter into your Prebid build:  
+1. Compile the Digital Garage Keyword Module and Appnexus Bid Adapter into your Prebid build:  
 
-```
-gulp build --modules="dgkeywordRtdProvider,appnexusBidAdapter,..."  
-```
+    ```bash
+    gulp build --modules="dgkeywordRtdProvider,appnexusBidAdapter,..."  
+    ```
 
-2) Use `setConfig` to instruct Prebid.js to initilize the dgkeyword module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initilize the dgkeyword module, as specified below.
 
 ## Configuration
 

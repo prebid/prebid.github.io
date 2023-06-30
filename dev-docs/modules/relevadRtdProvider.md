@@ -30,9 +30,9 @@ Compile the Relevad RTD module (`relevaddRtdProvider`) into your Prebid build, a
 
 Next we configure the module, via `pbjs.setConfig`. See the **Parameter Descriptions** below for more detailed information of the configuration parameters.
 
-```js
-pbjs.setConfig(
-    ...
+```javascript
+pbjs.setConfig({
+    //...
     realTimeData: {
       auctionDelay: 1000,
       dataProviders: [
@@ -56,8 +56,8 @@ pbjs.setConfig(
       }
     ]
   }
- ...
-}
+ // ...
+});
 ```
 
 ## Parameter Descriptions
@@ -97,7 +97,7 @@ gulp serve-fast --modules=rtdModule,relevadRtdProvider
 
 Then in your browser access:
 
-```
+```text
 http://localhost:9999/integrationExamples/gpt/relevadRtdProvider_example.html
 ```
 
