@@ -9,9 +9,18 @@ coppa_supported: true
 usp_supported: true
 gpp_supported: false
 schain_supported: false
-userIds: uid2, unifiedId
+userId: uid2, unifiedId
 pbjs: true
 prebid_member: false
+dchain_supported: false
+safeframes_ok: false
+deals_supported: true
+floors_supported: true
+fpd_supported: false
+ortb_blocking_supported: false
+gvl_id: none
+pbs: false
+multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
