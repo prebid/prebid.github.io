@@ -25,13 +25,13 @@ ortb_blocking_supported: false
 
 ### Note:
 
-The Example Bidding adapter requires setup before beginning. Please contact us at support@techbravo.com
+The OwnAdX Bidding adapter requires setup before beginning. Please contact us at support@techbravo.com
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example                  | Type      |
-|---------------|----------|-----------------------|--------------------------|-----------|
-| `host`        | required | Host subdomain             | `test`                   | `string`  |
-| `seatId`      | required | Seat Id               | `4`                      | `string`  |
-| `tokenId`     | required | Token Id              | `QjBZdHs6bhFHBT1nd1AJ`   | `string`  |
+| Name          | Scope    | Description           | Example                    | Type      |
+|---------------|----------|-----------------------|----------------------------|-----------|
+| `host`        | required | Host subdomain        | `'test'`                   | `string`  |
+| `seatId`      | required | Seat Id               | `'4'`                      | `string`  |
+| `tokenId`     | required | Token Id              | `'QjBZdHs6bhFHBT1nd1AJ'`   | `string`  |
