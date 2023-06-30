@@ -84,6 +84,22 @@ Here's an example account config that prevents bidderA, bidderB, and analytics a
 
 <a id="config"></a>
 
+### Activity Controls in relation to other privacy regulations
+
+In the long-term, the vision is that Activity Control config will become a
+complete description for the allow/deny status of a particular action. 
+However, for now, the existing privacy regulations (GDPR, USP, COPPA) still
+sit ouside of the config.
+
+Here's how to think of the interaction:
+
+```text
+Deny takes precedence.
+```
+
+Activity Controls are processed first. If the control `denies` the activity, work is done: the action is suppressed. However, if the control `allows` the
+activity, the system will still go on to check [other relevant privacy activities](/prebid-server/features/pbs-privacy.html).
+
 ## Configuration
 
 The `privacy.allowActivities` is a new account configuration option that contains a list of activity names -- see the [full list of activities below](#activities).
@@ -174,6 +190,7 @@ These are the conditional attributes available:
 | componentName | optional | Name of a specific bid adapter, analytics adapter, or module. | array of strings | ["bidderX"] |
 | gppSid | optional | Resolves to true if regs.gpp_sid exists and intersects with the supplied array of values. (PBS-Java 1.21) | array of ints | [7,8,9,10,11,12] |
 | geo | optional | Combines device.geo.country and device.geo.region and resolves to true if that country/reion combination is in the supplied array. (PBS-Java 1.21) | array of strings | ["USA","CAN.ON"] |
+| gpc | optional | Compare the value of regs.ext.gpc and the SEC-GPC header - if either match the supplied value, the clause resolves to true. Set to `gpc: "1"` to match the flag being set. (PBS-Java 1.122) | string | "1" |
 
 {: .alert.alert-info :}
 Note on names: if two components share a name (e.g. "ssp1") for both a bid adapter and an analytics adapter, the rule may need to distinguish between them by providing both `componentName` and `componentType`.
@@ -262,6 +279,25 @@ This scenario is mainly for a transition period when the Prebid Server USNat mod
             condition: {
                 gppSid: [7,8,9]
                 geo: ["USA.CA", "USA.VA"]
+            },
+            allow: false
+        }]
+      }
+    }
+  }
+}
+```
+
+#### Anonymize when the GPC flag is set
+
+```javascript
+{
+  privacy: {
+    allowactivities: {
+      ACTIVITY: {
+        rules: [{
+            condition: {
+                gpc: "1"
             },
             allow: false
         }]
