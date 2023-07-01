@@ -38,10 +38,6 @@ more nuanced and stricter policy.
 If a Prebid Server host company wants to support GDPR, they must currently [register for the IAB Global Vendor List](https://register.consensu.org/). 
 The user must provide legal basis for the host company to read/write cookies or `/cookie_sync` will return an empty response with no syncs and `/setuid` will fail.
 
-### TCF 1.1
-
-No longer supported by Prebid Server.
-
 ### TCF 2.0
 
 If Prebid server determines the user is in GDPR scope, then consent is independently tested
@@ -85,6 +81,12 @@ Prebid Server support for this protocol is still being developed:
 1. (done) GPP as a TCF and USP wrapper - PBS parses the GPP container for TCF2 and USP strings, extracting them to the original ORTB location. (PBS-Java only for now)
 1. (planned) GPP infrastructure - the ability to plug new regulations into PBS, and the first sub-module, the IAB's US [National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md).
 
+## MSPA / US National Privacy
+
+The first privacy protocol implemented as part of the GPP will be USNat. See [Prebid MSPA Support](/features/mspa-usnat.html) for more info.
+
+Until the USNat module is available, publishers using Prebid Server can consider utilizing [Activity Controls](/prebid-server/features/pbs-activitycontrols.html). In particular, the `gppSid`, `geo`, and `gpc` conditions may be useful tools within a compliance strategy.
+
 ## COPPA
 
 The [Children's Online Privacy Protection Act (COPPA)](https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule) is a law in the US which imposes certain requirements on operators of websites or online services directed to children under 13 years of age, and on operators of other websites or online services that have actual knowledge that they are collecting personal information online from a child under 13 years of age.
@@ -112,7 +114,12 @@ the following anonymization steps are taken:
 ## Global Privacy Control
 
 In support of the [Global Privacy Control](https://globalprivacycontrol.org/), Prebid Server passes the `Sec-GPC` HTTP header through to bid adapters. It
-does not currently take action on this header.
+does not currently take action on this header by default.
+
+A publisher can utilize Activity Controls to link anonymization actions
+to the precence of the GPC flag. See the `gpc` rule condition in the
+[Activity Controls](/prebid-server/features/pbs-activitycontrols.html) for
+more information.
 
 ## DNT
 
