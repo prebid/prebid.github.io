@@ -25,6 +25,7 @@ sidebarType: 1
 | `auId` | required | The ad unit ID `'0000000000072345'` leading zeros can be omitted. | `'0000000000072345'` | `string` |
 | `network` | optional | Used if you want to make requests to multiple networks in adnuntius. | `'adnuntius'` | `string`|
 | `targeting` | optional | Targeting to be sent through to adnuntius with the request. | `{ c: ['prebids'] }` | `string`|
+| `maxDeals` | optional | The maximum number of deal bids to include. Default 0. | `1` | `Integer` |
 
 #### Targeting
 
@@ -142,6 +143,7 @@ publishers can use the `ortb2` configuration parameter to provide First Party Da
 These fields are optional and only needed for user identification and contextual targeting. How to use it can be read here: [Prebid ortb2](https://docs.prebid.org/features/firstPartyData.html). Currently we only support this for our prebid server bidder, but will add it to the client bidder in the future.
 
 ### Video requests
+
 Currently we only support client requests and instream context. An example request would look like this:
 
 ```

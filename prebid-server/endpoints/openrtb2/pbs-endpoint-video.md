@@ -92,7 +92,7 @@ These key-values are returned to the SSAI server as part of the video response.
 | user.ext.prebid.buyeruids | Optional   | `Object` |  Container objects for all the SSP UserIDs to send to the SSPs endpoint.  |
 | device | Optional  (recommended) | `Object` | Container object for device specific data. |
 | device.ua | Optional  | `String` | Browser user agent string. |
-| device.dnt | Optional  | `Integer` | 	Standard “Do Not Track” flag as set in the header by the browser, where 0 = tracking is unrestricted, 1 = do not track. |
+| device.dnt | Optional  | `Integer` |     Standard “Do Not Track” flag as set in the header by the browser, where 0 = tracking is unrestricted, 1 = do not track. |
 | device.lmt | Optional  | `Integer` | “Limit Ad Tracking” signal commercially endorsed (e.g., iOS, Android), where 0 = tracking is unrestricted, 1 = tracking must be limited per commercial guidelines. |
 | device.ip | Optional  | `String` | IP address of the device making the ad request. |
 | device.os | Optional  | `String` | Device operating system. Example "iOS". |

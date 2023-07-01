@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The DisplayioAds bidding adapter requires setup and approval before implementation. Please reach out to <elena@display.io> for more details.
 

@@ -25,14 +25,16 @@ sidebarType: 1
 | `aid` | required | The source ID from Adtelligent. | `350975` | `integer` |
 
 ### Description
+
 Get access to multiple demand partners across Adtelligent AdExchange and maximize your yield with Adtelligent header bidding adapter.
 
 Adtelligent header bidding adapter connects with Adtelligent demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-Adtelligent now supports adpod. 
+Adtelligent now supports adpod.
 
 ### Test Parameters
+
 ```
     var adUnits = [
 
@@ -108,7 +110,7 @@ Adtelligent now supports adpod.
 
 ### Additional Configuration
 
-It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request 
+It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request
 (default value is 10).
 
 ```

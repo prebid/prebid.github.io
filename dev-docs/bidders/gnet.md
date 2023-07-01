@@ -14,4 +14,3 @@ sidebarType: 1
 |---------------|----------|--------------------------------------------|-------------------------------------|----------|
 | `websiteId`   | required | The Gnet website ID                        | `'1'`                               | `string` |
 | `adunitId`    | required | The Gnet adunit ID                         | `'1'`                               | `string` |
-

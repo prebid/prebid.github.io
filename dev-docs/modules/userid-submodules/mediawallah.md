@@ -32,7 +32,7 @@ MediaWallah requires the creation of an accountId a partnerId in order to take a
 
 ## MediaWallah OpenLinkID Examples
 
-```
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{

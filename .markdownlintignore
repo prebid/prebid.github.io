@@ -1,0 +1,11 @@
+# These files should not be linted
+README.md
+_includes/
+vendor/
+node_modules/
+
+# Directories which remain to be fixed
+dev-docs/analytics/
+dev-docs/bidders/
+prebid-mobile/
+prebid-server/

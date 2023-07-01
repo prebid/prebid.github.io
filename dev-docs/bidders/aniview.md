@@ -13,8 +13,9 @@ gvl_id: 780
 sidebarType: 1
 ---
 
-### Note:
-For more information about [Aniview Ad Server](https://www.aniview.com/), please contact info@aniview.com.
+### Note
+
+For more information about [Aniview Ad Server](https://www.aniview.com/), please contact <info@aniview.com>.
 
 ### Bid Params
 
@@ -25,6 +26,7 @@ For more information about [Aniview Ad Server](https://www.aniview.com/), please
 | `AV_CHANNELID`   | required | Channel id       | `'5a5f17a728a06102d14c2718'` | `string` |
 
 ### Test Parameters
+
 ```
 videoAdUnit = [
 {

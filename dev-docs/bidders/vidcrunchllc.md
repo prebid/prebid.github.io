@@ -26,11 +26,12 @@ sidebarType: 1
 | `aid` | required | The source ID from VidCrunch.   | `529814` | `integer` |
 
 ### Description
+
 VidCrunch header bidding adapter connects with VidCrunch demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-
 ### Test Parameters
+
 ```
     var adUnits = [
 

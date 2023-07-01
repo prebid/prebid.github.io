@@ -8,6 +8,7 @@ sidebarType: 4
 <div class="bs-docs-section" markdown="1">
 
 # Header Bidding Videos - Prebid Video
+
 {: .no_toc :}
 
 * TOC
