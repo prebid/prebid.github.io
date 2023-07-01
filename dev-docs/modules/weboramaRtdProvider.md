@@ -176,9 +176,9 @@ This property support the following types
 | Type  | Description | Example   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | Boolean|If true, set prebid targeting for all adunits, or not in case of false| `true` | default value |
-| String|Will set prebid targeting only for one adunit | `'adUnitCode1'` | **DEPRECATED** |
-| Array of Strings|Will set prebid targeting only for some adunits| `['adUnitCode1','adUnitCode2']` | **DEPRECATED** |
-| Callback |Will be executed for each adunit, expects return a true value to set prebid targeting or not| `function(adUnitCode){return adUnitCode == 'adUnitCode';}` | **DEPRECATED** |
+| String|Will set prebid targeting only for one adunit | `'adUnitCode1'` |  |
+| Array of Strings|Will set prebid targeting only for some adunits| `['adUnitCode1','adUnitCode2']` |  |
+| Callback |Will be executed for each adunit, expects return a true value to set prebid targeting or not| `function(adUnitCode){return adUnitCode == 'adUnitCode';}` |  |
 
 The complete callback function signature is:
 
@@ -187,8 +187,6 @@ setPrebidTargeting: function(adUnitCode, data, metadata){
     return true; // or false, depending on the logic
 }
 ```
-
-Since `Prebid.js` version 8, we use First Party Data Support to propagate data to differente SSPs. We will deprecate the support to other formats than Boolean.
 
 ##### Property sendToBidders supported types
 
@@ -199,8 +197,8 @@ This property support the following types
 | Boolean|If true, send data to all bidders, or not in case of false| `true` | default value |
 | String|Will send data to only one bidder | `'appnexus'` |  |
 | Array of Strings|Will send data to only some bidders | `['appnexus','pubmatic']` |  |
-| Object |Will send data to only some bidders and some ad units | `{appnexus: true, pubmatic:['adUnitCode1']}` | **DEPRECATED** |
-| Callback |Will be executed for each adunit, expects return a true value to set prebid targeting or not| `function(bid, adUnitCode){return bid.bidder == 'appnexus' && adUnitCode == 'adUnitCode';}` | the parameter `adUnitCode` can be consider **DEPRECATED** |
+| Object |Will send data to only some bidders and some ad units | `{appnexus: true, pubmatic:['adUnitCode1']}` |  |
+| Callback |Will be executed for each adunit, expects return a true value to set prebid targeting or not| `function(bid, adUnitCode){return bid.bidder == 'appnexus' && adUnitCode == 'adUnitCode';}` | the parameter `adUnitCode` can be consider  |
 
 A better look on the `Object` type
 
@@ -219,7 +217,7 @@ sendToBidders: function(bid, adUnitCode, data, metadata){
 }
 ```
 
-This callback will be executed with the bid object (contains a field `bidder` with name), adUnitCode (**deprecated**), profile and a metadata with the following fields
+This callback will be executed with the bid object (contains a field `bidder` with name), adUnitCode, profile and a metadata with the following fields
 
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
@@ -238,8 +236,6 @@ sendToBidders: function(bid, adUnitCode, data, metadata){
     return true;
 }
 ```
-
-Since `Prebid.js` version 8, we use First Party Data Support to propagate data to differente SSPs. We will deprecate the support to formats that thandle with `adUnitCode` at some point.
 
 To be possible customize the way we send data to bidders via this callback:
 
