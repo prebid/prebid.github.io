@@ -16,20 +16,19 @@ sidebarType : 1
 Anonymised is a data anonymization technology for privacy-preserving advertising. Publishers and advertisers are able to target and retarget custom audience segments covering 100% of consented audiences. 
 Anonymised’s Real-time Data Provider automatically obtains segment IDs from the Anonymised on-domain script (via `localStorage`) and passes them to the bid-stream.
 
-
 ## Publisher Usage
 
-1) Build the anonymisedRtd module into the Prebid.js package with:
+1. Build the anonymisedRtd module into the Prebid.js package with:
 
-```
+```bash
 gulp build --modules=anonymisedRtdProvider,...
 ```
 
-2) Use `setConfig` to instruct Prebid.js to initilaize the anonymisedRtdProvider module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initilaize the anonymisedRtdProvider module, as specified below.
 
 ### Configuration
 
-```
+```javascript
  pbjs.setConfig({
    realTimeData: {
      dataProviders: [
@@ -47,7 +46,6 @@ gulp build --modules=anonymisedRtdProvider,...
 
 Please note that anonymisedRtdProvider should be integrated into the publisher website along with the [Anonymised Marketing Tag](https://support.anonymised.io/integrate/marketing-tag).
 Please reach out to Anonymised representative(support@anonymised.io) if you have any questions or need further help to integrate Prebid, anonymisedRtdProvider, and Anonymised Marketing Tag
-
 
 **Config Syntax details:**
 
