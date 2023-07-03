@@ -28,6 +28,3 @@ jobs:
         with:
           globs: ${{ steps.changed-files.outputs.all_changed_files }}
           separator: ","
-      - name: markdownlint-cli
-        run: |
-          markdownlint --config .markdownlint.json --ignore-path .markdownlintignore "**/*.md"
