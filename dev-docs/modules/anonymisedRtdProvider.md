@@ -45,7 +45,7 @@ gulp build --modules=anonymisedRtdProvider,...
 ```
 
 Please note that anonymisedRtdProvider should be integrated into the publisher website along with the [Anonymised Marketing Tag](https://support.anonymised.io/integrate/marketing-tag).
-Please reach out to Anonymised representative support@anonymised.io if you have any questions or need further help to integrate Prebid, anonymisedRtdProvider, and Anonymised Marketing Tag
+Please reach out to Anonymised [representative](mailto:support@anonymised.io) if you have any questions or need further help to integrate Prebid, anonymisedRtdProvider, and Anonymised Marketing Tag
 
 **Config Syntax details:**
 
