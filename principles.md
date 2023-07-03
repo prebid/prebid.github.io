@@ -12,7 +12,7 @@ sidebarType: 0
 
 Prebid.org uses the following principles to guide how we develop [Prebid.js]({{site.baseurl}}/prebid/prebidjs.html), [Prebid Server](/prebid-server/overview/prebid-server-overview.html), [Prebid Mobile](/prebid-mobile/prebid-mobile.html), and any future sub-projects:
 
-+ **Collaborative**: Foster a community of contribution.
+- **Collaborative**: Foster a community of contribution.
 
 + **Open and Transparent**: No black-box auction dynamics, bid biasing or hidden fees.
 
