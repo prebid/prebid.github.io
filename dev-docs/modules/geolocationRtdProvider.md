@@ -64,3 +64,5 @@ The Geolocation is set in ortb2Fragments.global.device.geo in requestBidsObject 
     type: 1
 }
 ```
+
+It can be accessed from adapter with buildRequests` function callback of bidderRequest object. Also can be used something like mergeDeep(reqBidsConfigObj.ortb2Fragments.global, _ortb2).
