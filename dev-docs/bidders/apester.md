@@ -8,7 +8,7 @@ pbs: false
 media_types: video, banner
 userIds: all
 fpd_supported: false
-gdpr_supported: true
+gdpr_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -34,7 +34,3 @@ sidebarType: 1
 | `custom3`    | optional | Custom targeting field 3                          | `'custom3'`              | `string`  |
 | `custom4`    | optional | Custom targeting field 4                          | `'custom4'`              | `string`  |
 | `custom5`    | optional | Custom targeting field 5                          | `'custom5'`              | `string`  |
-
-Apester client-side Prebid.js adapter requires only `host`, `adUnitId`, `adUnitType`.
-
-Apester client-side Prebid.js adapter supports only `banner` and `video` media types, doesn't support `audio` and `native`.
