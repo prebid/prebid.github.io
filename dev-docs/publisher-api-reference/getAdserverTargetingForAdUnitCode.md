@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getAdserverTargetingForAdUnitCode([adunitCode])
-description:
+description: getAdserverTargetingForAdUnitCode API
 sidebarType: 1
 ---
 
@@ -21,10 +21,10 @@ This function returns the query string targeting parameters available at this mo
 
 **Returned Object Example:**
 
-{% highlight js %}
+```javascript
 {
   "hb_bidder": "rubicon",
   "hb_adid": "13f44b0d3c",
   "hb_pb": "0.50"
 }
-{% endhighlight %}
+```

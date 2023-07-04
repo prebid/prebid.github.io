@@ -16,16 +16,16 @@ Each analytics provider has specific instructions for using their system, but th
 - Create an account with the analytics vendor and obtain the necessary IDs
 - Build Prebid.js package with the vendor's analytics adapter
 
-{% highlight js %}
+```javascript
 gulp bundle --modules=exAnalyticsAdapter,xyzBidAdapter
-{% endhighlight %}
+```
 
 - If required, load analytics JavaScript from vendor directly on the page
 - Call the [`pbjs.enableAnalytics()` function](/dev-docs/publisher-api-reference/enableAnalytics.html)
 
 e.g.
 
-{% highlight js %}
+```javascript
 pbjs.que.push(function() {
   pbjs.enableAnalytics({
     provider: 'NAME',
@@ -34,7 +34,7 @@ pbjs.que.push(function() {
     }
   });
 });
-{% endhighlight %}
+```
 
 ## Analytics Adapters
 

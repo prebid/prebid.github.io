@@ -24,7 +24,7 @@ sidebarType: 1
 
 ### Bid params
 
-The Caroda Bidding adapter requires setup before beginning. Please contact us on https://caroda.io/
+The Caroda Bidding adapter requires setup before beginning. Please contact us on <https://caroda.io/>
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope                      | Description                                                     | Example           | Type      |
@@ -32,8 +32,6 @@ The Caroda Bidding adapter requires setup before beginning. Please contact us on
 | `ctok`        | required                   | id unique to a customer                                         | `"abcdef"`        | `string` |
 | `placementId` | optional                   | used when there are multiple placements configured per domain   | `"opzabc123"`     | `string` |
 | `priceType`   | optional                   | price type                                                      | `"gross"`         | `string`  |
-
-
 
 ### OpenRTB request config
 

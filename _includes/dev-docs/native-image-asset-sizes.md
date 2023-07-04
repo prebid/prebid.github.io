@@ -2,8 +2,7 @@ There are two methods for defining sizes for image-like assets (`image` and `ico
 
 Using `mediaTypes.native.image.sizes` (or `mediaTypes.native.icon.sizes` for icons):
 
-{% highlight js %}
-
+```javascript
 mediaTypes: {
     native: {
         image: {
@@ -12,13 +11,11 @@ mediaTypes: {
         }
     }
 }
-
-{% endhighlight %}
+```
 
 Using `mediaTypes.native.image.aspect_ratios` (or `mediaTypes.native.icon.aspect_ratios` for icons):
 
-{% highlight js %}
-
+```javascript
 mediaTypes: {
     native: {
         image: {
@@ -32,5 +29,4 @@ mediaTypes: {
         }
     }
 }
-
-{% endhighlight %}
+```

@@ -19,7 +19,7 @@ The adapter adds an HTML `<script>` tag to load Adloox's post-buy verification J
 
 The [Adloox](https://adloox.com/) analytics adapter requires on-boarding and configuration
 parameters supplied to you by Adloox account team. Please reach out to your account team or
-info@adloox.com for more information.
+<info@adloox.com> for more information.
 
 #### Analytics Options
 

@@ -21,9 +21,9 @@ multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Adtrgtme bidding adapter requires setup before beginning. Please contact us at info@adtarget.me
+The Adtrgtme bidding adapter requires setup before beginning. Please contact us at <info@adtarget.me>
 
 ### Bid Params
 

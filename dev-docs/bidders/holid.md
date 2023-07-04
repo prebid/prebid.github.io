@@ -18,10 +18,9 @@ sidebarType: 1
 | ---------- | -------- | ---------------------------- | --------- | -------- |
 | `adUnitID` | required | Ad Unit ID provided by Holid | `'12345'` | `string` |
 
-
 ### Configuration
 
-To increase the match rate and monetization, Holid recommends turning on iframe-based user sync. 
+To increase the match rate and monetization, Holid recommends turning on iframe-based user sync.
 
 ```javascript
 pbjs.setConfig({

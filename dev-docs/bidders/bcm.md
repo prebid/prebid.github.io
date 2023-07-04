@@ -21,10 +21,9 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The BCM adapter requires approval and setup. Please reach out to contact@bcm.ltd or visit us at bcm.ltd for more details.
-
+The BCM adapter requires approval and setup. Please reach out to <contact@bcm.ltd> or visit us at bcm.ltd for more details.
 
 ### Bid Params
 

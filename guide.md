@@ -8,11 +8,12 @@ sidebarType: 0
 ---
 
 # Prebid Website Maintenance Guide
+
 {:.no_toc}
 
 Updated Feb 9, 2023
 
-* TOC
+- TOC
 {:toc}
 
 ## Reviewing Pull Requests and Issues
@@ -39,7 +40,7 @@ The Prebid website is developed using [GitHub pages](https://pages.github.com/) 
 
 **Markdown**: The majority of the content is written in Markdown language. Jekyll transform this into raw HTML.
 
-Learn more about Markdown](https://www.markdownguide.org/)
+Learn more about [Markdown](https://www.markdownguide.org/)
 
 **Bootstrap**: A CSS template for responsive site design. Bootstrap provides the base formatting for the site.
 
@@ -64,7 +65,7 @@ On the rare occasions where we need to use the 'dev' or 'stage' sites, we just c
 
 ## Site Config
 
-The _config.yml file (note underscore prefix) sets the base configuration for the site. Refer to [Jekyll](https://jekyllrb.com/docs/configuration/) documentation on which properties can be set in the _config.yml file.
+The `_config.yml` file (note underscore prefix) sets the base configuration for the site. Refer to [Jekyll](https://jekyllrb.com/docs/configuration/) documentation on which properties can be set in the `_config.yml` file.
 
 ***
 
@@ -83,13 +84,11 @@ Learn more about YML [here](https://yaml.org/start.html)
 
 There are several YML files in the Prebid _data directory
 
-- [dropdown_v2](#Dropdown)
-- [sidebar](#Sidebar)
-- [messages](#Messages)
-- [partners](#Partners)
+- [dropdown_v2](#dropdown)
+- [sidebar](#sidebar)
+- [partners](#partners)
 
 The contents of these files are used throughout the Prebid.org site for dynamically creating the navigation and displaying messages. See the [Data Model](#data-models) section for a review of how the data is structured and to see sample code.
-
 
 **_layouts**  
 
@@ -107,7 +106,6 @@ The bidders directory is not a standard part of Jekyll; it’s a special use dir
 
 The sites directory is created by Jekyll. It contains the live site generated from the collected files and data listed above, combined with the CSS, JS and image assets and the Markdown files for individual pages.
 
-
 ***
 
 ## Assets
@@ -118,21 +116,20 @@ The base CSS file used is Bootstrap (version 3.7.1) Custom CSS and modifications
 
 The JS directory contains the Javascript files required for the Prebid.org site. It includes JQuery and Bootstrap javascript frameworks as well as other third party libraries and custom javascript written specifically for the Prebid site. For JQuery and Bootstrap both the expanded and minified versions of the javascript files are included but only the minified files are linked from the site header.
 
+### CSS
 
-#### CSS
-
-1. Styles all come from /assets/css/main-bundle.css
-1. These are generated from /_assets/sass
+1. Styles all come from `/assets/css/main-bundle.css`
+1. These are generated from `/_assets/sass`
 1. To make a change, edit the relevant sass file
 1. Generate the css file from sass with 'npm run dev/prod'
-1. Commit all the changes including assets/css/main-bundle.css
-1. the _assets directory is not part of the _site tree
+1. Commit all the changes including `assets/css/main-bundle.css`
+1. the `_assets` directory is not part of the `_site` tree
 
 ## Data Models
 
 The data files are stored in the __data directory.
 
-<a name="Dropdown></a>
+<a name="Dropdown"></a>
 
 ### Dropdown
 
@@ -140,13 +137,13 @@ The dropdown_v2 YML file is used to construct the top nav when the site is viewe
 
 The YML map is divided into collections of menu sections. Menu sections are commented when they begin, for example;
 
-```Markdown
+```markdown
 #----------Product SubNav------------
 ```
 
 Each menu item is represented in the YML map as a collection of key value pairs and begins with a dash (-) symbol. An indented collection indicates it is a child of the collection above it. Example:
 
-```Markdown
+```markdown
 #-----------Overview---------------
 
 - sectionId: 0
@@ -184,13 +181,13 @@ The collection with the title property "What Is Prebid?" is a child of the colle
 | isSubsectionStart  | bool | 0 | Indicates if the item is the start of a subsection. **Deprecated** |
 
 **Code Use**  
-This data file is read in the nav.html file using Liquid. (__includes/nav.html).
+This data file is read in the nav.html file using Liquid. (_`_includes/nav.html`).
 
-<a name="Sidebar></a>
+<a name="Sidebar"></a>
 
 ### Sidebar
 
-The sidebar YML file is used to construct the left side navigation when the site is viewed on desktops and tablets and the top navigation when viewed on phones. 
+The sidebar YML file is used to construct the left side navigation when the site is viewed on desktops and tablets and the top navigation when viewed on phones.
 
 The YML map is divided into collections of menu sections. Menu sections are commented when they begin, for example;
 
@@ -247,21 +244,25 @@ Each menu item is represented in the YML map as a collection of key value pairs 
 This data file is read in the left_nav.html file using Liquid. (__includes/left_nav.html)
 
 **Files Not in the Sidebar**  
-If a page is open that is not listed in the sidebar.yml file, by default the sidebar will display only top-level options, with no options expanded or selected. 
+If a page is open that is not listed in the sidebar.yml file, by default the sidebar will display only top-level options, with no options expanded or selected.
 
-In certain cases, it is helpful to the user to highlight a page in the left navigation that is not currently open. For example, when a bidder page is open (such as [https://docs.prebid.org/dev-docs/bidders/1ad4good.html](https://docs.prebid.org/dev-docs/bidders/1ad4good.html)), we don't want hundreds of bidders displayed in the left nav, but we want the user to be oriented to where they are in the documentation. In this case, that would be under Prebid.js > Reference > Bidder Params. To accomplish this, you must do two things:
+In certain cases, it is helpful to the user to highlight a page in the left navigation that is not currently open. For example, when a bidder page is open (such as [docs.prebid.org/dev-docs/bidders/1ad4good.html](https://docs.prebid.org/dev-docs/bidders/1ad4good.html)), we don't want hundreds of bidders displayed in the left nav, but we want the user to be oriented to where they are in the documentation. In this case, that would be under Prebid.js > Reference > Bidder Params. To accomplish this, you must do two things:
 
-- Add `sidebarType: 1` to all bidder pages. This opens the Prebid.js menu. (If you want to extend this functionality to other pages, use the sbSecId in the sidebar.yml file of the top-level menu as the value for sidebarType.) 
+- Add `sidebarType: 1` to all bidder pages. This opens the Prebid.js menu. (If you want to extend this functionality to other pages, use the sbSecId in the sidebar.yml file of the top-level menu as the value for sidebarType.)
 - Modified the left_nav.html file's Liquid code to highlight Reference > Bidder Params anytime a page with layout=bidder is open.
 
-This has been done for both bidders pages (pages with `layout: bidder`) and the Publisher API Reference (`layout: api_prebidjs` and highlighting Prebid.js > Reference > Publish API Reference in the left nav), but can be extended to other pages as needed. 
+This has been done for both bidders pages (pages with `layout: bidder`) and the Publisher API Reference (`layout: api_prebidjs` and highlighting Prebid.js > Reference > Publish API Reference in the left nav), but can be extended to other pages as needed.
+
+## Partners
+
+TBD
 
 ## Bidder Files
 
 There are 200+ bidder files in the /dev-docs/bidders directory describing the parameters for each Prebid.js bidder. There are two unfortunately identical pieces of code that process them:
 
-- /\_layouts/bidder.html - this is used to generate the single-bidder version of the page like https://prebid.org/dev-docs/bidders/rubicon.html
-- /dev-docs/bidders.md - this is used to generate the (large) combined page at https://prebid.org/dev-docs/bidders.html
+- /\_layouts/bidder.html - this is used to generate the single-bidder version of the page like <https://prebid.org/dev-docs/bidders/rubicon.html>
+- /dev-docs/bidders.md - this is used to generate the (large) combined page at <https://prebid.org/dev-docs/bidders.html>
 
 The attributes in the Jekyll 'front matter' drive various behaviors and dynamic tables elsewhere on the site.
 
@@ -277,7 +278,7 @@ The attributes in the Jekyll 'front matter' drive various behaviors and dynamic 
 | filename | no | bid adapter that actually implements this adapter | Used when a bid adapter is created with a filename that is not the bidder code. This completely overrides what is passed into the gulp build command, so needs to be fully specified. e.g. bidderaBidAdapter |
 | prevBiddercode | no | secondary bidder code | Adds a note about an alternate code that may have been used. |
 | pbjs_version_notes | no | string | Displays on the download page |
-| sidebarType | yes | `1` | Used for navigation. This opens the Prebid.js portion of the menu so the sidebar can display the Reference/Prebid Params menu option when a bidder page is open. 
+| sidebarType | yes | `1` | Used for navigation. This opens the Prebid.js portion of the menu so the sidebar can display the Reference/Prebid Params menu option when a bidder page is open.
 | ANYTHING ELSE | no | string | There are many pieces of metadata (e.g. GDPR support, user IDs supported) that bid adapters can disclose. They're displayed on the bidder's parameter page. |
 
 The bidderCode, aliasCode, and prevBiddercode parameters bear some description.
@@ -286,17 +287,17 @@ there's only one documentation file and of course one PBJS adapter file. An rela
 long bidderCode, but found it awkward to set up ad server targeting variables because GAM limits you to 20 chars, which is easy to exceed
 with a prefix like `hb_cache_host`. So they wanted to have shorter bidderCode for new customers while supporting the legacy targeting variables. In that scenario, they:
 
-1) add the shorter code as an alias in their PBJS file, which can stay the old longer name
-2) change the biddercode to the shorter name as it's the new preferred code
-3) add aliasCode so the Download page will pull in the right module
-4) optionally add prevBiddercode to add a note to the page about the legacy value
-5) optionally add filename if the bid adapter was created using a filename that's different than their bidder code. e.g. if the biddercode is "biddera" but they named the file "bidderABidAdapter", set the biddercode to "biddera" and the filename to "bidderABidAdapter".
+1. add the shorter code as an alias in their PBJS file, which can stay the old longer name
+2. change the biddercode to the shorter name as it's the new preferred code
+3. add aliasCode so the Download page will pull in the right module
+4. optionally add prevBiddercode to add a note to the page about the legacy value
+5. optionally add filename if the bid adapter was created using a filename that's different than their bidder code. e.g. if the biddercode is "biddera" but they named the file "bidderABidAdapter", set the biddercode to "biddera" and the filename to "bidderABidAdapter".
 
 ## Algolia Search
 
-We use Algolia for site search. 
+We use Algolia for site search.
 
-- The configuration defining the search parameters is at https://github.com/algolia/docsearch-configs/blob/master/configs/prebid.json
+- The configuration defining the search parameters is at <https://github.com/algolia/docsearch-configs/blob/master/configs/prebid.json>
 - Only elements p, th, td, li, code, and h1-h3 are indexed
 - Code implementation in _includes/body-end.html and a the 'site-search' div in the header.
 

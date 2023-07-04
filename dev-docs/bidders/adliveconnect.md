@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Adlive bidding adapter requires setup and approval before implementation. Please reach out to <yassine@adlive.io> for more details.
 

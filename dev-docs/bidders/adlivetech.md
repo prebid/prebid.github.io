@@ -24,7 +24,7 @@ sidebarType: 1
 - [Bidder Config](#bidder-config)
 - [First Party Data](#first-party-data)
 
-<a name="adlivetech-bid-params" />
+<a name="adlivetech-bid-params"></a>
 
 ### Bid Params
 
@@ -35,12 +35,13 @@ sidebarType: 1
 | `keywords`     | optional | A set of key-value pairs applied to all ad slots on the page. Values can be empty.                           | `keywords: { topic: ['stress', 'fear'] }` | `object`  |
 | `bidFloor`     | optional | Floor of the impression opportunity. If present in the request overrides XML info.                           | `0.8`                                     | `float`   |
 
-<a name="adlivetech-bidder-config" />
+<a name="adlivetech-bidder-config"></a>
 
 ### Bidder Config
 
 You can allow writing in localStorage `pbjs.setBidderConfig` for the bidder `adlivetech`
-```
+
+```javascript
 pbjs.setBidderConfig({
     bidders: ["adlivetech"],
     config: {
@@ -48,9 +49,10 @@ pbjs.setBidderConfig({
     }
 })
 ```
+
 If it will be "true" this allow Adlivetech Bid Adapter to write userId in first party localStorage
 
-<a name="adlivetech-first-party" />
+<a name="adlivetech-first-party"></a>
 
 ### First Party Data
 

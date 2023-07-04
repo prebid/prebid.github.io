@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.removeAdUnit(adUnitCode)
-description:
+description: removeAdUnit API
 sidebarType: 1
 ---
 
@@ -9,7 +9,6 @@ sidebarType: 1
 Remove adUnit(s) from the pbjs configuration, If adUnit is not given then it will remove all adUnits
 
 **Kind**: static method of pbjs API.
-
 
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |

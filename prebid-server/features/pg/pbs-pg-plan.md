@@ -168,17 +168,17 @@ Random numbers are used at a couple of points in the PG algorithm. This is to av
 Here's a complete example of a Plan with all line item and delivery schedule fields.
 
 ```
-[				// each line item has a plan entry
+[                // each line item has a plan entry
   {
-    "lineItemId": "2291",	// this is specific to your internal systems
-    "dealId": "710216",		// also specific to your internal systems
-    "accountId": "1001",	// the Host Company's account ID for the publisher
+    "lineItemId": "2291",    // this is specific to your internal systems
+    "dealId": "710216",        // also specific to your internal systems
+    "accountId": "1001",    // the Host Company's account ID for the publisher
     "price": {
       "cpm": 7.29,
       "currency": "EUR"
     },
-    "relativePriority": 2,	// relative stacking specific to your pacing algorithm
-    "sizes": [{			// creative sizes
+    "relativePriority": 2,    // relative stacking specific to your pacing algorithm
+    "sizes": [{            // creative sizes
         "w": 468,
         "h": 60
       },
@@ -187,14 +187,14 @@ Here's a complete example of a Plan with all line item and delivery schedule fie
         "h": 90
       }
     ],
-    "frequencyCaps": [{		// Host Company may support multiple cap levels
-        "fcapId": "LI-2291",	// ID specific to your system
-        "count": 2,		// show no more than 2 times per 1 day
+    "frequencyCaps": [{        // Host Company may support multiple cap levels
+        "fcapId": "LI-2291",    // ID specific to your system
+        "count": 2,        // show no more than 2 times per 1 day
         "periods": 1,
         "periodType": "day"
       }
     ],
-    "targeting": {		// Line Item targeting
+    "targeting": {        // Line Item targeting
       "$and": [{
           "adunit.size": {
             "$intersects": [{
@@ -236,25 +236,25 @@ Here's a complete example of a Plan with all line item and delivery schedule fie
         }
       ]
     },
-    "startTimeStamp": "2020-08-28T07:22:14.000Z",	// line start time in UTC
-    "endTimeStamp": "2020-08-30T17:22:14.000Z",		// line end time in UTC
+    "startTimeStamp": "2020-08-28T07:22:14.000Z",    // line start time in UTC
+    "endTimeStamp": "2020-08-30T17:22:14.000Z",        // line end time in UTC
     "updatedTimeStamp": "2020-08-28T06:22:15.000Z",
-    "deliverySchedules": [				// now starts the plans
+    "deliverySchedules": [                // now starts the plans
       {
-        "planId": "2656177",				// ID is specific to your system
-        "startTimeStamp": "2020-08-28T11:40:00.000Z",	// UTC 11:40 to 11:45
+        "planId": "2656177",                // ID is specific to your system
+        "startTimeStamp": "2020-08-28T11:40:00.000Z",    // UTC 11:40 to 11:45
         "endTimeStamp": "2020-08-28T11:45:00.000Z",
         "updatedTimeStamp": "2020-08-28T11:36:30.000Z",
         "tokens": [
           {
-            "class": 1,					// always 1 for now
-            "total": 8					// number of tokens
+            "class": 1,                    // always 1 for now
+            "total": 8                    // number of tokens
           }
         ]
       },
       {
         "planId": "2656178",
-        "startTimeStamp": "2020-08-28T11:45:00.000Z",	// UTC 11:45 to 11:50
+        "startTimeStamp": "2020-08-28T11:45:00.000Z",    // UTC 11:45 to 11:50
         "endTimeStamp": "2020-08-28T11:50:00.000Z",
         "updatedTimeStamp": "2020-08-28T11:38:19.000Z",
         "tokens": [
@@ -264,7 +264,7 @@ Here's a complete example of a Plan with all line item and delivery schedule fie
           }
         ]
       },{
-	... more plans ...
+    ... more plans ...
       }
     ],
     "source": "pgBidderCode",

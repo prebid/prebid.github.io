@@ -11,13 +11,15 @@ sidebarType: 1
 ---
 
 ### Overview
+
 This documentation covers the parameters for the **SlimCut** bidder adapter. And is intended to be referenced by publishers using prebid 1.0 and later.
 
-
 ### Bid Params
+
 Only **placementId** is required and will be sent to you by your SlimCut account manager.
 
 ### Example Ad Unit
+
 ```javascript
 var adUnit = {
     "code": "scm_outstream",

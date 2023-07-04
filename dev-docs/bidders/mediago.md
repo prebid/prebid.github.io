@@ -17,7 +17,7 @@ sidebarType: 1
 
 SharedID: We need you to include SharedID module,which is used to get prebid user commonid.It can better differentiating users to bid on ads.
 
-### Note:
+### Note
 
 The MediaGo Bidding adapter requires setup before beginning. Please contact us at <ext_mediago_cm@baidu.com>
 
