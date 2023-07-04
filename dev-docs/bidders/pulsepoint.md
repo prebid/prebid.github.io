@@ -30,4 +30,3 @@ multiformat_supported: will-bid-on-one
 | `ct`       | required | Ad Tag Id                                             | `12345`                      | `integer`           |
 | `battr`    | optional | Blocked Creative Attributes                           | `[ 1, 2, 5 ]`                | `array of integers` |
 | `deals`    | required | Required for PMP requests. Array of OpenRTB Deal object.    | `[{ id: 'DEAL_ONE', bidfloor: 1.23 }, ...]`         | `array of objects`            |
-
