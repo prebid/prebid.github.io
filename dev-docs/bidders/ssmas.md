@@ -12,6 +12,7 @@ sidebarType: 1
 gdpr_supported: true
 userIds: sharedId
 floors_supported: true
+safeframes_ok: true
 
 ---
 
