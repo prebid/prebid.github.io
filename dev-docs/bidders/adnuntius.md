@@ -115,7 +115,7 @@ The following test parameters can be used to verify that Prebid Server is workin
         },
         "ext": {
             "adnuntius": {
-                "auId": "abc123"
+                "auId": "abc123",
                 "maxDeals": 2 // Optional
             }
         }
