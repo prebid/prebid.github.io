@@ -14,7 +14,7 @@ enable_download: false
 
 The [Automatad](https://automatad.com/) analytics adapter requires on-boarding, configuration
 parameters & addition of an external script that will be supplied to you by your Automatad account team. Please reach out to your account team or
-<tech@automatad.com> for more information.
+<cs@automatad.com> for more information.
 
 #### Adapter Configuration Options
 
