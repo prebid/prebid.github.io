@@ -12,6 +12,7 @@ media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
 pbjs: true
+pbs: true
 sidebarType: 1
 floors_supported: true
 prebid_member: false
