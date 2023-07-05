@@ -25,7 +25,7 @@ sidebarType: 1
 ---
 
 ### Note
-
+Gothamads will bid only on first impresion in bid request.
 The Example Bidding adapter requires setup before beginning. Please contact us at <support@gothamads.com>
 
 ### Bid Params
