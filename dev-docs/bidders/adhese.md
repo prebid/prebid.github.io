@@ -15,10 +15,10 @@ sidebarType: 1
 
 ### Registration
 
-The Adhese bid adapter may require an additional setup from the Adhese team, even for existing Adhese customers. Please reach out to your support team or info@adhese.com for more information.
+The Adhese bid adapter may require an additional setup from the Adhese team, even for existing Adhese customers. Please reach out to your support team or <info@adhese.com> for more information.
 
 Prebid Server host companies need to work with Adhese for each additional publisher.
- 
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -31,7 +31,7 @@ Prebid Server host companies need to work with Adhese for each additional publis
 
 ### Configuration
 
-Adhese supports 'iframe' UserSync configuration only. 
+Adhese supports 'iframe' UserSync configuration only.
 
 For Prebid.js v1.15.0 and later:
 

@@ -15,7 +15,8 @@ sidebarType: 1
 
 
 
-### Note:
+### Note
+
 The E-Planning Header Bidding adaptor requires setup and approval from the E-Planning team. Please go to [E-Planning website](http://www.e-planning.net) for more details.
 
 ### Bid Params

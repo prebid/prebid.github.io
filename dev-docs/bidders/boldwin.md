@@ -12,7 +12,7 @@ sidebarType: 1
 
 ### Note
 
-The Boldwin Bidding adapter requires setup before beginning. Please contact us at wls_team@smartyads.com
+The Boldwin Bidding adapter requires setup before beginning. Please contact us at <wls_team@smartyads.com>
 
 ### Bid Params
 

@@ -83,6 +83,7 @@ pbjs.bidderSettings = {
 ### First Party Data
 
 Adagio will use FPD data as fallback for the params below:
+
 - pagetype
 - category
 

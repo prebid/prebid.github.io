@@ -21,7 +21,7 @@ floors_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Adkernel Bidding adaptor requires setup and approval before beginning. Please reach out to <prebid@adkernel.com> for more details
 

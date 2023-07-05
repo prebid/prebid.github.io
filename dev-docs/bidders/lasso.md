@@ -18,8 +18,9 @@ multiformat_supported: will-not-bid
 sidebarType: 1
 ---
 
-### Note:
-The Lasso Bidding adapter requires setup before beginning. Please contact us at headerbidding@lassomarketing.io
+### Note
+
+The Lasso Bidding adapter requires setup before beginning. Please contact us at <headerbidding@lassomarketing.io>
 
 ### Bid Params
 

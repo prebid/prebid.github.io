@@ -16,9 +16,9 @@ gvl_id: 606
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Impactify adaptator requires setup and validation from the Impactify team. Simply email us your contact details at support@impactify.io and we'll make sure we'll connect you within 48h.
+The Impactify adaptator requires setup and validation from the Impactify team. Simply email us your contact details at <support@impactify.io> and we'll make sure we'll connect you within 48h.
 
 ### Bid Params
 

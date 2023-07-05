@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The adOmega bidding adapter requires setup and approval before implementation. Please reach out to <hi@adomega.in> for more details.
 

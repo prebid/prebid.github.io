@@ -8,7 +8,6 @@ pid: 10
 ---
 
 
-
 # Sample Brightcove Player Prebid Plugin Integration - Prebid in Header
 
 ## Overview
@@ -17,23 +16,23 @@ The Brightcove Player Prebid Plugin can be integrated on the publisher's page in
 
 ## Advantages
 
-- Potentially lower latency in rendering selected ad; the reduction in latency is directly related to how long the prebid process is allowed to run.
+* Potentially lower latency in rendering selected ad; the reduction in latency is directly related to how long the prebid process is allowed to run.
 
 ## Disadvantages
 
-- Requires publisher code both in the header to start the prebid process and also in the body to render the ad once the Brightcove Player is loaded.
-- Publisher *must* register the plugin on page - it cannot register the plugin in Brightcove Studio.
+* Requires publisher code both in the header to start the prebid process and also in the body to render the ad once the Brightcove Player is loaded.
+* Publisher *must* register the plugin on page - it cannot register the plugin in Brightcove Studio.
 
 ## Caveats
 
-- There is no guarantee that the prebid process will complete *before* the Brightcove Player is loaded, so there may still be some latency.
-- If the Brightcove Player is being embedded in a cross-domain (unfriendly) iFrame, then the prebid process *must* occur in the header of the iFrame and *not* in the header of the page.
+* There is no guarantee that the prebid process will complete *before* the Brightcove Player is loaded, so there may still be some latency.
+* If the Brightcove Player is being embedded in a cross-domain (unfriendly) iFrame, then the prebid process *must* occur in the header of the iFrame and *not* in the header of the page.
 
 ## Sample Code
 
 The following is a sample Brightcove Player Prebid Plugin integration that invokes Prebid in the header before Brightcove Player has been loaded.
 
-```
+```html
 <!doctype html>
 <html>
 <head>
@@ -52,22 +51,23 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
         var params = {
             code : 'my-video-tag',
             mediaTypes: {
-		video: {
-		  context: 'instream',
-                  playerSize: [640, 480],
-                  mimes: ['video/mp4'],
-                  protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-                  playbackmethod: [2],
-                  skip: 1
-		}
-            bids: [
-                {
-                    bidder: 'appnexus',
-                    params: {
-                        placementId: 12334567
-                    }
+                video: {
+                context: 'instream',
+                        playerSize: [640, 480],
+                        mimes: ['video/mp4'],
+                        protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                        playbackmethod: [2],
+                        skip: 1
                 }
-            ]
+                bids: [
+                    {
+                        bidder: 'appnexus',
+                        params: {
+                            placementId: 12334567
+                        }
+                    }
+                ]
+            }
         };
         window.bc_plugin_pbjs.plugin_prebid_options.biddersSpec = params;
 
@@ -117,5 +117,3 @@ The following is a sample Brightcove Player Prebid Plugin integration that invok
 </body>
 </html>
 ```
-
-

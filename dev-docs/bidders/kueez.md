@@ -15,7 +15,8 @@ fpd_supported: true
 sidebarType: 1
 ---
 
-### IMPORTANT NOTICE!
+### IMPORTANT NOTICE
+
 **TL;DR**
 The `kueez` adapter is currently "on hold" in favor of `kueezrtb`.
 Please contact your Account Manager/Executive for details.

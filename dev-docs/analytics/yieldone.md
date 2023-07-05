@@ -7,5 +7,4 @@ modulecode: yieldone
 
 #### Registration
 
-Please visit [https://www.platform-one.co.jp/](https://www.platform-one.co.jp/) for more information.
-
+Please visit [www.platform-one.co.jp](https://www.platform-one.co.jp/) for more information.

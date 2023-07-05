@@ -7,10 +7,12 @@ description: Troubleshooting Guide
 ---
 
 # Troubleshooting Prebid.js
+
 {:.no_toc}
 This guide will provide several sequential steps to help troubleshoot your Prebid.js integration.
 
-* TOC
+- TOC
+
 {:toc}
 <hr>
 
@@ -23,17 +25,17 @@ The open source code in Prebid.js can change frequently. To see what version of 
 <hr>
 
 ## Turn on Prebid.js debug messages
+
 Add `pbjs_debug=true` to the end of your page’s URL. For example:
 
 ```html
 /pbjs_demo.html?pbjs_debug=true
 ```
+
 This will add two types of messages to your browser’s developer console:
-<br>
 
 1. Prebid.js suppresses Javascript errors in the normal mode to not break the rest of your page. Adding the `pbjs_debug` parameter will expose the Javascript errors.
 2. You’ll find additional debug messages. Filter the messages by string `MESSAGE`:. For example:
-<br>
 
 ![Prebid.js message log](/assets/images/troubleshooting/pbjs_debug-console-log.png
  "Prebid.js message log"){: height="50%"  width="50%" :}
@@ -50,8 +52,9 @@ This will add two types of messages to your browser’s developer console:
 ## Verify your config
 
 In your browser Console tab, insert `pbjs.getConfig()` in the command line. Check for basic setup in the output, including:
- - selected timeout,
- - selected priceGranularity.
+
+- selected timeout,
+- selected priceGranularity.
 
 ![Verfiy your config](/assets/images/troubleshooting/pbjs-check-config.png "Verfiy your config"){: height="70%"  width="70%" :}
 
@@ -78,6 +81,7 @@ googletag.cmd.push(function() {
      googletag.pubads().disableInitialLoad();
 });
 ```
+
 <hr>
 
 ## Verify ad unit setup
@@ -169,9 +173,10 @@ javascript console> pbjs.setConfig({
   }
 });
 ```
+
 <hr>
 
-<a name="pbs-stored-responses">
+<a name="pbs-stored-responses"></a>
 
 ## Define Prebid Server Responses
 
@@ -194,13 +199,15 @@ javascript console> pbjs.setConfig({
   }
 });
 ```
+
 Then simply reload the page.
 
 Your Prebid Server host company will have set up some responses in their Prebid Server's database. They will provide
 the storedAuctionResponse IDs you can use, and can add other scenarios you'd like to test.
 
 As noted in the previous section, the debugging feature works by setting HTML local storage that persists for the session. To turn off debugging, set 'enabled' to false:
-```
+
+```text
 javascript console> pbjs.setConfig({
   debugging: {
     enabled: false
@@ -379,27 +386,27 @@ After the Prebid auction has occurred and key-values have been set for the ad se
 
 If you're using DFP, you can verify this by using the [Google Publisher Console](https://support.google.com/dfp_sb/answer/2462712?hl=en), which can be accessed as follows:
 
-+ Open your browser's console and type `googletag.openConsole();`
+- Open your browser's console and type `googletag.openConsole();`
 
-+ Append `googfc` as a query parameter to the URL.  Then, click the *Delivery Diagnostics* option to reveal most of the information described below.
+- Append `googfc` as a query parameter to the URL.  Then, click the _Delivery Diagnostics_ option to reveal most of the information described below.
 
 To make sure your ad server is set up correctly, answer the following questions:
 
-+ **How many ads have been fetched for an ad unit?** Ideally, only 1 ad will be requested on page load. If not, check for unnecessary extra calls to the ad server in your page's source code.
+- **How many ads have been fetched for an ad unit?** Ideally, only 1 ad will be requested on page load. If not, check for unnecessary extra calls to the ad server in your page's source code.
 
   ![Google Publisher Console Ad fetch count](/assets/images/overview/prebid-troubleshooting-guide/ad-server-1.png "Google Publisher Console Ad fetch count"){: .pb-sm-img :}
 
-+ **Are the key-values being set in the ad server?** If not, review your page's source code to ensure that the Prebid auction completes **before** sending the key-value targeting to the ad server.
+- **Are the key-values being set in the ad server?** If not, review your page's source code to ensure that the Prebid auction completes **before** sending the key-value targeting to the ad server.
 
   ![DFP Delivery Troubleshooting](/assets/images/overview/prebid-troubleshooting-guide/ad-server-2.png "DFP Delivery Troubleshooting"){: .pb-lg-img :}
 
-+ **Has the ad server order been activated?** If not, you'll have to activate the order to see Prebid-delivered ads.
+- **Has the ad server order been activated?** If not, you'll have to activate the order to see Prebid-delivered ads.
 
-+ **Are there other higher priority campaigns running within your ad server?** Higher priority campaigns will prevent Prebid ads with a higher CPM bid from winning in the ad server's auction. For testing purposes, you may want to pause these campaigns or have them excluded when the prebid key values are present.
+- **Are there other higher priority campaigns running within your ad server?** Higher priority campaigns will prevent Prebid ads with a higher CPM bid from winning in the ad server's auction. For testing purposes, you may want to pause these campaigns or have them excluded when the prebid key values are present.
 
-+ **Is there other remnant inventory in the ad server with a higher CPM that is winning?** To test for this, you may want to use a test creative set up within a bidder partner that has a high CPM or create artificial demand with a [bidCPMadjustment](/dev-docs/publisher-api-reference/bidderSettings.html).
+- **Is there other remnant inventory in the ad server with a higher CPM that is winning?** To test for this, you may want to use a test creative set up within a bidder partner that has a high CPM or create artificial demand with a [bidCPMadjustment](/dev-docs/publisher-api-reference/bidderSettings.html).
 
-+ **Have you set up all of the line items in the ad server to match the [setPriceGranularity setting](/dev-docs/examples/custom-price-buckets.html) within Prebid.js?**  All of the line items that correspond to your price granularity settings must be set up in your ad server.  When there are gaps in the price granularity of your line item setup, bids will be reduced according to the size of the gap.  For example, with [dense granularity](/dev-docs/publisher-api-reference/setConfig.html#denseGranularityBucket), a $3.32 bid will be sent to the ad server as $3.30.
+- **Have you set up all of the line items in the ad server to match the [setPriceGranularity setting](/dev-docs/examples/custom-price-buckets.html) within Prebid.js?**  All of the line items that correspond to your price granularity settings must be set up in your ad server.  When there are gaps in the price granularity of your line item setup, bids will be reduced according to the size of the gap.  For example, with [dense granularity](/dev-docs/publisher-api-reference/setConfig.html#denseGranularityBucket), a $3.32 bid will be sent to the ad server as $3.30.
 
 <hr>
 
@@ -407,9 +414,9 @@ To make sure your ad server is set up correctly, answer the following questions:
 
 When a prebid line item wins the ad server's auction, a `renderAd` event will be logged in the browser console. To see this event, you need to do either of the following before the auction:
 
-+ Have typed `pbjs.logging=true` into your your browser console
+- Have typed `pbjs.logging=true` into your your browser console
 
-+ Appended `pbjs_debug=true` as a query parameter to the URL
+- Appended `pbjs_debug=true` as a query parameter to the URL
 
 When this event is logged, it shows that Prebid.js has requested to render the ad from the winning bidder partner, and that this partner's bid has won both the Prebid and ad server auctions.
 
@@ -564,5 +571,5 @@ function auctionOptionsLogging() {
 
 {:.no_toc}
 
-+ [Prebid.js Troubleshooting Video](/videos/)
-+ [Common Setup Issues](/dev-docs/common-issues.html)
+- [Prebid.js Troubleshooting Video](/videos/)
+- [Common Setup Issues](/dev-docs/common-issues.html)

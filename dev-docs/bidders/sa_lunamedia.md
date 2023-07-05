@@ -21,4 +21,4 @@ sidebarType: 1
 | Name           | Scope    | Description                                              | Example    | Type      |
 |----------------|----------|----------------------------------------------------------|------------|-----------|
 | `key` | required | Placement integration key | `'1234'`        | `string` |
-| `type` | optional | Supported values are `publisher` and `network`.  | `'publisher'`        | `string` |
+| `type` | required | Supported values are `publisher` and `network`.  | `'publisher'`        | `string` |

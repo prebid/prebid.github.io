@@ -38,7 +38,7 @@ This approach is avaliable for the following ad formats:
 
 The basic integration steps for these ad units you can find at the page for integration using [Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html). The diference is that you should use  the `fetchDemand` function with following signature:
 
-``` kotlin
+```kotlin
 public void fetchDemand(@NonNull Object adObj, 
                         @NonNull OnCompleteListener2 listener) { ... }
                         
@@ -56,7 +56,7 @@ public interface OnCompleteListener2 {
 
 Examples:
 
-``` kotlin
+```kotlin
 private fun loadRewardedVideo() {
     adUnit?.fetchDemand { resultCode, unmodifiableMap -> 
         val keywords: Map<String, String> = HashMap(unmodifiableMap)
@@ -78,7 +78,7 @@ The integration and usage of the Rendering API is similar to any other Ad SDK. I
 Integration example:
 
 
-``` kotlin
+```kotlin
 // 1. Create an Ad View
 bannerView = BannerView(requireContext(), configId, adSize)
 bannerView?.setBannerListener(this)
@@ -89,6 +89,11 @@ viewContainer?.addView(bannerView)
 // 2. Load ad
 bannerView?.loadAd()
 ```
+
+{% capture warning_note %}  
+Pay attention that the `loadAd()` should be called on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
 
 #### Step 1: Create Ad View
 {:.no_toc}
@@ -111,7 +116,7 @@ Call `loadAd()` and SDK will:
 
 For **Banner Video** you will also need to specify the `bannerView.videoPlacementType`:
 
-``` kotlin
+```kotlin
 bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
 ```
 
@@ -119,7 +124,7 @@ bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other availabl
 
 Integration example:
 
-``` kotlin
+```kotlin
 // 1. Create an Interstitial Ad Unit
 interstitialAdUnit = InterstitialAdUnit(requireContext(), configId, minSizePercentage)
 interstitialAdUnit?.setInterstitialAdUnitListener(this)
@@ -131,6 +136,11 @@ interstitialAdUnit?.loadAd()
 // 3. Show the ad
 interstitialAdUnit?.show()
 ```
+
+{% capture warning_note %}  
+Pay attention that the `loadAd()` should be called on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
 
 The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
@@ -156,14 +166,14 @@ You can also assign the listener for processing ad events.
 #### Step 2: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` method which will make a request to Prebid server.
+Call the `loadAd()` to make a bid request.
 
 #### Step 3: Show the Ad when it is ready
 {:.no_toc}
 
 Wait until the ad is loaded and present it to the user in any suitable time.
 
-``` kotlin
+```kotlin
 override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
     //Ad is ready for display
 }
@@ -173,7 +183,7 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 
 Integration example:
 
-``` kotlin
+```kotlin
 // 1. Create an Ad Unit
 rewardedAdUnit = RewardedAdUnit(requireContext(), configId)
 rewardedAdUnit?.setRewardedAdUnitListener(this)
@@ -187,6 +197,11 @@ rewardedAdUnit?.loadAd()
 rewardedAdUnit?.show()
 ```
 
+{% capture warning_note %}  
+Pay attention that the `loadAd()` should be called on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 #### Step 1: Create a Rewarded Ad Unit
 {:.no_toc}
 
@@ -197,14 +212,14 @@ Create the `RewardedAdUnit` object with parameters:
 #### Step 2: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` method which will make a request to Prebid server.
+Call the `loadAd()` to make a bid request.
 
 #### Step 3: Show the Ad when it is ready
 {:.no_toc}
 
 Wait until the ad is loaded and present it to the user in any suitable time.
 
-``` kotlin
+```kotlin
 override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 //Ad is ready for display
 }

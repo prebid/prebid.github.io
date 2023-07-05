@@ -21,10 +21,9 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-Please contact info@houseofpubs.com for any questions or for information about our Prebid program.
-
+Please contact <info@houseofpubs.com> for any questions or for information about our Prebid program.
 
 ### Bid Params
 

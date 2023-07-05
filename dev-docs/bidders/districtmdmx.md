@@ -18,7 +18,7 @@ sidebarType: 1
 
 ### Bid Params
 
-##### Prebid version 1.0 and above.
+##### Prebid version 1.0 and above
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description         | Example          |    Type   |
