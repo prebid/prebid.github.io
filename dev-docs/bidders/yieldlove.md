@@ -7,8 +7,13 @@ pbjs: true
 gvl_id: 251
 gdpr_supported: true
 sidebarType: 1
+safeframes_ok: true
+floors_supported: false
 ---
 
+### Note
+
+The Yieldlove bidder adapter requires setup and approval from the Yieldlove team. Please reach out to [adapter@yieldlove.com](mailto:adapter@yieldlove.com) for more information.
 
 ### Bid Params
 
