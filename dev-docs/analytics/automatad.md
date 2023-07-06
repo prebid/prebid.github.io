@@ -29,25 +29,25 @@ parameters & addition of an external script that will be supplied to you by your
 ### Example Configuration
 
 ```
-  import CONSTANTS '../src/constants.json';
-  // ...
-  const EVENTS = CONSTANTS.EVENTS
-  // ...
-  pbjs.enableAnalytics({
-    provider: 'adloox',
-    options: {
-      siteID: 'adlooxtest',    // supplied by Automatad
-      publisherID: 127,        // supplied by Automatad
-      logDebug: false          // Defaults to false
-    },
-    includeEvents: [
-        EVENTS.AUCTION_INIT,
-        EVENTS.BID_RESPONSE,
-        EVENTS.AUCTION_DEBUG,
-        EVENTS.BID_WON,
-        EVENTS.BIDDER_DONE,
-        EVENTS.NO_BID,
-        EVENTS.BID_TIMEOUT
-    ]
-  });
+import CONSTANTS '../src/constants.json';
+// ...
+const EVENTS = CONSTANTS.EVENTS
+// ...
+pbjs.enableAnalytics({
+  provider: 'automatadAnalytics',
+  options: {
+    siteID: 'N8vZLx',        // supplied by Automatad
+    publisherID: 'PXfvBq',   // supplied by Automatad
+    logDebug: false          // Defaults to false
+  },
+  includeEvents: [
+      EVENTS.AUCTION_INIT,
+      EVENTS.BID_RESPONSE,
+      EVENTS.AUCTION_DEBUG,
+      EVENTS.BID_WON,
+      EVENTS.BIDDER_DONE,
+      EVENTS.NO_BID,
+      EVENTS.BID_TIMEOUT
+  ]
+});
 ```
