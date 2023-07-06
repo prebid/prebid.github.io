@@ -22,7 +22,7 @@ sidebarType: 1
 
 ### Test Parameters
 
-```
+``` javascript
     var adUnits = [
 
       // Video instream adUnit

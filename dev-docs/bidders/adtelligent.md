@@ -36,7 +36,7 @@ Adtelligent now supports adpod.
 
 ### Test Parameters
 
-```
+``` javascript
     var adUnits = [
 
       // Video instream adUnit
@@ -114,7 +114,7 @@ Adtelligent now supports adpod.
 It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request
 (default value is 10).
 
-```
+``` javascript
     pbjs.setBidderConfig({
         config: {              
             adtelligent: {

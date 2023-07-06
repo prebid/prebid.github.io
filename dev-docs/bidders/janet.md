@@ -32,7 +32,7 @@ This adapter provides a solution for accessing Video demand and display demand.
 
 ### Test Parameters
 
-```
+``` javascript
     var adUnits = [
 
       // Video instream adUnit
@@ -110,7 +110,7 @@ This adapter provides a solution for accessing Video demand and display demand.
 It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request
 (default value is 10).
 
-```
+``` javascript
     pbjs.setBidderConfig({
         config: {              
             janet: {

@@ -22,7 +22,7 @@ gvl_id: 775
 
 ### Test Parameters
 
-```
+``` javascript
     var adUnits = [
 
       // Video instream adUnit

@@ -33,7 +33,7 @@ This adapter provides a solution for accessing Video demand and display demand.
 
 ### Test Parameters
 
-```
+``` javascript
     var adUnits = [
 
       // Video instream adUnit
