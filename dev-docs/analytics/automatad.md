@@ -18,6 +18,7 @@ parameters & addition of an external script that will be supplied to you by your
 
 #### Adapter Configuration Options
 
+{: .table .table-bordered .table-striped }
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |--------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
 | siteID | required  | Your site ID | `N8vZLx`  | string |
