@@ -4,6 +4,9 @@ title: Streamkey
 description: Prebid Streamkey.tv Bidder Adapter
 pbjs: true
 pbs: true
+media_types: video,banner
+gdpr_supported: true
+gpp_supported: true
 biddercode: streamkey
 aliasCode: adtelligent
 media_types: video

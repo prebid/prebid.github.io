@@ -5,7 +5,8 @@ description: Prebid Adtelligent Bidder Adapter
 biddercode: adtelligent
 media_types: video,banner
 gdpr_supported: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+gpp_supported: true
+userIds: all (with commercial activation)
 schain_supported: true
 coppa_supported: true
 usp_supported: true
