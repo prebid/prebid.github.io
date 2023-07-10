@@ -66,6 +66,7 @@ The Geolocation is set in ortb2Fragments.global.device.geo in requestBidsObject 
 ```
 
 This data can be accessed from a bid adapter in one of several ways:
+
 1. Read reqBidsConfigObj.ortb2Fragments.global.device.geo directly
 2. Just merge everything in ortb2Fragments
 3. Start utilizing the [ortbConverter library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md)
