@@ -10,7 +10,7 @@ schain_supported: true
 userIds: id5Id
 media_types: banner, video, native
 floors_supported: true
-glv_id: 791
+gvl_id: 791
 sidebarType: 1
 ---
 

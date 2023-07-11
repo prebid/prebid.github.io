@@ -3,7 +3,7 @@ layout: analytics
 title: Oxxion
 description: oxxion Prebid Analytics Adapter
 modulecode: oxxion
-gdpr_supported: true
+gdpr_supported: false
 usp_supported: false
 coppa_supported: false
 prebid_member: false
@@ -23,15 +23,15 @@ Oxxion team. Please reach out to <contact@oxxion.io> for more information.
 
 ### Example Configuration
 
-```
+```javascript
 pbjs.enableAnalytics(
-  ...
+  //...
   {
     provider: 'oxxion',
     options : {
           domain: 'test.endpoint'
     }
   }
-  ...
+  //...
 )
 ```

@@ -3,7 +3,7 @@ layout: bidder
 title: Conceptx
 description: Conceptx bidder adapter
 biddercode: conceptx
-gdpr_supported: true
+gdpr_supported: false
 usp_supported: false
 coppa_supported: false
 schain_supported: false
