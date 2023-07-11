@@ -151,10 +151,13 @@ pbjs.setConfig({
   }
 });
 ```
+### Media Types
 
-#### mediaTypes.video
+#### Video
 
-The following video parameters are supported here so publishers may fully declare their video inventory:
+##### mediaTypes.video
+
+The following video parameters are supported here so publishers may fully declare their video inventory. These apply to both instream and outstream.
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
@@ -176,7 +179,7 @@ The following video parameters are supported here so publishers may fully declar
 | placement* | recommended | Placement type for the impression. (see openRTB v2.5 section 5.9 for options) | 1 | integer |
 | | | | | |
 
-#### bids.params.video
+##### bids.params.video
 
 The following Rubicon Project-specific video parameters are supported:
 
@@ -222,11 +225,11 @@ We recommend discussing video demand with your Magnite account representative.
 
 Lists of values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) documentation as referenced above.
 
-#### Outstream Video
+##### Outstream Video
 
 As of Prebid.js 4.37 Magnite's Rubicon Project adapter supports outstream video in two ways: using your own renderer or using ours. See the [Prebid.org Outstream documentation](/dev-docs/show-outstream-video-ads.html) for more information on using your own renderer.
 
-#### Outstream Renderer
+##### Outstream Renderer
 
 The Magnite outstream renderer is a JavaScript tag that will load our outstream video player and render when it is 50% or more in view, pause when it’s more than 50% out of view, and close when the ad has completed playing.
 
@@ -246,8 +249,58 @@ pbjs.setConfig({
 });
 ```
 
-* The Rubicon Project exchange does not make multi-format requests. If multiple mediatypes are defined, we bid on banner first, then video. Native bids will only be made if it's the only mediatype present.
-* Note that only the Prebid-Server-side rubicon adapter currently supports native.
+* The Rubicon Project exchange does not make multi-format requests unless the `bidonmultiformat` parameter is set to true. By default, if multiple mediatypes are defined, we bid on banner first, then video. Native bids will only be made if it's the only mediatype present.
+* The client-side adapter supports native as of PBJS 7.39.
+
+#### Native
+
+We recommend using the ORTB Native spec 1.2, but do support versions 1.0 and 1.1. Here the parameters required for each version:
+
+{: .table .table-bordered .table-striped }
+| Native Version | Required Fields |
+|----------------|-----------------|
+| 1.0 and 1.1 | layout, adunit, assets |
+| 1.2 | context, plcmttype, assets, eventtrackers. privacy is a recommended field. |
+
+Here's an example for Prebid.js 7.39 or later:
+
+```javascript
+var nativeAdUnit = {
+    code: 'myNativeAdUnit',
+    mediaTypes: {
+        native: {
+            sendTargetingKeys: false,
+            ortb: {
+                ver:"1.2",
+                context: 2,       // required for 1.2
+                plcmttype: 11,    // required for 1.2
+                privacy: 1,       // recommended for 1.2
+                assets: [{
+                    id: 1,
+                    required: 1,
+                    img: {
+                        type: 3,
+                        w: 150,
+                        h: 50,
+                    }
+                },{
+                ... other assets ...
+                }],
+                eventtrackers: [{ // required for 1.2
+                    event:1, methods:[1,2]
+                }]
+        }
+    },
+    bids: [{
+        bidder: 'rubicon',                        
+        params: {
+            accountId: 7780,       // replace params
+            siteId: 87184,
+            zoneId: 413290
+        }
+    }]
+};
+```
 
 ### Setting up the Prebid Server Adapter
   
@@ -256,7 +309,7 @@ If you're a Prebid Server host company looking to enable the Rubicon server-side
 * a Magnite DV+ XAPI login and password that you'll place in the PBS config
 * a partner code you can use for cookie-syncing with Magnite's service
   
-### Configuration
+### Configuration Options
 
 #### Single-Request
 
@@ -270,13 +323,11 @@ pbjs.setConfig({
 });
 ```
 
-### Notes
-
-1. There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
-
 <a name="rubicon-revenue-type"></a>
 
-2. Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for publishers to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
+#### Net Revenue
+
+Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for publishers to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
 
 For Prebid, the Rubicon Project bid adapter reports the revenue type as ‘gross’ by default before 2.35 and ‘net’ by default in 2.35 and later (as the vast majority of accounts are net and all new accounts are net).
 
@@ -285,3 +336,7 @@ It’s important to note that what the Rubicon Prebid bid adapter reports is not
 ```javascript
 pbjs.setConfig({ rubicon: {netRevenue: false} });
 ```
+
+### Notes
+
+1. There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.

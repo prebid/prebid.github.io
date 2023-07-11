@@ -13,6 +13,14 @@ safeframes_ok: true
 deals_supported: true
 pbjs: true
 sidebarType: 1
+floors_supported: true
+prebid_member: false
+fpd_supported: false
+gvl_id: none
+multiformat_supported: will-bid-on-one
+ortb_blocking_supported: true
+userIds: all
+sidebarType: 1
 ---
 
 ### Note
@@ -24,5 +32,4 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placementId`      | required | placement id | `'qdasx'`    | `string` |
-| `accountId`      | required | account id | `'asffw1'`    | `string` |
+| `accountId`      | required | account id | `'hash'`    | `string` |

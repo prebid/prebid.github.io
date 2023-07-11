@@ -615,26 +615,53 @@ Priority order behavior where “\_” is a specific value, and the “\*” is 
 
 Priority order for one column rule sets:  
 
- \_
- \*
+```text
+ _   
+ *
+```
 
 Priority order for two column rule set:
 
- \_ \| \_  
- \_ \| \*  
- \* \|\_
- \* \| \*
+```text
+ _ | _  
+ _ | *  
+ * | _   
+ * | *
+```
 
 Priority order for three column rule sets:
 
- \_ \| \_ \| \_  
- \_ \| \_ \| \*  
- \_ \| \* \| \_  
- \* \| \_ \| \_  
- \_ \| \* \| \*  
- \* \| \_ \| \*  
- \* \| \* \| \_  
- \* \| \* \| \*  
+```text
+ _ | _ | _  
+ _ | _ | *  
+ _ | * | _  
+ * | _ | _  
+ _ | * | *  
+ * | _ | *  
+ * | * | _  
+ * | * | *  
+```
+
+Priority order for four column rule sets:
+
+```text
+ _ | _ | _ | _
+ _ | _ | _ | *
+ _ | _ | * | _
+ _ | * | _ | _
+ * | _ | _ | _
+ _ | _ | * | *
+ _ | * | _ | *
+ _ | * | * | _
+ * | _ | _ | *
+ * | _ | * | _
+ * | * | _ | _
+ _ | * | * | *
+ * | _ | * | *
+ * | * | _ | *
+ * | * | * | _
+ * | * | * | *
+```
 
 Below are some real example behaviors.
 

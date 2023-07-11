@@ -38,7 +38,7 @@ sidebarType: 1
 | `kadpageurl`  | optional | Overrides Page URL    |  `'http://www.yahoo.com/'`| `string` |
 | `kadfloor`    | optional | Bid Floor             | `'1.75'`                  | `string` |
 | `currency`    | optional | Bid currency           | `'AUD'` (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.)                    | `string` |
-| `dctr`        | optional | Deal Custom Targeting <br/> (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.) | `'key1=123|key2=345'`        | `string` |
+| `dctr`        | optional | Deal Custom Targeting <br/> (Value configured in each adunit will be passed on inside adunit configs i.e. imp.ext) | `'key1=123|key2=345'`        | `string` |
 | `acat`    | optional | Allowed categories  <br/> (List of allowed categories for a given auction to be sent in either using ortb2 config (request.ext.prebid.bidderparams.pubmatic.acat) or using slot level params. If categories sent using both then priority will be given to ortb2 over slot level params.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]` | `array of strings` |
 | `bcat`    | optional | Blocked IAB Categories  <br/> (Values from all slots will be combined and only unique values will be passed. An array of strings only. Each category should be a string of a length of more than 3 characters.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`     | `array of strings` |
 | `deals`    | optional | PMP deals  <br/> (Values from each slot will be passed per slot. An array of strings only. Each deal-id should be a string of a length of more than 3 characters.) | `[ 'deal-id-5', 'deal-id-6', 'deal-id-7' ]`     | `array of strings` |

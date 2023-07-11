@@ -3,6 +3,9 @@ layout: bidder
 title: Select Media Display
 description: Prebid Select Media Bidder Adapter
 pbjs: true
+media_types: video,banner
+gdpr_supported: true
+gpp_supported: true
 biddercode: selectmedia
 aliasCode: adtelligent
 media_types: banner, video
@@ -19,7 +22,7 @@ gvl_id: 775
 
 ### Test Parameters
 
-```
+``` javascript
     var adUnits = [
 
       // Video instream adUnit

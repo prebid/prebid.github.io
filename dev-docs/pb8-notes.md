@@ -45,7 +45,7 @@ The following modules have been removed from Prebid.js as part of the 8.0 releas
 | OpenX ORTB Bid Adapter | OpenX Bid Adapter
 | Synacor Bid Adapter | IMDS Bid Adapter
 | AdGeneration Bid Adapter
-| EMX Bid Adapter | Cadent Bid Adapter
+| EMX Bid Adapter | Cadent Aperture MX Bid Adapter
 | Rubicon Analytics Adapter | Magnite Analytics Adapter
 
 ## Transaction identifiers are now reliable and opt in
