@@ -4,8 +4,10 @@ title: Media.net
 description: Prebid Media.net Bidder Adaptor
 biddercode: medianet
 gdpr_supported: true
-media_types: banner,native,video
 usp_supported: true
+coppa_supported: true
+gpp_supported: true
+media_types: banner,native,video
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: true
 pbjs: true
