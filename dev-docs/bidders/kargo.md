@@ -21,6 +21,7 @@ pbs_app_supported: false
 prebid_member: true
 gpp_supported: true
 multiformat_supported: will-bid-on-any
+pbjs_version_notes: Intermediaries please avoid version 7.46 to 7.53
 sidebarType: 1
 ---
 
