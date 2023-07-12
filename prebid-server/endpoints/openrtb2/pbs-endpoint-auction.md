@@ -227,7 +227,7 @@ How long an item is stored in Prebid Cache is determined by this hunt path:
 
 #### Timeout
 
-The OpenRTB 2.5 `imp[].exp` field defines how long Prebid Server has to process the request
+The OpenRTB 2.5 `tmax` field defines how long Prebid Server has to process the request
 before the client will stop waiting.
 
 This field is used in different ways by PBS-Go and PBS-Java:
