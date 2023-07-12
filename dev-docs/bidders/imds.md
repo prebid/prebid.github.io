@@ -10,6 +10,7 @@ usp_supported: true
 userIds: all
 media_types: banner, video
 coppa_supported: false
+gpp_supported: true
 schain_supported: true
 dchain_supported: false
 safeframes_ok: true
