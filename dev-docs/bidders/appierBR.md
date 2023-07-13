@@ -6,6 +6,7 @@ biddercode: appierBR
 aliasCode: appier
 pbjs: true
 media_types: banner
+gvl_id: 728 (appier)
 gdpr_supported: true
 sidebarType: 1
 ---

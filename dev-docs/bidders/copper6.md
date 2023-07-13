@@ -5,6 +5,7 @@ description: SSP Copper6 Bidder Adapter
 biddercode: copper6
 aliasCode: adtelligent
 media_types: video,banner
+gvl_id: 410
 gdpr_supported: true
 gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId

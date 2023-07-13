@@ -6,6 +6,7 @@ pbjs: true
 biddercode: avantisvideo
 aliasCode: aniview
 media_types: banner, video
+gvl_id: 780 (aniview)
 gdpr_supported: true
 usp_supported: true
 schain_supported: true

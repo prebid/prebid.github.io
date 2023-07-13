@@ -5,7 +5,7 @@ description: Prebid Kumma Bidder Adapter
 pbjs: true
 biddercode: kumma
 media_types: banner, native, video
-gdpr_supported: true
+gdpr_supported: false
 sidebarType: 1
 ---
 
@@ -24,73 +24,73 @@ sidebarType: 1
 
 ### test params
 
-```
-  var adUnits = [{
-          code: 'dfp-native-div',
-          mediaType: 'native',
-          mediaTypes: {
-              native: {
-                  title: {
-                      required: true,
-                      len: 75
-                  },
-                  image: {
-                      required: true
-                  },
-                  body: {
-                      len: 200
-                  },
-                  icon: {
-                      required: false
-                  }
-              }
-          },
-          bids: [{
-              bidder: 'kumma',
-              params: {
-                  pubId: '29521',
-                  siteId: '26048',
-                  placementId: '123',
-              }
-          }]
-      },
-      {
-          code: 'dfp-banner-div',
-          mediaTypes: {
-              banner: {
-                  sizes: [
-                      [300, 250]
-                  ],
-              }
-          },
-          bids: [{
-              bidder: 'kumma',
-              params: {
-                  pubId: '29521',
-                  siteId: '26049',
-                  placementId: '123',
-              }
-          }]
-      },
-      {
-          code: 'dfp-video-div',
-          sizes: [640, 480],
-          mediaTypes: {
-              video: {
-                  context: "instream"
-              }
-          },
-          bids: [{
-              bidder: 'kumma',
-              params: {
-                  pubId: '29521',
-                  siteId: '26049',
-                  placementId: '123',
-                  video: {
-                      skippable: true,
-                  }
-              }
-          }]
-      }
-  ];
+```javascript
+var adUnits = [{
+        code: 'dfp-native-div',
+        mediaType: 'native',
+        mediaTypes: {
+            native: {
+                title: {
+                    required: true,
+                    len: 75
+                },
+                image: {
+                    required: true
+                },
+                body: {
+                    len: 200
+                },
+                icon: {
+                    required: false
+                }
+            }
+        },
+        bids: [{
+            bidder: 'kumma',
+            params: {
+                pubId: '29521',
+                siteId: '26048',
+                placementId: '123',
+            }
+        }]
+    },
+    {
+        code: 'dfp-banner-div',
+        mediaTypes: {
+            banner: {
+                sizes: [
+                    [300, 250]
+                ],
+            }
+        },
+        bids: [{
+            bidder: 'kumma',
+            params: {
+                pubId: '29521',
+                siteId: '26049',
+                placementId: '123',
+            }
+        }]
+    },
+    {
+        code: 'dfp-video-div',
+        sizes: [640, 480],
+        mediaTypes: {
+            video: {
+                context: "instream"
+            }
+        },
+        bids: [{
+            bidder: 'kumma',
+            params: {
+                pubId: '29521',
+                siteId: '26049',
+                placementId: '123',
+                video: {
+                    skippable: true,
+                }
+            }
+        }]
+    }
+];
 ```

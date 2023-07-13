@@ -5,6 +5,7 @@ description: Prebid Blue Billywig Bidder Adaptor
 biddercode: bluebillywig
 pbjs: true
 media_types: video
+gvl_id: 684
 gdpr_supported: true
 schain_supported: true
 coppa_supported: true

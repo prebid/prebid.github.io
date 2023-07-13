@@ -6,7 +6,7 @@ pbjs: true
 biddercode: ottadvisors
 aliasCode: aniview
 media_types: banner, video
-gdpr_supported: true
+gdpr_supported: false
 usp_supported: true
 schain_supported: true
 safeframes_ok: true
@@ -27,8 +27,8 @@ For more information about [ottadvisors](http://ottadvisors.com/).
 
 ### Test Parameters
 
-```
-videoAdUnit = [
+```javascript
+const videoAdUnit = [
 {
   code: 'video1',
   mediaTypes: {

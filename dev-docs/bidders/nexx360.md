@@ -11,7 +11,7 @@ floors_supported: true
 userIds: all
 tcf2_supported: true
 media_types: banner, video, native
-glv_id: 965
+gvl_id: 965
 pbs: false
 sidebarType: 1
 

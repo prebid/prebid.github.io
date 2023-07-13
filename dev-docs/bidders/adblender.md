@@ -6,6 +6,7 @@ pbjs: true
 biddercode: adblender
 aliasCode: admixer
 media_types: video
+gvl_id: 511 (admixer)
 gdpr_supported: true
 usp_supported: true
 sidebarType: 1

@@ -6,7 +6,7 @@ pbjs: true
 biddercode: adhash
 media_types: display, video
 safeframes_ok: false
-gdpr_supported: true
+gdpr_supported: false
 multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---

@@ -4,7 +4,7 @@ title: DistrictmDMX
 description: Prebid DistrictmDMX Bidder Adaptor
 pbjs: true
 biddercode: districtmDMX
-gdpr_supported: true
+gdpr_supported: false
 schain_supported: true
 floors_supported: true
 usp_supported: true

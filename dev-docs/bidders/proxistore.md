@@ -4,6 +4,7 @@ title: Proxistore
 description: Prebid Proxistore Bidder Adapter
 pbjs: true
 biddercode: proxistore
+gvl_id: 418
 gdpr_supported: true
 sidebarType: 1
 ---

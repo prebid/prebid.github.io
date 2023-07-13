@@ -5,7 +5,7 @@ description: Prebid AdOcean Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: adocean
-gdpr_supported: true
+gdpr_supported: false
 sidebarType: 1
 ---
 

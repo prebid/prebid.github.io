@@ -6,7 +6,7 @@ biddercode: bidmyadz
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-gdpr_supported: true
+gdpr_supported: false
 pbjs: false
 pbs: true
 pbs_app_supported: true

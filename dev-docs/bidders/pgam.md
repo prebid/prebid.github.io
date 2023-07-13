@@ -4,7 +4,7 @@ title: PGAM
 description: Prebid PGAM Bidder Adapter
 biddercode: pgam
 media_types: video,banner
-gdpr_supported: true
+gdpr_supported: false
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
 coppa_supported: true
@@ -30,75 +30,75 @@ This adapter provides a solution for accessing Video demand and display demand.
 
 ### Test Parameters
 
-```
-    var adUnits = [
+```javascript
+var adUnits = [
 
-      // Video instream adUnit
-      {
-        code: 'test-div',
-        mediaTypes: {
-          video: {
-            context: 'instream',
-            playerSize: [640, 480]
-          }
-        },
-        bids: [{
-          bidder: 'pgam',
-          params: {
-            aid: 472386
-          }
-        }]
-      },
-
-      // Video outstream adUnit
-      {
-        code: 'test-div',
-        mediaTypes: {
-          video: {
-            context: 'outstream',
-            playerSize: [640, 480]
-          }
-        },
-        bids: [{
-          bidder: 'pgam',
-          params: {
-            aid: 472386
-          }
-        }]
-      },
-
-       // Video ADPOD adUnit
-      {
-        code: 'test-div',
-        sizes: [[640, 480]],
-        mediaTypes: {
-          video: {
-            context: 'adpod',
-            playerSize: [640, 480]            
-          }
-        },
-        bids: [{
-          bidder: 'pgam',
-          params: {
-            aid: 472386
-          }
-        }]
-      },
-
-      // Banner adUnit
-      {
-        code: 'test-div',
-        mediaTypes:{
-            banner:{
-                sizes: [[300, 250]]
-            }
-        }
-        bids: [{
-          bidder: 'pgam',
-          params: {
-            aid: 529814
-          }
-        }]
+  // Video instream adUnit
+  {
+    code: 'test-div',
+    mediaTypes: {
+      video: {
+        context: 'instream',
+        playerSize: [640, 480]
       }
-    ];
+    },
+    bids: [{
+      bidder: 'pgam',
+      params: {
+        aid: 472386
+      }
+    }]
+  },
+
+  // Video outstream adUnit
+  {
+    code: 'test-div',
+    mediaTypes: {
+      video: {
+        context: 'outstream',
+        playerSize: [640, 480]
+      }
+    },
+    bids: [{
+      bidder: 'pgam',
+      params: {
+        aid: 472386
+      }
+    }]
+  },
+
+    // Video ADPOD adUnit
+  {
+    code: 'test-div',
+    sizes: [[640, 480]],
+    mediaTypes: {
+      video: {
+        context: 'adpod',
+        playerSize: [640, 480]            
+      }
+    },
+    bids: [{
+      bidder: 'pgam',
+      params: {
+        aid: 472386
+      }
+    }]
+  },
+
+  // Banner adUnit
+  {
+    code: 'test-div',
+    mediaTypes:{
+        banner:{
+            sizes: [[300, 250]]
+        }
+    }
+    bids: [{
+      bidder: 'pgam',
+      params: {
+        aid: 529814
+      }
+    }]
+  }
+];
 ```

@@ -27,8 +27,8 @@ For more information about [Aniview Ad Server](https://www.aniview.com/), please
 
 ### Test Parameters
 
-```
-videoAdUnit = [
+```javascript
+const videoAdUnit = [
 {
   code: 'video1',
   mediaTypes: {

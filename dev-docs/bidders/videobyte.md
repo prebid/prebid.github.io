@@ -6,6 +6,7 @@ pbjs: true
 pbs: true
 biddercode: videobyte
 media_types: display, video
+gvl_id: 104
 gdpr_supported: true
 usp_supported: true
 schain_supported: true

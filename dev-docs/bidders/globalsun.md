@@ -11,7 +11,7 @@ fpd_supported: false
 multiformat_supported: will-not-bid
 ortb_blocking_supported: partial
 usp_supported: true
-gdpr_supported: true
+gdpr_supported: false
 coppa_supported: true
 schain_supported: true
 floors_supported: true

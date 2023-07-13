@@ -3,7 +3,7 @@ layout: bidder
 title: Adserver.Online
 description: Prebid Adserver.Online Bidder Adapter
 biddercode: aso
-gdpr_supported: true
+gdpr_supported: false
 usp_supported: true
 media_types: video
 safeframes_ok: true

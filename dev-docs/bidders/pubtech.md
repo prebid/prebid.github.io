@@ -5,6 +5,7 @@ description: Prebid Pubtech Bidder Adapter
 pbjs: true
 biddercode: pubtech
 aliasCode : nexx360
+gvl_id: 965
 gdpr_supported: true
 usp_supported: true
 schain_supported: true

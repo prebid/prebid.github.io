@@ -4,6 +4,7 @@ title: Justpremium
 description: Prebid Justpremium Bidder Adaptor
 pbjs: true
 biddercode: justpremium
+gvl_id: 62
 gdpr_supported: true
 usp_supported: true
 schain_supported: true

@@ -2,6 +2,7 @@
 layout: bidder
 title: NextMillennium
 description: NextMillennium bid adapter
+gvl_id: dev-docs/bidders/nextMillennium.md
 gdpr_supported: true
 usp_supported: true
 coppa_supported: false

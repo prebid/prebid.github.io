@@ -4,6 +4,7 @@ title: Smart AdServer
 description: Prebid Smart AdServer Bidder Adapter
 biddercode: smartadserver
 media_types: display, video, native
+gvl_id: 45
 gdpr_supported: true
 gpp_supported: true
 schain_supported: true

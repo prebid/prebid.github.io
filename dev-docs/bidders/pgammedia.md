@@ -6,6 +6,7 @@ pbjs: true
 biddercode: pgammedia
 aliasCode: aniview
 media_types: banner, video
+gvl_id: 780
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
@@ -26,8 +27,8 @@ For more information about [PGAM MEDIA](https://pgammedia.com/).
 
 ### Test Parameters
 
-```
-videoAdUnit = [
+```javascript
+const videoAdUnit = [
 {
   code: 'video1',
   mediaTypes: {

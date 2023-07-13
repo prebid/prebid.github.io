@@ -4,7 +4,7 @@ title: Padsquad
 description: Prebid Padsquad Bidder Adapter
 pbjs: true
 biddercode: padsquad
-gdpr_supported: true
+gdpr_supported: false
 sidebarType: 1
 ---
 
