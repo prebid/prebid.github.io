@@ -15,10 +15,9 @@ sidebarType: 1
 ---
 
 
-
 ### Bid Params
 
-##### Prebid version 1.0 and above
+#### Prebid version 1.0 and above
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description         | Example          |    Type   |
@@ -26,7 +25,7 @@ sidebarType: 1
 | `dmxid`    | required | Placement Id        |  `100001`          | `integer` |
 | `memberid` | required | Account id          |  `100003`          | `integer` |
 
-##### Prebid 0.34~ legacy
+#### Prebid 0.34~ legacy
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description             | Example          | Type      |
