@@ -28,8 +28,8 @@ For more information about [VidCrunch](https://vidcrunch.com/), please contact <
 
 ### Test Parameters
 
-```
-videoAdUnit = [
+```javascript
+const videoAdUnit = [
 {
   code: 'video1',
   mediaTypes: {

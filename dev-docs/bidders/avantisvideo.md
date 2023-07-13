@@ -28,9 +28,8 @@ For more information about [Avantis Video](https://www.avantisvideo.com/), pleas
 
 ### Test Parameters
 
-```
-videoAdUnit = [
-{
+```javascript
+const videoAdUnit = [{
   code: 'video1',
   mediaTypes: {
     video: {

@@ -28,8 +28,8 @@ For more information about [SelectMedia](https://www.selectmedia.asia/), please 
 
 ### Test Parameters
 
-```
-videoAdUnit = [
+```javascript
+const videoAdUnit = [
 {
   code: 'video1',
   mediaTypes: {

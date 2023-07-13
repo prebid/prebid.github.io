@@ -35,7 +35,7 @@ sidebarType: 1
 
 You can allow writing in localStorage `pbjs.bidderSettings` for the bidder `nexx360`
 
-```
+```javascript
 pbjs.bidderSettings = {
     nexx360: {
         storageAllowed : true
@@ -49,7 +49,7 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 
 ### Test Parameters
 
-```
+```javascript
 var adUnits = [
    // Banner adUnit
    {
@@ -85,7 +85,7 @@ var adUnits = [
      // Native adUnit
    {
         code: 'native1',
-        mediaTypes:
+        mediaTypes: {
             native: {
                 title: {
                     required: true

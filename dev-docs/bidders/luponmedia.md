@@ -4,6 +4,7 @@ title: LuponMedia
 description: LuponMedia Bidder Adapter
 pbjs: true
 biddercode: luponmedia
+gvl_id: 1132
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true

@@ -5,6 +5,7 @@ description: Prebid Holid Bidder Adapter
 biddercode: holid
 pbjs: true
 media_types: banner
+gvl_id: 1177
 gdpr_supported: true
 usp_supported: true
 prebid_member: false

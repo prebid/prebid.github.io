@@ -6,6 +6,7 @@ pbjs: true
 biddercode: openwebvideo
 aliasCode: aniview
 media_types: banner, video
+gvl_id: 780 (aniview)
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
@@ -27,7 +28,7 @@ For more information about [OpenWeb](https://www.openweb.com/).
 
 ### Test Parameters
 
-```
+```javascript
 videoAdUnit = [
 {
   code: 'video1',

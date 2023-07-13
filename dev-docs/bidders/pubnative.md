@@ -4,7 +4,7 @@ title: PubNative
 pbs: true
 media_types: banner, video, native
 biddercode: pubnative
-gdpr_supported: true
+gdpr_supported: false
 prebid_member: true
 schain_supported: true
 coppa_supported: true

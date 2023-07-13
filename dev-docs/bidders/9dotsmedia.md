@@ -5,6 +5,7 @@ description: 9Dots Media Bidder Adapter
 biddercode: 9dotsmedia
 aliasCode: adtelligent
 media_types: video,banner
+gvl_id: 410 (adtelligent)
 gdpr_supported: true
 gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId

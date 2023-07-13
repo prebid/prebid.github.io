@@ -22,7 +22,7 @@ sidebarType: 1
 
 Set the "farm" to use region-specific server
 
-```
+```javascript
 pbjs.que.push(function() {
   // use the bid server in Taiwan (country code: tw)
   pbjs.setConfig({
@@ -35,7 +35,7 @@ pbjs.que.push(function() {
 
 Explicitly override the bid server used for bidding
 
-```
+```javascript
 pbjs.que.push(function() {
   pbjs.setConfig({
     appier: {

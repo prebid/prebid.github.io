@@ -8,6 +8,7 @@ biddercode: trustx
 aliasCode: grid
 media_types: banner, video
 multiformat_supported: will-bid-on-any
+gvl_id: 686 (grid)
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
