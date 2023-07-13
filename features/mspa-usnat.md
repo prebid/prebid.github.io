@@ -108,7 +108,7 @@ To make sense of the specific values below, please refer to the [IAB's USNat tec
         1. SID 7 has two 'KnownChild' values: ages 13-16 and under 13. The goal is to map SIDs 8-12 behavior to SID 7's structure.
         1. Prebid does not distinguish between "selling", "sharing", or "processing" data.
         1. If the state-level KnownChild values are all 0 (N/A), then the normalized output values are also 0. The assumption is that a KnownChild value of 0 means the user is not a child as defined by the various laws..
-        1. Prebid normalization will never set the "under 13" category to "consented". If there's any hint that the user is a KnownChild and could be under 13, the normalization will define "no consent" for "under 13".
+        1. If the state-specific values do not distinguish between ages 13-16 and under 13, Prebid will set the normalized values to be the same and will never report consent because we will not recognize consent from under 13. We've mapped information in the state-specific protocols in a conservative way. 
     1. Normalization for California (CA) (SID 8)
         1. CA sensitive data 1 maps to US national sensitive data 9
         1. CA sensitive data 2 maps to US national sensitive data 10
@@ -119,22 +119,22 @@ To make sense of the specific values below, please refer to the [IAB's USNat tec
         1. CA sensitive data 8 maps to US national sensitive data 3
         1. CA sensitive data 9 maps to US national sensitive data 4
         1. Set these fields to NULL: SharingNotice, TargetedAdvertisingOptOutNotice, TargetedAdvertisingOptOut, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[8,11]
-        1. KnownChild
+        1. KnownChild - SID 8 does not distinguish between consent for ages 13-16 and under 13, so Prebid will never normalize a positive KnownChild consent.
             1. If CA string KnownChildSensitiveDataConsents[1]=0 and state string KnownChildSensitiveDataConsents[2]=0, then no change – these can be treated as the normalized KnownChildSensitiveDataConsents[1]=KnownChildSensitiveDataConsents[2]=0 (i.e. not a 'known child')
-            1. Let ages 13-16 state their consent, but never take consent from under age 13 - if CA string KnownChildSensitiveDataConsents[1]=2 and CA string KnownChildSensitiveDataConsents[2]=2, then set the normalized KnownChildSensitiveDataConsents[1]=2 and KnownChildSensitiveDataConsents[2]=1
-            1. Otherwise, if normalized KnownChildSensitiveDataConsents[1] or [2] are not yet set, set it to 1 (no consent)
+            1. Otherwise, the SID 8 protocol does not allow Prebid to know if the user is aged 13-16 or under 13, so simply set KnownChildSensitiveDataConsents[1] or [2] both to 1 (no consent)
         1. All other fields passthrough.
     1. Normalization for Virginia (SID 9)
         1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12]
-        1. KnownChild: If the value is 1 or 2, treat these to be:
-            1. KnownChildSensitiveDataConsents[2]=1 (no consent for under age 13)
-            1. KnownChildSensitiveDataConsents[1]=0 (n/a for ages 13-16)
+        1. KnownChild:  - SID 9 does not distinguish between consent for ages 13-16 and under 13, and the VA state laws define a child as being under 13, so Prebid will never normalize a positive KnownChild consent.
+            1. If the SID 9 KnownChildSensitiveDataConsents value is 1 or 2, normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=1 (no consent)
+            1. If the SID 9 KnownChildSensitiveDataConsents value is 0, assume the user is not a child and normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
         1. All other fields passthrough.
     1. Normalization for Colorado (SID 10)
         1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[8-12]
-        1. KnownChild: If the value is 1 or 2, treat these to be:
-        1. KnownChildSensitiveDataConsents[2]=1 (no consent for under age 13)
-        1. KnownChildSensitiveDataConsents[1]=0 (n/a for ages 13-16)
+        1. KnownChild - SID 10 does not distinguish between consent for ages 13-16 and under 13, so Prebid will never normalize a positive KnownChild consent.
+
+        1. If the SID 10 KnownChildSensitiveDataConsents value is 1 or 2, normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=1 (no consent)
+        1. If the SID 10 KnownChildSensitiveDataConsents value is 0, assume the user is not a child and normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
         1. All other fields passthrough.
     1. Normalization for Utah (UT) (SID 11)
         1. UT sensitive data 1,2 maps straight through to US National 1,2
@@ -143,17 +143,16 @@ To make sense of the specific values below, please refer to the [IAB's USNat tec
         1. UT sensitive data 5 maps to US National 3
         1. UT sensitive data 6,7,8 maps straight through to US National 6,7,8
         1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessing[9-12]
-        1. KnownChild: If the value is 1 or 2, treat these to be:
-            1. KnownChildSensitiveDataConsents[2]=1 (no consent for under age 13)
-            1. KnownChildSensitiveDataConsents[1]=0 (n/a for ages 13-16)
+        1. KnownChild - SID 11 does not distinguish between consent for ages 13-16 and under 13, so Prebid will never normalize a positive KnownChild consent.
+            1. If the SID11 KnownChildSensitiveDataConsents value is 1 or 2, normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=1 (no consent)
+            1. If the SID11 KnownChildSensitiveDataConsents value is 0, assume the user is not a child and normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
         1. All other fields passthrough.
-    1. Normalization for Connecticut (CT) (SID 12)
+    1. Normalization for Connecticut (SID 12)
         1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12]
-        1. KnownChild:
-            1. If CT string KnownChildSensitiveDataConsents[2]=0 and CT string KnownChildSensitiveDataConsents[3]=0, then set the normalized KnownChildSensitiveDataConsents[1]=0 (not age 13-16)
-            1. Let ages 13-16 state their consent - if CT string KnownChildSensitiveDataConsents[2]=2 and CT string KnownChildSensitiveDataConsents[3]=2, then set the normalized KnownChildSensitiveDataConsents[1]=2
-            1. Otherwise, if normalized KnownChildSensitiveDataConsents[1] is not yet set, set it to 1 (no consent)
-            1. If CT string KnownChildSensitiveDataConsents[1]<>0, then normalize KnownChildSensitiveDataConsents[2]=1 (no consent for under 13)
+        1. KnownChild - SID 12 does distinguish ages aligned with SID 7
+            1. If SID 12 string KnownChildSensitiveDataConsents[1, 2, and 3] are all 0 then assume the user is not a child and set the normalized SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
+            1. SID 12 age ranges align with SID 7, so let ages 13-16 state their consent. If SID 12 string KnownChildSensitiveDataConsents[2]=2 and SID 12 string KnownChildSensitiveDataConsents[3]=2, then set the normalized KnownChildSensitiveDataConsents[1]=2 (Ages 13-16 consented) and the normalized KnownChildSensitiveDataConsents[2]=1 (under 13 not consented)
+            1. Otherwise, set the normalized SID 7 KnownChildSensitiveDataConsents[1 and 2] to 1 (no consent)
         1. All other fields passthrough.
     1. If the CMP provides a non-zero/null value for any of the following sensitive data categories, the module should suppress the activity. In other words, if there's any hint that data of these categories is associated with advertising, Prebid should anonymize first party data.
         1. Genetic (6)
