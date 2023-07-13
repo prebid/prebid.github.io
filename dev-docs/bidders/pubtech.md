@@ -5,7 +5,7 @@ description: Prebid Pubtech Bidder Adapter
 pbjs: true
 biddercode: pubtech
 aliasCode : nexx360
-gvl_id: 965
+gvl_id: 965 (nexx360)
 gdpr_supported: true
 usp_supported: true
 schain_supported: true
@@ -35,7 +35,7 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 
 ### Test Parameters
 
-```
+```javascript
 var adUnits = [
    // Banner adUnit
    {
