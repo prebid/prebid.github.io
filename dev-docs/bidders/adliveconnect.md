@@ -6,7 +6,7 @@ biddercode: adliveconnect
 pbjs: true
 pbs: false
 media_types: banner, native, video
-gvl_id: 14
+gvl_id: 14 (adkernel)
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true

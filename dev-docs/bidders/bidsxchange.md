@@ -5,7 +5,8 @@ description: Prebid Bidsxchange Bidder Adapter
 biddercode: bidsxchange
 aliasCode: adtelligent
 media_types: video,banner
-gdpr_supported: false
+gvl_id: 410 (adtelligent)
+gdpr_supported: true
 gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true

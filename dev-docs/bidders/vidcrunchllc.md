@@ -5,7 +5,7 @@ description: VidCrunch Bidder Adapter
 biddercode: vidcrunchllc
 aliasCode: adtelligent
 media_types: video,banner
-gvl_id: 410
+gvl_id: 410 (adtelligent)
 gdpr_supported: true
 gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId

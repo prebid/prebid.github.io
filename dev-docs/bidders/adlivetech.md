@@ -6,7 +6,8 @@ pbjs: true
 biddercode: adlivetech
 aliasCode: grid
 media_types: banner, video
-gdpr_supported: false
+gvl_id: 686 (grid)
+gdpr_supported: true
 usp_supported: true
 schain_supported: true
 floors_supported: true

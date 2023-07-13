@@ -5,6 +5,7 @@ description: Prebid JANet Bidder Adapter
 biddercode: janet
 aliasCode: adtelligent
 media_types: video,banner
+gvl_id: 410 (adtelligent)
 gdpr_supported: true
 gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId

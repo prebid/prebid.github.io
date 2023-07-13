@@ -4,7 +4,7 @@ title: Arteebee
 description: Prebid Arteebee Bidder Adaptor
 pbjs: true
 biddercode: arteebee
-gdpr_supported: true
+gdpr_supported: false
 coppa_supported: true
 sidebarType: 1
 ---

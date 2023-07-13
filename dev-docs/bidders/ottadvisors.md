@@ -6,7 +6,8 @@ pbjs: true
 biddercode: ottadvisors
 aliasCode: aniview
 media_types: banner, video
-gdpr_supported: false
+gvl_id: 780 (aniview)
+gdpr_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: true
