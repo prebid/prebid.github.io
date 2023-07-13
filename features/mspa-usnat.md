@@ -108,7 +108,7 @@ To make sense of the specific values below, please refer to the [IAB's USNat tec
         1. SID 7 has two 'KnownChild' values: ages 13-16 and under 13. The goal is to map SIDs 8-12 behavior to SID 7's structure.
         1. Prebid does not distinguish between "selling", "sharing", or "processing" data.
         1. If the state-level KnownChild values are all 0 (N/A), then the normalized output values are also 0. The assumption is that a KnownChild value of 0 means the user is not a child as defined by the various laws..
-        1. If the state-specific values do not distinguish between ages 13-16 and under 13, Prebid will set the normalized values to be the same and will never report consent because we will not recognize consent from under 13. We've mapped information in the state-specific protocols in a conservative way. 
+        1. If the state-specific values do not distinguish between ages 13-16 and under 13, Prebid will set the normalized values to be the same and will never report consent because we will not recognize consent from under 13. We've mapped information in the state-specific protocols in a conservative way.
     1. Normalization for California (CA) (SID 8)
         1. CA sensitive data 1 maps to US national sensitive data 9
         1. CA sensitive data 2 maps to US national sensitive data 10
