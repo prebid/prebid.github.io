@@ -12,16 +12,16 @@ sidebarType : 1
 ---
 
 # A1Media RTD Module
-{:.no_toc}
-
-* TOC
-{:toc}
 
 {: .alert.alert-warning :}
 Disclosure: This module loads external code that is not open source and has not been reviewed by Prebid.org.
 
-This module loads external code using the passed parameter (params.tagId).<br />
-The reason for needing an external script is not just to acquire data from the current page, but also to analyze accumulated data periodically. Instead of using a version, the script is loaded based on the date for a specific reason. The A1Media script has many customizable elements for the deployed site. Therefore, there is an issue where the script needs to be changed immediately upon request from the site. By loading the script based on the date, it ensures that the script is refreshed within a maximum of one day.
+The A1Media RTD module loads A1Media script for obtains user segments, and provides user segment data to bid-requests.<br />
+to get user segments, you will need a1media script customized for site.
+
+To use this module, you’ll need to work with [A1MediaGroup](https://www.a1mediagroup.com/) to get an account and receive instructions on how to set up your pages and ad server.
+
+Contact dev@a1mediagroup.co.kr for information.
 
 ## Integration
 
@@ -66,3 +66,5 @@ pbjs.setConfig({
 
 {: .alert.alert-warning :}
 tagId is publisher specific tag ID.
+
+This module loads external code using the passed parameter (params.tagId).
