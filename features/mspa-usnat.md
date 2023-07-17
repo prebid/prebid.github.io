@@ -118,7 +118,7 @@ To make sense of the specific values below, please refer to the [IAB's USNat tec
         1. CA sensitive data 6 and 7 maps straight through to US national sensitive data 6 and 7
         1. CA sensitive data 8 maps to US national sensitive data 3
         1. CA sensitive data 9 maps to US national sensitive data 4
-        1. Set these fields to NULL: SharingNotice, TargetedAdvertisingOptOutNotice, TargetedAdvertisingOptOut, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[8,11]
+        1. Set these fields to NULL: SharingNotice, TargetedAdvertisingOptOutNotice, TargetedAdvertisingOptOut, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[5 and 11]
         1. KnownChild - SID 8 does not distinguish between consent for ages 13-16 and under 13, so Prebid will never normalize a positive KnownChild consent.
             1. If CA string KnownChildSensitiveDataConsents[1]=0 and state string KnownChildSensitiveDataConsents[2]=0, then no change – these can be treated as the normalized KnownChildSensitiveDataConsents[1]=KnownChildSensitiveDataConsents[2]=0 (i.e. not a 'known child')
             1. Otherwise, the SID 8 protocol does not allow Prebid to know if the user is aged 13-16 or under 13, so simply set KnownChildSensitiveDataConsents[1] or [2] both to 1 (no consent)
@@ -154,7 +154,7 @@ To make sense of the specific values below, please refer to the [IAB's USNat tec
             1. SID 12 age ranges align with SID 7, so let ages 13-16 state their consent. If SID 12 string KnownChildSensitiveDataConsents[2]=2 and SID 12 string KnownChildSensitiveDataConsents[3]=2, then set the normalized KnownChildSensitiveDataConsents[1]=2 (Ages 13-16 consented) and the normalized KnownChildSensitiveDataConsents[2]=1 (under 13 not consented)
             1. Otherwise, set the normalized SID 7 KnownChildSensitiveDataConsents[1 and 2] to 1 (no consent)
         1. All other fields passthrough.
-    1. If the CMP provides a non-zero/null value for any of the following sensitive data categories, the module should suppress the activity. In other words, if there's any hint that data of these categories is associated with advertising, Prebid should anonymize first party data.
+    1. If the CMP provides a non-zero value for any of the following sensitive data categories, the module should suppress the activity. In other words, if there's any hint that data of these categories is associated with advertising, Prebid should anonymize first party data.
         1. Genetic (6)
         1. Biometric (7)
         1. Personal Info (9)
