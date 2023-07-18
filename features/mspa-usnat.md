@@ -187,7 +187,7 @@ This table documents the default blocks of boolean logic that indicate whether a
 | enrichUfpd | (same as syncUser) | Suppress the addition of User First Party Data when activity is not allowed. |
 | transmitEids | (same as syncUser) | Suppress the transmission of user.eids when activity is not allowed. |
 | transmitUfpd | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SaleOptOut=1 OR<br/>SaleOptOutNotice=2 OR<br/>SharingNotice=2 OR<br/>(SaleOptOutNotice=0 AND SaleOptOut=2) OR<br/>SharingOptOutNotice=2 OR<br/>SharingOptOut=1 OR<br/>(SharingOptOutNotice=0 AND SharingOptOut=2) OR<br/> (SharingNotice=0 AND SharingOptOut=2) OR <br/> TargetedAdvertisingOptOutNotice=2 OR<br/>TargetedAdvertisingOptOut=1 OR<br/>(TargetedAdvertisingOptOutNotice=0 AND TargetedAdvertisingOptOut=2) OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[1-7,9-12]=2)<br/>SensitiveDataProcessing[1-5,11]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=2 OR<br/>KnownChildSensitiveDataConsents[2]<>0 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Suppress the transmission or user.ext.data.*, user.data.*, and device IDs when the activity is not allowed.<br/><br/>The difference in this logic compared to syncUser is that it includes 'sensitive data' flags. See the requirements above and the commentary below. |
-| transmitGeo | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[1-7,9-12]=2)<br/>SensitiveDataProcessing[8]=1 OR<br/>KnownChildSensitiveDataConsents[2]<>0 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Round IP address and lat/long in both device.geo and user.geo when the activity is not allowed.<br/><br/>The difference in this logic is that it includes "sensitive data 8" (geo) and does not include the UFPD- and ID-related fields. |
+| transmitGeo | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[8]=2)<br/>SensitiveDataProcessing[8]=1 OR<br/>KnownChildSensitiveDataConsents[2]<>0 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Round IP address and lat/long in both device.geo and user.geo when the activity is not allowed.<br/><br/>The difference in this logic is that it includes "sensitive data 8" (geo) and does not include the UFPD- and ID-related fields. |
 
 ### Commentary
 
@@ -248,7 +248,7 @@ SensitiveDataLimitUseNotice=2 OR
 SensitiveDataProcessing[1-5,11]=1 OR
 
 // Data of the following categories should never be present in ad calls.
-// so whether consented or not consented, anonymize UFPD if the CMP says they're present
+// So whether consented or not consented, anonymize UFPD if the CMP says they're present
 SensitiveDataProcessing[6,7,9,10,12]=1 OR
 SensitiveDataProcessing[6,7,9,10,12]=2 OR
 
@@ -267,11 +267,14 @@ PersonalDataConsents=2
 If a publisher's legal team disagrees with any of these interpretations, both Prebid.js and Prebid Server
 support overriding this default logic.
 
-The `transmitGeo` activity has one additional clause:
+The `transmitGeo` activity has one additional clause and one substitute clause specific to field 8 in the sensitive consent array:
 
 ```javascript
 // Consent was not given for the use of "precise geographic" information
 SensitiveDataProcessing[8]=1 OR
+
+// The CMP claims that notice was not needed, but at the same time claims consent was given
+((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[8]=2)
 ```
 
 ## Related Topics
