@@ -248,7 +248,7 @@ SensitiveDataLimitUseNotice=2 OR
 SensitiveDataProcessing[1-5,11]=1 OR
 
 // Data of the following categories should never be present in ad calls.
-// so whether consented or not consented, anonymize UFPD if the CMP says they're present
+// So whether consented or not consented, anonymize UFPD if the CMP says they're present
 SensitiveDataProcessing[6,7,9,10,12]=1 OR
 SensitiveDataProcessing[6,7,9,10,12]=2 OR
 
