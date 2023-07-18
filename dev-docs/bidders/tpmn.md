@@ -1,33 +1,47 @@
 ---
 layout: bidder
 title: TPMN
-description: Prebid TPMN Bidder Adaptor
+description: Prebid TPMN Bidder Adapter
 biddercode: tpmn
-media_types: banner
+media_types: banner, video, native
 gdpr_supported: false
-prebid_member: false
-schain_supported: false
-coppa_supported: false
-usp_supported: false
-floors_supported: false
+usp_supported: true
+coppa_supported: true
+gpp_supported: true
+schain_supported: true
+dchain_supported: false
+safeframes_ok: true
 fpd_supported: false
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
+prebid_member: false 
+multiformat_supported: will-bid-on-one
+ortb_blocking_supported: true
 sidebarType: 1
 ---
 
+### Note
+
+TPMN Support media types
+
+{: .table .table-bordered .table-striped }
+| Name                  | banner | video | native | audio  |
+|-----------------------|--------|-------|--------|--------|
+| Prebid.js             | O      | X     | X      | X      |
+| Prebid Server Adapter | O      | O     | O      | X      |
 
 ### Registration
 
 To use this bidder you will need an account and a valid unit from us.
 For further information, please contact `info@tpmn.io`
 
-### Bid Params
+### Prebid.js Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                          | Example          | Type      |
 |---------------|----------|--------------------------------------|------------------|-----------|
-| `inventoryId` | required | Inventory ID                         | `'1'`            | `integer` |
+| `inventoryId` | required | Inventory ID                         | `1`              | `integer` |
 | `publisherId` | required | Publisher ID                         | `'TPMN'`         | `string`  |
 
 ### User Sync
@@ -38,7 +52,7 @@ This functionality improves partners' user match rates and increases the TPMN bi
 Even if iFrame is not active, user sync of some partners is performed.
 Be sure to call `pbjs.setConfig()` only once.
 
-```
+```javascript
 pbjs.setConfig({
     userSync: {
         iframeEnabled: true,
@@ -50,4 +64,42 @@ pbjs.setConfig({
         }
     }
 });
+```
+
+### Prebid Server Adapter Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description    | Example          | Type      |
+|---------------|----------|----------------|------------------|-----------|
+| `inventoryId` | required | Inventory ID   | `1`              | `integer` |
+
+### Prebid Server Adapter Test Request
+
+The following test parameters can be used to verify that Prebid Server is working properly with the
+TPMN adapter.
+
+```json
+{
+    "id": "request_id",
+    "imp": [
+        {
+            "id": "imp_id",
+            "banner": {
+                "w": 300,
+                "h": 250
+            },
+            "ext": {
+                "tpmn": {
+                    "inventoryid": 1
+                }
+            }
+        }
+    ],
+    "device": {
+        "os": "some-Os",
+        "ua": "some-agent"
+    },
+    "tmax": 500,
+    "test": 1     
+}
 ```
