@@ -7,6 +7,7 @@ pbjs: true
 pbs: false
 media_types: banner, native, video
 gdpr_supported: true
+gpp_supported: true
 usp_supported: true
 coppa_supported: true
 pbs_app_supported: false
