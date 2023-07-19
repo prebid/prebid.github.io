@@ -50,7 +50,7 @@ Here's how these IDs get placed in the cookie from Prebid.js:
 
 3. When it receives the response, Prebid.js loops through each element of `bidder_status[]`, dropping a pixel for each `bidder_status[].usersync.url`.
 
-4. The bidder-specific endpoints read the users' cookie for the bidder's domain and respond with a redirect back to Prebid Server's [`/setuid` endpoint](/prebid-server/endpoints/pbs-endpoint-setuid.html)
+4. The bidder-specific endpoints read the users' cookie for the bidder's domain and respond with a redirect back to Prebid Server's [`/setuid` endpoint](/prebid-server/endpoints/pbs-endpoint-setuid.html) . This allows that endpoint to read the 3rd party cookie and reflect it back to Prebid Server. Note that if this user doesn't yet have an ID in that 3rd party domain, the sync endpoint is expected to create one. 
 
 5. When the browser receives this redirect, it contacts Prebid Server, which will once again check the privacy settings and if allowed,  update the `uids` cookie.
 
