@@ -182,12 +182,12 @@ This table documents the default blocks of boolean logic that indicate whether a
 | deviceAccess | n/a | Default to 'allow'. Publisher Activity Control config may cause it to 'restrict'. |
 | fetchBid | n/a | Header bidding auctions are always allowed, but aspects of them may be anonymized. |
 | reportAnalytics | n/a | Analytics always allowed, but may be anonymized. |
-| syncUser | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SaleOptOut=1 OR<br/>SaleOptOutNotice=2 OR<br/>(SaleOptOutNotice=0 AND SaleOptOut=2) OR<br/>SharingNotice=2 OR<br/>SharingOptOutNotice=2 OR<br/>(SharingOptOutNotice=0 AND SharingOptOut=2) OR<br/>(SharingNotice=0 AND SharingOptOut=2) OR <br/>SharingOptOut=1 OR<br/>TargetedAdvertisingOptOutNotice=2 OR<br/>TargetedAdvertisingOptOut=1 OR<br/>(TargetedAdvertisingOptOutNotice=0 AND TargetedAdvertisingOptOut=2) OR<br/>KnownChildSensitiveDataConsents[2]<>0 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Suppress usersyncs when activity is not allowed:<br/>- Service Provider Mode<br/>- GPC flag<br/>- Lack of notice<br/>- Any opt-out<br/>- Allow kids 13-16 to consent, but always anonymize under age 13.<br/>- Notice was considered unnecessary yet permission to engage in targeted advertising is somehow considered valid.<br/>- Do not trust a CMP that claims to have 'personal data consent' for something that's logically impossible. |
+| syncUser | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SaleOptOut=1 OR<br/>SaleOptOutNotice=2 OR<br/>(SaleOptOutNotice=0 AND SaleOptOut=2) OR<br/>SharingNotice=2 OR<br/>SharingOptOutNotice=2 OR<br/>(SharingOptOutNotice=0 AND SharingOptOut=2) OR<br/>(SharingNotice=0 AND SharingOptOut=2) OR <br/>SharingOptOut=1 OR<br/>TargetedAdvertisingOptOutNotice=2 OR<br/>TargetedAdvertisingOptOut=1 OR<br/>(TargetedAdvertisingOptOutNotice=0 AND TargetedAdvertisingOptOut=2) OR<br/>KnownChildSensitiveDataConsents[2]==1 OR<br/>KnownChildSensitiveDataConsents[2]==2 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Suppress usersyncs when activity is not allowed:<br/>- Service Provider Mode<br/>- GPC flag<br/>- Lack of notice<br/>- Any opt-out<br/>- Allow kids 13-16 to consent, but always anonymize under age 13.<br/>- Notice was considered unnecessary yet permission to engage in targeted advertising is somehow considered valid.<br/>- Do not trust a CMP that claims to have 'personal data consent' for something that's logically impossible. |
 | enrichEids | (same as syncUser) | Suppress the addition of EIDs when activity is not allowed. |
 | enrichUfpd | (same as syncUser) | Suppress the addition of User First Party Data when activity is not allowed. |
 | transmitEids | (same as syncUser) | Suppress the transmission of user.eids when activity is not allowed. |
-| transmitUfpd | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SaleOptOut=1 OR<br/>SaleOptOutNotice=2 OR<br/>SharingNotice=2 OR<br/>(SaleOptOutNotice=0 AND SaleOptOut=2) OR<br/>SharingOptOutNotice=2 OR<br/>SharingOptOut=1 OR<br/>(SharingOptOutNotice=0 AND SharingOptOut=2) OR<br/> (SharingNotice=0 AND SharingOptOut=2) OR <br/> TargetedAdvertisingOptOutNotice=2 OR<br/>TargetedAdvertisingOptOut=1 OR<br/>(TargetedAdvertisingOptOutNotice=0 AND TargetedAdvertisingOptOut=2) OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[1-7,9-12]=2)<br/>SensitiveDataProcessing[1-5,11]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=2 OR<br/>KnownChildSensitiveDataConsents[2]<>0 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Suppress the transmission or user.ext.data.*, user.data.*, and device IDs when the activity is not allowed.<br/><br/>The difference in this logic compared to syncUser is that it includes 'sensitive data' flags. See the requirements above and the commentary below. |
-| transmitGeo | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[8]=2)<br/>SensitiveDataProcessing[8]=1 OR<br/>KnownChildSensitiveDataConsents[2]<>0 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Round IP address and lat/long in both device.geo and user.geo when the activity is not allowed.<br/><br/>The difference in this logic is that it includes "sensitive data 8" (geo) and does not include the UFPD- and ID-related fields. |
+| transmitUfpd | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SaleOptOut=1 OR<br/>SaleOptOutNotice=2 OR<br/>SharingNotice=2 OR<br/>(SaleOptOutNotice=0 AND SaleOptOut=2) OR<br/>SharingOptOutNotice=2 OR<br/>SharingOptOut=1 OR<br/>(SharingOptOutNotice=0 AND SharingOptOut=2) OR<br/> (SharingNotice=0 AND SharingOptOut=2) OR <br/> TargetedAdvertisingOptOutNotice=2 OR<br/>TargetedAdvertisingOptOut=1 OR<br/>(TargetedAdvertisingOptOutNotice=0 AND TargetedAdvertisingOptOut=2) OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[1-7,9-12]=2)<br/>SensitiveDataProcessing[1-5,11]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=2 OR<br/>KnownChildSensitiveDataConsents[2]==1 OR<br/>KnownChildSensitiveDataConsents[2]==2 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Suppress the transmission or user.ext.data.*, user.data.*, and device IDs when the activity is not allowed.<br/><br/>The difference in this logic compared to syncUser is that it includes 'sensitive data' flags. See the requirements above and the commentary below. |
+| transmitPreciseGeo | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[8]=2)<br/>SensitiveDataProcessing[8]=1 OR<br/>KnownChildSensitiveDataConsents[2]==1 OR<br/>KnownChildSensitiveDataConsents[2]==2 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Round IP address and lat/long in both device.geo and user.geo when the activity is not allowed.<br/><br/>The difference in this logic is that it includes "sensitive data 8" (geo) and does not include the UFPD- and ID-related fields. |
 
 ### Commentary
 
@@ -241,7 +241,7 @@ SensitiveDataProcessingOptOutNotice=2 OR
 SensitiveDataLimitUseNotice=2 OR
 
 // The CMP claims that notice was not needed, but at the same time claims consent was given
-// Note that SensitiveDataProcessing[8] is the geographic location and covered in the `transmitGeo` activity
+// Note that SensitiveDataProcessing[8] is the geographic location and covered in the `transmitPreciseGeo` activity
 ((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[1-7,9-12]=2)
 
 // The user has not consented to share data of categories 1-5 and 11
@@ -256,7 +256,8 @@ SensitiveDataProcessing[6,7,9,10,12]=2 OR
 KnownChildSensitiveDataConsents[1]=1 OR
 
 // Do not accept consent from a child younger than 13
-KnownChildSensitiveDataConsents[2]<>0 OR
+KnownChildSensitiveDataConsents[2]==1 OR
+KnownChildSensitiveDataConsents[2]==2 OR
 
 // The CMP claims to have consent for an 'unrelated' activity.
 // Prebid views this as a logical impossibility and an invalid CMP response
@@ -267,7 +268,7 @@ PersonalDataConsents=2
 If a publisher's legal team disagrees with any of these interpretations, both Prebid.js and Prebid Server
 support overriding this default logic.
 
-The `transmitGeo` activity has one additional clause and one substitute clause specific to field 8 in the sensitive consent array:
+The `transmitPreciseGeo` activity has a couple of clauses not already mentioned:
 
 ```javascript
 // Consent was not given for the use of "precise geographic" information
