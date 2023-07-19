@@ -21,4 +21,4 @@ The Yieldlove bidder adapter requires setup and approval from the Yieldlove team
 | Name          | Scope    | Description                                | Example               | Type      |
 |---------------|----------|--------------------------------------------|-----------------------|-----------|
 | `rid`         | required | The publisher site ID                      | `website.com`         | `string`  |
-| `pid`         | required | Your placement ID (provided by Yieldlove)  | `19242`               | `number`  |
+| `pid`         | required | Your placement ID (provided by Yieldlove)  | `34437`               | `number`  |
