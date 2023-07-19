@@ -488,14 +488,14 @@ The parameters of the `bidResponse` object are:
 | `bidderCode` | Optional                                    | Bidder code to use for the response - for adapters that wish to reply on behalf of other bidders. Defaults to the code registered with [`registerBidder`](#bidder-adaptor-Overview); note that any other code will need to be [explicitly allowed by the publisher](/dev-docs/publisher-api-reference/bidderSettings.html#allowAlternateBidderCodes). | 'exampleBidder' |  
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
 | `meta`     | Optional                                    | Object containing metadata about the bid                                                                                                                                       |                           |
-| `meta.networkId`     | Optional                                    | Bidder-specific Network/DSP Id               | 1111             |
+| `meta.networkId`     | Optional                                    | Bidder-specific Network/DSP Id               | `"1111"`             |
 | `meta.networkName`     | Optional                                    | Network/DSP Name               | `"NetworkN"`                |
-| `meta.agencyId`     | Optional                                    | Bidder-specific Agency ID               | 2222                          |
+| `meta.agencyId`     | Optional                                    | Bidder-specific Agency ID               | `"2222"`                          |
 | `meta.agencyName`     | Optional                                    | Agency Name     | `"Agency, Inc."`           |
-| `meta.advertiserId`     | Optional                                    | Bidder-specific Advertiser ID     | 3333                          |
+| `meta.advertiserId`     | Optional                                    | Bidder-specific Advertiser ID     | `"3333"`                         |
 | `meta.advertiserName`     | Optional                                    | Advertiser Name               | `"AdvertiserA"`                          |
 | `meta.advertiserDomains`     | Required(*)                                    | Array of Advertiser Domains for the landing page(s). This is an array that aligns with the OpenRTB 'adomain' field. See note below this table. | `["advertisera.com"]`     |
-| `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | 4444                    |
+| `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | `"4444"`                    |
 | `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
 | `meta.demandSource`     | Optional                                    | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`
 | `meta.dchain`     | Optional                                    | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
