@@ -59,7 +59,7 @@ Cookie sync for AMP works in a way quite similar to Prebid.js.
 
 1. The Prebid Server hosting company places the [load-cookie.html](#manually-initiating-a-sync) file onto a CDN. This script is part of the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative/blob/master/src/cookieSync.js) repo.
 
-See [the AMP implementation guide](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) for more information.
+    See [the AMP implementation guide](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) for more information.
 
 2. The publisher places the 'load-cookie' iframe into the page:
 
@@ -73,8 +73,8 @@ See [the AMP implementation guide](/dev-docs/show-prebid-ads-on-amp-pages.html#u
     </amp-iframe>
     ```
 
-{: .alert.alert-info :}
-If the publisher has an AMP Consent Management Platform, they should use `load-cookie-with-consent.html`.
+    {: .alert.alert-info :}
+    If the publisher has an AMP Consent Management Platform, they should use `load-cookie-with-consent.html`.
 
 3. At runtime, the `load-cookie` script just calls the Prebid Server /cookie_sync endpoint. The rest works similar to what's described for Prebid.js above. One difference is that the bidders are not known on the AMP page so those aren't passed. Another difference is that AMP doesn't support iframe syncs, so load-cookie passes instructions to PBS so only pixel syncs are returned.
 
