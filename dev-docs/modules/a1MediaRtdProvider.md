@@ -20,15 +20,15 @@ The A1Media RTD module loads a script for obtaining A1Media user segments, provi
 
 To use this module, you’ll need to work with [A1MediaGroup](https://www.a1mediagroup.com/) to get an account and receive instructions on how to set up your pages and ad server.
 
-Contact dev@a1mediagroup.co.kr for information.
+Contact <dev@a1mediagroup.co.kr> for information.
 
 ## Integration
 
 1) Build the A1Media RTD Module into the Prebid.js package with:
 
-```
-gulp build --modules=a1MediaRtdProvider,...
-```
+    ```bash
+    gulp build --modules=a1MediaRtdProvider,...
+    ```
 
 2) Use `setConfig` to instruct Prebid.js to initilaize the A1Media RTD module, as specified below.
 
@@ -60,8 +60,7 @@ pbjs.setConfig({
 | `name`           | String        | Real time data module name                                          | yes     | Always 'a1Media' |
 | `waitForIt`      | Boolean       | Should be `true` if there's an `auctionDelay` defined (recommended) | no      | Default `false` |
 | `params`         | Object        | |  | |
-| `params.tagId`     | String        | Publisher specific script name                             | yes       | 
-
+| `params.tagId`     | String        | Publisher specific script name                             | yes       |
 
 {: .alert.alert-warning :}
 tagId is publisher specific tag ID.
