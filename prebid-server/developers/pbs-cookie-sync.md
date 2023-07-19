@@ -159,6 +159,7 @@ Here's how you could invoke it with an iframe:
 ```
 
 Where:
+
 * HOST is the location where the HTMLFILE is stored
 * HTMLFILE can be load-cookie.html or load-cookie-with-consent.html, which interacts with an AMP-compatible CMP.
 * PBSHOST is the (encoded) main URL for your Prebid Server, e.g. https%3A%2F%2Fprebid-server.example.com%2Fcookie_sync
