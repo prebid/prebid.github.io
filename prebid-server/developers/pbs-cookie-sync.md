@@ -101,14 +101,14 @@ pbjs.setConfig({
 
 Building a sync endpoint is optional -- there is no benefit from ID syncing for mobile-only bidders. For browser-based bidding, ID syncing can help improve buyer bid rate. There are two main options a bidder can choose to support:
 
-- redirect: the client will drop an IMG tag into the page, then call the bidder's URL which needs to redirect to the Prebid Server /setuid endpoint.
-- iframe: the client will drop an IFRAME tag into the page, then call the bidder's URL which responds with HTML and Javascript that calls the Prebid Server /setuid endpoint at some point.
+* redirect: the client will drop an IMG tag into the page, then call the bidder's URL which needs to redirect to the Prebid Server /setuid endpoint.
+* iframe: the client will drop an IFRAME tag into the page, then call the bidder's URL which responds with HTML and Javascript that calls the Prebid Server /setuid endpoint at some point.
 
 Bidders must implement an endpoint under their domain which accepts an encoded URI for redirects. This URL should be able to accept privacy parameters:
 
-- gdpr: if 0, declares this request isn't in GDPR scope. If 1, declares it is in scope. Otherwise indeterminate.
-- gdpr_consent: the TCF1 or TCF2 consent string. This is unpadded base64-URL encoded.
-- us_privacy: the IAB US Privacy string
+* gdpr: if 0, declares this request isn't in GDPR scope. If 1, declares it is in scope. Otherwise indeterminate.
+* gdpr_consent: the TCF1 or TCF2 consent string. This is unpadded base64-URL encoded.
+* us_privacy: the IAB US Privacy string
 
 The specific attributes can differ for your endpoint. For instance, you could choose to receive gdprConsent rather than gdpr_consent.
 
@@ -128,6 +128,7 @@ usersync:
   url: https://some-bidder-domain.com/usersync-url?gdpr={%raw%}{{gdpr}}&gdpr_consent={{gdpr_consent}}&us_privacy={{us_privacy}}{%endraw%}&redirectUri=
   redirect-url: /setuid?bidder=acuityads&gdpr={%raw%}{{gdpr}}{%endraw%}&gdpr_consent={%raw%}{{gdpr_consent}}{%endraw%}&us_privacy={%raw%}{{us_privacy}}{%endraw%}&uid=YOURMACRO
 ```
+
 In either case, the {%raw%}{{...}}{%endraw%} macros are resolved by PBS.
 
 {: .alert.alert-warning :}
@@ -158,9 +159,9 @@ Here's how you could invoke it with an iframe:
 ```
 
 Where:
-- HOST is the location where the HTMLFILE is stored
-- HTMLFILE can be load-cookie.html or load-cookie-with-consent.html, which interacts with an AMP-compatible CMP.
-- PBSHOST is the (encoded) main URL for your Prebid Server, e.g. https%3A%2F%2Fprebid-server.example.com%2Fcookie_sync
+* HOST is the location where the HTMLFILE is stored
+* HTMLFILE can be load-cookie.html or load-cookie-with-consent.html, which interacts with an AMP-compatible CMP.
+* PBSHOST is the (encoded) main URL for your Prebid Server, e.g. https%3A%2F%2Fprebid-server.example.com%2Fcookie_sync
 
 Here are all the arguments supported:
 
@@ -179,6 +180,6 @@ Note that enabling or disabling [Cooperative Sync](#cooperative-syncing) is not 
 
 ## Further Reading
 
-- [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html)
-- [Prebid.js s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server)
-- [Prebid AMP Implementation Guide](/dev-docs/show-prebid-ads-on-amp-pages.html)
+* [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html)
+* [Prebid.js s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server)
+* [Prebid AMP Implementation Guide](/dev-docs/show-prebid-ads-on-amp-pages.html)
