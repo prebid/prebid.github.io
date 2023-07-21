@@ -2,6 +2,9 @@
 layout: bidder
 title: VOX
 description: Prebid VOX Bidder Adapter
+schain_supported: true
+floors_supported: true
+userIds: all
 pbjs: true
 media_types: banner, video
 biddercode: vox
