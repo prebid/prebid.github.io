@@ -3,6 +3,7 @@ Gemfile.lock
 /dist/bootstrap
 /dist/jquery
 /.idea
+/.vscode
 .DS_Store
 /vendor
 /.bundle

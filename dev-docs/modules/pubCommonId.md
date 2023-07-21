@@ -12,6 +12,7 @@ sidebarType : 1
 
 
 # Publisher Common ID Module
+
 {:.no_toc}
 
 This module stores a unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It's lightweight and self contained.  Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
@@ -49,17 +50,16 @@ Users must be allowed to opt out of targeted advertising. When implementing this
 * Opt-In - `_pubcid_optout` flag is not present or set to 0
 * Opt-Out - `_pubcid_optout` flag is set to 1
 
-
 ### Build the package
- 
+
 #### Step 1: Bundle the module code
 
 Follow the basic build instructions on the GitHub repo's main README. To include the module, an additional option must be added to the the gulp build command:
- 
-```
+
+```bash
 gulp build --modules=pubCommonId,bidAdapter1,bidAdapter2
 ```
- 
+
 #### Step 2: Publish the package(s) to the CDN
 
 After testing, get your javascript file(s) out to your Content Delivery Network (CDN) as normal.
@@ -68,7 +68,7 @@ Note that there are more dynamic ways of combining these components for publishe
 
 ## Adapter integration
 
-Adapters should look for `bid.crumbs.pubcid` in buildRequests() method. 
+Adapters should look for `bid.crumbs.pubcid` in buildRequests() method.
 
 ```javascript
 [
@@ -90,12 +90,9 @@ Adapters should look for `bid.crumbs.pubcid` in buildRequests() method.
 ]
 ```
 
-
 ## Technical Details
 
-- The ID is UUID v4 and stored as a cookie and a local storage item called `_pubcid` in the page's domain.
-- This module hooks into the pbjs.requestBids() method.  When invoked, it retrieves the id from cookie and local storage, updates the expiration time, and decorates the adUnits objects.  A new id will be created if one doesn't exist already.  
-- The id stored as cookie takes precedence over local storage.
-- Beware that if prebid.js is included in an ad server frame, then the ID would have ad server domain instead.
-
-
+* The ID is UUID v4 and stored as a cookie and a local storage item called `_pubcid` in the page's domain.
+* This module hooks into the pbjs.requestBids() method.  When invoked, it retrieves the id from cookie and local storage, updates the expiration time, and decorates the adUnits objects.  A new id will be created if one doesn't exist already.  
+* The id stored as cookie takes precedence over local storage.
+* Beware that if prebid.js is included in an ad server frame, then the ID would have ad server domain instead.

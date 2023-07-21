@@ -130,7 +130,7 @@ void clearUserKeywords()
 
 Example:
 
-``` kotlin
+```kotlin
 TargetingParams.addUserKeyword("globalUserKeywordValue1")
 TargetingParams.addUserKeyword("globalUserKeywordValue2")
 ```
@@ -178,7 +178,7 @@ TargetingParams.setBundleName(bundleName)
 
 Retrieve and set the domain of your app with the following commands:
 
-``` kotlin
+```kotlin
 TargetingParams.setDomain(domain)
 
 val domain = TargetingParams.getDomain()

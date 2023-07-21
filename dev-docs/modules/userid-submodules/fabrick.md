@@ -45,44 +45,44 @@ Please reach out to [FabrickIntegrations@team.neustar](mailto:FabrickIntegration
 
 ## Fabrick Examples
 
-1) Publisher passes an apiKey and hashed email address and elects to store the Fabrick ID envelope in a cookie.
+1. Publisher passes an apiKey and hashed email address and elects to store the Fabrick ID envelope in a cookie.
 
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: 'fabrickId',
-            params: {
-                apiKey: '123456789', // provided to you by Neustar
-                e: '31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66' // example hashed email address (sha256)
-            },
-            storage: {
-                name: 'pbjs_fabrickId',
-                type: 'cookie',
-                expires: 7
-            }
-        }]
-    }
-});
-```
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: 'fabrickId',
+                params: {
+                    apiKey: '123456789', // provided to you by Neustar
+                    e: '31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66' // example hashed email address (sha256)
+                },
+                storage: {
+                    name: 'pbjs_fabrickId',
+                    type: 'cookie',
+                    expires: 7
+                }
+            }]
+        }
+    });
+    ```
 
-2) Publisher passes an apiKey and hashed email address and elects to store the fabrickId envelope in HTML5 localStorage.
+2. Publisher passes an apiKey and hashed email address and elects to store the fabrickId envelope in HTML5 localStorage.
 
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: 'fabrickId',
-            params: {
-                apiKey: '123456789', // provided to you by Neustar
-                e: '31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66' // example hashed email address (sha256)
-            },
-            storage: {
-                type: "html5",
-                name: "pbjs_fabrickId",
-                expires: 7
-            }
-        }]
-    }
-});
-```
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: 'fabrickId',
+                params: {
+                    apiKey: '123456789', // provided to you by Neustar
+                    e: '31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66' // example hashed email address (sha256)
+                },
+                storage: {
+                    type: "html5",
+                    name: "pbjs_fabrickId",
+                    expires: 7
+                }
+            }]
+        }
+    });
+    ```

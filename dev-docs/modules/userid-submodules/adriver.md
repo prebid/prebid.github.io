@@ -14,7 +14,7 @@ useridmodule: adriverId
 
 ## Adriver ID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{

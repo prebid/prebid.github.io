@@ -14,10 +14,11 @@ The `getEvents` method returns a copy of all emitted events since the page loade
 **Returns**: `array of objects`
 
 **Returned Object Params**:
-- eventType (see table below)
-- args (varies for each event type)
-- id (only for bidWon, set to adUnit.code)
-- elapsedTime
+
+* eventType (see table below)
+* args (varies for each event type)
+* id (only for bidWon, set to adUnit.code)
+* elapsedTime
 
 The available events are:
 
@@ -48,12 +49,12 @@ The available events are:
 The example below shows how these events can be used.
 
 ```javascript
-      pbjs.getEvents().forEach(event => {
-        console.log("event: "+event.eventType)
-      });
+pbjs.getEvents().forEach(event => {
+  console.log("event: "+event.eventType)
+});
 ```
 
-
 ## See Also
-- [onEvent](/dev-docs/publisher-api-reference/onEvent.html)
-- [offEvent](/dev-docs/publisher-api-reference/offEvent.html)
+
+* [onEvent](/dev-docs/publisher-api-reference/onEvent.html)
+* [offEvent](/dev-docs/publisher-api-reference/offEvent.html)

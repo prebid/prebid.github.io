@@ -62,7 +62,7 @@ implementation('org.prebid:prebid-mobile-sdk-gam-event-handlers:x.x.x')
 To integrate the banner ad you need to implement three easy steps:
 
 
-``` kotlin
+```kotlin
 // 1. Create a banner custom event handler for GAM ad server.
 val eventHandler = GamBannerEventHandler(requireContext(), GAM_AD_UNIT, GAM_AD_SIZE)
 
@@ -77,6 +77,11 @@ viewContainer?.addView(bannerView)
 // 3. Execute the loadAd function.
 bannerView?.loadAd()
 ```
+
+{% capture warning_note %}  
+Pay attention that the `loadAd()` should be called on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
 
 #### Step 1: Create Event Handler
 {:.no_toc}
@@ -102,14 +107,14 @@ And assign the listeners for processing ad events.
 #### Step 3: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` method to start the In-App Bidding flow. The In-App Bidding SDK starts the bidding process immediately.
+Call the `loadAd()` method to make a bid request.
 
 ### Outstream Video
 {:.no_toc}
 
 For **Outstream Video** you also need to specify video placement type of the expected ad:
 
-``` kotlin
+```kotlin
 bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
 ```
 
@@ -134,7 +139,7 @@ Integration:
 To integrate interstitial ad follow these steps:
 
 
-``` kotlin
+```kotlin
 // 1. Create an interstitial custom event handler for GAM ad server.
 val eventHandler = GamInterstitialEventHandler(requireContext(), gamAdUnit)
 
@@ -152,6 +157,11 @@ interstitialAdUnit?.loadAd()
 interstitialAdUnit?.show()
 
 ```
+
+{% capture warning_note %}  
+Pay attention that the `loadAd()` should be called on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
 
 The **default** ad format for an interstitial ad is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
@@ -189,7 +199,7 @@ Also, you can assign the listeners for processing ad events.
 #### Step 3: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` method to start In-App Bidding flow. The ad unit will load an ad and will wait for explicit instructions to display the Interstitial Ad.
+Call the `loadAd()` method make a bid request. The ad unit will load an ad and will wait for explicit instructions to display the Interstitial Ad.
 
 
 #### Step 4: Show the Ad when it is ready
@@ -197,7 +207,7 @@ Call the `loadAd()` method to start In-App Bidding flow. The ad unit will load a
 
 The most convenient way to determine if the interstitial ad is ready for displaying is to listen to the listener method:
 
-``` kotlin
+```kotlin
 override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 //Ad is ready for display
 }
@@ -224,7 +234,7 @@ Integration:
 To display a Rewarded Ad follow these steps:
 
 
-``` kotlin
+```kotlin
 // 1. Create a rewarded custom event handler for GAM ad server.
 val eventHandler = GamRewardedEventHandler(requireActivity(), gamAdUnitId)
 
@@ -243,18 +253,23 @@ rewardedAdUnit?.loadAd()
 rewardedAdUnit?.show()
 ```
 
+{% capture warning_note %}  
+Pay attention that the `loadAd()` should be called on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad. The type of ad can be customized to:
 
 
 Be notified when user earns a reward - implement `RewardedAdUnitListener` interface:
 
-``` kotlin
+```kotlin
  fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit)
 ```
 
 When the actual reward object is stored in the `RewardedAdUnit`:
 
-``` kotlin
+```kotlin
 val reward = rewardedAdUnit.getUserReward()
 ```
 
@@ -280,14 +295,14 @@ You can also assign the listener for processing ad events.
 #### Step 3: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` method to start the In-App Bidding flow. The ad unit will load an ad and will wait for explicit instructions to display the Rewarded Ad.
+Call the `loadAd()` method to make a bid request. The ad unit will load an ad and will wait for explicit instructions to display the Rewarded Ad.
 
 #### Step 4: Display the Ad when it is ready
 {:.no_toc}
 
 The most convenient way to determine if the ad is ready for displaying is to listen for the listener method:
 
-``` kotlin
+```kotlin
 override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 //Ad is ready for display
 }

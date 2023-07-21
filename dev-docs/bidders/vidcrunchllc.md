@@ -6,6 +6,7 @@ biddercode: vidcrunchllc
 aliasCode: adtelligent
 media_types: video,banner
 gdpr_supported: true
+gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
 coppa_supported: true
@@ -26,12 +27,13 @@ sidebarType: 1
 | `aid` | required | The source ID from VidCrunch.   | `529814` | `integer` |
 
 ### Description
+
 VidCrunch header bidding adapter connects with VidCrunch demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-
 ### Test Parameters
-```
+
+``` javascript
     var adUnits = [
 
       // Video instream adUnit

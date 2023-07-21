@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Motionspots bidding adapter requires setup and approval before implementation. Please reach out to <kiran@collectcent.com> for more details.
 

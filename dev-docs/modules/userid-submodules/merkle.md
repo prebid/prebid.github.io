@@ -12,7 +12,7 @@ useridmodule: merkleIdSystem
 
 Publisher stores Merkury by Merkle in local storage for 30 days
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{

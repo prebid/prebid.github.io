@@ -8,7 +8,7 @@ pbjs: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The AdPlus Bidding adapter requires setup before beginning. Please contact us at <adplusdestek@turkcell.com.tr>.
 

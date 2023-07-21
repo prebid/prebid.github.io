@@ -30,7 +30,6 @@ sidebarType: 1
 | `bidderDomain` | required | Bidder domain | `"Leaderboard"` | `string`  |
 | `test`         | optional | Is test bid   | 0               | `integer` |
 
-
 ### OpenRTB request config
 
 OpenRTB bid request `app`, `site`, `device` properties configured using prebid config.

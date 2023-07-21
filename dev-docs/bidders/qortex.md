@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: CatapultX
-description: CatapultX Bidder Adaptor
-biddercode: catapultx
+title: Qortex
+description: Qortex Bidder Adaptor
+biddercode: qortex
 pbjs: true
 pbs: false
 media_types: banner, native, video
@@ -26,5 +26,5 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
-| `host`   | required | RTB host              | `'cpm.catapultx.com'`     | `string` |
+| `host`   | required | RTB host              | `'cpm.qortex.ai'`         | `string` |
 | `zoneId` | required | Zone Id               | 76156                     | `integer`|

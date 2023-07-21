@@ -10,6 +10,7 @@ sidebarType : 1
 ---
 
 # Supply Chain Object Module
+
 {:.no_toc}
 
 * TOC
@@ -19,16 +20,17 @@ Service Providers who manage Prebid wrappers on behalf of multiple publishers an
 
 Two modes are supported:
 
-- **Global Supply Chains**  
+* **Global Supply Chains**  
   Use this configuration when the Prebid.js implementation is managed by an entity that needs to add an SChain node to every bid request. i.e. payments flow through this entity for all traffic.
 
-- **Bidder-Specific Supply Chains**  
+* **Bidder-Specific Supply Chains**  
   Use this configuration when one or more bid adapters is an entity (such as a reseller) that requires an SChain node, but other adapters do not require the node. e.g. payments flow through a bidder that doesn't add its own schain node.
 
 ## How to Use the Module
 
 First, build the schain module into your Prebid.js package:
-```
+
+```bash
 gulp build --modules=schain,...
 ```
 
@@ -81,7 +83,7 @@ pbjs.setBidderConfig({
     }
   }
 });
-{% endhighlight%}
+```
 
 You can find more information about the `pbjs.setBidderConfig` function in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference/setBidderConfig.html).
 
@@ -124,5 +126,5 @@ $(function(){
 
 ## Further Reading
 
-- [IAB OpenRTB SupplyChain Object Specification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md)
-- [Sellers.json Specification](https://iabtechlab.com/sellers-json/)  
+* [IAB OpenRTB SupplyChain Object Specification](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md)
+* [Sellers.json Specification](https://iabtechlab.com/sellers-json/)  

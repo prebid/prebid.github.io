@@ -40,7 +40,7 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | --- | --- | --- | --- | --- |
 | adserverTargeting | standard or adapter-specific | all | see below | Define which key/value pairs are sent to the ad server. |
 | bidCpmAdjustment | standard or adapter-specific | all | n/a | Custom CPM adjustment function. Could, for example, adjust a bidder's gross-price bid to net price. |
-| inverseCpmAdjustment | standard or adapter-specific | 7.33.0 | n/a | Inverse of `bidCpmAdjustment` | 
+| inverseCpmAdjustment | standard or adapter-specific | 7.33.0 | n/a | Inverse of `bidCpmAdjustment` |
 | sendStandardTargeting | adapter-specific | 0.13.0 | true | If adapter-specific targeting is specified, can be used to suppress the standard targeting for that adapter. |
 | suppressEmptyKeys | standard or adapter-specific | 0.13.0 | false | If custom adserverTargeting functions are specified that may generate empty keys, this can be used to suppress them. |
 | allowZeroCpmBids | standard or adapter-specific | 6.2.0 | false | Would allow bids with a 0 CPM to be accepted by Prebid.js and could be passed to the ad server. |
@@ -110,10 +110,7 @@ pbjs.bidderSettings = {
         }]
     }
 }
-
 ```
-
-:::caution
 
 Note that the existence of `bidderSettings.adserverTargeting.standard` will prevent the system from adding the standard display targeting values: hb_bidder, hb_adid, hb_pb, hb_size, and hb_format. However, if the mediaType is video and `bidderSettings.adserverTargeting.standard` does not specify hb_uuid, hb_cache_id, or hb_cache_host, they will be added unless `bidderSettings.sendStandardTargeting` is set to false.
 
@@ -148,7 +145,6 @@ pbjs.bidderSettings = {
 }
 ```
 
-
 In other words, the above config sends 2 pairs of key/value strings targeting for every AppNexus bid and for every ad unit. The 1st pair would be `apn_pbMg` => the value of `bidResponse.pbMg`. The 2nd pair would be `apn_adId` => the value of `bidResponse.adId`. You can find the bidResponse object documentation [here](/troubleshooting/troubleshooting-guide.html#common-bid-response-parameters).
 
 Note that sendStandardTargeting is set to false so that the standard Prebid targeting (hb_bidder, etc.) aren't also sent to the ad server.
@@ -180,7 +176,7 @@ pbjs.bidderSettings = {
                 return "pb6"; // all bids $6 and above are assigned to price bucket 'pb6'
             }
         }]
-    [...]
+    // [...]
     }
 }
 ```
@@ -193,8 +189,8 @@ In this case, the publisher may want to adjust the bidder's returned price to ru
 header bidding auction. Otherwise, this bidder's gross price will unfairly win over your
 other demand sources who report the real price.
 
-Custom adjustment can be provided as a function taking 3 arguments: `bidCpmAdjustment(cpm, bidResponse, bidRequest)`. 
-Note that either `bidResponse` or `bidRequest` may be missing, although at least one of them is guaranteed to be present. This is because Prebid will sometimes need to run adjustment when no bid has been made yet; see [inverseCpmAdjustment](#inverseCpmAdjustment) below. 
+Custom adjustment can be provided as a function taking 3 arguments: `bidCpmAdjustment(cpm, bidResponse, bidRequest)`.
+Note that either `bidResponse` or `bidRequest` may be missing, although at least one of them is guaranteed to be present. This is because Prebid will sometimes need to run adjustment when no bid has been made yet; see [inverseCpmAdjustment](#23-inversecpmadjustment) below.
 
 For example:
 
@@ -215,7 +211,7 @@ In the above example, the AOL bidder will inherit from "standard" adserverTarget
 
 ##### 2.3. inverseCpmAdjustment
 
-When using [price floors](/dev-docs/modules/floors.html), Prebid attempts to calculate the inverse of `bidCpmAdjustment`, so that the floor values it requests from SSPs take into account how the bid will be adjusted. 
+When using [price floors](/dev-docs/modules/floors.html), Prebid attempts to calculate the inverse of `bidCpmAdjustment`, so that the floor values it requests from SSPs take into account how the bid will be adjusted.
 For example, if the adjustment is `bidCpm * .85` as above, floors are adjusted by `bidFloor * 1 / .85`.
 
 The automatically derived inverse function is correct only when `bidCpmAdjustment` is a simple multiplication. If it isn't, the inverse should also be provided through `inverseCpmAdjustment`. For example:
@@ -232,8 +228,6 @@ pbjs.bidderSettings = {
     }
 };
 ```
-
-
 
 ##### 2.4. sendStandardTargeting
 
@@ -252,23 +246,24 @@ If a custom adServerTargeting function can return an empty value, this boolean f
 ##### 2.6. allowZeroCpmBids
 
 By default, 0 CPM bids are ignored by Prebid.js entirely.  However if there's a valid business reason to allow these bids, this setting can be enabled to allow
-either specific bid adapter(s) or all bid adapters the permission for these bids to be processed by Prebid.js and potentially sent to the respective ad server 
+either specific bid adapter(s) or all bid adapters the permission for these bids to be processed by Prebid.js and potentially sent to the respective ad server
 (depending on the Prebid.js auction results).
 
 ##### 2.7. storageAllowed
 
 This setting defines if the bid adapter can access browser cookies or local storage. Allowed values are:
 
-- an array containing either `'html5'`, `'cookie'` or both to allow specific storage methods (e.g. `['cookie']` enables cookies but not local storage)
-- `true` to allow any storage method;
-- `false` to disable all storage.
- 
+* an array containing either `'html5'`, `'cookie'` or both to allow specific storage methods (e.g. `['cookie']` enables cookies but not local storage)
+* `true` to allow any storage method;
+* `false` to disable all storage.
+
 <br />Default value is `true` in version 6.x
 <br />Default value is `false` in version 7.x
 
 Note that:
-- [Disabling device access](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) will prevent access to storage regardless of this setting;  
-- `storageAllowed` will only affect bid adapters and not any other type of module (such as analytics or RTD).
+
+* [Disabling device access](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) will prevent access to storage regardless of this setting;  
+* `storageAllowed` will only affect bid adapters and not any other type of module (such as analytics or RTD).
 
 <a id="allowAlternateBidderCodes"></a>
 
@@ -278,12 +273,12 @@ If this flag is set to `true`, bidders that have not been explicitly requested i
 <br />Default value is `true` in version 6.x
 <br />Default value will be `false` from version 7.0
 
-
 ##### 2.9. allowedAlternateBidderCodes
 
 This array will work in conjunction with `allowAlternateBidderCodes`. In this array, you can specify the names of the bidder for which an adapter can accept the bid. If the value is not specified for the array or `[‘*’]` is specified, Prebid will accept bids of all the bidders for the given adapter.
 
 ```javascript
+
 pbjs.bidderSettings = {
     standard: {
          allowAlternateBidderCodes: false,
@@ -320,6 +315,7 @@ Optionally allow alternate bidder codes originating from a specific bid adapter 
 3. The standard bidCpmAdjustment function
 
 ```javascript
+
 pbjs.bidderSettings = {
     standard: {
          allowAlternateBidderCodes: false,

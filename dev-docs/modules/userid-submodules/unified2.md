@@ -26,6 +26,7 @@ Each publisher’s privacy policy should take UnifiedID 2.0 into account.
 ## Unified ID 2.0 Tokens
 
 UID2 tokens are generated on the server side by making an API call to a UID2 operator using details provided when you receive UID2 publisher access. This API returns a JSON data structure with multiple values, including an advertising token and a refresh token. For full functionality, provide the entire object in one of these ways:
+
 - JSON-encoded as a cookie.
 - Included in the configuration object.
 
@@ -71,7 +72,7 @@ The following parameters apply only to the Unified ID 2.0 module integration.
 
 In the following example, the publisher has set a cookie called `uid2_identity` containing the UID2 token generation response object:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{
@@ -86,7 +87,7 @@ pbjs.setConfig({
 
 In the following example, the publisher has retrieved a server-generated UID2 response, and it is currently stored in the JavaScript variable `uid2Identity`:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{

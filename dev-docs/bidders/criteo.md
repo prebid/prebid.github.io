@@ -25,9 +25,8 @@ gpp_supported: true
 {: .alert.alert-warning :}
 This bidder adapter automatically includes the Criteo User ID module and performs iFrame syncs.
 
-
 {: .alert.alert-warning :}
-Prebid-Server support is on alpha test and is currently a non-finished product. Activation requires setup and approval before beginning. Please reach out to your account manager or publishers@criteo.com for more details.
+Prebid-Server support is on alpha test and is currently a non-finished product. Activation requires setup and approval before beginning. Please reach out to your account manager or <publishers@criteo.com> for more details.
 
 ### Bid Params
 
@@ -80,7 +79,8 @@ In addition, Criteo adapter relies on parameters specified in the mediaTypes.vid
 | `plcmt`           | optional | 1=in-stream, 2=accompanying content, 3=interstitial, 4=no content/standalone. Highly recommended to comply with new IAB video specifications.                                                                                                                                | `1`             | `integer`        |
 
 #### Example of Video Ad-unit
-```
+
+```javascript
 var adUnits = [
 {
     code: 'video1',
@@ -93,8 +93,8 @@ var adUnits = [
             api: [1, 2],
             playerSize: [640,480],
             protocols: [2, 3],
-	    skip: 0,
-	    playbackmethod: [1],
+            skip: 0,
+            playbackmethod: [1],
             placement: 1
         }
     },

@@ -44,12 +44,13 @@ This function returns the bid responses at the given moment.
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingThree">
       <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">> Response Object Example</a>
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          > Response Object Example
+        </a>
       </h4>
     </div>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
       <div class="panel-body" markdown="1">
-
 
 ```json
 {
@@ -176,7 +177,9 @@ This function returns the bid responses at the given moment.
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="heading-response-example-2">
       <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#response-example-2" aria-expanded="false" aria-controls="response-example-2">Response Object Example - Native</a>
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#response-example-2" aria-expanded="false" aria-controls="response-example-2">
+          > Response Object Example - Native
+        </a>
       </h4>
     </div>
     <div id="response-example-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-response-example-2">
@@ -184,75 +187,75 @@ This function returns the bid responses at the given moment.
 
 ```json
 {
-           "div-banner-outstream-native" : {
-              "bids" : [
-                 {
-                    "pbMg" : "10.00",
-                    "pbLg" : "5.00",
-                    "width" : 0,
-                    "requestTimestamp" : 1516315716062,
-                    "creativeId" : 81589325,
-                    "pbCg" : "",
-                    "adUnitCode" : "div-banner-outstream-native",
-                    "size" : "0x0",
-                    "bidder" : "appnexus",
-                    "pbAg" : "10.00",
-                    "adId" : "473965c9df19d2",
-                    "adserverTargeting" : {
-                       "hb_native_icon" : "https://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
-                       "hb_native_title" : "This is a Prebid Native Multi-Format Creative",
-                       "hb_native_brand" : "Prebid.org",
-                       "hb_adid" : "473965c9df19d2",
-                       "hb_pb" : "10.00",
-                       "hb_source" : "client",
-                       "hb_bidder" : "appnexus",
-                       "hb_native_image" : "https://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
-                       "hb_size" : "0x0",
-                       "hb_mediatype" : "native",
-                       "hb_native_body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
-                       "hb_native_linkurl" : "https://prebid.org/dev-docs/show-native-ads.html"
-                    },
-                    "native" : {
-                       "icon" : {
-                          "url" : "https://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
-                          "height" : 75,
-                          "width" : 75
-                       },
-                       "body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
-                       "image" : {
-                          "url" : "https://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
-                          "height" : 2250,
-                          "width" : 3000
-                       },
-                       "clickUrl" : "https://prebid.org/dev-docs/show-native-ads.html",
-                       "clickTrackers" : [
-                          "..."
-                       ],
-                       "title" : "This is a Prebid Native Multi-Format Creative",
-                       "impressionTrackers" : [
-                          "..."
-                       ],
-                       "sponsoredBy" : "Prebid.org"
-                    },
-                    "timeToRespond" : 143,
-                    "mediaType" : "native",
-                    "bidderCode" : "appnexus",
-                    "source" : "client",
-                    "auctionId" : "1338a6fb-e514-48fc-8db6-872ddf3babdb",
-                    "responseTimestamp" : 1516315716205,
-                    "netRevenue" : true,
-                    "pbDg" : "10.00",
-                    "pbHg" : "10.00",
-                    "ttl" : 300,
-                    "status" : "targetingSet",
-                    "height" : 0,
-                    "statusMessage" : "Bid available",
-                    "cpm" : 10,
-                    "currency" : "USD"
-                 }
-              ]
-           }
-        }
+    "div-banner-outstream-native" : {
+      "bids" : [
+          {
+            "pbMg" : "10.00",
+            "pbLg" : "5.00",
+            "width" : 0,
+            "requestTimestamp" : 1516315716062,
+            "creativeId" : 81589325,
+            "pbCg" : "",
+            "adUnitCode" : "div-banner-outstream-native",
+            "size" : "0x0",
+            "bidder" : "appnexus",
+            "pbAg" : "10.00",
+            "adId" : "473965c9df19d2",
+            "adserverTargeting" : {
+                "hb_native_icon" : "https://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
+                "hb_native_title" : "This is a Prebid Native Multi-Format Creative",
+                "hb_native_brand" : "Prebid.org",
+                "hb_adid" : "473965c9df19d2",
+                "hb_pb" : "10.00",
+                "hb_source" : "client",
+                "hb_bidder" : "appnexus",
+                "hb_native_image" : "https://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
+                "hb_size" : "0x0",
+                "hb_mediatype" : "native",
+                "hb_native_body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
+                "hb_native_linkurl" : "https://prebid.org/dev-docs/show-native-ads.html"
+            },
+            "native" : {
+                "icon" : {
+                  "url" : "https://vcdn.adnxs.com/p/creative-image/d4/06/e2/33/d406e233-a5f9-44a6-a3e0-8a714bf0e980.png",
+                  "height" : 75,
+                  "width" : 75
+                },
+                "body" : "This is a Prebid Native Creative. There are many like it, but this one is mine.",
+                "image" : {
+                  "url" : "https://vcdn.adnxs.com/p/creative-image/9e/26/5f/b2/9e265fb2-50c8-43f0-88ef-a5a48a9d0dcf.jpg",
+                  "height" : 2250,
+                  "width" : 3000
+                },
+                "clickUrl" : "https://prebid.org/dev-docs/show-native-ads.html",
+                "clickTrackers" : [
+                  "..."
+                ],
+                "title" : "This is a Prebid Native Multi-Format Creative",
+                "impressionTrackers" : [
+                  "..."
+                ],
+                "sponsoredBy" : "Prebid.org"
+            },
+            "timeToRespond" : 143,
+            "mediaType" : "native",
+            "bidderCode" : "appnexus",
+            "source" : "client",
+            "auctionId" : "1338a6fb-e514-48fc-8db6-872ddf3babdb",
+            "responseTimestamp" : 1516315716205,
+            "netRevenue" : true,
+            "pbDg" : "10.00",
+            "pbHg" : "10.00",
+            "ttl" : 300,
+            "status" : "targetingSet",
+            "height" : 0,
+            "statusMessage" : "Bid available",
+            "cpm" : 10,
+            "currency" : "USD"
+          }
+      ]
+    }
+}
 ```
 
 </div>

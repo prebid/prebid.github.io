@@ -5,10 +5,9 @@ description: getConsentMetadata API
 sidebarType: 1
 ---
 
-
 The `getConsentMetadata()` function will return basic information about the status of supported (and configured!) consent content within Prebid.
 
-```
+```javascript
 pbjs.getConsentMetadata() // returns e.g.
 {
     "coppa": false,

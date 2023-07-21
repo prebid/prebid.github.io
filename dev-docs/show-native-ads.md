@@ -8,6 +8,7 @@ sidebarType: 1
 ---
 
 # Show Native Ads with Prebid.js
+
 {: .no_toc }
 
 {% capture change-notice %}
@@ -40,17 +41,17 @@ At a high level, Prebid.js' support for native ads works like this:
 
 The native ad responses get placed on specific keys that are sent into your ad server. For example:
 
-+ `hb_native_title`
-+ `hb_native_body`
-+ `hb_native_body2`
-+ `hb_native_brand`
-+ `hb_native_image`
-+ `hb_native_icon`
-+ `hb_native_linkurl`
-+ `hb_native_privacy`
-+ `hb_native_privicon`
-+ `hb_native_rating`
-+ `hb_native_cta`
+* `hb_native_title`
+* `hb_native_body`
+* `hb_native_body2`
+* `hb_native_brand`
+* `hb_native_image`
+* `hb_native_icon`
+* `hb_native_linkurl`
+* `hb_native_privacy`
+* `hb_native_privicon`
+* `hb_native_rating`
+* `hb_native_cta`
 
 Note that these keys correspond directly to the `mediaTypes.native` object you define in your ad unit (which is [described in more detail below](#native-ad-keys)).
 
@@ -60,7 +61,7 @@ The ad ops team will then reference these keys in the ad server to set up the ti
 
 Keep the following prerequisites in mind during the implementation:
 
-+ Make sure to work with native-enabled bidders. To see which bidders have native demand, see [Bidders with Video and Native Demand]({{site.baseurl}}/dev-docs/bidders.html#bidders-with-video-and-native-demand).
+* Make sure to work with native-enabled bidders. To see which bidders have native demand, see [Bidders with Video and Native Demand]({{site.baseurl}}/dev-docs/bidders.html#bidders-with-video-and-native-demand).
 
 ## Implementation
 
@@ -78,7 +79,7 @@ const slot = {
 };
 ```
 
-<a name="native-ad-keys" />
+<a name="native-ad-keys"></a>
 
 ### 2. Add native ad units
 
@@ -109,7 +110,7 @@ Each key's value is an object with several fields.  Most important is the `requi
   </p>
 </div>
 
-<a name="native-object" />
+<a name="native-object"></a>
 
 ```javascript
 
@@ -164,16 +165,16 @@ For now there is only the `image` type, but more will be added.
 
 The image native ad type implies the following required fields:
 
-+ image
-+ title
-+ sponsoredBy
-+ clickUrl
+* image
+* title
+* sponsoredBy
+* clickUrl
 
 And the following optional fields:
 
-+ body
-+ icon
-+ cta
+* body
+* icon
+* cta
 
 A native "image-type" ad unit can be set up as shown in the following example.
 
@@ -196,7 +197,7 @@ const adUnits = [{
 
 {% include dev-docs/native-image-asset-sizes.md %}
 
-### 3. Add your native ad tag to the page body as usual:
+### 3. Add your native ad tag to the page body as usual
 
 ```html
 <div id="div-prebid-native-test-1">
@@ -280,8 +281,8 @@ The `native-trk.js` script from `prebid-universal-creative` can replace native p
 
 ## Working Examples
 
-+ [Prebid Native Examples](/dev-docs/examples/native-ad-example.html)
+* [Prebid Native Examples](/dev-docs/examples/native-ad-example.html)
 
 ## Further Reading
 
-+ [GAM Step by Step - Native Creatives](/adops/gam-native.html) (Ad Ops Setup Instructions)
+* [GAM Step by Step - Native Creatives](/adops/gam-native.html) (Ad Ops Setup Instructions)

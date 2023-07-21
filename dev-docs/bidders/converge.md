@@ -22,7 +22,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Converge-Digital Bidding adapter requires setup and approval before implementation. Please reach out to <info@converge-digital.com> for more details.
 

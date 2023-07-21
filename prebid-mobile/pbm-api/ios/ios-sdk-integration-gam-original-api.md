@@ -29,7 +29,7 @@ Starting with Prebid Mobile `2.1.0` you can use `BannerAdUnit` to bid over the b
 
 Integration example:
 
-``` swift
+```swift
 // 1. Create a BannerAdUnit 
 adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
 adUnit.setAutoRefreshMillis(time: 30000)
@@ -122,7 +122,7 @@ Once an app receives a signal that an ad is loaded, you should use the method `A
 
 Integration example:
 
-``` swift
+```swift
 // 1. Create a BannerAdUnit
 adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
 
@@ -274,7 +274,7 @@ Be sure that you make the ad request with the same `GAMRequest` object that you 
 
 Integration example:
 
-``` swift
+```swift
 // 1. Create a BannerAdUnit
 adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
 adUnit.setAutoRefreshMillis(time: 30000)
@@ -381,7 +381,7 @@ Starting with Prebid Mobile `2.1.0` you can use `InterstitialAdUnit ` to bid ove
 
 Integration example:
 
-``` swift
+```swift
 // 1. Create an Interstitial Ad Unit
 adUnit = InterstitialAdUnit(configId: CONFIG_ID)
 
@@ -519,7 +519,7 @@ Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-s
 
 Integration example:
 
-``` swift
+```swift
 // 1. Create an InterstitialAdUnit
 adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: 60, minHeightPerc: 70)
 
@@ -599,7 +599,7 @@ Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-s
 
 Integration example:
 
-``` swift
+```swift
 // 1. Create a RewardedVideoAdUnit
 adUnit = RewardedVideoAdUnit(configId: CONFIG_ID)
 

@@ -7,21 +7,18 @@ description: Questions & FAQ
 
 <div class="bs-docs-section" markdown="1">
 
-#Questions
+# Questions
 
 {: .text-center :}
-####General questions, feature requests, or anything:
 
-<br>
+## General questions, feature requests, or anything
 
 <div class="form-horizontal">
 
   <div class="form-group">
     <label class="col-sm-2 control-label">Comment</label>
     <div class="col-sm-10">
-      <textarea class="form-control" id="comment-field" rows="4" autofocus>
-        
-      </textarea>
+      <textarea class="form-control" id="comment-field" rows="4" autofocus></textarea>
     </div>
   </div>
 

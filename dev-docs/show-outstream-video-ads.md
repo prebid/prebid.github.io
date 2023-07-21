@@ -9,6 +9,7 @@ sidebarType: 4
 <div class="bs-docs-section" markdown="1">
 
 # Show Outstream Video Ads
+
 {: .no_toc}
 
 Unlike instream video ads, which require you to have your own video inventory, Outstream video ads can be shown on any web page, even pages that only have text content.
@@ -24,7 +25,7 @@ There should be no changes required on the ad ops side, since the outstream unit
 
 ## Prerequisites
 
-+ Inclusion of at least one demand adapter that supports the `"video"` media type
+* Inclusion of at least one demand adapter that supports the `"video"` media type
 
 ## Step 1: Set up ad units with the video media type and outstream context
 
@@ -33,7 +34,6 @@ Use the `adUnit.mediaTypes` object to set up your ad units with the `video` medi
 For full details on video ad unit parameters, see [Ad Unit Reference for Video]({{site.baseurl}}/dev-docs/adunit-reference.html#adunitmediatypesvideo)
 
 ```javascript
-
 var videoAdUnits = [{
     code: 'video1',
     mediaTypes: {
@@ -54,7 +54,6 @@ var videoAdUnits = [{
         }
     }]
 }];
-
 ```
 
 ### Renderers
@@ -85,10 +84,9 @@ A renderer is an object containing these properties:
 2. `render` -- A function that tells Prebid.js how to invoke the renderer script.
 3. `backupOnly` -- Optional field, if set to true, buyer or adapter renderer will be preferred
 
-
 In a multiFormat adUnit, you might want the renderer to only apply to only one of the mediaTypes.  You can do this by defining the renderer on the media type itself.
-```javascript
 
+```javascript
 pbjs.addAdUnit({
     code: 'video1',
     // This renderer would apply to all prebid creatives...
@@ -125,7 +123,6 @@ pbjs.addAdUnit({
 Some demand partners that return a renderer with their video bid responses may support renderer configuration with the `adUnit.renderer.options` object. These configurations are bidder specific and may include options for skippability, player size, and ad text, for example. An example renderer configuration follows:
 
 ```javascript
-
 pbjs.addAdUnit({
     code: 'video1',
     mediaTypes: {
@@ -145,7 +142,6 @@ pbjs.addAdUnit({
     },
     // ...
 });
-
 ```
 
 For more technical information about renderers, see [the pull request originally adding the 'Renderer' type](https://github.com/prebid/Prebid.js/pull/1082) and [the pull request allowing the 'renderer' type in the mediaType](https://github.com/prebid/Prebid.js/pull/5760).
@@ -184,7 +180,6 @@ In the Prebid.js event queue, you'll need to add a function that:
     2. Renders the ad
 
 ```javascript
-
 pbjs.que.push(function () {
     pbjs.addAdUnits(videoAdUnits);
     pbjs.requestBids({
@@ -195,20 +190,19 @@ pbjs.que.push(function () {
         }
     });
 });
-
 ```
 
 For more information, see the API documentation for:
 
-+ [requestBids](/dev-docs/publisher-api-reference/requestBids.html)
-+ [getHighestCpmBids](/dev-docs/publisher-api-reference/getHighestCpmBids.html)
-+ [renderAd](/dev-docs/publisher-api-reference/renderAd.html)
+* [requestBids](/dev-docs/publisher-api-reference/requestBids.html)
+* [getHighestCpmBids](/dev-docs/publisher-api-reference/getHighestCpmBids.html)
+* [renderAd](/dev-docs/publisher-api-reference/renderAd.html)
 
 ## Working Examples
 
 Below, find links to end-to-end "working examples" demonstrating Prebid Outstream:
 
-+ [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html)
-+ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-no-server.html)
+* [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html)
+* [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-no-server.html)
 
 </div>

@@ -10,6 +10,7 @@ sidebarType : 1
 ---
 
 # Price Floors Module
+
 {:.no_toc}
 
 * TOC
@@ -23,17 +24,18 @@ A ‘floor’ is defined as the lowest CPM price a bid will need to meet for eac
 
 The module provides several ways for Prebid floors to be defined, that are used by bidder adapters to read floors and enforced on bid responses in any supported currency. The floors utilized by the Price Floors Module are defined by one or more set of rules containing any or all of the following dimensions:
 
-- AdUnit
-- GPT Slot Name
-- MediaType
-- Ad Size
-- Domain
-- "custom dimensions" (Prebid.js only)
+* AdUnit
+* GPT Slot Name
+* MediaType
+* Ad Size
+* Domain
+* "custom dimensions" (Prebid.js only)
 
 {: .alert.alert-warning :}
 When using GPT Slot name, the GPT library is required to load first. Failing to do so may yield unexpected results and could impact revenue performance.
 
 The entire set of floors selected by the Price Floors Module for a given auction is called a "Rule Location". A Rule Location can be any one of:
+
 1. Retrieved from a real-time data service (Dynamic)
 2. Within setConfig (Package)
 3. Within the AdUnit (AdUnit)
@@ -47,19 +49,22 @@ Publishers will use it mainly for mobile app and AMP scenarios.
 Web sites running Prebid.js will utilize this client-side module.
 
 ## How it Works
+
 There are several places where the Floor module changes the behavior of the Prebid.js auction process. Below is a diagram describing the general flow of the client-side Price Floors Module:
 
 ![Floors Module Flow](/assets/images/floors/floors_flow.png)
 
 1. When building the Prebid.js package, the Price Floors Module (and any analytics adapters) needs to be included with 'gulp build --modules=priceFloors,...'
 2. As soon as the setConfig({floors}) call is initiated, the Price Floors Module will build an internal hash table for each auction derived from a Rule Location (one of Dynamic, setConfig or adUnit)
-  - a. If an endpoint URL (a Dynamic Floor) is defined, the Price Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Price Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data, whichever is first.
-  - If the `skipRate` flag is specified, there's an A/B test in progress, so the module will decide for this request whether floors processing should be 'skipped' or not.
+
+    * If an endpoint URL (a Dynamic Floor) is defined, the Price Floors Module will attempt to fetch floor data from the Floor Provider's endpoint. When requestBids is called, the Price Floors Module will delay the auction up to the supplied amount of time in floors.auctionDelay or as soon as the dynamic endpoint returns data, whichever is first.
+    * If the `skipRate` flag is specified, there's an A/B test in progress, so the module will decide for this request whether floors processing should be 'skipped' or not.
+
 3. Bid Adapters are responsible for utilizing the getFloor() from the bidRequest object for each ad slot media type, size combination. The Price Floors Module will perform currency conversion if the bid adapter requests floors in a different currency from the defined floor data currency.
 4. Bid Adapters will pass the floor values to their bidding endpoints, to request bids, responding with any bids that meet or exceed the provided floor
 5. Bid adapters will submit bids to back to Prebid core, where the Price Floors Module will perform enforcement on each bid
 6. The Price Floors Module will mark all bids below the floor as bids rejected. Prebid core will submit all eligible bids to the publisher ad server
-    - a. The Price Floors Module emits floor event / bid data to Analytics adapters to allow Floor Providers a feedback loop on floor performance for model training
+    * The Price Floors Module emits floor event / bid data to Analytics adapters to allow Floor Providers a feedback loop on floor performance for model training
 
 ## Defining Floors
 
@@ -71,11 +76,10 @@ In this approach, the Publisher configures the floors directly into the Prebid.j
 
 Below are some basic principles of ad unit floor definitions:
 
-- Ad unit defined rules only apply to the ad unit they are created in
-- Setting a rule with a value that does not match the context of that given ad unit will never be used
-- If multiple ad units have configured floor objects, the first ad unit’s schema would apply to all subsequent ad unit floor definitions
-    - Values can differ between ad units
-
+* Ad unit defined rules only apply to the ad unit they are created in
+* Setting a rule with a value that does not match the context of that given ad unit will never be used
+* If multiple ad units have configured floor objects, the first ad unit’s schema would apply to all subsequent ad unit floor definitions
+  * Values can differ between ad units
 
 ```javascript
  var adUnits = [
@@ -220,6 +224,7 @@ pbjs.setConfig({
 ```
 
 ### Dynamic Floors
+
 The final method of obtaining floor data allows the publisher to delay the auction for a certain time period to obtain up-to-date floor data tailored to each page or auction context. The assumed workflow is:
 
 1. The Publisher signs up with a floor data provider
@@ -271,11 +276,9 @@ pbjs.setConfig({
 });
 ```
 
-
 ## Floors Syntax
 
 The examples above covered several different scenarios where floors can be applied. Below we will cover the syntax and definition of the floors data schema. As of Prebid.js version 3.24, the Price Floors Module supports a second data schema with the ability to add new schemas to future-proof the needs of additional design changes while keeping backwards compatibility.
-
 
 ### Schema 1
 
@@ -319,21 +322,21 @@ a subset that will be merged under the 'data' object.
 {: .alert.alert-info :}
 When you see 'skipped' in the floors data, it indicates the status of the `skipRate` A/B test for this request. This is just a mechanism to be able to tell if the floor rules are providing value. e.g `skipRate` will often start at a high value like 90%, which means "only apply floors 10% of the time". If skipRate is 90, you would expect to see "skipped: true" 9 times out 10.
 
-
 ### Schema 2
 
 Schema 2 allows floors providers to A/B-test one or more floor groups, determined at auction time.
 
 The following principles apply to Schema 2:
-- These attributes are required:
-    - data.floorsSchemaVersion to be set to 2
-    - A valid modelGroups object must be set
-    - The field modelGroups.modelWeight is required for each model group
-        - If one of the model weights is missing, no schema 2 floor will be set and the Price Floors Module will look in other locations for floor definitions
-- If common attributes are set in both the modelGroups and root level of the data object, modelGroups attributes prevail
-- The Schema 2 data model can only be applied in Package level (i.e. directly in setConfig) or Dynamic level
-- Sampling weights are applied at the auction level. Each new auction the dice will be rolled.
-- If the data.modelGroups object and the data.values (schema 1 field) are set, the data.floorsSchemaVersion will dictate what schema version is applied
+
+* These attributes are required:
+  * data.floorsSchemaVersion to be set to 2
+  * A valid modelGroups object must be set
+  * The field modelGroups.modelWeight is required for each model group
+    * If one of the model weights is missing, no schema 2 floor will be set and the Price Floors Module will look in other locations for floor definitions
+* If common attributes are set in both the modelGroups and root level of the data object, modelGroups attributes prevail
+* The Schema 2 data model can only be applied in Package level (i.e. directly in setConfig) or Dynamic level
+* Sampling weights are applied at the auction level. Each new auction the dice will be rolled.
+* If the data.modelGroups object and the data.values (schema 1 field) are set, the data.floorsSchemaVersion will dictate what schema version is applied
 
 While some attributes are common in both schema versions, for completeness, all valid schema 2 attributes are provided:
 
@@ -394,63 +397,63 @@ pbjs.setConfig({
         enforcement: { ... },
         ...
         data: {
-	    "currency": "EU",
-	    "skipRate": 20,
-	    "floorsSchemaVersion":2,
-	    "modelGroups": [
-		{
-		    "modelWeight":25,
-		    "modelVersion": "Model1",
-		    "schema": {
-			"fields": [ "domain", "gptSlot", "mediaType", "size" ]
-		    },
-		    "values": {
-			"www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
-			"www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
-			"www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
-			...
-			"www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
-			...
-			"www.publisher.com|*|*|*": 0.80,
-		    },
-		    "default": 0.75
-		},
-		{
-		    "modelWeight": 25,
-		    "modelVersion": "Model2",
-		    "schema": {
-			"fields": [ "domain", "mediaType", "size" ]
-		    },
-		    "values": {
-			"www.publisher.com|banner|728x90": 1.00,
-			"www.publisher.com|banner|300x250": 1.20,
-			"www.publisher.com|banner|300x600": 1.80,
-			...
-			"www.domain.com|banner|728x90": 2.11
-			...
-			"www.publisher.com|*|*|*": 0.80,
-		    },
-		    "default": 0.75
-		},
-		{
-		    "modelWeight": 50,
-		    "modelVersion": "Model3",
-		    "schema": {
-			"fields": [ "gptSlot", "mediaType", "size" ]
-		    },
-		    "values": {
-			"/1111/homepage/top-banner|banner|728x90": 1.00,
-			"/1111/homepage/top-rect|banner|300x250": 1.20,
-			"/1111/homepage/top-rect|banner|300x600": 1.80,
-			...
-			"/1111/homepage/top-banner|banner|728x90": 2.11
-			...
-			"*|banner|*": 0.80,
-		    },
-		    "default": 0.75
-		}
-	    ]
-	}
+        "currency": "EU",
+        "skipRate": 20,
+        "floorsSchemaVersion":2,
+        "modelGroups": [
+        {
+            "modelWeight":25,
+            "modelVersion": "Model1",
+            "schema": {
+            "fields": [ "domain", "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+            "www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
+            "www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
+            "www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
+            ...
+            "www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
+            ...
+            "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.75
+        },
+        {
+            "modelWeight": 25,
+            "modelVersion": "Model2",
+            "schema": {
+            "fields": [ "domain", "mediaType", "size" ]
+            },
+            "values": {
+            "www.publisher.com|banner|728x90": 1.00,
+            "www.publisher.com|banner|300x250": 1.20,
+            "www.publisher.com|banner|300x600": 1.80,
+            ...
+            "www.domain.com|banner|728x90": 2.11
+            ...
+            "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.75
+        },
+        {
+            "modelWeight": 50,
+            "modelVersion": "Model3",
+            "schema": {
+            "fields": [ "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+            "/1111/homepage/top-banner|banner|728x90": 1.00,
+            "/1111/homepage/top-rect|banner|300x250": 1.20,
+            "/1111/homepage/top-rect|banner|300x600": 1.80,
+            ...
+            "/1111/homepage/top-banner|banner|728x90": 2.11
+            ...
+            "*|banner|*": 0.80,
+            },
+            "default": 0.75
+        }
+        ]
+    }
     }
 });
 ```
@@ -468,47 +471,47 @@ pbjs.setConfig({
         enforcement: { ... },
         ...
         data: {
-	    "currency": "EU",
-	    "floorsSchemaVersion":2,
-	    "modelGroups": [
-		{
-		    "modelWeight":25,
-		    "skipRate": 20,
-		    "modelVersion": "Model1",
-		    "schema": {
-			"fields": [ "domain", "gptSlot", "mediaType", "size" ]
-		    },
-		    "values": {
-			"www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
-			"www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
-			"www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
-			...
-			"www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
-			...
-			"www.publisher.com|*|*|*": 0.80,
-		    },
-		    "default": 0.75
-		},
-		{
-		    "modelWeight": 50,
-		    "skipRate": 50,
-		    "modelVersion": "Model2",
-		    "schema": {
-			"fields": [ "gptSlot", "mediaType", "size" ]
-		    },
-		    "values": {
-			"/1111/homepage/top-banner|banner|728x90": 1.00,
-			"/1111/homepage/top-rect|banner|300x250": 1.20,
-			"/1111/homepage/top-rect|banner|300x600": 1.80,
-			...
-			"/1111/homepage/top-banner|banner|728x90": 2.11
-			...
-			"*|banner|*": 0.80,
-		    },
-		    "default": 0.75
-		}
-	    ]
-	}
+        "currency": "EU",
+        "floorsSchemaVersion":2,
+        "modelGroups": [
+        {
+            "modelWeight":25,
+            "skipRate": 20,
+            "modelVersion": "Model1",
+            "schema": {
+            "fields": [ "domain", "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+            "www.publisher.com|/1111/homepage/top-banner|banner|728x90": 1.00,
+            "www.publisher.com|/1111/homepage/top-rect|banner|300x250": 1.20,
+            "www.publisher.com|/1111/homepage/top-rect|banner|300x600": 1.80,
+            ...
+            "www.domain.com|/1111/homepage/top-banner|banner|728x90": 2.11
+            ...
+            "www.publisher.com|*|*|*": 0.80,
+            },
+            "default": 0.75
+        },
+        {
+            "modelWeight": 50,
+            "skipRate": 50,
+            "modelVersion": "Model2",
+            "schema": {
+            "fields": [ "gptSlot", "mediaType", "size" ]
+            },
+            "values": {
+            "/1111/homepage/top-banner|banner|728x90": 1.00,
+            "/1111/homepage/top-rect|banner|300x250": 1.20,
+            "/1111/homepage/top-rect|banner|300x600": 1.80,
+            ...
+            "/1111/homepage/top-banner|banner|728x90": 2.11
+            ...
+            "*|banner|*": 0.80,
+            },
+            "default": 0.75
+        }
+        ]
+    }
     }
 });
 ```
@@ -519,7 +522,6 @@ An extension supported on Prebid Server only is the ability to define impression
 the results from a dynamic floors provider.
 
 The Prebid Server OpenRTB fields are imp.ext.prebid.floors.floorMin and floorMinCur. It's expected that these values will be placed in the App or AMP stored request and not supplied on a web page. (Though they could be supplied as AdUnit.ortb2Imp).
-
 
 ## Custom Schema Fields
 
@@ -533,9 +535,10 @@ Out of the box, the Price Floors Module only supports looking up floors by AdUni
 
 ### Create Lookup Function
 
-Create a function to allow the module to understand context of a given auction. In the below example, a lookup function provides details about what deviceType this auction is for. 
+Create a function to allow the module to understand context of a given auction. In the below example, a lookup function provides details about what deviceType this auction is for.
 
 e.g.
+
 ```javascript
   function deviceTypes (bidRequest, bidResponse) {
       //while bidRequest and bidResponse are not required for this function, they are available for custom attribute mapping
@@ -551,7 +554,6 @@ e.g.
   }
 
 ```
-
 
 ### Define, Set and Map Custom Schema Attributes
 
@@ -591,7 +593,6 @@ In the below example, `deviceType` is a custom field not currently supported by 
 
 ```
 
-
 ## Rule Handling
 
 ### Rule Location Priority
@@ -600,10 +601,9 @@ As defined in the overview, a Rule Location is where a particular rule is locate
 
 The module uses the below prioritization scheme on determining which Rule Location is selected at run-time:
 
-- dynamic
-- setConfig
-- adUnit
-
+* dynamic
+* setConfig
+* adUnit
 
 ### Rule Selection Process
 
@@ -615,34 +615,59 @@ Priority order behavior where “\_” is a specific value, and the “\*” is 
 
 Priority order for one column rule sets:  
 
- \_   
- \*   
+```text
+ _   
+ *
+```
 
 Priority order for two column rule set:
 
- \_ \| \_  
- \_ \| \*  
- \* \|\_   
- \* \| \*   
+```text
+ _ | _  
+ _ | *  
+ * | _   
+ * | *
+```
 
 Priority order for three column rule sets:
 
- \_ \| \_ \| \_  
- \_ \| \_ \| \*  
- \_ \| \* \| \_  
- \* \| \_ \| \_  
- \_ \| \* \| \*  
- \* \| \_ \| \*  
- \* \| \* \| \_  
- \* \| \* \| \*  
+```text
+ _ | _ | _  
+ _ | _ | *  
+ _ | * | _  
+ * | _ | _  
+ _ | * | *  
+ * | _ | *  
+ * | * | _  
+ * | * | *  
+```
 
+Priority order for four column rule sets:
 
+```text
+ _ | _ | _ | _
+ _ | _ | _ | *
+ _ | _ | * | _
+ _ | * | _ | _
+ * | _ | _ | _
+ _ | _ | * | *
+ _ | * | _ | *
+ _ | * | * | _
+ * | _ | _ | *
+ * | _ | * | _
+ * | * | _ | _
+ _ | * | * | *
+ * | _ | * | *
+ * | * | _ | *
+ * | * | * | _
+ * | * | * | *
+```
 
 Below are some real example behaviors.
 
 #### Example 1
 
-Domain = www.website.com
+Domain = <www.website.com>
 
 Floor provider rule definition
 
@@ -679,7 +704,7 @@ Floor provider rule definition
 
 mediaType = banner  
 Size = 300x600  
-Domain context = www.website.com  
+Domain context = <www.website.com>  
 
 The Floor module produces an internal hash table of all possible permutations of “banner”, “300x600”, “www.website.com” and “\*” with the most specific hash values up top, weighting rules priority from left column specific values to right. Each left value will weigh more than the subsequent column’s specific values. The module attempts to find the matching rule by cycling through each below possible rule (from top to bottom) against the above rule provider data set.
 
@@ -700,14 +725,14 @@ The Floor module produces an internal hash table of all possible permutations of
 Matching rule: "banner|300x600|www.website.com"  
 Floor enforced: 3.01  
 
-
 **Bidder B Bid**
 
 mediaType = video  
 Size = 640x480  
-Domain context = www.website.com  
+Domain context = <www.website.com>  
 
 Price Floor internal possible permutations sorted by priority:
+
 ```javascript
 {
     "video|640x480|www.website.com",       //Fails to match due to no video specific rule
@@ -724,14 +749,14 @@ Price Floor internal possible permutations sorted by priority:
 Matching rule: "\*|\*|www.website.com"  
 Enforced Floor: 15.01
 
-
 **Bidder C Bid**
 
 mediaType = video  
 Size = 300x250  
-Domain context = www.website.com  
+Domain context = <www.website.com>  
 
 Price Floor internal possible permutations sorted by priority:
+
 ```javascript
 {
     "video|300x250|www.website.com",       //Fails to match due to no video specific rule
@@ -752,7 +777,7 @@ Enforced floor: 10.01
 
 Similar data set with slightly different rules and same bids from each bidder. Matching rules will differ from example 1.
 
-Domain = www.website.com
+Domain = <www.website.com>
 
 Floor provider rule definition
 
@@ -790,7 +815,7 @@ Floor provider rule definition
 
 mediaType = banner  
 Size = 300x600  
-Domain context = www.website.com  
+Domain context = <www.website.com>  
 
 ```javascript
 
@@ -815,7 +840,7 @@ Floor enforced: 4.01
 
 mediaType = video  
 Size = 640x480  
-Domain context = www.website.com.
+Domain context = <www.website.com>.
 
 Price Floor internal possible permutations sorted by priority:
 
@@ -837,12 +862,11 @@ Price Floor internal possible permutations sorted by priority:
 Matching rule: "video\|\*\|\*"  
 Enforced Floor: 9.01
 
-
 **Bidder C Bid**
 
 mediaType = video  
 Size = 300x250  
-Domain context = www.website.com  
+Domain context = <www.website.com>  
 
 Price Floor internal possible permutations sorted by priority:
 
@@ -862,7 +886,6 @@ Price Floor internal possible permutations sorted by priority:
 Matching Rule "\*|300x250|www.website.com”  
 Enforced floor: 10.01  
 
-
 ## Interfaces
 
 ### Floor Data Provider Interface
@@ -874,12 +897,12 @@ Data providers can optionally build Analytics Adapters to ingest bid data within
 {% capture warning_note %}
 As a floor provider, your goal is to provide effective floors, with minimal page impact. If you are performing a Dynamic fetch to retrieve data prior to auctions, the following recommendations are advised to reduce page performance issues:  
 
-- Return results to the page quickly. This implies data should be stored on a CDN or be provided by a distributed tier of high performance services  
-- Work with publishers on setting appropriate auction delays to retrieve dynamic data  
-- Implement client-side caching (such as max-age headers) whenever possible  
-- Evaluate data freshness vs frequency of new fetches to the CDN to reduce unnecessary calls  
-- Be aware of file sizes returned to the browser, implementing trimming algorithms for extremely large data sets  
-:::
+* Return results to the page quickly. This implies data should be stored on a CDN or be provided by a distributed tier of high performance services  
+* Work with publishers on setting appropriate auction delays to retrieve dynamic data  
+* Implement client-side caching (such as max-age headers) whenever possible  
+* Evaluate data freshness vs frequency of new fetches to the CDN to reduce unnecessary calls  
+* Be aware of file sizes returned to the browser, implementing trimming algorithms for extremely large data sets  
+{% endcapture %}
 {% include /alerts/alert_important.html content=warning_note %}
 
 For Dynamic fetches, the Price Floors Module will perform a GET request to the supplied endpoint, that must return valid JSON, which will be merged into the data object in the “setConfig” Package configuration. In otherwords, the schema used for dynamic fetches is a subset of the full schema.
@@ -958,7 +981,6 @@ In this example, the floor is determined by Domain, GPT Slot, Media Type and Siz
 
 ```
 
-
 #### Example Response 3 - Schema 2
 
 In this example, the floor is determined by domain, gptSlot, mediaType, and size. Note again that dynamic floor responses are merged into the 'data' level of the schema.
@@ -1009,7 +1031,6 @@ In this example, the floor is determined by domain, gptSlot, mediaType, and size
 
 ```
 
-
 ### Bid Adapter Interface
 
 The Prebid Floors Module is capable of handling an arbitrarily large set of floor rules of any combination of supported dimensions. To reduce the need for each bid adapter to process each and every rule in the selected rule data set, an encapsulated function (getFloor) was created to allow bid adapters to query the module for a floor for each mediaType, size and currency the bid adapter needs.
@@ -1037,7 +1058,6 @@ getFloor() takes in a single object with the following params:
 
 {: .alert.alert-warning :}
 Consider how floors will behave in multi-currency scenarios. A common pitfall is requesting floors without specifying currency, or specifying the wrong currency back to the bid adapter's platform. This may lead to bidders requesting one currency and bidding in an alternate currency.
-
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Default |
@@ -1121,7 +1141,6 @@ To aid in the accuracy of floor selection when using size ”\*” in getFloor()
 }
 ```
 
-
 **Example getFloor() 2**
 
 getFloor() for media type Banner for a bid requests in GPT slot “/1111/homepage/top-rect” with size of 300x600 where bid adapter does support floors per size.
@@ -1202,19 +1221,21 @@ and passes it to the server side as imp.bidfloor and imp.bidfloorcur.
 If a publisher is defining their own floors, then all of the fields in the floors schema may be defined in the page.
 
 Even if a publisher is using a floors provider, they may wish to provide additional data:
+
 1. default floor data if dynamic data fails to load on time
 2. global floorMin: allows the publisher to constrain dynamic floors with a global min
 3. impression-level floor min (PBJS 6.24+): allows the publisher to constrain dynamic floors with an adunit-specific value
 
 Here's an example covering the first two scenarios:
-```
+
+```javascript
 pbjs.setConfig({
       floors: {
           enforcement: {
              floorDeals: false //default to false
           },
           floorMin: 0.05,      // global default
-	  auctionDelay: 100,   // in milliseconds
+      auctionDelay: 100,   // in milliseconds
           endpoint: {          // where to get the dynamic floors
             url: 'https://floorprovider.com/a1001-mysite.json'
           },
@@ -1229,13 +1250,14 @@ pbjs.setConfig({
                 '*|banner': 0.98,
                 '*|video': 1.74
             }
-	  }
+      }
       }
 });
 ```
 
 And here's an example of imp-level floorMin, which is like a form of imp-level [first party data](/features/firstPartyData.html#supplying-adunit-specific-data):
-```
+
+```javascript
 pbjs.addAdUnits({
     code: "test-div",
     mediaTypes: {
@@ -1245,11 +1267,11 @@ pbjs.addAdUnits({
     },
     ortb2Imp: {
         ext: {
-	    prebid: {
+        prebid: {
                 data: {
-		    floorMin: 0.25,
-		    floorMinCur: "USD"
-		}
+            floorMin: 0.25,
+            floorMinCur: "USD"
+        }
             }
         }
     },
@@ -1267,9 +1289,9 @@ For publishers requiring currency conversions (for example if the floors data cu
 {% include /alerts/alert_warning.html content=warning_note %}
 
 Currency conversion can occur in two areas of the Floor Module code:
-- On the **getFloor()** call when Bid Adapters request a floor
-- On the **enforcement** side when each bidder submits a bidResponse
 
+* On the **getFloor()** call when Bid Adapters request a floor
+* On the **enforcement** side when each bidder submits a bidResponse
 
 **Currency and getFloor()**
 
@@ -1308,14 +1330,15 @@ If currency conversion is unsuccessful:
 ```
 
 Currency conversion can fail for the following reasons:
-- Currency module is not included in the prebid bundle.
-- Currency module is included but not enabled
-- Currency module is included and enabled but:
-    - No default rates were set
-    - Currency rates fetch failed
-    - Data has not returned yet
-- Bidder passes in a currency code which does not have a conversion rate
-- Floors was set with a currency which does not have a conversion rate
+
+* Currency module is not included in the prebid bundle.
+* Currency module is included but not enabled
+* Currency module is included and enabled but:
+  * No default rates were set
+  * Currency rates fetch failed
+  * Data has not returned yet
+* Bidder passes in a currency code which does not have a conversion rate
+* Floors was set with a currency which does not have a conversion rate
 
 **Currency and Floor Enforcement**
 
@@ -1323,16 +1346,16 @@ Enforcement in the Price Floors Module occurs when bidders respond with a bidRes
 
 There exist three locations where currencies can differ within enforcement:
 
-- adServerCurrency: The currency the publisher set in their currency module setConfig call
-- Price Floor Currency: Currency set in the price floors data object
-- bidResponse Currency: The currency the bidder returned with their bidResponse back to Prebid
+* adServerCurrency: The currency the publisher set in their currency module setConfig call
+* Price Floor Currency: Currency set in the price floors data object
+* bidResponse Currency: The currency the bidder returned with their bidResponse back to Prebid
 
 When a bid adapter submits a bid into the auction, the currency module will first determine if any conversion logic is necessary, afterwhich the bid is passed to the module. If currency conversion occurs at this stage, the bidResponse object will have the following attributes:
 
-- Cpm: The adServerCurrency converted CPM currency
-- Currency: The currency the adServerCurrency was set in
-- originalCpm: The original CPM the bidder responded with
-- originalCurrency: The original currency the bidder responded with
+* Cpm: The adServerCurrency converted CPM currency
+* Currency: The currency the adServerCurrency was set in
+* originalCpm: The original CPM the bidder responded with
+* originalCurrency: The original currency the bidder responded with
 
 Below is a chart explaining the behavior of currency conversion, if necessary, within the module when comparing bid CPM to floor CPM for enforcement:
 
@@ -1349,7 +1372,6 @@ Below is a chart explaining the behavior of currency conversion, if necessary, w
 
 If the currency function is unable to derive the correct cpm in any of the scenarios above where a conversion is needed, then the associated bidResponse will just pass through into the auction as if a matching floor was not found.
 
-
 ## Floors Providers
 
 {: .table  }
@@ -1361,4 +1383,5 @@ If the currency function is unable to derive the correct cpm in any of the scena
 | pubx.ai | [hello@pubx.ai](mailto:hello@pubx.ai) | AI-powered dynamic floor optimization |
 
 ## Further Reading
-- [Prebid Server Price Floors](/prebid-server/features/pbs-floors.html)
+
+* [Prebid Server Price Floors](/prebid-server/features/pbs-floors.html)

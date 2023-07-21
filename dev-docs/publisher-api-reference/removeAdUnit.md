@@ -10,7 +10,6 @@ Remove adUnit(s) from the pbjs configuration, If adUnit is not given then it wil
 
 **Kind**: static method of pbjs API.
 
-
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |

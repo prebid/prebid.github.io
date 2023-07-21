@@ -20,10 +20,10 @@ Use this API to start the Prebid process with the Prebid configuration options p
 
 ### Arguments
 
-- **prebidConfig**  
+* **prebidConfig**  
   Specifies the Prebid configuration options that are to be used when calling Prebid.js.  The options can be expressed in one of the following formats:
-  - JSON object containing all the needed configuration options.
-  - URL, which loads in a file containing the configuration options expressed in a JSON object.
+  * JSON object containing all the needed configuration options.
+  * URL, which loads in a file containing the configuration options expressed in a JSON object.
 
 ### Return Value
 
@@ -35,7 +35,7 @@ None
 
 ## Further Reading
 
-- [About the Cross Player Prebid Component]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component.html)
-- [Cross Player Prebid Component Configuration]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-config.html)
-- [Communication Between Prebid Component and Player]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-communication.html)
-- [Download Cross-Player Prebid Component](https://github.com/prebid/cross-player-prebid-component)
+* [About the Cross Player Prebid Component]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component.html)
+* [Cross Player Prebid Component Configuration]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-config.html)
+* [Communication Between Prebid Component and Player]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-communication.html)
+* [Download Cross-Player Prebid Component](https://github.com/prebid/cross-player-prebid-component)

@@ -7,7 +7,6 @@ sidebarType: 1
 
 <a name="module_pbjs.getAdserverTargeting"></a>
 
-
 Returns all ad server targeting for all ad units. Note that some bidder's response may not have been received if you call this function too quickly after the requests are sent.
 
 The targeting keys can be configured in [ad server targeting](/dev-docs/publisher-api-reference/bidderSettings.html).

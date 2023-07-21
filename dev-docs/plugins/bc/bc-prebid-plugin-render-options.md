@@ -8,16 +8,14 @@ pid: 10
 ---
 
 
-
 # Render Options Supported by the Brightcove Prebid Plugin
 
 ## Overview
 
 Configuration options for a single ad break are typically passed into the plugin in a JSON object structure. However, if you want to configure more than one ad break (containing a single ad slot) in a single video, configuration options would be passed into the plugin as an array of JSON objects, each object representing the configuration settings for one of the ad breaks. (See [Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html) for more details.) These options can include:
 
-- Prebid options, which configure how the prebid process should be executed.
-- Rendering options, which customize the ad playback.
-
+* Prebid options, which configure how the prebid process should be executed.
+* Rendering options, which customize the ad playback.
 
 ## Plugin Rendering Options
 
@@ -31,21 +29,22 @@ Many of the rendering options listed below are ignored when the Brightcove IMA P
 
 {% include alerts/alert_note.html content=infoNote %}
 
-- [adRenderer](#adrenderer)
-- [skippable](#skippable)
-- [skippable.enabled](#enabled)
-- [skippable.videoThreshold](#videoThreshold)
-- [skippable.videoOffset](#videoOffset)
-- [skippable.skipText](#skipText)
-- [skippable.skipButtonText](#skipButtonText)
-- [adStartTimeout](#adStartTimeout)
-- [timeOffset](#timeOffset)
-- [adText](#adText)
-- [wrapperLimit](#wrapperLimit)
-- [frequencyRules](#frequencyRules)
-- [label](#labeloption)
+* [adRenderer](#adrenderer)
+* [skippable](#skippable)
+* [skippable.enabled](#enabled)
+* [skippable.videoThreshold](#videoThreshold)
+* [skippable.videoOffset](#videoOffset)
+* [skippable.skipText](#skipText)
+* [skippable.skipButtonText](#skipButtonText)
+* [adStartTimeout](#adStartTimeout)
+* [timeOffset](#timeOffset)
+* [adText](#adText)
+* [wrapperLimit](#wrapperLimit)
+* [frequencyRules](#frequencyRules)
+* [label](#labeloption)
 
 <a name="adrenderer"></a>
+
 ### adRenderer
 
 **Description:**
@@ -59,8 +58,8 @@ If the prebid configuration options do not include any dfpParameters, meaning th
 Specifying one of the acceptable values listed below will override this behavior; the prebid plugin will use the renderer specified in this option.
 
 {% capture infoNote %}
-The prebid plugin will only use the **_first_** definition of the `adRenderer` option to control the ad renderer selection.  If you define this option more than once, the other specifications will be ignored.
-:::
+The prebid plugin will only use the **first** definition of the `adRenderer` option to control the ad renderer selection.  If you define this option more than once, the other specifications will be ignored.
+{% endcapture %}
 
 {% include alerts/alert_note.html content=infoNote %}
 
@@ -80,9 +79,9 @@ If you will be using the Brightcove IMA plugin as the ad renderer, either becaus
 
 One of the following strings:
 
-- `‘ima’`: The Brightcove IMA plugin will be used to render the ad(s) regardless of whether Google Ad Manager has been identified as the primary ad server for Prebid.
-- `‘mailonline’`: The MailOnline plugin will be used to render the ad(s) regardless of whether Google Ad Manager has been identified as the primary ad server for Prebid.
-- `‘custom’`: A custom ad renderer is being provided by the publisher.  This can be either a custom build of MailOnline or a custom renderer altogether.  If this value is specified for `adRenderer`, then the plugin will not attempt to use either of the default ad renderers.  The plugin will simply use the renderer as specified in the custom build of the plugin.  See the ReadMe file for more information on specifying a custom renderer.
+* `‘ima’`: The Brightcove IMA plugin will be used to render the ad(s) regardless of whether Google Ad Manager has been identified as the primary ad server for Prebid.
+* `‘mailonline’`: The MailOnline plugin will be used to render the ad(s) regardless of whether Google Ad Manager has been identified as the primary ad server for Prebid.
+* `‘custom’`: A custom ad renderer is being provided by the publisher.  This can be either a custom build of MailOnline or a custom renderer altogether.  If this value is specified for `adRenderer`, then the plugin will not attempt to use either of the default ad renderers.  The plugin will simply use the renderer as specified in the custom build of the plugin.  See the ReadMe file for more information on specifying a custom renderer.
 
 **Required**
 
@@ -97,6 +96,7 @@ None. If this option is not specified with a valid value, the renderer selection
 `options1.adRenderer = 'ima';`
 
 <a name="skippable"></a>
+
 ### skippable
 
 **Description:**
@@ -128,6 +128,7 @@ This means that the publisher does not have a client-side preference. Skippable 
 `options.skippable = {};`
 
 <a name="enabled"></a>
+
 ### skippable.enabled
 
 **Description:**
@@ -140,13 +141,12 @@ This option is ignored if the Brightcove IMA Plugin is used to render the ad.
 
 {% include alerts/alert_note.html content=infoNote %}
 
-
 **Acceptable Values:**
 
 Boolean
 
-- `true`: ad will be skippable as long as the videoThreshold requirement has been met.
-- `false`: ad will not be skippable.
+* `true`: ad will be skippable as long as the videoThreshold requirement has been met.
+* `false`: ad will not be skippable.
 
 **Required?**
 
@@ -161,6 +161,7 @@ None - If missing, then skippable behavior is controlled by the presence of the 
 `options.skippable.enabled = true;`
 
 <a name="videoThreshold"></a>
+
 ### skippable.videoThreshold
 
 **Description:**
@@ -190,6 +191,7 @@ None - If missing and `skippable.enabled = true` then the ad will be skippable r
 `options.skippable.videoThreshold = 30;`
 
 <a name="videoOffset"></a>
+
 ### skippable.videoOffset
 
 **Description:**
@@ -219,6 +221,7 @@ None
 `options.skippable.videoOffset = 10`
 
 <a name="skipText"></a>
+
 ### skippable.skipText
 
 **Description:**
@@ -248,6 +251,7 @@ No
 `options.skippable.skipText = 'Your ad may be skipped in %%TIME%% seconds'`
 
 <a name="skipButtonText"></a>
+
 ### skippable.skipButtonText
 
 **Description:**
@@ -277,6 +281,7 @@ No
 `options.skippable.skipButtonText = 'SKIP AD';`
 
 <a name="adStartTimeout"></a>
+
 ### adStartTimeout
 
 **Description:**
@@ -302,6 +307,7 @@ No
 `options.adStartTimeout=2500;`
 
 <a name="timeOffset"></a>
+
 ### timeOffset
 
 **Description:**
@@ -312,16 +318,16 @@ Specifies the time offset within the video content when the ad should be schedul
 
 String that can be one of the following:
 
-- `'start'` (for preroll)
-- `'end'` (for postroll)
-- `'hh:mm:ss'` (to specify a midroll at a specific time)
-- `'hh:mm:ss.mmm'` (to specify a midroll at a specfic time, including millseconds)
-- `'n%'` (to specify a midroll to play after the specified percentage of the content video has played)
+* `'start'` (for preroll)
+* `'end'` (for postroll)
+* `'hh:mm:ss'` (to specify a midroll at a specific time)
+* `'hh:mm:ss.mmm'` (to specify a midroll at a specfic time, including millseconds)
+* `'n%'` (to specify a midroll to play after the specified percentage of the content video has played)
 
 **Required?**
 
-- If specifying a single ad break:  No
-- If specifying more than one ad break: Yes, for each set of configuration settings for each ad break. Each `timeOffset` value should be unique.
+* If specifying a single ad break:  No
+* If specifying more than one ad break: Yes, for each set of configuration settings for each ad break. Each `timeOffset` value should be unique.
 
 **Default Value:**
 
@@ -332,6 +338,7 @@ String that can be one of the following:
 `options.timeOffset = '15%';`
 
 <a name="adText"></a>
+
 ### adText
 
 **Description:**
@@ -367,6 +374,7 @@ No
 `options.adText = 'Publicité'`
 
 <a name="wrapperLimit"></a>
+
 ### wrapperLimit
 
 **Description:**
@@ -400,6 +408,7 @@ No
 `wrapperLimit: 3`
 
 <a name="frequencyRules"></a>
+
 ### frequencyRules
 
 **Description:**
@@ -411,9 +420,10 @@ Specifies rules controlling how frequently the plugin should attempt to play an 
 JSON Object
 
 playlistClips = integer that specifies how often an ad should be shown for videos within a single playlist
-  - playlistClips = 1: the plugin will attempt to play an ad for every video in the playlist
-  - playlistClips = 2: the plugin will attempt to play an ad for every other video in the playlist, starting at video #1
-  - playlistClips = 3: the plugin will attempt to play an ad every third video in the playlist, start at video #1
+
+* playlistClips = 1: the plugin will attempt to play an ad for every video in the playlist
+* playlistClips = 2: the plugin will attempt to play an ad for every other video in the playlist, starting at video #1
+* playlistClips = 3: the plugin will attempt to play an ad every third video in the playlist, start at video #1
 
 For example, if playlistClips = 2 and there 6 videos in the playlist, the plugin will attempt to play an ad for video #1, video #3, and video #5.
 
@@ -427,7 +437,7 @@ playlistClips = 1
 
 **Example:**
 
-```
+```javascript
 frequencyRules
   {
     playlistClips : 2
@@ -435,6 +445,7 @@ frequencyRules
 ```
 
 <a name="labeloption"></a>
+
 ### label
 
 **Description:**
@@ -470,14 +481,15 @@ The Brightcove Prebid Plugin supports an API.  Information about this API can be
 ### Sample Implementations
 
 Sample implementations are provided at:
-- **[Sample Brightcove Player Prebid Plugin Integration - Prebid in Header]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-header.html)**
 
-- **[Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-body.html)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Prebid in Header]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-header.html)**
 
-- **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-body.html)**
 
-- **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)**
 
-- **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)**
+
+* **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
 
 </div>

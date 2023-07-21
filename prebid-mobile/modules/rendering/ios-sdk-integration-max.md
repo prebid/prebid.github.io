@@ -39,7 +39,7 @@ pod 'PrebidMobileMAXAdapters'
 
 Integration example:
 
-``` swift
+```swift
 // 1. Create MAAdView
 adBannerView = MAAdView(adUnitIdentifier: maxAdUnitId)
 adBannerView?.delegate = self
@@ -90,7 +90,7 @@ Make a regular MAX's ad request. Everything else will be handled by prebid adapt
 
 Integration example:
 
-``` swift
+```swift
 // 1. Create MAInterstitialAd
 interstitial = MAInterstitialAd(adUnitIdentifier: maxAdUnitId)
 interstitial.delegate = self
@@ -119,7 +119,7 @@ adUnit?.fetchDemand { [weak self] result in
 
 The **default** ad format for interstitial is **.banner**. In order to make a `multiformat bid request` set the respective values in the `adFormats` property.
 
-``` swift
+```swift
 // Make bid request for video ad                                     
 adUnit?.adFormats = [.video]
 
@@ -166,7 +166,7 @@ Once you receive the ad it will be ready for display. Follow the [MAX instructio
 
 Integration example:
 
-``` swift
+```swift
 // 1. Get an instance of MARewardedAd
 rewarded = MARewardedAd.shared(withAdUnitIdentifier: maxAdUnitId)
 rewarded.delegate = self
@@ -225,7 +225,7 @@ Once the rewarded ad is received you can display it. Follow the [MAX instruction
 
 Integration example:
 
-``` swift
+```swift
 // 1. Create MANativeAdLoader
 nativeAdLoader = MANativeAdLoader(adUnitIdentifier: maxAdUnitId)
 nativeAdLoader?.nativeAdDelegate = self

@@ -8,8 +8,8 @@ sidebarType: 1
 
 Takes one ad unit object or an array of ad unit objects and adds them to the Prebid auction.  For usage examples, see [Examples](#addAdUnits-Examples) below and the [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html) page.
 
-+ [Ad Unit Properties](#addAdUnits-AdUnitProperties)
-+ [Examples](#addAdUnits-Examples)
+* [Ad Unit Properties](#addAdUnits-AdUnitProperties)
+* [Examples](#addAdUnits-Examples)
 
 <a name="addAdUnits-AdUnitProperties"></a>
 
@@ -34,7 +34,7 @@ See the table below for the list of properties on the ad unit.  For example ad u
 
 See the table below for the list of properties in the `bids` array of the ad unit.  For example ad units, see the [Examples](#addAdUnits-Examples) below.
 
-Note that `bids` is optional only for [Prebid Server stored impressions](/dev-docs/modules/prebidServer.html#stored-imp), and required in all other cases. 
+Note that `bids` is optional only for [Prebid Server stored impressions](/dev-docs/modules/prebidServer.html#stored-imp), and required in all other cases.
 
 {: .table .table-bordered .table-striped }
 
@@ -62,24 +62,23 @@ See the table below for the list of properties in the `mediaTypes` object of the
 
 For the list of properties please visit the [adUnit.video reference]({{site.baseurl}}/dev-docs/adunit-reference.html#adUnit.video).
 
-<a name="addAdUnits-Examples">
+<a name="addAdUnits-Examples"></a>
 
 #### Examples
 
-- [Ad Unit Properties](#ad-unit-properties)
-  - [Bids](#bids)
-  - [Media Types](#media-types)
-- [Video](#video)
-- [Examples](#examples)
-  - [Native](#native)
-  - [Video](#video-1)
-  - [Banner](#banner)
-  - [Multi-format](#multi-format)
-
+* [Ad Unit Properties](#ad-unit-properties)
+  * [Bids](#bids)
+  * [Media Types](#media-types)
+* [Video](#video)
+* [Examples](#examples)
+  * [Native](#mediatype-native)
+  * [Video](#mediatype-video)
+  * [Banner](#mediatype-banner)
+  * [Multi-format](#multi-format)
 
 <a name="adUnit-native"></a>
 
-##### Native
+##### MediaType Native
 
 For an example of a native ad unit, see below.  For more detailed instructions, see [Show Native Ads]({{site.baseurl}}/dev-docs/show-native-ads.html).
 
@@ -126,9 +125,9 @@ pbjs.addAdUnits({
 
 <a name="adUnit-video"></a>
 
-##### Video
+##### MediaType Video
 
-If using the Video Module, see below. For more information on the Video Module, see the [Video Module docs]({{site.github.url}}/prebid-video/video-module.html). 
+If using the Video Module, see below. For more information on the Video Module, see the [Video Module docs]({{site.github.url}}/prebid-video/video-module.html).
 
 ```javascript
 pbjs.addAdUnits({
@@ -206,7 +205,7 @@ pbjs.addAdUnit({
 
 <a name="adUnit-banner"></a>
 
-##### Banner
+##### MediaType Banner
 
 For an example of a banner ad unit, see below.  For more detailed instructions, see [Getting Started]({{site.baseurl}}/dev-docs/getting-started.html).
 

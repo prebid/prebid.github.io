@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Unibots bidding adapter requires setup and approval before implementation. Please reach out to <saurabh@unibots.in> for more details.
 

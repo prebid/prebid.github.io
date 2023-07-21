@@ -11,6 +11,7 @@ sidebarType : 1
 ---
 
 # US Privacy Consent Management Module
+
 {: .no_toc }
 
 * TOC
@@ -47,32 +48,33 @@ If the timeout period expires or an error from the USP-API is thrown, the auctio
 {: .table .table-bordered .table-striped }
 | String Component | Values |
 | --- | --- |
-| 1) Specification Version|	1|
-| 2) Explicit Notice/Opportunity to Opt Out|	(N = No,Y = Yes,– = Not Applicable)|
-| 3) Has user opted-out of the sale of his or her personal information?| 	(N = No,Y = Yes,– = Not Applicable)|
-| 4) Publisher is a signatory to the IAB Limited Service Provider Agreement| 	(N = No,Y = Yes,– = Not Applicable)|
+| 1) Specification Version|    1|
+| 2) Explicit Notice/Opportunity to Opt Out|    (N = No,Y = Yes,– = Not Applicable)|
+| 3) Has user opted-out of the sale of his or her personal information?|     (N = No,Y = Yes,– = Not Applicable)|
+| 4) Publisher is a signatory to the IAB Limited Service Provider Agreement|     (N = No,Y = Yes,– = Not Applicable)|
 
 ### Deletes
 
-As of January 1st 2023, CCPA will require that requests to "delete my personal information" (right to delete) must be propagated to all 3rd parties user data is being shared with. US Privacy Consent Management Module will support this feature in 7.23.0 and above. 
+As of January 1st 2023, CCPA will require that requests to "delete my personal information" (right to delete) must be propagated to all 3rd parties user data is being shared with. US Privacy Consent Management Module will support this feature in 7.23.0 and above.
 
-Prebid Modules that receive user data (bid adapters, analytics adapters), or set user data (UserId, RTD) may define a new method called `onDataDeletionRequest`. The US Privacy Consent Management Module will attach a `registerDeletion` event handler with the CMP, when triggered it will: 
+Prebid Modules that receive user data (bid adapters, analytics adapters), or set user data (UserId, RTD) may define a new method called `onDataDeletionRequest`. The US Privacy Consent Management Module will attach a `registerDeletion` event handler with the CMP, when triggered it will:
 
 The USP module attaches a 'registerDeletion' event handler with the CMP; when triggered, it will:
-- invoke the methods above on all adapters
-- delete all IDs from cookies/localStorage
+
+* invoke the methods above on all adapters
+* delete all IDs from cookies/localStorage
 
 3rd parties can define the method like this:
-- UserID submodules can define a method onDataDeletionRequest(config, idValue)
-- Bid adapters can define a method spec.onDataDeletionRequest(bidderRequests)
-- Analytics adapters can define a method onDataDeletionRequest()
+
+* UserID submodules can define a method onDataDeletionRequest(config, idValue)
+* Bid adapters can define a method spec.onDataDeletionRequest(bidderRequests)
+* Analytics adapters can define a method onDataDeletionRequest()
 
 ## Page Integration
 
 To utilize this module, software that provides the [USP-API](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md) must to be implemented on the site to interact with the user and obtain their notice and opt-out status.
 
-
-Though implementation details for the USP-API are not covered by Prebid.org, we do recommend to that you place the code before the Prebid.js code in the head of the page in order to ensure the framework is loaded before the Prebid code executes. Many publishers who ensure the prior availability of the `__uspapi` set the timeout parameter to zero. 
+Though implementation details for the USP-API are not covered by Prebid.org, we do recommend to that you place the code before the Prebid.js code in the head of the page in order to ensure the framework is loaded before the Prebid code executes. Many publishers who ensure the prior availability of the `__uspapi` set the timeout parameter to zero.
 
 Once the USP-API is implemented, simply include this module into your build and add a `consentManagement` object in the `setConfig()` call. Without configuration, Prebid will throw a warning that the module is unconfigured, and will proceed with the default configuration parameter `cmpApi` as 'iab'. Adapters that support this feature will then be able to retrieve the notice and opt-out status information and incorporate it in their requests.
 
@@ -89,9 +91,6 @@ Here are the parameters supported in the `consentManagement` object:
 {: .alert.alert-info :}
 Note that the term 'CMP' (Consent Management Platform) was chosen in Prebid to keep the interface similar
 to the GDPR implementation, though US-Privacy doesn't specifically use that term.
-
-
-
 
 ### Examples
 
@@ -133,7 +132,7 @@ Example 2: Support US Privacy; timeout the api availability at zero because it i
      });
 ```
 
-Example 3: Static CMP using custom data passing. Placing this config call in the command queue before loading Prebid is important to ensure the string is available before Prebid begins making external calls. 
+Example 3: Static CMP using custom data passing. Placing this config call in the command queue before loading Prebid is important to ensure the string is available before Prebid begins making external calls.
 
 ```javascript
      var pbjs = pbjs || {};
@@ -154,7 +153,7 @@ Example 3: Static CMP using custom data passing. Placing this config call in the
      });
 ```
 
-Example 4: Static CMP with USP string set to does not apply for all fields, which may be useful to prevent excessive interaction with the `__uspapi` outside of the geographic scope. Placing this config call in the command queue before loading Prebid is important to ensure it is available early. 
+Example 4: Static CMP with USP string set to does not apply for all fields, which may be useful to prevent excessive interaction with the `__uspapi` outside of the geographic scope. Placing this config call in the command queue before loading Prebid is important to ensure it is available early.
 
 ```javascript
      var pbjs = pbjs || {};
@@ -174,11 +173,12 @@ Example 4: Static CMP with USP string set to does not apply for all fields, whic
         });
      });
 ```
+
 ## Build the Package
 
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the the **gulp build** command:
 
-```
+```bash
 gulp build --modules=consentManagementUsp,bidAdapter1,bidAdapter2
 ```
 
@@ -224,10 +224,10 @@ var idx_usp=0;
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% for item in bidder_pages %}
     {% if item.usp_supported == true %}
-	adaptersSupportingUsp[idx_usp]={};
-	adaptersSupportingUsp[idx_usp].href="/dev-docs/bidders.html#{{item.biddercode}}";
-	adaptersSupportingUsp[idx_usp].text="{{item.title}}";
-	idx_usp++;
+    adaptersSupportingUsp[idx_usp]={};
+    adaptersSupportingUsp[idx_usp].href="/dev-docs/bidders.html#{{item.biddercode}}";
+    adaptersSupportingUsp[idx_usp].text="{{item.title}}";
+    idx_usp++;
     {% endif %}
 {% endfor %}
 </script>

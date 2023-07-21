@@ -106,6 +106,11 @@ PrebidMobile.initializeSdk(applicationContext) { status ->
 }
 ```
 
+{% capture warning_note %}  
+Pay attention that SDK should be initialized on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 During the initialization, SDK creates internal classes and performs the health check request to the [/status](https://docs.prebid.org/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If you use a custom PBS host you should provide a custom status endpoint as well:
 
 ```
