@@ -199,11 +199,11 @@ pbjs.addAdUnits({
 });
 ```
 
-<a name="adUnit-video-example">
+<a name="adUnit-video-example"></a>
 
 ### Video
 
-<a name="adUnit-video-module-example">
+<a name="adUnit-video-module-example"></a>
 
 #### With the Video Module
 
@@ -513,46 +513,46 @@ where bidders have different capabilities for the same spot on the page. e.g.
 In this example, bidderA gets both banner and outstream, while bidderB gets only banner.
 
 ```javascript
-    var adUnits = [
-           {
-               code: 'test-div',
-                mediaTypes: {
-                    video: {
-                        context: "outstream",
-                        playerSize: [[300,250]]
+var adUnits = [
+        {
+            code: 'test-div',
+            mediaTypes: {
+                video: {
+                    context: "outstream",
+                    playerSize: [[300,250]]
+                }
+            },
+            bids: [
+                {
+                    bidder: 'bidderA',
+                    params: {
+                            ...
                     }
-                },
-               bids: [
-                   {
-                        bidder: 'bidderA',
-                        params: {
-                             ...
-                        }
-                   }
-               ]
-           },
-           {
-               code: 'test-div',
-                mediaTypes: {
-                    banner: {
-                        sizes: [[300,250],[300,600],[728,90]]
+                }
+            ]
+        },
+        {
+            code: 'test-div',
+            mediaTypes: {
+                banner: {
+                    sizes: [[300,250],[300,600],[728,90]]
+                }
+            },
+            bids: [
+                {
+                    bidder: 'bidderB',
+                    params: {
+                        ...
                     }
-                },
-               bids: [
-                   {
-                       bidder: 'bidderB',
-                       params: {
-                           ...
-                       }
-                   },{
-                        bidder: 'bidderA',
-                        params: {
-                           ...
-                        }
-                   }
-               ]
-           }
-       ];
+                },{
+                    bidder: 'bidderA',
+                    params: {
+                        ...
+                    }
+                }
+            ]
+        }
+    ];
 ```
 
 In this example, bidderA receives 2 bidRequest objects while bidderB receives one. If a bidder provides more than one bid for the same AdUnit.code, Prebid.js will use the highest bid when it's
@@ -573,14 +573,14 @@ pbjs.addAdUnits({
         }
     },
     ortb2Imp: {
-         ext: {
-        data: {
-                pbadslot: "homepage-top-rect",
-                adUnitSpecificContextAttribute: "123"
+        ext: {
+            data: {
+                    pbadslot: "homepage-top-rect",
+                    adUnitSpecificContextAttribute: "123"
+            }
         }
-         }
     },
-    ...
+    // ...
 });
 ```
 
@@ -606,7 +606,7 @@ pbjs.addAdUnits({
     ortb2Imp: {
         instl:1
     },
-    ...
+    // ...
 });
 ```
 
