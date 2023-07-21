@@ -33,7 +33,6 @@ sidebarType: 1
 | `extend`  | optional | See the [Extend mode section](#improvedigital-extend)  | `true` | `boolean` |
 | `rendererConfig`  | optional | Configuration object for JS renderer of the RAZR creatives. Provided by Improve Digital.  | `{ key1: value1 }` | `object` |
 
-
 ### Configuration
 
 <a name="improvedigital-sizes"></a>
@@ -41,7 +40,8 @@ sidebarType: 1
 #### Sizes
 
 By default, the adapter doesn't send Prebid ad unit sizes to Improve Digital's ad server and the sizes defined for each placement in the Polaris platform will be used. If the ad server should only respond with creative sizes as defined in Prebid ad unit configuration, turn on `usePrebidSizes` adapter parameter like this:
-```
+
+```javascript
 pbjs.setConfig({
     improvedigital: { usePrebidSizes: true }
 });
@@ -53,7 +53,7 @@ pbjs.setConfig({
 
 Global configuration for the special creative format renderer. Please use [rendererConfig bid param](#improvedigital-params) for ad slot specific configuration.
 
-```
+```javascript
 pbjs.setConfig({
     improvedigital: {
         rendererConfig: {
@@ -69,10 +69,11 @@ pbjs.setConfig({
 
 Improve Digital Extend mode provides publishers with access to additional demand from other SSPs. Before enabling please contact our team for more information.
 The Extend mode can be enabled:
+
 * per ad unit via the `extend` [bid param](#improvedigital-params)
 * for all ad units via `setConfig()`:
 
-```
+```javascript
 pbjs.setConfig({
     improvedigital: {
         extend: true
@@ -80,42 +81,46 @@ pbjs.setConfig({
 });
 ```
 
-<a name="improvedigital-examples" />
+<a name="improvedigital-examples"></a>
 
 ### Examples
 
 Examples of different ad unit formats can be found in [Prebid.js ad unit reference](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit-banner-example). Improve Digital bidder must be added in the ad unit's `bids` array. Example:  
 
-    pbjs.addAdUnits({
-        code: 'banner1',
-        sizes: [[728, 90], [970, 250]],
-        bids: [
-            {
-                bidder: 'improvedigital',
-                params: {
-                    placementId: 1111111,
-                    publisherId: 1234
-                }
+```javascript
+pbjs.addAdUnits({
+    code: 'banner1',
+    sizes: [[728, 90], [970, 250]],
+    bids: [
+        {
+            bidder: 'improvedigital',
+            params: {
+                placementId: 1111111,
+                publisherId: 1234
             }
-        ]
-    });
+        }
+    ]
+});
+```
 
 #### Example for Key-Values
 
-    pbjs.addAdUnits({
-        code: 'banner1',
-        sizes: [[600, 290]],
-        bids: [
-            {
-                bidder: 'improvedigital',
-                params: {
-                    placementId: 1111111,
-                    publisherId: 1234,
-                    keyValues: {
-                        testKey1: ["testValueA"],
-                        testKey2: ["testValueB", "testValueC"]
-                    }
+```javascript
+pbjs.addAdUnits({
+    code: 'banner1',
+    sizes: [[600, 290]],
+    bids: [
+        {
+            bidder: 'improvedigital',
+            params: {
+                placementId: 1111111,
+                publisherId: 1234,
+                keyValues: {
+                    testKey1: ["testValueA"],
+                    testKey2: ["testValueB", "testValueC"]
                 }
             }
-        ]
-    });
+        }
+    ]
+});
+```

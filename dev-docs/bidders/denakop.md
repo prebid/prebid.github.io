@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Denakop bidding adapter requires setup and approval before implementation. Please reach out to <opec@denakop.com> for more details.
 

@@ -18,8 +18,6 @@ gdpr_supported: true
 | `placement`   | required | Placement ID from STV.                                                    | `'101'`                  | `string`        |
 | `bcat`     | optional | List of  Blocked Categories (IAB) - comma separated.                            | `'IAB2,IAB4'` | `string` |
 
-
-
 ### Video Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -32,4 +30,4 @@ gdpr_supported: true
 | `max_duration`      | optional | in seconds | `60`  | `integer` |
 | `min_duration`      | optional | in seconds | `5`  | `integer` |
 | `max_bitrate`      | optional |  | `600`  | `integer` |
-| `api`      | optional | https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md#list--api-frameworks- | `[1,2]`  | `array` |
+| `api`      | optional | <https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md#list--api-frameworks-> | `[1,2]`  | `array` |

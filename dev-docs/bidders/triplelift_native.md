@@ -14,7 +14,7 @@ userIds: criteo, identityLink, unifiedId
 prebid_member: true
 safeframes_ok: true
 deals_supported: true
-pbjs: true
+pbjs: false
 pbs: true
 pbs_app_supported: true
 fpd_supported: true
@@ -23,9 +23,10 @@ sidebarType: 1
 ---
 
 {: .alert.alert-info :}
-The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at prebid@triplelift.com.
+This is a Prebid Server adapter for running component native only. For the standard Prebid JS Triplelift bid adapter, see the "Triplelift" bidder. If you are interested in running component native via Prebid JS, please contact us at <prebid@triplelift.com>.
 
-This is a Prebid Server adapter for running component native only. For the standard Prebid JS Triplelift bid adapter, see the "Triplelift" bidder.
+{: .alert.alert-info :}
+The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at <prebid@triplelift.com>.
 
 ### Table of Contents
 
@@ -33,7 +34,7 @@ This is a Prebid Server adapter for running component native only. For the stand
 - [Bid Params](#bid-params)
 - [First Party Data](#first-party-data)
 
-<a name="triplelift-bid-params" />
+<a name="triplelift-bid-params"></a>
 
 ### Bid Params
 
@@ -43,10 +44,11 @@ This is a Prebid Server adapter for running component native only. For the stand
 | inventoryCode | required | TripleLift inventory code for this ad unit (provided to you by your partner manager) | 'code1' | string |
 | floor | optional | the bid floor, in usd | 1.2 | number |
 
-<a name="triplelift-first-party" />
+<a name="triplelift-first-party"></a>
 
 ### First Party Data
 
 Triplelift supports standard IAB OpenRTB 2.5 First Party Data fields, including:
+
 - `site.*`
 - `user.*`

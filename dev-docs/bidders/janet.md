@@ -6,6 +6,7 @@ biddercode: janet
 aliasCode: adtelligent
 media_types: video,banner
 gdpr_supported: true
+gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
 coppa_supported: true
@@ -25,12 +26,13 @@ sidebarType: 1
 | `aid` | required | The source ID from janet.   | `529814` | `integer` |
 
 ### Description
+
 JANet header bidding adapter connects with JANet demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-
 ### Test Parameters
-```
+
+``` javascript
     var adUnits = [
 
       // Video instream adUnit
@@ -105,10 +107,10 @@ This adapter provides a solution for accessing Video demand and display demand.
 
 ### Additional Configuration
 
-It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request 
+It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request
 (default value is 10).
 
-```
+``` javascript
     pbjs.setBidderConfig({
         config: {              
             janet: {

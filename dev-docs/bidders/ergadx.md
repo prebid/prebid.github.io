@@ -21,7 +21,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The eRGADX bidding adapter requires setup and approval before implementation. Please reach out to <prashant.musale@erelego.com> for more details.
 

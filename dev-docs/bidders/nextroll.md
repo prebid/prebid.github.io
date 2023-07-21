@@ -23,6 +23,7 @@ sidebarType: 1
 | `bidfloor`     | optional | Per ad-unit bid floor, used if the floor module is not available                                  | `2.3`                       | `number` |
 
 #### Example of Banner Ad-unit
+
 ```
 var adUnits = [
     {
@@ -72,6 +73,7 @@ var adUnits = [
 ```
 
 #### Example of Native Ad-unit
+
 ```
 var adUnits = [
     {

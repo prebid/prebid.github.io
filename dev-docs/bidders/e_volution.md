@@ -15,9 +15,9 @@ userIds: id5Id
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The E-volution Bidding adapter requires setup before beginning. Please contact us at admin@e-volution.ai
+The E-volution Bidding adapter requires setup before beginning. Please contact us at <admin@e-volution.ai>
 
 ### Prebid.JS Bid Params
 

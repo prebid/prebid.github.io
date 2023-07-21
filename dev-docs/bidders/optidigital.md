@@ -5,6 +5,7 @@ description: Prebid Optidigital Bidder Adapter
 biddercode: optidigital
 pbjs: true
 floors_supported: true
+gdpr_supported: true
 tcf2_supported: true
 usp_supported: true
 schain_supported: true
@@ -29,13 +30,13 @@ sidebarType: 1
 | `bapp`         | optional | Blocked advertiser mobile app bundles          | `['com.blocked']`        | `array of strings` |
 | `battr`        | optional | Blocked creative attributes                    | `[1, 2]`                 | `array of integers`|
 
+### Note
 
-### Note:
-
-The Optidigital Bidding adapter requires setup before beginning. Please contact us at prebid@optidigital.com.
+The Optidigital Bidding adapter requires setup before beginning. Please contact us at <prebid@optidigital.com>.
 The following test parameters can be used to verify that the Optidigital adapter is working properly. This example includes an test publisherId and placementId that would return the test creative.
 
 ### AdUnits configuration example
+
 ```
     var adUnits = [{
       code: 'your-slot_1-div', // use exactly the same code as your slot div id.
