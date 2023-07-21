@@ -20,8 +20,7 @@ sidebarType: 1
 ---
 
 ### Registration
-The Example Bidding adapter requires setup before beginning. Please contact us at prebid@silverpush.co.
-
+The Example Bidding adapter requires setup before beginning. Please contact us at <prebid@silverpush.co>.
 
 ### Bid Parameters
 
@@ -40,10 +39,10 @@ The following banner parameters are supported here so publishers may fully decla
 {: .table .table-bordered .table-striped }
 |    Name   |    Scope    |                      Description                                  |  Example  |    Type   |
 | --------- | ------------| ----------------------------------------------------------------- | --------- | --------- |
-| sizes | required | Avalaible sizes supported for banner ad unit | [ [300, 250], [300, 600] ] | [[Integer, Integer], [Integer, Integer]] | 
-
+| sizes | required | Avalaible sizes supported for banner ad unit | [ [300, 250], [300, 600] ] | [[Integer, Integer], [Integer, Integer]] |
 
 ### AdUnit Format for Banner
+
 ```javascript
 const adUnits = [{
     code: 'div-1',
@@ -77,8 +76,8 @@ The following video parameters are supported here so publishers may fully declar
 {: .table .table-bordered .table-striped }
 |    Name   |    Scope    |                      Description                                  |  Example  |    Type   |
 | --------- | ------------| ----------------------------------------------------------------- | --------- | --------- |
-| context | required | instream or outstream |"outstream" | string | 
-| playerSize | required | Avalaible sizes supported for video ad unit. | [300, 250] | [Integer, Integer] | 
+| context | required | instream or outstream |"outstream" | string |
+| playerSize | required | Avalaible sizes supported for video ad unit. | [300, 250] | [Integer, Integer] |
 | mimes | required | List of content MIME types supported by the player. | ["video/mp4"]| [String]|
 | protocols | required | Supported video bid response protocol values. | [2,3,5,6] | [integers]|
 | api | required | Supported API framework values. | [2] |  [integers] |
@@ -94,9 +93,8 @@ The following video parameters are supported here so publishers may fully declar
 | skipafter | optional | Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable. | 5 | Integer |
 | delivery | optional | OpenRTB2 delivery. Supported delivery methods (e.g., streaming, progressive). If none specified, assume all are supported.  | 1 | [Integer] |
 
-
-
 ### AdUnit Format for Video
+
 ```javascript
 var videoAdUnits = [{
     code: 'video-1',
@@ -164,4 +162,4 @@ pbjs.setConfig({
 ```
 
 ## Additional Details
-For any queries, reach us at prebid@silverpush.co.
+For any queries, reach us at <prebid@silverpush.co>.
