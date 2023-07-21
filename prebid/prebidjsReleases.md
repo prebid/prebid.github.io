@@ -11,11 +11,12 @@ sidebarType: 1
 Not every Prebid.js release contains noteworthy core features, and
 the [GitHub releases page](https://github.com/prebid/Prebid.js/releases) can be hard to search for when an important change or bugfix was made.
 
-The table below is a summary of feature changes and important bug fixes in core of Prebid.js. Almost [all releases](https://github.com/prebid/Prebid.js/releases) have new bid adapters or updates to existing adapters -- what's listed here is limited to core functionality. Releases with only minor core changes may not be shown here, and releases with multiple important changes may be shown more than once.
+The table below is a summary of feature changes and important bug fixes in core of Prebid.js. Almost [all releases](https://github.com/prebid/Prebid.js/releases) have new bid adapters or updates to existing adapters -- what's listed here is limited to core functionality. Releases with only minor core changes may not be sho<!--  -->wn here, and releases with multiple important changes may be shown more than once.
 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
+| 8.0 | Module removals, reliabe (opt-in) transaction identifier, size mapping module & acitivy control. See the [PBJS 8 release notes](/dev-docs/pb8-notes.html) |
 | 7.0 | Cleanup of deprecated 'publisherDomain' and 'fpd' config. See the [PBJS 7 release notes](/dev-docs/pb7-notes.html) |
 | 6.0 | Removed transpiling for the MSIE 11 browser. [Blog post](https://prebid.org/blog/prebid-6-0-release/) |
 | 5.9 | Support numeric ad targeting keys |
