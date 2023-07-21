@@ -12,6 +12,7 @@ media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
 pbjs: true
+pbs: true
 sidebarType: 1
 floors_supported: true
 prebid_member: false
@@ -24,7 +25,7 @@ sidebarType: 1
 ---
 
 ### Note
-
+Gothamads will bid only on first impresion in bid request.
 The Example Bidding adapter requires setup before beginning. Please contact us at <support@gothamads.com>
 
 ### Bid Params
