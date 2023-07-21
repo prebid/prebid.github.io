@@ -125,9 +125,10 @@ var videoAdUnits = [{
 
 ### First Party Data
 Publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
+
 - ortb2.user.ext.eids
 
-## Prebid Server 
+## Prebid Server
 
 ```javascript
 pbjs.setConfig({
