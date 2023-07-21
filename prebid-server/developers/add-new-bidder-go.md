@@ -561,6 +561,7 @@ func (a *adapter) MakeBids(request *openrtb2.BidRequest, requestData *adapters.R
         BidType: getMediaTypeForBid(bid),
       }
       bidResponse.Bids = append(bidResponse.Bids, b)
+    }
   }
   return bidResponse, nil
 }
