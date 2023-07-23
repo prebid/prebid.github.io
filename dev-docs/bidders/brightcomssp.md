@@ -13,6 +13,7 @@ coppa_supported: true
 schain_supported: true
 sidebarType: 1
 gvl_id: 883
+floors_supported: true
 ---
 
 ### Note
