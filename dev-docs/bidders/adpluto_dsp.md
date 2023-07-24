@@ -24,7 +24,7 @@ sidebarType: 1
 
 ### Note
 
-The AdPluto DSP bidding adapter requires setup and approval before implementation. Please reach out to <junaid@advergic.com> for more details.
+The AdPluto DSP bidding adapter requires setup and approval before implementation. Please reach out to <support@adpluto.com> for more details.
 
 ### Bid Params
 
