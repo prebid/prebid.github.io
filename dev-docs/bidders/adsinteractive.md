@@ -7,6 +7,7 @@ media_types: banner
 pbjs: true
 pbs: true
 deals_supported: false
+gpp_supported: true
 ---
 
 ### Registration
