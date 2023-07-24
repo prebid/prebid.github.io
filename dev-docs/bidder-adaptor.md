@@ -355,7 +355,7 @@ Some of the data in `ortb2` is also made available through other `bidderRequest`
 * **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
 * **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module.
 
-<a id="tid-warning" />
+<a id="tid-warning"></a>
 
 {: .alert.alert-warning :}
 Since version 8, `auctionId` and `transactionId` are being migrated to `ortb2.source.tid` and `ortb2Imp.ext.tid` respectively; and are disabled by default, requiring [publisher opt-in](https://docs.prebid.org/dev-docs/pb8-notes.html#transaction-identifiers-are-now-reliable-and-opt-in).
