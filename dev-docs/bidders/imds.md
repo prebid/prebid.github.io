@@ -25,7 +25,7 @@ gvl_id: none
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The iMedia Digital Services bidder adapter requires setup and approval from iMedia Digital Services. Please reach out to your account manager for more information and to start using it.
 
@@ -49,10 +49,18 @@ pbjs.setConfig({
 ```
 
 ### DFP Video Creative
-To use video, setup a `VAST redirect` creative within Google AdManager (DFP) with the following VAST tag URL:
+To use video, setup a `VAST redirect` creative within Google Ad Manager with the following VAST tag URL:
 
+If using the new `imds` adapter with x8.x or later:
+
+```text
+https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_uuid_imds%%&AUCTION_PRICE=%%PATTERN:hb_pb_imds%%
 ```
-https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_cache_id_synacorm%%&AUCTION_PRICE=%%PATTERN:hb_pb_synacormedia%%
+
+If using the legacy `synacormedia` adapter with v7.x or earlier:
+
+```text
+https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_uuid_synacormedia%%&AUCTION_PRICE=%%PATTERN:hb_pb_synacormedia%%
 ```
 
 ### Bid params
@@ -66,6 +74,7 @@ https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_cache_id_synacorm
 | `bidfloor` | optional | Legacy parameter for floor price for the request. Replaced by [Price Floors Module](/dev-docs/modules/floors.html) | `0.1` | `float` |
 
 ### Example Ad Unit
+
 ```javascript
 var adUnits = [{
     "code": "test-div",
