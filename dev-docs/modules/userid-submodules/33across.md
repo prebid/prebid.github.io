@@ -2,7 +2,7 @@
 layout: userid
 title: 33Across ID
 description: 33Across ID User ID sub-module
-useridmodule: 33acrossId
+useridmodule: 33acrossIdSystem
 ---
 
 
@@ -31,7 +31,8 @@ The following configuration parameters are available:
 | storage.refreshInSeconds | Strongly Recommended | Number | How many seconds until the ID is refreshed | `8 * 3600` (recommended) |
 
 ## 33Across ID Example
-```
+
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{
@@ -49,5 +50,3 @@ pbjs.setConfig({
   }
 });
 ```
-
-

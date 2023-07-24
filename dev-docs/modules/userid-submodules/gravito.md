@@ -2,7 +2,7 @@
 layout: userid
 title: GRAVITO ID by Gravito Ltd.
 description: GRAVITO ID by Gravito Ltd. User ID sub-module
-useridmodule: gravitompId
+useridmodule: gravitoIdSystem
 ---
 
 
@@ -23,7 +23,7 @@ gulp build --modules=gravitoIdSystem
 
 ## Gravito ID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -31,5 +31,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
-
+```

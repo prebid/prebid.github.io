@@ -2,13 +2,13 @@
 layout: userid
 title: DMD ID by DMD Marketing Corp
 description: DMD ID by DMD Marketing Corp User ID sub-module
-useridmodule: dmdId
+useridmodule: dmdIdSystem
 ---
 
 
 DMD is the preeminent supplier of US-based healthcare professional (HCP) identity data to the pharmaceutical, health system and medical publishing industries. DMD is the only data provider that has acquired its deterministic identity data through a fully consented, first-party, opt-in process. DMD’s privacy policy that can be found at [Privacy Policy](https://hcn.health/privacy-policy).
 
-For assistance setting up your module, please contact us at prebid@dmdconnects.com
+For assistance setting up your module, please contact us at <prebid@dmdconnects.com>
 
 Add the DMD ID to your Prebid.js Package with:
 
@@ -32,7 +32,7 @@ Please reach out to [prebid@dmdconnects.com](mailto:prebid@dmdconnects.com) to r
 
 ## DMD ID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -43,5 +43,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
-
+```

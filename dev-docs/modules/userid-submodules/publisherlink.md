@@ -2,7 +2,7 @@
 layout: userid
 title: Publisher Link
 description: Publisher Link User ID sub-module
-useridmodule: publinkId
+useridmodule: publinkIdSystem
 ---
 
 
@@ -12,6 +12,7 @@ traffic.  Publisher first-party authenticated data and a user's unique encrypted
 Epsilon CORE ID.  By utilizing Publisher Link, publishers are able to reap the benefits of Epsilon's CORE ID.
 
 ## Publisher Link  Registration
+
 Please contact [Epsilon](mailto:PublisherSupport@Epsilon.com) to sign up.
 
 The Epsilon privacy is covered in the [Epsilon Privacy Policy](https://www.epsilon.com/us/privacy-policy).
@@ -32,6 +33,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | params.api_key | Required | String | API key provided by Epsilon. | `'00000000-0000-0000-0000-00000000000'`
 
 ## Publisher Link Examples
+
 ```javascript
     pbjs.setConfig({
        userSync: {
@@ -51,4 +53,3 @@ In addition to the parameters documented above in the Basic Configuration sectio
        }
    });
 ```
-

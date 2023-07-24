@@ -9,6 +9,7 @@ media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 pbs_app_supported: true
 schain_supported: true
 userIds: all
@@ -21,10 +22,9 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-Please contact info@houseofpubs.com for any questions or for information about our Prebid program.
-
+Please contact <info@houseofpubs.com> for any questions or for information about our Prebid program.
 
 ### Bid Params
 
@@ -32,4 +32,4 @@ Please contact info@houseofpubs.com for any questions or for information about o
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Our Host              | `'cpm.houseofpubs.com'`   | `string` |
-| `zoneId` | required | Example RTB zone id   |         `'12345'`         | `string` |
+| `zoneId` | required | Example RTB zone id   |         `12345`         | `integer` |

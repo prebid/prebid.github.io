@@ -2,7 +2,7 @@
 layout: userid
 title: Adtelligent
 description: Adtelligent User ID sub-module
-useridmodule: adtelligent
+useridmodule: adtelligentIdSystem
 ---
 
 
@@ -19,7 +19,7 @@ adtelligentIdSystem adapter doesn't require any configuration or storage params.
 
 ## Adtelligent Example
 
-{% highlight javascript %}
+```javascript
  pbjs.setConfig({
      userSync: {
          userIds: [{
@@ -27,23 +27,22 @@ adtelligentIdSystem adapter doesn't require any configuration or storage params.
          }]
      }
  });
-{% endhighlight %}
+```
 
 Example with a short storage for ~10 minutes and refresh in 5 minutes:
 
-{% highlight javascript %}
-    pbjs.setConfig({
-        userSync: {
-            userIds: [{
-                name: 'adtelligent',
-                storage: {
-                    type: "html5",
-                    name: "adt_id",
-                    expires:0.003,
-                    refreshInSeconds: 60 * 5
-                }
-            }]
-        }
-    });
-{% endhighlight %}
-
+```javascript
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: 'adtelligent',
+            storage: {
+                type: "html5",
+                name: "adt_id",
+                expires:0.003,
+                refreshInSeconds: 60 * 5
+            }
+        }]
+    }
+});
+```

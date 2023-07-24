@@ -8,6 +8,7 @@ sidebarType: 4
 <div class="bs-docs-section" markdown="1">
 
 # Header Bidding Videos - Prebid Video
+
 {: .no_toc :}
 
 * TOC
@@ -21,7 +22,9 @@ sidebarType: 4
 </div>
 
 <script type="text/javascript">
-Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/244653652" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>','vimeo1', null, {deleteSelectorContent: true}, 3);
+  window.onetrustLoaded.then(() => {
+    OneTrust.InsertHtml('<iframe src="https://player.vimeo.com/video/244653652" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', 'vimeo1', null, {deleteSelectorContent: true}, 'C0003');
+  })
 </script>
 
 ## Prebid Video: Instream
@@ -32,7 +35,9 @@ Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/244653652" width
 </div>
 
 <script type="text/javascript">
-Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/251652605" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>','vimeo2', null, {deleteSelectorContent: true}, 3);
+  window.onetrustLoaded.then(() => {
+    OneTrust.InsertHtml('<iframe src="https://player.vimeo.com/video/251652605" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', 'vimeo2', null, {deleteSelectorContent: true}, 'C0003');
+  })
 </script>
 
 ## Prebid Video: Outstream
@@ -43,6 +48,8 @@ Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/251652605" width
 </div>
 
 <script type="text/javascript">
-Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/252596747" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>','vimeo3', null, {deleteSelectorContent: true}, 3);
+  window.onetrustLoaded.then(() => {
+    OneTrust.InsertHtml('<iframe src="https://player.vimeo.com/video/252596747" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', 'vimeo3', null, {deleteSelectorContent: true}, 'C0003');
+  })
 </script>
 </div>

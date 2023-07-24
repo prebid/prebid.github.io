@@ -2,7 +2,7 @@
 layout: userid
 title: GrowthCode
 description: GrowthCode User ID sub-module
-useridmodule: growthCodeId
+useridmodule: growthCodeIdSystem
 ---
 
 
@@ -34,6 +34,7 @@ pbjs.setConfig({
   }
 });
 ```
+
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
@@ -45,4 +46,3 @@ The following configuration parameters are available:
 | params.url | Optional | String | Custom URL for server | |
 | params.publisher_id | Optional | String | Name if the variable that holds your publisher ID | `"_sharedID"` |
 | params.publisher_id_storage | Optional | String | Publisher ID storage (cookie, html5) | `"html5"` |
-

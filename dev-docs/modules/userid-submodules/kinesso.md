@@ -2,7 +2,7 @@
 layout: userid
 title: Kinesso ID
 description: Kinesso ID User ID sub-module
-useridmodule: kpuid
+useridmodule: kinessoIdSystem
 ---
 
 
@@ -28,7 +28,7 @@ gulp build --modules=kinessoIdSystem
 
 ## Kinesso ID Registration
 
-You can set up Kinesso ID sub adapter by contacting Kinesso at prebid@kinesso.com
+You can set up Kinesso ID sub adapter by contacting Kinesso at <prebid@kinesso.com>
 
 The Kinesso ID privacy policy is covered under the [Kinesso Privacy Notice](https://kinesso.com/privacy-policy/). Please note, at present the Kinesso ID module is not meant for use inside the EEA.
 
@@ -38,4 +38,3 @@ The Kinesso ID privacy policy is covered under the [Kinesso Privacy Notice](http
 | name | Required | String | The name of this module. | `'kpuid'` |
 | params | Required | Object | Details for KinessoId initialization | |
 | params.accountid | Required | Int | Your SSP Account Id | 123 |
-

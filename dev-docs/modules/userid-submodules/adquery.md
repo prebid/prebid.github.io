@@ -2,7 +2,7 @@
 layout: userid
 title: adQuery QiD
 description: adQuery QiD User ID sub-module
-useridmodule: qid
+useridmodule: adqueryIdSystem
 ---
 
 
@@ -40,4 +40,3 @@ This will add a `userId.qid` property to all bidRequests. This will be read by t
   qid: 'p9v2dpnuckkzhuc92i'
 }
 ```
-

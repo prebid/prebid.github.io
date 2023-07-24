@@ -15,9 +15,10 @@ sidebarType: 1
 
 ### Note
 
-To use RevContent bidder, you need to have an existing RevContent account. To create a new account visit https://www.RevContent.com. If you are an existing user, contact the account rep for api access and information. 
+To use RevContent bidder, you need to have an existing RevContent account. To create a new account visit <https://www.RevContent.com>. If you are an existing user, contact the account rep for api access and information.
 
 For prebid server, Revcontent only uses basic OpenRTB requests, so only the endpoint will need to be customized. Your request must contain either `app.name` or `site.domain` to be considered valid. Revcontent will provide you with a custom endpoint that will contain your account details that you will specify in your adapater configuration, and you must manually enable the adapter. For example, your pbs.yaml would contain the following:
+
 ```
 adapters:
   revcontent:
@@ -26,7 +27,6 @@ adapters:
 ```
 
 ### Prebid.js Bid Params
-
 
 {: .table .table-bordered .table-striped }
 
@@ -39,4 +39,3 @@ adapters:
 | `endpoint`         | optional           | Api Endpoint - Used for testing                | `'trends.revcontent.com'`                    | `string`  |
 | `bidfloor`         | optional           | Bid Floor                                      | `0.1`                                        | `float`   |
 | `template`         | optional           | Format of the display ad                       | `'<a href="{clickUrl}">{title}</a>'`         | `string`  |
-

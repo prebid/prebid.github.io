@@ -2,7 +2,7 @@
 layout: userid
 title: Teads ID
 description: Teads ID User ID sub-module
-useridmodule: teadsId
+useridmodule: teadsIdSystem
 pbjs_version_notes: please avoid using v7.20.0 and v7.21.0
 ---
 
@@ -50,5 +50,3 @@ This will add a `userId.teadsId` property to all bidRequests. This will be read 
   teadsId: '2e3a00de-3800-11ed-a261-0242ac120002'
 }
 ```
-
-

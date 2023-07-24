@@ -2,7 +2,7 @@
 layout: userid
 title: OneKey IDs & Preferences
 description: OneKey IDs & Preferences User ID sub-module
-useridmodule: oneKeyData
+useridmodule: oneKeyIdSystem
 ---
 
 
@@ -13,9 +13,9 @@ Both modules are required. This module will pass oneKeyData to your partners
 while the oneKeyRtdProvider will pass the transmission requests.
 
 Background information:
+
 - [OneKey-Network/addressability-framework](https://github.com/OneKey-Network/addressability-framework)
 - [OneKey-Network/OneKey-implementation](https://github.com/OneKey-Network/OneKey-implementation)
-
 
 It can be added to you Prebid.js package with:
 
@@ -36,10 +36,9 @@ Go to [onekey.community](https://onekey.community/) for more details.
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module | `"oneKeyData"` |
 
-
 ## OneKey Exemple
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -47,5 +46,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
-
+```

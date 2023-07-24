@@ -1,16 +1,16 @@
 ---
 layout: userid
-title: AMX RTB ID
-description: AMX RTB ID User ID sub-module
-useridmodule: amxId
+title: AMX ID
+description: AMX ID User ID sub-module
+useridmodule: amxIdSystem
 ---
 
 
-The AMX RTB ID is a first-party identifier designed for publishers using the AMX RTB adapter. For more information please contact [prebid@amxrtb.com](mailto:prebid@amxrtb.com)
+The AMX ID is a first-party identifier designed for publishers using the AMX RTB adapter. For more information please contact [info@amxdt.net](mailto:info@amxdt.net)
 
-## AMX RTB ID Configuration
+## AMX ID Configuration
 
-First, add the AMX RTB ID module to your Prebid.js build:
+First, add the AMX ID module to your Prebid.js build:
 
 ```shell
 gulp build --modules=userId,amxIdSystem
@@ -33,7 +33,7 @@ pbjs.setConfig({
 });
 ```
 
-This will add a `userId.amxId` property to all bidRequests. This will be read by the AMX RTB bid adapter, and any other adapters that support EIDs:
+This will add a `userId.amxId` property to all bidRequests:
 
 ```javascript
 {

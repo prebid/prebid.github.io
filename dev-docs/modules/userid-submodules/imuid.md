@@ -2,7 +2,7 @@
 layout: userid
 title: IM-UID by Intimate Merger
 description: IM-UID by Intimate Merger User ID sub-module
-useridmodule: imuid
+useridmodule: imuIdSystem
 ---
 
 IM-UID, provided by [Intimate Merger](https://corp.intimatemerger.com/), is a universal identifier that designed for publishers, platforms and advertisers to perform segmentation and targeting even in environments where 3rd party cookies are not available. IM-UID is currently only available in Japan.
@@ -14,9 +14,9 @@ gulp build --modules=imuIdSystem
 
 ## IM-UID Registration
 
-Please visit [https://lp.intimatemerger.com/im-uid](https://lp.intimatemerger.com/im-uid) and request your Customer ID to get started.
+Please visit [lp.intimatemerger.com/im-uid](https://lp.intimatemerger.com/im-uid) and request your Customer ID to get started.
 
-The Intimate Merger privacy policy is at https://corp.intimatemerger.com/privacypolicy/
+The Intimate Merger privacy policy is at <https://corp.intimatemerger.com/privacypolicy/>
 
 ## IM-UID Configuration
 
@@ -30,7 +30,7 @@ The Intimate Merger privacy policy is at https://corp.intimatemerger.com/privacy
 
 ## IM-UID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -41,5 +41,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
-
+```

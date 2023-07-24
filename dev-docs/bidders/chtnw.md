@@ -21,4 +21,3 @@ sidebarType: 1
 |      Name     | Scope    | Description          |         Example      | Type     |
 |---------------|----------|----------------------|----------------------|----------|
 | `placementId` | required | The CHT placement ID | `'38EL412LO82XR9O6'` | `string` |
-

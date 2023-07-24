@@ -2,7 +2,7 @@
 layout: userid
 title: IDx
 description: IDx User ID sub-module
-useridmodule: idx
+useridmodule: idxIdSystem
 ---
 
 
@@ -30,7 +30,7 @@ We may ask for some basic information from you before approving your request. Fo
 
 ## IDx Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -38,5 +38,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
-
+```

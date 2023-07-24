@@ -18,6 +18,7 @@ sidebarType: 1
 ### Note
 
 To be able to use the full bandwidth of VIS.X high impact ad products, we strongly recommend disabling SafeFrames:
+
 - If you are using Google Ad Manager (GAM), make sure the "Serve in Safeframe" box in creative settings is unchecked,
 - If you are using AppNexus Seller Tag, make sure the enableSafeFrame parameter is set to False.
 
@@ -74,6 +75,7 @@ pbjs.setConfig({
 ```
 
 Best practices:
+
 - Please make sure that the currency module is set up and configured in order to trade with YOC in a currency that is not supported by the YOC VIS.X bidder.
 - You should set `EUR` in `bidderCurrencyDefault` parameter if you use unsupported currencies for VIS.X.
 - Feel free to reach out to your contact at YOC if you need additional support setting up Prebid.js and the currency config.
@@ -89,6 +91,18 @@ pbjs.setConfig({
         }
 });
 ```
+
+### Requirements:
+
+- In Prebid's `bidderSettings`, the `storageAllowed` parameter must be set to **true**. In Prebid v7.0 and later, `storageAllowed` defaults to false, so you will need to explicitly set this value to true.
+
+    ```javascript
+        pbjs.bidderSettings = {
+            visx: {
+                storageAllowed: true
+            }
+        }
+    ```
 
 ### Bid params
 

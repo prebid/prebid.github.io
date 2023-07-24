@@ -2,7 +2,7 @@
 layout: userid
 title: Navegg ID
 description: Navegg ID User ID sub-module
-useridmodule: naveggId
+useridmodule: naveggIdSystem
 ---
 
 [Navegg](https://www.navegg.com) enables publishers, advertisers and agencies to use their own first party data together to activate media in a cookie-less way across several Ad Tech platforms. Navegg has one of the largest data networks in Latin America which also allows the enhancement of data with unique categories.
@@ -11,7 +11,7 @@ useridmodule: naveggId
 
 Publisher stores NaveggId in local storage and/or 1st party cookies
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -19,5 +19,4 @@ pbjs.setConfig({
       }]
     }
 });
-{% endhighlight %}
-
+```

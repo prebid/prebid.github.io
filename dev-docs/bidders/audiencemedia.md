@@ -9,6 +9,7 @@ media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 pbs_app_supported: true
 schain_supported: true
 userIds: all
@@ -27,4 +28,4 @@ sidebarType: 1
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Ad network's RTB host | `'cpm.audience.media'` | `string` |
-| `zoneId` | required | Zone ID           | `'76156'`                 | `string` |
+| `zoneId` | required | Zone ID           | `76156`                 | `integer` |

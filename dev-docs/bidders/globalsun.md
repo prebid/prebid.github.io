@@ -23,5 +23,3 @@ floors_supported: true
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId`      | optional | Placement Id         | `'0'`    | `'string'` |
-
-

@@ -2,7 +2,7 @@
 layout: userid
 title: MediaWallah OpenLinkID
 description: MediaWallah OpenLinkID User ID sub-module
-useridmodule: mwOpenLinkId
+useridmodule: mwOpenLinkIdSystem
 ---
 
 
@@ -32,7 +32,7 @@ MediaWallah requires the creation of an accountId a partnerId in order to take a
 
 ## MediaWallah OpenLinkID Examples
 
-```
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -46,4 +46,3 @@ pbjs.setConfig({
     }
 })
 ```
-

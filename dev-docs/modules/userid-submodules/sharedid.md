@@ -2,7 +2,7 @@
 layout: userid
 title: SharedID
 description: SharedID User ID sub-module
-useridmodule: sharedId
+useridmodule: sharedIdSystem
 ---
 
 
@@ -35,71 +35,70 @@ In addition to the parameters documented above in the Basic Configuration sectio
 
 ## SharedID Examples
 
-1) Publisher supports SharedID and first party domain cookie storage
+1. Publisher supports SharedID and first party domain cookie storage
 
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "sharedId",
-            storage: {
-                type: "cookie",
-                name: "_sharedid",         // create a cookie with this name
-                expires: 365             // expires in 1 years
-            }
-        }]
-    }
-});
-{% endhighlight %}
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: "sharedId",
+                storage: {
+                    type: "cookie",
+                    name: "_sharedid",         // create a cookie with this name
+                    expires: 365             // expires in 1 years
+                }
+            }]
+        }
+    });
+    ```
 
-2) Publisher supports both UnifiedID and SharedID and first party domain cookie storage
+2. Publisher supports both UnifiedID and SharedID and first party domain cookie storage
 
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "unifiedId",
-            params: {
-                partner: "myTtdPid"
-            },
-            storage: {
-                type: "cookie",
-                name: "pbjs-unifiedid",       // create a cookie with this name
-                expires: 60
-            }
-        },{
-            name: "sharedId",
-            params: {
-                pixelUrl: "/wp-json/pubcid/v1/extend/"
-            },
-            storage: {
-                type: "cookie",
-                name: "_sharedid",      // create a cookie with this name
-                expires: 180
-            }
-        }],
-        syncDelay: 5000       // 5 seconds after the first bidRequest()
-    }
-});
-{% endhighlight %}
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: "unifiedId",
+                params: {
+                    partner: "myTtdPid"
+                },
+                storage: {
+                    type: "cookie",
+                    name: "pbjs-unifiedid",       // create a cookie with this name
+                    expires: 60
+                }
+            },{
+                name: "sharedId",
+                params: {
+                    pixelUrl: "/wp-json/pubcid/v1/extend/"
+                },
+                storage: {
+                    type: "cookie",
+                    name: "_sharedid",      // create a cookie with this name
+                    expires: 180
+                }
+            }],
+            syncDelay: 5000       // 5 seconds after the first bidRequest()
+        }
+    });
+    ```
 
-3) Publisher supports SharedID and first party domain cookie storage initiated by a first party server
+3. Publisher supports SharedID and first party domain cookie storage initiated by a first party server
 
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "sharedId",
-            params: {
-                pixelUrl: "/wp-json/pubcid/v1/extend/" //pixelUrl should be specified when the server plugin is used
-            },
-            storage: {
-                type: "cookie",
-                name: "_sharedid",        // create a cookie with this name
-                expires: 365              // expires in 1 year
-            }
-        }]
-    }
-});
-{% endhighlight %}
-
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: "sharedId",
+                params: {
+                    pixelUrl: "/wp-json/pubcid/v1/extend/" //pixelUrl should be specified when the server plugin is used
+                },
+                storage: {
+                    type: "cookie",
+                    name: "_sharedid",        // create a cookie with this name
+                    expires: 365              // expires in 1 year
+                }
+            }]
+        }
+    });
+    ```

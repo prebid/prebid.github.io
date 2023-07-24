@@ -9,6 +9,7 @@ media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 pbs_app_supported: true
 schain_supported: true
 userIds: all
@@ -21,7 +22,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The adsolut Bidding adaptor requires setup and approval before beginning. Please reach out to <kush@adsolut.in> for more details
 
@@ -31,4 +32,4 @@ The adsolut Bidding adaptor requires setup and approval before beginning. Please
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Ad network's RTB host | `'cpm.adsolut.in'` | `string` |
-| `zoneId` | required | RTB zone id           | `'30164'`                 | `string` |
+| `zoneId` | required | RTB zone id           | `30164`                 | `integer` |

@@ -2,7 +2,7 @@
 layout: userid
 title: Just ID
 description: Just ID User ID sub-module
-useridmodule: justId
+useridmodule: justIdSystem
 ---
 
 
@@ -32,7 +32,7 @@ If you have any questions about Just ID, please reach out by emailing [prebid@ju
 
 ex. 1. Mode `COMBINED`
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -44,11 +44,11 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```
 
 ex. 2. Mode `BASIC`
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -56,9 +56,8 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```
 
 ## Just ID  Disclosure
 
 This module in `COMBINED` mode loads external JavaScript to generate optimal quality user ID. It is possible to retrieve user ID, without loading additional script by this module in `BASIC` mode.
-

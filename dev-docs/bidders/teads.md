@@ -15,9 +15,9 @@ deals_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Teads Bidding adapter requires setup before beginning. Please contact us on https://teads.tv/teads-contact/
+The Teads Bidding adapter requires setup before beginning. Please contact us on <https://teads.tv/teads-contact/>
 
 ### Bid Params
 

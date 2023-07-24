@@ -2,7 +2,7 @@
 layout: userid
 title: FTrack ID from Flashtalking By Mediaocean
 description: FTrack ID from Flashtalking By Mediaocean User ID sub-module
-useridmodule: FTrack
+useridmodule: ftrackIdSystem
 ---
 
 
@@ -46,14 +46,13 @@ pbjs.setConfig({
 | :-- | :-- | :-- | :-- | :-- |
 | name | Required | String | The name of this module: `"FTrack"` | `"FTrack"` |
 | params | Required | Object | The IDs available, if not populated then the defaults "Device ID" and "Single Device ID" will be returned | |
-| params.url | Required | String | The URL for the ftrack library reference. If not populated, ftrack will not run. | 'https://d9.flashtalking.com/d9core' |
+| params.url | Required | String | The URL for the ftrack library reference. If not populated, ftrack will not run. | '<https://d9.flashtalking.com/d9core>' |
 | params.ids | Optional | Object | The ftrack IDs available, if not populated then the defaults "Device ID" and "Single Device ID" will be returned | |
 | params.ids['device id'] | Optional | Boolean | Should ftrack return "device id". Set to `true` to return it. If set to `undefined` or `false`, ftrack will not return "device id". Default is `false` | `true` |
 | params.ids['single device id'] | Optional | Boolean | Should ftrack return "single device id". Set to `true` to return it. If set to `undefined` or `false`, ftrack will not return "single device id". Default is `false` | `true` |
-| params.ids['household id'] | Optional; _Requires pairing with either "device id" or "single device id"_ | Boolean | __1.__ Should ftrack return "household id". Set to `true` to attempt to return it. If set to `undefined` or `false`, ftrack will not return "household id". Default is `false`.  __2.__ _This will only return "household id" if value of this field is `true` **AND** "household id" is defined on the device._ __3.__ _"household id" requires either "device id" or "single device id" to be also set to `true`, otherwise ftrack will not return "household id"._ | `true` |
+| params.ids['household id'] | Optional; _Requires pairing with either "device id" or "single device id"_ | Boolean | __1.__ Should ftrack return "household id". Set to `true` to attempt to return it. If set to `undefined` or `false`, ftrack will not return "household id". Default is `false`.  __2.__ _This will only return "household id" if value of this field is `true` __AND__ "household id" is defined on the device._ __3.__ _"household id" requires either "device id" or "single device id" to be also set to `true`, otherwise ftrack will not return "household id"._ | `true` |
 | storage | Required | Object | Storage settings for how the User ID module will cache the FTrack ID locally | |
-| storage.type | Required | String | This is where the results of the user ID will be stored. FTrack **requires** `"html5"`. | `"html5"` |
-| storage.name | Required | String | The name of the local storage where the user ID will be stored. FTrack **requires** `"FTrackId"`. | `"FTrackId"` |
+| storage.type | Required | String | This is where the results of the user ID will be stored. FTrack __requires__ `"html5"`. | `"html5"` |
+| storage.name | Required | String | The name of the local storage where the user ID will be stored. FTrack __requires__ `"FTrackId"`. | `"FTrackId"` |
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. FTrack recommends `90`. | `90` |
 | storage.refreshInSeconds | Optional | Integer | How many seconds until the FTrack ID will be refreshed. FTrack strongly recommends 8 hours between refreshes | `8*3600` |
-

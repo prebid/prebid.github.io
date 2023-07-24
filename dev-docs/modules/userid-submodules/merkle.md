@@ -2,7 +2,7 @@
 layout: userid
 title: Merkle ID
 description: Merkle IDUser ID sub-module
-useridmodule: merkleId
+useridmodule: merkleIdSystem
 ---
 
 
@@ -12,7 +12,7 @@ useridmodule: merkleId
 
 Publisher stores Merkury by Merkle in local storage for 30 days
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -29,5 +29,4 @@ pbjs.setConfig({
       }]
     }
 });
-{% endhighlight %}
-
+```
