@@ -124,13 +124,13 @@ To make sense of the specific values below, please refer to the [IAB's USNat tec
             1. Otherwise, the SID 8 protocol does not allow Prebid to know if the user is aged 13-16 or under 13, so simply set KnownChildSensitiveDataConsents[1] or [2] both to 1 (no consent)
         1. All other fields pass through.
     1. Normalization for Virginia (SID 9)
-        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12]
+        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12], PersonalDataConsents, GPC.
         1. KnownChild:  - SID 9 does not distinguish between consent for ages 13-16 and under 13, and the VA state laws define a child as being under 13, so Prebid will never normalize a positive KnownChild consent.
             1. If the SID 9 KnownChildSensitiveDataConsents value is 1 or 2, normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=1 (no consent)
             1. If the SID 9 KnownChildSensitiveDataConsents value is 0, assume the user is not a child and normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
         1. All other fields pass through.
     1. Normalization for Colorado (SID 10)
-        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[8-12]
+        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[8-12], PersonalDataConsents
         1. KnownChild - SID 10 does not distinguish between consent for ages 13-16 and under 13, so Prebid will never normalize a positive KnownChild consent.
 
         1. If the SID 10 KnownChildSensitiveDataConsents value is 1 or 2, normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=1 (no consent)
@@ -142,13 +142,13 @@ To make sense of the specific values below, please refer to the [IAB's USNat tec
         1. UT sensitive data 4 maps to US National 5
         1. UT sensitive data 5 maps to US National 3
         1. UT sensitive data 6,7,8 maps straight through to US National 6,7,8
-        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessing[9-12]
+        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessing[9-12], PersonalDataConsents, GPC
         1. KnownChild - SID 11 does not distinguish between consent for ages 13-16 and under 13, so Prebid will never normalize a positive KnownChild consent.
             1. If the SID11 KnownChildSensitiveDataConsents value is 1 or 2, normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=1 (no consent)
             1. If the SID11 KnownChildSensitiveDataConsents value is 0, assume the user is not a child and normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
         1. All other fields pass through.
     1. Normalization for Connecticut (SID 12)
-        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12]
+        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12], PersonalDataConsents
         1. KnownChild - SID 12 does distinguish ages aligned with SID 7
             1. If SID 12 string KnownChildSensitiveDataConsents[1, 2, and 3] are all 0 then assume the user is not a child and set the normalized SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
             1. SID 12 age ranges align with SID 7, so let ages 13-16 state their consent. If SID 12 string KnownChildSensitiveDataConsents[2]=2 and SID 12 string KnownChildSensitiveDataConsents[3]=2, then set the normalized KnownChildSensitiveDataConsents[1]=2 (Ages 13-16 consented) and the normalized KnownChildSensitiveDataConsents[2]=1 (under 13 not consented)
