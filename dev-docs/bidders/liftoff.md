@@ -18,7 +18,7 @@ sidebarType: 1
 
 ### Note
 
-The Pangle Bidding adapter requires setup before beginning. Please contact us at <pangle_dsp@bytedance.com>.
+The Liftoff Bidding adapter requires setup before beginning. Please contact us at <platform-ssp@liftoff.io>.
 
 ### Bid Params
 
