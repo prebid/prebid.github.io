@@ -82,7 +82,7 @@ These values are not declared in Prebid.org's [device storage disclosure file](h
 
 There are also certain identity sub-modules, such as the Prebid.org-maintained module [SharedId](/identity/sharedid.html) or the Publisher-provided identity module that may set cookies or other values on the device in the publisher context. The device storage used by these modules are also considered publisher-set values, and publishers should control the opt-outs and disclosures accordingly. Also, the topics module may set topics it observes in the publisher context. The Prebid.org GVL vendor id is not checked when these modules or sub-modules seek to use storage when GDPR applies according to a TCF2.2 CMP; consent to the publisher itself is checked.
 
-Storage values set by vendor modules are subject to privacy regulations such as GDPR as user consent and should be declared by the respective vendor.
+Storage values set by vendor modules are subject to user consent and privacy regulations, such as GDPR, and should be declared in the respective vendors' device storage disclosure files.
 
 ## Further Reading
 
