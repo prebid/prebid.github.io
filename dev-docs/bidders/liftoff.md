@@ -1,8 +1,9 @@
 ---
 layout: bidder
-title: Liftoff
-description: Prebid Liftoff Bidder Adapter
+title: liftoff
+description: Prebid liftoff Bidder Adapter
 biddercode: liftoff
+gvl_id: 667
 gdpr_supported: true
 coppa_supported: true
 schain_supported: false
