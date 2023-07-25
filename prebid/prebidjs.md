@@ -75,7 +75,7 @@ in the Core that not every publisher needs. Example modules:
 
 On behalf of publishers or third parties, Prebid.js may set cookies or local storage in your browser. These are the first-party cookies it can set on behalf of publishers:
 
-- prebid.cookieTest - used to verify whether other cookies are possible to be set. Immediately deleted upon set. 
+- prebid.cookieTest - used to verify whether other cookies are possible to be set. Immediately deleted upon being set. This behavior may be restricted when GDPR applies by using the `strictStorageEnforcement` setting.
 - _pbjs_userid_consent_data - used to make consent data conveniently available through the userId module. Real-time consent is obtained from the CMP using an event listener as required by TCF 2.2, if the consent has changed (eg the vendor list has changed), user id endpoints are eligible to be called again so that their encryption may be refreshed.
 
 These values are not declared in Prebid.org's [device storage disclosure file]([_pbjs_userid_consent_data](https://docs.prebid.org/prebid/deviceStorageDisclosure.json)) in its GVL representation. This is because these values are set by the publisher themselves using open-source script that is subject to modification by the publisher in any way. Prebid.org has no control over its final implementation, including expiration dates or use for other purposes by the publisher we cannot foresee. Prebid.org's only reason to be on the GVL is for long deprecated functionality (shared id third-party cookies) and publishers using modern versions should have no reason to include the Prebid.org GVL ID in their CMP.
