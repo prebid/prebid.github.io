@@ -16,7 +16,7 @@
     "domains": [
         {
             "domain": "*.sharedid.org",
-            "use": "Cross-domain ID, deprecated in Prebid 5.x. Aside: this is the only purpose Prebid obtained a GVL id for; other device storage set by publisher software maintained by prebid.js are publisher set values. Prebid is not a vendor, tracker, or processor of personal information on independent sites or apps running prebid software. There is no reason to seek consent for Prebid's vendor id unless a publisher is using long deprecated functionality. Values such as _pbjs_userid_consent_data are written by the publisher themselves as should be declared as such. Publishers seeking to understand all values should consider setting strictStorageEnforcement or reference relevant prebid documentation discussing each value."
+            "use": "Cross-domain ID, deprecated in Prebid 5.x. Aside: this is the only purpose Prebid obtained a GVL id for; other device storage set by publisher web or app software maintained by prebid.org are publisher set values. Prebid.org is not a vendor, tracker, or processor of personal information on independent sites or apps running prebid software. There is no reason to seek consent for Prebid's vendor id unless a publisher is using long-deprecated functionality. Values such as _pbjs_userid_consent_data are written by the publisher themselves as should be declared as such. Publishers seeking to understand all values should consider setting strictStorageEnforcement or reference relevant prebid documentation discussing each value."
         }
     ]
 }
