@@ -24,6 +24,7 @@ userIds: all
 ### Note:
 
 The Example Bidding adapter requires setup before beginning. Please contact us at connect@screencore.io.
+Screencore will bid on first impression in request.
 
 ### Bid Params
 
