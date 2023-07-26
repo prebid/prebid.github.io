@@ -89,7 +89,7 @@ Publishers should use the `ortb2` method of setting First Party Data. The follow
 
 Example first party data that's available to all bidders and all adunits:
 
-```
+```javascript
 pbjs.setConfig({
     ortb2: {
         site: {
