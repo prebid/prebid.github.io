@@ -9,7 +9,6 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
-gpp_supported: true
 media_types: banner, video, native
 userIds: all
 prebid_member: true
@@ -151,6 +150,7 @@ pbjs.setConfig({
   }
 });
 ```
+
 ### Media Types
 
 #### Video

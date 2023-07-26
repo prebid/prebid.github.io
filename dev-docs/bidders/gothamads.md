@@ -21,7 +21,6 @@ gvl_id: none
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
 userIds: all
-sidebarType: 1
 ---
 
 ### Note
