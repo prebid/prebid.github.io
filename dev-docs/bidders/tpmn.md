@@ -19,7 +19,7 @@ sidebarType: 1
 
 ### Registration
 
-To use this bidder you will need an account and a valid unit from us. 
+To use this bidder you will need an account and a valid unit from us.
 For further information, please contact `info@tpmn.io`
 
 ### Bid Params
@@ -32,8 +32,8 @@ For further information, please contact `info@tpmn.io`
 
 ### User Sync
 
-Add the following code to enable user sync. 
-TPMN strongly recommends enabling user syncing through iFrames. 
+Add the following code to enable user sync.
+TPMN strongly recommends enabling user syncing through iFrames.
 This functionality improves partners' user match rates and increases the TPMN bid rate and bid price.
 Even if iFrame is not active, user sync of some partners is performed.
 Be sure to call `pbjs.setConfig()` only once.

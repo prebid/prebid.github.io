@@ -7,9 +7,10 @@ sbUUID: 3.2
 ---
 
 # Line Item Creation
+
 {: .no_toc }
 
-* TOC
+- TOC
 {: toc }
 
 The settings you apply when creating line items to capture bids coming in from the header bidding process are typically different from those you apply when creating line items for house ads. This document will walk you through some of the differences, and outline requirements and recommendations for creating line items to work with Prebid.
@@ -22,7 +23,6 @@ Manually configuring ad server elements for Prebid can be a fair amount of work.
 Line items (and creatives) must, at some level, be associated with advertisers. When you create line items to capture Prebid bids, you won’t know who the actual advertisers are. Instead you need to create generic advertisers in your ad server that are used for Prebid. For example, you can create an advertiser named “Prebid Advertiser.” Or if you’re using Send All Bids, you can create one advertiser per bidder, such as “Prebid BidderA,” “Prebid BidderB,” etc. You then associate your line items and creatives with those advertisers.
 
 Depending on your ad server, line items are typically grouped within orders under each advertiser.
-
 
 ## Line Item Details
 
@@ -106,8 +106,8 @@ Prebid supports many media types, and you can set up a single line item with mul
 
 Grouping media types within line items is typically dictated by the pricing structure:
 
--  Banner, outstream video, and native generally run together because they have similar pricing expectations and therefore can share [price granularities](/adops/price-granularity.html).
--  Instream video is normally created as a separate set of line items because they are usually priced higher than other formats, often requiring custom price granularity.
+- Banner, outstream video, and native generally run together because they have similar pricing expectations and therefore can share [price granularities](/adops/price-granularity.html).
+- Instream video is normally created as a separate set of line items because they are usually priced higher than other formats, often requiring custom price granularity.
 
 You must set a key value for each format used by an ad unit using the hb_format (or hb_format_BIDDER) key and setting its value to the appropriate format. For example, if the ad unit is set up as a banner ad, you would target hb_format=banner (along with the price, such as hb_pb=1.00). If your ad unit supports multiple types, set the key value to include all types: `hb_format` in `banner`,`native`.
 
@@ -115,54 +115,54 @@ You must set a key value for each format used by an ad unit using the hb_format 
 
 Here's an example that encapsulates a number of the key decisions outlined in this document. In this scenario, we’ve made the following decisions:
 
--  Send Top Bid
--  Banner granularity: high
--  Video granularity: custom
--  Order naming pattern: Prebid - banner - N, Prebid - video - N
--  Line Item naming pattern: Prebid - banner - PRICE, Prebid - video - PRICE
--  Creative naming pattern: Prebid - banner - 1x1 - N, Prebid - video - N
--  Choosing to make three copies of each creative
+- Send Top Bid
+- Banner granularity: high
+- Video granularity: custom
+- Order naming pattern: Prebid - banner - N, Prebid - video - N
+- Line Item naming pattern: Prebid - banner - PRICE, Prebid - video - PRICE
+- Creative naming pattern: Prebid - banner - 1x1 - N, Prebid - video - N
+- Choosing to make three copies of each creative
 
 The granularity we’ve chosen means we’ll be creating 2000 line items for banner and 1000 line items for video. Those line items will be named as shown here:
 
--  Order: Prebid - banner - 1
-    -  LI: Prebid - banner - 0.00 (If the bid is less than 1 penny, it rounds down to 0, but is still worth something)
-        -  Creative: Prebid - banner - 1x1 - 1
-        -  Creative: Prebid - banner - 1x1 - 2
-        -  Creative: Prebid - banner - 1x1 - 3
-    -  LI: Prebid - banner - 0.01
-        -  ... creatives ...
-    -  LI: Prebid - banner - 0.02
-    -  LI: Prebid - banner - 0.03
-    -  ...
-    -  LI: Prebid - banner - 4.49
--  Order: Prebid - banner - 2
-    -  LI: Prebid - banner - 4.50
-    -  LI: Prebid - banner - 4.51
-    -  LI: Prebid - banner - 4.52
-    -  LI: Prebid - banner - 4.53
-    -  ...
-    -  LI: Prebid - banner - 09.49
--  ... other banner orders up to 20.00 ...
+- Order: Prebid - banner - 1
+  - LI: Prebid - banner - 0.00 (If the bid is less than 1 penny, it rounds down to 0, but is still worth something)
+    - Creative: Prebid - banner - 1x1 - 1
+    - Creative: Prebid - banner - 1x1 - 2
+    - Creative: Prebid - banner - 1x1 - 3
+  - LI: Prebid - banner - 0.01
+    - ... creatives ...
+  - LI: Prebid - banner - 0.02
+  - LI: Prebid - banner - 0.03
+  - ...
+  - LI: Prebid - banner - 4.49
+- Order: Prebid - banner - 2
+  - LI: Prebid - banner - 4.50
+  - LI: Prebid - banner - 4.51
+  - LI: Prebid - banner - 4.52
+  - LI: Prebid - banner - 4.53
+  - ...
+  - LI: Prebid - banner - 09.49
+- ... other banner orders up to 20.00 ...
 
 - Order: Prebid - video - 1
-    -  LI: Prebid - video - 0.00
-        -  Creative: Prebid - video - 1
-        -  Creative: Prebid - video - 2
-        -  Creative: Prebid - video - 3
-    -  LI: Prebid - video - 0.05
-    -  LI: Prebid - video - 0.10
-    -  ...
--  ...
+  - LI: Prebid - video - 0.00
+    - Creative: Prebid - video - 1
+    - Creative: Prebid - video - 2
+    - Creative: Prebid - video - 3
+  - LI: Prebid - video - 0.05
+  - LI: Prebid - video - 0.10
+  - ...
+- ...
 
 If we had chosen Send All Bids (the Prebid default), every element shown above would be recreated for each bidder, and each name would include the bidder name. For example:
 
--  Order: Prebid - banner - BidderA - 1
-    -  LI: Prebid - banner - BidderA - 0.00
-        -  Creative: Prebid - banner - BidderA - 1x1 - 1
-        -  Creative: Prebid - banner - BidderA - 1x1 - 2
-        -  Creative: Prebid - banner - BidderA - 1x1 - 3
--  ...
+- Order: Prebid - banner - BidderA - 1
+  - LI: Prebid - banner - BidderA - 0.00
+    - Creative: Prebid - banner - BidderA - 1x1 - 1
+    - Creative: Prebid - banner - BidderA - 1x1 - 2
+    - Creative: Prebid - banner - BidderA - 1x1 - 3
+- ...
 
 ## Next Step
 
@@ -170,7 +170,7 @@ If we had chosen Send All Bids (the Prebid default), every element shown above w
 
 ## Further Reader
 
--  [Planning Guide](/adops/adops-planning-guide.html)
--  [Key Values for Ad Ops](/adops/key-values.html)
--  [Prebid Universal Creative](/overview/prebid-universal-creative.html)
--  [Deals in Prebid](/adops/deals.html)
+- [Planning Guide](/adops/adops-planning-guide.html)
+- [Key Values for Ad Ops](/adops/key-values.html)
+- [Prebid Universal Creative](/overview/prebid-universal-creative.html)
+- [Deals in Prebid](/adops/deals.html)

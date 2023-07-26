@@ -30,4 +30,3 @@ sidebarType: 1
 |---------------|----------|-------------|---------|----------|
 | `host` | required |  Between SSP host url prefix. Defines data center where requests will be sent. Choose the closest one to the prebid-server you are using. Allowed values: `lbs-eu1.ads`, `lbs-ru1.ads`, `lbs-asia1.ads`, `lbs-us-east1.ads` | `'lbs-eu1.ads'` | `string` |
 | `publisher_id` | required |  Publisher ID from Between SSP control panel | `'123'` | `string` |
-

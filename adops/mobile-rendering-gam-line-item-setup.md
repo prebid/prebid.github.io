@@ -3,7 +3,7 @@
 layout: page_v2
 title: Prebid Mobile Rendering GAM Line Item Setup
 description: Prebid Mobile Rendering Modules GAM line item setup
-sidebarType: 2
+sidebarType: 3
 
 ---
 
@@ -12,7 +12,6 @@ sidebarType: 2
 ## Step 1: Create New Order
 
  <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-create.png" alt="Pipeline Screenshot" align="center">
-
 
 ## Step 2: Create Line Item
 
@@ -45,7 +44,7 @@ The **Custom targeting** property should contain a special keyword with the pric
 
 ## Step 3: Prepare Prebid Creative
 
-### Display Banner, Video Banner, Display Interstitial, Video Interstitial.
+### Display Banner, Video Banner, Display Interstitial, Video Interstitial
 
 The Prebid SDK integrates with GAM basing on [App Events](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner#app_events) feature, almost for all ad formats. That means that creative should contain a special tag that will be processed by Prebid's GAM Event Handlers.
 
@@ -54,7 +53,7 @@ If GAM Event Handler receives the `PrebidAppEvent` event it will render the winn
 ``` html
 <script type="text/javascript" src="https://media.admob.com/api/v1/google_mobile_app_ads.js">
 </script>
-<script type="text/javascript">admob.events.dispatchAppEvent("PrebidAppEvent","");</script>
+<script type="text/javascript">admob.events.dispatchAppEvent("PrebidAppEvent","%%PATTERN:bidid%%");</script>
 ```
 
 <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-creative-banner.png" alt="Pipeline Screenshot" align="center">
@@ -142,7 +141,6 @@ Example HTML:
   let pbNativeTagData = {};
   pbNativeTagData.pubUrl = "%%PATTERN:url%%";
   pbNativeTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
-
 
   // if not DFP, use these params
   pbNativeTagData.adId = "%%PATTERN:hb_adid%%";

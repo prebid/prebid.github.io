@@ -23,14 +23,16 @@ This Rtd module is to use in order to improve video events tracking.
 Make sure to have the following modules listed while building prebid : `rtdModule,oxxionRtdProvider`
 `rtbModule` is required to activate real-time-data submodules.
 For example :
-```
+
+```bash
 gulp build --modules=rtdModule,oxxionRtdProvider
 ```
 
 Then add the oxxion Rtd module to your prebid configuration :
-```
-pbjs.setConfig(
-  ...
+
+```javascript
+pbjs.setConfig({
+  //...
   realTimeData: {
     auctionDelay: 200,
     dataProviders: [
@@ -44,8 +46,8 @@ pbjs.setConfig(
        }
     ]
   }
-  ...
-)
+  // ...
+});
 ```
 
 ## setConfig Parameters
@@ -54,4 +56,3 @@ pbjs.setConfig(
 |:---------------------------------|:---------|:------------------------------------------------------------------------------------------------------------|
 | domain                           | String   | This string identifies yourself in Oxxion's systems and is provided to you by your Oxxion representative.   |
 | contexts                         | Array    | Array defining which video contexts to add tracking events into. Values can be instream and/or outstream.   |
-

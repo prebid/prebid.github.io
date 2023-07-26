@@ -38,6 +38,7 @@ Further information for the auction on NextMillennium side is generated automati
 
 The `disabledSendingStatisticData` parameter disables sending statistics data to the nextMillennium server, such as bidRequested, bidResponse, noBid and bidTimeout events.
 An example of enabling this option:  
+
 ```
 pbjs.setBidderConfig({
   bidders: ['nextMillennium'],

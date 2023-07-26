@@ -2,6 +2,9 @@
 layout: bidder
 title: VOX
 description: Prebid VOX Bidder Adapter
+schain_supported: true
+floors_supported: true
+userIds: all
 pbjs: true
 media_types: banner, video
 biddercode: vox
@@ -14,7 +17,6 @@ sidebarType: 1
 You can use this adapter to get a bid from partners.hybrid.ai
 Please reach out to your partners account team before using this plugin to get placementId.
 
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -22,8 +24,7 @@ Please reach out to your partners account team before using this plugin to get p
 |---------------------|------------------------|-------------------------------------------------------------------|--------------------------------------|----------|
 | `placementId`       | required               | The place id.                                                     | '5af45ad34d506ee7acad0c26'           | `string` |
 | `placement`         | required               | Adunit placement, possible values: banner, video, inImage         | 'banner'                             | `string` |
-| `imageUrl`          | required for inImage   | URL of the image on which the banner will be displayed            | 'https://hybrid.ai/images/image.jpg' | `string` |
-
+| `imageUrl`          | required for inImage   | URL of the image on which the banner will be displayed            | '<https://hybrid.ai/images/image.jpg>' | `string` |
 
 ### Sample Banner Ad Unit
 

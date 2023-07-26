@@ -3,7 +3,7 @@
 layout: page_v2
 title: Prebid Mobile Rendering Modules
 description: Prebid Mobile Rendering Modules architecture
-sidebarType: 2
+sidebarType: 3
 
 ---
 
@@ -15,21 +15,19 @@ In your MAX account go to `Mediation` -> `Manage` -> `Networks` and click `Click
 
 <img src="/assets/images/prebid-mobile/modules/rendering/max-cusom-network-setup.png" alt="Pipeline Screenshot" align="center">
 
-
-
 iOS adapter:
-```
+
+```noformat
 PrebidMAXMediationAdapter
 ```
 
-Android Adapter:  
-```
+Android Adapter:
+
+```noformat
 com.applovin.mediation.adapters.PrebidMaxMediationAdapter
 ```
 
-
 ## Add Placements
-
 
 Now you have to add placements for Prebid Custom Network into the respective ad unit's waterfall.
 
@@ -37,10 +35,9 @@ Create or choose an existing Ad Unit. Go the the `Custom Networks & Deals` secti
 
 <img src="/assets/images/prebid-mobile/modules/rendering/max-ad-unit-setup.png" alt="Pipeline Screenshot" align="center">
 
-
 Make sure that the `Custom Parameters` field contain expecting targetting keywords of the winning bid:
 
-```
+```json
 {"hb_pb":"0.10"}
 ```
 

@@ -14,7 +14,7 @@ enable_download: true
 #### Registration
 
 The BidWatch Analytics Adapter requires setup and approval from the
-BidWatch team. Please reach out to contact@bidwatch.io for more information.
+BidWatch team. Please reach out to <contact@bidwatch.io> for more information.
 
 #### Analytics Options
 

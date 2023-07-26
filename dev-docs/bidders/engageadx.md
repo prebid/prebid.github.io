@@ -9,6 +9,7 @@ media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 pbs_app_supported: true
 schain_supported: true
 userIds: all
@@ -21,7 +22,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The EngageADX bidding adapter requires setup and approval before implementation. Please reach out to <admin@engageadx.com> for more details.
 

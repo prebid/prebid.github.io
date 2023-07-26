@@ -9,6 +9,7 @@ media_types: banner, native, video
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 pbs_app_supported: true
 schain_supported: true
 userIds: all
@@ -21,10 +22,9 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The BCM adapter requires approval and setup. Please reach out to contact@bcm.ltd or visit us at bcm.ltd for more details.
-
+The BCM adapter requires approval and setup. Please reach out to <contact@bcm.ltd> or visit us at bcm.ltd for more details.
 
 ### Bid Params
 

@@ -13,7 +13,7 @@ enable_download: true
 
 #### Registration
 
-Please visit [https://piano.io/product/dmp/](https://piano.io/product/dmp/) for more information.
+Please visit [piano.io/product/dmp/](https://piano.io/product/dmp/) for more information.
 
 ### Example Configuration
 

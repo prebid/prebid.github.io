@@ -7,6 +7,7 @@ pbjs: true
 pbs: false
 media_types: banner, native, video
 gdpr_supported: true
+gpp_supported: true
 usp_supported: true
 coppa_supported: true
 pbs_app_supported: true
@@ -21,7 +22,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The RtbDemand.com bidding adaptor requires setup and approval before beginning. Please reach out to <shreyanschopra@rtbdemand.com> for more details
 

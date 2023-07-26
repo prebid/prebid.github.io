@@ -14,9 +14,9 @@ deals_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Datawrkz Bidding adapter requires setup before beginning. Please contact us at pubops@datawrkz.com
+The Datawrkz Bidding adapter requires setup before beginning. Please contact us at <pubops@datawrkz.com>
 
 ### Bid Params
 

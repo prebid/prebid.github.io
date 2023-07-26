@@ -10,7 +10,9 @@ sidebarType: 1
 ---
 
 ### Bid Params
+
 #### Banner
+
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                                      | Example            | Type     |
 |---------------|----------|------------------------------------------------------------------|--------------------|----------|
@@ -21,6 +23,7 @@ sidebarType: 1
 | `instl`       | optional | 1 when ad is interstitial or full screen, 0 when not interstitial| 0                  | `number` |
 
 #### Video
+
 {: .table .table-bordered .table-striped }
 | Name            | Scope    | Description                                                                                             | Example                         | Type            |
 |-----------------|----------|---------------------------------------------------------------------------------------------------------|---------------------------------|-----------------|
