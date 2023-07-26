@@ -132,7 +132,7 @@ Prebid.initializeSDK(gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobil
 }            
 ```
 
-If you integrate Prebid Mobile with GMA SDK version lower than 10.7.0, use the following initializer: 
+If you integrate Prebid Mobile with GMA SDK with version lower than 10.7.0, use the following initializer: 
 
 ```swift
 Prebid.initializeSDK(GADMobileAds.sharedInstance()) { status, error in
