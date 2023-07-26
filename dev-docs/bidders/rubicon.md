@@ -150,6 +150,7 @@ pbjs.setConfig({
   }
 });
 ```
+
 ### Media Types
 
 #### Video
