@@ -2,7 +2,7 @@
 layout: bidder
 title: Brightroll
 description: Prebid Brightroll(Verizon Media) S2S Bidder Adaptor
-pbs: true
+pbs: false
 media_types: display, video
 biddercode: brightroll
 prebid_member: true
@@ -13,6 +13,9 @@ schain_supported: true
 pbs_app_supported: false
 sidebarType: 1
 ---
+
+{: .alert.alert-warning :}
+The brightroll bid adapter is no longer supported and will not respond to bids.
 
 ### Registration
 

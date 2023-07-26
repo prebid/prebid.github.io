@@ -172,7 +172,6 @@ These are the supported (registered) bidder names.
 - "appnexus"
 - "audienceNetwork"  
 - "beachfront"
-- "brightroll"
 - "eplanning"
 - "epsilon"
 - "grid"
