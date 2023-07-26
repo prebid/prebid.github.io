@@ -6,7 +6,7 @@ biddercode: adpluto
 pbjs: true
 pbs: false
 media_types: banner, native, video
-gdpr_supported: true
+tcfeu_supported: false
 gpp_supported: true
 usp_supported: true
 coppa_supported: true

@@ -9,7 +9,7 @@ deals_supported: false
 media_types: banner
 gvl_id: 1183
 sidebarType: 1
-gdpr_supported: true
+tcfeu_supported: true
 userIds: sharedId
 floors_supported: true
 safeframes_ok: true
