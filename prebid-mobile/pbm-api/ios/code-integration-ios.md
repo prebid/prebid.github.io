@@ -64,7 +64,7 @@ If you are not familiar with the Swift Package Manager, please refer to the proj
         `.../Carthage/Checkouts/prebid-mobile-ios/scripts/CarthageBuild.sh`
 
     * Enter Schema name (PrebidMobile or PrebidMobileCore)
-        + If you run CarthageBuild.sh and see Permission denied use:
+        * If you run CarthageBuild.sh and see Permission denied use:
              `chmod +x <path_to_CarthageBuild.sh>`
 
     **Variant 2**
@@ -171,7 +171,6 @@ Prebid.shared.customStatusEndpoint = PREBID_SERVER_STATUS_ENDPOINT
 
 If something goes wrong with the request, the status of the initialization callback will be `.serverStatusWarning`. It doesn't affect an SDK flow and just informs you about the health check result.
 
-
 ## Set Targeting Parameters 
 
 Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
@@ -186,9 +185,7 @@ The `Prebid` class is a singleton that enables the user to apply global settings
 
 `prebidServerAccountId`: String containing the Prebid Server account ID.
 
-
 `prebidServerHost`: String containing configuration your Prebid Server host with which Prebid SDK will communicate. Choose from the system-defined Prebid Server hosts or define your own custom Prebid Server host.
-
 
 `shareGeoLocation`: Optional Bool, if this flag is True AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s geographical location data to Prebid Server. If this flag is False OR the app does not collect the user’s geographical location data, Prebid Mobile will not populate any user geographical location information in the call to Prebid Server. The default setting is false.
 
@@ -209,7 +206,6 @@ public static let severe = LogLevel(stringValue: "[🔥]", rawValue: 5)
 `storedAuctionResponse`: Set as type string, stored auction responses signal Prebid Server to respond with a static response matching the storedAuctionResponse found in the Prebid Server Database, useful for debugging and integration testing. No bid requests will be sent to any bidders when a matching storedAuctionResponse is found. For more information on how stored auction responses work, refer to the written [description on github issue 133](https://github.com/prebid/prebid-mobile-android/issues/133).
 
 `pbsDebug`: adds the debug flag ("test":1) on the outbound http call to Prebid Server. The test:1 flag will signal to Prebid Server to emit the full resolved request (resolving any Stored Request IDs) as well as the full Bid Request and Bid Response to and from each bidder.
-
 
 ### Methods
 
@@ -249,7 +245,6 @@ func clearCustomHeaders()
 ### Examples
 {:.no_toc}
 
-
 ```swift
 // Host
 Prebid.shared.prebidServerHost = .Rubicon
@@ -288,12 +283,11 @@ Prebid.shared.addStoredBidResponse(bidder: "rubicon", responseId: "221155")
 
 Follow the corresponding guide to integrate Prebid Mobile:
 
-- [GAM using Original API](code-integration-ios.html)
-- [No Ad Server](../../modules/rendering/ios-sdk-integration-pb.html)
-- [GAM using Rendering API](../../modules/rendering/ios-sdk-integration-gam.html)
-- [AdMob](../../modules/rendering/ios-sdk-integration-gam.html)
-- [AppLovin MAX](../../modules/rendering/ios-sdk-integration-max.html)
-
+* [GAM using Original API](code-integration-ios.html)
+* [No Ad Server](../../modules/rendering/ios-sdk-integration-pb.html)
+* [GAM using Rendering API](../../modules/rendering/ios-sdk-integration-gam.html)
+* [AdMob](../../modules/rendering/ios-sdk-integration-gam.html)
+* [AppLovin MAX](../../modules/rendering/ios-sdk-integration-max.html)
 
 ### Test configs
 
