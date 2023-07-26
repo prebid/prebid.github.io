@@ -22,13 +22,13 @@ Get started with Prebid Mobile by creating a [Prebid Server account](/prebid-mob
 
 If you are not familiar with using Cocoapods for dependency management, visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `Podfile` setup, include the following:
 
-```
+```bash
 target 'MyAmazingApp' do
     pod 'PrebidMobile'
 end
 ```
 
-Now run `pod install` to add the Prebid SDK to project dependencies. 
+Now run `pod install` to add the Prebid SDK to project dependencies.
 
 ### Carthage
 
@@ -47,33 +47,33 @@ If you are not familiar with the Carthage package builder, please refer to the p
 
 ### Swift PM
 
-SPM isn't supported for Prebid SDK `2.0.0` and higher ([details](https://github.com/prebid/prebid-mobile-ios/issues/640)). 
+SPM isn't supported for Prebid SDK `2.0.0` and higher ([details](https://github.com/prebid/prebid-mobile-ios/issues/640)).
 
-The next guide is applicable to `1.x` versions of the SDK. 
+The next guide is applicable to `1.x` versions of the SDK.
 
 If you are not familiar with the Swift Package Manager, please refer to the project [github page](https://github.com/apple/swift-package-manager) for more details.
 
-1. Add Prebid dependency `File -> Swift Packages -> Add Package Dependency...` 
+1. Add Prebid dependency `File -> Swift Packages -> Add Package Dependency...`
 2. Select desired version, branch or commit
 3. Select Prebid [module]({{site.baseurl}}/prebid-mobile/modules/modules-overview.html)
-3. Build the specific schema `CarthageBuild.sh`
+4. Build the specific schema `CarthageBuild.sh`
 
     **Variant 1**
 
-    - Run CarthageBuild.sh script from Cartfile folder. The path should be:
+    * Run CarthageBuild.sh script from Cartfile folder. The path should be:
         `.../Carthage/Checkouts/prebid-mobile-ios/scripts/CarthageBuild.sh`
 
-    - Enter Schema name (PrebidMobile or PrebidMobileCore)
+    * Enter Schema name (PrebidMobile or PrebidMobileCore)
         - If you run CarthageBuild.sh and see Permission denied use:
              `chmod +x <path_to_CarthageBuild.sh>`
 
     **Variant 2**
 
-    - Open `PrebidMobile.xcodeproj` at `.../Carthage/Checkouts/prebid-mobile-ios/PrebidMobile.xcodeproj` using Xcode
+    * Open `PrebidMobile.xcodeproj` at `.../Carthage/Checkouts/prebid-mobile-ios/PrebidMobile.xcodeproj` using Xcode
 
-    - Manage Schemes -> Check Shared checkbox for a necessary schema
+    * Manage Schemes -> Check Shared checkbox for a necessary schema
 
-    - run `carthage build prebid-mobile-ios`
+    * run `carthage build prebid-mobile-ios`
 4. Integrate the binary into your project
 
 You can find the schema name in the build PrebidSDK framework inside Info.plist with `PrebidMobileName` key
