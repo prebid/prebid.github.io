@@ -97,6 +97,42 @@ Here's an example of an overlay:
 
 ![Overlay example](/assets/images/tools/professor-prebid-10.png)
 
+#### User Sync Network Inspector
+
+{: .alert.alert-info :}
+Note: This is a tool that does require some technical knowledge because it utilizes the Chrome Devtools.
+
+##### Use Case
+
+When SSP user sync URL’s are requested on a Publisher site, they typically will initiate calls or redirect to other resources which will initiate or redirect to other resources, etc.  When it comes to privacy compliance, it can be difficult to track down if all resources down the request chain are obeying all of the necessary privacy compliance rules.  Are all of the correct query parameters being passed where they should be down the chain?
+
+The goal of this tool doesn’t attempt to fix scenarios where compliance params might not be present, instead it is a tool designed to quickly show transparency around this. It is up to the SSP to be aware of how compliance params are being used and to act accordingly based on this.
+
+##### How to Use
+
+{: .alert.alert-info :}
+Note: It is advised when testing User Sync URL's that you clear cookies relative to the domain you are testing. This will ensure that results are in-line with an initial visit to the current page. Additionally, the first resource matching the root URL will be used to generate the initiator request chain.
+
+- With the Professor Prebid extension on, open the Chrome developer tools by right-clicking anywhere on a webpage and selecting `Inspect`.
+- Navigate to the `Profressor Prebid` panel (top-right), then to the `Network Inspector` tab in the submenu directly below.
+- Enable the feature by sliding the toggle below.
+- Enter a User Sync root URL to listen for as the page loads to generate a request chain from, then click the "Set URL" button. For example, `https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=159096&us_privacy=1YNY`
+- Close the developer tools window, re-open the Chrome Dev Tools again (for changes to reflect, a new instance of the developer tools is required) and navigate back to `Professor Prebid --> Network Inspector`
+- Lastly, click the <img width="20" src="/assets/images/tools/professor-prebid-13.png" /> icon (top-right). This will refresh the page and generate a new initiator request chain below (If one is present for the provided User Sync Root URL).
+
+The UI of the User Sync Network Inspector:
+
+![User Sync Network Inspector UI](/assets/images/tools/professor-prebid-11.png)
+
+The Request Chain 
+
+Data for each resource on a request chain is taken from that resources HAR entry (For more info on HAR entries, see: [http://www.softwareishard.com/blog/har-12-spec](http://www.softwareishard.com/blog/har-12-spec))
+
+If a user sync root URL resource is loaded on a webpage, the final resulting request chain object will look like the following (the “redirectsTo” and “initiated” fields can contain zero to many nested resources as values):
+![Request Chain Example](/assets/images/tools/professor-prebid-12.png)
+
+Note: `redirectsTo` means a resource explicitly redirected to another resource.  `initiated` means a resource imported/parsed anther resource (ex: a resource loaded another resource via an html `<script>` tag).
+
 ## How can I submit a feature request ?
 
 Please open an GitHub issue on [github.com/prebid/professor-prebid/issues](https://github.com/prebid/professor-prebid/issues).
