@@ -4,7 +4,7 @@ title: OpenWeb
 description: Prebid OpenWeb Bidder Adapter
 biddercode: openweb
 media_types: banner
-gdpr_supported: true
+tcfeu_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
 coppa_supported: true

@@ -3,7 +3,7 @@ layout: bidder
 title: BizzClick
 description: Prebid BizzClick Bidder Adaptor
 biddercode: bizzclick
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true

@@ -5,7 +5,7 @@ description: Prebid Bucksense Bidder Adapter
 pbjs: true
 biddercode: bucksense
 gvl_id: 235
-gdpr_supported: true
+tcfeu_supported: true
 sidebarType: 1
 ---
 

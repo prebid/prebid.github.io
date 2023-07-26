@@ -6,7 +6,7 @@ pbjs: true
 biddercode: adWMG
 media_types: banner
 gvl_id: 959
-gdpr_supported: true
+tcfeu_supported: true
 sidebarType: 1
 ---
 

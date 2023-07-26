@@ -8,7 +8,7 @@ pbs: true
 pbs_app_supported: true
 biddercode: adxcg
 media_types: native, video
-gdpr_supported: false
+tcfeu_supported: false
 userIds: id5Id, identityLink, pubCommonId, unifiedId
 sidebarType: 1
 ---

@@ -4,7 +4,7 @@ title: A4G
 description: Prebid A4G Bidder Adaptor
 pbjs: true
 biddercode: a4g
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

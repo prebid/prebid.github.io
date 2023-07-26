@@ -6,7 +6,7 @@ pbjs: true
 biddercode: yieldlift
 media_types: banner
 gvl_id: 866
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 sidebarType: 1

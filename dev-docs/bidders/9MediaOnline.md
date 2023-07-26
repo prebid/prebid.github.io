@@ -6,7 +6,7 @@ biddercode: 9MediaOnline
 pbjs: true
 media_types: banner, video
 gvl_id: 644
-gdpr_supported: true
+tcfeu_supported: true
 tcf2_supported: true
 schain_supported: true
 usp_supported: true

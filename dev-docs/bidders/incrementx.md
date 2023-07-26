@@ -5,7 +5,7 @@ description: Prebid IncrementX Bidder Adaptor
 pbjs: true
 biddercode: incrementx
 media_types: banner
-gdpr_supported: false
+tcfeu_supported: false
 multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---

@@ -5,7 +5,7 @@ description: Prebid Sovrn Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: sovrn
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 userIds: all
 prebid_member: true

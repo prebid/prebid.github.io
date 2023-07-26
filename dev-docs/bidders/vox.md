@@ -5,7 +5,7 @@ description: Prebid VOX Bidder Adapter
 pbjs: true
 media_types: banner, video
 biddercode: vox
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

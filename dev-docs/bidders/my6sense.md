@@ -5,7 +5,7 @@ description: My6Sense Prebid Bidder Adapter
 media_type: native
 biddercode: my6sense
 pbjs: true
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

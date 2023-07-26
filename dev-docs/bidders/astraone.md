@@ -5,7 +5,7 @@ description: Prebid AstraOne Bidder Adapter
 pbjs: true
 media_types: banner
 biddercode: astraone
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

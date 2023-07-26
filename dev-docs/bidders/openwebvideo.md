@@ -7,7 +7,7 @@ biddercode: openwebvideo
 aliasCode: aniview
 media_types: banner, video
 gvl_id: 780 (aniview)
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: true

@@ -5,7 +5,7 @@ description: Yield Nexus Bidder Adapter
 biddercode: yieldnexus
 pbjs: true
 media_types: banner, video
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

@@ -4,7 +4,7 @@ title: AdBookPSP
 description: Prebid AdBookPSP Bidder Adapter
 biddercode: adbookpsp
 media_types: banner, video
-gdpr_supported: false
+tcfeu_supported: false
 prebid_member: false
 schain_supported: true
 coppa_supported: true

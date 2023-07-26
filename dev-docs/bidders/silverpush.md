@@ -7,7 +7,7 @@ pbs: true
 biddercode: silverpush
 media_types: banner, video
 schain_supported: true
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 gpp_supported: true

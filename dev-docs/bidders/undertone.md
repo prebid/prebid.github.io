@@ -5,7 +5,7 @@ description: Prebid undertone Bidder Adaptor
 biddercode: undertone
 media_types: display, video
 gvl_id: 677
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId

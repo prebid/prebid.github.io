@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 media_types: video,banner
 gvl_id: 410 (adtelligent)
-gdpr_supported: true
+tcfeu_supported: true
 gpp_supported: true
 biddercode: streamkey
 aliasCode: adtelligent

@@ -4,7 +4,7 @@ title: Glimpse Protocol
 description: Glimpse Protocol Bid Adapter
 biddercode: glimpse
 pbjs: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 deals_supported: true
 media_types: banner

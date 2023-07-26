@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: adman
 gvl_id: 149
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native

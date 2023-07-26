@@ -4,7 +4,7 @@ title: PGAM
 description: Prebid PGAM Bidder Adapter
 biddercode: pgam
 media_types: video,banner
-gdpr_supported: false
+tcfeu_supported: false
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
 coppa_supported: true

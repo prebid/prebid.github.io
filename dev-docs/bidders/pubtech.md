@@ -6,7 +6,7 @@ pbjs: true
 biddercode: pubtech
 aliasCode : nexx360
 gvl_id: 965 (nexx360)
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 floors_supported: true

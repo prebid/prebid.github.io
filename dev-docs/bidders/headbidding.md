@@ -11,7 +11,7 @@ pbs: false
 biddercode: headbidding
 media_types: banner, native, video
 gvl_id: 14
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 pbs_app_supported: true

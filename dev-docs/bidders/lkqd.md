@@ -5,7 +5,7 @@ description: Prebid LKQD Bidder Adaptor
 pbjs: true
 biddercode: lkqd 
 media_types: video
-gdpr_supported: false
+tcfeu_supported: false
 schain_supported: true
 enable_download : false
 sidebarType: 1

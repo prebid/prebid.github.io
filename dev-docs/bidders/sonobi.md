@@ -5,7 +5,7 @@ description: Prebid Sonobi Bidder Adaptor
 biddercode: sonobi
 media_types: banner, video
 gvl_id: 104
-gdpr_supported: true
+tcfeu_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId, lotamePanoramaID
 pbjs: true
 pbs: true

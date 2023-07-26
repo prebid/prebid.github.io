@@ -6,7 +6,7 @@ biddercode: appier
 pbjs: true
 media_types: banner
 gvl_id: 728
-gdpr_supported: true
+tcfeu_supported: true
 sidebarType: 1
 ---
 

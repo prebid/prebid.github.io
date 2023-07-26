@@ -5,7 +5,7 @@ description: Inskin Media Bidder Adaptor
 pbjs: true
 biddercode: inskin
 gvl_id: 150
-gdpr_supported: true
+tcfeu_supported: true
 sidebarType: 1
 ---
 

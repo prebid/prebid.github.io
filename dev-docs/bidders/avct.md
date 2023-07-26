@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: avct
 aliasCode: avocet
-gdpr_supported: false
+tcfeu_supported: false
 media_types: banner, video
 schain_supported: true
 usp_supported: true

@@ -6,7 +6,7 @@ pbjs: true
 biddercode: trustx
 media_types: banner, video
 multiformat_supported: will-bid-on-any
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: true
 fpd_supported: true
 pbjs_version_notes: 6.x and before

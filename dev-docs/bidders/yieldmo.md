@@ -6,7 +6,7 @@ biddercode: yieldmo
 media_types: banner, video
 userIds: pubCommonId, unifiedId, criteo, sharedId
 gvl_id: 173
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 prebid_member: true

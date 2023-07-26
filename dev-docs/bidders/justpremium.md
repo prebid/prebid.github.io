@@ -5,7 +5,7 @@ description: Prebid Justpremium Bidder Adaptor
 pbjs: true
 biddercode: justpremium
 gvl_id: 62
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId

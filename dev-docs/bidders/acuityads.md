@@ -5,7 +5,7 @@ description: Prebid AcuityAds Bidder Adaptor
 biddercode: acuityads
 filename: acuityAdsBidAdapter
 gvl_id: 231
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true

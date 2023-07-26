@@ -8,7 +8,7 @@ biddercode: adsyield
 aliasCode: admixer
 media_types: video
 gvl_id: 1199
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 sidebarType: 1
 ---

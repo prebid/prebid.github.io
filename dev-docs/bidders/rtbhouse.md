@@ -3,7 +3,7 @@ layout: bidder
 title: RTBHouse
 description: Prebid RTB House Bidder Adapter
 gvl_id: 16
-gdpr_supported: true
+tcfeu_supported: true
 pbjs: true
 pbs: true
 biddercode: rtbhouse

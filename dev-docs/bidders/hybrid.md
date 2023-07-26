@@ -5,7 +5,7 @@ description: Prebid Hybrid.ai Bidder Adapter
 pbjs: true
 media_types: banner, video
 biddercode: hybrid
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

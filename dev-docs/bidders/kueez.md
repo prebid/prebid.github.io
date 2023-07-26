@@ -8,7 +8,7 @@ biddercode: kueez
 media_types: banner, video
 schain_supported: true
 gvl_id: 1165
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 floors_supported: true
 userIds: all

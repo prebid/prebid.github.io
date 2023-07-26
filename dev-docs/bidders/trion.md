@@ -5,7 +5,7 @@ description: Prebid Trion Interactive Bidder Adaptor
 pbjs: true
 biddercode: trion
 usp_supported: true
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: adnuntius
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 fpd_supported: true
 gvl_id: 855
 safeframes_ok: false

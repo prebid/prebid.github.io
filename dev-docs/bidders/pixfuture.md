@@ -5,7 +5,7 @@ description: Prebid PixFuture Bidder Adapter
 biddercode: pixfuture
 media_types: banner
 gvl_id: 839
-gdpr_supported: true
+tcfeu_supported: true
 prebid_member: false
 coppa_supported: true
 usp_supported: true

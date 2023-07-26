@@ -5,7 +5,7 @@ description: Prebid KultureMedia Bidder Adaptor
 pbjs: true
 biddercode: kulturemedia
 media_types: banner, video
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: true
 schain_supported: true
 sidebarType: 1

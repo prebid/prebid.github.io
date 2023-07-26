@@ -7,7 +7,7 @@ pbjs: true
 pbs: false
 media_types: banner, native, video
 gvl_id: 673
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 pbs_app_supported: true

@@ -5,7 +5,7 @@ description: Prebid APAC Digital Exchange Bidder Adapter
 pbjs: true
 biddercode: apacdex
 media_types: banner, video
-gdpr_supported: false
+tcfeu_supported: false
 schain_supported: true
 usp_supported: true
 userIds: all

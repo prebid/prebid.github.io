@@ -4,7 +4,7 @@ title: EMTV
 description: Prebid EMTV Bidder Adapter
 biddercode: emtv
 usp_supported: true
-gdpr_supported: false
+tcfeu_supported: false
 coppa_supported: true
 schain_supported: true
 floors_supported: true

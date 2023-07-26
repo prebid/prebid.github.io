@@ -5,7 +5,7 @@ description: Prebid smartx Bidder Adapter
 biddercode: smartx
 media_types: no-display, video
 gvl_id: 115
-gdpr_supported: true
+tcfeu_supported: true
 userIds: none
 prebid_member: true
 schain_supported: true

@@ -5,7 +5,7 @@ description: Snigel Prebid Bidder Adapter
 biddercode: snigel
 gvl_id: 1076
 media_types: banner
-gdpr_supported: true
+tcfeu_supported: true
 prebid_member: false
 schain_supported: true
 coppa_supported: true

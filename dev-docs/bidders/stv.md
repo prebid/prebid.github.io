@@ -6,7 +6,7 @@ pbjs: true
 biddercode: stv
 media_types: banner,video
 gvl_id: 134
-gdpr_supported: true
+tcfeu_supported: true
 ---
 
 

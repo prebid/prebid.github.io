@@ -5,7 +5,7 @@ description: Prebid iMedia Digital Services Bidder (iMDS) Adapter
 pbjs: true
 pbs: true
 biddercode: imds
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: true
 userIds: all
 media_types: banner, video

@@ -6,7 +6,7 @@ pbjs: true
 biddercode: quantcast
 media_types: video
 gvl_id: 11
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 prebid_member: true

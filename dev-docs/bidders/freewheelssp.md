@@ -7,7 +7,7 @@ pbs: true
 biddercode: freewheelssp
 aliasCode: freewheel-ssp
 gvl_id: 285
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
 coppa_supported: true

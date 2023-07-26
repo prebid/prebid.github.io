@@ -4,7 +4,7 @@ title: MediaFuse
 description: Prebid MediaFuse Bidder Adapter
 biddercode: mediafuse
 media_types: video,banner
-gdpr_supported: false
+tcfeu_supported: false
 schain_supported: true
 coppa_supported: true
 usp_supported: true

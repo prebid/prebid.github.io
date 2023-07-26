@@ -4,7 +4,7 @@ title: Nexx360
 description: Prebid Nexx360 Bidder Adapter
 pbjs: true
 biddercode: nexx360
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 floors_supported: true

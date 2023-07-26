@@ -6,7 +6,7 @@ gvl_id: 972
 pbjs: true
 biddercode: kargo
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 userIds: unifiedId
 usp_supported: true
 coppa_supported: false

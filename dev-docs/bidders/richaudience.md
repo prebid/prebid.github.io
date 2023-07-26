@@ -5,7 +5,7 @@ description: Prebid Rich Audience Bidder Adapter
 biddercode: richaudience
 userIds: criteo, id5Id, identityLink, liveIntentId, pubCommonId, unifiedId
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 108
 safeframes_ok: false
 prebid_member: true

@@ -5,7 +5,7 @@ description: Prebid TheMediaGridNM Bidder Adapter
 pbjs: true
 biddercode: gridNM
 media_types: video
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: true
 fpd_supported: true
 sidebarType: 1

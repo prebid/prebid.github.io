@@ -4,7 +4,7 @@ title: Widespace
 description: Prebid Widespace Bidder Adaptor
 pbjs: true
 biddercode: widespace
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

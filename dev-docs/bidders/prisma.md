@@ -4,7 +4,7 @@ title: Prisma
 description: Prebid Prisma Bidder Adapter
 pbjs: true
 biddercode: prisma
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 userIds: id5Id

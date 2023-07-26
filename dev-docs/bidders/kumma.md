@@ -5,7 +5,7 @@ description: Prebid Kumma Bidder Adapter
 pbjs: true
 biddercode: kumma
 media_types: banner, native, video
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

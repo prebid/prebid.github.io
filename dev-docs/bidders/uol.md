@@ -6,7 +6,7 @@ biddercode: uol
 pbjs: true
 pbs: false
 aliasCode: appnexus
-gdpr_supported: true
+tcfeu_supported: true
 media_types: banner, video, native
 gvl_id: 32 (appnexus)
 schain_supported: true

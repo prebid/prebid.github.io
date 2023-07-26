@@ -4,7 +4,7 @@ title: AndBeyond.Media
 description: Prebid AndBeyond.Media Bidder Adapter
 biddercode: beyondmedia
 usp_supported: true
-gdpr_supported: false
+tcfeu_supported: false
 coppa_supported: true
 schain_supported: true
 floors_supported: true

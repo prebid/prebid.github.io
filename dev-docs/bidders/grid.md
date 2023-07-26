@@ -8,7 +8,7 @@ biddercode: grid
 media_types: banner, video, native (s2s only)
 multiformat_supported: will-bid-on-any
 gvl_id: 686
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
 schain_supported: true

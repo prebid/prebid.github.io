@@ -7,7 +7,7 @@ nav_section: reference
 pbjs: true
 biddercode: brightcom
 gvl_id: 883
-gdpr_supported: true
+tcfeu_supported: true
 sidebarType: 1
 ---
 

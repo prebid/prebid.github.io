@@ -4,7 +4,7 @@ title: MediaSquare
 description: Prebid MediaSquare Bidder Adapter
 pbjs: true
 biddercode: mediasquare
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 userIds: id5Id

@@ -6,7 +6,7 @@ pbjs: true
 biddercode: showheroes-bs
 media_types: video, banner
 gvl_id: 111
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 sidebarType: 1

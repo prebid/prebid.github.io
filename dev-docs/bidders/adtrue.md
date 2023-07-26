@@ -5,7 +5,7 @@ description: AdTrue Exchange Bidder Adapter
 pbjs: true
 biddercode: adtrue
 media_types: banner
-gdpr_supported: false
+tcfeu_supported: false
 schain_supported: true
 usp_supported: true
 sidebarType: 1

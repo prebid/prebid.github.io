@@ -5,7 +5,7 @@ description: Prebid LockerDome Bidder Adapter
 biddercode: lockerdome
 pbjs: true
 pbs: true
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: true
 schain_supported: true
 sidebarType: 1
