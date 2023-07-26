@@ -346,10 +346,10 @@ The POST response contains an array of `adPod` objects which represents the `adP
 ## SSAI processing of the response
 The SSAI should take the key-values from the response `adPods.[].targeting.[]${key}` and pass it to the primary ad server as keywords. Because `adPods` do not have specific targeting, an `adPod` can target any bid as long as the bid duration matches that of the `adPod`.
 
-## Further Reading:
+## Further Reading
 
 * [Prebid Server overview](/prebid-server/overview/prebid-server-overview.html)  
-* [OpenRTB auction endpoint ](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html)  
+* [OpenRTB auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html)  
 * [Category Translation module](/dev-docs/modules/categoryTranslation.html)  
 * [Freewheel module](/dev-docs/modules/freewheel.html)  
 * [Ad Pod module](/dev-docs/modules/adpod.html)  
