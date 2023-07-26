@@ -3,7 +3,7 @@ layout: analytics
 title: Oxxion
 description: oxxion Prebid Analytics Adapter
 modulecode: oxxion
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 prebid_member: false
