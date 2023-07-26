@@ -111,7 +111,28 @@ This method throws an exception if the provided URL is invalid.
 
 Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. There are several options for how to do it. 
 
-If you integrate Prebid Mobile with GMA SDK, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app: 
+If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10.7.0, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app: 
+
+```swift
+Prebid.initializeSDK(gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
+    switch status {
+    case .succeeded:
+        print("Prebid SDK successfully initialized")
+    case .failed:
+        if let error = error {
+            print("An error occurred during Prebid SDK initialization: \(error.localizedDescription)")
+        }
+    case .serverStatusWarning:
+        if let error = error {
+            print("Prebid Server status checking failed: \(error.localizedDescription)")
+        }
+    default:
+        break
+    }            
+}            
+```
+
+If you integrate Prebid Mobile with GMA SDK version lower than 10.7.0, use the following initializer: 
 
 ```swift
 Prebid.initializeSDK(GADMobileAds.sharedInstance()) { status, error in
