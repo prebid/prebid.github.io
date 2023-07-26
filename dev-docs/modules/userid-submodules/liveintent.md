@@ -53,7 +53,7 @@ The LiveIntent ID sub-module follows the standard Prebid.js initialization based
 
 Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option.
 
-For example, with the configuration below, the nonID as well as 'uid2', the 'medianet' id and the 'bidswitch' id will be requested:
+For example, with the configuration below, the nonID as well as 'uid2', the 'medianet' id, the 'magnite' id and the 'bidswitch' id will be requested:
 
 ```javascript
 pbjs.setConfig({
@@ -62,7 +62,7 @@ pbjs.setConfig({
             "name": "liveIntentId",
             "params": {
                 "publisherId": "12432415",
-                "requestedAttributesOverrides": {'uid2': true, 'medianet': true, 'bidswitch': true},
+                "requestedAttributesOverrides": {'uid2': true, 'medianet': true, 'magnite': true, 'bidswitch': true},
             },
         }]
     }
@@ -71,7 +71,7 @@ pbjs.setConfig({
 
 ### Multiple user ids
 
-The attributes 'uid2', 'medianet' or 'bidswitch' are treated specially by LiveIntent's user id sub-module. Each of these three attributes will result in a separate id returned by the sub-module.
+The attributes 'uid2', 'medianet', 'magnite' and 'bidswitch' are treated specially by LiveIntent's user id sub-module. Each of these three attributes will result in a separate id returned by the sub-module.
 
 For example, in case 'uid2' is configured to be requested - additionally to the nonID - the `request.userId` object would look like this:
 
@@ -90,9 +90,9 @@ For example, in case 'uid2' is configured to be requested - additionally to the 
 }
 ```
 
-Note that 'uid2' is exposed as part of 'lipb' as well as separately as 'uid2'. 'medianet' and 'bidswitch' behave the same way.
+Note that 'uid2' is exposed as part of 'lipb' as well as separately as 'uid2'. 'medianet', 'magnite' and 'bidswitch' behave the same way.
 
-For the attributes 'lipbid' (nonID), 'uid2', 'medianet' and 'bidswitch' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
+For the attributes 'lipbid' (nonID), 'uid2', 'medianet', 'magnite' and 'bidswitch' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
 
 ### Requesting uid2
 

@@ -9,7 +9,6 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
-gpp_supported: true
 media_types: banner, video, native
 userIds: all
 prebid_member: true
@@ -46,7 +45,7 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 | `keywords`     | optional           | See below for details on First Party Data. In release 4.29 and earlier, this can be used to influence reports for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. | `["travel", "tourism"]`                                                             | `Array<string>`  |
 | `video`       | required for video | Video targeting parameters. See the [video section below](#mediatypesvideo).                                                  | `{"language": "en"}` | `object`  |
 | pchain | optional | deprecated option that was an early alternative to schain | "GAM:11111-reseller1:22222" | string |
-| `bidonmultiformat` | optional | Beta parameter - please check with your account manager before setting this value | `boolean` | `true` |
+| `bidonmultiformat` | optional | By default, the rubicon exchange will bid on only one media type in this order: video, banner, native. Setting this flag to true will cause it to bid on all mediatypes. | `boolean` | `true` |
 
 #### First Party Data
 
@@ -151,6 +150,7 @@ pbjs.setConfig({
   }
 });
 ```
+
 ### Media Types
 
 #### Video

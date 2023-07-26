@@ -25,8 +25,6 @@ The Prebid Analytics API provides a way to get analytics data from `Prebid.js` a
 
 [//]: # (This comment is a separator that allows the list above and the TOC to be rendered at the same time)
 
-* TOC
-
 {:toc }
 
 ## Architecture of the Analytics API

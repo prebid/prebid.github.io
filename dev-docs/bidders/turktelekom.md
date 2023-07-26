@@ -8,6 +8,7 @@ pbs: false
 media_types: banner, native, video
 gvl_id: 673
 tcfeu_supported: true
+gpp_supported: true
 usp_supported: true
 coppa_supported: true
 pbs_app_supported: true

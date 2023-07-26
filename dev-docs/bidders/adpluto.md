@@ -1,17 +1,16 @@
 ---
 layout: bidder
-title: eRGADX
-description: eRGADX Bidder Adaptor
-biddercode: ergadx
+title: AdPluto
+description: AdPluto Bidder Adaptor
+biddercode: adpluto
 pbjs: true
-pbs: true
+pbs: false
 media_types: banner, native, video
-gvl_id: 14 (adkernel)
-tcfeu_supported: true
+gdpr_supported: true
 gpp_supported: true
 usp_supported: true
 coppa_supported: true
-pbs_app_supported: true
+pbs_app_supported: false
 schain_supported: true
 userIds: all
 fpd_supported: true
@@ -25,12 +24,12 @@ sidebarType: 1
 
 ### Note
 
-The eRGADX bidding adapter requires setup and approval before implementation. Please reach out to <prashant.musale@erelego.com> for more details.
+The AdPluto bidding adapter requires setup and approval before implementation. Please reach out to <support@adpluto.com> for more details.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
-| `host`   | required | RTB host | `'cpm.ergadx.com'` | `string` |
+| `host`   | required | RTB host | `'cpm.adpluto.com'` | `string` |
 | `zoneId` | required | Zone Id           | 30164                 | `integer` |

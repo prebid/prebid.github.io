@@ -10,6 +10,7 @@ prebid_member: false
 schain_supported: true
 coppa_supported: true
 usp_supported: true
+gpp_supported: true
 deals_supported: false
 floors_supported: true
 pbjs: true
@@ -26,6 +27,8 @@ Please reach out to us at <https://snigel.com/get-in-touch>.
 {: .table .table-bordered .table-striped }
 | Name      | Scope    | Description               | Example    | Type     |
 |-----------|----------|---------------------------|------------|----------|
+| `accountId`    | required | Account identifier from Snigel   | `"1870"`            | `string` |
+| `site`         | required | Site identifier from Snigel      | `"site.com"`        | `string` |
 | `placement`    | required | Placement identifier from Snigel | `"top_leaderboard"` | `string` |
 
 Use placement `"prebid_test_placement"` to receive unbilled test ads.

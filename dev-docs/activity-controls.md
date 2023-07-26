@@ -73,7 +73,7 @@ pbjs.setConfig({
               },
               allow: true
            }]
-       }`
+       }
    }
 })
 ```
@@ -264,7 +264,7 @@ pbjs.setConfig({
             default: false,
             rules: [{
                 condition({syncUrl}) {
-                    return DOMAINLIST.find(domain => syncUrl.startsWith(domain))
+                    return DOMAINLIST.some(domain => syncUrl.startsWith(domain));
                 },
                 allow: true
             }]

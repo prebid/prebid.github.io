@@ -10,7 +10,6 @@ tcfeu_supported: true
 gpp_supported: true
 biddercode: streamkey
 aliasCode: adtelligent
-media_types: video
 sidebarType: 1
 ---
 

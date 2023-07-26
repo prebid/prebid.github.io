@@ -299,7 +299,8 @@ Retrieve your bid parameters from the `params` object.
 Other notes:
 
 * **Bid ID** is unique across ad units and bidders.
-* **Transaction ID** is unique for each ad unit with a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
+* **auctionId** (see [note](#tid-warning)) is unique per call to `requestBids()`, but is the same across ad units and bidders.
+* **Transaction ID** (see [note](#tid-warning)) is unique for each ad unit within a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
 * **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
 * **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
 * **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
@@ -335,7 +336,7 @@ Here is a sample bidderRequest object:
 
 Notes on parameters in the bidderRequest object:
 
-* **auctionID** is unique per call to `requestBids()`, but is the same across ad units.
+* **auctionId** (see [note](#tid-warning)) is unique per call to `requestBids()`, but is the same across ad units.
 * **ortb2** is the global (not specific to any adUnit) [first party data](/features/firstPartyData.html) to use for all requests in this auction. Note that Prebid allows any standard ORTB field or extension as first party data - including items that typically wouldn't be considered as such, for example user agent client hints (`device.sua`) or information on the regulatory environment (`regs.ext.gpc`).
 
     {: .alert.alert-warning :}
@@ -353,6 +354,12 @@ Some of the data in `ortb2` is also made available through other `bidderRequest`
 * **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
 * **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
 * **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module.
+
+<a id="tid-warning"></a>
+
+{: .alert.alert-warning :}
+Since version 8, `auctionId` and `transactionId` are being migrated to `ortb2.source.tid` and `ortb2Imp.ext.tid` respectively; and are disabled by default, requiring [publisher opt-in](https://docs.prebid.org/dev-docs/pb8-notes.html#transaction-identifiers-are-now-reliable-and-opt-in).
+When disabled, `auctionId`/`transactionId` are set to `null`; `ortb2.source.tid`/`ortb2Imp.ext.tid` are not populated. Your adapter should prefer the latter two, and be able to handle the case when they are undefined.
 
 <a name="std-param-location"></a>
 
@@ -488,14 +495,14 @@ The parameters of the `bidResponse` object are:
 | `bidderCode` | Optional                                    | Bidder code to use for the response - for adapters that wish to reply on behalf of other bidders. Defaults to the code registered with [`registerBidder`](#bidder-adaptor-Overview); note that any other code will need to be [explicitly allowed by the publisher](/dev-docs/publisher-api-reference/bidderSettings.html#allowAlternateBidderCodes). | 'exampleBidder' |  
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
 | `meta`     | Optional                                    | Object containing metadata about the bid                                                                                                                                       |                           |
-| `meta.networkId`     | Optional                                    | Bidder-specific Network/DSP Id               | 1111             |
+| `meta.networkId`     | Optional                                    | Bidder-specific Network/DSP Id               | `"1111"`             |
 | `meta.networkName`     | Optional                                    | Network/DSP Name               | `"NetworkN"`                |
-| `meta.agencyId`     | Optional                                    | Bidder-specific Agency ID               | 2222                          |
+| `meta.agencyId`     | Optional                                    | Bidder-specific Agency ID               | `"2222"`                          |
 | `meta.agencyName`     | Optional                                    | Agency Name     | `"Agency, Inc."`           |
-| `meta.advertiserId`     | Optional                                    | Bidder-specific Advertiser ID     | 3333                          |
+| `meta.advertiserId`     | Optional                                    | Bidder-specific Advertiser ID     | `"3333"`                         |
 | `meta.advertiserName`     | Optional                                    | Advertiser Name               | `"AdvertiserA"`                          |
 | `meta.advertiserDomains`     | Required(*)                                    | Array of Advertiser Domains for the landing page(s). This is an array that aligns with the OpenRTB 'adomain' field. See note below this table. | `["advertisera.com"]`     |
-| `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | 4444                    |
+| `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | `"4444"`                    |
 | `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
 | `meta.demandSource`     | Optional                                    | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`
 | `meta.dchain`     | Optional                                    | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
