@@ -64,7 +64,7 @@ If you are not familiar with the Swift Package Manager, please refer to the proj
         `.../Carthage/Checkouts/prebid-mobile-ios/scripts/CarthageBuild.sh`
 
     * Enter Schema name (PrebidMobile or PrebidMobileCore)
-        - If you run CarthageBuild.sh and see Permission denied use:
+        + If you run CarthageBuild.sh and see Permission denied use:
              `chmod +x <path_to_CarthageBuild.sh>`
 
     **Variant 2**
@@ -74,7 +74,7 @@ If you are not familiar with the Swift Package Manager, please refer to the proj
     * Manage Schemes -> Check Shared checkbox for a necessary schema
 
     * run `carthage build prebid-mobile-ios`
-4. Integrate the binary into your project
+5. Integrate the binary into your project
 
 You can find the schema name in the build PrebidSDK framework inside Info.plist with `PrebidMobileName` key
 
@@ -82,7 +82,7 @@ You can find the schema name in the build PrebidSDK framework inside Info.plist 
 
 Build Prebid Mobile from source code. After [cloning the repo](https://github.com/prebid/prebid-mobile-ios), use Terminal or another command line tool, change to the root directory and run:
 
-```
+```bash
 scripts/buildPrebidMobile.sh
 ```
 
@@ -94,14 +94,14 @@ This will output the PrebidMobile.framework.
 
 Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add 'account' info to the Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
 
-```
+```swift
 Prebid.shared.prebidServerAccountId = YOUR_ACCOUNT_ID
 Prebid.shared.prebidServerHost = .Appnexus
 ```
 
 If you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app. Make sure that your URL points to the [/openrtb2/auction](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
 
-```
+```swift
 try! Prebid.shared.setCustomPrebidServer(url: PREBID_SERVER_AUCTION_ENDPOINT)
 ```
 
@@ -109,9 +109,9 @@ This method throws an exception if the provided URL is invalid.
 
 ### Initialize SDK
 
-Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. There are several options for how to do it. 
+Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. There are several options for how to do it.
 
-If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10.7.0, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app: 
+If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10.7.0, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app:
 
 ```swift
 Prebid.initializeSDK(gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
@@ -132,7 +132,7 @@ Prebid.initializeSDK(gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobil
 }            
 ```
 
-If you integrate Prebid Mobile with GMA SDK with version lower than 10.7.0, use the following initializer: 
+If you integrate Prebid Mobile with GMA SDK with version lower than 10.7.0, use the following initializer:
 
 ```swift
 Prebid.initializeSDK(GADMobileAds.sharedInstance()) { status, error in
@@ -155,7 +155,7 @@ Prebid.initializeSDK(GADMobileAds.sharedInstance()) { status, error in
 
 Check the log messages of the app. If the provided GMA SDK version is not verified for compatibility, the Prebid SDK informs about it.
 
-For the No Ad Server scenario, use the following initialization: 
+For the No Ad Server scenario, use the following initialization:
 
 ```swift
 Prebid.initializeSDK { status, error in
@@ -165,7 +165,7 @@ Prebid.initializeSDK { status, error in
 
 During the initialization, SDK creates internal classes and performs the health check request to the [/status](https://docs.prebid.org/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If you use a custom PBS host you should provide a custom status endpoint as well:
 
-```
+```swift
 Prebid.shared.customStatusEndpoint = PREBID_SERVER_STATUS_ENDPOINT
 ```
 
@@ -238,11 +238,11 @@ func clearStoredBidResponses()
 
 The following methods enable the customization of the HTTP call to the prebid server:
 
-```
+```swift
 func addCustomHeader(name: String, value: String) 
 ```
 
-```
+```swift
 func clearCustomHeaders() 
 ```
 
