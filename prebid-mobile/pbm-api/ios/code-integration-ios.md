@@ -171,7 +171,7 @@ Prebid.shared.customStatusEndpoint = PREBID_SERVER_STATUS_ENDPOINT
 
 If something goes wrong with the request, the status of the initialization callback will be `.serverStatusWarning`. It doesn't affect an SDK flow and just informs you about the health check result.
 
-## Set Targeting Parameters 
+## Set Targeting Parameters
 
 Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
 
@@ -201,7 +201,6 @@ public static let severe = LogLevel(stringValue: "[🔥]", rawValue: 5)
 ```
 
 `timeoutMillis`: The Prebid timeout (accessible to Prebid SDK 1.2+), set in milliseconds, will return control to the ad server SDK to fetch an ad once the expiration period is achieved. Because Prebid SDK solicits bids from Prebid Server in one payload, setting Prebid timeout too low can stymie all demand resulting in a potential negative revenue impact.
-
 
 `storedAuctionResponse`: Set as type string, stored auction responses signal Prebid Server to respond with a static response matching the storedAuctionResponse found in the Prebid Server Database, useful for debugging and integration testing. No bid requests will be sent to any bidders when a matching storedAuctionResponse is found. For more information on how stored auction responses work, refer to the written [description on github issue 133](https://github.com/prebid/prebid-mobile-android/issues/133).
 
@@ -296,7 +295,7 @@ In the table below, you can find Prebid's test IDs that are used in the Demo App
 {: .table .table-bordered .table-striped }
 
 | Config ID            | Ad Format        | Description            |
-| -------------------- | ---------------- | ---------------------- | 
+| -------------------- | ---------------- | ---------------------- |
 |`https://prebid-server-test-j.prebid.org/openrtb2/auction` | **Custom Prebid Server Host**|A PBS instance that is dedicated to testing purposes.|
 |`0689a263-318d-448b-a3d4-b02e8a709d9d`| **Stored Request ID**|The test account ID on the test server.|
 |`imp-prebid-banner-320-50`|**HTML Banner**|Returns a stored response that contains a Banner 320x50 winning bid.|
@@ -310,6 +309,3 @@ In the table below, you can find Prebid's test IDs that are used in the Demo App
 |`imp-prebid-video-interstitial-320-480`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid.|
 |`imp-prebid-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
 |`imp-prebid-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|
-
-
-
