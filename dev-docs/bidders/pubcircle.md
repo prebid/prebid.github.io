@@ -4,7 +4,7 @@ title: PubCircle
 description: Prebid PubCircle Bidder Adaptor
 biddercode: pubcircle
 filename: pubCircleBidAdapter
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
