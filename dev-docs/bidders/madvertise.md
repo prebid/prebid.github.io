@@ -4,7 +4,7 @@ title: Madvertise
 description: Prebid Madvertise Bidder Adapter
 pbjs: true
 biddercode: madvertise
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 153
 media_types: banner, video
 safeframes_ok: true

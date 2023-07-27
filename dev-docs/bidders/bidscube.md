@@ -6,7 +6,7 @@ pbs: true
 pbjs: true
 biddercode: bidscube
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: false
 pbs_app_supported: true
 sidebarType: 1
 ---

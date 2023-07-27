@@ -4,7 +4,7 @@ title: ventes
 description: Prebid ventes Bidder Adapter
 pbjs: true
 biddercode: ventes
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 media_types: banner
 coppa_supported: false

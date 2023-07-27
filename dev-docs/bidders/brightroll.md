@@ -6,7 +6,7 @@ pbs: false
 media_types: display, video
 biddercode: brightroll
 prebid_member: true
-gdpr_supported: true
+tcfeu_supported: false
 coppa_supported: true
 ccpa_supported: true
 schain_supported: true

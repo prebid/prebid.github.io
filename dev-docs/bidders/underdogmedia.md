@@ -4,7 +4,8 @@ title: Underdog Media
 description: Prebid Underdog Media Bidder Adapter
 pbjs: true
 biddercode: underdogmedia
-gdpr_supported: true
+gvl_id: 159
+tcfeu_supported: true
 usp_supported: true
 userIds: 33acrossId, pubCommonId, unifiedId
 sidebarType: 1

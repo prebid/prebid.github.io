@@ -9,7 +9,7 @@ media_types: banner, video
 schain_supported: true
 coppa_supported: true
 pbs: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 floors_supported: true
 userIds: all

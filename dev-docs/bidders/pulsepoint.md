@@ -3,7 +3,7 @@ layout: bidder
 title: PulsePoint
 description: Prebid PulsePoint Bidder Adaptor
 biddercode: pulsepoint
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native

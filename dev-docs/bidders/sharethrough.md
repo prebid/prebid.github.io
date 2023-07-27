@@ -3,7 +3,7 @@ layout: bidder
 title: Sharethrough
 biddercode: sharethrough
 description: Prebid Sharethrough Adaptor
-gdpr_supported: true
+tcfeu_supported: true
 coppa_supported: true
 floors_supported: true
 media_types: banner, video

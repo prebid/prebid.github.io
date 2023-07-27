@@ -3,7 +3,7 @@ layout: bidder
 title: Bidgency Group
 description: Bidgency Group Bid Adapter
 biddercode: bidgency
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 media_types: video
 safeframes_ok: true

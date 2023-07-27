@@ -1296,7 +1296,7 @@ layout: bidder
 title: {bidder}
 description: Prebid {Bidder} Bidder Adapter
 biddercode: {bidder}
-gdpr_supported: true/false
+tcfeu_supported: true/false
 gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
@@ -1331,12 +1331,12 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 Notes on the metadata fields:
 - Add `pbs: true`. If you also have a [Prebid.js bid adapter](/dev-docs/bidder-adaptor.html), add `pbjs: true`. Default is false for both.
 - If you're on the IAB's Global Vendor List, place your ID in `gvl_id`. No default.
-- If you support GDPR and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
-- If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
+- If you support the IAB's TCF-EU consent string format and have a GVL ID, you may add `tcfeu_supported: true`. Default is false.
+- If you support the IAB's US Privacy consent string format, add `usp_supported: true`. Default is false.
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
 - If you support video, native, or audio mediaTypes add `media_types: video, native, audio`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
-- If you support COPPA, add `coppa_supported: true`. Default is false.
-- If you support GPP, add `gpp_supported: true`. Default is false.
+- If you support the COPPA flag, add `coppa_supported: true`. Default is false.
+- If you support the IAB's GPP consent string, add `gpp_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.

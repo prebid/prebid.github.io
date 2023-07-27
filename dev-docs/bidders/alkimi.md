@@ -7,7 +7,8 @@ media_types: banner, video
 pbjs: true
 pbs: true
 schain_supported: true
-gdpr_supported: true
+gvl_id: 1169
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 userIds: all

@@ -6,7 +6,7 @@ media_types: banner, video
 pbjs: true
 pbs: true
 biddercode: smilewanted
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: true
 userIds: all
 gvl_id: 639

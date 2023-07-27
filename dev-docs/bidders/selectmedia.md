@@ -3,8 +3,8 @@ layout: bidder
 title: Select Media Display
 description: Prebid Select Media Bidder Adapter
 pbjs: true
-media_types: banner, video
-gdpr_supported: true
+media_types: banner,video
+tcfeu_supported: true
 gpp_supported: true
 biddercode: selectmedia
 aliasCode: adtelligent

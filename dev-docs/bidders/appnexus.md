@@ -4,7 +4,7 @@ title: AppNexus
 description: Prebid AppNexus Bidder Adaptor
 biddercode: appnexus
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 prebid_member: true
 userIds: all (with commercial activation)
 schain_supported: true

@@ -6,7 +6,7 @@ biddercode: beachfront
 media_types: video
 floors_supported: true
 fpd_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
 userIds: unifiedId, identityLink, uid2, hadronId

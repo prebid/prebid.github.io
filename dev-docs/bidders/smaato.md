@@ -3,7 +3,7 @@ layout: bidder
 title: Smaato
 description: Prebid Smaato Bidder Adaptor
 biddercode: smaato
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 82
 usp_supported: true
 coppa_supported: true

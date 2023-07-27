@@ -5,7 +5,8 @@ description: Prebid STV Bidder Adapter
 pbjs: true
 biddercode: stv
 media_types: banner,video
-gdpr_supported: true
+gvl_id: 134
+tcfeu_supported: true
 ---
 
 

@@ -5,7 +5,8 @@ description: Prebid Streamkey.tv Bidder Adapter
 pbjs: true
 pbs: true
 media_types: video,banner
-gdpr_supported: true
+gvl_id: 410 (adtelligent)
+tcfeu_supported: true
 gpp_supported: true
 biddercode: streamkey
 aliasCode: adtelligent

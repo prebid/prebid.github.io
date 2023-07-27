@@ -8,7 +8,7 @@ userIds: all
 pbjs: true
 media_types: banner, video
 biddercode: vox
-gdpr_supported: true
+tcfeu_supported: false
 sidebarType: 1
 ---
 

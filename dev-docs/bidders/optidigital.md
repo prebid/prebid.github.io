@@ -5,7 +5,7 @@ description: Prebid Optidigital Bidder Adapter
 biddercode: optidigital
 pbjs: true
 floors_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 tcf2_supported: true
 usp_supported: true
 schain_supported: true

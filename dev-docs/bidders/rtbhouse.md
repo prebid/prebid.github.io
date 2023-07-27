@@ -2,7 +2,8 @@
 layout: bidder
 title: RTBHouse
 description: Prebid RTB House Bidder Adapter
-gdpr_supported: true
+gvl_id: 16
+tcfeu_supported: true
 pbjs: true
 pbs: true
 biddercode: rtbhouse
@@ -88,6 +89,7 @@ The following steps should be taken to setup Protected Audience for RTB House:
 module documentation.
 
     a. Make sure to enable RTB House bidder to participate in FLEDGE. If there are any other bidders to be allowed for that, add them to the **bidders** array:
+
     ```javascript
     pbjs.setBidderConfig({
         bidders: ["rtbhouse"],
@@ -99,6 +101,7 @@ module documentation.
 
     b. If you as a publisher have your own [decisionLogicUrl](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction)
     you may utilize it by setting up a dedicated `fledgeConfig` object:
+
     ```javascript
     pbjs.setBidderConfig({
         bidders: ["rtbhouse"],
@@ -112,6 +115,7 @@ module documentation.
         }
     });
     ```
+
     The `decisionLogicUrl` must be in the same domain as `seller` and has to respond with `X-Allow-FLEDGE: true` http header.
 
     `sellerTimeout` is optional, defaults to 50 as per spec, will be clamped to 500 if greater.

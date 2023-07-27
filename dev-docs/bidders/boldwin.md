@@ -5,7 +5,8 @@ description: Prebid Boldwin Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: boldwin
-gdpr_supported: true
+gvl_id: 1151
+tcfeu_supported: true
 media_types: banner, video, native
 sidebarType: 1
 ---

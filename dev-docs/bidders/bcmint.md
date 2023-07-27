@@ -3,7 +3,7 @@ layout: bidder
 title: BCM International
 description: BCM International Bid Adapter
 biddercode: bcmint
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 media_types: video
 safeframes_ok: true

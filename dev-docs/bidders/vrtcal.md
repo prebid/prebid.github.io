@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 media_types: banner, video, native
 biddercode: vrtcal
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 coppa_supported: true

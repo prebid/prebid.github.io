@@ -3,7 +3,7 @@ layout: bidder
 title: Seeding Alliance
 description: Prebid Seeding Alliance Bidder Adapter
 biddercode: seedingAlliance
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 371 
 usp_supported: false
 coppa_supported: false

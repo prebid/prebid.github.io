@@ -6,7 +6,8 @@ pbjs: true
 pbs: true
 media_types: video, banner
 biddercode: bliink
-gdpr_supported: true
+gvl_id: 658
+tcfeu_supported: true
 usp_supported: false
 sidebarType: 1
 ---

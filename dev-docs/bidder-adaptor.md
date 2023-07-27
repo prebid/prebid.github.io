@@ -1273,12 +1273,12 @@ registerBidder(spec);
     * Add 'aliasCode' if your biddercode is not the same name as your PBJS implementation file. e.g. if your biddercode is "ex", but the file in the PBJS repo is exampleBidAdapter.js, this value needs to be "example".
     * Add `pbjs: true`. If you also have a [Prebid Server bid adapter](/prebid-server/developers/add-new-bidder-go.html), add `pbs: true`. Default is false for both.
     * If you're on the IAB Global Vendor List (including just [Canada](https://vendor-list.consensu.org/v2/ca/vendor-list.json)), add your ID number in `gvl_id`.
-    * If you support the GDPR consentManagement module and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
-    * If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
+    * If you support the IAB's TCF-EU consent string format and have a GVL ID, you may add `tcfeu_supported: true`. Default is false.
+    * If you support the IAB's US Privacy consent string format, add `usp_supported: true`. Default is false.
     * If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
     * If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
-    * If you support COPPA, add `coppa_supported: true`. Default is false.
-    * If you support GPP, add `gpp_supported: true`. Default is false.
+    * If you support the COPPA flag, add `coppa_supported: true`. Default is false.
+    * If you support the IAB's GPP consent string, add `gpp_supported: true`. Default is false.
     * If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
     * If you support passing a demand chain on the response, add `dchain_supported: true`. Default is false.
     * If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
@@ -1300,7 +1300,7 @@ title: example
 description: Prebid example Bidder Adapter
 biddercode: example
 aliasCode: fileContainingPBJSAdapterCodeIfDifferentThenBidderCode
-gdpr_supported: true/false
+tcfeu_supported: true/false
 gvl_id: none
 usp_supported: true/false
 coppa_supported: true/false
