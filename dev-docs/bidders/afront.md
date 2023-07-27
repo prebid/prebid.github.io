@@ -3,7 +3,7 @@ layout: bidder
 title: Afront
 description: Prebid Afront Bidder Adaptor
 biddercode: afront
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
