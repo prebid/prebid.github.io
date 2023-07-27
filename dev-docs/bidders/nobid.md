@@ -9,9 +9,10 @@ media_types: banner, video
 tcfeu_supported: true
 gvl_id: 816
 usp_supported: true
+gpp_supported: true
 schain_supported: true
 coppa_supported: true
-userId: criteo, unifiedId, id5Id
+userId: criteo, unifiedId, id5Id, intentIqId
 safeframes_ok: true
 sidebarType: 1
 floors_supported: true
