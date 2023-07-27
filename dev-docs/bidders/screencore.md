@@ -21,9 +21,9 @@ ortb_blocking_supported: true
 userIds: all
 ---
 
-### Note:
+### Note
 
-The Screencore Bidding adapter requires setup before beginning. Please contact us at connect@screencore.io.
+The Screencore Bidding adapter requires setup before beginning. Please contact us at [connect@screencore.io](mailto:connect@screencore.io).
 Screencore will bid on first impression in request.
 
 ### Bid Params
