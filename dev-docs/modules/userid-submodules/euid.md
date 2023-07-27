@@ -23,6 +23,7 @@ Each publisher’s privacy policy should take European Unified ID into account.
 ## European Unified ID Tokens
 
 EUID tokens are generated on the server side by making an API call to an EUID operator using details provided when you receive EUID publisher access. This API returns a JSON data structure with multiple values, including an advertising token and a refresh token. For full functionality, provide the entire object in one of these ways:
+
 - JSON-encoded as a cookie.
 - Included in the configuration object.
 
@@ -48,6 +49,7 @@ When this full data structure is provided, the module automatically refreshes th
 This is the recommended mode for most scenarios. In this mode, the full response body from the EUID Token Generate or Token Refresh endpoint must be provided to the module. As long as the refresh token remains valid, the module will refresh the advertising token as needed.
 
 To configure the module to use this mode, you must **either**:
+
 1. Set `params.euidCookie` to the name of the cookie which contains the response body as a JSON string, **or**
 2. Set `params.euidToken` to the response body as a JavaScript object.
 
@@ -56,12 +58,14 @@ To configure the module to use this mode, you must **either**:
 In this example, the cookie is called `euid_pub_cookie`.
 
 Cookie:
-```
+
+```javascript
 euid_pub_cookie={"advertising_token":"...advertising token...","refresh_token":"...refresh token...","identity_expires":1684741472161,"refresh_from":1684741425653,"refresh_expires":1684784643668,"refresh_response_key":"...response key..."}
 ```
 
 Configuration:
-```
+
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -77,7 +81,8 @@ pbjs.setConfig({
 ### Client refresh euidToken example
 
 Configuration:
-```
+
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -102,11 +107,11 @@ There is a server-only mode where the value of the advertising token can be prov
 
 To use the cookie-based server-only mode, set a cookie named `__euid_advertising_token` to the value of the advertising token only, as shown in this fictitious example:
 
-Cookie:
-`__euid_advertising_token=eb33b0cb8d354722b9c01a31d4064888`
+Cookie: `__euid_advertising_token=eb33b0cb8d354722b9c01a31d4064888`
 
 Configuration:
-```
+
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -120,7 +125,7 @@ pbjs.setConfig({
 
 To use the configuration-based server-only mode, set the value directly in the configuration of the module, as shown in this fictitious example:
 
-```
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -153,7 +158,7 @@ The following parameters apply only to the European Unified ID module integratio
 
 In the following example, the publisher has set a cookie called `euid_identity` containing the EUID token generation response object:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{
@@ -164,11 +169,11 @@ pbjs.setConfig({
     }]
   }
 });
-{% endhighlight %}
+```
 
 In the following example, the publisher has retrieved a server-generated EUID response, and it is currently stored in the JavaScript variable `euidIdentity`:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{
@@ -179,4 +184,4 @@ pbjs.setConfig({
     }]
   }
 });
-{% endhighlight %}
+```
