@@ -3,7 +3,7 @@ layout: bidder
 title: YOC VIS.X
 description: Prebid YOC VIS.X Bidder Adapter
 biddercode: visx
-gdpr_supported: true
+tcfeu_supported: true
 tcf2_supported: true
 gvl_id: 154
 schain_supported: true

@@ -25,8 +25,6 @@ The Prebid Analytics API provides a way to get analytics data from `Prebid.js` a
 
 [//]: # (This comment is a separator that allows the list above and the TOC to be rendered at the same time)
 
-* TOC
-
 {:toc }
 
 ## Architecture of the Analytics API
@@ -178,7 +176,7 @@ layout: analytics
 title: Your Company Name
 description: Your Company Analytics Adapter
 modulecode: exampleAnalyticsAdapter
-gdpr_supported: true/false   (EU GDPR support)
+tcfeu_supported: true/false  (TCF EU protocol support)
 usp_supported: true/false    (US Privacy support)
 coppa_supported: true/false  (COPPA support)
 prebid_member: true/false

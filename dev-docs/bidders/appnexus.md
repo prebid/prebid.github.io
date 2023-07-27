@@ -4,7 +4,7 @@ title: AppNexus
 description: Prebid AppNexus Bidder Adaptor
 biddercode: appnexus
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 prebid_member: true
 userIds: all (with commercial activation)
 schain_supported: true
@@ -200,7 +200,7 @@ keywords: {
 
 Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
 
-At this time however, the `appnexus` bidder only reads the First Party Data when using the Prebid Server and Prebid Server Premium endpoints.  The client-side version of the `appnexus` bidder does not use the values from the First Party Data fields.
+At this time however, the `appnexus` bidder fully reads the First Party Data when using the Prebid Server and Prebid Server Premium endpoints.  The client-side version of the `appnexus` bidder has partial support to read all the various keywords parameters from the First Party Data fields.  There is also some special support with the segment fields but only from known sources which are specifically configured.  All other First Party Data fields are not read at this time.
 
 PBS/PSP supports all first party data fields: site, user, segments, and imp-level first party data.
 

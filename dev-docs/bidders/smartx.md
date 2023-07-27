@@ -4,7 +4,8 @@ title: smartx
 description: Prebid smartx Bidder Adapter
 biddercode: smartx
 media_types: no-display, video
-gdpr_supported: true
+gvl_id: 115
+tcfeu_supported: true
 userIds: none
 prebid_member: true
 schain_supported: true

@@ -29,9 +29,9 @@ The IAB released the "Multi-State Privacy Agreement" (MSPA) as its proposal for 
 1. **Global Privacy Platform (GPP)** - A technical IAB framework that defines a container format for communicating multiple privacy protocols. e.g. GPP can contain existing Transparency and Consent Framework (TCF) strings, various US privacy string formats, and other future implementations.
 1. **GPP Section ID (SID)** - the GPP container may contain multiple encoded privacy protocol strings. Each protocol gets its own SID in the overall GPP container. e.g. TCF-EU is assigned SID 2.
 1. **Multi-State Privacy Agreement (MSPA)** - the IAB's contractual framework for publishers to manage various US state privacy laws.
-1. **MSPA Covered Transaction** - Whether a given ad auction falls legally under the MSPA's privacy requirements. For MSPA covered 'transactions' (ad auctions), publishers must declare themselves in one of two modes: "Service Provider Mode" or "Opt-Out Mode".
+1. **MSPA Covered Transaction** - Whether a given ad auction falls legally under the MSPA's privacy requirements. For MSPA-covered 'transactions' (ad auctions), publishers must declare themselves in one of two modes: "Service Provider Mode" or "Opt-Out Mode".
 1. **MSPA Service Provider Mode** - "Service Provider Mode is for First Parties who do not Sell or Share Personal Information, and do not Process Personal Information for Targeted Advertising". This means that personal information is never sent to downstream entities.
-1. **MSPA Opt-Out Mode** - For First Parties that may engage targeted advertising activities or disclose personal information for such purposes. This means that user consent is gathered before privacy-sensitive data is sent to downstream entities.
+1. **MSPA Opt-Out Mode** - For First Parties that may engage in targeted advertising activities or disclose personal information for such purposes. This means that user consent is gathered before privacy-sensitive data is sent to downstream entities.
 1. **US National Privacy Technical Specification (USNat)** -  the IAB's technical framework for encoding MSPA publisher policies and user consents. Stored in the GPP container as SID 7.
 1. **US State Privacy Technical Specifications** - the IAB has defined technical frameworks for 5 states based on their interpretation of state privacy laws. These protocols are similar to the US National protocol and are stored in the GPP container as SIDs 8 through 12.
 1. **Global Privacy Control (GPC)** - a browser-level control for end users. Some US states have referred to a global control so that users don't have to state their preferences on each website they visit. The USNat protocol strings also contain the GPC flag.
@@ -42,7 +42,7 @@ The IAB released the "Multi-State Privacy Agreement" (MSPA) as its proposal for 
 
 ### Assumptions
 
-Prebid.org cannot advise publishers how to conform to privacy laws that affect their business. Instead publishers should be aware of what privacy-related features Prebid supports so that their legal, product, and engineering teams can define a privacy implementation.
+Prebid.org cannot advise publishers on how to conform to privacy laws that affect their business. Instead, publishers should be aware of what privacy-related features Prebid supports so that their legal, product, and engineering teams can define a privacy implementation.
 
 Prebid's assumptions about the MSPA and the US National Privacy specification:
 
@@ -91,7 +91,7 @@ Here's a summary of the privacy features in Prebid Server that publishers may us
 
 ### Prebid SDK
 
-SDK v2.0.8 (both iOS and Android) support reading mobile app GPP data and passing it to Prebid Server.
+SDK v2.0.8 (both iOS and Android) supports reading mobile app GPP data and passing it to Prebid Server.
 
 ## Interpreting USNat Strings
 
@@ -107,7 +107,7 @@ To make sense of the specific values below, please refer to the [IAB's USNat tec
     1. KnownChild normalizations follow these rules:
         1. SID 7 has two 'KnownChild' values: ages 13-16 and under 13. The goal is to map SIDs 8-12 behavior to SID 7's structure.
         1. Prebid does not distinguish between "selling", "sharing", or "processing" data.
-        1. If the state-level KnownChild values are all 0 (N/A), then the normalized output values are also 0. The assumption is that a KnownChild value of 0 means the user is not a child as defined by the various laws..
+        1. If the state-level KnownChild values are all 0 (N/A), then the normalized output values are also 0. The assumption is that a KnownChild value of 0 means the user is not a child as defined by the various laws.
         1. If the state-specific values do not distinguish between ages 13-16 and under 13, Prebid will set the normalized values to be the same and will never report consent because we will not recognize consent from under 13. We've mapped information in the state-specific protocols in a conservative way.
     1. Normalization for California (CA) (SID 8)
         1. CA sensitive data 1 maps to US national sensitive data 9
@@ -118,43 +118,43 @@ To make sense of the specific values below, please refer to the [IAB's USNat tec
         1. CA sensitive data 6 and 7 maps straight through to US national sensitive data 6 and 7
         1. CA sensitive data 8 maps to US national sensitive data 3
         1. CA sensitive data 9 maps to US national sensitive data 4
-        1. Set these fields to NULL: SharingNotice, TargetedAdvertisingOptOutNotice, TargetedAdvertisingOptOut, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[8,11]
+        1. Set these fields to NULL: SharingNotice, TargetedAdvertisingOptOutNotice, TargetedAdvertisingOptOut, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[5 and 11]
         1. KnownChild - SID 8 does not distinguish between consent for ages 13-16 and under 13, so Prebid will never normalize a positive KnownChild consent.
             1. If CA string KnownChildSensitiveDataConsents[1]=0 and state string KnownChildSensitiveDataConsents[2]=0, then no change – these can be treated as the normalized KnownChildSensitiveDataConsents[1]=KnownChildSensitiveDataConsents[2]=0 (i.e. not a 'known child')
             1. Otherwise, the SID 8 protocol does not allow Prebid to know if the user is aged 13-16 or under 13, so simply set KnownChildSensitiveDataConsents[1] or [2] both to 1 (no consent)
-        1. All other fields passthrough.
+        1. All other fields pass through.
     1. Normalization for Virginia (SID 9)
-        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12]
+        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12], PersonalDataConsents, GPC.
         1. KnownChild:  - SID 9 does not distinguish between consent for ages 13-16 and under 13, and the VA state laws define a child as being under 13, so Prebid will never normalize a positive KnownChild consent.
             1. If the SID 9 KnownChildSensitiveDataConsents value is 1 or 2, normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=1 (no consent)
             1. If the SID 9 KnownChildSensitiveDataConsents value is 0, assume the user is not a child and normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
-        1. All other fields passthrough.
+        1. All other fields pass through.
     1. Normalization for Colorado (SID 10)
-        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[8-12]
+        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[8-12], PersonalDataConsents
         1. KnownChild - SID 10 does not distinguish between consent for ages 13-16 and under 13, so Prebid will never normalize a positive KnownChild consent.
 
         1. If the SID 10 KnownChildSensitiveDataConsents value is 1 or 2, normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=1 (no consent)
         1. If the SID 10 KnownChildSensitiveDataConsents value is 0, assume the user is not a child and normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
-        1. All other fields passthrough.
+        1. All other fields pass through.
     1. Normalization for Utah (UT) (SID 11)
         1. UT sensitive data 1,2 maps straight through to US National 1,2
         1. UT sensitive data 3 maps to US National 4
         1. UT sensitive data 4 maps to US National 5
         1. UT sensitive data 5 maps to US National 3
         1. UT sensitive data 6,7,8 maps straight through to US National 6,7,8
-        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessing[9-12]
+        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessing[9-12], PersonalDataConsents, GPC
         1. KnownChild - SID 11 does not distinguish between consent for ages 13-16 and under 13, so Prebid will never normalize a positive KnownChild consent.
             1. If the SID11 KnownChildSensitiveDataConsents value is 1 or 2, normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=1 (no consent)
             1. If the SID11 KnownChildSensitiveDataConsents value is 0, assume the user is not a child and normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
-        1. All other fields passthrough.
+        1. All other fields pass through.
     1. Normalization for Connecticut (SID 12)
-        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12]
+        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12], PersonalDataConsents
         1. KnownChild - SID 12 does distinguish ages aligned with SID 7
             1. If SID 12 string KnownChildSensitiveDataConsents[1, 2, and 3] are all 0 then assume the user is not a child and set the normalized SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
             1. SID 12 age ranges align with SID 7, so let ages 13-16 state their consent. If SID 12 string KnownChildSensitiveDataConsents[2]=2 and SID 12 string KnownChildSensitiveDataConsents[3]=2, then set the normalized KnownChildSensitiveDataConsents[1]=2 (Ages 13-16 consented) and the normalized KnownChildSensitiveDataConsents[2]=1 (under 13 not consented)
             1. Otherwise, set the normalized SID 7 KnownChildSensitiveDataConsents[1 and 2] to 1 (no consent)
-        1. All other fields passthrough.
-    1. If the CMP provides a non-zero/null value for any of the following sensitive data categories, the module should suppress the activity. In other words, if there's any hint that data of these categories is associated with advertising, Prebid should anonymize first party data.
+        1. All other fields pass through.
+    1. If the CMP provides a non-zero value for any of the following sensitive data categories, the module should suppress the activity. In other words, if there's any hint that data from these categories is associated with advertising, Prebid should anonymize first-party data.
         1. Genetic (6)
         1. Biometric (7)
         1. Personal Info (9)
@@ -182,12 +182,12 @@ This table documents the default blocks of boolean logic that indicate whether a
 | deviceAccess | n/a | Default to 'allow'. Publisher Activity Control config may cause it to 'restrict'. |
 | fetchBid | n/a | Header bidding auctions are always allowed, but aspects of them may be anonymized. |
 | reportAnalytics | n/a | Analytics always allowed, but may be anonymized. |
-| syncUser | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SaleOptOut=1 OR<br/>SaleOptOutNotice=2 OR<br/>(SaleOptOutNotice=0 AND SaleOptOut=2) OR<br/>SharingNotice=2 OR<br/>SharingOptOutNotice=2 OR<br/>(SharingOptOutNotice=0 AND SharingOptOut=2) OR<br/>SharingOptOut=1 OR<br/>TargetedAdvertisingOptOutNotice=2 OR<br/>TargetedAdvertisingOptOut=1 OR<br/>(TargetedAdvertisingOptOutNotice=0 AND TargetedAdvertisingOptOut=2) OR<br/>KnownChildSensitiveDataConsents[2]<>0 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Suppress usersyncs when activity is not allowed:<br/>- Service Provider Mode<br/>- GPC flag<br/>- Lack of notice<br/>- Any opt-out<br/>- Allow kids 13-16 to consent, but always anonymize under age 13.<br/>- Notice was considered unnecessary yet permission to engage in targeted advertising is somehow considered valid.<br/>- Do not trust a CMP that claims to have 'personal data consent' for something that's logically impossible. |
+| syncUser | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SaleOptOut=1 OR<br/>SaleOptOutNotice=2 OR<br/>(SaleOptOutNotice=0 AND SaleOptOut=2) OR<br/>SharingNotice=2 OR<br/>SharingOptOutNotice=2 OR<br/>(SharingOptOutNotice=0 AND SharingOptOut=2) OR<br/>(SharingNotice=0 AND SharingOptOut=2) OR <br/>SharingOptOut=1 OR<br/>TargetedAdvertisingOptOutNotice=2 OR<br/>TargetedAdvertisingOptOut=1 OR<br/>(TargetedAdvertisingOptOutNotice=0 AND TargetedAdvertisingOptOut=2) OR<br/>KnownChildSensitiveDataConsents[2]==1 OR<br/>KnownChildSensitiveDataConsents[2]==2 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Suppress usersyncs when activity is not allowed:<br/>- Service Provider Mode<br/>- GPC flag<br/>- Lack of notice<br/>- Any opt-out<br/>- Allow kids 13-16 to consent, but always anonymize under age 13.<br/>- Notice was considered unnecessary yet permission to engage in targeted advertising is somehow considered valid.<br/>- Do not trust a CMP that claims to have 'personal data consent' for something that's logically impossible. |
 | enrichEids | (same as syncUser) | Suppress the addition of EIDs when activity is not allowed. |
 | enrichUfpd | (same as syncUser) | Suppress the addition of User First Party Data when activity is not allowed. |
 | transmitEids | (same as syncUser) | Suppress the transmission of user.eids when activity is not allowed. |
-| transmitUfpd | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SaleOptOut=1 OR<br/>SaleOptOutNotice=2 OR<br/>SharingNotice=2 OR<br/>(SaleOptOutNotice=0 AND SaleOptOut=2) OR<br/>SharingOptOutNotice=2 OR<br/>SharingOptOut=1 OR<br/>(SharingOptOutNotice=0 AND SharingOptOut=2) OR<br/>TargetedAdvertisingOptOutNotice=2 OR<br/>TargetedAdvertisingOptOut=1 OR<br/>(TargetedAdvertisingOptOutNotice=0 AND TargetedAdvertisingOptOut=2) OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[1-7,9-12]=2)<br/>SensitiveDataProcessing[1-5,11]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=2 OR<br/>KnownChildSensitiveDataConsents[2]<>0 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Suppress the transmission or user.ext.data.*, user.data.*, and device IDs when the activity is not allowed.<br/><br/>The difference in this logic compared to syncUser is that it includes 'sensitive data' flags. See the requirements above and the commentary below. |
-| transmitGeo | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[1-7,9-12]=2)<br/>SensitiveDataProcessing[8]=1 OR<br/>KnownChildSensitiveDataConsents[2]<>0 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Round IP address and lat/long in both device.geo and user.geo when the activity is not allowed.<br/><br/>The difference in this logic is that it includes "sensitive data 8" (geo) and does not include the UFPD- and ID-related fields. |
+| transmitUfpd | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SaleOptOut=1 OR<br/>SaleOptOutNotice=2 OR<br/>SharingNotice=2 OR<br/>(SaleOptOutNotice=0 AND SaleOptOut=2) OR<br/>SharingOptOutNotice=2 OR<br/>SharingOptOut=1 OR<br/>(SharingOptOutNotice=0 AND SharingOptOut=2) OR<br/> (SharingNotice=0 AND SharingOptOut=2) OR <br/> TargetedAdvertisingOptOutNotice=2 OR<br/>TargetedAdvertisingOptOut=1 OR<br/>(TargetedAdvertisingOptOutNotice=0 AND TargetedAdvertisingOptOut=2) OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[1-7,9-12]=2)<br/>SensitiveDataProcessing[1-5,11]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=2 OR<br/>KnownChildSensitiveDataConsents[2]==1 OR<br/>KnownChildSensitiveDataConsents[2]==2 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Suppress the transmission or user.ext.data.*, user.data.*, and device IDs when the activity is not allowed.<br/><br/>The difference in this logic compared to syncUser is that it includes 'sensitive data' flags. See the requirements above and the commentary below. |
+| transmitPreciseGeo | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[8]=2)<br/>SensitiveDataProcessing[8]=1 OR<br/>KnownChildSensitiveDataConsents[2]==1 OR<br/>KnownChildSensitiveDataConsents[2]==2 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Round IP address and lat/long in both device.geo and user.geo when the activity is not allowed.<br/><br/>The difference in this logic is that it includes "sensitive data 8" (geo) and does not include the UFPD- and ID-related fields. |
 
 ### Commentary
 
@@ -222,6 +222,9 @@ SharingOptOut=1 OR
 // The CMP claims that notice was not needed, but at the same time claims consent was given
 (SharingOptOutNotice=0 AND SharingOptOut=2) OR
 
+// The CMP claims that notice was not needed, but at the same time claims consent was given
+(SharingNotice=0 AND SharingOptOut=2) OR
+
 // Notice was not given to the user about opting out of ad targeting
 TargetedAdvertisingOptOutNotice=2 OR
 
@@ -238,14 +241,14 @@ SensitiveDataProcessingOptOutNotice=2 OR
 SensitiveDataLimitUseNotice=2 OR
 
 // The CMP claims that notice was not needed, but at the same time claims consent was given
-// Note that SensitiveDataProcessing[8] is geographic location and covered in the `transmitGeo` activity
+// Note that SensitiveDataProcessing[8] is the geographic location and covered in the `transmitPreciseGeo` activity
 ((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[1-7,9-12]=2)
 
-// The user has not consented to sharing data of categories 1-5 and 11
+// The user has not consented to share data of categories 1-5 and 11
 SensitiveDataProcessing[1-5,11]=1 OR
 
 // Data of the following categories should never be present in ad calls.
-// so whether consented or not consented, anonymize UFPD if the CMP says they're present
+// So whether consented or not consented, anonymize UFPD if the CMP says they're present
 SensitiveDataProcessing[6,7,9,10,12]=1 OR
 SensitiveDataProcessing[6,7,9,10,12]=2 OR
 
@@ -253,22 +256,26 @@ SensitiveDataProcessing[6,7,9,10,12]=2 OR
 KnownChildSensitiveDataConsents[1]=1 OR
 
 // Do not accept consent from a child younger than 13
-KnownChildSensitiveDataConsents[2]<>0 OR
+KnownChildSensitiveDataConsents[2]==1 OR
+KnownChildSensitiveDataConsents[2]==2 OR
 
 // The CMP claims to have consent for an 'unrelated' activity.
-// Prebid views this as a logical impossibility and invalid CMP response
+// Prebid views this as a logical impossibility and an invalid CMP response
 PersonalDataConsents=2
 ```
 
 {: .alert.alert-info :}
-If a pubisher's legal team disagrees with any of these intrepretations, both Prebid.js and Prebid Server
+If a publisher's legal team disagrees with any of these interpretations, both Prebid.js and Prebid Server
 support overriding this default logic.
 
-The `transmitGeo` activity has one additional clause:
+The `transmitPreciseGeo` activity has a couple of clauses not already mentioned:
 
 ```javascript
 // Consent was not given for the use of "precise geographic" information
 SensitiveDataProcessing[8]=1 OR
+
+// The CMP claims that notice was not needed, but at the same time claims consent was given
+((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[8]=2)
 ```
 
 ## Related Topics

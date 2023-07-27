@@ -4,7 +4,7 @@ title: Displayio
 description: Prebid Displayio Bidder Adapter
 biddercode: displayio
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 safeframes_ok: true
 pbjs: true

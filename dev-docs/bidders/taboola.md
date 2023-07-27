@@ -5,7 +5,7 @@ description: Prebid Taboola Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: taboola
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 gpp_supported: true

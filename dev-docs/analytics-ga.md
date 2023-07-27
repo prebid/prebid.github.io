@@ -85,11 +85,11 @@ In this example, the page has 1 ad unit with 3 bidders. The timeout is set to 40
 {: .table .table-bordered .table-striped }
 |    Time |    What Happened     |     GA Events Sent |
 | :----  |:--------| :-------|
-|    15ms |    Prebid.js sends out bid requests to bidders AppNexus, OpenX, and Pubmatic. | Event 1: Category=`Prebid.js Bids`, Action=`Requests`, Label=`appnexus`, Value=1.<br>Event 2: Category=`Prebid.js Bids`, Action=`Requests`, Label=`openx`, Value=1.<br>Event 3: Category=`Prebid.js Bids`, Action=`Requests`, Label=`pubmatic`, Value=1 |
-|    203ms |    AppNexus' bid came back with a CPM of $2.314 and a latency of 188ms. |    Event 1: Category=`Prebid.js Bids`, Action=`Bids`, Label=`appnexus`, Value=231.<br>Event 2: Category=`Prebid.js Bids`, Action=`Bid Load Time`, Label=`appnexus`, Value=188 |
-|    274ms |    Pubmatic's bid came back with a CPM of $0 and a latency of 259ms. |    No bid event sent out because it is a no bid. <br> Event 1: Category=`Prebid.js Bids`, Action=`Bid Load Time`, Label=`appnexus`, Value=259 |
+|    15ms |    Prebid.js sends out bid requests to bidders AppNexus, OpenX, and Pubmatic. | Event 1: Category=`Prebid.js Bids`, Action=`Requests`, Label=`appnexus`, Value=1.<br />Event 2: Category=`Prebid.js Bids`, Action=`Requests`, Label=`openx`, Value=1.<br />Event 3: Category=`Prebid.js Bids`, Action=`Requests`, Label=`pubmatic`, Value=1 |
+|    203ms |    AppNexus' bid came back with a CPM of $2.314 and a latency of 188ms. |    Event 1: Category=`Prebid.js Bids`, Action=`Bids`, Label=`appnexus`, Value=231.<br />Event 2: Category=`Prebid.js Bids`, Action=`Bid Load Time`, Label=`appnexus`, Value=188 |
+|    274ms |    Pubmatic's bid came back with a CPM of $0 and a latency of 259ms. |    No bid event sent out because it is a no bid. <br /> Event 1: Category=`Prebid.js Bids`, Action=`Bid Load Time`, Label=`appnexus`, Value=259 |
 | 415ms | Timeout is up because 400ms has passed since bid requests were sent. OpenX has timed out. | Event 1: Category=`Prebid.js Bids`, Action=`Timeouts`, Label=`openx`, Value=1 |
-| 476ms | OpenX's bid came back with a CPM of $2.831 and a latency of 461ms (a bid may still come back after a timeout). | Event 1: Category=`Prebid.js Bids`, Action=`Bids`, Label=`openx`, Value=283. <br> Event 2: Category=`Prebid.js Bids`, Action=`Bid Load Time`, Label=`openx`, Value=461 |
+| 476ms | OpenX's bid came back with a CPM of $2.831 and a latency of 461ms (a bid may still come back after a timeout). | Event 1: Category=`Prebid.js Bids`, Action=`Bids`, Label=`openx`, Value=283. <br /> Event 2: Category=`Prebid.js Bids`, Action=`Bid Load Time`, Label=`openx`, Value=461 |
 | 572ms | Google Ad Manager completed its auction and the AppNexus $2.314 bid won. | Event 3: Category=`Prebid.js Bids`, Action=`Wins`, Label=`appnexus`, Value=231 |
 
 Note that a Win event is a true win, meaning that it is not just the highest bid in the header bidding auction, but the winning bid across the entire auction hosted by the ad server and its creative is served back to the page.
@@ -102,13 +102,13 @@ After you've implemented the above code snippet, load the page a few times, wait
 
 ![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/GA-event-categories.png)
 
-<br>
+<br />
 
 **GA Action:**
 
 ![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/GA-event-actions.png)
 
-<br>
+<br />
 
 **GA Label:**
 
@@ -148,8 +148,8 @@ Install the [Google Analytics Spreadsheet Add-on](https://developers.google.com/
 Make a local copy of the [Demo Dashboard](https://docs.google.com/spreadsheets/d/11czzvF5wczKoWGMrGgz0NFEOM7wsnAISbp_MpmGzogU/edit?usp=sharing).
 
 ![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/sheet-copy-dashboard.png){: .pb-lg-img :}
-<br>
-<br>
+<br />
+<br />
 
 #### Step 3. Update the GA Profile ID
 
@@ -157,13 +157,13 @@ In your local copy, go to the **Report Configuration** tab, update the GA profil
 
 ![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/sheet-report-config.png){: .pb-lg-img :}
 
-<br>
+<br />
 
 #### Step 4. Run the Report
 
 ![Prebid Diagram Image]({{ site.github.url }}/assets/images/dev-docs/sheet-run-report.png){: .pb-lg-img :}
 
-<br>
+<br />
 
 #### Step 5. (Optional) Schedule a Daily Report
 

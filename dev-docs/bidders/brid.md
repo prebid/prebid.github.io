@@ -4,7 +4,7 @@ title: Brid
 description: Prebid Brid Bidder Adapter
 biddercode: brid
 media_types: video
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 pbjs: true

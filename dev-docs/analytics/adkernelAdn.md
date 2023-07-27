@@ -3,7 +3,7 @@ layout: analytics
 title: Adkernel
 description: Adkernel Analytics Adapter
 modulecode: adkernelAdn
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 prebid_member: false

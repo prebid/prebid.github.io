@@ -3,14 +3,15 @@ layout: bidder
 title: TPMN
 description: Prebid TPMN Bidder Adapter
 biddercode: tpmn
-media_types: banner, video, native
-gdpr_supported: false
-usp_supported: true
-coppa_supported: true
 gpp_supported: true
-schain_supported: true
-dchain_supported: false
 safeframes_ok: true
+media_types: banner, video, native
+tcfeu_supported: false
+prebid_member: false
+schain_supported: true
+coppa_supported: true
+usp_supported: true
+floors_supported: false
 fpd_supported: false
 pbjs: true
 pbs: true

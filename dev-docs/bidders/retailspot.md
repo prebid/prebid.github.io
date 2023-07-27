@@ -6,7 +6,7 @@ pbjs: true
 pbs: false
 media_types: banner, video
 biddercode: retailspot
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: true
 floors_supported: false
 schain_supported: false

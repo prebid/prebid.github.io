@@ -2,7 +2,7 @@
 layout: bidder
 title: Blue
 description: Prebid Blue Bidder Adapter
-gdpr_supported: true
+tcfeu_supported: true
 pbjs: true
 pbs: true
 biddercode: blue

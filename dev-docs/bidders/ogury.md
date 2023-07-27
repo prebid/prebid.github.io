@@ -3,7 +3,7 @@ layout: bidder
 title: ogury
 description: Ogury Bidder Adapter
 biddercode: ogury
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 31
 usp_supported: false
 coppa_supported: false
