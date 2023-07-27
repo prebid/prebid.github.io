@@ -4,7 +4,7 @@ title: Viant
 description: Prebid Viant Bidder Adapter
 biddercode: viant
 media_types: banner, video, native
-gdpr_supported: false
+tcfeu_supported: false
 coppa_supported: true
 usp_supported: true
 gpp_supported: false
