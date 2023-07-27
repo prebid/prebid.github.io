@@ -126,7 +126,7 @@ var videoAdUnits = [{
 ### First Party Data
 Publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
 
-- ortb2.user.ext.eids
+- ortb2.user.ext.data
 
 ## Prebid Server
 
@@ -137,27 +137,22 @@ pbjs.setConfig({
         bidders : ['silverpush'],
         timeout : 1000, //default value is 1000
         adapter : 'prebidServer', //if we have any other s2s adapter, default value is s2s
-        endpoint: 'https://prebid.adnxs.com/pbs/v1/openrtb2/auction',
     },
     ortb2: {
         user: {
             ext: {
-                eids: [ {
-                    source:"sharedid.org",
-                    uids:[
-                        {
-                            id:"01EAJWWNEPN3CYMM5N8M5VXY22",
-                            atype:1,
-                            ext:{
-                                third:"01EAJWWNEPN3CYMM5N8M5VXY22"
-                             }
-                        }
-                    ]
-                  }
-                ]
+                data: {
+                    eids: [{
+                        source: "pubcid.org",
+                        uids:[
+                            {
+                                id:"01EAJWWNEPN3CYMM5N8M5VXY22",
+                                atype:1
+                            }
+                        ]
+                }]}
             }
         }   
-    
     }
 });
 ```
