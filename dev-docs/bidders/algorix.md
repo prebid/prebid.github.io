@@ -3,7 +3,7 @@ layout: bidder
 title: AlgoriX
 description: Prebid AlgoriX Bidder Adapter
 biddercode: algorix
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id:
 usp_supported: true
 coppa_supported: true
@@ -16,9 +16,9 @@ prebid_member: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-AlgoriX adapter requires setup and approval from the AlgoriX team, even for existing in-app developers and publishers. Please reach out to your account team or email to prebid@algorix.co for more information.
+AlgoriX adapter requires setup and approval from the AlgoriX team, even for existing in-app developers and publishers. Please reach out to your account team or email to <prebid@algorix.co> for more information.
 
 ### Bid Params
 
@@ -32,6 +32,7 @@ AlgoriX adapter requires setup and approval from the AlgoriX team, even for exis
 | `region`      | optional | Server Region | `'APAC', 'USE', 'EUC'`               | `string` |
 
 Note:
+
 * Prebid Server adapter only checks for and uses first imp bid params. All other imp bid params are ignored.
 * placementId and appId will be generated on AlgoriX Platform.
 * region is optional param, which determine the AlgoriX server. APAC for SG endpoint, USE for US endpoint, EUC for EU endpoint, Other for Global endpoint.

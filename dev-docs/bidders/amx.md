@@ -1,21 +1,21 @@
 ---
 layout: bidder
 title: AMX RTB
-description: AMX RTB Prebid Bid Adapter
+description: AMX RTB Bid Adapter
 hide: true
 schain_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId, amxId
+userIds: all
 biddercode: amx
 safeframes_ok: true
-media_types: banner, video, native
+media_types: banner, video
 pbjs: true
-pbs: true
-pbs_app_supported: true
+pbs: false
 fpd_supported: true
 gpp_supported: true
+multiformat_supported: true
 gvl_id: 737
 sidebarType: 1
 ---

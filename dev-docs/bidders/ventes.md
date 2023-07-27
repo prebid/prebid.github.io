@@ -4,7 +4,7 @@ title: ventes
 description: Prebid ventes Bidder Adapter
 pbjs: true
 biddercode: ventes
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 media_types: banner
 coppa_supported: false
@@ -15,29 +15,30 @@ sidebarType: 1
 ---
 
 ### BidParams
+
 {: .table .table-bordered .table-striped }
-| Name            | Scope    | Description                                		 | Example                      		| Type          |
+| Name            | Scope    | Description                                   | Example                              | Type          |
 |-----------------|----------|-----------------------------------------------------------|----------------------------------------------|---------------|
-| `placementId`   | required | Placement ID from Ventes Avenues 			 | `'VA-062-0013-0183'` 			| `string`	|
-| `publisherId`   | required | Publisher ID from Ventes Avenues 			 | `'VA-062'` 					| `string`	|
-| `user`          | optional | Object that specifies information about an external user. | `user: { age: 25, gender: 0, dnt: true}` 	| `object`	|
-| `app`           | required | Object containing mobile app parameters.  		 | `app : { id: 'app-id'}`			| `object`	|
-| `device`        | required | Object containing device info mandatory for mobile devices| `device : { ifa: 'device-id'}`	        | `object`	|
+| `placementId`   | required | Placement ID from Ventes Avenues              | `'VA-062-0013-0183'`             | `string`    |
+| `publisherId`   | required | Publisher ID from Ventes Avenues              | `'VA-062'`                     | `string`    |
+| `user`          | optional | Object that specifies information about an external user. | `user: { age: 25, gender: 0, dnt: true}`     | `object`    |
+| `app`           | required | Object containing mobile app parameters.           | `app : { id: 'app-id'}`            | `object`    |
+| `device`        | required | Object containing device info mandatory for mobile devices| `device : { ifa: 'device-id'}`            | `object`    |
 
 #### User Object
 
 {: .table .table-bordered .table-striped }
-| Name              | Description 										| Example		| Type             	|
+| Name              | Description                                         | Example        | Type                 |
 |-------------------|-------------------------------------------------------------------------------------------|-----------------------|-----------------------|
-| `age`             | The age of the user.									| `35`			| `integer`		|
-| `externalUid`     | Specifies a string that corresponds to an external user ID for this user. 		| `'1234567890abcdefg'`	| `string` 		|
-| `segments`        | Specifies the segments to which the user belongs.						| `[1, 2]` 		| `Array<integer>`	|
-| `gender`          | Specifies the gender of the user.  Allowed values: Unknown: `0`; Male: `1`; Female: `2`	| `1` 			| `integer`		|
-| `dnt`             | Do not track flag.  Indicates if tracking cookies should be disabled for this auction	| `true`  	 	| `boolean`		|
-| `language`        | Two-letter ANSI code for this user's language.						| `EN`			| `string`		|
-
+| `age`             | The age of the user.                                    | `35`            | `integer`        |
+| `externalUid`     | Specifies a string that corresponds to an external user ID for this user.         | `'1234567890abcdefg'`    | `string`         |
+| `segments`        | Specifies the segments to which the user belongs.                        | `[1, 2]`         | `Array<integer>`    |
+| `gender`          | Specifies the gender of the user.  Allowed values: Unknown: `0`; Male: `1`; Female: `2`    | `1`             | `integer`        |
+| `dnt`             | Do not track flag.  Indicates if tracking cookies should be disabled for this auction    | `true`           | `boolean`        |
+| `language`        | Two-letter ANSI code for this user's language.                        | `EN`            | `string`        |
 
 ### Ad Unit Setup for Banner through mobile devices
+
 ```javascript
 var adUnits = [
 {
@@ -73,6 +74,7 @@ var adUnits = [
 ```
 
 ### Ad Unit Setup for Banner through Websites
+
 ```javascript
 var adUnits = [
 {

@@ -16,16 +16,18 @@ In this tutorial, we'll detail how to set up Prebid.js to display a Programmatic
 
 ## Prerequisites
 
-The code example below was built with Prebid.js and the following:  
-- At least one video-enabled bidder supporting `adpod`.  
-- The [`dfpAdServerVideo` module](/dev-docs/modules/dfp_video.html), which will provide the video ad support.  
-- The [`categoryTranslation` module](/dev-docs/modules/categoryTranslation.html), to enable competitive separation.
+The code example below was built with Prebid.js and the following:
+
+* At least one video-enabled bidder supporting `adpod`.  
+* The [`dfpAdServerVideo` module](/dev-docs/modules/dfp_video.html), which will provide the video ad support.  
+* The [`categoryTranslation` module](/dev-docs/modules/categoryTranslation.html), to enable competitive separation.
 
 For example, to build with the AppNexus bidder adapter and GAM use the following command:
 
 ```bash
 gulp build --modules=appnexusBidAdapter,dfpAdServerVideo
 ```
+
 For more information about how to build with modules, see the [Prebid module documentation](/dev-docs/modules/).
 
 {% include alerts/alert_important.html content="If competitve separation is required the optional [`categoryTranslation` module](/dev-docs/modules/categoryTranslation.html) needs to be added to the build command." %}
@@ -33,12 +35,14 @@ For more information about how to build with modules, see the [Prebid module doc
 {% include alerts/alert_important.html content="Ensure your ad ops team has set up line items in Google Ad Manager." %}
 
 ## Ad Pod Module
+
 When the [`dfpAdServerVideo` module](/dev-docs/modules/dfp_video.html) is included in the Prebid.js build, the [Ad Pod module](/dev-docs/modules/adpod.html), for working with ad pods, is automatically included. This module enables developers to add support for an adserver, like Google Ad Manager or Freewheel, that handles ad unit types of adpod. Specifically, the module provides functions to validate, cache, and modify long-form video bids.
 
 ## Implementation
+
 This section provides information on how to implement and configure Prebid.js to display ad unit types of adpod.
 
-**1. Create an ad unit**  
+### 1. Create an ad unit
 
 Create an ad unit that contains a video `mediaType` object and set the `mediaTypes.video.context` to `adpod`. Set the other parameters to the specific properties for the publisher's inventory.
 
@@ -46,30 +50,29 @@ Create an ad unit that contains a video `mediaType` object and set the `mediaTyp
 
 ```javascript
 var videoAdUnit = [{
-        code: 'sample-code',
-        sizes: [640,480],
-        mediaTypes: {
-            video: {
-                context: 'adpod',
-                playerSize: [640, 480],
-                adPodDurationSec: 300,
-                durationRangeSec: [15, 30],
-                requireExactDuration: true
+    code: 'sample-code',
+    sizes: [640,480],
+    mediaTypes: {
+        video: {
+            context: 'adpod',
+            playerSize: [640, 480],
+            adPodDurationSec: 300,
+            durationRangeSec: [15, 30],
+            requireExactDuration: true
+        }
+    },
+    bids: [
+        {
+            bidder: 'appnexus',
+            params: {
+                placementId: 14542875
             }
-        },
-        bids: [
-            {
-                bidder: 'appnexus',
-                params: {
-                    placementId: 14542875
-                }
-            }
-        ]
-    }];
-};
+        }
+    ]
+}]
 ```
 
-**2. Get ad pod targeting**  
+### 2. Get ad pod targeting
 
 If a publisher wants to retrieve ad pod targeting and create the master tag themselves they can use the getAdPodTargeting method of the `dfpAdServerVideo` module. The method requires an array of ad unit codes and returns targeting key values and the cache id as JSON.
 
@@ -86,23 +89,23 @@ pbjs.adServers.dfp.getAdpodTargeting({
 
 Sample return:
 
-```JSON
+```json
 {
-  'adUnitCode-1': [
+  "adUnitCode-1": [
     {
-      'hb_pb_cat_dur': '10.00_<label>_15s'
+      "hb_pb_cat_dur": "10.00_<label>_15s"
     },
     {
-      'hb_pb_cat_dur': '15.00_<label>_30s'
+      "hb_pb_cat_dur": "15.00_<label>_30s"
     },
     {
-      'hb_cache_id': '123'
+      "hb_cache_id": "123"
     }
   ]
 }
 ```
 
-**Parameters**
+#### getAdpodTargeting parameters
 
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description |
@@ -115,18 +118,19 @@ Competitive exclusion is the process of preventing ads in the same industry grou
 
 After you have instantiated a Prebid instance, call the setConfig method and add the following key-values.
 
-```JavaScript
+```javascript
 pbjs.setConfig({
   'adpod': {
     'brandCategoryExclusion': true
   }
 });
 ```
+
 When this setting is enabled, it requires the bidder to include a brand category id on the incoming adpod bids (otherwise the bid is rejected). The bid’s brand category will be processed and transformed to the corresponding brand category used by the publisher’s adserver (see the [Category Translation module page](/dev-docs/modules/categoryTranslation.html) for more details). The transformed brand category is then used in the bid caching process and targeting keys that get sent to the adserver for the winning bid(s).
 
 Publishers need to provide a mapping file that will convert IAB sub categories to their labels. Publishers can set the mapping file using:
 
-```JavaScript
+```javascript
 pbjs.setConfig({
     "brandCategoryTranslation": {
         "translationFile": "<url_to_file>"
@@ -136,48 +140,46 @@ pbjs.setConfig({
 
 Publishers should ensure that the JSON returned from their custom translation file is valid for Prebid by adhering to the following structure:
 
-```JSON
+```json
 {
     "mapping": {
         "<your-iab-sub-category>": {
             "id": "<label id or name>",
             "name": "<label name>"
         },
-   ...
    }
 }
 ```
-
 
 Your ad ops team will need to add labels to the line item to indicate which industries will be included in your competitive exclusion.
 
 Here is an example of the targeting key’s value with the setting enabled (where 123 is the brand category id):
 
-```JSON
-  hb_pb_cat_dur = '10.00_123_10s'
+```javascript
+hb_pb_cat_dur = '10.00_123_10s'
 ```
 
 When the setting is disabled (which is the default state), bidder’s don’t have to supply a brand category on the `adpod` bids. The category part of the bid caching is not included and is not within the generated targeting keys.
 
 The following is an example of the targeting keys with the setting not enabled:
 
-```JSON
+```javascript
 hb_pb_cat_dur = '10.00_10s'
 ```
 
-**4. Implement Custom Price Buckets**
+### 4. Implement Custom Price Buckets
 
 By default, Prebid.js caps all CPMs at $20. With sell side video there may be an expecation to see CPMs over $20. In order to receive those bids, custom price buckets need to be implemented by setting the [priceGranularity](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity) object of the `setConfig` method.
 
 For instructions on setting custom price buckets, view the [Custom Price Granularity Buckets](/dev-docs/examples/custom-price-buckets.html) documentation on prebid.org.
 
-**5. Send request for bids and build video URL**  
+### 5. Send request for bids and build video URL
 
 The `dfpAdServerVideo` module provides a method, `buildAdpodVideoUrl`, that combines publisher-provided parameters with Prebid.js targeting key values to build a GAM video ad tag URL that can be used by a video player.
 
 In the example below the callback in the `bidsBackHandler` returns the video ad tag needed by the video player.
 
-```JavaScript
+```javascript
 pbjs.que.push(function(){
     pbjs.addAdUnits(videoAdUnit);
     pbjs.setConfig({
@@ -211,7 +213,7 @@ pbjs.que.push(function(){
 
 {% include alerts/alert_warning.html content="Set the `pbjs.setConfig.cache.url` to the URL that will return the cached VAST XML. " %}
 
-**Parameters**
+#### buildAdpodVideoUrl parameters
 
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description |

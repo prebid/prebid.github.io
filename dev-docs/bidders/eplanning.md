@@ -7,7 +7,7 @@ pbs: true
 media_types: banner, video
 biddercode: eplanning
 usp_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 pbs_app_supported: true
 gvl_id: 90
 sidebarType: 1
@@ -15,7 +15,8 @@ sidebarType: 1
 
 
 
-### Note:
+### Note
+
 The E-Planning Header Bidding adaptor requires setup and approval from the E-Planning team. Please go to [E-Planning website](http://www.e-planning.net) for more details.
 
 ### Bid Params

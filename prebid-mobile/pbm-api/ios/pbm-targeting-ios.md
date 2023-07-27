@@ -115,7 +115,7 @@ Targeting.shared.purposeConsents = "100000000000000000000000"
 
 The code sample:
 
-``` swift
+```swift
 let targeting = Targeting.shared
         
 targeting.userGender = .male

@@ -3,7 +3,7 @@ layout: analytics
 title: Epsilon
 description: Epsilon Prebid Analytics Adapter (formerly Conversant)
 modulecode: conversant
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: false
 prebid_member: true
@@ -15,7 +15,7 @@ enable_download: true
 
 Epsilon (formerly Conversant) analytics adapter requires approval from the
 Epsilon team, even for existing accounts. Please reach out to
-publishersupport@epsilon.com for more information.
+<publishersupport@epsilon.com> for more information.
 
 #### Analytics Options
 
@@ -28,12 +28,14 @@ publishersupport@epsilon.com for more information.
 
 ### Example Configuration
 
+Legacy provider code of 'conversant' is still supported
+
 ```
             <!-- should be called before requestBids() -->
             pbjs.que.push(function(){
                 pbjs.enableAnalytics(
                     {
-                        provider: 'conversant',
+                        provider: 'epsilon',
                         options: {
                             site_id: 108060,
                             cnvr_sampling: 0.5,
