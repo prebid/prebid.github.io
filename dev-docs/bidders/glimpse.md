@@ -4,7 +4,7 @@ title: Glimpse Protocol
 description: Glimpse Protocol Bid Adapter
 biddercode: glimpse
 pbjs: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 deals_supported: true
 media_types: banner
@@ -124,4 +124,4 @@ pbjs.que.push(() => {
 
 ### Can you provide additional support?
 
-Of course! You can check the Glimpse Prebid Adapter documentation at https://docs.glimpseportal.io/en/latest/ or reach out to us at support@glimpseportal.io.
+Of course! You can check the Glimpse Prebid Adapter documentation at <https://docs.glimpseportal.io/en/latest/> or reach out to us at <support@glimpseportal.io>.

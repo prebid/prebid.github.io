@@ -8,8 +8,10 @@ aliasCode : aol
 sidebarType: 1
 ---
 
-### IMPORTANT NOTICE!
+### IMPORTANT NOTICE
+
 **TL;DR**
+
 1. The `onemobile` adapter is scheduled to be depreciated.
 2. Our New `yahoossp` is available for early adoption.
 3. Please contact your Account Manager/Executive for migration details.

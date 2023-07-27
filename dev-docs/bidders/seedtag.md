@@ -3,7 +3,7 @@ layout: bidder
 title: seedtag
 description: Prebid Seedtag Bidder Adapter
 pbjs: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: true
@@ -20,7 +20,6 @@ gpp_supported: true
 Please reach out to your seedtag account team before using this plugin.  
 The publisher id 0000-0000-01 returns demo responses.
 
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -29,7 +28,6 @@ The publisher id 0000-0000-01 returns demo responses.
 | `publisherId`     | required            | The publisher id.                                                              | 0000-0000-01          | `string` |
 | `adUnitId`        | required            | The adunit id.                                                                 | 00000                 | `string` |
 | `placement`       | required            | Adunit placement, posibles values: inScreen, inArticle              | `string` |
-
 
 ### InScreen example
 
@@ -86,6 +84,7 @@ const adUnits = [
 ```
 
 ## InBanner example
+
 ```js
 const adUnits = [
   {
@@ -110,6 +109,7 @@ const adUnits = [
 ```
 
 ## inStream example
+
 ```js
 var adUnits = [{
   code: 'video',

@@ -3,7 +3,7 @@ layout: bidder
 title: Bidmachine
 description: Prebid Bidmachine Bidder Adapter
 biddercode: bidmachine
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 736
 usp_supported: true
 coppa_supported: true
@@ -19,8 +19,9 @@ prebid_member: false
 sidebarType: 1
 ---
 
-### Prebid Server Note:
-The Bidmachine Bidding adapter requires setup before beginning. Please contact us at hi@bidmachine.io .
+### Prebid Server Note
+
+The Bidmachine Bidding adapter requires setup before beginning. Please contact us at <hi@bidmachine.io> .
 
 ### Bid Params
 

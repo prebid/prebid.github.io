@@ -80,7 +80,7 @@ Here's a general template for the account config used in PBS-Java:
               "action-overrides": {
                 OVERRIDE_SETTING: [{
                   "conditions": { ... },
-		  // the value below will be the datatype of the SETTING
+          // the value below will be the datatype of the SETTING
                   "override": VALUE
                 }]
               }
@@ -817,6 +817,17 @@ For PBS-Go
     }
 }
 ```
+
+### Enable for Spring Boot
+In order to allow the module to be picked up by Prebid Server, a Spring Boot configuration property `hooks.ortb2-blocking.enabled` must be set to `true`.
+
+Here's an example of how your PBS configuration YAML should look like:
+```YAML
+hooks:
+  ortb2-blocking:
+    enabled: true
+```
+
 ## Analytics Tags
 
 There's only one analytics activity defined by this module: "enforce-blocking".

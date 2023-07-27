@@ -4,12 +4,12 @@ title: Prisma
 description: Prebid Prisma Bidder Adapter
 pbjs: true
 biddercode: prisma
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 userIds: id5Id
 media_types: banner, video
-glv_id: 965
+gvl_id: 965
 pbs: false
 sidebarType: 1
 
@@ -26,7 +26,7 @@ sidebarType: 1
 
 ### Test Parameters
 
-```
+```javascript
 var adUnits = [
    // Banner adUnit
    {

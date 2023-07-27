@@ -7,11 +7,11 @@ sbUUID: 3.2
 ---
 
 # Send All Bids vs Top Price
+
 {: .no_toc }
 
-* TOC
+- TOC
 {: toc }
-
 
 Prebid provides two options for the number of bids that will be sent to the ad server:
 
@@ -20,7 +20,6 @@ Prebid provides two options for the number of bids that will be sent to the ad s
 
 {: .alert.alert-info :}
 There is also a third option if you’re using deals. See [Deals in Prebid](/adops/deals.html) for more information.
-
 
 Here’s a brief comparison chart showing the primary differences between these approaches.
 
@@ -43,10 +42,10 @@ You might be wondering why you’d want to send more than the top bid. After all
 
 Realistically, it can’t. The main reason for sending all bids to the ad server is for reporting and optimization. With all bids, your ad server has the information it needs to provide you with reports that can tell you who bid on your inventory and what the bid price was. This helps you to:
 
--  Evaluate the bid rate of your demand partners
--  Ensure contractual obligations with your demand partners are being met
--  Adjust your Prebid settings based on who is bidding and for how much
--  Evaluate the effectiveness of your current Prebid setup
+- Evaluate the bid rate of your demand partners
+- Ensure contractual obligations with your demand partners are being met
+- Adjust your Prebid settings based on who is bidding and for how much
+- Evaluate the effectiveness of your current Prebid setup
 
 ### Line Items
 
@@ -54,8 +53,8 @@ When you send all bids, you’ll want to create a set of line items for each of 
 
 For example, suppose you have the following line item setup:
 
--  200 prices
--  10 bidders
+- 200 prices
+- 10 bidders
 
 This would require you to create 2000 line items (200 x 10). If, on the other hand, you didn’t need to separate out your line items by bidder, you would reduce this number dramatically to 200 line items (200 x 1).
 
@@ -82,9 +81,9 @@ hb_size_BidderA=300x250
 
 Some ad servers have limits on key name length. In Google Ad Manager (GAM) the maximum length is 20 characters. GAM will truncate any key name longer than 20 characters. For example:
 
--  One of your bidders is named BidderWithLongNameABC
--  Prebid passes the creative size for this bidder in the key hb_size_BidderWithLongNameABC
--  GAM truncates this name to hb_size_BidderWithLo
+- One of your bidders is named BidderWithLongNameABC
+- Prebid passes the creative size for this bidder in the key hb_size_BidderWithLongNameABC
+- GAM truncates this name to hb_size_BidderWithLo
 
 When you enter the key values into the line item, you must use the truncated name:
 
@@ -95,20 +94,15 @@ If you forget about or are unaware of your ad server’s truncation and include 
 {: .alert.alert-success :}
 **Tip**: Prebid documentation lists the GAM truncated versions of ad server keys on each bidder parameter page. See [AndBeyondMedia](https://docs.prebid.org/dev-docs/bidders/andBeyondMedia.html) for an example.
 
-
-
 ### Data Considerations
 
 Imagine you’re sending all bids to the ad server and you have the following scenario:
 
--  15 bidders
--  7 key value pairs (KVPs) per bidder
--  25 characters per KVP
+- 15 bidders
+- 7 key value pairs (KVPs) per bidder
+- 25 characters per KVP
 
 You now have an ad request query string that is 2,625 characters long. There are many options for limiting the amount of data that’s sent on the query string. See [Configure Targeting Controls](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) for engineering options on reducing the amount of data being sent to the ad server.
-
-
-
 
 ## Send Top Price Bid
 
@@ -118,19 +112,18 @@ You now have an ad request query string that is 2,625 characters long. There are
 
 The ad server can report only on the information it receives. So if you send only one bid from the header bidding process, the ad server can include only that one bid in your reports. Send top bid is a good option if:
 
--  you’re interested in reporting only on overall Prebid fill rates and top bid prices.
--  you want to prioritize simplicity over detailed analysis of your header bidding results
--  you don’t have any contractual obligations with demand partners that require more detailed reporting
+- you’re interested in reporting only on overall Prebid fill rates and top bid prices.
+- you want to prioritize simplicity over detailed analysis of your header bidding results
+- you don’t have any contractual obligations with demand partners that require more detailed reporting
 
 ### Line Items
 
 If you’re sending only one bid with each ad request, there’s no need to create separate line items for each bidder. You can create one line for each price and creative size. For example:
 
--  200 prices
--  1 bidder
+- 200 prices
+- 1 bidder
 
 In this example you need to create only 200 line items (200 x 1).
-
 
 ### Key Value Pairs
 
@@ -148,7 +141,7 @@ Send top bid sends the least amount of data possible to the ad server, and there
 
 ## Further Reader
 
--  [Planning Guide](/adops/adops-planning-guide.html)
--  [Key Values for Ad Ops](/adops/key-values.html)
--  [Prebid Universal Creative](/overview/prebid-universal-creative.html)
--  [Deals in Prebid](/adops/deals.html)
+- [Planning Guide](/adops/adops-planning-guide.html)
+- [Key Values for Ad Ops](/adops/key-values.html)
+- [Prebid Universal Creative](/overview/prebid-universal-creative.html)
+- [Deals in Prebid](/adops/deals.html)

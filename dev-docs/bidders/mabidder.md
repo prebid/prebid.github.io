@@ -6,7 +6,7 @@ biddercode: mabidder
 pbjs: true
 pbs: false
 media_types: banner
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

@@ -8,6 +8,7 @@ sidebarType: 4
 <div class="bs-docs-section" markdown="1">
 
 # Show Video Ads with Google Ad Manager
+
 {: .no_toc}
 
 In this tutorial, we'll show how to set up Prebid to show a video ad
@@ -22,13 +23,13 @@ different video players and video-enabled bidders.
 
 The code example below was built using the following libraries:
 
-+ [video.js](https://videojs.com/) version 5.9.2
-+ MailOnline's [videojs-vast-vpaid plugin](https://github.com/MailOnline/videojs-vast-vpaid) version 2.0.2
+* [video.js](https://videojs.com/) version 5.9.2
+* MailOnline's [videojs-vast-vpaid plugin](https://github.com/MailOnline/videojs-vast-vpaid) version 2.0.2
 
 Also, you need to make sure to build Prebid.js with:
 
-+ Support for at least one video-enabled bidder
-+ Support for the `dfpAdServerVideo` ad server adapter, which will provide the video ad support
+* Support for at least one video-enabled bidder
+* Support for the `dfpAdServerVideo` ad server adapter, which will provide the video ad support
 
 For example, to build with the AppNexus bidder adapter and the Google Ad Manager
 Video ad server adapter, use the following command:
@@ -121,12 +122,12 @@ pbjs.que.push(function() {
 
 The VAST XML has to be cached somewhere because most video players can only work with a URL that returns VAST XML, not VAST directly. Some bidders cache the VAST XML on the server side, while others depend on Prebid.js to perform the caching.
 
-+ In general, video-enabled bidders must supply `bid.videoCacheKey`, `bid.vastXml`, or `bid.vastUrl` on their responses, and can provide any combination of the three.
-+ If `pbjs.setConfig({cache: {URL}})` isn't set and the bidder supplies only `bid.vastXml` in its bid response, [`pbjs.adServers.dfp.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html) will not be able to generate a videoCacheKey, and it will be dropped from the auction.
-+ If `pbjs.setConfig({cache: {URL}})` is defined and the bidder responds with `bid.videoCacheKey`, Prebid.js will not re-cache the VAST XML.
-+ If `options.url` is passed as an argument to [`pbjs.adServers.dfp.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html):
-    + If Prebid Cache is disabled, Prebid sets `description_url` field to the bid response's `bid.vastUrl`.
-    + If Prebid Cache is enabled, Prebid sets `description_url` field to the cache URL.
+* In general, video-enabled bidders must supply `bid.videoCacheKey`, `bid.vastXml`, or `bid.vastUrl` on their responses, and can provide any combination of the three.
+* If `pbjs.setConfig({cache: {URL}})` isn't set and the bidder supplies only `bid.vastXml` in its bid response, [`pbjs.adServers.dfp.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html) will not be able to generate a videoCacheKey, and it will be dropped from the auction.
+* If `pbjs.setConfig({cache: {URL}})` is defined and the bidder responds with `bid.videoCacheKey`, Prebid.js will not re-cache the VAST XML.
+* If `options.url` is passed as an argument to [`pbjs.adServers.dfp.buildVideoUrl`](/dev-docs/publisher-api-reference/adServers.dfp.buildVideoUrl.html):
+  * If Prebid Cache is disabled, Prebid sets `description_url` field to the bid response's `bid.vastUrl`.
+  * If Prebid Cache is enabled, Prebid sets `description_url` field to the cache URL.
 
 #### Notes on multiple video advertisements on one page
 
@@ -195,19 +196,20 @@ If you have [set up your ad server line items and creatives correctly]({{site.ba
 Below, find links to end-to-end "working examples" integrating Prebid.js demand with various video players:
 
 ### Using client-side adapters
-+ [Akamai AMP]({{site.github.url}}/examples/video/instream/akamai/pb-ve-amp.html)
-+ [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
-+ [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
-+ [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
-+ [JWPlayer - Platform]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
-+ [JWPlayer - Hosted]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
-+ [Kaltura]({{site.github.url}}/examples/video/instream/kaltura/pb-ve-kaltura.html)
-+ [Ooyala]({{site.github.url}}/examples/video/instream/ooyala/pb-ve-ooyala.html)
-+ [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
-+ [Instream and Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
+
+* [Akamai AMP]({{site.github.url}}/examples/video/instream/akamai/pb-ve-amp.html)
+* [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
+* [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
+* [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
+* [JWPlayer - Platform]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
+* [JWPlayer - Hosted]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
+* [Kaltura]({{site.github.url}}/examples/video/instream/kaltura/pb-ve-kaltura.html)
+* [Ooyala]({{site.github.url}}/examples/video/instream/ooyala/pb-ve-ooyala.html)
+* [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
+* [Instream and Banner Mixed](/dev-docs/examples/instream-banner-mix.html)
 
 ## Related Topics
 
-+ [Setting up Prebid Video in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html)
+* [Setting up Prebid Video in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-video-in-dfp.html)
 
 </div>

@@ -27,15 +27,13 @@ Click on the icon to start interaction.
 
 #### Adunits
 
-This is the default view and allows you to quickly check all the adunit codes available to Prebid, along with the associated media types and bidders. 
+This is the default view and allows you to quickly check all the adunit codes available to Prebid, along with the associated media types and bidders.
 
 ![Professor Prebid AdUnits screen](/assets/images/tools/professor-prebid-2.png)
-
 
 Each bidder entry is clickable, showing the associated input and bid response. You can easily copy a specific part of the JSON to the clipboard.
 
 ![AdUnits screen bidders detail](/assets/images/tools/professor-prebid-3.png)
-
 
 Finally, you can also spot who is the winning bidder and whether its ad was rendered.
 ![AdUnits screen winning bidder](/assets/images/tools/professor-prebid-4.png)
@@ -101,14 +99,16 @@ Here's an example of an overlay:
 
 ## How can I submit a feature request ?
 
-Please open an GitHub issue on [https://github.com/prebid/professor-prebid/issues](https://github.com/prebid/professor-prebid/issues).
+Please open an GitHub issue on [github.com/prebid/professor-prebid/issues](https://github.com/prebid/professor-prebid/issues).
 
 ## How can I report a bug ?
 
-Please submit a GitHub issue on [https://github.com/prebid/professor-prebid/issues](https://github.com/prebid/professor-prebid/issues) providing as much details as possible:
+Please submit a GitHub issue on [github.com/prebid/professor-prebid/issues](https://github.com/prebid/professor-prebid/issues) providing as much details as possible:
+
 * Steps to reproduce the issue
 * Example of website where you face the issue
 * Professor Prebid version
 
 ## Related Reading
-- [Prebid.js troubleshooting guide](/troubleshooting/troubleshooting-guide.html)
+
+* [Prebid.js troubleshooting guide](/troubleshooting/troubleshooting-guide.html)

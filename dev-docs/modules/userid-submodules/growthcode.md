@@ -34,6 +34,7 @@ pbjs.setConfig({
   }
 });
 ```
+
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
