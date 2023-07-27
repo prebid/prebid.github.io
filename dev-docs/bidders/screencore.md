@@ -3,7 +3,7 @@ layout: bidder
 title: Screencore
 description: Prebid Screencore Bidder Adaptor
 biddercode: screencore
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -23,7 +23,7 @@ userIds: all
 
 ### Note:
 
-The Example Bidding adapter requires setup before beginning. Please contact us at connect@screencore.io.
+The Screencore Bidding adapter requires setup before beginning. Please contact us at connect@screencore.io.
 Screencore will bid on first impression in request.
 
 ### Bid Params
