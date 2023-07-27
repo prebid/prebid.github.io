@@ -14,8 +14,9 @@ schain_supported: true
 coppa_supported: true
 userId: criteo, unifiedId, id5Id, intentIqId
 safeframes_ok: true
-sidebarType: 1
+prebid_member: true
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params
