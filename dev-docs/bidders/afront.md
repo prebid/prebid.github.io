@@ -23,7 +23,7 @@ userIds: all
 
 ### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at <support@afront.io>.
+The AFront Bidding adapter requires setup before beginning. Please contact us at [support@afront.io](mailto:support@afront.io)
 
 ### Bid Params
 
