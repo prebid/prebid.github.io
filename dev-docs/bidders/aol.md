@@ -4,7 +4,7 @@ title: AOL
 description: Prebid AOL Bidder Adaptor
 pbjs: true
 biddercode: aol
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: true
 gvl_id: 25
 userIds: connectId

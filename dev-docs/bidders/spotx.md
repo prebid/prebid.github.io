@@ -4,7 +4,7 @@ title: SpotX
 description: Prebid SpotX Bidder Adaptor
 biddercode: spotx
 media_types: no-display, video
-gdpr_supported: true
+tcfeu_supported: true
 userIds: id5Id, sharedId, unifiedId
 prebid_member: true
 schain_supported: true

@@ -6,7 +6,7 @@ pbjs: true
 pbs: false
 biddercode: admatic
 media_types: banner,video
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 schain_supported: false

@@ -3,7 +3,7 @@ layout: bidder
 title: Pangle
 description: Prebid Pangle Bidder Adapter
 biddercode: pangle
-gdpr_supported: true
+tcfeu_supported: false
 coppa_supported: true
 schain_supported: false
 media_types: banner, video, native

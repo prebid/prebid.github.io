@@ -6,7 +6,7 @@ pbs: true
 pbjs: true
 biddercode: trafficgate
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: false
 pbs_app_supported: true
 multiformat_supported: will-bid-on-any
 usp_supported: true
@@ -35,8 +35,8 @@ The TrafficGate Bidding adapter requires setup before beginning. Please contact 
 | `host`        | required | Host             | `'example'` | `string` |
 | `customFloor` | optional | Custom Bid Floor | `2.55`      | `number` |
 
-
 ### AdUnit Format for Banner
+
 ```javascript
 var adUnits = [{
     code: 'test-banner-div ',
@@ -80,8 +80,8 @@ The following video parameters are supported here so publishers may fully declar
 | placement | recommended | Placement type for the impression. (see openRTB v2.5 section 5.9 for options) | 1 | integer |
 | | | | | |
 
-
 ### AdUnit Format for Video
+
 ```javascript
 var videoAdUnits = [{
     code: 'test-div-video',

@@ -4,7 +4,7 @@ title: IQzone
 description: Prebid IQzone Bidder Adapter
 biddercode: iqzone
 usp_supported: true
-gdpr_supported: true
+tcfeu_supported: false
 schain_supported: true
 media_types: banner, video, native
 pbjs: true

@@ -5,7 +5,7 @@ description: Scattered Prebid Bidder Adaptor
 biddercode: scattered
 media_types: banner
 coppa_supported: false
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: false
 prebid_member: false
 pbjs: true

@@ -59,8 +59,8 @@
                   <tr>
                     <th class="pbTh">Media Types</th>
                     <td class="pbTd">{% unless page.media_types contains 'no-display' %}display{% if page.media_types contains 'video' %},{% endif %}{% endunless %}{% if page.media_types contains 'video' %} video{% endif %}{% if page.media_types != "no-display, native" and page.media_types contains 'native' %}, native{% endif %}{% if page.media_types == "no-display, native" %}native{% endif %}</td>
-                    <th class="pbTh">GDPR TCF Support</th>
-                    <td class="pbTd">{% if page.gdpr_supported == true %}yes{% else %}no{% endif %}</td>
+                    <th class="pbTh">TCF-EU Support</th>
+                    <td class="pbTd">{% if page.tcfeu_supported == true %}yes{% else %}no{% endif %}</td>
                   </tr>
                   <tr>
                     <th class="pbTh">User IDs</th>

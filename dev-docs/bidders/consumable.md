@@ -8,7 +8,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 biddercode: consumable
-gdpr_supported: true
+tcfeu_supported: true
 schain_supported: true
 coppa_supported: true
 gpp_supported: true

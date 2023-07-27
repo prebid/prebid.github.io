@@ -5,7 +5,8 @@ description: Prebid Bidsxchange Bidder Adapter
 biddercode: bidsxchange
 aliasCode: adtelligent
 media_types: video,banner
-gdpr_supported: true
+gvl_id: 410 (adtelligent)
+tcfeu_supported: true
 gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
@@ -115,11 +116,11 @@ It is possible to configure requests to be split into chunks so as to have fewer
 (default value is 10).
 
 ``` javascript
-    pbjs.setBidderConfig({
-        config: {              
-            bidsxchange: {
-                chunkSize: 1   // makes 1 http request per 1 adunit configured
-            }
+pbjs.setBidderConfig({
+    config: {              
+        bidsxchange: {
+            chunkSize: 1   // makes 1 http request per 1 adunit configured
         }
-    });
+    }
+});
 ```

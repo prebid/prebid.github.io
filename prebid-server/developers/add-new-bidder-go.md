@@ -1279,7 +1279,7 @@ layout: bidder
 title: {bidder}
 description: Prebid {Bidder} Bidder Adapter
 biddercode: {bidder}
-gdpr_supported: true/false
+tcfeu_supported: true/false
 gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false

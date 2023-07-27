@@ -6,7 +6,7 @@ biddercode: ras
 media_types: banner
 pbjs: true
 gvl_id: 1021
-gdpr_supported: true
+tcfeu_supported: true
 safeframes_ok: false
 deals_supported: false
 floors_supported: false

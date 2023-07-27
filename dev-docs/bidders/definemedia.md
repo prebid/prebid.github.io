@@ -3,7 +3,7 @@ layout: bidder
 title: DEFINE MEDIA
 description: Prebid DEFINE MEDIA Bidder Adapter
 biddercode: definemedia
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 440
 media_types: banner, native
 pbjs: false

@@ -6,7 +6,7 @@ biddercode: flipp
 media_types: banner
 pbjs: false
 pbs: true
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 schain_supported: false

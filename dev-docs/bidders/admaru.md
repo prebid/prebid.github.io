@@ -5,7 +5,7 @@ description: Admaru Bidder Adapter
 pbjs: true
 biddercode: admaru
 media_types: banner
-gdpr_supported: false
+tcfeu_supported: false
 schain_supported: false
 usp_supported: false
 sidebarType: 1

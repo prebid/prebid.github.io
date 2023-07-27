@@ -5,7 +5,7 @@ description: Prebid Impactify Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: impactify
-gdpr_supported: true
+tcfeu_supported: true
 tcf2_supported: true
 usp_supported: true
 schain_supported: true

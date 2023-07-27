@@ -4,7 +4,7 @@ title: PubMatic
 description: Prebid PubMatic Bidder Adaptor
 biddercode: pubmatic
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 gpp_supported: true

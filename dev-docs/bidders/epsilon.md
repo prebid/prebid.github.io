@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: conversant
 media_types: video
-gdpr_supported: true
+tcfeu_supported: true
 userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId, publinkId
 prebid_member: true
 schain_supported: true

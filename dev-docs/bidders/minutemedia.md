@@ -7,7 +7,7 @@ biddercode: minutemedia
 media_types: banner, video
 multiformat_supported: will-bid-on-any
 schain_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 floors_supported: true
 userIds: all

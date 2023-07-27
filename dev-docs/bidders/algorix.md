@@ -3,7 +3,7 @@ layout: bidder
 title: AlgoriX
 description: Prebid AlgoriX Bidder Adapter
 biddercode: algorix
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id:
 usp_supported: true
 coppa_supported: true

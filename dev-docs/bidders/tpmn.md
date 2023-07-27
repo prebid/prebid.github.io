@@ -4,7 +4,7 @@ title: TPMN
 description: Prebid TPMN Bidder Adaptor
 biddercode: tpmn
 media_types: banner
-gdpr_supported: false
+tcfeu_supported: false
 prebid_member: false
 schain_supported: false
 coppa_supported: false

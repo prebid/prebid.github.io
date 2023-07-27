@@ -189,7 +189,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 
 {: .alert.alert-info :}
 
-If you are submitting changes to an adapter to support TCF v2.0, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gdpr_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GDPR.**
+If you are submitting changes to an adapter to support the IAB's TCF v2.x, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `tcfeu_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting TCF-EU.**
 
 ### Bidder Adapter GDPR Integration
 
@@ -371,32 +371,6 @@ Use the following values in the _gdprApplies_ field:
 
 **_responseCode_**  
 This should be false if there was some error in the consent data; otherwise set to true. False is the same as calling the callback with no parameters.
-
-## Adapters Supporting GDPR
-
-Bidders on this list have self-declared their GDPR support in their [github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gdpr_supported: true".
-
-<script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-var adaptersSupportingGdpr=[];
-var idx_gdpr=0;
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-{% for item in bidder_pages %}
-    {% if item.gdpr_supported == true %}
-    adaptersSupportingGdpr[idx_gdpr]={};
-    adaptersSupportingGdpr[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
-    adaptersSupportingGdpr[idx_gdpr].text="{{item.title}}";
-    idx_gdpr++;
-    {% endif %}
-{% endfor %}
-</script>
-
-<div id="adaptersTableGdpr">
-        <script>
-           writeDynamicTable({div: "adaptersTableGdpr", data: "adaptersSupportingGdpr", sort: "rowFirst", striped: false} );
-        </script>
-</div>
 
 ## Further Reading
 
