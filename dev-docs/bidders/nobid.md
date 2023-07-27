@@ -9,6 +9,7 @@ media_types: banner, video
 gdpr_supported: true
 gvl_id: 816
 usp_supported: true
+gpp_supported: true
 schain_supported: true
 coppa_supported: true
 userId: criteo, unifiedId, id5Id
