@@ -8,12 +8,12 @@ floors_supported: true
 gvl_id: 647
 media_types: banner, native
 pbjs: true
+sidebarType: 1
 ---
 
 ### Registration
 
 To use, our bidding adapter requires proper setup, including an existing publisher account, as well as approval from AdUp Technology.<br/>For more information visit [www.adup-tech.com](https://www.adup-tech.com/en) or contact [info@adup-tech.com](mailto:info@adup-tech.com).
-
 
 ### Bid params
 

@@ -13,11 +13,12 @@ safeframes_ok: true
 deals_supported: true
 pbjs: false
 pbs: true
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at tech@aceex.com
+The Example Bidding adapter requires setup before beginning. Please contact us at <tech@aceex.com>
 
 ### Bid Params
 

@@ -3,9 +3,12 @@ layout: bidder
 title: Select Media Display
 description: Prebid Select Media Bidder Adapter
 pbjs: true
+media_types: banner, video
+gdpr_supported: true
+gpp_supported: true
 biddercode: selectmedia
 aliasCode: adtelligent
-media_types: banner, video
+sidebarType: 1
 gvl_id: 775
 ---
 
@@ -16,9 +19,9 @@ gvl_id: 775
 |-------|----------|---------------------------------|----------|-----------|
 | `aid` | required | The traffic source ID | `232131` | `integer` |
 
-
 ### Test Parameters
-```
+
+``` javascript
     var adUnits = [
 
       // Video instream adUnit

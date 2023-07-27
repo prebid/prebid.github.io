@@ -11,9 +11,10 @@ usp_supported: true
 coppa_supported: true
 pbs_app_supported: true
 gvl_id: 14
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The AdkernelAdn Header Bidding adaptor requires setup and approval before beginning. Please reach out to <prebid@adkernel.com> for more details
 

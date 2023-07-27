@@ -11,11 +11,12 @@ pbs: true
 pbs_app_supported: true
 usp_supported: true
 schain_supported: true
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at adops@infy.tv
+The Example Bidding adapter requires setup before beginning. Please contact us at <adops@infy.tv>
 
 ### Bid Params
 

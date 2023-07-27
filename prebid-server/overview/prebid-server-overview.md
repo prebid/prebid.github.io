@@ -8,17 +8,17 @@ sidebarType: 5
 # Prebid Server Overview
 {:.no_toc}
 
-Prebid Server is an open-source solution for server-to-server header bidding. It supports a number of key use cases: [mobile app](/prebid-server/use-cases/pbs-sdk.html), [AMP](/prebid-server/use-cases/pbs-amp.html), [server-side web with Prebid.js](/prebid-server/use-cases/pbs-pbjs.html), and [long-form video](/prebid-server/use-cases/pbs-lfv.html).
+Prebid Server is an open-source solution for server-to-server header bidding. It supports a number of key use cases: [mobile app](/prebid-server/use-cases/pbs-sdk.html), [AMP](/prebid-server/use-cases/pbs-amp.html), [server-side web with Prebid.js](/prebid-server/use-cases/pbs-pbjs.html), and server-side ad inclusion scenarios such as [long-form video](/prebid-server/use-cases/pbs-lfv.html) and audio.
 
 ![Prebid Server Architecture](/assets/images/flowcharts/prebid-server/pbs-basic-flow.png){:class="pb-xlg-img"}
 
 Prebid Server is a header bidding server with a growing list of features. At a high level, it works like this:
 
-1. Prebid Server completes and validates incoming requests
+1. Prebid Server validates and enhances incoming requests
   - Resolves dynamic stored requests
   - Enforces privacy regulations
 2. Next, it calls server-side bid adapters
-  - There are currently 100+ server-side bid adapters available
+  - There are 140+ server-side bid adapters available
 3. After everyone's responded (or the timeout period has expired), it formulates an appropriate response
   - Handles currency conversion
   - Quantizes bids
@@ -30,6 +30,15 @@ The Prebid Cache is an adjunct to Prebid Server that stores VAST and bids as nee
 
 Explore [Prebid Server features](/prebid-server/features/pbs-feature-idx.html) in more detail.
 
+## Video Introduction
+
+A high-level overview of Prebid Server, Prebid’s solution for header bidding in the cloud.
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/822889941?h=71957861b5&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="1.5_Intro-to-PBS_v6"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+Further Reading:
+- [Transcript of this video overview](/prebid-server/overview/prebid-server-overview-video.html)
+
 ## Where to Run Prebid Server
 
 Unlike Prebid.js, Prebid Server is a server. It needs somewhere to run, and that somewhere ought to be scaleable, distributed, and fast.
@@ -40,14 +49,7 @@ The simplest route to working with Prebid Server is to sign up for a hosted solu
 
 ### DIY
 
-But of course this is open source, so you're welcome to do this on your own. If you decide to implement your own Prebid Server solution, first check out the general [Prebid Server host company overview](/prebid-server/hosting/pbs-hosting.html).
-
-Then you need to decide which of the two implementations to utilize:
-
-- [Prebid Server (Go)](/prebid-server/versions/pbs-versions-go.html) - the original Prebid Server is written in the Go language.
-- [Prebid Server (Java)](/prebid-server/versions/pbs-versions-java.html) - Prebid Server with a Java language port.
-
-To choose between them, see the [Prebid Server version overview](/prebid-server/versions/pbs-versions-overview.html) and the [FAQ](/faq/prebid-server-faq.html#why-are-there-two-versions-of-prebid-server-are-they-kept-in-sync).
+But of course this is open source, so you're welcome to do this on your own. If you'd like to explore implementing your own Prebid Server solution, check out the [Prebid Server host company overview](/prebid-server/hosting/pbs-hosting.html). Be warned that installing PBS is not nearly as easy as Prebid.js.
 
 ## Which Server-Side Bidders to Utilize
 

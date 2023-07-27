@@ -14,7 +14,7 @@ pbjs_version_notes: v6.5.0 and later
 
 #### Registration
 
-Please visit []() for more information.
+Please visit [zetaglobal.com](https://zetaglobal.com/) for more information.
 
 #### Analytics Options
 
@@ -22,11 +22,11 @@ Please visit []() for more information.
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
 | sid | required  | The Zeta Global Ssp Publisher ID | `111`  | `int` |
-| tags | optional | The object containing set of Zeta's custom tags witch the publisher has to supply | `tags: {}` | `object` | 
+| tags | optional | The object containing set of Zeta's custom tags witch the publisher has to supply | `tags: {}` | `object` |
 
 ### Example Configuration
 
-```
+```javascript
 pbjs.enableAnalytics({
      provider: 'zeta_global_ssp',
      options: {

@@ -5,25 +5,29 @@ description: Prebid TheMediaGrid Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: grid
-media_types: banner, video
+media_types: banner, video, native (s2s only)
 multiformat_supported: will-bid-on-any
 gdpr_supported: true
 usp_supported: true
+gpp_supported: true
 schain_supported: true
 floors_supported: true
 userIds: all
 tcf2_supported: true
 coppa_supported: true
 fpd_supported: true
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Bid Params](#grid-bid-params)
-- [Bidder Config](#grid-bidder-config)
-- [First Party Data](#grid-first-party)
+- [Table of Contents](#table-of-contents)
+- [Bid Params](#bid-params)
+- [Bidder Config](#bidder-config)
+- [First Party Data](#first-party-data)
+- [Native setup example (s2s only)](#native-setup-example-s2s-only)
 
-<a name="grid-bid-params" />
+<a name="grid-bid-params"></a>
 
 ### Bid Params
 
@@ -31,38 +35,15 @@ fpd_supported: true
 | Name           | Scope    | Description                                                                                                 | Example                                   | Type      |
 |----------------|----------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------|-----------|
 | `uid`          | required | Represents the MediaGrid bidder system Ad Slot ID associated with the respective div id from the site page. | `1`                                       | `integer` |
-| `keywords`     | optional | A set of key-value pairs applied to all ad slots on the page. Values can be empty.                          | `keywords: { topic: ['stress', 'fear'] }` | `object`  |
 | `bidFloor`     | optional | Floor of the impression opportunity. If present in the request overrides XML info.                          | `0.8`                                     | `float`   |
 
-Parameter `keywords` must have following format:
-```
-{
-   "site":{
-      "publisher1":[
-         {
-            "name":"SomeKeywordsBlockName",
-            "segment1Name":[
-               "segment2Value"
-            ],
-            "segment2Name":[
-               "segment2Value1",
-               "segment2Value2",
-               ...
-            ],
-            ...
-         }
-      ],
-      ...
-   }
-}
-```
-
-<a name="grid-bidder-config" />
+<a name="grid-bidder-config"></a>
 
 ### Bidder Config
 
 You can allow writing in localStorage `pbjs.setBidderConfig` for the bidder `grid`
-```
+
+```javascript
 pbjs.setBidderConfig({
     bidders: ["grid"],
     config: {
@@ -70,9 +51,10 @@ pbjs.setBidderConfig({
     }
 })
 ```
+
 If it will be "true" this allow TheMediaGrid Bid Adapter to write userId in first party localStorage
 
-<a name="grid-first-party" />
+<a name="grid-first-party"></a>
 
 ### First Party Data
 
@@ -92,3 +74,47 @@ AdUnit-specific data using `AdUnit.ortb2Imp` supports following fields:
 
 - `ortb2.imp[].ext.data.*`
 - `ortb2.imp[].instl`
+
+<a name="grid-native-example"></a>
+
+### Native setup example (s2s only)
+
+Setup native in adUnit mediaTypes, for example:
+
+```javascript
+...
+mediaTypes: {
+  native: {
+    ortb: {
+      ver: '1.2',
+      "assets": [
+        {
+          "id": 1,
+          "img": {
+            "hmin": 180,
+            "wmin": 216,
+            "type": 3
+          },
+          "required": 1
+        },
+        {
+          "title": {
+            "len": 140
+          },
+          "id": 2,
+          "required": 1
+        },
+        {
+          "id": 3,
+          "data": {
+            "len": 25,
+            "type": 1
+          },
+          "required": 1
+        }
+      ],
+    }
+  }
+},
+...
+```

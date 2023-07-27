@@ -2,20 +2,23 @@
 layout: bidder
 title: Invibes
 description: Prebid Invibes Bidder Adaptor
-pbjs: true
 biddercode: invibes
-gdpr_supported: true
-tcf2_supported: true
-userIds: pubCommonId, pubProvidedId, uid2, zeotapIdPlus, id5id
+pbjs: true
 pbs: true
+gdpr_supported: true
+gvl_id: 436
+userIds: pubCommonId, pubProvidedId, uid2, zeotapIdPlus, id5id
+safeframes_ok: false
+sidebarType: 1
 ---
 
 ### Disclosure
-The bidder will use the Local Storage if allowed by the publisher and user gives consent on page with the following purposes: 
-    - set an internal Invibes ID 
+
+The bidder will use the Local Storage if allowed by the publisher and user gives consent on page with the following purposes:
+    - set an internal Invibes ID
     - get the internal Invibes ID if it was set priorly for the user
 
-The bidder will NOT set any cookies. The bidder will also try to read from Cookies if publisher gibes  the internal ID if this wasn't found in LocalStorage. 
+The bidder will NOT set any cookies. The bidder will also try to read from Cookies if publisher gibes  the internal ID if this wasn't found in LocalStorage.
 
 ### Bid Params
 
@@ -26,4 +29,3 @@ The bidder will NOT set any cookies. The bidder will also try to read from Cooki
 | `domainId`      | optional | Id of domain                         | `1001`                                          | `integer`|
 | `customEndpoint`| optional | Custom test domain                   | `https://bid.videostep.com/Bid/VideoAdContent`  | `integer`|
 | `debug`         | optional | Debug paramentes (only prebid server)| `{ "testBvid": "1234", "testLog": true }`       | `object` |
-

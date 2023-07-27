@@ -151,3 +151,9 @@
   @extend .table-bordered;
   @extend .table-striped;
 }
+
+.center-image
+{
+    margin: 0 auto;
+    display: block;
+}

@@ -13,18 +13,19 @@ coppa_supported: true
 schain_supported: true
 gvl_id: 607
 pbs_app_supported: true
+sidebarType: 1
 ---
 
 ### Prebid JS
 
-#### Bid params
+#### Bid params (Prebid.js)
 
 {: .table .table-bordered .table-striped }
 | Name   | Scope    | Description                                     | Example | Type     |
 |--------|----------|-------------------------------------------------|---------|----------|
 | `adid` | required | The ad unit ID retrived from ucfunnel dashboard |         | `string` |
 
-```
+```javascript
 var adUnits = [{
     code: 'div-gpt-ad-1460505748511-01',
     sizes: [
@@ -42,17 +43,17 @@ var adUnits = [{
 {: .alert.alert-info :}
 Sizes set in the `adUnit` object will also apply to the ucfunnel bid requests.
 
-<a name="ucfunnel-examples" />
+<a name="ucfunnel-examples"></a>
+
 ### Examples
 
-  - [Banner Ads](https://cdn.aralego.net/ucfad/test/ucfunnel/compliance/pbjs_banner.html)
-  - [Instream Video Ads](https://cdn.aralego.net/ucfad/test/ucfunnel/compliance/pbjs_video.html)
-  - [Native Ads](https://cdn.aralego.net/ucfad/test/ucfunnel/compliance/pbjs_native.html)
-
+- [Banner Ads](https://cdn.aralego.net/ucfad/test/ucfunnel/compliance/pbjs_banner.html)
+- [Instream Video Ads](https://cdn.aralego.net/ucfad/test/ucfunnel/compliance/pbjs_video.html)
+- [Native Ads](https://cdn.aralego.net/ucfad/test/ucfunnel/compliance/pbjs_native.html)
 
 ### Prebid server
 
-#### Bid params
+#### Bid params (Prebid Server)
 
 {: .table .table-bordered .table-striped }
 | Name   | Scope    | Description                                     | Example | Type     |

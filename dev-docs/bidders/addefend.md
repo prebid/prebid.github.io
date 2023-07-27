@@ -7,11 +7,12 @@ pbjs: true
 media_types: banner
 gdpr_supported: true
 gvl_id: 539
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The bidder requires setup before usage. Please get in touch with our publisher team at publisher@addefend.com to get started.
+The bidder requires setup before usage. Please get in touch with our publisher team at <publisher@addefend.com> to get started.
 
 ### Bid Params
 

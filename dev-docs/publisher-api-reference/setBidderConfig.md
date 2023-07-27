@@ -1,7 +1,8 @@
 ---
 layout: api_prebidjs
 title: pbjs.setBidderConfig(options, mergeFlag)
-description:
+description: setBidderConfig API
+sidebarType: 1
 ---
 
 
@@ -16,16 +17,18 @@ Note if you would like to add to existing config you can pass `true` for the opt
 
 The page usage is:
 
-{% highlight js %}
+```javascript
 pbjs.setBidderConfig({
    bidders: ['bidderA'],
    config: {
       customArg: "customVal"
    }
 });
-{% endhighlight %}
+```
+
 or
-{% highlight js %}
+
+```javascript
 pbjs.setBidderConfig({
    bidders: ['bidderB'],
    config: {
@@ -49,11 +52,12 @@ pbjs.setBidderConfig({
       }
    }
 });
-{% endhighlight %}
+```
 
 How to interpret these examples:
-- When 'bidderA' calls `getConfig('customArg')`, it will receive the object that contains 'customArg'. If any other bidder calls `getConfig('customArg')`, it will receive nothing.
-- When 'bidderB' calls `getConfig('ortb2')`, it will receive this override definition rather than whatever else might have been defined globally. If any other bidder calls `getConfig('ortb2')`, it will receive the globally defined objects.
+
+* When 'bidderA' calls `getConfig('customArg')`, it will receive the object that contains 'customArg'. If any other bidder calls `getConfig('customArg')`, it will receive nothing.
+* When 'bidderB' calls `getConfig('ortb2')`, it will receive this override definition rather than whatever else might have been defined globally. If any other bidder calls `getConfig('ortb2')`, it will receive the globally defined objects.
 
 {: .alert.alert-info :}
 This function is also used by the `schain` feature. Refer to the [schain](/dev-docs/modules/schain.html) documentation for examples.

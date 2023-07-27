@@ -15,15 +15,17 @@ tcf2_supported: true
 coppa_supported: true
 fpd_supported: true
 prebid_member: true
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Bid Params](#playwire-bid-params)
-- [Bidder Config](#playwire-bidder-config)
-- [First Party Data](#playwire-first-party)
+- [Table of Contents](#table-of-contents)
+- [Bid Params](#bid-params)
+- [Bidder Config](#bidder-config)
+- [First Party Data](#first-party-data)
 
-<a name="playwire-bid-params" />
+<a name="playwire-bid-params"></a>
 
 ### Bid Params
 
@@ -34,12 +36,13 @@ prebid_member: true
 | `keywords`     | optional | A set of key-value pairs applied to all ad slots on the page. Values can be empty.                          | `keywords: { topic: ['stress', 'fear'] }` | `object`  |
 | `bidFloor`     | optional | Floor of the impression opportunity. If present in the request overrides XML info.                          | `0.8`                                     | `float`   |
 
-<a name="playwire-bidder-config" />
+<a name="playwire-bidder-config"></a>
 
 ### Bidder Config
 
 You can allow writing in localStorage `pbjs.setBidderConfig` for the bidder `playwire`
-```
+
+```javascript
 pbjs.setBidderConfig({
     bidders: ["playwire"],
     config: {
@@ -47,9 +50,10 @@ pbjs.setBidderConfig({
     }
 })
 ```
+
 If it will be "true" this allow Playwire Bid Adapter to write userId in first party localStorage
 
-<a name="playwire-first-party" />
+<a name="playwire-first-party"></a>
 
 ### First Party Data
 

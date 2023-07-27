@@ -9,6 +9,12 @@ media_types: banner, video
 gdpr_supported: true
 fpd_supported: true
 gvl_id: 855
+safeframes_ok: false
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: false
+floors_supported: false
+sidebarType: 1
+
 ---
 
 ### Bid Params
@@ -19,6 +25,7 @@ gvl_id: 855
 | `auId` | required | The ad unit ID `'0000000000072345'` leading zeros can be omitted. | `'0000000000072345'` | `string` |
 | `network` | optional | Used if you want to make requests to multiple networks in adnuntius. | `'adnuntius'` | `string`|
 | `targeting` | optional | Targeting to be sent through to adnuntius with the request. | `{ c: ['prebids'] }` | `string`|
+| `maxDeals` | optional | The maximum number of deal bids to include. Default 0. | `1` | `Integer` |
 
 #### Targeting
 
@@ -114,6 +121,18 @@ The following test parameters can be used to verify that Prebid Server is workin
 }]
 ```
 
+### Passing no Cookie in Prebid Server request
+
+As a publisher you have the option to set no cookie in the device request to let Adnuntius adserver know not to set cookies in the client's browser. In order to do that you just need to pass this in the request:
+
+```
+"device": {  
+    "ext": {
+        "noCookies": true
+    }
+},
+```
+
 ### First Party Data
 
 publishers can use the `ortb2` configuration parameter to provide First Party Data. We accept all standard OpenRTB fields for both:
@@ -124,6 +143,7 @@ publishers can use the `ortb2` configuration parameter to provide First Party Da
 These fields are optional and only needed for user identification and contextual targeting. How to use it can be read here: [Prebid ortb2](https://docs.prebid.org/features/firstPartyData.html). Currently we only support this for our prebid server bidder, but will add it to the client bidder in the future.
 
 ### Video requests
+
 Currently we only support client requests and instream context. An example request would look like this:
 
 ```
@@ -148,4 +168,3 @@ Currently we only support client requests and instream context. An example reque
     }]
 };
 ```
-

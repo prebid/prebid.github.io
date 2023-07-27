@@ -10,11 +10,12 @@ biddercode: adxcg
 media_types: native, video
 gdpr_supported: true
 userIds: id5Id, identityLink, pubCommonId, unifiedId
+sidebarType: 1
 ---
 
 ### Note
-Prebid-server activation requires setup and approval before beginning. Please reach out to your account manager or info@adxcg.com for more details.
 
+Prebid-server activation requires setup and approval before beginning. Please reach out to your account manager or <info@adxcg.com> for more details.
 
 ### Bid Params
 

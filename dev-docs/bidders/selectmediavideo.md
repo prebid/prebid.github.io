@@ -10,10 +10,12 @@ gdpr_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: true
+sidebarType: 1
 ---
 
-### Note:
-For more information about [SelectMedia](https://www.selectmedia.asia/), please contact info@selectmedia.asia.
+### Note
+
+For more information about [SelectMedia](https://www.selectmedia.asia/), please contact <info@selectmedia.asia>.
 
 ### Bid Params
 
@@ -24,6 +26,7 @@ For more information about [SelectMedia](https://www.selectmedia.asia/), please 
 | `AV_CHANNELID`   | required | Channel id       | `'5a5f17a728a06102d14c2718'` | `string` |
 
 ### Test Parameters
+
 ```
 videoAdUnit = [
 {

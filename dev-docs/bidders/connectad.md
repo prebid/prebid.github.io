@@ -15,9 +15,11 @@ floors_supported: true
 pbjs: true
 pbs: true
 gvl_id: 138
+sidebarType: 1
 ---
 
-### Prebid Server Note:
+### Prebid Server Note
+
 Please reach out to your ConnectAd Account Manager before configuring the S2S adapter for approval and setup.
 
 ### Bid Params

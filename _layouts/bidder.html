@@ -7,18 +7,18 @@
 
   <div class="row ">
 
-			<div class="col-lg-3 sidebar" id="sidebar">
+            <div class="col-lg-3 sidebar" id="sidebar">
 
         <div>
           <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#sidebarContent" aria-controls="sidebarContent" aria-expanded="false" aria-label="Toggle Sidebar navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse d-lg-block" id="sidebarContent">
-				    {% include left_nav.html %}
+                    {% include left_nav.html %}
           </div>
         </div>
 
-			</div>
+            </div>
 
     <div class="col-lg-9">
       <div class="pb-content" markdown="1">
@@ -77,14 +77,14 @@
                   <tr>
                     <th class="pbTh">Demand Chain Support</th>
                     <td class="pbTd">{% if page.dchain_supported  == true %}yes{% else %}no{% endif %}</td>
-                    <th class="pbTh">Safeframes OK</th>
-                    <td class="pbTd">{% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %}</td>
+                    <th class="pbTh">GPP Support</th>
+                    <td class="pbTd">{% if page.gpp_supported == true %}yes{% else %}no{% endif %}</td>
                   </tr>
                   <tr>
                     <th class="pbTh">Supports Deals</th>
                     <td class="pbTd">{% if page.deals_supported == false %}no{% elsif page.deals_supported == true %}yes{% else %}check with bidder{% endif %}</td>
                     <th class="pbTh">Prebid.js Adapter</th>
-                    <td class="pbTd">yes</td>
+                    <td class="pbTd">{% if page.pbjs == true %}yes{% else %}no{% endif %}</td>
                   </tr>
                   <tr>
                     <th class="pbTh">IAB GVL ID</th>
@@ -103,6 +103,12 @@
                     <td class="pbTd">{% if page.multiformat_supported %}{{page.multiformat_supported}}{% else %}check with bidder{% endif %}</td>
                     <th class="pbTh">ORTB Blocking Support</th>
                     <td class="pbTd">{% if page.ortb_blocking_supported == true %}yes{% elsif page.ortb_blocking_supported == false %}no{% elsif page.ortb_blocking_supported == 'partial' %}partial{% else %}check with bidder{% endif %}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">Safeframes OK</th>
+                    <td class="pbTd">{% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %}</td>
+                    <th class="pbTh"></th>
+            <td class="pbTd"></td>
                   </tr>
                 </table>
 

@@ -10,6 +10,7 @@ gdpr_supported: true
 pbjs: true
 pbs: false
 pbs_app_supported: false
+sidebarType: 1
 ---
 
 ### Prebid.JS Bid Params

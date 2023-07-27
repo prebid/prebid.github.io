@@ -8,9 +8,11 @@ media_types: video, banner
 biddercode: bliink
 gdpr_supported: true
 usp_supported: false
+sidebarType: 1
 ---
 
-### Note:
+### Note
+
 The BLIINK Header Bidding adaptor requires setup and approval from the BLIINK team. Please reach out to your account manager for more informations.
 
 ### Bid Params

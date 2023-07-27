@@ -12,12 +12,12 @@ safeframes_ok: false
 pbjs: true
 pbs: false
 prebid_member: false
-pbjs_version_notes: v4.35 and later
+sidebarType: 1
 ---
 
 ### Registration
 
-The Talkads Adapter requires setup before beginning. Please contact us at www.natexo.com and register to the publisher side.
+The Talkads Adapter requires setup before beginning. Please contact us at <www.natexo.com> and register to the publisher side.
 
 ### Configuration
 
@@ -55,6 +55,7 @@ var adUnits = [
 ```
 
 #### Banner example
+
 ```
 var adUnits = [
     code: '/19968336/prebid_display_example_1',

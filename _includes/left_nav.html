@@ -72,6 +72,10 @@
         {% for thisSubItem in arrSubItems %}
           {% if thisSubItem.link == page.url %}
             {% assign isOpen = 1 %}
+          {% elsif  page.layout == "api_prebidjs" and thisSubItem.link == "/dev-docs/publisher-api-reference.html" %}
+            {% assign isOpen = 1 %}
+          {% elsif  page.layout == "bidder" and thisSubItem.link == "/dev-docs/bidders.html" %}
+            {% assign isOpen = 1 %}
           {% endif %}
         {% endfor %}
 
@@ -98,6 +102,10 @@
           {% assign isPage = 0 %}
           {% if thisSubItem.link == page.url %}
             {% assign isPage = 1 %}
+          {% elsif  page.layout == "api_prebidjs" and thisSubItem.link == "/dev-docs/publisher-api-reference.html" %}
+            {% assign isPage = 1 %}
+          {% elsif  page.layout == "bidder" and thisSubItem.link == "/dev-docs/bidders.html" %}
+            {% assign isPage = 1 %}
           {% endif %}
 
           {% assign item_classes = base_item_classes | push: 'list-group-item--level-2' %}
@@ -107,6 +115,7 @@
 
           <!--display subsection items with links-->
           {% if subsectionIdx == 0 % || thisSubItem.isCatHeader == 1 %}
+
             <!--video example categories should not link-->
             {% if thisSubItem.isCatHeader == 1 %}
               <span class="{{ item_classes | join: " " }}">

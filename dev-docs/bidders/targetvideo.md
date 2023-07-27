@@ -7,6 +7,7 @@ media_types: banner
 gdpr_supported: true
 schain_supported: true
 pbjs: true
+sidebarType: 1
 ---
 
 #### Bid Params

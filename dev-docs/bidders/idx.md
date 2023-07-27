@@ -16,6 +16,7 @@ fpd_supported: false
 pbjs: false
 pbs: false
 prebid_member: false
+sidebarType: 1
 ---
 
 ### Bid Params

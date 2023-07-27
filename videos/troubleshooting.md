@@ -8,6 +8,7 @@ sidebarType: 1
 <div class="bs-docs-section" markdown="1">
 
 # Header Bidding Videos - Troubleshooting
+
 {: .no_toc :}
 
 * TOC
@@ -21,7 +22,9 @@ sidebarType: 1
 </div>
 
 <script type="text/javascript">
-Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/212583123" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', 'vimeo1', null, {deleteSelectorContent: true}, 3);
+  window.onetrustLoaded.then(() => {
+    OneTrust.InsertHtml('<iframe src="https://player.vimeo.com/video/212583123" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', 'vimeo1', null, {deleteSelectorContent: true}, 'C0003');
+  })
 </script>
 
 <p><a href="https://vimeo.com/212583123">Troubleshooting Header Bidding Configuration</a> from <a href="https://vimeo.com/appnexus">AppNexus</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
@@ -34,7 +37,9 @@ Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/212583123" width
 </div>
 
 <script type="text/javascript">
-Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/237794037" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>','vimeo2', null, {deleteSelectorContent: true}, 3);
+  window.onetrustLoaded.then(() => {
+    OneTrust.InsertHtml('<iframe src="https://player.vimeo.com/video/237794037" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', 'vimeo2', null, {deleteSelectorContent: true}, 'C0003');
+  })
 </script>
 
 ## Troubleshooting Ad Server: Line Item Rate and Priority
@@ -45,7 +50,9 @@ Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/237794037" width
 </div>
 
 <script type="text/javascript">
-Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/237794018" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>','vimeo3', null, {deleteSelectorContent: true}, 3);
+  window.onetrustLoaded.then(() => {
+    OneTrust.InsertHtml('<iframe src="https://player.vimeo.com/video/237794018" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', 'vimeo3', null, {deleteSelectorContent: true}, 'C0003');
+  })
 </script>
 
 ## Troubleshooting Header Bidding Calls
@@ -56,7 +63,9 @@ Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/237794018" width
 </div>
 
 <script type="text/javascript">
-Optanon.InsertHtml('<iframe src="https://player.vimeo.com/video/235017135" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>','vimeo4', null, {deleteSelectorContent: true}, 3);
+  window.onetrustLoaded.then(() => {
+    OneTrust.InsertHtml('<iframe src="https://player.vimeo.com/video/235017135" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', 'vimeo4', null, {deleteSelectorContent: true}, 'C0003');
+  })
 </script>
 
 </div>

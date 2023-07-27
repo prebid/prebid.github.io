@@ -14,6 +14,7 @@ usp_supported: true
 safeframes_ok: true
 userIds: all
 fpd_supported: true
+sidebarType: 1
 ---
 <a name="table-of-contents" ></a>
 
@@ -36,7 +37,7 @@ fpd_supported: true
 
 The Mediakeys Bidding adapter requires setup before beginning and will respond with bids for whitelisted domains only.
 
-Please contact us at prebidjs@mediakeys.com.
+Please contact us at <prebidjs@mediakeys.com>.
 
 <a name="bid-params"></a>
 
@@ -308,7 +309,7 @@ const adUnits = [{
 
 Required Prebid configuration:
 
-You must set up your preferred outstream renderer in the ad unit and use the following example code to fetch the 
+You must set up your preferred outstream renderer in the ad unit and use the following example code to fetch the
 `vast xml` document from mediakeys ad-server.
 
 Example Ad Unit:
