@@ -5,7 +5,7 @@ description: Yieldlove adapter
 biddercode: yieldlove
 pbjs: true
 gvl_id: 251
-gdpr_supported: true
+tcfeu_supported: true
 sidebarType: 1
 safeframes_ok: true
 floors_supported: false
