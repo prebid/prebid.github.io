@@ -4,7 +4,7 @@ title: Pubgears
 description: Pubgears Bidder Adapter
 pbjs: true
 biddercode: pubgears
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -17,7 +17,8 @@ multiformat_supported: will-bid-on-any
 ortb_blocking_supported: partial
 ---
 
-### Note:
+### Note
+
 The Pubgears bidder adapter requires setup and approval from the our support team, even for existing publishers. Please contact us for more information.
 
 ### Bid Params
