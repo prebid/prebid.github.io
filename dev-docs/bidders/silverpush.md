@@ -20,7 +20,7 @@ sidebarType: 1
 ---
 
 ### Registration
-The Example Bidding adapter requires setup before beginning. Please contact us at <prebid@silverpush.co>.
+The Silverpush Bidding adapter requires setup before beginning. Please contact us at [prebid@silverpush.co](mailto:prebid@silverpush.co).
 
 ### Bid Parameters
 
