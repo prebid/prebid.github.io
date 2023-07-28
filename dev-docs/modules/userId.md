@@ -160,7 +160,7 @@ This can be configured inside the `userSync` object in the following manner:
 
 Let's say that the UID2 token populated by the trade desk user id submodule has the value 'uid2_value' and the UID2 token populated by Liveintent user id module has the value 'liveIntentUid2_value' (The actual identifiers populated in this case should be one and the same however the values are written differently in order to help the reader understand the source from which the identifiers get picked up from)
 
-```
+```javascript
 "userSync": {
     "idPriority": {
       "uid2": ['liveIntentId', 'uid2']
