@@ -32,6 +32,6 @@ The OwnAdX Bidding adapter requires setup before beginning. Please contact us at
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example                    | Type      |
 |---------------|----------|-----------------------|----------------------------|-----------|
-| `host`        | required | Host subdomain        | `'test'`                   | `string`  |
+| `sspId`       | required | Supply side ID        | `'1816w0'`                 | `string`  |
 | `seatId`      | required | Seat Id               | `'4'`                      | `string`  |
 | `tokenId`     | required | Token Id              | `'QjBZdHs6bhFHBT1nd1AJ'`   | `string`  |
