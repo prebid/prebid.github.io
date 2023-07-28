@@ -170,9 +170,9 @@ Let's say that the UID2 token populated by the trade desk user id submodule has 
 ```
 The corresponding user id object and the eids array will look like this:
 
-```
+```javascript
 {
-  ...
+  // ...
   "userId": {
     "uid2": {
       "id": "liveIntentUid2_value_98*******"
@@ -192,7 +192,7 @@ The corresponding user id object and the eids array will look like this:
       ]
     }
   ],
-  ...
+  // ...
 }
 
 ```
