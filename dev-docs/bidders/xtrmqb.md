@@ -24,7 +24,7 @@ sidebarType: 1
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description           | Example           | Type      |
-|:--------------|:---------|:----------------------|:------------------|:----------|
-| `host`        | required | Ad network's RTB host | `'e-volution.ai'` | `string`  |
-| `publisherId` | required | Publisher ID          | `12345`           | `integer` |
+| Name          | Scope    | Description           | Example       | Type      |
+|:--------------|:---------|:----------------------|:--------------|:----------|
+| `host`        | required | Ad network's RTB host | `'ortb.tech'` | `string`  |
+| `publisherId` | required | Publisher ID          | `12345`       | `integer` |
