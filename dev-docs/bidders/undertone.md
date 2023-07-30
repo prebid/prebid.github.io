@@ -9,7 +9,6 @@ usp_supported: true
 schain_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 pbjs: true
-pbs: true
 sidebarType: 1
 ---
 
