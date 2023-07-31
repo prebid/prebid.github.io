@@ -25,10 +25,9 @@ parameters & addition of an external script that will be supplied to you by your
 | publisherID | required  | Your publisher ID | `PXfvBq`  | string |
 | logDebug | optional  | Flag to collect debug data pertaining to auctions. Defaults to false | `false`  | boolean |
 
-
 ### Example Configuration
 
-```
+```js
 import CONSTANTS '../src/constants.json';
 // ...
 const EVENTS = CONSTANTS.EVENTS
