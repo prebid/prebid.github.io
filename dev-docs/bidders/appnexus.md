@@ -22,7 +22,6 @@ sidebarType: 1
 
 ### Table of Contents
 
-- [Disclosure:](#disclosure)
 - [Table of Contents](#table-of-contents)
   - [Bid Params](#bid-params)
   - [Video Object](#video-object)
