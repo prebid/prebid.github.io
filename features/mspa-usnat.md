@@ -193,23 +193,26 @@ NOTE -- Here's what the numbers in the logic above indicate in the [IAB GPP USNa
 
 MspaServiceProviderMode:
 
-0 - Not Applicable
-1 - Yes
-2 - No
+- 0 - Not Applicable
+- 1 - Yes
+- 2 - No
 
 SaleOptOut, SharingOptOut, TargetedAdvertisingOptOut:
-0 - Not Applicable
-1 - Opted-Out
-2 - Did not Opt-Out
+
+- 0 - Not Applicable
+- 1 - Opted-Out
+- 2 - Did not Opt-Out
 
 SaleOptOutNotice, SharingNotice, TargetedAdvertisingOptOutNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataLimitUseNotice:
-0 - Not Applicable
-1 - Notice was provided
-2 - Notice was not provided
+
+- 0 - Not Applicable
+- 1 - Notice was provided
+- 2 - Notice was not provided
 
 KnownChildSensitiveDataConsents, PersonalDataConsents, SensitiveDataProcessing:
-1 - No Consent
-2 - Consent
+
+- 1 - No Consent
+- 2 - Consent
 
 ### Commentary
 
