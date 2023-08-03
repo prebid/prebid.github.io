@@ -11,17 +11,27 @@ fpd_supported: false
 multiformat_supported: will-not-bid
 ortb_blocking_supported: partial
 usp_supported: true
-tcfeu_supported: false
+tcfeu_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
+gvl_id: 1197
 sidebarType: 1
 ---
 
-### Prebid Params
+### Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description        | Example    | Type       |
 |---------------|----------|--------------------|------------|------------|
 | `integration` | required | Integration        | `'000000'` | `'string'` |
 | `token`       | required | Token              | `'000000'` | `'string'` |
+
+### Prebid.js Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description        | Example    | Type       |
+|---------------|----------|--------------------|------------|------------|
+| `integration` | required | Integration        | `'000000'` | `'string'` |
+| `token`       | required | Token              | `'000000'` | `'string'` |
+| `iabCat`      | optional | Array of IAB content categories that describe the content producer | `['IAB1-1', 'IAB3-1', 'IAB4-3']` | `Array(string)` |
