@@ -5,17 +5,16 @@ description: Prebid KultureMedia Bidder Adaptor
 pbjs: true
 biddercode: kulturemedia
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 schain_supported: true
 sidebarType: 1
 
 ---
 
-### Integration Note:
+### Integration Note
 
 The KultureMedia Header Bidding adapter requires approval from the KultureMedia team. Please reach out to  <devops@kulture.media> for more information.
-
 
 ### Bid Params
 

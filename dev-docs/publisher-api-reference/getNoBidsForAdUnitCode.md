@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getNoBidsForAdUnitCode(adUnitCode)
-description:
+description: getNoBidsForAdUnitCode API
 sidebarType: 1
 ---
 

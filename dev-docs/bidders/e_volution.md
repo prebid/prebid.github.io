@@ -4,7 +4,7 @@ title: E-volution tech
 description: Prebid E-volution tech Bidder Adapter
 pbjs: true
 biddercode: e_volution
-gdpr_supported: true
+tcfeu_supported: true
 media_types: banner, video, native
 gvl_id: 957
 pbs: true
@@ -15,9 +15,9 @@ userIds: id5Id
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The E-volution Bidding adapter requires setup before beginning. Please contact us at admin@e-volution.ai
+The E-volution Bidding adapter requires setup before beginning. Please contact us at <admin@e-volution.ai>
 
 ### Prebid.JS Bid Params
 

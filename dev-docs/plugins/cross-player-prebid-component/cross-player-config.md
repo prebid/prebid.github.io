@@ -7,22 +7,24 @@ nav_section: plugins
 ---
 
 # Cross Player Prebid Component Configuration
+
 {:.no_toc}
 
 Options that configure the behavior of the Prebid process are passed to the [Cross-Player Prebid Component]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component.html) in a JSON structure.  These options include the bidders and bidder settings for Prebid.js to use, the URL to your custom Prebid.js build, and any ad server parameters.
 
 The Prebid Component supports almost all the Prebid options supported by the other Prebid plugins, with some exceptions.  The following is the list of Prebid options supported in the Component:
 
-- [prebidPath](#prebidPath)
-- [biddersSpec](#biddersSpec)
-- [bidderAliases](#bidderAliases)
-- [bidderSettings](#bidderSettings)
-- [prebidConfigOptions](#prebidConfigOptions)
-- [dfpParameters](#dfpParameters)
-- [prebidTimeout](#prebidTimeout)
-- [enablePrebidCache](#enablePrebidCache)
+* [prebidPath](#prebidPath)
+* [biddersSpec](#biddersSpec)
+* [bidderAliases](#bidderAliases)
+* [bidderSettings](#bidderSettings)
+* [prebidConfigOptions](#prebidConfigOptions)
+* [dfpParameters](#dfpParameters)
+* [prebidTimeout](#prebidTimeout)
+* [enablePrebidCache](#enablePrebidCache)
 
 <a name="prebidPath"></a>
+
 ## prebidPath
 
 **Description:**
@@ -45,13 +47,14 @@ Not required but recommended.
 
 **Default Value:**
 
-https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js
+<https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js>
 
 **Example:**
 
 `options.prebidPath = 'https://your-path/prebid.js'`
 
 <a name="biddersSpec"></a>
+
 ## biddersSpec
 
 **Description:**
@@ -75,6 +78,7 @@ Yes - if you want the plugin to execute prebid.
 See [Sample Configuration](#sample-config) below.
 
 <a name="bidderAliases"></a>
+
 ## bidderAliases
 
 **Description:**
@@ -87,8 +91,8 @@ Array of one or more bidder aliases definitions.
 
 Each bidder alias definition is defined in a JSON object containing the following fields:
 
-- `bidderName`: The name of a known bidder adapter that is being used in bidding.
-- `name`: A String that species the name of the alias for the bidder adapter.
+* `bidderName`: The name of a known bidder adapter that is being used in bidding.
+* `name`: A String that species the name of the alias for the bidder adapter.
 
 See "aliasBidder" in the [Publisher API Reference]({{site.baseurl}}/dev-docs/publisher-api-reference.html) for details.
 
@@ -102,7 +106,7 @@ None
 
 **Example:**
 
-```
+```javascript
 "bidderAliases": [
     {
       "bidderName": "appnexus",
@@ -116,11 +120,12 @@ None
 ```
 
 <a name="bidderSettings"></a>
+
 ## bidderSettings
 
 **Description:**
 
-Define some behaviors for the platform and specific adapters. The basic structure is a ‘standard’ section with defaults for all adapters, and then one or more adapter-specific sections that override behavior for that bidder.
+Define some behaviors for the platform and specific adapters. The basic structure is a 'standard' section with defaults for all adapters, and then one or more adapter-specific sections that override behavior for that bidder.
 
 **Acceptable Values:**
 
@@ -130,11 +135,11 @@ When you are defining all options to the prebid plugin directly on the page, you
 
 No - Defining `bidderSettings` is optional; the platform has default values for all of the options.
 
-Bidder adapters may specify their own default settings, though this isn’t common. Some sample scenarios where publishers may wish to alter the default settings include:
+Bidder adapters may specify their own default settings, though this isn't common. Some sample scenarios where publishers may wish to alter the default settings include:
 
-- Using bidder-specific ad server targeting instead of Prebid-standard targeting.
-- Passing additional information to the ad server.
-- Adjusting the bid CPM sent to the ad server.
+* Using bidder-specific ad server targeting instead of Prebid-standard targeting.
+* Passing additional information to the ad server.
+* Adjusting the bid CPM sent to the ad server.
 
 **Default Value:**
 
@@ -142,7 +147,7 @@ None
 
 **Example:**
 
-```
+```javascript
 options. bidderSettings = {
   standard: {
     adserverTargeting: [{
@@ -171,6 +176,7 @@ options. bidderSettings = {
 ```
 
 <a name="prebidConfigOptions"></a>
+
 ## prebidConfigOptions
 
 **Description:**
@@ -196,6 +202,7 @@ None
 `options.prebidConfigOptions = { pageUrl: "https://www.mydomain.com"};`
 
 <a name="dfpParameters"></a>
+
 ## dfpParameters
 
 **Description:**
@@ -210,16 +217,16 @@ JSON object
 
 Can contain the following fields:
 
-- `params`: JSON object containing parameters needed to make Google Ad Manager call. Parameters include:
-  - `iu`: string (Required)
-  - Google Ad Manager adUnit ID. For more information, see the Google Ad Manager documentation on iu.
-  - `cust_params`: JSON object (Optional). Key-value pairs that will be sent to Google Ad Manager on the video ad tag URL. If present, any key-values here will be merged with Prebid standard targeting key-values. For more information, see the Google Ad Manager documentation on cust_params.
+* `params`: JSON object containing parameters needed to make Google Ad Manager call. Parameters include:
+  * `iu`: string (Required)
+  * Google Ad Manager adUnit ID. For more information, see the Google Ad Manager documentation on iu.
+  * `cust_params`: JSON object (Optional). Key-value pairs that will be sent to Google Ad Manager on the video ad tag URL. If present, any key-values here will be merged with Prebid standard targeting key-values. For more information, see the Google Ad Manager documentation on cust_params.
 
-- `output`: (Required) String specifying the type of response expected. This value should be `"vast"`
+* `output`: (Required) String specifying the type of response expected. This value should be `"vast"`
 
-- `url`: String specifying the Google Ad Manager ad tag to call. You can use this parameter rather then using the `params` object to specify the Google Ad Manager tag. This URL MUST contain the Google Ad Manager `iu` value fully resolved. This URL may contain any other parameters that need to be passed to Google Ad Manager. This string can NOT contain any `#` characters - all macros using that syntax must be fully resolved
+* `url`: String specifying the Google Ad Manager ad tag to call. You can use this parameter rather then using the `params` object to specify the Google Ad Manager tag. This URL MUST contain the Google Ad Manager `iu` value fully resolved. This URL may contain any other parameters that need to be passed to Google Ad Manager. This string can NOT contain any `#` characters - all macros using that syntax must be fully resolved
 
-- `bid`: (Optional) JSON object describing the Prebid bid for which targeting will be set. If this is not defined, Prebid will use the bid with the highest CPM for the adUnit.
+* `bid`: (Optional) JSON object describing the Prebid bid for which targeting will be set. If this is not defined, Prebid will use the bid with the highest CPM for the adUnit.
 
 **Required?**
 
@@ -231,17 +238,20 @@ None
 
 **Example:**
 
-```
-options.dfpParameters =
-    { params :
-      { iu : ‘/19968336/prebid_cache_video_adunit’,
-        cust_params :
-          { section : ‘blog’),
-            output : ‘vast’ }
-      }
+```javascript
+options.dfpParameters = {
+  params: { 
+    iu: '/19968336/prebid_cache_video_adunit',
+    cust_params: { 
+      section : 'blog',
+      output : 'vast'
+    }
+  }
+}
 ```
 
 <a name="prebidTimeout"></a>
+
 ## prebidTimeout
 
 **Description:**
@@ -268,6 +278,7 @@ NOTE:  You might need to increase the `prebidTimeout` value when running on mobi
 `options.prebidTimeout = 900;`
 
 <a name="enablePrebidCache"></a>
+
 ## enablePrebidCache
 
 **Description:**
@@ -291,11 +302,12 @@ true
 `options.enablePrebidCache = false;`
 
 <a name="sample-config"></a>
+
 ## Sample Configuration
 
 Here is a sample Prebid configuration JSON object returned via URL:
 
-```
+```javascript
 {
     "prebidPath" : "//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js",
     "biddersSpec" : {
@@ -303,7 +315,7 @@ Here is a sample Prebid configuration JSON object returned via URL:
         "mediaTypes": {
             "video": {
                 "context": "instream",
-		"playerSize": [640, 480],
+                "playerSize": [640, 480],
                 "mimes": ["video/mp4", "application/javascript"],
                 "protocols" : [1,2,3,4,5,6,7,8],
                 "playbackmethod" : [1, 2],
@@ -405,7 +417,7 @@ Here is a sample Prebid configuration JSON object returned via URL:
 
 ## Further Reading
 
-- [About the Cross Player Prebid Component]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component.html)
-- [Cross Player Prebid Component API]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-api.html)
-- [Communication Between Prebid Component and Player]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-communication.html)
-- [Download Cross-Player Prebid Component](https://github.com/prebid/cross-player-prebid-component)
+* [About the Cross Player Prebid Component]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component.html)
+* [Cross Player Prebid Component API]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-api.html)
+* [Communication Between Prebid Component and Player]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/cross-player-communication.html)
+* [Download Cross-Player Prebid Component](https://github.com/prebid/cross-player-prebid-component)

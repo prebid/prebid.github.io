@@ -4,7 +4,7 @@ title: AMX RTB
 description: AMX RTB Bid Adapter
 hide: true
 schain_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 userIds: all

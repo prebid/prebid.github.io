@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: admixer
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 gvl_id: 511

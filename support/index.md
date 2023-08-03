@@ -7,11 +7,12 @@ sidebarType: 7
 
 
 # Need Help?
+
 {:.no_toc}
 
 There are several ways to ask for help or get involved with Prebid.  See below for more information.
 
-* TOC
+- TOC
 {:toc}
 
 ## Overview
@@ -34,15 +35,14 @@ Submit a GitHub issue for [Prebid.js](https://github.com/prebid/Prebid.js/issues
 - You have a feature request to the code base.
 - You have found a bug in the code.
 
-
 For more information about how to contribute, see the *Contribute* section of the site.
 
 ## Stack Overflow
 
 If you ask questions on [Stack Overflow](https://stackoverflow.com/), please use the following tags:
 
-+ `prebid`
-+ `prebid.js`
+- `prebid`
+- `prebid.js`
 
 ## Ad Ops Slack Channel
 

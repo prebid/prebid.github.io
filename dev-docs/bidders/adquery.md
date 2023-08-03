@@ -4,7 +4,7 @@ title: Adquery
 description: Prebid Adquery Bidder Adaptor
 pbjs: true
 biddercode: adquery
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 gvl_id: 902

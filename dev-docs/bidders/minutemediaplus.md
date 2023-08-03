@@ -5,11 +5,12 @@ description: Prebid Minute Media Plus Bidder Adaptor
 biddercode: mmplus
 filename: minutemediaplusBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: false
 schain_supported: true
 floors_supported: true
+gpp_supported: true
 media_types: banner, video
 prebid_member: false
 safeframes_ok: false

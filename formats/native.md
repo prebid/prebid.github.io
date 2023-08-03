@@ -8,6 +8,7 @@ sidebarType: 6
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
 # Prebid Native Ads
+
 {:.no_toc}
 
 ## Prebid Server
@@ -18,6 +19,7 @@ bid adapters. See [Prebid Server Native](/prebid-server/features/pbs-native.html
 ## Prebid SDK
 
 See the separate pages for
+
 - [iOS](/prebid-mobile/pbm-api/ios/pbm-nativeadunit-ios.html)
 - [Android](/prebid-mobile/pbm-api/android/pbm-nativeadunit-android.html)
 
