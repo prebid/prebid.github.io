@@ -113,12 +113,12 @@ The goal of this tool doesn’t attempt to fix scenarios where compliance params
 {: .alert.alert-info :}
 Note: It is advised when testing User Sync URL's that you clear cookies relative to the domain you are testing. This will ensure that results are in-line with an initial visit to the current page. Additionally, the first resource matching the root URL will be used to generate the initiator request chain.
 
-- With the Professor Prebid extension on, open the Chrome developer tools by right-clicking anywhere on a webpage and selecting `Inspect`.
-- Navigate to the `Profressor Prebid` panel (top-right), then to the `Network Inspector` tab in the submenu directly below.
-- Enable the feature by sliding the toggle below.
-- Enter a User Sync root URL to listen for as the page loads to generate a request chain from, then click the "Set URL" button. For example, `https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=159096&us_privacy=1YNY`
-- Close the developer tools window, re-open the Chrome Dev Tools again (for changes to reflect, a new instance of the developer tools is required) and navigate back to `Professor Prebid --> Network Inspector`
-- Lastly, click the <img width="20" src="/assets/images/tools/professor-prebid-13.png" /> icon (top-right). This will refresh the page and generate a new initiator request chain below (If one is present for the provided User Sync Root URL).
+* With the Professor Prebid extension on, open the Chrome developer tools by right-clicking anywhere on a webpage and selecting `Inspect`.
+* Navigate to the `Profressor Prebid` panel (top-right), then to the `Network Inspector` tab in the submenu directly below.
+* Enable the feature by sliding the toggle below.
+* Enter a User Sync root URL to listen for as the page loads to generate a request chain from, then click the "Set URL" button. For example, `https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=159096&us_privacy=1YNY`
+* Close the developer tools window, re-open the Chrome Dev Tools again (for changes to reflect, a new instance of the developer tools is required) and navigate back to `Professor Prebid --> Network Inspector`
+* Lastly, click the <img width="20" src="/assets/images/tools/professor-prebid-13.png" /> icon (top-right). This will refresh the page and generate a new initiator request chain below (If one is present for the provided User Sync Root URL).
 
 The UI of the User Sync Network Inspector:
 
