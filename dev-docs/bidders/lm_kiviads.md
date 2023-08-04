@@ -22,4 +22,4 @@ sidebarType: 1
 | Name        | Scope    | Description                 | Example                            | Type      |
 |-------------|----------|-----------------------------|------------------------------------|-----------|
 | `env`       | required | Environment name            | `kivi-stage`                       | `string`  |
-| `pid`       | required | Uniq placement ID           | `cs230510321b516f0eb9a10e5913d3b1` | `string`  |
+| `pid`       | required | unique placement ID           | `cs230510321b516f0eb9a10e5913d3b1` | `string`  |
