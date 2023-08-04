@@ -156,7 +156,7 @@ The Rubicon bid adapter would then receive
 
 ## Prebid multiple identifiers populated by user id submodule
 
-It is possible for a user id submodule to populate several identifiers including identifiers that could also be populated by other user id submodules leading to collisions. In such cases of id collisions, it is possible to add a configurable prioritization to the core user id module. This will allow publishers to specify which user id submodule has priority for populating the identifier over other user id submodules. 
+It is possible for a user id submodule to populate several identifiers including identifiers that could also be populated by other user id submodules leading to collisions. In such cases of id collisions, it is possible to add a configurable prioritization to the core user id module. This will allow publishers to specify which user id submodule has priority for populating the identifier over other user id submodules.
 
 This can be configured inside the `userSync` object in the following manner:
 
@@ -170,6 +170,7 @@ Let's say that the UID2 token populated by the trade desk user id submodule has 
   }
 
 ```
+
 The corresponding user id object and the eids array will look like this:
 
 ```javascript
@@ -198,7 +199,6 @@ The corresponding user id object and the eids array will look like this:
 }
 
 ```
-
 
 ## User ID Sub-Modules
 
