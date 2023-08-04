@@ -124,7 +124,7 @@ The UI of the User Sync Network Inspector:
 
 ![User Sync Network Inspector UI](/assets/images/tools/professor-prebid-11.png)
 
-The Request Chain 
+The Request Chain
 
 Data for each resource on a request chain is taken from that resources HAR entry (For more info on HAR entries, see: [http://www.softwareishard.com/blog/har-12-spec](http://www.softwareishard.com/blog/har-12-spec))
 
