@@ -26,4 +26,5 @@ multiformat_supported: will-not-bid
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| (none)         | optional | no params required     | `''`    | n/a       |
+| publisherId  | required | publisherId     | `'PUBLISHER_ID'`    | `string`  |
+| publisherUrl | optional | url for publisher    | `'PUBLISHER_URL'`   | `string`  |
