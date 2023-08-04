@@ -154,6 +154,52 @@ The Rubicon bid adapter would then receive
 }
 ```
 
+## Prebid multiple identifiers populated by user id submodule
+
+It is possible for a user id submodule to populate several identifiers including identifiers that could also be populated by other user id submodules leading to collisions. In such cases of id collisions, it is possible to add a configurable prioritization to the core user id module. This will allow publishers to specify which user id submodule has priority for populating the identifier over other user id submodules. 
+
+This can be configured inside the `userSync` object in the following manner:
+
+Let's say that the UID2 token populated by the trade desk user id submodule has the value 'uid2_value' and the UID2 token populated by Liveintent user id module has the value 'liveIntentUid2_value' (The actual identifiers populated in this case should be one and the same however the values are written differently in order to help the reader understand the source from which the identifiers get picked up from)
+
+```javascript
+"userSync": {
+    "idPriority": {
+      "uid2": ['liveIntentId', 'uid2']
+    }
+  }
+
+```
+The corresponding user id object and the eids array will look like this:
+
+```javascript
+{
+  // ...
+  "userId": {
+    "uid2": {
+      "id": "liveIntentUid2_value_98*******"
+    }
+  },
+  "userIdAsEids": [
+    {
+      "source": "uidapi.com",
+      "uids": [
+        {
+          "id": "liveIntentUid2_value_98*******",
+          "atype": 3,
+          "ext": {
+            "provider": "liveintent.com"
+          }
+        }
+      ]
+    }
+  ],
+  // ...
+}
+
+```
+
+
 ## User ID Sub-Modules
 
 {% assign userid_pages = site.pages | where: "layout", "userid" | sort_natural: "title" %}
