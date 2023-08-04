@@ -21,7 +21,7 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                               | Example    | Type      |
 |---------------|----------|-------------------------------------------|------------|-----------|
-| `placementId` | required | Your placement ID (provided by undertone) | `"13as14d0"` | `string`  |
+| `placementId` | required | Your placement ID (provided by undertone) | `1234`     | `integer` |
 | `publisherId` | required | publisher ID (provided by undertone)      | `12345`    | `integer` |
 
 #### Video Object
