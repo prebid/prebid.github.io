@@ -3,16 +3,24 @@ layout: bidder
 title: liftoff
 description: Prebid liftoff Bidder Adapter
 biddercode: liftoff
+tcfeu_supported: false
 gvl_id: 667
 gdpr_supported: true
+usp_supported: false
+gpp_supported: false
 coppa_supported: true
-schain_supported: false
+schain_supported: true
+dchain_supported: false
 media_types: video
 safeframes_ok: false
-deals_supported: false
 pbjs: false
 pbs: true
 pbs_app_supported: true
+deals_supported: true
+floors_supported: true
+fpd_supported: false
+multiformat_supported: will-bid-on-one
+ortb_blocking_supported: partial
 prebid_member: false
 sidebarType: 1
 ---
