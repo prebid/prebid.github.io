@@ -5,13 +5,19 @@ description: Prebid 33Across Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: 33across
-media_types: banner, video
+media_types: banner, video, no-native
 tcfeu_supported: true
 floors_supported: true
 schain_supported: true
+dchain_supported: false
 usp_supported: true
 gpp_supported: true
 coppa_supported: true
+fpd_supported: true
+multiformat_supported: will-bid-on-any
+safeframes_ok: true
+deals_supported: true
+prebid_member: true
 userIds: all
 gvl_id: 58
 sidebarType: 1
