@@ -174,7 +174,7 @@ var adUnits = [
 
 We recommend using SRA mode to optimize the bidding process as this allows our adapter to group together bid requests for Ad Units pertaining to the same product and site ID thereby minimizing the number of http requests made to our endpoint. To enable SRA set the following bidder specific config under 33Across
 
-```
+```javascript
 pbjs.setBidderConfig({
    bidders: ['33across'],
    config: {
