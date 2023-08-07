@@ -9,7 +9,7 @@ sidebarType: 8
 
 {:.no_toc}
 
-- TOC
+* TOC
 {:toc}
 
 ## Introduction
