@@ -881,24 +881,27 @@ Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provide
 Prebid has introduced a standard object model for sharing granular bid response data with publishers, analytics, and reporting systems. We encourage adapters to provide as much information as possible in the bid response.
 
 {: .alert.alert-danger :}
-Bid metadata may be required in a future Prebid.js release, specifically for bid.ADomain and bid.MediaType. We recommend ensuring your adapter sets these fields or Prebid.js may throw out the bid.
+Bid metadata may be required in a future Prebid.js release. The AdvertiserDomains field and the DChain object are particularly useful. We recommend ensuring your adapter sets these fields or Prebid.js may reject your bid.
 
 {: .table .table-bordered .table-striped }
 | Path | Description
 | - | -
-| `.NetworkID` | Bidder-specific network/DSP id.
-| `.NetworkName` | Bidder-specific network/DSP name.
-| `.AgencyID` | Bidder-specific agency id.
-| `.AgencyName` | Bidder-specific agency name.
+| `.AdvertiserDomains` | Domains for the landing page(s) aligning with the OpenRTB `adomain` field.
 | `.AdvertiserID` | Bidder-specific advertiser id.
 | `.AdvertiserName` | Bidder-specific advertiser name.
+| `.AgencyID` | Bidder-specific agency id.
+| `.AgencyName` | Bidder-specific agency name.
 | `.BrandID` | Bidder-specific brand id for advertisers with multiple brands.
 | `.BrandName` | Bidder-specific brand name.
-| `.DemandSource` | Bidder-specific demand source. Some adapters may functionally serve multiple SSPs or exchanges, and this specifies which.
 | `.DChain` | Demand chain object.
+| `.DemandSource` | Bidder-specific demand source. Some adapters may functionally serve multiple SSPs or exchanges, and this specifies which.
+| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. This is used in the scenario where a bidder responds with a mediatype different than the stated type. e.g. native when the impression is for a banner. One use case is to help publishers determine whether the creative should be wrapped in a safeframe.
+| `.NetworkID` | Bidder-specific network/DSP id.
+| `.NetworkName` | Bidder-specific network/DSP name.
+| `.RendererName` | Name of the desired renderer for the creative.
+| `.RendererVersion` | Version of the desired renderer for the creative.
 | `.PrimaryCategoryID` | Primary IAB category id.
 | `.SecondaryCategoryIDs` | Secondary IAB category ids.
-| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. This is used in the scenario where a bidder responds with a mediatype different than the stated type. e.g. native when the impression is for a banner. One use case is to help publishers determine whether the creative should be wrapped in a safeframe.
 
 <p></p>
 
@@ -920,23 +923,24 @@ func (a *adapter) MakeBids(request *openrtb2.BidRequest, requestData *adapters.R
 }
 
 func getBidMeta(bid *adapters.TypedBid) *openrtb_ext.ExtBidPrebidMeta {
-  // Not all fields are required. This example includes all fields for
-  // demonstration purposes.
+  // This example includes all fields for demonstration purposes.
   return &openrtb_ext.ExtBidPrebidMeta {
-    NetworkID:            1,
-    NetworkName:          "Some Network Name",
-    AgencyID:             2,
-    AgencyName:           "Some Agency Name",
+    AdvertiserDomains:    []string{"Some Domain"},
     AdvertiserID:         3,
     AdvertiserName:       "Some Advertiser Name",
-    AdvertiserDomains:    []string{"Some Domain"},
-    DemandSource:         "Some Demand Source",
-    DChain:               json.RawMessage(`{Some Demand Chain JSON}`),
+    AgencyID:             2,
+    AgencyName:           "Some Agency Name",
     BrandID:              4,
     BrandName:            "Some Brand Name",
+    DChain:               json.RawMessage(`{Some Demand Chain JSON}`),
+    DemandSource:         "Some Demand Source",
+    MediaType:            "banner",
+    NetworkID:            1,
+    RendererName:         "Some Renderer",
+    RendererVersion:      "1.0",
+    NetworkName:          "Some Network Name",
     PrimaryCategoryID:    "IAB-1",
     SecondaryCategoryIDs: []string{"IAB-2", "IAB-3"},
-    MediaType:            "banner",
   }
 }
 ```
