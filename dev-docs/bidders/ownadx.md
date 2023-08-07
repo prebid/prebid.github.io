@@ -3,7 +3,7 @@ layout: bidder
 title: OwnAdX
 description: Prebid OwnAdX Bidder Adaptor
 biddercode: ownadx
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 gpp_supported: false
