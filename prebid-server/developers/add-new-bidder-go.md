@@ -10,7 +10,7 @@ title: Prebid Server | Developers | Building a Bid Adapter (Go)
 
 Thank you for your valuable contribution of a bid adapter to the open source Prebid Server project. Each new adapter expands the monetization possibilities for publishers and provides greater options to maximize their inventory's potential. We truly appreciate your support in making this ecosystem thrive!
 
-This document guides you through the process of developing a new bid adapter for your bidding server. We encourage you to look at [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance. You can also ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server/issues/new).
+This document guides you through the process of developing a new bid adapter for your bidding server. We encourage you to look at [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance. You can ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server/issues/new).
 
 {: .alert.alert-info :}
 There are two implementations of Prebid Server, [PBS-Go](https://github.com/prebid/prebid-server) and [PBS-Java](https://github.com/prebid/prebid-server-java). We recommend you build new adapters for PBS-Go and allow us to port it to PBS-Java within a couple of months. If you'd like to build both yourself, please also follow these [instructions for building an adapter in PBS-Java](/prebid-server/developers/add-new-bidder-java.html).
@@ -55,7 +55,7 @@ Failure to follow the rules will lead to delays in approving your adapter. If yo
 
 ### Support and Maintenance
 
-You are expected to provide support and maintenance for the code you contribute to Prebid Server as part of your bid adapter. We ask that you proactively update your adapter when your bidding server introduces new features or breaking changes.
+**You are expected to provide support and maintenance for the code you contribute to Prebid Server as part of your bid adapter.** We ask that you proactively update your adapter when your bidding server introduces new features or breaking changes.
 
 Occasionally, we'll introduce changes to the core framework as part of our ongoing maintenance and enhancement of the project. If this causes a compilation error or a performance impact to your adapter, we will update the affected portion of your bid adapter code and provide full unit test coverage of our changes. We will notify you via email if this happens and give you at least one week to review the PR and provide comments. Please understand that we will not wait for your explicit approval for these kinds of changes unless you respond to our email or comment on the PR.
 
@@ -881,7 +881,7 @@ Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provide
 Prebid has introduced a standard object model for sharing granular bid response data with publishers, analytics, and reporting systems. We encourage adapters to provide as much information as possible in the bid response.
 
 {: .alert.alert-danger :}
-Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.ADomain and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
+Bid metadata may be required in a future Prebid.js release, specifically for bid.ADomain and bid.MediaType. We recommend ensuring your adapter sets these fields or Prebid.js may throw out the bid.
 
 {: .table .table-bordered .table-striped }
 | Path | Description
