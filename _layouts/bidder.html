@@ -66,19 +66,19 @@
                     <th class="pbTh">User IDs</th>
                     <td class="pbTd">{% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %}</td>
                     <th class="pbTh">USP/CCPA Support</th>
-                    <td class="pbTd">{% if page.usp_supported == true %}yes{% else %}no{% endif %}</td>
+                    <td class="pbTd">{% if page.usp_supported == true %}yes{% elsif page.usp_supported == false %}no{% else %}check with bidder{% endif %}</td>
                   </tr>
                   <tr>
                     <th class="pbTh">Supply Chain Support</th>
-                    <td class="pbTd">{% if page.schain_supported  == true %}yes{% else %}no{% endif %}</td>
+                    <td class="pbTd">{% if page.schain_supported == true %}yes{% elsif page.schain_supported  == false %}no{% else %}check with bidder{% endif %}</td>
                     <th class="pbTh">COPPA Support</th>
-                    <td class="pbTd">{% if page.coppa_supported == true %}yes{% else %}no{% endif %}</td>
+                    <td class="pbTd">{% if page.coppa_supported == true %}yes{% elsif page.coppa_supported == false %}no{% else %}check with bidder{% endif %}</td>
                   </tr>
                   <tr>
                     <th class="pbTh">Demand Chain Support</th>
-                    <td class="pbTd">{% if page.dchain_supported  == true %}yes{% else %}no{% endif %}</td>
+                    <td class="pbTd">{% if page.dchain_supported == true %}yes{% elsif page.dchain_supported == false %}no{% else %}check with bidder{% endif %}</td>
                     <th class="pbTh">GPP Support</th>
-                    <td class="pbTd">{% if page.gpp_supported == true %}yes{% else %}no{% endif %}</td>
+                    <td class="pbTd">{% if page.gpp_supported == true %}yes{% elsif page.gpp_supported == false %}no{% else %}check with bidder{% endif %}</td>
                   </tr>
                   <tr>
                     <th class="pbTh">Supports Deals</th>
@@ -94,7 +94,7 @@
                   </tr>
                   <tr>
                     <th class="pbTh">Floors Module Support</th>
-                    <td class="pbTd">{% if page.floors_supported  == true %}yes{% else %}no{% endif %}</td>
+                    <td class="pbTd">{% if page.floors_supported == true %}yes{% elsif page.floors_supported == false %}no{% else %}check with bidder{% endif %}</td>
                     <th class="pbTh">First Party Data Support</th>
                     <td class="pbTd">{% if page.fpd_supported == true %}yes{% elsif page.fpd_supported == false %}no{% else %}check with bidder{% endif %}</td>
                   </tr>
