@@ -30,7 +30,6 @@ sidebarType: 1
 | `bidfloor` | optional | Bidfloor for the impression          | `1.0`         | `float`  |
 | `video`    | required for video Ad units | Object containing video targeting parameters.  See [Video Object](#trustedstack-video-object) for details.|`video: { maxduration: 60 }`         | `object`  |
 
-<a name="trustedstack-video-object"></a>
 
 #### Video Object
 
