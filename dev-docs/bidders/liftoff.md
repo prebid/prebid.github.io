@@ -4,7 +4,6 @@ title: liftoff
 description: Prebid liftoff Bidder Adapter
 biddercode: liftoff
 tcfeu_supported: false
-gvl_id: 667
 gdpr_supported: true
 usp_supported: false
 gpp_supported: false
