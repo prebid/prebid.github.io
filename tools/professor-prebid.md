@@ -7,6 +7,11 @@ sidebarType: 8
 
 # Professor Prebid User Guide
 
+{:.no_toc}
+
+* TOC
+{:toc}
+
 ## Introduction
 
 Professor Prebid is an open source Chrome extension to allow easy debugging and troubleshooting on publisher websites using Prebid.js.
@@ -132,6 +137,28 @@ If a user sync root URL resource is loaded on a webpage, the final resulting req
 ![Request Chain Example](/assets/images/tools/professor-prebid-12.png)
 
 Note: `redirectsTo` means a resource explicitly redirected to another resource.  `initiated` means a resource imported/parsed anther resource (ex: a resource loaded another resource via an html `<script>` tag).
+
+#### Prebid.js Version Analyzer
+
+This tool will detect which Prebid.js build is currently running on a publisher page and then compare it against the latest Prebid.js build that has been released. In doing so, the following data will be displayed:
+
+* How much time has passed since the currently used Prebid.js build has been released.
+* An approximate number count of new features, maintenance updates and bug fixes that have been deployed since the most recent Prebid.js release compared to the currently used Prebid.js build.
+* Explicit release notes for all releases ranging from the currently used Prebid.js build detected on a publisher page to the latest Prebid.js release.
+
+![Prebid.js Analyzer Tool](/assets/images/tools/professor-prebid-14.png)
+
+The version analyzer tool can be accessed 2 ways:
+
+Scenario #1
+
+* Open Professor Prebid from it's Chrome Extension icon (Top-Right of the Chrome tab window)
+* Within the `ADUNITS` tab (selected by default), click the `Version` tab below (displayed in the format: `Version: vX.XX.X}`)
+
+Scenario #2
+
+* Open Professor Prebid from the Chrome Devtools (Right-Click anywhere on a publisher page, select `Inspect` and then click `Professor Prebid` from the tab menu on the top-right of the Chrome Devtools window)
+* Then select `VERSION` from the menu below.
 
 ## How can I submit a feature request ?
 
