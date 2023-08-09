@@ -4,11 +4,13 @@ title: TrustedStack
 description: Prebid TrustedStack Bidder Adaptor
 biddercode: trustedstack
 aliasCode : medianet
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 gpp_supported: true
 media_types: banner,native,video
+multiformat_supported: will-bid-on-any
+safeframes_ok: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: false
 pbjs: true
@@ -73,34 +75,6 @@ var videoAdUnit = {
     }
   }]
 };
-```
-
-#### Example of Native Ad-unit
-
-```javascript
-var adUnits = [{
-  code: 'div-gpt-ad-6874091242345-0',
-  mediaTypes: {
-    native: {
-      image: {
-        required: true,
-        sizes: [300, 250],
-        wmin: 50,
-      },
-      title: {
-        required: true,
-        len: 80
-      }
-    }
-  },
-  bids: [{
-    bidder: 'trustedstack',
-    params: {
-      cid: 'trustedstack_test_customer',
-      crid: 'trustedstack_crid'
-    }
-  }]
-}];
 ```
 
 #### Example of Banner Ad-unit
