@@ -53,7 +53,7 @@ The LiveIntent ID sub-module follows the standard Prebid.js initialization based
 
 Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option.
 
-For example, with the configuration below, the nonID as well as 'uid2', the 'medianet' id, the 'magnite' id and the 'bidswitch' id will be requested:
+For example, with the configuration below, the nonID as well as 'uid2', the 'medianet' id, the 'bidswitch' id and the 'magnite' id will be requested:
 
 ```javascript
 pbjs.setConfig({
@@ -62,7 +62,7 @@ pbjs.setConfig({
             "name": "liveIntentId",
             "params": {
                 "publisherId": "12432415",
-                "requestedAttributesOverrides": {'uid2': true, 'medianet': true, 'magnite': true, 'bidswitch': true},
+                "requestedAttributesOverrides": {'uid2': true, 'medianet': true, 'bidswitch': true, 'magnite': true}
             },
         }]
     }

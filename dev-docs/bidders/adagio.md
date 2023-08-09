@@ -9,6 +9,7 @@ userIds: all
 floors_supported: true
 tcfeu_supported: true
 usp_supported: true
+gpp_supported: true
 coppa_supported: true
 schain_supported: true
 gvl_id: 617
