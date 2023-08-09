@@ -137,5 +137,5 @@ IPv6 addresses may be anonymized differently for Prebid Server host companies de
 
 ## Related Topics
 
-- [Prebid Server Feature Matrix](/prebid-server/features/pbs-feature-idx.html)
-- [Prebid Server GDPR Requirements](https://docs.google.com/document/d/1g0zAYc_EfqyilKD8N2qQ47uz0hdahY-t8vfb-vxZL5w/edit#)
+* [Prebid Server Feature Matrix](/prebid-server/features/pbs-feature-idx.html)
+* [Prebid Server GDPR Requirements](https://docs.google.com/document/d/1g0zAYc_EfqyilKD8N2qQ47uz0hdahY-t8vfb-vxZL5w/edit#)
