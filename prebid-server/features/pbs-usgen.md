@@ -112,10 +112,10 @@ Here's how the module works when called by an Activity Control:
 1. If the results array contains at least one "allow:false", return `allow:false` to the Activity Control system.
 1. Otherwise return `abstain` to the Activity Control system.
 
-### Example 1 - Alternate Processing for California 
+### Example 1 - Alternate Processing for California
 
 In this scenario, a host company has created a special module for a publisher implementing
-custom processing logic. The publisher wants to process GPP SIDs 7,9-12 with the default 
+custom processing logic. The publisher wants to process GPP SIDs 7,9-12 with the default
 Prebid approach, but they want to process SID 8 with this custom module.
 
 ```javascript

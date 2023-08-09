@@ -104,8 +104,8 @@ Here's an example account config that prevents bidderA, bidderB, and analytics a
 ### Activity Controls in Relation to Privacy Features
 
 In the long-term, the vision is that Activity Control config will become a
-complete description of the allow/deny status of a particular action. 
-However, for now, the existing privacy regulations (GDPR, USP, COPPA) 
+complete description of the allow/deny status of a particular action.
+However, for now, the existing privacy regulations (GDPR, USP, COPPA)
 sit ouside of Activity config.
 
 Here's how the Activity Control system works with other privacy features:
