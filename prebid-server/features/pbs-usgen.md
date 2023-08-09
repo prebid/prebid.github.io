@@ -106,13 +106,13 @@ Here's how the module works when called by an Activity Control:
     1. Else if the SID is on the skipSids list, go on to the next SID
     1. Else pull that section of out the GPP string and process it
         1. If the SID is 8-12, "normalize" the flags to the SID 7 form as described in the Prebid [MSPA/USNat reference](/features/mspa-usnat.html).
-        1. Depending on the Activity, compare the string's flags as described in the Prebid MSPA/USNat reference. Store the result in an array.
+        1. Depending on the Activity, compare the string's flags as described in the Prebid MSPA/USNat reference.
+    1. On first "allow: false" immediately return `allow: false` to the Activity Control system.
     1. Continue until all SIDs are processed or skipped.
-1. If the results array contains nothing but "allow:true", return `allow:true` to the Activity Control system.
-1. If the results array contains at least one "allow:false", return `allow:false` to the Activity Control system.
-1. Otherwise return `abstain` to the Activity Control system.
+1. If any SID returns "allow: true", return `allow: true` to the Activity Control system
+1. Otherwise return `abstain`
 
-### Example 1 - Alternate Processing for California
+### Example - Alternate Processing for California
 
 In this scenario, a host company has created a special module for a publisher implementing
 custom processing logic. The publisher wants to process GPP SIDs 7,9-12 with the default
