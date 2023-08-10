@@ -44,7 +44,7 @@ Notes:
 ```java
 // Add the OAID to user data in prebid initialization
 if ( isHmsAvailable() ) {
-    TargetingParams.addUserData(“oaid”, AdvertisingIdClient.Info info = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext()).getId());
+    TargetingParams.addUserData("oaid", AdvertisingIdClient.Info info = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext()).getId());
 }
 
 //Determine the HMS availability
