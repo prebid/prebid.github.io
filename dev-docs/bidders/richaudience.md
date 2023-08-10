@@ -5,7 +5,7 @@ description: Prebid Rich Audience Bidder Adapter
 biddercode: richaudience
 userIds: criteo, id5Id, identityLink, liveIntentId, pubCommonId, unifiedId
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 108
 safeframes_ok: false
 prebid_member: true
@@ -28,8 +28,8 @@ sidebarType: 1
 | `keywords`  | optional        | A key-value applied only to the configured bid. This value is optional. Strings separated by semicolon.  | `car=mercedes;car=audi;`                                                                                | `string`   |
 | `player`    | optional        | Object containing video targeting parameters. See [Video Object](#ra-video-object) for details.          | `player: {init: 'open', end: 'close', skin: 'dark'}`                                                    | `object`   |
 
+<a name="ra-video-object"></a>
 
-<a name="ra-video-object" />
 ### Video Object
 
 {: .table .table-bordered .table-striped }

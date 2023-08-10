@@ -12,6 +12,7 @@ sidebarType : 1
 ---
 
 # Captify RTD Module
+
 {:.no_toc}
 
 * TOC
@@ -27,17 +28,17 @@ maximising value for publishers by increasing scale for advertisers.
 
 Segments will be attached to bid request objects sent to different SSPs in order to optimize targeting.
 
-Contact prebid@captify.tech for more information.
+Contact <prebid@captify.tech> for more information.
+
 ## Integration
 
-1) Compile the Captify RTD Module along with your bid adapter and other modules into your Prebid build:  
+1. Compile the Captify RTD Module along with your bid adapter and other modules into your Prebid build:  
 
+    ```bash
+    gulp build --modules="rtdModule,captifyRtdProvider,appnexusBidAdapter,..."  
+    ```
 
-```
-gulp build --modules="rtdModule,captifyRtdProvider,appnexusBidAdapter,..."  
-```
-
-2) Use `setConfig` to instruct Prebid.js to initialize the Captify RTD module, as specified below. 
+2. Use `setConfig` to instruct Prebid.js to initialize the Captify RTD module, as specified below.
 
 ## Configuration
 

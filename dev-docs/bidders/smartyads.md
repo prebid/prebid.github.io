@@ -4,7 +4,7 @@ title: SmartyAds
 description: Prebid SmartyAds Bidder Adapter
 biddercode: smartyads
 gvl_id: 534
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -18,9 +18,9 @@ multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at sales@smartyads.com 
+The Example Bidding adapter requires setup before beginning. Please contact us at <sales@smartyads.com>
 
 ### Bid Params
 
@@ -30,4 +30,4 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 | `sourceid` | required (for prebid.js) | placement ID | `'0'` | `string` |
 | `host`      | required (for prebid-server) | const value, set to "prebid"            | `'prebid'`    | `string` |
 | `accountid`      | required  (for prebid-server) | partner ID | `'1901'`    | `string` |
-| `traffic`     | optional (for prebid.js) | Configures the mediaType that should be used. Values can be `'banner'`, `'native'` or `'video'` | `'native'` | `string` 
+| `traffic`     | optional (for prebid.js) | Configures the mediaType that should be used. Values can be `'banner'`, `'native'` or `'video'` | `'native'` | `string`

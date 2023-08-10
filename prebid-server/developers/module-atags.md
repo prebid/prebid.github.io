@@ -210,7 +210,7 @@ of the actual object will differ in PBS-Java and PBS-Go.
                     "invocationresults": {
                       "hookid": { ... }
                       "analyticstags": [{
-			...
+            ...
                       ]
                     }
                   ]

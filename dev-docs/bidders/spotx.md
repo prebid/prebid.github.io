@@ -4,7 +4,7 @@ title: SpotX
 description: Prebid SpotX Bidder Adaptor
 biddercode: spotx
 media_types: no-display, video
-gdpr_supported: true
+tcfeu_supported: true
 userIds: id5Id, sharedId, unifiedId
 prebid_member: true
 schain_supported: true
@@ -41,8 +41,7 @@ The SpotX adapter requires setup and approval from your Magnite account manager.
 | `position`           | optional | Number corresponding to the position of the ad. See SpotX documentation [here](https://developer.spotxchange.com/content/local/docs/sdkDocs/EASI/easi-integration.md#common-javascript-attributes)                                                                                                                         |                                                                                                                                                                                                      | `integer`   |
 | `page`               | optional | The URL of the page the ad is being displayed on. Used to override the detected referrer if necessary                                                                                                                          | `'https://www.spotx.tv'`                                                                                                                                                                                         | `string`   |
 
-
-<a name="spotx-outstream-options-object" />
+<a name="spotx-outstream-options-object"></a>
 
 #### outstream_options Object
 

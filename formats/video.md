@@ -8,6 +8,7 @@ sidebarType: 6
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
 # Prebid Video Ads
+
 {:.no_toc}
 
 Welcome to Prebid video ad support. This is a collection of resources covering
