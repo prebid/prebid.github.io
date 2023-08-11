@@ -89,8 +89,7 @@ pbjs.setConfig({
 })
 ```
 
-In addition, according to [Google Ad Manager documentation](https://support.google.com/admanager/answer/7678538) a publisher should call `googletag.pubads().setPrivacySettings({nonPersonalizedAds: true})` when consent for personalized advertising is not available. 
-
+In addition, according to [Google Ad Manager documentation](https://support.google.com/admanager/answer/7678538) a publisher should call `googletag.pubads().setPrivacySettings({nonPersonalizedAds: true})` when consent for personalized advertising is not available.
 
 ## Related Topics
 
