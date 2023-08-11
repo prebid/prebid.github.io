@@ -30,7 +30,6 @@ References:
 - [IAB Canada TCF Canada policies](https://iabcanada.com/tcf-canada/for-publishers/)
 - [IABTL's GPP Canada scetion spec](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/Canada/GPPExtension%3A%20IAB%20Canada%20TCF.md)
 
-
 Prebid.org cannot advise publishers on how to conform to privacy laws that affect their business. Instead, publishers should be aware of what privacy-related features Prebid supports so that their legal, product, and engineering teams can define a privacy implementation.
 
 ## TCF Canada and GPP Support in Prebid Products
@@ -89,6 +88,7 @@ pbjs.setConfig({
     }
 })
 ```
+
 ## Related Topics
 
 - Prebid.js: [Activity Controls](/dev-docs/activity-controls.html), [GPP module](/dev-docs/modules/consentManagementGpp.html), [GPP USNat module](/dev-docs/modules/gppControl_usnat.html)
