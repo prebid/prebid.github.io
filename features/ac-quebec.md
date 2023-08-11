@@ -16,7 +16,7 @@ This resource should not be construed as legal advice and Prebid.org makes no gu
 
 ## Overview
 
-Starting September 23 2023, new privacy regulations will come into effect in Canada.
+Starting September 23 2023, new privacy regulations will come into effect in Quebec, a province of Canada, governing about a quarter of the population.
 
 IAB Canada has offered TCF Canada as a GPP section to cover user consent preferences in Quebec. At the time of this writing, August 2023, guidance from regulators, TCF Canada, and major advertising entities in Canada is in extreme flux, even with enforceability of the law being imminent. The Canadian vendor list does not have enough vendors for meaningful adoption of the framework by any publisher, as it does not include the primary publisher ad server nor any large DSP, nor have any of the top five CMPs [registered as CMPs with TCF Canada](https://iabcanada.com/tcf-canada/cmp-list/).
 
