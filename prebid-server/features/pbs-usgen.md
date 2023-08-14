@@ -48,7 +48,7 @@ in the global or account-level config in a `privacy.modules` object.
 
 Here's an example:
 
-```javascript
+```json
 {
     "privacy": {
         "modules": [{
