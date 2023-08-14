@@ -340,7 +340,7 @@ Anonymize auctions and disable usersyncs for bidderA but otherwise delegate to p
 
 Prevent User First Party Data and EIDs from going to analytics adapters
 
-```javascript
+```json
 {
   "privacy": {
     "allowactivities": {
