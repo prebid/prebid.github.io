@@ -4,7 +4,7 @@ title: MediaFuse
 description: Prebid MediaFuse Bidder Adapter
 biddercode: mediafuse
 media_types: video,banner
-gdpr_supported: true
+tcfeu_supported: false
 schain_supported: true
 coppa_supported: true
 usp_supported: true
@@ -19,7 +19,7 @@ sidebarType: 1
 
 The following test parameters can be used to verify that Prebid Server is working properly with the server-side Mediafuse adapter. This example includes an Mediafuse test placement ID and sizes that would match with the test creative.
 
-```
+```javascript
 var adUnits = [
    // Banner adUnit
    {

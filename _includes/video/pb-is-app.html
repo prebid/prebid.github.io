@@ -8,7 +8,10 @@
 
     <!--Ad Player Pro & prebid js code-->
     <script>
-      Optanon.InsertScript("https://static.adplayer.pro/player/demo.js", 'head', null, {}, 'C0003');
+
+      window.onetrustLoaded.then(() => {
+        OneTrust.InsertScript("https://static.adplayer.pro/player/demo.js", 'head', null, {}, 'C0003');
+      })
     </script>
     <script type="text/plain" class="optanon-category-C0003">
     	var pbjs = pbjs || {};

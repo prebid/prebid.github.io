@@ -119,3 +119,4 @@ email list at any time just by emailing us again at prebid-server@prebid.org.
 - [Prebid Server Database](/prebid-server/hosting/pbs-database.html)
 - [PBS-Go](/prebid-server/versions/pbs-versions-go.html)
 - [PBS-Java](/prebid-server/versions/pbs-versions-java.html)
+- [Bidder-specific setup guidelines](/prebid-server/hosting/bidder-specific-guidelines.html)

@@ -13,7 +13,6 @@ sidebarType: 3
 
  <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-create.png" alt="Pipeline Screenshot" align="center">
 
-
 ## Step 2: Create Line Item
 
 To integrate the Prebid demand you have to create a Line Items with a specific price and targeting keywords.
@@ -45,7 +44,7 @@ The **Custom targeting** property should contain a special keyword with the pric
 
 ## Step 3: Prepare Prebid Creative
 
-### Display Banner, Video Banner, Display Interstitial, Video Interstitial.
+### Display Banner, Video Banner, Display Interstitial, Video Interstitial
 
 The Prebid SDK integrates with GAM basing on [App Events](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner#app_events) feature, almost for all ad formats. That means that creative should contain a special tag that will be processed by Prebid's GAM Event Handlers.
 
@@ -142,7 +141,6 @@ Example HTML:
   let pbNativeTagData = {};
   pbNativeTagData.pubUrl = "%%PATTERN:url%%";
   pbNativeTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
-
 
   // if not DFP, use these params
   pbNativeTagData.adId = "%%PATTERN:hb_adid%%";

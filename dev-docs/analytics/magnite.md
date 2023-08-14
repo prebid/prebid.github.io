@@ -3,7 +3,7 @@ layout: analytics
 title: Magnite
 description: Magnite Prebid Analytics Adapter
 modulecode: magnite
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 prebid_member: true
@@ -15,7 +15,7 @@ enable_download: false
 
 The Magnite analytics adapter requires setup and approval from the
 Magnite team, even for existing accounts. Please reach out to your account
-team or globalsupport@magnite.com for more information.
+team or <globalsupport@magnite.com> for more information.
 
 #### Analytics Options
 

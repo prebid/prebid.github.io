@@ -63,7 +63,9 @@ If you see errors while building the Prebid Mobile SDK or Demo Applications, mak
 {% include /alerts/alert_warning.html content=warning_note %}
 
 
-## Initialize SDK
+## Add SDK
+
+### Set Prebid Server
 
 {% capture warning_note %}  
 All integration examples for Android are written in `Kotlin`. 
@@ -80,27 +82,44 @@ PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
 ```
 
-If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app.
+If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+
 
 ```
-PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebid-server-test-j.prebid.org/openrtb2/auction"))
+PrebidMobile.setPrebidServerHost(Host.createCustomHost(PREBID_SERVER_AUCTION_ENDPOINT))
 ```
 
-Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. There are several options for how to do it. 
+### Initialize SDK
 
-Use the following initialization for Prebid SDK: 
+Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. Use the following initialization for Prebid SDK: 
 
 ```kotlin
-PrebidMobile.initializeSdk(applicationContext, object : SdkInitializationListener {
-    override fun onSdkInit() {
-        TODO("Not yet implemented")
+PrebidMobile.initializeSdk(applicationContext) { status ->
+    if (status == InitializationStatus.SUCCEEDED) {
+        Log.d(TAG, "SDK initialized successfully!")
+    } else if (status == InitializationStatus.SERVER_STATUS_WARNING) {
+        Log.e(TAG, "Prebid Server status checking failed: $status\n${status.description}")
     }
-
-    override fun onSdkFailedToInit(error: InitError?) {
-        TODO("Not yet implemented")
+    else {
+        Log.e(TAG, "SDK initialization error: $status\n${status.description}")
     }
-})
+}
 ```
+
+{% capture warning_note %}  
+Pay attention that SDK should be initialized on the main thread. 
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
+During the initialization, SDK creates internal classes and performs the health check request to the [/status](https://docs.prebid.org/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If you use a custom PBS host you should provide a custom status endpoint as well:
+
+```
+PrebidMobile.setCustomStatusEndpoint(PREBID_SERVER_STATUS_ENDPOINT)
+```
+
+If something goes wrong with the request, the status of the initialization callback will be `SERVER_STATUS_WARNING`. It doesn't affect an SDK flow and just informs you about the health check result.
+
+### Check compatibility with your GMA SDK
 
 If you integrate Prebid Mobile with GMA SDK, use the following method, which checks the compatibility of Prebid SDK with GMA SDK used in the app: 
 
@@ -182,7 +201,7 @@ Apply global settings with the `PrebidMobile` object.
 String containing the Prebid Server account ID.
 
 ```kotlin
-PrebidMobile.setPrebidServerAccountId("123321")
+PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 var pbsAccountId = PrebidMobile.getPrebidServerAccountId()
 ```
 

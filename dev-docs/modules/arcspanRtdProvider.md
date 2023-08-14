@@ -1,8 +1,8 @@
 ---
 layout: page_v2
-title: ArcSpan Contextual APP 
-display_name: ArcSpan Contextual APP RTD Provider
-description: Surfaces contextual classification signals in the bid request to enhance the addressability of ad impressions and increase buyer demand
+title: ArcSpan RTD Module
+display_name: ArcSpan RTD Module
+description: ArcSpan is a real-time audience monetization platform focused on the needs of the world’s finest publishers and retailers. Unlock the true value of your first-party audience data while providing advertisers the targeting performance they need.
 page_type: module
 module_type: rtd
 module_code : arcspanRtdProvider
@@ -11,7 +11,8 @@ vendor_specific: true
 sidebarType : 1
 ---
 
-# ArcSpan Contextual APP RTD Provider
+# ArcSpan RTD Module
+
 {:.no_toc}
 
 * TOC
@@ -19,7 +20,7 @@ sidebarType : 1
 
 ## Prebid Config for ArcSpan RTD Module
 
-This module attaches contextual classification signals to the site object in the bid request, with the goal of enhancing the addressability of ad impressions and increasing buyer demand.
+ArcSpan is a real-time audience monetization platform focused on the needs of the world’s finest publishers and retailers. Unlock the true value of your first-party audience data while providing advertisers the targeting performance they need.
 
 {: .alert.alert-warning :}
 Disclosure: This module loads external code that is not open source and has not been reviewed by Prebid.org.
@@ -28,7 +29,7 @@ Disclosure: This module loads external code that is not open source and has not 
 
 Compile the ArcSpan RTD Module into your Prebid build:
 
-```
+```bash
 gulp build --modules=rtdModule,arcspanRtdProvider
 ```
 

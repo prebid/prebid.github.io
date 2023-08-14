@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getEvents()
-description: 
+description: getEvents API
 sidebarType: 1
 ---
 
@@ -14,10 +14,11 @@ The `getEvents` method returns a copy of all emitted events since the page loade
 **Returns**: `array of objects`
 
 **Returned Object Params**:
-- eventType (see table below)
-- args (varies for each event type)
-- id (only for bidWon, set to adUnit.code)
-- elapsedTime
+
+* eventType (see table below)
+* args (varies for each event type)
+* id (only for bidWon, set to adUnit.code)
+* elapsedTime
 
 The available events are:
 
@@ -30,6 +31,7 @@ The available events are:
 | beforeBidderHttp | bidder network request is about be triggered | Array of Bid request objects |
 | bidRequested  | A bid was requested from a specific bidder | Bid request object |
 | bidResponse   | A bid response has arrived              | Bid response object |
+| seatNonBid    | Prebid Server has returned nonbid information. Must be enabled in s2sConfig.extPrebid | None |
 | bidRejected   | A bid was rejected                      | Bid response object |
 | bidAdjustment | A bid was adjusted                      | Bid response object |
 | bidWon        | A bid has won                           | Bid response object |
@@ -46,13 +48,13 @@ The available events are:
 
 The example below shows how these events can be used.
 
-{% highlight js %}
-      pbjs.getEvents().forEach(event => {
-        console.log("event: "+event.eventType)
-      });
-{% endhighlight %}
-
+```javascript
+pbjs.getEvents().forEach(event => {
+  console.log("event: "+event.eventType)
+});
+```
 
 ## See Also
-- [onEvent](/dev-docs/publisher-api-reference/onEvent.html)
-- [offEvent](/dev-docs/publisher-api-reference/offEvent.html)
+
+* [onEvent](/dev-docs/publisher-api-reference/onEvent.html)
+* [offEvent](/dev-docs/publisher-api-reference/offEvent.html)
