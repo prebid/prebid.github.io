@@ -365,7 +365,7 @@ Anonymize when in the US states of Virginia or California when a relevant SID is
 
 This scenario is a way to achieve a blunt anonymization even without the PBS USGen module:
 
-```javascript
+```json
 {
   "privacy": {
     "allowactivities": {
