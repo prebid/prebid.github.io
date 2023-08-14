@@ -385,7 +385,7 @@ This scenario is a way to achieve a blunt anonymization even without the PBS USG
 
 #### Example 5 - GPC override
 
-Anonymize when the GPC flag is set.
+Anonymize when the [GPC flag](https://globalprivacycontrol.org/) is set.
 
 ```javascript
 {
