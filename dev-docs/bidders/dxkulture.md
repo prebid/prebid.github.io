@@ -1,9 +1,9 @@
 ---
 layout: bidder
-title: KultureMedia
-description: Prebid KultureMedia Bidder Adaptor
+title: DXKulture
+description: Prebid DXKulture Bidder Adaptor
 pbjs: true
-biddercode: kulturemedia
+biddercode: dxkulture
 media_types: banner, video
 tcfeu_supported: false
 gdpr_supported: true
@@ -15,7 +15,7 @@ sidebarType: 1
 
 ### Integration Note
 
-The KultureMedia Header Bidding adapter requires approval from the KultureMedia team. Please reach out to  <devops@kulture.media> for more information.
+The DXKulture Header Bidding adapter requires approval from the DXKulture team. Please reach out to  <devops@kulture.media> for more information.
 
 ### Bid Params
 
