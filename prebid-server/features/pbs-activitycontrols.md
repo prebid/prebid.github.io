@@ -307,7 +307,7 @@ all their accounts to use the `US General` module for all activities:
 
 Anonymize auctions and disable usersyncs for bidderA but otherwise delegate to privacy modules:
 
-```javascript
+```json
 {
   "privacy": {
     "allowactivities": {
