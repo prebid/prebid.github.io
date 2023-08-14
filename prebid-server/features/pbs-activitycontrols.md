@@ -135,7 +135,7 @@ The `privacy.allowActivities` is a new account configuration option that contain
 
 Here's a general template for how activity configuration looks in the account config:
 
-```javascript
+```json
 {
   "privacy": {
     "allowactivities": {
