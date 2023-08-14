@@ -264,7 +264,7 @@ If `allow` is not defined, the rule is assumed to assert **true** (i.e. allow th
 This example may be a reasonable global default for host companies that want to default
 all their accounts to use the `US General` module for all activities:
 
-```javascript
+```json
 {
   "privacy": {
     "allowactivities": {
