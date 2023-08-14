@@ -76,7 +76,7 @@ Prebid Server core checks with the Activity Controls to see whether a given acti
 
 Here's an example account config that prevents bidderA, bidderB, and analytics adapters from receiving `user.eids[]` and `user.ext.data`. It does not specifically link out to any privacy regulations, so would not involve privacy modules that are linked into the Activity Controls.
 
-```javascript
+```json
 {
   "privacy": {
     "allowactivities": {
