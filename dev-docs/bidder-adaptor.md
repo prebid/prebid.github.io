@@ -172,7 +172,7 @@ A 'Simple Request' meets **all** of the following conditions:
 
 * No `ReadableStream` object is used in the request
 
-Prebid recommends keeping module HTTP requests 'simple' if at all possible. The default content-type used by Prebid.js is text/plain.
+Prebid recommends keeping module HTTP requests 'simple' if at all possible. The default content-type used by Prebid.js is text/plain. Prebid switched to preferring the fetch api and added the Topics header when available in 8.9.
 
 ## Creating the Adapter
 
@@ -419,6 +419,7 @@ return {
 };
 
 ```
+
 To have the topics in the Sec-Browsing-Topics request header marked by the browser as observed, but also to include the current page visit in the user's next epoch top topic calculation, the server's response has to include Observe-Browsing-Topics: ?1.
 
 Here's a JavaScript example using setHeader(): `res.setHeader('Observe-Browsing-Topics', '?1');`
