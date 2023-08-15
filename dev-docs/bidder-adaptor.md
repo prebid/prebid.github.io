@@ -419,6 +419,9 @@ return {
 };
 
 ```
+To have the topics in the Sec-Browsing-Topics request header marked by the browser as observed, but also to include the current page visit in the user's next epoch top topic calculation, the server's response has to include Observe-Browsing-Topics: ?1.
+
+Here's a JavaScript example using setHeader(): `res.setHeader('Observe-Browsing-Topics', '?1');`
 
 <a name="bidder-adaptor-Interpreting-the-Response"></a>
 
