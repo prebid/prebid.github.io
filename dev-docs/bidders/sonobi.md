@@ -44,3 +44,10 @@ The `ad_unit` and `placement_id` are **mutually exclusive** but at least one is 
 If you pass the optional `sizes` Array in your bid params it will override the global config sizes for the Sonobi Adapter only.
 
 The `hfa` parameter requires your Sonobi Account Manager to enable this feature for you. Please contact them for further information.
+
+### Prebid Server Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description           | Example   | Type      |
+|---------------|----------|-----------------------|-----------|-----------|
+| `TagID`       | required |  The placement ID or The adunit ID | `'1a2b3c4d5e6f1a2b3c4d' or '/1234567/example/adUnit/code'`  | `string` |
