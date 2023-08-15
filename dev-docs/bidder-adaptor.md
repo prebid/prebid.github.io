@@ -1304,7 +1304,7 @@ tcfeu_supported: true/false
 gvl_id: none
 usp_supported: true/false
 coppa_supported: true/false
-gpp_supported: true/false
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true/false
 dchain_supported: true/false
 userId: (list of supported vendors)

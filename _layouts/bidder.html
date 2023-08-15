@@ -78,7 +78,7 @@
                     <th class="pbTh">Demand Chain Support</th>
                     <td class="pbTd">{% if page.dchain_supported == true %}yes{% elsif page.dchain_supported == false %}no{% else %}check with bidder{% endif %}</td>
                     <th class="pbTh">GPP Support</th>
-                    <td class="pbTd">{% if page.gpp_supported == true %}yes{% elsif page.gpp_supported == false %}no{% else %}check with bidder{% endif %}</td>
+                    <td class="pbTd">{% if page.gpp_sids and page.gpp_sids != '' %}{{page.gpp_sids}}{% elsif page.gpp_supported == true and page.gpp_sids == nil %}some (check with bidder){% elsif page.gpp_supported == false and gpp_sids == nil %}None{% else %}check with bidder{% endif %}</td>
                   </tr>
                   <tr>
                     <th class="pbTh">Supports Deals</th>
@@ -108,7 +108,7 @@
                     <th class="pbTh">Safeframes OK</th>
                     <td class="pbTd">{% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %}</td>
                     <th class="pbTh"></th>
-            <td class="pbTd"></td>
+                    <td class="pbTd"></td>
                   </tr>
                 </table>
 
