@@ -308,14 +308,14 @@ In the table below, you can find Prebid's test IDs that are used in the Demo App
 | -------------------- | ---------------- | ---------------------- | 
 |`https://prebid-server-test-j.prebid.org/openrtb2/auction` | **Custom Prebid Server Host**|A PBS instance that is dedicated to testing purposes.|
 |`0689a263-318d-448b-a3d4-b02e8a709d9d`| **Stored Request ID**|The test account ID on the test server.|
-|`imp-prebid-banner-320-50`|**HTML Banner**|Returns a stored response that contains a Banner 320x50 winning bid.|
-|`imp-prebid-display-interstitial-320-480`|**HTML Interstitial**|Returns a stored response that contains a Interstitial 320x480 winning bid.|
-|`imp-prebid-video-outstream-original-api`|**Outstream Video** (Original API)|Returns a stored response that contains a Video 320x50 winning bid.|
-|`imp-prebid-video-outstream`|**Outstream Video** (Rendering API)|Returns a stored response that contains a Video 320x50 winning bid.|
-|`imp-prebid-video-interstitial-320-480-original-api`|**Video Interstitial** (Original API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
-|`imp-prebid-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
-|`imp-prebid-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
-|`imp-prebid-video-rewarded-320-480`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
+|`prebid-demo-banner-320-50`|**HTML Banner**|Returns a stored response that contains a Banner 320x50 winning bid.|
+|`prebid-demo-display-interstitial-320-480`|**HTML Interstitial**|Returns a stored response that contains a Interstitial 320x480 winning bid.|
+|`prebid-demo-video-outstream-original-api`|**Outstream Video** (Original API)|Returns a stored response that contains a Video 320x50 winning bid.|
+|`prebid-demo-video-outstream`|**Outstream Video** (Rendering API)|Returns a stored response that contains a Video 320x50 winning bid.|
+|`prebid-demo-video-interstitial-320-480-original-api`|**Video Interstitial** (Original API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
+|`prebid-demo-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
+|`prebid-demo-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
+|`prebid-demo-video-rewarded-320-480`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
 |`sample_video_response`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid. Note: on Android we have an [issue](https://github.com/prebid/prebid-mobile-android/issues/517) with Instream Video demo example. When it is fixed the config id will be updated to the new one.|
-|`imp-prebid-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
-|`imp-prebid-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|
+|`prebid-demo-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
+|`prebid-demo-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|
