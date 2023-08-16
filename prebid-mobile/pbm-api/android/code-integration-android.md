@@ -20,7 +20,7 @@ Get started with Prebid Mobile by creating a [Prebid Server account](/prebid-mob
 
 ### Maven
 
-If you are not familar with using Maven for build management visit the [Maven website](https://maven.apache.org/index.html).
+If you are not familiar with using Maven for build management visit the [Maven website](https://maven.apache.org/index.html).
 
 To include the Prebid Mobile SDK simply add this line to your gradle dependencies to get the latest stable release:
 
@@ -42,7 +42,7 @@ If you still use the range notation like this:
 implementation 'org.prebid:prebid-mobile-sdk:[1,2)'
 ```
 
-please change it to the strict version. 
+please change it to the strict version.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
@@ -56,7 +56,7 @@ scripts/buildPrebidMobile.sh
 
 This will output the PrebidMobile framework for Android.
 
-{% capture warning_note %}  
+{% capture warning_note %}
 If you see errors while building the Prebid Mobile SDK or Demo Applications, make sure that the needed Android SDK version is set up on your machine. Check the gradle build configs for the project and applications for details about the current required version.
 
 {% endcapture %}
@@ -67,8 +67,8 @@ If you see errors while building the Prebid Mobile SDK or Demo Applications, mak
 
 ### Set Prebid Server
 
-{% capture warning_note %}  
-All integration examples for Android are written in `Kotlin`. 
+{% capture warning_note %}
+All integration examples for Android are written in `Kotlin`.
 
 The corresponding Java code can be found in the [Demo Java](https://github.com/prebid/prebid-mobile-android/tree/master/Example/PrebidDemoJava) application
 
@@ -91,7 +91,7 @@ PrebidMobile.setPrebidServerHost(Host.createCustomHost(PREBID_SERVER_AUCTION_END
 
 ### Initialize SDK
 
-Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. Use the following initialization for Prebid SDK: 
+Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. Use the following initialization for Prebid SDK:
 
 ```kotlin
 PrebidMobile.initializeSdk(applicationContext) { status ->
@@ -106,8 +106,8 @@ PrebidMobile.initializeSdk(applicationContext) { status ->
 }
 ```
 
-{% capture warning_note %}  
-Pay attention that SDK should be initialized on the main thread. 
+{% capture warning_note %}
+Pay attention that SDK should be initialized on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
@@ -121,7 +121,7 @@ If something goes wrong with the request, the status of the initialization callb
 
 ### Check compatibility with your GMA SDK
 
-If you integrate Prebid Mobile with GMA SDK, use the following method, which checks the compatibility of Prebid SDK with GMA SDK used in the app: 
+If you integrate Prebid Mobile with GMA SDK, use the following method, which checks the compatibility of Prebid SDK with GMA SDK used in the app:
 
 ```kotlin
 PrebidMobile.checkGoogleMobileAdsCompatibility(MobileAds.getVersion().toString())
@@ -130,8 +130,8 @@ Check the log messages of the app. If the provided GMA SDK version is not verifi
 
 ## Updating your Android manifest
 
-{% capture warning_note %}  
-This section applies only to scenarios when when Prebid SDK renders a winning bid: `No Ad Server`, `AdMob`, `MAX`, `GAM Event Handlers`. If you integrate Prebid with GAM using the original integration scenario skip this step.  
+{% capture warning_note %}
+This section applies only to scenarios when when Prebid SDK renders a winning bid: `No Ad Server`, `AdMob`, `MAX`, `GAM Event Handlers`. If you integrate Prebid with GAM using the original integration scenario skip this step.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
@@ -162,7 +162,7 @@ Custom Activities:
     android:configChanges="orientation|screenSize|keyboardHidden"
     android:theme="@android:style/Theme.Translucent.NoTitleBar"
     android:windowSoftInputMode="adjustPan|stateHidden"
-    android:launchMode="singleTop"/>  
+    android:launchMode="singleTop"/>
 ```
 
 **NOTE**
@@ -173,10 +173,10 @@ Custom Activities:
 Add this tag to your `<application>` to use Google Play Services:
 
 ``` xml
-<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />  
+<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 ```
 
-## Set Targeting Parameters 
+## Set Targeting Parameters
 
 Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
 
@@ -232,7 +232,7 @@ var timeout = PrebidMobile.getTimeoutMillis()
 ### Creative Factory Timeout
 {:.no_toc}
 
-Indicates how long each creative has to load before it is considered a failure. 
+Indicates how long each creative has to load before it is considered a failure.
 
 ```kotlin
 PrebidMobile.setCreativeFactoryTimeout(7000);
@@ -262,7 +262,7 @@ var headers = HashMap<String, String> ()
 headers.put("custom-header-1", "prebid-in-action")
 
 PrebidMobile.setCustomHeaders(headers)
-        
+
 headers = PrebidMobile.getCustomHeaders()
 ```
 
@@ -303,7 +303,7 @@ PrebidMobile.setPbsDebug(true)
 
 You can pass some SDK configuration properties from PBS to the SDK using the `ext.prebid.passthrough` object, [supported](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#request-passthrough) by Prebid Server, in the stored request.
 
-For now Prebid SDK supports the following configuration properties: 
+For now Prebid SDK supports the following configuration properties:
 
 - `cftbanner` - see the `Prebid.creativeFactoryTimeout`
 - `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
@@ -357,7 +357,7 @@ In the table below, you can find Prebid's test IDs that are used in the Demo App
 {: .table .table-bordered .table-striped }
 
 | Config ID            | Ad Format        | Description            |
-| -------------------- | ---------------- | ---------------------- | 
+| -------------------- | ---------------- | ---------------------- |
 |`https://prebid-server-test-j.prebid.org/openrtb2/auction` | **Custom Prebid Server Host**|A PBS instance that is dedicated to testing purposes.|
 |`0689a263-318d-448b-a3d4-b02e8a709d9d`| **Stored Request ID**|The test account ID on the test server.|
 |`prebid-demo-banner-320-50`|**HTML Banner**|Returns a stored response that contains a Banner 320x50 winning bid.|
