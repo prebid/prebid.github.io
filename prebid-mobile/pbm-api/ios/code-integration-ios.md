@@ -251,8 +251,8 @@ You can pass some SDK configuration properties from PBS to the SDK using the `ex
 
 For now Prebid SDK supports the following configuration properties:
 
-- `cftbanner` - see the `Prebid.creativeFactoryTimeout`
-- `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
+* `cftbanner` - see the `Prebid.creativeFactoryTimeout`
+* `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
 
 An example of a stored request:
 
@@ -354,4 +354,3 @@ In the table below, you can find Prebid's test IDs that are used in the Demo App
 |`prebid-demo-video-interstitial-320-480`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid.|
 |`prebid-demo-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
 |`prebid-demo-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|
-
