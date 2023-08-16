@@ -8,6 +8,7 @@ biddercode: cadent_aperture_mx
 media_types: banner, video
 gdpr_supported: true
 gvl_id: 183
+gpp_supported: true
 usp_supported: true
 schain_supported: true
 floors_supported: true
