@@ -28,7 +28,7 @@ References:
 
 - [TCF Canada Infographic on Quebec Privacy Law](https://iabcanada.com/content/uploads/2022/04/IAB-Canada_Quebec-Privacy-Law-Inforgraphic.pdf)
 - [IAB Canada TCF Canada policies](https://iabcanada.com/tcf-canada/for-publishers/)
-- [IABTL's GPP Canada scetion spec](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/Canada/GPPExtension%3A%20IAB%20Canada%20TCF.md)
+- [IABTL's GPP Canada section spec](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/Canada/GPPExtension%3A%20IAB%20Canada%20TCF.md)
 
 Prebid.org cannot advise publishers on how to conform to privacy laws that affect their business. Instead, publishers should be aware of what privacy-related features Prebid supports so that their legal, product, and engineering teams can define a privacy implementation.
 
