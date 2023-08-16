@@ -282,6 +282,7 @@ Stored Bid Responses are similar to Stored Auction Responses in that they signal
 PrebidMobile.addStoredBidResponse("appnexus", "221144");
 PrebidMobile.addStoredBidResponse("rubicon", "221155");
 ```
+
 To stop sending stored bid response signals use the following method:
 
 ```kotlin

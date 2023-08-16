@@ -149,8 +149,8 @@ Prebid.initializeSDK(GADMobileAds.sharedInstance()) { status, error in
         }
     default:
         break
-    }            
-}            
+    }
+}
 ```
 
 Check the log messages of the app. If the provided GMA SDK version is not verified for compatibility, the Prebid SDK informs about it.
@@ -249,20 +249,20 @@ func clearCustomHeaders()
 
 You can pass some SDK configuration properties from PBS to the SDK using the `ext.prebid.passthrough` object, [supported](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#request-passthrough) by Prebid Server, in the stored request.
 
-For now Prebid SDK supports the following configuration properties: 
+For now Prebid SDK supports the following configuration properties:
 
 - `cftbanner` - see the `Prebid.creativeFactoryTimeout`
 - `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
 
 An example of a stored request:
 
-``` json
+```json
 {
   "app": {
     "publisher": {
       "ext": {
         "prebid": {
-          
+
         }
       }
     }
