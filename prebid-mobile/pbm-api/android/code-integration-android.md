@@ -24,7 +24,7 @@ If you are not familar with using Maven for build management visit the [Maven we
 
 To include the Prebid Mobile SDK simply add this line to your gradle dependencies to get the latest stable release:
 
-```
+```bash
 dependencies {
     ////
     
@@ -38,7 +38,7 @@ Prebid is going to release beta versions of the SDK from time to time. If you do
 
 If you still use the range notation like this:
 
-```
+```bash
 implementation 'org.prebid:prebid-mobile-sdk:[1,2)'
 ```
 
@@ -50,7 +50,7 @@ please change it to the strict version.
 
 After [cloning the repo](https://github.com/prebid/prebid-mobile-android), use Terminal or another command line tool to change to the root directory and run:
 
-```
+```bash
 scripts/buildPrebidMobile.sh
 ```
 
@@ -77,7 +77,7 @@ The corresponding Java code can be found in the [Demo Java](https://github.com/p
 
 Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add the 'account' info to Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
 
-```
+```kotlin
 PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
 ```
@@ -85,7 +85,7 @@ PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
 If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
 
 
-```
+```kotlin
 PrebidMobile.setPrebidServerHost(Host.createCustomHost(PREBID_SERVER_AUCTION_ENDPOINT))
 ```
 
@@ -113,7 +113,7 @@ Pay attention that SDK should be initialized on the main thread.
 
 During the initialization, SDK creates internal classes and performs the health check request to the [/status](https://docs.prebid.org/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If you use a custom PBS host you should provide a custom status endpoint as well:
 
-```
+```kotlin
 PrebidMobile.setCustomStatusEndpoint(PREBID_SERVER_STATUS_ENDPOINT)
 ```
 
@@ -234,7 +234,7 @@ var timeout = PrebidMobile.getTimeoutMillis()
 
 Indicates how long each creative has to load before it is considered a failure. 
 
-``` kotlin
+```kotlin
 PrebidMobile.setCreativeFactoryTimeout(7000);
 PrebidMobile.setCreativeFactoryTimeoutPreRenderContent(25000);
 ```
@@ -310,7 +310,7 @@ For now Prebid SDK supports the following configuration properties:
 
 An example of a stored request:
 
-``` json
+```json
 {
   "app": {
     "publisher": {
