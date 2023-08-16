@@ -62,7 +62,6 @@ If you see errors while building the Prebid Mobile SDK or Demo Applications, mak
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-
 ## Add SDK
 
 ### Set Prebid Server
@@ -83,7 +82,6 @@ PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
 ```
 
 If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
-
 
 ```kotlin
 PrebidMobile.setPrebidServerHost(Host.createCustomHost(PREBID_SERVER_AUCTION_ENDPOINT))
@@ -126,6 +124,7 @@ If you integrate Prebid Mobile with GMA SDK, use the following method, which che
 ```kotlin
 PrebidMobile.checkGoogleMobileAdsCompatibility(MobileAds.getVersion().toString())
 ```
+
 Check the log messages of the app. If the provided GMA SDK version is not verified for compatibility, the Prebid SDK will log a warning.
 
 ## Updating your Android manifest
@@ -147,10 +146,10 @@ Open your AndroidManifest.xml and add the following permissions and activity dec
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-**Notes:** 
+**Notes:**
 
-- `ACCESS_COARSE_LOCATION` or `ACCESS_FINE_LOCATION` will automatically allow the device to send user location for targeting, which can help increase revenue by increasing the value of impressions to buyers.
-- `WRITE_EXTERNAL_STORAGE` is optional and only required for MRAID 2.0 storePicture ads.
+* `ACCESS_COARSE_LOCATION` or `ACCESS_FINE_LOCATION` will automatically allow the device to send user location for targeting, which can help increase revenue by increasing the value of impressions to buyers.
+* `WRITE_EXTERNAL_STORAGE` is optional and only required for MRAID 2.0 storePicture ads.
 
 For *banner and interstitial ads only*, include the following custom activities (even though you won't instantiate them directly). This is not necessary for video interstitial ads.
 
@@ -193,7 +192,6 @@ Prebid supports the following versions by release:
 ## Setup SDK
 
 Apply global settings with the `PrebidMobile` object.
-
 
 ### AccountId
 {:.no_toc}
@@ -305,8 +303,8 @@ You can pass some SDK configuration properties from PBS to the SDK using the `ex
 
 For now Prebid SDK supports the following configuration properties:
 
-- `cftbanner` - see the `Prebid.creativeFactoryTimeout`
-- `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
+* `cftbanner` - see the `Prebid.creativeFactoryTimeout`
+* `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
 
 An example of a stored request:
 
@@ -344,11 +342,11 @@ All values received in the `passthrough` of the bid response will be applied to 
 
 Follow the corresponding guide to integrate Prebid Mobile:
 
-- [GAM using Original API](android-sdk-integration-gam-original-api.html)
-- [No Ad Server](../../modules/rendering/android-sdk-integration-pb.html)
-- [GAM using Rendering API](../../modules/rendering/android-sdk-integration-gam.html)
-- [AdMob](../../modules/rendering/android-sdk-integration-admob)
-- [AppLovin MAX](../../modules/rendering/android-sdk-integration-max.html)
+* [GAM using Original API](android-sdk-integration-gam-original-api.html)
+* [No Ad Server](../../modules/rendering/android-sdk-integration-pb.html)
+* [GAM using Rendering API](../../modules/rendering/android-sdk-integration-gam.html)
+* [AdMob](../../modules/rendering/android-sdk-integration-admob)
+* [AppLovin MAX](../../modules/rendering/android-sdk-integration-max.html)
 
 ### Test configs
 
