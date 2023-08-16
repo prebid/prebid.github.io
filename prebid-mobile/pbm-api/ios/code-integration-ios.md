@@ -202,6 +202,10 @@ public static let severe = LogLevel(stringValue: "[🔥]", rawValue: 5)
 
 `timeoutMillis`: The Prebid timeout (accessible to Prebid SDK 1.2+), set in milliseconds, will return control to the ad server SDK to fetch an ad once the expiration period is achieved. Because Prebid SDK solicits bids from Prebid Server in one payload, setting Prebid timeout too low can stymie all demand resulting in a potential negative revenue impact.
 
+`creativeFactoryTimeout`: Controls how long banner creative has to load before it is considered a failure.
+
+`creativeFactoryTimeoutPreRenderContent`: Controls how long video and interstitial creatives have to load before it is considered a failure.
+
 `storedAuctionResponse`: Set as type string, stored auction responses signal Prebid Server to respond with a static response matching the storedAuctionResponse found in the Prebid Server Database, useful for debugging and integration testing. No bid requests will be sent to any bidders when a matching storedAuctionResponse is found. For more information on how stored auction responses work, refer to the written [description on github issue 133](https://github.com/prebid/prebid-mobile-android/issues/133).
 
 `pbsDebug`: adds the debug flag ("test":1) on the outbound http call to Prebid Server. The test:1 flag will signal to Prebid Server to emit the full resolved request (resolving any Stored Request IDs) as well as the full Bid Request and Bid Response to and from each bidder.
@@ -240,6 +244,47 @@ func addCustomHeader(name: String, value: String)
 ```swift
 func clearCustomHeaders() 
 ```
+
+### Server Side Configuration
+
+You can pass some SDK configuration properties from PBS to the SDK using the `ext.prebid.passthrough` object, [supported](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#request-passthrough) by Prebid Server, in the stored request.
+
+For now Prebid SDK supports the following configuration properties: 
+
+- `cftbanner` - see the `Prebid.creativeFactoryTimeout`
+- `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
+
+An example of a stored request:
+
+``` json
+{
+  "app": {
+    "publisher": {
+      "ext": {
+        "prebid": {
+          
+        }
+      }
+    }
+  },
+  "ext": {
+    "prebid": {
+      "passthrough": [
+        {
+          "type": "prebidmobilesdk",
+          "sdkconfiguration": {
+            "cftbanner": 42,
+            "cftprerender": 4242
+          }
+        }
+      ]
+    }
+  },
+  "test": 1
+}
+```
+
+All values received in the `passthrough` of the bid response will be applied to the respective `Prebid.*` properties with the highest priority. After that, the SDK will utilize new values received in the bid response.
 
 ### Examples
 {:.no_toc}
