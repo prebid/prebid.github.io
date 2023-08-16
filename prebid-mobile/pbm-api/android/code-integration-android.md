@@ -229,6 +229,17 @@ PrebidMobile.setTimeoutMillis(3000)
 var timeout = PrebidMobile.getTimeoutMillis()
 ```
 
+### Creative Factory Timeout
+{:.no_toc}
+
+Indicates how long each creative has to load before it is considered a failure. 
+
+``` kotlin
+PrebidMobile.setCreativeFactoryTimeout(7000);
+PrebidMobile.setCreativeFactoryTimeoutPreRenderContent(25000);
+```
+
+The `creativeFactoryTimeoutPreRenderContent` controls the timeout for video and interstitial ads. The `creativeFactoryTimeout` is used for HTML banner ads.
 
 ### ShareGeoLocation
 {:.no_toc}
@@ -287,6 +298,47 @@ void clearStoredBidResponses()
 ```kotlin
 PrebidMobile.setPbsDebug(true)
 ```
+
+### Server Side Configuration
+
+You can pass some SDK configuration properties from PBS to the SDK using the `ext.prebid.passthrough` object, [supported](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#request-passthrough) by Prebid Server, in the stored request.
+
+For now Prebid SDK supports the following configuration properties: 
+
+- `cftbanner` - see the `Prebid.creativeFactoryTimeout`
+- `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
+
+An example of a stored request:
+
+``` json
+{
+  "app": {
+    "publisher": {
+      "ext": {
+        "prebid": {
+          
+        }
+      }
+    }
+  },
+  "ext": {
+    "prebid": {
+      "passthrough": [
+        {
+          "type": "prebidmobilesdk",
+          "sdkconfiguration": {
+            "cftbanner": 42,
+            "cftprerender": 4242
+          }
+        }
+      ]
+    }
+  },
+  "test": 1
+}
+```
+
+All values received in the `passthrough` of the bid response will be applied to the respective `Prebid.*` properties with the highest priority. After that, the SDK will utilize new values received in the bid response.
 
 ## Integrate Ad Units
 
