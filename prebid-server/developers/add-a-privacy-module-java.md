@@ -207,3 +207,70 @@ public sealed interface AccountPrivacyModuleConfig permits
     // methods
 }
 ```
+
+## Privacy Module bean configuration
+
+Privacy module beans must be inside the destined configuration class: `ActivityInfrastructureConfiguration.PrivacyModuleCreatorConfiguration`
+
+### Privacy Module bean configuration example
+
+If there is only one bean associated with the privacy module:
+```java
+@Configuration
+static class PrivacyModuleCreatorConfiguration {
+
+    // other privacy modules
+    
+    @Bean
+    MyPrivacyModuleCreator myPrivacyModuleCreator() {
+        return new MyPrivacyModuleCreator();
+    }
+}
+```
+
+If there are multiple beans associated with the privacy module:
+```java
+@Configuration
+static class PrivacyModuleCreatorConfiguration {
+
+    // other privacy modules
+    
+    @Configuration
+    static class MyPrivacyModuleCreatorConfiguration {
+
+        @Bean
+        MyPrivacyModuleDependency myPrivacyModuleDependency() {
+            return new MyPrivacyModuleDependency();
+        }
+
+        @Bean
+        MyPrivacyModuleCreator myPrivacyModuleCreator(MyPrivacyModuleDependency myPrivacyModuleDependency) {
+            return new MyPrivacyModuleCreator(myPrivacyModuleDependency);
+        }
+    }
+}
+```
+
+## Adding support for trace log
+
+To be able to debug the Activity Infrastructure and be able to track interactions with your privacy module, it is recommended that your `PrivacyModule` implement the `Loggable` interface.
+
+`Loggable` consists of methods that must be implemented:
+
+* `asLogEntry(...)` - returns `JsonNode` that can represent any desired structure to include in the trace log.
+
+For example:
+```java
+public class MyPrivacyModule implements PrivacyModule, Loggable {
+
+    // privacy module code
+
+    @Override
+    public JsonNode asLogEntry(ObjectMapper mapper) {
+        return TextNode.valueOf(
+                "%s forbidding %d section.".formatted(
+                        MyPrivacyModule.class.getSimpleName(),
+                        forbiddenSection));
+    }
+}
+```
