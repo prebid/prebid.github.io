@@ -260,6 +260,7 @@ To be able to debug the Activity Infrastructure and be able to track interaction
 * `asLogEntry(...)` - returns `JsonNode` that can represent any desired structure to include in the trace log.
 
 For example:
+
 ```java
 public class MyPrivacyModule implements PrivacyModule, Loggable {
 
