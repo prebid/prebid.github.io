@@ -215,6 +215,7 @@ Privacy module beans must be inside the destined configuration class: `ActivityI
 ### Privacy Module bean configuration example
 
 If there is only one bean associated with the privacy module:
+
 ```java
 @Configuration
 static class PrivacyModuleCreatorConfiguration {
@@ -229,6 +230,7 @@ static class PrivacyModuleCreatorConfiguration {
 ```
 
 If there are multiple beans associated with the privacy module:
+
 ```java
 @Configuration
 static class PrivacyModuleCreatorConfiguration {
