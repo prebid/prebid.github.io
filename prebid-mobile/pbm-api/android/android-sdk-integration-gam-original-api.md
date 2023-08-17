@@ -1050,32 +1050,39 @@ Render a native ad:
 
 ```kotlin
 private fun inflatePrebidNativeAd(ad: PrebidNativeAd, wrapper: ViewGroup) {
+  val nativeContainer = View.inflate(wrapper.context, R.layout.layout_native, null)
 
-    val nativeContainer = View.inflate(wrapper.context, R.layout.layout_native, null)
-    ad.registerView(nativeContainer, object : PrebidNativeAdEventListener {
-        override fun onAdClicked() {}
-        override fun onAdImpression() {}
-        override fun onAdExpired() {}
-    })
+  val icon = nativeContainer.findViewById<ImageView>(R.id.imgIcon)
+  ImageUtils.download(ad.iconUrl, icon)
 
-    val icon = nativeContainer.findViewById<ImageView>(R.id.imgIcon)
-    ImageUtils.download(ad.iconUrl, icon)
+  val title = nativeContainer.findViewById<TextView>(R.id.tvTitle)
+  title.text = ad.title
 
-    val title = nativeContainer.findViewById<TextView>(R.id.tvTitle)
-    title.text = ad.title
+  val image = nativeContainer.findViewById<ImageView>(R.id.imgImage)
+  ImageUtils.download(ad.imageUrl, image)
 
-    val image = nativeContainer.findViewById<ImageView>(R.id.imgImage)
-    ImageUtils.download(ad.imageUrl, image)
+  val description = nativeContainer.findViewById<TextView>(R.id.tvDesc)
+  description.text = ad.description
 
-    val description = nativeContainer.findViewById<TextView>(R.id.tvDesc)
-    description.text = ad.description
+  val cta = nativeContainer.findViewById<Button>(R.id.btnCta)
+  cta.text = ad.callToAction
 
-    val cta = nativeContainer.findViewById<Button>(R.id.btnCta)
-    cta.text = ad.callToAction
+  ad.registerView(nativeContainer, Lists.newArrayList(icon, title, image, description, cta), SafeNativeListener())
 
-    wrapper.addView(nativeContainer)
+  wrapper.addView(nativeContainer)
 }
 ```
+
+The listener that you put in registerView() method must not contain any references to View or Activity to prevent memory leak because this listener can remain in the memory for a long time. It's okay to put null listener if you don't need it. It's better to use class implementation with WeakReferences instead of anonymous objects. In Java inner class implementation must be static.
+```kotlin
+private class SafeNativeListener : PrebidNativeAdEventListener {
+  override fun onAdClicked() {}
+  override fun onAdImpression() {}
+  override fun onAdExpired() {}
+}
+```
+
+
 #### Step 1: Create a NativeAdUnit
 {:.no_toc}
 
