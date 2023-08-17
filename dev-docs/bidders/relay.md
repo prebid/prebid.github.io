@@ -30,6 +30,6 @@ sidebarType: 1
 
 ### Note
 
-The Relay Bid Adapter makes requests to the Relay Exchange API which supports OpenRTB. 
-Therefore the only bid param required is the the `accountId`, all Prebid Ad Unit fields will be automatically inferred via Prebid's ORTB Converter.
-If any field on the request requires customization it is configurable using [First Party Data - Prebid.js](https://docs.prebid.org/features/firstPartyData.html#supplying-adunit-specific-data)
+The Relay Bid Adapter makes requests to the Relay Exchange API which supports OpenRTB.
+
+Therefore the only bid param required is the the `accountId`, all Prebid Ad Unit fields will be automatically inferred via Prebid's ORTB Converter. If any field on the request requires customization it is configurable using [First Party Data - Prebid.js](https://docs.prebid.org/features/firstPartyData.html#supplying-adunit-specific-data) via `ortb2` interface.
