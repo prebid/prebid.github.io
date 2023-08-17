@@ -1,0 +1,209 @@
+---
+layout: page_v2
+sidebarType: 5
+title: Prebid Server | Developers | Adding a Java Privacy Module
+
+---
+
+# Prebid Server - Adding a Java Privacy Module
+
+{: .no_toc}
+
+* TOC
+  {:toc }
+
+## Overview
+
+This document details how to make a privacy module for PBS-Java.
+
+You will want to be familiar with the following background information:
+
+- the [Prebid and the IAB Global Privacy Platform](https://docs.google.com/document/d/1dRxFUFmhh2jGanzGZvfkK_6jtHPpHXWD7Qsi6KEugeE)
+
+## Coding standards
+
+The module’s code style should correspond to
+the [PBS-Java project code style](https://github.com/prebid/prebid-server-java/blob/master/docs/developers/code-style.md).
+
+### Privacy Module Directory Layout
+
+The source code of your privacy module must be inside packages:
+
+```
+org.prebid.server.activity.infrastructure.creator.privacy.YOUR_PRIVACY_MODULE_NAME
+    <- Privacy Module provider
+    
+org.prebid.server.activity.infrastructure.privacy.YOUR_PRIVACY_MODULE_NAME
+    <- Privacy Module implementation
+    
+org.prebid.server.settings.model.activity.privacy.YOUR_PRIVACY_MODULE_NAME
+    <- Account config for your Privacy Module (if presented as a single class, then a separate package isn’t required)
+```
+
+### Module Code
+
+The quick start is to take a look in three places:
+
+- the [USNat Privacy Module](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/activity/infrastructure/privacy/usnat)
+- the [USNat Privacy Module creator](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/activity/infrastructure/creator/privacy/usnat)
+- the [account config for USNat Privacy Module](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/settings/model/activity/privacy/AccountUSNatModuleConfig.java)
+
+## Privacy Module interface
+
+Among the Prebid server processing workflow, there are several 'activities' that require permission from the Activity
+Infrastructure to run.
+
+The available activities that the Activity Infrastructure can control can be found in the corresponding
+enum: [Activity](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/activity/Activity.java).
+
+Whenever a workflow ask permission to perform an activity, the configured rules will be processed. All rules implement
+the `Rule` interface. In accordance with this, every privacy module implements `PrivacyModule` interface, which
+inherits `Rule` interface, with methods should be implemented:
+
+- `proceed(...)` - returns one of the privacy module answers: `ALLOW`, `DISALLOW`, `ABSTAIN`.
+
+### Privacy Module example
+
+```
+public class MyPrivacyModule implements PrivacyModule {
+
+    private final GppModel gppModel;
+    private final int forbbidenSection;
+
+    private MyPrivacyModule(GppModel gppModel, int forbbidenSection) {
+        this.gppModel = gppModel;
+        this.forbbidenSection = forbbidenSection
+    }
+
+    @Override
+    public Result proceed(ActivityInvocationPayload activityInvocationPayload) {
+        return gppModel != null && gppModel.hasSection(forbbidenSection) 
+                ? Result.DISALLOW 
+                : Result.ABSTAIN;
+    }
+}
+```
+
+## Privacy Module creator interface
+
+The lifecycle of a privacy module is defined by `PrivacyModuleCreator`. Possible life cycles:
+
+- one for the server - if the creator always returns the same privacy module that was created when the server started
+- one for a period of time (cached) - (for example) if the creator will create a new privacy module every time the
+  associated account is updated
+- one per request - if the creator always returns a new privacy module
+
+`PrivacyModuleCreator` consists of methods that must be implemented:
+
+- `qualifier()` - returns privacy module qualifier.
+- `from(...)` - returns created privacy module.
+
+### Privacy Module creator example
+
+```
+public class MyPrivacyModuleCreator implements PrivacyModuleCreator {
+
+    @Override
+    public PrivacyModuleQualifier qualifier() {
+        return PrivacyModuleQualifier.MY_PRIVACY_MODULE;
+    }
+
+    @Override
+    public PrivacyModule from(PrivacyModuleCreationContext creationContext) {
+        final MyPrivacyModuleConfig moduleConfig = moduleConfig(creationContext);
+        final GppModel gppModel = creationContext.getGppContext().scope().getGppModel();
+
+        final List<PrivacyModule> innerPrivacyModules = SetUtils.emptyIfNull(moduleConfig.getForbiddenSections())
+                .stream()
+                .filter(Objects::nonNull)
+                .map(forbiddenSection -> new MyPrivacyModule(gppModel, forbiddenSection))
+                .toList();
+
+        return new AndPrivacyModules(innerPrivacyModules);
+    }
+
+    private static MyPrivacyModuleConfig moduleConfig(PrivacyModuleCreationContext creationContext) {
+        return (MyPrivacyModuleConfig) creationContext.getPrivacyModuleConfig();
+    }
+}
+```
+
+## Privacy Module qualifier
+
+`PrivacyModuleQualifier` is an enumeration containing all possible unique names of the privacy modules supported by this
+server instance.
+
+### Privacy Module qualifier example
+
+```
+public enum PrivacyModuleQualifier {
+
+    // other qualifiers
+    
+    @JsonProperty(Names.MY_PRIVACY_MODULE)      <- required when adding MY_PRIVACY_MODULE
+    MY_PRIVACY_MODULE(Names.MY_PRIVACY_MODULE); <- required when adding MY_PRIVACY_MODULE
+
+    // fields and methods
+
+    public static class Names {
+
+        // other names
+        
+        public static final String MY_PRIVACY_MODULE = "privacy.my-module"; <- required when adding MY_PRIVACY_MODULE
+    }
+}
+
+```
+
+## Privacy Module account configuration
+
+Any privacy module must be configured in the account configuration to affect Prebid server processing workflow.
+
+When adding a new privacy module, it is important to create an appropriate configuration class. The configuration class
+must implement the `AccountPrivacyModuleConfig` interface, with methods should be implemented:
+
+- `getCode()` - returns privacy module qualifier.
+- `enabled()` - returns boolean. `null` or `true` means that this privacy module is 'on'.
+
+IMPORTANT. Because the Prebid server can merge account configurations from different locations, make sure:
+
+```
+deserializeFromJson(serializeToJson(config object)) == config object
+```
+
+### Privacy Module account configuration example
+
+```
+@Value(staticConstructor = "of")
+public class MyPrivacyModuleConfig implements AccountPrivacyModuleConfig {
+
+    @Accessors(fluent = true)
+    Boolean enabled;
+
+    Set<Integer> forbiddenSections;
+
+    @Override
+    public PrivacyModuleQualifier getCode() {
+        return PrivacyModuleQualifier.MY_PRIVACY_MODULE;
+    }
+}
+```
+
+```
+package org.prebid.server.settings.model.activity.privacy;
+
+
+@JsonSubTypes({
+        // other privacy modules
+        
+        @JsonSubTypes.Type(                                                 <- relationship between configuration class and privacy module name
+                value = MyPrivacyModuleConfig.class,                        <- configuration class
+                name = PrivacyModuleQualifier.Names.MY_PRIVACY_MODULE)})    <- privacy module name
+public sealed interface AccountPrivacyModuleConfig permits
+        // other privacy modules
+        
+        MyPrivacyModuleConfig { <- configuration class must be listed after 'permits' keyword 
+
+    // methods
+}
+```
