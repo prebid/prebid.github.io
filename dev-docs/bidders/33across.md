@@ -5,7 +5,7 @@ description: Prebid 33Across Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: 33across
-media_types: banner, video, no-native
+media_types: banner, video
 tcfeu_supported: true
 floors_supported: true
 schain_supported: true
