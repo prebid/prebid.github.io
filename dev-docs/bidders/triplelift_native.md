@@ -3,7 +3,7 @@ layout: bidder
 title: TripleLift Native
 description: Prebid TripleLift Native Bidder Adapter
 biddercode: triplelift_native
-gdpr_supported: true
+tcfeu_supported: true
 tcf2_supported: true
 usp_supported: true
 coppa_supported: true
@@ -23,10 +23,10 @@ sidebarType: 1
 ---
 
 {: .alert.alert-info :}
-This is a Prebid Server adapter for running component native only. For the standard Prebid JS Triplelift bid adapter, see the "Triplelift" bidder. If you are interested in running component native via Prebid JS, please contact us at prebid@triplelift.com.
+This is a Prebid Server adapter for running component native only. For the standard Prebid JS Triplelift bid adapter, see the "Triplelift" bidder. If you are interested in running component native via Prebid JS, please contact us at <prebid@triplelift.com>.
 
 {: .alert.alert-info :}
-The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at prebid@triplelift.com.
+The Triplelift Prebid Server bidding adapter and user sync endpoint require setup before beginning. Please contact us at <prebid@triplelift.com>.
 
 ### Table of Contents
 
@@ -34,7 +34,7 @@ The Triplelift Prebid Server bidding adapter and user sync endpoint require setu
 - [Bid Params](#bid-params)
 - [First Party Data](#first-party-data)
 
-<a name="triplelift-bid-params" />
+<a name="triplelift-bid-params"></a>
 
 ### Bid Params
 
@@ -44,10 +44,11 @@ The Triplelift Prebid Server bidding adapter and user sync endpoint require setu
 | inventoryCode | required | TripleLift inventory code for this ad unit (provided to you by your partner manager) | 'code1' | string |
 | floor | optional | the bid floor, in usd | 1.2 | number |
 
-<a name="triplelift-first-party" />
+<a name="triplelift-first-party"></a>
 
 ### First Party Data
 
 Triplelift supports standard IAB OpenRTB 2.5 First Party Data fields, including:
+
 - `site.*`
 - `user.*`

@@ -11,4 +11,4 @@ sidebarType: 5
 
 Several Prebid.org members host Prebid Server clusters for use by publishers.
 
-See [https://prebid.org/product-suite/managed-services/](https://prebid.org/product-suite/managed-services/).
+See [prebid.org/product-suite/managed-services/](https://prebid.org/product-suite/managed-services/).

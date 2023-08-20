@@ -8,5 +8,4 @@ prebid_member: true
 
 #### Registration
 
-Please visit [https://livewrapped.com/](https://livewrapped.com/) for more information.
-
+Please visit [livewrapped.com/](https://livewrapped.com/) for more information.

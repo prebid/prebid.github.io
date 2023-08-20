@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: mgid
 media_types: banner,native
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 gvl_id: 358
 floors_supported: true
@@ -23,7 +23,7 @@ sidebarType: 1
 - [Test Parameters](#test-parameters)
 - [User Sync](#user-sync)
 
-<a name="mgid-bid-desc" />
+<a name="mgid-bid-desc"></a>
 
 ### Description
 
@@ -31,7 +31,7 @@ One of the easiest way to gain access to MGID demand sources  - MGID header bidd
 
 MGID header bidding adapter connects with MGID demand sources to fetch bids for display placements. Please reach out to your account manager or <prebid@mgid.com> for more information.
 
-<a name="mgid-bid-params" />
+<a name="mgid-bid-params"></a>
 
 ### Bid params
 
@@ -43,13 +43,13 @@ MGID header bidding adapter connects with MGID demand sources to fetch bids for 
 | `bidFloor`   | optional | Lowest value of expected bid price | `1.1`      | `float`  |
 | `currency`   | optional | Currency of request and response   | `'GBP'`    | `string` |
 
-
-<a name="mgid-test-params" />
+<a name="mgid-test-params"></a>
 
 ### Test Parameters
 
 300x600 banner test
-```
+
+```javascript
 var adUnits = [{
   code: 'div-prebid',
   mediaTypes: {
@@ -68,7 +68,8 @@ var adUnits = [{
 ```
 
 300x250 banner test
-```
+
+```javascript
 var adUnits = [{
   code: 'div-prebid',
   mediaTypes: {
@@ -87,7 +88,8 @@ var adUnits = [{
 ```
 
 native test
-```
+
+```javascript
 var adUnits = [{
   code: 'div-prebid',
   mediaTypes: {
@@ -120,7 +122,7 @@ var adUnits = [{
 }];
 ```
 
-<a name="mgid-user-sync" />
+<a name="mgid-user-sync"></a>
 
 ### User Sync
 

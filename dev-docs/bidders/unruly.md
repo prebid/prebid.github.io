@@ -3,7 +3,7 @@ layout: bidder
 title: Unruly
 description: Prebid Unruly Bidder Adaptor
 biddercode: unruly
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: false
 schain_supported: true

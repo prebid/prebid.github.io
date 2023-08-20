@@ -38,7 +38,7 @@ This approach is avaliable for the following ad formats:
 
 The basic integration steps for these ad units you can find at the page for integration using [Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html). The diference is that you should use  the `fetchDemand` function with following signature:
 
-``` kotlin
+```kotlin
 public void fetchDemand(@NonNull Object adObj, 
                         @NonNull OnCompleteListener2 listener) { ... }
                         
@@ -56,7 +56,7 @@ public interface OnCompleteListener2 {
 
 Examples:
 
-``` kotlin
+```kotlin
 private fun loadRewardedVideo() {
     adUnit?.fetchDemand { resultCode, unmodifiableMap -> 
         val keywords: Map<String, String> = HashMap(unmodifiableMap)
@@ -78,7 +78,7 @@ The integration and usage of the Rendering API is similar to any other Ad SDK. I
 Integration example:
 
 
-``` kotlin
+```kotlin
 // 1. Create an Ad View
 bannerView = BannerView(requireContext(), configId, adSize)
 bannerView?.setBannerListener(this)
@@ -116,7 +116,7 @@ Call `loadAd()` and SDK will:
 
 For **Banner Video** you will also need to specify the `bannerView.videoPlacementType`:
 
-``` kotlin
+```kotlin
 bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
 ```
 
@@ -124,7 +124,7 @@ bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other availabl
 
 Integration example:
 
-``` kotlin
+```kotlin
 // 1. Create an Interstitial Ad Unit
 interstitialAdUnit = InterstitialAdUnit(requireContext(), configId, minSizePercentage)
 interstitialAdUnit?.setInterstitialAdUnitListener(this)
@@ -173,7 +173,7 @@ Call the `loadAd()` to make a bid request.
 
 Wait until the ad is loaded and present it to the user in any suitable time.
 
-``` kotlin
+```kotlin
 override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
     //Ad is ready for display
 }
@@ -183,7 +183,7 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 
 Integration example:
 
-``` kotlin
+```kotlin
 // 1. Create an Ad Unit
 rewardedAdUnit = RewardedAdUnit(requireContext(), configId)
 rewardedAdUnit?.setRewardedAdUnitListener(this)
@@ -219,7 +219,7 @@ Call the `loadAd()` to make a bid request.
 
 Wait until the ad is loaded and present it to the user in any suitable time.
 
-``` kotlin
+```kotlin
 override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 //Ad is ready for display
 }

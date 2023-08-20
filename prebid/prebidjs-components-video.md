@@ -12,6 +12,7 @@ An explanation of Prebid.js’ components and a guide to using Prebid.js referen
 <div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/826314008?h=ec9fad7080&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Components of Prebid.js"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 Further Content:
+
 - [Ad Unit Reference](/dev-docs/adunit-reference.html)
 - [Bidder Params Reference](/dev-docs/bidders.html)
 - [Modules Overview](/dev-docs/modules/)
@@ -21,6 +22,7 @@ Further Content:
 - [All videos](/overview/all-videos.html)
 
 Related Videos
+
 - [Introduction to Prebid.js](/prebid/prebidjs-video.html)
 - [Prebid.js Impression Flow](/prebid/prebidjs-flow-video.html)
 - [Identity in Prebid.js](/identity/prebid-identity-video.html)
@@ -29,7 +31,7 @@ Related Videos
 
 ### Introduction
 
-This video will take a tour of Prebid.js. We’ll show you Prebid.js’ basic components and explain how they work together to serve ads. 
+This video will take a tour of Prebid.js. We’ll show you Prebid.js’ basic components and explain how they work together to serve ads.
 
 The video assumes that you have a basic understanding of what Prebid.js does. For some background, check out our other videos, including the Introduction to Prebid.js, and the Prebid.js Impression Flow, which walks through a Prebid.js auction step-by-step.
 
@@ -41,13 +43,13 @@ Modules are optional components that extend Prebid.js’ capabilities. There are
 
 Bid adapters are functional components that allow bidders to be integrated into Prebid.js. Each bidder has its own bid adapter.
 
-Finally, Ad Units are where ad slots are defined within Prebid.js. They describe the characteristics of ad slots and are used to determine the set of bidders that are allowed to serve on each slot. 
+Finally, Ad Units are where ad slots are defined within Prebid.js. They describe the characteristics of ad slots and are used to determine the set of bidders that are allowed to serve on each slot.
 
 Now we’ll explore modules, bid adapters, and ad units in more detail. As we go, we’ll refer to the relevant sections of the Prebid.js reference documentation, which lives at docs.prebid.org. Check the notes section below this video for links to all of the documentation referred to in the video.
 
 ### Bid Adapters
 
-We’ll start with bid adapters. 
+We’ll start with bid adapters.
 
 Bid adapters are plugins that enable Prebid.js to send bid requests to and receive bid responses from bidders. A company that wants to be able to compete in Prebid auctions builds their own bid adapter and contributes it to the Prebid repository
 
@@ -63,9 +65,9 @@ Each ad unit has a unique identifier called an ad unit code, and includes two ke
 
 #### Media Types
 
-Media Types define the ad formats that the ad placement can display, such as banner, native, or video. Within the mediaType configuration, the publisher describes the characteristics of the ad slot. 
+Media Types define the ad formats that the ad placement can display, such as banner, native, or video. Within the mediaType configuration, the publisher describes the characteristics of the ad slot.
 
-For example, the banner ad mediaType allows the publisher to specify the dimensions of the slot, and the video mediaType lets the publisher specify whether the slot is an instream or outstream placement. 
+For example, the banner ad mediaType allows the publisher to specify the dimensions of the slot, and the video mediaType lets the publisher specify whether the slot is an instream or outstream placement.
 
 An ad unit can include multiple mediaTypes, which makes the slot a multi-format slot.
 
@@ -105,7 +107,6 @@ As we’ve already seen, much of a Prebid.js integration’s parameters are conf
 
 Many of Prebid’s most important settings live here, including bidder timeout, user sync settings, and price granularity.
 
-Detailed documentation of the Prebid.js configuration can be found in the publisher API reference. https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html
+Detailed documentation of the Prebid.js configuration can be found in the publisher API reference. <https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html>
 
 That’s it for this overview of Prebid.js for more information, check the links in the description below or visit docs.prebid.org.
-

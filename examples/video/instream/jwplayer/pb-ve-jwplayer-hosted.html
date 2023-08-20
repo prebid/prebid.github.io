@@ -8,11 +8,11 @@ sidebarType: 4
 ---
 
 <div class="container">
-	<div class="row">
-		<div class="vidHeader" style="width:75vw;">
-			<h1>{{ page.title }}</h1>
-			<p>{{page.description }}</p>
-		</div>
+    <div class="row">
+        <div class="vidHeader" style="width:75vw;">
+            <h1>{{ page.title }}</h1>
+            <p>{{page.description }}</p>
+        </div>
 
     <div id="videoExample" class="col-md-12">
       <h2>(Sorry, video code examples aren't available with your cookie privacy settings.)</h2>
@@ -154,11 +154,11 @@ sidebarType: 4
         OneTrust.InsertHtml(exampleHTML, 'videoExample', null, {deleteSelectorContent: true}, 'C0003');
       })
     </script>
-	</div>
+    </div>
 </div>
 
 <!--video player code-->
-	<script>
+    <script>
       function runJWPlayer(url) {
         const jwPlayerInstance = jwplayer("playerContainerJW");
 
@@ -181,6 +181,5 @@ sidebarType: 4
 
           invokeVideoPlayer(url);
       }
-	</script>
+    </script>
 
-	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
