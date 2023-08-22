@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: conversant
 media_types: video
-gdpr_supported: true
+tcfeu_supported: true
 userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId, publinkId
 prebid_member: true
 schain_supported: true
@@ -41,7 +41,6 @@ sidebarType: 1
 | `api`         | optional                    | Array of supported API frameworks. See details below.                                                                     | `[2]`             | `Array<integer>` |
 | `protocols`   | optional                    | Array of supported video protocols. See details below.                                                                    | `[2]`             | `Array<integer>` |
 
-
 Video parameters can be included in either `mediaTypes.video` or `bids.params` except where noted.
 
 The following values are defined in the [ORTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf).
@@ -66,7 +65,9 @@ The following values are defined in the [ORTB 2.5 spec](https://www.iab.com/wp-c
 + `6` : MRAID 3.0
 
 <a id="epsilon-protocols"></a>
+
 ### protocols
+
 + `1` : VAST 1.0
 + `2` : VAST 2.0
 + `3` : VAST 3.0
@@ -79,8 +80,10 @@ The following values are defined in the [ORTB 2.5 spec](https://www.iab.com/wp-c
 + `10` : DAAST 1.0 Wrapper
 
 ### First Party Data
+
 Publishers should use the `ortb2` method of setting for setting First Party Data.
 Example first party data configuration that is available to all adUnits
+
 ```
 pbjs.setConfig({
     debug: true,
@@ -98,9 +101,10 @@ pbjs.setConfig({
         } 
     }
 });
-``` 
+```
 
 Example AdUnit specific data using the `ortb2Imp` object
+
 ```
         var videoAdUnit = {
             code: 'video1',
@@ -130,4 +134,3 @@ Example AdUnit specific data using the `ortb2Imp` object
             pbjs.addAdUnits(videoAdUnits);
         }
 ```
-

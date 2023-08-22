@@ -39,13 +39,16 @@ Throughout the rest of this document, substitute `{bidder}` with the name you've
 
 We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://prebid.org/code-of-conduct/) and [module rules](/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
 
-**Please take the time to read our rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
-- Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
-- Adapters must use the functions provided by the core framework for all external communication. Initiation of any form of network connection outside of what is provided by the core framework is strictly prohibited. No exceptions will be made for this rule.
-- Adapters must support the creation of multiple concurrent instances. This means adapters may not mutate global or package scoped variables.
-- Bidding server endpoints should prefer secure HTTPS to protect user privacy and should allow keep alive connections (preferably with HTTP/2 support) to increase host performance.
-- Adapters must include maintainer information with a group email address for Prebid.org to contact for ongoing support and maintenance.
-- Adapters must annotate the bid response with the proper media type, ideally based on the response from the bidding server.
+**Please take the time to read the rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
+  - Adapters must include maintainer information with a group email address for Prebid.org to contact for ongoing support and maintenance.
+  - Your bidder's endpoint domain name cannot be variable. If you want to have different endpoints in different geographical locations, Prebid Server host companies can do that for you. Publisher information can be in the query string, but not the domain.
+  - If you have a client-side adapter, all parameters (including biddercodes and aliases) must be consistent between your client- and server-side adapters. This allows publishers to utilize the PBJS [s2sTesting module](/dev-docs/modules/s2sTesting.html).
+  - Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
+  - Adapters must use the functions provided by the core framework for all external communication. Initiation of any form of network connection outside of what is provided by the core framework is strictly prohibited. No exceptions will be made for this rule.
+  - Adapters must support the creation of multiple concurrent instances. This means adapters may not mutate global or package scoped variables.
+  - Bidding server endpoints should prefer secure HTTPS to protect user privacy and should allow keep alive connections (preferably with HTTP/2 support) to increase host performance.
+  - Adapters must annotate the bid response with the proper media type, ideally based on the response from the bidding server.
+  - Bid adapters must not create their own transaction IDs or overwrite the tids supplied by Prebid.
 
 {: .alert.alert-warning :}
 Failure to follow the rules will lead to delays in approving your adapter for inclusion in Prebid Server. If you'd like to discuss an exception to a rule, please make your request by [submitting a GitHub issue](https://github.com/prebid/prebid-server-java/issues/new).
@@ -184,6 +187,11 @@ to declare alias of an alias).
 However aliases could narrow down media types they support.<br />
 For example: if the bidder is written to not support native site requests, then an alias cannot magically decide to change that;
 However, if a bidder supports native site requests, and the alias does not want to for some reason, it has the ability to remove that support.
+
+{: .alert.alert-info :}
+Note on aliases and TCF Global Vendor List IDs: if an alias entry does not have its own GVLID but wishes to claim GDPR support,
+the documentation entry (The file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) must list the GVLID of the main adapter with that company's name in parentheses.
+Look for other doc entries containing an `aliasCode` metadata entry.
 
 ### Bidder Parameters
 
@@ -621,6 +629,53 @@ Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.
 
 <p></p>
 
+#### Better Analytics 
+
+The [seatnonbid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) feature allows analytics adapters to piece together what happened in the auction when there's not a bid. This can be helpful to everyone involved: the publisher can get insight into why a bidder might not be bidding, which might lead them to update bid parameters or otherwise fix a setup problem.
+
+To implement this enhanced analytics, bidders just need to link errors and non-bids to a specific impression id:
+
+1. Provide impression ids that are covered by particular http request to bidder endpoint:
+   When bidder creates http requests in `makeHttpRequests` method of bidder adapter class, utilize `.impIds(Set<String>)` method of `HttpRequest<T>` class. (hint, if bidder uses ortb as its main protocol it can utilize `impIds` method of `BidderUtil` class), for example:</br>
+   ```java 
+   HttpRequest.<BidRequest>builder()
+       .method(HttpMethod.POST)
+       .uri(uri)
+       .body(mapper.encodeToBytes(bidRequest))
+       .headers(headers)
+       .payload(bidRequest)
+       .impIds(BidderUtil.impIds(bidRequest))
+       .build();
+   ```
+   or more generic case:</br>
+    ```java 
+    HttpRequest.<YourModel>builder()
+        .method(HttpMethod.POST)
+        .uri(uri)
+        .body(mapper.encodeToBytes(bidRequest))
+        .headers(headers)
+        .payload(bidRequest)
+        .impIds(Set.of(impId1, impId2))
+        .build();
+    ```
+
+2. When bidder drops impression in `makeHttpRequests` or bid in `makeBids` methods in bidder adapter class, and emits error, it should provide ids of impressions that particular error covers. Bidder adapter can do this by utilizing `BidderError.of(String message, Type type, Set<String> impIds)` method of `BidderError` class, or by creating/using specialized methods of this class, for example:
+   ```java 
+   BidderError.rejectedIpf(
+       "Bid with id '%s' was rejected by floor enforcement: price %s is below the floor %s"
+       .formatted(bid.getId(), price, floor), impId);
+   ```
+
+   (Note: list of specialized methods like this will increase as needed, but bidders can contribute by extending this list.)</br></br>or more generic case:</br>
+    ```java 
+    BidderError.of(
+        "Impression with id '%s' was dropped due to ...".formatted(impId),
+        BidderError.Type.bad_input,
+        Collections.sinleton(impId));
+    ```
+
+Note: If bidder provides PBS with impression id that was not present in provided `BidRequest`, PBS will just ignore it.
+
 ### Create Config Class 
 
 Go to `org.prebid.server.spring.config.bidder` and create new class `Configuration{bidder}`
@@ -682,58 +737,58 @@ Here are 3 key points to consider:
 
 If you need to convert floor prices from one currency into something your endpoint expects, you can use the convertCurrency function from CurrencyConversionService component.
 
-1) Inject CurrencyConversionService to your {bidder}Configuration class and pass it to your bidder constructor.
+1. Inject CurrencyConversionService to your {bidder}Configuration class and pass it to your bidder constructor.
 
-```java
-@Autowired
-private CurrencyConversionService currencyConversionService;
+    ```java
+    @Autowired
+    private CurrencyConversionService currencyConversionService;
 
-... 
+    ... 
 
-.bidderCreator(() -> new {bidder}Bidder(configProperties.getEndpoint(), currencyConversionService, mapper))
-```
+    .bidderCreator(() -> new {bidder}Bidder(configProperties.getEndpoint(), currencyConversionService, mapper))
+    ```
 
-2) Create additional class variable `private final CurrencyConversionService currencyConversionService;` and update constructor in your {bidder}Bidder class to set this variable.
+2. Create additional class variable `private final CurrencyConversionService currencyConversionService;` and update constructor in your {bidder}Bidder class to set this variable.
 
-```java
-private final CurrencyConversionService currencyConversionService;
-private final String endpointUrl;
-private final JacksonMapper mapper;
+    ```java
+    private final CurrencyConversionService currencyConversionService;
+    private final String endpointUrl;
+    private final JacksonMapper mapper;
 
-public {bidder}Bidder(String endpointUrl,  CurrencyConversionService currencyConversionService, JacksonMapper mapper) {
-        this.endpointUrl = HttpUtil.validateUrl(Objects.requireNonNull(endpointUrl));
-        this.currencyConversionService = Objects.requireNonNull(currencyConversionService);
-        this.mapper = Objects.requireNonNull(mapper);
-    }
-```
+    public {bidder}Bidder(String endpointUrl,  CurrencyConversionService currencyConversionService, JacksonMapper mapper) {
+            this.endpointUrl = HttpUtil.validateUrl(Objects.requireNonNull(endpointUrl));
+            this.currencyConversionService = Objects.requireNonNull(currencyConversionService);
+            this.mapper = Objects.requireNonNull(mapper);
+        }
+    ```
 
-3) Use `currencyConversionService.convertCurrency(BigDecimal price, BidRequest bidRequest, String fromCurrency, String toCurrency)` for currency converting in {bidder}Bidder class.
+3. Use `currencyConversionService.convertCurrency(BigDecimal price, BidRequest bidRequest, String fromCurrency, String toCurrency)` for currency converting in {bidder}Bidder class.
 
-<details markdown="1">
-  <summary>Example: Updating bidFloor currency.</summary>
+    <details markdown="1">
+      <summary>Example: Updating bidFloor currency.</summary>
 
-```java
-  private Imp makeImp(Imp imp, BidRequest bidRequest) {
-        return imp.toBuilder().bidfloor(resolveBidFloor(imp, bidRequest)).build();
-    }
+    ```java
+      private Imp makeImp(Imp imp, BidRequest bidRequest) {
+            return imp.toBuilder().bidfloor(resolveBidFloor(imp, bidRequest)).build();
+        }
 
-  private BigDecimal resolveBidFloor(Imp imp, BidRequest bidRequest) {
-        final String bidFloorCurrency = resolveBidFloorCurrency(imp);
-        final BigDecimal bidFloor = imp.getBidfloor();
-        return convertBidFloorCurrency(imp, bidRequest, bidFloor, bidFloorCurrency);
-    }
-    
-  private BigDecimal convertBidFloorCurrency(Imp imp, BidRequest bidRequest, BigDecimal bidFloor, String bidFloorCurrency) {
-      try {
-            return currencyConversionService.convertCurrency(bidFloor, bidRequest,
-                    bidFloorCurrency, "NEEDED_CURRENCY");
-      } catch (PreBidException ex) {
-            throw new PreBidException(String.format("Failed to convert bidfloor with a reason: %s", ex.getMessage()));
+      private BigDecimal resolveBidFloor(Imp imp, BidRequest bidRequest) {
+            final String bidFloorCurrency = resolveBidFloorCurrency(imp);
+            final BigDecimal bidFloor = imp.getBidfloor();
+            return convertBidFloorCurrency(imp, bidRequest, bidFloor, bidFloorCurrency);
+        }
+        
+      private BigDecimal convertBidFloorCurrency(Imp imp, BidRequest bidRequest, BigDecimal bidFloor, String bidFloorCurrency) {
+          try {
+                return currencyConversionService.convertCurrency(bidFloor, bidRequest,
+                        bidFloorCurrency, "NEEDED_CURRENCY");
+          } catch (PreBidException ex) {
+                throw new PreBidException(String.format("Failed to convert bidfloor with a reason: %s", ex.getMessage()));
+          }
       }
-  }
-```
-</details>
-<p></p>
+    ```
+    </details>
+    <p></p>
 
 ### Price Floors
 
@@ -743,91 +798,91 @@ However, as described in the feature documentation, some adapters may benefit fr
 
 Here are the instructions:
 
-1) Inject `PriceFloorResolver` to your {bidder}Configuration class and pass it to your bidder constructor.
+1. Inject `PriceFloorResolver` to your {bidder}Configuration class and pass it to your bidder constructor.
 
-```java
-BidderDeps {bidder}BidderDeps(BidderConfigurationProperties {bidder}ConfigurationProperties,
-                              @NotBlank @Value("${external-url}") String externalUrl,
-                              PriceFloorResolver floorResolver,
-                              JacksonMapper mapper) {
+    ```java
+    BidderDeps {bidder}BidderDeps(BidderConfigurationProperties {bidder}ConfigurationProperties,
+                                  @NotBlank @Value("${external-url}") String externalUrl,
+                                  PriceFloorResolver floorResolver,
+                                  JacksonMapper mapper) {
 
-...
+    ...
 
-.bidderCreator(() -> new {bidder}Bidder(configProperties.getEndpoint(), floorResolver, mapper))
-```
+    .bidderCreator(() -> new {bidder}Bidder(configProperties.getEndpoint(), floorResolver, mapper))
+    ```
 
-2) Create an additional class variable `private final PriceFloorResolver floorResolver` and update constructor in your {bidder}Bidder class to set this variable.
+2. Create an additional class variable `private final PriceFloorResolver floorResolver` and update constructor in your {bidder}Bidder class to set this variable.
 
-```java
-private final PriceFloorResolver floorResolver;
-private final String endpointUrl;
-private final JacksonMapper mapper;
+    ```java
+    private final PriceFloorResolver floorResolver;
+    private final String endpointUrl;
+    private final JacksonMapper mapper;
 
-public {bidder}Bidder(String endpointUrl, PriceFloorResolver floorResolver, JacksonMapper mapper) {
-        this.endpointUrl = HttpUtil.validateUrl(Objects.requireNonNull(endpointUrl));
-        this.floorResolver = Objects.requireNonNull(floorResolver);
-        this.mapper = Objects.requireNonNull(mapper);
-    }
-```
+    public {bidder}Bidder(String endpointUrl, PriceFloorResolver floorResolver, JacksonMapper mapper) {
+            this.endpointUrl = HttpUtil.validateUrl(Objects.requireNonNull(endpointUrl));
+            this.floorResolver = Objects.requireNonNull(floorResolver);
+            this.mapper = Objects.requireNonNull(mapper);
+        }
+    ```
 
-3) Use `floorResolver.resolve(BidRequest bidRequest,
+3. Use `floorResolver.resolve(BidRequest bidRequest,
    PriceFloorRules floorRules,
    Imp imp,
    ImpMediaType mediaType,
    Format format,
    List<String> warnings)` for resolving specific floor values in your {bidder}Bidder class.
 
-<details markdown="1">
-  <summary>Example: Updating bidFloor values.</summary>
+    <details markdown="1">
+      <summary>Example: Updating bidFloor values.</summary>
 
-```java
-  private Imp makeImp(Imp imp, BidRequest bidRequest) {
-        final PriceFloorResult priceFloorResult = resolvePriceFloors(
-                bidRequest, 
-                imp,                        // com.iab.openrtb.request.Imp
-                specificMediatype,          // org.prebid.server.proto.openrtb.ext.request.ImpMediaType
-                specificFormat,             // com.iab.openrtb.request.Format (size)
-                priceFloorsWarnings);
-                
-        return imp.toBuilder()
-                .bidfloor(ObjectUtil.getIfNotNull(priceFloorResult, PriceFloorResult::getFloorValue))
-                .bidfloorcur(ObjectUtil.getIfNotNull(priceFloorResult, PriceFloorResult::getCurrency))
-                .build();
-    }
-    
-  private PriceFloorResult resolvePriceFloors(BidRequest bidRequest,
-                                                Imp imp,
-                                                ImpMediaType mediaType,
-                                                Format format,
-                                                List<String> warnings) {
+    ```java
+      private Imp makeImp(Imp imp, BidRequest bidRequest) {
+            final PriceFloorResult priceFloorResult = resolvePriceFloors(
+                    bidRequest, 
+                    imp,                        // com.iab.openrtb.request.Imp
+                    specificMediatype,          // org.prebid.server.proto.openrtb.ext.request.ImpMediaType
+                    specificFormat,             // com.iab.openrtb.request.Format (size)
+                    priceFloorsWarnings);
+                    
+            return imp.toBuilder()
+                    .bidfloor(ObjectUtil.getIfNotNull(priceFloorResult, PriceFloorResult::getFloorValue))
+                    .bidfloorcur(ObjectUtil.getIfNotNull(priceFloorResult, PriceFloorResult::getCurrency))
+                    .build();
+        }
+        
+      private PriceFloorResult resolvePriceFloors(BidRequest bidRequest,
+                                                    Imp imp,
+                                                    ImpMediaType mediaType,
+                                                    Format format,
+                                                    List<String> warnings) {
 
-        return floorResolver.resolve(
-                bidRequest,
-                extractFloorRules(bidRequest),
-                imp,
-                mediaType,
-                format,
-                warnings);
-    }
-```
-</details>
+            return floorResolver.resolve(
+                    bidRequest,
+                    extractFloorRules(bidRequest),
+                    imp,
+                    mediaType,
+                    format,
+                    warnings);
+        }
+    ```
+    </details>
 
-4) Let the Price Floors feature know about the floors you're using. To do that, enrich BidderBid with `priceFloorInfo`
+4. Let the Price Floors feature know about the floors you're using. To do that, enrich BidderBid with `priceFloorInfo`
 
-```java
-private static BidderBid createBidderBid(Bid bid, Imp imp, BidType bidType, String currency) {
+    ```java
+    private static BidderBid createBidderBid(Bid bid, Imp imp, BidType bidType, String currency) {
 
-        return BidderBid.builder()
-                .bid(bid)
-                .type(bidType)
-                .bidCurrency(currency)
-                .priceFloorInfo(imp != null ? PriceFloorInfo.of(imp.getBidfloor(), imp.getBidfloorcur()) : null)
-                .build();
-    }
-```
-<p></p>
+            return BidderBid.builder()
+                    .bid(bid)
+                    .type(bidType)
+                    .bidCurrency(currency)
+                    .priceFloorInfo(imp != null ? PriceFloorInfo.of(imp.getBidfloor(), imp.getBidfloorcur()) : null)
+                    .build();
+        }
+    ```
+    <p></p>
 
-2. Test: 
+5. Test: 
 
 ## Test Your Adapter
 
@@ -891,278 +946,286 @@ adapters.{bidder}.usersync.url=//{bidder}-usersync
 Go to test resources `org.prebid.server.it.openrtb2` and create directory with `{bidder}` name.
 Add files with content specific to your case:
 
-1) `test-auction-{bidder}-request.json`
-```json
-{
-  "id": "tid",
-  "imp": [
+1. `test-auction-{bidder}-request.json`
+
+    ```json
     {
-      "id": "impId001",
-      "banner": {
-        "format": [
-          {
-            "w": 300,
-            "h": 250
-          }
-        ]
-      },
-      "ext": {
-        "{bidder}": {
-          "param": "paramValue"
-        }
-      }
-    }
-  ],
-  "device": {
-    "pxratio": 4.2,
-    "dnt": 2,
-    "language": "en",
-    "ifa": "ifaId"
-  },
-  "site": {
-    "publisher": {
-      "id": "publisherId"
-    }
-  },
-  "at": 1,
-  "tmax": 5000,
-  "cur": [
-    "USD"
-  ],
-  "source": {
-    "fd": 1,
-    "tid": "tid"
-  },
-  "ext": {
-    "prebid": {
-      "targeting": {
-        "pricegranularity": {
-          "precision": 2,
-          "ranges": [
-            {
-              "max": 20,
-              "increment": 0.1
-            }
-          ]
-        }
-      },
-      "cache": {
-        "bids": {}
-      },
-      "auctiontimestamp": 1000
-    }
-  },
-  "regs": {
-    "ext": {
-      "gdpr": 0
-    }
-  }
-}
-```
-2) `test-auction-{bidder}-response.json`
-```json
-{
-  "id": "tid",
-  "seatbid": [
-    {
-      "bid": [
+      "id": "tid",
+      "imp": [
         {
-          "id": "bid001",
-          "impid": "impId001",
-          "price": 3.33,
-          "adm": "adm001",
-          "adid": "adid001",
-          "cid": "cid001",
-          "crid": "crid001",
-          "w": 300,
-          "h": 250,
-          "ext": {
-            "prebid": {
-              "type": "banner",
-              "targeting": {
-                "hb_pb": "3.30",
-                "hb_size_{bidder}": "300x250",
-                "hb_bidder_{bidder}": "{bidder}",
-                "hb_cache_path": "{{ cache.path }}",
-                "hb_size": "300x250",
-                "hb_cache_host_{bidder}": "{{ cache.host }}",
-                "hb_cache_path_{bidder}": "{{ cache.path }}",
-                "hb_cache_id_{bidder}": "f0ab9105-cb21-4e59-b433-70f5ad6671cb",
-                "hb_bidder": "{bidder}",
-                "hb_cache_id": "f0ab9105-cb21-4e59-b433-70f5ad6671cb",
-                "hb_pb_{bidder}": "3.30",
-                "hb_cache_host": "{{ cache.host }}"
-              },
-              "cache": {
-                "bids": {
-                  "url": "{{ cache.resource_url }}f0ab9105-cb21-4e59-b433-70f5ad6671cb",
-                  "cacheId": "f0ab9105-cb21-4e59-b433-70f5ad6671cb"
-                }
+          "id": "impId001",
+          "banner": {
+            "format": [
+              {
+                "w": 300,
+                "h": 250
               }
+            ]
+          },
+          "ext": {
+            "{bidder}": {
+              "param": "paramValue"
             }
           }
         }
       ],
-      "seat": "{bidder}",
-      "group": 0
-    }
-  ],
-  "cur": "USD",
-  "ext": {
-    "responsetimemillis": {
-      "{bidder}": " {bidder}.response_time_ms }}",
-      "cache": "{{ cache.response_time_ms }}"
-    },
-    "prebid": {
-      "auctiontimestamp": 1000
-    },
-    "tmaxrequest": 5000
-  }
-}
-```
-
-3) `test-{bidder}-bid-request.json`
-```json
-{
-  "id": "tid",
-  "imp": [
-    {
-      "id": "impId001",
-      "banner": {
-        "format": [
-          {
-            "w": 300,
-            "h": 250
-          }
-        ]
+      "device": {
+        "pxratio": 4.2,
+        "dnt": 2,
+        "language": "en",
+        "ifa": "ifaId"
+      },
+      "site": {
+        "publisher": {
+          "id": "publisherId"
+        }
+      },
+      "at": 1,
+      "tmax": 5000,
+      "cur": [
+        "USD"
+      ],
+      "source": {
+        "fd": 1,
+        "tid": "tid"
       },
       "ext": {
-        "bidder": {
-          "param": "paramValue"
+        "prebid": {
+          "targeting": {
+            "pricegranularity": {
+              "precision": 2,
+              "ranges": [
+                {
+                  "max": 20,
+                  "increment": 0.1
+                }
+              ]
+            }
+          },
+          "cache": {
+            "bids": {}
+          },
+          "auctiontimestamp": 1000
+        }
+      },
+      "regs": {
+        "ext": {
+          "gdpr": 0
         }
       }
     }
-  ],
-  "site": {
-    "domain": "example.com",
-    "page": "http://www.example.com",
-    "publisher": {
-      "id": "publisherId"
-    },
-    "ext": {
-      "amp": 0
-    }
-  },
-  "device": {
-    "ua": "userAgent",
-    "dnt": 2,
-    "ip": "193.168.244.1",
-    "pxratio": 4.2,
-    "language": "en",
-    "ifa": "ifaId"
-  },
-  "user": {
-    "buyeruid" : "BTW-UID"
-  },
-  "at": 1,
-  "tmax": 5000,
-  "cur": [
-    "USD"
-  ],
-  "source": {
-    "fd": 1,
-    "tid": "tid"
-  },
-  "regs": {
-    "ext": {
-      "gdpr": 0
-    }
-  },
-  "ext": {
-    "prebid": {
-      "targeting": {
-        "pricegranularity": {
-          "precision": 2,
-          "ranges": [
+    ```
+2. `test-auction-{bidder}-response.json`
+
+    ```json
+    {
+      "id": "tid",
+      "seatbid": [
+        {
+          "bid": [
             {
-              "max": 20,
-              "increment": 0.1
+              "id": "bid001",
+              "impid": "impId001",
+              "price": 3.33,
+              "adm": "adm001",
+              "adid": "adid001",
+              "cid": "cid001",
+              "crid": "crid001",
+              "w": 300,
+              "h": 250,
+              "ext": {
+                "prebid": {
+                  "type": "banner",
+                  "targeting": {
+                    "hb_pb": "3.30",
+                    "hb_size_{bidder}": "300x250",
+                    "hb_bidder_{bidder}": "{bidder}",
+                    "hb_cache_path": "{{ cache.path }}",
+                    "hb_size": "300x250",
+                    "hb_cache_host_{bidder}": "{{ cache.host }}",
+                    "hb_cache_path_{bidder}": "{{ cache.path }}",
+                    "hb_cache_id_{bidder}": "f0ab9105-cb21-4e59-b433-70f5ad6671cb",
+                    "hb_bidder": "{bidder}",
+                    "hb_cache_id": "f0ab9105-cb21-4e59-b433-70f5ad6671cb",
+                    "hb_pb_{bidder}": "3.30",
+                    "hb_cache_host": "{{ cache.host }}"
+                  },
+                  "cache": {
+                    "bids": {
+                      "url": "{{ cache.resource_url }}f0ab9105-cb21-4e59-b433-70f5ad6671cb",
+                      "cacheId": "f0ab9105-cb21-4e59-b433-70f5ad6671cb"
+                    }
+                  }
+                }
+              }
             }
-          ]
+          ],
+          "seat": "{bidder}",
+          "group": 0
+        }
+      ],
+      "cur": "USD",
+      "ext": {
+        "responsetimemillis": {
+          "{bidder}": " {bidder}.response_time_ms }}",
+          "cache": "{{ cache.response_time_ms }}"
         },
-        "includewinners": true,
-        "includebidderkeys": true
-      },
-      "cache": {
-        "bids": {}
-      },
-      "auctiontimestamp": 1000,
-      "channel" : {
-        "name" : "web"
+        "prebid": {
+          "auctiontimestamp": 1000
+        },
+        "tmaxrequest": 5000
       }
     }
-  }
-}
-```
-4) `test-{bidder}-bid-response.json`
-```json
-{
-  "id": "tid",
-  "seatbid": [
+    ```
+
+3. `test-{bidder}-bid-request.json`
+
+    ```json
     {
-      "bid": [
+      "id": "tid",
+      "imp": [
         {
-          "id": "bid001",
-          "impid": "impId001",
-          "price": 3.33,
-          "adid": "adid001",
-          "crid": "crid001",
-          "cid": "cid001",
-          "adm": "adm001",
-          "h": 250,
-          "w": 300
+          "id": "impId001",
+          "banner": {
+            "format": [
+              {
+                "w": 300,
+                "h": 250
+              }
+            ]
+          },
+          "ext": {
+            "bidder": {
+              "param": "paramValue"
+            }
+          }
+        }
+      ],
+      "site": {
+        "domain": "example.com",
+        "page": "http://www.example.com",
+        "publisher": {
+          "id": "publisherId"
+        },
+        "ext": {
+          "amp": 0
+        }
+      },
+      "device": {
+        "ua": "userAgent",
+        "dnt": 2,
+        "ip": "193.168.244.1",
+        "pxratio": 4.2,
+        "language": "en",
+        "ifa": "ifaId"
+      },
+      "user": {
+        "buyeruid" : "BTW-UID"
+      },
+      "at": 1,
+      "tmax": 5000,
+      "cur": [
+        "USD"
+      ],
+      "source": {
+        "fd": 1,
+        "tid": "tid"
+      },
+      "regs": {
+        "ext": {
+          "gdpr": 0
+        }
+      },
+      "ext": {
+        "prebid": {
+          "targeting": {
+            "pricegranularity": {
+              "precision": 2,
+              "ranges": [
+                {
+                  "max": 20,
+                  "increment": 0.1
+                }
+              ]
+            },
+            "includewinners": true,
+            "includebidderkeys": true
+          },
+          "cache": {
+            "bids": {}
+          },
+          "auctiontimestamp": 1000,
+          "channel" : {
+            "name" : "web"
+          }
+        }
+      }
+    }
+    ```
+
+4. `test-{bidder}-bid-response.json`
+
+    ```json
+    {
+      "id": "tid",
+      "seatbid": [
+        {
+          "bid": [
+            {
+              "id": "bid001",
+              "impid": "impId001",
+              "price": 3.33,
+              "adid": "adid001",
+              "crid": "crid001",
+              "cid": "cid001",
+              "adm": "adm001",
+              "h": 250,
+              "w": 300
+            }
+          ]
         }
       ]
     }
-  ]
-}
+    ```
 
-```
-5) `test-cache-{bidder}-request.json`
-```json
-{
-  "puts": [
-    {
-      "type": "json",
-      "value": {
-        "id": "bid001",
-        "impid": "impId001",
-        "price": 3.33,
-        "adm": "adm001",
-        "adid": "adid001",
-        "cid": "cid001",
-        "crid": "crid001",
-        "w": 300,
-        "h": 250
-      }
-    }
-  ]
-}
-```
+5. `test-cache-{bidder}-request.json`
 
-6) `test-cache-{bidder}-response.json`
-```json
-{
-  "responses": [
+    ```json
     {
-      "uuid": "f0ab9105-cb21-4e59-b433-70f5ad6671cb"
+      "puts": [
+        {
+          "type": "json",
+          "value": {
+            "id": "bid001",
+            "impid": "impId001",
+            "price": 3.33,
+            "adm": "adm001",
+            "adid": "adid001",
+            "cid": "cid001",
+            "crid": "crid001",
+            "w": 300,
+            "h": 250
+          }
+        }
+      ]
     }
-  ]
-}
-```
+    ```
+
+6. `test-cache-{bidder}-response.json`
+
+    ```json
+    {
+      "responses": [
+        {
+          "uuid": "f0ab9105-cb21-4e59-b433-70f5ad6671cb"
+        }
+      ]
+    }
+    ```
 
 
 Create class `{bidder}Test`in test directory in package `org.prebid.server.it`. Extend `IntegrationTest` class with following content
+
 ```java
 package org.prebid.server.it;
 
@@ -1227,13 +1290,13 @@ Human readable documentation for bid adapters is required in the separate [prebi
 1. If you already have a Prebid.js bid adapter, update your existing bidder file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders to add the `pbs: true` variable in the header section. If your Prebid Server bidding parameters are different from your Prebid.js parameters, please include the differences in this document for publishers to be aware.
 1. If you don't have a Prebid.js bid adapter, create a new file in https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders using this template:
 
-```
+```markdown
 ---
 layout: bidder
 title: {bidder}
 description: Prebid {Bidder} Bidder Adapter
 biddercode: {bidder}
-gdpr_supported: true/false
+tcfeu_supported: true/false
 gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
@@ -1268,12 +1331,12 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 Notes on the metadata fields:
 - Add `pbs: true`. If you also have a [Prebid.js bid adapter](/dev-docs/bidder-adaptor.html), add `pbjs: true`. Default is false for both.
 - If you're on the IAB's Global Vendor List, place your ID in `gvl_id`. No default.
-- If you support GDPR and have a GVL ID, you may add `gdpr_supported: true`. Default is false.
-- If you support the US Privacy consentManagementUsp module, add `usp_supported: true`. Default is false.
+- If you support the IAB's TCF-EU consent string format and have a GVL ID, you may add `tcfeu_supported: true`. Default is false.
+- If you support the IAB's US Privacy consent string format, add `usp_supported: true`. Default is false.
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
 - If you support video, native, or audio mediaTypes add `media_types: video, native, audio`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
-- If you support COPPA, add `coppa_supported: true`. Default is false.
-- If you support GPP, add `gpp_supported: true`. Default is false.
+- If you support the COPPA flag, add `coppa_supported: true`. Default is false.
+- If you support the IAB's GPP consent string, add `gpp_supported: true`. Default is false.
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.

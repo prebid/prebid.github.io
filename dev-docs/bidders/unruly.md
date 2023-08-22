@@ -3,7 +3,7 @@ layout: bidder
 title: Unruly
 description: Prebid Unruly Bidder Adaptor
 biddercode: unruly
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: false
 schain_supported: true
@@ -25,5 +25,6 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name               | Scope          | Description                                                                                                                  | Example                                          | Type      |
 |--------------------|----------------|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|-----------|
-| `siteId`           | required       | The site ID from Unruly. This will be provided to you by your Unruly account manager.                                        | `123456`                                         | `integer` |
+| `siteId`           | required       | The site ID from Unruly. This will be provided to you by your Unruly account manager, this is prefered                                       | `123456`                                         | `integer` |
+|  `siteid`           | deprecated       | The site ID from Unruly. This will be provided to you by your Unruly account manager, this is backward compability                                      | `123456`                                         | `integer` |
 | `featureOverrides` | optional       | This param is a generic object for configuring Unruly outstream demand. To run UNmissable, set ‘canRunUnmissable’ to true.   | `"featureOverrides": {"canRunUnmissable": true}` | `object`  |

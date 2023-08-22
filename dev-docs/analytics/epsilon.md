@@ -3,7 +3,7 @@ layout: analytics
 title: Epsilon
 description: Epsilon Prebid Analytics Adapter (formerly Conversant)
 modulecode: conversant
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: false
 prebid_member: true
@@ -15,27 +15,31 @@ enable_download: true
 
 Epsilon (formerly Conversant) analytics adapter requires approval from the
 Epsilon team, even for existing accounts. Please reach out to
-publishersupport@epsilon.com for more information.
+<publishersupport@epsilon.com> for more information.
 
 #### Analytics Options
 
 {: .table .table-bordered .table-striped }
-| Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
-|-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
-| site_id | required  | Epsilon site id for the site that will track prebid usage. | 1234  | integer |
-| cnvr_sampling | optional | Sample rate for analytics data. Value should be between 0 and 1 (inclusive), 0 == never sample,  1 == always sample, 0.5 == send analytics 50% of the time.   | 0.5  | float |
+| Name       | Scope    | Description                                                                 | Example        | Default  |Type     |
+| ---------- | -------- | --------------------------------------------------------------------------- | -------------- | -------- |-------- |
+| site_id | required  | Epsilon site id for the site that will track prebid usage. | 1234  | n/a | integer |
+| cnvr_sampling | optional | Sample rate for analytics data. Value should be between 0 and 1 (inclusive), 0 == never sample,  1 == always sample, 0.5 == send analytics 50% of the time. | 0.5  | 1 | float |
+| send_error_data | optional | Adds extra analytics that tracks script runtime errors, bad data and bidders | true  | false | boolean |
 
 ### Example Configuration
+
+Legacy provider code of 'conversant' is still supported
 
 ```
             <!-- should be called before requestBids() -->
             pbjs.que.push(function(){
                 pbjs.enableAnalytics(
                     {
-                        provider: 'conversant',
+                        provider: 'epsilon',
                         options: {
                             site_id: 108060,
-                            cnvr_sampling: 0.5
+                            cnvr_sampling: 0.5,
+                            send_error_data: true
                         }
                     }
                 );

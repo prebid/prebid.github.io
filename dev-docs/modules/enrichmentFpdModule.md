@@ -11,15 +11,17 @@ sidebarType : 1
 ---
 
 # First Party Data Enrichment Module
+
 {:.no_toc}
 
 {: .alert.alert-warning :}
 Since version 7.29, this module does nothing; its functionality is instead included by default in all Prebid distributions.
 
-This module adds a number of First Party Data (FPD) fields from the environment. 
+This module adds a number of First Party Data (FPD) fields from the environment.
 
 Add it to the Prebid.js build with this command:
-```
+
+```bash
 gulp build --modules=enrichmentFpdModule
 ```
 
@@ -52,10 +54,11 @@ At the beginning of each auction, this module merges a number of values into the
 | meta keywords | site.keywords | Looks for a meta tag. e.g. <meta name="keywords" content="cars, boats"> |
 | currency | cur | Collects the currency defined by the [Currency module](/dev-docs/modules/currency.html). |
 
-<a  id="ua-hints" />
+<a  id="ua-hints"></a>
+
 ### User agent client hints
 
-The module populates `device.sua` with UA client hints retrieved from `navigator.userAgentData`. By default, it asks for [every available high entropy hint](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData#returning_high_entropy_values); you may specify the list of hints with the `uaHints` option:
+The module populates `device.sua` with UA client hints retrieved from `navigator.userAgentData`. By default, it won't ask for any high entropy hint. You can specify the list of hints using the `uaHints` option with [any available high entropy hint](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData#returning_high_entropy_values):
 
 ```javascript
 pbjs.setConfig({
@@ -68,9 +71,10 @@ pbjs.setConfig({
 })
 ```
 
-If `uaHints` is set to an empty array, the module will not attempt to retrieve any high entropy hint and use only the available low-entropy values.   
+If `uaHints` is set to an empty array or is not set, the module will not attempt to retrieve any high entropy hint and use only the available low-entropy values.
 
 # Related Reading
+
 - [Prebid.js First Party Data feature](/features/firstPartyData.html)
 - [First Party Data Validation Module](/dev-docs/modules/validationFpdModule)
 - [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)

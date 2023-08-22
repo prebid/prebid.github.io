@@ -1,5 +1,7 @@
 # name of the software
 name: Prebid
+# GitHub Metadata: site.name is set in _config.yml, but many plugins and themes expect site.title to be used instead
+title: Prebid
 # current version of the software
 version: 1.0.0
 # licence of the software

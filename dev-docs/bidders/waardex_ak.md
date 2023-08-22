@@ -6,9 +6,11 @@ biddercode: waardex_ak
 pbjs: true
 pbs: false
 media_types: banner, native, video
-gdpr_supported: true
+gvl_id: 14 (adkernel)
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 pbs_app_supported: true
 schain_supported: true
 userIds: all
@@ -21,7 +23,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The WaardeX Bidding adaptor requires setup and approval before beginning. Please reach out to <welcome@waardex.com> for more details
 
@@ -31,4 +33,4 @@ The WaardeX Bidding adaptor requires setup and approval before beginning. Please
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | required | Ad network's RTB host | `'cpm.webtradingspot.com'` | `string` |
-| `zoneId` | required | RTB zone id           | `'30164'`                 | `string` |
+| `zoneId` | required | RTB zone id           | `30164`                 | `integer` |

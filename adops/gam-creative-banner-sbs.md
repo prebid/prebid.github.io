@@ -15,7 +15,6 @@ This page walks you through the steps required to create banner and outstream cr
 {: .alert.alert-success :}
 For complete instructions on setting up Prebid line items in Google Ad Manager, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
 
-
 1. In GAM, select **Delivery** > **Creatives**.
 2. Under the **Display creatives** tab, click **New Creative**.
 3. Select your advertiser, then click **Third party**.
@@ -23,7 +22,7 @@ For complete instructions on setting up Prebid line items in Google Ad Manager, 
 5. Enter a **Target ad unit size** of `1x1`. This allows the creative to serve on all inventory sizes.
 
 {: .alert.alert-info :}
-These instructions assume you're using the Prebid Universal Creative (PUC). See the [Prebid Universal Creative](/overview/prebid-universal-creative.html) documentation for alternate approaches.
+These instructions assume you're using the Prebid Universal Creative (PUC) after v1.15 that supports the separate `banner.js` file. See the [Prebid Universal Creative](/overview/prebid-universal-creative.html) documentation for alternate approaches.
 
 {: .alert.alert-danger :}
 **AMP**: If you choose to bypass the PUC for AMP, Prebid Server events will not work.
@@ -42,28 +41,28 @@ These instructions assume you're using the Prebid Universal Creative (PUC). See 
 {: .alert.alert-warning :}
 Be sure to replace BIDDERCODE with the appropriate bidder. For example, if the bidder code is `PBbidder`, the `adid` would be `%%PATTERN:hb_adid_PBbidder%%`.
 
-```
-    <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
-    <script>
-      var ucTagData = {};
-      ucTagData.adServerDomain = "";
-      ucTagData.pubUrl = "%%PATTERN:url%%";
-      ucTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";
-      ucTagData.cacheHost = "%%PATTERN:hb_cache_host_BIDDERCODE%%";
-      ucTagData.cachePath = "%%PATTERN:hb_cache_path_BIDDERCODE%%";
-      ucTagData.uuid = "%%PATTERN:hb_cache_id_BIDDERCODE%%";
-      ucTagData.mediaType = "%%PATTERN:hb_format_BIDDERCODE%%";
-      ucTagData.env = "%%PATTERN:hb_env%%";
-      ucTagData.size = "%%PATTERN:hb_size_BIDDERCODE%%";
-      ucTagData.hbPb = "%%PATTERN:hb_pb_BIDDERCODE%%";
-      // mobileResize needed for mobile GAM only
-      ucTagData.mobileResize = "hb_size:%%PATTERN:hb_size_BIDDERCODE%%";
-      try {
-        ucTag.renderAd(document, ucTagData);
-      } catch (e) {
-        console.log(e);
-      }
-    </script>
+```html
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
+<script>
+  var ucTagData = {};
+  ucTagData.adServerDomain = "";
+  ucTagData.pubUrl = "%%PATTERN:url%%";
+  ucTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";
+  ucTagData.cacheHost = "%%PATTERN:hb_cache_host_BIDDERCODE%%";
+  ucTagData.cachePath = "%%PATTERN:hb_cache_path_BIDDERCODE%%";
+  ucTagData.uuid = "%%PATTERN:hb_cache_id_BIDDERCODE%%";
+  ucTagData.mediaType = "%%PATTERN:hb_format_BIDDERCODE%%";
+  ucTagData.env = "%%PATTERN:hb_env%%";
+  ucTagData.size = "%%PATTERN:hb_size_BIDDERCODE%%";
+  ucTagData.hbPb = "%%PATTERN:hb_pb_BIDDERCODE%%";
+  // mobileResize needed for mobile GAM only
+  ucTagData.mobileResize = "hb_size:%%PATTERN:hb_size_BIDDERCODE%%";
+  try {
+    ucTag.renderAd(document, ucTagData);
+  } catch (e) {
+    console.log(e);
+  }
+</script>
 ```
 
 {: .alert.alert-danger :}
@@ -73,8 +72,8 @@ Warning: Be sure none of the attribute names are longer than 20 characters. See 
 
 In top-price mode, you can make use of the GAM `TARGETINGMAP` feature instead of listing out each attribute.
 
-```
-<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+```html
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
@@ -113,8 +112,8 @@ Note: You can ignore the “Sorry, we don’t recognize this tag” warning. GAM
 
 ## Further Reading
 
-- [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
-- [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html)
-- [Prebid Universal Creatives](/overview/prebid-universal-creative.html)
-- [Creative Considerations](/adops/creative-considerations.html)
-- [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
+* [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
+* [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html)
+* [Prebid Universal Creatives](/overview/prebid-universal-creative.html)
+* [Creative Considerations](/adops/creative-considerations.html)
+* [Ad Ops Planning Guide](/adops/adops-planning-guide.html)

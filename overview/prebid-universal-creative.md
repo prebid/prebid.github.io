@@ -9,9 +9,10 @@ nav_section: intro
 <div class="bs-docs-section" markdown="1">
 
 # Prebid Universal Creative
+
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 ## Overview
@@ -24,26 +25,38 @@ when a Prebid ad has won the auction. There are a number of use cases:
 {: .table .table-bordered .table-striped }
 | Use Case | PUC file | Alternate Approach |
 | --- | --- | --- |
-| web banner: iframe | creative.js | [Banner and Outstream Video iframes](#banner-and-outstream-video-iframes) |
-| web banner: safeframe | creative.js | [Banner Safeframes](#banner-safeframes) |
-| web outstream video: iframe | creative.js | [Banner and Outstream Video iframes](#banner-and-outstream-video-iframes) |
+| web banner: iframe | banner.js (or creative.js) | [Banner and Outstream Video iframes](#alternate-method-for-banner-and-outstream-video-iframes) |
+| web banner: safeframe | banner.js (or creative.js) | [Banner Safeframes](#alternate-method-for-banner-safeframes) |
+| web outstream video: iframe | video.js (or creative.js) | [Banner and Outstream Video iframes](#alternate-method-for-banner-and-outstream-video-iframes) |
 | web outstream video: safeframe | n/a | Outstream renderers each choose where to render differently, but none writes to the safeframe. |
-| AMP banner: always safeframe | creative.js | n/a |
-| native: iframe | native-render.js | n/a |
-| native: safeframe | native-render.js | n/a |
+| AMP banner: always safeframe | amp.js (or creative.js) | n/a |
+| native: iframe | native.js (or native-render.js) | n/a |
+| native: safeframe | native.js (or native-render.js) | n/a |
 
-The Prebid Universal Creative is the simplest approach for publishers to configure Prebid in their ad server. The PUC provides a creative configuration that can be used across several formats, platforms, devices, and ad servers.
+Note that as of PUC v1.15, the recommended way of loading the creative
+in the ad server involves using the `hb_format` ad server key-value. Before 1.15, the ad server needed to load creative.js which covered banner and outstream video, or native-render.js for native. 1.15 simplifies this
+by allowing the ad server creative to load banner.js, video.js, or native.js, which can be done programmatically using ad server macros. e.g.
 
-Here are the features of the PUC in various scenarios:
+```html
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
+```
+
+This loads the PUC from the Prebid-maintained location. Your managed
+service provider may have a different location.
+
+## Features of the PUC
 
 ### What the PUC does for Web iframe Banners/Outstream
+
 1. Simply calls the Prebid.js renderAd function
 
 ### What the PUC does for Web Safeframe Banners
+
 1. Calls PostMessage to get the winning ad from Prebid.js
 1. Creates an iframe of the appropriate size and displays the winning ad within it
 
 ### What the PUC does for AMP and Mobile Apps
+
 1. Updates the size of the iframe to the size of the winning ad.
 1. Retrieves the body of the creative from Prebid Cache based on the UUID
 1. If the 'burl' parameter is present, creates a tracking pixel. Includes special support for triggering the viewable billing url for mobile MRAID creatives.
@@ -52,6 +65,7 @@ Here are the features of the PUC in various scenarios:
 1. Resolves any `${AUCTION_PRICE}` macro in the creative body.
 
 ### What the PUC does for Native
+
 1. Retrieves the native attributes from the winning ad.
 1. Coordinates the rendering of the native ad using the template method specified by the publisher.
 
@@ -71,13 +85,13 @@ They would do this differently for each of the scenarios below.
 If you only ever need to display non-safeframed banner and outstream-video creatives, you may use
 the simple approach of just calling the Prebid.js `renderAd` function directly:
 
-```
+```html
 <script> var w = window; for (i = 0; i < 10; i++) { w = w.parent; if (w.pbjs) { try { w.pbjs.renderAd(document, '%%PATTERN:hb_adid%%'); break; } catch (e) { continue; } } } </script>
 ```
 
 ### Alternate Method for Banner Safeframes
 
-See the example at [https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html)
+See the example at [github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html)
 
 This is basically just part of the PUC that's been isolated to be standalone.
 

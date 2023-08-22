@@ -6,7 +6,7 @@ pbjs: true
 biddercode: zeta_global
 deals_supported: false
 media_types: banner
-gdpr_supported: true
+tcfeu_supported: true
 tcf2_supported: true
 gvl_id: 469
 sidebarType: 1
@@ -14,9 +14,9 @@ sidebarType: 1
 
 ### Registration
 
-All references to the OpenRTB spec refer to OpenRtb v2.5 (https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)
+All references to the OpenRTB spec refer to OpenRtb v2.5 (<https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf>)
 
-To use this bidder you will need a valid definerId.  For further information, please contact jzirbel@disqus.com.
+To use this bidder you will need a valid definerId.  For further information, please contact <jzirbel@disqus.com>.
 
 ### Bid Params
 
