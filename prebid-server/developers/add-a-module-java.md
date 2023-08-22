@@ -22,7 +22,7 @@ You will want to be familiar with the following background information:
 
 ### Coding standards
 
-The module’s code style should correspond to the [PBS-Java project code style](https://github.com/prebid/prebid-server-java/blob/master/docs/code-style.md).
+The module’s code style should correspond to the [PBS-Java project code style](https://github.com/prebid/prebid-server-java/blob/master/docs/developers/code-style.md).
 
 ## Module Directory Layout
 
@@ -105,7 +105,7 @@ The documentation must also live on the docs.prebid.org site. Please add a markd
 
 ### Hook Interfaces
 
-The Prebid server processing workflow is divided into serveal 'stages' where module authors can code agaist a specific function signature called a 'hook'.
+The Prebid server processing workflow is divided into several 'stages' where module authors can code agaist a specific function signature called a 'hook'.
 
 The Prebid Server host company will define which modules to run in which order by setting up a configuration defining which hooks run, and which can run in parallel.
 
@@ -118,7 +118,7 @@ These are the available hooks that can be implemented in a module:
 - org.prebid.server.hooks.v1.auction.ProcessedAuctionRequestHook
 - org.prebid.server.hooks.v1.bidder.BidderRequestHook
 - org.prebid.server.hooks.v1.bidder.RawBidderResponseHook
-- org.prebid.server.hooks.v1.bidder.ProcessedBidderResponseHook
+- org.prebid.server.hooks.v1.bidder.AllProcessedBidResponsesHook
 - org.prebid.server.hooks.v1.auction.AuctionResponseHook
 
 In a module it is not necessary to implement all mentioned interfaces but only one (or several) required by your functionality.
@@ -129,50 +129,53 @@ Each hook interface internally extends org.prebid.server.hooks.v1.Hook basic int
 
 ### Examples
 
-1) To **update** the request in the `RawAuctionRequestHook` you would return:
-```
-Future.succeededFuture(
-    InvocationResultImpl.<AuctionRequestPayload>builder()
-        .status(InvocationStatus.success)
-        .action(InvocationAction.update)
-        .payloadUpdate(payload ->
-          AuctionRequestPayloadImpl.of(payload.bidRequest().toBuilder()
-                  .id("updated request ID")
-                  .build()))
-    .build()
-);
-```
+1. To **update** the request in the `RawAuctionRequestHook` you would return:
 
-Please note that the `InvocationStatus` is only considered when the status is set to `InvocationStatus.success`. That means the `payloadUpdate` is only applied with `InvocationStatus.success` **and** `InvocationAction.update`
+    ```java
+    Future.succeededFuture(
+        InvocationResultImpl.<AuctionRequestPayload>builder()
+            .status(InvocationStatus.success)
+            .action(InvocationAction.update)
+            .payloadUpdate(payload ->
+              AuctionRequestPayloadImpl.of(payload.bidRequest().toBuilder()
+                      .id("updated request ID")
+                      .build()))
+        .build()
+    );
+    ```
 
-2) To **reject** the request in the `RawAuctionRequestHook` you would return:
-```
-Future.succeededFuture(
-    InvocationResultImpl.rejected(“The rejection reason”)
-);
-```
+    Please note that the `InvocationStatus` is only considered when the status is set to `InvocationStatus.success`. That means the `payloadUpdate` is only applied with `InvocationStatus.success` **and** `InvocationAction.update`
 
-3) To supply [analytics tags](/prebid-server/developers/module-atags.html) in the `RawAuctionRequestHook` you would return:
-```
-Future.succeededFuture(
-    InvocationResultImpl.<AuctionRequestPayload>builder()
-        ...
-        .analyticsTags(TagsImpl.of(
-            Collections.singletonList(ActivityImpl.of(
-                "device-id",
-                "success",
-                Collections.singletonList(ResultImpl.of(
+2. To **reject** the request in the `RawAuctionRequestHook` you would return:
+
+    ```java
+    Future.succeededFuture(
+        InvocationResultImpl.rejected(“The rejection reason”)
+    );
+    ```
+
+3. To supply [analytics tags](/prebid-server/developers/module-atags.html) in the `RawAuctionRequestHook` you would return:
+
+    ```java
+    Future.succeededFuture(
+        InvocationResultImpl.<AuctionRequestPayload>builder()
+            ...
+            .analyticsTags(TagsImpl.of(
+                Collections.singletonList(ActivityImpl.of(
+                    "device-id",
                     "success",
-                    mapper.mapper().createObjectNode()
-                        .put("some-field", "some-value"),
-                AppliedToImpl.builder()
-                       .impIds(Collections.singletonList("impId1"))
-                       .request(true)
-                       .build()))))))
-        ...
-    .build()
-);
-```
+                    Collections.singletonList(ResultImpl.of(
+                        "success",
+                        mapper.mapper().createObjectNode()
+                            .put("some-field", "some-value"),
+                    AppliedToImpl.builder()
+                          .impIds(Collections.singletonList("impId1"))
+                          .request(true)
+                          .build()))))))
+            ...
+        .build()
+    );
+    ```
 
 More test implementations for each hook can be found in unit-tests at https://github.com/prebid/prebid-server-java/tree/master/src/test/java/org/prebid/server/it/hooks folder.
 

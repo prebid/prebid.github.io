@@ -6,12 +6,13 @@ biddercode: mobfoxpb
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 pbjs: true
 pbs: true
 pbs_app_supported: true
 gvl_id: 311
 enable_download: true
+sidebarType: 1
 ---
 
 ### Prebid.JS Bid Params
@@ -21,8 +22,8 @@ enable_download: true
 |----------------|----------|----------------------------------------------------------|------------|-----------|
 | `placementId` | required | Placement Id will be generated on Mobfox Platform. | `'0'`        | `string` |
 
-
 ### Prebid Server Bid Params
+
 Currently adapter doesn't support multiimpression, so only the first impression will be delivered
 
 {: .table .table-bordered .table-striped }

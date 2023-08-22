@@ -4,17 +4,17 @@ title: YieldOne
 description: Prebid YieldOne Bidder Adaptor
 biddercode: yieldone
 media_types: banner, video
-userIds: identityLink, imuid, AudienceOne ID
+userIds: identityLink, imuid, AudienceOne ID, ID5
 pbjs: true
 pbs: true
 multiformat_supported: will-bid-on-any
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
 THE YieldOne adapter requires setup and approval from the YieldOne team.<br/>
-Please reach out to your account team or y1s@platform-one.co.jp for more information.
-
+Please reach out to your account team or <y1s@platform-one.co.jp> for more information.
 
 ### Bid Params
 
@@ -27,17 +27,16 @@ Please reach out to your account team or y1s@platform-one.co.jp for more informa
 | `playerParams.wrapperWidth`  | optional | Video Player Width  | `"320px"`    | `string` |
 | `playerParams.wrapperHeight` | optional | Video Player Height | `"180px"`    | `string` |
 
-
 ### Multi-Format Ad Units
 
 If you use Multi-Format Ad Units, "video" bid object should be placed before "banner" bid object.<br/>
 And if Bid Params contains playerParams, it will request a "video" media type ad.<br/>
 If it does not, it will request a "banner" media type ad.
 
-
 ### AdUnit Format Example
 
 #### AdUnit Format for Banner
+
 ```javascript
 var bannerAdUnits = [{
     code: "test-div-banner",
@@ -58,8 +57,8 @@ var bannerAdUnits = [{
 }]
 ```
 
-
 #### AdUnit Format for Video
+
 ```javascript
 var videoAdUnits = [{
     code: "test-div-video",
@@ -82,8 +81,8 @@ var videoAdUnits = [{
 }]
 ```
 
-
 #### AdUnit Format for Multi Ads
+
 ```javascript
 var multiAdUnits = [{
     code: "test-div-multi",
@@ -121,8 +120,8 @@ var multiAdUnits = [{
 }];
 ```
 
-
 #### AdUnit Format for Video (mediaTypes.video.playerSize: [1,1])
+
 ```javascript
 var videoAdUnits = [{
     code: "test-div-video",
@@ -146,8 +145,8 @@ var videoAdUnits = [{
 }]
 ```
 
-
 #### AdUnit Format for Multi Ads (mediaTypes.video.playerSize: [1,1])
+
 ```javascript
 var multiAdUnits = [{
     code: "test-div-multi",

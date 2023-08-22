@@ -6,12 +6,12 @@ biddercode: missena
 gvl_id: 867
 pbjs: true
 safeframes_ok: false
-pbjs_version_notes: not in 5.x, in 6.2+
+sidebarType: 1
 ---
 
 ### Note
 
-The Missena Bidding adapter requires setup before beginning. Please contact us at jney@missena.com
+The Missena Bidding adapter requires setup before beginning. Please contact us at <jney@missena.com>
 
 ### Bid params
 

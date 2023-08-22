@@ -4,7 +4,7 @@ title: Compass
 description: Prebid Compass Bidder Adapter
 biddercode: compass
 usp_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
@@ -13,6 +13,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 gvl_id: 883
+sidebarType: 1
 ---
 
 ### Bid Params

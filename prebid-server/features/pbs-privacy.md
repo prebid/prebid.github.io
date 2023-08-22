@@ -10,6 +10,13 @@ title: Prebid Server | Features | Privacy
 * TOC
 {:toc}
 
+## Prebid Server Activity Control Infrastructure
+
+Prebid Server supports a mechanism for Publisher control for overriding privacy-sensitive activities. See the [Activity Controls](/prebid-server/features/pbs-activitycontrols.html) for more information.
+
+Note that Activity Controls are currently not well integrated with other privacy features, but that will change as these features mature.
+
+
 ## Mobile 'Limit Ad Tracking' flag
 
 If PBS receives 'device.lmt' flag in the OpenRTB request, it does the following anonymization:
@@ -30,10 +37,6 @@ more nuanced and stricter policy.
 {: .alert.alert-info :}
 If a Prebid Server host company wants to support GDPR, they must currently [register for the IAB Global Vendor List](https://register.consensu.org/). 
 The user must provide legal basis for the host company to read/write cookies or `/cookie_sync` will return an empty response with no syncs and `/setuid` will fail.
-
-### TCF 1.1
-
-No longer supported by Prebid Server.
 
 ### TCF 2.0
 
@@ -66,6 +69,24 @@ consider:
 The specific details vary between [PBS-Go](https://github.com/prebid/prebid-server/blob/master/config/config.go) and [PBS-Java](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md), so check the
 version-specific documentation for more information.
 
+## GPP
+
+The IAB's [Global Privacy Platform](https://iabtechlab.com/gpp/) is container for
+privacy regulations aimed at helping the ad tech ecosystem bring disparate reguations
+under one communication path.
+
+Prebid Server support for this protocol is still being developed:
+
+1. (done) Passthrough - GPP parameters are forwarded through auction and usersync signals. In ORTB 2.6, these are regs.gpp and regs.gpp_sid. For url protocols, look for `gpp` and `gpp_sid`.
+1. (done) GPP as a TCF and USP wrapper - PBS parses the GPP container for TCF2 and USP strings, extracting them to the original ORTB location. (PBS-Java only for now)
+1. (planned) GPP infrastructure - the ability to plug new regulations into PBS, and the first sub-module, the IAB's US [National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md).
+
+## MSPA / US National Privacy
+
+The first privacy protocol implemented as part of the GPP will be USNat. See [Prebid MSPA Support](/features/mspa-usnat.html) for more info.
+
+Until the USNat module is available, publishers using Prebid Server can consider utilizing [Activity Controls](/prebid-server/features/pbs-activitycontrols.html). In particular, the `gppSid`, `geo`, and `gpc` conditions may be useful tools within a compliance strategy.
+
 ## COPPA
 
 The [Children's Online Privacy Protection Act (COPPA)](https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule) is a law in the US which imposes certain requirements on operators of websites or online services directed to children under 13 years of age, and on operators of other websites or online services that have actual knowledge that they are collecting personal information online from a child under 13 years of age.
@@ -73,7 +94,7 @@ If `regs.coppa` is set to '1' on the OpenRTB request, the following anonymizatio
 
 - Removes all ID fields: device.ifa, device.macsha1, device.macmd5, device.dpidsha1, device.dpidmd5, device.didsha1, device.didmd5
 - Truncate ip field - remove lowest 8 bits.
-- Truncate ipv6 field - remove lowest 32 bits.
+- Truncate ipv6 field - anonymize as noted below.
 - Remove geo.lat, geo.lon. geo.metro, geo.city, and geo.zip
 - Remove user.id, user.buyeruid, user.yob, and user.gender
 
@@ -93,7 +114,12 @@ the following anonymization steps are taken:
 ## Global Privacy Control
 
 In support of the [Global Privacy Control](https://globalprivacycontrol.org/), Prebid Server passes the `Sec-GPC` HTTP header through to bid adapters. It
-does not currently take action on this header.
+does not currently take action on this header by default.
+
+A publisher can utilize Activity Controls to link anonymization actions
+to the precence of the GPC flag. See the `gpc` rule condition in the
+[Activity Controls](/prebid-server/features/pbs-activitycontrols.html) for
+more information.
 
 ## DNT
 

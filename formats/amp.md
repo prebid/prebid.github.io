@@ -19,14 +19,12 @@ At a high level, setting up AMP pages for header bidding with Prebid has these s
 1. Ad server line items for header bidding are established.
 1. The publisher sets up and tests the AMP pages.
 
-
 ## Ad Ops
 
-+ [Setting up Prebid for AMP in Google Ad Manager]({{site.baseurl}}/adops/setting-up-prebid-for-amp-in-dfp.html)
++ [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
 
 ## Developers
 
 + [How Prebid on AMP works](/prebid-server/use-cases/pbs-amp.html)
 + [Prebid AMP Implementation Guide](/dev-docs/show-prebid-ads-on-amp-pages.html)
 + [Prebid Server AMP endpoint documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html)
-

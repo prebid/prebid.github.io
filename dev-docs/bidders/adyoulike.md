@@ -7,16 +7,17 @@ pbs: true
 media_types: banner, video, native
 biddercode: adyoulike
 userIds: criteo, sharedId
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 259
 usp_supported: true
 floors_supported: true
 schain_supported: true
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Adyoulike Header Bidding adaptor requires setup and approval from the Adyoulike team. Please reach out to your account manager or prebid@adyoulike.com for more information.
+The Adyoulike Header Bidding adaptor requires setup and approval from the Adyoulike team. Please reach out to your account manager or <prebid@adyoulike.com> for more information.
 
 ### Bid Params
 

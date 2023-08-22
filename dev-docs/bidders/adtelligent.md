@@ -4,8 +4,9 @@ title: Adtelligent
 description: Prebid Adtelligent Bidder Adapter
 biddercode: adtelligent
 media_types: video,banner
-gdpr_supported: true
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+tcfeu_supported: true
+gpp_supported: true
+userIds: all (with commercial activation)
 schain_supported: true
 coppa_supported: true
 usp_supported: true
@@ -14,6 +15,7 @@ prebid_member: true
 pbjs: true
 pbs: true
 gvl_id: 410
+sidebarType: 1
 ---
 
 ### Bid params
@@ -24,15 +26,17 @@ gvl_id: 410
 | `aid` | required | The source ID from Adtelligent. | `350975` | `integer` |
 
 ### Description
+
 Get access to multiple demand partners across Adtelligent AdExchange and maximize your yield with Adtelligent header bidding adapter.
 
 Adtelligent header bidding adapter connects with Adtelligent demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-Adtelligent now supports adpod. 
+Adtelligent now supports adpod.
 
 ### Test Parameters
-```
+
+``` javascript
     var adUnits = [
 
       // Video instream adUnit
@@ -107,10 +111,10 @@ Adtelligent now supports adpod.
 
 ### Additional Configuration
 
-It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request 
+It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request
 (default value is 10).
 
-```
+``` javascript
     pbjs.setBidderConfig({
         config: {              
             adtelligent: {

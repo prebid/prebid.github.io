@@ -5,9 +5,10 @@ description: Readpeak Bidder Adaptor
 pbjs: true
 biddercode: readpeak
 media_types: native, banner
-gdpr_supported: true
+tcfeu_supported: true
 tcf2_supported: true
 gvl_id: 290
+sidebarType: 1
 ---
 
 ### Bid Params

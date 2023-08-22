@@ -12,6 +12,7 @@ sidebarType : 1
 ---
 
 # Akamai DAP Real Time Data Provider Module
+
 {:.no_toc}
 
 * TOC
@@ -19,20 +20,19 @@ sidebarType : 1
 
 The Akamai Data Activation Platform (DAP) is a privacy-first system that protects end-user privacy by only allowing them to be targeted as part of a larger cohort. Akamai DAP Real time data Provider automatically invokes the DAP APIs and submit audience segments and the Secure Ad ID(SAID) to the bid-stream.  SAID is a JWT/JWE which carries with it the cohorts and only a side-car or trusted server in the demand-side platform is allowed to see its contents.
 
-
 ## Publisher Usage
 
-1) Build the akamaiDapRTD module into the Prebid.js package with:
+1. Build the akamaiDapRTD module into the Prebid.js package with:
 
-```
-gulp build --modules=akamaiDapRtdProvider,...
-```
+    ```bash
+    gulp build --modules=akamaiDapRtdProvider,...
+    ```
 
-2) Use `setConfig` to instruct Prebid.js to initilaize the akamaiDapRtdProvider module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initilaize the akamaiDapRtdProvider module, as specified below.
 
 ### Configuration
 
-```
+```javascript
 pbjs.setConfig({
   realTimeData: {
     auctionDelay: 2000,
@@ -55,8 +55,7 @@ pbjs.setConfig({
 });
 ```
 
-Please reach out to your Akamai account representative(Prebid@akamai.com) to get provisioned on the DAP platform.
-
+Please reach out to your Akamai account representative(<Prebid@akamai.com>) to get provisioned on the DAP platform.
 
 **Config Syntax details:**
 
@@ -65,7 +64,7 @@ Please reach out to your Akamai account representative(Prebid@akamai.com) to get
 | :------------ | :------------ | :------------ |:------------ |
 | name | String | Akamai Dap Rtd module name | 'dap' always|
 | waitForIt | Boolean | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
-| apiHostname | String | Hostname provided by Akamai | Please reach out to your Akamai account representative(Prebid@akamai.com) for this value|
+| apiHostname | String | Hostname provided by Akamai | Please reach out to your Akamai account representative(<Prebid@akamai.com>) for this value|
 | apiVersion | String | This holds the API version | It should be "x1" always |
 | domain | String | The domain name of your webpage | |
 | identityType | String | Something like this 'email', 'mobile',  ... 'dap-signature:1.3.0' | |
@@ -74,9 +73,12 @@ Please reach out to your Akamai account representative(Prebid@akamai.com) to get
 | dapEntropyTimeout | Integer | Maximum time allotted for the entropy calculation to happen | |
 
 ### Testing
+
 To view an example of available segments returned by dap:
+
+```bash
+gulp serve --modules=rtdModule,akamaiDapRtdProvider,appnexusBidAdapter,sovrnBidAdapter
 ```
-‘gulp serve --modules=rtdModule,akamaiDapRtdProvider,appnexusBidAdapter,sovrnBidAdapter’
-```
+
 and then point your browser at:
-"http://localhost:9999/integrationExamples/gpt/akamaidap_segments_example.html"
+"<http://localhost:9999/integrationExamples/gpt/akamaidap_segments_example.html>"
