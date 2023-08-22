@@ -758,7 +758,7 @@ private fun initializePlayer() {
 }
 ```
 
-#### Step 1: Create an Ad Unit
+### Step 1: Create an Ad Unit
 {:.no_toc}
 
 Initialize the VideoAdUnit with the following properties:
@@ -767,27 +767,27 @@ Initialize the VideoAdUnit with the following properties:
 * `width` - Width of the video ad unit.
 * `height` - Height of the video ad unit
 
-#### Step 2: Configure the video parameters
+### Step 2: Configure the video parameters
 {:.no_toc}
 
 Provide configuration properties for the video ad using the [VideoParameters](#step-2-configure-video-parameters) object.
 
-#### Step 3: Prepare the Player
+### Step 3: Prepare the Player
 {:.no_toc}
 
 Create the instance of `PlayerView` and display it in the app UI.
 
-#### Step 4: Make a bid request
+### Step 4: Make a bid request
 {:.no_toc}
 
 The `fetchDemand` method makes a bid request to the Prebid Server. Use the methods which return the targeting map in the result closure.
 
-#### Step 5: Generate GAM Instream URI
+### Step 5: Generate GAM Instream URI
 {:.no_toc}
 
 Using Prebid util method, generate Google IMA URI for downloading the cached creative from the winning bid.
 
-#### Step 6: Cretae and init IMA player
+### Step 6: Cretae and init IMA player
 {:.no_toc}
 
 Follow the Google Guide for [integrating IMA with ExoPlayer](https://developers.google.com/interactive-media-ads/docs/sdks/android/client-side/exoplayer-extension) to run a video and show instream ad from the winning bid.
@@ -1204,6 +1204,7 @@ void clearContextKeywords()
 First Party Data (FPD) is free form data supplied by the publisher to provide additional targeting of the user or inventory context. It is used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
 
 Data is broken up into two different data types:
+
 * User
   * Global in scope only
 * Inventory (context)
@@ -1312,4 +1313,3 @@ public void setDataList(@NonNull ArrayList<DataObject> dataObjects)
 
 public void clearDataList()
 ```
-
