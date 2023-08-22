@@ -230,7 +230,7 @@ In the context of a VideoInterstitialAdUnit, rewarded video ads are typically la
 #### api
 {:.no_toc}
 
-The `api` property is dedicated to adding values for API Frameworks to a bid response according to the OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
+The `api` property is dedicated to adding values for API Frameworks to a bid response according to the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
 
 * `1` or `Signals.Api.VPAID_1` : VPAID 1.0
 * `2` or `Signals.Api.VPAID_2` : VPAID 2.0
@@ -358,7 +358,7 @@ Steps 2-5 are the same as for Display Banner. Setting up banner and video parame
 
 ## Interstitial API
 
-Starting with Prebid Mobile `2.1.0` you can use `InterstitialAdUnit ` to bid over the banner and/or video demand. The default ad format is `BANNER`. To customize the bidding format, specify the ad formats in the `InterstitialAdUnit ` constructor.
+Starting with Prebid Mobile `2.1.0` you can use `InterstitialAdUnit` to bid over the banner and/or video demand. The default ad format is `BANNER`. To customize the bidding format, specify the ad formats in the `InterstitialAdUnit` constructor.
 
 ### HTML Interstitial
 
@@ -414,9 +414,9 @@ Initialize the Interstitial Ad Unit with properties:
 * `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occupy of a device's screen. Support in SDK version 1.2+
 
 > **NOTE:** As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process to monetize sizes smaller than full screen ads. App developers can specify a minimum width and minimum height percentage an ad can occupy of a devices screen, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction.
-
+>
 > PBS will take the AdUnit's size (width and height) as the max size for the interstitial as size, generating a list of ad sizes, selecting the first 10 sizes that fall within the imp's max size and minimum percentage size. All the interstitial parameters will still be passed to the bidders, allowing them to use their own size matching algorithms if they prefer.
-
+>
 > Prebid Server will send the eligible size list to each bidder to solicit a bid. For a full description of the Prebid Server logic, please refer to the [Prebid Server PR 797](https://github.com/prebid/prebid-server/pull/797/files).
 
 #### Step 2: Make a bid request
@@ -636,31 +636,31 @@ private fun createListener(): RewardedAdLoadCallback {
 }
 ```
 
-#### Step 1: Create an Ad Unit
+### Step 1: Create an Ad Unit
 {:.no_toc}
 
 Initialize the Rewarded Video Ad Unit with the following properties:
 
 * `configId` - an ID of Stored Impression on the Prebid Server
 
-#### Step 2: Configure video parameters
+### Step 2: Configure video parameters
 {:.no_toc}
 
 Provide configuration properties for the video ad using the [VideoParameters](#step-2-configure-video-parameters) object.
 
-#### Step 3: Make a bid request
+### Step 3: Make a bid request
 {:.no_toc}
 
 The `fetchDemand` method makes a bid request to the Prebid Server. You should provide an `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
 
-#### Step 4: Load a GAM Rewarded Ad
+### Step 4: Load a GAM Rewarded Ad
 {:.no_toc}
 
 Now you should request the ad from GAM. If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid line item will be returned from GAM, and GMA SDK will render its creative.
 
 Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
-#### Step 5: Present the Rewarded Ad
+### Step 5: Present the Rewarded Ad
 {:.no_toc}
 
 Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/android/rewarded#show_the_ad) to display a rewarded ad right after receiving it or later in a natural pauses in the flow of an app.
@@ -703,7 +703,7 @@ private fun createAd() {
 ```
 
 {: .alert.alert-warning :}
-Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `InStreamVideoAdUnit ` instead.
+Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `InStreamVideoAdUnit` instead.
 
 Configure the video ad:
 
@@ -1100,7 +1100,7 @@ The `fetchDemand` method makes a bid request to the Prebid Server. You should pr
 
 Prepare the `AdManagerAdRequest` and run an ad request as described in the GMA SDK docs for the [native ads](https://developers.google.com/ad-manager/mobile-ads-sdk/android/native/start).
 
-If the `AdManagerAdRequest ` contains targeting keywords, the respective Prebid line item will be returned from GAM, and GMA SDK will render its creative. Be sure that you make the ad request with the same `AdManagerAdRequest ` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
+If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid line item will be returned from GAM, and GMA SDK will render its creative. Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
 #### Step 4: Implement OnCustomFormatAdLoadedListener protocol
 {:.no_toc}
