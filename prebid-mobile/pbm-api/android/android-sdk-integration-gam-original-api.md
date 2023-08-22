@@ -98,7 +98,7 @@ Using the `BannerParameters()` you can customize the bid request for BannerAdUni
 {: .alert.alert-warning :}
 Starting from PrebidMobile `2.1.0` the `BannerBaseAdUnit.Parameters` class is deprecated. Use `BannerParameters` instead.
 
-The `api` property is dedicated to adding values for API Frameworks to a bid response according to the OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
+The `api` property is dedicated to adding values for API Frameworks to a bid response according to the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
 
 * `3` or `Signals.Api.MRAID_1` : MRAID-1 support signal
 * `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
@@ -157,7 +157,6 @@ private fun createAd() {
 
 {: .alert.alert-warning :}
 Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `BannerAdUnit` class with video ad format instead.
-
 
 Configure Video parameters:
 
@@ -228,7 +227,6 @@ In the context of a VideoInterstitialAdUnit, rewarded video ads are typically la
 * `4` or `InFeed` : In-Feed placement is found in content, social, or product feeds.
 * `5` or `Slider`, `Floating` or `Interstitial` : Open RTB supports one of three values for option 5 as either Slider, Floating or Interstitial. If an enum value is supplied in placement, bidders will receive value 5 for placement type and assume to be interstitial with the instl flag set to 1.
 
-
 #### api
 {:.no_toc}
 
@@ -271,27 +269,26 @@ Array of strings representing the supported OpenRTB 2.5 content MIME types (e.g.
 
 Array of OpenRTB 2.5 playback methods. If none are specified, any method may be used. Only one method is typically used in practice. It is strongly advised to use only the first element of the array.
 
-  * `1` or `Signals.PlaybackMethod.AutoPlaySoundOn` : Initiates on Page Load with Sound On
-  * `2` or `Signals.PlaybackMethod.AutoPlaySoundOff` : Initiates on Page Load with Sound Off by Default
-  * `3` or `Signals.PlaybackMethod.ClickToPlay` : Initiates on Click with Sound On
-  * `4` or `Signals.PlaybackMethod.MouseOver` : Initiates on Mouse-Over with Sound On
-  * `5` or `Signals.PlaybackMethod.EnterSoundOn` : Initiates on Entering Viewport with Sound On
-  * `6` or `Signals.PlaybackMethod.EnterSoundOff`: Initiates on Entering Viewport with Sound Off by Default
+* `1` or `Signals.PlaybackMethod.AutoPlaySoundOn` : Initiates on Page Load with Sound On
+* `2` or `Signals.PlaybackMethod.AutoPlaySoundOff` : Initiates on Page Load with Sound Off by Default
+* `3` or `Signals.PlaybackMethod.ClickToPlay` : Initiates on Click with Sound On
+* `4` or `Signals.PlaybackMethod.MouseOver` : Initiates on Mouse-Over with Sound On
+* `5` or `Signals.PlaybackMethod.EnterSoundOn` : Initiates on Entering Viewport with Sound On
+* `6` or `Signals.PlaybackMethod.EnterSoundOff`: Initiates on Entering Viewport with Sound Off by Default
 
 #### protocols
 {:.no_toc}
 
 Array or enum of OpenRTB 2.5 supported Protocols. Values can be one of:
 
-  * `1` or `Signals.Protocols.VAST_1_0` : VAST 1.0
-  * `2` or `Signals.Protocols.VAST_2_0` : VAST 2.0
-  * `3` or `Signals.Protocols.VAST_3_0` : VAST 3.0
-  * `4` or `Signals.Protocols.VAST_1_0_Wrapper` : VAST 1.0 Wrapper
-  * `5` or `Signals.Protocols.VAST_2_0_Wrapper` : VAST 2.0 Wrapper
-  * `6` or `Signals.Protocols.VAST_3_0_Wrapper` : VAST 3.0 Wrapper
-  * `7` or `Signals.Protocols.VAST_4_0` : VAST 4.0
-  * `8` or `Signals.Protocols.VAST_4_0_Wrapper` : VAST 4.0 Wrapper
-
+* `1` or `Signals.Protocols.VAST_1_0` : VAST 1.0
+* `2` or `Signals.Protocols.VAST_2_0` : VAST 2.0
+* `3` or `Signals.Protocols.VAST_3_0` : VAST 3.0
+* `4` or `Signals.Protocols.VAST_1_0_Wrapper` : VAST 1.0 Wrapper
+* `5` or `Signals.Protocols.VAST_2_0_Wrapper` : VAST 2.0 Wrapper
+* `6` or `Signals.Protocols.VAST_3_0_Wrapper` : VAST 3.0 Wrapper
+* `7` or `Signals.Protocols.VAST_4_0` : VAST 4.0
+* `8` or `Signals.Protocols.VAST_4_0_Wrapper` : VAST 4.0 Wrapper
 
 #### Step 3: Create an AdManagerAdView
 {:.no_toc}
@@ -358,7 +355,6 @@ Initialize the `BannerAdUnit` with properties:
 {:.no_toc}
 
 Steps 2-5 are the same as for Display Banner. Setting up banner and video parameters can be found in Display Banner and Video Banner respectively.
-
 
 ## Interstitial API
 
@@ -471,7 +467,6 @@ private fun createAd() {
 {: .alert.alert-warning :}
 Starting from PrebidMobile `2.1.0` the `VideoInterstitialAdUnit` class is deprecated. Use `InterstitialAdUnit` class with video ad format instead.
 
-
 Configuration function:
 
 ```kotlin
@@ -556,7 +551,6 @@ adUnit = InterstitialAdUnit(configId, EnumSet.of(AdUnitFormat.BANNER, AdUnitForm
 adUnit?.setMinSizePercentage(80, 60)
 adUnit?.videoParameters = VideoParameters(listOf("video/mp4"))
 
-
 // 2. Make a bid request to Prebid Server
 val request = AdManagerAdRequest.Builder().build()
 adUnit?.fetchDemand(request) {
@@ -583,7 +577,6 @@ Initialize the `InterstitialAdUnit` with the following properties:
 {:.no_toc}
 
 Steps 2-3 are the same as for Display Banner. Setting up banner and video parameters can be found in Display Interstitial and Video Interstitial respectively.
-
 
 ## Rewarded Video API
 
@@ -799,7 +792,6 @@ Using Prebid util method, generate Google IMA URI for downloading the cached cre
 
 Follow the Google Guide for [integrating IMA with ExoPlayer](https://developers.google.com/interactive-media-ads/docs/sdks/android/client-side/exoplayer-extension) to run a video and show instream ad from the winning bid.
 
-
 ## Native API
 
 ### Native Banner
@@ -899,7 +891,6 @@ In order to make a bid request for the native ads you should provide a descripti
 * `NativeImageAsset`
 * `NativeDataAsset`
 * `NativeTitleAsset`
-
 
 #### Step 3: Create an AdManagerAdView
 {:.no_toc}
@@ -1141,12 +1132,10 @@ PB Ad Slot is an identifier tied to the placement the ad will be delivered in. T
 
 ### AppContext
 
-
 #### setAppContent
 {:.no_toc}
 
 Provides targeting information for the `app.content` field of the bid request. Parameter is an `ContentObject` which provides all respective fields.
-
 
 ### Auto Refresh
 
@@ -1222,7 +1211,6 @@ Data is broken up into two different data types:
   * Ad Unit grain
 
  The first party inventory context will apply to the specic ad unit the data object it is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](pbm-targeting-params-android#first-party-data) page.
-
 
 #### addContextData
 {:.no_toc}
