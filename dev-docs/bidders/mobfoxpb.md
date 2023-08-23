@@ -31,3 +31,7 @@ Currently adapter doesn't support multiimpression, so only the first impression 
 |----------------|----------|----------------------------------------------------------|------------|-----------|
 | `TagID` | optional | Placement Id will be generated on Mobfox Platform. For direct integration | `'0'`        | `string` |
 | `key` | optional | Endpoint id will be generated on Mobfox Platform. For s2s integration | `'0'`        | `string` |
+
+### Note
+
+For the prebid server and prebid.js you only need to use one parameter: either TagID or key
