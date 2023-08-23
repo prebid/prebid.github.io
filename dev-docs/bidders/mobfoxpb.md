@@ -34,4 +34,4 @@ Currently adapter doesn't support multiimpression, so only the first impression 
 
 ### Note
 
-For the prebid server and prebid.js you only need to use one parameter: either TagID or key
+For the prebid server you only need to use one parameter: either TagID or key
