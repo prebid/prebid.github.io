@@ -189,6 +189,31 @@ This table documents the default blocks of boolean logic that indicate whether a
 | transmitUfpd | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SaleOptOut=1 OR<br/>SaleOptOutNotice=2 OR<br/>SharingNotice=2 OR<br/>(SaleOptOutNotice=0 AND SaleOptOut=2) OR<br/>SharingOptOutNotice=2 OR<br/>SharingOptOut=1 OR<br/>(SharingOptOutNotice=0 AND SharingOptOut=2) OR<br/> (SharingNotice=0 AND SharingOptOut=2) OR <br/> TargetedAdvertisingOptOutNotice=2 OR<br/>TargetedAdvertisingOptOut=1 OR<br/>(TargetedAdvertisingOptOutNotice=0 AND TargetedAdvertisingOptOut=2) OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[1-7,9-12]=2)<br/>SensitiveDataProcessing[1-5,11]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=2 OR<br/>KnownChildSensitiveDataConsents[2]==1 OR<br/>KnownChildSensitiveDataConsents[2]==2 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Suppress the transmission or user.ext.data.*, user.data.*, and device IDs when the activity is not allowed.<br/><br/>The difference in this logic compared to syncUser is that it includes 'sensitive data' flags. See the requirements above and the commentary below. |
 | transmitPreciseGeo | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[8]=2)<br/>SensitiveDataProcessing[8]=1 OR<br/>KnownChildSensitiveDataConsents[2]==1 OR<br/>KnownChildSensitiveDataConsents[2]==2 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Round IP address and lat/long in both device.geo and user.geo when the activity is not allowed.<br/><br/>The difference in this logic is that it includes "sensitive data 8" (geo) and does not include the UFPD- and ID-related fields. |
 
+NOTE -- Here's what the numbers in the logic above indicate in the [IAB GPP USNat specification]([https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/tree/main/Sections](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)):
+
+MspaServiceProviderMode:
+
+- 0 - Not Applicable
+- 1 - Yes
+- 2 - No
+
+SaleOptOut, SharingOptOut, TargetedAdvertisingOptOut:
+
+- 0 - Not Applicable
+- 1 - Opted-Out
+- 2 - Did not Opt-Out
+
+SaleOptOutNotice, SharingNotice, TargetedAdvertisingOptOutNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataLimitUseNotice:
+
+- 0 - Not Applicable
+- 1 - Notice was provided
+- 2 - Notice was not provided
+
+KnownChildSensitiveDataConsents, PersonalDataConsents, SensitiveDataProcessing:
+
+- 1 - No Consent
+- 2 - Consent
+
 ### Commentary
 
 Prebid arrived at this logic through community discussions and in conjunction with legal counsel. First, we established the requirements and then translated them into boolean logic. Here's a commentary on the default logic for the `transmitUfpd` activity:

@@ -53,7 +53,7 @@ The LiveIntent ID sub-module follows the standard Prebid.js initialization based
 
 Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option.
 
-For example, with the configuration below, the nonID as well as 'uid2', the 'medianet' id, the 'magnite' id and the 'bidswitch' id will be requested:
+For example, with the configuration below, the nonID as well as 'uid2', the 'medianet' id, the 'bidswitch' id and the 'magnite' id will be requested:
 
 ```javascript
 pbjs.setConfig({
@@ -62,7 +62,7 @@ pbjs.setConfig({
             "name": "liveIntentId",
             "params": {
                 "publisherId": "12432415",
-                "requestedAttributesOverrides": {'uid2': true, 'medianet': true, 'magnite': true, 'bidswitch': true},
+                "requestedAttributesOverrides": {'uid2': true, 'medianet': true, 'bidswitch': true, 'magnite': true}
             },
         }]
     }
@@ -71,7 +71,7 @@ pbjs.setConfig({
 
 ### Multiple user ids
 
-The attributes 'uid2', 'medianet', 'magnite' and 'bidswitch' are treated specially by LiveIntent's user id sub-module. Each of these three attributes will result in a separate id returned by the sub-module.
+The attributes 'uid2', 'medianet', 'magnite', 'bidswitch' and 'index' are treated specially by LiveIntent's user id sub-module. Each of these four attributes will result in a separate id returned by the sub-module.
 
 For example, in case 'uid2' is configured to be requested - additionally to the nonID - the `request.userId` object would look like this:
 
@@ -90,9 +90,9 @@ For example, in case 'uid2' is configured to be requested - additionally to the 
 }
 ```
 
-Note that 'uid2' is exposed as part of 'lipb' as well as separately as 'uid2'. 'medianet', 'magnite' and 'bidswitch' behave the same way.
+Note that 'uid2' is exposed as part of 'lipb' as well as separately as 'uid2'. 'medianet', 'magnite', 'bidswitch' and 'index' behave the same way.
 
-For the attributes 'lipbid' (nonID), 'uid2', 'medianet', 'magnite' and 'bidswitch' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
+For the attributes 'lipbid' (nonID), 'uid2', 'medianet', 'magnite', 'bidswitch' and 'index' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
 
 ### Requesting uid2
 
@@ -127,7 +127,7 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 | params.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the IdentityResolution endpoint. By default, 1000 milliseconds.|`1000`|
 | params.partner | Optional| String |The name of the partner whose data will be returned in the response.|`'prebid'`|
 | params.identifiersToResolve |Optional| Array[String] |Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
-| params.requestedAttributesOverrides | Optional | Object | Object containing booleans used to override the default resolution. Attributes set to true will be added to the resolve list, while attributes set to false will be removed | `{'uid2': true}` |
+| params.requestedAttributesOverrides | Optional | Object | Object containing booleans used to override the default resolution. Attributes set to true will be added to the resolve list, while attributes set to false will be removed. Valid attributes are 'nonId', 'uid2', 'medianet', 'magnite', 'bidswitch' and 'index'. | `{'uid2': true}` |
 | params.emailHash |Optional| String |The hashed email address of a user. We can accept the hashes, which use the following hashing algorithms: md5, sha1, sha2.|`1a79a4d60de6718e8e5b326e338ae533`|
 | params.url | Optional| String |Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`'https://idx.my-domain.com'`|
 | params.liCollectConfig |Optional| Object |Container of all collector params.||
