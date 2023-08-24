@@ -1,3 +1,5 @@
+# docs.prebid.org source
+
 This repository contains the source files for the Prebid.js documentation site at [Prebid.org](https://prebid.org).
 
 Please see the sections below for more information:
@@ -35,13 +37,13 @@ All docs are under the license shown in the `LICENSE` file in this directory.
 
 The site is hosted on GitHub pages, and uses [Jekyll](https://jekyllrb.com/) to generate the HTML. Jekyll is written in the [Ruby](https://www.ruby-lang.org/en/) language.
 
-1. follow the instructions at https://jekyllrb.com/docs/installation/ for your OS
+1. follow the instructions at [jekyllrb.com/docs/installation/](https://jekyllrb.com/docs/installation/) for your OS
 1. gem install github-pages
 1. start Jekyll as described below
 
 For CSS, the site uses Laravel Mix to build CSS from Sass (scss-flavored) source files. Under the hood Laravel Mix uses Webpack.
 
-1. follow the instructions at https://nodejs.dev to install Node.js for your OS
+1. follow the instructions at [/nodejs.dev](https://nodejs.dev) to install Node.js for your OS
 1. `npm ci` to install packages for building assets
 1. build assets as described below
 
@@ -108,7 +110,7 @@ This means an adaptor is not available to download from Prebid.org as soon as th
 
 ## Liquid Templating
 
-- [jekyll - check for non empty](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/jekyll/liquid/conditionals/non-empty.html)
+* [jekyll - check for non empty](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/jekyll/liquid/conditionals/non-empty.html)
 
 ## Thanks
 
