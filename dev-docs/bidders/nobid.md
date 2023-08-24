@@ -14,8 +14,9 @@ schain_supported: true
 coppa_supported: true
 userId: criteo, unifiedId, id5Id, intentIqId
 safeframes_ok: true
-sidebarType: 1
+prebid_member: false
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -34,7 +35,7 @@ If you absolutely want to run NoBid in a Saferame creative, please contact your 
 
 ### Test Parameters
 
-```
+```javascript
     var adUnits = [
         {
             code: 'test-div1',
