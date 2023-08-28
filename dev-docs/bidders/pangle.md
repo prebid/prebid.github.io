@@ -9,10 +9,11 @@ schain_supported: false
 media_types: banner, video, native
 safeframes_ok: false
 deals_supported: false
-pbjs: false
+pbjs: true
 pbs: true
 pbs_app_supported: true
 prebid_member: false
+userIds: sharedId
 sidebarType: 1
 ---
 
@@ -28,3 +29,53 @@ The Pangle Bidding adapter requires setup before beginning. Please contact us at
 | token         | required | access token                                          | 'aaaa123'   | string   |
 | appid         | optional | app id (must be used in conjunction with placementid) | '5123400'   | string   |
 | placementid   | optional | placement id (must be used in conjunction with appid) | '912340000' | string   |
+
+Pangle server-side Prebid adapter requires only `token` parameters parameters. But Pangle client-side Prebid.js adapter requires only `appid` and `placementid`.
+
+Pangle server-side Prebid Server adapter supports `banner`, `video`, `native` media types. But Pangle client-side Prebid.js adapter supports only `banner` media types, doesn't support `video` and `native`.
+
+### Test Parameters
+
+```
+var adUnits = [
+    {
+        code: 'test-div',
+        mediaTypes: {
+            banner: {
+                sizes: [[300, 250]],  // a display size
+            }
+        },
+        bids: [
+           {
+               bidder: "pangle",
+               params: {
+                    placementid: '1234', // string - required
+                    appid: '1234' // string - required
+                }
+           }
+       ]
+    }
+];
+```
+
+### User Sync
+
+Add the following code to enable user sync. Smile Wanted strongly recommends enabling user syncing through iFrames. This functionality improves partners' user match rates and increases the Smile Wanted bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
+
+```
+pbjs.setConfig({
+    userSync: {
+        iframeEnabled: true,
+        userIds: [
+          {
+            name: 'sharedId',
+            storage: {
+              name: 'sharedId', // name of the 1st party cookie
+              type: 'cookie',
+              expires: 365,
+            },
+          },
+        ],
+    }
+});
+```
