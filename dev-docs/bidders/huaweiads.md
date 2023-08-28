@@ -58,4 +58,3 @@ public static boolean isHmsAvailable(Context context) {
     return isAvailable;
 }
 ```
-
