@@ -240,7 +240,7 @@ pbjs.setConfig({
   rubicon: {
     rendererConfig: {
       align: 'center',         // player placement: left|center|right (default is center)
-      position: 'append'       // position relative to ad unit: append|prepend|before|after (default is after)
+      position: 'append',       // position relative to ad unit: append|prepend|before|after (default is after)
       closeButton: true,       // display 'Close' button (default is false)
       label: 'Advertisement',  // custom text to display above the player (default is '-')
       collapse: true           // remove the player from the page after ad playback (default is true)
