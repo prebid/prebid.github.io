@@ -36,4 +36,4 @@ The lm_kiviads adapter requires setup before beginning. Please contact us at pre
 | Name        | Scope    | Description                 | Example                            | Type      |
 |-------------|----------|-----------------------------|------------------------------------|-----------|
 | `env`       | required | Environment name            | `lm_kiviads-stage`                 | `string`  |
-| `pid`       | required | Uniq placement ID           | `dc230510222b516f0eb9a10e5913d3b5` | `string`  |
+| `pid`       | required | Uniq placement ID           | `cs230510321b516f0eb9a10e5913d3b1` | `string`  |
