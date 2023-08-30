@@ -6,7 +6,7 @@ pbjs: true
 pbs: false
 biddercode: admatic
 media_types: banner,video
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 schain_supported: false
@@ -33,6 +33,7 @@ AdMatic header bidding adapter connects with AdMatic demand sources to fetch bid
 ### Test Parameters
 
 300x250 banner test
+
 ```
 var adUnits = [{
   code: 'your-slot_1-div', //use exactly the same code as your slot div id.

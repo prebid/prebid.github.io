@@ -10,9 +10,11 @@ pbjs: true
 pbs: false
 biddercode: headbidding
 media_types: banner, native, video
-gdpr_supported: true
+gvl_id: 14
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 pbs_app_supported: true
 schain_supported: true
 userIds: all
@@ -23,8 +25,6 @@ multiformat_supported: will-bid-on-one
 floors_supported: true
 aliasCode : adkernel
 sidebarType: 1
-
-
 
 ---
 

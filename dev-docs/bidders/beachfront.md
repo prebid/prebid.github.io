@@ -6,8 +6,9 @@ biddercode: beachfront
 media_types: video
 floors_supported: true
 fpd_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
+gpp_supported: true
 userIds: unifiedId, identityLink, uid2, hadronId
 schain_supported: true
 prebid_member: true
@@ -23,7 +24,7 @@ sidebarType: 1
 To use the beachfront bidder you will need an appId (Exchange Id) from an exchange
 account on [platform.beachfront.io](https://platform.beachfront.io).
 
-For further information, please contact adops@beachfront.com.
+For further information, please contact <adops@beachfront.com>.
 
 ### Bid Params
 
@@ -88,7 +89,7 @@ Publishers should use the `ortb2` method of setting First Party Data. The follow
 
 Example first party data that's available to all bidders and all adunits:
 
-```
+```javascript
 pbjs.setConfig({
     ortb2: {
         site: {
@@ -118,4 +119,4 @@ configured exchanges on the platform. The appIds parameter can be sent with just
 
 If the request includes an appId configured for a video response, the videoResponseType parameter can be defined as "nurl", "adm" or "both".
 These will apply to all video returned. If it is not defined, the response type will be a nurl. The definitions for "nurl" vs. "adm" are
-here: (https://github.com/mxmCherry/openrtb/blob/master/openrtb2/bid.go).
+here: (<https://github.com/mxmCherry/openrtb/blob/master/openrtb2/bid.go>).

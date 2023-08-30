@@ -227,7 +227,7 @@ How long an item is stored in Prebid Cache is determined by this hunt path:
 
 #### Timeout
 
-The OpenRTB 2.5 `imp[].exp` field defines how long Prebid Server has to process the request
+The OpenRTB 2.5 `tmax` field defines how long Prebid Server has to process the request
 before the client will stop waiting.
 
 This field is used in different ways by PBS-Go and PBS-Java:
@@ -375,6 +375,7 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
 | mediatypepricegranularity | no | Defines how PBS quantizes bid prices into buckets, allowing for different ranges by media type. | (see below) | object |
 | mediatypepricegranularity.banner | no | Defines how PBS quantizes bid prices into buckets for banners. | (see below) | object |
 | mediatypepricegranularity.video | no | Defines how PBS quantizes bid prices into buckets for video. | (see below) | object |
+| mediatypepricegranularity.native | no | Defines how PBS quantizes bid prices into buckets for native. | (see below) | object |
 | mediatypepricegranularity.TYPE.precision | no | How many decimal places are there in price buckets. | Defaults to 2 | integer |
 | mediatypepricegranularity.TYPE.ranges | no | Same as pricegranularity.ranges | (see below) | array of objects |
 | includewinners | no | Whether to include targeting for the winning bids in response.seatbid[].bid[]. ext.prebid.targeting. Defaults to false. | true | boolean |
@@ -416,19 +417,20 @@ One of "includewinners" or "includebidderkeys" must be true (both default to fal
 
 The parameter "includeformat" indicates the type of the bid (banner, video, etc) for multiformat requests. It will add the key `hb_format` and/or `hb_format_{bidderName}` as per "includewinners" and "includebidderkeys" above.
 
-MediaType PriceGranularity (PBS-Java only) - when a single OpenRTB request contains multiple impressions with different mediatypes, or a single impression supports multiple formats, the different mediatypes may need different price granularities. If `mediatypepricegranularity` is present, `pricegranularity` would only be used for any mediatypes not specified.
+MediaType PriceGranularity - when a single OpenRTB request contains multiple impressions with different mediatypes, or a single impression supports multiple formats, the different mediatypes may need different price granularities. If `mediatypepricegranularity` is present, `pricegranularity` would only be used for any mediatypes not specified.
 
+For example:
 ```
 {
   "ext": {
     "prebid": {
       "targeting": {
-        "mediatypepricegranularity": {
-          "banner": {
-            "ranges": [
+        "pricegranularity": {                 // use this for banner and native
+          "ranges": [
               {"max": 20, "increment": 0.5}
             ]
-          },
+        },
+        "mediatypepricegranularity": {        // video gets a different set of ranges     
           "video": {
             "ranges": [
               {"max": 10, "increment": 1},
@@ -468,7 +470,8 @@ MediaType PriceGranularity (PBS-Java only) - when a single OpenRTB request conta
 The winning bid for each `request.imp[i]` will also contain `hb_bidder`, `hb_size`, and `hb_pb`
 (with _no_ {bidderName} suffix). To prevent these keys, set `request.ext.prebid.targeting.includeWinners` to false.
 
-**NOTE**: Targeting keys are limited to 20 characters. If {bidderName} is too long, the returned key
+**NOTES**:
+- Targeting keys are limited to 20 characters. If {bidderName} is too long, the returned key
 will be truncated to only include the first 20 characters.
 
 ##### Buyer UID
@@ -633,33 +636,34 @@ unless `request.ext.prebid.targeting` is also set in the request.
 
 If the `ext.prebid.cache.bids` object is present, Prebid Server will make a best effort to cache the entire bid object server-side and return the cache location in two places:
 
-1) OpenRTB seatbid.bid.ext.prebid.cache.bids
-```
-    {
-      "seatbid": [
-        "bid": [
-          ...
-          "ext": {
-            "prebid": {
-              "cache": {
-                "bids": {
-                  "url": "https://example.com:443/cache?uuid=385b283c-22cb-49a0-8c0b-8b88c49d9fe9",
-                  "cacheId": "385b283c-22cb-49a0-8c0b-8b88c49d9fe9"
+1. OpenRTB seatbid.bid.ext.prebid.cache.bids
+
+    ```json
+        {
+          "seatbid": [
+            "bid": [
+              ...
+              "ext": {
+                "prebid": {
+                  "cache": {
+                    "bids": {
+                      "url": "https://example.com:443/cache?uuid=385b283c-22cb-49a0-8c0b-8b88c49d9fe9",
+                      "cacheId": "385b283c-22cb-49a0-8c0b-8b88c49d9fe9"
+                    }
+                  }
                 }
               }
-            }
-          }
-        ]
-      ]
-    }
-```
+            ]
+          ]
+        }
+    ```
 
-2) Extra `bid.ext.prebid.targeting` keys:
+2. Extra `bid.ext.prebid.targeting` keys:
 
-- `hb_cache_id`: the cache ID for the highest overall bid in each imp.
-- `hb_cache_host`: the hostname where the cacheId may be retrieved.
-- `hb_cache_path`: the path where the cacheId may be retrieved. https://hb_cache_host/hb_cache_path?uuid=hb_cacheId
-- `hb_cache_id_{bidderName}`: the cache ID for the highest bid from {bidderName} in each imp.
+    - `hb_cache_id`: the cache ID for the highest overall bid in each imp.
+    - `hb_cache_host`: the hostname where the cacheId may be retrieved.
+    - `hb_cache_path`: the path where the cacheId may be retrieved. https://hb_cache_host/hb_cache_path?uuid=hb_cacheId
+    - `hb_cache_id_{bidderName}`: the cache ID for the highest bid from {bidderName} in each imp.
 
 If caching succeeded, the value will be a UUID which can be used to fetch Bid JSON from [Prebid Cache](https://github.com/prebid/prebid-cache).
 The keys may not exist if the host company's cache is full, having connection problems, etc.
@@ -672,33 +676,34 @@ This option is mainly intended for video players that need a URL that returns a 
 
 If the `ext.prebid.cache.vastxml` object is present, Prebid Server will make a best effort to cache just the VAST XML server-side and return the cache location in two places:
 
-1) OpenRTB seatbid.bid.ext.prebid.cache.vastXml
-```
-    {
-      "seatbid": [
-        "bid": [
-          ...
-          "ext": {
-            "prebid": {
-              "cache": {
-                "bids": {
-                  "url": "https://example.com:443/cache?uuid=385b283c-22cb-49a0-8c0b-8b88c49d9fe9",
-                  "cacheId": "385b283c-22cb-49a0-8c0b-8b88c49d9fe9"
+1. OpenRTB seatbid.bid.ext.prebid.cache.vastXml
+
+    ```json
+        {
+          "seatbid": [
+            "bid": [
+              ...
+              "ext": {
+                "prebid": {
+                  "cache": {
+                    "vastXml": {
+                      "url": "https://example.com:443/cache?uuid=385b283c-22cb-49a0-8c0b-8b88c49d9fe9",
+                      "cacheId": "385b283c-22cb-49a0-8c0b-8b88c49d9fe9"
+                    }
+                  }
                 }
               }
-            }
-          }
-        ]
-      ]
-    }
-```
+            ]
+          ]
+        }
+    ```
 
-2) Extra `bid.ext.prebid.targeting` keys:
+2. Extra `bid.ext.prebid.targeting` keys:
 
-- `hb_uuid`: the cache ID for the highest overall video bid in each imp.
-- `hb_cache_host`: the hostname where the UUID may be retrieved.
-- `hb_cache_path`: the path where the UUID may be retrieved. ex: https://hb_cache_host/hb_cache_path?uuid=hb_uuid
-- `hb_uuid_{bidderName}`: the cache ID for the highest video bid from {bidderName} in each imp.
+    - `hb_uuid`: the cache ID for the highest overall video bid in each imp.
+    - `hb_cache_host`: the hostname where the UUID may be retrieved.
+    - `hb_cache_path`: the path where the UUID may be retrieved. ex: https://hb_cache_host/hb_cache_path?uuid=hb_uuid
+    - `hb_uuid_{bidderName}`: the cache ID for the highest video bid from {bidderName} in each imp.
 
 In addition to the caveats noted for cache.bids, these will exist only if there are video bids.
 If the keys exist, the values can be used to fetch the bid's VAST XML from Prebid Cache directly.
@@ -720,7 +725,8 @@ Additional support for interstitials is enabled through the addition of two fiel
 The values will be numbers that indicate the minimum allowed size for the ad, as a percentage of the base side. For example, a width of 600 and `"minwidthperc": 60` would allow ads with widths from 360 to 600 pixels inclusive.
 
 Example:
-```
+
+```json
 {
   "imp": [{
     ...
@@ -752,14 +758,14 @@ PBS with interstitial support will come preconfigured with a list of common ad s
 
 To set the desired 'ad server currency', use the standard OpenRTB `cur` attribute. Note that Prebid Server only looks at the first currency in the array.
 
-```
+```json
 "cur": ["USD"]
 ```
 
 If you want or need to define currency conversion rates (e.g. for currencies that your Prebid Server doesn't support),
 define ext.prebid.currency.rates.
 
-```
+```json
 "ext": {
   "prebid": {
     "currency": {
@@ -797,7 +803,7 @@ If there's already an source.ext.schain and a bidder is named in ext.prebid.scha
 
 Prebid Server adapters can support the [Prebid.js User ID modules](/dev-docs/modules/userId.html) by reading the following extensions and passing them through to their server endpoints:
 
-```
+```json
 {
   "user": {
     "ext": {
@@ -823,7 +829,7 @@ Prebid Server adapters can support the [Prebid.js User ID modules](/dev-docs/mod
 
 Publishers can constrain which bidders receive which user.ext.eids entries. See the [Prebid.js user ID permissions](/dev-docs/modules/userId.html#permissions) reference for background.
 
-```
+```json
 {
   "ext": {
     "prebid": {
@@ -885,7 +891,8 @@ When a storedauctionresponse ID is specified:
 - the response retrieved from the stored-response-id is assumed to be the entire contents of the seatbid object corresponding to that impression.
 
 This request:
-```
+
+```json
 {
   "test": 1,
   "tmax": 500,
@@ -921,7 +928,8 @@ This request:
 ```
 
 will result in this response, assuming that the ids exist in the appropriate DB table read by Prebid Server:
-```
+
+```json
 {
   "id": "test-auction-id",
   "seatbid": [
@@ -947,7 +955,8 @@ will result in this response, assuming that the ids exist in the appropriate DB 
 
 In this scenario, the contents of the storedauctionresponse entry is
 an array of ortb2 seatbid objects. e.g.
-```
+
+```json
 [
   {
     "bid": [{
@@ -980,6 +989,7 @@ in imp.ext.prebid.bidder that's doesn't have a storedbidresponse specified,
 the adapter will be called as usual.
 
 For example, this request:
+
 ```
 {
   "test": 1,

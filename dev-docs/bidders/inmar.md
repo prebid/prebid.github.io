@@ -12,7 +12,7 @@ pbjs: true
 enable_download: false
 sidebarType: 1
 ---
-### Note:
+### Note
 
 The Inmar bidder is no longer supported. Please be advised to stop use of this adapter in all Prebid.js versions.
 

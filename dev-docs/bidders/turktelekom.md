@@ -6,7 +6,9 @@ biddercode: turktelekom
 pbjs: true
 pbs: false
 media_types: banner, native, video
-gdpr_supported: true
+gvl_id: 673
+tcfeu_supported: true
+gpp_supported: true
 usp_supported: true
 coppa_supported: true
 pbs_app_supported: true
@@ -22,7 +24,7 @@ safeframes_ok: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Türk Telekom bidding adapter requires setup and approval before implementation. Please reach out to <ad-ops@turktelekom.com.tr> for more details.
 

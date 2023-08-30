@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: lifestreet
 media_types: video
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 gvl_id: 67
 enable_download: false
