@@ -19,7 +19,6 @@ pbs_app_supported: false
 fpd_supported: false
 ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
-gvl_id: 1165
 pbjs: true
 sidebarType: 1
 ---
