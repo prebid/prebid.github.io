@@ -166,8 +166,9 @@ When using the Video Module, the mediaTypes.video properties get filled out auto
 * [Banner](#adUnit-banner-example)
 * [Video](#adUnit-video-example)  
   * [With the Video Module](#adUnit-video-module-example)
-  * [Instream](#adUnit-video-example-instream)  
-  * [Outstream](#adUnit-video-example-outstream)  
+  * [Instream Sound-On](#adUnit-video-example-instream)
+  * [Accompanying Content](#adUnit-video-example-accompanying)
+  * [No Content/Standalone](#adUnit-video-example-outstream)
   * [Adpod (Long-Form)](#adUnit-video-example-adpod)
 * [Native](#adUnit-native-example)
 * [Multi-Format](#adUnit-multi-format-example)
@@ -233,7 +234,7 @@ pbjs.addAdUnits({
 
 <a name="adUnit-video-example-instream"></a>
 
-#### Instream
+#### Instream Sound-On
 
 For an example of an instream video ad unit that you handle on your own, see below. For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
 
@@ -243,10 +244,11 @@ pbjs.addAdUnits({
     mediaTypes: {
         video: {
             context: 'instream',
+            plcmt: 1,
             playerSize: [640, 480],
             mimes: ['video/mp4'],
             protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-            playbackmethod: [2],
+            playbackmethod: [5],
             skip: 1
         },
     },
@@ -259,9 +261,37 @@ pbjs.addAdUnits({
 });
 ```
 
+<a name="adUnit-video-example-accompanying"></a>
+
+#### Accompanying Content
+
+```javascript
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        video: {
+            context: 'instream',
+            plcmt: 2,
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [6],
+            skip: 1
+        },
+    },
+    bids: [{
+        bidder: 'appnexus',
+        params: {
+            placementId: 13232361
+        }
+    }]
+});
+```
+
+
 <a name="adUnit-video-example-outstream"></a>
 
-#### Outstream
+#### No Content/Standalone
 
 For an example of an outstream video ad unit that you handle on your own, see below.  For more detailed instructions, see [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html).
 
@@ -271,8 +301,11 @@ pbjs.addAdUnits({
     mediaTypes: {
         video: {
             context: 'outstream',
-            useCacheKey: false,
-            playerSize: [640, 480]
+            plcmt: 4,
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [6],
         }
     },
     renderer: {
@@ -296,8 +329,12 @@ pbjs.addAdUnits({
     mediaTypes: {
         video: {
             context: 'outstream',
+            plcmt: 4,
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [6],
             useCacheKey: true,
-            playerSize: [640, 480]
         }
     },
     renderer: {
