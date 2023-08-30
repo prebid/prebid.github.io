@@ -4,7 +4,7 @@ title: PGAMSSP
 description: Prebid PGAMSSP Bidder Adapter
 biddercode: pgamssp
 usp_supported: true
-tcfeu_supported: true
+tcfeu_supported: false
 coppa_supported: true
 schain_supported: true
 floors_supported: true
@@ -13,6 +13,8 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 sidebarType: 1
+multiformat_supported: will-bid-on-one
+safeframes_ok: true
 ---
 
 ### Bid Params
