@@ -112,6 +112,8 @@
                   </tr>
                 </table>
 
+                {{content}}
+
                 <h3>"Send All Bids" Ad Server Keys</h3>
 
                 <font size="-1">These are the bidder-specific keys that would be targeted within GAM in a Send-All-Bids scenario. GAM truncates keys to 20 characters.</font>
@@ -142,9 +144,6 @@
                 {% if page.prevBiddercode %}
                   This bidder previously had a bidder code of `{{ page.prevBiddercode }}`, but prefers new configurations to use `{{ page.biddercode }}`.
                 {% endif %}
-
-
-                {{content}}
 
                 <p><a href="/dev-docs/bidders.html">Back to Bidders</a></p>
               </div>
