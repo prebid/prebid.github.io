@@ -36,7 +36,7 @@ Pangle server-side Prebid Server adapter supports `banner`, `video`, `native` me
 
 ### Test Parameters
 
-```
+```javascript
 var adUnits = [
     {
         code: 'test-div',
@@ -62,7 +62,7 @@ var adUnits = [
 
 Add the following code to enable user sync. Smile Wanted strongly recommends enabling user syncing through iFrames. This functionality improves partners' user match rates and increases the Smile Wanted bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
 
-```
+```javascript
 pbjs.setConfig({
     userSync: {
         iframeEnabled: true,
