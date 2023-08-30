@@ -288,7 +288,6 @@ pbjs.addAdUnits({
 });
 ```
 
-
 <a name="adUnit-video-example-outstream"></a>
 
 #### No Content/Standalone
