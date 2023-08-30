@@ -6,7 +6,7 @@ pbs: false
 pbjs: true
 biddercode: c1x
 media_types: banner
-gdpr_supported: true
+tcfeu_supported: false
 pbs_app_supported: false
 enable_download: true
 ---
