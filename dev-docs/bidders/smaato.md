@@ -3,7 +3,7 @@ layout: bidder
 title: Smaato
 description: Prebid Smaato Bidder Adaptor
 biddercode: smaato
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 82
 usp_supported: true
 coppa_supported: true
@@ -35,19 +35,19 @@ sidebarType: 1
 - [First Party Data](#first-party-data)
 - [Test Parameters](#test-parameters)
 
-<a name="smaato-registration" />
+<a name="smaato-registration"></a>
 
 ### Registration
 
-The Smaato adapter requires setup and approval from the Smaato team, even for existing Smaato publishers. Please reach out to your account team or prebid@smaato.com for more information.
+The Smaato adapter requires setup and approval from the Smaato team, even for existing Smaato publishers. Please reach out to your account team or <prebid@smaato.com> for more information.
 
-<a name="smaato-note" />
+<a name="smaato-note"></a>
 
 ### Note
 
 The Smaato adapter will convert bidfloors to 'USD' currency as needed.
 
-<a name="smaato-bid-params" />
+<a name="smaato-bid-params"></a>
 
 ### Bid Params
 
@@ -63,7 +63,7 @@ The Smaato adapter will convert bidfloors to 'USD' currency as needed.
 
 In case of AdPods, the Smaato adapter will only read the first `imp[].skadn` entry for each AdPod, such that there should only be one `skadn` occurrence per AdPod.
 
-<a name="smaato-app-object" />
+<a name="smaato-app-object"></a>
 
 #### App Object
 
@@ -75,7 +75,7 @@ Smaato supports using prebid within a mobile app's webview.
 | `ifa`             | String that contains the advertising identifier of the user (e.g. idfa or aaid).                                                | `'56700000-9cf0-22bd-b23e-46b96e40003a'`                                 | `string`         |
 | `geo`             | Object that contains the latitude (`lat`) and longitude (`lon`) of the user.                                                    | `{ lat: 33.3, lon: -88.8 }`                                              | `object`         |
 
-<a name="smaato-example-ad-units" />
+<a name="smaato-example-ad-units"></a>
 
 ### Example Ad Units
 
@@ -205,10 +205,12 @@ var adUnit = {
 };
 ```
 
-<a name="smaato-first-party" />
+<a name="smaato-first-party"></a>
 
 ### First Party Data
+
 Publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
+
 - ortb2.site.keywords
 - ortb2.site.content
 - ortb2.user.keywords
@@ -248,13 +250,13 @@ pbjs.setConfig({
 });
 ```
 
-<a name="smaato-test-parameters" />
+<a name="smaato-test-parameters"></a>
 
 ### Test Parameters
 
 Following example includes sample `imp` object with publisherId and adSlot which can be used to test Smaato Adapter
 
-```
+```json
 "imp":[
       {
          "id":"1C86242D-9535-47D6-9576-7B1FE87F282C",

@@ -4,13 +4,14 @@ title: Goldbach
 description: Prebid Goldbach Bidder Adaptor
 biddercode: goldbach
 media_types: banner, video, native
-gdpr_supported: true
+gvl_id: 580
+tcfeu_supported: true
 prebid_member: true
 userIds: criteo, unifiedId, netId, identityLink, uid2
 schain_supported: true
 coppa_supported: true
 usp_supported: true
-getFloor: true
+floors_supported: true
 pbjs: true
 pbs: true
 sidebarType: 1
@@ -29,7 +30,7 @@ sidebarType: 1
   - [Mobile App Display Manager Version](#mobile-app-display-manager-version)
   - [Debug Auction](#debug-auction)
 
-<a name="godlbach-bid-params" />
+<a name="godlbach-bid-params"></a>
 
 {: .alert.alert-danger :}
 All Goldbach (Xandr) placements included in a single call to `requestBids` must belong to the same parent Publisher.  If placements from two different publishers are included in the call, the Goldbach bidder will not return any demand for those placements. <br />
@@ -61,7 +62,7 @@ All Goldbach (Xandr) placements included in a single call to `requestBids` must 
 | `externalImpId`     | optional | Specifies the unique identifier of an externally generated auction.                                                                                                           | `'bacbab02626452b097f6030b3c89ac05'`                  | `string`         |
 | `generate_ad_pod_id`| optional | Signal to Goldbach to split impressions by ad pod and add unique ad pod id to each request. Specific to long form video endpoint only. Supported by Prebid Server, not Prebid JS.  | `true`                                                | `boolean`        |
 
-<a name="godlbach-video-object" />
+<a name="godlbach-video-object"></a>
 
 #### Video Object
 
@@ -76,8 +77,7 @@ All Goldbach (Xandr) placements included in a single call to `requestBids` must 
 | `playback_method` | A string that sets the playback method supported by the publisher.  Allowed values: `"auto_play_sound_on"`; `"auto_play_sound_off"`; `"click_to_play"`; `"mouse_over"`; `"auto_play_sound_unknown"`. | `string` |
 | `frameworks` | Array of integers listing API frameworks supported by the publisher.  Allowed values: None: `0`; VPAID 1.0: `1`; VPAID 2.0: `2`; MRAID 1.0: `3`; MRAID 2.0: `4`; ORMMA: `5`; OMID 1.0 `6`. | `Array<integer>` |
 
-
-<a name="godlbach-user-object" />
+<a name="godlbach-user-object"></a>
 
 #### User Object
 
@@ -91,8 +91,7 @@ All Goldbach (Xandr) placements included in a single call to `requestBids` must 
 | `dnt`             | Do not track flag.  Indicates if tracking cookies should be disabled for this auction                                           | `true`                                                                   | `boolean`        |
 | `language`        | Two-letter ANSI code for this user's language.                                                                                  | `EN`                                                                     | `string`         |
 
-
-<a name="godlbach-app-object" />
+<a name="godlbach-app-object"></a>
 
 #### App Object
 
@@ -105,13 +104,13 @@ Goldbach supports using prebid within a mobile app's webview. If you are interes
 | `device_id`       | Object that contains the advertising identifiers of the user (`idfa`, `aaid`, `md5udid`, `sha1udid`, or `windowsadid`).         | `{ aaid: "38400000-8cf0-11bd-b23e-10b96e40000d" }`                       | `object`         |
 | `geo`             | Object that contains the latitude (`lat`) and longitude (`lng`) of the user.                                                    | `{ lat: 40.0964439, lng: -75.3009142 }`                                  | `object`         |
 
-<a name="custom-targeting-keys" />
+<a name="custom-targeting-keys"></a>
 
 #### Custom Targeting keys
 
 Goldbach returns custom keys that can be sent to the adserver through bidderSettings: buyerMemberId, dealPriority, and dealCode. The following snippet demonstrates how to add these custom keys as key-value pairs.
 
-```
+```javascript
 pbjs.bidderSettings = {
   godlbach: {
     adserverTargeting: [
@@ -137,14 +136,13 @@ pbjs.bidderSettings = {
 }
 ```
 
-<a name="godlbach-no-value" />
+<a name="godlbach-no-value"></a>
 
 #### Passing Keys Without Values
 
 It's possible to use the `keywords` parameter to define keys that do not have any associated values. Keys with empty values can be created in Prebid.js and can also be sent through Prebid Server to Goldbach. The following are examples of sending keys with empty values:
 
-
-```
+```javascript
 keywords: {
   myKeyword: '',
   myOtherKeyword: ['']
@@ -155,20 +153,20 @@ The preceding example passes the key `myKeyword` with an empty value. The key `m
 
 You can define keys with values and without values in the same `keywords` definition. In this next example, we've defined the key `color` with an array of values: `red`, `blue`, and `green`. We've followed that with the key `otherKeyword` with an empty value array.
 
-```
+```javascript
 keywords: {
   color: ['red', 'blue', 'green'],
   otherKeyword: ['']
 }
 ```
 
-<a name="godlbach-amp" />
+<a name="godlbach-amp"></a>
 
 #### User Sync in AMP
 
 If you are syncing user id's with Prebid Server and are using Goldbach's managed service, see [AMP Implementation Guide cookie-sync instructions](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) for details.
 
-<a name="godlbach-debug-auction" />
+<a name="godlbach-debug-auction"></a>
 
 #### Mobile App Display Manager Version
 
@@ -186,9 +184,9 @@ Enabling the Goldbach Debug Auction feature should only be done for diagnosing t
 
 To understand what is happening behind the scenes during an auction, you can enable a debug auction by adding an `apn_prebid_debug` cookie with a JSON string. For example:
 
-{% highlight js %}
+```javascript
 { "enabled": true, "dongle": "QWERTY", "debug_timeout": 1000, "member_id": 958 }
-{% endhighlight %}
+```
 
 To view the results of the debug auction, add the `pbjs_debug=true` query string parameter and open your browser's developer console.
 
@@ -199,4 +197,3 @@ To view the results of the debug auction, add the `pbjs_debug=true` query string
 | `dongle`          | Your account's unique debug password.                           | `QWERTY`              | `string`         |
 | `member_id`       | The ID of the member running the debug auction                  | `958`                 | `integer`        |
 | `debug_timeout`   | The timeout for the debug auction results to be returned        | `3000`                | `integer`        |
-

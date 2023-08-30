@@ -122,6 +122,19 @@
   isSectionHeader: 0
   subgroup: 2
 
+- sbSecId: 0
+  title: Prebid and MSPA
+  link: /features/mspa-usnat.html
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 2
+
+- sbSecId: 0
+  title: Prebid and Quebec Privacy Support
+  link: /features/ac-quebec.html
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 2
 
 #--------------Prebid.js--------------|
 
@@ -376,8 +389,8 @@
   subgroup: 3
 
 - sbSecId: 1
-  title: Prebid.js Releases
-  link: /prebid/prebidjsReleases.html
+  title: Prebid.js Release Notes
+  link: /dev-docs/release-notes.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -577,6 +590,14 @@
 - sbSecId: 1
   title: First Party Data
   link: /features/firstPartyData.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 8
+
+- sbSecId: 1
+  title: Activity Controls
+  link: /dev-docs/activity-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

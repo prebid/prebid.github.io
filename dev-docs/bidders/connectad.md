@@ -4,7 +4,7 @@ title: ConnectAd
 description: ConnectAd Prebid Adaptor
 biddercode: connectad
 media_types: banner
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -18,7 +18,8 @@ gvl_id: 138
 sidebarType: 1
 ---
 
-### Prebid Server Note:
+### Prebid Server Note
+
 Please reach out to your ConnectAd Account Manager before configuring the S2S adapter for approval and setup.
 
 ### Bid Params

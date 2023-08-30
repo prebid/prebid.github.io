@@ -8,12 +8,11 @@ useridmodule: id5IdSystem
 
 The ID5 ID is a shared, neutral identifier that publishers and ad tech platforms can use to recognise users even in environments where 3rd party cookies are not available. The ID5 ID is designed to respect users' privacy choices and publishers’ preferences throughout the advertising value chain. For more information about the ID5 ID and detailed integration docs, please visit [our documentation](https://support.id5.io/portal/en/kb/articles/prebid-js-user-id-module).
 
-
 ## ID5 ID Registration
 
 The ID5 ID is free to use, but requires a simple registration with ID5. Please visit [our website](https://id5.io/solutions/#publishers) to sign up and request your ID5 Partner Number to get started.
 
-The ID5 privacy policy is at [https://id5.io/platform-privacy-policy](https://id5.io/platform-privacy-policy).
+The ID5 privacy policy is at [id5.io/platform-privacy-policy](https://id5.io/platform-privacy-policy).
 
 ## ID5 ID Configuration
 
@@ -52,7 +51,7 @@ To turn on A/B Testing, simply edit the configuration (see above table) to enabl
 
 Publisher wants to retrieve the ID5 ID through Prebid.js
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{
@@ -75,4 +74,4 @@ pbjs.setConfig({
     auctionDelay: 50             // 50ms maximum auction delay, applies to all userId modules
   }
 });
-{% endhighlight %}
+```

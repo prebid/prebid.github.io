@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: kiviads.com
-description: Prebid kiviads.com Bidder Adaptor
+title: LM KiviAds
+description: LM Kiviads Bidder Adapter
 biddercode: lm_kiviads
 media_types: banner, video
 coppa_supported: true

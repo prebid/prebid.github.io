@@ -3,14 +3,14 @@ layout: bidder
 title: IncrementX
 description: Prebid IncrementX Bidder Adaptor
 pbjs: true
-biddercode: incrx
+biddercode: incrementx
 media_types: banner
-gdpr_supported: true
+tcfeu_supported: false
 multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The IncrementX adapter currently doesn't support multiple sizes per ad placement and will favour the first one if multiple sizes exists.
 
@@ -19,4 +19,4 @@ The IncrementX adapter currently doesn't support multiple sizes per ad placement
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description              | Example         | Type     |
 |-------------|----------|--------------------------|-----------------|----------|
-| placementId | required | incrementx placement id  | `'PNX-HB-123'`  | `string` |
+| placementId | required | incrementx placement id  | `'IX-HB-123'`  | `string` |

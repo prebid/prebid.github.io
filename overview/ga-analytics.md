@@ -11,11 +11,12 @@ sidebarType: 1
 
 
 # Prebid Analytics with GA
+
 {:.no_toc}
 
 > Are my header bidding demand partners generating more revenue for me? If not, is it because of latency or is it due to low bid CPM? How about discrepancies?
 
-* TOC
+- TOC
 {:toc}
 
 ## Prebid Analytics helps you better manage your header bidding partners
@@ -94,43 +95,44 @@ You can build the Google Analytics module into your Prebid package in two ways:
 1. The "Easy Button" - use the handy web-based [Prebid.js Download](/download.html) tool, and check the Google Analytics adapter box along with the other modules and adapters desired.
 2. From the command line
 
-```
+```bash
 gulp build --modules=googleAnalyticsAdapter, OTHER_MODULES, OTHER_ADAPTERS, ...
 ```
+
 ### Enabling the GA Adapter in Your Page
 
 1. First, make sure GA is on your page as directed by Google. Get the 'tracking code' from the GA interface. It will look something like:
 
-```
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1111111"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    ```htmk
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1111111"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'UA-1111111');
-</script>
-```
+      gtag('config', 'UA-1111111');
+    </script>
+    ```
 
 2. Enable the Prebid.js GA module:
 
-```
-pbjs.que.push(function() {
-  pbjs.enableAnalytics({
-    provider: 'ga',
-    options: {
-      sampling: 0.1,
-      cpmDistribution: myBucketFunction
-    }
-  });
-});
+    ```javascript
+    pbjs.que.push(function() {
+      pbjs.enableAnalytics({
+        provider: 'ga',
+        options: {
+          sampling: 0.1,
+          cpmDistribution: myBucketFunction
+        }
+      });
+    });
 
-// takes a CPM value and returns a string price bucket
-var myBucketFunction = function(cpm) {
-   return cpm <= 1 ? '<= 1$' : '> 1$';
-}
-```
+    // takes a CPM value and returns a string price bucket
+    var myBucketFunction = function(cpm) {
+      return cpm <= 1 ? '<= 1$' : '> 1$';
+    }
+    ```
 
 Here are the options available. None of them are required.
 

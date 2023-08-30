@@ -5,7 +5,8 @@ description: Prebid 9 Media Online Bidder Adaptor
 biddercode: 9MediaOnline
 pbjs: true
 media_types: banner, video
-gdpr_supported: true
+gvl_id: 644
+tcfeu_supported: true
 tcf2_supported: true
 schain_supported: true
 usp_supported: true

@@ -6,6 +6,7 @@ sidebarType: 0
 ---
 
 # Programmatic Guaranteed in Prebid
+
 {:.no_toc}
 
 {: .alert.alert-warning :}
@@ -13,7 +14,6 @@ This page and the feature are works in progress.
 
 Programmatic Guaranteed (PG) support in Prebid means that publishers can
 choose to run Guaranteed ad campaigns through Prebid Server.
-
 
 ## Resources
 
