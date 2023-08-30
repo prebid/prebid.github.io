@@ -2,7 +2,7 @@
 layout: bidder
 title: LM KiviAds
 description: LM Kiviads Bidder Adapter
-biddercode: xe
+biddercode: lm_kiviads
 media_types: banner, video, native
 coppa_supported: true
 tcfeu_supported: false
