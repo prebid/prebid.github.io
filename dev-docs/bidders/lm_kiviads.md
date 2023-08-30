@@ -16,11 +16,6 @@ multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
 
-### Note:
-
-The lm_kiviads adapter requires setup before beginning. Please contact us at prebid@kiviads.com
-
-
 ### Prebid.js Bid params
 
 {: .table .table-bordered .table-striped }
