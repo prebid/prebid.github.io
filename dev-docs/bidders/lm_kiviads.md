@@ -5,7 +5,7 @@ description: LM Kiviads Bidder Adapter
 biddercode: lm_kiviads
 media_types: banner, video
 coppa_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 prebid_member: false
 pbjs: true
@@ -31,4 +31,4 @@ sidebarType: 1
 | Name        | Scope    | Description                 | Example                            | Type      |
 |-------------|----------|-----------------------------|------------------------------------|-----------|
 | `env`       | required | Environment name            | `lm_kiviads-stage`                 | `string`  |
-| `pid`       | required | Uniq placement ID           | `cs230510321b516f0eb9a10e5913d3b1` | `string`  |
+| `pid`       | required | Unique placement ID           | `cs230510321b516f0eb9a10e5913d3b1` | `string`  |
