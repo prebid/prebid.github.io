@@ -20,6 +20,10 @@ aliasCode: limelightDigital
 sidebarType: 1
 ---
 
+### Note
+
+The Appstock Bidding adapter requires setup before beginning. Please contact us at <moshiko@app-stock.com>
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
