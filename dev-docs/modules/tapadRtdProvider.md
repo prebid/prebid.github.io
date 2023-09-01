@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Tapad Real-Time ID Module
-
 {:.no_toc}
 
 * TOC
@@ -23,17 +22,18 @@ sidebarType : 1
 The Tapad Real-Time ID Module appends digital identifiers to the bidding object. It's powered by the Tapad graph.
 
 ## Integration
+
 1. Compile the Tapad Real-Time ID Module along with your bid adapter and other modules
 
-    ```bash
-    gulp build --modules="rtdModule,tapadRtdProvider,sovrnBidAdapter,..."
-    ```
-   
+```bash
+gulp build --modules="rtdModule,tapadRtdProvider,sovrnBidAdapter,..."
+```
+
 2. Use `setConfig` to instruct Prebid.js to initialize the Tapad Real-Time ID Module, as specified below.
 
 ## Configuration
 
-This module is configured as part of the `realTimeData.dataProviders`
+This module is configured as part of the `realTimeData.dataProviders` object:
 
 ```javascript
 pbjs.setConfig({
@@ -64,4 +64,4 @@ pbjs.setConfig({
 | params.ids       | Record<string, Array<string> or string> | Additional identifiers to send to Tapad RTID endpoint to aid with resolution                        |                    |
 
 ## Contact
-Reach out to <realtime_identity@experian.com> for more information.
+Reach out to [realtime_identity@experian.com](mailto:realtime_identity@experian.com) for more information.
