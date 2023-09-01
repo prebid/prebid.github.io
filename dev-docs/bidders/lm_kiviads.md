@@ -5,7 +5,7 @@ description: LM Kiviads Bidder Adapter
 biddercode: lm_kiviads
 media_types: banner, video
 coppa_supported: true
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 prebid_member: false
 pbjs: true
