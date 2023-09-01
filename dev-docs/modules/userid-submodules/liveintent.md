@@ -132,6 +132,7 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 | params.url | Optional| String |Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`'https://idx.my-domain.com'`|
 | params.liCollectConfig |Optional| Object |Container of all collector params.||
 | params.liCollectConfig.fpiStorageStrategy |Optional| String |This parameter defines whether the first party identifiers that LiveConnect creates and updates are stored in a cookie jar, or in local storage. If nothing is set, default behaviour would be `cookie`. Allowed values: [`cookie`, `ls`, `none`]|`'cookie'`|
+| params.liCollectConfig.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the collector endpoint. By default, 5000 milliseconds.|`5000`|
 | params.liCollectConfig.fpiExpirationDays |Optional| Number |The expiration time of an identifier created and updated by LiveConnect.By default, 730 days.|`729`|
 | params.liCollectConfig.collectorUrl |Optional| String |The parameter defines where the signal pixels are pointing to. The params and paths will be defined subsequently. If the parameter is not set, LiveConnect will by default emit the signal towards `https://rp.liadm.com`.|`'https://rp.liadm.com'`|
 | params.liCollectConfig.appId |Optional| String |LiveIntent's media business entity application id.|`'a-0012'`|
