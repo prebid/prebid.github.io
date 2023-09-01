@@ -124,7 +124,7 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 | params | Required | Object | Container of all module params. ||
 | params.publisherId |Optional| String | The unique identifier for each publisher (for existing LiveIntent customers)|`'12432415'`|
 | params.distributorId |Optional| String | The unique identifier for each distributor (for existing LiveIntent customers). Will be ignored if `params.liCollectConfig.appId` is provided. |`'did-0123'`|
-| params.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to HTTP endpoints. By default, 5000 milliseconds.|`5000`|
+| params.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the IdentityResolution endpoint. By default, 5000 milliseconds.|`5000`|
 | params.partner | Optional| String |The name of the partner whose data will be returned in the response.|`'prebid'`|
 | params.identifiersToResolve |Optional| Array[String] |Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
 | params.requestedAttributesOverrides | Optional | Object | Object containing booleans used to override the default resolution. Attributes set to true will be added to the resolve list, while attributes set to false will be removed. Valid attributes are 'nonId', 'uid2', 'medianet', 'magnite', 'bidswitch' and 'index'. | `{'uid2': true}` |
