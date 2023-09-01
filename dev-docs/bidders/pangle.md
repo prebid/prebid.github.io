@@ -26,11 +26,9 @@ The Pangle Bidding adapter requires setup before beginning. Please contact us at
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                           | Example     | Type     |
 |---------------|----------|-------------------------------------------------------|-------------|----------|
-| token         | required | access token                                          | 'aaaa123'   | string   |
+| token         | required | access token,contact Pangle team to get your token    | 'aaaa123'   | string   |
 | appid         | optional | app id (must be used in conjunction with placementid) | '5123400'   | string   |
 | placementid   | optional | placement id (must be used in conjunction with appid) | '912340000' | string   |
-
-Pangle server-side Prebid adapter requires only `token` parameters parameters. But Pangle client-side Prebid.js adapter requires only `appid` and `placementid`.
 
 Pangle server-side Prebid Server adapter supports `banner`, `video`, `native` media types. But Pangle client-side Prebid.js adapter supports only `banner` media types, doesn't support `video` and `native`.
 
