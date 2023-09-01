@@ -23,13 +23,14 @@ The Tapad Real-Time ID Module appends digital identifiers to the bidding object.
 
 ## Integration
 
-1) Compile the Tapad Real-Time ID Module along with your bid adapter and other modules
+1). Compile the Tapad Real-Time ID Module along with your bid adapter and other modules
 
 ```bash
 gulp build --modules="rtdModule,tapadRtdProvider,sovrnBidAdapter,..."
 ```
 
-2) Use `setConfig` to instruct Prebid.js to initialize the Tapad Real-Time ID Module, as specified below.
+{:start="2"}
+2. Use `setConfig` to instruct Prebid.js to initialize the Tapad Real-Time ID Module, as specified below.
 
 ## Configuration
 
