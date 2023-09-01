@@ -26,7 +26,7 @@ The Tapad Real-Time ID Module appends digital identifiers to the bidding object.
 1). Compile the Tapad Real-Time ID Module along with your bid adapter and other modules
 
 ```bash
-gulp build --modules="rtdModule,tapadRtdProvider,sovrnBidAdapter,..."
+gulp build --modules="rtdModule,tapadRtdProvider,..."
 ```
 
 {:start="2"}
