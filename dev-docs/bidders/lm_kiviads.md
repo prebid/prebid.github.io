@@ -21,7 +21,7 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                 | Example       | Type      |
 |-------------|----------|-----------------------------|---------------|-----------|
-| `placement` | required | Placement ID                | `test-banner` | `string`  |
+| `pid`       | required | Placement ID                | `test-banner` | `string`  |
 | `env`       | required | Environment name            | `lm_kiviads`  | `string`  |
 | `ext`       | optional | Specific integration config | `{}`          | `object`  |
 
@@ -31,4 +31,4 @@ sidebarType: 1
 | Name        | Scope    | Description                 | Example                            | Type      |
 |-------------|----------|-----------------------------|------------------------------------|-----------|
 | `env`       | required | Environment name            | `lm_kiviads-stage`                 | `string`  |
-| `pid`       | required | Unique placement ID           | `cs230510321b516f0eb9a10e5913d3b1` | `string`  |
+| `pid`       | required | Unique placement ID         | `cs230510321b516f0eb9a10e5913d3b1` | `string`  |
