@@ -15,7 +15,6 @@ sidebarType:
 - [Prebid Native]({{site.baseurl}}/dev-docs/examples/native-ad-example.html)
 - [Prebid Multi-Format]({{site.baseurl}}/dev-docs/examples/multi-format-example.html)
 
-
 ## Prebid Video
 
 - [Prebid Video]({{site.baseurl}}/examples/video/index.html)

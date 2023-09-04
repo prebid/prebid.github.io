@@ -5,7 +5,7 @@ description: Prebid Sovrn Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: sovrn
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 userIds: all
 prebid_member: true
@@ -13,6 +13,7 @@ schain_supported: true
 gvl_id: 13
 floors_supported: true
 media_types: banner, video
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -50,27 +51,26 @@ Bid Params for video ads. These params should be added to `mediatype.video`.
 | `playbackend`    | optional    | The event that causes playback to end. Refer to Playback Cessation Modes                                                       | `5`             | `integer`       |
 | `delivery`       | optional    | Supported delivery methods (1 = streaming, 2 = progressive, 3 = download). If none specified, assume all are supported.        | `[1, 2]`        | `integer array` |
 | `pos`            | recommended | Ad position on screen. Refer to [Ad Position](#ad-position)                                                                    | `5`             | `integer`       |
-| `api`            | recommended | List of supported API frameworks for this impression. Refer to [API Frameworks](api-frameworks)                                | `[1, 2, 3]`     | `integer array` |
- 
+| `api`            | recommended | List of supported API frameworks for this impression. Refer to [API Frameworks](#sovrn-api-frameworks)                               | `[1, 2, 3]`     | `integer array` |
 
 ### Note
 
-[Protocols list](https://docs.prebid.org/dev-docs/bidders/conversant.html#protocols)
+[Protocols list](#epsilon-protocols)
 
-#### MIME types:
+#### MIME types
 
-##### With VPAID2:  
+##### With VPAID2  
 
 video/mp4,
 video/3gpp,
 application/javascript
 
-##### Without VPAID2:
+##### Without VPAID2
 
 video/mp4,
 video/3gpp
 
-#### Video Playback Methods:
+#### Video Playback Methods
 
 {: .table .table-bordered .table-striped }
 | Value | Description                                              |
@@ -82,7 +82,7 @@ video/3gpp
 | `5`   | Initiates on Entering Viewport with Sound On             |
 | `6`   | Initiates on Entering Viewport with Sound Off by Default |
 
-#### Playback Cessation Modes:
+#### Playback Cessation Modes
 
 {: .table .table-bordered .table-striped }
 | Value | Description                                                                                               |
@@ -91,7 +91,7 @@ video/3gpp
 | `2`   | On Leaving Viewport or when Terminated by User                                                            |
 | `3`   | On Leaving Viewport Continues as a Floating/Slider Unit until Video Completion or when Terminated by User |
 
-#### Ad Position:
+#### Ad Position
 
 {: .table .table-bordered .table-striped }
 | Value | Description    |
@@ -105,7 +105,9 @@ video/3gpp
 | `6`   | Sidebar        |
 | `7`   | Full Screen    |
 
-#### API Frameworks:
+<a id="sovrn-api-frameworks"></a>
+
+#### API Frameworks
 
 {: .table .table-bordered .table-striped }
 | Value | Description |
@@ -143,6 +145,7 @@ Source: [OpenRTB scpecification](https://www.iab.com/wp-content/uploads/2016/03/
       }]
     }
 ```
+
 #### Video outstream adUnit
 
 ```
@@ -165,6 +168,7 @@ Source: [OpenRTB scpecification](https://www.iab.com/wp-content/uploads/2016/03/
       }]
     },
 ```
+
 #### Banner adUnit
 
 ```

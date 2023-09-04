@@ -13,15 +13,16 @@ sidebarType : 1
 
 This module allows to "intercept" bids and replace their contents with arbitrary data for the purposes of testing and development.
 
-Bids intercepted in this way are never seen by bid adapters or their backend SSPs, but they are nonetheless injected into the auction as if they originated from them.     
+Bids intercepted in this way are never seen by bid adapters or their backend SSPs, but they are nonetheless injected into the auction as if they originated from them.
 
 {: .pb-alert .pb-alert-warning :}
 For convenience, `debugging` configuration is persisted to the browser's session storage, so that you may type `pbjs.setConfig({debugging: ...})` in the console and reload the page to immediately see the effects. This means that you need to remember to **deactivate debuggging (or clear session storage) when you are done**.
 
-<a name="example" />
-### Usage example
+<a name="example"></a>
 
-The following will intercept all bids for the ad unit with code "test-div", and replace them with mocks that have `cpm: 10`: 
+## Usage example
+
+The following will intercept all bids for the ad unit with code "test-div", and replace them with mocks that have `cpm: 10`:
 
 ```javascript
 pbjs.setConfig({
@@ -56,7 +57,8 @@ pbjs.setConfig({
 
 Rules are evaluated on each bid in the order they are provided: the first one that has a matching `when` definition takes the bid out of the normal auction flow and replaces it according to its `then` definition.
 
-<a name="match" />
+<a name="match"></a>
+
 ### Match rules
 
 The match rule can be provided as a function that takes the bid request as its only argument and returns `true` if the bid should be intercepted, `false` otherwise. The [example above](#example) could be written as:
@@ -79,9 +81,9 @@ pbjs.setConfig({
 
 Alternatively, the rule can be expressed as an object, and it matches if for each `key`-`value` pair:
 
- - `bidRequest[key] === value`, or
- - `value` is a function and `value(bidRequest[key])` is `true`, or
- - `value` is a regular expression and it matches `bidRequest[key]`.
+- `bidRequest[key] === value`, or
+- `value` is a function and `value(bidRequest[key])` is `true`, or
+- `value` is a regular expression and it matches `bidRequest[key]`.
 
 To illustrate, these definitions are equivalent:
 
@@ -103,7 +105,8 @@ To illustrate, these definitions are equivalent:
 };
 ```
 
-<a name="replace" />
+<a name="replace"></a>
+
 ### Replace rules
 
 The replace rule can be provided as a function that takes the bid request as its only argument and returns an object with the desired response properties. The [first example above](#example) could be written as:
@@ -144,7 +147,8 @@ To illustrate, the following definitions are equivalent:
 }
 ```
 
-<a name="options" />
+<a name="options"></a>
+
 ### Rule options
 
 {: .table .table-bordered .table-striped }

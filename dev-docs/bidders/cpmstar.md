@@ -6,9 +6,10 @@ pbjs: true
 pbs: true
 biddercode: cpmstar
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params

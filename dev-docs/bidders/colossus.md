@@ -11,9 +11,10 @@ gdpr: true
 pbjs: false
 pbs: true
 pbs_app_supported: true
+sidebarType: 1
 ---
 
-### Disclosure:
+### Disclosure
 
 This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
 

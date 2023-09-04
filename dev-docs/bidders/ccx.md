@@ -1,11 +1,14 @@
 ---
 layout: bidder
 title: Clickonometrics
-description: Prebid Clickonometrics Bidder Adaptor
+description: Prebid Clickonometrics Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: ccx
-media_types: video
-gdpr_supported: true
+media_types: banner, video
+gvl_id: 773
+tcfeu_supported: true
+sidebarType: 1
 ---
 
 

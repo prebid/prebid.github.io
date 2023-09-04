@@ -1,21 +1,24 @@
 ---
 layout: bidder
 title: Smart AdServer
-description: Prebid Smart AdServer Bidder Adaptor
+description: Prebid Smart AdServer Bidder Adapter
 biddercode: smartadserver
 media_types: display, video, native
-gdpr_supported: true
+gvl_id: 45
+tcfeu_supported: true
+gpp_supported: true
 schain_supported: true
 usp_supported: true
 userIds: all
 pbjs: true
 pbs: true
 floors_supported: true
+sidebarType: 1
 ---
 
 ### Registration
 
-The Smart AdServer bidder adaptor requires setup and approval from the Smart AdServer Service team. Please reach out to your account manager for more information and start using it.
+The Smart AdServer bidder adapter requires setup and approval from the Equativ (former Smart AdServer) service team. Please reach out to your account manager for more information and start using it.
 
 ### Bid params
 
@@ -37,7 +40,7 @@ The Smart AdServer bidder adaptor requires setup and approval from the Smart AdS
 
 **Note:** The site, page and format identifiers have to all be provided or all empty.
 
-<a name="smartadserver-video-object" />
+<a name="smartadserver-video-object"></a>
 
 #### Video Object
 
@@ -65,50 +68,51 @@ The Smart AdServer bidder adaptor requires setup and approval from the Smart AdS
 | `video`  | Supported |
 | `native` | Supported |
 
-### Examples 
+### Examples
 
 Without site/page/format :
-```
-	"imp": [{
-		"id": "some-impression-id",
-		"banner": {
-			"format": [{
-				"w": 600,
-				"h": 500
-			}, {
-				"w": 300,
-				"h": 600
-			}]
-		},
-		"ext": {
-			"smartadserver": {
-				"networkId": 73
-			}
-		}
-	}]
+
+```json
+  "imp": [{
+    "id": "some-impression-id",
+    "banner": {
+      "format": [{
+        "w": 600,
+        "h": 500
+      }, {
+        "w": 300,
+        "h": 600
+      }]
+    },
+    "ext": {
+      "smartadserver": {
+        "networkId": 73
+      }
+    }
+  }]
 ```
 
 With site/page/format :
 
-```
-	"imp": [{
-		"id": "some-impression-id",
-		"banner": {
-			"format": [{
-				"w": 600,
-				"h": 500
-			}, {
-				"w": 300,
-				"h": 600
-			}]
-		},
-		"ext": {
-			"smartadserver": {
+```json
+  "imp": [{
+    "id": "some-impression-id",
+    "banner": {
+      "format": [{
+        "w": 600,
+        "h": 500
+      }, {
+        "w": 300,
+        "h": 600
+      }]
+    },
+    "ext": {
+      "smartadserver": {
                             "networkId": 73
                             "siteId": 1,
                             "pageId": 2,
                             "formatId": 3
-			}
-		}
-	}]
+      }
+    }
+  }]
 ```

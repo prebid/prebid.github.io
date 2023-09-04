@@ -33,6 +33,7 @@ For a more general reference, see the [Prebid AMP Implementation Guide
 | timeout | optional | `String` | Added to OpenRTB request as tmax |
 | targeting | optional | `String` | First Party Data |
 | gdpr_consent | optional | `String` | Consent string passed from CMP. Note this is used for both GDPR and CCPA. |
+| consent_string | optional | `String` | Consent string passed from CMP. Note this is used for all privacy regulations. The consent_type field indicates which kind of string is present. |
 | consent_type | optional | `String` | If "1", request is TCFv1 and GDPR fields are ignored. If "2", the 'gdpr_consent' field is interpreted as TCFv2. If "3", the 'gdpr_consent' field is interpreted as us_privacy. |
 | gdpr_applies | optional | `String` | Takes the values "true", "false" or empty. This is used as the value of regs.ext.gdpr. If "true", regs.ext.gdpr:1, if "false", regs.ext.gdpr:0. |
 | addtl_consent | optional | `String` | GAM "additional consent". If present, this value is copied to user.ext.ConsentedProvidersSettings.consented_providers |

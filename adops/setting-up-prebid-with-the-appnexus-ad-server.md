@@ -13,6 +13,7 @@ sidebarType: 3
 
 
 # Setting up Prebid with the Xandr Publisher Ad Server
+
 {: .no_toc}
 
 This page describes how to set up the Xandr Publisher Ad Server to work with Prebid.js from an Ad Ops perspective.
@@ -54,9 +55,9 @@ Otherwise, if you are [sending all bids to the ad server](/dev-docs/publisher-ap
 
 Depending on the price granularity you want, you may find one of the following CSV files helpful.  Each file has the buckets for that granularity level predefined.  You can avoid manually setting up key-value targeting by uploading the appropriate CSV file on the [key-values screen](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/key-value-targeting.html):
 
-+ [10cent-prebid-buckets.csv]({{site.github.url}}/assets/csv/10cent-prebid-buckets.csv)
-+ [25cent-prebid-buckets.csv]({{site.github.url}}/assets/csv/25cent-prebid-buckets.csv)
-+ [dense-prebid-buckets.csv]({{site.github.url}}/assets/csv/dense-prebid-buckets.csv)
+* [10cent-prebid-buckets.csv]({{site.github.url}}/assets/csv/10cent-prebid-buckets.csv)
+* [25cent-prebid-buckets.csv]({{site.github.url}}/assets/csv/25cent-prebid-buckets.csv)
+* [dense-prebid-buckets.csv]({{site.github.url}}/assets/csv/dense-prebid-buckets.csv)
 
 For more information about how to set up price bucket granularity in Prebid.js code, see the API documentation for [`pbjs.setPriceGranularity`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity).
 
@@ -69,16 +70,14 @@ You'll need one creative per ad size you'd like to serve.  You can re-use a crea
 
 Follow the creative setup instructions in [Add Creatives](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/add-a-creative.html) with the following setting:
 
-- Select **Show Template Selector**.
-
-- Select a template with an HTML format.
-
-- Paste the code snippet shown below into the code box.
+* Select **Show Template Selector**.
+* Select a template with an HTML format.
+* Paste the code snippet shown below into the code box.
 
 ![New creative]({{ site.github.url }}/assets/images/ad-ops/appnexus-setup/prebid-creative-appnexus.png) {: .pb-lg-img :}
 
-{% highlight html %}
-<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+```html
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/#{HB_FORMAT}.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = window.location.host;
@@ -97,7 +96,7 @@ Follow the creative setup instructions in [Add Creatives](https://docs.xandr.com
     console.log(e);
   }
 </script>
-{% endhighlight %}
+```
 
 {: .alert.alert-warning :}
 **Creative Expiration**  
@@ -107,7 +106,6 @@ Note that creatives are automatically marked as inactive by the Xandr systems af
 **SafeFrame**
 If you want your creative to serve into a SafeFrame, this will need to be enabled on the site-side of the Prebid.js implementation rather than as a setting in the ad server.  A developer can learn how to enable this setting for the publisher by referencing [Using Prebid.js with Xandr Publisher Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html).  Additionally if the Xandr ad server tags are configured to use SafeFrames, you **will** need to use the above creative template to properly render the creative.  Earlier versions of the Prebid.js creative template may not be fully SafeFrame compliant (if they are still in-use from older setups), so it is recommended to switch to the above template in this scenario.
 
-
 ## Step 3. Set up Line Items
 
 You'll need to create one line item for every price bucket you intend to serve.
@@ -116,17 +114,17 @@ For example, if you want to have $0.10 price granularity, you'll need 201 line i
 
 For each line item, follow the line item setup instructions in [Create a Line Item](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/create-a-standard-line-item.html), with the following settings:
 
-- Set the **Revenue Type** to *CPM*.
+* Set the **Revenue Type** to *CPM*.
 
-- Set the **Revenue Value** to one of the price bucket key-values from Step 1, e.g., \$0.2.
+* Set the **Revenue Value** to one of the price bucket key-values from Step 1, e.g., \$0.2.
 
-- Under **Associated Creatives**, choose to manage creatives at the line item level.
+* Under **Associated Creatives**, choose to manage creatives at the line item level.
 
-- Associate as many creative sizes with the line item as you need.  Set the **Creative Rotation** to *Even*.
+* Associate as many creative sizes with the line item as you need.  Set the **Creative Rotation** to *Even*.
 
-- In your line item's targeting settings, use the key-value that matches the line item's price bucket, e.g. (you set these up in Step 1).
+* In your line item's targeting settings, use the key-value that matches the line item's price bucket, e.g. (you set these up in Step 1).
 
-- Still in the targeting settings, target the custom category `prebid_enabled`. This will allow you to turn targeting on and off for a placement (or an entire placement group) by adding it to the custom category, which you'll do in one of the later steps.  This is useful for troubleshooting.
+* Still in the targeting settings, target the custom category `prebid_enabled`. This will allow you to turn targeting on and off for a placement (or an entire placement group) by adding it to the custom category, which you'll do in one of the later steps.  This is useful for troubleshooting.
 
 For more information about targeting custom content categories, see [Content Category Targeting](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/content-category-targeting.html).
 
@@ -148,6 +146,7 @@ It will also make it easy to turn the targeting on and off for a given placement
 
 ## Related Topics
 
-+ [Getting Started with Prebid.js for Header Bidding]({{site.github.url}}/overview/getting-started.html)
-
-+ [Using Prebid.js with Xandr as your Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html) (Developer example)
+* [Ad Ops and Prebid](/adops/before-you-start.html)
+* [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
+* [Getting Started with Prebid.js for Developers](/dev-docs/getting-started.html)
+* [Using Prebid.js with Xandr Publisher Ad Server](/dev-docs/examples/use-prebid-with-appnexus-ad-server.html) (Developer example)
