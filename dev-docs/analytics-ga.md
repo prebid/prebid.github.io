@@ -18,7 +18,7 @@ nav_section: reference
 * TOC
 {:toc }
 
-## Notice: Deleted in Prebid 8 with the deprecation of GA by Google.
+## Notice: Deleted in Prebid 8 with the deprecation of GA by Google
 
 ## Code Example
 
