@@ -80,6 +80,8 @@ In top-price mode, you can make use of the GAM `TARGETINGMAP` feature instead of
   ucTagData.pubUrl = "%%PATTERN:url%%";
   ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
   ucTagData.hbPb = "%%PATTERN:hb_pb%%";
+  // mobileResize needed for mobile GAM only
+  ucTagData.mobileResize = "hb_size:%%PATTERN:hb_size_BIDDERCODE%%";
 
   try {
     ucTag.renderAd(document, ucTagData);
