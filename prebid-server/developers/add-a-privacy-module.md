@@ -34,11 +34,11 @@ Here are the use cases envisioned for Privacy Modules:
 * **PBS-Java**: the Java version of Prebid Server
 * **PBS-Go**: the Go-Lang version of Prebid Server
 * **Host Company**: the entity running the PBS cluster, e.g. one of the ones on [this list](https://prebid.org/product-suite/managed-services/).
-- **Activity Controls**: a [centralized mechanism](/prebid-server/features/pbs-activitycontrols.html) for managing privacy-sensitive activities.
-- **Privacy Module**: a block of code that plugs into Prebid Server that enhances the functionality of the Activity Controls.
-- **Allow**: If the module returns this value, it has determined that the requested activity in the specified context is allowable.
-- **Disallow**: If the module returns this value, it has determined that the requested activity in the specified context is **not** allowable.
-- **Abstain**: If the module returns this value, it does not have a definitive answer about whether the requested activity in the specified context is allowable.
+* **Activity Controls**: a [centralized mechanism](/prebid-server/features/pbs-activitycontrols.html) for managing privacy-sensitive activities.
+* **Privacy Module**: a block of code that plugs into Prebid Server that enhances the functionality of the Activity Controls.
+* **Allow**: If the module returns this value, it has determined that the requested activity in the specified context is allowable.
+* **Disallow**: If the module returns this value, it has determined that the requested activity in the specified context is **not** allowable.
+* **Abstain**: If the module returns this value, it does not have a definitive answer about whether the requested activity in the specified context is allowable.
 
 ## Building Your Privacy Module
 
@@ -127,5 +127,5 @@ If open sourcing the module, submit the PRs for review when everything looks goo
 
 ## Further Reading
 
-- [PBS Activity Controls](/prebid-server/features/pbs-activitycontrols.html)
-- [US Gen Privacy Module](/prebid-server/features/pbs-usgen.html)
+* [PBS Activity Controls](/prebid-server/features/pbs-activitycontrols.html)
+* [US Gen Privacy Module](/prebid-server/features/pbs-usgen.html)
