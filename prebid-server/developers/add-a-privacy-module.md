@@ -23,17 +23,17 @@ Privacy Modules are different than [Request Modules](/prebid-server/developers/a
 
 Here are the use cases envisioned for Privacy Modules:
 
-- Prebid will publish privacy modules for major IAB privacy protocols such as the [US National Privacy Specification](/prebid-server/features/pbs-usgen.html).
-- PBS host companies can develop custom versions of privacy modules for their publishers that may meet special legal requirements more efficiently.
-- Anyone can contribute privacy modules in support of regulations not addressed by Prebid or the IAB.
+* Prebid will publish privacy modules for major IAB privacy protocols such as the [US National Privacy Specification](/prebid-server/features/pbs-usgen.html).
+* PBS host companies can develop custom versions of privacy modules for their publishers that may meet special legal requirements more efficiently.
+* Anyone can contribute privacy modules in support of regulations not addressed by Prebid or the IAB.
 
 ### Terminology
 
-- **PBS**: short for **P**re**b**id **S**erver
-- **PBS-core**: The inner workings of Prebid Server -- not part of a module, bid adpater, or analytics adapter
-- **PBS-Java**: the Java version of Prebid Server
-- **PBS-Go**: the Go-Lang version of Prebid Server
-- **Host Company**: the entity running the PBS cluster, e.g. one of the ones on [this list](https://prebid.org/product-suite/managed-services/).
+* **PBS**: short for **P**re**b**id **S**erver
+* **PBS-core**: The inner workings of Prebid Server -- not part of a module, bid adpater, or analytics adapter
+* **PBS-Java**: the Java version of Prebid Server
+* **PBS-Go**: the Go-Lang version of Prebid Server
+* **Host Company**: the entity running the PBS cluster, e.g. one of the ones on [this list](https://prebid.org/product-suite/managed-services/).
 - **Activity Controls**: a [centralized mechanism](/prebid-server/features/pbs-activitycontrols.html) for managing privacy-sensitive activities.
 - **Privacy Module**: a block of code that plugs into Prebid Server that enhances the functionality of the Activity Controls.
 - **Allow**: If the module returns this value, it has determined that the requested activity in the specified context is allowable.
@@ -61,11 +61,11 @@ They cannot make HTTP requests, log analytics, or affect the request/response in
 
 ### 2. Define a Module Code
 
-The module code is how Activity Control configuration will refer to this 
+The module code is how Activity Control configuration will refer to this
 privacy module. For example, if the module is named **host1.publisherA.emea**,
 it could be activated in the `privacy` config in any of these ways:
 
-```
+```javascript
 {
   "privacy": {
     "allowactivities": {
@@ -86,40 +86,40 @@ it could be activated in the `privacy` config in any of these ways:
 }
 ```
 
-To choose the name, you should consider how the publisher may want to invoke 
+To choose the name, you should consider how the publisher may want to invoke
 the privacy modules that are available.
 
-- If you're not going to open source the privacy module, we recommend prefixing the name with your host company so it doesn't clash with open source modules as they become available.
-- If the module is publisher-specific, we recommend placing the publisher name in the module code.
+* If you're not going to open source the privacy module, we recommend prefixing the name with your host company so it doesn't clash with open source modules as they become available.
+* If the module is publisher-specific, we recommend placing the publisher name in the module code.
 
 ### 3. Determine What Should be Configurable
 
 Your module may not need any configuration, or it may have a complex configuration.
 Here are the kind of things to consider:
 
-- Does it need to identify or prioritize privacy parameters differently? (e.g. which consent and scope strings to use and prefer?)
-- Does it need to provide different exceptions? (e.g. if a particular publisher wants to allow or disallow certain scenarios.)
+* Does it need to identify or prioritize privacy parameters differently? (e.g. which consent and scope strings to use and prefer?)
+* Does it need to provide different exceptions? (e.g. if a particular publisher wants to allow or disallow certain scenarios.)
 
 ### 4. Write the Code, Config, and Unit Tests
 
 The details of the implementation depend on the platform.
 
-- PBS-Java: see [Adding a PBS-Java Privacy Module](/prebid-server/developers/add-a-privacy-module-java.html)
-- PBS-Go: TBD
+* PBS-Java: see [Adding a PBS-Java Privacy Module](/prebid-server/developers/add-a-privacy-module-java.html)
+* PBS-Go: TBD
 
 If you plan on open sourcing your privacy module, other rules for open source PBS pull request:
 
-- Unit test coverage must exceed 90%.
-- A maintainer email address must be provided and be a group, not an individual. e.g. "support@example.com rather than jsmith@example.com
+* Unit test coverage must exceed 90%.
+* A maintainer email address must be provided and be a group, not an individual. e.g. <support@example.com> rather than <jsmith@example.com>
 
 ### 5. Write the Module Documentation
 
 If this is an open source module, fork the [documentation repo](https://github.com/prebid/prebid.github.io) and
 create a file in /prebid-server/pbs-modules. You can start by copying one of the existing files. It should contain:
 
-- A description of the module functionality: why people might be interested in using it.
-- Prerequisites: any necessary account activation, other required modules, etc.
-- Configuration
+* A description of the module functionality: why people might be interested in using it.
+* Prerequisites: any necessary account activation, other required modules, etc.
+* Configuration
 
 ### 6. Submit the Pull Requests
 

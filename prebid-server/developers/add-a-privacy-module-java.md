@@ -13,7 +13,7 @@ title: Prebid Server | Developers | Adding a Java Privacy Module
 ## Overview
 
 This document details how to make a 'privacy module' for PBS-Java. This type of
-module is not related to the [main workflow modules](/prebid-server/pbs-modules/). Rather, it's a specialized type of module that 
+module is not related to the [main workflow modules](/prebid-server/pbs-modules/). Rather, it's a specialized type of module that
 
 You will want to be familiar with the following background information:
 
