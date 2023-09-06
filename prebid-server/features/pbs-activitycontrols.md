@@ -9,7 +9,7 @@ title: Prebid Server | Features | Actvity Controls
 {: .no_toc }
 
 {: .alert.alert-warning :}
-This feature is currently only available in PBS-Java.
+PBS-Java fully supports Activity Controls. PBS-Go support for the main request workflow is complete. They are working on support for Activities in modules and analytics.
 
 Prebid supports a centralized control mechanism for privacy-sensitive activities.
 These controls are intended to serve as building blocks for privacy protection mechanisms, allowing publishers to directly specify what should be permitted or avoided in any given regulatory environment.
