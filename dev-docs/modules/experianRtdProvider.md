@@ -1,17 +1,17 @@
 ---
 layout: page_v2
-title: Tapad Real-Time ID Module
-display_name: Tapad Real-Time ID Module
-description: Tapad Real-Time ID Module
+title: Experian Real-Time ID Module
+display_name: Experian Real-Time ID Module
+description: Experian Real-Time ID Module
 page_type: module
 module_type: rtd
-module_code : tapad_rtd
+module_code : experian_rtid
 enable_download : true
 vendor_specific: true
 sidebarType : 1
 ---
 
-# Tapad Real-Time ID Module
+# Experian Real-Time ID Module
 {:.no_toc}
 
 * TOC
@@ -19,18 +19,18 @@ sidebarType : 1
 
 ## Description
 
-The Tapad Real-Time ID Module appends digital identifiers to the bidding object. It's powered by the Tapad graph.
+The Experian Real-Time ID Module appends digital identifiers to the bidding object. It's powered by the Experian graph.
 
 ## Integration
 
-1). Compile the Tapad Real-Time ID Module along with your bid adapter and other modules
+1). Compile the Experian Real-Time ID Module along with your bid adapter and other modules
 
 ```bash
-gulp build --modules="rtdModule,tapadRtdProvider,..."
+gulp build --modules="rtdModule,experianRtdProvider,..."
 ```
 
 {:start="2"}
-2. Use `setConfig` to instruct Prebid.js to initialize the Tapad Real-Time ID Module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initialize the Experian Real-Time ID Module, as specified below.
 
 ## Configuration
 
@@ -41,7 +41,7 @@ pbjs.setConfig({
   realTimeData: {
     auctionDelay: 300,
     dataProviders: [{
-      name: 'tapad_rtid',
+      name: 'experian_rtid',
       waitForIt: true,
       params: {
         accountId: 'ZylatYg',
@@ -58,11 +58,11 @@ pbjs.setConfig({
 {: .table .table-bordered .table-striped }
 | Name             | Type                                    | Description                                                                  | Default            |
 |:-----------------|:----------------------------------------|:-----------------------------------------------------------------------------|:-------------------|
-| name             | String                                  | Real time data module name                                                   | Always 'tapad_rtid' |
+| name             | String                                  | Real time data module name                                                   | Always 'experian_rtid' |
 | waitForIt        | Boolean                                 | Set to true to maximize chance for bidder enrichment, used with auctionDelay | `false`            |
-| params.accountId | String                                  | Your account id issued by Tapad                                              |                    |
+| params.accountId | String                                  | Your account id issued by Experian                                              |                    |
 | params.bidders   | Array<string>                           | List of bidders for which you would like data to be set                      |                    |
-| params.ids       | Record<string, Array<string> or string> | Additional identifiers to send to Tapad RTID endpoint to aid with resolution                        |                    |
+| params.ids       | Record<string, Array<string> or string> | Additional identifiers to send to Experian RTID endpoint to aid with resolution                        |                    |
 
 ## Contact
 Reach out to [realtime_identity@experian.com](mailto:realtime_identity@experian.com) for more information.
