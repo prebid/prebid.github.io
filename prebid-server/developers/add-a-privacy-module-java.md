@@ -2,25 +2,25 @@
 layout: page_v2
 sidebarType: 5
 title: Prebid Server | Developers | Adding a Java Privacy Module
-
 ---
 
 # Prebid Server - Adding a Java Privacy Module
-
 {: .no_toc}
 
 * TOC
-  {:toc }
+{:toc }
 
 ## Overview
 
-This document details how to make a privacy module for PBS-Java.
+This document details how to make a 'privacy module' for PBS-Java. This type of
+module is not related to the [main workflow modules](/prebid-server/pbs-modules/). Rather, it's a specialized type of module that 
 
 You will want to be familiar with the following background information:
 
-* the [Prebid and the IAB Global Privacy Platform](https://docs.google.com/document/d/1dRxFUFmhh2jGanzGZvfkK_6jtHPpHXWD7Qsi6KEugeE)
+* [Privacy Modules](/prebid-server/developers/add-a-privacy-module.html)
+* [Prebid Server Activity Controls](/prebid-server/features/pbs-activitycontrols.html)
 
-## Coding standards
+## Coding Standards
 
 The module’s code style should correspond to
 the [PBS-Java project code style](https://github.com/prebid/prebid-server-java/blob/master/docs/developers/code-style.md).
@@ -48,6 +48,9 @@ The quick start is to take a look in three places:
 * the [USNat Privacy Module creator](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/activity/infrastructure/creator/privacy/usnat)
 * the [account config for USNat Privacy Module](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/settings/model/activity/privacy/AccountUSNatModuleConfig.java)
 
+{: .alert.alert-info :}
+The 'usnat' code is documented on the website as [usgen](/prebid-server/features/pbs-usgen.html)
+
 ## Privacy Module interface
 
 Among the Prebid server processing workflow, there are several 'activities' that require permission from the Activity
@@ -56,7 +59,7 @@ Infrastructure to run.
 The available activities that the Activity Infrastructure can control can be found in the corresponding
 enum: [Activity](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/activity/Activity.java).
 
-Whenever a workflow ask permission to perform an activity, the configured rules will be processed. All rules implement
+Whenever a workflow asks permission to perform an activity, the configured rules will be processed. All rules implement
 the `Rule` interface. In accordance with this, every privacy module implements `PrivacyModule` interface, which
 inherits `Rule` interface, with methods should be implemented:
 
@@ -84,7 +87,7 @@ public class MyPrivacyModule implements PrivacyModule {
 }
 ```
 
-## Privacy Module creator interface
+## Privacy Module Creator Interface
 
 The lifecycle of a privacy module is defined by `PrivacyModuleCreator`. Possible life cycles:
 
@@ -98,7 +101,7 @@ The lifecycle of a privacy module is defined by `PrivacyModuleCreator`. Possible
 * `qualifier()` - returns privacy module qualifier.
 * `from(...)` - returns created privacy module.
 
-### Privacy Module creator example
+### Privacy Module Creator Example
 
 ```java
 public class MyPrivacyModuleCreator implements PrivacyModuleCreator {
@@ -128,12 +131,12 @@ public class MyPrivacyModuleCreator implements PrivacyModuleCreator {
 }
 ```
 
-## Privacy Module qualifier
+## Privacy Module Qualifier
 
 `PrivacyModuleQualifier` is an enumeration containing all possible unique names of the privacy modules supported by this
 server instance.
 
-### Privacy Module qualifier example
+### Privacy Module Qualifier Example
 
 ```java
 public enum PrivacyModuleQualifier {
@@ -155,7 +158,7 @@ public enum PrivacyModuleQualifier {
 
 ```
 
-## Privacy Module account configuration
+## Privacy Module Account Configuration
 
 Any privacy module must be configured in the account configuration to affect Prebid server processing workflow.
 
@@ -171,7 +174,7 @@ IMPORTANT. Because the Prebid server can merge account configurations from diffe
 deserializeFromJson(serializeToJson(config object)) == config object
 ```
 
-### Privacy Module account configuration example
+### Privacy Module Account Configuration Example
 
 ```java
 @Value(staticConstructor = "of")
@@ -208,11 +211,11 @@ public sealed interface AccountPrivacyModuleConfig permits
 }
 ```
 
-## Privacy Module bean configuration
+## Privacy Module Bean Configuration
 
 Privacy module beans must be inside the destined configuration class: `ActivityInfrastructureConfiguration.PrivacyModuleCreatorConfiguration`
 
-### Privacy Module bean configuration example
+### Privacy Module Bean Configuration Example
 
 If there is only one bean associated with the privacy module:
 
