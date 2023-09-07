@@ -47,8 +47,9 @@ var adUnits = [
            {
                bidder: "pangle",
                params: {
-                    placementid: '1234', // string - required
-                    appid: '1234' // string - required
+                    token: "aaaaa",
+                    placementid: '1234', // string 
+                    appid: '1234' // string 
                 }
            }
        ]
@@ -58,7 +59,7 @@ var adUnits = [
 
 ### User Sync
 
-Add the following code to enable user sync. Smile Wanted strongly recommends enabling user syncing through iFrames. This functionality improves partners' user match rates and increases the Smile Wanted bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
+Add the following code to enable user sync. Pangle strongly recommends enabling user syncing through iFrames. This functionality improves partners' user match rates and increases the Pangle bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
 
 ```javascript
 pbjs.setConfig({
