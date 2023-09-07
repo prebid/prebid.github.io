@@ -100,12 +100,11 @@ as a next step.
 
 Prebid does not track who downloads Prebid Server, but sometimes we make
 announcements (bugs, features) and want to get feedback on proposals. You can get on
-this mailing list by emailing prebid-server@prebid.org. It's low volume
-Here's the information we're asking for:
+this mailing list by emailing <prebid-server@prebid.org>. It's low volume.
 
 Required to get on the list:
 
-* A group email address to place on the list. No individual addresses please.
+* A group email address. No individual addresses please.
 
 Optional:
 
