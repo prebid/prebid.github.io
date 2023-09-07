@@ -23,7 +23,7 @@ sidebarType: 1
 |--------------|----------|----------------------|------------------|----------|
 | `tagid`      | required | The sovrn Ad Tag ID  | `'315045'`       | `string` |
 | `bidfloor`   | optional | Bid floor in dollars | `'0.04'`         | `string` |
-| `adunitcode` | optional | Ad unit code         | `'example_code'` | `string` |
+| `adunitcode` | optional | Ad unit identifier   | `'example_code'` | `string` |
 
 Bid Params for video ads. These params should be added to `mediatype.video`.
 
