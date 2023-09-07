@@ -87,7 +87,7 @@ You'll want to hook both Prebid Server and Prebid Cache up to an
 operational monitoring system.
 
 - PBS-Go currently supports Influx and Prometheus
-- PBS-Java currently supports Influx and Graphite
+- PBS-Java currently supports Influx, Graphite, Prometheus, and Console
 
 ## Installing the Software
 
