@@ -7,6 +7,7 @@ pbs: true
 biddercode: boldwin
 gvl_id: 1151
 tcfeu_supported: true
+gpp_supported: true
 media_types: banner, video, native
 sidebarType: 1
 ---
