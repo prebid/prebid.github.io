@@ -1072,7 +1072,7 @@ See Prebid.org [troubleshooting pages](/troubleshooting/pbs-troubleshooting.html
 
 ##### First Party Data Support
 
-This is the Prebid Server version of the Prebid.js First Party Data feature. It's a standard way for the page (or app) to supply first party data and control which bidders have access to it.
+This is a standard way for the page (or app) to supply first party data and control which bidders have access to it.
 
 It specifies where in the OpenRTB request non-standard attributes should be passed. For example:
 
@@ -1653,8 +1653,6 @@ The Prebid SDK version comes from:
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.is_rewarded_inventory | (deprecated) Passed through to bid adapters, see [rewarded video](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#rewarded-video). (use imp.rwdd in ORTB 2.6) | integer | yes |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.passthrough | Allows an application to pass a value through to the response, see [request passthrough](#request-passthrough). | object | no |
 | imp<wbr>.ext<wbr>.prebid<wbr>.adunitcode | Prebid.js adunit code | string | yes |
-| app<wbr>.ext<wbr>.source | Defined by Prebid SDK.<br>ex: `"prebid-mobile"` | string | yes |
-| app<wbr>.ext<wbr>.version | Defined by Prebid SDK,<br>ex: `"1.6"` | string | yes |
 | device<wbr>.ext<wbr>.prebid<wbr>.interstitial | PBS-core will adjust the sizes on a request for interstitials,see [interstitial support](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#interstitial-support). | object | yes |
 | user<wbr>.ext<wbr>.prebid<wbr>.buyeruids | An alternate to [/cookie_sync](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), the request can supply bidder ID values, see [buyer uid](#buyer-uid). | object | no |
 | ext<wbr>.prebid<wbr>.adservertargeting | advanced targeting value rules, see [custom targeting](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#custom-targeting). | object | no |
