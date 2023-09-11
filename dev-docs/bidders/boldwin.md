@@ -24,4 +24,7 @@ The Boldwin Bidding adapter requires setup before beginning. Please contact us a
 | `placementId` | optional | Placement Id | `'0'`        | `string` |
 | `endpointId` | optional | Endpoint Id | `'0'`        | `string` |
 
-For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
+For both the Prebid Server and Prebid.js integrations you are not required to use both parameters.
+It is required to use only one of the two parameters depending on the integration with Boldwin: `placementId` or `endpointId`.  
+`placementId` - should be sent in the Prebid bid request to Boldwin in case you integrate with Boldwin bidder directly via placement.  
+`endpointId` - should be sent in the Prebid bid request to Boldwin in case you integrate with Boldwin bidder via an endpoint URL.
