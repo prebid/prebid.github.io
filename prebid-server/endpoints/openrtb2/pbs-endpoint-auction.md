@@ -137,7 +137,7 @@ Prebid Server accepts all OpenRTB 2.x fields and passes them in the request to a
 | exp | 2.5 | See the [expiration](#expiration) section below |
 | tmax | 2.5 | See the [timeout](#timeout) section below |
 | device.lmt | 2.5 | See special processing for iOS apps defined in [issue 1699](https://github.com/prebid/prebid-server/issues/1699) |
-| regs.gdpr | 2.6 | Bidders supporting 2.5 only: downgraded to regs.ext.gdpr | 
+| regs.gdpr | 2.6 | Bidders supporting 2.5 only: downgraded to regs.ext.gdpr |
 | regs.us_privacy | 2.6 | Bidders supporting 2.5 only: downgraded to regs.ext.us_privacy |
 | user.consent | 2.6 | Bidders supporting 2.5 only: downgraded to user.ext.consent |
 | imp.rwdd | 2.6 | Bidders supporting 2.5 only: downgraded to imp.ext.prebid.is_rewarded_inventory |
@@ -307,6 +307,7 @@ it can be supplied
   }
 }
 ```
+
 Bid adapters do not need to read this data from ext.prebid. PBS will merge the attributes to each imp[] in the request so the adapter can read them normally.
 
 ##### Bid Adjustments
@@ -488,7 +489,7 @@ In most cases, this is probably a bad idea.
 
 2. The request payload can store a `buyeruid` for each Bidder by defining `request.user.ext.prebid.buyeruids` like so:
 
-    ```
+    ```json
     {
       "user": {
         "ext": {
@@ -555,7 +556,7 @@ This prevents breaking API changes as new Bidders are added to the project.
 
 For example, if the Request defines an alias like this:
 
-```
+```json
 "aliases": {
   "appnexus": "rubicon"
 }
@@ -718,7 +719,7 @@ Prebid Server supports the IAB's [GDPR recommendations](https://iabtechlab.com/w
 This adds two optional properties:
 
 - `request.user.ext.consent`: Is the consent string required by the IAB standards.
-- `request.regs.ext.gdpr`: Is 0 if the caller believes that the user is *not* under GDPR, 1 if the user *is* under GDPR, and undefined if the caller is uncertain.
+- `request.regs.ext.gdpr`: Is 0 if the caller believes that the user is not under GDPR, 1 if the user is in GDPR-scope, and undefined if the caller is uncertain.
 
 These fields will be forwarded to each Bidder, so they can decide how to process them.
 
@@ -797,6 +798,7 @@ Bidder-specific schains:
    { "bidders": ["*"], "schain": { SCHAIN OBJECT 2}}
 ]
 ```
+
 In this scenario, Prebid Server sends the first schain object to `bidderA` and the second schain object to everyone else.
 
 If there's already an source.ext.schain and a bidder is named in ext.prebid.schains (or covered by the wildcard condition), ext.prebid.schains takes precedent.
@@ -981,6 +983,7 @@ an array of ortb2 seatbid objects. e.g.
   }
 ]
 ```
+
 **Multiple Stored Bid Response IDs**
 
 In contrast to the feature above, using `storedbidresponse` (instead of stored**auction**response) lets real auctions take place while the actual bidder response is overridden in such a way that it still exercises adapter code.
@@ -1041,7 +1044,7 @@ For example, this request:
 
 Could result in this response:
 
-```
+```json
 {
   "id": "test-auction-id",
   "seatbid": [
@@ -1584,7 +1587,6 @@ The codes currently returned:
 | 202 | Request Blocked due to mediatype | Java | This impression not sent to the bid adapter because it doesn't support the requested mediatype. |
 | 301 | Response Rejected - Below Floor | Java | The bid response did not meet the floor for this impression. |
 
-
 ### OpenRTB Ambiguities
 
 This section describes the ways in which Prebid Server **implements** OpenRTB spec ambiguous parts.
@@ -1642,7 +1644,6 @@ The Prebid SDK version comes from:
    "version": "1.2.3"
 }
 ```
-
 
 ### Prebid Server ORTB2 Extension Summary
 
@@ -1719,7 +1720,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.errors<wbr>.BIDDER | Debug Mode: errors from the named bidder | object |
 | ext<wbr>.responsetimemillisv.BIDDER | Debug Mode: how long the named bidder took to respond with a bid. | integer |
 | ext<wbr>.prebid<wbr>.passthrough | Copy of request ext.prebid.passthrough, see [passthrough](#request-passthrough). | object|
-| ext<wbr>.seatnonbid | Details on which bidders did not bid on each imp. See [seatnonbid]()#seat-non-bid| object|
+| ext<wbr>.seatnonbid | Details on which bidders did not bid on each imp. See [seatnonbid](#seat-non-bid)| object|
 | ext<wbr>.prebid<wbr>.fledge.auctionconfigs | Bidder-supplied [Fledge](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing) responses. | array of objects |
 
 ### Further Reading
