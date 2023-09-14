@@ -275,7 +275,9 @@ To summarize the process:
   ```
 
 - If bidder_tmax is less than pbs_response_preparation_duration_ms, the request is not sent to the bidder server.
+
 - In case tmax_adjustments.enabled is set to false, PBS continues to apply its rules for determining tmax, but bidder_tmax will not be calculated, and PBS will consistently send the request to the bidder server.
+
 ##### PBS-Java
 
 Core concepts:
