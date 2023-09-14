@@ -258,19 +258,19 @@ To summarize the process:
 
 - If request.tmax is 0:
 
-  ```
+  ```text
   tmax = auction_timeouts_ms.default
   ```
 
 - If request.tmax is set to a large value, PBS attempts to cap tmax:
 
-  ```
+  ```text
   tmax = min(request.tmax, auction_timeouts_ms.max)
   ```
 
 - bidder_tmax is calculated as follows:
 
-  ```
+  ```text
   bidder_tmax = tmax - request_processing_time - bidder_network_latency_buffer_ms - bidder_response_duration_min_ms
   ```
 
