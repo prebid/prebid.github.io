@@ -237,12 +237,14 @@ This field is used in different ways by PBS-Go and PBS-Java:
 Hosts can configure `auction_timeouts_ms` and `tmax_adjustments` to enable the utilization of tmax in auction endpoints.
 
 The `auction_timeouts_ms` parameter comprises default and max values. These values serve the purpose of determining the tmax duration PBS has for processing an auction request.
+
 - If tmax value is not specified or is set to 0 in the auction request, PBS will use the default value configured by the host (auction_timeouts_ms.default) as the tmax.
 - If tmax value specified in the auction request exceeds the maximum value defined by the host (auction_timeouts_ms.max), PBS will use host defined max (auction_timeouts_ms.max) as tmax.
 
 The resultant tmax, as determined by the above rules is employed in conjunction with the `tmax_adjustments` to estimate the tmax value for bidders i.e `bidder_tmax`. This estimated value indicates the time allotted for bidders to respond to a bid request.
 
 The `tmax_adjustments` parameter encompasses the following values:
+
 - enabled (required): indicates whether the estimation of bidder_tmax should be enabled or not. Hosts can set it to "false" to disable the estimation of bidder_tmax.
 - bidder_network_latency_buffer_ms: accounts for network delays that may occur between PBS and the bidder servers. A value of 0 indicates that no network latency buffer should be accounted for bidder_tmax calculation.
 - bidder_response_duration_min_ms (required): minimum amount of time that PBS can expect to receive response from a bidder server.
@@ -253,6 +255,7 @@ Additionally, PBS takes into account the request_processing_time when estimating
 PBS won't send a request to the bidder if the calculated bidder_tmax is less than the pbs_response_preparation_duration_ms.
 
 To summarize the process:
+
 - If request.tmax is 0:
   ```
   tmax = auction_timeouts_ms.default
