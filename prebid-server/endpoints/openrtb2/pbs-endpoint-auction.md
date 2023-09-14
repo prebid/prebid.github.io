@@ -257,17 +257,23 @@ PBS won't send a request to the bidder if the calculated bidder_tmax is less tha
 To summarize the process:
 
 - If request.tmax is 0:
+
   ```
   tmax = auction_timeouts_ms.default
   ```
+
 - If request.tmax is set to a large value, PBS attempts to cap tmax:
+
   ```
   tmax = min(request.tmax, auction_timeouts_ms.max)
   ```
+
 - bidder_tmax is calculated as follows:
+
   ```
   bidder_tmax = tmax - request_processing_time - bidder_network_latency_buffer_ms - bidder_response_duration_min_ms
   ```
+
 - If bidder_tmax is less than pbs_response_preparation_duration_ms, the request is not sent to the bidder server.
 - In case tmax_adjustments.enabled is set to false, PBS continues to apply its rules for determining tmax, but bidder_tmax will not be calculated, and PBS will consistently send the request to the bidder server.
 ##### PBS-Java
