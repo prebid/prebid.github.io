@@ -35,7 +35,6 @@ Note that the Bidgency Group adapter expects a client-side Prebid Cache to be en
 
 ```js
 pbjs.setConfig({
-    usePrebidCache: true,
     cache: {
         url: 'https://prebid.adnxs.com/pbc/v1/cache'
     }
