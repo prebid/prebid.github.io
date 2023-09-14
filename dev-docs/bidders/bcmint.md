@@ -15,6 +15,7 @@ schain_supported: true
 multiformat_supported: will-bid-on-one
 userIds: all
 sidebarType: 1
+aliasCode: aso
 ---
 ### Note
 
