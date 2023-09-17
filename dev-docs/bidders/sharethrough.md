@@ -5,6 +5,7 @@ biddercode: sharethrough
 description: Prebid Sharethrough Adaptor
 tcfeu_supported: true
 coppa_supported: true
+gpp_supported: true
 floors_supported: true
 media_types: banner, video
 safeframes_ok: true
@@ -14,6 +15,7 @@ userIds: all
 usp_supported: true
 pbjs: true
 pbs: true
+prebid_member: true
 fpd_supported: true
 ortb_blocking_supported: partial
 sidebarType: 1
