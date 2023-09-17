@@ -263,7 +263,9 @@ pbjs.addAdUnits({
 
 <a name="adUnit-video-example-accompanying"></a>
 
-#### Accompanying Content
+#### Player contains video content with sound off
+
+The IAB calls this scenario "Accompanying Content". Previously, this might have been called "instream with sound-off", but as of April 2023, the IAB has reclassified this scenario.
 
 ```javascript
 pbjs.addAdUnits({
@@ -290,7 +292,9 @@ pbjs.addAdUnits({
 
 <a name="adUnit-video-example-outstream"></a>
 
-#### No Content/Standalone
+#### Standalone ad wit no video content
+
+This is the scenario formerly known as Outstream. As of April 2023, the IAB now calls this scenario "No Content/Standalone".
 
 For an example of an outstream video ad unit that you handle on your own, see below.  For more detailed instructions, see [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html).
 
