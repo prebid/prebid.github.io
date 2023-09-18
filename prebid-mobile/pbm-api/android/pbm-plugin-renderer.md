@@ -107,7 +107,7 @@ Currently the interface `PrebidMobilePluginRenderer` provide the ability to rend
 ## Ad Event Listeners
 A dedicated generic ad event listener is offered in case of the existing event listeners are insufficient to keep your ad consumer fully aware of your ad lifecycle. 
 
-![Plugin Event Listener big picture](/assets/images/prebid-mobile/prebid-plugin-renderer.png)
+![Plugin Event Listener big picture](/assets/images/prebid-mobile/prebid-plugin-renderer-event-listeners.png)
 
 ### Setup
 
