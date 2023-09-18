@@ -1,0 +1,226 @@
+---
+layout: page_v2
+title: Plugin Renderer - Android
+description: Guide to implement a plugin renderer
+top_nav_section: prebid-mobile
+nav_section: prebid-mobile
+sidebarType: 2
+---
+
+# Plugin Renderer
+{:.no_toc}
+
+* TOC
+{:toc}
+
+## Overview
+Plugin Renderer is a feature that enable the ability to delegate the ad rendering to a component of yours. Such integration require from you, in first place, to have a Bidder Adapter implemented ([see more](https://github.com/github-maxime-liege)) in order to handle bid requests from the Prebid Mobile SDK that include your plugin renderer.
+
+Such feature turn possible the rendering of non-standard ad responses that Prebid Mobile SDK can not render by itself.     
+
+![Plugin Renderer big picture](/assets/images/prebid-mobile/prebid-plugin-renderer.png)
+
+### Setup
+
+* Provide your Prebid Bidder Adapter ([see more](https://github.com/github-maxime-liege))
+* Create your implementation from the interface `PrebidMobilePluginRenderer`
+* Initialise your plugin renderer before starting to request ads
+* Take advantage of the plugin renderer fields
+
+#### Create your implementation from the interface PrebidMobilePluginRenderer:
+
+```kotlin
+
+class SampleCustomRenderer : PrebidMobilePluginRenderer {
+    
+    override fun getName(): String = "SamplePluginRenderer"
+
+    override fun getVersion(): String = "1.0.0"
+
+    override fun getData(): JSONObject? = null
+    
+    override fun registerEventListener(pluginEventListener: PluginEventListener?, listenerKey: String?) { }
+
+    override fun unregisterEventListener(listenerKey: String) { }
+
+    override fun createBannerAdView(
+        context: Context,
+        displayViewListener: DisplayViewListener,
+        displayVideoListener: DisplayVideoListener?,
+        adUnitConfiguration: AdUnitConfiguration,
+        bidResponse: BidResponse
+    ): View {
+        TODO("Handle bid response as you want and return your ad banner view")
+    }
+
+    override fun createInterstitialController(
+        context: Context,
+        interstitialControllerListener: InterstitialControllerListener,
+        adUnitConfiguration: AdUnitConfiguration,
+        bidResponse: BidResponse
+    ): PrebidMobileInterstitialControllerInterface {
+        TODO("Handle bid response as you want and display your interstitial ad")
+    }
+
+    override fun isSupportRenderingFor(adUnitConfiguration: AdUnitConfiguration): Boolean {
+        return when {
+            adUnitConfiguration.isAdType(AdFormat.BANNER) -> true
+            adUnitConfiguration.isAdType(AdFormat.INTERSTITIAL) -> true
+            else -> false
+        }
+    }
+}
+```
+
+#### Initialise your plugin renderer before starting to request ads:
+```kotlin
+class PpmBannerPluginRendererFragment : AdFragment(), BannerViewListener {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+        // Init your plugin renderer
+        PrebidMobile.registerPluginRenderer(SampleCustomRenderer())
+        
+        initAdViews()
+        requestAd()
+    }
+}
+```
+
+#### Take advantage of the plugin renderer fields:
+
+The fields `name`, `version` and `data` from your plugin renderer are added to the bid request by the Prebid Mobile SDK and can be read by your Prebid Bidder Adapter in order to better handle ad requests from a plugin renderer taking into account its version and the additional values stored on the data field. 
+
+The field `data` can be used as below or with a more complex data structure:
+```kotlin
+    override fun getData(): JSONObject { 
+        val data = JSONObject()
+        data.put("key", "extra_value")
+        return data
+    }
+```
+
+## Supported Ad Formats
+Currently the interface `PrebidMobilePluginRenderer` provide the ability to render `BANNER` and `INTERSTITIAL` only. The compability with more ad formats can be supported in future releases.  
+
+## Ad Event Listeners
+A dedicated generic ad event listener is offered in case of the existing event listeners are insufficient to keep your ad consumer fully aware of your ad lifecycle. 
+
+![Plugin Event Listener big picture](/assets/images/prebid-mobile/prebid-plugin-renderer.png)
+
+### Setup
+
+* Create your implementation from the interface `PluginEventListener`
+* Handle your plugin event listener on your plugin renderer 
+* Implement the interface on the class you want to listen the events
+* Set your listener on your `BannerView` instance or `InterstitialAdUnit` instance
+
+#### Create your implementation from the interface PluginEventListener:
+```kotlin
+interface SampleCustomRendererEventListener : PluginEventListener {
+    override fun getPluginRendererName(): String = "SamplePluginRenderer"
+    fun onImpression()
+}
+```
+
+#### Handle your plugin event listener on your plugin renderer:
+```kotlin
+class SampleCustomRenderer : PrebidMobilePluginRenderer {
+
+    // Store your listeners
+    private val pluginEventListenerMap = mutableMapOf<String, SampleCustomRendererEventListener>()
+    
+    override fun getName(): String = "SamplePluginRenderer"
+
+    override fun getVersion(): String = "1.0.0"
+
+    override fun getData(): JSONObject? = null
+    
+    // Called whenever an ad consumer wants to subscribe to your ad lifecycle events
+    override fun registerEventListener(pluginEventListener: PluginEventListener?, listenerKey: String?) {
+        (pluginEventListener as? SampleCustomRendererEventListener)?.let {
+            pluginEventListenerMap[listenerKey] = it
+        }
+    }
+
+    // Called whenever an ad consumer wants to unsubscribe from your ad lifecycle events
+    override fun unregisterEventListener(listenerKey: String) {
+        pluginEventListenerMap.remove(listenerKey)
+    }
+
+    override fun createBannerAdView(
+        context: Context,
+        displayViewListener: DisplayViewListener,
+        displayVideoListener: DisplayVideoListener?,
+        adUnitConfiguration: AdUnitConfiguration,
+        bidResponse: BidResponse
+    ): View {
+        val adView = AdManager.getAdView(bidResponse.winningBid?.adm, context)
+
+        adView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                // Track your ad event once convenient
+                pluginEventListenerMap[adUnitConfiguration.fingerprint]?.onImpression()
+                adView.viewTreeObserver.removeOnGlobalLayoutListener(this)
+            }
+        })
+        
+        return adView
+    }
+
+    override fun createInterstitialController(
+        context: Context,
+        interstitialControllerListener: InterstitialControllerListener,
+        adUnitConfiguration: AdUnitConfiguration,
+        bidResponse: BidResponse
+    ): PrebidMobileInterstitialControllerInterface { }
+
+    override fun isSupportRenderingFor(adUnitConfiguration: AdUnitConfiguration): Boolean {
+        return when {
+            adUnitConfiguration.isAdType(AdFormat.BANNER) -> true
+            else -> false
+        }
+    }
+}
+```
+
+### Implement the interface on the class you want to listen the events:
+```kotlin
+// Implement your plugin event listener interface
+class PpmBannerPluginEventListenerFragment : AdFragment(), SampleCustomRendererEventListener {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        PrebidMobile.registerPluginRenderer(SampleCustomRenderer())
+    }
+
+    override fun initAd(): Any? {
+        bannerView = BannerView(
+            requireContext(),
+            configId,
+            AdSize(width, height)
+        )
+        binding.viewContainer.addView(bannerView)
+
+        // Set the plugin event listener
+        bannerView?.setPluginEventListener(this)
+        
+        return bannerView
+    }
+
+    // Override and listen events from your plugin event listener
+    override fun onImpression() {
+        LogUtil.debug(TAG, "onImpression")
+    }
+}
+```
+
+## Resources
+
+In addition to this documentation you have samples on hand which can be get from the Prebid Mobile SDK repository:
+
+* [PpmBannerPluginRendererFragment](https://github.com/prebid/prebid-mobile-android/blob/f6d8069166c2ab4740f8cef2a0fe24cc6cc1fd92/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmBannerPluginRendererFragment.kt)
+* [PpmBannerPluginEventListenerFragment](https://github.com/prebid/prebid-mobile-android/blob/f6d8069166c2ab4740f8cef2a0fe24cc6cc1fd92/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmBannerPluginEventListenerFragment.kt)
+* [PpmInterstitialPluginRendererFragment](https://github.com/prebid/prebid-mobile-android/blob/f6d8069166c2ab4740f8cef2a0fe24cc6cc1fd92/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmInterstitialPluginRendererFragment.kt)
+* [PpmInterstitialPluginEventListenerFragment](https://github.com/prebid/prebid-mobile-android/blob/f6d8069166c2ab4740f8cef2a0fe24cc6cc1fd92/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmInterstitialPluginEventListenerFragment.kt)
