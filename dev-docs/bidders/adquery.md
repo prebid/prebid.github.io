@@ -3,6 +3,7 @@ layout: bidder
 title: Adquery
 description: Prebid Adquery Bidder Adaptor
 pbjs: true
+pbs: true
 biddercode: adquery
 tcfeu_supported: true
 usp_supported: true

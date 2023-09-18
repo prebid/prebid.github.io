@@ -17,7 +17,8 @@ var adUnit1 = {
     code: 'videoAdUnit',
     mediaTypes: {
         video: {
-            context: 'instream', //or 'outstream'
+            context: 'instream', // or 'outstream'
+            plcmt: 2, // 1 = Instream Sound On, 2 = Accompanying Content, 3 = Interstitial 4 = No Content/Standalone
             playerSize: [640, 480],
             mimes: ['video/mp4'],    // required for Prebid Server
             protocols: [1, 2, 3, 4, 5, 6, 7, 8],

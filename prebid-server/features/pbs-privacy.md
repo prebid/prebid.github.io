@@ -78,13 +78,13 @@ Prebid Server support for this protocol:
 
 1. Passthrough - GPP parameters are forwarded through auction and usersync signals. In ORTB 2.6, these are regs.gpp and regs.gpp_sid. For url protocols, look for `gpp` and `gpp_sid`.
 1. GPP as a TCF and USP wrapper - PBS parses the GPP container for TCF2 and USP strings, extracting them to the original ORTB location.
-1. (done for PBS-Java) GPP infrastructure - the ability to plug new regulations into PBS, and the first sub-module, the [US General Privacy Module](/prebid-server/features/pbs-usnat.html).
+1. (done for PBS-Java) GPP infrastructure - the ability to plug new regulations into PBS, and the first sub-module, the [US General Privacy Module](/prebid-server/features/pbs-usgen.html).
 
 ## MSPA / US National Privacy
 
 See [Prebid MSPA Support](/features/mspa-usnat.html) for more info.
 
-The [Prebid Server USGen Privacy Module](/prebid-server/features/pbs-usnat.html) is available for PBS-Java.
+The [Prebid Server USGen Privacy Module](/prebid-server/features/pbs-usgen.html) is available for PBS-Java.
 
 Also note that publishers using PBS-Java can consider utilizing [Activity Controls](/prebid-server/features/pbs-activitycontrols.html). In particular, the `gppSid`, `geo`, and `gpc` conditions may be useful tools within a compliance strategy.
 
