@@ -56,7 +56,7 @@ Bid Params for video ads. These params should be added to `mediatype.video`.
 
 ### Note
 
-[Protocols list](#epsilon-protocols)
+[Protocols list](https://docs.prebid.org/dev-docs/bidders/epsilon.html#protocols)
 
 #### MIME types
 
@@ -126,7 +126,7 @@ Source: [OpenRTB scpecification](https://www.iab.com/wp-content/uploads/2016/03/
 
 #### Video instream adUnit
 
-```
+```javascript
     var instreamAdUnit = {
       code: 'instream-div',
       sizes: [[640, 480]],
@@ -149,7 +149,7 @@ Source: [OpenRTB scpecification](https://www.iab.com/wp-content/uploads/2016/03/
 
 #### Video outstream adUnit
 
-```
+```javascript
     var outstreamAdUnit = {
       code: 'outstream-div',
       sizes: [[640, 480]],
@@ -167,12 +167,12 @@ Source: [OpenRTB scpecification](https://www.iab.com/wp-content/uploads/2016/03/
           tagid: '315045'
         }
       }]
-    },
+    }
 ```
 
 #### Banner adUnit
 
-```
+```javascript
     var bannerAdUnit = {
       code: 'banner-div',
       sizes: [[300, 250]],
