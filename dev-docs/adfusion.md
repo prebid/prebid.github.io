@@ -4,11 +4,20 @@ title: AdFusion
 biddercode: adfusion 
 tcfeu_supported: true
 gvl_id: 844
+usp_supported: false
+coppa_supported: false
+gpp_supported: false
+schain_supported: false
+dchain_supported: false
+safeframes_ok: false
+deals_supported: true
 userId: all
 media_types: display, video
 floors_supported: true
 fpd_supported: false
 pbjs: true
+pbs: false
+prebid_member: false
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
 sidebarType: 1
