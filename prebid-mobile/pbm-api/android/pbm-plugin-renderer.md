@@ -7,22 +7,22 @@ nav_section: prebid-mobile
 sidebarType: 2
 ---
 
-# Plugin Renderer
+# Prebid Plugin Renderer
 {:.no_toc}
 
 * TOC
 {:toc}
 
 ## Overview
-Plugin Renderer is a feature that enable the ability to delegate the ad rendering to a component of yours. Such integration require from you, in first place, to have a Bidder Adapter implemented ([see more](https://github.com/github-maxime-liege)) in order to handle bid requests from the Prebid Mobile SDK that include your plugin renderer.
+Plugin Renderer is a feature that enable the ability to delegate the ad rendering to a component of yours. Such integration require from you, in first place, to have a Bidder Adapter implemented ([see more](prebid-server/developers/add-new-bidder-go.html)) in order to handle bid requests from the Prebid Mobile SDK that include your plugin renderer.
 
-Such feature turn possible the rendering of non-standard ad responses that Prebid Mobile SDK can not render by itself.     
+Such feature turn possible, for instance, the rendering of non-standard ad responses that Prebid Mobile SDK can not render by itself.     
 
 ![Plugin Renderer big picture](/assets/images/prebid-mobile/prebid-plugin-renderer.png)
 
 ### Setup
 
-* Provide your Prebid Bidder Adapter ([see more](https://github.com/github-maxime-liege))
+* Provide your Prebid Bidder Adapter ([see more](prebid-server/developers/add-new-bidder-go.html))
 * Create your implementation from the interface `PrebidMobilePluginRenderer`
 * Initialise your plugin renderer before starting to request ads
 * Take advantage of the plugin renderer fields
@@ -90,7 +90,7 @@ class PpmBannerPluginRendererFragment : AdFragment(), BannerViewListener {
 
 #### Take advantage of the plugin renderer fields:
 
-The fields `name`, `version` and `data` from your plugin renderer are added to the bid request by the Prebid Mobile SDK and can be read by your Prebid Bidder Adapter in order to better handle ad requests from a plugin renderer taking into account its version and the additional values stored on the data field. 
+The fields `name`, `version` and `data` from your plugin renderer are added to the bid request by the Prebid Mobile SDK and can be read by your Prebid Bidder Adapter in order to better handle ad requests from a plugin renderer taking into account its version and the additional values stored on the data field.
 
 The field `data` can be used as below or with a more complex data structure:
 ```kotlin
@@ -102,7 +102,9 @@ The field `data` can be used as below or with a more complex data structure:
 ```
 
 ## Supported Ad Formats
-Currently the interface `PrebidMobilePluginRenderer` provide the ability to render `BANNER` and `INTERSTITIAL` only. The compability with more ad formats can be supported in future releases.  
+Currently the interface `PrebidMobilePluginRenderer` provide the ability to render `BANNER` and `INTERSTITIAL` only. The compability with more ad formats can be supported in future releases.
+
+It is important to notice that the compliant formats you set on `isSupportRenderingFor` implementation is taken into account to add your plugin renderer to the bid request or not, according to the ad unit configuration that is bid requesting.
 
 ## Ad Event Listeners
 A dedicated generic ad event listener is offered in case of the existing event listeners are insufficient to keep your ad consumer fully aware of your ad lifecycle. 
@@ -119,6 +121,7 @@ A dedicated generic ad event listener is offered in case of the existing event l
 #### Create your implementation from the interface PluginEventListener:
 ```kotlin
 interface SampleCustomRendererEventListener : PluginEventListener {
+    // Ensure that the name is the same as your plugin renderer
     override fun getPluginRendererName(): String = "SamplePluginRenderer"
     fun onImpression()
 }
@@ -160,7 +163,7 @@ class SampleCustomRenderer : PrebidMobilePluginRenderer {
 
         adView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
-                // Track your ad event once convenient
+                // Retrieve the ad listener and track your ad event once convenient
                 pluginEventListenerMap[adUnitConfiguration.fingerprint]?.onImpression()
                 adView.viewTreeObserver.removeOnGlobalLayoutListener(this)
             }
