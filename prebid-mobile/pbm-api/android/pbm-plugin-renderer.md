@@ -107,7 +107,7 @@ Currently the interface `PrebidMobilePluginRenderer` provide the ability to rend
 It is important to notice that the compliant formats you set on `isSupportRenderingFor` implementation is taken into account to add your plugin renderer to the bid request or not, according to the ad unit configuration that is bid requesting.
 
 ## Ad Event Listeners
-A dedicated generic ad event listener is offered in case of the existing event listeners are insufficient to keep your ad consumer fully aware of your ad lifecycle. 
+An optional dedicated generic ad event listener is offered in case of the existing event listeners are insufficient to keep your ad consumer fully aware of your ad lifecycle. 
 
 ![Plugin Event Listener big picture](/assets/images/prebid-mobile/prebid-plugin-renderer-event-listeners.png)
 
