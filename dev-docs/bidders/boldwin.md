@@ -7,8 +7,14 @@ pbs: true
 biddercode: boldwin
 gvl_id: 1151
 tcfeu_supported: true
+usp_supported: true
+coppa_supported: true
+floors_supported: true
+pbs_app_supported: true
 gpp_supported: true
 media_types: banner, video, native
+multiformat_supported: will-bid-on-one
+safeframes_ok: true
 sidebarType: 1
 ---
 
@@ -24,4 +30,4 @@ The Boldwin Bidding adapter requires setup before beginning. Please contact us a
 | `endpointId`  | required | Endpoint Id | `'0'`        | `string` |
 
 For both the Prebid Server and Prebid.js integrations it is required to use only one parameter: `endpointId`.
-`endpointId` - should be sent in the Prebid bid request to Boldwin in case you integrate with Boldwin bidder via an endpoint URL.
+`endpointId` - should be sent in the Prebid bid request to Boldwin in case you integrate with Boldwin bidder.
