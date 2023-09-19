@@ -15,6 +15,7 @@ pbs_app_supported: true
 sidebarType: 1
 multiformat_supported: will-bid-on-one
 safeframes_ok: true
+enable_download: false
 ---
 
 ### Bid Params
