@@ -27,6 +27,10 @@ Such feature turn possible, for instance, the rendering of non-standard ad respo
 * Initialise your plugin renderer before starting to request ads
 * Take advantage of the plugin renderer fields
 
+ℹ️ Please notice that all implementation on mobile related to the Plugin Renderer should be provided externally, not in the PBM SDK itself. For instance, an app owner or third party SDK would implement it and initialise it on their own context. 
+
+___
+
 #### Create your implementation from the interface PrebidMobilePluginRenderer:
 
 ```kotlin
@@ -72,7 +76,9 @@ class SampleCustomRenderer : PrebidMobilePluginRenderer {
 }
 ```
 
+
 #### Initialise your plugin renderer before starting to request ads:
+
 ```kotlin
 class PpmBannerPluginRendererFragment : AdFragment(), BannerViewListener {
 
@@ -86,6 +92,9 @@ class PpmBannerPluginRendererFragment : AdFragment(), BannerViewListener {
         requestAd()
     }
 }
+
+
+
 ```
 
 #### Take advantage of the plugin renderer fields:
@@ -117,6 +126,8 @@ An optional dedicated generic ad event listener is offered in case of the existi
 * Handle your plugin event listener on your plugin renderer 
 * Implement the interface on the class you want to listen the events
 * Set your listener on your `BannerView` instance or `InterstitialAdUnit` instance
+
+___
 
 #### Create your implementation from the interface PluginEventListener:
 ```kotlin
