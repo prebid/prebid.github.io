@@ -212,13 +212,13 @@ By default, sending user IDs to bid adapters or RTD modules (the `transmitEids` 
 * We have evidence of consent for any purpose between 2 and 10, and the vendor is excepted through `softVendorException` in at least one of: `basicAds`, `personalizedAds`, or `measurement`; 
 * The vendor is excepted through `vendorExceptions` in at least one of `basicAds`, `personalizedAds`, or `measurement`.
 
-This behavior can be changed to the same "basic enforcement" algorithm described above, tied to TCF Purpose 4, by setting `eidsRequireP4consent: true` on a `personalizedAds` rule:
+This behavior can be changed to the same "basic enforcement" algorithm described above, tied to TCF Purpose 4, by setting `eidsRequireP4Consent: true` on a `personalizedAds` rule:
 
     ```javascript
       ...
       rules: [{
         purpose: "personalizedAds",
-        eidsRequireP4consent
+        eidsRequireP4Consent: true
       }]
     ```
 
