@@ -84,14 +84,15 @@ Notes:
 * <a id="strictStorageEnforcement"></a> By default, Prebid allows some limited use of storage even when purpose 1 consent was not given: this is limited to non-PII, such as [category translation mappings](/dev-docs/modules/categoryTranslation.html), or temporary test data used to probe the browser's storage features. If `strictStorageEnforcement` is true, purpose 1 consent will always be enforced for any access to storage.
 * To accomodate Prebid.js modules and adapters that don't have GVL IDs, the vendorExceptions list is based on Prebid.js biddercodes instead of Global Vendor List (GVL) IDs (i.e. "bidderA" instead of "12345").
 * An alternate way of establishing a GVL mapping is to define a 'gvlMapping' object:
-    ```javascript
-    pbjs.setConfig({
-        gvlMapping: {
-        bidderA: 12345,
-            bidderB: 67890
-        }
-    });
-    ```
+
+```javascript
+pbjs.setConfig({
+    gvlMapping: {
+    bidderA: 12345,
+        bidderB: 67890
+    }
+});
+```
 
 ### Examples
 
@@ -183,8 +184,9 @@ a "basic" form of TCF 'legal basis' validation using the supplied consent string
 A goal of 'basic enforcement' is to confirm that there's enough evidence of consent to pass data on to vendors who do have access to the GVL and can fully parse and enforce.
 
 Evidence of consent for a particular purpose or vendor means that:
- * Prebid.js has the the user's purpose or vendor consent, or
- * (for Purpose 2 only) we've confirmed the user's Legitimate Intereset (LI) Transparency is established for this purpose or vendor.
+
+* Prebid.js has the the user's purpose or vendor consent, or
+* (for Purpose 2 only) we've confirmed the user's Legitimate Intereset (LI) Transparency is established for this purpose or vendor.
 
 Before allowing an activity tied to a TCF-protected Purpose for a given vendor, one of these scenarios must be true:
 
@@ -208,19 +210,19 @@ See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisin
 
 By default, sending user IDs to bid adapters or RTD modules (the `transmitEids` activity) is not tied to a single TCF Purpose; instead it is allowed if one of these scenario is true:
 
-* We have evidence of consent for the vendor and evidence of consent for _any_ purpose between 2 and 10; 
-* We have evidence of consent for any purpose between 2 and 10, and the vendor is excepted through `softVendorException` in at least one of: `basicAds`, `personalizedAds`, or `measurement`; 
+* We have evidence of consent for the vendor and evidence of consent for _any_ purpose between 2 and 10;
+* We have evidence of consent for any purpose between 2 and 10, and the vendor is excepted through `softVendorException` in at least one of: `basicAds`, `personalizedAds`, or `measurement`;
 * The vendor is excepted through `vendorExceptions` in at least one of `basicAds`, `personalizedAds`, or `measurement`.
 
 This behavior can be changed to the same "basic enforcement" algorithm described above, tied to TCF Purpose 4, by setting `eidsRequireP4Consent: true` on a `personalizedAds` rule:
 
-    ```javascript
-      ...
-      rules: [{
-        purpose: "personalizedAds",
-        eidsRequireP4Consent: true
-      }]
-    ```
+```javascript
+  ...
+  rules: [{
+    purpose: "personalizedAds",
+    eidsRequireP4Consent: true
+  }]
+```
 
 ## Build the Package
 
