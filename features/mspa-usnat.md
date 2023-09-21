@@ -73,6 +73,7 @@ Here's a summary of the privacy features in Prebid.js that publishers may use to
 | 7.52-8.1 | GPP module <br/> **Activity&nbsp;Controls** | [Activity Controls](/dev-docs/activity-controls.html) provide the ability for publishers to allow or restrict certain privacy-sensitive activities for particular bidders and modules. See examples in that document for supporting CCPA directly.
 | 8.2-8.x | GPP module<br/>Activity Controls<br/>**USNat module** | The [USNat module](/dev-docs/modules/gppControl_usnat.html) processes SID 7. |
 | After 8.x | GPP module<br/>Activity Controls<br/>USNat module<br/>**US&nbsp;State&nbsp;module** | The US State module processes SIDs 8 through 12 after normalizing protocol differences. |
+| After 8.10 | **GPP Module**  | The [GPP module](/dev-docs/modules/consentManagementGpp.html) now understands GPP 1.1 which makes it incompatible with GPP 1.0. Publishers **<u>MUST</u>** upgrade for continued GPP support. |
 
 ### Prebid Server
 
