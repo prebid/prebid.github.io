@@ -7,7 +7,6 @@ sidebarType: 1
 
 This function provides a wrapper to register a bid adapter externally.
 
-
 {: .table .table-bordered .table-striped }
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
