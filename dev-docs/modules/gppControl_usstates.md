@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # GPP Control Module - US state strings
-
 {: .no_toc }
 
 - TOC
@@ -26,15 +25,15 @@ This resource should not be construed as legal advice and Prebid.org makes no gu
 
 ## Overview
 
-This consent management control module is designed to support the [Global Privacy Platform](https://iabtechlab.com/gpp/) US state strings, sections 8 through 12.
+This consent management control module is designed to support the [Global Privacy Platform](https://iabtechlab.com/gpp/) US state strings, [GPP sections](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/Section%20Information.md) 8 through 12.
 It works by translating them into an equivalent US national string as detailed in [Interpreting USNat strings](/features/mspa-usnat.html#interpreting-usnat-strings), and using it to apply the same [activity restricitons](/features/mspa-usnat.html#usnat-activity-restrictions).
 
 {: .alert.alert-warning :}
-Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws. **We recommend consulting with your legal counsel before determining how to utilize these features in support of your overall privacy approach. This module is not yet intended to replace other consent modules; it supplements them.**
+Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws. **We recommend consulting with your legal counsel before determining how to utilize these features in support of your overall privacy approach. This module is not intended to replace other consent modules; it supplements them.**
 
 ## Page Integration
 
-By default, including this module enables activity restrictions for all GPP sections from ID 8 to 12, as long as the [consentManagementGpp](/dev-docs/modules/consentManagementGpp.html) module is also included and configured.
+By default, including this module enables activity restrictions for GPP sections from ID 8 to 12, as long as the [consentManagementGpp](/dev-docs/modules/consentManagementGpp.html) module is also included and configured.
 Optional configuration options are:
 
 {: .table .table-bordered .table-striped }
