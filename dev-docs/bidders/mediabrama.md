@@ -21,12 +21,6 @@ multiformat_supported: will-bid-on-one
 prebid_member: false
 ---
 
-### Table of Contents
-
-- [Description](#mediabrama-bid-desc)
-- [Bid Params](#mediabrama-bid-params)
-- [Test Params](#mediabrama-test-params)
-
 <a name="mediabrama-bid-desc" />
 
 ### Description
@@ -42,7 +36,6 @@ MediaBrama header bidding adapter connects with mediabrama demand sources to fet
 |--------------|----------|------------------------------------|------------|----------|
 | `placementId`| optional | The placement ID from MediaBrama   | `'24428'`  | `string` |
 | `bidFloor`   | optional | Lowest value of expected bid price | `1.1`      | `float`  |
-
 
 <a name="mediabrama-test-params" />
 
