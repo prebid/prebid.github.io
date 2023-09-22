@@ -194,6 +194,7 @@ Here's an example config:
 ```
 
 Notes:
+
 - In this example, only one activity uses the custom logic. Other activities utilize
 - It would be possible to link each activity to different parsing logic
 
@@ -261,7 +262,7 @@ Here's how the module works when called by an Activity Control:
 
 ### Limits
 
-Because the module config is not an array, it is not be possible to create 
+Because the module config is not an array, it is not be possible to create
 rules that apply to each US state's non-normalized GPP flags for the same activity.
 
 Supporting this scenario would require a PBS Host Company to build a custom privacy module.
@@ -281,7 +282,7 @@ Here's a screenshot showing the usage of that tool:
 
 ## Related Topics
 
-* [Prebid Multi-State Privacy Agreement Support](/features/mspa-usnat.html)
-* [US Custom Logic Privacy Module](/prebid-server/features/pbs-uscustomlogic.html)
-* [Activity Control system](/prebid-server/features/pbs-activitycontrols.html)
-* [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)
+- [Prebid Multi-State Privacy Agreement Support](/features/mspa-usnat.html)
+- [US Custom Logic Privacy Module](/prebid-server/features/pbs-uscustomlogic.html)
+- [Activity Control system](/prebid-server/features/pbs-activitycontrols.html)
+- [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)
