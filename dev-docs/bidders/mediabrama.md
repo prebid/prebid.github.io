@@ -42,7 +42,8 @@ MediaBrama header bidding adapter connects with mediabrama demand sources to fet
 ### Test Parameters
 
 300x250 banner test
-```
+
+```javascript
 var adUnits = [{
   code: 'prebid-place',
   mediaTypes: {
