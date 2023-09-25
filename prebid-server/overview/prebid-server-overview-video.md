@@ -30,7 +30,7 @@ Related Videos:
 
 Prebid Server is a solution for running real-time advertising auctions in the cloud.
 
-It works in conjunction with Prebid.js, Prebid SDK, and other technologies to make header bidding possible for any ad format in any type of digital media. 
+It works in conjunction with Prebid.js, Prebid SDK, and other technologies to make header bidding possible for any ad format in any type of digital media.
 
 Prebid Server has everything necessary to sell advertising opportunities through server-side header bidding, including bidder integrations, privacy controls, creative caching, currency conversion, price floors, and analytics.
 
