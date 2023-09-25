@@ -17,7 +17,7 @@ glimpse is probably a defunct bidder, as the glimpseportal.io domain is no longe
 
 ## Overview
 
-```
+```text
 Module Name: Glimpse Protocol Bid Adapter
 Module Type: Bidder Adapter
 Maintainer: support@glimpseportal.io
@@ -127,4 +127,4 @@ pbjs.que.push(() => {
 
 ### Can you provide additional support?
 
-Of course! You can check the Glimpse Prebid Adapter documentation at 'https://docs.glimpseportal.io/en/latest/' or reach out to us at <support@glimpseportal.io>.
+Of course! You can check the Glimpse Prebid Adapter documentation or reach out to us at <support@glimpseportal.io>.

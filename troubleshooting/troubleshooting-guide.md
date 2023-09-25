@@ -118,8 +118,6 @@ You can also print this data to the console in [table format](#see-all-bids-in-t
 Use the [Debugging Module](/dev-docs/modules/debugging.html) to alter bids or
 fabricate test bids.
 
-
-
 <hr>
 
 <a name="pbs-stored-responses"></a>
