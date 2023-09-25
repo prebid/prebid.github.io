@@ -18,15 +18,15 @@ Important: This resource should not be construed as legal advice and Prebid.org 
 
 ## Overview
 
-This module provides a way for publishers to define a custom interpretion for GPP strings.
+This module provides a way for publishers to define a custom interpretion for GPP strings in Sections 7-12.
 If the publisher is satisfied with Prebid's interpretation of GPP SIDs 7-12 as defined in
 [Prebid Multi-State Privacy Agreement Support](/features/mspa-usnat.html), it's recommended
-that they utilze the [US Gen Privacy Module](/prebid-servers/pbs-usgen.html) instead of this one.
+that they utilze the [US Gen Privacy Module](/prebid-server/features/pbs-usgen.html) instead of this one.
 
 This module lets publishers define GPP string interpretation with a powerful general syntax
 called [JsonLogic](https://jsonlogic.com/). At high traffic volumes with complex interpretion logic,
 the Prebid Server Host Company may want to monitor compute resource utilization consumed by use
-of this feature. Another option would be to build a [custom privacy module](/prebid-server/developers/add-a-privacy-module.md).
+of this feature. Another option would be to build a [custom privacy module](/prebid-server/developers/add-a-privacy-module.html).
 
 The use cases for this module are the same as for the `US Gen Privacy Module`:
 
@@ -35,15 +35,14 @@ The use cases for this module are the same as for the `US Gen Privacy Module`:
 - Is moduleM allowed to enrich the request with EIDs?
 
 The difference is that instead of the GPP interpretation logic being coded into the module,
-this module allows publishers to come up with their own interpretations. As you'll see, this
-is powerful but complicated.
+it allows publishers and their lawyers to come up with their own interpretations. As you'll see, this powerful but complicated.
 
 ## Using the US Custom Logic Privacy Module
 
-Here are the steps need to activate the module within Prebid Server:
+Some decisions are needed to activate the module within Prebid Server:
 
 1. The PBS host company needs to decide whether to enable this privacy module globally, per-account, or both.
-1. The host company needs to decide whether to link this privacy module to Activity Controls globally.
+1. The host company also needs to decide whether to link this privacy module to Activity Controls globally.
 1. Publishers may ask the host company to override Activity Control defaults, including which activities use the module.
 
 ### Enabling the US Custom Logic Module
@@ -74,6 +73,8 @@ Here's an example:
 
 ### US Custom Logic Privacy Module Parameters
 
+Here are the parameters allowed in the module's `config` section. See below for examples.
+
 {: .table .table-bordered .table-striped }
 | Parameter | Type | Scope | Description |
 |------|------|-------------|
@@ -86,7 +87,8 @@ Here's an example:
 ### JsonLogic Data Fields
 
 {: .alert.alert-info :}
-Tip: Scroll down to the example to see what a JsonLogic rule (the `restrictIfTrue` field) looks like.
+Tip: Scroll down to the example to see what a JsonLogic rule (the `restrictIfTrue` field) looks like. The config only needs to contain the JsonLogic rule -- the module will create the JsonLogic data
+from the GPP string.
 
 The way [JsonLogic](https://jsonlogic.com) works is that you supply two JSON objects:
 
@@ -95,7 +97,7 @@ The way [JsonLogic](https://jsonlogic.com) works is that you supply two JSON obj
 
 The specific fields produced by the module that can be referred to in a rule are based on the IAB's definition of each SID. The only difference is that array fields simply have a number appended since JsonLogic doesn't support arrays.
 
-These are the fields recognized by the module:
+These are the fields that can be referenced in the JsonLogic rule:
 
 {: .table .table-bordered .table-striped }
 | MspaServiceProviderMode | MspaOptOutOptionMode | SensitiveDataProcessing1 |
@@ -110,7 +112,7 @@ These are the fields recognized by the module:
 
 See the IAB technical specifications for the definition and values allowed for each field. e.g. [GPP Extension: IAB Privacy’s US National Privacy Technical Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)
 
-### Linking the US Custom Logic module to Activities
+### Linking the module to Activities
 
 The US Custom Logic Privacy Module will not operate within the PBS workflow unless it's called by the Activity Control system. e.g.
 
@@ -133,7 +135,10 @@ The US Custom Logic Privacy Module will not operate within the PBS workflow unle
 
 ### Example 1 - Handle GPC and 'sensitive data' differently
 
-Prebid interprets the Global Privacy Control (GPC) flag as a strong privacy signal that disables many GPP
+Again, publishers will only use this module if their lawyers disagree with Prebid's default
+interpretation of the US National or US State GPP strings.
+
+As one example, Prebid interprets the Global Privacy Control (GPC) flag as a strong privacy signal that disables many GPP
 privacy-related activities. Say a publisher's lawyers want to allow the `transmitUfpd` activity to operate in the US even when the GPC flag is set to true. In addition, they've declared that
 they don't operate in any "sensitive data" category, so wish to remove those elements from
 interpretation.
@@ -195,7 +200,7 @@ Here's an example config:
 
 Notes:
 
-- In this example, only one activity uses the custom logic. Other activities utilize
+- In this example, only one activity uses the custom logic. Other activities utilize the conventions coded into the iab.usgen module.
 - It would be possible to link each activity to different parsing logic
 
 ### Example 2 - Process Native GPP SID 11 Flags
@@ -283,6 +288,6 @@ Here's a screenshot showing the usage of that tool:
 ## Related Topics
 
 - [Prebid Multi-State Privacy Agreement Support](/features/mspa-usnat.html)
-- [US Custom Logic Privacy Module](/prebid-server/features/pbs-uscustomlogic.html)
+- [US General Privacy Module](/prebid-server/features/pbs-usgen.html)
 - [Activity Control system](/prebid-server/features/pbs-activitycontrols.html)
 - [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)

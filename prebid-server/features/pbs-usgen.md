@@ -69,7 +69,7 @@ Here's an example:
 }
 ```
 
-#### USGen Privacy Module Parameters
+### USGen Privacy Module Parameters
 
 {: .table .table-bordered .table-striped }
 | Parameter | Type | Scope | Description |
@@ -100,7 +100,7 @@ The USGen Privacy Module will not operate within the PBS workflow unless it's ca
 }
 ```
 
-#### USGen Privacy Module Processing
+### USGen Privacy Module Processing
 
 Here's how the module works when called by an Activity Control:
 
