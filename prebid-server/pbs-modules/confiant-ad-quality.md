@@ -16,7 +16,7 @@ sidebarType : 5
 
 [Confiant](https://www.confiant.com/) is an industry leader in the field of ad tech security and quality.
 This module provides a low latency pre-auction scanning for such issues.
-Any suggestions or questions can be directed to [support@confiant.com](support@confiant.com) e-mail.
+Any suggestions or questions can be directed to [support@confiant.com](mailto:support@confiant.com) e-mail.
 
 ## Configuration
 
