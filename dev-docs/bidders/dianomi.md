@@ -5,7 +5,7 @@ description: Prebid Dianomi Bidder Adaptor
 biddercode: dianomi
 media_types: banner, native, video
 coppa_supported: false
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 prebid_member: true
 pbjs: true
@@ -16,15 +16,17 @@ gvl_id: 885
 floors_supported: true
 fpd_supported: true
 multiformat_supported: will-bid-on-one
+sidebarType: 1
 ---
 
 ### Note
+
 - Supports `display` and `banner` formats.
 - Uses `OpenRTB` standard.
 
 ### Registration
 
-The Dianomi Adapter requires setup before beginning. Please contact us at eng@dianomi.com.
+The Dianomi Adapter requires setup before beginning. Please contact us at <eng@dianomi.com>.
 
 ### Bid params
 
@@ -33,7 +35,6 @@ The Dianomi Adapter requires setup before beginning. Please contact us at eng@di
 |-------------|----------------------------|----------------------|--------------------|-----------|
 | `smartadId` | required                   | Placement ID         | `12345`            | `integer` |
 | `endpoint`  | optional                   | for testing only     | `www-prebid.dianomi.com`             | `string` |
-
 
 Note: smartadId is a pre agreed ID between the publisher and Dianomi.
 
@@ -77,6 +78,7 @@ var adUnits = [
 ```
 
 #### Banner example
+
 ```js
 var adUnits = [
     code: 'your-banner-container-id',
@@ -95,6 +97,7 @@ var adUnits = [
 ```
 
 #### Video example
+
 ```js
 var adUnits = [
     code: 'your-video-container-id',

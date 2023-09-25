@@ -6,11 +6,14 @@ pbjs: true
 pbs: true
 media_types: video, banner
 biddercode: bliink
-gdpr_supported: true
+gvl_id: 658
+tcfeu_supported: true
 usp_supported: false
+sidebarType: 1
 ---
 
-### Note:
+### Note
+
 The BLIINK Header Bidding adaptor requires setup and approval from the BLIINK team. Please reach out to your account manager for more informations.
 
 ### Bid Params
@@ -20,3 +23,4 @@ The BLIINK Header Bidding adaptor requires setup and approval from the BLIINK te
 |-------------|----------|----------------------------------|--------------------------------------|----------|
 | `tagId` | required | The TagID from BLIINK. | `'32'` | `string` |
 | `imageUrl` | optional | The image url on which the ad is displayed in case of in-image ad. | `'https://image.png'` | `string` |
+| `videoUrl` | optional | The Video url on which the ad is displayed in case of video ad. | `'https://video.mp4'` | `string` |

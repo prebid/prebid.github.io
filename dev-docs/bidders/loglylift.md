@@ -3,7 +3,7 @@ layout: bidder
 title: LOGLY lift
 description: Prebid LOGLY lift Bidder Adaptor
 biddercode: loglylift
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 schain_supported: false
@@ -16,6 +16,7 @@ fpd_supported: false
 pbjs: true
 pbs: false
 prebid_member: false
+sidebarType: 1
 ---
 
 

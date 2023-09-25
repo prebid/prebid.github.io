@@ -5,9 +5,10 @@ description: Prebid Adrino Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: adrino
-media_types: no-display, native
-gdpr_supported: true
+media_types: banner, native
+tcfeu_supported: true
 gvl_id: 1072
+sidebarType: 1
 ---
 
 ### Note

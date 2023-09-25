@@ -7,6 +7,7 @@ nav_section: plugins
 ---
 
 # Communication Between Cross Player Prebid Component and Player
+
 {:.no_toc}
 
 The [Cross-Player Prebid Component]({{site.baseurl}}/dev-docs/plugins/cross-player-prebid-component/about-cross-player-prebid-component.html) communicates with the publisher's player using `window.postMessage` as supported by all browsers. The message can be initiated either by the Component or by the Player.
@@ -52,199 +53,138 @@ NOTE: These steps assume that the Component is being loaded in the header and th
 
 #### Step 1
 
-<ul style="list-style-type:none;">
-  <li>
-    <b>Who:</b>
-    <p>Prebid Component</p>
-  </li>
-  <li>
-    <b>What:</b>
-    <p>Adds a listener on the window within the document where it is running.</p>
-  </li>
-  <li>
-    <b>Comments:</b>
-    <p>The Component is listening for the following <b>command</b> in a <b>postMessage</b>: <code>PPCP:prebidUrlRequest</code>. Filter the messages looking for this <b>command</b> inside the <code>requestHandler</code>.</p>
-  </li>
-  <li>
-    <b>Sample Code:</b>
-    <p>
-<pre><code>
-window.addEventListener('message', requestHandler);
-</code></pre>
-    </p>
-    <p>Request Handler Sample Code:</p>
-    <p>
-<pre><code>
-// the component code is written in ES6 Javascript
-    this.requestHandler = (event) => {
-        if (event && event.data) {
-            let data;
-            try {
-                data = JSON.parse(event.data);
-            }
-            catch (err) {
-                // Invalid message data. Ignore it.
-                return;
-            }
-            const frameWnd = event.source;
-            // internal function used to send back the response
-            const sendResponse = (url) => {
-                // send response to source window (iframe)
-                Logger.log(this._prefix, 'Post url:', url);
-                const response = {
-                    command: 'PPCP:prebidResponse',
-                    messageId: data.messageId,
-                    url: url
-                };
+- **Who:** Prebid Component
+- **What:** Adds a listener on the window within the document where it is running
+- **Comments:** The Component is listening for the following **command** in a **postMessage**: `PPCP:prebidUrlRequest`.
+  Filter the messages looking for this **command** inside the `requestHandler`.
 
-                const sendingData = JSON.stringify(response);
-                frameWnd.postMessage(sendingData, '*');
+##### Sample Request Handler
+
+```javascript
+window.addEventListener('message', requestHandler);
+```
+
+Request Handler Sample Code
+
+```javascript
+// the component code is written in ES6 Javascript
+this.requestHandler = (event) => {
+    if (event && event.data) {
+        let data;
+        try {
+            data = JSON.parse(event.data);
+        }
+        catch (err) {
+            // Invalid message data. Ignore it.
+            return;
+        }
+        const frameWnd = event.source;
+        // internal function used to send back the response
+        const sendResponse = (url) => {
+            // send response to source window (iframe)
+            Logger.log(this._prefix, 'Post url:', url);
+            const response = {
+                command: 'PPCP:prebidResponse',
+                messageId: data.messageId,
+                url: url
             };
-            // sync request
-            if (data.command === 'PPCP:prebidUrlRequest') {
-                if (this.defaultUrl) {
-                	// we have ad URL to play
-                    sendResponse(this.defaultUrl);
-                }
-                else if (this.defaultUrl === null) {
-                	// failed to get ad URL
-                    sendResponse('failed');
-                }
-                else {
-                	// prebid.js is not ready (not loaded yet)
-                    sendResponse('unknown');
-                }
+
+            const sendingData = JSON.stringify(response);
+            frameWnd.postMessage(sendingData, '*');
+        };
+        // sync request
+        if (data.command === 'PPCP:prebidUrlRequest') {
+            if (this.defaultUrl) {
+              // we have ad URL to play
+                sendResponse(this.defaultUrl);
+            }
+            else if (this.defaultUrl === null) {
+              // failed to get ad URL
+                sendResponse('failed');
+            }
+            else {
+              // prebid.js is not ready (not loaded yet)
+                sendResponse('unknown');
             }
         }
-    };
-</code></pre>
-</p>
-  </li>
-</ul>
+    }
+};
+```
 
 #### Step 2
 
-<ul style="list-style-type:none;">
-  <li>
-    <b>Who:</b>
-    <p>Player</p>
-  </li>
-  <li>
-    <b>What:</b>
-    <p>Adds a listener on the player window, looking for a message that contains a response from the Component.</p>
-  </li>
-  <li>
-    <b>Comments:</b>
-    <p>The Player is listening for the following <b>command</b> in a <b>postMessage</b>: <code>PPCP:prebidResponse</code>. Filter the messages looking for this <b>command</b> inside the <code>responseHandler</code>.</p>
-  </li>
-  <li>
-    <b>Sample Code:</b>
-    <p><pre><code>window.addEventListener('message', responseHandler);</code></pre></p>
-  </li>
-</ul>
+- **Who:** Player
+- **What:** Adds a listener on the player window, looking for a message that contains a response from the Component.
+- **Comments:** The Player is listening for the following **command** in a **postMessage**: `PPCP:prebidResponse`.
+  Filter the messages looking for this **command** inside the `responseHandler`.
+
+##### Sample Response Handler
+
+```javascript
+window.addEventListener('message', responseHandler);
+```
 
 #### Step 3
 
-<ul style="list-style-type:none;">
-  <li>
-    <b>Who:</b>
-    <p>Player</p>
-  </li>
-  <li>
-    <b>What:</b>
-    <p>Sends a <b>postMessage</b> to the top window when it is ready for the results of the Prebid process.</p>
-  </li>
-  <li>
-    <b>Comments:</b>
-    <p>The Player posts a message with the following command: <code>PPCP:prebidUrlRequest</code> to request Prebid results from the Component.</p>
-  </li>
-  <li>
-    <b>Sample Code:</b>
-    <p>NOTE: The <code>*</code> argument indicates post the message to any domain.</p>
-<pre><code>
-var msg = {};
+- **Who:** Player
+- **What:** Sends a **postMessage** to the top window when it is ready for the results of the Prebid process.
+- **Comments:** The Player posts a message with the following command: `PPCP:prebidUrlRequest` to request Prebid results from the Component.
+
+##### Sample Code for `PPCP:prebidUrlRequest`
+
+NOTE: The `*` argument indicates post the message to any domain.
+
+```javascript
+const msg = {};
 
 msg.command = 'PPCP:prebidUrlRequest';
-
 msg.messageId = 1234;
 
 top.postMessage(JSON.stringify(msg), '*');
-</code></pre>
-  </li>
-</ul>
+```
 
 #### Step 4
 
-<ul style="list-style-type:none;">
-  <li>
-    <b>Who:</b>
-    <p>Prebid Component</p>
-  </li>
-  <li>
-    <b>What:</b>
-    <p>The Component will post a response message back to the Player's IFrame, sending the current status of the Prebid process.</p><p>If the Component posts the message, indicating that it does not yet know the results, the Player should be prepared to request the results again.</p>
-  </li>
-  <li>
-    <b>Comments:</b>
-    <p>When the Component receives a <code>PPCP:prebidUrlRequest</code> message, it will post a response message back to the Player’s IFrame, sending the current status of the Prebid process. The URL field of the response will indicate what the Component knows at that time about the Prebid process. Possible values:</p>
-    <p>
-      <ul>
-        <li><b>unknown</b>: Prebid results are not yet ready.</li>
-        <li><b>failed</b>: Prebid returned NO ad.</li>
-        <li><b>VAST XML</b>: Prebid has returned back the URL to the XML of the selected ad.</li>
-      </ul>
-    </p>
-  </li>
-  <li>
-    <b>Sample Code:</b>
-    NOTE: The <code>*</code> argument indicates post the message to any domain.
-    <p>
-<pre><code>
+- **Who:** Prebid Component
+- **What:** The Component will post a response message back to the Player's IFrame, sending the current status of the Prebid process.
+
+  If the Component posts the message, indicating that it does not yet know the results, the Player should be prepared to request the results again.
+- **Comments:** When the Component receives a `PPCP:prebidUrlRequest` message, it will post a response message back to the Player’s IFrame, sending the current status of the Prebid process. The URL field of the response will indicate what the Component knows at that time about the Prebid process. Possible values:
+  - **unknown**: Prebid results are not yet ready.
+  - **failed**: Prebid returned NO ad.
+  - **VAST XML**: Prebid has returned back the URL to the XML of the selected ad.
+
+##### Sample Code `PPCP:prebidResponse`
+
+NOTE: The `*` argument indicates post the message to any domain.
+
+```javascript
 var msg = {};
 
 msg.command = 'PPCP:prebidResponse';
-
 msg.messageId = 1234;
-
 msg.url = 'http://url-to-vast.xml'
 
 top.postMessage(JSON.stringify(msg), '*');
-</code></pre>
-    </p>
-  </li>
-</ul>
+```
 
 #### Step 5
 
-<ul style="list-style-type:none;">
-  <li>
-    <b>Who:</b>
-    <p>Player</p>
-  </li>
-  <li>
-    <b>What:</b>
-    <p>Once the Component has received the Prebid results using the listener for response message, the Player should do one of the following:</p>
-    <p>
-      <ul>
-        <li>Render the winning ad (if the results were valid).</li>
-        <li>Skip the ad and start the video content (if Prebid returned a failed response).</li>
-        <li>Send another request for Prebid results (if the results are still unknown to the Component).</li>
-      </ul>
-    </p>
-  </li>
-  <li>
-    <b>Comments:</b>
-    <p>Once the Player receives a message it should parse the **event.data** in the listener handler using JSON.parse. If <b>event.data</b> includes the <b>event.data.command</b> <code>'PPCP:prebidResponse'</code>, it should examine <b>event.data.url</b> and <b>event.data.messageId</b>.</p>
-    <p>It should make sure that the <b>messageId</b> matches the <b>messageId</b> that it used in the request for Prebid response.</p>
-    <p>If the <b>event.data.url</b> field contains a valid URL, the Player should use that URL to retrieve the ad to play.</p>
-    <p>If <b>event.data.url</b> contains the value <code>failed</code>, then Prebid.js was unable to find an ad and, as a result, the Player should continue with its normal content.</p>
-    <p>If <b>event.data.url</b> contains the value <code>unknown</code>, then the Player should send out another request for the Prebid results after waiting a brief period of time.</p>
-  </li>
-  <li>
-    <b>Sample Code:</b>
-    <p>
-<pre><code>
+- **Who:** Player
+- **What:** Once the Component has received the Prebid results using the listener for response message, the Player should do one of the following:
+  - Render the winning ad (if the results were valid).
+  - Skip the ad and start the video content (if Prebid returned a failed response).
+  - Send another request for Prebid results (if the results are still unknown to the Component).
+- **Comments:** The Player posts a message with the following command: `PPCP:prebidUrlRequest` to request Prebid results from the Component.
+  - Once the Player receives a message it should parse the `event.data` in the listener handler using JSON.parse. If `event.data` includes the `event.data.command` `'PPCP:prebidResponse'`, it should examine `event.data.url` and `event.data.messageId`.
+  - It should make sure that the `messageId` matches the `messageId` that it used in the request for Prebid response.
+  - If the `event.data.url` field contains a valid URL, the Player should use that URL to retrieve the ad to play.
+  - If `event.data.url` contains the value `failed`, then Prebid.js was unable to find an ad and, as a result, the Player should continue with its normal content.
+  - If `event.data.url` contains the value `unknown`, then the Player should send out another request for the Prebid results after waiting a brief period of time.
 
+##### Sample Code Response Handler (Step 5)
+
+```javascript
 var lastMessageId = 12345;
 
 var responseHandler = function(event) {
@@ -271,9 +211,7 @@ var responseHandler = function(event) {
         }
     }
 };
-</code></pre></p>
-  </li>
-</ul>
+```
 
 ## Further Reading
 

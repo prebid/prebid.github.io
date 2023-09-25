@@ -1,11 +1,11 @@
 ---
 layout: api_prebidjs
 title: pbjs.getAdserverTargeting()
-description:
+description: getAdserverTargeting API
+sidebarType: 1
 ---
 
 <a name="module_pbjs.getAdserverTargeting"></a>
-
 
 Returns all ad server targeting for all ad units. Note that some bidder's response may not have been received if you call this function too quickly after the requests are sent.
 
@@ -19,7 +19,7 @@ When [deals are enabled]({{site.baseurl}}/adops/deals.html), the object returned
 
 **Returned Object Example:**
 
-{% highlight js %}
+```javascript
 {
   "/9968336/header-bid-tag-0": {
     "hb_bidder": "rubicon",
@@ -38,4 +38,4 @@ When [deals are enabled]({{site.baseurl}}/adops/deals.html), the object returned
     "hb_deal_appnexus": "ABC_123"
   }
 }
-{% endhighlight %}
+```

@@ -3,12 +3,13 @@ layout: bidder
 title: Rubicon Project
 description: Rubicon Project Prebid Bidder Adaptor
 biddercode: rubicon
-gdpr_supported: true
+tcfeu_supported: true
+gpp_sids: tcfeu, usnat, usstate_all, usp
 usp_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
-media_types: banner, video
+media_types: banner, video, native
 userIds: all
 prebid_member: true
 safeframes_ok: true
@@ -20,14 +21,12 @@ fpd_supported: true
 ortb_blocking_supported: partial
 gvl_id: 52
 multiformat_supported: will-bid-on-one
+sidebarType: 1
 ---
-### Disclosure:
-
-This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
 
 ### Registration
 
-For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account team or globalsupport@magnite.com for more information.
+For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account team or <globalsupport@magnite.com> for more information.
 
 ### Bid Params
 
@@ -35,30 +34,34 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
 | `accountId`    | required           | The publisher account ID                                                                                                    | `4934`                                                                            | `integer`         |
-| `siteId`       | required           | The site ID                                                                                                                 | `13945`                                                                           | `integer`         |
-| `zoneId`       | required           | The zone ID                                                                                                                 | `23948`                                                                           | `integer`         |
+| `siteId`       | required           | A unique ID for your site                                                                                                                 | `13945`                                                                           | `integer`         |
+| `zoneId`       | required           | A unique ID for your site's ad placements                                                                                                                 | `23948`                                                                           | `integer`         |
 | `position`     | optional           | Set the page position. Valid values are "atf" and "btf".                                                                    | `'atf'`                                                                             | `string`         |
 | `userId`       | optional           | Site-specific user ID may be reflected back in creatives for analysis. Note that userId needs to be the same for all slots. | `'12345abc'`                                                                        | `string`         |
 | `floor`       | optional           | Sets the global floor -- no bids will be made under this value.                                                             | `0.50`                                                                              | `float`          |
 | `latLong`     | optional           | Sets the latitude and longitude for the visitor (avail since PBJS 1.10)                                                                            | `[40.7608, 111.8910]`                                                               | `Array<float>`   |
-| `inventory`   | optional           |  See below for details on First Party Data. In release 4.29 and earlier, this parameter allows the definition of an object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays. | `{"rating":["5-star"], "prodtype":["tech","mobile"]}`                               | `object`         |
-| `visitor`      | optional           | See below for details on First Party Data. In release 4.29 and earlier, this parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays. | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
-| `keywords`     | optional           | See below for details on First Party Data. In release 4.29 and earlier, this can be used to influence reports for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. | `['travel', 'tourism']`                                                             | `Array<string>`  |
-| `video`       | required for video | Video targeting parameters. See the [video section below](#rubicon-video).                                                  | `{"language": "en"}` | `object`  |
+| `inventory`   | optional           |  See below for details on First Party Data. In release 4.29 and earlier, this parameter allows the definition of an object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays of strings. | `{"rating":["5-star"], "prodtype":["tech","mobile"]}`                               | `object`         |
+| `visitor`      | optional           | See below for details on First Party Data. In release 4.29 and earlier, this parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays of strings. | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
+| `keywords`     | optional           | See below for details on First Party Data. In release 4.29 and earlier, this can be used to influence reports for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. | `["travel", "tourism"]`                                                             | `Array<string>`  |
+| `video`       | required for video | Video targeting parameters. See the [video section below](#mediatypesvideo).                                                  | `{"language": "en"}` | `object`  |
+| pchain | optional | deprecated option that was an early alternative to schain | "GAM:11111-reseller1:22222" | string |
+| `bidonmultiformat` | optional | By default, the rubicon exchange will bid on only one media type in this order: video, banner, native. Setting this flag to true will cause it to bid on all mediatypes. | `boolean` | `true` |
 
 #### First Party Data
 
 In release 4.30 and later, publishers should use the `ortb2` method of setting First Party Data. The following fields are supported:
-- ortb2.site.ext.data.*
-- ortb2.site.keywords
-- ortb2.site.content.data[]
-- ortb2.user.ext.data.*
-- ortb2.user.data[]
+
+* ortb2.site.ext.data.*
+* ortb2.site.keywords
+* ortb2.site.content.data[]
+* ortb2.user.ext.data.*
+* ortb2.user.data[]
 
 With regards to Contextual and Audience segments, the Magnite exchange supports the IAB standard taxonomies. See [the segment management user guide](https://resources.rubiconproject.com/resource/publisher-resources/segment-management-user-guide/) for more information.
 
 Example first party data that's available to all bidders and all adunits:
-```
+
+```javascript
 pbjs.setConfig({
   ortb2: {
     site: {
@@ -81,7 +84,8 @@ pbjs.setConfig({
 ```
 
 Example of first party data available only to the Rubicon Project bidder. Applies across all ad units.
-```
+
+```javascript
 pbjs.setBidderConfig({
   bidders: ["rubicon"],
   config: {
@@ -107,7 +111,8 @@ pbjs.setBidderConfig({
 ```
 
 For Prebid.js 4.29 and before, use the bidder specific AdUnit parameters noted above:
-```
+
+```javascript
 var adUnit = {
     ...
     bids: [{
@@ -137,22 +142,27 @@ Rubicon supports passing up to 50 domains in `badv` for anything hitting Prebid 
 4. AMP
 
 For example:
-```
+
+```javascript
 pbjs.setConfig({
   ortb2: {
     badv: ["domain1.com", "domain2.com"]
   }
-)};
+});
 ```
 
-#### mediaTypes.video
+### Media Types
 
-The following video parameters are supported here so publishers may fully declare their video inventory:
+#### Video
+
+##### mediaTypes.video
+
+The following video parameters are supported here so publishers may fully declare their video inventory. These apply to both instream and outstream.
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
-| context | required | instream or outstream |"outstream" | string | 
+| context | required | instream or outstream |"outstream" | string |
 | playerSize| required | width, height of the player in pixels | [640,360] - will be translated to w and h in bid request | array<integers> |
 | mimes | required | List of content MIME types supported by the player (see openRTB v2.5 for options) | ["video/mp4"]| array<string>|
 | protocols | required | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | [2,3,5,6] | array<integers>|
@@ -169,20 +179,19 @@ The following video parameters are supported here so publishers may fully declar
 | placement* | recommended | Placement type for the impression. (see openRTB v2.5 section 5.9 for options) | 1 | integer |
 | | | | | |
 
-
-#### bids.params.video
+##### bids.params.video
 
 The following Rubicon Project-specific video parameters are supported:
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
-| `size_id`      | optional for Prebid.js, required for Prebid Server |  Integer indicating the Rubicon Project video ad format ID. If not set, Prebid.js can infer from mediaTypes.video.context, placement, startDelay | `201`   | `integer` |
+| `size_id`      | optional |  Integer indicating the Rubicon Project video ad format ID. If not set, will be inferred from mediaTypes.video.context, placement, startDelay | `201`   | `integer` |
 | `language`     | recommended | Indicates the language of the content video, in ISO 639-1/alpha2. Highly recommended for successful monetization for pre-, mid-, and post-roll video ads. Not applicable for interstitial and outstream. | `'en'`  | `string`  |
 
 Here's a video example for Prebid.js 2.5 or later:
 
-```
+```javascript
 var videoAdUnit = {
     code: 'myVideoAdUnit',
     mediaTypes: {
@@ -216,23 +225,22 @@ We recommend discussing video demand with your Magnite account representative.
 
 Lists of values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) documentation as referenced above.
 
-
-#### Outstream Video
+##### Outstream Video
 
 As of Prebid.js 4.37 Magnite's Rubicon Project adapter supports outstream video in two ways: using your own renderer or using ours. See the [Prebid.org Outstream documentation](/dev-docs/show-outstream-video-ads.html) for more information on using your own renderer.
 
-#### Outstream Renderer
+##### Outstream Renderer
 
 The Magnite outstream renderer is a JavaScript tag that will load our outstream video player and render when it is 50% or more in view, pause when it’s more than 50% out of view, and close when the ad has completed playing.
 
 The renderer appearance can be configured with the following parameters, all of them optional. If any parameter is missing, the default value will be used. All options are case-sensitive and unknown options will be ignored. Additional advanced options are available by calling your Magnite account representative.
 
-```
+```javascript
 pbjs.setConfig({
   rubicon: {
     rendererConfig: {
       align: 'center',         // player placement: left|center|right (default is center)
-      position: 'append'       // position relative to ad unit: append|prepend|before|after (default is after)
+      position: 'append',       // position relative to ad unit: append|prepend|before|after (default is after)
       closeButton: true,       // display 'Close' button (default is false)
       label: 'Advertisement',  // custom text to display above the player (default is '-')
       collapse: true           // remove the player from the page after ad playback (default is true)
@@ -241,40 +249,94 @@ pbjs.setConfig({
 });
 ```
 
+* The Rubicon Project exchange does not make multi-format requests unless the `bidonmultiformat` parameter is set to true. By default, if multiple mediatypes are defined, we bid on banner first, then video. Native bids will only be made if it's the only mediatype present.
+* The client-side adapter supports native as of PBJS 7.39.
 
-* The Rubicon Project adapter does not make concurrent banner and video requests. Instead, the adapter will send a video request if bids[].params.video is supplied, else a banner request will be made.
+#### Native
+
+We recommend using the ORTB Native spec 1.2, but do support versions 1.0 and 1.1. Here the parameters required for each version:
+
+{: .table .table-bordered .table-striped }
+| Native Version | Required Fields |
+|----------------|-----------------|
+| 1.0 and 1.1 | layout, adunit, assets |
+| 1.2 | context, plcmttype, assets, eventtrackers. privacy is a recommended field. |
+
+Here's an example for Prebid.js 7.39 or later:
+
+```javascript
+var nativeAdUnit = {
+    code: 'myNativeAdUnit',
+    mediaTypes: {
+        native: {
+            sendTargetingKeys: false,
+            ortb: {
+                ver:"1.2",
+                context: 2,       // required for 1.2
+                plcmttype: 11,    // required for 1.2
+                privacy: 1,       // recommended for 1.2
+                assets: [{
+                    id: 1,
+                    required: 1,
+                    img: {
+                        type: 3,
+                        w: 150,
+                        h: 50,
+                    }
+                },{
+                ... other assets ...
+                }],
+                eventtrackers: [{ // required for 1.2
+                    event:1, methods:[1,2]
+                }]
+        }
+    },
+    bids: [{
+        bidder: 'rubicon',                        
+        params: {
+            accountId: 7780,       // replace params
+            siteId: 87184,
+            zoneId: 413290
+        }
+    }]
+};
+```
 
 ### Setting up the Prebid Server Adapter
   
-If you're a Prebid Server host company looking to enable the Rubicon server-side adapter, you'll need to contact globalsupport@magnite.com. They will provide:
-- a Magnite DV+ XAPI login and password that you'll place in the PBS config
-- a partner code you can use for cookie-syncing with Magnite's service
+If you're a Prebid Server host company looking to enable the Rubicon server-side adapter, you'll need to contact <globalsupport@magnite.com>. They will provide:
+
+* a Magnite DV+ XAPI login and password that you'll place in the PBS config
+* a partner code you can use for cookie-syncing with Magnite's service
   
-### Configuration
+### Configuration Options
 
 #### Single-Request
 
 By default, the Rubicon Project adapter sends one request to rubiconproject.com for each AdUnit. For example, if there are 4 PBJS AdUnits defined on the page, you'll see 4 calls out to rubiconproject.com/fastlane.json.
 
 As of PBJS 1.12, the Rubicon Project adapter supports `Single Request` mode, where all AdUnit requests are made in a single call to rubiconproject.com. To turn this feature on, call `setConfig`:
-```
+
+```javascript
 pbjs.setConfig({
    rubicon: {singleRequest: true}
 });
 ```
 
-### Notes
-
-1) There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
-
 <a name="rubicon-revenue-type"></a>
 
-2) Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for publishers to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
+#### Net Revenue
+
+Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for publishers to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
 
 For Prebid, the Rubicon Project bid adapter reports the revenue type as ‘gross’ by default before 2.35 and ‘net’ by default in 2.35 and later (as the vast majority of accounts are net and all new accounts are net).
 
 It’s important to note that what the Rubicon Prebid bid adapter reports is not directly related to the setting with the Rubicon Project exchange. If you are a publisher who has set your Rubicon exchange revenue type set to ‘gross’ and you'd like the Rubicon bid adapter to also report 'gross', you can change the 2.35+ default 'net' setting in Prebid.js with:
 
-```
+```javascript
 pbjs.setConfig({ rubicon: {netRevenue: false} });
 ```
+
+### Notes
+
+1. There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.

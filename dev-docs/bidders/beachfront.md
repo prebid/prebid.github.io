@@ -6,8 +6,9 @@ biddercode: beachfront
 media_types: video
 floors_supported: true
 fpd_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
+gpp_supported: true
 userIds: unifiedId, identityLink, uid2, hadronId
 schain_supported: true
 prebid_member: true
@@ -15,6 +16,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 gvl_id: 335
+sidebarType: 1
 ---
 
 ### Registration
@@ -22,7 +24,7 @@ gvl_id: 335
 To use the beachfront bidder you will need an appId (Exchange Id) from an exchange
 account on [platform.beachfront.io](https://platform.beachfront.io).
 
-For further information, please contact adops@beachfront.com.
+For further information, please contact <adops@beachfront.com>.
 
 ### Bid Params
 
@@ -30,7 +32,7 @@ For further information, please contact adops@beachfront.com.
 | Name | Scope | Description | Example | Type |
 |------------|----------|---------------------------------------------------------------------------------------------|------------------------------------------|----------|
 | `appId` | required | Beachfront Exchange ID | `'11bc5dd5-7421-4dd8-c926-40fa653bec76'` | `string` |
-| `bidfloor` | required | Bid floor | `0.01` | `float` |
+| `bidfloor` | required | Bid floor. The floor price module will take priority over this value. | `0.01` | `float` |
 | `video` | optional | Object with video parameters. See the [video section below](#beachfront-video) for details. | | `object` |
 | `banner` | optional | Object with banner parameters. See the [banner section below](#beachfront-banner) for details. | | `object` |
 | `player` | optional | Object with outstream player parameters. See the [player section below](#beachfront-player) for details. | | `object` |
@@ -87,7 +89,7 @@ Publishers should use the `ortb2` method of setting First Party Data. The follow
 
 Example first party data that's available to all bidders and all adunits:
 
-```
+```javascript
 pbjs.setConfig({
     ortb2: {
         site: {
@@ -108,7 +110,7 @@ pbjs.setConfig({
 
 ### Prebid Server
 
-As seen in the JSON response from \{your PBS server\}\/bidder\/params [(example)](https://prebid.adnxs.com/pbs/v1/bidders/params), the beachfront
+As seen in the JSON response from \{your PBS server\}\/bidder\/params, the beachfront
 bidder can take either an "appId" parameter, or an "appIds" parameter. If the request is for one media type, the appId parameter should be used
 with the value of the Exchange Id on the Beachfront platform.
 
@@ -117,4 +119,4 @@ configured exchanges on the platform. The appIds parameter can be sent with just
 
 If the request includes an appId configured for a video response, the videoResponseType parameter can be defined as "nurl", "adm" or "both".
 These will apply to all video returned. If it is not defined, the response type will be a nurl. The definitions for "nurl" vs. "adm" are
-here: (https://github.com/mxmCherry/openrtb/blob/master/openrtb2/bid.go).
+here: (<https://github.com/mxmCherry/openrtb/blob/master/openrtb2/bid.go>).

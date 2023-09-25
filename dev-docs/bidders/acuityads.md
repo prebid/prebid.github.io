@@ -3,7 +3,9 @@ layout: bidder
 title: AcuityAds
 description: Prebid AcuityAds Bidder Adaptor
 biddercode: acuityads
-gdpr_supported: true
+filename: acuityAdsBidAdapter
+gvl_id: 231
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -13,11 +15,12 @@ safeframes_ok: true
 deals_supported: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at rafi.babler@acuityads.com
+The Example Bidding adapter requires setup before beginning. Please contact us at <rafi.babler@acuityads.com>
 
 ### Prebid.JS Bid Params
 
@@ -32,4 +35,4 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `host`      | required | Region id               | `'ep1'`    | `string` |
-| `accountid`      | required | Endpoint id | `'hash'`    | `string` |
+| `accountid`      | required | Endpoint id / Placement id | `'hash'`    | `string` |
