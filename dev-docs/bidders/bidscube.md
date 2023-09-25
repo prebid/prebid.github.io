@@ -6,13 +6,14 @@ pbs: true
 pbjs: true
 biddercode: bidscube
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: false
 pbs_app_supported: true
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The BidsCube Bidding adapter requires setup before beginning. Please contact us at support@bidscube.com
+The BidsCube Bidding adapter requires setup before beginning. Please contact us at <support@bidscube.com>
 
 ### Bid Params
 

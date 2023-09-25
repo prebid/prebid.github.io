@@ -7,5 +7,4 @@ modulecode: sigmoid
 
 #### Registration
 
-Please visit []() for more information.
-
+Please visit [www.sigmoid.com/identity-graph-adtech](https://www.sigmoid.com/identity-graph-adtech/) for more information.

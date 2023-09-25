@@ -6,9 +6,10 @@ sidebarType: 9
 ---
 
 # Prebid SharedID
+
 {: .no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 {: .alert.alert-warning :}
@@ -33,14 +34,15 @@ There are multiple ways to integrate SharedId on your site. See the table below 
 The SharedID ID system sets a user id cookie in the publisher’s domain.
 Since the cookie is set in the publisher's first party domain it does not fall in scope of browser restrictions on third party cookies. Safari has restrictions on first party cookies set via document.cookie. For this reason we recommend considering a server endpoint installation for maximum effect. See the "Alternate Implementations" section below.
 
-### Prebid.js 5.x
+### Prebid.js 5 and later
 
 The SharedId module reads and/or sets a random ID in
 the cookie name defined by the publisher when initializing
 the module:
 
 Example 1: client-side cookie setting
-```
+
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -56,7 +58,8 @@ pbjs.setConfig({
 ```
 
 Example 2: setting the cookie with a first party endpoint
-```
+
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -75,7 +78,8 @@ pbjs.setConfig({
 ```
 
 The 'source' value transmitted through OpenRTB (user.ext.eids) is pubcid.org. For example:
-```
+
+```javascript
 user: {
     ext: {
         eids: {
@@ -101,7 +105,8 @@ source value.
 In addition to setting a first party cookie, SharedId in Prebid.js 4.x also sets a third party cookie where possible, syncing the first and third party cookies (subject to browser capability and user opt-out).
 
 SharedId in Prebid.js 4.x was transmitted through the header-bidding ecosystem on user.ext.eids with a different 'source':
-```
+
+```javascript
 user: {
     ext: {
         eids: {
@@ -160,18 +165,20 @@ mechanisms like GDPR and CCPA, the use of first party cookies requires that opt-
 by the publisher.
 
 Publishers that decide to build a first-party opt-out workflow might follow a process like this:
+
 - User is presented with an option to turn off ad targeting
 - If the user opts out, the page can do one of two things:
-    - set a `_pbjs_id_optout` first party cookie
-    - avoid calling pbjs.setConfig to initialize the user ID modules
+  - set a `_pbjs_id_optout` first party cookie
+  - avoid calling pbjs.setConfig to initialize the user ID modules
 
 ## Alternative Implementations
 
-For those not using Prebid's header bidding solution, SharedId can deployed via in inline script reference or from a web server. 
+For those not using Prebid's header bidding solution, SharedId can deployed via in inline script reference or from a web server.
 
 ### SharedId Script
 
-For those interested in implementing SharedId without prebid.js. 
+For those interested in implementing SharedId without prebid.js.
+
 1. Clone the [SharedId script repository](https://github.com/prebid/Shared-id-v2)
 2. Implement the pubcid.js script on the desired page by following the build instructions in the [readme.md](https://github.com/prebid/Shared-id-v2#readme)
 
@@ -179,13 +186,13 @@ Prebid also recommends implementing a method where users can easily opt-out of t
 
 If there are no custom configurations, then just include the script and it'll use the default values.
 
-```
+```html
 <script type="text/javascript" src="//myserver.com/pubcid.min.js"></script>
 ```
 
 If custom configurations are needed, define the pubcid_options object before inclusion of the script. Below is an example to switch from using local storage to cookie:
 
-```
+```html
 <script type="text/javascript">
    window.pubcid_options = {type: 'cookie'};
 </script>
@@ -209,7 +216,7 @@ Below are the available configuration options for the PubCID script.
 
 Always use cookies and create an ID that expires in 30 days after creation.
 
-```
+```javascript
 { 
     type: 'cookie',
     extend: false,
@@ -219,7 +226,7 @@ Always use cookies and create an ID that expires in 30 days after creation.
 
 Using a SharedId Endpoint implementation, create the cookie once, which will be allowed to expire before it is created again.
 
-```
+```javascript
 { 
     type: 'cookie',
     pixelUrl: '/wp-json/pubcid/v1/extend/',
@@ -237,7 +244,7 @@ Add server-side support for SharedId to better handle the ever-increasing restri
 
 PubCID/SharedId plugins are available for Wordpress and Drupal. Because the CMS can cache pages to improve scalability, it's impractical to set unique cookies during page generation. Instead these plugins require a dynamic endpoint that serves back a blank pixel along with a unique cookie value. The client side script  needs one additional parameter for this URL. Please consult the corresponding plugin documents for default values:
 
-1. Wordpress : Install directly from the [Wordpress admin page](https://wordpress.org/plugins/publisher-common-id/). Install from [GITHUB](https://github.com/prebid/sharedid-wordpress) 
+1. Wordpress : Install directly from the [Wordpress admin page](https://wordpress.org/plugins/publisher-common-id/). Install from [GITHUB](https://github.com/prebid/sharedid-wordpress)
 2. Drupal : Install from [Github](https://github.com/prebid/sharedid-drupal).
 
 #### Endpoint Implementations
@@ -246,7 +253,8 @@ The Wordpress and Drupal plugins require that the host company integrate a new e
 Below are some examples for how to implement this function in various languages or platforms. It is up to the site owner to integrate an appropriate script for their specific scenario.
 
 ##### JAVA
-```JAVA
+
+```java
 public class PubCid {
     private static final String pubcidCookieName = "_pubcid";
     private static final int expireTime = (int) TimeUnit.DAYS.toSeconds(365); //store cookie for 1 year
@@ -292,8 +300,10 @@ public class PubCid {
     }
 }
 ```
+
 ##### PHP
-```PHP
+
+```php
 $cookie_name = '_pubcid';
 $cookie_path = '/';
 $max_age = 365;
@@ -322,8 +332,10 @@ if (isset($value)) {
     );
 }
 ```
+
 ##### Node.js
-```Node
+
+```javascript
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
@@ -346,8 +358,10 @@ app.get('/', function(req, res) {
  
 app.listen(port, ()=>console.log(`App listening on port ${port}`));
 ```
+
 ##### Apache
-```Apache
+
+```conf
 # Add to httpd.conf
 # Requires mod_headers and mod_env
  
@@ -358,8 +372,10 @@ SetEnvIf Cookie "(^|;\ *)_pubcid=([^;\ ]+)" HAVE_PUBCID=1
 # Add _pubcid cookie if it exists to the response with 1 year expiration time
 Header add Set-Cookie "_pubcid=%{PUBCID_VALUE}e;Domain=.example.com;Path=/;Max-Age=31536000" env=HAVE_PUBCID
 ```
+
 ##### Nginx
-```Nginx
+
+```conf
 # Add to a location directive
  
     location /example {

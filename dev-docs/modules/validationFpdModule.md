@@ -10,6 +10,7 @@ sidebarType : 1
 ---
 
 # First Party Data Validation Module
+
 {:.no_toc}
 
 This module performs a number of validations on First Party Data (FPD) fields.The scope and number of validations is large enough that it increases the size of the PBJS package by about 1KB: verifying fields and data types. e.g. confirm that site.sectioncat is an array of strings.
@@ -17,13 +18,14 @@ This module performs a number of validations on First Party Data (FPD) fields.Th
 For this reason, publishers sensitive to javascript size may want to consider running this module only when testing a new release of Prebid.js or during major changes to how Prebid.js is integrated into their pages.
 
 Add it to the Prebid.js build with this command:
-```
+
+```bash
 gulp build --modules=validationFpdModule
 ```
 
 If included in the build, it will automatically perform the defined validations unless controlled with setConfig:
 
-```
+```javascript
 pbjs.setConfig({
     firstPartyData: {
         skipValidations: true    // defaults to false
@@ -61,6 +63,7 @@ and if it exists, certain fields will be removed.
 | ortb2.user.data.ext | Must be an object | |
 
 # Related Reading
+
 - [Prebid.js First Party Data feature](/features/firstPartyData.html)
 - [First Party Data Enrichment Module](/dev-docs/modules/enrichmentFpdModule)
 - [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)

@@ -16,16 +16,16 @@ Each analytics provider has specific instructions for using their system, but th
 - Create an account with the analytics vendor and obtain the necessary IDs
 - Build Prebid.js package with the vendor's analytics adapter
 
-{% highlight js %}
+```javascript
 gulp bundle --modules=exAnalyticsAdapter,xyzBidAdapter
-{% endhighlight %}
+```
 
 - If required, load analytics JavaScript from vendor directly on the page
-- Call the `pbjs.enableAnalytics()` function
+- Call the [`pbjs.enableAnalytics()` function](/dev-docs/publisher-api-reference/enableAnalytics.html)
 
 e.g.
 
-{% highlight js %}
+```javascript
 pbjs.que.push(function() {
   pbjs.enableAnalytics({
     provider: 'NAME',
@@ -34,7 +34,7 @@ pbjs.que.push(function() {
     }
   });
 });
-{% endhighlight %}
+```
 
 ## Analytics Adapters
 
@@ -58,7 +58,7 @@ pbjs.que.push(function() {
 
 {: .table .table-bordered .table-striped }
 | **Module Code** | {{ page.modulecode }} | **Prebid.org Member** | {% if page.prebid_member == true %}yes{% else %}no{% endif %} |
-| **GDPR Support** | {% if page.gdpr_supported == true %}yes{% elsif page.gdpr_supported == false %}no{% else %}Check with vendor{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% elsif page.usp_supported == false %}no{% else %}Check with vendor{% endif %} |
+| **GDPR Support** | {% if page.tcfeu_supported == true %}yes{% elsif page.tcfeu_supported == false %}no{% else %}Check with vendor{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% elsif page.usp_supported == false %}no{% else %}Check with vendor{% endif %} |
 | **IAB GVL ID** | {% if page.gvl_id %}{{page.gvl_id}}{% else %}Check with vendor{% endif %} | **COPPA Support** | {% if page.coppa_supported == true %}yes{% elsif page.coppa_supported == false %}no{% else %}Check with vendor{% endif %} |
 
 {{ page.content }}

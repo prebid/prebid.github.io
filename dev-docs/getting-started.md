@@ -1,35 +1,50 @@
 ---
 layout: page_v2
-title: Getting Started
+title: Getting Started for Developers
 description: Dev docs for getting started with Prebid.js for header bidding
 sidebarType: 1
 ---
 
 
-
 # Getting Started for Developers
+
 {: .no_toc }
 
 * TOC
 {: toc }
 
-### Quick Start
+## Overview
 
-The easiest way to get started with Prebid.js is to use the example code below.
+To run heading bidding on your site with Prebid.js you need to [download the Prebid.js package](/download.html), including your selected bidders and adapters, and add the code to your page. This code will gather bids from your selected demand sources (bidders) and pass the information on to your ad server. For full details on how Prebid.js works, see [What is Prebid.js?](/prebid/prebidjs.html).
 
-{% include dev-docs/build-from-source-warning.md %}
+Developers should work with their ad ops team to plan out your Prebid configuration. You'll need to add information to your code regarding things such as:
 
-<!-- JSFiddle -->
-<div id="jsfiddle" class="col-md-12">
-<h2>(Sorry, jsfiddle code examples aren't available with your cookie privacy settings.)</h2>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
-</div>
+* Whether you're sending all bids or only the top price bid to the ad server
+* What level of price granularity you'll be using
+* What key-value pairs do you need to pass to the ad server
 
-<script type="text/javascript">
-Optanon.InsertHtml('<iframe width="100%" height="1600" src="//jsfiddle.net/Prebid_Examples/bryzc7g6/embedded/html,result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>', 'jsfiddle', null, {deleteSelectorContent: true}, 3);
-</script>
+See the [Ad Ops Planning Guide](/adops/adops-planning-guide.html) for details.
 
-### Next Steps
+## Quick Start
 
-1. Set up your ad server using the [corresponding Ad Ops setup instructions]({{site.baseurl}}/adops/send-all-bids-adops.html)
-2. Once you're comfortable with the basic setup, check out [the examples showing other use cases]({{site.baseurl}}/dev-docs/examples/basic-example.html)
+The easiest way to get started with Prebid.js is to look at an example. Start with our [Basic Example](/dev-docs/examples/basic-example.html), then explore other examples under **Prebid.js > Examples** to find what you need.
+
+## Next Steps
+
+For more developer resources, see:
+
+* [Publisher API Reference](/dev-docs/publisher-api-reference.html)
+* [Prebid.js Module Overview](/dev-docs/modules/)
+* [Prebid.js Analytics Adapters](/overview/analytics.html)
+
+To learn more about header bidding and Prebid see:
+
+* [Introduction to Header Bidding](/overview/intro-to-header-bidding.html)
+* [Introduction to Prebid](/overview/intro.html)
+* [What is Prebid.js?](/prebid/prebidjs.html)
+
+For guidance on planning out your configuration and working with your ad server, see:
+
+* [Ad Ops and Prebid](/adops/before-you-start.html)
+* [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
+* [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
