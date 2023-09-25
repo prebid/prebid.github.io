@@ -237,9 +237,7 @@ More test implementations for each hook can be found in unit-tests at [github.co
 
 ### Configuration
 
-It's possible to define default module configuration which can be read by the module at PBS startup. Please see the [Configuration](https://docs.google.com/document/d/1CmamniQpwcI3p0_rHe2F17zV4sEhzpOdrqU7zuZVZ_I/edit#heading=h.mh3urph3k1mk) section of the technical specification.
-
-An example configuration for hooks might look like this:
+It's possible to define default module configuration which can be read by the module at PBS startup. An example configuration for hooks might look like this:
 ```json
 {
   "hooks": {

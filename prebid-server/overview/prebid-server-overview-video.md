@@ -13,7 +13,7 @@ A high-level overview of Prebid Server, Prebid’s solution for header bidding i
 
 Further Content:
 - [Intro to Prebid](/overview/intro.html)
-- [Prebid Server Overview](/prebid-server/overview/prebid-server.html)
+- [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html)
 - [Prebid Membership](https://prebid.org/membership)
 - [Prebid on Github](https://github.com/prebid)
 - [All Videos](/overview/all-videos.html)
