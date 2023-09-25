@@ -110,10 +110,16 @@ The field `data` can be used as below or with a more complex data structure:
     }
 ```
 
-## Supported Ad Formats
+## Limitations
+
+### Supported Ad Formats
 Currently the interface `PrebidMobilePluginRenderer` provide the ability to render `BANNER` and `INTERSTITIAL` only. The compability with more ad formats can be supported in future releases.
 
-It is important to notice that the compliant formats you set on `isSupportRenderingFor` implementation is taken into account to add your plugin renderer to the bid request or not, according to the ad unit configuration that is bid requesting.
+It is important to notice that the compliant formats you set on `isSupportRenderingFor` implementation are taken into account to add your plugin renderer to the bid request or not, according to the ad unit configuration that is bid requesting.
+
+### Original API
+
+The Plugin Renderer feature does not work with [GAM Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.md). Despite that if you are using the regular GAM integration it will work fine.
 
 ## Ad Event Listeners
 An optional dedicated generic ad event listener is offered in case of the existing event listeners are insufficient to keep your ad consumer fully aware of your ad lifecycle. 
