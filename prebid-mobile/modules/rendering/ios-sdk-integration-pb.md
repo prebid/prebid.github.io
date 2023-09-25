@@ -17,17 +17,17 @@ You can use Prebid SDK to monetize your app with a custom ad server or even with
 
 ## Transport API
 
-The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice. 
+The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns additional bid information like Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice. 
 
 In this mode, the publisher will be responsible for the following actions:
 
-* Call fetchDemand with extended targetingDict callback
-* Retrieve targeting keys from extended fetchDemand function
+* Call the `fetchDemand` method with specific callback
+* Retrieve targeting keys from the `BidInfo` callback parameter
 * Convert targeting keys into the format for your ad server
 * Pass converted keys to your ad server
 * Render ad with Prebid Universal Creative or custom renderer
 
-This approach is avaliable for the following ad formats:
+This approach is available for the following ad formats:
 
 * Display Banner via `BannerAdUnit`
 * Video Banner and Instream Video via `VideoAdUnit`
@@ -35,38 +35,33 @@ This approach is avaliable for the following ad formats:
 * Video Interstitial via `VideoInterstitialAdUnit`
 * Rewarded Video via `RewardedVideoAdUnit`
 * Native Styles via `NativeRequest`
+* Multiformat ad unit via `PrebidAdUnit`
 
 The basic integration steps for these ad units you can find at the page for integration using [Original API](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html). The diference is that you should use  the `fetchDemand` function with following signature:
 
 ```swift
-dynamic public func fetchDemand(
-        completion: @escaping(_ result: ResultCode,
-                              _ kvResultDict: [String : String]?) -> Void)
+public func fetchDemand(adObject: AnyObject, request: PrebidRequest,
+                      completion: @escaping (BidInfo) -> Void)
 ```
 
 Examples:
 
 ```swift
-func loadBanner() {
+adUnit.fetchDemand(adObject: gamRequest, request: prebidRequest) { [weak self] bidInfo in
+    guard let self = self else { return }
     
-    //adUnit is BannerAdUnit type
-    adUnit.fetchDemand { [weak self] (resultCode: ResultCode, targetingDict: [String : String]?) in
-        
-        self?.adServerRequest.customTargeting = targetingDict
-        self?.adServerBanner.load(self?.adServerRequest)
-    }
-}
-
-func loadRewardedVideo() {
-    let adUnit = RewardedVideoAdUnit(configId: "1001-1")
-    adUnit.fetchDemand { [weak self] (resultCode: ResultCode, targetingDict: [String : String]?) in
-        
         //Publisher should provide support for converting keys into format of 3rd party ad server and loading ads
-        let keywords = convertDictToAdServerKeywords(dict: targetingDict)
-        AdServerLoadAds.loadAd(withAdUnitID: "46d2ebb3ccd340b38580b5d3581c6434", keywords: keywords)
-    }
+    let keywords = convertDictToAdServerKeywords(dict: bidInfo.targetingKeywords)
+    AdServerLoadAds.loadAd(withAdUnitID: "46d2ebb3ccd340b38580b5d3581c6434", keywords: keywords)
 }
 ```
+
+The `BidInfo` provides the following properties: 
+
+- `result` - the object of type `ResultCode` describing the status of the bid request.
+- `targetingKeywords` - the targeting keywords of the winning bid
+- `exp` - the number of seconds that may elapse between the auction and the actual impression. In this case, it indicates the approximate TTL of the bid in the Prebid Cache. Note that the actual expiration time of the bid will be less than this number due to the network and operational overhead. The Prebid SDK doesn't make any adjustments to this value.
+- `nativeAdCacheId` - the local cache ID of the winning bid. Applied only to the `native` ad format.
 
 ## Rendering API
 
