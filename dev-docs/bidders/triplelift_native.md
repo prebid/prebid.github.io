@@ -3,7 +3,7 @@ layout: bidder
 title: TripleLift Native
 description: Prebid TripleLift Native Bidder Adapter
 biddercode: triplelift_native
-gdpr_supported: true
+tcfeu_supported: true
 tcf2_supported: true
 usp_supported: true
 coppa_supported: true

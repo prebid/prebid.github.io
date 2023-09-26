@@ -5,7 +5,7 @@ description: Prebid Caroda Bidder Adaptor
 biddercode: caroda
 media_types: banner, video
 coppa_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 prebid_member: false
 pbjs: true

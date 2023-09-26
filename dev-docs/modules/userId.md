@@ -27,7 +27,7 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 1. The page defines User ID configuration in `pbjs.setConfig()`
 1. When `setConfig()` is called, and if the user has consented to storing IDs locally, the module is invoked to call the URL if needed
    1. If the relevant local storage is present or the value of the id is specified in the configuration, the module doesn't call the URL and instead parses the scheme-dependent format, injecting the resulting ID into `bidRequest.userId`.
-   1. If GDPR applies, the consent signal from the CMP is hashed and stored in a cookie called `_pbjs_userid_consent_data`. This is required so that ID sub-modules may be called to refresh their ID if the user's consent preferences have changed from the previous page, and ensures cached IDs are no longer used if consent is withdrawn.
+   1. If GDPR applies, the consent signal from the CMP is hashed and stored in a cookie called `_pbjs_userid_consent_data`. Real-time consent is obtained from the CMP and compared to this value; if the user id is in storage and consent has not changed, the call to the id module may be suppressed to save network traffic. This functionality is provided so that ID sub-modules may be called to refresh their ID if the user's consent preferences have changed from the previous page, for example, the encryption of an id may need to change if the id provider learns it now has consent to share the id with a new DSP. If this value is suppressed by the strictStorageEnforcement, the id call will not be suppressed from refreshing for this reason but may be suppressed by other enforcement settings.
 1. An object containing one or more IDs (`bidRequest.userId`) is made available to Prebid.js adapters and Prebid Server S2S adapters.
 1. In addition to `bidRequest.userId`, `bidRequest.userIdAsEids` is made available to Prebid.js adapters and Prebid Server S2S adapters. `bidRequest.userIdAsEids` has userIds in ORTB EIDS format.
 1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html), [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html), or [pbjs.getUserIdsAsync()](/dev-docs/publisher-api-reference/getUserIdsAsync.html).
@@ -152,6 +152,52 @@ The Rubicon bid adapter would then receive
   ],
   // ...
 }
+```
+
+## Prebid multiple identifiers populated by user id submodule
+
+It is possible for a user id submodule to populate several identifiers including identifiers that could also be populated by other user id submodules leading to collisions. In such cases of id collisions, it is possible to add a configurable prioritization to the core user id module. This will allow publishers to specify which user id submodule has priority for populating the identifier over other user id submodules.
+
+This can be configured inside the `userSync` object in the following manner:
+
+Let's say that the UID2 token populated by the trade desk user id submodule has the value 'uid2_value' and the UID2 token populated by Liveintent user id module has the value 'liveIntentUid2_value' (The actual identifiers populated in this case should be one and the same however the values are written differently in order to help the reader understand the source from which the identifiers get picked up from)
+
+```javascript
+"userSync": {
+    "idPriority": {
+      "uid2": ['liveIntentId', 'uid2']
+    }
+  }
+
+```
+
+The corresponding user id object and the eids array will look like this:
+
+```javascript
+{
+  // ...
+  "userId": {
+    "uid2": {
+      "id": "liveIntentUid2_value_98*******"
+    }
+  },
+  "userIdAsEids": [
+    {
+      "source": "uidapi.com",
+      "uids": [
+        {
+          "id": "liveIntentUid2_value_98*******",
+          "atype": 3,
+          "ext": {
+            "provider": "liveintent.com"
+          }
+        }
+      ]
+    }
+  ],
+  // ...
+}
+
 ```
 
 ## User ID Sub-Modules
@@ -305,15 +351,17 @@ If you're an ID provider that wants to get on this page:
 
 ## ESP Configurations
 
-Google now supports Encrypted Signals for Publishers(ESP), a program that allows publishers can explicitly share encrypted signals on bid requests with third-party bidders. User ID modules now support code which will register the signal sources and encrypted signal are created and is sent to GAM request in a3p parameter. 'encryptedSignal' configuration under userSync Module will help to configure signal sources.
+Google now supports Encrypted Signals for Publishers(ESP), a program that allows publishers can explicitly share encrypted signals on bid requests with third-party bidders. User ID modules now support code which will register the signal sources and encrypted signals are created and are sent to GAM request in a3p parameter. 'encryptedSignal' configuration under userSync Module will help to configure signal sources.
 
-Please find more details [Share encrypted signals with bidders (Beta)](https://support.google.com/admanager/answer/10488752?hl=en)
+Please find more details [Share encrypted signals with bidders (Beta)](https://support.google.com/admanager/answer/10488752?hl=en).
+
+Alternatively, GAM can now pull IDs from Prebid for UserId submodules that [register with GAM](https://services.google.com/fb/forms/encryptedsignalsforpublishers-signalcollectorform/) For those registered submodules, publishers can [select Prebid UserID module (Beta)  under "Signal collection deployment."](https://support.google.com/admanager/answer/10488752?hl=en). Publishers selecting this option should not also select those identifiers in the `encryptedSignalSources.sources.source` array.
 
 {: .table .table-bordered .table-striped }
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | encryptedSignalSources | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
-| encryptedSignalSources.sources | Required | Object |  An array of Object consist of sources list and encryption flag | Check below config as an example  |
+| encryptedSignalSources.sources | Required | Object |  An array of Object consisting of a sources list and encryption flag | Check below config as an example  |
 | encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
 | encryptedSignalSources.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
 | encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |

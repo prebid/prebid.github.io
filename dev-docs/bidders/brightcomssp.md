@@ -7,12 +7,13 @@ nav_section: reference
 pbjs: true
 biddercode: bcmssp
 filename: brightcomSSPBidAdapter
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
 sidebarType: 1
 gvl_id: 883
+floors_supported: true
 ---
 
 ### Note

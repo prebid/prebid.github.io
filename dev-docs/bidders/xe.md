@@ -5,7 +5,7 @@ description: Prebid Xe.works Bidder Adaptor
 biddercode: xe
 media_types: banner, video
 coppa_supported: true
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 prebid_member: false
 pbjs: true

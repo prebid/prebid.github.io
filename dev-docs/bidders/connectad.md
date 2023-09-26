@@ -4,7 +4,7 @@ title: ConnectAd
 description: ConnectAd Prebid Adaptor
 biddercode: connectad
 media_types: banner
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true

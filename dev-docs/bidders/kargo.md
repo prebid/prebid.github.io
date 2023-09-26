@@ -6,7 +6,7 @@ gvl_id: 972
 pbjs: true
 biddercode: kargo
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 userIds: unifiedId
 usp_supported: true
 coppa_supported: false
@@ -21,6 +21,7 @@ pbs_app_supported: false
 prebid_member: true
 gpp_supported: true
 multiformat_supported: will-bid-on-any
+pbjs_version_notes: if you require schains, avoid versions 7.46 to 7.53
 sidebarType: 1
 ---
 

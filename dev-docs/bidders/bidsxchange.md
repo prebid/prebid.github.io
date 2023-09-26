@@ -5,7 +5,9 @@ description: Prebid Bidsxchange Bidder Adapter
 biddercode: bidsxchange
 aliasCode: adtelligent
 media_types: video,banner
-gdpr_supported: true
+gvl_id: 410 (adtelligent)
+tcfeu_supported: true
+gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
 coppa_supported: true
@@ -35,7 +37,7 @@ Bidsxchange now supports adpod.
 
 ### Test Parameters
 
-```
+``` javascript
     var adUnits = [
 
       // Video instream adUnit
@@ -113,12 +115,12 @@ Bidsxchange now supports adpod.
 It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request
 (default value is 10).
 
-```
-    pbjs.setBidderConfig({
-        config: {              
-            bidsxchange: {
-                chunkSize: 1   // makes 1 http request per 1 adunit configured
-            }
+``` javascript
+pbjs.setBidderConfig({
+    config: {              
+        bidsxchange: {
+            chunkSize: 1   // makes 1 http request per 1 adunit configured
         }
-    });
+    }
+});
 ```

@@ -5,11 +5,11 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: false
-userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, imuid
+userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, imuid, 33acrossId, nonID
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 floors_supported: true
 usp_supported: true
 gpp_supported: true
@@ -96,18 +96,21 @@ In this configuration Prebid.js calls Index directly from the browser using our 
 1. Build the binary in one of the following ways:
    * [Download Prebid.js](https://docs.prebid.org/download.html) from the Prebid site to use the standard compiled binary that Prebid includes in the download process and select **Index Exchange** as an adapter.
    * Build it on your own from the source code by following the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). If you use this method, you will need to include several modules in your build process. See the [Index modules to include in your build process](#modules-to-include-in-your-build-process) section below.
-2. Define the Index-specific parameters at the bidder level which include adding `ix` as the bidder and the `siteId`. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below. <br />
-   ```javascript
-{
-    bidder: 'ix',
+2. Define the Index-specific parameters at the bidder level which include adding `ix` as the bidder and the `siteId`. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
+
+    ```javascript
+    {
+        bidder: 'ix',
         params: {
-        siteId: '123456'
+            siteId: '123456'
+        }
     }
-}
     ```
+
 3. Define your ad units in the `adUnit` object. This includes the details about the ad slots such as the media types, ad size, and ad code. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.
-4. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Make  sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.  <br />
-  ```javascript
+4. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Make  sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.
+
+    ```javascript
     pbjs.setConfig({
         userSync: {
             iframeEnabled: true,
@@ -119,19 +122,21 @@ In this configuration Prebid.js calls Index directly from the browser using our 
             }
         }
     });
-  ```
+    ```
+
 5. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
 6. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function as follows: <br />
 
     ```javascript
-        pbjs.setConfig({
-            cache: {
-                url: 'https://prebid.adnxs.com/pbc/v1/cache'
-            }
-        });
+    pbjs.setConfig({
+        cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        }
+    });
     ```
+
 7. (Optional) If you want to monetize outstream video, you can choose among the following options:
-    * Use Index's outstream video player. For more information, see the [Index's outstream video player ](#indexs-outstream-video-player)section below. 
+    * Use Index's outstream video player. For more information, see the [Index's outstream video player](#indexs-outstream-video-player)section below.
     * Use your own outstream video player. For more information, see [Prebid's documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
 8. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
@@ -146,30 +151,34 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
 3. Define the Index-specific parameters at the bidder level. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.
 5. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.   <br />
-```javascript
+
+    ```javascript
     pbjs.setConfig({
         userSync: {
-             iframeEnabled: true,
-             filterSettings: {
-                 iframe: {
-                 bidders: ['ix'],
-                 filter: 'include'
-                 }
-             }
-         }
-     });
-```
+            iframeEnabled: true,
+            filterSettings: {
+                iframe: {
+                    bidders: ['ix'],
+                    filter: 'include'
+                }
+            }
+        }
+    });
+    ```
+
 6. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
 7. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
-```javascript
+
+    ```javascript
     pbjs.setConfig({
         cache: {
-               url: 'https://prebid.adnxs.com/pbc/v1/cache'
+                url: 'https://prebid.adnxs.com/pbc/v1/cache'
             }
     });
-```
+    ```
+
 8. (Optional) If you want to monetize outstream video, you can choose among the following options:
-    * Use Index's outstream video player. For more information, see the [Index's outstream video player ](#indexs-outstream-video-player) section below. 
+    * Use Index's outstream video player. For more information, see the [Index's outstream video player](#indexs-outstream-video-player) section below.
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](/dev-docs/show-outstream-video-ads.html)
 9. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
@@ -228,7 +237,7 @@ This data type is available from Prebid version 7.49.0 and above. You can use it
 To include the FPD in a bid request, in the `[pbjs.setConfig()]` object at the `ix` bidder level, provide the key-values in the `firstPartyData` parameter. Make sure that you set it before the `pbjs.requestBids` configuration. If you want to change the values, you can update the `pbjs.setConfig` once again. The change will be reflected in all future bid requests.
 
 ```javascript
- pbjs.setConfig({
+pbjs.setConfig({
     ix: {
         firstPartyData: {
             '<key name>': '<key value>',
@@ -328,6 +337,7 @@ pbjs.addAdUnit({
     }]
 });
 ```
+
 *Please note that your use of the outstream video player will be governed by and subject to the terms and conditions of i) any master services or license agreement entered into by you and Index Exchange; ii) the information provided on our knowledge base linked [here](https://kb.indexexchange.com/publishers/prebid_integration/outstream_video_prebidjs.htm) and [here](https://kb.indexexchange.com/publishers/guidelines/standard_contractual_clauses.htm), and iii) our [Privacy Policy](https://www.indexexchange.com/privacy/). Your use of Index's outstream video player constitutes your acknowledgement and acceptance of the foregoing.*
 
 <a name="prebid-native-configuration"></a>
@@ -409,8 +419,8 @@ If you are using Index's outstream player and have placed the video object at th
 
 | Name | Scope | Type | Description |
 |---|---|---|---|
-| `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
-| `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
+| `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters. We strongly recommend video sizes to be `256 x 256` or greater, `300 x 250`, or `320 x 180`. |
+| `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters. We strongly recommend video sizes to be `256 x 256` or greater, `300 x 250`, or `320 x 180`. |
 | `video.playerSize` | Required | Integer[] | The video player size that will be passed to demand partners. |
 | `video.playerConfig` | Optional | Hash | The Index-specific outstream player configurations. |
 | `video.playerConfig.floatOnScroll` | Optional | Boolean | A boolean specifying whether you want to use the player's floating capabilities, where:<br />- `true`: Use the Index player's float capabilities.<br /> **Note:** If you set `floatOnScroll` to `true`, Index updates the placement value to `5`.<br /> **Note:** We do not recommend using the player's default float capabilities if you have more than one outstream ad unit per page. <br /> - `false`: Do not use the Index player's float capabilities (default). |
