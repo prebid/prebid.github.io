@@ -1341,7 +1341,7 @@ In addition you can set the following properties of the `PrebidRequest`.
 For each intersted ad format you should creatae a respective configuration parameter:
 
 * [BannerParameters](#step-2-configure-banner-parameters) object.
-* [VideoParameters](#step-3-configure-the-video-parameters) object.
+* [VideoParameters](#step-2-configure-the-video-parameters) object.
 * [NativeParameters](#nativeparameters) object
 
 #### NativeParameters

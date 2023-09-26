@@ -29,8 +29,8 @@ Starting with Prebid Mobile `2.1.0` you can use `BannerAdUnit` to bid over the b
 
 Integration example:
 
-```swift
-// 1. Create a BannerAdUnit 
+``` swift
+// 1. Create a BannerAdUnit
 adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
 adUnit.setAutoRefreshMillis(time: 30000)
 
@@ -52,7 +52,7 @@ bannerView?.addSubview(gamBanner)
 let gamRequest = GAMRequest()
 adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
-    
+
     // 5. Load GAM Ad
     self?.gamBanner.load(gamRequest)
 }
@@ -60,7 +60,7 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 
 Implement GADBannerViewDelegate:
 
-```swift
+``` swift
 func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
 
     // 6. Resize ad view if needed
@@ -86,7 +86,7 @@ Initialize the `BannerAdUnit` with the following properties:
 
 Using the `BannerParameters` you can customize the bid request for the BannerAdUnit.
 
-The `api` property is dedicated to adding values for API Frameworks to bid response according to the OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
+The `api` property is dedicated to adding values for API Frameworks to bid response according to the OpenRTB [2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
 
 * `3` or `Signals.Api.MRAID_1` : MRAID-1 support signal
 * `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
@@ -122,35 +122,35 @@ Once an app receives a signal that an ad is loaded, you should use the method `A
 
 Integration example:
 
-```swift
+``` swift
 // 1. Create a BannerAdUnit
 adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
 
 // 2. Set ad format
 adUnit.adFormats = [.video]
-    
+
 // 3. Configure video parameters
 let parameters = VideoParameters(mimes: ["video/mp4"])
 parameters.protocols = [Signals.Protocols.VAST_2_0]
 parameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOff]
 parameters.placement = Signals.Placement.InBanner
 adUnit.videoParameters = parameters
-    
+
 // 4. Create a GAMBannerView
 gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(adSize))
 gamBanner.adUnitID = gamAdUnitVideoBannerOriginal
 gamBanner.rootViewController = self
 gamBanner.delegate = self
-    
+
 // Add GMA SDK banner view to the app UI
 bannerView.addSubview(gamBanner)
 bannerView.backgroundColor = .clear
-    
+
 // 5. Make a bid request to Prebid Server
 let gamRequest = GAMRequest()
 adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
-        
+
     // 6. Load GAM Ad
     self?.gamBanner.load(gamRequest)
 }
@@ -192,10 +192,10 @@ In the context of a VideoInterstitialAdUnit, rewarded video ads are typically la
 #### api
 {:.no_toc}
 
-The `api` property is dedicated to adding values for API Frameworks to bid response according to the OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
+The `api` property is dedicated to adding values for API Frameworks to bid response according to the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
 
-* `1` or `Signals.Api.VPAID_1` : VPAID 1.0  
-* `2` or `Signals.Api.VPAID_2` : VPAID 2.0  
+* `1` or `Signals.Api.VPAID_1` : VPAID 1.0
+* `2` or `Signals.Api.VPAID_2` : VPAID 2.0
 * `3` or `Signals.Api.MRAID_1` : MRAID-1 support signal
 * `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
 * `6` or `Signals.Api.MRAID_3` : MRAID-3 support signal
@@ -231,7 +231,7 @@ Required property.
 {:.no_toc}
 
 Array of OpenRTB 2.5 playback methods. If none are specified, any method may be used. Only one method is typically used in practice. It is strongly advised to use only the first element of the array.
-  
+
 * `1` or `Signals.PlaybackMethod.AutoPlaySoundOn` : Initiates on Page Load with Sound On
 * `2` or `Signals.PlaybackMethod.AutoPlaySoundOff` : Initiates on Page Load with Sound Off by Default
 * `3` or `Signals.PlaybackMethod.ClickToPlay` : Initiates on Click with Sound On
@@ -243,7 +243,7 @@ Array of OpenRTB 2.5 playback methods. If none are specified, any method may be 
 {:.no_toc}
 
   Array or enum of OpenRTB 2.5 supported Protocols. Values can be one of:
-  
+
 * `1` or `Signals.Protocols.VAST_1_0` : VAST 1.0
 * `2` or `Signals.Protocols.VAST_2_0` : VAST 2.0
 * `3` or `Signals.Protocols.VAST_3_0` : VAST 3.0
@@ -274,7 +274,7 @@ Be sure that you make the ad request with the same `GAMRequest` object that you 
 
 Integration example:
 
-```swift
+``` swift
 // 1. Create a BannerAdUnit
 adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
 adUnit.setAutoRefreshMillis(time: 30000)
@@ -307,7 +307,7 @@ bannerView?.addSubview(gamBanner)
 let gamRequest = GAMRequest()
 adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
-    
+
     // 7. Load GAM Ad
     self?.gamBanner.load(gamRequest)
 }
@@ -315,7 +315,7 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 
 Implement GADBannerViewDelegate:
 
-```swift
+``` swift
 func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
 
     // 8. Resize ad view if needed
@@ -375,21 +375,21 @@ Once an app receives a signal that an ad is loaded, you should use the method `A
 
 ## Interstitial API
 
-Starting with Prebid Mobile `2.1.0` you can use `InterstitialAdUnit` to bid over the banner and/or video demand. The default ad format is `.banner`. To customize the bidding format you should specify the `adFormats` property of the `InterstitialAdUnit `.
+Starting with Prebid Mobile `2.1.0` you can use `InterstitialAdUnit` to bid over the banner and/or video demand. The default ad format is `.banner`. To customize the bidding format you should specify the `adFormats` property of the `InterstitialAdUnit`.
 
 ### HTML Interstitial
 
 Integration example:
 
-```swift
+``` swift
 // 1. Create an Interstitial Ad Unit
 adUnit = InterstitialAdUnit(configId: CONFIG_ID)
 
-// 2. Make a bid request to Prebid Server 
+// 2. Make a bid request to Prebid Server
 let gamRequest = GAMRequest()
 adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
-    
+
     // 3. Load a GAM interstitial ad
     GAMInterstitialAd.load(withAdManagerAdUnitID: gamAdUnitDisplayInterstitialOriginal, request: gamRequest) { ad, error in
         guard let self = self else { return }
@@ -397,7 +397,7 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
             PrebidDemoLogger.shared.error("Failed to load interstitial ad with error: \(error.localizedDescription)")
         } else if let ad = ad {
             ad.fullScreenContentDelegate = self
-            
+
             // 4. Present the interstitial ad
             ad.present(fromRootViewController: self)
         }
@@ -409,15 +409,15 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 {:.no_toc}
 
 Initialize the InterstitialAdUnit with the following properties:
-    
+
 * `configId` - an ID of Stored Impression on the Prebid Server
 * `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
 * `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
 
 > **NOTE:** As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process to monetize sizes smaller than full screen ads. App developers can specify a minimum width and minimum height percentage an ad can occupy of a devices real state, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction.
-
+>
 > PBS will take the AdUnit's size (width and height) as the max size for the interstitial as size, generating a list of ad sizes, selecting the first 10 sizes that fall within the imp's max size and minimum percentage size. All the interstitial parameters will still be passed to the bidders, allowing them to use their own size matching algorithms if they prefer.
-
+>
 > Prebid Server will send the eligible size list to each bidder to solicit a bid. For a full description of the Prebid Server logic, please refer to the [Prebid Server PR 797](https://github.com/prebid/prebid-server/pull/797/files).
 
 {: .alert.alert-warning :}
@@ -444,7 +444,7 @@ Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-s
 
 Integration Example:
 
-```swift
+``` swift
 // 1. Create a InterstitialAdUnit
 adUnit = InterstitialAdUnit(configId: CONFIG_ID)
 
@@ -461,7 +461,7 @@ adUnit.videoParameters = parameters
 let gamRequest = GAMRequest()
 adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
-   
+
 // 5. Load a GAM interstitial ad
 GAMInterstitialAd.load(withAdManagerAdUnitID: gamAdUnitVideoInterstitialOriginal, request: gamRequest) { ad, error in
     guard let self = self else { return }
@@ -484,7 +484,7 @@ Starting from PrebidMobile `2.1.0` the `VideoInterstitialAdUnit` class is deprec
 {:.no_toc}
 
 Initialize the Interstitial Video Ad Unit with properties:
-    
+
 * `configId` - an ID of Stored Impression on the Prebid Server
 
 #### Step 2: Set ad format
@@ -518,7 +518,7 @@ Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-s
 
 Integration example:
 
-```swift
+``` swift
 // 1. Create an InterstitialAdUnit
 adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: 60, minHeightPerc: 70)
 
@@ -535,11 +535,11 @@ adUnit.videoParameters = parameters
 let gamRequest = GAMRequest()
 adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
-    
+
     // 5. Load a GAM interstitial ad
     GAMInterstitialAd.load(withAdManagerAdUnitID: gamAdUnitMultiformatInterstitialOriginal, request: gamRequest) { ad, error in
         guard let self = self else { return }
-        
+
         if let error = error {
             PrebidDemoLogger.shared.error("Failed to load interstitial ad with error: \(error.localizedDescription)")
         } else if let ad = ad {
@@ -555,7 +555,7 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 {:.no_toc}
 
 Initialize the InterstitialAdUnit with the following properties:
-    
+
 * `configId` - an ID of Stored Impression on the Prebid Server
 * `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
 * `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
@@ -598,7 +598,7 @@ Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-s
 
 Integration example:
 
-```swift
+``` swift
 // 1. Create a RewardedVideoAdUnit
 adUnit = RewardedVideoAdUnit(configId: CONFIG_ID)
 
@@ -611,7 +611,7 @@ adUnit.videoParameters = parameters
 // 3. Make a bid request to Prebid Server
 adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
-   
+
     // 4. Load a GAM Rewarded Ad
     GADRewardedAd.load(withAdUnitID: gamAdUnitVideoRewardedOriginal, request: self?.gamRequest) { [weak self] ad, error in
         guard let self = self else { return }
@@ -619,7 +619,7 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
             PrebidDemoLogger.shared.error("Failed to load rewarded ad with error: \(error.localizedDescription)")
         } else if let ad = ad {
             ad.fullScreenContentDelegate = self
-            
+
             // 5. Present the interstitial ad
             ad.present(fromRootViewController: self, userDidEarnRewardHandler: {
                 _ = ad.adReward
@@ -628,11 +628,12 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     }
 }
 ```
+
 ### Step 1: Create a RewardedVideoAdUnit
 {:.no_toc}
 
 Initialize the Rewarded Video Ad Unit with properties:
-    
+
 * `configId` - an ID of Stored Impression on the Prebid Server
 
 ### Step 2: Configure video parameters
@@ -664,7 +665,7 @@ Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-s
 
 Integration example:
 
-```swift
+``` swift
 // 1. Create InstreamVideoAdUnit
 adUnit = InstreamVideoAdUnit(configId: CONFIG_ID, size: CGSize(width: 1,height: 1))
 
@@ -683,10 +684,10 @@ adUnit.fetchDemand { [weak self] (resultCode, prebidKeys: [String: String]?) in
     guard let self = self else { return }
     if resultCode == .prebidDemandFetchSuccess {
         do {
-            
+
             // 5. Generate GAM Instream URI
             let adServerTag = try IMAUtils.shared.generateInstreamUriForGAM(adUnitID: gamAdUnitVideo, adSlotSizes: [.Size320x480], customKeywords: prebidKeys!)
-            
+
             // 6. Load IMA ad request
             let adDisplayContainer = IMAAdDisplayContainer(adContainer: self.instreamView, viewController: self)
             let request = IMAAdsRequest(adTagUrl: adServerTag, adDisplayContainer: adDisplayContainer, contentPlayhead: nil, userContext: nil)
@@ -710,7 +711,7 @@ func adsLoader(_ loader: IMAAdsLoader, adsLoadedWith adsLoadedData: IMAAdsLoaded
     // Grab the instance of the IMAAdsManager and set ourselves as the delegate.
     adsManager = adsLoadedData.adsManager
     adsManager?.delegate = self
-    
+
     // Initialize the ads manager.
     adsManager?.initialize(with: nil)
 }
@@ -753,7 +754,7 @@ Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `I
 {:.no_toc}
 
 Initialize the Instream Video Ad Unit with properties:
-    
+
 * `configId` - an ID of Stored Impression on the Prebid Server
 * `size` - Width and height of the video ad unit.
 
@@ -801,26 +802,26 @@ Integration example:
 
 Prepare the set of requested assets first.
 
-```swift
+``` swift
 private var nativeRequestAssets: [NativeAsset] {
     let image = NativeAssetImage(minimumWidth: 200, minimumHeight: 50, required: true)
     image.type = ImageAsset.Main
-    
+
     let icon = NativeAssetImage(minimumWidth: 20, minimumHeight: 20, required: true)
     icon.type = ImageAsset.Icon
-    
+
     let title = NativeAssetTitle(length: 90, required: true)
     let body = NativeAssetData(type: DataAsset.description, required: true)
     let cta = NativeAssetData(type: DataAsset.ctatext, required: true)
     let sponsored = NativeAssetData(type: DataAsset.sponsored, required: true)
-    
+
     return [title, icon, image, sponsored, body, cta]
 }
 ```
 
 Then integrate the native style ad using GAM Banner ad unit
 
-```swift
+``` swift
 // 1. Create NativeRequest
 nativeUnit = NativeRequest(configId: CONFIG_ID, assets: nativeRequestAssets)
 nativeUnit.context = ContextType.Social
@@ -838,7 +839,7 @@ bannerView.addSubview(gamBannerView)
 // 3. Make a bid request
 nativeUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
-    
+
     // 4. Load and GAM ad
     self?.gamBannerView.load(self?.gamRequest)
 }
@@ -924,7 +925,7 @@ These instructions will enable you to create a creative template in either Googl
 6. Name your new format.
 7. Choose `ADD VARIABLE` and add the following variable names and placeholders.
 
-{: .table .table-bordered .table-striped }  
+{: .table .table-bordered .table-striped }
 | Variable Name| Placeholder|
 |--------------+------------|
 | isPrebid            | [%isPrebid%]                |
@@ -934,7 +935,7 @@ Make sure to indicate that the variables are required.
 
 8. Return to the home screen, click `Delivery > Creatives`, and create a creative with `Native Format`, choosing the template you created. In the user-defined variables you just created, set the following values:
 
-  {: .table .table-bordered .table-striped }  
+  {: .table .table-bordered .table-striped }
 | Variable Name       | Value                            |
 |---------------------+----------------------------------|
 | isPrebid            | 1                                |
@@ -947,26 +948,26 @@ Make sure to indicate that the variables are required.
 
 Prepare the set of requested assets first.
 
-```swift
+``` swift
 private var nativeRequestAssets: [NativeAsset] {
     let image = NativeAssetImage(minimumWidth: 200, minimumHeight: 50, required: true)
     image.type = ImageAsset.Main
-    
+
     let icon = NativeAssetImage(minimumWidth: 20, minimumHeight: 20, required: true)
     icon.type = ImageAsset.Icon
-    
+
     let title = NativeAssetTitle(length: 90, required: true)
     let body = NativeAssetData(type: DataAsset.description, required: true)
     let cta = NativeAssetData(type: DataAsset.ctatext, required: true)
     let sponsored = NativeAssetData(type: DataAsset.sponsored, required: true)
-    
+
     return [title, icon, image, sponsored, body, cta]
 }
 ```
 
 Then integrate the native style ad using GADAdLoader
 
-```swift
+``` swift
 // 1. Setup NativeRequest
 nativeUnit = NativeRequest(configId: storedPrebidImpression, assets: nativeRequestAssets)
 nativeUnit.context = ContextType.Social
@@ -977,7 +978,7 @@ nativeUnit.eventtrackers = eventTrackers
 // 2. Make a bid request
 nativeUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     guard let self = self else { return }
-    
+
     //3. Configure and make a GAM ad request
     self.adLoader = GADAdLoader(adUnitID: gamRenderingNativeAdUnitId,rootViewController: self,
                                 adTypes: [GADAdLoaderAdType.customNative], options: [])
@@ -1006,7 +1007,7 @@ func nativeAdLoaded(ad: NativeAd) {
     nativeAd = ad
     titleLabel.text = ad.title
     bodyLabel.text = ad.text
-    
+
     if let iconString = ad.iconUrl {
         ImageHelper.downloadImageAsync(iconString) { result in
             if case let .success(icon) = result {
@@ -1016,7 +1017,7 @@ func nativeAdLoaded(ad: NativeAd) {
             }
         }
     }
-    
+
     if let imageString = ad.imageUrl {
         ImageHelper.downloadImageAsync(imageString) { result in
             if case let .success(image) = result {
@@ -1026,10 +1027,10 @@ func nativeAdLoaded(ad: NativeAd) {
             }
         }
     }
-    
+
     callToActionButton.setTitle(ad.callToAction, for: .normal)
     sponsoredLabel.text = ad.sponsoredBy
-    
+
     nativeAd.registerView(view: view, clickableViews: [callToActionButton])
 }
 
@@ -1040,7 +1041,6 @@ func nativeAdNotFound() {
 func nativeAdNotValid() {
     PrebidDemoLogger.shared.error("Native ad not valid")
 }
-
 ```
 
 ##### Step 1: Create a NativeRequest
@@ -1068,11 +1068,11 @@ Be sure that you make the ad request with the same `GAMRequest` object that you 
 ##### Step 4: Implement GADCustomNativeAdLoaderDelegate protocol
 {:.no_toc}
 
-In order to capture the native ad response you need to implement [GADCustomNativeAdLoaderDelegate](GADCustomNativeAdLoaderDelegate) protocol. 
- 
+In order to capture the native ad response you need to implement [GADCustomNativeAdLoaderDelegate](GADCustomNativeAdLoaderDelegate) protocol.
+
 In the method `-adLoader:didReceiveCustomNativeAd:` you should pass the following Prebid functions:
 
-```
+``` swift
 Utils.shared.delegate = self
 Utils.shared.findNative(adObject: customNativeAd)
 ```
@@ -1095,33 +1095,33 @@ func createAd() {
     // 1. Setup a PrebidAdUnit
     adUnit = PrebidAdUnit(configId: configId)
     adUnit.setAutoRefreshMillis(time: 30_000)
-    
+
     // 2. Setup the parameters
     let bannerParameters = BannerParameters()
     bannerParameters.api = [Signals.Api.MRAID_2]
     bannerParameters.adSizes = [adSize]
-    
+
     let videoParameters = VideoParameters(mimes: ["video/mp4"])
     videoParameters.protocols = [Signals.Protocols.VAST_2_0]
     videoParameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOff]
     videoParameters.placement = Signals.Placement.InBanner
     videoParameters.adSize = adSize
-    
+
     let nativeParameters = NativeParameters()
     nativeParameters.assets = nativeAssets
     nativeParameters.context = ContextType.Social
     nativeParameters.placementType = PlacementType.FeedContent
     nativeParameters.contextSubType = ContextSubType.Social
     nativeParameters.eventtrackers = eventTrackers
-    
+
     // 3. Configure the PrebidRequest
     let prebidRequest = PrebidRequest(bannerParameters: bannerParameters, videoParameters: videoParameters, nativeParameters: nativeParameters)
-    
+
     // 4. Make a bid request
     let gamRequest = GAMRequest()
     adUnit.fetchDemand(adObject: gamRequest, request: prebidRequest) { [weak self] _ in
         guard let self = self else { return }
-        
+
         // 5. Configure and make a GAM ad request
         self.adLoader = GADAdLoader(adUnitID: gamRenderingMultiformatAdUnitId, rootViewController: self,
                                     adTypes: [GADAdLoaderAdType.customNative, GADAdLoaderAdType.gamBanner], options: [])
@@ -1139,10 +1139,10 @@ func adLoader(_ adLoader: GADAdLoader, didReceive bannerView: GAMBannerView) {
     self.nativeView.isHidden = true
     self.bannerView.backgroundColor = .clear
     self.bannerView.addSubview(bannerView)
-    
+
     AdViewUtils.findPrebidCreativeSize(bannerView, success: { [weak self] size in
         bannerView.resize(GADAdSizeFromCGSize(size))
-        
+
         self?.bannerView.constraints.first { $0.firstAttribute == .width }?.constant = size.width
         self?.bannerView.constraints.first { $0.firstAttribute == .height }?.constant = size.height
     }, failure: { (error) in
@@ -1160,11 +1160,11 @@ If you use Custom Native Ads follow the [guide](https://developers.google.com/ad
 func nativeAdLoaded(ad: NativeAd) {
     nativeView.isHidden = false
     bannerView.isHidden = true
-    
+
     nativeAd = ad
     titleLabel.text = ad.title
     bodyLabel.text = ad.text
-    
+
     if let iconString = ad.iconUrl {
         ImageHelper.downloadImageAsync(iconString) { result in
             if case let .success(icon) = result {
@@ -1174,7 +1174,7 @@ func nativeAdLoaded(ad: NativeAd) {
             }
         }
     }
-    
+
     if let imageString = ad.imageUrl {
         ImageHelper.downloadImageAsync(imageString) { result in
             if case let .success(image) = result {
@@ -1184,10 +1184,10 @@ func nativeAdLoaded(ad: NativeAd) {
             }
         }
     }
-    
+
     callToActionButton.setTitle(ad.callToAction, for: .normal)
     sponsoredLabel.text = ad.sponsoredBy
-    
+
     nativeAd.registerView(view: view, clickableViews: [callToActionButton])
 }
 ```
@@ -1311,7 +1311,7 @@ Each ad unit in the original API is a subclass of the `AdUnit` class, which prov
 
 PB Ad Slot is an identifier tied to the placement the ad will be delivered in. The use case for PB Ad Slot is to pass to exchange an ID they can use to tie to reporting systems or use for data science driven model building to match with impressions sourced from alternate integrations. A common ID to pass is the ad server slot name.
 
-```
+``` swift
 adUnit.ortb2Imp.ext.data.pbadslot = "/1111111/homepage/med-rect-2"`
 ```
 
@@ -1339,7 +1339,7 @@ Allows to resume the stopped autorefresh for the ad unit with predefined autoref
 
 Ad Unit context keywords object is a free form list of comma separated keywords about the app as defined in app.keyword in OpenRTB 2.5. The `addContextKeyword` function adds a single keyword to the ad unit.
 
-```
+``` swift
 func addContextKeyword(_ newElement: String)
 ```
 
@@ -1348,21 +1348,21 @@ func addContextKeyword(_ newElement: String)
 
 Ad Unit context keywords object is a free form list of comma separated keywords about the app as defined in app.keyword in OpenRTB 2.5. The `addContextKeywords` function adds a multiple keyword to the ad unit.
 
-```
+``` swift
 func addContextKeywords(_ newElements: Set<String>)
 ```
 
 #### removeContextKeyword
 {:.no_toc}
 
-```
+``` swift
 func removeContextKeyword(_ element: String)
 ```
 
 ### clearContextKeywords
 {:.no_toc}
 
-```
+``` swift
 func clearContextKeywords()
 ```
 
@@ -1370,38 +1370,38 @@ func clearContextKeywords()
 
 The `ContentObject` allows you to provide more details about content within the app. All properties provided to the `ContentObject` will be sent in the `app.content` field of the bid request.
 
-```
+``` swift
 func setAppContent(_ appContent: ContentObject)
 
-func getAppContent() -> ContentObject? 
-      
-func clearAppContent() 
+func getAppContent() -> ContentObject?
+
+func clearAppContent()
 ```
-    
+
 ### App Content Data
 
-Using the following methods you can add `app.content.data` objects to the bid requests. 
-  
-```
+Using the following methods you can add `app.content.data` objects to the bid requests.
+
+``` swift
 func addAppContentData(_ dataObjects: [ContentDataObject])
 
 func removeAppContentData(_ dataObject: ContentDataObject)
 
-func clearAppContentData() 
+func clearAppContentData()
 ```
 
 ### User Data
 
 Using the following methods you can add `user.data` objects to the bid requests.
 
-```
+``` swift
 func getUserData() -> [PBMORTBContentData]?
 
-func addUserData(_ userDataObjects: [PBMORTBContentData]) 
-  
-func removeUserData(_ userDataObject: PBMORTBContentData) 
-   
-func clearUserData() 
+func addUserData(_ userDataObjects: [PBMORTBContentData])
+
+func removeUserData(_ userDataObject: PBMORTBContentData)
+
+func clearUserData()
 ```
 
 ### Data Object
@@ -1420,7 +1420,7 @@ The first party inventory context below will apply to the specic ad unit the dat
 #### addContextData
 {:.no_toc}
 
-```
+``` swift
 func addContextData(key: String, value: String)
 ```
 
@@ -1444,7 +1444,7 @@ func updateContextData(key: String, value: Set<String>)
 #### removeContextData
 {:.no_toc}
 
-```
+``` swift
 func removeContextData(forKey: String)
 ```
 
@@ -1456,6 +1456,6 @@ func removeContextData(forKey: String)
 #### clearContextData
 {:.no_toc}
 
-```
+``` swift
 func clearContextData()
 ```
