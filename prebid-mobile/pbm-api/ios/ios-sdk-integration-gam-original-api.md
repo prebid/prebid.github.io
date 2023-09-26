@@ -561,9 +561,9 @@ Initialize the InterstitialAdUnit with the following properties:
 * `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
 
 > **NOTE:** As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process to monetize sizes smaller than full screen ads. App developers can specify a minimum width and minimum height percentage an ad can occupy of a devices real state, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction.
-
+>
 > PBS will take the AdUnit's size (width and height) as the max size for the interstitial as size, generating a list of ad sizes, selecting the first 10 sizes that fall within the imp's max size and minimum percentage size. All the interstitial parameters will still be passed to the bidders, allowing them to use their own size matching algorithms if they prefer.
-
+>
 > Prebid Server will send the eligible size list to each bidder to solicit a bid. For a full description of the Prebid Server logic, please refer to the [Prebid Server PR 797](https://github.com/prebid/prebid-server/pull/797/files).
 
 #### Step 2: Set ad formats
@@ -783,7 +783,6 @@ Using Prebid util method, generate Google IMA URI for downloading the cached cre
 
 Create an ad display container for ad rendering. Then create an ad request with our ad tag, display container, and optional user context. Load the ad. Follow the [in-stream video guide](https://developers.google.com/interactive-media-ads/docs/sdks/ios/client-side#6_initialize_the_ads_loader_and_make_an_ads_request) for additional details.
 
-
 ### Step 7: Set up an ads loader delegate
 {:.no_toc}
 
@@ -880,7 +879,6 @@ Initialize the `NativeRequest` with properties:
 |-------|--------|---------|
 | Title | Optional | The title of the native ad. |
 
-
 #### Step 2: Create a GAMBannerView
 {:.no_toc}
 
@@ -917,13 +915,13 @@ The cached assets might expire. If this occurs the publisher will receive a noti
 
 These instructions will enable you to create a creative template in either Google Ad Manager that can then be applied to native ads in your app.
 
-1. Sign in to Google Ad Manager.
-2. Create an ad unit with fluid ad size.
-3. Click `Delivery` and then `Native`
-4. Click `Create native ad`.
-5. Click `Android & iOS app code`.
-6. Name your new format.
-7. Choose `ADD VARIABLE` and add the following variable names and placeholders.
+* `Step 1`: Sign in to Google Ad Manager.
+* `Step 2`: Create an ad unit with fluid ad size.
+* `Step 3`: Click `Delivery` and then `Native`
+* `Step 4`: Click `Create native ad`.
+* `Step 5`: Click `Android & iOS app code`.
+* `Step 6`: Name your new format.
+* `Step 7`: Choose `ADD VARIABLE` and add the following variable names and placeholders.
 
 {: .table .table-bordered .table-striped }
 | Variable Name| Placeholder|
@@ -933,15 +931,15 @@ These instructions will enable you to create a creative template in either Googl
 
 Make sure to indicate that the variables are required.
 
-8. Return to the home screen, click `Delivery > Creatives`, and create a creative with `Native Format`, choosing the template you created. In the user-defined variables you just created, set the following values:
+* `Step 8`: Return to the home screen, click `Delivery > Creatives`, and create a creative with `Native Format`, choosing the template you created. In the user-defined variables you just created, set the following values:
 
-  {: .table .table-bordered .table-striped }
+{: .table .table-bordered .table-striped }
 | Variable Name       | Value                            |
 |---------------------+----------------------------------|
 | isPrebid            | 1                                |
 | hb_cache_id_local   | %%PATTERN:hb_cache_id_local%%    |
 
-9. Create Prebid line items with price priority and a display ad type that is targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (making sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
+* `Step 9`: Create Prebid line items with price priority and a display ad type that is targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (making sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
 
 #### Integration Example
 {:.no_toc}
@@ -1153,7 +1151,6 @@ func adLoader(_ adLoader: GADAdLoader, didReceive bannerView: GAMBannerView) {
 
 If you use Custom Native Ads follow the [guide](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/native-banner) on how to implement processing of the ad response of the respective type. To handle the wining native ad:
 
-
 ``` swift
 // MARK: - NativeAdDelegate
 
@@ -1272,7 +1269,6 @@ Set to 1 when the native ad supports buyer-specific privacy notice.  Set to 0 (o
 {:.no_toc}
 
 This object is a placeholder that may contain custom JSON agreed to by the parties to support flexibility beyond the standard defined in this specification
-
 
 ### Step 3: Create PrebidRequest
 {:.no_toc}
@@ -1428,7 +1424,6 @@ func addContextData(key: String, value: String)
 `key`: string containing the key for the specific data object
 `value`: String containing the value for the supplied key
 
-
 #### updateContextData
 {:.no_toc}
 
@@ -1440,7 +1435,6 @@ func updateContextData(key: String, value: Set<String>)
 `key`: string containing the key for the specific data object
 `value`: String containing the value for the supplied key
 
-
 #### removeContextData
 {:.no_toc}
 
@@ -1451,7 +1445,6 @@ func removeContextData(forKey: String)
 **Parameters**
 `key`: string containing the key for the specific data object
 `value`: String containing the value for the supplied key
-
 
 #### clearContextData
 {:.no_toc}
