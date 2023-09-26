@@ -39,14 +39,14 @@ This approach is available for the following ad formats:
 
 The basic integration steps for these ad units you can find at the page for integration using [Original API](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html). The diference is that you should use  the `fetchDemand` function with following signature:
 
-```swift
+``` swift
 public func fetchDemand(adObject: AnyObject, request: PrebidRequest,
                       completion: @escaping (BidInfo) -> Void)
 ```
 
 Examples:
 
-```swift
+``` swift
 adUnit.fetchDemand(adObject: gamRequest, request: prebidRequest) { [weak self] bidInfo in
     guard let self = self else { return }
 
@@ -73,7 +73,7 @@ The Rendering API integration and usage are similar to any other Ad SDK. In this
 
 Integration example:
 
-```swift
+``` swift
 // 1. Create an Ad View
 let banner = BannerView(frame: CGRect(origin: .zero, size: adSize),
                         configID: CONFIG_ID,
@@ -107,7 +107,7 @@ Call the method `loadAd()` which will:
 
 For **Banner Video** you also need to specify the ad format:
 
-```swift
+``` swift
 banner.adFormat = .video
 ```
 
@@ -115,7 +115,7 @@ banner.adFormat = .video
 
 Integration example:
 
-```swift
+``` swift
 // 1. Create an Interstitial Ad Unit
 interstitial = InterstitialRenderingAdUnit(configID: CONFIG_ID,
                                   minSizePercentage: CGSize(width: 30, height: 30))
@@ -136,7 +136,7 @@ if interstitial.isReady {
 
 The **default** ad format for interstitial is **.banner**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
 
-```swift
+``` swift
 // Make bid request for video ad
 adUnit?.adFormats = [.video]
 
@@ -168,7 +168,7 @@ Call the method `loadAd()` which will make a bid request to Prebid server.
 
 Wait until the ad will be loaded and present it to the user in any suitable time.
 
-```swift
+``` swift
 // MARK: InterstitialRenderingAdUnitDelegate
 
 func interstitialDidReceiveAd(_ interstitial: InterstitialRenderingAdUnit) {
@@ -180,7 +180,7 @@ func interstitialDidReceiveAd(_ interstitial: InterstitialRenderingAdUnit) {
 
 Integration example:
 
-```swift
+``` swift
 // 1. Create an Ad Unit
 rewardedAd = RewardedAdUnit(configID: CONFIG_ID)
 rewardedAd.delegate = self
@@ -195,7 +195,6 @@ if rewardedAd.isReady {
     rewardedAd.show(from: self)
 }
 ```
-
 
 #### Step 1: Create Rewarded Ad Unit
 {:.no_toc}
@@ -214,7 +213,7 @@ Call the `loadAd()` method which will make a bid request to Prebid server.
 
 Wait until the ad will be loaded and present it to the user in any suitable time.
 
-```swift
+``` swift
 // MARK: RewardedAdUnitDelegate
 
 func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {

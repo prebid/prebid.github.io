@@ -71,13 +71,11 @@ The integration and usage of the Rendering API is similar to any other Ad SDK. I
 
 ![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
-
 ### Banner API
 
 Integration example:
 
-
-```kotlin
+``` kotlin
 // 1. Create an Ad View
 bannerView = BannerView(requireContext(), configId, adSize)
 bannerView?.setBannerListener(this)
@@ -115,7 +113,7 @@ Call `loadAd()` and SDK will:
 
 For **Banner Video** you will also need to specify the `bannerView.videoPlacementType`:
 
-```kotlin
+``` kotlin
 bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
 ```
 
@@ -123,7 +121,7 @@ bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other availabl
 
 Integration example:
 
-```kotlin
+``` kotlin
 // 1. Create an Interstitial Ad Unit
 interstitialAdUnit = InterstitialAdUnit(requireContext(), configId, minSizePercentage)
 interstitialAdUnit?.setInterstitialAdUnitListener(this)
@@ -143,7 +141,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 
 The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
-```
+``` kotlin
 interstitialAdUnit = InterstitialAdUnit(
                         requireContext(),
                         configId,
@@ -172,7 +170,7 @@ Call the `loadAd()` to make a bid request.
 
 Wait until the ad is loaded and present it to the user in any suitable time.
 
-```kotlin
+``` kotlin
 override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
     //Ad is ready for display
 }
@@ -182,7 +180,7 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 
 Integration example:
 
-```kotlin
+``` kotlin
 // 1. Create an Ad Unit
 rewardedAdUnit = RewardedAdUnit(requireContext(), configId)
 rewardedAdUnit?.setRewardedAdUnitListener(this)
@@ -218,7 +216,7 @@ Call the `loadAd()` to make a bid request.
 
 Wait until the ad is loaded and present it to the user in any suitable time.
 
-```kotlin
+``` kotlin
 override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 //Ad is ready for display
 }

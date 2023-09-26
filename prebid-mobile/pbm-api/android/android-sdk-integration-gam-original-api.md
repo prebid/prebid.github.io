@@ -1122,9 +1122,9 @@ Once the Prebid line item is recognized you should extract the ad from the winni
 
 ## Multiformat API
 
-Starting with version `2.1.5` Prebid SDK supports the fully multiformat ad unit. It allows to run bid requests with any combination of `banner`, `video`, and `native` formats. 
+Starting with version `2.1.5` Prebid SDK supports the fully multiformat ad unit. It allows to run bid requests with any combination of `banner`, `video`, and `native` formats.
 
-The following code demonstrates the integration of multiformat ad unit. 
+The following code demonstrates the integration of multiformat ad unit.
 
 ``` kotlin
 private fun createAd() {
@@ -1133,7 +1133,7 @@ private fun createAd() {
 
     // Step 1: Create a PrebidAdUnit
     prebidAdUnit = PrebidAdUnit(configId)
-    
+
     // Step 2: Create PrebidRequest
     val prebidRequest = PrebidRequest()
 
@@ -1145,7 +1145,8 @@ private fun createAd() {
     // Step 4: Make a bid request
     val gamRequest = AdManagerAdRequest.Builder().build()
     prebidAdUnit?.fetchDemand(prebidRequest, gamRequest) {
-        // Step 5: Load an Ad 
+        // Step 5: Load an Ad
+
         loadGam(gamRequest)
     }
 }
@@ -1153,7 +1154,7 @@ private fun createAd() {
 private fun createBannerParameters(): BannerParameters {
     val parameters = BannerParameters()
     parameters.api = listOf(Signals.Api.MRAID_3, Signals.Api.OMID_1)
-    
+
     return parameters
 }
 
@@ -1325,12 +1326,12 @@ private fun inflatePrebidNativeAd(ad: PrebidNativeAd) {
 
 Initialize the `PrebidAdUnit` with the following properties:
 
-- `configId` - an ID of the Stored Impression on the Prebid Server
+* `configId` - an ID of the Stored Impression on the Prebid Server
 
 #### Step 2: Create a PrebidRequest
 {:.no_toc}
 
-Create the instance of `PrebidRequest` initializing it with respective ad format parameters. 
+Create the instance of `PrebidRequest` initializing it with respective ad format parameters.
 
 In addition you can set the following properties of the `PrebidRequest`.
 
@@ -1339,24 +1340,24 @@ In addition you can set the following properties of the `PrebidRequest`.
 
 For each intersted ad format you should creatae a respective configuration parameter:
 
-- [BannerParameters](#step-2-configure-banner-parameters) object.
-- [VideoParameters](#step-3-configure-the-video-parameters) object.
-- [NativeParameters](#nativeparameters) object
+* [BannerParameters](#step-2-configure-banner-parameters) object.
+* [VideoParameters](#step-3-configure-the-video-parameters) object.
+* [NativeParameters](#nativeparameters) object
 
 ##### NativeParameters
 {:.no_toc}
 
-Using the `NativeParameters` you can customize the bid request for video ads. 
+Using the `NativeParameters` you can customize the bid request for video ads.
 
 ###### assets
 {:.no_toc}
 
-The array of requested asset objects. Prebid SDK supports all kinds of assets according to the [IAB spec](https://iabtechlab.com/wp-content/uploads/2016/07/OpenRTB-Native-Ads-Specification-Final-1.2.pdf)  except `video`. 
+The array of requested asset objects. Prebid SDK supports all kinds of assets according to the [IAB spec](https://iabtechlab.com/wp-content/uploads/2016/07/OpenRTB-Native-Ads-Specification-Final-1.2.pdf)  except `video`.
 
 ###### eventtrackers
 {:.no_toc}
 
-The array of requested native trackers. Prebid SDK supports inly `image` trackers according to the [IAB spec](https://iabtechlab.com/wp-content/uploads/2016/07/OpenRTB-Native-Ads-Specification-Final-1.2.pdf). 
+The array of requested native trackers. Prebid SDK supports inly `image` trackers according to the [IAB spec](https://iabtechlab.com/wp-content/uploads/2016/07/OpenRTB-Native-Ads-Specification-Final-1.2.pdf).
 
 ###### version
 {:.no_toc}
@@ -1366,12 +1367,12 @@ Version of the Native Markup version in use. The default value is `1.2`
 ###### context
 {:.no_toc}
 
-The context in which the ad appears. 
+The context in which the ad appears.
 
 ###### contextSubType
 {:.no_toc}
 
-A more detailed context in which the ad appears.  
+A more detailed context in which the ad appears.
 
 ###### placementType
 {:.no_toc}
@@ -1381,12 +1382,12 @@ The design/format/layout of the ad unit being offered.
 ###### placementCount
 {:.no_toc}
 
-The number of identical placements in this Layout. 
+The number of identical placements in this Layout.
 
 ###### sequence
 {:.no_toc}
 
-0 for the first ad, 1 for the second ad, and so on.  
+0 for the first ad, 1 for the second ad, and so on.
 
 ###### asseturlsupport
 {:.no_toc}
@@ -1396,7 +1397,7 @@ Whether the supply source/impression supports returning an assetsurl instead of 
 ###### durlsupport
 {:.no_toc}
 
-Whether the supply source / impression supports returning a dco url instead of an asset object. 0 or the absence of the field indicates no such support. 
+Whether the supply source / impression supports returning a dco url instead of an asset object. 0 or the absence of the field indicates no such support.
 
 ###### privacy
 {:.no_toc}
@@ -1411,13 +1412,12 @@ This object is a placeholder that may contain custom JSON agreed to by the parti
 #### Step 4: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `GAMRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
+The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `GAMRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
 
 #### Step 5: Load and Ad
 {:.no_toc}
 
-Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/native-banner) to combine the a banner and custom native ads int the app. 
-
+Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/native-banner) to combine the a banner and custom native ads int the app.
 
 ## Ad Unit Configuration
 
