@@ -4,7 +4,7 @@ title: Edge226
 description: Prebid Edge226 Bidder Adapter
 biddercode: edge226
 usp_supported: true
-tcfeu_supported: true
+tcfeu_supported: false
 coppa_supported: true
 schain_supported: true
 floors_supported: true
@@ -14,6 +14,8 @@ pbs: true
 pbs_app_supported: true
 gvl_id: 1202
 sidebarType: 1
+multiformat_supported: will-bid-on-one
+safeframes_ok: true
 ---
 
 ### Bid Params
