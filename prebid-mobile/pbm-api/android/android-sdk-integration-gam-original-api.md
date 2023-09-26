@@ -1134,18 +1134,18 @@ private fun createAd() {
     // Step 1: Create a PrebidAdUnit
     prebidAdUnit = PrebidAdUnit(configId)
     
-    Step 2: Create PrebidRequest
+    // Step 2: Create PrebidRequest
     val prebidRequest = PrebidRequest()
 
     // Step 3: Setup the parameters
-prebidRequest.setBannerParameters(createBannerParameters())
+    prebidRequest.setBannerParameters(createBannerParameters())
     prebidRequest.setVideoParameters(createVideoParameters())
     prebidRequest.setNativeParameters(createNativeParameters())
 
     // Step 4: Make a bid request
     val gamRequest = AdManagerAdRequest.Builder().build()
     prebidAdUnit?.fetchDemand(prebidRequest, gamRequest) {
-        // Step 6: Load an Ad 
+        // Step 5: Load an Ad 
         loadGam(gamRequest)
     }
 }
@@ -1226,7 +1226,7 @@ private fun loadGam(gamRequest: AdManagerAdRequest) {
         showPrebidNativeAd(customNativeAd)
     }
 
-    // Step 7: Prepare lisners for Ad Response
+    // Prepare the lisners for multiformat Ad Response
     val adLoader = AdLoader.Builder(this, AD_UNIT_ID)
         .forAdManagerAdView(onBannerLoaded, AdSize.BANNER, AdSize.MEDIUM_RECTANGLE)
         .forNativeAd(onNativeLoaded)
@@ -1327,8 +1327,14 @@ Initialize the `PrebidAdUnit` with the following properties:
 
 - `configId` - an ID of the Stored Impression on the Prebid Server
 
+#### Step 2: Create a PrebidRequest
+{:.no_toc}
 
-#### Step 2: Setup the parameters
+Create the instance of `PrebidRequest` initializing it with respective ad format parameters. 
+
+In addition you can set the following properties of the `PrebidRequest`.
+
+#### Step 3: Setup the parameters
 {:.no_toc}
 
 For each intersted ad format you should creatae a respective configuration parameter:
@@ -1402,34 +1408,16 @@ Set to 1 when the native ad supports buyer-specific privacy notice.  Set to 0 (o
 
 This object is a placeholder that may contain custom JSON agreed to by the parties to support flexibility beyond the standard defined in this specification
 
-#### Step 3: Create PrebidRequest
-{:.no_toc}
-
-Create the instance of `PrebidRequest` initializing it with respective ad format parameters. 
-
-In addition you can set the following properties of the `PrebidRequest`.
-
 #### Step 4: Make a bid request
 {:.no_toc}
 
 The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `GAMRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests. 
 
-#### Step 5: Create a GAMBannerView
+#### Step 5: Load and Ad
 {:.no_toc}
 
-Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner) to integrate a banner ad unit. 
+Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/native-banner) to combine the a banner and custom native ads int the app. 
 
-#### Step 6: Load an Ad
-{:.no_toc}
-
-Now you should request the ad from GAM. If the `GAMRequest` contains targeting keywords, the respective Prebid line item will be returned from GAM and GMA SDK will render its creative. 
-
-Be sure that you make the ad request with the same `GAMRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
-
-#### Step 7: Process the Ad Response
-{:.no_toc}
-
-Once an app receives a signal that an ad is loaded, you should use the method `AdViewUtils.findPrebidCreativeSize` to verify whether it is a Prebid ad and resize the ad slot respectively to the creative's properties.
 
 ## Ad Unit Configuration
 
