@@ -48,7 +48,7 @@ The following table details the Prebid.js activities that fall under the [Transp
 | Read and write data to device | Purpose 1 - Store and/or access information on a device | May prevent one or more adapters or modules from being able to read or write cookies or localstorage in the user's browser. | 3.14+ |
 | Perform header bidding auction | Purpose 2 - Basic ads | May prevent one or more bid adapters from participating in the auction. | 4.0+ |
 | Transmit user first party data to partners | Purpose 4 -  Personalized ads | May prevent  one or more modules from receiving user first party data | 8.16+ |
-| Transmit Extended User IDs to partners | Depends on configuration (see [note](#note-transmitEids))| May prevent one or more modules from receiving EIDs | 8.16+ |
+| Transmit Extended User IDs to partners | Depends on configuration (see [note](#note-transmitEids))| May prevent one or more modules from receiving user IDs and EIDs. | 8.16+ |
 | Invoke analytics adapters | Purpose 7 - Measurement | May prevent one or more analytics adapters from participating in the auction. | 4.x+ |
 | Transmit precise geolocation data to partners | Specal Feature 1 - Use precise geolocation data |  May cause geolocation data to be truncated for one or more modules | 8.16+ |
 
@@ -76,7 +76,7 @@ The following fields related to GDPR enforcement are supported in the [`consentM
 | gdpr.rules[].enforceVendor | `Boolean` | Determines whether to enforce vendor signals for this purpose. The default in Prebid.js 3.x is not to enforce vendor signals. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of this Purpose. | ["bidderA", "userID-module-B"] |
 | gdpr.rules[].softVendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of vendor signals for this purpose. Unlike with `vendorExceptions`, Purpose consent is still enforced . | ["bidderA", "userID-module-B"] |
-| gdpr.rules[].eidsRequireP4Consent | `Boolean` | Only relevant on the personalizedAds `purpose`. If true, EIDs will not be shared without evidence of consent for TCF Purpose 4. If false, evidence of consent for any of Purposes 2-10 is sufficient for sharing EIDs. Defaults to false. See [note](#note-transmitEids) | true |
+| gdpr.rules[].eidsRequireP4Consent | `Boolean` | Only relevant on the personalizedAds `purpose`. If true, user IDs and EIDs will not be shared without evidence of consent for TCF Purpose 4. If false, evidence of consent for any of Purposes 2-10 is sufficient for sharing user IDs and EIDs. Defaults to false. See [note](#note-transmitEids) | true |
 | strictStorageEnforcement | `Boolean` | If false (the default), allows some use of storage regardless of purpose 1 consent - see [note](#strictStorageEnforcement) below | true |
 
 Notes:
@@ -211,7 +211,7 @@ See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisin
 {: .alert.alert-info :}
 Note: the default of the eidsRequireP4Consent flag may change from false to true in a future major release.
 
-By default, sending EIDs to bid adapters or RTD modules (the `transmitEids` activity) is not tied to a single TCF Purpose; instead it is allowed if one of these scenarios is true:
+By default, sending user IDs and EIDs to bid adapters or RTD modules (the `transmitEids` activity) is not tied to a single TCF Purpose; instead it is allowed if one of these scenarios is true:
 
 * We have evidence of consent for the vendor and evidence of consent for _any_ purpose between 2 and 10;
 * We have evidence of consent for any purpose between 2 and 10, and the vendor is excepted through `softVendorException` in at least one of: `basicAds`, `personalizedAds`, or `measurement`;
