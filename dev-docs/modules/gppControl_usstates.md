@@ -40,10 +40,10 @@ Optional configuration options are:
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | gpp.mspa | `Object` | | |
-| gpp.mspa.sids | `Array` | GPP SIDs that should be covered by activity restrictions. Defaults to all US state SIDs (`[8, 9, 10, 11, 12]`) | `[8, 9]` |
+| gpp.mspa.sids | `Array` | GPP SIDs that should be covered by activity restrictions. Defaults to all US state SIDs (`[8, 9, 10, 11, 12]`). This is the only value needed for normal operation. Other options are for special cases and future-proofing. | `[8, 9]` |
 | gpp.mspa.sections | `Object` | Map from section ID to per-section configuration options | `{8: {name: 'usca'}}` |
-| gpp.mspa.sections.name | `String` | GPP API name to use for the section. Defaults to the names given listed under [section information -> section IDs](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/Section%20Information.md#section-ids)  | `usca` |
-| gpp.mspa.sections.normalizeAs | `integer` | Section ID to use for normalization. See [example](#normalize-example). Each section defaults to its own ID. | `8` |
+| gpp.mspa.sections.name | `String` | GPP API name to use for the section. Defaults to the names given listed under [section information -> section IDs](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/Section%20Information.md#section-ids). This option would only be used if your CMP has named their sections in a non-standard way. | `uscav3` |
+| gpp.mspa.sections.normalizeAs | `integer` | Normalize the flags for this section as if it were the number provided. See [example](#normalize-example). Each section defaults to its own ID. | `8` |
 
 ### Examples
 
@@ -62,6 +62,8 @@ pbjs.setConfig({
 ```
 
 #### Non-standard GPP API names
+
+If the CMP has a non-standard label for a given section, the `name` parameter may be used:
 
 ```javascript
 pbjs.setConfig({
@@ -84,14 +86,14 @@ pbjs.setConfig({
 <a id="normalize-example"></a>
 
 This module provides a [normalization algorithm](/features/mspa-usnat.html#interpreting-usnat-strings) for each section from 8 to 12, which it uses to translate each section's data into its equivalent section 7 (usnat) representation.
-It is possible to re-use them for other sections; this can be useful if new GPP sections are released and they happen to follow the same format as an exising one. for example:
+It is possible to re-use them for other sections; this can be useful if new GPP sections are released and they happen to follow the same format as an exising one. For example, if a new US GPP SID 51 comes along that should be read from the CMP as 'uss51' and normalized the same as California's string, here's the config:
 
 ```javascript
 pbjs.setConfig({
   consentManagement: {
     gpp: {
       mspa: {
-        sids: [51], 
+        sids: [51],       // SID for the 51st state
         sections: {
           51: {
             // expect the CMP to provide section 51, with API name 'uss51', and the same format as section 8 (CA)
