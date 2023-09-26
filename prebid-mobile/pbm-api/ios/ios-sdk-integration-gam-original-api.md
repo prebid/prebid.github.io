@@ -375,7 +375,7 @@ Once an app receives a signal that an ad is loaded, you should use the method `A
 
 ## Interstitial API
 
-Starting with Prebid Mobile `2.1.0` you can use `InterstitialAdUnit ` to bid over the banner and/or video demand. The default ad format is `.banner`. To customize the bidding format you should specify the `adFormats` property of the `InterstitialAdUnit `.
+Starting with Prebid Mobile `2.1.0` you can use `InterstitialAdUnit` to bid over the banner and/or video demand. The default ad format is `.banner`. To customize the bidding format you should specify the `adFormats` property of the `InterstitialAdUnit `.
 
 ### HTML Interstitial
 
@@ -628,14 +628,14 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     }
 }
 ```
-#### Step 1: Create a RewardedVideoAdUnit
+### Step 1: Create a RewardedVideoAdUnit
 {:.no_toc}
 
 Initialize the Rewarded Video Ad Unit with properties:
     
 * `configId` - an ID of Stored Impression on the Prebid Server
 
-#### Step 2: Configure video parameters
+### Step 2: Configure video parameters
 {:.no_toc}
 
 Provide configuration properties for the video ad using the [VideoParameters](#step-3-configure-the-video-parameters) object.
@@ -643,19 +643,19 @@ Provide configuration properties for the video ad using the [VideoParameters](#s
 {: .alert.alert-warning :}
 Please, note that starting from PrebidMobile `2.1.0` the `parameters` property is deprecated. Use `videoParameters` instead.
 
-#### Step 3: Make a bid request
+### Step 3: Make a bid request
 {:.no_toc}
 
 The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `GAMRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
 
-#### Step 4: Load a GAM Rewarded Ad
+### Step 4: Load a GAM Rewarded Ad
 {:.no_toc}
 
 Now you should request the ad from GAM. If the `GAMRequest` contains targeting keywords. The respective Prebid line item will be returned from GAM and GMA SDK will render its creative.
 
 Be sure that you make the ad request with the same `GAMRequest` object that you passed to the `fetchDemand` method. Otherwise the ad request won't contain targeting keywords and Prebid's ad won't ever be displayed.
 
-#### Step 5: Present the Rewarded Ad
+### Step 5: Present the Rewarded Ad
 {:.no_toc}
 
 Follow the [GMA SDK guide](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/rewarded#show_the_ad) to display a rewarded ad right after receiving it or later in natural pauses in the flow of an app.
@@ -749,7 +749,7 @@ func adsManagerDidRequestContentResume(_ adsManager: IMAAdsManager) {
 {: .alert.alert-warning :}
 Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `InstreamVideoAdUnit` class instead.
 
-#### Step 1: Create an InstreamVideoAdUnit
+### Step 1: Create an InstreamVideoAdUnit
 {:.no_toc}
 
 Initialize the Instream Video Ad Unit with properties:
@@ -757,38 +757,38 @@ Initialize the Instream Video Ad Unit with properties:
 * `configId` - an ID of Stored Impression on the Prebid Server
 * `size` - Width and height of the video ad unit.
 
-#### Step 2: Configure video parameters
+### Step 2: Configure video parameters
 {:.no_toc}
 
 Provide configuration properties for the video ad using the [VideoParameters](#step-3-configure-the-video-parameters) object.
 
-#### Step 3: Prepare IMAAdsLoader
+### Step 3: Prepare IMAAdsLoader
 {:.no_toc}
 
 Prepare the in-stream setup according to the [Google's docs](https://developers.google.com/interactive-media-ads/docs/sdks/ios/client-side).
 
-#### Step 4: Make a bid request
+### Step 4: Make a bid request
 {:.no_toc}
 
 The `fetchDemand` method makes a bid request to the Prebid Server. You should use the version of the `fetchDemand` which returns the targeting keywords in the callback. Later you will construct the IMA ad request using these keywords.
 
-#### Step 5: Generate GAM Instream URI
+### Step 5: Generate GAM Instream URI
 {:.no_toc}
 
 Using Prebid util method, generate Google IMA URI for downloading the cached creative from the winning bid.
 
-#### Step 6: Load IMA ad request
+### Step 6: Load IMA ad request
 {:.no_toc}
 
 Create an ad display container for ad rendering. Then create an ad request with our ad tag, display container, and optional user context. Load the ad. Follow the [in-stream video guide](https://developers.google.com/interactive-media-ads/docs/sdks/ios/client-side#6_initialize_the_ads_loader_and_make_an_ads_request) for additional details.
 
 
-#### Step 7: Set up an ads loader delegate
+### Step 7: Set up an ads loader delegate
 {:.no_toc}
 
 On a successful load event, the `IMAAdsLoader` calls the adsLoadedWithData method of its assigned delegate, passing it an instance of `IMAAdsManager`. You can then initialize the ads manager, which loads the individual ads as defined by the response to the ad tag URL.
 
-#### Step 8: Set up an ads manager delegate
+### Step 8: Set up an ads manager delegate
 {:.no_toc}
 
 Lastly, to manage events and state changes, the ads manager needs a delegate of its own. The `IMAAdManagerDelegate` has methods to handle ad events and errors, as well as methods to trigger play and pause on your video content.
@@ -1043,7 +1043,7 @@ func nativeAdNotValid() {
 
 ```
 
-#### Step 1: Create a NativeRequest
+##### Step 1: Create a NativeRequest
 {:.no_toc}
 
 Initialize the `NativeRequest` with properties:
@@ -1051,12 +1051,12 @@ Initialize the `NativeRequest` with properties:
 * `configId` - an ID of the Stored Impression on the Prebid Server
 * `assets` - the array of [NativeAsset](#step-1-Create-a-NativeRequest) objects which describes your native ad.
 
-#### Step 2: Make a bid request
+##### Step 2: Make a bid request
 {:.no_toc}
 
 The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `GAMRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
 
-#### Step 3: Configure and make a GAM ad request
+##### Step 3: Configure and make a GAM ad request
 {:.no_toc}
 
 Prepare the `GADAdLoader` and run ad request as described in the GMA SDK docs for the [native ads](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/native/start).
@@ -1065,7 +1065,7 @@ If the `GAMRequest` contains targeting keywords the respective Prebid line item 
 
 Be sure that you make the ad request with the same `GAMRequest` object that you passed to the `fetchDemand` method. Otherwise the ad request won't contain targeting keywords and Prebid's ad won't ever be displayed.
 
-#### Step 4: Implement GADCustomNativeAdLoaderDelegate protocol
+##### Step 4: Implement GADCustomNativeAdLoaderDelegate protocol
 {:.no_toc}
 
 In order to capture the native ad response you need to implement [GADCustomNativeAdLoaderDelegate](GADCustomNativeAdLoaderDelegate) protocol. 
@@ -1079,7 +1079,7 @@ Utils.shared.findNative(adObject: customNativeAd)
 
 Without it the SDK won't be able to recognize the Prebid line item.
 
-#### Step 5: Implement NativeAdDelegate
+##### Step 5: Implement NativeAdDelegate
 {:.no_toc}
 
 Once the Prebid line item is recognized, the `NativeAdDelegate` will be activated. The method `nativeAdLoaded` will be invoked and provide the `NativeAd` object with a description of all ad assets that should be rendered.
@@ -1192,14 +1192,14 @@ func nativeAdLoaded(ad: NativeAd) {
 }
 ```
 
-#### Step 1: Create a PrebidAdUnit
+### Step 1: Create a PrebidAdUnit
 {:.no_toc}
 
 Initialize the `PrebidAdUnit` with the following properties:
 
 * `configId` - an ID of the Stored Impression on the Prebid Server
 
-#### Step 2: Setup the parameters
+### Step 2: Setup the parameters
 {:.no_toc}
 
 For each intersted ad format you should creatae a respective configuration parameter:
@@ -1208,97 +1208,97 @@ For each intersted ad format you should creatae a respective configuration param
 * [VideoParameters](#step-3-configure-the-video-parameters) object.
 * [NativeParameters](#nativeparameters) object
 
-##### NativeParameters
+#### NativeParameters
 {:.no_toc}
 
 Using the `NativeParameters` you can customize the bid request for video ads.
 
-###### assets
+##### assets
 {:.no_toc}
 
 The array of requested asset objects. Prebid SDK supports all kinds of assets according to the [IAB spec](https://iabtechlab.com/wp-content/uploads/2016/07/OpenRTB-Native-Ads-Specification-Final-1.2.pdf)  except `video`.
 
-###### eventtrackers
+##### eventtrackers
 {:.no_toc}
 
 The array of requested native trackers. Prebid SDK supports inly `image` trackers according to the [IAB spec](https://iabtechlab.com/wp-content/uploads/2016/07/OpenRTB-Native-Ads-Specification-Final-1.2.pdf).
 
-###### version
+##### version
 {:.no_toc}
 
 Version of the Native Markup version in use. The default value is `1.2`
 
-###### context
+##### context
 {:.no_toc}
 
 The context in which the ad appears.
 
-###### contextSubType
+##### contextSubType
 {:.no_toc}
 
 A more detailed context in which the ad appears.
 
-###### placementType
+##### placementType
 {:.no_toc}
 
 The design/format/layout of the ad unit being offered.
 
-###### placementCount
+##### placementCount
 {:.no_toc}
 
 The number of identical placements in this Layout.
 
-###### sequence
+##### sequence
 {:.no_toc}
 
 0 for the first ad, 1 for the second ad, and so on.
 
-###### asseturlsupport
+##### asseturlsupport
 {:.no_toc}
 
 Whether the supply source/impression supports returning an assetsurl instead of an asset object. 0 or the absence of the field indicates no such support.
 
-###### durlsupport
+##### durlsupport
 {:.no_toc}
 
 Whether the supply source / impression supports returning a dco url instead of an asset object. 0 or the absence of the field indicates no such support.
 
-###### privacy
+##### privacy
 {:.no_toc}
 
 Set to 1 when the native ad supports buyer-specific privacy notice.  Set to 0 (or field absent) when the native ad doesn’t support custom privacy links or if support is unknown.
 
-###### ext
+##### ext
 {:.no_toc}
 
 This object is a placeholder that may contain custom JSON agreed to by the parties to support flexibility beyond the standard defined in this specification
 
 
-#### Step 3: Create PrebidRequest
+### Step 3: Create PrebidRequest
 {:.no_toc}
 
 Create the instance of `PrebidRequest` initializing it with respective ad format parameters.
 
 In addition you can set the following properties of the `PrebidRequest`.
 
-#### Step 4: Make a bid request
+### Step 4: Make a bid request
 {:.no_toc}
 
 The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `GAMRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
 
-#### Step 5: Create a GAMBannerView
+### Step 5: Create a GAMBannerView
 {:.no_toc}
 
 Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner) to integrate a banner ad unit.
 
-#### Step 6: Load an Ad
+### Step 6: Load an Ad
 {:.no_toc}
 
 Now you should request the ad from GAM. If the `GAMRequest` contains targeting keywords, the respective Prebid line item will be returned from GAM and GMA SDK will render its creative.
 
 Be sure that you make the ad request with the same `GAMRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
-#### Step 7: Process the Ad Response
+### Step 7: Process the Ad Response
 {:.no_toc}
 
 Once an app receives a signal that an ad is loaded, you should use the method `AdViewUtils.findPrebidCreativeSize` to verify whether it is a Prebid ad and resize the ad slot respectively to the creative's properties.

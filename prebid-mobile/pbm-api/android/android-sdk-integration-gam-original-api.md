@@ -1321,21 +1321,21 @@ private fun inflatePrebidNativeAd(ad: PrebidNativeAd) {
 }
 ```
 
-#### Step 1: Create a PrebidAdUnit
+### Step 1: Create a PrebidAdUnit
 {:.no_toc}
 
 Initialize the `PrebidAdUnit` with the following properties:
 
 * `configId` - an ID of the Stored Impression on the Prebid Server
 
-#### Step 2: Create a PrebidRequest
+### Step 2: Create a PrebidRequest
 {:.no_toc}
 
 Create the instance of `PrebidRequest` initializing it with respective ad format parameters.
 
 In addition you can set the following properties of the `PrebidRequest`.
 
-#### Step 3: Setup the parameters
+### Step 3: Setup the parameters
 {:.no_toc}
 
 For each intersted ad format you should creatae a respective configuration parameter:
@@ -1344,77 +1344,77 @@ For each intersted ad format you should creatae a respective configuration param
 * [VideoParameters](#step-3-configure-the-video-parameters) object.
 * [NativeParameters](#nativeparameters) object
 
-##### NativeParameters
+#### NativeParameters
 {:.no_toc}
 
 Using the `NativeParameters` you can customize the bid request for video ads.
 
-###### assets
+##### assets
 {:.no_toc}
 
 The array of requested asset objects. Prebid SDK supports all kinds of assets according to the [IAB spec](https://iabtechlab.com/wp-content/uploads/2016/07/OpenRTB-Native-Ads-Specification-Final-1.2.pdf)  except `video`.
 
-###### eventtrackers
+##### eventtrackers
 {:.no_toc}
 
 The array of requested native trackers. Prebid SDK supports inly `image` trackers according to the [IAB spec](https://iabtechlab.com/wp-content/uploads/2016/07/OpenRTB-Native-Ads-Specification-Final-1.2.pdf).
 
-###### version
+##### version
 {:.no_toc}
 
 Version of the Native Markup version in use. The default value is `1.2`
 
-###### context
+##### context
 {:.no_toc}
 
 The context in which the ad appears.
 
-###### contextSubType
+##### contextSubType
 {:.no_toc}
 
 A more detailed context in which the ad appears.
 
-###### placementType
+##### placementType
 {:.no_toc}
 
 The design/format/layout of the ad unit being offered.
 
-###### placementCount
+##### placementCount
 {:.no_toc}
 
 The number of identical placements in this Layout.
 
-###### sequence
+##### sequence
 {:.no_toc}
 
 0 for the first ad, 1 for the second ad, and so on.
 
-###### asseturlsupport
+##### asseturlsupport
 {:.no_toc}
 
 Whether the supply source/impression supports returning an assetsurl instead of an asset object. 0 or the absence of the field indicates no such support.
 
-###### durlsupport
+##### durlsupport
 {:.no_toc}
 
 Whether the supply source / impression supports returning a dco url instead of an asset object. 0 or the absence of the field indicates no such support.
 
-###### privacy
+##### privacy
 {:.no_toc}
 
 Set to 1 when the native ad supports buyer-specific privacy notice.  Set to 0 (or field absent) when the native ad doesn’t support custom privacy links or if support is unknown.
 
-###### ext
+##### ext
 {:.no_toc}
 
 This object is a placeholder that may contain custom JSON agreed to by the parties to support flexibility beyond the standard defined in this specification
 
-#### Step 4: Make a bid request
+### Step 4: Make a bid request
 {:.no_toc}
 
 The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `GAMRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
 
-#### Step 5: Load and Ad
+### Step 5: Load and Ad
 {:.no_toc}
 
 Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/native-banner) to combine the a banner and custom native ads int the app.

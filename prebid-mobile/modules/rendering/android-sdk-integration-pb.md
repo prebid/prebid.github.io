@@ -151,7 +151,7 @@ interstitialAdUnit = InterstitialAdUnit(
 #### Step 1: Create an Ad Unit
 {:.no_toc}
 
-Initialize the `InterstitialAdUnit ` with properties:
+Initialize the `InterstitialAdUnit` with properties:
 
 * `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
 * `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
