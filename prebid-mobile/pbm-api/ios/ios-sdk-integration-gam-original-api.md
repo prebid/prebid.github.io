@@ -1047,7 +1047,7 @@ func nativeAdNotValid() {
 Initialize the `NativeRequest` with properties:
 
 * `configId` - an ID of the Stored Impression on the Prebid Server
-* `assets` - the array of [NativeAsset](#step-1-Create-a-NativeRequest) objects which describes your native ad.
+* `assets` - the array of `NativeAsset` objects which describes your native ad.
 
 ##### Step 2: Make a bid request
 {:.no_toc}
@@ -1405,6 +1405,7 @@ func clearUserData()
 The Data object is free form data (also known as First Party Data) supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
 
 Data is broken up into two different data types:
+
 * User
   * Global in scope only
 * Inventory (context)
@@ -1427,7 +1428,7 @@ func addContextData(key: String, value: String)
 #### updateContextData
 {:.no_toc}
 
-```
+``` swift
 func updateContextData(key: String, value: Set<String>)
 ```
 
