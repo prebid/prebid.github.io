@@ -39,32 +39,31 @@ This approach is avaliable for the following ad formats:
 The basic integration steps for these ad units you can find at the page for integration using [Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html). The diference is that you should use  the `fetchDemand` function with following signature:
 
 ```kotlin
-public void fetchDemand(@NonNull Object adObj, 
-                        @NonNull OnCompleteListener2 listener) { ... }
+public void fetchDemand(OnFetchDemandResult listener) { ... }
                         
-public interface OnCompleteListener2 {
-    /**
-     * This method will be called when PrebidMobile finishes attaching keywords to unmodifiableMap.
-     * @param resultCode see {@link ResultCode} class definition for details
-     * @param unmodifiableMap a map of targeting Key/Value pairs
-     */
-    @MainThread
-    void onComplete(ResultCode resultCode, 
-                    @Nullable Map<String, String> unmodifiableMap);
-}                        
+public interface OnFetchDemandResult {
+    void onComplete(@NonNull BidInfo bidInfo);
+}                       
 ```
 
 Examples:
 
-```kotlin
-private fun loadRewardedVideo() {
-    adUnit?.fetchDemand { resultCode, unmodifiableMap -> 
-        val keywords: Map<String, String> = HashMap(unmodifiableMap)
+``` kotlin
+adUnit?.fetchDemand { result ->
+    if(result.getResultCode() == ResultCode.SUCCESS) {
+        val keywords = resultCode.targetingKeywords
 
-        adServerObject.loadRewardedVideo(ADUNITID_REWARDED, keywords)
+        makeAdRequest(keywords)
     }
 }
 ```
+
+The `BidInfo` provides the following properties: 
+
+- `resultCode` - the object of type `ResultCode` describing the status of the bid request.
+- `targetingKeywords` - the targeting keywords of the winning bid
+- `exp` - the number of seconds that may elapse between the auction and the actual impression. In this case, it indicates the approximate TTL of the bid in the Prebid Cache. Note that the actual expiration time of the bid will be less than this number due to the network and operational overhead. The Prebid SDK doesn't make any adjustments to this value.
+- `nativeAdCacheId` - the local cache ID of the winning bid. Applied only to the `native` ad format.
 
 ## Rendering API
 

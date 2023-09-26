@@ -58,7 +58,7 @@ adUnit.fetchDemand(adObject: gamRequest, request: prebidRequest) { [weak self] b
 
 The `BidInfo` provides the following properties: 
 
-- `result` - the object of type `ResultCode` describing the status of the bid request.
+- `resultCode` - the object of type `ResultCode` describing the status of the bid request.
 - `targetingKeywords` - the targeting keywords of the winning bid
 - `exp` - the number of seconds that may elapse between the auction and the actual impression. In this case, it indicates the approximate TTL of the bid in the Prebid Cache. Note that the actual expiration time of the bid will be less than this number due to the network and operational overhead. The Prebid SDK doesn't make any adjustments to this value.
 - `nativeAdCacheId` - the local cache ID of the winning bid. Applied only to the `native` ad format.
