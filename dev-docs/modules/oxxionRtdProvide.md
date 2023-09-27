@@ -17,7 +17,7 @@ sidebarType : 1
 
 Module Name: Oxxion Rtd Provider
 Module Type: Rtd Provider
-Maintainer: tech@oxxion.io
+Maintainer: <tech@oxxion.io>
 
 ## Oxxion Real-Time-Data submodule
 
@@ -29,12 +29,14 @@ This Rtd module purpose is to filter bidders requested.
 Make sure to have the following modules listed while building prebid : `rtdModule,oxxionRtdProvider`
 `rtdModule` is required to activate real-time-data submodules.
 For example :
-```
+
+```text
 gulp build --modules=schain,priceFloors,currency,consentManagement,appnexusBidAdapter,rubiconBidAdapter,rtdModule,oxxionRtdProvider
 ```
 
 Then add the oxxion Rtd module to your prebid configuration :
-```
+
+```text
 pbjs.setConfig(
   ...
   realTimeData: {
