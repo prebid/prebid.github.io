@@ -26,7 +26,7 @@ sidebarType: 1
 
 ### Registration
 
-If you have any questions regarding set up, please reach out to <dist-runtime@viantinc.com>.
+If you have any questions regarding set up, please reach out to <Marketplace@adelphic.com>.
 
 #### Bid Params
 
