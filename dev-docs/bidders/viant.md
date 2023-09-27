@@ -11,7 +11,7 @@ gpp_supported: false
 schain_supported: false
 userId: uid2, unifiedId
 pbjs: true
-prebid_member: false
+prebid_member: true
 dchain_supported: false
 safeframes_ok: false
 deals_supported: true
