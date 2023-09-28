@@ -37,7 +37,7 @@ The Prebid Server repository contains a maven submodule called `all-modules` loc
       +- pom.xml <- POM of all included modules
 ```
 
-A benefit of open sourcing your module in this way is that it can use the parent `all-modules` as a maven dependency. It simplifies management of the PBS-Core and other commonly used dependencies and you will be confident that it works well with the current version of Prebid Server. 
+A benefit of open sourcing your module in this way is that it can use the parent `all-modules` as a maven dependency. It simplifies management of the PBS-Core and other commonly used dependencies and you will be confident that it works well with the current version of Prebid Server.
 
 ### Your module's build file
 
