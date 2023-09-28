@@ -17,7 +17,7 @@ This document details how to make a module for PBS-Java.
 
 You will want to be familiar with the following background information:
 
-- the [module overview](/prebid-server/developers/add-a-module.html) 
+- the [module overview](/prebid-server/developers/add-a-module.html)
 - the [PBS-Java Modularity Tech Spec](https://docs.google.com/document/d/1VP_pi7L5Iy3ikHMbtC2_rD5RZTVSc3OkTWKvtRS5x5Y/edit#heading=h.oklyk2bogkx4)
 
 ### Coding standards
@@ -101,9 +101,10 @@ The quick start is to take a look in two places:
 - the [module test cases](https://github.com/prebid/prebid-server-java/tree/master/src/test/java/org/prebid/server/it/hooks)
 
 ### Adding module documentation
+
 It is required to add a "README.md" file to the root of your module folder. Recommended this file contains the description of what the implemented module does, links to external documentation and includes maintainer contact info (email, slack, etc).
 
-The documentation must also live on the docs.prebid.org site. Please add a markdown file to https://github.com/prebid/prebid.github.io/tree/master/prebid-server/pbs-modules
+The documentation must also live on the docs.prebid.org site. Please add a markdown file to <https://github.com/prebid/prebid.github.io/tree/master/prebid-server/pbs-modules>
 
 ### Hook Interfaces
 
@@ -180,7 +181,7 @@ Each hook interface internally extends org.prebid.server.hooks.v1.Hook basic int
     );
     ```
 
-More test implementations for each hook can be found in unit-tests at https://github.com/prebid/prebid-server-java/tree/master/src/test/java/org/prebid/server/it/hooks folder.
+More test implementations for each hook can be found in unit-tests at <https://github.com/prebid/prebid-server-java/tree/master/src/test/java/org/prebid/server/it/hooks> folder.
 
 ### Applying results asynchronously
 
@@ -234,7 +235,7 @@ AuctionEvent
             -> analyticsTags
 ```
 
-The AnalyticsTags object has activities with collection of  org.prebid.server.hooks.v1.analytics.Result objects inside. Each Result has the values() method which returns com.fasterxml.jackson.databind.node.ObjectNode. 
+The AnalyticsTags object has activities with collection of  org.prebid.server.hooks.v1.analytics.Result objects inside. Each Result has the values() method which returns com.fasterxml.jackson.databind.node.ObjectNode.
 
 It depends on the particular module implementation how to parse their analytics tags, since the internal structure is custom and depends on the module. Therefore, analytics modules that want to report on specific behavior need to be coded to know about that module. See the ortb2blocking module for an example of what analytics tags may be available.
 
