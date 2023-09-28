@@ -35,7 +35,7 @@ The use cases for this module are the same as for the `US Gen Privacy Module`:
 - Is moduleM allowed to enrich the request with EIDs?
 
 The difference is that instead of the GPP interpretation logic being coded into the module,
-it allows publishers and their lawyers to come up with their own interpretations. As you'll see, this powerful but complicated.
+it allows publishers and their lawyers to come up with their own interpretations. As you'll see, this is powerful but complicated.
 
 ## Using the US Custom Logic Privacy Module
 
