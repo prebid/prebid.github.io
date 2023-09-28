@@ -8,7 +8,7 @@ title: Prebid Server | Developers | Adding a Java Module
 # Prebid Server - Adding a Java Module
 {: .no_toc}
 
-* TOC
+- TOC
 {:toc }
 
 ## Overview
@@ -28,7 +28,7 @@ The module’s code style should correspond to the [PBS-Java project code style]
 
 The Prebid Server repository contains a maven submodule called `all-modules` located in the `extra/modules` folder. It includes all available PBS modules. So, in order to add a new module, fork the repository and create a folder with the desired name inside the modules folder with the following structure:
 
-```
+```text
 +- prebid-server-java/
   +- extra/
     +- modules/
@@ -43,7 +43,7 @@ A benefit of open sourcing your module in this way is that it can use the parent
 
 Here's a partial example of your module-specific `pom.xml` file:
 
-```
+```text
 <?xml ...>
 <project ...>
    <parent>
@@ -60,6 +60,7 @@ Here's a partial example of your module-specific `pom.xml` file:
 ```
 
 where:
+
 - PREBID_SERVER_VERSION is the current version of Prebid Server. The release team will update this value for all modules with each release, but you need to set it to the version of PBS that you're developing with.
 - YOUR_MODULE_ARTIFACT_ID is the name of your module JAR file without version and extension. e.g. ortb2-blocking
 - YOUR_MODULE_TEXTUAL_NAME is unique within the space of all other modules. e.g. instead of naming a module "blocking", a better name would be "ortb2blocking".
@@ -68,7 +69,7 @@ where:
 
 Add your module within `extra/modules/pom.xml` in the "modules" section:
 
-```
+```text
 <modules>
     ...
     <module>YOUR_MODULE_ARTIFACT_ID</module>
@@ -79,7 +80,7 @@ Add your module within `extra/modules/pom.xml` in the "modules" section:
 
 The structure of your module source code inside the modules directory must have a standard maven-compatible structure:
 
-```
+```text
 +- src/
   +- main/
     +- java/ <- source code
@@ -95,6 +96,7 @@ The structure of your module source code inside the modules directory must have 
 ## Module Code
 
 The quick start is to take a look in two places:
+
 - the [ortb2-blocking module](https://github.com/prebid/prebid-server-java/tree/master/extra/modules/ortb2-blocking)
 - the [module test cases](https://github.com/prebid/prebid-server-java/tree/master/src/test/java/org/prebid/server/it/hooks)
 
@@ -124,6 +126,7 @@ These are the available hooks that can be implemented in a module:
 In a module it is not necessary to implement all mentioned interfaces but only one (or several) required by your functionality.
 
 Each hook interface internally extends org.prebid.server.hooks.v1.Hook basic interface with methods should be implemented:
+
 - `code()` - returns module code.
 - `call(...)` - returns result of hook invocation.
 
@@ -221,7 +224,7 @@ Analytics adapters can receive these tags in a parameter that's been added to th
 
 To get analytics tag you need to go into:
 
-```
+```text
 AuctionEvent 
   -> AuctionContext 
     -> HookExecutionContext 
@@ -234,7 +237,6 @@ AuctionEvent
 The AnalyticsTags object has activities with collection of  org.prebid.server.hooks.v1.analytics.Result objects inside. Each Result has the values() method which returns com.fasterxml.jackson.databind.node.ObjectNode. 
 
 It depends on the particular module implementation how to parse their analytics tags, since the internal structure is custom and depends on the module. Therefore, analytics modules that want to report on specific behavior need to be coded to know about that module. See the ortb2blocking module for an example of what analytics tags may be available.
-
 
 ## Further Reading
 
