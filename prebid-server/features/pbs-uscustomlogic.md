@@ -99,16 +99,31 @@ The specific fields produced by the module that can be referred to in a rule are
 
 These are the fields that can be referenced in the JsonLogic rule:
 
-{: .table .table-bordered .table-striped }
-| MspaServiceProviderMode | MspaOptOutOptionMode | SensitiveDataProcessing1 |
-| MspaCoveredTransaction | Gpc | SensitiveDataProcessing2 |
-| SaleOptOutNotice | SaleOptOut | SensitiveDataProcessing3 |
-| SharingNotice | SharingOptOut | SensitiveDataProcessing4 |
-| TargetedAdvertisingOptOutNotice | TargetedAdvertisingOptOut | SensitiveDataProcessing5 |
-| KnownChildSensitiveDataConsents1 | SensitiveDataProcessingOptOutNotice | SensitiveDataProcessing6 |
-| KnownChildSensitiveDataConsents1 | SensitiveDataLimitUseNotice | SensitiveDataProcessing7 |
-| PersonalDataConsents | SharingOptOutNotice | SensitiveDataProcessing8 |
-| | | SensitiveDataProcessing9 |
+- MspaServiceProviderMode
+- MspaCoveredTransaction
+- MspaOptOutOptionMode
+- Gpc
+- SaleOptOutNotice
+- SaleOptOut
+- SharingNotice
+- SharingOptOutNotice
+- SharingOptOut
+- TargetedAdvertisingOptOutNotice
+- TargetedAdvertisingOptOut
+- KnownChildSensitiveDataConsents1
+- KnownChildSensitiveDataConsents2
+- PersonalDataConsents
+- SensitiveDataProcessingOptOutNotice
+- SensitiveDataLimitUseNotice
+- SensitiveDataProcessing1
+- SensitiveDataProcessing2
+- SensitiveDataProcessing3
+- SensitiveDataProcessing4
+- SensitiveDataProcessing5
+- SensitiveDataProcessing6
+- SensitiveDataProcessing7
+- SensitiveDataProcessing8
+- SensitiveDataProcessing9
 
 See the IAB technical specifications for the definition and values allowed for each field. e.g. [GPP Extension: IAB Privacy’s US National Privacy Technical Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)
 
