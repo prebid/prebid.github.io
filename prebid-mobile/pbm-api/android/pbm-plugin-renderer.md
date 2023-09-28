@@ -26,7 +26,7 @@ Everytime that a bid response is received and it reaches the rendering stage, Pr
 
 Take the example on the image below where a BannerView will have its ad view transposed accordingly to the plugin renderer status. That way an inner view which represents the ad itself is handled totally under the hood from the publisher point of view, what makes unnecessary any change on the BannerView loading or initialization.
 
-> In case of Interstitial ads this is just inflated in the foreground regardless the view hierarchy.
+> In case of Interstitial ad this is just inflated in the foreground regardless the view hierarchy.
 
 ![Plugin Renderer big picture](/assets/images/prebid-mobile/prebid-plugin-renderer-ad-view-injection.png)
 
