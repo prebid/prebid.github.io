@@ -20,6 +20,16 @@ Such feature turn possible, for instance, the rendering of non-standard ad respo
 
 ![Plugin Renderer big picture](/assets/images/prebid-mobile/prebid-plugin-renderer.png)
 
+### Ad view transposing
+
+Everytime that a bid response is received and it reaches the rendering stage, Prebid SDK will delegate the ad view rendering to an existing plugin renderer, such as a custom one if this is elected or the default one in any other case.
+
+Take the example on the image below where a BannerView will have its ad view transposed accordingly to the plugin renderer status. That way an inner view which represents the ad itself is handled totally under the hood from the publisher point of view, what makes unnecessary any change on the BannerView loading or initialization.
+
+> In case of Interstitial ads this is just inflated in the foreground regardless the view hierarchy.
+
+![Plugin Renderer big picture](/assets/images/prebid-mobile/prebid-plugin-renderer-ad-view-injection.png)
+
 ### Setup
 
 * Provide your Prebid Bidder Adapter ([see more](prebid-server/developers/add-new-bidder-go.html))
@@ -27,7 +37,7 @@ Such feature turn possible, for instance, the rendering of non-standard ad respo
 * Initialise your plugin renderer before starting to request ads
 * Take advantage of the plugin renderer fields
 
-ℹ️ Please notice that all implementation on mobile related to the Plugin Renderer should be provided externally, not in the PBM SDK itself. For instance, an app owner or third party SDK would implement it and initialise it on their own context. 
+> Please notice that all implementation on mobile related to the Plugin Renderer should be provided externally, not in the PBM SDK itself. For instance, an app owner or third party SDK would implement it and initialise it on their own context. 
 
 ___
 
