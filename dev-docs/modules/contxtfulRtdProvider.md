@@ -76,7 +76,7 @@ To view an integration example:
 1. In your CLI run:
 
     ```bash
-    gulp serve --modules=appnexusBidAdapter,contxtfulRtdProvider`
+    gulp serve --modules=appnexusBidAdapter,contxtfulRtdProvider
     ```
 
 2. In your browser, navigate to:
