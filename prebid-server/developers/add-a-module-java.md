@@ -191,6 +191,16 @@ Thus, for any kind of blocking operations it is recommended to use a Vert.x buil
 
 To see how to proceed with async operations, please see similar PBS-Core functionality, for example Currency Conversion Service implementation (class “org.prebid.server.currency.CurrencyConversionService”).
 
+### Available Functions
+
+#### Getting the localhost CPU
+
+To support modules that need to obtain information about the local CPU environment (e.g. a traffic-shaping), the code can call this function:
+
+```java
+cpuLoadAverageStats.getCpuLoadAverage();  // returns a float
+```
+
 ### Configuration
 
 It's possible to define default module configuration which can be read by the module at PBS startup. Please see the [Configuration](https://docs.google.com/document/d/1VP_pi7L5Iy3ikHMbtC2_rD5RZTVSc3OkTWKvtRS5x5Y/edit#heading=h.mh3urph3k1mk) section of the technical specification.
