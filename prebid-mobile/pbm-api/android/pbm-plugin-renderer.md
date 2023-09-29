@@ -107,7 +107,7 @@ class PpmBannerPluginRendererFragment : AdFragment(), BannerViewListener {
 
 #### Take advantage of the plugin renderer fields:
 
-The fields `name`, `version` and `data` from your plugin renderer are added to the bid request by the Prebid Mobile SDK and can be read by your Prebid Bidder Adapter in order to better handle ad requests from a plugin renderer taking into account its version and the additional values stored on the data field.
+The fields `name`, `version` and `data` from your plugin renderer are added to the bid request by the Prebid Mobile SDK and can be read by your Prebid Bidder Adapter in order to better handle ad requests from a plugin renderer taking into account its name, version and the additional values stored on the data field.
 
 The field `data` can be used as below or with a more complex data structure:
 ```kotlin
@@ -127,7 +127,7 @@ It is important to notice that the compliant formats you set on `isSupportRender
 
 ### Original API
 
-The Plugin Renderer feature does not work with [GAM Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.md). Despite that if you are using the regular GAM integration it will work fine.
+The Plugin Renderer feature does not work with [GAM Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.md) since the ad rendering does not happen in the Prebid SDK but externally. Despite that if you are using the regular GAM integration it will work fine.
 
 ## Ad Event Listeners
 An optional dedicated generic ad event listener is offered in case of the existing event listeners are insufficient to keep your ad consumer fully aware of your ad lifecycle. 
