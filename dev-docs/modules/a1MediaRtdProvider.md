@@ -18,7 +18,7 @@ Disclosure: This module loads external code that is not open source and has not 
 
 The A1Media RTD module loads a script for obtaining A1Media user segments, providing the user segment data to bid-requests.
 
-To use this module, you’ll need to work with [A1MediaGroup](https://www.a1mediagroup.com/) to get an account and receive instructions on how to set up your pages and ad server.
+To use this module, you’ll need to work with [A1MediaGroup](https://a1mediagroup.jp/) to get an account and receive instructions on how to set up your pages and ad server.
 
 Contact <dev@a1mediagroup.co.kr> for information.
 

@@ -127,8 +127,12 @@ In order for FreeWheel SDK to send the correct Creative to the video player it n
 
 To ensure the cache URL is correct there are two macros that dynamically  populate the URL query. To confirm the dynamic URL is formatted correctly click on the URL link in the Detail field. A pop over will display with the dynamic URL.  
 
-The scheme, host, and path should read as follows:
-<https://prebid.adnxs.com/pbc/v1/cache>
+The scheme, host, and path should point to your Prebid Server cache. For instance, if you
+utilize Xandr's AppNexus cache:
+
+```text
+https://prebid.adnxs.com/pbc/v1/cache
+```
 
 The query should have one key-value items:
 
