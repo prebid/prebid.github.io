@@ -14,7 +14,7 @@ sidebarType: 2
 {:toc}
 
 ## Overview
-Plugin Renderer is a feature that enable the ability to delegate the ad rendering to a component of yours. Such feature turn possible, for instance, the rendering of non-standard ad responses that Prebid Mobile SDK can not render by itself. This integration require from you, in first place, to have a Bidder Adapter implemented ([see more](prebid-server/developers/add-new-bidder-go.html)) in order to handle bid requests from the Prebid Mobile SDK that include your plugin renderer.
+Plugin Renderer is a feature that enables the ability to delegate the ad rendering to a component of yours. Such feature turn possible, for instance, the rendering of non-standard ad responses that Prebid Mobile SDK can not render by itself. This integration require from you, in first place, to have a Bidder Adapter implemented ([see more](prebid-server/developers/add-new-bidder-go.html)) in order to handle bid requests from the Prebid Mobile SDK that include your plugin renderer.
 
 ![Plugin Renderer big picture](/assets/images/prebid-mobile/prebid-plugin-renderer.png)
 
