@@ -8,7 +8,7 @@ tcfeu_supported: false
 coppa_supported: true
 usp_supported: true
 gpp_supported: false
-schain_supported: false
+schain_supported: true
 userId: uid2, unifiedId
 pbjs: true
 prebid_member: true
