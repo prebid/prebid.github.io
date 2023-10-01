@@ -1282,7 +1282,7 @@ registerBidder(spec);
     * If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
     * If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
     * If you support the COPPA flag, add `coppa_supported: true`. Default is false.
-    * If you support the IAB's GPP consent string, add `gpp_supported: true`. Default is false.
+    * If you support the IAB's GPP consent string, add `gpp_sids` with a comma separated list of section names, e.g. `gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp`. Default is None.
     * If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
     * If you support passing a demand chain on the response, add `dchain_supported: true`. Default is false.
     * If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.
