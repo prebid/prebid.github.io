@@ -6,7 +6,7 @@ biddercode: mathildeads
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-gdpr_supported: false
+tcfeu_supported: false
 pbjs: true
 pbs: false
 pbs_app_supported: false
@@ -15,7 +15,7 @@ sidebarType: 1
 
 ### Disclosure
 
-Note: This bidder appears to only consider gdprApplies if a consent string is available. This may result in some incorrect TCF2 processing, such as when the consent string is not yet available but the publisher has decided GDPR always applies. See https://github.com/prebid/Prebid.js/issues/7775
+Note: This bidder appears to only consider gdprApplies if a consent string is available. This may result in some incorrect TCF2 processing, such as when the consent string is not yet available but the publisher has decided GDPR always applies. See <https://github.com/prebid/Prebid.js/issues/7775>
 
 ### Prebid.JS Bid Params
 

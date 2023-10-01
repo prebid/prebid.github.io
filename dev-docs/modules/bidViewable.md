@@ -11,9 +11,10 @@ sidebarType : 1
 ---
 
 # Bid Viewability - GAM
+
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 ## Overview
@@ -21,6 +22,7 @@ sidebarType : 1
 This optional module will trigger a BID_VIEWABLE event which can be consumed by Analytics adapters. In addition, the winning bidder can implement an `onBidViewable` method to capture this event.
 
 Notes:
+
 - The module does not work with adservers other than GAM and only with GPT integration. See the [other Bid Viewable Event](/dev-docs/modules/bidViewableIO.html) module for an ad server independent version.
 - The GPT API is used to find when a bid is viewable. See [GPT documentation](https://developers.google.com/publisher-tag/reference#googletag.events.impressionviewableevent) for more details.
 - This event is fired when an impression becomes viewable, according to [Active View criteria](https://support.google.com/admanager/answer/4524488).
@@ -33,9 +35,10 @@ Instead of listening for events, bidders may supply a `bid.vurls` array and this
 This feature doesn't work with [Instream Video](/dev-docs/examples/instream-banner-mix.html), as GPT's impressionViewable event is not triggered for instream-video-creative
 
 The default logic used to find a matching Prebid.js bid for a GPT slot is
-```
+
+```javascript
 (bid, slot) => (slot.getAdUnitPath() === bid.adUnitCode ||
-		slot.getSlotElementId() === bid.adUnitCode)
+        slot.getSlotElementId() === bid.adUnitCode)
 ```
 
 ## Configuration
@@ -49,7 +52,8 @@ The default logic used to find a matching Prebid.js bid for a GPT slot is
 | `bidViewability.customMatchFunction` | Optional | function(bid, slot) | this function will be used to find the matching winning bid for the GPT slot. See above for the default. |
 
 ## Example of setting module config
-{% highlight js %}
+
+```javascript
     pbjs.setConfig({
         bidViewability: {
             enabled: true,
@@ -60,14 +64,15 @@ The default logic used to find a matching Prebid.js bid for a GPT slot is
             }
         }
     });
-{% endhighlight %}
+```
 
 ## Example of consuming BID_VIEWABLE event
-{% highlight js %}
-	pbjs.onEvent('bidViewable', function(bid){
-		console.log('got bid details in bidViewable event', bid);
-	});
-{% endhighlight %}
+
+```javascript
+    pbjs.onEvent('bidViewable', function(bid){
+        console.log('got bid details in bidViewable event', bid);
+    });
+```
 
 ## Related Reading
 

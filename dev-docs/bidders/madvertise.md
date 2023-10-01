@@ -4,7 +4,7 @@ title: Madvertise
 description: Prebid Madvertise Bidder Adapter
 pbjs: true
 biddercode: madvertise
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 153
 media_types: banner, video
 safeframes_ok: true
@@ -38,13 +38,13 @@ sidebarType: 1
     }
 }
 ```
+
 ### Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Description                                                                                             | Example                                 | Type      |
 |--------------|----------|---------------------------------------------------------------------------------------------------------|-----------------------------------------|-----------|
 |`zoneId`      | required | The zone ID provided by Madvertise.                                                                     | `'/1111111/banner'`                     | `string`  |
-
 
 #### Example
 
@@ -80,4 +80,3 @@ sidebarType: 1
     "tmax": 1000
 }
 ```
-

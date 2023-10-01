@@ -20,20 +20,18 @@ Confiant is the industry leader in real-time detecting and blocking of bad ads w
 
 To start using this module, please contact [Confiant](https://www.confiant.com/contact) to get an account and customer key.
 
-
 {: .alert.alert-warning :}
 Disclosure: When configured, this module will insert a script, that is loaded from Confiant's CDN and has proprietary code.
 
 ## Integration
 
-1) Build Prebid bundle with Confiant module included:
+1. Build Prebid bundle with Confiant module included:
 
+    ```bash
+    gulp build --modules=confiantRtdProvider,...
+    ```
 
-```
-gulp build --modules=confiantRtdProvider,...
-```
-
-2) Include the resulting bundle on your page.
+2. Include the resulting bundle on your page.
 
 # Configuration
 

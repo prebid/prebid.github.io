@@ -6,7 +6,7 @@ pbjs: true
 pbs: false
 biddercode: viously
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 1028
 usp_supported: true
 prebid_member: false
@@ -20,8 +20,9 @@ multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
-### Note:
-Viously Header Bidding adapter requires setup and approval. Please reach out to prebid@viously.com for more details.
+### Note
+
+Viously Header Bidding adapter requires setup and approval. Please reach out to <prebid@viously.com> for more details.
 
 ### Bid params
 

@@ -8,6 +8,7 @@ sidebarType: 1
 ---
 
 # Prebid.js Legacy Native Implementation Guide
+
 {: .no_toc}
 
 {% capture version2 %}
@@ -15,9 +16,8 @@ Prebid recommends new native implementations use the [OpenRTB method of defining
 {% endcapture %}
 {% include alerts/alert_important.html content=version2 %}
 
-* TOC
+- TOC
 {:toc}
-
 
 ## Overview
 
@@ -71,7 +71,7 @@ The Prebid.js AdUnit needs to defines a native mediatype object to tell bidders 
 | --- | --- | --- | --- | --- |
 | sendTargetingKeys | optional | Defines whether or not to send the hb_native_ASSET targeting keys to the ad server. Defaults to `true` for now, though we recommend setting this to `false` and utilizing one of the ways to define a native template. | `false` | boolean |
 | adTemplate | optional | Used in the ‘AdUnit-Defined Creative Scenario’, this value controls the Native template right in the page. | See [example](#42-implementing-adunit-defined-template) below. | escaped ES5 string |
-| rendererUrl | optional | Used in the ‘Custom Renderer Scenario’, this points to javascript code that will produce the Native template. | 'https://host/path.js' | string |
+| rendererUrl | optional | Used in the ‘Custom Renderer Scenario’, this points to javascript code that will produce the Native template. | `'https://host/path.js'` | string |
 | type | optional | A “type” is like a macro that defines a group of assets. The only value currently supported is ‘image’, which implies the following assets: image, title, sponsoredBy, clickUrl, body, icon, and cta. The first 4 are required attributes. | `image` | string |
 | ASSETCODE. required | optional | Defines whether native bids must include this asset. Defaults to `false`. | `true` | boolean |
 | ASSETCODE. len | optional | For text assets, bidders should pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. | 40 | integer |
@@ -82,7 +82,6 @@ The Prebid.js AdUnit needs to defines a native mediatype object to tell bidders 
 | ASSETCODE. aspect_ratios.ratio_width | optional | Part of the aspect_ratios object, bidders may pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. | 2 | integer |
 | ASSETCODE. aspect_ratios.ratio_height | optional | Part of the aspect_ratios object, bidders may pass this value through to the endpoint. Prebid.js does not enforce the responses and there’s no default. | 3 | integer |
 | ext.CUSTOMASSET | optional | Non-standard or bidder-specific assets can be supplied on the `ext` here. Attributes on custom assets are documented by the vendor. | | |
-
 
 **Table 3: Native Assets Recognized by Prebid.js**
 
@@ -120,11 +119,11 @@ mediaTypes {
 
 In the native template, simply access the custom value with the normal Prebid ##macro## format assuming `hb_native_` as the prefix. For example:
 
-```
-    <div id="mytemplate">
-    ... render a lovely creative ...
-    ... refer to ##hb_native_bidderA_specialtracking## when appropriate ...
-    </div>
+```html
+<div id="mytemplate">
+... render a lovely creative ...
+... refer to ##hb_native_bidderA_specialtracking## when appropriate ...
+</div>
 ```
 
 ## 4. Implementing the Native Template
@@ -142,12 +141,13 @@ In this scenario, the body of the native creative template is managed within the
 When the native AdUnit is defined in the page, declare `sendTargetingKeys: false` in the native Object. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
 
 Example Native AdUnit:
-```
+
+```javascript
 pbjs.addAdUnits({
     code: slot.code,
     mediaTypes: {
         native: {
-	    sendTargetingKeys: false,
+        sendTargetingKeys: false,
             image: {
                 required: true,
                 sizes: [150, 50]
@@ -182,11 +182,11 @@ pbjs.addAdUnits({
 
 Here’s an example native AdUnit using the ‘type’ feature, which implies a number of required and optional attributes.
 
-```
+```javascript
 const adUnits = [{
     code: 'adUnit-code',
     mediaTypes: {
-	sendTargetingKeys: false,
+    sendTargetingKeys: false,
         native: {
             type: 'image'
         }
@@ -196,6 +196,7 @@ const adUnits = [{
     }]
 }];
 ```
+
 #### Native Template in AdServer
 
 There are three key aspects of the native template:
@@ -208,7 +209,8 @@ There are three key aspects of the native template:
     3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js rather than having to scan the template to find which specific assets are needed.
 
 Example creative HTML:
-```
+
+```html
 <div class="sponsored-post">
   <div class="thumbnail" style="background-image: url(##hb_native_image##);"></div>
   <div class="content">
@@ -232,7 +234,8 @@ Example creative HTML:
 When using 'Send All Bids' mode you should update `pbNativeTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` for each bidder’s creative
 
 Example CSS:
-```
+
+```css
 .sponsored-post {
     background-color: #fffdeb;
     font-family: sans-serif;
@@ -279,6 +282,7 @@ p {
     padding: 4px;
 }
 ```
+
 ### 4.2 Implementing AdUnit-Defined Template
 
 In this scenario, the body of the native creative template is managed within the Prebid.js AdUnit and includes special Prebid.js macros.
@@ -291,12 +295,13 @@ When the Native AdUnit is defined in the page:
 - Define the adTemplate as an escaped ES5 string using Prebid.js ##macros##. (See the appendix for an exhaustive list of assets and macros.) Note that this approach only affects the HTML body. Any CSS definitions need to be defined in the body of the template or in the AdServer.
 
 Example AdUnit:
-```
+
+```javascript
 var adUnits = [{
       code: 'native-div',
       mediaTypes: {
           native: {
-	    sendTargetingKeys: false,
+        sendTargetingKeys: false,
             adTemplate: "<div class=\"sponsored-post\">\r\n  <div class=\"thumbnail\" style=\"background-image: url(##hb_native_image##);\"><\/div>\r\n  <div class=\"content\">\r\n  <h1>\r\n    <a href=\"%%CLICK_URL_UNESC%%##hb_native_linkurl##\" target=\"_blank\" class=\"pb-click\">\r\n  ##hb_native_title##\r\n    <\/a>\r\n   <\/h1>\r\n    <p>##hb_native_body##<\/p>\r\n    \t<div class=\"attribution\">\r\n \t##hb_native_brand##\r\n           \t<\/div>\r\n\t<\/div>\r\n<\/div>",
             title: {
               required: true,
@@ -314,6 +319,7 @@ var adUnits = [{
     }
 }];
 ```
+
 #### Native Template in the AdServer
 
 Even though the body of the native creative is defined in the AdUnit, an AdServer creative is still needed. There are two key aspects of the native creative in this scenario:
@@ -325,7 +331,8 @@ Even though the body of the native creative is defined in the AdUnit, an AdServe
     3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js. The rendering function cannot currently scan a template defined in the AdUnit.
 
 Example Creative HTML
-```
+
+```html
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native-render.js"></script>
 <script>
     var pbNativeTagData = {};
@@ -342,7 +349,7 @@ When using 'Send All Bids' mode you should update `pbNativeTagData.adId = "%%PAT
 
 ### 4.3 Implementing the Custom Renderer Scenario
 
-In this scenario, the body of the native creative is managed from an external JavaScript file. 
+In this scenario, the body of the native creative is managed from an external JavaScript file.
 
 #### Prebid.js AdUnit Setup
 
@@ -352,12 +359,13 @@ When the Native AdUnit is defined in the page:
 - Define the `rendererUrl` as a URL that defines a `window.renderAd` function in the creative iframe. Any CSS definitions need to be defined in the body (e.g. `<style>` tags) or in the AdServer creative.
 
 Example AdUnit setup:
-```
+
+```javascript
 var adUnits = [{
       code: 'native-div',
       mediaTypes: {
           native: {
-	    sendTargetingKeys: false,
+        sendTargetingKeys: false,
             rendererUrl: "https://files.prebid.org/creatives/nativeRenderFunction.js",
             title: {
               required: true,
@@ -387,7 +395,8 @@ Even though the body of the native creative is defined in the external JavaScrip
     3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js so they can be passed to the render function.
 
 Example creative HTML:
-```
+
+```html
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/native-render.js"></script>
 <script>
     var pbNativeTagData = {};
@@ -410,34 +419,35 @@ Requirements for a native rendering function:
 - The renderAd() function is passed an object containing all available native assets and must return a fully resolved and ready-to-display block of HTML that will be appended to the body.
 
 Here's an example script:
-```
+
+```javascript
 window.renderAd=function(data){
-	let template = "<div class=\"sponsored-post\"><div class=\"thumbnail\"><\/div><div class=\"content\"><h1> <a href=\"##hb_native_linkurl##\" target=\"_blank\" class=\"pb-click\">##hb_native_title##<\/a><\/h1><p>##hb_native_body##<\/p> <div class=\"attribution\"> ##hb_native_brand## <\/div> <\/div> <\/div>";
-	const map = {
-	    title: 'hb_native_title',
-	    body: 'hb_native_body',
-	    body2: 'hb_native_body2',
-	    privacyLink: 'hb_native_privacy',
-	    sponsoredBy: 'hb_native_brand',
-	    image: 'hb_native_image',
-	    icon: 'hb_native_icon',
-	    clickUrl: 'hb_native_linkurl',
-	    displayUrl: 'hb_native_displayurl',
-	    cta: 'hb_native_cta',
-	    rating: 'hb_native_rating',
-	    address: 'hb_native_address',
-	    downloads: 'hb_native_downloads',
-	    likes: 'hb_native_likes',
-	    phone: 'hb_native_phone',
-	    price: 'hb_native_price',
-	    salePrice: 'hb_native_saleprice'
-	}
-	for (var i = 0; i < data.length; i++){
-		if (map[data[i].key]) {
-			template = template.replace("##"+map[data[i].key]+"##",data[i].value);
-		}
-	}
-	return template;
+    let template = "<div class=\"sponsored-post\"><div class=\"thumbnail\"><\/div><div class=\"content\"><h1> <a href=\"##hb_native_linkurl##\" target=\"_blank\" class=\"pb-click\">##hb_native_title##<\/a><\/h1><p>##hb_native_body##<\/p> <div class=\"attribution\"> ##hb_native_brand## <\/div> <\/div> <\/div>";
+    const map = {
+        title: 'hb_native_title',
+        body: 'hb_native_body',
+        body2: 'hb_native_body2',
+        privacyLink: 'hb_native_privacy',
+        sponsoredBy: 'hb_native_brand',
+        image: 'hb_native_image',
+        icon: 'hb_native_icon',
+        clickUrl: 'hb_native_linkurl',
+        displayUrl: 'hb_native_displayurl',
+        cta: 'hb_native_cta',
+        rating: 'hb_native_rating',
+        address: 'hb_native_address',
+        downloads: 'hb_native_downloads',
+        likes: 'hb_native_likes',
+        phone: 'hb_native_phone',
+        price: 'hb_native_price',
+        salePrice: 'hb_native_saleprice'
+    }
+    for (var i = 0; i < data.length; i++){
+        if (map[data[i].key]) {
+            template = template.replace("##"+map[data[i].key]+"##",data[i].value);
+        }
+    }
+    return template;
 }
 ```
 
