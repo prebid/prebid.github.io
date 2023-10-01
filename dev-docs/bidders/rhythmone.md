@@ -6,13 +6,15 @@ pbjs: true
 pbs: true
 biddercode: rhythmone
 media_types: video
-gdpr_supported: true
+tcfeu_supported: true
 schain_supported: true
 gvl_id: 36
 sidebarType: 1
+enable_download: false
 ---
 
-
+{: .alert.alert-warning :}
+The rhythmone bidder is deprecated, and will be removed in a future release of Prebid.js and Prebid Server.
 
 ### Bid Params
 

@@ -7,7 +7,7 @@ description: Prebid Datablocks Bidder Adaptor
 media_types: banner,native
 biddercode: datablocks
 prebid_member: true
-gdpr_supported: true
+tcfeu_supported: false
 pbs_app_supported: true
 schain_supported: true
 usp_supported: true

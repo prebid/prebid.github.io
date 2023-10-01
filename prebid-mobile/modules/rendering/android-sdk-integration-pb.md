@@ -7,22 +7,73 @@ sidebarType: 2
 
 ---
 
-# Custom Integration
+# Custom Bidding Integration
 {:.no_toc}
 
-## Overview of Rendering API
-
-The integration and usage of the Rendering API is similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid. 
-
-![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
+You can use Prebid SDK to monetize your app with a custom ad server or even without it. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without primary ad server and its SDK.
 
 * TOC
 {:toc}
 
-## Banner API
+## Transport API
+
+The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice.
+
+In this mode, the publisher will be responsible for the following actions:
+
+* Call fetchDemand with extended targetingDict callback
+* Retrieve targeting keys from extended fetchDemand function
+* Convert targeting keys into the format for your ad server
+* Pass converted keys to your ad server
+* Render ad with Prebid Universal Creative or custom renderer
+
+This approach is avaliable for the following ad formats:
+
+* Display Banner via `BannerAdUnit`
+* Video Banner and Instream Video via `VideoAdUnit`
+* Display Interstitial via `InterstitialAdUnit`
+* Video Interstitial via `VideoInterstitialAdUnit`
+* Rewarded Video via `RewardedVideoAdUnit`
+* Native Styles via `NativeRequest`
+
+The basic integration steps for these ad units you can find at the page for integration using [Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html). The diference is that you should use  the `fetchDemand` function with following signature:
+
+```kotlin
+public void fetchDemand(OnFetchDemandResult listener) { ... }
+
+public interface OnFetchDemandResult {
+    void onComplete(@NonNull BidInfo bidInfo);
+}
+```
+
+Examples:
+
+``` kotlin
+adUnit?.fetchDemand { result ->
+    if(result.getResultCode() == ResultCode.SUCCESS) {
+        val keywords = resultCode.targetingKeywords
+
+        makeAdRequest(keywords)
+    }
+}
+```
+
+The `BidInfo` provides the following properties:
+
+* `resultCode` - the object of type `ResultCode` describing the status of the bid request.
+* `targetingKeywords` - the targeting keywords of the winning bid
+* `exp` - the number of seconds that may elapse between the auction and the actual impression. In this case, it indicates the approximate TTL of the bid in the Prebid Cache. Note that the actual expiration time of the bid will be less than this number due to the network and operational overhead. The Prebid SDK doesn't make any adjustments to this value.
+* `nativeAdCacheId` - the local cache ID of the winning bid. Applied only to the `native` ad format.
+
+## Rendering API
+
+The integration and usage of the Rendering API is similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid.
+
+![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
+
+### Banner API
 
 Integration example:
-
 
 ``` kotlin
 // 1. Create an Ad View
@@ -36,21 +87,26 @@ viewContainer?.addView(bannerView)
 bannerView?.loadAd()
 ```
 
+{% capture warning_note %}
+Pay attention that the `loadAd()` should be called on the main thread.
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 #### Step 1: Create Ad View
 {:.no_toc}
 
 Initialize the `BannerAdView` with properties:
 
-- `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
-- `size` - the size of the ad unit which will be used in the bid request.
+* `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
+* `size` - the size of the ad unit which will be used in the bid request.
 
 #### Step 2: Load the Ad
 {:.no_toc}
 
 Call `loadAd()` and SDK will:
 
-- make bid request to Prebid
-- render the winning bid on display
+* make bid request to Prebid
+* render the winning bid on display
 
 #### Outstream Video
 {:.no_toc}
@@ -61,7 +117,7 @@ For **Banner Video** you will also need to specify the `bannerView.videoPlacemen
 bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
 ```
 
-## Interstitial API
+### Interstitial API
 
 Integration example:
 
@@ -78,22 +134,27 @@ interstitialAdUnit?.loadAd()
 interstitialAdUnit?.show()
 ```
 
+{% capture warning_note %}
+Pay attention that the `loadAd()` should be called on the main thread.
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
-```
+``` kotlin
 interstitialAdUnit = InterstitialAdUnit(
-                        requireContext(), 
-                        configId, 
-                        EnumSet.of(AdUnitFormat.DISPLAY, AdUnitFormat.VIDEO))
+                        requireContext(),
+                        configId,
+                        EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO))
 ```
 
 #### Step 1: Create an Ad Unit
 {:.no_toc}
 
-Initialize the `InterstitialAdUnit ` with properties:
+Initialize the `InterstitialAdUnit` with properties:
 
-- `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
-- `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
+* `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
+* `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
 
 You can also assign the listener for processing ad events.
 
@@ -102,7 +163,7 @@ You can also assign the listener for processing ad events.
 #### Step 2: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` method which will make a request to Prebid server.
+Call the `loadAd()` to make a bid request.
 
 #### Step 3: Show the Ad when it is ready
 {:.no_toc}
@@ -115,7 +176,7 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 }
 ```
 
-## Rewarded API
+### Rewarded API
 
 Integration example:
 
@@ -123,7 +184,7 @@ Integration example:
 // 1. Create an Ad Unit
 rewardedAdUnit = RewardedAdUnit(requireContext(), configId)
 rewardedAdUnit?.setRewardedAdUnitListener(this)
-    
+
 // 2. Execute the loadAd function
 rewardedAdUnit?.loadAd()
 
@@ -133,17 +194,22 @@ rewardedAdUnit?.loadAd()
 rewardedAdUnit?.show()
 ```
 
+{% capture warning_note %}
+Pay attention that the `loadAd()` should be called on the main thread.
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 #### Step 1: Create a Rewarded Ad Unit
 {:.no_toc}
 
 Create the `RewardedAdUnit` object with parameters:
 
-- `adUnitId` - an ID of Stored Impression on the Prebid server.
+* `adUnitId` - an ID of Stored Impression on the Prebid server.
 
 #### Step 2: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` method which will make a request to Prebid server.
+Call the `loadAd()` to make a bid request.
 
 #### Step 3: Show the Ad when it is ready
 {:.no_toc}

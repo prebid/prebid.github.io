@@ -8,7 +8,9 @@
 
     <!--brid & prebid js code-->
     <script>
-      Optanon.InsertScript("//services.brid.tv/player/build/brid.min.js", 'head', null, {}, 3);
+      window.onetrustLoaded.then(() => {
+        OneTrust.InsertScript("//services.brid.tv/player/build/brid.min.js", 'head', null, {}, 'C0003');
+      })
     </script>
 
     <script type="text/plain" class="optanon-category-C0003">

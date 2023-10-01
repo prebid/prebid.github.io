@@ -6,7 +6,7 @@ pbjs: true
 biddercode: chtnw
 media_types: banner, video, native
 gvl_id: none
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 schain_supported: false
@@ -21,4 +21,3 @@ sidebarType: 1
 |      Name     | Scope    | Description          |         Example      | Type     |
 |---------------|----------|----------------------|----------------------|----------|
 | `placementId` | required | The CHT placement ID | `'38EL412LO82XR9O6'` | `string` |
-
