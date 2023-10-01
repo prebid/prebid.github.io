@@ -4,9 +4,9 @@ title: mabidder
 description: Media Aisle Prebid Bidder Adaptor
 biddercode: mabidder
 pbjs: true
-pbs: false
+pbs: true
 media_types: banner
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

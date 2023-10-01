@@ -8,8 +8,9 @@ pbjs: true
 sidebarType: 1
 ---
 
-### Note:
-For more information, please visit us at: http://doc.truereach.co.in/docs/prebid/js-bidder-adapter.html
+### Note
+
+For more information, please visit us at: <http://doc.truereach.co.in/docs/prebid/js-bidder-adapter.html>
 
 ### Bid Params
 

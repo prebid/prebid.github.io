@@ -62,7 +62,7 @@ implementation('org.prebid:prebid-mobile-sdk-gam-event-handlers:x.x.x')
 To integrate the banner ad you need to implement three easy steps:
 
 
-``` kotlin
+```kotlin
 // 1. Create a banner custom event handler for GAM ad server.
 val eventHandler = GamBannerEventHandler(requireContext(), GAM_AD_UNIT, GAM_AD_SIZE)
 
@@ -114,7 +114,7 @@ Call the `loadAd()` method to make a bid request.
 
 For **Outstream Video** you also need to specify video placement type of the expected ad:
 
-``` kotlin
+```kotlin
 bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
 ```
 
@@ -139,7 +139,7 @@ Integration:
 To integrate interstitial ad follow these steps:
 
 
-``` kotlin
+```kotlin
 // 1. Create an interstitial custom event handler for GAM ad server.
 val eventHandler = GamInterstitialEventHandler(requireContext(), gamAdUnit)
 
@@ -207,7 +207,7 @@ Call the `loadAd()` method make a bid request. The ad unit will load an ad and w
 
 The most convenient way to determine if the interstitial ad is ready for displaying is to listen to the listener method:
 
-``` kotlin
+```kotlin
 override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 //Ad is ready for display
 }
@@ -234,7 +234,7 @@ Integration:
 To display a Rewarded Ad follow these steps:
 
 
-``` kotlin
+```kotlin
 // 1. Create a rewarded custom event handler for GAM ad server.
 val eventHandler = GamRewardedEventHandler(requireActivity(), gamAdUnitId)
 
@@ -263,13 +263,13 @@ Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad. The
 
 Be notified when user earns a reward - implement `RewardedAdUnitListener` interface:
 
-``` kotlin
+```kotlin
  fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit)
 ```
 
 When the actual reward object is stored in the `RewardedAdUnit`:
 
-``` kotlin
+```kotlin
 val reward = rewardedAdUnit.getUserReward()
 ```
 
@@ -302,7 +302,7 @@ Call the `loadAd()` method to make a bid request. The ad unit will load an ad an
 
 The most convenient way to determine if the ad is ready for displaying is to listen for the listener method:
 
-``` kotlin
+```kotlin
 override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 //Ad is ready for display
 }

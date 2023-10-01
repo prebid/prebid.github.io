@@ -54,7 +54,7 @@ without disclosing prominently on their documentation. Please review
 the [Module Rules](/dev-docs/module-rules.html) page. Here are some highlights:
 
 - a module can't add pixels to the creative without disclosure
-- every module must obey privacy regulations: GDPR, CCPA, COPPA
+- every module must obey privacy regulations: TCF-EU, CCPA, COPPA, USNat, TCF-CA, etc.
 - modules cannot create new bids. That is reserved for bid adapters.
 - modules must be configurable to make data available to all bidders. i.e. you can't make a module that works always and forever with just one bidder without prominent disclosure.
 
@@ -184,7 +184,7 @@ create a file in /prebid-server/pbs-modules. You can start by copying one of the
 - Prerequisites: any necessary account activation, other required modules, etc.
 - Configuration: both init and runtime
 - Analytics Tag support
-- Privacy Support: disclose whether the module has user privacy implications and support for GDPR, CCPA, etc.
+- Privacy Support: disclose whether the module has user privacy implications and support for TCF-EU, TCF-CA, CCPA, MSPA, etc.
 
 ### 11. Submit the Pull Requests
 

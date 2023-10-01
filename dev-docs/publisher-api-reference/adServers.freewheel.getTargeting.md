@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.adServers.freewheel.getTargeting(options)
-description: 
+description: adServers.freewheel.getTargeting API
 sidebarType: 1
 ---
 
@@ -14,7 +14,6 @@ Use this method to get targeting key-value pairs to be sent to the ad server.
 + `pbjs.adServers.freewheel.getTargeting(options)`: returns key-value pair from the ad server.
 
 ```javascript
-
 pbjs.adServers.freewheel.getTargeting({
     codes: [adUnitCode1],
     callback: function(err, targeting) {
@@ -22,6 +21,7 @@ pbjs.adServers.freewheel.getTargeting({
     }
 });
 ```
+
 #### Argument Reference
 
 ##### The `options` object

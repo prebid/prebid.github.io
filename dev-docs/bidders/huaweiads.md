@@ -5,7 +5,7 @@ description: Prebid HuaweiAds Bidder Adapter
 biddercode: huaweiads
 gvl_id: 856
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 coppa_supported: true
 safeframes_ok: false
 deals_supported: true
@@ -16,9 +16,10 @@ prebid_member: false
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at hwads@huawei.com.
+The Example Bidding adapter requires setup before beginning. Please contact us at <prebid@huawei.com>.
+
 1. The following parameters need to be registered on the HuaweiAds platform, and at the same time, the permission to access the server interface needs to be opened on the HuaweiAds platform.
 2. You can find ( publisherid, signkey, keyid ) on the platform after registration.
 3. You need to create your advertising creative on the platform and get the corresponding ( slotid, adtype ).

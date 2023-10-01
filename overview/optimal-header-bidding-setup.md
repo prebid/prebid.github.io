@@ -15,8 +15,7 @@ sidebarType: 3
 
 # Analyze Header Bidding Setup
 
-
-### What's a good header bidding auction:
+## What's a good header bidding auction
 
 <div class="row">
 <div class="col-sm-6" markdown="1">
@@ -26,7 +25,6 @@ sidebarType: 3
 </div>
 
 <div class="col-sm-6" markdown="1">
-
 
 This setup (captured using [Headerbid Expert](https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop)) has demonstrated a few facts that made it an ideal header bidding auction.
 
@@ -44,10 +42,9 @@ The ad server sees the impression and header bidding info immediately after all 
 
 <br>
 
-### Poor Header Bidding Setup Examples:
+## Poor Header Bidding Setup Examples
 
-#### Scenario 1
-
+### Scenario
 
 <div class="row">
 <div class="col-sm-6" markdown="1">
@@ -67,8 +64,7 @@ The ad server sees the impression and header bidding info immediately after all 
 </div>
 </div>
 
-
-#### Scenario 2
+### Scenario 2
 
 <div class="row">
 <div class="col-sm-6" markdown="1">
@@ -79,18 +75,16 @@ The ad server sees the impression and header bidding info immediately after all 
 
 <div class="col-sm-6" markdown="1">
 
-
 **Problem**: This site is under monetized.
 
 **Cause**: Too many bidder's bids got ignored, because they responded later than the ad server request was sent out.
 
 **How to fix**: Load these bidders earlier in the header, or experiment with extending the timeout without causing impression loss.
 
-
 </div>
 </div>
 
-#### Scenario 3
+### Scenario 3
 
 <div class="row">
 <div class="col-sm-6" markdown="1">
@@ -110,8 +104,7 @@ The ad server sees the impression and header bidding info immediately after all 
 </div>
 </div>
 
-#### Scenario 4
-
+### Scenario 4
 
 <div class="row">
 <div class="col-sm-6" markdown="1">
@@ -133,7 +126,7 @@ The ad server sees the impression and header bidding info immediately after all 
 
 <br>
 
-### Analyze Your Own Site
+## Analyze Your Own Site
 
 Add the Plugin [Headerbid Expert](https://chrome.google.com/webstore/detail/headerbid-expert/cgfkddgbnfplidghapbbnngaogeldmop) to your browser.
 

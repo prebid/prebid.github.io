@@ -15,19 +15,18 @@ There are several ways to contribute to the Prebid project. The easiest way is t
 
 Pull requests must satisfy certain conditions before being considered for merge. All the repos require the following:
 
-+ 80% unit test code coverage
-+ accompanying documentation (as necessary)
+* 80% unit test code coverage
+* accompanying documentation (as necessary)
 
 ## Repositories
 
 * [Prebid.js](https://github.com/prebid/Prebid.js)
-    * [Additional Pull Request requirements](https://github.com/prebid/Prebid.js/blob/master/PR_REVIEW.md)
-    * [Adding a bid adapter]({{site.baseurl}}/dev-docs/bidder-adaptor.html)
-    * [Adding an analytics adapter]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html)
+  * [Additional Pull Request requirements](https://github.com/prebid/Prebid.js/blob/master/PR_REVIEW.md)
+  * [Adding a bid adapter]({{site.baseurl}}/dev-docs/bidder-adaptor.html)
+  * [Adding an analytics adapter]({{site.baseurl}}/dev-docs/integrate-with-the-prebid-analytics-api.html)
 * [Prebid Server](https://github.com/prebid/prebid-server)
 * [Prebid iOS SDK](https://github.com/prebid/prebid-mobile-ios)
 * [Prebid Android SDK](https://github.com/prebid/prebid-mobile-android)
-
 
 ## Reporting An Issue
 

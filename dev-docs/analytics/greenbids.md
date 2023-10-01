@@ -10,7 +10,7 @@ enable_download: true
 #### Registration
 
 The Greenbids Analytics adapter requires setup and approval from the
-Greenbids team. Please reach out to our team for more information [https://greenbids.ai](https://greenbids.ai).
+Greenbids team. Please reach out to our team for more information [greenbids.ai](https://greenbids.ai).
 
 #### Analytics Options
 

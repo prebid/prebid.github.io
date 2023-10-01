@@ -8,6 +8,8 @@ useridmodule: 33acrossIdSystem
 
 The 33Across User ID sub-module is a way for publishers to monetize their cookieless inventory across multiple supply-side platforms via Prebid.JS. The sub-module provides publishers with addressability for their open marketplace cookieless inventory and access to cookieless demand. The 33Across User ID sub-module utilizes Lexicon technology to connect Publishers to Demand partners via proprietary technologies in a probabilistic and privacy-safe manner. Please contact [PrebidUIM@33across.com](mailto:PrebidUIM@33across.com) to get your authorization process started.
 
+For Lexicon, we only support US/CAN/AUS/JP.
+
 ## 33Across ID Configuration
 
 Please make sure to add the 33across user ID sub-module to your Prebid.js package with:
@@ -31,7 +33,8 @@ The following configuration parameters are available:
 | storage.refreshInSeconds | Strongly Recommended | Number | How many seconds until the ID is refreshed | `8 * 3600` (recommended) |
 
 ## 33Across ID Example
-```
+
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{

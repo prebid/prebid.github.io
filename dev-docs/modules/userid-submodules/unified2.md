@@ -26,6 +26,7 @@ Each publisher’s privacy policy should take UnifiedID 2.0 into account.
 ## Unified ID 2.0 Tokens
 
 UID2 tokens are generated on the server side by making an API call to a UID2 operator using details provided when you receive UID2 publisher access. This API returns a JSON data structure with multiple values, including an advertising token and a refresh token. For full functionality, provide the entire object in one of these ways:
+
 - JSON-encoded as a cookie.
 - Included in the configuration object.
 
@@ -65,13 +66,14 @@ The following parameters apply only to the Unified ID 2.0 module integration.
 | params.uid2Token | Optional | Object | The initial UID2 token. This should be the `body` element of the decrypted response from a call to the `/token/generate` or `/token/refresh` endpoint. | See the sample token above. |
 | params.uid2ServerCookie | Optional | String | The name of a cookie that holds the initial UID2 token, set by the server. The cookie should contain JSON in the same format as the alternative uid2Token param. **If uid2Token is supplied, this param is ignored.** | See the sample token above. |
 | params.uid2ApiBase | Optional | String | Overrides the default UID2 API endpoint. | `https://prod.uidapi.com` _(default)_ |
-| value | Not recommended | Object | Used only if the page has a separate mechanism for storing the UID 2.0 ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage, and the tokens are **not** automatically refreshed. | `{"uid2": { "id": "eb33b0cb-8d35-4722-b9c0-1a31d4064888"}}` |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing the UID 2.0 ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage, and the tokens are **not** automatically refreshed. | `{"uid2": { "id": "eb33b0cb-8d35-4722-b9c0-1a31d4064888"}}` |
+| params.storage | Optional, Client refresh | String | Specify whether to use `cookie` or `localStorage` for module-internal storage. It is recommended to not provide this and allow the module to use the default. | `localStorage` _(default)_ |
 
 ## Unified ID 2.0 Examples
 
 In the following example, the publisher has set a cookie called `uid2_identity` containing the UID2 token generation response object:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{
@@ -82,11 +84,11 @@ pbjs.setConfig({
     }]
   }
 });
-{% endhighlight %}
+```
 
 In the following example, the publisher has retrieved a server-generated UID2 response, and it is currently stored in the JavaScript variable `uid2Identity`:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{
@@ -97,4 +99,4 @@ pbjs.setConfig({
     }]
   }
 });
-{% endhighlight %}
+```

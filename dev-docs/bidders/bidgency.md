@@ -3,7 +3,7 @@ layout: bidder
 title: Bidgency Group
 description: Bidgency Group Bid Adapter
 biddercode: bidgency
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 media_types: video
 safeframes_ok: true
@@ -15,10 +15,11 @@ schain_supported: true
 multiformat_supported: will-bid-on-one
 userIds: all
 sidebarType: 1
+aliasCode: aso
 ---
-### Note:
+### Note
 
-The Bidgency Group adapter requires approval and setup. Please reach out to aso@bidgency.com or visit us at [bidgency.com](https://bidgency.com) for more details.
+The Bidgency Group adapter requires approval and setup. Please reach out to <aso@bidgency.com> or visit us at [bidgency.com](https://bidgency.com) for more details.
 
 ### Bid Params
 
@@ -34,7 +35,6 @@ Note that the Bidgency Group adapter expects a client-side Prebid Cache to be en
 
 ```js
 pbjs.setConfig({
-    usePrebidCache: true,
     cache: {
         url: 'https://prebid.adnxs.com/pbc/v1/cache'
     }
