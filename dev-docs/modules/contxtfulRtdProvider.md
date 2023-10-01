@@ -51,6 +51,8 @@ pbjs.setConfig({
 
 #### Parameters
 
+
+{: .table .table-bordered .table-striped }
 | Name       | Type     | Scope    | Description                               |
 |------------|----------|----------|-------------------------------------------|
 | `version`  | `string` | Required | Specifies the API version of Contxtful.   |
