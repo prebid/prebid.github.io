@@ -22,8 +22,7 @@ sidebarType : 1
 
 ArcSpan is a real-time audience monetization platform focused on the needs of the world’s finest publishers and retailers. Unlock the true value of your first-party audience data while providing advertisers the targeting performance they need.
 
-{: .alert.alert-warning :}
-Disclosure: This module loads external code that is not open source and has not been reviewed by Prebid.org.
+{% include dev-docs/loads-external-javascript.md %}
 
 ### Usage
 
