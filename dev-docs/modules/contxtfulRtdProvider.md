@@ -53,6 +53,8 @@ pbjs.setConfig({
 
 #### Parameters
 
+
+{: .table .table-bordered .table-striped }
 | Name       | Type     | Scope    | Description                               |
 |------------|----------|----------|-------------------------------------------|
 | `version`  | `string` | Required | Specifies the API version of Contxtful.   |
@@ -78,7 +80,7 @@ To view an integration example:
 1. In your CLI run:
 
     ```bash
-    gulp serve --modules=appnexusBidAdapter,contxtfulRtdProvider`
+    gulp serve --modules=appnexusBidAdapter,contxtfulRtdProvider
     ```
 
 2. In your browser, navigate to:
