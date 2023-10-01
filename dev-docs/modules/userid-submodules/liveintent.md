@@ -124,7 +124,7 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 | params | Required | Object | Container of all module params. ||
 | params.publisherId |Optional| String | The unique identifier for each publisher (for existing LiveIntent customers)|`'12432415'`|
 | params.distributorId |Optional| String | The unique identifier for each distributor (for existing LiveIntent customers). Will be ignored if `params.liCollectConfig.appId` is provided. |`'did-0123'`|
-| params.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the IdentityResolution endpoint. By default, 1000 milliseconds.|`1000`|
+| params.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the IdentityResolution endpoint. By default, 5000 milliseconds.|`5000`|
 | params.partner | Optional| String |The name of the partner whose data will be returned in the response.|`'prebid'`|
 | params.identifiersToResolve |Optional| Array[String] |Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID.|`['my-id']`|
 | params.requestedAttributesOverrides | Optional | Object | Object containing booleans used to override the default resolution. Attributes set to true will be added to the resolve list, while attributes set to false will be removed. Valid attributes are 'nonId', 'uid2', 'medianet', 'magnite', 'bidswitch' and 'index'. | `{'uid2': true}` |
@@ -132,6 +132,7 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 | params.url | Optional| String |Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`'https://idx.my-domain.com'`|
 | params.liCollectConfig |Optional| Object |Container of all collector params.||
 | params.liCollectConfig.fpiStorageStrategy |Optional| String |This parameter defines whether the first party identifiers that LiveConnect creates and updates are stored in a cookie jar, or in local storage. If nothing is set, default behaviour would be `cookie`. Allowed values: [`cookie`, `ls`, `none`]|`'cookie'`|
+| params.liCollectConfig.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the collector endpoint. By default, 5000 milliseconds.|`5000`|
 | params.liCollectConfig.fpiExpirationDays |Optional| Number |The expiration time of an identifier created and updated by LiveConnect.By default, 730 days.|`729`|
 | params.liCollectConfig.collectorUrl |Optional| String |The parameter defines where the signal pixels are pointing to. The params and paths will be defined subsequently. If the parameter is not set, LiveConnect will by default emit the signal towards `https://rp.liadm.com`.|`'https://rp.liadm.com'`|
 | params.liCollectConfig.appId |Optional| String |LiveIntent's media business entity application id.|`'a-0012'`|

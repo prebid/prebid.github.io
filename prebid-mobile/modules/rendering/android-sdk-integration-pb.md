@@ -17,7 +17,7 @@ You can use Prebid SDK to monetize your app with a custom ad server or even with
 
 ## Transport API
 
-The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice. 
+The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice.
 
 In this mode, the publisher will be responsible for the following actions:
 
@@ -39,46 +39,43 @@ This approach is avaliable for the following ad formats:
 The basic integration steps for these ad units you can find at the page for integration using [Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html). The diference is that you should use  the `fetchDemand` function with following signature:
 
 ```kotlin
-public void fetchDemand(@NonNull Object adObj, 
-                        @NonNull OnCompleteListener2 listener) { ... }
-                        
-public interface OnCompleteListener2 {
-    /**
-     * This method will be called when PrebidMobile finishes attaching keywords to unmodifiableMap.
-     * @param resultCode see {@link ResultCode} class definition for details
-     * @param unmodifiableMap a map of targeting Key/Value pairs
-     */
-    @MainThread
-    void onComplete(ResultCode resultCode, 
-                    @Nullable Map<String, String> unmodifiableMap);
-}                        
+public void fetchDemand(OnFetchDemandResult listener) { ... }
+
+public interface OnFetchDemandResult {
+    void onComplete(@NonNull BidInfo bidInfo);
+}
 ```
 
 Examples:
 
-```kotlin
-private fun loadRewardedVideo() {
-    adUnit?.fetchDemand { resultCode, unmodifiableMap -> 
-        val keywords: Map<String, String> = HashMap(unmodifiableMap)
+``` kotlin
+adUnit?.fetchDemand { result ->
+    if(result.getResultCode() == ResultCode.SUCCESS) {
+        val keywords = resultCode.targetingKeywords
 
-        adServerObject.loadRewardedVideo(ADUNITID_REWARDED, keywords)
+        makeAdRequest(keywords)
     }
 }
 ```
 
+The `BidInfo` provides the following properties:
+
+* `resultCode` - the object of type `ResultCode` describing the status of the bid request.
+* `targetingKeywords` - the targeting keywords of the winning bid
+* `exp` - the number of seconds that may elapse between the auction and the actual impression. In this case, it indicates the approximate TTL of the bid in the Prebid Cache. Note that the actual expiration time of the bid will be less than this number due to the network and operational overhead. The Prebid SDK doesn't make any adjustments to this value.
+* `nativeAdCacheId` - the local cache ID of the winning bid. Applied only to the `native` ad format.
+
 ## Rendering API
 
-The integration and usage of the Rendering API is similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid. 
+The integration and usage of the Rendering API is similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid.
 
 ![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
-
 
 ### Banner API
 
 Integration example:
 
-
-```kotlin
+``` kotlin
 // 1. Create an Ad View
 bannerView = BannerView(requireContext(), configId, adSize)
 bannerView?.setBannerListener(this)
@@ -90,8 +87,8 @@ viewContainer?.addView(bannerView)
 bannerView?.loadAd()
 ```
 
-{% capture warning_note %}  
-Pay attention that the `loadAd()` should be called on the main thread. 
+{% capture warning_note %}
+Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
@@ -100,23 +97,23 @@ Pay attention that the `loadAd()` should be called on the main thread.
 
 Initialize the `BannerAdView` with properties:
 
-- `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
-- `size` - the size of the ad unit which will be used in the bid request.
+* `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
+* `size` - the size of the ad unit which will be used in the bid request.
 
 #### Step 2: Load the Ad
 {:.no_toc}
 
 Call `loadAd()` and SDK will:
 
-- make bid request to Prebid
-- render the winning bid on display
+* make bid request to Prebid
+* render the winning bid on display
 
 #### Outstream Video
 {:.no_toc}
 
 For **Banner Video** you will also need to specify the `bannerView.videoPlacementType`:
 
-```kotlin
+``` kotlin
 bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
 ```
 
@@ -124,7 +121,7 @@ bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other availabl
 
 Integration example:
 
-```kotlin
+``` kotlin
 // 1. Create an Interstitial Ad Unit
 interstitialAdUnit = InterstitialAdUnit(requireContext(), configId, minSizePercentage)
 interstitialAdUnit?.setInterstitialAdUnitListener(this)
@@ -137,27 +134,27 @@ interstitialAdUnit?.loadAd()
 interstitialAdUnit?.show()
 ```
 
-{% capture warning_note %}  
-Pay attention that the `loadAd()` should be called on the main thread. 
+{% capture warning_note %}
+Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
 The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
-```
+``` kotlin
 interstitialAdUnit = InterstitialAdUnit(
-                        requireContext(), 
-                        configId, 
+                        requireContext(),
+                        configId,
                         EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO))
 ```
 
 #### Step 1: Create an Ad Unit
 {:.no_toc}
 
-Initialize the `InterstitialAdUnit ` with properties:
+Initialize the `InterstitialAdUnit` with properties:
 
-- `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
-- `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
+* `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
+* `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
 
 You can also assign the listener for processing ad events.
 
@@ -173,7 +170,7 @@ Call the `loadAd()` to make a bid request.
 
 Wait until the ad is loaded and present it to the user in any suitable time.
 
-```kotlin
+``` kotlin
 override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
     //Ad is ready for display
 }
@@ -183,11 +180,11 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 
 Integration example:
 
-```kotlin
+``` kotlin
 // 1. Create an Ad Unit
 rewardedAdUnit = RewardedAdUnit(requireContext(), configId)
 rewardedAdUnit?.setRewardedAdUnitListener(this)
-    
+
 // 2. Execute the loadAd function
 rewardedAdUnit?.loadAd()
 
@@ -197,8 +194,8 @@ rewardedAdUnit?.loadAd()
 rewardedAdUnit?.show()
 ```
 
-{% capture warning_note %}  
-Pay attention that the `loadAd()` should be called on the main thread. 
+{% capture warning_note %}
+Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
@@ -207,7 +204,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 
 Create the `RewardedAdUnit` object with parameters:
 
-- `adUnitId` - an ID of Stored Impression on the Prebid server.
+* `adUnitId` - an ID of Stored Impression on the Prebid server.
 
 #### Step 2: Load the Ad
 {:.no_toc}
@@ -219,7 +216,7 @@ Call the `loadAd()` to make a bid request.
 
 Wait until the ad is loaded and present it to the user in any suitable time.
 
-```kotlin
+``` kotlin
 override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 //Ad is ready for display
 }

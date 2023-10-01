@@ -12,8 +12,8 @@ description: Troubleshooting Guide
 This guide will provide several sequential steps to help troubleshoot your Prebid.js integration.
 
 - TOC
-
 {:toc}
+
 <hr>
 
 ## Check your Prebid version
@@ -62,7 +62,7 @@ In your browser Console tab, insert `pbjs.getConfig()` in the command line. Chec
 
 ## Turn on your ad server’s developer console
 
-The ad server's developer console usually provide information such as targeting, latency, and key events logging. For example, here is a screenshot of DFP's GPT developer console logs:
+The ad server's developer console usually provide information such as targeting, latency, and key events logging. For example, here is a screenshot of GAM's GPT developer console logs:
 
 ![Prebid.js Debug Console](/assets/images/troubleshooting/googfc.png){: height="70%"  width="70%" :}
 
@@ -70,9 +70,9 @@ The ad server's developer console usually provide information such as targeting,
 
 ## Delay the ad server call so key-values can be set
 
-Make sure that you delay any calls to the ad server. This allows all of the key-values to be set before the auction in the ad server occurs.
+Make sure that you delay the calls to the ad server. This allows the targeting key-values to be set before the auction in the ad server occurs.
 
-Within DFP, this is achieved by adding the following code to your page.  It should be called before any of the ad server code to make sure it runs first.
+Within GAM, this is achieved by adding the following code to your page.  It should be called before any of the ad server code to make sure it runs first.
 
 ```javascript
 var googletag = googletag || {};
@@ -113,66 +113,10 @@ Keep in mind that any bid responses that come back after the [timeout you config
 You can also print this data to the console in [table format](#see-all-bids-in-the-console) for easier reading.
 <hr>
 
-## Modify bid responses for testing
+## Modify or inject bid responses for testing
 
-Using `pbjs.setConfig({debugging:{ ... }})` from the javascript console, it is possible to override and filter bids as they come in. When this type of debugging is enabled it will persist across page loads using `sessionStorage`.
-
-{: .pb-alert .pb-alert-warning :}
-While this allows for easy testing of pages that immediately start auctions (most pages), it also means you need to remember to **deactivate debugging when you are done** (or clear your local storage / use incognito mode when testing). Also, note that this approach only _modifies_ existing bids. It cannot create bids for bidders that didn't bid; for that functionality, see the [debugging module](/dev-docs/modules/debugging.html).
-
-```javascript
-// Filtering bidders
-javascript console> pbjs.setConfig({
-  debugging: {
-    enabled: true,                     // suppresses bids from other bidders
-    bidders: ['bidderA', 'bidderB']
-  }
-});
-
-// Overwriting bid responses for all bidders
-javascript console> pbjs.setConfig({
-  debugging: {
-    enabled: true,
-    bids: [{
-      cpm: 1.5
-    }]
-  }
-});
-
-// Overwriting bid responses for a specific bidder and adUnit code (can use either separately)
-javascript console> pbjs.setConfig({
-  debugging: {
-    enabled: true,
-    bids: [{
-      bidder: 'bidderA',
-      adUnitCode: '/19968336/header-bid-tag-0',
-      cpm: 1.5
-    }]
-  }
-});
-
-// Overwriting bid responses for a specific bidder and adUnit code
-//  - supplies a specific creative
-javascript console> pbjs.setConfig({
-  debugging: {
-    enabled: true,
-    bids: [{
-      bidder: 'bidderA',
-      adUnitCode: '/19968336/header-bid-tag-0',
-      cpm: 1.5,
-      adId: '111111',
-      ad: '<html><body><img src="https://files.prebid.org/creatives/prebid300x250.png"></body></html>'
-    }]
-  }
-});
-
-// Disabling debugging
-javascript console> pbjs.setConfig({
-  debugging: {
-    enabled: false
-  }
-});
-```
+Use the [Debugging Module](/dev-docs/modules/debugging.html) to alter bids or
+fabricate test bids.
 
 <hr>
 
@@ -384,7 +328,7 @@ To see what values Prebid.js intends to send to the ad server, open your browser
 
 After the Prebid auction has occurred and key-values have been set for the ad server, the ad server will use the line items targeting those key-values within its auction.
 
-If you're using DFP, you can verify this by using the [Google Publisher Console](https://support.google.com/dfp_sb/answer/2462712?hl=en), which can be accessed as follows:
+If you're using GAM, you can verify this by using the [Google Publisher Console](https://support.google.com/dfp_sb/answer/2462712?hl=en), which can be accessed as follows:
 
 - Open your browser's console and type `googletag.openConsole();`
 
@@ -398,7 +342,7 @@ To make sure your ad server is set up correctly, answer the following questions:
 
 - **Are the key-values being set in the ad server?** If not, review your page's source code to ensure that the Prebid auction completes **before** sending the key-value targeting to the ad server.
 
-  ![DFP Delivery Troubleshooting](/assets/images/overview/prebid-troubleshooting-guide/ad-server-2.png "DFP Delivery Troubleshooting"){: .pb-lg-img :}
+  ![GAM Delivery Troubleshooting](/assets/images/overview/prebid-troubleshooting-guide/ad-server-2.png "GAM Delivery Troubleshooting"){: .pb-lg-img :}
 
 - **Has the ad server order been activated?** If not, you'll have to activate the order to see Prebid-delivered ads.
 
