@@ -14,6 +14,7 @@ schain_supported: true
 floors_supported: true
 multiformat_supported: will-bid-on-any
 sidebarType: 1
+safeframes_ok: true
 ---
 
 ### Prebid Server Bid Params
