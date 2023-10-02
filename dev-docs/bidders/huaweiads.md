@@ -18,7 +18,7 @@ sidebarType: 1
 
 ### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at <hwads@huawei.com>.
+The Example Bidding adapter requires setup before beginning. Please contact us at <prebid@huawei.com>.
 
 1. The following parameters need to be registered on the HuaweiAds platform, and at the same time, the permission to access the server interface needs to be opened on the HuaweiAds platform.
 2. You can find ( publisherid, signkey, keyid ) on the platform after registration.

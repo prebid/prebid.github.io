@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: <s>Kueez</s> (<a href="./kueezrtb.html">Go To KueezRTB</a>)
+title: Kueez
 description: Prebid Kueez Bidder Adapter
 multiformat_supported: will-bid-on-any
 pbjs: true
@@ -19,7 +19,7 @@ sidebarType: 1
 ### IMPORTANT NOTICE
 
 **TL;DR**
-The `kueez` adapter is currently "on hold" in favor of `kueezrtb`.
+The `kueez` adapter is currently "on hold" in favor of the [KueezRTB bidder](/dev-docs/bidders/kueezrtb.html).
 Please contact your Account Manager/Executive for details.
 
 <a href="./kueezrtb.html">Go To KueezRTB</a>
