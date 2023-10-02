@@ -9,6 +9,9 @@ pbs: true
 schain_supported: true
 floors_supported: true
 pbs_app_supported: true
+multiformat_supported: will-bid-on-one
+safeframes_ok: true
+ortb_blocking_supported: partial
 userIds: all
 sidebarType: 1
 ---
