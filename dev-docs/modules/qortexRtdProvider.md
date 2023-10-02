@@ -20,14 +20,6 @@ sidebarType : 1
 
 ## Overview
 
-```
-Module Name: Qortex RTD Provider
-Module Type: RTD Provider
-Maintainer: mannese@qortex.ai
-```
-
-## Description
-
 The Qortex RTD module appends contextual segments to the bidding object based on the content of a page using the Qortex API.
 
 Upon load, the Qortex context API will analyze the bidder page (video, text, image, etc.) and will return a [Content object](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=26). The module will then merge that object into the appropriate bidders' `ortb2.site.content`, which can be used by prebid adapters that use `site.content` data.
@@ -73,15 +65,9 @@ pbjs.setConfig({
 
 ### Paramter Details
 
-#### `groupId` - Required
-- The Qortex groupId linked to the publisher, this is required to make a request using this adapter
-
-#### `bidders` - optional
-- If this parameter is included, it must be an array of the strings that match the bidder code of the prebid adapters you would like this module to impact. `ortb2.site.content` will be updated *only* for adapters in this array
-
-- If this parameter is omitted, the RTD module will default to updating  `ortb2.site.content` on *all* bid adapters being used on the page
-
-#### `tagConfig` - optional
-- This optional parameter is an object containing the config settings that could be usedto initialize the Qortex integration on your page. A preconfigured object for this step will be provided to you by the Qortex team.
-
-- If this parameter is not present, the Qortex integration can still be configured and loaded manually on your page outside of prebid. The RTD module will continue to initialize and operate as normal.
+{: .table .table-bordered .table-striped }
+| Name             |Type           | Description                                                         |Required | Notes  |
+| :--------------- | :------------ | :------------------------------------------------------------------ |:---------|:------------ |
+| `groupId`  | String | The Qortex groupId linked to the publisher | Yes | Your account manager can provide this information for you if needed, it is required for any type integration and access to Qortex services |
+| `bidders`  | Array of Strings | this is a list containing the bidder code of the prebid adapters you would like this module to impact | No | If this parameter is included, `ortb2.site.content` will be updated *only* for adapters in this array. If this parameter is omitted, the RTD module will default to updating  `ortb2.site.content` on *all* bid adapters being used on the page|
+| `tagConfig` | Object | The config settings that could be used to initialize the Qortex integration on your page | No | A preconfigured object for this step will be provided to you by the Qortex team. The RTD module will only carry out this process if a valid tagConfig is provided.
