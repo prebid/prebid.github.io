@@ -69,6 +69,6 @@ http://[customerId].v.fwmrm.net/ad/g/1[globalParams];hb_pb_cat_dur=10.00_400_15s
 
 ## Further Reading
 
-[Prebid.js](http://prebid.org/dev-docs/getting-started.html)  
-[Prebid Video](http://prebid.org/prebid-video/video-overview.html)  
-[Category Translation](/dev-docs/modules/categoryTranslation.html)
+- [Prebid.js for Developers](/dev-docs/getting-started.html)  
+- [Prebid Video](/prebid-video/video-overview.html)  
+- [Category Translation](/dev-docs/modules/categoryTranslation.html)
