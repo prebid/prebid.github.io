@@ -14,7 +14,7 @@ sidebarType: 2
 {:toc}
 
 ## Overview
-Plugin Renderer is a feature that enable the ability to delegate the ad rendering to a component of yours. Such integration require from you, in first place, to have a Bidder Adapter implemented ([see more](prebid-server/developers/add-new-bidder-go.html)) in order to handle bid requests from the Prebid Mobile SDK that include your plugin renderer.
+Plugin Renderer is a feature that enable the ability to delegate the ad rendering to a component of yours. Such integration require from you, in first place, to have a Bidder Adapter implemented in order to handle bid requests from the Prebid Mobile SDK that include your plugin renderer.
 
 Such feature turn possible, for instance, the rendering of non-standard ad responses that Prebid Mobile SDK can not render by itself.     
 
@@ -26,25 +26,28 @@ Everytime that a bid response is received and it reaches the rendering stage, Pr
 
 Take the example on the image below where a BannerView will have its ad view transposed accordingly to the plugin renderer status. That way an inner view which represents the ad itself is handled totally under the hood from the publisher point of view, what makes unnecessary any change on the BannerView loading or initialization.
 
-> In case of Interstitial ad this is just inflated in the foreground regardless the view hierarchy.
+{: .alert.alert-info :}
+In case of Interstitial ad this is just inflated in the foreground regardless the view hierarchy.
 
 ![Plugin Renderer big picture](/assets/images/prebid-mobile/prebid-plugin-renderer-ad-view-injection.png)
 
 ### Setup
 
-* Provide your Prebid Bidder Adapter ([see more](prebid-server/developers/add-new-bidder-go.html))
+* Provide your Prebid Bidder Adapter
+  * [Go integration](prebid-server/developers/add-new-bidder-go.html)
+  * [Java integration](prebid-server/developers/add-new-bidder-java.html)
 * Create your implementation from the interface `PrebidMobilePluginRenderer`
 * Initialise your plugin renderer before starting to request ads
 * Take advantage of the plugin renderer fields
 
-> Please notice that all implementation on mobile related to the Plugin Renderer should be provided externally, not in the PBM SDK itself. For instance, an app owner or third party SDK would implement it and initialise it on their own context. 
+{: .alert.alert-info :}
+Please notice that all implementation on mobile related to the Plugin Renderer should be provided externally, not in the PBM SDK itself. For instance, an app owner or third party SDK would implement it and initialise it on their own context. 
 
 ___
 
-#### Create your implementation from the interface PrebidMobilePluginRenderer:
+#### Create your implementation from the interface PrebidMobilePluginRenderer
 
 ```kotlin
-
 class SampleCustomRenderer : PrebidMobilePluginRenderer {
     
     override fun getName(): String = "SamplePluginRenderer"
@@ -87,7 +90,7 @@ class SampleCustomRenderer : PrebidMobilePluginRenderer {
 ```
 
 
-#### Initialise your plugin renderer before starting to request ads:
+#### Initialise your plugin renderer before starting to request ads
 
 ```kotlin
 class PpmBannerPluginRendererFragment : AdFragment(), BannerViewListener {
@@ -102,12 +105,9 @@ class PpmBannerPluginRendererFragment : AdFragment(), BannerViewListener {
         requestAd()
     }
 }
-
-
-
 ```
 
-#### Take advantage of the plugin renderer fields:
+#### Take advantage of the plugin renderer fields
 
 The fields `name`, `version` and `data` from your plugin renderer are added to the bid request by the Prebid Mobile SDK and can be read by your Prebid Bidder Adapter in order to better handle ad requests from a plugin renderer taking into account its version and the additional values stored on the data field.
 
@@ -145,7 +145,7 @@ An optional dedicated generic ad event listener is offered in case of the existi
 
 ___
 
-#### Create your implementation from the interface PluginEventListener:
+#### Create your implementation from the interface PluginEventListener
 ```kotlin
 interface SampleCustomRendererEventListener : PluginEventListener {
     // Ensure that the name is the same as your plugin renderer
@@ -154,7 +154,7 @@ interface SampleCustomRendererEventListener : PluginEventListener {
 }
 ```
 
-#### Handle your plugin event listener on your plugin renderer:
+#### Handle your plugin event listener on your plugin renderer
 ```kotlin
 class SampleCustomRenderer : PrebidMobilePluginRenderer {
 
@@ -215,7 +215,7 @@ class SampleCustomRenderer : PrebidMobilePluginRenderer {
 }
 ```
 
-### Implement the interface on the class you want to listen the events:
+### Implement the interface on the class you want to listen the events
 ```kotlin
 // Implement your plugin event listener interface
 class PpmBannerPluginEventListenerFragment : AdFragment(), SampleCustomRendererEventListener {
