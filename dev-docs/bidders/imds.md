@@ -48,7 +48,7 @@ pbjs.setConfig({
 });
 ```
 
-### DFP Video Creative
+### Google Ad Manager Video Creative
 To use video, setup a `VAST redirect` creative within Google Ad Manager with the following VAST tag URL:
 
 If using the new `imds` adapter with x8.x or later:
@@ -65,7 +65,6 @@ https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_uuid_synacormedia
 
 ### Bid params
 
-{: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `seatId` | required | The seat ID from iMedia Digital Services. This will be the same for all ad units. | `'prebid'` | `string` |
