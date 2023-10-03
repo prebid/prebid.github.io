@@ -59,6 +59,7 @@ pbjs.setConfig(
 
 ## setConfig Parameters General
 
+{: .table .table-bordered .table-striped }
 | Name                             | Type     | Description                                                                                                 |
 |:---------------------------------|:---------|:------------------------------------------------------------------------------------------------------------|
 | domain                           | String   | This string identifies yourself in Oxxion's systems and is provided to you by your Oxxion representative.   |
