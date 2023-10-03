@@ -22,7 +22,7 @@ Plugin Renderer is a feature that enables the ability to delegate the ad renderi
 
 Everytime that a bid response is received and it reaches the rendering stage, Prebid SDK will delegate the ad view rendering to an existing plugin renderer, such as a custom one if this is elected or the default one in any other case.
 
-Take the example on the image below where a BannerView will have its ad view transposed accordingly to the plugin renderer status. That way an inner view which represents the ad itself is handled totally under the hood from the publisher point of view, what makes unnecessary any change on the BannerView loading or initialization.
+Take the example on the image below where a BannerView will have its ad view transposed accordingly to the plugin renderer status. The inner ad view is handled totally under the hood from the app owner point of view, what makes unnecessary any change on the BannerView loading or initialization.
 
 {: .alert.alert-info :}
 In case of Interstitial ad this is just inflated in the foreground regardless the view hierarchy.
