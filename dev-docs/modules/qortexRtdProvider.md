@@ -24,9 +24,9 @@ The Qortex RTD module appends contextual segments to the bidding object based on
 
 Upon load, the Qortex context API will analyze the bidder page (video, text, image, etc.) and will return a [Content object](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=26). The module will then merge that object into the appropriate bidders' `ortb2.site.content`, which can be used by prebid adapters that use `site.content` data.
 
-
 ## Build
-```
+
+```SH
 gulp build --modules="rtdModule,qortexRtdProvider,qortexBidAdapter,..."  
 ```
 
