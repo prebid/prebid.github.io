@@ -30,7 +30,7 @@ Make sure to have the following modules listed while building prebid : `rtdModul
 `rtdModule` is required to activate real-time-data submodules.
 For example :
 
-```text
+```bash
 gulp build --modules=schain,priceFloors,currency,consentManagement,appnexusBidAdapter,rubiconBidAdapter,rtdModule,oxxionRtdProvider
 ```
 
