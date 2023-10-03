@@ -65,6 +65,7 @@ pbjs.setConfig(
 
 ## setConfig Parameters for bidder filtering
 
+{: .table .table-bordered .table-striped }
 | Name                             | Type       | Description                                                                                                 |
 |:---------------------------------|:-----------|:------------------------------------------------------------------------------------------------------------|
 | threshold                        | Float/Bool | False or minimum expected bid rate to call a bidder (ex: 1.0 for 1% bid rate).                              |
