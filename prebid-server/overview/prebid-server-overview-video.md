@@ -12,13 +12,15 @@ A high-level overview of Prebid Server, Prebid’s solution for header bidding i
 <div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/822889941?h=71957861b5&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="1.5_Intro-to-PBS_v6"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 Further Content:
+
 - [Intro to Prebid](/overview/intro.html)
-- [Prebid Server Overview](/prebid-server/overview/prebid-server.html)
+- [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html)
 - [Prebid Membership](https://prebid.org/membership)
 - [Prebid on Github](https://github.com/prebid)
 - [All Videos](/overview/all-videos.html)
 
 Related Videos:
+
 - [Introduction to Header Bidding](/overview/intro-to-header-bidding-video.html)
 - [Introduction to Prebid Mobile](/prebid-mobile/prebid-mobile-video.html)
 
@@ -26,9 +28,9 @@ Related Videos:
 
 ### About Prebid Server
 
-Prebid Server is a solution for running real-time advertising auctions in the cloud. 
+Prebid Server is a solution for running real-time advertising auctions in the cloud.
 
-It works in conjunction with Prebid.js, Prebid SDK, and other technologies to make header bidding possible for any ad format in any type of digital media. 
+It works in conjunction with Prebid.js, Prebid SDK, and other technologies to make header bidding possible for any ad format in any type of digital media.
 
 Prebid Server has everything necessary to sell advertising opportunities through server-side header bidding, including bidder integrations, privacy controls, creative caching, currency conversion, price floors, and analytics.
 
@@ -36,7 +38,7 @@ It supports more than 150 demand sources, including many of the world’s larges
 
 ### Why Prebid Server?
 
-Prebid Server brings the revenue-maximizing power of header bidding to environments that don’t support standard JavaScript. 
+Prebid Server brings the revenue-maximizing power of header bidding to environments that don’t support standard JavaScript.
 
 Header bidding originated as a JavaScript technology for websites, and the leading solution for header bidding in standard browser-based environments is Prebid.js. Prebid.js is very popular, but it only works on normal websites. Mobile apps, AMP websites, long-form video, and digital out-of-home need their own solution for header bidding, and that’s what Prebid Server provides.
 
@@ -47,9 +49,9 @@ Prebid Server is open-source code that is free to use. To use it, you’ll need 
 
 Let’s walk through an example of Prebid Server in use.
 
-A digital advertising seller sets Prebid Server up on a server. 
+A digital advertising seller sets Prebid Server up on a server.
 
-Prebid Server receives ad requests from a personal computer, a mobile device, or another server. 
+Prebid Server receives ad requests from a personal computer, a mobile device, or another server.
 
 Prebid Server is able to enrich ad requests it receives, which means that it adds additional contextual information like IP-based location. It’s also able to interpret user consent and take actions such as restricting auction functions or limiting the sharing of personal data.
 

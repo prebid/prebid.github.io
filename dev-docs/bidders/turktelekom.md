@@ -6,7 +6,8 @@ biddercode: turktelekom
 pbjs: true
 pbs: false
 media_types: banner, native, video
-gdpr_supported: true
+gvl_id: 673
+tcfeu_supported: true
 gpp_supported: true
 usp_supported: true
 coppa_supported: true

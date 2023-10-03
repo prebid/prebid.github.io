@@ -6,8 +6,9 @@ biddercode: beachfront
 media_types: video
 floors_supported: true
 fpd_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
+gpp_supported: true
 userIds: unifiedId, identityLink, uid2, hadronId
 schain_supported: true
 prebid_member: true
@@ -88,7 +89,7 @@ Publishers should use the `ortb2` method of setting First Party Data. The follow
 
 Example first party data that's available to all bidders and all adunits:
 
-```
+```javascript
 pbjs.setConfig({
     ortb2: {
         site: {

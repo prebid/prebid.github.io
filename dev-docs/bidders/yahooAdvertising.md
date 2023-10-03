@@ -5,9 +5,10 @@ description: Yahoo Advertising Bid Adapter
 pbs: true
 pbjs: true
 media_types: banner, video
+filename: yahoosspBidAdapter
 biddercode: yahooAds
 prebid_member: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
 schain_supported: true

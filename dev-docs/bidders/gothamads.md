@@ -3,7 +3,7 @@ layout: bidder
 title: gothamads
 description: Prebid gothamads Bidder Adaptor
 biddercode: gothamads
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 ccpa_supported: true
@@ -21,7 +21,6 @@ gvl_id: none
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
 userIds: all
-sidebarType: 1
 ---
 
 ### Note

@@ -5,11 +5,11 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: false
 pbs: true
-userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid
+userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, 33acrossId, nonID
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 floors_supported: true
 usp_supported: true
 media_types: banner, video, native
@@ -46,8 +46,8 @@ sidebarType: 1
 Publishers can use Prebid Server in any of the following ways with Index Exchange (Index). Index's adapter supports all of the following methods:
 
 * If you want to call Index from a web environment, you can use Prebid.js to call Prebid Server, and then Prebid Server uses our server-side adapter to call Index. This reduces workload on the browser. For set up instructions, see [Call Index from a web browser](#call-index-from-a-web-browser) section on this page.
-* In mobile apps, you can use the Prebid Mobile SDK to call Prebid Server and then Prebid Server uses our server-side adapter to call Index. For set up instructions, see [Call Index from Prebid Mobile SDK](#set-up-instructions-to-call-index-through-prebid-server) section on this page.
-* In CTV apps and other long-form video environments, you (or the SSAI vendor) can make a call to Prebid Server using OpenRTB, and then Prebid Server uses our server-side adapter to call Index. For set up instructions, see [Call Index from CTV/long-form video environment](#set-up-instructions-to-call-index-through-prebid-server) section on this page.
+* In mobile apps, you can use the Prebid Mobile SDK to call Prebid Server and then Prebid Server uses our server-side adapter to call Index. For set up instructions, see [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk) section on this page.
+* In CTV apps and other long-form video environments, you (or the SSAI vendor) can make a call to Prebid Server using OpenRTB, and then Prebid Server uses our server-side adapter to call Index. For set up instructions, see [Call Index from CTV/long-form video environment](#call-index-from-ctvlong-form-video-environment) section on this page.
 * In any other server-to-server OpenRTB environment, you can send OpenRTB bid requests to the Prebid Server host of your choice. For set up instructions, see [Call Index from any other server-to-server OpenRTB environment](#call-index-from-ortb) section on this page.  
 
 **Note about sending multiple ad slots in a single bid request:** Index accepts up to 100 valid ad slots in a single bid request. If a single bid request contains more than 100 ad slots (including invalid ad slots), only the first 100 valid ad slots are accepted and the rest are ignored. For example streaming TV media owners can signal multiple ad pods for long-form programming in a single request.
@@ -156,8 +156,8 @@ If you are using Index's outstream player and have placed the video object at th
 {: .table .table-bordered .table-striped }
 | Key | Scope | Type | Description |
 |---|---|---|---|
-| `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
-| `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
+| `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters. We strongly recommend video sizes to be `256 x 256` or greater, `300 x 250`, or `320 x 180`. |
+| `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters. We strongly recommend video sizes to be `256 x 256` or greater, `300 x 250`, or `320 x 180`. |
 | `video.playerSize` | Required | Integer[] | The video player size that will be passed to demand partners. |
 | `video.playerConfig` | Optional | Hash | The Index-specific outstream player configurations. |
 | `video.playerConfig.floatOnScroll` | Optional | Boolean | A boolean specifying whether you want to use the player's floating capabilities, where:<br />- `true`: Use the Index player's float capabilities.<br /> **Note:** If you set `floatOnScroll` to `true`, Index updates the placement value to `5`.<br /> **Note:** We do not recommend using the player's default float capabilities if you have more than one outstream ad unit per page. <br /> -`false`: Do not use the Index player's float capabilities (default). |

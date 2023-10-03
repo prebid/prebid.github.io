@@ -7,7 +7,7 @@ pbs: false
 gvl_id: none
 biddercode: redtram
 media_types: banner
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 schain_supported: false

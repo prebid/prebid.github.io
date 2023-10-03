@@ -5,7 +5,7 @@ description: Prebid Synacor Media Bidder Adapter (replaced by "imds")
 pbjs: true
 pbs: true
 biddercode: synacormedia
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: true
 userIds: all
 media_types: banner, video

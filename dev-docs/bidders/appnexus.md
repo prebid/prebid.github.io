@@ -4,7 +4,7 @@ title: AppNexus
 description: Prebid AppNexus Bidder Adaptor
 biddercode: appnexus
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 prebid_member: true
 userIds: all (with commercial activation)
 schain_supported: true
@@ -20,13 +20,8 @@ gvl_id: 32
 sidebarType: 1
 ---
 
-### Disclosure
-
-This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
-
 ### Table of Contents
 
-- [Disclosure:](#disclosure)
 - [Table of Contents](#table-of-contents)
   - [Bid Params](#bid-params)
   - [Video Object](#video-object)

@@ -3,7 +3,7 @@ layout: bidder
 title: AdView
 description: Prebid AdView Bidder Adapter
 biddercode: AdView
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 1022
 usp_supported: true
 coppa_supported: true

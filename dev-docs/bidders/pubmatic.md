@@ -4,7 +4,7 @@ title: PubMatic
 description: Prebid PubMatic Bidder Adaptor
 biddercode: pubmatic
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 gpp_supported: true
@@ -31,8 +31,8 @@ sidebarType: 1
 | `publisherId` | required | Publisher ID          | `'32572'`                 | `string` |
 | `adSlot`      | optional | Ad Slot Name (see below)| `'38519891'`            | `string` |
 | `pmzoneid`    | optional | Zone ID               | `'zone1,zone2'`           | `string` |
-| `lat`         | optional | Latitude              | `'40.712775'`             | `string` |
-| `lon`         | optional | Longitude             | `'-74.005973'`            | `string` |
+| `lat`         | optional | Latitude <br/> (Supported until Prebid version 7.54.4 and starting from Prebid version 8.11.0 we have option to configure this using ortb2.(device OR user))              | `'40.712775'`             | `string` |
+| `lon`         | optional | Longitude <br/> (Supported until Prebid version 7.54.4 and starting from Prebid version 8.11.0 we have option to configure this using ortb2.(device OR user))            | `'-74.005973'`            | `string` |
 | `yob`         | optional | Year of Birth         | `'1982'`                  | `string` |
 | `gender`      | optional | Gender                | `'M'`                     | `string` |
 | `kadpageurl`  | optional | Overrides Page URL    |  `'http://www.yahoo.com/'`| `string` |

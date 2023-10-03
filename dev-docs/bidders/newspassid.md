@@ -6,7 +6,7 @@ layout: bidder
 title: Newspass ID
 description: LMC Newspass ID Prebid JS Bidder Adapter
 biddercode: newspassid
-gdpr_supported: false
+tcfeu_supported: false
 gvl_id: none
 usp_supported: true
 coppa_supported: false

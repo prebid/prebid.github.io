@@ -4,7 +4,7 @@ title: Adtelligent
 description: Prebid Adtelligent Bidder Adapter
 biddercode: adtelligent
 media_types: video,banner
-gdpr_supported: true
+tcfeu_supported: true
 gpp_supported: true
 userIds: all (with commercial activation)
 schain_supported: true

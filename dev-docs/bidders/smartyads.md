@@ -4,7 +4,7 @@ title: SmartyAds
 description: Prebid SmartyAds Bidder Adapter
 biddercode: smartyads
 gvl_id: 534
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
