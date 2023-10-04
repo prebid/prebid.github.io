@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Rubicon Project
-description: Rubicon Project Prebid Bidder Adaptor
+description: Rubicon Project Prebid Bidder Adapter
 biddercode: rubicon
 tcfeu_supported: true
 gpp_sids: tcfeu, usnat, usstate_all, usp
@@ -45,7 +45,7 @@ For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup
 | `keywords`     | optional           | See below for details on First Party Data. In release 4.29 and earlier, this can be used to influence reports for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. | `["travel", "tourism"]`                                                             | `Array<string>`  |
 | `video`       | required for video | Video targeting parameters. See the [video section below](#mediatypesvideo).                                                  | `{"language": "en"}` | `object`  |
 | pchain | optional | deprecated option that was an early alternative to schain | "GAM:11111-reseller1:22222" | string |
-| `bidonmultiformat` | optional | By default, the rubicon exchange will bid on only one media type in this order: video, banner, native. Setting this flag to true will cause it to bid on all mediatypes. | `boolean` | `true` |
+| `bidonmultiformat` | optional | By default, the Magnite exchange will bid on only one media type in this order: video, banner, native. Setting this flag to true will cause it to bid on all mediatypes. | `boolean` | `true` |
 
 #### First Party Data
 
@@ -249,7 +249,7 @@ pbjs.setConfig({
 });
 ```
 
-* The Rubicon Project exchange does not make multi-format requests unless the `bidonmultiformat` parameter is set to true. By default, if multiple mediatypes are defined and `bidonmultiformat` is false, we bid on banner first, then video, then native.
+* The Magnite exchange does not make multi-format requests unless the `bidonmultiformat` parameter is set to true. By default, if multiple mediatypes are defined and `bidonmultiformat` is false, we bid on banner first, then video, then native.
 * The client-side adapter supports native as of PBJS 7.39.
 
 #### Native
@@ -327,11 +327,11 @@ pbjs.setConfig({
 
 #### Net Revenue
 
-Bids through the Rubicon Project Exchange are by default 'net'.  For certain use cases it is possible for publishers to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
+Bids through the Magnite Exchange are by default 'net'.  For certain use cases it is possible for publishers to define a bid as either 'net' or 'gross'.  In either case the Rubicon platform does not signal externally to other systems either bid state.  
 
 For Prebid, the Rubicon Project bid adapter reports the revenue type as ‘gross’ by default before 2.35 and ‘net’ by default in 2.35 and later (as the vast majority of accounts are net and all new accounts are net).
 
-It’s important to note that what the Rubicon Prebid bid adapter reports is not directly related to the setting with the Rubicon Project exchange. If you are a publisher who has set your Rubicon exchange revenue type set to ‘gross’ and you'd like the Rubicon bid adapter to also report 'gross', you can change the 2.35+ default 'net' setting in Prebid.js with:
+It’s important to note that what the Rubicon Prebid bid adapter reports is not directly related to the setting with the Magnite exchange. If you are a publisher who has set your Magnite exchange revenue type set to ‘gross’ and you'd like the Rubicon bid adapter to also report 'gross', you can change the 2.35+ default 'net' setting in Prebid.js with:
 
 ```javascript
 pbjs.setConfig({ rubicon: {netRevenue: false} });
