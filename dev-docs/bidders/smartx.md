@@ -12,13 +12,14 @@ schain_supported: true
 usp_supported: true
 safeframes_ok: false
 pbjs: true
+pbs: true
 floors_supported: true
 sidebarType: 1
 ---
 
 ### Registration
 
-Please reach out to your smartclip business contact for any questions and assistance in configuration.
+This adapter requires setup and approval from the smartclip team. Please contact us at --- bidding@smartclip.tv
 
 ### Bid Params
 
