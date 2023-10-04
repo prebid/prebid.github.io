@@ -249,7 +249,7 @@ pbjs.setConfig({
 });
 ```
 
-* The Rubicon Project exchange does not make multi-format requests unless the `bidonmultiformat` parameter is set to true. By default, if multiple mediatypes are defined, we bid on banner first, then video. Native bids will only be made if it's the only mediatype present.
+* The Rubicon Project exchange does not make multi-format requests unless the `bidonmultiformat` parameter is set to true. By default, if multiple mediatypes are defined and `bidonmultiformat` is false, we bid on banner first, then video, then native.
 * The client-side adapter supports native as of PBJS 7.39.
 
 #### Native
