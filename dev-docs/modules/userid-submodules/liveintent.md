@@ -92,7 +92,7 @@ For example, in case 'uid2' is configured to be requested - additionally to the 
 
 Note that 'uid2' is exposed as part of 'lipb' as well as separately as 'uid2'. 'medianet', 'magnite', 'bidswitch', 'index', 'pubmatic' and 'openx' behave the same way.
 
-For the attributes 'lipbid' (nonID), 'uid2', 'medianet', 'magnite', 'bidswitch' and 'index' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
+For the attributes 'lipbid' (nonID), 'uid2', 'medianet', 'magnite', 'bidswitch', 'index', 'pubmatic' and 'openx' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
 
 ### Requesting uid2
 
