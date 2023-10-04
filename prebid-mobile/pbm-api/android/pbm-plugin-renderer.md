@@ -248,7 +248,7 @@ class PpmBannerPluginEventListenerFragment : AdFragment(), SampleCustomRendererE
 
 In addition to this documentation you have samples on hand which can be get from the Prebid Mobile SDK repository:
 
-* [PpmBannerPluginRendererFragment](https://github.com/prebid/prebid-mobile-android/blob/f6d8069166c2ab4740f8cef2a0fe24cc6cc1fd92/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmBannerPluginRendererFragment.kt)
-* [PpmBannerPluginEventListenerFragment](https://github.com/prebid/prebid-mobile-android/blob/f6d8069166c2ab4740f8cef2a0fe24cc6cc1fd92/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmBannerPluginEventListenerFragment.kt)
-* [PpmInterstitialPluginRendererFragment](https://github.com/prebid/prebid-mobile-android/blob/f6d8069166c2ab4740f8cef2a0fe24cc6cc1fd92/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmInterstitialPluginRendererFragment.kt)
-* [PpmInterstitialPluginEventListenerFragment](https://github.com/prebid/prebid-mobile-android/blob/f6d8069166c2ab4740f8cef2a0fe24cc6cc1fd92/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmInterstitialPluginEventListenerFragment.kt)
+* [PpmBannerPluginRendererFragment](https://github.com/prebid/prebid-mobile-android/blob/master/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmBannerPluginRendererFragment.kt)
+* [PpmBannerPluginEventListenerFragment](https://github.com/prebid/prebid-mobile-android/blob/master/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmBannerPluginEventListenerFragment.kt)
+* [PpmInterstitialPluginRendererFragment](https://github.com/prebid/prebid-mobile-android/blob/master/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmInterstitialPluginRendererFragment.kt)
+* [PpmInterstitialPluginEventListenerFragment](https://github.com/prebid/prebid-mobile-android/blob/master/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmInterstitialPluginEventListenerFragment.kt)
