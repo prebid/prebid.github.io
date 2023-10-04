@@ -10,6 +10,9 @@ title: Prebid Server | Features | Privacy
 * TOC
 {:toc}
 
+{: .alert.alert-danger :}
+Important: This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and individual state laws. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+
 ## Prebid Server Activity Control Infrastructure
 
 Prebid Server supports a mechanism for Publisher control for overriding privacy-sensitive activities. See the [Activity Controls](/prebid-server/features/pbs-activitycontrols.html) for more information.
@@ -84,9 +87,13 @@ Prebid Server support for this protocol:
 
 See [Prebid MSPA Support](/features/mspa-usnat.html) for more info.
 
-The [Prebid Server USGen Privacy Module](/prebid-server/features/pbs-usgen.html) is available for PBS-Java.
+There are two modules offered by Prebid Server to process GPP string sections 7-12:
 
-Also note that publishers using PBS-Java can consider utilizing [Activity Controls](/prebid-server/features/pbs-activitycontrols.html). In particular, the `gppSid`, `geo`, and `gpc` conditions may be useful tools within a compliance strategy.
+1. The [USGen Privacy Module](/prebid-server/features/pbs-usgen.html) is a high
+performance option for interpreting the GPP strings as described in the [Prebid MSPA reference](/features/mspa-usnat.html). (PBS-Java only)
+1. The [US Custom Logic Privacy Module](/prebid-server/features/pbs-uscustomlogic.html) is a flexible way for publishers to define their own interpretation of GPP string sections 7-12.
+
+Also note that publishers can consider utilizing [Activity Controls](/prebid-server/features/pbs-activitycontrols.html). For PBS-Java, the `gppSid`, `geo`, and `gpc` conditions may be useful tools within a compliance strategy.
 
 ## COPPA
 

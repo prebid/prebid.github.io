@@ -7,6 +7,7 @@ biddercode: incrementx
 media_types: banner
 tcfeu_supported: false
 multiformat_supported: will-bid-on-one
+filename: incrxBidAdapter
 sidebarType: 1
 ---
 

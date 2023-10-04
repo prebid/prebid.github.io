@@ -9,6 +9,7 @@ media_types: banner
 tcfeu_supported: false
 usp_supported: true
 gpp_supported: true
+userIds: sharedId, unifiedId, uid2
 sidebarType: 1
 ---
 
