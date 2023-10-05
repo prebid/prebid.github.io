@@ -30,8 +30,7 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 | `sourceid`  | required | placement ID                 | `'0'`      | `string` |
 | `host`      | required | const value, set to "prebid" | `'prebid'` | `string` |
 | `accountid` | optional | publisher ID                 | `'1901'`   | `string` |
-| `traffic`   | optional | Configures the mediaType that should be used. Values can be `'banner'`, `'native'` or `'video'` | `'banner'` | `string`
-
+| `traffic`   | optional | Configures the mediaType that should be used. Values can be `'banner'`, `'native'` or `'video'` | `'banner'` | `string`|
 
 ### Prebid Server Bid Params
 
