@@ -14,8 +14,8 @@ userIds: all
 prebid_member: true
 safeframes_ok: true
 deals_supported: true
-pbs: false
-pbs_app_supported: false
+pbs: true
+pbs_app_supported: true
 fpd_supported: true
 ortb_blocking_supported: no
 gvl_id: 1100
