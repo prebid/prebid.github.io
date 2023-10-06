@@ -29,7 +29,7 @@ Sparteo Header Bidding adapter requires setup and approval. Please reach out to 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                                                 | Example    | Type      |
 |-------------|----------|---------------------------------------------------------------------------------------------|------------|-----------|
-| `pid`       | required | Your publisher ID. This information will be given to you by the Viously team.               | `1234`     | `integer` |
+| `pid`       | required | Your publisher ID. This information will be given to you by the Sparteo team.               | `1234`     | `integer` |
 
 ### Banner Object
 
