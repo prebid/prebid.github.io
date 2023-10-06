@@ -23,5 +23,6 @@ The DXKulture Header Bidding adapter requires approval from the DXKulture team. 
 | Name | Scope    | Description        | Example     | Type      |
 |------|----------|--------------------|-------------|-----------|
 | `placementId` | required | Placement Id | `'1234abcd'` | `string`  |
-| `networkId` | optional | Network Id       | `'123456'`     | `string` |
 | `publisherId` | required | Publisher Id       | `'12345'`     | `string` |
+| `bidfloor` | optional | Bid Floor       | `2.3`     | `float` |
+| `bidfloorcur` | optional | Bid Floor Currency       | `'USD'`     | `string` |
