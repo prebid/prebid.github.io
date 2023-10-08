@@ -4,7 +4,7 @@ title: OperaAds
 description: Prebid OperaAds Bidder Adapter
 biddercode: operaads
 gdpr_supported: false
-gvl_id: none
+gvl_id: 1135
 usp_supported: false
 coppa_supported: true
 schain_supported: true
