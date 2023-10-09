@@ -86,7 +86,7 @@ Note that the creative URL contains a few custom macros that allow Konduit platf
   | k_cache_key_BIDDERCODE | %%PATTERN:k_cache_key_rubicon%% | The macro is passing a cache key so that Konduit platform is able to fetch a bidder tag for processing. This macro should be used in a ‘send all bids’ mode. |
 
 Refer to the following documentation for more information on Google Ad Manager setup:  
-[Step By Step Guide to Google Ad Manager Setup](https://prebid.org/adops/step-by-step.html)  
+[Step By Step Guide to Google Ad Manager Setup](/adops/step-by-step.html)  
 
 ## Sample Code
 

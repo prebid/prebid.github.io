@@ -15,7 +15,7 @@ sidebarType: 1
 
 ### Note
 
-For more information about [Browsi](https://www.browsi.com), please contact [support@browsi.com](support@browsi.com).
+For more information about [Browsi](https://www.browsi.com), please contact [support@browsi.com](mailto:support@browsi.com).
 
 ### Bid Params
 
