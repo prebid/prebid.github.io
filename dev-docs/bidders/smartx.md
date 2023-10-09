@@ -19,7 +19,7 @@ sidebarType: 1
 
 ### Registration
 
-This adapter requires setup and approval from the smartclip team. Please contact us at --- bidding@smartclip.tv
+This adapter requires setup and approval from the smartclip team. Please contact us at --- <bidding@smartclip.tv>
 
 ### Bid Params
 
