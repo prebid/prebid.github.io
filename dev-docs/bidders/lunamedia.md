@@ -21,5 +21,5 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                 | Example                            | Type      |
 |-------------|----------|---------------------------------------------|------------------------------------|-----------|
-| `pubid`     | required | An id used to identify LunaMedia publisher. | `d2b5502f83b65719d29ed4fa86e411ea` | `string`  |
-| `placement` | optional | A placement created on adserver.            | `cs230510321b516f0eb9a10e5913d3b1` | `string`  |
+| `pubid`     | required | An id used to identify LunaMedia publisher. | `'d2b5502f83b65719d29ed4fa86e411ea'` | `string`  |
+| `placement` | optional | A placement created on adserver.            | `'cs230510321b516f0eb9a10e5913d3b1'` | `string`  |
