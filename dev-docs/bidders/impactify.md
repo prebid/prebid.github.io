@@ -10,7 +10,7 @@ tcf2_supported: true
 usp_supported: true
 schain_supported: true
 coppa_supported: true
-media_types: video
+media_types: video, banner
 userIds: criteo, id5Id, pubCommonId, unifiedId, uid2, netId
 gvl_id: 606
 sidebarType: 1
@@ -33,9 +33,17 @@ The Impactify adaptator requires setup and validation from the Impactify team. S
 
 Impactify recommends the UserSync configuration below. Without it, the Impactify adapter will not be able to perform user syncs, which lowers match rate and reduces monetization.
 
+Note : Impactify adapter need storage access to work properly (Do not forget to set storageAllowed to true).
+
 For Prebid.js v1.15.0 and later:
 
 ```javascript
+pbjs.bidderSettings = {
+    impactify: {
+        storageAllowed: true // Mandatory
+    }
+};
+
 pbjs.setConfig({
   userSync: {
     filterSettings: {
@@ -51,6 +59,13 @@ pbjs.setConfig({
 For Prebid.js v1.14.0 and before:
 
 ```javascript
+
+pbjs.bidderSettings = {
+    impactify: {
+        storageAllowed: true // Mandatory
+    }
+};
+
 pbjs.setConfig({
    userSync: {
     iframeEnabled: true,
