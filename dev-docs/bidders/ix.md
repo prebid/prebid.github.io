@@ -5,7 +5,7 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: false
-userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, imuid, 33acrossId
+userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, imuid, 33acrossId, nonID
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
@@ -37,6 +37,7 @@ sidebarType: 1
   * [AdUnit-specific data](#adunit-specific-data)
 * [Index's outstream video player](#indexs-outstream-video-player)
 * [Prebid Native configuration](#prebid-native-configuration)
+* [Protected Audience API support](#protected-audience-api-support)
 * [Bid request parameters](#bid-request-parameters)
   * [Banner](#banner)
   * [Video](#video)
@@ -387,6 +388,29 @@ pbjs.addAdUnits({
 });
 ```
 
+<a name="protected-audience-api-support"></a>
+
+## Protected Audience API support
+
+**Before you begin:** You must have Google Ad Manager and the [fledgeForGpt](/dev-docs/modules/fledgeForGpt.html) module.
+
+Follow these steps to configure your Prebid.js to specify that your ad slots are enabled for [Protected Audience](https://github.com/WICG/turtledove/blob/main/FLEDGE.md) auctions:
+1. Build the `fledgeForGpt` module in your Prebid.js configuration by adding `fledgeForGpt` to the list of modules that you are already using. For more information about the module, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation.
+2. Enable all ad units to use the `fledgeForGpt` module in your prebid.js configuration. Index recommends that you do this in the global level configuration by using the `defaultForSlots` parameter with a value of `1`. <br />
+**Note:** If you are using the `fledgeForGpt.bidders[]`, make sure that you add `ix` to the list of bidders.<br />
+The following shows an example of the configuration done at the global level:
+
+```javascript
+pbjs.que.push(function() {
+  pbjs.setConfig({
+    fledgeForGpt: {
+      enabled: true,
+      defaultForSlots: 1
+    }
+  });
+});
+```
+
 <a name="bid-request-parameters"></a>
 
 ## Bid request parameters
@@ -419,8 +443,8 @@ If you are using Index's outstream player and have placed the video object at th
 
 | Name | Scope | Type | Description |
 |---|---|---|---|
-| `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
-| `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
+| `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters. We strongly recommend video sizes to be `256 x 256` or greater, `300 x 250`, or `320 x 180`. |
+| `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters. We strongly recommend video sizes to be `256 x 256` or greater, `300 x 250`, or `320 x 180`. |
 | `video.playerSize` | Required | Integer[] | The video player size that will be passed to demand partners. |
 | `video.playerConfig` | Optional | Hash | The Index-specific outstream player configurations. |
 | `video.playerConfig.floatOnScroll` | Optional | Boolean | A boolean specifying whether you want to use the player's floating capabilities, where:<br />- `true`: Use the Index player's float capabilities.<br /> **Note:** If you set `floatOnScroll` to `true`, Index updates the placement value to `5`.<br /> **Note:** We do not recommend using the player's default float capabilities if you have more than one outstream ad unit per page. <br /> - `false`: Do not use the Index player's float capabilities (default). |

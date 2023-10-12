@@ -65,6 +65,9 @@ Be sure to replace BIDDERCODE with the appropriate bidder. For example, if the b
 </script>
 ```
 
+{: .alert.alert-info :}
+Note: the `mobileResize` parameter is a workaround to a bug in the Google Mobile Ads SDK. The Prebid SDK uses the existence of the "hb_size" string that's provided in %%PATTERN:TARGETINGMAP%%, but this bidder-specific version of the creative doesn't utilize the TARGETINGMAP, so the value is added here. The important part is the value that contains `hb_size:`.
+
 {: .alert.alert-danger :}
 Warning: Be sure none of the attribute names are longer than 20 characters. See [Send All Bids Key Value Pairs](/adops/send-all-vs-top-price.html#key-value-pairs) for more information.
 

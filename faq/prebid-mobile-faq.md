@@ -66,7 +66,7 @@ No. The Prebid SDK is itself a library open sourced under the Apache 2 license.
 
 ### Are there any back-end dependencies to this SDK?
 
-Yes - the app developer must have a [Prebid Server](/prebid-server/index.html) at their disposal. This is open source software that they may run themselves, or they may contract with a [Managed Service](https://prebid.org/product-suite/managed-services/).
+Yes - the app developer must have a [Prebid Server](/prebid-server/prebid-server-overview.html) at their disposal. This is open source software that they may run themselves, or they may contract with a [Managed Service](https://prebid.org/product-suite/managed-services/).
 
 ## Communication
 

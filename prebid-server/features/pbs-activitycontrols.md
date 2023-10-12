@@ -9,7 +9,7 @@ title: Prebid Server | Features | Actvity Controls
 {: .no_toc }
 
 {: .alert.alert-warning :}
-This feature is currently only available in PBS-Java.
+PBS-Java fully supports Activity Controls. PBS-Go support for the main request workflow is complete. They are working on support for Activities in modules and analytics.
 
 Prebid supports a centralized control mechanism for privacy-sensitive activities.
 These controls are intended to serve as building blocks for privacy protection mechanisms, allowing publishers to directly specify what should be permitted or avoided in any given regulatory environment.
@@ -121,10 +121,10 @@ into the Activity Control system:
 {: .table .table-bordered .table-striped }
 | Privacy Feature | Description | Activity Control Integration | Privacy Module Code |
 |------|------|-------------|---|
-| TCF-EU/GDPR | Original [PBS GDPR support](/features/pbs-privacy.html#gdpr) | no | n/a |
-| COPPA | Original [PBS COPPA support](/features/pbs-privacy.html#coppa) | no | n/a |
-| USP | Original [PBS USP/CCPA support](/features/pbs-privacy.html#ccpa--us-privacy) | no | n/a |
-| US General Privacy | [USGen privacy module](prebid-server/features/pbs-usgen.html) supports the IAB's GPP SIDs 7-12. | yes | iab.usgeneral |
+| TCF-EU/GDPR | Original [PBS GDPR support](/prebid-server/features/pbs-privacy.html#gdpr) | no | n/a |
+| COPPA | Original [PBS COPPA support](/prebid-server/features/pbs-privacy.html#coppa) | no | n/a |
+| USP | Original [PBS USP/CCPA support](/prebid-server/features/pbs-privacy.html#ccpa--us-privacy) | no | n/a |
+| US General Privacy | [USGen privacy module](/prebid-server/features/pbs-usgen.html) supports the IAB's GPP SIDs 7-12. | yes | iab.usgeneral |
 | TCF Canada | (a future module that will support GPP SID 5.) | yes | iab.tcfcanada |
 
 So, for example, TCF/GDPR-suppression activities must still be managed through that feature's configuration. (See details for [PBS-Go](https://github.com/prebid/prebid-server/blob/master/config/config.go) or [PBS-Java](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md))
