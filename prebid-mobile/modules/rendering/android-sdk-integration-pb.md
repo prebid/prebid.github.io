@@ -65,8 +65,8 @@ The `BidInfo` provides the following properties:
 * `exp` - the number of seconds that may elapse between the auction and the actual impression. In this case, it indicates the approximate TTL of the bid in the Prebid Cache. Note that the actual expiration time of the bid will be less than this number due to the network and operational overhead. The Prebid SDK doesn't make any adjustments to this value.
 * `nativeAdCacheId` - the local cache ID of the winning bid. Applied only to the `native` ad format.
 * `events` - the map of some publically available event URLs attached to the bid. These can be used to enable Prebid Server-based analytics when the Prebid Universal Creative (PUC) is not involved in the rendering process. If the PUC is used for rendering, it will take care of hitting these events. These are the available event URLs:
-  * **EVENT_WIN** for the `ext.prebid.events.win` - this bid was chosen by the ad server as the one to display. This is the main metric for banner and native.
-  * **EVENT_IMP** for the `ext.prebid.events.imp` - the ad creative for this bid was actually displayed. This is often the main metric for video ads.
+  * **EVENT_WIN** - this bid was chosen by the ad server as the one to display. This is the main metric for banner and native. (This is the OpenRTB `seatbid.bid.ext.prebid.events.win` field.)
+  * **EVENT_IMP** - the ad creative for this bid was actually displayed. This is often the main metric for video ads. (This is the OpenRTB `seatbid.bid.ext.prebid.events.imp` field.)
 
 Code sample to extract the events:
 
