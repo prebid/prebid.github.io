@@ -22,12 +22,12 @@ The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to
 In this mode, the publisher will be responsible for the following actions:
 
 * Call fetchDemand with extended targetingDict callback
-* Retrieve targeting keys from the extended fetchDemand function
+* Retrieve targeting keys from extended fetchDemand function
 * Convert targeting keys into the format for your ad server
 * Pass converted keys to your ad server
 * Render ad with Prebid Universal Creative or custom renderer
 
-This approach is available for the following ad formats:
+This approach is avaliable for the following ad formats:
 
 * Display Banner via `BannerAdUnit`
 * Video Banner and Instream Video via `VideoAdUnit`
@@ -36,7 +36,7 @@ This approach is available for the following ad formats:
 * Rewarded Video via `RewardedVideoAdUnit`
 * Native Styles via `NativeRequest`
 
-The basic integration steps for these ad units you can find on the page for integration using [Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html). The difference is that you should use  the `fetchDemand` function with the following signature:
+The basic integration steps for these ad units you can find at the page for integration using [Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html). The diference is that you should use  the `fetchDemand` function with following signature:
 
 ```kotlin
 public void fetchDemand(OnFetchDemandResult listener) { ... }
@@ -49,9 +49,9 @@ public interface OnFetchDemandResult {
 Examples:
 
 ``` kotlin
-adUnit?.fetchDemand { bidInfo ->
-    if(bidInfo.getResultCode() == ResultCode.SUCCESS) {
-        val keywords = bidInfo.targetingKeywords
+adUnit?.fetchDemand { result ->
+    if(result.getResultCode() == ResultCode.SUCCESS) {
+        val keywords = resultCode.targetingKeywords
 
         makeAdRequest(keywords)
     }
@@ -64,16 +64,6 @@ The `BidInfo` provides the following properties:
 * `targetingKeywords` - the targeting keywords of the winning bid
 * `exp` - the number of seconds that may elapse between the auction and the actual impression. In this case, it indicates the approximate TTL of the bid in the Prebid Cache. Note that the actual expiration time of the bid will be less than this number due to the network and operational overhead. The Prebid SDK doesn't make any adjustments to this value.
 * `nativeAdCacheId` - the local cache ID of the winning bid. Applied only to the `native` ad format.
-* `events` - the map of some publically available event URLs attached to the bid. These can be used to enable Prebid Server-based analytics when the Prebid Universal Creative (PUC) is not involved in the rendering process. If the PUC is used for rendering, it will take care of hitting these events. These are the available event URLs:
-  * **EVENT_WIN** - this bid was chosen by the ad server as the one to display. This is the main metric for banner and native. (This is the OpenRTB `seatbid.bid.ext.prebid.events.win` field.)
-  * **EVENT_IMP** - the ad creative for this bid was actually displayed. This is often the main metric for video ads. (This is the OpenRTB `seatbid.bid.ext.prebid.events.imp` field.)
-
-Code sample to extract the events:
-
-``` kotlin
-val win = bidInfo.events.get(BidInfo.EVENT_WIN)
-val imp = bidInfo.get(BidInfo.EVENT_IMP)
-```
 
 ## Rendering API
 
@@ -166,9 +156,9 @@ Initialize the `InterstitialAdUnit` with properties:
 * `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
 * `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
 
-You can also assign the listener to process ad events.
+You can also assign the listener for processing ad events.
 
-> **NOTE:** the `minSizePercentage` - plays an important role in the bidding process for display ads. If the provided space is not enough demand partners won't respond with bids.
+> **NOTE:** the `minSizePercentage` - plays an important role in a bidding process for display ads. If the provided space is not enough demand partners won't respond with bids.
 
 #### Step 2: Load the Ad
 {:.no_toc}
