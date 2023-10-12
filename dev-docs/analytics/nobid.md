@@ -4,7 +4,7 @@ title: NoBid
 description: NoBid Analytics Adaptor
 modulecode: nobidAnalytics
 gvl_id: 816
-enable_download: false
+enable_download: true
 ---
 
 #### Registration

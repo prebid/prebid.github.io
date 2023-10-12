@@ -13,14 +13,22 @@ This feature is currently only available in PBS-Java.
 * TOC
 {:toc}
 
-## US General Privacy
+{: .alert.alert-danger :}
+Important: This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, individual state laws, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+
+## Overview
 
 This document covers how to configure the `US General Privacy Module` for Prebid Server.
 
 See the [Prebid Multi-State Privacy Agreement Support](/features/mspa-usnat.html) page for
-details on how specifically GPP strings are processed.
+details on how specifically GPP strings are processed. This module interprets the strings
+as defined in that document. If a publisher wishes to override the interpretation coded into
+this module, there are two options:
 
-"`USGen`" is the first of a new type of Prebid Server module: a 'privacy module'. This module is called by the [Activity Control system](/prebid-server/features/pbs-activitycontrols.html) for a specific scenario. e.g.
+1. Utilize the [US Custom Logic Privacy Module](/prebid-server/features/pbs-uscustomlogic.html). This lets publishers define their own interpretation in JSONLogic format.
+1. Or, if optimizing performance is a concern, the Prebid Server Host Company might choose to build a custom privacy module that implements the desired string interpretation.
+
+"`USGen`" is a 'privacy module' called by the [Activity Control system](/prebid-server/features/pbs-activitycontrols.html) for a specific scenario. e.g.
 
 * Is bidderA allowed to participate in this auction?
 * Is bidderB allowed to receive User First Party Data?
@@ -61,7 +69,7 @@ Here's an example:
 }
 ```
 
-#### USGen Privacy Module Parameters
+### USGen Privacy Module Parameters
 
 {: .table .table-bordered .table-striped }
 | Parameter | Type | Scope | Description |
@@ -92,7 +100,7 @@ The USGen Privacy Module will not operate within the PBS workflow unless it's ca
 }
 ```
 
-#### USGen Privacy Module Processing
+### USGen Privacy Module Processing
 
 Here's how the module works when called by an Activity Control:
 
@@ -148,5 +156,6 @@ Additional information about the outcoming of privacy module processing can be o
 ## Related Topics
 
 * [Prebid Multi-State Privacy Agreement Support](/features/mspa-usnat.html)
+* [US Custom Logic Privacy Module](/prebid-server/features/pbs-uscustomlogic.html)
 * [Activity Control system](/prebid-server/features/pbs-activitycontrols.html)
 * [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)

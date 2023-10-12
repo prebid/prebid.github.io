@@ -1120,6 +1120,305 @@ Without it the SDK won't be able to recognize the Prebid line item.
 
 Once the Prebid line item is recognized you should extract the ad from the winning bid and init the view properties with native assets data.
 
+## Multiformat API
+
+Starting with version `2.1.5` Prebid SDK supports the fully multiformat ad unit. It allows to run bid requests with any combination of `banner`, `video`, and `native` formats.
+
+The following code demonstrates the integration of multiformat ad unit.
+
+``` kotlin
+private fun createAd() {
+    // random() only for test cases, in production use only one config id
+    val configId = listOf(CONFIG_ID_BANNER, CONFIG_ID_VIDEO, CONFIG_ID_NATIVE).random()
+
+    // Step 1: Create a PrebidAdUnit
+    prebidAdUnit = PrebidAdUnit(configId)
+
+    // Step 2: Create PrebidRequest
+    val prebidRequest = PrebidRequest()
+
+    // Step 3: Setup the parameters
+    prebidRequest.setBannerParameters(createBannerParameters())
+    prebidRequest.setVideoParameters(createVideoParameters())
+    prebidRequest.setNativeParameters(createNativeParameters())
+
+    // Step 4: Make a bid request
+    val gamRequest = AdManagerAdRequest.Builder().build()
+    prebidAdUnit?.fetchDemand(prebidRequest, gamRequest) {
+        // Step 5: Load an Ad
+
+        loadGam(gamRequest)
+    }
+}
+
+private fun createBannerParameters(): BannerParameters {
+    val parameters = BannerParameters()
+    parameters.api = listOf(Signals.Api.MRAID_3, Signals.Api.OMID_1)
+
+    return parameters
+}
+
+private fun createVideoParameters(): VideoParameters {
+    return VideoParameters(listOf("video/mp4"))
+}
+
+private fun createNativeParameters(): NativeParameters {
+    val assets = mutableListOf<NativeAsset>()
+
+    val title = NativeTitleAsset()
+    title.setLength(90)
+    title.isRequired = true
+    assets.add(title)
+
+    val icon = NativeImageAsset(20, 20, 20, 20)
+    icon.imageType = NativeImageAsset.IMAGE_TYPE.ICON
+    icon.isRequired = true
+    assets.add(icon)
+
+    val image = NativeImageAsset(200, 200, 200, 200)
+    image.imageType = NativeImageAsset.IMAGE_TYPE.MAIN
+    image.isRequired = true
+    assets.add(image)
+
+    val data = NativeDataAsset()
+    data.len = 90
+    data.dataType = NativeDataAsset.DATA_TYPE.SPONSORED
+    data.isRequired = true
+    assets.add(data)
+
+    val body = NativeDataAsset()
+    body.isRequired = true
+    body.dataType = NativeDataAsset.DATA_TYPE.DESC
+    assets.add(body)
+
+    val cta = NativeDataAsset()
+    cta.isRequired = true
+    cta.dataType = NativeDataAsset.DATA_TYPE.CTATEXT
+    assets.add(cta)
+
+    val nativeParameters = NativeParameters(assets)
+    nativeParameters.addEventTracker(
+        NativeEventTracker(
+            NativeEventTracker.EVENT_TYPE.IMPRESSION,
+            arrayListOf(NativeEventTracker.EVENT_TRACKING_METHOD.IMAGE)
+        )
+    )
+    nativeParameters.setContextType(NativeAdUnit.CONTEXT_TYPE.SOCIAL_CENTRIC)
+    nativeParameters.setPlacementType(NativeAdUnit.PLACEMENTTYPE.CONTENT_FEED)
+    nativeParameters.setContextSubType(NativeAdUnit.CONTEXTSUBTYPE.GENERAL_SOCIAL)
+
+    return nativeParameters
+}
+```
+
+If you use Custom Native Ads follow the [guide](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/native-banner) on how to implement processing of the ad response of the respective type. The following code snipet demonstrates how you can process the banner, video and in-banner native (Native Styles) ad resposnse:
+
+``` kotlin
+private fun loadGam(gamRequest: AdManagerAdRequest) {
+    val onBannerLoaded = OnAdManagerAdViewLoadedListener { adView ->
+        showBannerAd(adView)
+    }
+
+    val onNativeLoaded = OnNativeAdLoadedListener { nativeAd ->
+        showNativeAd(nativeAd, adWrapperView)
+    }
+
+    val onPrebidNativeAdLoaded = OnCustomFormatAdLoadedListener { customNativeAd ->
+        showPrebidNativeAd(customNativeAd)
+    }
+
+    // Prepare the lisners for multiformat Ad Response
+    val adLoader = AdLoader.Builder(this, AD_UNIT_ID)
+        .forAdManagerAdView(onBannerLoaded, AdSize.BANNER, AdSize.MEDIUM_RECTANGLE)
+        .forNativeAd(onNativeLoaded)
+        .forCustomFormatAd(CUSTOM_FORMAT_ID, onPrebidNativeAdLoaded, null)
+        .withAdListener(AdListenerWithToast(this))
+        .withAdManagerAdViewOptions(AdManagerAdViewOptions.Builder().build())
+        .build()
+
+    adLoader.loadAd(gamRequest)
+}
+```
+
+The methods managing the prebid and GAM ads:
+
+``` kotlin
+private fun showBannerAd(adView: AdManagerAdView) {
+    adWrapperView.addView(adView)
+    AdViewUtils.findPrebidCreativeSize(adView, object : AdViewUtils.PbFindSizeListener {
+        override fun success(width: Int, height: Int) {
+            adView.setAdSizes(AdSize(width, height))
+        }
+
+        override fun failure(error: PbFindSizeError) {}
+    })
+}
+
+private fun showNativeAd(ad: NativeAd, wrapper: ViewGroup) {
+    val nativeContainer = View.inflate(wrapper.context, R.layout.layout_native, null)
+
+    val icon = nativeContainer.findViewById<ImageView>(R.id.imgIcon)
+    val iconUrl = ad.icon?.uri?.toString()
+    if (iconUrl != null) {
+        ImageUtils.download(iconUrl, icon)
+    }
+
+    val title = nativeContainer.findViewById<TextView>(R.id.tvTitle)
+    title.text = ad.headline
+
+    val image = nativeContainer.findViewById<ImageView>(R.id.imgImage)
+    val imageUrl = ad.images.getOrNull(0)?.uri?.toString()
+    if (imageUrl != null) {
+        ImageUtils.download(imageUrl, image)
+    }
+
+    val description = nativeContainer.findViewById<TextView>(R.id.tvDesc)
+    description.text = ad.body
+
+    val cta = nativeContainer.findViewById<Button>(R.id.btnCta)
+    cta.text = ad.callToAction
+
+    wrapper.addView(nativeContainer)
+}
+
+private fun showPrebidNativeAd(customNativeAd: NativeCustomFormatAd) {
+    AdViewUtils.findNative(customNativeAd, object : PrebidNativeAdListener {
+        override fun onPrebidNativeLoaded(ad: PrebidNativeAd) {
+            inflatePrebidNativeAd(ad)
+        }
+
+        override fun onPrebidNativeNotFound() {
+            Log.e("PrebidAdViewUtils", "Find native failed: native not found")
+        }
+
+        override fun onPrebidNativeNotValid() {
+            Log.e("PrebidAdViewUtils", "Find native failed: native not valid")
+        }
+    })
+}
+
+private fun inflatePrebidNativeAd(ad: PrebidNativeAd) {
+    val nativeContainer = View.inflate(this, R.layout.layout_native, null)
+
+    val icon = nativeContainer.findViewById<ImageView>(R.id.imgIcon)
+    ImageUtils.download(ad.iconUrl, icon)
+
+    val title = nativeContainer.findViewById<TextView>(R.id.tvTitle)
+    title.text = ad.title
+
+    val image = nativeContainer.findViewById<ImageView>(R.id.imgImage)
+    ImageUtils.download(ad.imageUrl, image)
+
+    val description = nativeContainer.findViewById<TextView>(R.id.tvDesc)
+    description.text = ad.description
+
+    val cta = nativeContainer.findViewById<Button>(R.id.btnCta)
+    cta.text = ad.callToAction
+
+    ad.registerView(nativeContainer, Lists.newArrayList(icon, title, image, description, cta), null)
+
+    adWrapperView.addView(nativeContainer)
+}
+```
+
+### Step 1: Create a PrebidAdUnit
+{:.no_toc}
+
+Initialize the `PrebidAdUnit` with the following properties:
+
+* `configId` - an ID of the Stored Impression on the Prebid Server
+
+### Step 2: Create a PrebidRequest
+{:.no_toc}
+
+Create the instance of `PrebidRequest` initializing it with respective ad format parameters.
+
+In addition you can set the following properties of the `PrebidRequest`.
+
+### Step 3: Setup the parameters
+{:.no_toc}
+
+For each intersted ad format you should creatae a respective configuration parameter:
+
+* [BannerParameters](#step-2-configure-banner-parameters) object.
+* [VideoParameters](#step-2-configure-the-video-parameters) object.
+* [NativeParameters](#nativeparameters) object
+
+#### NativeParameters
+{:.no_toc}
+
+Using the `NativeParameters` you can customize the bid request for video ads.
+
+##### assets
+{:.no_toc}
+
+The array of requested asset objects. Prebid SDK supports all kinds of assets according to the [IAB spec](https://iabtechlab.com/wp-content/uploads/2016/07/OpenRTB-Native-Ads-Specification-Final-1.2.pdf)  except `video`.
+
+##### eventtrackers
+{:.no_toc}
+
+The array of requested native trackers. Prebid SDK supports inly `image` trackers according to the [IAB spec](https://iabtechlab.com/wp-content/uploads/2016/07/OpenRTB-Native-Ads-Specification-Final-1.2.pdf).
+
+##### version
+{:.no_toc}
+
+Version of the Native Markup version in use. The default value is `1.2`
+
+##### context
+{:.no_toc}
+
+The context in which the ad appears.
+
+##### contextSubType
+{:.no_toc}
+
+A more detailed context in which the ad appears.
+
+##### placementType
+{:.no_toc}
+
+The design/format/layout of the ad unit being offered.
+
+##### placementCount
+{:.no_toc}
+
+The number of identical placements in this Layout.
+
+##### sequence
+{:.no_toc}
+
+0 for the first ad, 1 for the second ad, and so on.
+
+##### asseturlsupport
+{:.no_toc}
+
+Whether the supply source/impression supports returning an assetsurl instead of an asset object. 0 or the absence of the field indicates no such support.
+
+##### durlsupport
+{:.no_toc}
+
+Whether the supply source / impression supports returning a dco url instead of an asset object. 0 or the absence of the field indicates no such support.
+
+##### privacy
+{:.no_toc}
+
+Set to 1 when the native ad supports buyer-specific privacy notice.  Set to 0 (or field absent) when the native ad doesn’t support custom privacy links or if support is unknown.
+
+##### ext
+{:.no_toc}
+
+This object is a placeholder that may contain custom JSON agreed to by the parties to support flexibility beyond the standard defined in this specification
+
+### Step 4: Make a bid request
+{:.no_toc}
+
+The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `GAMRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
+
+### Step 5: Load and Ad
+{:.no_toc}
+
+Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/native-banner) to combine the a banner and custom native ads int the app.
+
 ## Ad Unit Configuration
 
 Each ad unit in the Original API is a subclass of the `AdUnit` class, which provides the following properties and methods for additional configuration.
