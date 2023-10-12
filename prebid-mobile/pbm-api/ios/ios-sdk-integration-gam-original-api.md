@@ -1386,6 +1386,14 @@ func removeAppContentData(_ dataObject: ContentDataObject)
 func clearAppContentData()
 ```
 
+### GPID
+
+Using the following method, you can set the impression-level [GPID](https://docs.prebid.org/features/pbAdSlot.html#the-gpid) value to the bid request:
+
+``` swift
+adUnit.setGPID("/36117602/hnp-sfgate.com/Homepage/AP300")
+```
+
 ### User Data
 
 Using the following methods you can add `user.data` objects to the bid requests.
