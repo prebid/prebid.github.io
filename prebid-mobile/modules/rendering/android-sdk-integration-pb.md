@@ -68,7 +68,6 @@ The `BidInfo` provides the following properties:
   * **EVENT_WIN** for the `ext.prebid.events.win`
   * **EVENT_IMP** for the `ext.prebid.events.imp`
 
-  
 Code sample to extract the events:
 
 ``` kotlin
