@@ -1553,6 +1553,8 @@ void clearContextData()
 
 ### GPID
 
+(requires SDK v2.1.6)
+
 Using the following method, you can set the impression-level [GPID](https://docs.prebid.org/features/pbAdSlot.html#the-gpid) value to the bid request:
 
 ``` kotlin
