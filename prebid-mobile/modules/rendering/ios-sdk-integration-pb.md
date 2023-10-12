@@ -62,6 +62,17 @@ The `BidInfo` provides the following properties:
 * `targetingKeywords` - the targeting keywords of the winning bid
 * `exp` - the number of seconds that may elapse between the auction and the actual impression. In this case, it indicates the approximate TTL of the bid in the Prebid Cache. Note that the actual expiration time of the bid will be less than this number due to the network and operational overhead. The Prebid SDK doesn't make any adjustments to this value.
 * `nativeAdCacheId` - the local cache ID of the winning bid. Applied only to the `native` ad format.
+* `events` - the map of some publicly available events attached to the bid. Use one of the following keys to get the respective event:
+  * **EVENT_WIN** for the `ext.prebid.events.win`
+  * **EVENT_IMP** for the `ext.prebid.events.imp`
+
+  
+Code sample to extract the events:
+
+``` swift
+let win = bidInfo.events[BidInfo.EVENT_WIN]
+let imp = bidInfo.events[BidInfo.EVENT_IMP]
+```
 
 ## Rendering API
 
