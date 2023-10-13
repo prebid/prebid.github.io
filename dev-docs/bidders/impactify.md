@@ -33,7 +33,7 @@ The Impactify adaptator requires setup and validation from the Impactify team. S
 
 Impactify recommends the UserSync configuration below. Without it, the Impactify adapter will not be able to perform user syncs, which lowers match rate and reduces monetization.
 
-Note : Impactify adapter need storage access to work properly (Do not forget to set storageAllowed to true).
+Note : Impactify adapter needs storage access to work properly (Do not forget to set storageAllowed to true).
 
 For Prebid.js v1.15.0 and later:
 
