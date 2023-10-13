@@ -71,11 +71,11 @@ var adUnits = [
 ];
 ```
 
-# Example setup using only bid params
+## Example setup using only bid params
 
 This method to set the global configuration parameters (like **pbsHost**) in **params** could simplify integration of a provider for some publishers. Setting different global config-parameters on different bids is not supported in general*, as the first settings found will be used and any subsequent global settings will be ignored.
 
- * _The exception is `useSourceBidderCode` which can be overriden individually per ad unit._
+ * The exception is `useSourceBidderCode` which can be overriden individually per ad unit.
 
 ```javascript
 var adUnits = [
