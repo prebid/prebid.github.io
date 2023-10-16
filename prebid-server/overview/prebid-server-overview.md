@@ -8,20 +8,20 @@ sidebarType: 5
 # Prebid Server Overview
 {:.no_toc}
 
-Prebid Server is an open-source solution for server-to-server header bidding. It supports a number of key use cases: [mobile app](/prebid-server/use-cases/pbs-sdk.html), [AMP](/prebid-server/use-cases/pbs-amp.html), [server-side web with Prebid.js](/prebid-server/use-cases/pbs-pbjs.html), and server-side ad inclusion scenarios such as [long-form video](/prebid-server/use-cases/pbs-lfv.html) and audio.
+Prebid Server is an open-source solution for server-to-server header bidding. It supports a number of key use cases: [mobile app](/prebid-server/use-cases/pbs-sdk.html), [AMP](/prebid-server/use-cases/pbs-amp.html), [server-side web with Prebid.js](/prebid-server/use-cases/pbs-pbjs.html), and server-side ad inclusion scenarios such as [CTV](/prebid-server/use-cases/pbs-lfv.html), [Digital Out of Home](/prebid-server/use-cases/pbs-dooh.html) and audio.
 
 ![Prebid Server Architecture](/assets/images/flowcharts/prebid-server/pbs-basic-flow.png){:class="pb-xlg-img"}
 
 Prebid Server is a header bidding server with a growing list of features. At a high level, it works like this:
 
 1. Prebid Server validates and enhances incoming requests
-  - Resolves dynamic stored requests
+  - Resolves dynamic 'stored requests', enriching data server-side
   - Enforces privacy regulations
 2. Next, it calls server-side bid adapters
-  - There are 140+ server-side bid adapters available
+  - There are 180+ server-side bid adapters available
 3. After everyone's responded (or the timeout period has expired), it formulates an appropriate response
-  - Handles currency conversion
-  - Quantizes bids
+  - Currency conversion
+  - Quantizes bids as needed for header bidding targeting
   - Caches VAST XML or creatives as needed
 
 It also has optional analytics support.
