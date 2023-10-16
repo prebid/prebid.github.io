@@ -25,6 +25,7 @@ sidebarType: 1
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId`      | optional | Placement Id         | `'0'`    | `'string'` |
 | `endpointId`      | optional | Endpoint Id         | `'0'`    | `'string'` |
+| `host`      | required | region         | `'eu'`    | `'string'` |
 
 ### Note
 
