@@ -28,7 +28,7 @@ gulp build --modules=kinessoIdSystem
 
 ## Kinesso ID Registration
 
-You can set up Kinesso ID sub adapter by contacting Kinesso at prebid@kinesso.com
+You can set up Kinesso ID sub adapter by contacting Kinesso at <prebid@kinesso.com>
 
 The Kinesso ID privacy policy is covered under the [Kinesso Privacy Notice](https://kinesso.com/privacy-policy/). Please note, at present the Kinesso ID module is not meant for use inside the EEA.
 

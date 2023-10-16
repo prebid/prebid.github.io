@@ -15,6 +15,7 @@ sidebarType : 1
 The Prebid Video Module allows Prebid to directly integrate with a Video Player.
 
 When the Video Module is setup, Prebid.js will automatically:
+
 - render bids in the desired video player
 - mark used bids as won
 - trigger player and media events

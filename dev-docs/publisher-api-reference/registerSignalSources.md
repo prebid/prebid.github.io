@@ -8,7 +8,7 @@ sidebarType: 1
 {: .alert.alert-info :}
 To use this function, include the [UserId module](/dev-docs/modules/userId.html) in your Prebid.js build.
 
-This function will register all configured encrypted signals as described in the [UserId module ESP configuration](/dev-docs/modules/userId.html#esp-configurations). 
+This function will register all configured encrypted signals as described in the [UserId module ESP configuration](/dev-docs/modules/userId.html#esp-configurations).
 
 The condition can only be called under two conditions
 

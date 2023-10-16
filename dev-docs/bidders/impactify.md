@@ -5,7 +5,7 @@ description: Prebid Impactify Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: impactify
-gdpr_supported: true
+tcfeu_supported: true
 tcf2_supported: true
 usp_supported: true
 schain_supported: true
@@ -16,9 +16,9 @@ gvl_id: 606
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Impactify adaptator requires setup and validation from the Impactify team. Simply email us your contact details at support@impactify.io and we'll make sure we'll connect you within 48h.
+The Impactify adaptator requires setup and validation from the Impactify team. Simply email us your contact details at <support@impactify.io> and we'll make sure we'll connect you within 48h.
 
 ### Bid Params
 

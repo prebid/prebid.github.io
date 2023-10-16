@@ -4,19 +4,22 @@ title: smartx
 description: Prebid smartx Bidder Adapter
 biddercode: smartx
 media_types: no-display, video
-gdpr_supported: true
+gvl_id: 115
+tcfeu_supported: true
 userIds: none
 prebid_member: true
 schain_supported: true
 usp_supported: true
 safeframes_ok: false
 pbjs: true
+pbs: true
 floors_supported: true
 sidebarType: 1
 ---
 
 ### Registration
-Please reach out to your smartclip business contact for any questions and assistance in configuration.
+
+This adapter requires setup and approval from the smartclip team. Please contact us at --- <bidding@smartclip.tv>
 
 ### Bid Params
 
@@ -37,7 +40,7 @@ Please reach out to your smartclip business contact for any questions and assist
 | `max_duration`       | optional | Maximum video ad duration in seconds                                                                    | `60`                    | `integer`   |
 | `sitekey`            | optional | Sitekey provided by smartclip.                                                                          | `'foo.bar.baz'`           | `string`    |
 
-<a name="smartx-outstream-options-object" />
+<a name="smartx-outstream-options-object"></a>
 
 #### outstream_options Object
 

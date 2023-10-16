@@ -8,7 +8,8 @@ biddercode: rise
 media_types: banner, video
 schain_supported: true
 coppa_supported: true
-gdpr_supported: true
+pbs: true
+tcfeu_supported: true
 usp_supported: true
 floors_supported: true
 userIds: all
@@ -18,7 +19,7 @@ sidebarType: 1
 
 ### Note
 
-The Rise adapter requires setup and approval. Please reach out to prebid-rise-engage@risecodes.com to setup an Rise account.
+The Rise adapter requires setup and approval. Please reach out to [prebid-rise-engage@risecodes.com] to setup an Rise account.
 
 ### Bid Parameters
 
@@ -31,10 +32,11 @@ The Rise adapter requires setup and approval. Please reach out to prebid-rise-en
 | `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
-| `rtbDomain` | optional | String |  Sets the seller end point	| "www.test.com"
-| `is_wrapper` | private | Boolean |  Please don't use unless your account manager asked you to	| false
+| `rtbDomain` | optional | String |  Sets the seller end point    | "www.test.com"
+| `is_wrapper` | private | Boolean |  Please don't use unless your account manager asked you to    | false
 
 ## Example
+
 ```javascript
 var adUnits = [{
         code: 'banner-div',
@@ -85,8 +87,10 @@ var adUnits = [{
 ```
 
 ### Configuration
+
 Rise recommends setting UserSync by iframe for monetization.
 
 ### Versions
+
 Prebid versions 5.0-5.3 are not supported
 Banner >= 6.14.0

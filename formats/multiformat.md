@@ -6,6 +6,7 @@ sidebarType: 6
 ---
 
 # Prebid Multi-Format
+
 {:.no_toc}
 
 Ad Units that support multiple formats are supported by Prebid.js. Prebid Server support is coming soon.

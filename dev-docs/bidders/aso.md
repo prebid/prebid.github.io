@@ -3,7 +3,7 @@ layout: bidder
 title: Adserver.Online
 description: Prebid Adserver.Online Bidder Adapter
 biddercode: aso
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 media_types: video
 safeframes_ok: true
@@ -16,9 +16,9 @@ multiformat_supported: will-bid-on-one
 userIds: all
 sidebarType: 1
 ---
-### Note:
+### Note
 
-For more information about [Adserver.Online](https://adserver.online), please contact support@adsrv.org.
+For more information about [Adserver.Online](https://adserver.online), please contact <support@adsrv.org>.
 
 ### Bid Params
 

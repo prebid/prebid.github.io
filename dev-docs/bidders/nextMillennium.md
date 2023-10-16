@@ -2,7 +2,8 @@
 layout: bidder
 title: NextMillennium
 description: NextMillennium bid adapter
-gdpr_supported: true
+gvl_id: dev-docs/bidders/nextMillennium.md
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: false
 schain_supported: false
@@ -38,7 +39,8 @@ Further information for the auction on NextMillennium side is generated automati
 
 The `disabledSendingStatisticData` parameter disables sending statistics data to the nextMillennium server, such as bidRequested, bidResponse, noBid and bidTimeout events.
 An example of enabling this option:  
-```
+
+```javascript
 pbjs.setBidderConfig({
   bidders: ['nextMillennium'],
   config: {

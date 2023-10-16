@@ -6,11 +6,12 @@ sidebarType: 2
 ---
 
 # Prebid Mobile FAQ
+
 {:.no_toc}
 
 This page has answers to some frequently asked questions about Prebid Mobile. If you don't find what you're looking for here, there are other ways to [get help](/support/index.html).
 
-* TOC
+- TOC
 {:toc}
 
 ## General
@@ -18,6 +19,7 @@ This page has answers to some frequently asked questions about Prebid Mobile. If
 ### What size is the SDK?
 
 Compiled sizes:
+
 - Android: 800 KB
 - iOS: 3.2 Mb
 
@@ -25,7 +27,7 @@ Note: these sizes will go down as several assets will be pulled out into a CDN o
 
 ### Does the SDK have UI components?  If so, are they localized?
 
-The Prebid SDK has no localized UI components. 
+The Prebid SDK has no localized UI components.
 
 Most probably you will use an integration approach that doesn’t utilize UI component at all, as they are used only with the Rendering API.
 
@@ -45,7 +47,7 @@ Prebid SDK is always async. The completion handler for the main fetchDemand() me
 
 Prebid SDK does not support a [limited bid cache](dev-docs/faq.html#does-prebidjs-cache-bids) like Prebid.js does. Which means it's up to the app to build any kind of pre-fetch or bid-cache feature. Notes:
 
-1. If Prebid Cache is being utilized, the Time-To-Live for that cache should be understood. By default, the TTL for Prebid Cache is 5 minutes for banners and 15 minutes for video, but this can be changed. 
+1. If Prebid Cache is being utilized, the Time-To-Live for that cache should be understood. By default, the TTL for Prebid Cache is 5 minutes for banners and 15 minutes for video, but this can be changed.
 2. No matter what the Cache TTL is set to, it's important that any pre-fetch or bid-cache feature built into the app should respect the OpenRTB `seatbid.bid.exp` field for each bid, which is the expiration of the bid in seconds.
 
 ## Dependencies
@@ -64,7 +66,7 @@ No. The Prebid SDK is itself a library open sourced under the Apache 2 license.
 
 ### Are there any back-end dependencies to this SDK?
 
-Yes - the app developer must have a [Prebid Server](/prebid-server/index.html) at their disposal. This is open source software that they may run themselves, or they may contract with a [Managed Service](https://prebid.org/product-suite/managed-services/).
+Yes - the app developer must have a [Prebid Server](/prebid-server/prebid-server-overview.html) at their disposal. This is open source software that they may run themselves, or they may contract with a [Managed Service](https://prebid.org/product-suite/managed-services/).
 
 ## Communication
 
@@ -81,8 +83,9 @@ The frequency of HTTPS network calls is up to the app developer. It depends on w
 It varies, but on average, it's updated about once per month.
 
 The open source repos have a list of releases:
-https://github.com/prebid/prebid-mobile-ios/releases
-https://github.com/prebid/prebid-mobile-android/releases 
+
+- <https://github.com/prebid/prebid-mobile-ios/releases>
+- <https://github.com/prebid/prebid-mobile-android/releases>
 
 ### How does one update the Prebid Mobile version?
 
@@ -92,27 +95,29 @@ The best way is to integrate SDK via dependency managers - CocoaPods (iOS) and M
 
 Please open a github issue:
 
-https://github.com/prebid/prebid-mobile-ios/issues 
-https://github.com/prebid/prebid-mobile-android/issues 
+- <https://github.com/prebid/prebid-mobile-ios/issues>
+- <https://github.com/prebid/prebid-mobile-android/issues>
 
 ### Is there a support forum where we can monitor issues and resolutions?
 
 Yes, you may monitor github issues and pull requests at the repositories noted above.
 
 ### Are there debug/logging options that can be toggled on/off?
+
 Yes.
 
 1. You can change app console log verbose level via PrebiMobile.shared.logLevel
-2. You can set the OpenRtb 'test' flag for Prebid Server to return additional server-side information. See 'debug' in https://docs.prebid.org/prebid-mobile/pbm-api/android/code-integration-android.html and https://docs.prebid.org/prebid-mobile/pbm-api/ios/code-integration-ios.html 
+2. You can set the OpenRtb 'test' flag for Prebid Server to return additional server-side information. See 'debug' in <https://docs.prebid.org/prebid-mobile/pbm-api/android/code-integration-android.html> and <https://docs.prebid.org/prebid-mobile/pbm-api/ios/code-integration-ios.html>
 
 ## Privacy/Security
 
 ### Does the SDK store any data locally on the device?  If so, what is it?
 
 If the developer calls certain functions, the SDK will store the results for future auctions. See the "Local Storage" section of
-https://docs.prebid.org/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html
+<https://docs.prebid.org/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html>
 
-In all other cases SDK plays a transport role. It collects information from API (if it’s allowed by privacy settings) and sends it in the bid requests to the server. SDK uses the following datasources: 
+In all other cases SDK plays a transport role. It collects information from API (if it’s allowed by privacy settings) and sends it in the bid requests to the server. SDK uses the following datasources:
+
 - TCF API - SDK reads data from UserDefaults
 - Configuration / Targeting API - publishers provide data to SDK in runtime
 - Device API - SDK collects device info using public OS API, like user agent, OS version, location
@@ -131,13 +136,13 @@ Also note that Prebid.org is committed to other privacy initiatives such as the 
 
 ### How does the SDK allow for deletion of user private data?
 
-SDK does’t commit any action on managing user data. Only publishers using SDK’s API can provide/store/remove user data. 
+SDK does’t commit any action on managing user data. Only publishers using SDK’s API can provide/store/remove user data.
 
 ## Performance
 
 ### Does the SDK do any work in the background?  If so, what is it?
 
-The SDK will receive responses from Prebid Server in the background and call the application-defined callbacks. 
+The SDK will receive responses from Prebid Server in the background and call the application-defined callbacks.
 
 The developer may set up auto-refresh for ad units. If in the background, Prebid SDK will not perform bid requests.
 
@@ -145,7 +150,8 @@ The developer may set up auto-refresh for ad units. If in the background, Prebid
 
 No. We'd welcome any community member to help us with requirements, code, and/or results.
 
-### How long does it take to initialize?  
+### How long does it take to initialize?
+
 Is not measured, but very fast. Because it makes only initialization of internal classes and optional health check calls to PBS. The result of the health check call does not influence the SDK behavior, so publishers may not wait for its result during the initialization.
 
 ## API Questions
@@ -162,13 +168,14 @@ Yes. Prebid SDK is developed with latest Xcode version.
 
 ### Does it ship as a CocoaPod?
 
-Yes - https://cocoapods.org/pods/PrebidMobile 
+Yes - <https://cocoapods.org/pods/PrebidMobile>
 
 ### Is it bit code enabled?
 
 Starting with 2.1.0: No
 
 ### Does it support 64-bit?
+
 Yes.
 
 ## Android Specifics
@@ -182,4 +189,5 @@ Android API 32.
 No.
 
 ## Further Reading
+
 - [Prebid Mobile home page](/prebid-mobile/prebid-mobile.html)

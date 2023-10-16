@@ -6,7 +6,7 @@ pbjs: true
 pbs: false
 biddercode: pixad
 media_types: banner,video
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 schain_supported: false
@@ -34,6 +34,7 @@ Pixad header bidding adapter connects with Pixad demand sources to fetch bids fo
 ### Test Parameters
 
 300x250 banner test
+
 ```
 var adUnits = [{
   code: 'your-slot_1-div', //use exactly the same code as your slot div id.

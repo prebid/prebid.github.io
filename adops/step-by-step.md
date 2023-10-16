@@ -8,9 +8,10 @@ sidebarType: 3
 ---
 
 # Google Ad Manager with Prebid Step by Step
+
 {: .no_toc }
 
-* TOC
+- TOC
 {: toc }
 
 This guide contains step-by-step instructions for manually setting up line items in Google Ad Manager (GAM) to work with Prebid. These instructions describe only the specific settings required for Prebid, they are not intended to be comprehensive instructions that replace or duplicate the [GAM documentation](https://support.google.com/admanager#topic=7505988).
@@ -32,7 +33,6 @@ GAM works as a hierarchical structure, where line items are children of orders, 
 - Send All Bids: Create one Prebid advertiser per bidder where Orders are organized by bidder, with one or more orders containing line items targeted towards a single bidder.
 
 ![Google Ad Manager hierarchy](/assets/images/ad-ops/gam-sbs/gam-hierarchy.png)
-
 
 ### Create Native Template
 
@@ -60,34 +60,31 @@ Open the order you want to associate the line item with and click **New line ite
 From the **Settings** tab, do the following:
 
 1. Select your **Ad type**:
-- Banner/Outstream/Native/AMP: Click **Select display ad**.
-- Video/Audio: Click **Select video or audio ad**.
+    - Banner/Outstream/Native/AMP: Click **Select display ad**.
+    - Video/Audio: Click **Select video or audio ad**.
 
 2. Enter the **Name** of your line item. Suggested format: Prebid – format - bidder – price bucket. For example, `Prebid – banner - BidderA - 1.50`.
 
 3. Set the **Line Item Type** to **Price priority (12)**. (This will most likely be higher for deals. See [Deals in Prebid](/adops/deals.html) for more information.)
 
 4. Enter your **Expected Creatives**:
-- Banner/Outstream/AMP/Video: Select the sizes of all ad slots included in the Prebid process.
-- Native: Select a native template. (See [GAM Step by Step - Native Creatives](/adops/gam-native.html) for instructions on creating native templates.)
+    - Banner/Outstream/AMP/Video: Select the sizes of all ad slots included in the Prebid process.
+    - Native: Select a native template. (See [GAM Step by Step - Native Creatives](/adops/gam-native.html) for instructions on creating native templates.)
 
 ![New line item settings](/assets/images/ad-ops/gam-sbs/line-item-settings.png)
 
 {:start="5"}
 5. For Long-Form (OTT) Video: If you're using competitive exclusions, under **Additional settings** enter the value for competitive exclusions in the **Label** field. This value will be included in your targeting within the value for the `hb_pb_cat_dur` key. See [Targeting](#targeting) below for more information.
-
 6. Under **Delivery settings**:
-- Set **Start time** to **Immediately**.
-- Set **End time** to **Unlimited**.
-- Set **Rate** to your [price bucket].
-- Set **Goal** type to **None**.
-
+    - Set **Start time** to **Immediately**.
+    - Set **End time** to **Unlimited**.
+    - Set **Rate** to your [price bucket].
+    - Set **Goal** type to **None**.
 
 ![Line item delivery settings](/assets/images/ad-ops/gam-sbs/delivery-settings.png)
 
 {:start="7"}
 7. Under **Adjust delivery**, set **Rotate creatives** to **Evenly**. You can leave the defaults for everything else.
-
 
 ### Targeting
 
@@ -110,14 +107,12 @@ You can use the same line item for banner, outstream, and/or native creatives. I
 
 ![Custom targeting on format](/assets/images/ad-ops/gam-sbs/custom-targeting-format.png)
 
-
 {: .alert.alert-warning :}
 If you combine native with another format in a single line item, you’ll need to add creative-level targeting to designate which creatives target which format. See [Creative-level Targeting](#creative-level-targeting) below.
 
 **In-Player and Outstream Video**:
 
 Both in-player (instream) and outstream video ads supply the `hb_format_BIDDERCODE=video` key-value pair, so targeting on that key alone is not enough to choose the correct line items. If you're running both instream and outstream video ads, they will most likely be separate line items, so you will need to target outstream line items to either "Inventory Type=display" or "Inventory in (list of GAM AdUnits)".
-
 
 **Long-Form (OTT) Video**:
 
@@ -160,7 +155,6 @@ The process you use to create your creatives differs based on the media type. Fo
 - [Native](/adops/gam-native.html)
 - [Video](/adops/setting-up-prebid-video-in-dfp.html)
 
-
 ## Duplicate Creative
 
 After you've created your creatives, you’ll need to associate a creative with each size in your line item. Even if you’ve specified only one or two sizes, you might actually want more creatives than you have sizes. Because the creative body itself is identical no matter which size you’re associating it with, you can duplicate the creative so you have as many as you need.
@@ -175,7 +169,6 @@ You need extra copies of the creative because GAM will display only one creative
 5. After you’ve created the copies, click into each one and change the **Name**. If you’ve followed our suggestions, you can name each one the same but append a subsequent number. For example, `Prebid – banner – 1x1 – 1`, `Prebid – banner – 1x1 – 2`, etc.
 
 ![List of duplicated creatives](/assets/images/ad-ops/gam-sbs/duplicate-creatives.png)
-
 
 ## Attach Creatives to Line Item
 
@@ -194,7 +187,6 @@ Under the **Creatives** tab, you’ll see a yellow box showing each size you ent
 ![Select creatives to attach to line item](/assets/images/ad-ops/gam-sbs/select-creative.png)
 
 Repeat the preceding steps until all the sizes in your line item have creatives associated with them. When you’re done, the **Creatives** tab under your line item will show a list of all the associated creatives.
-
 
 ## Duplicate Line Item
 
