@@ -36,7 +36,7 @@ This endpoint alerts Prebid Server to process the event. Most of the time this j
 GET https://prebid.site.com/event?t=win&b=1234567890&bidder=rubicon&f=i
 ```
 
-## `POST /vtrack` 
+## `POST /vtrack`
 
 This endpoint covers there scenario where VAST XML is returned in the response from a client-side adapter. Prebid.js forwards the XML to PBS on a new endpoint that instructs PBS to update the XML and cache it
 
@@ -51,7 +51,7 @@ event:
 
 where b=BIDID, a=ACCOUNT
 
-The algorithm for inserting the <impression> tag is simple -- search for an existing <impression> tag and add another underneath it. If there isn't an existing <impression> tag, no modifications are made. 
+The algorithm for inserting the <impression> tag is simple -- search for an existing <impression> tag and add another underneath it. If there isn't an existing <impression> tag, no modifications are made.
 
 ### Query Params
 
