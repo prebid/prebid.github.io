@@ -5,7 +5,7 @@ title: Prebid Server | Endpoints | Events
 
 ---
 
-# Prebid Server | Endpoints | Events (Java-only)
+# Prebid Server | Endpoints | Events
 
 Prebid Server supports events as described in these GitHub issues:
 
