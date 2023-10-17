@@ -32,7 +32,7 @@ This endpoint alerts Prebid Server to process the event. Most of the time this j
 
 ### Sample request
 
-```
+```text
 GET https://prebid.site.com/event?t=win&b=1234567890&bidder=rubicon&f=i
 ```
 
@@ -44,14 +44,14 @@ If the bidder allows PBS to modify their VAST, the server then injects an <impre
 
 The contents of the <impression> tag are pulled from a new event.url-template property that has macros that need to be resolved. e.g.
 
-```
+```yaml
 event:
     url-template: "/event?t=imp&b=%s&f=b&a=%s"
 ```
+
 where b=BIDID, a=ACCOUNT
 
 The algorithm for inserting the <impression> tag is simple -- search for an existing <impression> tag and add another underneath it. If there isn't an existing <impression> tag, no modifications are made. 
-
 
 ### Query Params
 
