@@ -252,7 +252,7 @@ pbjs.setConfig({
 #### Native
 
 Note: the client-side adapter supports native as of PBJS 7.39.
- 
+
 We recommend using the ORTB Native spec 1.2, but do support versions 1.0 and 1.1. Here the parameters required for each version:
 
 {: .table .table-bordered .table-striped }
