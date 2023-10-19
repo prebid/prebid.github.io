@@ -62,7 +62,7 @@ var adUnits = [
 
 Connatix requires that ```iframe``` is used for user syncing.
 
-#### Example configuration:
+#### Example configuration
 
 ```js
 pbjs.setConfig({
