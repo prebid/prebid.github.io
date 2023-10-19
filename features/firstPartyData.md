@@ -52,53 +52,60 @@ to first party data that might be useful in ad targeting that's good in PBJS 4.3
 
 ```javascript
 pbjs.setConfig({
-   ortb2: {
-       site: {
-           name: "example",
-           domain: "page.example.com",
-           cat: ["IAB2"],
-           sectioncat: ["IAB2-2"],
-           pagecat: ["IAB2-2"],
-           page: "https://page.example.com/here.html",
-           ref: "https://ref.example.com",
-           keywords: "power tools, drills",
-           search: "drill",
-           content: {
-        userrating: "4",
-        data: [{
-                  name: "www.dataprovider1.com",
-                  ext: {
-                segtax: 7,
-            cids: [ "iris_c73g5jq96mwso4d8" ]
-            },
-            segment: [
-                    { id: "687" },
-                    { id: "123" }
-            ]
+    ortb2: {
+        // this is where the contextual data is placed
+        site: {
+            name: "example",
+            domain: "page.example.com",
+
+            // OpenRTB 2.5 spec / Content Taxonomy
+            cat: ["IAB2"],
+            sectioncat: ["IAB2-2"],
+            pagecat: ["IAB2-2"],
+
+            page: "https://page.example.com/here.html",
+            ref: "https://ref.example.com",
+            keywords: "power tools, drills",
+            search: "drill",
+
+            content: {
+                userrating: "4",
+                data: [{
+                    name: "www.dataprovider1.com", // who resolved the segments
+                    ext: {
+                        segtax: 7, // taxonomy used to encode the segments
+                        cids: ["iris_c73g5jq96mwso4d8"]
+                    },
+                    // the bare minimum are the IDs. These IDs are the ones from the new IAB Content Taxonomy v3
+                    segment: [{ id: "687" }, { id: "123" } ]
                 }]
-       },
-       ext: {
-               data: {   // fields that aren't part of openrtb 2.6
-                   pageType: "article",
-                   category: "repair"
-               }
-       }
+            },
+            ext: {
+                data: { // fields that aren't part of openrtb 2.6
+                    pageType: "article",
+                    category: "repair"
+                }
+            }
         },
+
+        // this is where the user data is placed
         user: {
-           keywords: "a,b",
-       data: [{
-           name: "dataprovider.com",
-           ext: { segtax: 4 },
-               segment: [
-          { id: "1" }
-               ]
-       }],
-       ext: {
-               data: {
-                  registered: true,
-                  interests: ["cars"]
-           }
-           }
+            keywords: "a,b",
+            data: [{
+                name: "dataprovider.com",
+                ext: {
+                    segtax: 4
+                },
+                segment: [{
+                    id: "1"
+                }]
+            }],
+            ext: {
+                data: {
+                    registered: true,
+                    interests: ["cars"]
+                }
+            }
         },
         regs: {
             gpp: "abc1234",
@@ -343,7 +350,7 @@ user: {
         name: "dataprovider.com", // who resolved the segments
         ext: { segtax: 4 },       // taxonomy used to encode the segments
             segment: [
-        { id: "1" }
+                { id: "1" }
             ]
     }],
 }
@@ -363,6 +370,7 @@ here to their page. For now, here's the beta table defining the segtax values:
 | 4 | Audience | 1.1 | [IAB - Audience Taxonomy version 1.1](https://iabtechlab.com/wp-content/uploads/2020/07/IABTL-Audience-Taxonomy-1.1-Final.xlsx) |
 | 5 | Content | 2.1 | [IAB - Content Taxonomy version 2.1](https://iabtechlab.com/standards/content-taxonomy/) |
 | 6 | Content | 2.2 | [IAB - Content Taxonomy version 2.2](https://iabtechlab.com/standards/content-taxonomy/) |
+| 7 | Content | 3.0 | [IAB - Content Taxonomy version 3.0](https://iabtechlab.com/standards/content-taxonomy/) |
 
 {: .alert.alert-info :}
 The [IAB version of this table](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md#list--category-taxonomies-) is associated with ADCOM. Publishers should check with their SSPs and DSPs to confirm which

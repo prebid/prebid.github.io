@@ -7,7 +7,7 @@ media_types: banner, video, native
 gvl_id: 498
 pbjs: true
 floors_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 schain_supported: true
 coppa_supported: true
 usp_supported: true

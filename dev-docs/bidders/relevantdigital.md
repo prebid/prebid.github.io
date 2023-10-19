@@ -4,7 +4,7 @@ title: Relevant Digital
 description: Relevant Digital Bid Adapter
 biddercode: relevantdigital
 pbjs: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: false
 schain_supported: true

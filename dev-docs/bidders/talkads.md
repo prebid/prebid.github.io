@@ -3,7 +3,7 @@ layout: bidder
 title: Talkads
 description: Talkads Prebid Bidder Adapter
 biddercode: talkads
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 1074
 usp_supported: false
 coppa_supported: false

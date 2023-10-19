@@ -5,7 +5,7 @@ description: Connatix Bidder Adapter
 biddercode: connatix
 gdpr_supported: false
 gvl_id: 143
-usp_supported: false
+usp_supported: true
 coppa_supported: false
 gpp_supported: false
 schain_supported: false
@@ -36,24 +36,26 @@ sidebarType: 1
 
 ```js
 var adUnits = [
-	{
-		code: '1',
-		mediaTypes: {
-			video: {
-				sizes: [[640, 480], [320, 180]],
-			},
-		},
-		bids: [
-			{
-				bidder: 'connatix',
-				params: {
-					placementId: 'e4984e88-9ff4-45a3-8b9d-33aabcad634e', //required
-				},
-			},
-			// Add more bidders and their parameters as needed
-		],
-	},
-	// Define more ad units here if necessary
+  {
+    code: '1',
+    mediaTypes: {
+      banner: {
+        sizes: [[640, 480], [320, 180]],
+      },
+    },
+    bids: [
+      {
+        bidder: 'connatix',
+        params: {
+          placementId: 'e4984e88-9ff4-45a3-8b9d-33aabcad634e', // required
+          bidfloor: 2.5, // optional
+        },
+      },
+      // Add more bidders and their parameters as needed
+    ],
+  },
+  // Define more ad units here if necessary
+];
 ```
 
 ### Configuration

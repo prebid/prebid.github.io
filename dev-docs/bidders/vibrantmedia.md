@@ -3,7 +3,7 @@ layout: bidder
 title: Vibrant Media
 description: Vibrant Media Prebid Bidder Adapter
 biddercode: vibrantmedia
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 7
 usp_supported: true
 media_types: banner, video, native

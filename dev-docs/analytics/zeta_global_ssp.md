@@ -3,7 +3,7 @@ layout: analytics
 title: Zeta Global Ssp
 description: Zeta Global Ssp Prebid Analytics Adapter
 modulecode: zeta_global_ssp
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 prebid_member: true
 gvl_id: 833

@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: between
 schain_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 pbs_app_supported: true
 userIds: all
 gvl_id: 724

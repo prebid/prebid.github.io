@@ -7,7 +7,7 @@ media_types: banner
 pbjs: true
 userIds: freepassId
 sidebarType: 1
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 schain_supported: false
@@ -26,4 +26,5 @@ multiformat_supported: will-not-bid
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| (none)         | optional | no params required     | `''`    | n/a       |
+| publisherId  | required | publisherId     | `'PUBLISHER_ID'`    | `string`  |
+| publisherUrl | optional | url for publisher    | `'PUBLISHER_URL'`   | `string`  |
