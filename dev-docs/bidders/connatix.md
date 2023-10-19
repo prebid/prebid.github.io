@@ -3,7 +3,7 @@ layout: bidder
 title: Connatix
 description: Connatix Bidder Adapter
 biddercode: connatix
-gdpr_supported: false
+tcfeu_supported: true
 gvl_id: 143
 usp_supported: true
 coppa_supported: false
