@@ -22,7 +22,7 @@ Plugin Renderer is a feature that enables the ability to delegate the ad renderi
 
 Everytime that a bid response is received and it reaches the rendering stage, Prebid SDK will delegate the ad view rendering to an existing Plugin Renderer, such as a custom one if this is elected or the default one in any other case.
 
-Take the example on the image below where a BannerView will have its ad view transposed accordingly to the Plugin Renderer status. That way an inner view which represents the ad itself is handled totally under the hood from the publisher point of view, what makes unnecessary any change on the BannerView loading or initialization.
+Take the example on the image below where a BannerView will have its ad view transposed accordingly to the Plugin Renderer status. The inner ad view is handled totally under the hood from the app owner point of view, what makes unnecessary any change on the BannerView loading or initialization.
 
 {: .alert.alert-info :}
 In case of Interstitial ad this is just inflated in the foreground regardless the view hierarchy.
@@ -248,16 +248,16 @@ class PpmBannerPluginEventListenerFragment : AdFragment(), SampleCustomRendererE
 
 In addition to this documentation you have samples on hand which can be get from the Prebid Mobile SDK repository:
 
-* [PpmBannerPluginRendererFragment](https://github.com/prebid/prebid-mobile-android/blob/f6d8069166c2ab4740f8cef2a0fe24cc6cc1fd92/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmBannerPluginRendererFragment.kt)
-* [PpmBannerPluginEventListenerFragment](https://github.com/prebid/prebid-mobile-android/blob/f6d8069166c2ab4740f8cef2a0fe24cc6cc1fd92/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmBannerPluginEventListenerFragment.kt)
-* [PpmInterstitialPluginRendererFragment](https://github.com/prebid/prebid-mobile-android/blob/f6d8069166c2ab4740f8cef2a0fe24cc6cc1fd92/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmInterstitialPluginRendererFragment.kt)
-* [PpmInterstitialPluginEventListenerFragment](https://github.com/prebid/prebid-mobile-android/blob/f6d8069166c2ab4740f8cef2a0fe24cc6cc1fd92/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmInterstitialPluginEventListenerFragment.kt)
+* [PpmBannerPluginRendererFragment](https://github.com/prebid/prebid-mobile-android/blob/master/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmBannerPluginRendererFragment.kt)
+* [PpmBannerPluginEventListenerFragment](https://github.com/prebid/prebid-mobile-android/blob/master/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmBannerPluginEventListenerFragment.kt)
+* [PpmInterstitialPluginRendererFragment](https://github.com/prebid/prebid-mobile-android/blob/master/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmInterstitialPluginRendererFragment.kt)
+* [PpmInterstitialPluginEventListenerFragment](https://github.com/prebid/prebid-mobile-android/blob/master/Example/PrebidInternalTestApp/src/main/java/org/prebid/mobile/renderingtestapp/plugplay/bidding/pluginrenderer/PpmInterstitialPluginEventListenerFragment.kt)
 
 ___
 
 ## Plugin Renderer providers
 
-The following list contains known supported Plugin Renderer providers.
+The following list contains documentation for known supported Plugin Renderer providers.
 
 {: .table .table-bordered .table-striped }
 
