@@ -60,7 +60,9 @@ var adUnits = [
 
 ### Configuration
 
-Connatix requires that ```iframe``` is used for user syncing.
+To maximize revenue efficiency, please enable ```iframe``` user syncing.
+
+Connatix strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the bid rate and bid price. Make sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Connatix.
 
 #### Example configuration
 
