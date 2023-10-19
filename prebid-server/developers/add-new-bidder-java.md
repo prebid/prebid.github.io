@@ -624,7 +624,7 @@ Bid metadata may be required in a future Prebid.js release. The AdvertiserDomain
 
 {: .table .table-bordered .table-striped }
 | Path | Description |
-| - | - 
+| - | -
 | `.AdvertiserDomains` | Domains for the landing page(s) aligning with the OpenRTB `adomain` field.
 | `.AdvertiserID` | Bidder-specific advertiser id.
 | `.AdvertiserName` | Bidder-specific advertiser name.
