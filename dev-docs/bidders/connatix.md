@@ -55,3 +55,22 @@ var adUnits = [
 	},
 	// Define more ad units here if necessary
 ```
+
+### Configuration
+
+Connatix requires that ```iframe``` is used for user syncing.
+
+#### Example configuration:
+
+```js
+pbjs.setConfig({
+  userSync: {
+    filterSettings: {
+      iframe: {
+        bidders: '*', // represents all bidders
+        filter: 'include'
+      }
+    }
+  }
+});
+```
