@@ -5,7 +5,6 @@ description: setConfig API
 sidebarType: 1
 ---
 
-
 `setConfig` supports a number of configuration options. Every
 call to setConfig overwrites supplied values at the top level. e.g. if `ortb2` is provided as a value, any previously-supplied `ortb2` values will disappear.
 If this is not the desired behavior, there is a [`mergeConfig()`](mergeConfig.html) function that will preserve previous values to do not conflict with the newly supplied values.
@@ -285,7 +284,7 @@ pbjs.setConfig({
 
 <a id="setConfig-minBidCacheTTL"></a>
 
-By default, Prebid keeps every bid it receives stored in memory until the user leaves the page. This can cause high memory usage on long-running single-page apps; you can configure Prebid to drop stale bids from memory with `minBidCacheTTL`:
+By default, Prebid keeps every bid it receives stored in memory until the user leaves the page, even after the bid actually times out and is no longer available for new auctions. This can cause high memory usage on long-running single-page apps; you can configure Prebid to drop stale bids from memory with `minBidCacheTTL`:
 
 ```javascript
 pbjs.setConfig({
@@ -293,7 +292,9 @@ pbjs.setConfig({
 })
 ```
 
-When set, bids are only kept in memory for the duration of their TTL or the value of `minBidCacheTTL`, whichever is greater. Setting `minBidCacheTTL: 0` causes bids to be dropped as soon as they expire.
+When set, bids are only kept in memory for the duration of their actual TTL lifetime or the value of `minBidCacheTTL`, whichever is greater. Setting `minBidCacheTTL: 0` causes bids to be dropped as soon as they expire.
+
+Put another way, this setting doesn't define each bid's TTL, but rather controls how long it's kept around in memory for analytics purposes.
 
 #### Event history TTL
 
