@@ -39,7 +39,7 @@ In case of Interstitial ad this is just inflated in the foreground regardless th
 * Take advantage of the Plugin Renderer fields
 
 {: .alert.alert-info :}
-Please notice that all implementation on mobile related to the Plugin Renderer should be provided externally, not in the PBM SDK itself. For instance, an app owner or third party SDK would implement it and initialise it on their own context. 
+Please notice that all implementation on mobile related to the Plugin Renderer should be provided externally, not in the PBM SDK itself. For instance, an app owner or third party SDK would implement it and initialise it on their own context.
 
 ___
 
@@ -87,7 +87,6 @@ class SampleCustomRenderer : PrebidMobilePluginRenderer {
 }
 ```
 
-
 #### Initialise your Plugin Renderer before starting to request ads
 
 ```kotlin
@@ -110,6 +109,7 @@ class PpmBannerPluginRendererFragment : AdFragment(), BannerViewListener {
 The fields `name`, `version` and `data` from your Plugin Renderer are added to the bid request by the Prebid Mobile SDK and can be read by your Prebid Bidder Adapter in order to better handle ad requests from a Plugin Renderer taking into account its name, version and the additional values stored on the data field.
 
 The field `data` can be used as below or with a more complex data structure:
+
 ```kotlin
     override fun getData(): JSONObject { 
         val data = JSONObject()
@@ -130,20 +130,21 @@ It is important to notice that the compliant formats you set on `isSupportRender
 The Plugin Renderer feature does not work with [GAM Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.md) since the ad rendering does not happen in the Prebid SDK but externally. Despite that if you are using the regular GAM integration it will work fine.
 
 ## Ad Event Listeners
-An optional dedicated generic ad event listener is offered in case of the existing event listeners are insufficient to keep your ad consumer fully aware of your ad lifecycle. 
+An optional dedicated generic ad event listener is offered in case of the existing event listeners are insufficient to keep your ad consumer fully aware of your ad lifecycle.
 
 ![Plugin Event Listener big picture](/assets/images/prebid-mobile/prebid-plugin-renderer-event-listeners.png)
 
 ### Setup
 
 * Create your implementation from the interface `PluginEventListener`
-* Handle your plugin event listener on your Plugin Renderer 
+* Handle your plugin event listener on your Plugin Renderer
 * Implement the interface on the class you want to listen the events
 * Set your listener on your `BannerView` instance or `InterstitialAdUnit` instance
 
 ___
 
 #### Create your implementation from the interface PluginEventListener
+
 ```kotlin
 interface SampleCustomRendererEventListener : PluginEventListener {
     // Ensure that the name is the same as your Plugin Renderer
@@ -153,6 +154,7 @@ interface SampleCustomRendererEventListener : PluginEventListener {
 ```
 
 #### Handle your plugin event listener on your Plugin Renderer
+
 ```kotlin
 class SampleCustomRenderer : PrebidMobilePluginRenderer {
 
@@ -214,6 +216,7 @@ class SampleCustomRenderer : PrebidMobilePluginRenderer {
 ```
 
 #### Implement the interface on the class you want to listen the events
+
 ```kotlin
 // Implement your plugin event listener interface
 class PpmBannerPluginEventListenerFragment : AdFragment(), SampleCustomRendererEventListener {
