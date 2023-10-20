@@ -886,6 +886,14 @@
   sectionTitle:
   subgroup: 3
 
+- sbSecId: 2
+  title: Prebid Plugin Renderer
+  link: /prebid-mobile/pbm-api/android/pbm-plugin-rederer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
 #--------------Ad Ops--------------|
 
 - sbSecId: 3
