@@ -1,8 +1,8 @@
 ---
 layout: page_v2
-title: GoldfishAds Real Time Data Provider
-display_name: GoldfishAds Real Time Data Provider
-description: GoldfishAds Real Time Data Provider 
+title: Goldfish Ads Real Time Data Provider
+display_name: Goldfish Ads Real Time Data Provider
+description: Goldfish Ads Real Time Data Provider
 page_type: module
 module_type: rtd
 module_code: goldfishAdsRtdProvider
@@ -11,15 +11,19 @@ vendor_specific: true
 sidebarType: 1
 ---
 
-# GoldfishAds Real Time Data Provider
+# Goldfish Ads Real Time Data Provider
+
+This RTD module provides access to the Goldfish Ads Geograph, which leverages geographic and temporal data on a privcay-first platform. This module works without using cookies, PII, emails, or device IDs across all website traffic, including unauthenticated users, and adds audience data into bid requests to increase scale and yields.
+
+Contact <prebid@goldfishads.com> for information.
 
 ## Integration
 
-1. Compile the Adnuntius RTD Module and Adnuntius Bid Adapter into your Prebid build:
+1. Compile the Goldfish Ads RTD Module into your Prebid build:
 
-```
-gulp build --modules="goldfishAdsRtdProvider,..."
-```
+   ```bash
+   gulp build --modules="goldfishAdsRtdProvider,..."
+   ```
 
 2. Use `setConfig` to instruct Prebid.js to initilize the goldfishAds module, as specified below.
 
@@ -55,4 +59,4 @@ Syntax details:
 | name | String | Real time data module name | Always 'goldfishAds' |
 | waitForIt | Boolean | Should be `true` if there's an `auctionDelay` defined (optional) | `false` |
 | params | Object | | |
-| params.key | String | A key given by GoldfishAds to activated your endpoint | |
+| params.key | String | A key given by Goldfish Ads to activate your endpoint | |
