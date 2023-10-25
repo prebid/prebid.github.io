@@ -15,6 +15,7 @@ pbs_app_supported: true
 fpd_supported: true
 prebid_member: false
 ortb_blocking_supported: true
+---
 
 ### Registration
 
@@ -29,7 +30,9 @@ If you have any question regarding the set up, please reach out to your account 
 | `token` | required | Token for certification | `'3l2l2mbl2knw2ggc'` | `string` |
 
 ### First Party Data
+
 Publishers can use the ortb2 configuration to provide First Party Data. The following fields are supported:
-- ortb2.site.*
-- ortb2.user.*
+
+* ortb2.site.*
+* ortb2.user.*
 
