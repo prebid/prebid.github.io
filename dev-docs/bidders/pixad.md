@@ -5,7 +5,7 @@ description: Prebid Pixad Bidder Adapter.
 pbjs: true
 pbs: false
 biddercode: pixad
-media_types: banner,video
+media_types: banner,video,native
 tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
@@ -13,7 +13,7 @@ schain_supported: false
 dchain_supported: false
 userIds: criteo, id5Id, sharedId, unifiedId
 safeframes_ok: true
-floors_supported: false
+floors_supported: true
 aliasCode: admatic
 multiformat_supported: will-bid-on-any
 sidebarType: 1
@@ -66,7 +66,8 @@ pbjs.setConfig({
   userSync: {
     iframeEnabled: true,
     syncEnabled: true,
-    syncDelay: 1
+    syncDelay: 1,
+    aliasSyncEnabled: true
   }
 });
 ```

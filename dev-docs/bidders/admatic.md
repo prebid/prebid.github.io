@@ -5,7 +5,7 @@ description: Prebid AdMatic Bidder Adapter.
 pbjs: true
 pbs: false
 biddercode: admatic
-media_types: banner,video
+media_types: banner,video,native
 tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
@@ -13,7 +13,7 @@ schain_supported: false
 dchain_supported: false
 userIds: criteo, id5Id, sharedId, unifiedId
 safeframes_ok: true
-floors_supported: false
+floors_supported: true
 multiformat_supported: will-bid-on-any
 sidebarType: 1
 ---
