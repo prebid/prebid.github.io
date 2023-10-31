@@ -21,7 +21,7 @@ sidebarType: 1
 
 ### Description
 
-Pixad header bidding adapter connects with Pixad demand sources to fetch bids for banner network ID. Please reach out to your account manager or <prebid@pixad.com.tr> for more information.
+Pixad header bidding adapter connects with Pixad demand sources to fetch bids for network ID. Please reach out to your account manager or <prebid@pixad.com.tr> for more information.
 
 ### Bid params
 
