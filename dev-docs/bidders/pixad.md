@@ -38,17 +38,9 @@ Pixad header bidding adapter connects with Pixad demand sources to fetch bids fo
 ```
 var adUnits = [{
   code: 'your-slot_1-div', //use exactly the same code as your slot div id.
-  sizes: [[300, 250]],
-  bids: [{
-      bidder: 'pixad',
-      params: { 
-          networkId: 12345,
-          host: 'rtb.network.pixad.com.tr'
-      }
-  }]
-},{
-  code: 'your-slot_2-div', //use exactly the same code as your slot div id.
-  sizes: [[600, 800]],
+  mediaTypes: {
+    banner: { sizes: [[300, 250]] },
+  },
   bids: [{
       bidder: 'pixad',
       params: { 
