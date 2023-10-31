@@ -36,7 +36,7 @@ AdMatic header bidding adapter connects with AdMatic demand sources to fetch bid
 
 ```
 var adUnits = [{
-  code: 'your-slot_1-div', //use exactly the same code as your slot div id.
+  code: 'your-slot_1-div',
   mediaTypes: {
     banner: { sizes: [[300, 250]] },
   },
@@ -44,7 +44,31 @@ var adUnits = [{
       bidder: 'admatic',
       params: { 
           networkId: 12345,
-          host: 'rtb.network.pixad.com.tr'
+          host: 'layer.serve.admatic.com.tr'
+      }
+  }]
+},{
+  code: 'your-slot_2-div',
+  mediaTypes: {
+    native: { ... },
+  },
+  bids: [{
+      bidder: 'admatic',
+      params: { 
+          networkId: 12345,
+          host: 'layer.serve.admatic.com.tr'
+      }
+  }]
+},{
+  code: 'your-slot_3-div',
+  mediaTypes: {
+    video: { ... },
+  },
+  bids: [{
+      bidder: 'admatic',
+      params: { 
+          networkId: 12345,
+          host: 'layer.serve.admatic.com.tr'
       }
   }]
 }];
