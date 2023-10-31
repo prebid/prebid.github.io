@@ -15,6 +15,7 @@ usp_supported: true
 floors_supported: true
 prebid_member: true
 sidebarType: 1
+supported Aliases: lmc, venatus
 
 ---
 
