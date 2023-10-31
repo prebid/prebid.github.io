@@ -35,7 +35,7 @@ Pixad header bidding adapter connects with Pixad demand sources to fetch bids fo
 
 300x250 banner test
 
-```
+```javascript
 var adUnits = [{
   code: 'your-slot_1-div',
   mediaTypes: {
@@ -77,7 +77,7 @@ var adUnits = [{
 
 ## UserSync example
 
-```
+```javascript
 pbjs.setConfig({
   userSync: {
     iframeEnabled: true,

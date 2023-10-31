@@ -34,7 +34,7 @@ AdMatic header bidding adapter connects with AdMatic demand sources to fetch bid
 
 300x250 banner test
 
-```
+```javascript
 var adUnits = [{
   code: 'your-slot_1-div',
   mediaTypes: {
@@ -76,7 +76,7 @@ var adUnits = [{
 
 ## UserSync example
 
-```
+```javascript
 pbjs.setConfig({
   userSync: {
     iframeEnabled: true,
