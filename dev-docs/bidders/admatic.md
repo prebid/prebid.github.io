@@ -41,7 +41,7 @@ var adUnits = [{
     banner: { sizes: [[300, 250]] },
   },
   bids: [{
-      bidder: 'pixad',
+      bidder: 'admatic',
       params: { 
           networkId: 12345,
           host: 'rtb.network.pixad.com.tr'
