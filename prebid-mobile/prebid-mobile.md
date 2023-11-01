@@ -50,7 +50,6 @@ This set of features are not supported in the current release but are designated
 
 - **Multiformat Ad Unit**: The rendering engine will enable Prebid SDK to display any bid format in the given inventory regardless of Primary Ad Server capabilities.
 - **Support of Custom Ad Servers**: With rendering engine, the Prebid SDK can work with any Ad Server. Right now it supports GAM, AdMob, and MAX.
-- **Rendering Delegation**: The module will potentially delegate rendering of the winning bid to the Demand Partner SDK if it is required for special creatives.
 
 ## How It Works
 
