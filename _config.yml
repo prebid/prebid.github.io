@@ -63,6 +63,11 @@ markdown: kramdown
 
 highlighter: rouge
 
+# sass:
+#   load_paths:
+#     - _sass
+#     - node_modules
+
 kramdown:
   input:          GFM
   # https://github.com/jekyll/jekyll/pull/4090
@@ -87,7 +92,8 @@ collections:
 
 port: 8080
 
-exclude: ['README.md', 'LICENSE', 'bower.json', 'Gemfile.lock', 'Gemfile', 'vendor', 'node_modules', '_assets', 'mix-manifest.json', 'webpack.mix.js', 'find-ungrouped-bidders.sh' ]
+exclude: ['README.md', 'LICENSE', 'Gemfile.lock', 'Gemfile', 'vendor', 'find-ungrouped-bidders.sh' ]
+include: ['node_modules']
 
 keep_files:
   - assets/css/main-bundle.css
