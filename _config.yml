@@ -63,11 +63,6 @@ markdown: kramdown
 
 highlighter: rouge
 
-# sass:
-#   load_paths:
-#     - _sass
-#     - node_modules
-
 kramdown:
   input:          GFM
   # https://github.com/jekyll/jekyll/pull/4090
