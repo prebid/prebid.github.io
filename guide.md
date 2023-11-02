@@ -94,7 +94,7 @@ Jekyll requires adherence to a certain directory structure to generate the site.
 For the Prebid.org site the following directories are used:
 
 **_data**  
-Jekyll was originally designed specifically for creation of blogging websites and not for dynamic, data-driven sites. However, by including the _data directory we can mimic a database structure to create a more robust site. Files in this directory can be saved in either *json*, *yml* or *csv* format. For Prebid.org they have been saved in *yml*.
+Jekyll was originally designed specifically for creation of blogging websites and not for dynamic, data-driven sites. However, by including the _data directory we can mimic a database structure to create a more robust site. Files in this directory can be saved in either _json_, _yml_ or _csv_ format. For Prebid.org they have been saved in _yml_.
 
 Learn more about YML [here](https://yaml.org/start.html)
 
