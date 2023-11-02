@@ -3,7 +3,7 @@ layout: bidder
 title: BizzClick
 description: Prebid BizzClick Bidder Adaptor
 biddercode: bizzclick
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -12,11 +12,12 @@ safeframes_ok: true
 deals_supported: true
 pbjs: true
 pbs: true
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at support@bizzclick.com .BizzClick will only respond to the first impression and that multiple ad formats of that single impression are not supported.
+The Example Bidding adapter requires setup before beginning. Please contact us at <support@bizzclick.com> .BizzClick will only respond to the first impression and that multiple ad formats of that single impression are not supported.
 
 ### Bid Params
 

@@ -12,6 +12,7 @@ sidebarType : 1
 ---
 
 # Audigent Hadron Real-time Data Submodule
+
 {:.no_toc}
 
 * TOC
@@ -32,10 +33,9 @@ Users, devices, content, cohorts and other features are identified and utilized
 to augment every bid request with targeted, first-party data-derived segments
 before being submitted to supply-side platforms. Enriching the bid request with
 robust first-party audience and contextual data, Audigent's Hadron RTD module
-helps optimize targeting and header-bidding performance.  For more information, 
+helps optimize targeting and header-bidding performance.  For more information,
 please visit <a href="https://audigent.com">https://audigent.com</a> or contact our Prebid integration team at
-prebid@audigent.com.
-
+<prebid@audigent.com>.
 
 ## Publisher Usage
 
@@ -47,12 +47,12 @@ Add the Hadron RTD provider to your Prebid config. In this example we will confi
 publisher 1234 to retrieve segments from Audigent. See the
 "Parameter Descriptions" below for more detailed information of the
 configuration parameters. Please work with your Audigent Prebid support team
-(prebid@audigent.com) on which version of Prebid.js supports different bidder
+(<prebid@audigent.com>) on which version of Prebid.js supports different bidder
 and segment configurations.
 
-```
-pbjs.setConfig(
-    ...
+```javascript
+pbjs.setConfig({
+    // ...
     realTimeData: {
         auctionDelay: auctionDelay,
         dataProviders: [
@@ -61,15 +61,13 @@ pbjs.setConfig(
                 waitForIt: true,
                 params: {
                     segmentCache: false,
-                    requestParams: {
-                        publisherId: 1234
-                    }
+                    partnerId: 1234
                 }
             }
         ]
     }
-    ...
-}
+    // ...
+});
 ```
 
 **Config Syntax details:**
@@ -82,7 +80,7 @@ pbjs.setConfig(
 | params | Object | | |
 | params.handleRtd | Function | A passable RTD handler that allows custom adunit and ortb2 logic to be configured. The function signature is (bidConfig, rtd, rtdConfig, pbConfig) => {}. | Optional |
 | params.segmentCache | Boolean | This parameter tells the Hadron RTD module to attempt reading segments from a local storage cache instead of always requesting them from the Audigent server. | Optional. Defaults to false. |
-| params.requestParams | Object | Publisher partner specific configuration options, such as optional publisher id and other segment query related metadata to be submitted to Audigent's backend with each request.  Contact prebid@audigent.com for more information. | Optional |
+| params.partnerId | Number | This is the Audigent Partner ID obtained from Audigent. | Required |
 | params.hadronIdUrl | String | Parameter to specify alternate hadronid endpoint url. | Optional |
 
 ## Publisher Customized RTD Handling
@@ -96,9 +94,9 @@ optional handleRtd parameter and provide your custom RTD handling logic there.
 Please see the following example, which provides a function to modify bids for
 a bid adapter called adBuzz and perform custom logic on bidder parameters.
 
-```
-pbjs.setConfig(
-    ...
+```javascript
+pbjs.setConfig({
+    // ...
     realTimeData: {
         auctionDelay: auctionDelay,
         dataProviders: [
@@ -119,20 +117,18 @@ pbjs.setConfig(
                         }
                     },
                     segmentCache: false,
-                    requestParams: {
-                        publisherId: 1234
-                    }
+                    partnerId: 1234                    
                 }
             }
         ]
     }
-    ...
-}
+    // ...
+});
 ```
 
 The handleRtd function can also be used to configure custom ortb2 data
 processing. Please see the examples available in the hadronRtdProvider_spec.js
-tests and work with your Audigent Prebid integration team (prebid@audigent.com)
+tests and work with your Audigent Prebid integration team (<prebid@audigent.com>)
 on how to best configure your own Hadron RTD & Open RTB data handlers.
 
 ## Testing
@@ -144,7 +140,3 @@ To view an example of available segments returned by Audigent's backends:
 and then point your browser at:
 
 `http://localhost:9999/integrationExamples/gpt/hadronRtdProvider_example.html`
-
-
-
-

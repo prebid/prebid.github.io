@@ -5,17 +5,18 @@ description: Prebid One Fifty Two Media Bidder Adaptor
 pbjs: true
 biddercode: oftmedia
 aliasCode : appnexus
-gdpr_supported: true
+tcfeu_supported: true
 coppa_supported: true
 usp_supported: true
-pbs: true
+pbs: false
 schain_supported: true
 media_types: banner, video, native
 prebid_member: true
-userIds: criteo, flocId, identityLink, netId, pubProvidedId, uid2, unifiedId,
+userIds: criteo, identityLink, netId, pubProvidedId, uid2, unifiedId,
 floors_supported: true
 fpd_supported: true
 gvl_id: 32
+sidebarType: 1
 ---
 
 ### Bid Params

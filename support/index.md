@@ -7,23 +7,24 @@ sidebarType: 7
 
 
 # Need Help?
+
 {:.no_toc}
 
 There are several ways to ask for help or get involved with Prebid.  See below for more information.
 
-* TOC
+- TOC
 {:toc}
 
 ## Overview
 
-For technical & feature requests or questions, it's best to use the GitHub or Stack Overflow forums. Prebid is worked on full-time by engineering teams from AppNexus and Rubicon Project.  There are also many publishers using and contributing to the project.
+For technical and feature requests or questions, it's best to use the GitHub or Stack Overflow forums. Prebid is worked on full-time by engineering teams from Xandr and Magnite.  There are also many publishers using and contributing to the project.
 
-For questions about how an adapter works, it's best to reach out to the company directly, or ask on GitHub. Each demand adapter should be maintained by the SSPs or exchange behind that adapter.
+For questions about how an adapter works, it's best to reach out to the company directly, or raise an issue on GitHub. Each demand adapter should be maintained by the SSPs or exchange behind that adapter.
 
 For Prebid news or general questions, we recommend the Ad Ops Slack Channel, Quora, or Twitter.
 
 {: .alert.alert-success :}
-There are serveral Prebid.org members that will install & maintain Prebid on a publisher's behalf. See the list of [Managed Prebid Solutions](https://prebid.org/product-suite/managed-services/).
+There are serveral Prebid.org members that will install and maintain Prebid on a publisher's behalf. See the list of [Managed Prebid Solutions](https://prebid.org/product-suite/managed-services/).
 
 ## GitHub
 
@@ -34,19 +35,18 @@ Submit a GitHub issue for [Prebid.js](https://github.com/prebid/Prebid.js/issues
 - You have a feature request to the code base.
 - You have found a bug in the code.
 
-
 For more information about how to contribute, see the *Contribute* section of the site.
 
 ## Stack Overflow
 
 If you ask questions on [Stack Overflow](https://stackoverflow.com/), please use the following tags:
 
-+ `prebid`
-+ `prebid.js`
+- `prebid`
+- `prebid.js`
 
 ## Ad Ops Slack Channel
 
-Join the [Ad Ops Reddit Slack](https://redditadops.slack.com/messages/C0HVALS8P/) (specifically the `#HeaderBidding` channel) to connect with other publishers & developers using Prebid.
+Join the [Ad Ops Reddit Slack](https://redditadops.slack.com/messages/C0HVALS8P/) (specifically the `#HeaderBidding` channel) to connect with other publishers and developers using Prebid.
 
 ## Reddit
 

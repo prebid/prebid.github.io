@@ -5,14 +5,15 @@ description: Prebid Big Richmedia Bidder Adapter
 biddercode: big-richmedia
 pbjs: true
 media_types: banner, video
-userIds: criteo, unifiedId, netId, identityLink, flocId, uid2
+userIds: criteo, unifiedId, netId, identityLink, uid2
 schain_supported: true
 coppa_supported: true
 usp_supported: true
 floors_supported: true
 fpd_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 32
+sidebarType: 1
 ---
 
 #### Global Settings

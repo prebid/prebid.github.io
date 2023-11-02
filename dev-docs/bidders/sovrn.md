@@ -5,24 +5,25 @@ description: Prebid Sovrn Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: sovrn
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 userIds: all
 prebid_member: true
 schain_supported: true
 gvl_id: 13
 floors_supported: true
-fpd_supported: true
 media_types: banner, video
+sidebarType: 1
 ---
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description          | Example    | Type     |
-|------------|----------|----------------------|------------|----------|
-| `tagid`    | required | The sovrn Ad Tag ID  | `'315045'` | `string` |
-| `bidfloor` | optional | Bid floor in dollars | `'0.04'`   | `string` |
+| Name         | Scope    | Description          | Example          | Type     |
+|--------------|----------|----------------------|------------------|----------|
+| `tagid`      | required | The sovrn Ad Tag ID  | `'315045'`       | `string` |
+| `bidfloor`   | optional | Bid floor in dollars | `'0.04'`         | `string` |
+| `adunitcode` | optional | Ad unit identifier   | `'example_code'` | `string` |
 
 Bid Params for video ads. These params should be added to `mediatype.video`.
 
@@ -30,7 +31,7 @@ Bid Params for video ads. These params should be added to `mediatype.video`.
 | Name             | Scope       | Description                                                                                                                    | Example         | Type            |
 |------------------|-------------|--------------------------------------------------------------------------------------------------------------------------------|-----------------|-----------------|
 | `mimes`          | required    | Content MIME types supported                                                                                                   | `['video/mp4']` | `string array`  |
-| `minduration`    | required    | Minimum video ad duration in seconds                                                                                           | `5`             | `integer`       |
+| `minduration`    | recommended | Minimum video ad duration in seconds                                                                                           | `5`             | `integer`       |
 | `maxduration`    | required    | Maximum video ad duration in seconds                                                                                           | `10`            | `integer`       |
 | `protocols`      | required    | The array of supported video protocols                                                                                         | `[1, 2]`        | `integer array` |
 | `w`              | recommended | Width of the video player in device independent pixels (DIPS)                                                                  | `5`             | `integer`       |
@@ -51,27 +52,26 @@ Bid Params for video ads. These params should be added to `mediatype.video`.
 | `playbackend`    | optional    | The event that causes playback to end. Refer to Playback Cessation Modes                                                       | `5`             | `integer`       |
 | `delivery`       | optional    | Supported delivery methods (1 = streaming, 2 = progressive, 3 = download). If none specified, assume all are supported.        | `[1, 2]`        | `integer array` |
 | `pos`            | recommended | Ad position on screen. Refer to [Ad Position](#ad-position)                                                                    | `5`             | `integer`       |
-| `api`            | recommended | List of supported API frameworks for this impression. Refer to [API Frameworks](api-frameworks)                                | `[1, 2, 3]`     | `integer array` |
- 
+| `api`            | recommended | List of supported API frameworks for this impression. Refer to [API Frameworks](#sovrn-api-frameworks)                               | `[1, 2, 3]`     | `integer array` |
 
 ### Note
 
-[Protocols list](https://docs.prebid.org/dev-docs/bidders/conversant.html#protocols)
+[Protocols list](https://docs.prebid.org/dev-docs/bidders/epsilon.html#protocols)
 
-#### MIME types:
+#### MIME types
 
-##### With VPAID2:  
+##### With VPAID2  
 
 video/mp4,
 video/3gpp,
 application/javascript
 
-##### Without VPAID2:
+##### Without VPAID2
 
 video/mp4,
 video/3gpp
 
-#### Video Playback Methods:
+#### Video Playback Methods
 
 {: .table .table-bordered .table-striped }
 | Value | Description                                              |
@@ -83,7 +83,7 @@ video/3gpp
 | `5`   | Initiates on Entering Viewport with Sound On             |
 | `6`   | Initiates on Entering Viewport with Sound Off by Default |
 
-#### Playback Cessation Modes:
+#### Playback Cessation Modes
 
 {: .table .table-bordered .table-striped }
 | Value | Description                                                                                               |
@@ -92,7 +92,7 @@ video/3gpp
 | `2`   | On Leaving Viewport or when Terminated by User                                                            |
 | `3`   | On Leaving Viewport Continues as a Floating/Slider Unit until Video Completion or when Terminated by User |
 
-#### Ad Position:
+#### Ad Position
 
 {: .table .table-bordered .table-striped }
 | Value | Description    |
@@ -106,7 +106,9 @@ video/3gpp
 | `6`   | Sidebar        |
 | `7`   | Full Screen    |
 
-#### API Frameworks:
+<a id="sovrn-api-frameworks"></a>
+
+#### API Frameworks
 
 {: .table .table-bordered .table-striped }
 | Value | Description |
@@ -124,7 +126,7 @@ Source: [OpenRTB scpecification](https://www.iab.com/wp-content/uploads/2016/03/
 
 #### Video instream adUnit
 
-```
+```javascript
     var instreamAdUnit = {
       code: 'instream-div',
       sizes: [[640, 480]],
@@ -144,9 +146,10 @@ Source: [OpenRTB scpecification](https://www.iab.com/wp-content/uploads/2016/03/
       }]
     }
 ```
+
 #### Video outstream adUnit
 
-```
+```javascript
     var outstreamAdUnit = {
       code: 'outstream-div',
       sizes: [[640, 480]],
@@ -164,11 +167,12 @@ Source: [OpenRTB scpecification](https://www.iab.com/wp-content/uploads/2016/03/
           tagid: '315045'
         }
       }]
-    },
+    }
 ```
+
 #### Banner adUnit
 
-```
+```javascript
     var bannerAdUnit = {
       code: 'banner-div',
       sizes: [[300, 250]],

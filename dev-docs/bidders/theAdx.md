@@ -4,7 +4,8 @@ title: TheAdx
 description: Prebid TheAdx Bidder Adapter
 pbjs: true
 biddercode: theAdx
-gdpr_supported: false
+tcfeu_supported: false
+sidebarType: 1
 ---
 
 
