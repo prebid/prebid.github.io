@@ -16,6 +16,22 @@ Updated Feb 9, 2023
 - TOC
 {:toc}
 
+## Getting started
+
+The easiest way to setup an environment to contribute to the docs or review pull requests is [Github Codespaces](https://github.com/features/codespaces).
+
+1. Open [github.com/prebid/prebid.github.io](https://github.com/prebid/prebid.github.io)
+2. Click on the `Code` drop down menu and select "create new codespace from master". If you have no access to prebid.github.io, then you should do this on your fork of the repository
+3. Install the [markdownlint extension](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+    1. go to _Extensions_
+    2. search for _markdownlint_ and hit install
+    3. now you get direct feedback on linting errors
+4. Start the jekyll build as described in the `TERMINAL` of your codespace
+    1. `bundle install`
+    2. `JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental`
+    3. Codespaces will display a notification to open the running instance in the browser.
+5. In the `PORTS` tab you find the running instance
+
 ## Reviewing Pull Requests and Issues
 
 Being a reviewer means you're in weekly rotation where you keep an eye on pull requests (PRs) and issues opened in this repo.
