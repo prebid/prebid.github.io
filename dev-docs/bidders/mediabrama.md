@@ -21,13 +21,9 @@ multiformat_supported: will-bid-on-one
 prebid_member: false
 ---
 
-<a name="mediabrama-bid-desc" />
-
 ### Description
 
 MediaBrama header bidding adapter connects with mediabrama demand sources to fetch bids for display placements. Please reach out to your account manager or <support@mediabrama.com> for more information.
-
-<a name="mediabrama-bid-params" />
 
 ### Bid params
 
@@ -36,8 +32,6 @@ MediaBrama header bidding adapter connects with mediabrama demand sources to fet
 |--------------|----------|------------------------------------|------------|----------|
 | `placementId`| optional | The placement ID from MediaBrama   | `'24428'`  | `string` |
 | `bidFloor`   | optional | Lowest value of expected bid price | `1.1`      | `float`  |
-
-<a name="mediabrama-test-params" />
 
 ### Test Parameters
 
