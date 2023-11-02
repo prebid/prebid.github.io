@@ -128,18 +128,21 @@ The sites directory is created by Jekyll. It contains the live site generated fr
 
 The assets directory contains the CSS, Javascript, images and other assets used to create the site.
 
-The base CSS file used is Bootstrap (version 3.7.1) Custom CSS and modifications to Bootstrap classes are contained in the style.css file.
+The base CSS file used is Bootstrap (version 4.6.3) Custom CSS and modifications to Bootstrap classes are contained in the [_sass/vendor/_bootstrap.scss](_sass/vendor/_bootstrap.scss) file.
 
 The JS directory contains the Javascript files required for the Prebid.org site. It includes JQuery and Bootstrap javascript frameworks as well as other third party libraries and custom javascript written specifically for the Prebid site. For JQuery and Bootstrap both the expanded and minified versions of the javascript files are included but only the minified files are linked from the site header.
 
 ### CSS
 
-1. Styles all come from `/assets/css/main-bundle.css`
-1. These are generated from `/_assets/sass`
+1. Styles all come from `/assets/css/main-bundle.scss`
+1. These are generated from [_sass/main.scss](_sass/main.scss)
 1. To make a change, edit the relevant sass file
-1. Generate the css file from sass with 'npm run dev/prod'
-1. Commit all the changes including `assets/css/main-bundle.css`
-1. the `_assets` directory is not part of the `_site` tree
+
+If you want to upgrade bootstrap
+
+1. Upgrade bootstrap in the [package.json](package-lock)
+1. Run `npm install`. This will update the node_modules commited in [_sass/node_modules](_sass/node_modules)
+1. Commit the updated node module source files
 
 ## Data Models
 
