@@ -35,7 +35,6 @@ This adapter requires setup and approval from the smartclip team. Please contact
 | `min_duration`       | optional | Minimum video ad duration in seconds                                                                    | `15`                    | `integer`   |
 | `max_duration`       | optional | Maximum video ad duration in seconds                                                                    | `60`                    | `integer`   |
 
-
 ### Prebid.js Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -54,7 +53,6 @@ This adapter requires setup and approval from the smartclip team. Please contact
 | `max_duration`       | optional | Maximum video ad duration in seconds                                                                    | `60`                    | `integer`   |
 | `sitekey`            | optional | Sitekey provided by smartclip.                                                                          | `'foo.bar.baz'`           | `string`    |
 | `outstream_options`  | required | Object to set options on the smartx renderer, see below. Only required when setting mediaType.video.context = 'outstream'. | `{}`           | `object`    |
-
 
 #### outstream_options
 
