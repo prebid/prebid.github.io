@@ -16,7 +16,6 @@ pbs_app_supported: true
 fpd_supported: true
 prebid_member: false
 multiformat_supported: will-bid-on-one
-
 ortb_blocking_supported: true
 ---
 
@@ -38,4 +37,3 @@ Publishers can use the ortb2 configuration to provide First Party Data. The foll
 
 * ortb2.site.*
 * ortb2.user.*
-
