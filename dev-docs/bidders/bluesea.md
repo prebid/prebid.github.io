@@ -8,12 +8,15 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 media_types: banner, video, native
+safeframes_ok: false
 floors_supported: true
 pbjs: false
 pbs: true
 pbs_app_supported: true
 fpd_supported: true
 prebid_member: false
+multiformat_supported: will-bid-on-one
+
 ortb_blocking_supported: true
 ---
 
