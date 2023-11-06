@@ -11,6 +11,7 @@ schain_supported: true
 coppa_supported: true
 tcfeu_supported: true
 floors_supported: true
+fledgeForGpt_supported: true
 usp_supported: true
 gpp_supported: true
 media_types: banner, video, native
