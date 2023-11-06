@@ -41,11 +41,11 @@ The site is hosted on GitHub pages, and uses [Jekyll](https://jekyllrb.com/) to 
 1. gem install github-pages
 1. start Jekyll as described below
 
-For CSS, the site uses Laravel Mix to build CSS from Sass (scss-flavored) source files. Under the hood Laravel Mix uses Webpack.
+For CSS, the site uses Jekyll board tools to compile SCSS down to CSS.
 
-1. follow the instructions at [/nodejs.dev](https://nodejs.dev) to install Node.js for your OS
-1. `npm ci` to install packages for building assets
-1. build assets as described below
+1. Install `boostrap` via `npm install` to make the build work
+1. [Jekyll assets management](https://jekyllrb.com/docs/assets/)
+1. [Jekyll SASS plugin](https://jekyllrb.com/docs/configuration/sass/)
 
 The markdown files are linted via [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli). VSCode supports the [.markdownlintignore](.markdownlintignore) file.
 You may need to configure the disabled rules specified in [.markdownlint.json](.markdownlint.json) directly in your project settings. You can invoke linting in CLI via
