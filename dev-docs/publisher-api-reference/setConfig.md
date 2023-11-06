@@ -5,7 +5,6 @@ description: setConfig API
 sidebarType: 1
 ---
 
-
 `setConfig` supports a number of configuration options. Every
 call to setConfig overwrites supplied values at the top level. e.g. if `ortb2` is provided as a value, any previously-supplied `ortb2` values will disappear.
 If this is not the desired behavior, there is a [`mergeConfig()`](mergeConfig.html) function that will preserve previous values to do not conflict with the newly supplied values.
@@ -24,6 +23,8 @@ Core config:
 * [Turn on send all bids mode](#setConfig-Send-All-Bids)
 * [Configure send bids control](#setConfig-Send-Bids-Control)
 * [Bid cache](#setConfig-Use-Bid-Cache)
+* [Minimum bid cache TTL](#setConfig-minBidCacheTTL)
+* [Event history TTL](#setConfig-eventHistoryTTL)
 * [Set the order in which bidders are called](#setConfig-Bidder-Order)
 * [Set the page URL](#setConfig-Page-URL)
 * [Set price granularity](#setConfig-Price-Granularity)
@@ -277,6 +278,35 @@ pbjs.setConfig({
     useBidCache: true,
     bidCacheFilterFunction: bid => bid.mediaType !== 'video'
 });
+```
+
+#### Minimum bid cache TTL
+
+<a id="setConfig-minBidCacheTTL"></a>
+
+By default, Prebid keeps every bid it receives stored in memory until the user leaves the page, even after the bid actually times out and is no longer available for new auctions. This can cause high memory usage on long-running single-page apps; you can configure Prebid to drop stale bids from memory with `minBidCacheTTL`:
+
+```javascript
+pbjs.setConfig({
+  minBidCacheTTL: 60  // minimum time (in seconds) that bids should be kept in cache
+})
+```
+
+When set, bids are only kept in memory for the duration of their actual TTL lifetime or the value of `minBidCacheTTL`, whichever is greater. Setting `minBidCacheTTL: 0` causes bids to be dropped as soon as they expire.
+
+Put another way, this setting doesn't define each bid's TTL, but rather controls how long it's kept around in memory for analytics purposes.
+
+#### Event history TTL
+
+<a id="setConfig-eventHistoryTTL"></a>
+
+By default, Prebid keeps in memory a log of every event since the initial page load, and makes it available to analytics adapters and [getEvents()](/dev-docs/publisher-api-reference/getEvents.html).
+This can cause high memory usage on long-running single-page apps; you can set a limit on how long events are preserved with `eventHistoryTTL`:
+
+```javascript
+pbjs.setConfig({
+  eventHistoryTTL: 60 // maximum time (in seconds) that events should be kept in memory
+})
 ```
 
 #### Bidder Order
