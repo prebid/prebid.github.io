@@ -393,11 +393,13 @@ pbjs.addAdUnits({
 
 ## Protected Audience API support
 
-**Before you begin:** 
+**Before you begin:**
+
 * You must have Google Ad Manager and the [fledgeForGpt](/dev-docs/modules/fledgeForGpt.html) module.
 * You must be using Prebid.js version 8.18.0 or later.
 
 Follow these steps to configure your Prebid.js to specify that your ad slots are enabled for [Protected Audience](https://github.com/WICG/turtledove/blob/main/FLEDGE.md) auctions:
+
 1. Confirm that you have opted in to use the Protected Audience API in your Google Ad Manager configuration. For more information about how to opt-in, see Google's documentation on [Protected Audience API and Ad Manager after Chrome GA](https://support.google.com/admanager/answer/13627134?hl=en&ref_topic=12264880&sjid=10591375417866092080-NA).
 2. Build the `fledgeForGpt` module in your Prebid.js configuration by adding `fledgeForGpt` to the list of modules that you are already using. For more information about the module, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation.
 3. Enable all ad units to use the `fledgeForGpt` module in your prebid.js configuration. You can do this in the global-level configuration, bidder level, or ad-unit level. For more information about the configurations, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation. Index recommends that you do this in the global-level configuration by using the `defaultForSlots` parameter with a value of `1`. <br />
@@ -414,6 +416,7 @@ pbjs.que.push(function() {
   });
 });
 ```
+
 The following shows an example of the configuration done at the ad-unit level:
 
 ```javascript
