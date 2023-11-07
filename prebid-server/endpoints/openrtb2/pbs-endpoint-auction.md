@@ -169,6 +169,7 @@ if $.id contains "{{UUID}}", replace that macro with a random value
 ##### request.source.tid
 
 PBS-Go - this will change once [issue 2727](https://github.com/prebid/prebid-server/issues/2727) is implemented to link the transmitTid activity.
+
 ```text
 if source.tid is not set:
    set source.tid to a random UUID
@@ -178,6 +179,7 @@ if $.source.tid contains "{{UUID}}", replace that macro with a random value
 ```
 
 PBS-Java
+
 ```text
 if source.tid is not set and the transmitTid activity is allowed:
    set source.tid to a random UUID
@@ -197,6 +199,7 @@ if host config generate-storedrequest-bidrequest-id config is true
 ##### request.imp[].ext.tid
 
 PBS-Go - this will change once [issue 2727](https://github.com/prebid/prebid-server/issues/2727) is implemented to link the transmitTid activity.
+
 ```text
 if imp[n].ext.tid is not set:
        set imp[n].ext.tid to a randomly generated UUID
@@ -206,6 +209,7 @@ if $.imp[n].ext.tid contains "{{UUID}}", replace that macro with a random value
 ```
 
 PBS-Java
+
 ```text
 for each imp:
    if imp[n].ext.tid is not set and the transmitTid activity is allowed:
