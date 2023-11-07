@@ -151,50 +151,31 @@ function submit_download() {
 }
 
 function get_form_data() {
-    var bidders = [];
-    var analytics = [];
+    var modules = [];
     var version = $('.selectpicker').val();
     var removedModules = [];
 
-    var version_restrictions=$('.version-restriction');
-    for (var i = 0; i < version_restrictions.length; i++) {
-        var module=version_restrictions[i].getAttribute('moduleCode');
-        var restriction_name=version_restrictions[i].getAttribute('name');
-        var restriction_value=version_restrictions[i].getAttribute('value');
-        if (restriction_name == "min-version") {
-          var module_version_array=restriction_value.split(".");
-          var pbjs_version_array=version.split(".");
+    document.querySelectorAll('input[type=checkbox][moduleCode]:checked').forEach(function(box) {
+        var moduleCode = box.getAttribute('moduleCode');
+        var minVersion = box.getAttribute('minVersion');
+        modules.push(moduleCode);
+
+        if (minVersion) {
+          var module_version_array = minVersion.split(".");
+          var pbjs_version_array = version.split(".");
           if ((Number(pbjs_version_array[0]) < Number(module_version_array[0])) ||
               (Number(pbjs_version_array[0]) == Number(module_version_array[0]) &&
                Number(pbjs_version_array[1]) < Number(module_version_array[1]))) {
-              removedModules.push(module);
+              removedModules.push(moduleCode);
           }
         }
+    });
+
+    return {
+        modules,
+        version,
+        removedModules
     }
-
-    var bidder_check_boxes = $('.bidder-check-box');
-    for (var i = 0; i < bidder_check_boxes.length; i++) {
-        var box = bidder_check_boxes[i];
-        var module=box.getAttribute('moduleCode');
-        if (box.checked && !removedModules.includes(module)) {
-            bidders.push(module);
-        }
-    }
-
-    var analytics_check_boxes = $('.analytics-check-box');
-    for (var i = 0; i < analytics_check_boxes.length; i++) {
-        var box = analytics_check_boxes[i];
-        if (box.checked) {
-            analytics.push(box.getAttribute('analyticscode') + 'AnalyticsAdapter');
-        }
-    }
-
-    var form_data = {};
-    form_data['modules'] = bidders.concat(analytics);
-    form_data['version'] = version;
-    form_data['removedModules'] = removedModules;
-
-    return form_data;
 }
 
 function setPrepickedModules() {
@@ -309,25 +290,25 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <br>
 <h4>Analytics Adapters</h4>
 <div class="row">
-{% for page in analytics_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label><input type="checkbox" id="{{ page.modulecode }}" analyticscode="{{ page.modulecode }}" class="analytics-check-box module-check-box"><a href="{{page.url}}"> {{ page.title }}</a></label></div></div>{% endfor %}
+{% for page in analytics_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label><input type="checkbox" id="{{ page.modulecode }}AnalyticsAdapter" moduleCode="{{ page.modulecode }}AnalyticsAdapter" class="analytics-check-box module-check-box"><a href="{{page.url}}"> {{ page.title }}</a></label></div></div>{% endfor %}
 </div>
 <br/>
 <h4>Recommended Modules</h4>
 Prebid.org highly recommends that publishers utilize the following modules:
 <br/>
-{% for page in module_pages %}{% if page.recommended == true %}<div class="row"><div class="checkbox" style="background-color: #e1fce2;"><label> <input type="checkbox" CHECKED id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip"><strong>{{ page.display_name }}</strong></a> - {{page.description}}</label></div></div>{% endif %}{% endfor %}
+{% for page in module_pages %}{% if page.recommended == true %}<div class="row"><div class="checkbox" style="background-color: #e1fce2;"><label> <input type="checkbox" CHECKED id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" minVersion="{{ page.min_js_version }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip"><strong>{{ page.display_name }}</strong></a> - {{page.description}}</label></div></div>{% endif %}{% endfor %}
 <br/>
 <h4>General Modules</h4>
 <div class="row">
  {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true or page.vendor_specific == true %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox">
-  <label> <input type="checkbox" id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
+  <label> <input type="checkbox" id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" minVersion="{{ page.min_js_version }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
 </div></div>{% endfor %}
 </div>
 
 <h4>Vendor-Specific Modules</h4>
 These modules may require accounts with a service provider.<br/>
 <div class="row">
- {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true %}{% continue %}{% endif %}{% if page.vendor_specific == true %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
+ {% for page in module_pages %}{% if page.enable_download == false or page.recommended == true %}{% continue %}{% endif %}{% if page.vendor_specific == true %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.module_code }}" moduleCode="{{ page.module_code }}" minVersion="{{ page.min_js_version }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}" class="tip">{{ page.display_name }}<span>{{page.description}}</span></a></label>
 </div></div>{% endif %}{% endfor %}
 </div>
 
@@ -336,9 +317,6 @@ These modules may require accounts with a service provider.<br/>
  {% for page in userid_pages %}{% if page.enable_download == false %}{% continue %}{% endif %}<div class="col-md-4"><div class="checkbox"><label> <input type="checkbox" id="{{ page.useridmodule }}" moduleCode="{{ page.useridmodule }}" class="bidder-check-box module-check-box"> <a href="{{page.url}}">{{ page.title }}</a></label>{% if page.pbjs_version_notes %}<br/><div style="font-size:80%">{{page.pbjs_version_notes}}</div>{% endif %}
 </div></div>{% endfor %}
 </div>
-
-{% for page in module_pages %}{% if page.enable_download == false%}{% continue %}{% endif %}{% if page.min_js_version %}<input type="hidden" class="version-restriction" moduleCode="{{ page.module_code }}" name="min-version" value="{{ page.min_js_version }}">{% endif %}
-{% endfor %}
 
 <br>
 
