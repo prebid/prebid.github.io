@@ -939,7 +939,7 @@ The request can contain the global `createtid` flag to control the `transmitTid`
 ext.request.createtid: false
 ```
 
-If the value is `false`, the `transmitTid` activity is overridden to "denied", which means bid adapters will not get unique transaction IDs. If not specified, then the value of the transmitTid activity for the account is used. The overall default value it `true`, which translates to "allow" the generation of TIDs. 
+If the value is `false`, the `transmitTid` activity is overridden to "denied", which means bid adapters will not get unique transaction IDs. If not specified, then the value of the transmitTid activity for the account is used. The overall default value it `true`, which translates to "allow" the generation of TIDs.
 
 See the [endpoint documentation on IDs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#ids) for details on how PBS creates the various IDs including transaction IDs.
 
