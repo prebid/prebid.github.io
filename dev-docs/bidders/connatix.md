@@ -71,8 +71,7 @@ pbjs.setConfig({
   userSync: {
     filterSettings: {
       iframe: {
-        bidders: ['connactix'],
-
+        bidders: ['connatix'],
         filter: 'include'
       }
     }
