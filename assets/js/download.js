@@ -8,6 +8,11 @@
         // show all adapters
         $(".adapters .col-md-4").show();
         setPrepickedModules();
+        
+        document.getElementById('download-button').addEventListener('click', function (event) {
+            event.preventDefault();
+            submit_download();
+        });
     });
 
     function getVersionList() {
@@ -60,6 +65,8 @@
     }
 
     function submit_download() {
+        $('#download-button').html('<i class="glyphicon glyphicon-send"></i> Sending Request...').addClass('disabled');
+
         var form_data = get_form_data();
         $.ajax({
             type: "POST",
@@ -68,6 +75,10 @@
             data: form_data,
         })
         .success(function (data, textStatus, jqXHR) {
+            $('#download-button').html('<i class="glyphicon glyphicon-ok"></i> Prebid.js download successfully prepared!');
+            setTimeout(function () {
+                $('#download-button').html('<i class="glyphicon glyphicon-download-alt"></i> Download Prebid.js').removeClass('disabled');
+            }, 5000);
             // Try to find out the filename from the content disposition `filename` value
             var filename = "prebid" + form_data["version"] + ".js";
             // this doens't work in our current jquery version.
@@ -201,9 +212,4 @@
             });
         }
     }
-
-    document.getElementById('download-button').addEventListener('click', function (event) {
-        event.preventDefault();
-        submit_download();
-    });
 })();
