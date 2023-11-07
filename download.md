@@ -155,6 +155,7 @@ function get_form_data() {
     var version = $('.selectpicker').val();
     var removedModules = [];
 
+    // <!-- markdownlint-disable-line -->
     document.querySelectorAll('input[type=checkbox][moduleCode]:checked').forEach(function(box) {
         var moduleCode = box.getAttribute('moduleCode');
         var minVersion = box.getAttribute('minVersion');
