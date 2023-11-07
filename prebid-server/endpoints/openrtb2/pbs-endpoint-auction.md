@@ -168,10 +168,20 @@ if $.id contains "{{UUID}}", replace that macro with a random value
 
 ##### request.source.tid
 
+PBS-Go - this will change once [issue 2727](https://github.com/prebid/prebid-server/issues/2727) is implemented to link the transmitTid activity.
 ```text
 if source.tid is not set:
    set source.tid to a random UUID
 if host config auto_gen_source_tid (Go) / generate-storedrequest-bidrequest-id (Java) is true
+    if the storedrequest is from AMP or from a top-level stored request (ext.prebid.storedrequest), then replace any existing $.source.tid with a random value
+if $.source.tid contains "{{UUID}}", replace that macro with a random value
+```
+
+PBS-Java
+```text
+if source.tid is not set and the transmitTid activity is allowed:
+   set source.tid to a random UUID
+if host config generate-storedrequest-bidrequest-id config is true and the transmitTid activity is allowed
     if the storedrequest is from AMP or from a top-level stored request (ext.prebid.storedrequest), then replace any existing $.source.tid with a random value
 if $.source.tid contains "{{UUID}}", replace that macro with a random value
 ```
@@ -186,12 +196,23 @@ if host config generate-storedrequest-bidrequest-id config is true
 
 ##### request.imp[].ext.tid
 
+PBS-Go - this will change once [issue 2727](https://github.com/prebid/prebid-server/issues/2727) is implemented to link the transmitTid activity.
 ```text
 if imp[n].ext.tid is not set:
        set imp[n].ext.tid to a randomly generated UUID
    if host config generate-storedrequest-bidrequest-id config is true
        if the storedrequest is from AMP or from ext.prebid.storedrequest, then replace any existing $.imp[n].ext.tid with a random value
 if $.imp[n].ext.tid contains "{{UUID}}", replace that macro with a random value
+```
+
+PBS-Java
+```text
+for each imp:
+   if imp[n].ext.tid is not set and the transmitTid activity is allowed:
+       set imp[n].ext.tid to a randomly generated UUID
+   if host config generate-storedrequest-bidrequest-id config is true and the transmitTid activity is allowed
+       if the storedrequest is from AMP or from a top-level stored request (ext.prebid.storedrequest), then replace any existing $.imp[n].ext.tid with a random value
+  if $.imp[n].ext.tid contains "{{UUID}}", replace that macro with a random value
 ```
 
 #### Expiration
