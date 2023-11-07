@@ -931,6 +931,18 @@ To be deprecated for `request.imp[].rwdd` introduced in OpenRTB 2.6.
 Rewarded video is a way to incentivize users to watch ads by giving them 'points' for viewing an ad. A Prebid Server
 client can declare a given adunit as eligible for rewards by declaring `imp.ext.prebid.is_rewarded_inventory:1`.
 
+##### Create Transaction ID
+
+The request can contain the global `createtid` flag to control the `transmitTid` [Activity Control](/prebid-server/features/pbs-activitycontrols.html).
+
+```text
+ext.request.createtid: false
+```
+
+If the value is `false`, the `transmitTid` activity is overridden to "denied", which means bid adapters will not get unique transaction IDs. If not specified, then the value of the transmitTid activity for the account is used. The overall default value it `true`, which translates to "allow" the generation of TIDs.
+
+See the [endpoint documentation on IDs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#ids) for details on how PBS creates the various IDs including transaction IDs.
+
 ##### Debug Flag
 
 The OpenRTB `test` flag has a special meaning that bidders may react to: they may not perform a normal auction, or may not pay for test requests.
@@ -1759,6 +1771,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.server | additional Prebid Server metadata | object | yes |
 | ext<wbr>.prebid<wbr>.pbs.endpoint | additional Prebid Server metadata | string | yes |
 | ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
+| ext<wbr>.prebid<wbr>.createtid | Ties to the transmitTid activity. If false, transmitTid is denied. | boolean | no |
 | ext<wbr>.prebid<wbr>.returnallbidstatus | If true, PBS returns [ext.seatnonbid](#seat-non-bid) with details about bidders that didn't bid. | boolean | no |
 | ext<wbr>.prebid<wbr>.analytics | Arguments that can be passed through to individual analytics adapters | object | no |
 | imp<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. (ae stands for auction environment) | integer | yes |
