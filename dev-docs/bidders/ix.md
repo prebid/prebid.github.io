@@ -38,7 +38,7 @@ sidebarType: 1
 * [Index's outstream video player](#indexs-outstream-video-player)
 * [Prebid Native configuration](#prebid-native-configuration)
 * [Protected Audience API support](#protected-audience-api-support)
-* [Signal inventory using  external IDs](#signal-inventory-using-external-ids")
+* [Signal inventory using  external IDs](#signal-inventory-using-external-ids)
 * [Bid request parameters](#bid-request-parameters)
   * [Banner](#banner)
   * [Video](#video)
