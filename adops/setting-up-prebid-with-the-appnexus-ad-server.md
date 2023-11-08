@@ -10,8 +10,6 @@ nav_section: tutorials
 sidebarType: 3
 ---
 
-
-
 # Setting up Prebid with the Microsoft Monetize Ad Server
 
 {: .no_toc}
@@ -27,7 +25,7 @@ Once the Ad Ops setup is complete, developers will need to add code to the page 
 Note that the functionality described on this page uses some features that are only available in the Microsoft Monetize Ad Server product.  For more information, contact your Microsoft Monetize representative.
 
 {: .alert.alert-info :}
-**Object Limits**  
+**Object Limits**
 Note that using Prebid with Microsoft Monetize as your Ad Server may cause you to
 hit your [Object Limits](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/viewing-your-object-limits.html).
 
@@ -64,9 +62,9 @@ For more information about how to set up price bucket granularity in Prebid.js c
 {: .alert.alert-success :}
 You can only report on price bucket values if you provide them in the <a href="https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/key-value-targeting.html">Key-Value Targeting UI</a>.
 
-## Step 2. Add Advertiser 
+## Step 2. Add Advertiser
 
-Depending on whether you are sending all bids or sending top bid you will need to create an Advertiser per bidder e.g. *Rubicon - Prebid Advertiser* vs *Prebid Advertiser* 
+Depending on whether you are sending all bids or sending top bid you will need to create an Advertiser per bidder e.g. *Rubicon - Prebid Advertiser* vs *Prebid Advertiser*
 
 Follow the advertiser setup instructions in [Create an Advertiser](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/create-an-advertiser.html)
 
@@ -80,7 +78,6 @@ Follow the banner creative setup instructions in [Add Creatives](https://docs.xa
 * Name the creative e.g. *Rubicon - Prebid Creative 300x250*.
 * Select the creative size e.g. *300x250*.
 * Self-Audit the creative and confirm compliance.
-
 
 ```html
 <script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/#{HB_FORMAT}.js"></script>
@@ -105,22 +102,21 @@ Follow the banner creative setup instructions in [Add Creatives](https://docs.xa
 ```
 
 {: .alert.alert-warning :}
-**Creative Expiration**  
+**Creative Expiration**
 Note that creatives are automatically marked as inactive by the Microsoft Monetize systems after 45 days of inactivity.  This may happen to Prebid creatives since they are loaded relatively infrequently compared to other use cases.  For help with mitigating this issue, please contact your Microsoft Monetize representative.
 
 {: .alert.alert-warning :}
 **SafeFrame**
 If you want your creative to serve into a SafeFrame, this will need to be enabled on the site-side of the Prebid.js implementation rather than as a setting in the ad server.  A developer can learn how to enable this setting for the publisher by referencing [Using Prebid.js with Microsoft Monetize Ad Server]({{site.github.url}}/dev-docs/examples/use-prebid-with-appnexus-ad-server.html).  Additionally if the Microsoft Monetize Ad Server tags are configured to use SafeFrames, you **will** need to use the above creative template to properly render the creative.  Earlier versions of the Prebid.js creative template may not be fully SafeFrame compliant (if they are still in-use from older setups), so it is recommended to switch to the above template in this scenario.
 
-## Step 4. Set up Insertion Order 
+## Step 4. Set up Insertion Order
 
-You'll need to create an insertion order, belonging to your advertiser, for your line items. 
+You'll need to create an insertion order, belonging to your advertiser, for your line items.
 
 Follow the insertion order setup setup instructions in [Create a Seamless Insertion Order (IO)](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/create-an-insertion-order.html), with the following settings:
 
-* Choose a flexible budget type. 
-* Set no end date. 
-
+* Choose a flexible budget type.
+* Set no end date.
 
 ## Step 5. Set up Line Items
 
@@ -138,22 +134,21 @@ For each line item, follow the line item setup setup instructions in [Create an 
 
 * Set the **Revenue Value** to one of the price bucket key-values from Step 1, e.g., *0.01*.
 
-* Set the **Budget Setup** to *Unlimited Budget*. 
+* Set the **Budget Setup** to *Unlimited Budget*.
 
 * Set the **End Date** sometime in the future e.g. *6/26/2033*.
 
-* Within **Inventory & Brand Safety Targeting** and for **Supply Source** select *Managed Inventory*. 
+* Within **Inventory & Brand Safety Targeting** and for **Supply Source** select *Managed Inventory*.
 
 * Set the **Line Item Priority** for more information on line item priority see [Bidding Priority](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/bidding-priority.html)
 
 * Optional: Still in the targeting settings, target the custom category `prebid_enabled`. This will allow you to turn targeting on and off for a placement (or an entire placement group) by adding it to the custom category, which you'll do in one of the later steps.  This is useful for troubleshooting.  For more information about targeting custom content categories, see [Content Category Targeting](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/content-category-targeting.html).
 
-* In your line item's targeting settings, set the **Key/Value Targeting** to matche the line item's price bucket/revenue value. 
+* In your line item's targeting settings, set the **Key/Value Targeting** to matche the line item's price bucket/revenue value.
 
 * Under **Creatives**, associate as many creative sizes with the line item as you need.  Set the **Creative Rotation** to *Evenly weight creatives*.
 
-* Scroll back up to **Budgeting & Scheduling** and select *No daily budget* within **Pacing** (this can only be selected when managed invenotry is targeted). 
-
+* Scroll back up to **Budgeting & Scheduling** and select *No daily budget* within **Pacing** (this can only be selected when managed invenotry is targeted).
 
 ## Step 6. Add the `prebid_enabled` Custom Category to Placements (Optional)
 
@@ -168,4 +163,4 @@ It will also make it easy to turn the targeting on and off for a given placement
 * [Ad Ops and Prebid](/adops/before-you-start.html)
 * [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
 * [Getting Started with Prebid.js for Developers](/dev-docs/getting-started.html)
-* [Using Prebid.js with Microsoft Monetize Ad Server](/dev-docs/examples/use-prebid-with-appnexus-ad-server.html) (Developer example)
+* [Using Prebid.js with Microsoft Monetize Ad Server](/dev-docs/examples/use-prebid-with-appnexus-ad-server.html)(Developer example)
