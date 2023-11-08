@@ -16,6 +16,22 @@ Updated Feb 9, 2023
 - TOC
 {:toc}
 
+## Getting started
+
+The easiest way to setup an environment to contribute to the docs or review pull requests is [Github Codespaces](https://github.com/features/codespaces).
+
+1. Open [github.com/prebid/prebid.github.io](https://github.com/prebid/prebid.github.io)
+2. Click on the `Code` drop down menu and select "create new codespace from master". If you have no access to prebid.github.io, then you should do this on your fork of the repository
+3. Install the [markdownlint extension](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+    1. go to _Extensions_
+    2. search for _markdownlint_ and hit install
+    3. now you get direct feedback on linting errors
+4. Start the jekyll build as described in the `TERMINAL` of your codespace
+    1. `bundle install`
+    2. `JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental`
+    3. Codespaces will display a notification to open the running instance in the browser.
+5. In the `PORTS` tab you find the running instance
+
 ## Reviewing Pull Requests and Issues
 
 Being a reviewer means you're in weekly rotation where you keep an eye on pull requests (PRs) and issues opened in this repo.
@@ -78,7 +94,7 @@ Jekyll requires adherence to a certain directory structure to generate the site.
 For the Prebid.org site the following directories are used:
 
 **_data**  
-Jekyll was originally designed specifically for creation of blogging websites and not for dynamic, data-driven sites. However, by including the _data directory we can mimic a database structure to create a more robust site. Files in this directory can be saved in either *json*, *yml* or *csv* format. For Prebid.org they have been saved in *yml*.
+Jekyll was originally designed specifically for creation of blogging websites and not for dynamic, data-driven sites. However, by including the _data directory we can mimic a database structure to create a more robust site. Files in this directory can be saved in either _json_, _yml_ or _csv_ format. For Prebid.org they have been saved in _yml_.
 
 Learn more about YML [here](https://yaml.org/start.html)
 
@@ -112,18 +128,21 @@ The sites directory is created by Jekyll. It contains the live site generated fr
 
 The assets directory contains the CSS, Javascript, images and other assets used to create the site.
 
-The base CSS file used is Bootstrap (version 3.7.1) Custom CSS and modifications to Bootstrap classes are contained in the style.css file.
+The base CSS file used is Bootstrap (version 4.6.3) Custom CSS and modifications to Bootstrap classes are contained in the [_sass/vendor/_bootstrap.scss](_sass/vendor/_bootstrap.scss) file.
 
 The JS directory contains the Javascript files required for the Prebid.org site. It includes JQuery and Bootstrap javascript frameworks as well as other third party libraries and custom javascript written specifically for the Prebid site. For JQuery and Bootstrap both the expanded and minified versions of the javascript files are included but only the minified files are linked from the site header.
 
 ### CSS
 
-1. Styles all come from `/assets/css/main-bundle.css`
-1. These are generated from `/_assets/sass`
+1. Styles all come from `/assets/css/main-bundle.scss`
+1. These are generated from [_sass/main.scss](_sass/main.scss)
 1. To make a change, edit the relevant sass file
-1. Generate the css file from sass with 'npm run dev/prod'
-1. Commit all the changes including `assets/css/main-bundle.css`
-1. the `_assets` directory is not part of the `_site` tree
+
+If you want to upgrade bootstrap
+
+1. Upgrade bootstrap in the [package.json](package-lock)
+1. Run `npm install`. This will update the node_modules commited in [_sass/node_modules](_sass/node_modules)
+1. Commit the updated node module source files
 
 ## Data Models
 

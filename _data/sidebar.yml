@@ -886,6 +886,14 @@
   sectionTitle:
   subgroup: 3
 
+- sbSecId: 2
+  title: Prebid Plugin Renderer
+  link: /prebid-mobile/pbm-api/android/pbm-plugin-renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
 #--------------Ad Ops--------------|
 
 - sbSecId: 3
@@ -1492,7 +1500,6 @@
   sectionTitle:
   subgroup: 3
 
-
 - sbSecId: 5
   title: Modules
   link: /prebid-server/pbs-modules/
@@ -1537,6 +1544,14 @@
 - sbSecId: 5
   title: Building a Module
   link: /prebid-server/developers/add-a-module.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 5
+  title: Building a Privacy Module
+  link: /prebid-server/developers/add-a-privacy-module.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

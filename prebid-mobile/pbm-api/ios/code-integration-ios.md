@@ -149,8 +149,8 @@ Prebid.initializeSDK(GADMobileAds.sharedInstance()) { status, error in
         }
     default:
         break
-    }            
-}            
+    }
+}
 ```
 
 Check the log messages of the app. If the provided GMA SDK version is not verified for compatibility, the Prebid SDK informs about it.
@@ -202,6 +202,10 @@ public static let severe = LogLevel(stringValue: "[🔥]", rawValue: 5)
 
 `timeoutMillis`: The Prebid timeout (accessible to Prebid SDK 1.2+), set in milliseconds, will return control to the ad server SDK to fetch an ad once the expiration period is achieved. Because Prebid SDK solicits bids from Prebid Server in one payload, setting Prebid timeout too low can stymie all demand resulting in a potential negative revenue impact.
 
+`creativeFactoryTimeout`: Controls how long banner creative has to load before it is considered a failure.
+
+`creativeFactoryTimeoutPreRenderContent`: Controls how long video and interstitial creatives have to load before it is considered a failure.
+
 `storedAuctionResponse`: Set as type string, stored auction responses signal Prebid Server to respond with a static response matching the storedAuctionResponse found in the Prebid Server Database, useful for debugging and integration testing. No bid requests will be sent to any bidders when a matching storedAuctionResponse is found. For more information on how stored auction responses work, refer to the written [description on github issue 133](https://github.com/prebid/prebid-mobile-android/issues/133).
 
 `pbsDebug`: adds the debug flag ("test":1) on the outbound http call to Prebid Server. The test:1 flag will signal to Prebid Server to emit the full resolved request (resolving any Stored Request IDs) as well as the full Bid Request and Bid Response to and from each bidder.
@@ -240,6 +244,47 @@ func addCustomHeader(name: String, value: String)
 ```swift
 func clearCustomHeaders() 
 ```
+
+### Server Side Configuration
+
+You can pass some SDK configuration properties from PBS to the SDK using the `ext.prebid.passthrough` object, [supported](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#request-passthrough) by Prebid Server, in the stored request.
+
+For now Prebid SDK supports the following configuration properties:
+
+* `cftbanner` - see the `Prebid.creativeFactoryTimeout`
+* `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
+
+An example of a stored request:
+
+```json
+{
+  "app": {
+    "publisher": {
+      "ext": {
+        "prebid": {
+
+        }
+      }
+    }
+  },
+  "ext": {
+    "prebid": {
+      "passthrough": [
+        {
+          "type": "prebidmobilesdk",
+          "sdkconfiguration": {
+            "cftbanner": 42,
+            "cftprerender": 4242
+          }
+        }
+      ]
+    }
+  },
+  "test": 1
+}
+```
+
+All values received in the `passthrough` of the bid response will be applied to the respective `Prebid.*` properties with the highest priority. After that, the SDK will utilize new values received in the bid response.
 
 ### Examples
 {:.no_toc}
@@ -298,14 +343,14 @@ In the table below, you can find Prebid's test IDs that are used in the Demo App
 | -------------------- | ---------------- | ---------------------- |
 |`https://prebid-server-test-j.prebid.org/openrtb2/auction` | **Custom Prebid Server Host**|A PBS instance that is dedicated to testing purposes.|
 |`0689a263-318d-448b-a3d4-b02e8a709d9d`| **Stored Request ID**|The test account ID on the test server.|
-|`imp-prebid-banner-320-50`|**HTML Banner**|Returns a stored response that contains a Banner 320x50 winning bid.|
-|`imp-prebid-display-interstitial-320-480`|**HTML Interstitial**|Returns a stored response that contains a Interstitial 320x480 winning bid.|
-|`imp-prebid-video-outstream-original-api`|**Outstream Video** (Original API)|Returns a stored response that contains a Video 320x50 winning bid.|
-|`imp-prebid-video-outstream`|**Outstream Video** (Rendering API)|Returns a stored response that contains a Video 320x50 winning bid.|
-|`imp-prebid-video-interstitial-320-480-original-api`|**Video Interstitial** (Original API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
-|`imp-prebid-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
-|`imp-prebid-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
-|`imp-prebid-video-rewarded-320-480`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
-|`imp-prebid-video-interstitial-320-480`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid.|
-|`imp-prebid-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
-|`imp-prebid-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|
+|`prebid-demo-banner-320-50`|**HTML Banner**|Returns a stored response that contains a Banner 320x50 winning bid.|
+|`prebid-demo-display-interstitial-320-480`|**HTML Interstitial**|Returns a stored response that contains a Interstitial 320x480 winning bid.|
+|`prebid-demo-video-outstream-original-api`|**Outstream Video** (Original API)|Returns a stored response that contains a Video 320x50 winning bid.|
+|`prebid-demo-video-outstream`|**Outstream Video** (Rendering API)|Returns a stored response that contains a Video 320x50 winning bid.|
+|`prebid-demo-video-interstitial-320-480-original-api`|**Video Interstitial** (Original API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
+|`prebid-demo-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
+|`prebid-demo-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
+|`prebid-demo-video-rewarded-320-480`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
+|`prebid-demo-video-interstitial-320-480`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid.|
+|`prebid-demo-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
+|`prebid-demo-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|

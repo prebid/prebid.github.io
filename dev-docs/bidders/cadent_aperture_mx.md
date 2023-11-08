@@ -5,6 +5,7 @@ description: Prebid Cadent Aperture MX Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: cadent_aperture_mx
+filename: cadentApertureMXBidAdapter
 media_types: banner, video
 tcfeu_supported: true
 gvl_id: 183
