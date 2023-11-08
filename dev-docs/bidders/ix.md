@@ -46,7 +46,7 @@ sidebarType: 1
 * [Multi-format ad units](#multi-format-ad-units)
 * [Examples](#examples)
 
-<a name="introduction"></a>
+<a id="introduction"></a>
 
 ## Introduction
 
@@ -75,7 +75,7 @@ pbjs.bidderSettings = {
 };
 ```
 
-<a name="supported-media-types"></a>
+<a id="supported-media-types"></a>
 
 ## Supported media types
 
@@ -89,7 +89,7 @@ The following table lists the media types that Index supports. For information a
 | video   | Supported      |
 | native      | Supported       |
 
-<a name="client-side-adapter"></a>
+<a id="client-side-adapter"></a>
 
 ## Set up Prebid.js to call Index directly from the browser (client-side adapter)
 
@@ -142,7 +142,7 @@ In this configuration Prebid.js calls Index directly from the browser using our 
     * Use your own outstream video player. For more information, see [Prebid's documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
 8. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
-<a name="server-side-adapter"></a>
+<a id="server-side-adapter"></a>
 
 ## Set up Prebid.js to call Index through Prebid Server (server-side adapter)
 
@@ -184,7 +184,7 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](/dev-docs/show-outstream-video-ads.html)
 9. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
-<a name="modules-to-include-in-your-build-process"></a>
+<a id="modules-to-include-in-your-build-process"></a>
 
 ## Modules to include in your build process
 
@@ -203,7 +203,7 @@ If you are using a JSON file to specify modules, add `ixBidAdapter` and `dfpAdSe
 ]
 ```
 
-<a name="set-up-first-party-data-fpd"></a>
+<a id="set-up-first-party-data-fpd"></a>
 
 ## Set up First Party Data (FPD)
 
@@ -230,7 +230,7 @@ pbjs.setConfig({
 });
 ```
 
-<a name="index-bidder-specific-fpd-module"></a>
+<a id="index-bidder-specific-fpd-module"></a>
 
 ### Index bidder-specific data
 
@@ -250,7 +250,7 @@ pbjs.setConfig({
 });
 ```
 
-<a name="adunit-specific-data"></a>
+<a id="adunit-specific-data"></a>
 
 ### AdUnit-specific data
 
@@ -267,7 +267,7 @@ ortb2Imp: {
 }
 ```
 
-<a name="index-outstream-video-player"></a>
+<a id="index-outstream-video-player"></a>
 
 ## Index's outstream ad unit
 
@@ -342,7 +342,7 @@ pbjs.addAdUnit({
 
 *Please note that your use of the outstream video player will be governed by and subject to the terms and conditions of i) any master services or license agreement entered into by you and Index Exchange; ii) the information provided on our knowledge base linked [here](https://kb.indexexchange.com/publishers/prebid_integration/outstream_video_prebidjs.htm) and [here](https://kb.indexexchange.com/publishers/guidelines/standard_contractual_clauses.htm), and iii) our [Privacy Policy](https://www.indexexchange.com/privacy/). Your use of Index's outstream video player constitutes your acknowledgement and acceptance of the foregoing.*
 
-<a name="prebid-native-configuration"></a>
+<a id="prebid-native-configuration"></a>
 
 ## Prebid Native configuration
 
@@ -389,7 +389,7 @@ pbjs.addAdUnits({
 });
 ```
 
-<a name="protected-audience-api-support"></a>
+<a id="protected-audience-api-support"></a>
 
 ## Protected Audience API support
 
@@ -431,7 +431,7 @@ pbjs.addAdUnits({
 });
 ```
 
-<a name="signal-inventory-using-external-ids"></a>
+<a id="signal-inventory-using-external-ids"></a>
 
 ## Signal inventory using  external IDs
 
@@ -444,32 +444,35 @@ pbjs.addAdUnits({
         exchangeId: 123456 // Exchange-specific seller ID
       }
     });
+
    ```
+
 2. Configure `externalId` at the bidder ad unit level under `bids.params`. The following shows an example of a banner ad that includes the `externalId` at the bidder level:
 
-   ```javascript
+  ```javascript
    // Banner
    var adUnits = [{
-      code: 'banner-div-a',
-      mediaTypes: {
-        banner: {
-            sizes: [
+     code: 'banner-div-a',
+     mediaTypes: {
+         banner: {
+             sizes: [
                 [300, 250],
                 [300, 600]
-            ]
-        }
-    },
-     bids: [{
-        bidder: 'ix',
-        params: {
-            externalId: "example_value" // External placement ID, which could include an integer or string           
-           }
+             ]
          }
-      ]
+      },
+     bids: [{
+         bidder: 'ix',
+         params: {
+            externalId: "example_value" // External placement ID, which could include an integer or string           
+         }
+       }
+     ]
    }];
+
   ```
 
-<a name="bid-request-parameters"></a>
+<a id="bid-request-parameters"></a>
 
 ## Bid request parameters
 
@@ -513,7 +516,7 @@ If you are using Index's outstream ad unit and have placed the video object at t
 
 Index supports the same set of native assets that Prebid.js recognizes. For the list of native assets, see [Prebid.js Native Implementation Guide on the Prebid site.](https://docs.prebid.org/prebid/native-implementation.html#3-prebidjs-native-adunit-overview)
 
-<a name="multi-format-ad-units"></a>
+<a id="multi-format-ad-units"></a>
 
 ## Multi-format ad units
 
@@ -530,7 +533,7 @@ The following are the parameters that you can specify for each multi-format type
 | `video.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `video` format in the multi-format ad unit.|
 | `native.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `native` format in the multi-format ad unit.|
 
-<a name="examples"></a>
+<a id="examples"></a>
 
 ## Examples
 
