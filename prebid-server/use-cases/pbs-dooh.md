@@ -34,4 +34,5 @@ These are the fields in OpenRTB 2.6 that support the Digital Out Of Home use cas
 Bidders generally expect these values to be present in the original Prebid Server request.
 
 ## Further Reading
+
 - [DOOH in OpenRTB 2.6](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#objectdooh)
