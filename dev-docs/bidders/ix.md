@@ -35,7 +35,7 @@ sidebarType: 1
   * [Global data](#prebid-fpd-module)
   * [Index bidder-specific data](#index-bidder-specific-fpd-module)
   * [AdUnit-specific data](#adunit-specific-data)
-* [Index's outstream video player](#indexs-outstream-video-player)
+* [Index's outstream video player](#index-outstream-video-player)
 * [Prebid Native configuration](#prebid-native-configuration)
 * [Protected Audience API support](#protected-audience-api-support)
 * [Signal inventory using  external IDs](#signal-inventory-using-external-ids)
@@ -138,7 +138,7 @@ In this configuration Prebid.js calls Index directly from the browser using our 
     ```
 
 7. (Optional) If you want to monetize outstream video, you can choose among the following options:
-    * Use Index's outstream video player. For more information, see the [Index's outstream video player](#indexs-outstream-video-player)section below.
+    * Use Index's outstream video player. For more information, see the [Index's outstream video player](#index-outstream-video-player)section below.
     * Use your own outstream video player. For more information, see [Prebid's documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
 8. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
@@ -180,7 +180,7 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
     ```
 
 8. (Optional) If you want to monetize outstream video, you can choose among the following options:
-    * Use Index's outstream video player. For more information, see the [Index's outstream video player](#indexs-outstream-video-player) section below.
+    * Use Index's outstream video player. For more information, see the [Index's outstream video player](#index-outstream-video-player) section below.
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](/dev-docs/show-outstream-video-ads.html)
 9. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
