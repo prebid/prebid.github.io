@@ -22,8 +22,4 @@ safeframes_ok: true
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placementId`      | optional | Placement Id         | `'0'`    | `'string'` |
-
-### Note
-
-For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
+| `placementId`      | required | Placement Id         | `'0'`    | `'string'` |
