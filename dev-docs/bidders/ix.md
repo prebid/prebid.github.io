@@ -435,7 +435,7 @@ pbjs.addAdUnits({
 
 ## Signal inventory using  external IDs
 
-1. In the `pbjs.setBidderConfig` object at the `ix` bidder level, you must configure an `exchangeId` that applies to all your placements as follows:
+1. In the `pbjs.setBidderConfig` object at the `ix` bidder level, you must configure an `exchangeId` that applies to all your placements as follows. Note that the `exchangeId` is provided by Index.
 
    ```javascript
    pbjs.setBidderConfig({
