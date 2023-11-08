@@ -1,34 +1,37 @@
 ---
 layout: page_v2
 sidebarType: 5
-title: Prebid Server | Use Cases | Long Form Video
+title: Prebid Server | Use Cases | Digital Out Of Home
 
 ---
 
-# Use Case: Prebid Server | Long Form Video
-{: .no_toc}
+# Use Case: Prebid Server | Digital Out Of Home
 
-* TOC
-{:toc}
-
-Prebid Server (PBS) supports filling _pods_ of multiple video advertisements, including support for competitve separation.
+Prebid Server (PBS) supports Digital Out Of Home (DOOH) advertising with this architecture:
 
 ## Workflow
 
 Here's a workflow diagramming how this works.
 
-![Prebid Server Long Form Video](/assets/images/flowcharts/prebid-server/pbs-lfv-flow.png){:class="pb-xlg-img"}
+![Prebid Server DOOH](/assets/images/flowcharts/prebid-server/pbs-dooh-flow.png){:class="pb-xlg-img"}
 
-1. Application makes request for a video stream.
-2. An SSAI Server sends a video request to PBS, specifying the pod requirements.
+1. DOOH screen makes request for an ad either directly (1a) or through a Content Management System (1b)
+2. The DOOH ad server sends an OpenRTB request to PBS, specifying the screen requirements.
 3. PBS sends a request for bids to selected demand partners by relaying OpenRTB requests to them.
-4. Demand partners return a bid response to PBS. If competitive seperation is enabled, PBS peforms [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache.
-5. PBS generates key-value pairs that are comprised of price, category, and duration values.
-6. The SSAI server parses the returned key-values, appending them as a query string to the ad server request URL and submits the request.
-7. The ad server returns the optimized pod.
-8. The SSAI server requests the creatives from prebid cache.
-9. The SSAI server requests the content from the content host and stitches the creatives and content together.
-10. The stitched stream is returned to the application.
+4. Demand partners return a bid response to PBS. Bid creative assets may be stored in Prebid Cache.
+5. PBS returns the resulting bids to the DOOH ad server.
+6. The ad server retrieves the cached DOOH bid assets as necessary.
+7. The ad server returns the bid to the CMS or device.
+
+## OpenRTB and DOOH
+
+These are the fields in OpenRTB 2.6 that support the Digital Out Of Home use case:
+
+- `dooh` - an object containing many values such as the venue type, publisher, etc.
+- imp.qty - impression quantity
+- imp.dt - estimated impression timestamp
+
+Bidders generally expect these values to be present in the original Prebid Server request.
 
 ## Further Reading
-- [Long Form Video Endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-video.html)
+- [DOOH in OpenRTB 2.6](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#objectdooh)
