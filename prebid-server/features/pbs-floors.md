@@ -206,9 +206,9 @@ supported only in Prebid Server, not in Prebid.js.
 {: .table .table-bordered .table-striped }
 | Dimension | Type | Example | How it works |
 |---+---+---+---|
-| **siteDomain** | string | "level4.level3.example.com" | This is the full site domain. The value in the floor rule is compared to ORTB site.domain or app.domain |
-| **pubDomain** | string | "example.com" or "example.co.uk" | This is the publisher's base domain. It's compared to site.publisher.domain or app.publisher.domain |
-| domain | string | "example.com" | This is the robust way to check either the full domain or the base domain. It's compared against (site.domain and site.publisher.domain) or (app.domain and app.publisher.domain). If any of them match this part of the rule matches. |
+| **siteDomain** | string | "level4.level3.example.com" | This is the full site domain. The value in the floor rule is compared to ORTB {site,app,dooh}.domain |
+| **pubDomain** | string | "example.com" or "example.co.uk" | This is the publisher's base domain. It's compared to {site,app,dooh}.publisher.domain |
+| domain | string | "example.com" | This is the robust way to check either the full domain or the base domain. It's compared against {site,app,dooh}.domain and {site,app,dooh}.publisher.domain. If any of them match this part of the rule matches. |
 | **bundle** | string | "org.prebid.drprebid" | This value in the rule is compared to ORTB app.bundle |
 | **channel** | string | "app" | This rule value is compared against ORTB ext.prebid.channel.name |
 | mediaType | string | "video" | If more than one of the following ORTB objects exists, only the "*" rule value will match: imp.banner, imp.video, imp.native, imp.audio. Otherwise: {::nomarkdown}<ul><li>the "banner" rule value will match if imp.banner exists.</li><li> the "video-outstream" rule value will match if imp.video exists and imp.video.placement is not 1</li><li>the "video-instream" rule value will match if imp.video exists and imp.video placement exists and is 1</li><li>the "video" rule value is treated as "video-instream" above.</li><li>the "native" rule value will match if imp.native exists</li><li>the "audio" rule value will match if imp.audio exists</li></ul>{:/} |
