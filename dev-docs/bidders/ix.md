@@ -14,6 +14,7 @@ floors_supported: true
 usp_supported: true
 gpp_supported: true
 media_types: banner, video, native
+safeframes_ok: true
 fpd_supported: true
 gvl_id: 10
 dchain_supported: false
