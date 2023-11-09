@@ -57,6 +57,36 @@ The PubProvided ID module allows publishers to set and pass a first-party user i
     });
     ```
 
+If multiple parties are writing to this object in an undetermined order, a setup that feels quite awkward, they should each do something of this nature:
+
+```javascript
+pbjs.mergeConfig({
+    userSync: {
+        userIds: (() => {
+            const uidCfgs = pbjs.getConfig('userSync.userIds') || [];
+            let ppid = uidCfgs.find(cfg => cfg.name === 'pubProvidedId');
+            if (!ppid) {
+                ppid = {name: 'pubProvidedId', params: {eids: []}};
+                uidCfgs.push(ppid);
+            }
+            ppid.params.eids.push({
+                source: "example.com",
+                uids: [{
+                    id: "example",
+                    atype: 1,
+                    ext: {
+                        stype: "ppuid"
+                    }
+
+                }]
+            })
+            return uidCfgs;
+        })()
+    }
+})
+pbjs.refreshUserIds({submoduleNames: ['pubProvidedId']})
+```
+
     In either case, bid adapters will receive the eid values after consent is validated. The above example, if calling `setConfig` instead of `mergeConfig`, will overwrite existing known IDs. If there is any possibility other id submodules have already been initiated or multiple scripts on the page are setting these fields, be sure to prefer `mergeConfig`.
 
 2. This design allows for the setting of any number of uuids in the eids object. Publishers may work with multiple ID providers and nest their own ID within the same eids object.  The opportunity to link a 1st party uuid and a 3rd party generated UUID presents publishers with a unique ability to address their users in a way demand sources will understand.
