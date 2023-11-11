@@ -14,6 +14,7 @@ floors_supported: true
 usp_supported: true
 gpp_supported: true
 media_types: banner, video, native
+safeframes_ok: true
 fpd_supported: true
 gvl_id: 10
 dchain_supported: false
@@ -28,15 +29,17 @@ sidebarType: 1
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
 * [Supported media types](#supported-media-types)
-* [Set up Prebid.js to call Index directly from the browser (client-side adapter)](#set-up-prebidjs-to-call-index-directly-from-the-browser-client-side-adapter)
-* [Set up Prebid.js to call Index through Prebid Server (server-side adapter)](#set-up-prebidjs-to-call-index-through-prebid-server-server-side-adapter)
+* [Set up Prebid.js to call Index directly from the browser](#set-up-prebidjs-to-call-index-directly-from-the-browser-client-side-adapter)
+* [Set up Prebid.js to call Index through Prebid Server](#set-up-prebidjs-to-call-index-through-prebid-server-server-side-adapter)
 * [Modules to include in your build process](#modules-to-include-in-your-build-process)
 * [Set up First Party Data (FPD)](#set-up-first-party-data-fpd)
   * [Global data](#prebid-fpd-module)
   * [Index bidder-specific data](#index-bidder-specific-fpd-module)
   * [AdUnit-specific data](#adunit-specific-data)
-* [Index's outstream video player](#indexs-outstream-video-player)
+* [Index's outstream video player](#index-outstream-video-player)
 * [Prebid Native configuration](#prebid-native-configuration)
+* [Protected Audience API support](#protected-audience-api-support)
+* [Signal inventory using  external IDs](#signal-inventory-using-external-ids)
 * [Bid request parameters](#bid-request-parameters)
   * [Banner](#banner)
   * [Video](#video)
@@ -44,7 +47,7 @@ sidebarType: 1
 * [Multi-format ad units](#multi-format-ad-units)
 * [Examples](#examples)
 
-<a name="introduction"></a>
+<a id="introduction"></a>
 
 ## Introduction
 
@@ -73,7 +76,7 @@ pbjs.bidderSettings = {
 };
 ```
 
-<a name="supported-media-types"></a>
+<a id="supported-media-types"></a>
 
 ## Supported media types
 
@@ -87,7 +90,7 @@ The following table lists the media types that Index supports. For information a
 | video   | Supported      |
 | native      | Supported       |
 
-<a name="client-side-adapter"></a>
+<a id="client-side-adapter"></a>
 
 ## Set up Prebid.js to call Index directly from the browser (client-side adapter)
 
@@ -136,11 +139,11 @@ In this configuration Prebid.js calls Index directly from the browser using our 
     ```
 
 7. (Optional) If you want to monetize outstream video, you can choose among the following options:
-    * Use Index's outstream video player. For more information, see the [Index's outstream video player](#indexs-outstream-video-player)section below.
+    * Use Index's outstream video player. For more information, see the [Index's outstream video player](#index-outstream-video-player)section below.
     * Use your own outstream video player. For more information, see [Prebid's documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
 8. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
-<a name="server-side-adapter"></a>
+<a id="server-side-adapter"></a>
 
 ## Set up Prebid.js to call Index through Prebid Server (server-side adapter)
 
@@ -178,11 +181,11 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
     ```
 
 8. (Optional) If you want to monetize outstream video, you can choose among the following options:
-    * Use Index's outstream video player. For more information, see the [Index's outstream video player](#indexs-outstream-video-player) section below.
+    * Use Index's outstream video player. For more information, see the [Index's outstream video player](#index-outstream-video-player) section below.
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](/dev-docs/show-outstream-video-ads.html)
 9. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
-<a name="modules-to-include-in-your-build-process"></a>
+<a id="modules-to-include-in-your-build-process"></a>
 
 ## Modules to include in your build process
 
@@ -201,7 +204,7 @@ If you are using a JSON file to specify modules, add `ixBidAdapter` and `dfpAdSe
 ]
 ```
 
-<a name="set-up-first-party-data-fpd"></a>
+<a id="set-up-first-party-data-fpd"></a>
 
 ## Set up First Party Data (FPD)
 
@@ -228,7 +231,7 @@ pbjs.setConfig({
 });
 ```
 
-<a name="index-bidder-specific-fpd-module"></a>
+<a id="index-bidder-specific-fpd-module"></a>
 
 ### Index bidder-specific data
 
@@ -248,7 +251,7 @@ pbjs.setConfig({
 });
 ```
 
-<a name="adunit-specific-data"></a>
+<a id="adunit-specific-data"></a>
 
 ### AdUnit-specific data
 
@@ -265,41 +268,41 @@ ortb2Imp: {
 }
 ```
 
-<a name="index-outstream-video-player"></a>
+<a id="index-outstream-video-player"></a>
 
-## Index's outstream video player
+## Index's outstream ad unit
 
-Publishers who are using Index as a bidding adapter in Prebid.js can show outstream video ads on their site using Index's outstream video player. This allows a video ad to be placed anywhere on a publisher’s site, such as in-article, in-feed, and more. To use Index's outstream renderer, you must be on Prebid.js version 5.13 or higher. However, if you are using your own outstream renderer, Index's adapter can accept video signals from version 2.41.0 or higher. <br />
-**Note:** When you use the Index renderer for outstream video, all impressions are considered viewable, which is similar to how Google's ActiveView counts impressions for outstream. This is because Index renders the outstream video as soon as it is in view and concurrently fires any impression pixels in the VAST.
+Publishers who are using Index as a bidding adapter in Prebid.js can show outstream video ads on their site using Index's outstream ad unit. This allows a video ad to be placed anywhere on a publisher’s site, such as in-article, in-feed, and more. To use Index's outstream ad unit, you must be on Prebid.js version 5.13 or higher. However, if you are using your own outstream video player, Index's adapter can accept video signals from version 2.41.0 or higher. <br />
+**Note:** When you use the Index ad unit for outstream video, all impressions are considered viewable, which is similar to how Google's ActiveView counts impressions for outstream. This is because Index plays the outstream video as soon as it is in view and concurrently fires any impression pixels in the VAST.
 
-To use Index’s outstream video player, in your Prebid.js configuration:<br />
+To use Index’s outstream ad unit, in your Prebid.js configuration:<br />
 
-1. Perform the following steps in your Prebid.js configuration to create a new section for Index's outstream video player:
+1. Perform the following steps in your Prebid.js configuration to create a new section for Index's outstream ad unit:
     * Add a new code property under `adUnits`. The code could be the `divID` or the Google Ad Manager adUnit code.
     * Within the `adUnits`, add `ix` as a `bidder`.
     * (Recommended) At the `adUnit` level, under `mediaTypes`, add a `video` object that supports our required video parameters. For more information about which parameters to add, see the [Bid request parameters](#video) section below. This is useful for publishers who want to apply the same settings across all SSPs.
     * Optionally, you can add the `video` object at the bidder level under `bids.params`. This is useful for publishers who may want to set up different configurations for different SSPs.   <br />
 **Note:** The `bidder` level video configurations override the `adUnit` level configurations. The `playerConfig` is only a bidder level configuration.
-2. (Recommended) To force the Index renderer as the default renderer for Index, set `backupOnly` to true (see below example). This configuration allows you to use your own renderer only when an adapter does not provide their own renderer. This also forces any adapter that has a renderer to use their renderer by default. If no renderer is provided, by default,  we will use our own renderer script.
-3. Configure the player according to the options in the [Bid request parameters](#bid-request-parameters) section below.
+2. (Recommended) To force the Index ad unit as the default player for Index, set `backupOnly` to true (see below example). This configuration allows you to use your own player only when an adapter does not provide their own player. This also forces any adapter that has a player to use their player by default. If no player is provided, by default,  we will use our own ad unit script.
+3. Configure the ad unit according to the options in the [Bid request parameters](#bid-request-parameters) section below.
 4. Depending on your existing Prebid setup, complete one of the following:
     * If you have an existing Prebid.js integration for banner, you can use the corresponding line items in your Google Ad Manager (GAM) account to retrieve outstream video demand. For more information, see Prebid's documentation on [How to set up line items](/adops/step-by-step.html).
     * If you do not have an existing Prebid.js integration for banner, create a line item in your GAM account that is capable of serving an outstream video ad. For more information about how to do this, see Prebid's documentation on Setting up [Prebid Video in Google Ad Manager](/adops/setting-up-prebid-video-in-dfp.html).
-5. Notify your Index Representative and provide your test page URL for validation. They will work with you to test the video player and confirm that outstream video ads are being retrieved.<br />
+5. Notify your Index Representative and provide your test page URL for validation. They will work with you to test the video ad unit and confirm that outstream video ads are being retrieved.<br />
 
 For more information on how to structure the video object, refer to the following code example:<br />
 
 ```javascript
 pbjs.addAdUnit({
     code: 'video1',
-    // This renderer would apply to all prebid creatives...
+    // This video player would apply to all prebid creatives...
     renderer: {
         url: 'example.com/publishersCustomRenderer.js',
         backupOnly: true,
         render: function (bid) { renderAdUnit(...) }
     },
     mediaTypes: {
-        // Pub renderer video settings...
+        // Publisher video player video settings...
         video: {
             context: 'outstream',
             playerSize: [640, 480],
@@ -315,7 +318,7 @@ pbjs.addAdUnit({
         bidder: 'ix',
         params: {
             siteId: '12345',
-            // Index renderer video settings...
+            // Index ad unit video settings...
             video: {
                 //minimum size for Video Player size is 144x144 in pixel
                 //maxduration can be any.
@@ -340,7 +343,7 @@ pbjs.addAdUnit({
 
 *Please note that your use of the outstream video player will be governed by and subject to the terms and conditions of i) any master services or license agreement entered into by you and Index Exchange; ii) the information provided on our knowledge base linked [here](https://kb.indexexchange.com/publishers/prebid_integration/outstream_video_prebidjs.htm) and [here](https://kb.indexexchange.com/publishers/guidelines/standard_contractual_clauses.htm), and iii) our [Privacy Policy](https://www.indexexchange.com/privacy/). Your use of Index's outstream video player constitutes your acknowledgement and acceptance of the foregoing.*
 
-<a name="prebid-native-configuration"></a>
+<a id="prebid-native-configuration"></a>
 
 ## Prebid Native configuration
 
@@ -387,7 +390,90 @@ pbjs.addAdUnits({
 });
 ```
 
-<a name="bid-request-parameters"></a>
+<a id="protected-audience-api-support"></a>
+
+## Protected Audience API support
+
+**Before you begin:**
+
+* You must have Google Ad Manager and the [fledgeForGpt](/dev-docs/modules/fledgeForGpt.html) module.
+* In your Google Ad Manager configuration, make sure that you have not opted out from using the Protected Audience API. For more information about the configuration, see Google's documentation on  [Protected Audience API and Ad Manager after Chrome GA](https://support.google.com/admanager/answer/13627134?hl=en&ref_topic=12264880&sjid=10591375417866092080-NA).
+
+Follow these steps to configure your Prebid.js to specify that your ad slots are enabled for [Protected Audience](https://github.com/WICG/turtledove/blob/main/FLEDGE.md) auctions:
+
+1. If required, update your Prebid.js version to 8.18.0 or later.
+2. Build the `fledgeForGpt` module in your Prebid.js configuration by adding `fledgeForGpt` to the list of modules that you are already using. For more information about the module, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation.
+3. Enable all ad units to use the `fledgeForGpt` module in your prebid.js configuration. You can do this in the global-level configuration, bidder level, or ad-unit level. For more information about the configurations, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation. Index recommends that you do this in the global-level configuration by using the `defaultForSlots` parameter with a value of `1`. <br />
+**Note:** If you are using the `fledgeForGpt.bidders[]`, make sure that you add `ix` to the list of bidders.<br />
+The following shows an example of the configuration done at the global level:
+
+```javascript
+pbjs.que.push(function() {
+  pbjs.setConfig({
+    fledgeForGpt: {
+      enabled: true,
+      defaultForSlots: 1
+    }
+  });
+});
+```
+
+The following shows an example of the configuration done at the ad-unit level:
+
+```javascript
+pbjs.addAdUnits({
+    code: "my-adunit-div",
+    // other config here
+    ortb2Imp: {
+        ext: {
+            ae: 1
+        }
+    }
+});
+```
+
+<a id="signal-inventory-using-external-ids"></a>
+
+## Signal inventory using  external IDs
+
+1. In the `pbjs.setBidderConfig` object at the `ix` bidder level, you must configure an `exchangeId` that applies to all your placements as follows. Note that the `exchangeId` is provided by Index.
+
+   ```javascript
+   pbjs.setBidderConfig({
+     bidders: ['ix'],
+     config: {
+        exchangeId: 123456 // Exchange-specific seller ID
+      }
+    });
+
+   ```
+
+2. Configure `externalId` at the bidder ad unit level under `bids.params`. The following shows an example of a banner ad that includes the `externalId` at the bidder level:
+
+  ```javascript
+   // Banner
+   var adUnits = [{
+     code: 'banner-div-a',
+     mediaTypes: {
+         banner: {
+             sizes: [
+                [300, 250],
+                [300, 600]
+             ]
+         }
+      },
+     bids: [{
+         bidder: 'ix',
+         params: {
+            externalId: "example_value" // External placement ID, which could include an integer or string           
+         }
+       }
+     ]
+   }];
+
+  ```
+
+<a id="bid-request-parameters"></a>
 
 ## Bid request parameters
 
@@ -413,7 +499,7 @@ You must include these parameters at the bidder level.
 |---|---|---|---|
 | `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
 
-If you are using Index's outstream player and have placed the video object at the bidder level, you must include the Index required parameters at the bidder level. You can include the optional parameters to specify the outstream player configurations.
+If you are using Index's outstream ad unit and have placed the video object at the bidder level, you must include the Index required parameters at the bidder level. You can include the optional parameters to specify the outstream player configurations.
 
 {: .table .table-bordered .table-striped }
 
@@ -431,7 +517,7 @@ If you are using Index's outstream player and have placed the video object at th
 
 Index supports the same set of native assets that Prebid.js recognizes. For the list of native assets, see [Prebid.js Native Implementation Guide on the Prebid site.](https://docs.prebid.org/prebid/native-implementation.html#3-prebidjs-native-adunit-overview)
 
-<a name="multi-format-ad-units"></a>
+<a id="multi-format-ad-units"></a>
 
 ## Multi-format ad units
 
@@ -448,7 +534,7 @@ The following are the parameters that you can specify for each multi-format type
 | `video.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `video` format in the multi-format ad unit.|
 | `native.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `native` format in the multi-format ad unit.|
 
-<a name="examples"></a>
+<a id="examples"></a>
 
 ## Examples
 

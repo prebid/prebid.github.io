@@ -5,7 +5,6 @@ description: setConfig API
 sidebarType: 1
 ---
 
-
 `setConfig` supports a number of configuration options. Every
 call to setConfig overwrites supplied values at the top level. e.g. if `ortb2` is provided as a value, any previously-supplied `ortb2` values will disappear.
 If this is not the desired behavior, there is a [`mergeConfig()`](mergeConfig.html) function that will preserve previous values to do not conflict with the newly supplied values.
@@ -17,6 +16,7 @@ Core config:
 * [Debugging](#setConfig-Debugging)
 * [Device Access](#setConfig-deviceAccess)
 * [Bidder Timeouts](#setConfig-Bidder-Timeouts)
+* [Enable sharing of transaction IDs](#setConfig-enableTIDs)
 * [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 * [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 * [Set Timeout Buffer](#setConfig-timeoutBuffer)
@@ -99,6 +99,16 @@ pbjs.setConfig({ bidderTimeout: 3000 });
 Note that it's possible for the timeout to be triggered later than expected, leading to a bid participating in the auction later than expected.  This is due to how [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) works in JS: it queues the callback in the event loop in an approximate location that *should* execute after this time but *it is not guaranteed*.
 With a busy page load, bids can be included in the auction even if the time to respond is greater than the timeout set by Prebid.js.  However, we do close the auction immediately if the threshold is greater than 200ms, so you should see a drop off after that period.
 For more information about the asynchronous event loop and `setTimeout`, see [How JavaScript Timers Work](https://johnresig.com/blog/how-javascript-timers-work/).
+
+<a id="setConfig-enableTIDs"></a>
+
+#### Enable sharing of transaction IDs
+
+Prebid generates unique IDs for both auctions and ad units within auctions; these can be used by DSPs to correlate requests from different sources, which is useful for many applications but also a potential privacy concern. Since version 8 they are disabled by default (see [release notes](/dev-docs/pb8-notes.html)), and can be re-enabled with `enableTIDs`:
+
+```javascript
+pbjs.setConfig({ enableTIDs: true });
+```
 
 #### Max Requests Per Origin
 
@@ -285,7 +295,7 @@ pbjs.setConfig({
 
 <a id="setConfig-minBidCacheTTL"></a>
 
-By default, Prebid keeps every bid it receives stored in memory until the user leaves the page. This can cause high memory usage on long-running single-page apps; you can configure Prebid to drop stale bids from memory with `minBidCacheTTL`:
+By default, Prebid keeps every bid it receives stored in memory until the user leaves the page, even after the bid actually times out and is no longer available for new auctions. This can cause high memory usage on long-running single-page apps; you can configure Prebid to drop stale bids from memory with `minBidCacheTTL`:
 
 ```javascript
 pbjs.setConfig({
@@ -293,7 +303,9 @@ pbjs.setConfig({
 })
 ```
 
-When set, bids are only kept in memory for the duration of their TTL or the value of `minBidCacheTTL`, whichever is greater. Setting `minBidCacheTTL: 0` causes bids to be dropped as soon as they expire.
+When set, bids are only kept in memory for the duration of their actual TTL lifetime or the value of `minBidCacheTTL`, whichever is greater. Setting `minBidCacheTTL: 0` causes bids to be dropped as soon as they expire.
+
+Put another way, this setting doesn't define each bid's TTL, but rather controls how long it's kept around in memory for analytics purposes.
 
 #### Event history TTL
 

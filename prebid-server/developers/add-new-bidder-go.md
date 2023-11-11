@@ -1006,10 +1006,11 @@ If your bidding endpoint can support more than one biddercode, you shouldn't rep
 the whole adapter codebase. Rather, follow these steps to create a 'hardcoded' alias:
 
 1. Create a config yaml file in static/bidder-info - e.g. static/bidder-info/myalias.yaml
-1. Copy the “source” bidder json schema and place it in the static/bidder-params directory - e.g. static/bidder-params/myalias.json
-1. Add the new alias to the openrtb_ext/bidders.go file -- e.g. BidderMyAlias BidderName = "myalias"
-1. Map the alias to the adapter in exchange/adapter_builders.go . e.g. openrtb_ext.BidderMyAlias: myMain.Builder
-1. Test: build the server locally and try sending a request with the alias as a bidder.
+1. Add "aliasOf" in the config.yaml file with its value set to the name of the adapter you are creating an alias for
+
+```yaml
+aliasOf: "appnexus"
+```
 
 Notes:
 

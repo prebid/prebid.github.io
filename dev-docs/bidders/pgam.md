@@ -15,6 +15,8 @@ pbjs: true
 pbs: false
 enable_download: false
 sidebarType: 1
+enable_download: false
+pbjs_version_notes: removed in 8.13.0
 ---
 
 ### Bid params
