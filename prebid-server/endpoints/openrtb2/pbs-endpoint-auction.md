@@ -350,8 +350,10 @@ Prebid Server supports the following "standard" industry extensions:
 
 ##### Global Bid Adapter Parameters
 
-If a bid adapter has a parameter that is the same across all imp[] entries,
-it can be supplied
+PBS supports two scenarios:
+
+1. If a bid adapter has a parameter that is the same across all imp[] entries,
+it can be supplied on `ext.prebid.bidderparams.BIDDER`:
 
 ```json
 {
@@ -375,6 +377,26 @@ it can be supplied
 ```
 
 Bid adapters do not need to read this data from ext.prebid. PBS will merge the attributes to each imp[] in the request so the adapter can read them normally.
+
+2. If a bid adapter has a parameter that alters its runtime behavior,
+it can be supplied on `ext.prebid.bidders.BIDDER`. The adapter will see this on `ext.prebid.bidders.bidder`.
+
+```json
+{
+  "ext": {
+    "prebid": {
+      "bidders": {
+        "bidderA": {
+          "option": "value"
+        },
+        "bidderB": {
+          "option": "value"
+        }
+      }
+    }
+  }
+}
+```
 
 ##### Bid Adjustments
 
@@ -1752,6 +1774,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.bidadjustmentfactors | Adjust the CPM value of bidrequests, see [bid adjustments](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bid-adjustments) | object | no |
 | ext<wbr>.prebid<wbr>.bidderconfig | bidder-specific first party data, see [first party data](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#first-party-data-support). | object | no |
 | ext<wbr>.prebid<wbr>.bidderparams | Publishers can specify any adapter-specific cross-impression attributes, see [global bid parameters](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#global-bid-adapter-parameters) | object | no |
+| ext<wbr>.prebid<wbr>.bidders | Publishers can specify an adapter-specific flag, see [global bid parameters](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#global-bid-adapter-parameters) | object | seen on ext<wbr>.prebid<wbr>.bidderparams<wbr>.bidder |
 | ext<wbr>.prebid<wbr>.cache | defines whether to put bid results in Prebid Cache, see [cache bids](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#cache-bids). | object | no |
 | ext<wbr>.prebid<wbr>.channel | Generally "pbjs", "amp", or "app". Passed through to events and analytics.<br>ex: `{name: "pbjs", version: "4.39"}` | object | yes |
 | ext<wbr>.prebid<wbr>.currency<wbr>.rates | publisher-defined currency conversions, see [currency support](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#currency-support). | object | yes |
