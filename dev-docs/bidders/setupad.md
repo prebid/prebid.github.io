@@ -33,7 +33,7 @@ sidebarType: 1
 
 #### User Sync
 
-Add the following code to enable user sync. Smile Wanted strongly recommends enabling user syncing through iFrames. This functionality improves partners' user match rates and increases the Smile Wanted bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
+Add the following code to enable user sync. Setupad strongly recommends enabling user syncing through iFrames. This functionality improves partners' user match rates and increases the Setupad bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
 
 ```
 pbjs.setConfig({
