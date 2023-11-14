@@ -29,8 +29,6 @@ sidebarType: 1
 | `placement_id` | required | Placement ID, provided by setupad | `'12345'` | String |
 | `account_id` | optional | Account ID, provided by setupad | `'12345'` | String |
 
-Further information for the auction on setupad side is generated automatically.
-
 ### Additional options
 
 #### User Sync
