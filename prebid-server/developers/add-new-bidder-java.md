@@ -118,7 +118,7 @@ Modify this template for your bid adapter:
 - Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
 - Change the `modifying-vast-xml-allowed` value to `false` if you'd like to opt out of video impression tracking. It defaults to `true`.
 - Change the `pbs-enforces-ccpa` to `false` if you'd like to disable ccpa enforcement. Defaults to `true`.
-- Change the `vendor-id` value to id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/). Leave this as `0` if you are not registered with IAB Europe.
+- Change the `vendor-id` value to id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/tcf-for-vendors/). Leave this as `0` if you are not registered with IAB Europe.
 - Choose the `supported-vendors` constants: These constants should be unique. The list of existing vendor constants can be found [here](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/bidder/ViewabilityVendors.java).
 - Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
 - If your auction endpoint supports gzip compression, setting 'endpoint-compression' to 'gzip' will save on network fees.
