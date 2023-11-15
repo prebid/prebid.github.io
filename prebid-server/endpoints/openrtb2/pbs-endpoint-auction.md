@@ -378,8 +378,8 @@ it can be supplied on `ext.prebid.bidderparams.BIDDER`:
 
 Bid adapters do not need to read this data from ext.prebid. PBS will merge the attributes to each imp[] in the request so the adapter can read them normally.
 
-2. If a bid adapter has a parameter that alters its runtime behavior,
-it can be supplied on `ext.prebid.bidders.BIDDER`. The adapter will see this on `ext.prebid.bidders.bidder`.
+{:start="2"}
+1. If a bid adapter has a parameter that alters its runtime behavior, it can be supplied on `ext.prebid.bidders.BIDDER`. The adapter will see this on `ext.prebid.bidders.bidder`.
 
 ```json
 {
