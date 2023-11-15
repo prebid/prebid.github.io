@@ -33,7 +33,6 @@ The MinuteMedia adapter requires setup and approval. Please reach out to <hb@min
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 | `currency` | optional | String | 3 letters currency | "EUR"
 
-
 ## Example
 
 ```javascript
