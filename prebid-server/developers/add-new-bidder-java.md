@@ -11,9 +11,9 @@ title: Prebid Server | Developers | Adding a New Bidder
 - TOC
 {:toc }
 
-Thank you for contributing a bid adapter to the open source Prebid Server project. Each new adapter gives publishers more options for monetizing their inventory and strengthens the header bidding community.
+Thank you for your valuable contribution of a bid adapter to the open source Prebid Server project. Each new adapter expands the monetization possibilities for publishers and provides greater options to maximize their inventory's potential. We truly appreciate your support in making this ecosystem thrive!
 
-This document guides you through the process of developing a new bid adapter for your bidding server. We encourage you to look at [existing bid adapters](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder) for working examples and practical guidance. You can also ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server-java/issues/new).
+This document guides you through the process of developing a new bid adapter for your bidding server. We encourage you to look at [existing bid adapters](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder) for working examples and practical guidance. You can ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server-java/issues/new).
 
 {: .alert.alert-info :}
 **NOTE:** There are two implementations of Prebid Server, [PBS-Go](https://github.com/prebid/prebid-server) and [PBS-Java](https://github.com/prebid/prebid-server-java). We recommend you build new adapters for PBS-Go and allow us to port it to PBS-Java within a couple of months.
@@ -55,7 +55,7 @@ Failure to follow the rules will lead to delays in approving your adapter for in
 
 ### Ongoing Support and Maintenance
 
-You are expected to provide support and maintenance for the code you contribute to Prebid Server as part of your bid adapter. We ask that you proactively update your adapter when your bidding server introduces new features or breaking changes.
+**You are expected to provide support and maintenance for the code you contribute to Prebid Server as part of your bid adapter.** We ask that you proactively update your adapter when your bidding server introduces new features or breaking changes.
 
 Occasionally, we'll introduce changes to the core framework as part of our ongoing maintenance and enhancement of the project. If this causes a compilation error or a performance impact to your adapter, we will update the affected portion of your bid adapter code and provide full unit test coverage of our changes. We will notify you via email if this happens and give you at least one week to review the PR and provide comments. Please understand that we will not wait for your explicit approval for these kinds of changes unless you respond to our email or comment on the PR.
 
@@ -620,24 +620,28 @@ Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provide
 In order to share granular bid response data with publishers, analytics, and reporting systems, we've introduced a standard object model. We encourage adapters to provide as much information as possible in the bid response.
 
 {: .alert.alert-danger :}
-Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.ADomain and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
+Bid metadata may be required in a future Prebid.js release. The AdvertiserDomains field and the DChain object are particularly useful. We recommend ensuring your adapter sets these fields or Prebid.js may reject your bid.
 
 {: .table .table-bordered .table-striped }
 | Path | Description |
-| - | - |
-| `.DemandSource` | Bidder-specific demand source |
-| `.NetworkID` | Bidder-specific network/DSP id |
-| `.NetworkName` | Bidder-specific network/DSP name |
-| `.AgencyID` | Bidder-specific agency id |
-| `.AgencyName` | Bidder-specific agency name |
-| `.AdvertiserID` | Bidder-specific advertiser id |
-| `.AdvertiserName` | Bidder-specific advertiser name |
-| `.BrandID` | Bidder-specific brand id for advertisers with multiple brands |
-| `.BrandName` | Bidder-specific brand name |
-| `.dchain` | Demand Chain Object
-| `.PrimaryCategoryID` | Primary IAB category id |
-| `.SecondaryCategoryIDs` | Secondary IAB category ids |
-| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. This is used in the scenario where a bidder responds with a mediatype different than the stated type. e.g. native when the impression is for a banner. One use case is to help publishers determine whether the creative should be wrapped in a safeframe. |
+| - | -
+| `.AdvertiserDomains` | Domains for the landing page(s) aligning with the OpenRTB `adomain` field.
+| `.AdvertiserID` | Bidder-specific advertiser id.
+| `.AdvertiserName` | Bidder-specific advertiser name.
+| `.AgencyID` | Bidder-specific agency id.
+| `.AgencyName` | Bidder-specific agency name.
+| `.BrandID` | Bidder-specific brand id for advertisers with multiple brands.
+| `.BrandName` | Bidder-specific brand name.
+| `.DChain` | Demand chain object.
+| `.DemandSource` | Bidder-specific demand source. Some adapters may functionally serve multiple SSPs or exchanges, and this specifies which.
+| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. This is used in the scenario where a bidder responds with a mediatype different than the stated type. e.g. native when the impression is for a banner. One use case is to help publishers determine whether the creative should be wrapped in a safeframe.
+| `.NetworkID` | Bidder-specific network/DSP id.
+| `.NetworkName` | Bidder-specific network/DSP name.
+| `.RendererName` | Name of the desired renderer for the creative.
+| `.RendererVersion` | Version of the desired renderer for the creative.
+| `.RendererUrl` | Url of the desired renderer for the creative.
+| `.PrimaryCategoryID` | Primary IAB category id.
+| `.SecondaryCategoryIDs` | Secondary IAB category ids.
 
 <p></p>
 
