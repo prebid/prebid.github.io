@@ -21,7 +21,7 @@ sidebarType: 1
 
 ### Overview
 
-For more information go to [platform.axis-marketplace.com](https://platform.axis-marketplace.com]
+For more information, visit the [axis-marketplace website](https://platform.axis-marketplace.com]
 
 ### Bid Params
 
