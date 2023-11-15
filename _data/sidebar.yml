@@ -886,6 +886,14 @@
   sectionTitle:
   subgroup: 3
 
+- sbSecId: 2
+  title: Prebid Plugin Renderer
+  link: /prebid-mobile/pbm-api/android/pbm-plugin-renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
 #--------------Ad Ops--------------|
 
 - sbSecId: 3
@@ -1325,6 +1333,14 @@
 - sbSecId: 5
   title: 'PBS+Long-Form Video'
   link: /prebid-server/use-cases/pbs-lfv.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 5
+  title: 'PBS+Digital Out Of Home'
+  link: /prebid-server/use-cases/pbs-dooh.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
