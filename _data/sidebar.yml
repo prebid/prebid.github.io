@@ -264,7 +264,7 @@
   subgroup: 1
 
 - sbSecId: 1
-  title: Using Prebid.js with AppNexus Publisher Ad Server
+  title: Using Prebid.js with Microsoft Monetize Ad Server
   link: /dev-docs/examples/use-prebid-with-appnexus-ad-server.html
   isHeader: 0
   isSectionHeader: 0
@@ -1098,7 +1098,7 @@
   subgroup: 2
 
 - sbSecId: 3
-  title: "AppNexus Publisher"
+  title: "Microsoft Monetize Publisher"
   link:
   isHeader: 0
   isSectionHeader: 0
