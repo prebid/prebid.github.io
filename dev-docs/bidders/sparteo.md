@@ -27,9 +27,12 @@ Sparteo Header Bidding adapter requires setup and approval. Please reach out to 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                                                                                 | Example    | Type      |
-|-------------|----------|---------------------------------------------------------------------------------------------|------------|-----------|
-| `pid`       | required | Your publisher ID. This information will be given to you by the Sparteo team.               | `1234`     | `integer` |
+| Name          | Scope    | Description                                                                             | Example    | Type      |
+|---------------|----------|-----------------------------------------------------------------------------------------|------------|-----------|
+| `publisherId` | required | Your publisher ID. This information will be given to you by the Sparteo team.           | `1234`     | `integer` |
+| `networkId`   | required | Your network ID. This information will be given to you by the Sparteo team.             | `1234`     | `integer` |
+
+Only the `publisherId` OR `networkId` is required.
 
 ### Banner Object
 
