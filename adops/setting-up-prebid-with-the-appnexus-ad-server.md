@@ -144,7 +144,7 @@ For each line item, follow the line item setup setup instructions in [Create an 
 
 * Optional: Still in the targeting settings, target the custom category `prebid_enabled`. This will allow you to turn targeting on and off for a placement (or an entire placement group) by adding it to the custom category, which you'll do in one of the later steps.  This is useful for troubleshooting.  For more information about targeting custom content categories, see [Content Category Targeting](https://docs.xandr.com/bundle/monetize_monetize-standard/page/topics/content-category-targeting.html).
 
-* In your line item's targeting settings, set the **Key/Value Targeting** to matche the line item's price bucket/revenue value.
+* In your line item's targeting settings, set the **Key/Value Targeting** to match the line item's price bucket/revenue value.
 
 * Under **Creatives**, associate as many creative sizes with the line item as you need.  Set the **Creative Rotation** to *Evenly weight creatives*.
 
