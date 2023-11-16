@@ -51,6 +51,14 @@
   subgroup: 0
 
 - sbSecId: 0
+  title: Glossary
+  link: /overview/glossary.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 0
   title: Codes of Conduct
   link:
   isHeader: 1
