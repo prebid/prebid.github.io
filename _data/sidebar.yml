@@ -1867,15 +1867,6 @@
   sectionTitle:
   subgroup: 0
 
-- sbSecId: 8
-  title: Dr. Prebid Validation App
-  link: /prebid-mobile/dr-prebid.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
-
  #-------------- Prebid Identity --------------|
 
 - sbSecId: 9
