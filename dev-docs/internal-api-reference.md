@@ -14,8 +14,6 @@ sidebarType: 1
 
 This page has documentation for API methods that are meant for internal use by Prebid.js.
 
-{% assign api_pages = site.pages | where: "layout", "internal_api_prebidjs" %}
-
 ## Find a method
 
 <input type="text" id="autocomplete-filter" class="autocomplete-filter">
