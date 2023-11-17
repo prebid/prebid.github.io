@@ -372,6 +372,14 @@
   sectionTitle:
   subgroup: 3
 
+  - sbSecId: 1
+  title: Internal API Reference
+  link: /dev-docs/publisher-api-reference.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
 - sbSecId: 1
   title: Ad Unit Reference
   link: /dev-docs/adunit-reference.html
