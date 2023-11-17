@@ -12,6 +12,8 @@ sidebarType: 1
 
 This page has documentation for API methods that are meant for internal use by Prebid.js.
 
+{% assign api_pages = site.pages | where: "layout", "internal_api_prebidjs" %}
+
 <ol>
 {% for page in api_pages %}
 <li><a href="/{{ page.path | replace: '.md', '.html'}}">{{page.title}}</a></li>

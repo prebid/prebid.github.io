@@ -372,9 +372,9 @@
   sectionTitle:
   subgroup: 3
 
-  - sbSecId: 1
+- sbSecId: 1
   title: Internal API Reference
-  link: /dev-docs/publisher-api-reference.html
+  link: /dev-docs/internal-api-reference.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
