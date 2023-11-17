@@ -53,7 +53,7 @@ can be formatted to smoothly fit into the content.
 
 ## Multiformat AdUnit
 
-An AdUnit that can accept a bid on
+An AdUnit that can display creatives of multiple media formats: banner, native, and/or video. 
 
 ## Page-Initated Video
 
