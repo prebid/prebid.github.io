@@ -30,9 +30,17 @@ The first decision you’ll need to make when it comes to creatives (with the ex
 
 The big advantage to using the PUC is that it’s the simplest approach to configuring Prebid in your ad server. It provides a robust mechanism that can be used across several formats, platforms, devices, and ad servers.
 
-The primary disadvantage to using the PUC is that it takes an extra fetch to load the PUC file vs doing everything inline to the creative. Also, in version 1.14.1 and earlier of the PUC,  loading a “universal” creative means that more bytes are loaded than are actually necessary for the display of a single creative. This all leads to a very slight performance penalty.
+The primary disadvantage to using the PUC is that it takes an extra fetch to load the PUC file vs doing everything inline to the creative. Also, in version 1.14.1 and earlier of the PUC, loading a “universal” creative means that more bytes are loaded than are actually necessary for the display of a single creative. This all leads to a very slight performance penalty.
 
 You’ll need to determine whether the ease of implementation is worth the small performance penalty.
+
+## Where to Host the PUC
+
+If you choose to use the Prebid Universal Creative, you'll need to decide where to load it from:
+
+1. Prebid hosts an always-up-to-date copy of the PUC at "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/*". The upside of this location is that it's automatically updated so it contains new features automatically.
+1. You can host the PUC at your own location. The upside of this option is that you can control when upgrades happen.
+1. You can copy the body of the PUC into your ad server creative directly. This eliminates a browser fetch, but could make upgrades more difficult.
 
 ## Creative Naming
 

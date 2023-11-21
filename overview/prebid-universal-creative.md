@@ -9,7 +9,6 @@ nav_section: intro
 <div class="bs-docs-section" markdown="1">
 
 # Prebid Universal Creative
-
 {:.no_toc}
 
 - TOC
@@ -78,12 +77,12 @@ While Prebid recommends the use of creative.js because we regularly add
 features and fix bugs, publishers may choose to hardcode the functionality
 into their ad server creatives.
 
-They would do this differently for each of the scenarios below.
+### Alternate methods for Banner and Outstream Video iframes
 
-### Alternate method for Banner and Outstream Video iframes
+If you only ever need to display non-safeframed banner and outstream-video creatives, there are several ways to replace the `jsdelivr` call in your ad server creative:
 
-If you only ever need to display non-safeframed banner and outstream-video creatives, you may use
-the simple approach of just calling the Prebid.js `renderAd` function directly:
+1. Copy the contents of https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js into each creative.
+1. Directly call the Prebid.js `renderAd` function:
 
 ```html
 <script> var w = window; for (i = 0; i < 10; i++) { w = w.parent; if (w.pbjs) { try { w.pbjs.renderAd(document, '%%PATTERN:hb_adid%%'); break; } catch (e) { continue; } } } </script>
@@ -91,9 +90,10 @@ the simple approach of just calling the Prebid.js `renderAd` function directly:
 
 ### Alternate Method for Banner Safeframes
 
-See the example at [github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html)
+If safeframe support is required, some options are:
 
-This is basically just part of the PUC that's been isolated to be standalone.
+1. Copy the contents of https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js into each ad server creative.
+1. Copy the example at [github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html) into each ad server creative. This is basically just part of the PUC that's been isolated to be standalone.
 
 ## Further Reading
 
