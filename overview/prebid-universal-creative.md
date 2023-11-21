@@ -83,7 +83,7 @@ into their ad server creatives.
 
 If you only ever need to display non-safeframed banner and outstream-video creatives, there are several ways to replace the `jsdelivr` call in your ad server creative:
 
-1. Copy the contents of https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js into each creative.
+1. Copy the contents of `https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js` into each creative.
 1. Directly call the Prebid.js `renderAd` function:
 
 ```html
@@ -96,7 +96,7 @@ If you only ever need to display non-safeframed banner and outstream-video creat
 
 If safeframe support is required, some options are:
 
-1. Copy the contents of https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js into each ad server creative.
+1. Copy the contents of `https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js` into each ad server creative.
 1. Copy the example at [github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html) into each ad server creative. This is basically just part of the PUC that's been isolated to be standalone.
 
 ## Further Reading
