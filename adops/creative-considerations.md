@@ -38,7 +38,7 @@ You’ll need to determine whether the ease of implementation is worth the small
 
 If you choose to use the Prebid Universal Creative, you'll need to decide where to load it from:
 
-1. Prebid hosts an always-up-to-date copy of the PUC at "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/*". The upside of this location is that it's automatically updated so it contains new features automatically.
+1. Prebid hosts an always-up-to-date copy of the PUC at `https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/*`. The upside of this location is that it's automatically updated so it contains new features automatically.
 1. You can host the PUC at your own location. The upside of this option is that you can control when upgrades happen.
 1. You can copy the body of the PUC into your ad server creative directly. This eliminates a browser fetch, but could make upgrades more difficult.
 
