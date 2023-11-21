@@ -381,6 +381,14 @@
   subgroup: 3
 
 - sbSecId: 1
+  title: Internal API Reference
+  link: /dev-docs/internal-api-reference.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 1
   title: Ad Unit Reference
   link: /dev-docs/adunit-reference.html
   isHeader: 0
@@ -1866,15 +1874,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-
-- sbSecId: 8
-  title: Dr. Prebid Validation App
-  link: /prebid-mobile/dr-prebid.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
 
  #-------------- Prebid Identity --------------|
 

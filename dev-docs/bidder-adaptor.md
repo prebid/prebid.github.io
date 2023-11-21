@@ -748,13 +748,13 @@ Look for other doc entries containing an `aliasCode` metadata entry.
 
 If your bid adapter is going to be used in Europe, you should support GDPR:
 
-* Get a [Global Vendor ID](https://iabeurope.eu/vendor-list-tcf-v2-0/) from the IAB-Europe
+* Get a [Global Vendor ID](https://iabeurope.eu/tcf-for-vendors/) from the IAB-Europe
 * Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
 * Read the gdprConsent string from the bid request object and pass it through to your endpoint
 
 If your bid adapter is going to be used in Canada, you should support GPP:
 
-* Get a [Global Vendor ID](https://vendor-list.consensu.org/v2/ca/vendor-list.json) from the IAB-Canada
+* Get a [Global Vendor ID](https://iabcanada.com/tcf-canada/for-vendors/) from IAB-Canada
 * Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
 * Read the gppConsent string from the bid request object and pass it through to your endpoint
 * If you are registered in Canada, but not in Europe, you put the gvlid in the same place. Prebid will check the CMP for consent to a specific vendor id and expect the correct processing in both Canada and Europe, as there are no collisions.

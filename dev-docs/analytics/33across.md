@@ -3,6 +3,7 @@ layout: analytics
 title: 33Across
 description: 33Across Analytics Adapter
 modulecode: 33across
+prebid_member: true
 gdpr_supported: true
 usp_supported: true
 gpp_supported: true
