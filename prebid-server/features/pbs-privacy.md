@@ -10,6 +10,9 @@ title: Prebid Server | Features | Privacy
 * TOC
 {:toc}
 
+{: .alert.alert-danger :}
+Important: This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and individual state laws. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+
 ## Prebid Server Activity Control Infrastructure
 
 Prebid Server supports a mechanism for Publisher control for overriding privacy-sensitive activities. See the [Activity Controls](/prebid-server/features/pbs-activitycontrols.html) for more information.
@@ -37,7 +40,7 @@ more nuanced and stricter policy.
 If a Prebid Server host company wants to support GDPR, they must currently [register for the IAB Global Vendor List](https://register.consensu.org/).
 The user must provide legal basis for the host company to read/write cookies or `/cookie_sync` will return an empty response with no syncs and `/setuid` will fail.
 
-### TCF 2.0
+### TCF 2.0 and 2.2
 
 If Prebid server determines the user is in GDPR scope, then consent is independently tested
 for each 'Purpose' with different consequences for each:
@@ -53,6 +56,9 @@ for each 'Purpose' with different consequences for each:
 | Pass the user’s precise geographic information into auctions | Special Feature 1 |
 
 More details are available in the [Prebid Support for TCF2](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#) reference and in the [Prebid Server GDPR Reference](https://docs.google.com/document/d/1g0zAYc_EfqyilKD8N2qQ47uz0hdahY-t8vfb-vxZL5w/edit#).
+
+Note: TCF 2.2 strings are processed exactly the same as TCF 2.0 strings. The only difference from a Prebid perspective is that the
+Global Vendor List is stored on a slightly different path. This new path is supported by PBS-Go 0.260 and PBS-Java 1.123.
 
 ### Host Company GDPR Configuration
 
@@ -84,9 +90,13 @@ Prebid Server support for this protocol:
 
 See [Prebid MSPA Support](/features/mspa-usnat.html) for more info.
 
-The [Prebid Server USGen Privacy Module](/prebid-server/features/pbs-usgen.html) is available for PBS-Java.
+There are two modules offered by Prebid Server to process GPP string sections 7-12:
 
-Also note that publishers using PBS-Java can consider utilizing [Activity Controls](/prebid-server/features/pbs-activitycontrols.html). In particular, the `gppSid`, `geo`, and `gpc` conditions may be useful tools within a compliance strategy.
+1. The [USGen Privacy Module](/prebid-server/features/pbs-usgen.html) is a high
+performance option for interpreting the GPP strings as described in the [Prebid MSPA reference](/features/mspa-usnat.html). (PBS-Java only)
+1. The [US Custom Logic Privacy Module](/prebid-server/features/pbs-uscustomlogic.html) is a flexible way for publishers to define their own interpretation of GPP string sections 7-12.
+
+Also note that publishers can consider utilizing [Activity Controls](/prebid-server/features/pbs-activitycontrols.html). For PBS-Java, the `gppSid`, `geo`, and `gpc` conditions may be useful tools within a compliance strategy.
 
 ## COPPA
 

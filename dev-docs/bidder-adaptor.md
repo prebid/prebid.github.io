@@ -748,13 +748,13 @@ Look for other doc entries containing an `aliasCode` metadata entry.
 
 If your bid adapter is going to be used in Europe, you should support GDPR:
 
-* Get a [Global Vendor ID](https://iabeurope.eu/vendor-list-tcf-v2-0/) from the IAB-Europe
+* Get a [Global Vendor ID](https://iabeurope.eu/tcf-for-vendors/) from the IAB-Europe
 * Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
 * Read the gdprConsent string from the bid request object and pass it through to your endpoint
 
 If your bid adapter is going to be used in Canada, you should support GPP:
 
-* Get a [Global Vendor ID](https://vendor-list.consensu.org/v2/ca/vendor-list.json) from the IAB-Canada
+* Get a [Global Vendor ID](https://iabcanada.com/tcf-canada/for-vendors/) from IAB-Canada
 * Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
 * Read the gppConsent string from the bid request object and pass it through to your endpoint
 * If you are registered in Canada, but not in Europe, you put the gvlid in the same place. Prebid will check the CMP for consent to a specific vendor id and expect the correct processing in both Canada and Europe, as there are no collisions.
@@ -1282,7 +1282,7 @@ registerBidder(spec);
     * If you support one or more userId modules, add `userId: (list of supported vendors)`. No default value.
     * If you support video and/or native mediaTypes add `media_types: video, native`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No default value.
     * If you support the COPPA flag, add `coppa_supported: true`. Default is false.
-    * If you support the IAB's GPP consent string, add `gpp_supported: true`. Default is false.
+    * If you support the IAB's GPP consent string, add `gpp_sids` with a comma separated list of section names, e.g. `gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp`. Default is None.
     * If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
     * If you support passing a demand chain on the response, add `dchain_supported: true`. Default is false.
     * If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default value.

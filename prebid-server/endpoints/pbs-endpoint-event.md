@@ -5,7 +5,7 @@ title: Prebid Server | Endpoints | Events
 
 ---
 
-# Prebid Server | Endpoints | Events (Java-only)
+# Prebid Server | Endpoints | Events
 
 Prebid Server supports events as described in these GitHub issues:
 
@@ -32,11 +32,11 @@ This endpoint alerts Prebid Server to process the event. Most of the time this j
 
 ### Sample request
 
-```
+```text
 GET https://prebid.site.com/event?t=win&b=1234567890&bidder=rubicon&f=i
 ```
 
-## `POST /vtrack` 
+## `POST /vtrack`
 
 This endpoint covers there scenario where VAST XML is returned in the response from a client-side adapter. Prebid.js forwards the XML to PBS on a new endpoint that instructs PBS to update the XML and cache it
 
@@ -44,14 +44,14 @@ If the bidder allows PBS to modify their VAST, the server then injects an <impre
 
 The contents of the <impression> tag are pulled from a new event.url-template property that has macros that need to be resolved. e.g.
 
-```
+```yaml
 event:
     url-template: "/event?t=imp&b=%s&f=b&a=%s"
 ```
+
 where b=BIDID, a=ACCOUNT
 
-The algorithm for inserting the <impression> tag is simple -- search for an existing <impression> tag and add another underneath it. If there isn't an existing <impression> tag, no modifications are made. 
-
+The algorithm for inserting the <impression> tag is simple -- search for an existing <impression> tag and add another underneath it. If there isn't an existing <impression> tag, no modifications are made.
 
 ### Query Params
 

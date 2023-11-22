@@ -8,21 +8,21 @@ sidebarType: 5
 # Prebid Server Overview
 {:.no_toc}
 
-Prebid Server is an open-source solution for server-to-server header bidding. It supports a number of key use cases: [mobile app](/prebid-server/use-cases/pbs-sdk.html), [AMP](/prebid-server/use-cases/pbs-amp.html), [server-side web with Prebid.js](/prebid-server/use-cases/pbs-pbjs.html), and server-side ad inclusion scenarios such as [long-form video](/prebid-server/use-cases/pbs-lfv.html) and audio.
+Prebid Server is an open-source solution for server-to-server header bidding. It supports a number of key use cases: [mobile app](/prebid-server/use-cases/pbs-sdk.html), [AMP](/prebid-server/use-cases/pbs-amp.html), [server-side web with Prebid.js](/prebid-server/use-cases/pbs-pbjs.html), and server-side ad inclusion scenarios such as [CTV](/prebid-server/use-cases/pbs-lfv.html), [Digital Out of Home](/prebid-server/use-cases/pbs-dooh.html) and audio.
 
 ![Prebid Server Architecture](/assets/images/flowcharts/prebid-server/pbs-basic-flow.png){:class="pb-xlg-img"}
 
 Prebid Server is a header bidding server with a growing list of features. At a high level, it works like this:
 
 1. Prebid Server validates and enhances incoming requests
-  - Resolves dynamic stored requests
-  - Enforces privacy regulations
+    1. Resolves dynamic 'stored requests', enriching data server-side
+    1. Enforces privacy regulations
 2. Next, it calls server-side bid adapters
-  - There are 140+ server-side bid adapters available
+    1. There are 180+ server-side bid adapters available
 3. After everyone's responded (or the timeout period has expired), it formulates an appropriate response
-  - Handles currency conversion
-  - Quantizes bids
-  - Caches VAST XML or creatives as needed
+    1. Currency conversion
+    1. Quantizes bids as needed for header bidding targeting
+    1. Caches VAST XML or creatives as needed
 
 It also has optional analytics support.
 
@@ -37,6 +37,7 @@ A high-level overview of Prebid Server, Prebid’s solution for header bidding i
 <div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/822889941?h=71957861b5&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="1.5_Intro-to-PBS_v6"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 Further Reading:
+
 - [Transcript of this video overview](/prebid-server/overview/prebid-server-overview-video.html)
 
 ## Where to Run Prebid Server
