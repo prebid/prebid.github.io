@@ -54,7 +54,7 @@ pbjs.setBidderConfig({
 The adapter for Prebid.js supports the following options: `site.pagecat`, `site.content.cat` and `site.content.language`. You can set these parameters through the Prebid.js configuration setup functions: [pbjs.setConfig](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) or [pbjs.setBidderConfig](https://docs.prebid.org/dev-docs/publisher-api-reference/setBidderConfig.html).
 An example of setting openrtb parameters for the entire prebid.js script.
 
-```
+```javascript
 pbjs.setConfig({
   ortb2: {
     site: {
@@ -70,7 +70,7 @@ pbjs.setConfig({
 
 An example of setting openrtb parameters only for the NextMillennium adapter.
 
-```
+```javascript
 pbjs.setBidderConfig({
   bidders: ['bidderB'],
   config: {
