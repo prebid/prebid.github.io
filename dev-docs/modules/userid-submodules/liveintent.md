@@ -154,76 +154,67 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 
 ## LiveIntent ID examples
 
-1. To receive the LiveIntent ID, the setup looks like this.
+1. To receive the LiveIntent ID, the setup looks like the following example:
 
    ```javascript
    pbjs.setConfig({
-       userSync: {
-           userIds: [{
-               name: "liveIntentId",
-               params: {
-               publisherId: "9896876"
-               },
-               storage: {
-               type: “cookie”,
-               name: “pbjs_li_nonid”,    //create a cookie with this name
-               expires: 1                // cookie is stored for 1 day
-               }
-           }]
-       }
-   })
+     userSync: {
+       userIds: [
+         {
+           name: "liveIntentId",
+           params: {
+             publisherId: "9896876",
+           },
+         },
+       ],
+     },
+   });
    ```
 
-2. If you are passing additional identifiers that you want to resolve to the LiveIntent ID, add those under the `identifiersToResolve` array in the configuration parameters.
+2. If you are passing additional identifiers that you want to resolve to the LiveIntent ID, add the ID under the `identifiersToResolve` array in the configuration parameters as shown in the following example:
 
    ```javascript
    pbjs.setConfig({
-       userSync: {
-           userIds: [{
-               name: "liveIntentId",
-               params: {
-               publisherId: "9896876",
-               identifiersToResolve: ["my-own-cookie"]
-               },
-               storage: {
-               type: “cookie”,
-               name: “pbjs_li_nonid”,    //create a cookie with this name
-               expires: 1                // cookie is stored for 1 day
-               }
-           }]
-       }
-   })
+     userSync: {
+       userIds: [
+         {
+           name: "liveIntentId",
+           params: {
+             publisherId: "9896876",
+             identifiersToResolve: ["my-own-cookie"],
+           },
+         },
+       ],
+     },
+   });
    ```
 
-3. If all the supported configuration params are passed, then the setup looks like this.
+3. If all the supported configuration params are passed, then the setup look as follows:
 
    ```javascript
    pbjs.setConfig({
-       userSync: {
-           userIds: [{
-               name: "liveIntentId",
-               params: {
-               publisherId: "9896876",
-               distributorId: "did-0123",
-               identifiersToResolve: ["my-own-cookie"],
-               url: "https://publisher.liveintent.com/idex",
-               partner: "prebid",
-               ajaxTimeout: 1000,
-               liCollectConfig: {
-                   fpiStorageStrategy: "cookie",
-                   fpiExpirationDays: 730,
-                   collectorUrl: "https://rp.liadm.com",
-                   appId: "a-0012"
-               }
-               },
-               storage: {
-               type: “cookie”,
-               name: “pbjs_li_nonid”,    //create a cookie with this name
-               expires: 1                // cookie is stored for 1 day
-               }
-           }]
-       }
-   })
+     userSync: {
+       userIds: [
+         {
+           name: "liveIntentId",
+           params: {
+             publisherId: "9896876",
+             distributorId: "did-0123",
+             identifiersToResolve: ["my-own-cookie"],
+             url: "https://publisher.liveintent.com/idex",
+             partner: "prebid",
+             ajaxTimeout: 1000,
+             liCollectConfig: {
+               fpiStorageStrategy: "cookie",
+               fpiExpirationDays: 730,
+               collectorUrl: "https://rp.liadm.com",
+               appId: "a-0012",
+             },
+           },
+         },
+       ],
+     },
+   });
    ```
 
-Please note: the distributorId will be ignored when liCollectConfig.appId is present.
+Please note: the _distributorId_ will be ignored when `liCollectConfig.appId` is present.
