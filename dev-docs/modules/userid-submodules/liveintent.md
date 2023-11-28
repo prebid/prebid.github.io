@@ -5,9 +5,9 @@ description: LiveIntent nonID User ID sub-module
 useridmodule: liveIntentIdSystem
 ---
 
-LiveIntent offers audience resolution by leveraging it's next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web. The LiveIntent nonID is a user identifier tied to an active, encrypted email in the graph and functions in cookie-challenged environments and browsers.
+LiveIntent offers audience resolution by leveraging it's next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web.
 
-Build your Prebid.js package to include the LiveIntent nonID using the standard version which lets publishers include the module with full functionalities, like hashing email addresses and identity resolution.
+The LiveIntent `nonID` is a user identifier tied to an active, encrypted email in the graph and functions in cookie-challenged environments and browsers. Along side with the `nonID`, LiveIntent's user ID module can resolve multiple other user identifers such as `UID2` and `pubmatic` - see the [Multiple userIDs]( #multiple-user-ids) section for more details.
 
 To add the complete functionality of LiveIntent Identity module to your Prebid.js package, use the following command:
 
@@ -15,27 +15,27 @@ To add the complete functionality of LiveIntent Identity module to your Prebid.j
 gulp build --modules=userId,liveIntentIdSystem
 ```
 
-The `request.userId.lipb` object would look like:
+This is an example of how the `request.userId.lipb` object which contains the resolution result would look like:
 
 ```json
 {
   "lipbid": "T7JiRRvsRAmh88",
-  "segments": ["999"]
+  "pubmatic": "9E76F017-86D2-444B-BB4B-9DB35347DB54",
 }
 ```
 
-The adapters can be implemented to use the lipbid as the identifier and segments to which that identifier is associated with. To enable identity resolution for a specific publisher, LiveIntent builds a model on the backend with data collected via an additional call issued on each page load.
+To enable identity resolution, LiveIntent builds a model on the backend with data collected via an additional call issued on each page load.
 
-## LiveIntent ID Registration
+## LiveIntent Registration
 
-If you're not already a LiveIntent customer, feel free to [reach out](https://www.liveintent.com/prebid-registration/) and explore [LiveIntent’s privacy policies](https://www.liveintent.com/services-privacy-policy/).
+If you're not already a LiveIntent customer, feel free to [reach out](https://www.liveintent.com/get-in-touch/) and explore [LiveIntent’s privacy policies](https://www.liveintent.com/services-privacy-policy/).
 
-## How does LiveIntent ID work
+## How does LiveIntent user ID submodule work
 
-The LiveIntent ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier - the nonID. In order to provide resolution, one or more first-party cookies are used to create a stable identifier which are:
+The LiveIntent user ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier - the nonID. In order to provide resolution, one or more first-party cookies are used to create a stable identifier which are:
 
 1. Default first-party cookie: By default LiveIntent ID sub-module generates its own first-party identifier on the publisher’s domain. Publishers have the option to disable the cookie generation when configuring the LiveIntent ID sub-module.
-2. Publisher defined first-part cookie: Publishers have the flexibility to configure and choose additional first-party cookies for use in conjunction with the LiveIntent first-party cookie.
+2. Publisher defined first-party cookie: Publishers have the flexibility to configure and choose additional first-party cookies for use in conjunction with the LiveIntent first-party cookie.
 
 ### Generate nonID
 
@@ -76,7 +76,7 @@ pbjs.setConfig({
 });
 ```
 
-### Multiple user ids
+### Multiple user IDs
 
 The attributes 'uid2', 'medianet', 'magnite', 'bidswitch' and 'index' are treated specially by LiveIntent's user ID sub-module. Each of these four attributes will result in a separate ID returned by the sub-module.
 
