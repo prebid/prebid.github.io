@@ -44,7 +44,6 @@ For further information, please contact `info@tpmn.io`
 |---------------|----------|--------------------------------------|------------------|-----------|
 | `inventoryId` | required | Inventory ID                         | `1`              | `integer` |
 
-
 ### User Sync
 
 Add the following code to enable user sync.
