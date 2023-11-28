@@ -9,8 +9,6 @@ LiveIntent offers audience resolution by leveraging it's next-generation identit
 
 Build your Prebid.js package to include the LiveIntent nonID using the standard version which lets publishers include the module with full functionalities, like hashing email addresses and identity resolution.
 
-Add the complete functionalities of LiveIntent Identity module to your Prebid.js package with:
-
 To add the complete functionality of LiveIntent Identity module to your Prebid.js package, use the following command:
 
 ```bash
