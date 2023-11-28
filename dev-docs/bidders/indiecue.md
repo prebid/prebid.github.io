@@ -5,7 +5,7 @@ description: Indicue Bidder Adapter
 biddercode: indicue
 aliasCode: adtelligent
 media_types: video,banner
-gvl_id: 410 (adtelligent)
+gvl_id: 410
 tcfeu_supported: true
 gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
