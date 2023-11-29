@@ -7,7 +7,8 @@ useridmodule: liveIntentIdSystem
 
 LiveIntent offers audience resolution by leveraging its next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web.
 
-The LiveIntent `nonID` is a user identifier tied to an active, encrypted email in the graph and functions in cookie-challenged environments and browsers. Alongside the `nonID`, LiveIntent's user ID module can resolve multiple other user identifiers such as `UID2` and `pubmatic` - see the [Multiple user IDs]( #multiple-user-ids) section for more details.
+The LiveIntent `nonID` is a user identifier tied to an active, encrypted email in the graph and functions in 
+cookie-challenged environments and browsers. Alongside the `nonID`, LiveIntent's user ID module can resolve multiple other user identifiers such as `UID2` and `pubmatic` - see the [Multiple user IDs]( #multiple-user-ids) section for more details.
 
 To add the complete functionality of LiveIntent Identity module to your Prebid.js package, use the following command:
 
@@ -19,87 +20,87 @@ This is an example of how the `request.userId.lipb` object which contains the re
 
 ```json
 {
-  "lipbid": "T7JiRRvsRAmh88",
-  "pubmatic": "9E76F017-86D2-444B-BB4B-9DB35347DB54",
+  "lipbid": "T7JiRRvsRAmh88",
+  "pubmatic": "9E76F017-86D2-444B-BB4B-9DB35347DB54",
 }
 ```
 
-To enable identity resolution, LiveIntent builds a model on the backend with data collected via an additional call issued on each page load.
+To enable identity resolution, LiveIntent builds a model on the backend with data collected through an additional call issued on each page load.
 
 ## LiveIntent Registration
 
-If you're not already a LiveIntent customer, feel free to [reach out](https://www.liveintent.com/get-in-touch/) and explore [LiveIntent’s privacy policies](https://www.liveintent.com/services-privacy-policy/).
+If you're not already a LiveIntent customer, feel free to [reach out](https://www.liveintent.com/get-in-touch/) to us. You can also explore the [LiveIntent’s privacy policies](https://www.liveintent.com/services-privacy-policy/).
 
-## How does LiveIntent user ID submodule work
+## How LiveIntent user ID submodule works
 
-The LiveIntent user ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier - the nonID. In order to provide resolution, one or more first-party cookies are used to create a stable identifier which are:
+The LiveIntent user ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier - the nonID. In order to provide resolution, one or more first-party cookies are used to create a stable identifier. The following first-party cookies are supported:
 
-1. Default first-party cookie: By default LiveIntent ID sub-module generates its own first-party identifier on the publisher’s domain. Publishers have the option to disable the cookie generation when configuring the LiveIntent ID sub-module.
+1. Default first-party cookie: By default, LiveIntent ID sub-module generates its own first-party identifier on the publisher’s domain. Publishers have the option to disable the cookie generation when configuring the LiveIntent ID sub-module.
 2. Publisher defined first-party cookie: Publishers have the flexibility to configure and choose additional first-party cookies for use in conjunction with the LiveIntent first-party cookie.
 
 ### Generate nonID
 
-The LiveIntent ID sub-module sends cookies to Liveintent's identity graph for creating a nonID - [(_see the query parameters description_).](https://github.com/liveintent-berlin/live-connect/blob/HEAD/COLLECTOR_PARAMS.md)
+The LiveIntent ID sub-module sends cookies to Liveintent's Identity Graph for creating a nonID - [(_see the query parameters description_)](https://github.com/liveintent-berlin/live-connect/blob/HEAD/COLLECTOR_PARAMS.md) for more details.
 
 ### Identity resolution
 
-For the identity resolution, the LiveIntent ID sub-module makes a request to LiveIntent’s identity resolution API, which returns a nonID and the audience segment(s) of the user. The nonID and the segment ID are then exposed by the Prebid User ID Module to Prebid adapters to be sent out in a bid request. An SSP can then make the impression opportunity available to buyers that would like to target the segment.
+For the identity resolution, the LiveIntent ID sub-module makes a request to LiveIntent’s identity resolution API, which returns a nonID and additional user identifiers. The identifiers are then exposed by the Prebid User ID Module to Prebid adapters to be sent out in a bid request. An SSP can then make the impression opportunity available to buyers that would like to target the audience.
 
 The first-party cookie generation and identity resolution functionality is provided by [LiveConnect JS](https://www.npmjs.com/package/live-connect-js) - an open source JS library which is included within the LiveIntent ID sub-module.
 
 The LiveIntent ID sub-module follows the standard Prebid.js initialization based on the GDPR consumer opt-out choices. With regard to CCPA, the LiveConnect JS receives a us_privacy string from the Prebid US Privacy Consent Management Module and respects opt-outs.
 
-## Configuring requested attributes
+## Configure request attributes
 
 Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option.
 
-For example, with the configuration below, the nonID as well as 'uid2', the 'medianet' id, the 'bidswitch' ID and the 'magnite' ID will be requested:
+For example, the configuration below requests the `nonID` as well as `uid2`, the `medianet` ID, the `bidswitch` ID and the `magnite` ID:
 
 ```javascript
 pbjs.setConfig({
-  userSync: {
-    userIds: [
-      {
-        name: "liveIntentId",
-        params: {
-          publisherId: "12432415",
-          requestedAttributesOverrides: {
-            uid2: true,
-            medianet: true,
-            bidswitch: true,
-            magnite: true,
-          },
-        },
-      },
-    ],
-  },
+  userSync: {
+    userIds: [
+      {
+        name: "liveIntentId",
+        params: {
+          publisherId: "12432415",
+          requestedAttributesOverrides: {
+            uid2: true,
+            medianet: true,
+            bidswitch: true,
+            magnite: true,
+          },
+        },
+      },
+    ],
+  },
 });
 ```
 
 ### Multiple user IDs
 
-The attributes 'uid2', 'medianet', 'magnite', 'bidswitch' and 'index' are treated specially by LiveIntent's user ID sub-module. Each of these four attributes will result in a separate ID returned by the sub-module.
+The attributes `uid2`, `medianet`, `magnite`, `bidswitch` and `index` are treated specially by LiveIntent's user ID sub-module. Each of these attributes will result in a separate ID returned by the sub-module.
 
-For example, in case 'uid2' is configured to be requested - additionally to the nonID - the `request.userId` object would look like this:
+For example, in case `uid2` is configured to be requested in addition to the nonID, the `request.userId` object would look like the following:
 
 ```javascript
 {
-    // ...
-    "lipb" : {
-        "lipbid": "sample-nonid-value",
-        "segments": ["999"],
-        "uid2" : "sample-uid2-value"
-    },
-    "uid2" : {
-        "id" : "sample-uid2-value"
-    }
-    //...
+    // ...
+    "lipb" : {
+        "lipbid": "sample-nonid-value",
+        "segments": ["999"],
+        "uid2" : "sample-uid2-value"
+    },
+    "uid2" : {
+        "id" : "sample-uid2-value"
+    }
+    //...
 }
 ```
 
-Note that 'uid2' is exposed as part of 'lipb' as well as separately as 'uid2'. 'medianet', 'magnite', 'bidswitch', 'index', 'pubmatic' and 'openx' behave the same way.
+**Note:** `uid2` is exposed as part of 'lipb' as well as separately as `uid2`. `medianet`, `magnite`, `bidswitch`, `index`, `pubmatic` and `openx` behave the same way.
 
-For the attributes 'lipbid' (nonID), 'uid2', 'medianet', 'magnite', 'bidswitch', 'index', 'pubmatic' and 'openx' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
+For the attributes `lipbid` (nonID), `uid2`, `medianet`, `magnite`, `bidswitch`, `index`, `pubmatic` and `openx`, there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [Example of eids array generated by UserId Module](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
 
 ### Requesting uid2
 
@@ -107,17 +108,17 @@ An attribute that requires special mention here is 'uid2'. If this attribute is 
 
 ```javascript
 pbjs.setConfig({
-  userSync: {
-    userIds: [
-      {
-        name: "liveIntentId",
-        params: {
-          publisherId: "12432415",
-          requestedAttributesOverrides: { uid2: true },
-        },
-      },
-    ],
-  },
+  userSync: {
+    userIds: [
+      {
+        name: "liveIntentId",
+        params: {
+          publisherId: "12432415",
+          requestedAttributesOverrides: { uid2: true },
+        },
+      },
+    ],
+  },
 });
 ```
 
@@ -154,65 +155,65 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 
 1. To receive the LiveIntent ID, the setup looks like the following example:
 
-   ```javascript
-   pbjs.setConfig({
-     userSync: {
-       userIds: [
-         {
-           name: "liveIntentId",
-           params: {
-             publisherId: "9896876",
-           },
-         },
-       ],
-     },
-   });
-   ```
+   ```javascript
+   pbjs.setConfig({
+     userSync: {
+       userIds: [
+         {
+           name: "liveIntentId",
+           params: {
+             publisherId: "9896876",
+           },
+         },
+       ],
+     },
+   });
+   ```
 
 2. If you are passing additional identifiers that you want to resolve to the LiveIntent ID, add the ID under the `identifiersToResolve` array in the configuration parameters as shown in the following example:
 
-   ```javascript
-   pbjs.setConfig({
-     userSync: {
-       userIds: [
-         {
-           name: "liveIntentId",
-           params: {
-             publisherId: "9896876",
-             identifiersToResolve: ["my-own-cookie"],
-           },
-         },
-       ],
-     },
-   });
-   ```
+   ```javascript
+   pbjs.setConfig({
+     userSync: {
+       userIds: [
+         {
+           name: "liveIntentId",
+           params: {
+             publisherId: "9896876",
+             identifiersToResolve: ["my-own-cookie"],
+           },
+         },
+       ],
+     },
+   });
+   ```
 
 3. If all the supported configuration params are passed, then the setup look as follows:
 
-   ```javascript
-   pbjs.setConfig({
-     userSync: {
-       userIds: [
-         {
-           name: "liveIntentId",
-           params: {
-             publisherId: "9896876",
-             distributorId: "did-0123",
-             identifiersToResolve: ["my-own-cookie"],
-             url: "https://publisher.liveintent.com/idex",
-             partner: "prebid",
-             ajaxTimeout: 1000,
-             liCollectConfig: {
-               fpiStorageStrategy: "cookie",
-               fpiExpirationDays: 730,
-               collectorUrl: "https://rp.liadm.com",
-               appId: "a-0012",
-             },
-           },
-         },
-       ],
-     },
-   });
-   ```
+   ```javascript
+   pbjs.setConfig({
+     userSync: {
+       userIds: [
+         {
+           name: "liveIntentId",
+           params: {
+             publisherId: "9896876",
+             distributorId: "did-0123",
+             identifiersToResolve: ["my-own-cookie"],
+             url: "https://publisher.liveintent.com/idex",
+             partner: "prebid",
+             ajaxTimeout: 1000,
+             liCollectConfig: {
+               fpiStorageStrategy: "cookie",
+               fpiExpirationDays: 730,
+               collectorUrl: "https://rp.liadm.com",
+               appId: "a-0012",
+             },
+           },
+         },
+       ],
+     },
+   });
+   ```
 
 Please note: the _distributorId_ will be ignored when `liCollectConfig.appId` is present.
