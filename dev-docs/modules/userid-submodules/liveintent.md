@@ -5,9 +5,9 @@ description: LiveIntent nonID User ID sub-module
 useridmodule: liveIntentIdSystem
 ---
 
-LiveIntent offers audience resolution by leveraging it's next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web.
+LiveIntent offers audience resolution by leveraging its next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web.
 
-The LiveIntent `nonID` is a user identifier tied to an active, encrypted email in the graph and functions in cookie-challenged environments and browsers. Along side with the `nonID`, LiveIntent's user ID module can resolve multiple other user identifers such as `UID2` and `pubmatic` - see the [Multiple userIDs]( #multiple-user-ids) section for more details.
+The LiveIntent `nonID` is a user identifier tied to an active, encrypted email in the graph and functions in cookie-challenged environments and browsers. Alongside the `nonID`, LiveIntent's user ID module can resolve multiple other user identifiers such as `UID2` and `pubmatic` - see the [Multiple user IDs]( #multiple-user-ids) section for more details.
 
 To add the complete functionality of LiveIntent Identity module to your Prebid.js package, use the following command:
 
