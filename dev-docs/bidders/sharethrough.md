@@ -7,7 +7,7 @@ tcfeu_supported: true
 coppa_supported: true
 gpp_supported: true
 floors_supported: true
-media_types: banner, video
+media_types: banner, video, native
 safeframes_ok: true
 schain_supported: true
 gvl_id: 80
