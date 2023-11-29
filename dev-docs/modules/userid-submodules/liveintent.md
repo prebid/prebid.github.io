@@ -30,7 +30,9 @@ If you're not already a LiveIntent customer, feel free to [reach out](https://ww
 
 ## How LiveIntent user ID submodule works
 
-The LiveIntent user ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier. In order to provide resolution, one or more first-party cookies are used to create this stable identifier. See the [query parameters description](https://github.com/liveintent-berlin/live-connect/blob/HEAD/COLLECTOR_PARAMS.md) for more details.
+The LiveIntent user ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier.
+
+LiveIntent builds a model on the backend with data collected through an additional call issued on each page load. In order to provide resolution, one or more first-party cookies are used. See the [query parameters description](https://github.com/liveintent-berlin/live-connect/blob/HEAD/COLLECTOR_PARAMS.md) for more details.
 
 The following first-party cookies are supported:
 
@@ -38,8 +40,6 @@ The following first-party cookies are supported:
 2. Publisher defined first-party cookie: Publishers have the flexibility to configure and choose additional first-party cookies for use in conjunction with the LiveIntent first-party cookie.
 
 ### Identity resolution
-
-To enable identity resolution, LiveIntent builds a model on the backend with data collected through an additional call issued on each page load.
 
 For the identity resolution, the LiveIntent ID sub-module makes a request to LiveIntent’s identity resolution API, which returns a nonID and additional attributes. The identifiers and attributes are then exposed by the Prebid User ID Module to Prebid adapters to be sent out in a bid request. An SSP can then make the impression opportunity available to buyers that would like to target the audience.
 
