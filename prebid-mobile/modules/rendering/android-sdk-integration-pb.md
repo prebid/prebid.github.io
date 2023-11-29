@@ -2,27 +2,39 @@
 
 layout: page_v2
 title: Custom or No mediation
-description: Integration of Prebid SDK withou primaty Ad Server
+description: How to integrate the Prebid SDK without a primary Ad Server
 sidebarType: 2
 
 ---
 
+
+
 # Custom Bidding Integration
 {:.no_toc}
 
-You can use Prebid SDK to monetize your app with a custom ad server or even without it. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without primary ad server and its SDK.
+## Before you start
+
+Before implementing the instructions in this guide, you need to ensure that you have correctly initialized the Prebid Mobile SDK in your app. You can do so using the code snippet below:
+
+```
+Prebid.init(getApplicationContext(), adUnits, "INSERT-ACCOUNT-ID-HERE", Prebid.AdServer.DFP, Prebid.Host.RUBICON);
+```
+
+The `accountId` you use to initialize the Prebid Mobile SDK is the unique identifier your Prebid Server provider assigned to you. This allows you to change bidders and parameters without having to update your application code.
+
+You can use Prebid SDK to monetize your app with a custom ad server or even without it. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without the primary ad server and its SDK.
 
 * TOC
 {:toc}
 
 ## Transport API
 
-The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice.
+The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the `fetchDemand` function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice.
 
 In this mode, the publisher will be responsible for the following actions:
 
-* Call fetchDemand with extended targetingDict callback
-* Retrieve targeting keys from the extended fetchDemand function
+* Call `fetchDemand` with extended `targetingDict` callback
+* Retrieve targeting keys from the extended `fetchDemand` function
 * Convert targeting keys into the format for your ad server
 * Pass converted keys to your ad server
 * Render ad with Prebid Universal Creative or custom renderer
@@ -105,17 +117,17 @@ Pay attention that the `loadAd()` should be called on the main thread.
 #### Step 1: Create Ad View
 {:.no_toc}
 
-Initialize the `BannerAdView` with properties:
+Initialize the `BannerView` object with the following properties:
 
-* `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
-* `size` - the size of the ad unit which will be used in the bid request.
+* `configId` - this is the ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) generated on your Prebid server.
+* `adSize` - this is the size of the ad unit which will be used in the bid request and returned to your application.
 
 #### Step 2: Load the Ad
 {:.no_toc}
 
-Call `loadAd()` and SDK will:
+Call `loadAd()` and the Prebid SDK will:
 
-* make bid request to Prebid
+* make bid request to Prebid Server
 * render the winning bid on display
 
 #### Outstream Video
@@ -161,14 +173,14 @@ interstitialAdUnit = InterstitialAdUnit(
 #### Step 1: Create an Ad Unit
 {:.no_toc}
 
-Initialize the `InterstitialAdUnit` with properties:
+Initialize the `InterstitialAdUnit` object with these properties:
 
-* `configId` - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
-* `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
+* `configId` - this is the ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) generated on your Prebid server.
+* `minSizePercentage` - this specifies the minimum width and height as a percentage of the devices screen size.
 
 You can also assign the listener to process ad events.
 
-> **NOTE:** the `minSizePercentage` - plays an important role in the bidding process for display ads. If the provided space is not enough demand partners won't respond with bids.
+> **NOTE:** the `minSizePercentage` - plays an important role in the bidding process for display ads. If the provided space is not enough demand partners won't respond with bids. Make sure you provide ample space.
 
 #### Step 2: Load the Ad
 {:.no_toc}
@@ -212,9 +224,9 @@ Pay attention that the `loadAd()` should be called on the main thread.
 #### Step 1: Create a Rewarded Ad Unit
 {:.no_toc}
 
-Create the `RewardedAdUnit` object with parameters:
+Create the `RewardedAdUnit` object with the parameters:
 
-* `adUnitId` - an ID of Stored Impression on the Prebid server.
+* `adUnitId` - this is an arbitrary descriptor for the ad. You might use it as a descriptive name in targeting or for reporting.  For example you might name it "account details screen ad" or "home page ad name."
 
 #### Step 2: Load the Ad
 {:.no_toc}
@@ -227,7 +239,23 @@ Call the `loadAd()` to make a bid request.
 Wait until the ad is loaded and present it to the user in any suitable time.
 
 ``` kotlin
-override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
-//Ad is ready for display
-}
+// Make an ad request 
+    RewardedAd.load(activity, adUnitId, request, object : RewardedAdLoadCallback() {
+        override fun onAdLoaded(ad: RewardedAd) {
+            Log.d(TAG, "Ad was loaded.")
+            rewardedAd = ad
+
+            // 6. Display an ad 
+            rewardedAd?.show(activity) { rewardItem ->
+                val rewardAmount = rewardItem.amount
+                val rewardType = rewardItem.type
+                Log.d(TAG, "User earned the reward ($rewardAmount, $rewardType)")
+            }
+        }
+
+        override fun onAdFailedToLoad(adError: LoadAdError) {
+            Log.e(TAG, adError.message)
+            rewardedAd = null
+        }
+    })
 ```
