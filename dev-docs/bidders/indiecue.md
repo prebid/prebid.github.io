@@ -11,7 +11,6 @@ gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
 coppa_supported: true
-gpp_supported: true
 usp_supported: true
 safeframes_ok: true
 prebid_member: false
