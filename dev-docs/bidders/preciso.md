@@ -5,7 +5,6 @@ description: Prebid Preciso Bidder Adapter
 gdpr_supported: true
 gvl_id: 874
 media_types: display, video, native 
-gdpr_supported: true
 usp_supported: true
 pbjs: true
 pbs: true
