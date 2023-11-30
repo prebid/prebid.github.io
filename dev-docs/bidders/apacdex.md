@@ -64,13 +64,13 @@ Publishers declare video inventory by passing the following parameters via media
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | `context` | required | instream or outstream |`"outstream"` | `string` |
-| `playerSize`| required | width, height of the player in pixels | `[640,360]` - will be translated to w and h in bid request | `array<integers>` |
-| `mimes` | recommended | List of content MIME types supported by the player (see openRTB v2.5 for options) | `["video/mp4"]`| `array<string>`|
-| `protocols` | recommended | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | `[2,3,5,6]` | `array<integers>`|
-| `api` | recommended | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2 | `[2]` |  `array<integers>` |
+| `playerSize`| required | width, height of the player in pixels | `[640,360]` - will be translated to w and h in bid request | `Integer[]` |
+| `mimes` | recommended | List of content MIME types supported by the player (see openRTB v2.5 for options) | `["video/mp4"]`| `String[]`|
+| `protocols` | recommended | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | `[2,3,5,6]` | `Integer[]`|
+| `api` | recommended | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2 | `[2]` |  `Integer[]` |
 | `maxduration` | recommended | Maximum video ad duration in seconds. | `30` | `integer` |
 | `minduration` | recommended | Minimum video ad duration in seconds | `6` | `integer` |
-| `playbackmethod` | recommended | Playback methods that may be in use. Only one method is typically used in practice. (see openRTB v2.5 section 5.10 for options)| `[2]`| `array<integers>` |
+| `playbackmethod` | recommended | Playback methods that may be in use. Only one method is typically used in practice. (see openRTB v2.5 section 5.10 for options)| `[2]`| `Integer[]` |
 | `skip` | optional | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes. | `1` | `integer` |
 | `skipafter`| optional | Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable. | `6` | `integer`|
 | `minbitrate` | optional | Minimum bit rate in Kbps. | `300` | `integer` |

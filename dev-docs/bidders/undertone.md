@@ -29,7 +29,7 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name             | Scope    | Description                                    | Example                                   | Type            |
 |------------------|----------|------------------------------------------------|-------------------------------------------|-----------------|
-| `playbackMethod` | optional | Playback method supported by the publisher.<br/>`1`: Auto-play sound on<br/>`2`: Auto-play sound off<br/>`3`: Click-to-play sound on<br/>`4`: Mouse-over sound on| `1` | `integer` |
+| `playbackMethod` | optional | Playback method supported by the publisher.`1`: Auto-play sound on`2`: Auto-play sound off`3`: Click-to-play sound on`4`: Mouse-over sound on| `1` | `integer` |
 | `maxDuration`    | optional | Maximum video ad duration in seconds. | `30` | `integer` |
 | `skippable`      | optional | Skippability of the inventory. Possible values: `true` - only skippable inventory is allowed, `false` - skippable inventory is not allowed, null/missing - all inventory is allowed (default value). | `true` | `boolean` |
 

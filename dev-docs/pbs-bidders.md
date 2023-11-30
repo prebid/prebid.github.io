@@ -27,21 +27,15 @@ Publishers are advised to check with legal counsel before doing business with an
 
 ## Prebid Server Bidder List
 
-<ul>
-{% for page in bidder_pages %}
-<li>
-<a href="#{{ page.biddercode }}">{{ page.title }}</a>
-</li>
-{% endfor %}
-</ul>
+TODO List of bidders
 
 ## Bidder Documentation
 
-{% for page in bidder_pages %}
+TODO for every bidder
 
 <div class="bs-docs-section" markdown="1">
-<a name="{{ page.biddercode }}" ></a>
-<h2>{{ page.title }}</h2>
+<a name="page.biddercode" ></a>
+<h2>TODO Page Title</h2>
 
 <h4>Features</h4>
 
@@ -67,14 +61,8 @@ Publishers are advised to check with legal counsel before doing business with an
 | <code>{{ "hb_cache_host_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_cache_id_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_uuid_" | append: page.biddercode | slice: 0,20 }}</code> |
 | <code>{{ "hb_cache_path_" | append: page.biddercode | slice: 0,20 }}</code> | <code>{{ "hb_deal_" | append: page.biddercode | slice: 0,20 }}</code> | |
 
-{% if page.prevBiddercode %}
-
 This bidder previously had a bidder code of `{{ page.prevBiddercode }}`, but prefers new configurations to use `{{ page.biddercode }}`.
 
-{% endif %}
-
-{{ page.content }}
+TODO add bidder page content
 
 </div>
-
-{% endfor %}

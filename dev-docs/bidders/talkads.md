@@ -17,7 +17,7 @@ sidebarType: 1
 
 ### Registration
 
-The Talkads Adapter requires setup before beginning. Please contact us at <www.natexo.com> and register to the publisher side.
+The Talkads Adapter requires setup before beginning. Please contact us at [www.natexo.com](https://www.natexo.com) and register to the publisher side.
 
 ### Configuration
 
@@ -37,7 +37,7 @@ These parameters are totally specific to each Publisher, you will receive them w
 
 #### Native example
 
-```
+```javascript
 var adUnits = [
     code: '/19968336/prebid_native_example_1',
     mediaTypes: {

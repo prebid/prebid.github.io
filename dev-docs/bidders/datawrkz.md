@@ -24,7 +24,7 @@ The Datawrkz Bidding adapter requires setup before beginning. Please contact us 
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `site_id` | required | String | Site id  | "test_site_id"
-| `deals` | optional | Array<Deal> | Array of deal objects | `[{id: "deal_1"},{id: "deal_2"}]`
+| `deals` | optional | Deal[] | Array of deal objects | `[{id: "deal_1"},{id: "deal_2"}]`
 | `bidfloor` | optional | Float | Minimum bid for this impression expressed in CPM | `0.5`
 | `outstreamType` | optional | String | Type of outstream video to the played. Available options: inline, slider_top_left, slider_top_right, slider_bottom_left, slider_bottom_right, interstitial_close, and listicle | "inline"
 | `outstreamConfig` | optional | Object | Configuration settings for outstream ad unit | `{ad_unit_audio: 1, show_player_close_button_after: 5, hide_player_control: 0}`

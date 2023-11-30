@@ -105,24 +105,7 @@ Adapters can read the `bidRequest.schain` object and pass it through to their en
 
 ## Adapters Supporting the schain Module
 
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-
-<div class="adapters">
-{% for page in bidder_pages %}
-  <div class="col-md-4{% if page.schain_supported %} schain_supported{% endif %}">
-  {{ page.title }}
-  </div>
-{% endfor %}
-</div>
-
-<script>
-$(function(){
-  $('.adapters .col-md-4').hide();
-  $('.schain_supported').show();
-});
-</script>
-
-<br style="clear: both">
+TODO show all adapters that support schain
 
 ## Further Reading
 

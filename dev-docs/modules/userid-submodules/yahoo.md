@@ -9,8 +9,9 @@ Yahoo ConnectID is a person based ID and does not depend on 3rd party cookies. I
 
 Add support for Yahoo ConnectID to your Prebid.js package using:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=userId,connectIdSystem
+```
 
 ## Yahoo ConnectID Registration
 
@@ -20,7 +21,7 @@ A Yahoo-supplied publisher-specific pixel ID is required. Reach out to [connecti
 
 Note: Parameters are case-sensitive. ConnectID is the proper name of our product, however, when used in code it is spelled as connect**I**d. Follow the example in the table below.
 
-<div class="table-responsive" markdown="1">
+{: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `"connectId"` |
@@ -29,8 +30,6 @@ Note: Parameters are case-sensitive. ConnectID is the proper name of our product
 The Yahoo-supplied publisher-specific pixel ID. | `"0000"` |
 | params.he | Optional | String | The SHA-256 hashed user email address which has been lowercased prior to hashing.  |`"ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"`|
 | params.puid | Optional | String | A domain-specific user identifier such as a first-party cookie. If not passed, a puid value will be auto-generated and stored in local and / or cookie storage.  | `"ab9iibf5a231ii1db8ef911596ca297d5e3f84biii00041c5880dba3baf9c1da"` |
-{: .table .table-bordered .table-striped }
-</div>
 
 ## Yahoo ConnectID Examples
 
@@ -107,12 +106,10 @@ Finally, ConnectID follows all global privacy laws (such as the CCPA) and indust
 
 Please note that the storage related parameters are optional. We recommend that you omit them, since ConnectID module is pre-configured with the most optimal storage parameters already.
 
-<div class="table-responsive" markdown="1">
+{: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | storage | Optional | Object | Defines where and for how long the results of the call to get a user ID will be stored. | |
 | storage.type | Optional | String | Defines where the resolved user ID will be stored (either 'cookie' or 'html5' local storage). | `'cookie'` |
 | storage.name | Optional | String | The name of the cookie or html5 local storage where the resolved user ID will be stored. | `'connectId'` |
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. | `15` |
-{: .table .table-bordered .table-striped }
-</div>

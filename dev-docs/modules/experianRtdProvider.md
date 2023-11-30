@@ -56,13 +56,13 @@ pbjs.setConfig({
 ## Parameters
 
 {: .table .table-bordered .table-striped }
-| Name             | Type                                    | Description                                                                  | Default            |
-|:-----------------|:----------------------------------------|:-----------------------------------------------------------------------------|:-------------------|
-| name             | String                                  | Real time data module name                                                   | Always 'experian_rtid' |
-| waitForIt        | Boolean                                 | Set to true to maximize chance for bidder enrichment, used with auctionDelay | `false`            |
-| params.accountId | String                                  | Your account id issued by Experian                                              |                    |
-| params.bidders   | Array<string>                           | List of bidders for which you would like data to be set                      |                    |
-| params.ids       | Record<string, Array<string> or string> | Additional identifiers to send to Experian RTID endpoint to aid with resolution                        |                    |
+| Name             | Type                              | Description                                                                  | Default            |
+|:-----------------|:----------------------------------|:-----------------------------------------------------------------------------|:-------------------|
+| name             | String                            | Real time data module name                                                   | Always 'experian_rtid' |
+| waitForIt        | Boolean                           | Set to true to maximize chance for bidder enrichment, used with auctionDelay | `false`            |
+| params.accountId | String                            | Your account id issued by Experian                                              |                    |
+| params.bidders   | String[]                          | List of bidders for which you would like data to be set                      |                    |
+| params.ids       | Record<string, String[] | []>     | Additional identifiers to send to Experian RTID endpoint to aid with resolution                        |                    |
 
 ## Contact
 Reach out to [realtime_identity@experian.com](mailto:realtime_identity@experian.com) for more information.

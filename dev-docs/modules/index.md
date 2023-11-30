@@ -17,12 +17,12 @@ The core of Prebid.js contains only the foundational code needed for header bidd
 * TOC
 {:toc}
 
-{% assign module_pages = site.pages | where: "page_type", "module" %}
-
 ## Recommended Modules
 
 Prebid.org highly recommends that publishers utilize the following modules:
-<br/>
+
+TODO generate table
+
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -31,12 +31,10 @@ Prebid.org highly recommends that publishers utilize the following modules:
     </tr>
   </thead>
   <tbody>
-{% for page in module_pages %}{% if page.recommended == true %}
     <tr>
-      <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
-      <td>{{page.description}}</td>
+      <td><a href="page.url"><strong>DISPLAY NAME</strong></a></td>
+      <td>DESCRIPTION</td>
     </tr>
-{% endif %}{% endfor %}
 </tbody>
 </table>
 
@@ -48,6 +46,8 @@ RTD modules, define an overall amount of time they're willing to wait for
 results, and even flag some of the modules as being higher priority
 than others. See [the realTimeData setConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData) reference for more details.
 
+TODO generate table
+
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
@@ -57,13 +57,11 @@ than others. See [the realTimeData setConfig](/dev-docs/publisher-api-reference/
     </tr>
   </thead>
   <tbody>
-{% for page in module_pages %}{% if page.recommended == true or page.vendor_specific == true %}{% continue %}{% endif %}
     <tr>
-      <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
-      <td>{{page.description}}</td>
-      {% if page.module_type == "rtd" %}<td>yes</td>{% else %}<td>no</td>{% endif %}
+      <td><a href="page.url"><strong>DISPLAY NAME</strong></a></td>
+      <td>DESCRIPTION</td>
+      <td>RTD yes/no</td>
     </tr>
-{% endfor %}
 </tbody>
 </table>
 
@@ -79,13 +77,11 @@ These modules may require accounts with a service provider.
     </tr>
   </thead>
   <tbody>
-{% for page in module_pages %}{% if page.recommended == true %}{% continue %}{% endif %}{% if page.vendor_specific == true %}
     <tr>
-      <td><a href="{{page.url}}"><strong>{{page.display_name}}</strong></a></td>
-      <td>{{page.description}}</td>
-      {% if page.module_type == "rtd" %}<td>yes</td>{% else %}<td>no</td>{% endif %}
+      <td><a href="page.url"><strong>DISPLAY NAME</strong></a></td>
+      <td>DESCRIPTION</td>
+      <td>RTD yes/no</td>
     </tr>
-{% endif %}{% endfor %}
 </tbody>
 </table>
 

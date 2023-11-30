@@ -39,9 +39,9 @@ IMPORTANT: only include either openxBidAdapter or openxOrtbBidAdapter in your bu
 | `delDomain` ~~or `platform`~~** | required | OpenX delivery domain provided by your OpenX representative. | "PUBLISHER-d.openx.net" | String |
 | `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String |
 | `customParams` | optional | User-defined targeting key-value pairs. customParams applies to a specific unit. | `{key1: "v1", key2: ["v2","v3"]}` | Object |
-| `customFloor` | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue.<br/><br/>Note:<br/> OpenX suggests using the [Price Floor Module](/dev-docs/modules/floors.html) instead of customFloor. The Price Floor Module is prioritized over customFloor if both are present. | 1.50 | Number |
-| `doNotTrack` | optional | Prevents advertiser from using data for this user. <br/><br/> **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean |
-| `coppa` | optional | Enables Child's Online Privacy Protection Act (COPPA) regulations. **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean |
+| `customFloor` | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50  **WARNING:** Misuse of this parameter can impact revenue.Note: OpenX suggests using the [Price Floor Module](/dev-docs/modules/floors.html) instead of customFloor. The Price Floor Module is prioritized over customFloor if both are present. | 1.50 | Number |
+| `doNotTrack` | optional | Prevents advertiser from using data for this user.  **WARNING:** Impacts all bids in the request.  May impact revenue. | true | Boolean |
+| `coppa` | optional | Enables Child's Online Privacy Protection Act (COPPA) regulations. **WARNING:** Impacts all bids in the request.  May impact revenue. | true | Boolean |
 
 ** platform is deprecated. Please use delDomain instead. If you have any questions please contact your representative.
 
@@ -98,17 +98,17 @@ The following video parameters are supported here so publishers may fully declar
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | context | required | instream or outstream |"outstream" | string |
-| playerSize| required | width, height of the player in pixels | [640,360] - will be translated to w and h in bid request | array<integers> |
-| mimes | required | List of content MIME types supported by the player (see openRTB v2.5 for options) | ["video/mp4"]| array<string>|
-| protocols | recommended | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | [2,3,5,6] | array<integers>|
-| api | recommended | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2 | [2] |  array<integers> |
+| playerSize| required | width, height of the player in pixels | [640,360] - will be translated to w and h in bid request | Integer[] |
+| mimes | required | List of content MIME types supported by the player (see openRTB v2.5 for options) | ["video/mp4"]| String[]|
+| protocols | recommended | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | [2,3,5,6] | Integer[]|
+| api | recommended | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2 | [2] |  Integer[] |
 | linearity | recommended | OpenRTB2 linearity. 1: linear (in-stream ad), 2: non-linear (overlay ad) | 1 | integer |
 | maxduration | recommended | Maximum video ad duration in seconds. | 30 | integer |
 | minduration | recommended | Minimum video ad duration in seconds | 6 | integer |
-| playbackmethod | recommended | Playback methods that may be in use. Only one method is typically used in practice. (see openRTB v2.5 section 5.10 for options)| [2]| array<integers> |
+| playbackmethod | recommended | Playback methods that may be in use. Only one method is typically used in practice. (see openRTB v2.5 section 5.10 for options)| [2]| Integer[] |
 | minbitrate | optional | Minimum bit rate in Kbps. | 300 | integer |
 | maxbitrate | optional | Maximum bit rate in Kbps. | 9600 | integer |
-| battr | optional | Blocked creative attributes | [13,14] | array<integers>|
+| battr | optional | Blocked creative attributes | [13,14] | Integer[]|
 | startdelay | recommended | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.<br /> >0: Mid-Roll (value indicates start delay in second)<br /> 0: Pre-Roll<br />-1: Generic Mid-Roll<br />-2: Generic Post-Roll | 0 | integer |
 | placement | recommended | Placement type for the impression. (see openRTB v2.5 section 5.9 for options) | 1 | integer |
 | | | | | |

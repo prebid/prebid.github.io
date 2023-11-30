@@ -8,7 +8,6 @@ pid: 10
 ---
 
 
-
 # Prebid Plugin for Brightcove (Videojs) Player - Plugin Options
 
 ## Overview
@@ -37,5 +36,3 @@ Sample implementations are provided at:
 - **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)**
 
 - **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
-
-</div>

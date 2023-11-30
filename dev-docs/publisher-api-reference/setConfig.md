@@ -418,13 +418,11 @@ Here are the rules for CPM intervals:
 
 {% capture warning-granularity %}
 As of Prebid.js 3.0, the 'min' parameter is no longer supported in custom granularities.
-<br/>
-<br/>
+
 Also note an important idiosyncracy of the way that price ranges are supported: the
 interval starts at the min value, and the max of one range defines the min of the next range.
 So if the second interval defines an implicit min of 0.99 and goes to 5 with an increment of 0.05, Prebid.js will generate the values: 0.99, 1.04, 1.09, etc.
-<br/>
-<br/>
+
 This implies that ranges should have max values that are really the min value of next range.
 :::
 
@@ -487,8 +485,7 @@ a price granularity override. If it doesn't find 'video-outstream' defined, it w
 Prebid defaults to rounding down all bids to the nearest increment, which may cause lower CPM ads to be selected.
 While this can be addressed through higher [price granularity](#setConfig-Price-Granularity), Prebid also allows setting a custom rounding function.
 This function will be used by Prebid to determine what increment a bid will round to.
-<br/>
-<br/>
+
 You can set a simple rounding function:
 
 ```javascript
@@ -930,7 +927,7 @@ You should consider using that module if any of these scenarios are true:
 <li>The site needs to alter different mediaTypes at different screen widths; e.g., the banner size ranges are 0-400px, 401-700px, and 701+px, but the native ads appear at 500px.</li>
 <li>Some bidders or mediaTypes should be included (or removed) at different overlapping size ranges.</li>
 </ul>
-<br/>
+
 
 If, on the other hand, you're only working with the banner mediaType and the AdUnits all change behavior together at the same viewport width, then the built-in sizeConfig feature is appropriate.
 :::
@@ -1593,9 +1590,5 @@ ERROR: setConfig options must be an object
 ```
 
 If you don't see that message, you can assume the config object is valid.
-
-<hr class="full-rule"></a>
-
-## Related Reading
 
 * [Prebid.js and Ad Server Key Values](/features/adServerKvps.html)

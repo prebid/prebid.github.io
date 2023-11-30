@@ -13,7 +13,7 @@ sidebarType: 1
 
 ### Note
 
-THE YieldOne adapter requires setup and approval from the YieldOne team.<br/>
+THE YieldOne adapter requires setup and approval from the YieldOne team.
 Please reach out to your account team or <y1s@platform-one.co.jp> for more information.
 
 ### Bid Params
@@ -22,15 +22,15 @@ Please reach out to your account team or <y1s@platform-one.co.jp> for more infor
 | Name            | Scope    | Description                      | Example      | Type              |
 |-----------------|----------|----------------------------------|--------------|-------------------|
 | `placementId`   | required | The placement ID                 | `"36891"`    | `string`          |
-| `playerSize`    | optional | Video Resolution Size<br/>(This field is mandatory if mediaTypes.video.playerSize is [1, 1]) | `[640, 360]` | `array of number` |
+| `playerSize`    | optional | Video Resolution Size(This field is mandatory if mediaTypes.video.playerSize is [1, 1]) | `[640, 360]` | `array of number` |
 | `playerParams`  | optional | Video Player Params (see below)  | `{}`         | `object` |
 | `playerParams.wrapperWidth`  | optional | Video Player Width  | `"320px"`    | `string` |
 | `playerParams.wrapperHeight` | optional | Video Player Height | `"180px"`    | `string` |
 
 ### Multi-Format Ad Units
 
-If you use Multi-Format Ad Units, "video" bid object should be placed before "banner" bid object.<br/>
-And if Bid Params contains playerParams, it will request a "video" media type ad.<br/>
+If you use Multi-Format Ad Units, "video" bid object should be placed before "banner" bid object.
+And if Bid Params contains playerParams, it will request a "video" media type ad.
 If it does not, it will request a "banner" media type ad.
 
 ### AdUnit Format Example

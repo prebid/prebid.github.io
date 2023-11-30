@@ -10,8 +10,9 @@ MediaWallah's openLink is an anonymous person based ID that enables buyers and s
 
 Add support for MediaWallah OpenLinkID to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=userId,mwOpenLinkIdSystem
+```
 
 ## MediaWallah OpenLinkID Registration
 
@@ -19,7 +20,7 @@ MediaWallah requires the creation of an accountId a partnerId in order to take a
 
 ## MediaWallah OpenLinkID Configuration
 
-<div class="table-responsive" markdown="1">
+{: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `'mwOpenLinkId'` |
@@ -27,8 +28,6 @@ MediaWallah requires the creation of an accountId a partnerId in order to take a
 | params.accountId | Required | String | The MediaWallah assigned Account Id  | `1000` |
 | params.partnerId | Required | String | The MediaWallah assign partner Id |`'1001'`|
 | params.uid | Optional | String | Your unique Id for the user or browser. Used for matching. | `'u-123xyz'` |
-{: .table .table-bordered .table-striped }
-</div>
 
 ## MediaWallah OpenLinkID Examples
 

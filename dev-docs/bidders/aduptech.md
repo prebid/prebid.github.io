@@ -13,7 +13,7 @@ sidebarType: 1
 
 ### Registration
 
-To use, our bidding adapter requires proper setup, including an existing publisher account, as well as approval from AdUp Technology.<br/>For more information visit [www.adup-tech.com](https://www.adup-tech.com/en) or contact [info@adup-tech.com](mailto:info@adup-tech.com).
+To use, our bidding adapter requires proper setup, including an existing publisher account, as well as approval from AdUp Technology.For more information visit [www.adup-tech.com](https://www.adup-tech.com/en) or contact [info@adup-tech.com](mailto:info@adup-tech.com).
 
 ### Bid params
 
@@ -23,4 +23,4 @@ To use, our bidding adapter requires proper setup, including an existing publish
 | `publisher` | required | Unique publisher identifier. | `'prebid'` | `string` |
 | `placement` | required | Unique placement identifier per publisher. | `'1234'` | `string` |
 | `query` | optional | Semicolon separated list of keywords. | `'urlaub;ibiza;mallorca'` | `string` |
-| `adtest` | optional | Deactivates tracking of impressions and clicks.<br/>**Should only be used for testing purposes!** | `true` | `boolean` |
+| `adtest` | optional | Deactivates tracking of impressions and clicks.**Should only be used for testing purposes!** | `true` | `boolean` |

@@ -45,11 +45,11 @@ The PubWise adapter supports video as of Prebid v7.39.0. Outstream is NOT suppor
 | `video.minduration`      | optional | Minimum ad duration in seconds                              | `5` |
 | `video.maxduration`       | optional | Maximum ad duration in seconds                               | `30` |
 | `video.startdelay`      | optional | Start delay in seconds for pre-roll, mid-roll, or post-roll ad placements | `5` |
-| `video.playbackmethod` | optional | Defines whether inventory is user-initiated or autoplay sound on/off<br/>Values:<br/>`1`: Auto-play, sound on<br/>`2`: Auto-play, sound off<br/>`3`: Click-to-play<br/>`4`: mouse-over      | `1` |
-| `video.api`              | optional | API frameworks supported<br/>Values:<br/>`1`: VPAID 1.0<br/>`2`: VPAID 2.0<br/>`3`: MRAID-1<br/>`4`: ORMMA<br/>`5`: MRAID-2                                                                            | `[1, 2]` |
-| `video.protocols`      | optional |  Supported video bid response protocols<br/>Values<br/>`1`: VAST 1.0<br/>`2`: VAST 2.0<br/>`3`: VAST 3.0<br/> `4`: VAST 1.0 Wrapper<br/>`5`: VAST 2.0 Wrapper<br/>`6`: VAST 3.0 Wrapper            | `[5, 6]` |
+| `video.playbackmethod` | optional | Defines whether inventory is user-initiated or autoplay sound on/offValues:`1`: Auto-play, sound on`2`: Auto-play, sound off`3`: Click-to-play`4`: mouse-over      | `1` |
+| `video.api`              | optional | API frameworks supportedValues:`1`: VPAID 1.0`2`: VPAID 2.0`3`: MRAID-1`4`: ORMMA`5`: MRAID-2                                                                            | `[1, 2]` |
+| `video.protocols`      | optional |  Supported video bid response protocolsValues`1`: VAST 1.0`2`: VAST 2.0`3`: VAST 3.0 `4`: VAST 1.0 Wrapper`5`: VAST 2.0 Wrapper`6`: VAST 3.0 Wrapper            | `[5, 6]` |
 | `video.battr`          | optional | Blocked creative attributes, See [OpenRTB 2.5 specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf), List 5.3 for values             | `[3, 9]` |
-| `video.linearity`      | optional | Indicates if the impression is linear or nonlinear<br/>Values:<br/>`1`: Linear/In-Stream<br/>`2`: Non-Linear/Overlay.                                                                                | `1` |
+| `video.linearity`      | optional | Indicates if the impression is linear or nonlinearValues:`1`: Linear/In-Stream`2`: Non-Linear/Overlay.                                                                                | `1` |
 | `video.placement`      | optional | Video placement type.  See [OpenRTB 2.5 specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf), List 5.9 for Values                            | `1` |
 | `video.minbitrate`      | optional | Minumim bit rate in Kbps.                                   | 50 |
 | `video.maxbitrate`      | optional | Maximum bit rate in Kbps.                                   | 70 |

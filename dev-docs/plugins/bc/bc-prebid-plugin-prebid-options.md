@@ -437,7 +437,7 @@ NOTE:  You may need to increase the `prebidTimeout` value when running on mobile
 
 **Description:**
 
-Specify whether `prebidCache` should be enabled.<br>Used to convert a VAST URL to a wrapped VAST XML. It allows prebid.js to accept either VAST URLs or VAST XML. In most cases, `prebidCache` should be enabled. It is required when using DFP as the ad server.<br>Some publishers may not need the extra processing of `prebidCache` depending on their particular workflow.
+Specify whether `prebidCache` should be enabled.Used to convert a VAST URL to a wrapped VAST XML. It allows prebid.js to accept either VAST URLs or VAST XML. In most cases, `prebidCache` should be enabled. It is required when using DFP as the ad server.Some publishers may not need the extra processing of `prebidCache` depending on their particular workflow.
 
 **Acceptable Values:**
 
@@ -576,9 +576,11 @@ No default value. If this option is not specified with a valid value, then the p
 
 The `loggerLevel` is used to control the amount of information that is emitted by the plugin into the browser's console.log.  These levels correspond roughly to the log levels supported by many of the browsers.
 
-{% capture noteAlert %} It is not recommended to set the `loggerLevel` to 0 (silent). :::
+:::info
 
-{% include alerts/alert_note.html content=noteAlert %}
+It is not recommended to set the `loggerLevel` to 0 (silent).
+
+:::
 
 **Acceptable Values:**
 
@@ -641,5 +643,3 @@ Sample implementations are provided at:
 * **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)**
 
 * **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
-
-</div>

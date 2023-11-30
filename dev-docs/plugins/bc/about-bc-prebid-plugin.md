@@ -121,11 +121,12 @@ You can think of the “plugin” as being a combination of the loader and the p
 
 The MailOnline plugin can be used by the prebid plugin to render the ad, depending on the prebid config options defined. By default, if the prebid config options do not identify Google Ad Manager as the primary ad server, then the MailOnline Plugin is used to render the ad.  The publisher can also use the `adRenderer` option to specify that MailOnline is used to render the ad, regardless of the presence of the Google Ad Manager parameters.
 
-{% capture infoNote %}
+:::info
+
 If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include Google Ad Manager parameters, in this case you should explicitly specify the IMA plugin using the `adRenderer` option.
+
 :::
 
-{% include alerts/alert_note.html content=infoNote %}
 
 This plugin includes modifications that can be found in the MailOnline repository. These modifications were made to improve the plugin's behavior when rendering ads. If you have your own modified version of the MailOnline plugin, you can replace this link with a link to your own build. You may also replace this plugin with your own custom video ad renderer.
 
@@ -146,17 +147,15 @@ This plugin includes modifications that can be found in the MailOnline repositor
 
 The Brightcove IMA plugin can be used by the prebid plugin to render the ad, depending on the prebid config options defined. By default, if the prebid config options identifies Google Ad Manager as the primary ad server, then the Brightcove IMA Plugin is used to render the ad.  The publisher can also use the `adRenderer` option to specify that the IMA plugin is used to render the ad, regardless of the presence of the Google Ad Manager parameters.
 
-{% capture infoNote %}
+:::info
 If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include Google Ad Manager parameters, in this case you should explicitly specify the IMA plugin using the `adRenderer` option.
 :::
 
 {% include alerts/alert_note.html content=infoNote %}
 
-{% capture infoNote %}
+:::info
 If you will be using the Brightcove IMA plugin as the ad renderer, either because Google Ad Manager is the primary ad server or you have explicitly specified the IMA plugin in the `adRenderer` option, then it is *suggested* that you add the IMA plugin to your Brightcove Player configuration in the Brightcove Studio. Doing so prevents some problems observed when the Player is running on iOS and the IMA plugin is loaded at run-time. When you configure IMA in the Studio, do *not* put a URL in the `Ad Tag` field AND select `"On demand"` from the `Request Ads` field.
 :::
-
-{% include alerts/alert_note.html content=infoNote %}
 
 ### CSS
 
@@ -316,8 +315,9 @@ Configuration options are passed into the plugin via a JSON structure. This stru
   * Skippable behavior
   * Custom translations for UI components such as the Ad Indicator, the Skip button and the countdown text
 
-{: .alert.alert-info :}
+:::info
 NOTE:  If you are requesting prebid for more than one ad break in a video, you need to define an array of configuration options, one for each ad break.  The configuration should include the `timeOffset` option to identify when the ad break should occur.  See [Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html) for more details.
+:::
 
 Details about the options supported by the Brightcove Prebid Plugin can be found in [Prebid Plugin for Brightcove (Videojs) Player - Plugin Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-options.html).
 
@@ -330,5 +330,3 @@ Sample implementations are provided at:
 * **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)**
 * **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)**
 * **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
-
-</div>

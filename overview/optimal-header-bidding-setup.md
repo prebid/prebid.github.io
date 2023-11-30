@@ -40,8 +40,6 @@ The ad server sees the impression and header bidding info immediately after all 
 </div>
 </div>
 
-<br>
-
 ## Poor Header Bidding Setup Examples
 
 ### Scenario
@@ -124,7 +122,6 @@ The ad server sees the impression and header bidding info immediately after all 
 </div>
 </div>
 
-<br>
 
 ## Analyze Your Own Site
 

@@ -63,5 +63,5 @@ pbjs.setConfig({
 | waitForIt         | Boolean       | Should be `true` if there's an `auctionDelay` defined (optional) | `false`           |
 | params            | Object        |                                                                  |                   |
 | params.customerId | String        | Your 1plusX customer id                                          |                   |
-| params.bidders    | Array<string> | List of bidders for which you would like data to be set          |                   |
+| params.bidders    | String[]      | List of bidders for which you would like data to be set          |                   |
 | params.timeout    | Integer       | timeout (ms)                                                     | 1000ms            |

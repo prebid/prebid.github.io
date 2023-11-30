@@ -16,7 +16,7 @@ sidebarType: 4
 
     <div id="videoExample" class="col-md-12">
       <h2>(Sorry, video code examples aren't available with your cookie privacy settings.)</h2>
-      <p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+      <p><a class="optanon-show-settings">Cookie Settings</a></p>
     </div>
 
     <script>
@@ -46,13 +46,13 @@ sidebarType: 4
   &lt;script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"&gt;&lt;/script&gt;
   &lt;script type="text/javascript" src="https://ssl.p.jwpcdn.com/player/v/7.2.4/jwplayer.js"&gt;&lt;/script&gt;
   &lt;script type="text/javascript"&gt;
-    jwplayer.key = "YOUR_JW_PLAYER_KEY"; //Test Key - replace this with your own valid JWPlayer license key<br>
+    jwplayer.key = "YOUR_JW_PLAYER_KEY"; //Test Key - replace this with your own valid JWPlayer license key
   &lt;/script&gt;
   &lt;script&gt;
     var pbjs = pbjs || {};
     pbjs.que = pbjs.que || [];
 
-    // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads<br>
+    // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
     var tempTag = false;
     var invokeVideoPlayer = function(url) {
         tempTag = url;
@@ -73,13 +73,13 @@ sidebarType: 4
         bids: [{
             bidder: 'appnexus',
             params: {
-                placementId: 13232361  // Add your own placement id here<br>
+                placementId: 13232361  // Add your own placement id here
             }
         }]
     };
 
     pbjs.que.push(function() {
-        pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request<br>
+        pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
         pbjs.setConfig({
             debug: true,
             cache: {

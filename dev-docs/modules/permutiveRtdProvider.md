@@ -155,7 +155,7 @@ Or, a publisher may do this themselves within the Permutive Dashboard using the 
 
 In order to manage acbidders via the Permutive dashboard, it is necessary to first enable the Prebid integration via the integrations page (settings).
 
-![Alt text](/assets/images/dev-docs/modules/permutiveRtdProvider-integration-create.png?raw=true "Permutive Prebid integration - create")
+TODO fix image url [Alt text](/assets/images/dev-docs/modules/permutiveRtdProvider-integration-create.png?raw=true "Permutive Prebid integration - create")
 
 **Note on Revenue Insights:** The prebid integration includes a feature for revenue insights,
 which is not required for the purpose of updating acbidders config.
@@ -165,7 +165,7 @@ Please see [this document](https://support.permutive.com/hc/en-us/articles/36001
 
 The input for the “Data Provider config” is a multi-input free text. A valid “bidder code” needs to be entered in order to enable Standard or Advertiser Cohorts to be passed to the desired partner. The [prebid Bidders page](https://docs.prebid.org/dev-docs/bidders.html) contains instructions and a link to a list of possible bidder codes.
 
-![Alt text](/assets/images/dev-docs/modules/permutiveRtdProvider-integration-update.png?raw=true "Permutive Prebid integration - update")
+TODO fix image url [Alt text](/assets/images/dev-docs/modules/permutiveRtdProvider-integration-update.png?raw=true "Permutive Prebid integration - update")
 
 Bidders can be added or removed from acbidders using this feature, however, this will not impact any bidders that have been applied using the manual method below.
 

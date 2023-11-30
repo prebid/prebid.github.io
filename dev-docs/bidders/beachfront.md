@@ -47,11 +47,11 @@ For further information, please contact <adops@beachfront.com>.
 | `appId` | optional | Beachfront Exchange ID for video bids. | `'11bc5dd5-7421-4dd8-c926-40fa653bec76'` | `string` |
 | `bidfloor` | optional | Bid floor for video bids. | `0.01` | `float` |
 | `tagid` | optional | Tag ID | `'placement-name'` | `string` |
-| `responseType` | optional | Video response type.<br/>`both`: VAST URL and VAST XML<br/>`nurl`: VAST URL only<br/>`adm`: VAST XML only | `'both'` | `string` |
+| `responseType` | optional | Video response type.`both`: VAST URL and VAST XML`nurl`: VAST URL only`adm`: VAST XML only | `'both'` | `string` |
 | `mimes` | optional | Array of strings listing supported MIME types. | `["video/mp4", "application/javascript"]` | `Array<string>` |
-| `playbackmethod` | optional | Playback method supported by the publisher.<br/>`1`: Auto-play sound on<br/>`2`: Auto-play sound off<br/>`3`: Click-to-play<br/>`4`: Mouse-over | `1` | `integer` |
+| `playbackmethod` | optional | Playback method supported by the publisher.`1`: Auto-play sound on`2`: Auto-play sound off`3`: Click-to-play`4`: Mouse-over | `1` | `integer` |
 | `maxduration` | optional | Maximum video ad duration in seconds. | `30` | `integer` |
-| `placement` | optional | Placement type for the impression.<br/>`1`: In-Stream<br/>`2`: In-Banner<br/>`3`: In-Article<br/>`4`: In-Feed<br/>`5`: Interstitial/Slider/Floating | `1` | `integer` |
+| `placement` | optional | Placement type for the impression.`1`: In-Stream`2`: In-Banner`3`: In-Article`4`: In-Feed`5`: Interstitial/Slider/Floating | `1` | `integer` |
 | `skip` | optional | Indicates if the player will allow the video to be skipped. | `1` | `integer` |
 | `skipmin` | optional | Videos of total duration greater than this number of seconds can be skippable. | `15` | `integer` |
 | `skipafter` | optional | Number of seconds a video must play before skipping is enabled. | `5` | `integer` |

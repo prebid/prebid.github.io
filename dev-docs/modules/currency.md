@@ -35,7 +35,7 @@ be provided in the page.
 
 The numbered circles in this diagram are explained below.
 
-![Currency Architecture]({{site.baseurl}}/assets/images/dev-docs/currency_architecture.png){:class="pb-lg-img"}
+TODO Fix image URL [Currency Architecture]({{site.baseurl}}/assets/images/dev-docs/currency_architecture.png){:class="pb-lg-img"}
 
 ### 1. Line Item Creation
 

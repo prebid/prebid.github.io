@@ -22,7 +22,7 @@ This page has a collection of header bidding training videos.
 
 <div id="vimeo1">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -35,7 +35,7 @@ This page has a collection of header bidding training videos.
 
 <div id="vimeo2">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -48,7 +48,7 @@ This page has a collection of header bidding training videos.
 
 <div id="vimeo3">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -61,7 +61,7 @@ This page has a collection of header bidding training videos.
 
 <div id="vimeo4">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -74,7 +74,7 @@ This page has a collection of header bidding training videos.
 
 <div id="vimeo5">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -89,7 +89,7 @@ This page has a collection of header bidding training videos.
 
 <div id="vimeo6">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -102,7 +102,7 @@ This page has a collection of header bidding training videos.
 
 <div id="vimeo7">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -115,7 +115,7 @@ This page has a collection of header bidding training videos.
 
 <div id="vimeo8">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -128,7 +128,7 @@ This page has a collection of header bidding training videos.
 
 <div id="vimeo9">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -143,7 +143,7 @@ This page has a collection of header bidding training videos.
 
 <div id="vimeo10">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -156,7 +156,7 @@ This page has a collection of header bidding training videos.
 
 <div id="vimeo11">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -169,7 +169,7 @@ This page has a collection of header bidding training videos.
 
 <div id="vimeo12">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">

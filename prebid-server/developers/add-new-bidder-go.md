@@ -809,17 +809,17 @@ There are a several values of a bid that publishers expect to be populated. Some
 {: .table .table-bordered .table-striped }
 | Parameter | Definer | Path & Description
 | - | - | - | -
-| CCPA | OpenRTB | `request.regs.ext.us_privacy` <br/> The publisher is specifying the California Consumer Privacy Act consent string.
-| COPPA | OpenRTB | `request.regs.ext.us_privacy`<br/> The publisher is specifying the Children's Online Privacy Protection flag.
-| Currency | OpenRTB |`request.cur` <br/> The publisher is specifying the desired bid currency. The Prebid Server default is USD.
-| [Debug](https://github.com/prebid/prebid-server/issues/745) | Prebid | `request.ext.prebid.debug` <br/> The publisher is requesting verbose debugging information from Prebid Server.
-| [Request-Defined currency conversion rates](https://docs.prebid.org/prebid-server/features/pbs-currency.html) | Prebid | `request.ext.prebid.currency` <br/> The publisher decides to prioritize its own custom currency conversion rates over Prebid Server's currency conversion rates. If a currency rate is not found in `request.ext.prebid.currency`, Prebid Server's rates will be used unless `usepbsrates` is set to `false`. If missing, `usepbsrates` defaults to true.
-| [First Party Data (FPD)](https://docs.prebid.org/prebid-server/features/pbs-fpd.html)| Prebid | `request.imp[].ext.context.data.*`, `request.app.ext.data.*`, `request.site.ext.data.*`, `request.user.ext.data.*` <br/> The publisher may provide first party data (e.g. keywords).
-| GDPR | OpenRTB |  `request.regs.ext.gdpr`, `request.user.ext.consent` <br/> The publisher is specifying the European General Data Protection Regulation flag and TCF consent string.
-| Site or App | OpenRTB | `request.site`, `request.app` <br/> The publisher will provide either the site or app, but not both, representing the client's device.
-| Supply Chain | OpenRTB | `request.source.ext.schain` <br/> The publisher's declaration of all parties who are selling or reselling the bid request.
-| Test | OpenRTB | `request.test` <br/> The publisher is sending non-production traffic which also enables verbose debugging information from Prebid Server.
-| Video | OpenRTB | `request.imp[].video` <br/> The publisher is specifying video ad requirements or preferences.
+| CCPA | OpenRTB | `request.regs.ext.us_privacy`  The publisher is specifying the California Consumer Privacy Act consent string.
+| COPPA | OpenRTB | `request.regs.ext.us_privacy` The publisher is specifying the Children's Online Privacy Protection flag.
+| Currency | OpenRTB |`request.cur`  The publisher is specifying the desired bid currency. The Prebid Server default is USD.
+| [Debug](https://github.com/prebid/prebid-server/issues/745) | Prebid | `request.ext.prebid.debug`  The publisher is requesting verbose debugging information from Prebid Server.
+| [Request-Defined currency conversion rates](https://docs.prebid.org/prebid-server/features/pbs-currency.html) | Prebid | `request.ext.prebid.currency`  The publisher decides to prioritize its own custom currency conversion rates over Prebid Server's currency conversion rates. If a currency rate is not found in `request.ext.prebid.currency`, Prebid Server's rates will be used unless `usepbsrates` is set to `false`. If missing, `usepbsrates` defaults to true.
+| [First Party Data (FPD)](https://docs.prebid.org/prebid-server/features/pbs-fpd.html)| Prebid | `request.imp[].ext.context.data.*`, `request.app.ext.data.*`, `request.site.ext.data.*`, `request.user.ext.data.*`  The publisher may provide first party data (e.g. keywords).
+| GDPR | OpenRTB |  `request.regs.ext.gdpr`, `request.user.ext.consent`  The publisher is specifying the European General Data Protection Regulation flag and TCF consent string.
+| Site or App | OpenRTB | `request.site`, `request.app`  The publisher will provide either the site or app, but not both, representing the client's device.
+| Supply Chain | OpenRTB | `request.source.ext.schain`  The publisher's declaration of all parties who are selling or reselling the bid request.
+| Test | OpenRTB | `request.test`  The publisher is sending non-production traffic which also enables verbose debugging information from Prebid Server.
+| Video | OpenRTB | `request.imp[].video`  The publisher is specifying video ad requirements or preferences.
 
 {: .alert.alert-warning :}
 For simplicity, adapters are expected to make net-price bids (e.g. "If this ad wins, what will the publisher make?"), not gross-price bids. Publishers can correct for gross-price bids by setting [Bid Adjustments](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bid-adjustments) to account for fees.

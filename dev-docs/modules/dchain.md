@@ -69,24 +69,7 @@ bid.meta.dchain: {
 
 ## Adapters Supporting the dchain Module
 
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-
-<div class="adapters">
-{% for page in bidder_pages %}
-  <div class="col-md-4{% if page.dchain_supported %} dchain_supported{% endif %}">
-  {{ page.title }}
-  </div>
-{% endfor %}
-</div>
-
-<script>
-$(function(){
-  $('.adapters .col-md-4').hide();
-  $('.dchain_supported').show();
-});
-</script>
-
-<br style="clear: both">
+TODO show adapters that support dchain
 
 ## Further Reading
 

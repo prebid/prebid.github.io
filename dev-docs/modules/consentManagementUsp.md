@@ -216,24 +216,4 @@ Depending on your needs, you could include the US-Privacy information in a query
 
 ## Adapters Supporting US Privacy / CCPA
 
-<script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-var adaptersSupportingUsp=[];
-var idx_usp=0;
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-{% for item in bidder_pages %}
-    {% if item.usp_supported == true %}
-    adaptersSupportingUsp[idx_usp]={};
-    adaptersSupportingUsp[idx_usp].href="/dev-docs/bidders.html#{{item.biddercode}}";
-    adaptersSupportingUsp[idx_usp].text="{{item.title}}";
-    idx_usp++;
-    {% endif %}
-{% endfor %}
-</script>
-
-<div id="adaptersTableUsp">
-        <script>
-           writeDynamicTable({div: "adaptersTableUsp", data: "adaptersSupportingUsp", sort: "rowFirst", striped: false} );
-        </script>
-</div>
+TODO show adapters supporting us privacy

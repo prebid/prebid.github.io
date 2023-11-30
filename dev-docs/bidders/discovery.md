@@ -18,7 +18,7 @@ The DiscoveryDSP Bidding adapter requires setup before beginning. Please contact
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `token`      | required | publisher token        | `'1e100887dd614b7f69fdd1360437'`    | `string` |
-| `test` | recommend | 0(default): production env mode. <br> 1: dev env mode and no charge.we will bid Higher frequency to make debug easier.  | `1/0` | `Number` |
+| `test` | recommend | 0(default): production env mode.  1: dev env mode and no charge.we will bid Higher frequency to make debug easier.  | `1/0` | `Number` |
 | `tagid`      | required | tagid        | `'abcdefg'`    | `string` |
 | `publisher`      | required | publisher id         | `'abcdefg'`    | `string` |
 

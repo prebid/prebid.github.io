@@ -36,7 +36,7 @@ it's not ok for the code to require it.
 The RTD-core infrastructure uses hooks and event listeners to call the appropriate sub-modules to retrieve the data.
 Here is the flow for how the RTD-core module interacts with its sub-modules:
 
-![Prebid RTD Architecture Diagram](/assets/images/prebid-rtd-architecture.jpg){: .pb-xlg-img :}
+TODO fix image URL [Prebid RTD Architecture Diagram](/assets/images/prebid-rtd-architecture.jpg){: .pb-xlg-img :}
 
 The activities performed by the RTD-core module are on the left-hand side, while the functions
 that can be provided by your RTD sub-module are on the right-hand side. Note that you don't need to implement all of the functions - you'll want to plan out your functionality and develop the appropriate functions.

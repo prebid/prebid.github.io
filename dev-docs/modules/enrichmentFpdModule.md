@@ -14,8 +14,11 @@ sidebarType : 1
 
 {:.no_toc}
 
-{: .alert.alert-warning :}
+:::warn
+
 Since version 7.29, this module does nothing; its functionality is instead included by default in all Prebid distributions.
+
+:::
 
 This module adds a number of First Party Data (FPD) fields from the environment.
 
@@ -51,7 +54,7 @@ At the beginning of each auction, this module merges a number of values into the
 | viewport width | device.w | Hunts for window.innerWidth, window.document.documentElement.clientWidth, window.document.body.clientWidth |
 | viewport height | device.w | Hunts for window.innerHeight, window.document.documentElement.clientHeight, window.document.body.clientHeight |
 | UA client hints | device.sua | Collects user agent client hints. See [note](#ua-hints) below. |
-| meta keywords | site.keywords | Looks for a meta tag. e.g. <meta name="keywords" content="cars, boats"> |
+| meta keywords | site.keywords | Looks for a meta tag. e.g. `<meta name="keywords" content="cars, boats">` |
 | currency | cur | Collects the currency defined by the [Currency module](/dev-docs/modules/currency.html). |
 
 <a  id="ua-hints"></a>

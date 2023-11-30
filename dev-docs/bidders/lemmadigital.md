@@ -50,7 +50,7 @@ The Lemmadigital adapter supports video
 | `video.skippable`      | optional | If 'true', user can skip ad                                 | `true` |
 | `video.minduration`    | optional | Minimum ad duration in seconds                              | `5` |
 | `video.maxduration`    | optional | Maximum ad duration in seconds                              | `30` |
-| `video.protocols`      | optional |  Supported video bid response protocols<br/>Values<br/>`1`: VAST 1.0<br/>`2`: VAST 2.0<br/>`3`: VAST 3.0<br/> `4`: VAST 1.0 Wrapper<br/>`5`: VAST 2.0 Wrapper<br/>`6`: VAST 3.0 Wrapper            | `[5, 6]` |
+| `video.protocols`      | optional |  Supported video bid response protocolsValues`1`: VAST 1.0`2`: VAST 2.0`3`: VAST 3.0 `4`: VAST 1.0 Wrapper`5`: VAST 2.0 Wrapper`6`: VAST 3.0 Wrapper            | `[5, 6]` |
 
 ### AdUnit Format for Video
 

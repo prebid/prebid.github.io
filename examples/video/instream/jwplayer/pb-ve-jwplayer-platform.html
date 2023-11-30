@@ -18,7 +18,7 @@ sidebarType: 4
 
     <div id="videoExample" class="col-md-12">
       <h2>(Sorry, video code examples aren't available with your cookie privacy settings.)</h2>
-      <p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+      <p><a class="optanon-show-settings">Cookie Settings</a></p>
     </div>
 
     <script>
@@ -51,7 +51,7 @@ sidebarType: 4
       var pbjs = pbjs || {};
       pbjs.que = pbjs.que || [];
 
-      // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads<br>
+      // define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
       var tempTag = false;
       var invokeVideoPlayer = function(url) {
           tempTag = url;
@@ -72,13 +72,13 @@ sidebarType: 4
           bids: [{
               bidder: 'appnexus',
               params: {
-                  placementId: 13232361  //put your placement id here<br>
+                  placementId: 13232361  //put your placement id here
               }
           }]
       };
 
       pbjs.que.push(function() {
-        //put your adunits here<br>
+        //put your adunits here
           pbjs.addAdUnits(videoAdUnit);
 
           pbjs.setConfig({
@@ -120,22 +120,22 @@ sidebarType: 4
   &lt;!-- Replace this with the correct url for your player --&gt;
   &lt;script src="YOUR_JW_URL"&gt;&lt;/script&gt;
   &lt;script&gt;
-      // we initialize our player instance, specifying the div to load it into<br>
+      // we initialize our player instance, specifying the div to load it into
       var playerInstance = jwplayer('myElement1');
 
       function invokeVideoPlayer(url) {
           // this calls setup on the player we initialized &nbsp;
-          // this will use the settings defined in the player we loaded above unless you override them here<br>
+          // this will use the settings defined in the player we loaded above unless you override them here
           playerInstance.setup({
               "file": "https://vjs.zencdn.net/v/oceans.mp4",
               // or "file" could be replaced with "playlist" and a URL
               // from your JW Platform account in either json or rss format.
               "width": 640,
               "height": 480,
-              // we enable vast advertising for this player<br>
+              // we enable vast advertising for this player
               "advertising": {
                   "client": "vast",
-                  // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header<br>
+                  // url is the vast tag url that we passed in when we called invokeVideoPlayer in the header
                   "tag": url
               },
           });

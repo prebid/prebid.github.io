@@ -36,7 +36,7 @@ var pbjs = pbjs || {};
 
   // The ad tag in Flowplayer can be actual ad tag or promise to an ad tag. &nbsp;
   // We return the ad tag if it is available before the player is ready to play &nbsp;
-  // Otherwise the player waits for 2 secs for tag to be available.<br>
+  // Otherwise the player waits for 2 secs for tag to be available.
   var adtag = null
   var timeout = 2000
   window.prebid_fetcher = function() {
@@ -77,7 +77,7 @@ var pbjs = pbjs || {};
   };
 
   pbjs.que.push(function(){
-    pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request<br>
+    pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
 
     pbjs.setConfig({
       debug: true,

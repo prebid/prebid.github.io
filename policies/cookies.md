@@ -13,7 +13,6 @@ The docs.prebid.org website may store or retrieve information on your browser in
 <a class="optanon-show-settings">Cookie Settings</a>
 <!-- OneTrust Cookies Settings button end -->
 
-<br/>
 
 <!-- OneTrust Cookies List start -->
 <div id="optanon-cookie-policy"></div>

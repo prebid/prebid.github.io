@@ -21,7 +21,7 @@ sidebarType: 1
 
 ### Note
 
-The Smartadline bidder adaptor requires setup and approval from the Smartadline team. Please reach out to [smartadline@gmail.com](mailto:smartadline@gmail.com) for more information.<br>
+The Smartadline bidder adaptor requires setup and approval from the Smartadline team. Please reach out to [smartadline@gmail.com](mailto:smartadline@gmail.com) for more information.
 
 ### Banner - Ad Unit Setup
 

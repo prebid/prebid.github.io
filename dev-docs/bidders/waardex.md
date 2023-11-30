@@ -32,10 +32,10 @@ sidebarType: 1
 | `bidfloor`      | required | bid request price                                                                                       | 0.5                             | `float`         |
 | `position`      | optional | ad position on the page                                                                                 | 1                               | `number`        |
 | `instl`         | optional | 1 when ad is interstitial or full screen, 0 when not interstitial                                       | 1                               | `number`        |
-| `mimes`         | optional | Content MIME types supported                                                                            | ['video/x-ms-wmv', 'video/mp4'] | `array<string>` |
+| `mimes`         | optional | Content MIME types supported                                                                            | ['video/x-ms-wmv', 'video/mp4'] | `String[]` |
 | `minduration`   | optional | Minimum video ad duration in seconds                                                                    | 2                               | `number`        |
 | `maxduration`   | optional | Maximum video ad duration in seconds                                                                    | 10                              | `number`        |
-| `protocols`     | optional | Array of supported video protocols                                                                      | ['VAST 1.0', 'VAST 2.0']        | `array<string>` |
+| `protocols`     | optional | Array of supported video protocols                                                                      | ['VAST 1.0', 'VAST 2.0']        | `String[]` |
 | `startdelay`    | optional | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements                 | -1                              | `number`        |
 | `placement`     | optional | Placement type for the impression                                                                       | 1                               | `number`        |
 | `skip`          | optional | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes                       | 1                               | `number`        |

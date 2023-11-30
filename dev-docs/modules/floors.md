@@ -52,7 +52,7 @@ Web sites running Prebid.js will utilize this client-side module.
 
 There are several places where the Floor module changes the behavior of the Prebid.js auction process. Below is a diagram describing the general flow of the client-side Price Floors Module:
 
-![Floors Module Flow](/assets/images/floors/floors_flow.png)
+TODO fix image url [Floors Module Flow](/assets/images/floors/floors_flow.png)
 
 1. When building the Prebid.js package, the Price Floors Module (and any analytics adapters) needs to be included with 'gulp build --modules=priceFloors,...'
 2. As soon as the setConfig({floors}) call is initiated, the Price Floors Module will build an internal hash table for each auction derived from a Rule Location (one of Dynamic, setConfig or adUnit)
@@ -667,7 +667,7 @@ Below are some real example behaviors.
 
 #### Example 1
 
-Domain = <www.website.com>
+Domain = `<www.website.com>`
 
 Floor provider rule definition
 
@@ -704,7 +704,7 @@ Floor provider rule definition
 
 mediaType = banner  
 Size = 300x600  
-Domain context = <www.website.com>  
+Domain context = `<www.website.com>`
 
 The Floor module produces an internal hash table of all possible permutations of “banner”, “300x600”, “www.website.com” and “\*” with the most specific hash values up top, weighting rules priority from left column specific values to right. Each left value will weigh more than the subsequent column’s specific values. The module attempts to find the matching rule by cycling through each below possible rule (from top to bottom) against the above rule provider data set.
 
@@ -729,7 +729,7 @@ Floor enforced: 3.01
 
 mediaType = video  
 Size = 640x480  
-Domain context = <www.website.com>  
+Domain context = `<www.website.com>`
 
 Price Floor internal possible permutations sorted by priority:
 
@@ -753,7 +753,7 @@ Enforced Floor: 15.01
 
 mediaType = video  
 Size = 300x250  
-Domain context = <www.website.com>  
+Domain context = `<www.website.com>`
 
 Price Floor internal possible permutations sorted by priority:
 
@@ -777,7 +777,7 @@ Enforced floor: 10.01
 
 Similar data set with slightly different rules and same bids from each bidder. Matching rules will differ from example 1.
 
-Domain = <www.website.com>
+Domain = `<www.website.com>`
 
 Floor provider rule definition
 
@@ -815,7 +815,7 @@ Floor provider rule definition
 
 mediaType = banner  
 Size = 300x600  
-Domain context = <www.website.com>  
+Domain context = `<www.website.com>`
 
 ```javascript
 
@@ -840,7 +840,7 @@ Floor enforced: 4.01
 
 mediaType = video  
 Size = 640x480  
-Domain context = <www.website.com>.
+Domain context = `<www.website.com>`
 
 Price Floor internal possible permutations sorted by priority:
 
@@ -866,7 +866,7 @@ Enforced Floor: 9.01
 
 mediaType = video  
 Size = 300x250  
-Domain context = <www.website.com>  
+Domain context = `<www.website.com>`
 
 Price Floor internal possible permutations sorted by priority:
 
@@ -1374,12 +1374,14 @@ If the currency function is unable to derive the correct cpm in any of the scena
 
 ## Floors Providers
 
+TODO insert proper company logos
+
 {: .table  }
 | Partner | Contact | About |
-| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | [globalsupport@magnite.com](mailto:globalsupport@magnite.com) | Magnite data-science applied to dynamic floors. (Currently only available to Demand Manager customers) |
-| <img src="/assets/images/partners/leader/openx.png" style="height:50px;"> | Reach out to OpenX at [apollo@openx.com](mailto:apollo@openx.com) | Dynamic floor optimization and more |
-| <img src="/assets/images/partners/leader/pubmatic.png" style="height:50px;"> | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
-| <img src="/assets/images/partners/leader/AssertiveYield_logo.png"> | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
+| [/assets/images/partners/leader/Magnite_logo.png] | [globalsupport@magnite.com](mailto:globalsupport@magnite.com) | Magnite data-science applied to dynamic floors. (Currently only available to Demand Manager customers) |
+| [assets/images/partners/leader/openx.png] | Reach out to OpenX at [apollo@openx.com](mailto:apollo@openx.com) | Dynamic floor optimization and more |
+| [assets/images/partners/leader/pubmatic.png] | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
+| [assets/images/partners/leader/AssertiveYield_logo.png] | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
 | pubx.ai | [hello@pubx.ai](mailto:hello@pubx.ai) | AI-powered dynamic floor optimization |
 
 ## Further Reading

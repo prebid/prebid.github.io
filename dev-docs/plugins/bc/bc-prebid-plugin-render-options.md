@@ -23,7 +23,7 @@ These options are used to configure how the selected ad should be displayed for 
 
 When configuring prebid options for more than one ad break, create an array of prebid and rendering options for each ad break.
 
-{% capture infoNote %}
+:::info
 Many of the rendering options listed below are ignored when the Brightcove IMA Plugin is used to render the ads.  That plugin does not provide an API that can be used to customize the rendering characteristics. These limitations will be noted below.
 :::
 
@@ -57,19 +57,19 @@ If the prebid configuration options do not include any dfpParameters, meaning th
 
 Specifying one of the acceptable values listed below will override this behavior; the prebid plugin will use the renderer specified in this option.
 
-{% capture infoNote %}
+:::info
 The prebid plugin will only use the **first** definition of the `adRenderer` option to control the ad renderer selection.  If you define this option more than once, the other specifications will be ignored.
 {% endcapture %}
 
 {% include alerts/alert_note.html content=infoNote %}
 
-{% capture infoNote %}
+:::info
 If your page includes more than one Brightcove Player within the same HTML document and *any* of these players loads the Brightcove IMA Plugin, then it is recommended that *all* of your players in the document use the Brightcove IMA Plugin. Therefore, even if your prebid configuration does not include Google Ad Manager parameters and you are not using a "custom" renderer, in this case you should explicitly specify the IMA plugin using the `adRenderer` option as shown below. Doing so seems to prevent a problem observed when multiple players are being used in the same HTML document in PC browsers (Edge and Internet Explorer) and some of the players load the IMA plugin and the others load the MailOnline plugin. You can also prevent this collision if your players are loaded into their own iFrames.
 :::
 
 {% include alerts/alert_note.html content=infoNote %}
 
-{% capture infoNote %}
+:::info
 If you will be using the Brightcove IMA plugin as the ad renderer, either because Google Ad Manager is the primary ad server or you have explicitly specified the IMA plugin in the `adRenderer` option, then it is *suggested* that you add the IMA plugin to your Brightcove Player configuration in the Brightcove Studio. Doing so prevents some problems observed when the Player is running on iOS and the IMA plugin is loaded at run-time. When you configure IMA in the Studio, do *not* put a URL in the `Ad Tag` field AND select `"On demand"` from the `Request Ads` field.
 :::
 
@@ -103,11 +103,11 @@ None. If this option is not specified with a valid value, the renderer selection
 
 Object that specifies the publisher preferences regarding ad skipping behavior.
 
-{% capture infoNote %}
-This option is ignored if the Brightcove IMA Plugin is used to render the ad. IMA will only display a SKIP button when the XML that is passed into the IMA renderer specifies a skipOffset value.  If the creative XML containing the skipOffset is passed into a VPAID wrapper such that the skipOffset value is not visible to IMA, then no SKIP button will be displayed.
-:::
+:::info
 
-{% include alerts/alert_note.html content=infoNote %}
+This option is ignored if the Brightcove IMA Plugin is used to render the ad. IMA will only display a SKIP button when the XML that is passed into the IMA renderer specifies a skipOffset value.  If the creative XML containing the skipOffset is passed into a VPAID wrapper such that the skipOffset value is not visible to IMA, then no SKIP button will be displayed.
+
+:::
 
 **Acceptable Values:**
 
@@ -135,7 +135,7 @@ This means that the publisher does not have a client-side preference. Skippable 
 
 Specifies whether skippable behavior should be enforced regardless of the presence of the `skipOffset` attribute in the creative XML.
 
-{% capture infoNote %}
+:::info
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
 :::
 
@@ -168,7 +168,7 @@ None - If missing, then skippable behavior is controlled by the presence of the 
 
 Integer that specifies the minimum length in seconds of the ad video for a skip button to be enabled. If the duration of the ad video is less than the `videoThreshold` value, then the ad will not be skippable.
 
-{% capture infoNote %}
+:::info
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
 :::
 
@@ -198,7 +198,7 @@ None - If missing and `skippable.enabled = true` then the ad will be skippable r
 
 Integer that specifies the time in seconds when the skip button should be enabled (assuming that the `videoThreshold` criteria has been met).
 
-{% capture infoNote %}
+:::info
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
 :::
 
@@ -228,7 +228,7 @@ None
 
 String used to customize the text that is displayed BEFORE the Skip button is enabled. This allows the publisher to customize the text for non-English language translation.
 
-{% capture infoNote %}
+:::info
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
 :::
 
@@ -258,7 +258,7 @@ No
 
 String used as the text displayed in the Skip button. This allows the publisher to customize the text of the button, including customizing it for non-English language translation.
 
-{% capture infoNote %}
+:::info
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
 :::
 
@@ -349,7 +349,7 @@ The Ad Indicator will always be displayed in the top left corner of the top bar 
 
 This field is used to customize the text of the Ad Indicator or to provide a non-English translation for the Ad Indicator.
 
-{% capture infoNote %}
+:::info
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
 :::
 
@@ -381,7 +381,7 @@ No
 
 Specifies the maximum number of XML redirects that are allowed to be considered when attempting to play an ad.
 
-{% capture infoNote %}
+:::info
 This option is ignored if the Brightcove IMA Plugin is used to render the ad.
 :::
 
@@ -491,5 +491,3 @@ Sample implementations are provided at:
 * **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)**
 
 * **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
-
-</div>

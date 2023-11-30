@@ -29,7 +29,7 @@ The Rise adapter requires setup and approval. Please reach out to [prebid-rise-e
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  Rise publisher Id provided by your Rise representative  | "1234567890abcdef12345678"
-| `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
+| `floorPrice` | optional | Number |  Minimum price in USD.  **WARNING:** Misuse of this parameter can impact revenue | 2.00
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 | `rtbDomain` | optional | String |  Sets the seller end point    | "www.test.com"

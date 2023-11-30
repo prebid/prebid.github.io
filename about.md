@@ -17,21 +17,15 @@ p {
 
 </style>
 
-<br>
-
 <div class="bs-docs-section" markdown="1">
 
 ### Who is behind it?
 
 Prebid.js was created in early 2015 by Matt Kendall and Paul Yang from AppNexus, together with the help of Nick Jacob from the publisher Aplus. Today, prebid.js has become a project open to the broader community with contributions by many publishers and bidders.
 
-<br>
-
 ### Why did we create Prebid.js?
 
 Publishers had been experiencing the same challenges when implementing header bidding. If improperly implemented, header bidding can increase latency and cause conflicts between multiple demand partners, leading to poor user experience. These problems made demand integration through header bidding with publishers difficult. To make integration easier, we teamed up with some of the most tech savvy publishers and created the prebid.js web framework.
-
-<br>
 
 ### Why open source?
 
@@ -39,7 +33,6 @@ Header bidding empowers publishers to run unbiased auctions across demand source
 
 Many publishers and demand partners have joined this effort to keep header bidding tech open and unbiased.
 
-<br>
 
 ### Acknowledgements
 

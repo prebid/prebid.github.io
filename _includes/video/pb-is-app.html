@@ -17,7 +17,7 @@
     	var pbjs = pbjs || {};
     	pbjs.que = pbjs.que || [];
 
-    	// define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads<br>
+    	// define invokeVideoPlayer in advance in case we get the bids back from prebid before the entire page loads
     	var tempTag = false;
     	var invokeVideoPlayer = function(url) {
     	    tempTag = url;
@@ -38,13 +38,13 @@
     	    bids: [{
     	        bidder: 'appnexus',
     	        params: {
-    	            placementId: 13232361 // Add your own placement id here<br>
+    	            placementId: 13232361 // Add your own placement id here
     	        }
     	    }]
     	};
 
     	pbjs.que.push(function() {
-    	    pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request<br>
+    	    pbjs.addAdUnits(videoAdUnit); // add your ad units to the bid request
     	    pbjs.setConfig({
     	        debug: true,
     	        cache: {

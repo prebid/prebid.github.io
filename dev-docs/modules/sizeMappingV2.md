@@ -38,7 +38,7 @@ It's meant for publishers that have complex site designs. You should use this mo
 <li>the site needs to alter different mediaTypes at different screen widths; e.g., the banner size ranges are 0-400px, 401-700px, and 701+px, but the native ads appear at 500px.</li>
 <li>some bidders or mediaTypes should be included (or removed) at different overlapping size ranges.</li>
 </ul>
-<br/>
+
 {:/}
 
 If, on the other hand, the AdUnits, bidders, and mediaTypes all change behavior together at the same viewport width,

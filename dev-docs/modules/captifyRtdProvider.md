@@ -72,5 +72,5 @@ pbjs.setConfig({
 | `waitForIt`      | Boolean       | Should be `true` if there's an `auctionDelay` defined (recommended) | no      | Default `false` |
 | `params`         | Object        | |  | |
 | `params.pubId`   | Integer       | Partner ID, required to get results and provided by Captify         | yes      | Use `123456` for tests, speak to your Captify account manager to receive your pubId |
-| `params.bidders` | Array<String> | List of bidders for which you would like data to be set             | yes      | Currently only 'appnexus' supported |
+| `params.bidders` | String[]      | List of bidders for which you would like data to be set             | yes      | Currently only 'appnexus' supported |
 | `params.url`     | String        | Captify live-classification service url                             | no       | Defaults to `https://live-classification.cpx.to/prebid-segments`

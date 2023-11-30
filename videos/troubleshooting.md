@@ -18,7 +18,7 @@ sidebarType: 1
 
 <div id="vimeo1">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -33,7 +33,7 @@ sidebarType: 1
 
 <div id="vimeo2">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -46,7 +46,7 @@ sidebarType: 1
 
 <div id="vimeo3">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">
@@ -59,7 +59,7 @@ sidebarType: 1
 
 <div id="vimeo4">
 <h3>(Sorry, training videos aren't available with your cookie privacy settings.)</h3>
-<p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+<p><a class="optanon-show-settings">Cookie Settings</a></p>
 </div>
 
 <script type="text/javascript">

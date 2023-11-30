@@ -32,11 +32,17 @@ The User ID module supports multiple ways of establishing pseudonymous IDs for u
 1. In addition to `bidRequest.userId`, `bidRequest.userIdAsEids` is made available to Prebid.js adapters and Prebid Server S2S adapters. `bidRequest.userIdAsEids` has userIds in ORTB EIDS format.
 1. The page can call [pbjs.getUserIds()](/dev-docs/publisher-api-reference/getUserIds.html), [pbjs.getUserIdsAsEids()](/dev-docs/publisher-api-reference/getUserIdsAsEids.html), or [pbjs.getUserIdsAsync()](/dev-docs/publisher-api-reference/getUserIdsAsync.html).
 
-{: .alert.alert-info :}
+:::info
+
 Note that User IDs aren't as popular in the mobile app world because device ID is available in those ad serving scenarios.
 
-{: .alert.alert-info :}
+:::
+
+:::info
+
 Not all bidder adapters support all forms of user ID. See the tables below for a list of which bidders support which ID schemes.
+
+:::
 
 ## User ID, GDPR, Permissions, and Opt-Out
 
@@ -202,11 +208,7 @@ The corresponding user id object and the eids array will look like this:
 
 ## User ID Sub-Modules
 
-{% assign userid_pages = site.pages | where: "layout", "userid" | sort_natural: "title" %}
-
-{% for page in userid_pages %}
-<li><a href="/{{ page.path | replace: '.md', '.html'}}">{{page.title}}</a></li>
-{% endfor %}
+TODO list user id sub modules
 
 ## Bidder Adapter Implementation
 

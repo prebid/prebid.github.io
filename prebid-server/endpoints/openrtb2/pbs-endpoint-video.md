@@ -46,9 +46,8 @@ These key-values are returned to the SSAI server as part of the video response.
 9. The SSAI server requests the content from the content host and stitches the creatives and content together.
 10. The stitched stream is returned to the application.
 
-<br>
 <img src="/assets/images/flowcharts/pb-lfv-serverside.png">
-<br>
+
 
  **Parameters**<a name="parameters"></a>
 
@@ -137,7 +136,7 @@ These are the parameters for the `pod` subobject:
 | Param | Scope | Type | Description |
 | --- | --- | --- | --- |
 | podconfig.pods | Required | `Object` |  Container object describing the adPod(s) to be requested. |
-| pod.podid | Required | `Integer` |  Unique id of the pod within a particular request.   <br>**Recommendation**: Order these numerically, with increment of 1. |
+| pod.podid | Required | `Integer` |  Unique id of the pod within a particular request.   **Recommendation**: Order these numerically, with increment of 1. |
 | pod.adpoddurationsec | Required | `Integer` |  Duration of the adPod. |
 | pod.configid | Required | `String` |  ID of the stored config that corresponds to a single pod request for all included adapters. |
 

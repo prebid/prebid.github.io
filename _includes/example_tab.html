@@ -13,7 +13,7 @@
         </li>
     {% endfor %}
 
-    <br> {% assign pl_example_pages = (site.pages | where: "layout", "player_example" | sort: "pid" %} 
+     {% assign pl_example_pages = (site.pages | where: "layout", "player_example" | sort: "pid" %} 
 
     {% for p_epage in pl_example_pages %}
         <li>

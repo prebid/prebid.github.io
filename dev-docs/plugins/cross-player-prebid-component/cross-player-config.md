@@ -283,7 +283,7 @@ NOTE:  You might need to increase the `prebidTimeout` value when running on mobi
 
 **Description:**
 
-Specify whether `prebidCache` should be enabled.<br>Used to convert a VAST URL to a wrapped VAST XML. It allows prebid.js to accept either VAST URLs or VAST XML. In most cases, `prebidCache` should be enabled. It is required when using Google Ad Manager as the ad server.<br>Some publishers may not need the extra processing of `prebidCache` depending on their particular workflow.
+Specify whether `prebidCache` should be enabled. Used to convert a VAST URL to a wrapped VAST XML. It allows prebid.js to accept either VAST URLs or VAST XML. In most cases, `prebidCache` should be enabled. It is required when using Google Ad Manager as the ad server. Some publishers may not need the extra processing of `prebidCache` depending on their particular workflow.
 
 **Acceptable Values:**
 

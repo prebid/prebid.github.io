@@ -15,4 +15,4 @@ sidebarType: 1
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId` | required | Relaido placement id  | `1234567` | `string`  |
-| `video.playerSize` | optional | Video Player Size<br/>This field is mandatory if mediaTypes.video.playerSize is undefined. | `[1, 1]` or `[300, 250] over` | `array of number` |
+| `video.playerSize` | optional | Video Player SizeThis field is mandatory if mediaTypes.video.playerSize is undefined. | `[1, 1]` or `[300, 250] over` | `array of number` |
