@@ -33,7 +33,7 @@ sidebarType: 1
 
 #### User Sync
 
-Add the following code to enable user sync. Setupad strongly recommends enabling user syncing through iFrames. This functionality improves partners' user match rates and increases the Setupad bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
+Add the following code to activate user sync. Setupad advises enabling user syncing through iFrames, as it significantly improves partners' user match rates and increases the Setupad bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
 
 ```
 pbjs.setConfig({
@@ -51,7 +51,7 @@ pbjs.setConfig({
 
 #### disabledSendingStatisticData
 
-The `disabledSendingStatisticData` parameter disables sending statistics data to the setupad server, such as bidRequested, bidResponse, noBid and bidTimeout events.
+The `disabledSendingStatisticData` parameter disables sending statistics data to the Setupad server, such as bidRequested, bidResponse, noBid, and bidTimeout events.
 An example of enabling this option:
 
 ```javascript
