@@ -78,15 +78,15 @@ For example, in case `uid2` is configured to be requested in addition to the `no
 
 ```javascript
 {
-    // ...
-    "lipb" : {
-        "lipbid": "sample-nonid-value",
-        "uid2" : "sample-uid2-value"
-    },
-    "uid2" : {
-        "id" : "sample-uid2-value"
-    }
-    //...
+  // ...
+  "lipb" : {
+    "lipbid": "sample-nonid-value",
+    "uid2" : "sample-uid2-value"
+  },
+  "uid2" : {
+    "id" : "sample-uid2-value"
+  }
+  //...
 }
 ```
 
@@ -103,15 +103,13 @@ Enabling this option in addition to the `uid2` module is an easy way to increase
 ```javascript
 pbjs.setConfig({
   userSync: {
-    userIds: [
-      {
-        name: "liveIntentId",
-        params: {
-          publisherId: "12432415",
-          requestedAttributesOverrides: { uid2: true }
-        }
+    userIds: [{
+      name: "liveIntentId",
+      params: {
+        publisherId: "12432415",
+        requestedAttributesOverrides: { uid2: true }
       }
-    ]
+    }]
   }
 });
 ```
@@ -147,14 +145,14 @@ NOTE: For optimal performance, the LiveIntent ID sub-module should be called at 
 
     ```javascript
     pbjs.setConfig({
-        userSync: {
-            userIds: [{
-                name: "liveIntentId",
-                params: {
-                    publisherId: "9896876"
-                }
-            }]
-        }
+      userSync: {
+        userIds: [{
+          name: "liveIntentId",
+          params: {
+            publisherId: "9896876"
+          }
+        }]
+      }
     });
     ```
 
@@ -162,15 +160,15 @@ NOTE: For optimal performance, the LiveIntent ID sub-module should be called at 
 
     ```javascript
     pbjs.setConfig({
-        userSync: {
-            userIds: [{
-                    name: "liveIntentId",
-                    params: {
-                        publisherId: "9896876",
-                        identifiersToResolve: ["my-own-cookie"]
-                    }
-                }]
-        }
+      userSync: {
+        userIds: [{
+          name: "liveIntentId",
+          params: {
+            publisherId: "9896876",
+            identifiersToResolve: ["my-own-cookie"]
+          }
+        }]
+      }
     });
     ```
 
@@ -178,26 +176,26 @@ NOTE: For optimal performance, the LiveIntent ID sub-module should be called at 
 
     ```javascript
     pbjs.setConfig({
-        userSync: {
-            userIds: [{
-                    name: "liveIntentId",
-                    params: {
-                        publisherId: "9896876",
-                        distributorId: "did-0123",
-                        identifiersToResolve: ["my-own-cookie"],
-                        requestedAttributesOverrides: { uid2: true, magnite: true, bidswitch: true },
-                        url: "https://publisher.liveintent.com/idex",
-                        partner: "prebid",
-                        ajaxTimeout: 1000,
-                        liCollectConfig: {
-                            fpiStorageStrategy: "cookie",
-                            fpiExpirationDays: 730,
-                            collectorUrl: "https://rp.liadm.com",
-                            appId: "a-0012"
-                        }
-                    }
-                }]
-        }
+      userSync: {
+        userIds: [{
+          name: "liveIntentId",
+          params: {
+            publisherId: "9896876",
+            distributorId: "did-0123",
+            identifiersToResolve: ["my-own-cookie"],
+            requestedAttributesOverrides: { uid2: true, magnite: true, bidswitch: true },
+            url: "https://publisher.liveintent.com/idex",
+            partner: "prebid",
+            ajaxTimeout: 1000,
+            liCollectConfig: {
+              fpiStorageStrategy: "cookie",
+              fpiExpirationDays: 730,
+              collectorUrl: "https://rp.liadm.com",
+              appId: "a-0012"
+            }
+          }
+        }]
+      }
     });
     ```
 
