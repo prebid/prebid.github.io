@@ -96,7 +96,7 @@ For the attributes `lipbid` (nonID), `uid2`, `medianet`, `magnite`, `bidswitch`,
 
 ### Request uid2
 
-An attribute that requires special mention here is `uid2`. If this attribute is resolved by the ID sub-module, it will be exposed in the same format as from the Unified ID 2.0 user ID module. If both the LiveIntent module and the `uid2` module manage to resolve a `uid2`, the one with the highest priority according to the configuration will be used. See the [Prebid multiple identifiers populated by user id sub-module](../userId.md#prebid-multiple-identifiers-populated-by-user-id-sub-module) section of the User ID documentation for more information.
+An attribute that requires special mention here is `uid2`. If this attribute is resolved by the ID sub-module, it will be exposed in the same format as from the Unified ID 2.0 user ID module. If both the LiveIntent module and the `uid2` module manage to resolve a `uid2`, the one with the highest priority according to the configuration will be used. See the [Prebid multiple identifiers populated by user id sub-module](../userId.md#prebid-multiple-identifiers-populated-by-user-id-submodule) section of the User ID documentation for more information.
 
 Enabling this option in addition to the `uid2` module is an easy way to increase your `uid2` resolution rates. The following is an example configuration of `uid2` resolution:
 
