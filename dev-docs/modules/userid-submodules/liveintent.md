@@ -52,20 +52,18 @@ For example, the configuration below requests the `nonID` as well as `uid2`, the
 ```javascript
 pbjs.setConfig({
   userSync: {
-    userIds: [
-      {
-        name: "liveIntentId",
-        params: {
-          publisherId: "12432415",
-          requestedAttributesOverrides: {
-            uid2: true,
-            medianet: true,
-            bidswitch: true,
-            magnite: true
-          }
+    userIds: [{
+      name: "liveIntentId",
+      params: {
+        publisherId: "12432415",
+        requestedAttributesOverrides: {
+          uid2: true,
+          medianet: true,
+          bidswitch: true,
+          magnite: true
         }
       }
-    ]
+    }]
   }
 });
 ```
