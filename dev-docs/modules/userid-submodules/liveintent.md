@@ -149,66 +149,60 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 
 1. To receive the LiveIntent ID, the setup looks like the following example:
 
-```javascript
-pbjs.setConfig({
-  userSync: {
-    userIds: [
-      {
-        name: "liveIntentId",
-        params: {
-          publisherId: "9896876",
-        },
-      },
-    ],
-  },
-});
-```
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: "liveIntentId",
+                params: {
+                    publisherId: "9896876"
+                }
+            }]
+        }
+    });
+    ```
 
 2. If you are passing additional identifiers that you want to resolve to the LiveIntent ID, add the ID under the `identifiersToResolve` array in the configuration parameters as shown in the following example:
 
-```javascript
-pbjs.setConfig({
-   userSync: {
-    userIds: [
-      {
-        name: "liveIntentId",
-        params: {
-          publisherId: "9896876",
-          identifiersToResolve: ["my-own-cookie"],
-        },
-      },
-    ],
-  },
-});
-```
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                    name: "liveIntentId",
+                    params: {
+                        publisherId: "9896876",
+                        identifiersToResolve: ["my-own-cookie"]
+                    }
+                }]
+        }
+    });
+    ```
 
 3. If all the supported configuration params are passed, then the setup look as follows:
 
-```javascript
-pbjs.setConfig({
-  userSync: {
-    userIds: [
-      {
-        name: "liveIntentId",
-        params: {
-          publisherId: "9896876",
-          distributorId: "did-0123",
-          identifiersToResolve: ["my-own-cookie"],
-          requestedAttributesOverrides: { uid2: true, magnite: true, bidswitch: true },
-          url: "https://publisher.liveintent.com/idex",
-          partner: "prebid",
-          ajaxTimeout: 1000,
-          liCollectConfig: {
-            fpiStorageStrategy: "cookie",
-            fpiExpirationDays: 730,
-            collectorUrl: "https://rp.liadm.com",
-            appId: "a-0012",
-          },
-        },
-      },
-    ],
-  },
-});
-```
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                    name: "liveIntentId",
+                    params: {
+                        publisherId: "9896876",
+                        distributorId: "did-0123",
+                        identifiersToResolve: ["my-own-cookie"],
+                        requestedAttributesOverrides: { uid2: true, magnite: true, bidswitch: true },
+                        url: "https://publisher.liveintent.com/idex",
+                        partner: "prebid",
+                        ajaxTimeout: 1000,
+                        liCollectConfig: {
+                            fpiStorageStrategy: "cookie",
+                            fpiExpirationDays: 730,
+                            collectorUrl: "https://rp.liadm.com",
+                            appId: "a-0012"
+                        }
+                    }
+                }]
+        }
+    });
+    ```
 
 Please note: the _distributorId_ will be ignored when `liCollectConfig.appId` is present.
