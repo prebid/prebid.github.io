@@ -33,29 +33,29 @@ inventory concept targeted by [line items](#line-items).
 
 ## Placement
 
-A placement is another name for [AdUnit](#adunit) for some bidders. It's an inventory concept targeted by [line items](#line-items).
-Bidders may call this zoneId, formatId, placementId, siteId or something else, but the conecept is the same.
+A 'placement' is bidder term that's similar to [AdUnit](#adunit) -- it helps the bidder link the AdUnit to details about the header bidding auction that have been entered into their systems.
+Some bidders may use a combination of multiple parameters like zoneId, formatId, siteId or something else, but the concept is similar.
 
 {: .alert.alert-warning :}
 A notable exception is Google Ad Manager. [Google Ad Manager placements](https://support.google.com/admanager/answer/177397?hl=en) are a _group of [ad units](#adunit)_!
 
 ## Line Items
 
-> Line items contain information about how specific ad creatives are intended to serve to your website or app along with pricing and other delivery details. Line items are added to orders and contain details like:
->
-> - The number of times your advertiser or buyer wants an ad creative to serve
-> - The cost you negotiated for the campaign
-> - Start and end times of the campaign
-> - Targeting that allows your advertiser or buyer to reach its intended audience or demographic
+A 'Line Item' is an ad server concept that contains information about how a specific ad is intended to serve to a website or app. Line items are added to containers called 'Orders' and carry details like:
 
-From the [Google Ad Manager Line Item documentation](https://support.google.com/admanager/answer/9405477?hl=en)
+- The number of times the advertiser or buyer wants an ad creative to serve
+- The cost negotiated for the campaign
+- Start and end times of the campaign
+- Targeting that allows the advertiser or buyer to reach its intended audience or demographic
 
-Prebid requires a line item setup if you aren't using an ad server that supports prebid natively.
-The [Prebid Line Item Manager] helps you to setup GAM Small Business. GAM 360 has a [native prebid integration](https://support.google.com/admanager/answer/12273163?hl=en).
+(Adapted from the [Google Ad Manager Line Item documentation](https://support.google.com/admanager/answer/9405477?hl=en))
+
+Integrating Prebid bids with other ad sources requires a [special line item setup](/adops/adops-planning-guide.html) if you aren't using an ad server that supports Prebid natively, which most don't.
+The [Prebid Line Item Manager] can help set up GAM line items. GAM 360 has the beginnings of a [native Prebid integration](https://support.google.com/admanager/answer/12273163?hl=en).
 
 ## Key Values
 
-A generic way to target [line items](#line-items) in your ad manager. Prebid makes heavy use of key values to indicate the winning bidder and the winning cpm.
+A generic way to target [line items](#line-items) in your ad manager. Prebid makes heavy use of key values to indicate the winning bidder and the winning bid price.
 
 ## AMP
 
@@ -96,7 +96,7 @@ Once called 'instream', these are AdUnits that live within a video player.
 
 ### Interstitial
 
-Interstitial ads are full-screen ads that cover most of the visible UI. They're typically displayed at during navigation, e.g. clicking a link or going to the next level in a gam.
+Interstitial ads are full-screen ads that cover most of the visible UI. They're typically displayed at during navigation, e.g. clicking a link or going to the next level in a game.
 
 ## Prebid Mobile
 
@@ -120,7 +120,7 @@ price granularity, targeting parameters, etc. There's a string ID for this block
 
 ## Server Side Bidding
 
-The auction takes place on a server. Notable server side bidding systems are
+The header-bidding auction takes place on a server. Notable server side bidding systems are
 
 - [Prebid Server]
 - [Amazon TAM](https://aps.amazon.com/aps/transparent-ad-marketplace/)
