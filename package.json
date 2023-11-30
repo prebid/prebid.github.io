@@ -3,6 +3,11 @@
   "name": "prebid.github.io",
   "version": "1.0.0",
   "description": "This repository contains the source files for the Prebid.js documentation site at [Prebid.org](https://prebid.org).",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AtreNet/prebid.github.io.git"

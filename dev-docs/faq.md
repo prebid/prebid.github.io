@@ -40,6 +40,7 @@ After you’ve determined your legal obligations, consider the tools Prebid make
 * [Disable device access](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) - no adapter or module will be able to create a cookie or HTML5 localstorage object.
 * For GDPR:
   * Consider the [GDPR](/dev-docs/modules/consentManagement.html) and [GDPR Enforcement](/dev-docs/modules/gdprEnforcement.html) modules, which flexibly support various actions like cancelling usersyncs, auctions, and analytics. Using these modules, bid adapters can receive the IAB TCF string from the CMP.
+  * Note that TCF 2.2 is functionally the same as TCF 2.0 from the Prebid.js perspective. The code has always relied on event listeners to get the TCF string, so when `getTCData` was deprecated in 2.2 the modules were unaffected. There are still references in the code only because it is still accepted as a place for statically-supplied data.
   * Alternatively, the page can just avoid turning on certain bidders or modules.
 * For CCPA / CPRA / US-Privacy:
   * Consider the [US-Privacy](/dev-docs/modules/consentManagementUsp.html) module, which passes the IAB USP string through to bid adapters and supports data deletion events for User ID modules and other interested adapters and modules.

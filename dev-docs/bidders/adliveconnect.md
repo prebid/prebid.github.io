@@ -6,7 +6,9 @@ biddercode: adliveconnect
 pbjs: true
 pbs: false
 media_types: banner, native, video
-gdpr_supported: true
+gvl_id: 14 (adkernel)
+tcfeu_supported: true
+gpp_supported: true
 usp_supported: true
 coppa_supported: true
 pbs_app_supported: false
@@ -19,6 +21,8 @@ multiformat_supported: will-bid-on-one
 floors_supported: true
 aliasCode: adkernel
 sidebarType: 1
+enable_download: false
+pbjs_version_notes: removed in 8.14
 ---
 
 ### Note

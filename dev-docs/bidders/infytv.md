@@ -4,7 +4,7 @@ title: InfyTV
 description: Prebid InfyTV Bidder Adapter
 pbjs: true
 biddercode: infytv
-gdpr_supported: true
+tcfeu_supported: false
 media_types: video
 coppa_supported: true
 pbs: true

@@ -55,7 +55,7 @@ If the timeout period expires or an error from the CMP is thrown, one of these a
 
 Please start by understanding the IAB's [TCF Implementation Guide](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md).
 
-To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB TCF v2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices. It's important to understand the details of how the CMP works before integrating it with Prebid.js
+To utilize this module, a Consent Management Platform (CMP) compatible with the IAB TCF v2.0 or [v2.2](https://iabeurope.eu/tcf-2-2-launches-all-you-need-to-know/) spec needs to be implemented on the site to interact with the user and obtain their consent choices. It's important to understand the details of how the CMP works before integrating it with Prebid.js
 
 In general, implementation details for CMPs are not covered by Prebid.org, but we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes. In addition, the community is collecting a set of [CMP best practices](/dev-docs/cmp-best-practices.html).
 
@@ -76,7 +76,7 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr.actionTimeout | `integer` | Length of time (in milliseconds) to allow the user to take action to consent if they have not already done so. The actionTimer first waits for the CMP to load, then the actionTimeout begins for the specified duration. Default is `undefined`. | `10000` |
 | gdpr.defaultGdprScope | `boolean` | Defines what the `gdprApplies` flag should be when the CMP doesn't respond in time or the static data doesn't supply. Defaults to `false`. | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
-| gdpr.consentData.getTCData.tcString | `string` | Base64url-encoded TCF v2.0 string with segments. | |
+| gdpr.consentData.getTCData.tcString | `string` | Base64url-encoded TCF v2.x string with segments. | |
 | gdpr.consentData.getTCData.addtlConsent | `string` | Additional consent string if available from the cmp TCData object | |
 | gdpr.consentData.getTCData.gdprApplies | `boolean` | Defines whether or not this pageview is in GDPR scope. | |
 | gdpr.consentData.getTCData.purpose.consents | `Object` | An object representing the user's consent status for specific purpose IDs. | |
@@ -94,7 +94,7 @@ A related parameter is `deviceAccess`, which is at the global level of Prebid.js
 | --- | --- | --- | --- |
 | deviceAccess | `boolean` | If false, Prebid.js will prevent adapters and modules from reading and setting cookies and HTML local storage. Defaults to `true`. | `false` |
 
-### TCF v2.0 Examples
+### TCF v2.x Examples
 
 Example 1: IAB CMP using custom timeout and setting GDPR in-scope by default.
 
@@ -189,7 +189,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 
 {: .alert.alert-info :}
 
-If you are submitting changes to an adapter to support TCF v2.0, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gdpr_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GDPR.**
+If you are submitting changes to an adapter to support the IAB's TCF v2.x, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `tcfeu_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting TCF-EU.**
 
 ### Bidder Adapter GDPR Integration
 
@@ -371,32 +371,6 @@ Use the following values in the _gdprApplies_ field:
 
 **_responseCode_**  
 This should be false if there was some error in the consent data; otherwise set to true. False is the same as calling the callback with no parameters.
-
-## Adapters Supporting GDPR
-
-Bidders on this list have self-declared their GDPR support in their [github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gdpr_supported: true".
-
-<script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-var adaptersSupportingGdpr=[];
-var idx_gdpr=0;
-{% assign bidder_pages = site.pages | where: "layout", "bidder" %}
-{% for item in bidder_pages %}
-    {% if item.gdpr_supported == true %}
-    adaptersSupportingGdpr[idx_gdpr]={};
-    adaptersSupportingGdpr[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
-    adaptersSupportingGdpr[idx_gdpr].text="{{item.title}}";
-    idx_gdpr++;
-    {% endif %}
-{% endfor %}
-</script>
-
-<div id="adaptersTableGdpr">
-        <script>
-           writeDynamicTable({div: "adaptersTableGdpr", data: "adaptersSupportingGdpr", sort: "rowFirst", striped: false} );
-        </script>
-</div>
 
 ## Further Reading
 

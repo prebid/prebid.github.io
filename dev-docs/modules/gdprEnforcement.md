@@ -11,7 +11,6 @@ sidebarType : 1
 ---
 
 # GDPR Enforcement Module
-
 {: .no_toc }
 
 * TOC
@@ -48,7 +47,10 @@ The following table details the Prebid.js activities that fall under the [Transp
 | Invoke user ID modules | Purpose 1 - Store and/or access information on a device | May prevent one or more UserID modules from activating. | 3.14+ |
 | Read and write data to device | Purpose 1 - Store and/or access information on a device | May prevent one or more adapters or modules from being able to read or write cookies or localstorage in the user's browser. | 3.14+ |
 | Perform header bidding auction | Purpose 2 - Basic ads | May prevent one or more bid adapters from participating in the auction. | 4.0+ |
+| Transmit user first party data to partners | Purpose 4 -  Personalized ads | May prevent  one or more modules from receiving user first party data | 8.16+ |
+| Transmit Extended User IDs to partners | Depends on configuration (see [note](#note-transmitEids))| May prevent one or more modules from receiving user IDs and EIDs. | 8.16+ |
 | Invoke analytics adapters | Purpose 7 - Measurement | May prevent one or more analytics adapters from participating in the auction. | 4.x+ |
+| Transmit precise geolocation data to partners | Specal Feature 1 - Use precise geolocation data |  May cause geolocation data to be truncated for one or more modules | 8.16+ |
 
 ## Page Integration
 
@@ -69,11 +71,12 @@ The following fields related to GDPR enforcement are supported in the [`consentM
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | gdpr.rules | `Array of Objects` | Lets the publisher override the default behavior. | |
-| gdpr.rules[].purpose | `String` | Supported values: "storage" (Purpose 1), "basicAds" (Purpose 2), "measurement" (Purpose 7) | "storage" |
+| gdpr.rules[].purpose | `String` | Supported values: "storage" (Purpose 1), "basicAds" (Purpose 2), "personalizedAds" (purpose 4), "measurement" (Purpose 7), "transmitPreciseGeo" (Special Feature 1) | "storage" |
 | gdpr.rules[].enforcePurpose | `Boolean` | Determines whether to enforce the purpose consent. The default in Prebid.js 3.x is not to enforce purposes. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].enforceVendor | `Boolean` | Determines whether to enforce vendor signals for this purpose. The default in Prebid.js 3.x is not to enforce vendor signals. Prebid.js 4.0 enforces legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of this Purpose. | ["bidderA", "userID-module-B"] |
 | gdpr.rules[].softVendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the enforcement of vendor signals for this purpose. Unlike with `vendorExceptions`, Purpose consent is still enforced . | ["bidderA", "userID-module-B"] |
+| gdpr.rules[].eidsRequireP4Consent | `Boolean` | Only relevant on the personalizedAds `purpose`. If true, user IDs and EIDs will not be shared without evidence of consent for TCF Purpose 4. If false, evidence of consent for any of Purposes 2-10 is sufficient for sharing user IDs and EIDs. Defaults to false. See [note](#note-transmitEids) | true |
 | strictStorageEnforcement | `Boolean` | If false (the default), allows some use of storage regardless of purpose 1 consent - see [note](#strictStorageEnforcement) below | true |
 
 Notes:
@@ -180,18 +183,49 @@ a "basic" form of TCF 'legal basis' validation using the supplied consent string
 
 A goal of 'basic enforcement' is to confirm that there's enough evidence of consent to pass data on to vendors who do have access to the GVL and can fully parse and enforce.
 
+Evidence of consent for a particular purpose or vendor means that:
+
+* Prebid.js has the the user's purpose or vendor consent, or
+* (for Purpose 2 only) we've confirmed the user's Legitimate Intereset (LI) Transparency is established for this purpose or vendor.
+
 Before allowing an activity tied to a TCF-protected Purpose for a given vendor, one of these scenarios must be true:
 
-* Configuration rules enforce both consent and vendor signals and either:
-  * Prebid.js has the user’s purpose consent and the user’s vendor consent, or
-  * (for Purpose 2 only) we've confirmed the user’s Legitimate Interest (LI) Transparency is established for this purpose
+* Configuration rules enforce both consent and vendor signals and:
+  * we have evidence of consent for both, or
+  * we have evidence of consent for the purpose, and the vendor is excepted through `softVendorException`, or
+  * the vendor is excepted through `vendorExceptions`;
 * Configuration rules enforce only purpose consent and either:
-  * Prebid.js has the user’s purpose consent, or
-  * (for Purpose 2 only) we confirmed the user’s LI Transparency is established for this purpose.
-* Configuration rules enforce only vendor signals and we have the user’s vendor consent
+  * we have evidence of consent for the purpose, or
+  * the vendor is excepted through `vendorExceptions`;
+* Configuration rules enforce only vendor signals and either:
+  * we have evidence of consent for the vendor, or
+  * the vendor is excepted through either `softVendorExceptions` or `vendorExceptions`;
 * Configuration rules enforce neither purpose consent nor vendor signal.
 
 See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) for details.
+
+<a id="note-transmitEids"></a>
+
+### Note on Extended User IDs
+
+{: .alert.alert-info :}
+Note: the default of the eidsRequireP4Consent flag may change from false to true in a future major release.
+
+By default, sending user IDs and EIDs to bid adapters or RTD modules (the `transmitEids` activity) is not tied to a single TCF Purpose; instead it is allowed if one of these scenarios is true:
+
+* We have evidence of consent for the vendor and evidence of consent for _any_ purpose between 2 and 10;
+* We have evidence of consent for any purpose between 2 and 10, and the vendor is excepted through `softVendorException` in at least one of: `basicAds`, `personalizedAds`, or `measurement`;
+* The vendor is excepted through `vendorExceptions` in at least one of `basicAds`, `personalizedAds`, or `measurement`.
+
+This behavior can be changed to the same "basic enforcement" algorithm described above, tied to TCF Purpose 4, by setting `eidsRequireP4Consent: true` on a `personalizedAds` rule:
+
+```javascript
+  ...
+  rules: [{
+    purpose: "personalizedAds",
+    eidsRequireP4Consent: true
+  }]
+```
 
 ## Build the Package
 

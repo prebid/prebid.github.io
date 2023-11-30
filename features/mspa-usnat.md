@@ -73,6 +73,7 @@ Here's a summary of the privacy features in Prebid.js that publishers may use to
 | 7.52-8.1 | GPP module <br/> **Activity&nbsp;Controls** | [Activity Controls](/dev-docs/activity-controls.html) provide the ability for publishers to allow or restrict certain privacy-sensitive activities for particular bidders and modules. See examples in that document for supporting CCPA directly.
 | 8.2-8.x | GPP module<br/>Activity Controls<br/>**USNat module** | The [USNat module](/dev-docs/modules/gppControl_usnat.html) processes SID 7. |
 | After 8.x | GPP module<br/>Activity Controls<br/>USNat module<br/>**US&nbsp;State&nbsp;module** | The US State module processes SIDs 8 through 12 after normalizing protocol differences. |
+| After 8.10 | **GPP Module**  | The [GPP module](/dev-docs/modules/consentManagementGpp.html) now understands GPP 1.1 which makes it incompatible with GPP 1.0. Publishers **<u>MUST</u>** upgrade for continued GPP support. |
 
 ### Prebid Server
 
@@ -82,12 +83,12 @@ Here's a summary of the privacy features in Prebid Server that publishers may us
 | Prebid Server Version | USNat-Related Features | Notes |
 | --------------------- | ---------------------- | ----- |
 | PBS-Go before 0.236<br/>PBS-Java before 1.110 | None | If you operate in the US, you should consider upgrading. |
-| PBS-Go 0.236 and later<br/>PBS-Java 1.110 and later | **GPP passthrough** | PBS reads the GPP string from the ORTB request and passes to compliant bid adapters. Not many bid adapters supported GPP in earlier versions. |
+| PBS-Go 0.236<br/>PBS-Java 1.110 | **GPP passthrough** | PBS reads the GPP string from the ORTB request and passes to compliant bid adapters. Not many bid adapters supported GPP in earlier versions. |
 | PBS&#8209;Go&nbsp;0.248&nbsp;and&nbsp;later<br/>PBS&#8209;Java&nbsp;1.113&nbsp;and&nbsp;later | GPP passthrough<br/>**GPP US Privacy** | PBS will read SID 6 out of the GPP string and process it as if regs.us_privacy were present on the request. |
-| PBS-Go TBD<br/>PBS-Java 1.118 and later | GPP passthrough<br/>GPP US Privacy<br/>**Activity Controls** | [Activity Controls](/prebid-server/features/pbs-activitycontrols.html) grant the ability for publishers to allow or restrict certain privacy-sensitive activities for particular bidders and modules. |
-| PBS-Go TBD<br/>PBS-Java 1.122 and later | GPP passthrough<br/>GPP US Privacy<br/>**Enhanced Activity Controls** | Activity controls support additional conditions for defining USNat-related rules: gppSid, geo, and gpc. |
-| TBD | GPP passthrough<br/>GPP US Privacy<br/>Enhanced Activity Controls<br/>**USNat Module** | The USNat module processes SIDs 7 through 12 after normalizing protocol differences. |
-| TBD | GPP passthrough<br/>GPP US Privacy<br/>Enhanced Activity Controls<br/>USNat Module<br/>**USNat&nbsp;Custom&nbsp;Logic&nbsp;module** | Allows publishers to provide alternate interpretations of the USNat string as it applies to Activity Controls. |
+| PBS-Go TBD<br/>PBS-Java 1.118 | GPP passthrough<br/>GPP US Privacy<br/>**Activity Controls** | [Activity Controls](/prebid-server/features/pbs-activitycontrols.html) grant the ability for publishers to allow or restrict certain privacy-sensitive activities for particular bidders and modules. |
+| PBS-Go TBD<br/>PBS-Java 1.122 | GPP passthrough<br/>GPP US Privacy<br/>**Enhanced Activity Controls** | Activity controls support additional conditions for defining USNat-related rules: gppSid, geo, and gpc. |
+| PBS-Go TBD<br/>PBS-Java 1.126 | GPP passthrough<br/>GPP US Privacy<br/>Enhanced Activity Controls<br/>**USGen Module** | The [USGen module](/prebid-server/features/pbs-usgen.html) processes SIDs 7 through 12 after normalizing protocol differences. |
+| TBD | GPP passthrough<br/>GPP US Privacy<br/>Enhanced Activity Controls<br/>USNat Module<br/>**US&nbsp;Custom&nbsp;Logic&nbsp;module** | Allows publishers to provide alternate interpretations of the USNat string as it applies to Activity Controls. |
 
 ### Prebid SDK
 
@@ -124,13 +125,13 @@ To make sense of the specific values below, please refer to the [IAB's USNat tec
             1. Otherwise, the SID 8 protocol does not allow Prebid to know if the user is aged 13-16 or under 13, so simply set KnownChildSensitiveDataConsents[1] or [2] both to 1 (no consent)
         1. All other fields pass through.
     1. Normalization for Virginia (SID 9)
-        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12]
+        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12], PersonalDataConsents, GPC.
         1. KnownChild:  - SID 9 does not distinguish between consent for ages 13-16 and under 13, and the VA state laws define a child as being under 13, so Prebid will never normalize a positive KnownChild consent.
             1. If the SID 9 KnownChildSensitiveDataConsents value is 1 or 2, normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=1 (no consent)
             1. If the SID 9 KnownChildSensitiveDataConsents value is 0, assume the user is not a child and normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
         1. All other fields pass through.
     1. Normalization for Colorado (SID 10)
-        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[8-12]
+        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[8-12], PersonalDataConsents
         1. KnownChild - SID 10 does not distinguish between consent for ages 13-16 and under 13, so Prebid will never normalize a positive KnownChild consent.
 
         1. If the SID 10 KnownChildSensitiveDataConsents value is 1 or 2, normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=1 (no consent)
@@ -142,13 +143,13 @@ To make sense of the specific values below, please refer to the [IAB's USNat tec
         1. UT sensitive data 4 maps to US National 5
         1. UT sensitive data 5 maps to US National 3
         1. UT sensitive data 6,7,8 maps straight through to US National 6,7,8
-        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessing[9-12]
+        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessing[9-12], PersonalDataConsents, GPC
         1. KnownChild - SID 11 does not distinguish between consent for ages 13-16 and under 13, so Prebid will never normalize a positive KnownChild consent.
             1. If the SID11 KnownChildSensitiveDataConsents value is 1 or 2, normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=1 (no consent)
             1. If the SID11 KnownChildSensitiveDataConsents value is 0, assume the user is not a child and normalize to SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
         1. All other fields pass through.
     1. Normalization for Connecticut (SID 12)
-        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12]
+        1. Set these fields to NULL: SharingOptOutNotice, SharingOptOut, SensitiveDataLimitUseNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataProcessing[9-12], PersonalDataConsents
         1. KnownChild - SID 12 does distinguish ages aligned with SID 7
             1. If SID 12 string KnownChildSensitiveDataConsents[1, 2, and 3] are all 0 then assume the user is not a child and set the normalized SID 7 KnownChildSensitiveDataConsents[1 and 2]=0 (N/A)
             1. SID 12 age ranges align with SID 7, so let ages 13-16 state their consent. If SID 12 string KnownChildSensitiveDataConsents[2]=2 and SID 12 string KnownChildSensitiveDataConsents[3]=2, then set the normalized KnownChildSensitiveDataConsents[1]=2 (Ages 13-16 consented) and the normalized KnownChildSensitiveDataConsents[2]=1 (under 13 not consented)
@@ -188,6 +189,32 @@ This table documents the default blocks of boolean logic that indicate whether a
 | transmitEids | (same as syncUser) | Suppress the transmission of user.eids when activity is not allowed. |
 | transmitUfpd | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SaleOptOut=1 OR<br/>SaleOptOutNotice=2 OR<br/>SharingNotice=2 OR<br/>(SaleOptOutNotice=0 AND SaleOptOut=2) OR<br/>SharingOptOutNotice=2 OR<br/>SharingOptOut=1 OR<br/>(SharingOptOutNotice=0 AND SharingOptOut=2) OR<br/> (SharingNotice=0 AND SharingOptOut=2) OR <br/> TargetedAdvertisingOptOutNotice=2 OR<br/>TargetedAdvertisingOptOut=1 OR<br/>(TargetedAdvertisingOptOutNotice=0 AND TargetedAdvertisingOptOut=2) OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[1-7,9-12]=2)<br/>SensitiveDataProcessing[1-5,11]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=1 OR<br/>SensitiveDataProcessing[6,7,9,10,12]=2 OR<br/>KnownChildSensitiveDataConsents[2]==1 OR<br/>KnownChildSensitiveDataConsents[2]==2 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Suppress the transmission or user.ext.data.*, user.data.*, and device IDs when the activity is not allowed.<br/><br/>The difference in this logic compared to syncUser is that it includes 'sensitive data' flags. See the requirements above and the commentary below. |
 | transmitPreciseGeo | MspaServiceProviderMode=1 OR<br/>GPC=1 OR<br/>SensitiveDataProcessingOptOutNotice=2 OR<br/>SensitiveDataLimitUseNotice=2 OR<br/>((SensitiveDataProcessingOptOutNotice=0 OR SensitiveDataLimitUseNotice=0) AND SensitiveDataProcessing[8]=2)<br/>SensitiveDataProcessing[8]=1 OR<br/>KnownChildSensitiveDataConsents[2]==1 OR<br/>KnownChildSensitiveDataConsents[2]==2 OR<br/>KnownChildSensitiveDataConsents[1]=1 OR<br/>PersonalDataConsents=2 | Round IP address and lat/long in both device.geo and user.geo when the activity is not allowed.<br/><br/>The difference in this logic is that it includes "sensitive data 8" (geo) and does not include the UFPD- and ID-related fields. |
+| transmitTid | n/a | Sending transaction IDs is not an aspect of USNat. |
+
+NOTE -- Here's what the numbers in the logic above indicate in the [IAB GPP USNat specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md):
+
+MspaServiceProviderMode:
+
+- 0 - Not Applicable
+- 1 - Yes
+- 2 - No
+
+SaleOptOut, SharingOptOut, TargetedAdvertisingOptOut:
+
+- 0 - Not Applicable
+- 1 - Opted-Out
+- 2 - Did not Opt-Out
+
+SaleOptOutNotice, SharingNotice, TargetedAdvertisingOptOutNotice, SensitiveDataProcessingOptOutNotice, SensitiveDataLimitUseNotice:
+
+- 0 - Not Applicable
+- 1 - Notice was provided
+- 2 - Notice was not provided
+
+KnownChildSensitiveDataConsents, PersonalDataConsents, SensitiveDataProcessing:
+
+- 1 - No Consent
+- 2 - Consent
 
 ### Commentary
 

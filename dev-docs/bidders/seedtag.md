@@ -3,7 +3,7 @@ layout: bidder
 title: seedtag
 description: Prebid Seedtag Bidder Adapter
 pbjs: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: true

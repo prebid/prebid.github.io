@@ -6,9 +6,10 @@ hide: true
 pbjs: true
 biddercode: concert
 media_types: banner
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 gpp_supported: true
+userIds: sharedId, unifiedId, uid2
 sidebarType: 1
 ---
 

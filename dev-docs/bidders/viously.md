@@ -6,7 +6,7 @@ pbjs: true
 pbs: false
 biddercode: viously
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 1028
 usp_supported: true
 prebid_member: false

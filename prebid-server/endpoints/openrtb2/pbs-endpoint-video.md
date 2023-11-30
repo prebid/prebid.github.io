@@ -27,22 +27,22 @@ The process is similar to [Prebid.js client side](/prebid-video/video-long-form.
 3. PBS sends a request for bids to selected demand partners by relaying OpenRTB requests to them.
 4. Demand partners return a bid response to PBS. If competitive seperation is enabled, PBS peforms [category translation](/dev-docs/modules/categoryTranslation.html) on each bid. Whether category translation is required or not, the bids are stored in prebid cache.
 5. PBS generates key-value pairs that are comprised of price, category, and duration values. The key is `hb_pb_cat_dur` and each component of the key name after the `hb` represents a related value.  
-&nbsp;&nbsp;&nbsp;&nbsp;  
-&nbsp;&nbsp;&nbsp;&nbsp;  `_pb` represents the price bucket.   
-&nbsp;&nbsp;&nbsp;&nbsp; `_cat` indicates the industry code that is derived from the  [category translation](/dev-docs/modules/categoryTranslation.html).   
-&nbsp;&nbsp;&nbsp;&nbsp; `_dur` is the length of the bid response in seconds.  
-&nbsp;&nbsp;&nbsp;&nbsp;   
-A PBS generated key-value of  `hb_pb_cat_dur = 1200_399_30s` would indicate:  
-&nbsp;&nbsp;&nbsp;&nbsp;   
-&nbsp;&nbsp;&nbsp;&nbsp; A price bucket of $12.00 (or the local currency).     
-&nbsp;&nbsp;&nbsp;&nbsp; The industry represented by id 399.  
-&nbsp;&nbsp;&nbsp;&nbsp;  A duration of 30 seconds.  
-&nbsp;&nbsp;&nbsp;&nbsp;   
-These key-values are returned to the SSAI server as part of the video response.   
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;  `_pb` represents the price bucket.
+&nbsp;&nbsp;&nbsp;&nbsp; `_cat` indicates the industry code that is derived from the  [category translation](/dev-docs/modules/categoryTranslation.html).
+&nbsp;&nbsp;&nbsp;&nbsp; `_dur` is the length of the bid response in seconds.
+&nbsp;&nbsp;&nbsp;&nbsp;
+A PBS generated key-value of  `hb_pb_cat_dur = 1200_399_30s` would indicate:
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; A price bucket of $12.00 (or the local currency).
+&nbsp;&nbsp;&nbsp;&nbsp; The industry represented by id 399.
+&nbsp;&nbsp;&nbsp;&nbsp;  A duration of 30 seconds.
+&nbsp;&nbsp;&nbsp;&nbsp;
+These key-values are returned to the SSAI server as part of the video response.
 
 6. The SSAI server parses the returned key-values, appending them as a query string to the ad server request URL and submits the request.
 7. The ad server returns the optimized pod.
-8. The SSAI server requests the creatives from prebid cache.  
+8. The SSAI server requests the creatives from prebid cache.
 9. The SSAI server requests the content from the content host and stitches the creatives and content together.
 10. The stitched stream is returned to the application.
 
@@ -119,6 +119,7 @@ The `podconfig.durationrangesec` is an array containing integers representing th
 ```javascript
 durationrangesec = [15, 30]
 ```
+
 These values would indicate that ad durations of 15 and 30 seconds were allowed with this bid.
 
 If `podconfig.requireexactduration` is set to `false`, then the ads durations will be rounded up to the closest value in the `durationrangesec` array. Implicit minimum bid duration is 0.
@@ -139,7 +140,6 @@ These are the parameters for the `pod` subobject:
 | pod.podid | Required | `Integer` |  Unique id of the pod within a particular request.   <br>**Recommendation**: Order these numerically, with increment of 1. |
 | pod.adpoddurationsec | Required | `Integer` |  Duration of the adPod. |
 | pod.configid | Required | `String` |  ID of the stored config that corresponds to a single pod request for all included adapters. |
-
 
 ### Video Protocols
 A streaming protocol is a standardized method for delivering multimedia (usually video or audio) over the internet. It defines a method for sending "chunks" of content from one device to another and subsequently the method for reassembling those "chunks" into playable content.
@@ -165,29 +165,28 @@ The `user.ext.prebid.buyeruids` is an optional, but recommended parameter. It is
 
 These are the supported (registered) bidder names.  
 
-- "33across"
-- "adform"
-- "adkernelAdn"
-- "adtelligent"  
-- "appnexus"
-- "audienceNetwork"  
-- "beachfront"
-- "brightroll"
-- "eplanning"
-- "epsilon"
-- "grid"
-- "gumgum"
-- "ix"
-- "lifestreet"
-- "openx"
-- "pubmatic"  
-- "pulsepoint"
-- "rhythmone"
-- "rubicon"
-- "somoaudience"  
-- "sonobi"
-- "sovrn"
-- "yieldmo"
+* "33across"
+* "adform"
+* "adkernelAdn"
+* "adtelligent"  
+* "appnexus"
+* "audienceNetwork"  
+* "beachfront"
+* "eplanning"
+* "epsilon"
+* "grid"
+* "gumgum"
+* "ix"
+* "lifestreet"
+* "openx"
+* "pubmatic"  
+* "pulsepoint"
+* "rhythmone"
+* "rubicon"
+* "somoaudience"  
+* "sonobi"
+* "sovrn"
+* "yieldmo"
 
 ### Price Range
 
@@ -214,8 +213,6 @@ In order for publishers to meet their transparency, notice and choice/consent re
 Publishers can enable GDPR regulations by setting `regs.ext.gdpr` to `1`. To disable GDPR, change the setting to `0`. The default setting is `0`.
 
 Publishers can comply with CCPA regulations by setting `regs.ext.us.privacy` to one of the accepted string formats outlined in [IAB's CCPA Framework](https://iabtechlab.com/standards/ccpa/) such as `1YNN`.
-
-
 
 ## Examples
 
@@ -289,7 +286,7 @@ Publishers can comply with CCPA regulations by setting `regs.ext.us.privacy` to 
 
 ### Post Response
 
-The POST response contains an array of `adPod` objects which represents the `adPods` in the request. Each value of the `adPod ` object (`podid:1`, `podid:2`, etc) contain the key-value targeting for those bids and optionally any errors encountered.
+The POST response contains an array of `adPod` objects which represents the `adPods` in the request. Each value of the `adPod` object (`podid:1`, `podid:2`, etc) contain the key-value targeting for those bids and optionally any errors encountered.
 
 ```javascript
 {
@@ -349,11 +346,10 @@ The POST response contains an array of `adPod` objects which represents the `adP
 ## SSAI processing of the response
 The SSAI should take the key-values from the response `adPods.[].targeting.[]${key}` and pass it to the primary ad server as keywords. Because `adPods` do not have specific targeting, an `adPod` can target any bid as long as the bid duration matches that of the `adPod`.
 
+## Further Reading
 
-## Further Reading:
-
-- [Prebid Server overview](/prebid-server/overview/prebid-server-overview.html)  
-- [OpenRTB auction endpoint ](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html)  
-- [Category Translation module](/dev-docs/modules/categoryTranslation.html)  
-- [Freewheel module](/dev-docs/modules/freewheel.html)  
-- [Ad Pod module](/dev-docs/modules/adpod.html)  
+* [Prebid Server overview](/prebid-server/overview/prebid-server-overview.html)  
+* [OpenRTB auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html)  
+* [Category Translation module](/dev-docs/modules/categoryTranslation.html)  
+* [Freewheel module](/dev-docs/modules/freewheel.html)  
+* [Ad Pod module](/dev-docs/modules/adpod.html)  

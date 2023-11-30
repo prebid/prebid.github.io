@@ -3,7 +3,7 @@ layout: bidder
 title: AIDEM
 description: AIDEM Bidder Adapter
 biddercode: aidem
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 1218
 usp_supported: true
 coppa_supported: true

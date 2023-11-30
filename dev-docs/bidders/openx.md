@@ -7,7 +7,7 @@ pbs: true
 biddercode: openx
 media_types: banner, video
 schain_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 gpp_supported: true
