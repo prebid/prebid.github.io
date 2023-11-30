@@ -61,12 +61,12 @@ pbjs.setConfig({
             uid2: true,
             medianet: true,
             bidswitch: true,
-            magnite: true,
-          },
-        },
-      },
-    ],
-  },
+            magnite: true
+          }
+        }
+      }
+    ]
+  }
 });
 ```
 
@@ -108,11 +108,11 @@ pbjs.setConfig({
         name: "liveIntentId",
         params: {
           publisherId: "12432415",
-          requestedAttributesOverrides: { uid2: true },
-        },
-      },
-    ],
-  },
+          requestedAttributesOverrides: { uid2: true }
+        }
+      }
+    ]
+  }
 });
 ```
 
