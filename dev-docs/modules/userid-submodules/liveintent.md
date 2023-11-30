@@ -37,13 +37,13 @@ The following first-party cookies are supported:
 
 ### Identity resolution
 
-For the identity resolution, the LiveIntent ID sub-module makes a request to LiveIntent’s identity resolution API, which returns a `nonID` and additional attributes. The identifiers and attributes are then exposed by the Prebid User ID Module to Prebid adapters to be sent out in a bid request. An SSP can then make the impression opportunity available to buyers that would like to target the audience.
+For the identity resolution, the LiveIntent ID sub-module makes a request to LiveIntent’s identity resolution API, which returns a `nonID` and additional attributes. The identifier and attributes are then exposed by the Prebid User ID Module to Prebid adapters to be sent out in a bid request. An SSP can then make the impression opportunity available to buyers that would like to target the audience.
 
 The first-party cookie generation and identity resolution functionality is provided by [LiveConnect JS](https://www.npmjs.com/package/live-connect-js) - an open source JS library which is included within the LiveIntent ID sub-module.
 
 The LiveIntent ID sub-module follows the standard _Prebid.js_ initialization based on the GDPR consumer opt-out choices. With regard to CCPA, the LiveConnect JS receives a us_privacy string from the Prebid US Privacy Consent Management Module and respects opt-outs.
 
-## Configure request attributes
+## Configure requested attributes
 
 Attributes other than the `nonID` can be requested using the `requestedAttributesOverrides` configuration option.
 
