@@ -41,7 +41,7 @@ const config = {
       ({
         docs: {
           routeBasePath: "/",
-          path: "dev-docs",
+          path: "docs",
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -67,7 +67,7 @@ const config = {
           src: "img/logo.svg",
         },
         items: [
-          { to: "/dev-docs", label: "Dev", position: "left" },
+          // { to: "/dev-docs", label: "Dev", position: "left" },
           {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
