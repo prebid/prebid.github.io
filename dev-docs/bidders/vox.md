@@ -8,7 +8,7 @@ userIds: all
 pbjs: true
 media_types: banner, video
 biddercode: vox
-gvl_id: true
+gvl_id: 206
 sidebarType: 1
 ---
 
