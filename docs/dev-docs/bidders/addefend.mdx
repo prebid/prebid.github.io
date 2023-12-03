@@ -10,13 +10,22 @@ gvl_id: 539
 sidebarType: 1
 ---
 
+import BidderFeatures from '@site/src/components/BidderFeatures';
+
+<BidderFeatures 
+    biddercode="addefend"
+    media_types={["banner"]}
+    gvl_id="539"
+    tcfeu_supported={true}
+    pbjs={true}
+/>
+
 ### Note
 
-The bidder requires setup before usage. Please get in touch with our publisher team at <publisher@addefend.com> to get started.
+The bidder requires setup before usage. Please get in touch with our publisher team at [publisher@addefend.com](publisher@addefend.com) to get started.
 
 ### Bid Params
 
-{: .table .table-bordered .table-striped }
 | Name          | Scope    | Description             | Example            | Type     |
 |---------------|----------|-------------------------|--------------------|----------|
 | `pageId`      | required | Page Id                 | "887"              | `string` |

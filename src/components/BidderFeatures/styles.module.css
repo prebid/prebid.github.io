@@ -1,0 +1,24 @@
+.meta {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 0.75rem;
+}
+
+.metaName {
+    display: inline-block;
+    width: 10rem;
+    margin-right: 0.5rem;
+}
+
+.metaMultipleValues {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.consentName {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: start;
+}
