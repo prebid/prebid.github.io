@@ -22,7 +22,7 @@ Greenbids team. Please reach out to our team for more information [greenbids.ai]
 
 ### Example Configuration
 
-```
+```javascript
     pbjs.enableAnalytics({
         provider: 'greenbids',
         options: {
