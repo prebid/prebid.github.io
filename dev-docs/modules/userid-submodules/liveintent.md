@@ -28,7 +28,7 @@ If you're not already a LiveIntent customer, feel free to [reach out](https://ww
 
 ## How LiveIntent user ID sub-module works
 
-The LiveIntent user ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier. LiveIntent builds a model on the backend with data collected through an additional call issued on each page load. In order to provide ID resolution, the sub-module uses one or more first-party cookies. See the [query parameters description](https://github.com/liveintent-berlin/live-connect/blob/HEAD/COLLECTOR_PARAMS.md) for more details.
+The LiveIntent user ID sub-module resolves the identity of audiences by connecting impression opportunities to a stable identifier. LiveIntent builds a model on the backend with data collected through an additional call issued on each page load. In order to provide ID resolution, the sub-module uses one or more first-party cookies. See the [query parameters description](https://github.com/LiveIntent/live-connect/blob/HEAD/COLLECTOR_PARAMS.md) for more details.
 
 The following first-party cookies are supported:
 
