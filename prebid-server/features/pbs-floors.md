@@ -12,9 +12,6 @@ title: Prebid Server | Features | Price Floors
 
 ## Overview
 
-{: .alert.alert-warning :}
-The Floors feature is currently only available in PBS-Java.
-
 The Price Floors feature provides an open framework for Publishers to configure Prebid price floors on their own or to work with advanced vendors who can provide optimized floors.
 
 A ‘floor’ is defined as the lowest price a bid that will be accepted for each Prebid auction. It’s a way for publishers to signal to bidders the price to beat, thereby protecting the value of their inventory. Proper floors are dynamic and determined based on detailed factors like mediaType, adSlot, size, and other factors.
@@ -339,7 +336,9 @@ It would be easier to meet the 0.50 floor for banners.
 To address this, a special floor function enables adapters to retrieve more granular
 floor values for each impression in the auction. Due to the complexity of the rule system, deriving the correct floor would be a difficult task without this function.
 
-See the [developer bid adapter documentation](/prebid-server/developers/add-new-bidder-java.html) for details.
+See the developer bid adapter documentation for details:
+- [PBS-Go](/prebid-server/developers/add-new-bidder-go.html)
+- [PBS-Java](/prebid-server/developers/add-new-bidder-java.html)
 
 ## Analytics Adapters
 
