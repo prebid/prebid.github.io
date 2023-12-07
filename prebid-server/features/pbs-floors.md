@@ -337,6 +337,7 @@ To address this, a special floor function enables adapters to retrieve more gran
 floor values for each impression in the auction. Due to the complexity of the rule system, deriving the correct floor would be a difficult task without this function.
 
 See the developer bid adapter documentation for details:
+
 - [PBS-Go](/prebid-server/developers/add-new-bidder-go.html)
 - [PBS-Java](/prebid-server/developers/add-new-bidder-java.html)
 
