@@ -50,6 +50,12 @@ Prebid SDK does not support a [limited bid cache](dev-docs/faq.html#does-prebidj
 1. If Prebid Cache is being utilized, the Time-To-Live for that cache should be understood. By default, the TTL for Prebid Cache is 5 minutes for banners and 15 minutes for video, but this can be changed.
 2. No matter what the Cache TTL is set to, it's important that any pre-fetch or bid-cache feature built into the app should respect the OpenRTB `seatbid.bid.exp` field for each bid, which is the expiration of the bid in seconds.
 
+### Does Prebid SDK support integration into the Unity SDK?
+
+Prebid does not support Unity directly and no one in the community has recent experience with it. We believe that it may be possible to call for bids  using the [custom bidding integration(/prebid-mobile/modules/rendering/ios-sdk-integration-pb.html) approach.
+
+Contributions from the community (whether code or documentation) would be welcome.
+
 ## Dependencies
 
 ### Does the SDK use third-party libraries?  
