@@ -125,6 +125,18 @@ user: {
 }
 ```
 
+#### Configuration
+
+Below are the available configuration options for the SharedID module.
+
+{: .table .table-bordered .table-striped }
+| Parameter Name | Type | Description | | Example |
+| --- | --- | --- | --- | --- |
+| create (optional) | boolean | If true, then an id is created automatically by the module if none is present. **Default is true.** | | `true` |
+| expires (required) | number | Expiration interval in days. | | `30` |
+| extend | boolean (optional) | If true, the expiration time is automatically extended whenever the script is executed even if the id exists already. **Default is false.** | For use in combination with a first party endpoint only. **Default is false.** | `true` |
+| pixelUrl | string (optional) | Enables the first party endpoint to extend cookie lifetime and specifies where to call out to for a server cookie. | | `/wp-json/pubcid/v1/extend/`
+| type | string (required) | Type of storage. Specify one of the following: 'html5' (aka. localstorage) or 'cookie'. | | `cookie` |
 ### Detailed Walkthrough
 
 This diagram summarizes the workflow for SharedId:
