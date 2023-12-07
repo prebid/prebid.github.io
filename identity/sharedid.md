@@ -10,7 +10,7 @@ sidebarType: 9
 {: .no_toc}
 
 - TOC
-{:toc}
+  {:toc}
 
 {: .alert.alert-warning :}
 As of Prebid.js 5.0, PubCommon ID is no longer supported -- it's been merged into SharedId. Also, SharedId no longer syncs to sharedid.org like it did in Prebid.js 4.x.
@@ -44,16 +44,18 @@ Example 1: client-side cookie setting
 
 ```javascript
 pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: 'sharedId', //"pubCommonId" as a name is supported for backwards compatibility,
-            storage: {
-                name: '_sharedID', // name of the 1st party cookie, _pubcid is supported for backwards compatibility
-                type: 'cookie',
-                expires: 30
-            }
-        }]
-    }
+  userSync: {
+    userIds: [
+      {
+        name: "sharedId", //"pubCommonId" as a name is supported for backwards compatibility,
+        storage: {
+          name: "_sharedID", // name of the 1st party cookie, _pubcid is supported for backwards compatibility
+          type: "cookie",
+          expires: 30,
+        },
+      },
+    ],
+  },
 });
 ```
 
@@ -61,19 +63,21 @@ Example 2: setting the cookie with a first party endpoint
 
 ```javascript
 pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: 'sharedId', //"pubCommonId" as a name is supported for backwards compatibility,
-            params: {
-                pixelUrl: "/wp-json/pubcid/v1/extend/" // this parameter identifies your server-side endpoint that will set a first party cookie'
-            }, 
-            storage: {
-                name: '_sharedID', // name of the 1st party cookie, _pubcid is supported for backwards compatibility
-                type: 'cookie',
-                expires: 30
-            }
-        }]
-    }
+  userSync: {
+    userIds: [
+      {
+        name: "sharedId", //"pubCommonId" as a name is supported for backwards compatibility,
+        params: {
+          pixelUrl: "/wp-json/pubcid/v1/extend/", // this parameter identifies your server-side endpoint that will set a first party cookie'
+        },
+        storage: {
+          name: "_sharedID", // name of the 1st party cookie, _pubcid is supported for backwards compatibility
+          type: "cookie",
+          expires: 30,
+        },
+      },
+    ],
+  },
 });
 ```
 
@@ -125,18 +129,6 @@ user: {
 }
 ```
 
-#### Configuration
-
-Below are the available configuration options for the SharedID module.
-
-{: .table .table-bordered .table-striped }
-| Parameter Name | Type | Description | | Example |
-| --- | --- | --- | --- | --- |
-| create (optional) | boolean | If true, then an id is created automatically by the module if none is present. **Default is true.** | | `true` |
-| expires (required) | number | Expiration interval in days. | | `30` |
-| extend | boolean (optional) | If true, the expiration time is automatically extended whenever the script is executed even if the id exists already. **Default is false.** | For use in combination with a first party endpoint only. **Default is false.** | `true` |
-| pixelUrl | string (optional) | Enables the first party endpoint to extend cookie lifetime and specifies where to call out to for a server cookie. | | `/wp-json/pubcid/v1/extend/`
-| type | string (required) | Type of storage. Specify one of the following: 'html5' (aka. localstorage) or 'cookie'. | | `cookie` |
 ### Detailed Walkthrough
 
 This diagram summarizes the workflow for SharedId:
@@ -156,12 +148,16 @@ In Prebid.js 4.x, when SharedId performed third-party syncing there
 was an extra step in the diagram between steps 3 and 4 where the module would connect to a server on sharedid.org. This step was
 removed in Prebid.js 5.0.
 
+### Configuration
+
+You can find available configuration options for the SharedID module [here](https://docs.prebid.org/dev-docs/modules/userid-submodules/sharedid.html)
+
 ### Privacy Discussion
 
 There are several privacy scenarios in which a user ID is not created or read:
 
 1. The User ID module suppresses all cookie reading and setting activity
-when the [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html) is in place and there's no consent for Purpose 1.
+   when the [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html) is in place and there's no consent for Purpose 1.
 2. The User ID module infrastructure supports a first-party opt-out, by setting the `_pbjs_id_optout` cookie or local storage to any value. No other cookies will be set if this one is set.
 3. The SharedId module will suppress the ID when the COPPA flag is set.
 
@@ -206,7 +202,7 @@ If custom configurations are needed, define the pubcid_options object before inc
 
 ```html
 <script type="text/javascript">
-   window.pubcid_options = {type: 'cookie'};
+  window.pubcid_options = { type: "cookie" };
 </script>
 <script type="text/javascript" src="//myserver.com/pubcid.min.js"></script>
 ```
@@ -216,12 +212,12 @@ If custom configurations are needed, define the pubcid_options object before inc
 Below are the available configuration options for the PubCID script.
 
 {: .table .table-bordered .table-striped }
-| Parameter Name | Type | Description |  | Example |
+| Parameter Name | Type | Description | | Example |
 | --- | --- | --- | --- | --- |
-| create | boolean | If true, then an id is created automatically by the script if it's missing. Default is true. If your server has a component that generates the id instead, then this should be set to false |  | `true` |
-| expInterval | decimal | Expiration interval in minutes. Default is 525600, or 1 year |  | `525600` |
-| extend | boolean | If true, the the expiration time is automatically extended whenever the script is executed even if the id exists already. Default is true. If false, then the id expires from the time it was initially created. | For publisher server support only.  If true, the publisher's server will create the (pubcid) cookie.  Default is true. | `true` |
-| pixelUrl | string (optional) | For publisher server support only. Where to call out to for a server cookie. |  | `/wp-json/pubcid/v1/extend/`
+| create | boolean | If true, then an id is created automatically by the script if it's missing. Default is true. If your server has a component that generates the id instead, then this should be set to false | | `true` |
+| expInterval | decimal | Expiration interval in minutes. Default is 525600, or 1 year | | `525600` |
+| extend | boolean | If true, the the expiration time is automatically extended whenever the script is executed even if the id exists already. Default is true. If false, then the id expires from the time it was initially created. | For publisher server support only. If true, the publisher's server will create the (pubcid) cookie. Default is true. | `true` |
+| pixelUrl | string (optional) | For publisher server support only. Where to call out to for a server cookie. | | `/wp-json/pubcid/v1/extend/`
 | type | string | Type of storage. It's possible to specify one of the following: 'html5', 'cookie'. Default is 'html5' priority, aka local storage, and fall back to cookie if local storage is unavailable. | If true, the expiration time of the stored IDs will be refreshed during each page load. Default is false. | `cookie` |
 
 #### Example Configurations
@@ -229,7 +225,7 @@ Below are the available configuration options for the PubCID script.
 Always use cookies and create an ID that expires in 30 days after creation.
 
 ```javascript
-{ 
+{
     type: 'cookie',
     extend: false,
     expInterval: 43200
@@ -239,7 +235,7 @@ Always use cookies and create an ID that expires in 30 days after creation.
 Using a SharedId Endpoint implementation, create the cookie once, which will be allowed to expire before it is created again.
 
 ```javascript
-{ 
+{
     type: 'cookie',
     pixelUrl: '/wp-json/pubcid/v1/extend/',
     create: false,
@@ -254,7 +250,7 @@ Add server-side support for SharedId to better handle the ever-increasing restri
 
 #### CMS
 
-PubCID/SharedId plugins are available for Wordpress and Drupal. Because the CMS can cache pages to improve scalability, it's impractical to set unique cookies during page generation. Instead these plugins require a dynamic endpoint that serves back a blank pixel along with a unique cookie value. The client side script  needs one additional parameter for this URL. Please consult the corresponding plugin documents for default values:
+PubCID/SharedId plugins are available for Wordpress and Drupal. Because the CMS can cache pages to improve scalability, it's impractical to set unique cookies during page generation. Instead these plugins require a dynamic endpoint that serves back a blank pixel along with a unique cookie value. The client side script needs one additional parameter for this URL. Please consult the corresponding plugin documents for default values:
 
 1. Wordpress : Install directly from the [Wordpress admin page](https://wordpress.org/plugins/publisher-common-id/). Install from [GITHUB](https://github.com/prebid/sharedid-wordpress)
 2. Drupal : Install from [Github](https://github.com/prebid/sharedid-drupal).
@@ -270,7 +266,7 @@ Below are some examples for how to implement this function in various languages 
 public class PubCid {
     private static final String pubcidCookieName = "_pubcid";
     private static final int expireTime = (int) TimeUnit.DAYS.toSeconds(365); //store cookie for 1 year
- 
+
     /**
      * Returns the pubcid cookie found in the user's list of cookies.
      * Always update the expire time to another year so that the cookie persists.
@@ -279,14 +275,14 @@ public class PubCid {
      * @return the pubcid cookie if found, null otherwise
      */
     public static Cookie getPubcidCookie(Cookie[] cookies) {
- 
+
         Cookie pubcidCookie = fetchPubcidCookie(cookies);
         if (pubcidCookie != null)
             pubcidCookie.setMaxAge(expireTime);
- 
+
         return pubcidCookie;
     }
- 
+
     /**
      * Simple function to test if the user has a pubcid cookie
      *
@@ -296,7 +292,7 @@ public class PubCid {
     public static boolean hasPubcidCookie(Cookie[] cookies) {
         return fetchPubcidCookie(cookies) != null;
     }
- 
+
     /**
      * Local function to find the pubcid cookie within the user's list of cookie
      *
@@ -319,20 +315,20 @@ public class PubCid {
 $cookie_name = '_pubcid';
 $cookie_path = '/';
 $max_age = 365;
- 
+
 $value = NULL;
- 
+
 // See if the cookie exist already
- 
+
 if (isset($_COOKIE[$cookie_name ]))
     $value = $_COOKIE[$cookie_name];
- 
+
 // Obtain site domain if defined
 if (defined(COOKIE_DOMAIN))
     $cookie_domain = COOKIE_DOMAIN;
 else
     $cookie_domain = "";
- 
+
 // Update the cookie
 if (isset($value)) {
     setcookie(
@@ -348,27 +344,30 @@ if (isset($value)) {
 ##### Node.js
 
 ```javascript
-const express = require('express');
-const cookieParser = require('cookie-parser');
+const express = require("express");
+const cookieParser = require("cookie-parser");
 const app = express();
 const port = 3000;
- 
+
 app.use(cookieParser());
- 
-app.get('/', function(req, res) {
- 
-    // Check for existence of _pubcid cookie
-    let value = req.cookies['_pubcid'];
- 
-    // If pubcid exists, then update its expiration time
-    if (value) {
-        res.cookie('_pubcid', value, {domain: '.example.com', path: '/', expires: new Date(Date.now() + 1000*60*60*24*365)});
-    }
- 
-    res.render('index');
+
+app.get("/", function (req, res) {
+  // Check for existence of _pubcid cookie
+  let value = req.cookies["_pubcid"];
+
+  // If pubcid exists, then update its expiration time
+  if (value) {
+    res.cookie("_pubcid", value, {
+      domain: ".example.com",
+      path: "/",
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365),
+    });
+  }
+
+  res.render("index");
 });
- 
-app.listen(port, ()=>console.log(`App listening on port ${port}`));
+
+app.listen(port, () => console.log(`App listening on port ${port}`));
 ```
 
 ##### Apache
@@ -376,11 +375,11 @@ app.listen(port, ()=>console.log(`App listening on port ${port}`));
 ```conf
 # Add to httpd.conf
 # Requires mod_headers and mod_env
- 
+
 # Capture _pubcid cookie value if available
 SetEnvIf Cookie "(^|;\ *)_pubcid=([^;\ ]+)" PUBCID_VALUE=$2
 SetEnvIf Cookie "(^|;\ *)_pubcid=([^;\ ]+)" HAVE_PUBCID=1
- 
+
 # Add _pubcid cookie if it exists to the response with 1 year expiration time
 Header add Set-Cookie "_pubcid=%{PUBCID_VALUE}e;Domain=.example.com;Path=/;Max-Age=31536000" env=HAVE_PUBCID
 ```
@@ -389,7 +388,7 @@ Header add Set-Cookie "_pubcid=%{PUBCID_VALUE}e;Domain=.example.com;Path=/;Max-A
 
 ```conf
 # Add to a location directive
- 
+
     location /example {
         set $pubcid_value $cookie__pubcid;
         if ($pubcid_value) {
