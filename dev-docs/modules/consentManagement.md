@@ -55,7 +55,7 @@ If the timeout period expires or an error from the CMP is thrown, one of these a
 
 Please start by understanding the IAB's [TCF Implementation Guide](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md).
 
-To utilize this module, a Consent Management Platform (CMP) compatible with the [IAB TCF v2.0 spec](https://iabeurope.eu/tcf-2-0/) needs to be implemented on the site to interact with the user and obtain their consent choices. It's important to understand the details of how the CMP works before integrating it with Prebid.js
+To utilize this module, a Consent Management Platform (CMP) compatible with the IAB TCF v2.0 or [v2.2](https://iabeurope.eu/tcf-2-2-launches-all-you-need-to-know/) spec needs to be implemented on the site to interact with the user and obtain their consent choices. It's important to understand the details of how the CMP works before integrating it with Prebid.js
 
 In general, implementation details for CMPs are not covered by Prebid.org, but we do recommend to that you place the CMP code before the Prebid.js code in the head of the page in order to ensure the CMP's framework is loaded before the Prebid code executes. In addition, the community is collecting a set of [CMP best practices](/dev-docs/cmp-best-practices.html).
 
@@ -76,7 +76,7 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr.actionTimeout | `integer` | Length of time (in milliseconds) to allow the user to take action to consent if they have not already done so. The actionTimer first waits for the CMP to load, then the actionTimeout begins for the specified duration. Default is `undefined`. | `10000` |
 | gdpr.defaultGdprScope | `boolean` | Defines what the `gdprApplies` flag should be when the CMP doesn't respond in time or the static data doesn't supply. Defaults to `false`. | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
-| gdpr.consentData.getTCData.tcString | `string` | Base64url-encoded TCF v2.0 string with segments. | |
+| gdpr.consentData.getTCData.tcString | `string` | Base64url-encoded TCF v2.x string with segments. | |
 | gdpr.consentData.getTCData.addtlConsent | `string` | Additional consent string if available from the cmp TCData object | |
 | gdpr.consentData.getTCData.gdprApplies | `boolean` | Defines whether or not this pageview is in GDPR scope. | |
 | gdpr.consentData.getTCData.purpose.consents | `Object` | An object representing the user's consent status for specific purpose IDs. | |
@@ -85,7 +85,7 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr.consentData.getTCData.vendor.legitimateInterests | `Object` | An object representing the user's legitimate interest status for specific vendors IDs. | |
 
 {: .alert.alert-info :}
-NOTE: The `purpose` and `vendor` objects are required if you are using the `gdprEnforcement` module.  If the data is not included, your bid adpaters, analytics adapters, and/or userId systems will likely be excluded from the auction as Prebid will assume the user has not given consent for these entities.
+NOTE: The `purpose` and `vendor` objects are required if you are using the `gdprEnforcement` module.  If the data is not included, your bid adapters, analytics adapters, and/or userId systems will likely be excluded from the auction as Prebid will assume the user has not given consent for these entities.
 
 A related parameter is `deviceAccess`, which is at the global level of Prebid.js configuration because it can be used GDPR, CCPA, or custom privacy implementations:
 
@@ -94,7 +94,7 @@ A related parameter is `deviceAccess`, which is at the global level of Prebid.js
 | --- | --- | --- | --- |
 | deviceAccess | `boolean` | If false, Prebid.js will prevent adapters and modules from reading and setting cookies and HTML local storage. Defaults to `true`. | `false` |
 
-### TCF v2.0 Examples
+### TCF v2.x Examples
 
 Example 1: IAB CMP using custom timeout and setting GDPR in-scope by default.
 

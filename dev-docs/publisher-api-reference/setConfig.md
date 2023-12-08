@@ -16,6 +16,7 @@ Core config:
 * [Debugging](#setConfig-Debugging)
 * [Device Access](#setConfig-deviceAccess)
 * [Bidder Timeouts](#setConfig-Bidder-Timeouts)
+* [Enable sharing of transaction IDs](#setConfig-enableTIDs)
 * [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 * [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
 * [Set Timeout Buffer](#setConfig-timeoutBuffer)
@@ -98,6 +99,16 @@ pbjs.setConfig({ bidderTimeout: 3000 });
 Note that it's possible for the timeout to be triggered later than expected, leading to a bid participating in the auction later than expected.  This is due to how [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout) works in JS: it queues the callback in the event loop in an approximate location that *should* execute after this time but *it is not guaranteed*.
 With a busy page load, bids can be included in the auction even if the time to respond is greater than the timeout set by Prebid.js.  However, we do close the auction immediately if the threshold is greater than 200ms, so you should see a drop off after that period.
 For more information about the asynchronous event loop and `setTimeout`, see [How JavaScript Timers Work](https://johnresig.com/blog/how-javascript-timers-work/).
+
+<a id="setConfig-enableTIDs"></a>
+
+#### Enable sharing of transaction IDs
+
+Prebid generates unique IDs for both auctions and ad units within auctions; these can be used by DSPs to correlate requests from different sources, which is useful for many applications but also a potential privacy concern. Since version 8 they are disabled by default (see [release notes](/dev-docs/pb8-notes.html)), and can be re-enabled with `enableTIDs`:
+
+```javascript
+pbjs.setConfig({ enableTIDs: true });
+```
 
 #### Max Requests Per Origin
 

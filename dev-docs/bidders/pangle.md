@@ -29,13 +29,15 @@ The Pangle Bidding adapter requires setup before beginning. Please contact us at
 | token         | required | access token,contact Pangle team to get your token    | 'aaaa123'   | string   |
 | appid         | optional | app id (must be used in conjunction with placementid) | '5123400'   | string   |
 | placementid   | optional | placement id (must be used in conjunction with appid) | '912340000' | string   |
+| test          | optional | test (The preview environment is set to 1)            | 1           | number   |
 
-Pangle server-side Prebid Server adapter supports `banner`, `video`, `native` media types. But Pangle client-side Prebid.js adapter supports only `banner` media types, doesn't support `video` and `native`.
+Pangle server-side Prebid Server adapter supports `banner`, `video`, `native` media types. But Pangle client-side Prebid.js adapter supports `banner` and `video` media types, doesn't support `native`.
 
 ### Test Parameters
 
 ```javascript
 var adUnits = [
+    // Banner adUnit
     {
         code: 'test-div',
         mediaTypes: {
@@ -53,7 +55,28 @@ var adUnits = [
                 }
            }
        ]
-    }
+    },
+    // Video adUnit
+    {
+        code: 'div-1',
+        mediaTypes: {
+            video: {
+                context: 'outstream',
+                playerSize: [[300, 250]],
+                mimes: ['video/mp4'],
+            },
+        },
+        bids: [
+            {
+                bidder: 'pangle',
+                params: {
+                    appid: '8149678',
+                    placementid: '980589944',
+                    token: '111111',
+                },
+            },
+        ],
+    },
 ];
 ```
 
