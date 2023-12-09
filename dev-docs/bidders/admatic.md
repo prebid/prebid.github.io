@@ -6,10 +6,11 @@ pbjs: true
 pbs: false
 biddercode: admatic
 media_types: banner,video,native
-tcfeu_supported: false
-usp_supported: false
-coppa_supported: false
-schain_supported: false
+tcfeu_supported: true
+usp_supported: true
+coppa_supported: true
+gpp_supported: true
+schain_supported: true
 dchain_supported: false
 userIds: criteo, id5Id, sharedId, unifiedId
 safeframes_ok: true
