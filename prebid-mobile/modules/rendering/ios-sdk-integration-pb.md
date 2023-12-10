@@ -145,7 +145,7 @@ Initialize the `BannerView` object with these properties:
 * `frame` - the frame rectangle for the view.
 * `configID` - this is the ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) generated on your Prebid server.
 * `adSize` - this is the size of the ad unit which will be used in the bid request and returned to your application.
-* `adUnitId`: This is an arbitrary descriptor for the ad. You might use it as a descriptive name in targeting or for reporting.  For example you might name it "account details screen ad" or "home page ad name."
+* `adUnitId`- this is the value of the adunit name in the ad server. e.g. for GAM, it's the adunit name. Other ad servers may call this something different, but the idea is that the buyers want to know which slot in the app is up for auction for targeting and reporting. An example would be "/home/upper-mobile-banner".
 
 #### Step 2: Load the Ad
 {:.no_toc}

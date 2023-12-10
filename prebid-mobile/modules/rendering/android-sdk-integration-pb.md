@@ -24,7 +24,7 @@ To use the above code snippet, you will need to [setup a Prebid server.](https:/
 
 * `context`: This parameter represents the Context of the Android application. It is typically obtained using `getApplicationContext()` or `this` (if called from within an Activity). The Context is essential for the SDK to interact with the Android environment.
 
-* `adUnitId`: This is an arbitrary descriptor for the ad. You might use it as a descriptive name in targeting or for reporting.  For example you might name it "account details screen ad" or "home page ad name."
+* `adUnitId`: This is the value of the adunit name in the ad server. e.g. for GAM, it's the adunit name. Other ad servers may call this something different, but the idea is that the buyers want to know which slot in the app is up for auction for targeting and reporting. An example would be "/home/upper-mobile-banner".
 
 * `accountId`: The `accountId` you use to initialize the Prebid Mobile SDK is the unique identifier your Prebid Server provider assigned to you. This links requests from your app to server-side settings such as timeout, price granularity, and others.
 
@@ -242,7 +242,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 
 Create the `RewardedAdUnit` object with the parameters:
 
-* `adUnitId` - this is an arbitrary descriptor for the ad. You might use it as a descriptive name in targeting or for reporting.  For example you might name it "account details screen ad" or "home page ad name."
+* `adUnitId` - this is the value of the adunit name in the ad server. e.g. for GAM, it's the adunit name. Other ad servers may call this something different, but the idea is that the buyers want to know which slot in the app is up for auction for targeting and reporting. An example would be "/home/upper-mobile-banner".
 
 #### Step 2: Load the Ad
 {:.no_toc}
