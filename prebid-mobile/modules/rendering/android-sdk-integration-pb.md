@@ -22,7 +22,6 @@ Prebid.init(context, adUnit, accountID, adServer, host);
 
 To use the above code snippet, you will need to [setup a Prebid server.](https://docs.prebid.org/prebid-mobile/prebid-mobile-getting-started.html#set-up-prebid-server) You can either register with a [Prebid.org member that hosts Prebid Server](https://prebid.org/managed-services/) or [setup your own Prebid server.](https://docs.prebid.org/prebid-server/hosting/pbs-hosting.html)
 
-
 * `context`: This parameter represents the Context of the Android application. It is typically obtained using `getApplicationContext()` or `this` (if called from within an Activity). The Context is essential for the SDK to interact with the Android environment.
 
 * `adUnitId`: This is an arbitrary descriptor for the ad. You might use it as a descriptive name in targeting or for reporting.  For example you might name it "account details screen ad" or "home page ad name."

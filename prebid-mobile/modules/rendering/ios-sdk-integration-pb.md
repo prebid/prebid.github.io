@@ -45,7 +45,6 @@ To use the above code snippet, you will need to [setup a Prebid server.](https:/
 
 * `Prebid.shared.adServer`: This property represents the ad server that the Prebid SDK should integrate with. It's an enum value of type `PrebidAdServer`. The possible values include `.dfp` for Google Ad Manager (formerly DoubleClick for Publishers), `.moPub` for MoPub, and others. The `adServer` property is part of the `Prebid.shared` singleton instance.
 
-
 * `Prebid.shared.prebidServerHost`: If you are using a managed Prebid server service, the SDK is coded with enums containing the URLs for those services, for example `.rubicon` and `.appnexus`. If you are using other Prebid Server managed services that don't have enums linking to the URL or if you are using a self-hosted server, you should enter the URL to your server. You do so using the following format:
 
 ```swift
