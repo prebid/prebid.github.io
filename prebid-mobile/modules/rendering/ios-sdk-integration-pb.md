@@ -10,6 +10,49 @@ sidebarType: 2
 # Custom Bidding Integration
 {:.no_toc}
 
+## Before you start
+
+Before implementing the instructions in this guide, you need to ensure that you have correctly initialized the Prebid Mobile SDK in your app. You can do so using the code snippet below:
+
+```swift
+import PrebidMobile
+
+// ...
+
+// Initialize Prebid with ad units and other parameters
+Prebid.shared.prebidServerHost = .rubicon
+Prebid.shared.prebidServerAccountId = "INSERT-ACCOUNT-ID-HERE"
+Prebid.shared.adServer = .dfp
+
+// Create and add an ad unit in a single statement
+Prebid.shared.add(adUnit: PBAdUnit(configId: "adunit-example"))
+
+// Make a bid request
+Prebid.shared.requestBids { resultCode in
+    // Handle bid response
+    if resultCode == .success {
+        // Bids received successfully
+        // Load your ad with the received bids
+    } else {
+        // Handle any errors
+    }
+}
+```
+
+To use the above code snippet, you will need to [setup a Prebid server.](https://docs.prebid.org/prebid-mobile/prebid-mobile-getting-started.html#set-up-prebid-server) You can either register with a [Prebid.org member that hosts Prebid Server](https://prebid.org/managed-services/) or [setup your own Prebid server.](https://docs.prebid.org/prebid-server/hosting/pbs-hosting.html)
+
+* `Prebid.shared.prebidServerAccountId`: The `prebidServerAccountId` is the id you use to initialize the Prebid Mobile SDK is the unique identifier your Prebid Server provider assigned to you. This links requests from your app to server-side settings such as timeout, price granularity, and others.
+
+* `Prebid.shared.adServer`: This property represents the ad server that the Prebid SDK should integrate with. It's an enum value of type `PrebidAdServer`. The possible values include `.dfp` for Google Ad Manager (formerly DoubleClick for Publishers), `.moPub` for MoPub, and others. The `adServer` property is part of the `Prebid.shared` singleton instance.
+
+
+* `Prebid.shared.prebidServerHost`: If you are using a managed Prebid server service, the SDK is coded with enums containing the URLs for those services, for example `.rubicon` and `.appnexus`. If you are using other Prebid Server managed services that don't have enums linking to the URL or if you are using a self-hosted server, you should enter the URL to your server. You do so using the following format:
+
+```swift
+Prebid.shared.prebidServerHost = .custom
+Prebid.shared.prebidServerCustomHostURL = "https://your-prebid-server-url.com"
+```
+
 You can use Prebid SDK to monetize your app with a custom ad server or even without it. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without primary ad server and its SDK.
 
 * TOC
@@ -103,6 +146,7 @@ Initialize the `BannerView` object with these properties:
 * `frame` - the frame rectangle for the view.
 * `configID` - this is the ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) generated on your Prebid server.
 * `adSize` - this is the size of the ad unit which will be used in the bid request and returned to your application.
+* `adUnitId`: This is an arbitrary descriptor for the ad. You might use it as a descriptive name in targeting or for reporting.  For example you might name it "account details screen ad" or "home page ad name."
 
 #### Step 2: Load the Ad
 {:.no_toc}

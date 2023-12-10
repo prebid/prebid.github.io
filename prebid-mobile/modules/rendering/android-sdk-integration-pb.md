@@ -14,22 +14,39 @@ sidebarType: 2
 
 ## Before you start
 
-Before implementing the instructions in this guide, you need to ensure that you have correctly initialized the Prebid Mobile SDK in your app. You can do so using the code snippet below:
+Before implementing the instructions in this guide, you need to ensure that you have correctly initialized the Prebid Mobile SDK in your app. The initialization method has the following pattern:
 
+```java
+Prebid.init(context, adUnit, accountID, adServer, host);
 ```
+
+To use the above code snippet, you will need to [setup a Prebid server.](https://docs.prebid.org/prebid-mobile/prebid-mobile-getting-started.html#set-up-prebid-server) You can either register with a [Prebid.org member that hosts Prebid Server](https://prebid.org/managed-services/) or [setup your own Prebid server.](https://docs.prebid.org/prebid-server/hosting/pbs-hosting.html)
+
+
+* `context`: This parameter represents the Context of the Android application. It is typically obtained using `getApplicationContext()` or `this` (if called from within an Activity). The Context is essential for the SDK to interact with the Android environment.
+
+* `adUnitId`: This is an arbitrary descriptor for the ad. You might use it as a descriptive name in targeting or for reporting.  For example you might name it "account details screen ad" or "home page ad name."
+
+* `accountId`: The `accountId` you use to initialize the Prebid Mobile SDK is the unique identifier your Prebid Server provider assigned to you. This links requests from your app to server-side settings such as timeout, price granularity, and others.
+
+* `adServer`: This parameter specifies the ad server you are using. It is an enum value of the type `Prebid.AdServer`. The possible values include `Prebid.AdServer.DFP` for Google Ad Manager and `Prebid.AdServer.MOPub` for MoPub.
+
+* `host`: If you are using a managed Prebid server service, the SDK is coded with enums containing the URLs for those services, for example `Prebid.Host.RUBICON` and `Prebid.Host.APPNEXUS`. Other Prebid Server managed services exist that don't have enums linking to the URL. You can work with them by entering the appropriate URL. If you are using a self-hosted server, you should enter the URL to your server.
+
+Here is a working example:
+
+```java
 Prebid.init(getApplicationContext(), adUnits, "INSERT-ACCOUNT-ID-HERE", Prebid.AdServer.DFP, Prebid.Host.RUBICON);
 ```
 
-The `accountId` you use to initialize the Prebid Mobile SDK is the unique identifier your Prebid Server provider assigned to you. This allows you to change bidders and parameters without having to update your application code.
-
-You can use Prebid SDK to monetize your app with a custom ad server or even without it. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without the primary ad server and its SDK.
+You can use Prebid SDK to monetize your app with a custom ad server or even without one. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without the primary ad server and its SDK.
 
 * TOC
 {:toc}
 
 ## Transport API
 
-The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the `fetchDemand` function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice.
+The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the [`fetchDemand`](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#html-banner) function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice.
 
 In this mode, the publisher will be responsible for the following actions:
 
