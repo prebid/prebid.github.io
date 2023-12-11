@@ -56,7 +56,7 @@ The HTTP Analytics Module can send selected Analytics Events to a specified HTTP
 
 The sample rate has to be between `0.0` (never sample) and `1.0` (always sample). The sample rate is always evaluated and defaults to `0.0`.
 
-The module uses [github.com/antonmedv/expr](github.com/antonmedv/expr) for complex filter options. The [analytics object](https://github.com/mllrsohn/prebid-server/tree/master/analytics/core.go) is always passed into the expression.
+The module uses [github.com/antonmedv/expr](github.com/antonmedv/expr) for complex filter options. The [analytics object](https://github.com/prebid/prebid-server/tree/master/analytics/core.go) is always passed into the expression.
 
 Here's how it can be configured:
 
