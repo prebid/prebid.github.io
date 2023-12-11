@@ -8,7 +8,7 @@ title: Prebid Server | Developer | Build An Analytics Adapter
 # Prebid Server - Building an Analytics Adapter
 {: .no_toc}
 
-There are few open sourced analytics adapters for Prebid Server
+There are a few open-sourced analytics adapters for Prebid Server
 and there is an internal interface that host companies can use to
 integrate their own modules.
 
