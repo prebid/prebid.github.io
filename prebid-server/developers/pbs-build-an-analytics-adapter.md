@@ -111,7 +111,6 @@ Analytics objects can be of the following types:
 
 Here is a sample of the events for each type:
 
-
 ```json5
 [
   {
@@ -229,7 +228,7 @@ The [log module](https://github.com/prebid/prebid-server-java/blob/c5e7782b15c3b
 
 It can be configured with:
 
-```
+```YAML
 analytics:
   log:
     enabled: true
