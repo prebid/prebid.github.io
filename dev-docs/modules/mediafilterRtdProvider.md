@@ -22,13 +22,13 @@ As malvertising, scams, and controversial and offensive ad content proliferate a
 {: .alert.alert-warning :}
 To start using this module, please contact [The Media Trust](https://mediatrust.com/how-we-help/media-filter/ "The Media Trust") to get a script and configuration hash for module configuration.
 
-## Integration 
+## Integration
 
 1. Build Prebid bundle with The Media Filter module included.  
 
-```bash
-gulp build --modules=mediafilterRtdProvider
-```
+    ```bash
+    gulp build --modules=mediafilterRtdProvider
+    ```
 
 2. Inlcude the bundled script in your application.
 
