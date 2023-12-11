@@ -51,12 +51,14 @@ analytics:
 
 Prebid Server will then write sample log messages to the file you provided.
 
-## HTTP Analytics Module in PBS-Go
+### HTTP Analytics Module in PBS-Go
 The HTTP Analytics Module can send selected Analytics Events to a specified HTTP endpoint.
 
 The sample rate has to be between `0.0` (never sample) and `1.0` (always sample). The sample rate is always evaluated and defaults to `0.0`.
 
 The module uses [github.com/antonmedv/expr](github.com/antonmedv/expr) for complex filter options. The [analytics object](https://github.com/mllrsohn/prebid-server/tree/master/analytics/core.go) is always passed into the expression.
+
+Here's how it can be configured:
 
 ```yaml
 analytics:
@@ -109,7 +111,7 @@ Analytics objects can be of the following types:
 - notification
 - setuid
 
-Here is a sample of the events for each type:
+Here is a sample of the JSON output for each type:
 
 ```json5
 [
