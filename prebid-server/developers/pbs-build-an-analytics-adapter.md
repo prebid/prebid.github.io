@@ -8,8 +8,8 @@ title: Prebid Server | Developer | Build An Analytics Adapter
 # Prebid Server - Building an Analytics Adapter
 {: .no_toc}
 
-There aren't any open sourced analytics adapters for Prebid Server, 
-but there is an internal interface that host companies can use to
+There are few open sourced analytics adapters for Prebid Server
+and there is an internal interface that host companies can use to
 integrate their own modules.
 
 Below is an outline of how it's done for both versions of the server.
@@ -18,7 +18,7 @@ Below is an outline of how it's done for both versions of the server.
 Analytics adapters are subject to a number of specific technical rules. Please become familiar
 with the [module rules](/dev-docs/module-rules.html) that apply globally and to analytics adapters in particular.
 
-* TOC
+- TOC
 {:toc }
 
 ## Adding an Analytics Adapter in PBS-Go
@@ -28,9 +28,11 @@ with the [module rules](/dev-docs/module-rules.html) that apply globally and to 
 Analytics modules are enabled through Viper [configuration](https://github.com/prebid/prebid-server/blob/master/docs/developers/configuration.md).
 You'll need to define any properties in config/config.go which are required for your module.
 
+{:start="2"}
 2. Implement your module
 Your new module belongs in the analytics/{moduleName} package. It should implement the `PBSAnalyticsModule` interface from analytics/core.go
 
+{:start="3"}
 3. Connect your Config to the Implementation
 The `NewPBSAnalytics()` function inside analytics/config/config.go instantiates Analytics modules using the app config. You'll need to update this to recognize your new module.
 
@@ -41,11 +43,12 @@ A simple [filesystem](https://github.com/prebid/prebid-server/tree/master/analyt
 
 It can be configured with:
 
-```
+```yaml
 analytics:
   file:
     filename: "path/to/file.log
 ```
+
 Prebid Server will then write sample log messages to the file you provided.
 
 ## HTTP Analytics Module in PBS-Go
@@ -53,7 +56,7 @@ The HTTP Analytics Module can send selected Analytics Events to a specified HTTP
 
 The sample rate has to be between `0.0` (never sample) and `1.0` (always sample). The sample rate is always evaluated and defaults to `0.0`.
 
-The module uses [github.com/antonmedv/expr](github.com/antonmedv/expr) for complexer filter options. The [analytics object](https://github.com/mllrsohn/prebid-server/tree/master/analytics/core.go) is always passed into the expression.
+The module uses [github.com/antonmedv/expr](github.com/antonmedv/expr) for complex filter options. The [analytics object](https://github.com/mllrsohn/prebid-server/tree/master/analytics/core.go) is always passed into the expression.
 
 ```yaml
 analytics:
@@ -95,7 +98,7 @@ analytics:
             filter: "" 
 ```
 
-The payload to the endpoint is an array of the analytics object plus the `type` and the `createdAt` date. 
+The payload to the endpoint is an array of the analytics object plus the `type` and the `createdAt` date.
 
 Analytics objects can be of the following types:
 
@@ -211,9 +214,11 @@ Here is a sample of the events for each type:
 1. Define config params
 Analytics modules are enabled through the [Configuration](https://github.com/prebid/prebid-server-java/blob/master/docs/config.md).
 
+{:start="2"}
 2. Implement your module
 Your new module org.prebid.server.analytics.{module}AnalyticsReporter needs to implement the org.prebid.server.analytics.AnalyticsReporter interface.
 
+{:start="3"}
 3. Add your implementation to Spring Context
 In order to make Prebid Server aware of the new analytics module it needs to be added to the Spring Context in org.prebid.server.spring.config.AnalyticsConfiguration as a bean.
 
