@@ -15,9 +15,9 @@ sidebarType : 1
 
 ## Overview
 
-As malvertising, scams, and controversial and offensive ad content proliferate across the digital media ecosystem, publishers need advanced controls to both shield audiences from malware attacks and ensure quality site experience. Media Filter, the market’s fastest and most comprehensive real-time ad quality tool, empowers publisher [Ad/Revenue Operations](https://mediatrust.com/who-we-help/adrevenue-operations/ "Ad/Revenue Operations") teams to block a wide range of malware, high-risk ad platforms, heavy ads, and ads with sensitive or objectionable content.
+ As malvertising, scams, and controversial and offensive ad content proliferate across the digital media ecosystem, publishers need advanced controls to both shield audiences from malware attacks and ensure quality site experience. With the market’s fastest and most comprehensive real-time ad quality tool, The Media Trust empowers publisher Ad/Revenue Operations teams to block a wide range of malware, high-risk ad platforms, heavy ads, ads with sensitive or objectionable content, and custom lists (e.g., competitors). Customizable replacement code calls for a new ad to ensure impressions are still monetized.
 
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/VBHRiirge7s/0.jpg)](http://www.youtube.com/watch?v=VBHRiirge7s "Publishers' Ultimate Avenger: Media Filter")
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/VBHRiirge7s/0.jpg)](https://mediatrust.com/how-we-help/media-filter "The Media Filter")
 
 {: .alert.alert-warning :}
 To start using this module, please contact [The Media Trust](https://mediatrust.com/how-we-help/media-filter/ "The Media Trust") to get a script and configuration hash for module configuration.
