@@ -85,7 +85,7 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr.consentData.getTCData.vendor.legitimateInterests | `Object` | An object representing the user's legitimate interest status for specific vendors IDs. | |
 
 {: .alert.alert-info :}
-NOTE: The `purpose` and `vendor` objects are required if you are using the `gdprEnforcement` module.  If the data is not included, your bid adpaters, analytics adapters, and/or userId systems will likely be excluded from the auction as Prebid will assume the user has not given consent for these entities.
+NOTE: The `purpose` and `vendor` objects are required if you are using the `gdprEnforcement` module.  If the data is not included, your bid adapters, analytics adapters, and/or userId systems will likely be excluded from the auction as Prebid will assume the user has not given consent for these entities.
 
 A related parameter is `deviceAccess`, which is at the global level of Prebid.js configuration because it can be used GDPR, CCPA, or custom privacy implementations:
 

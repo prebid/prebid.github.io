@@ -16,7 +16,6 @@ fpd_supported: false
 pbjs: true
 pbs: true
 pbs_app_supported: true
-prebid_member: false 
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
 sidebarType: 1
