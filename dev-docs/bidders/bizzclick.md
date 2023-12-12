@@ -34,7 +34,7 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 |---------------|----------|-----------------------|-----------|-----------|
 | `sourceId` | required | Unique hash provided by bizzclick | `'6dllcEHSxYdSb6yLmCqE'` | `string` |
 | `accountId` | required | Unique name provided by bizzclick | `'bizzclick-test'` | `string` |
-| `host` | required | Bizzclick server region. US East by default | `'USE'` | `string` |
+| `host` | optional | Bizzclick server region. US East by default | `'us-e-node1'` | `string` |
 
 ### Bid Params for Prebid.js
 
@@ -43,5 +43,4 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 |---------------|----------|-----------------------|-----------|-----------|
 | `sourceId` | required | Unique hash provided by bizzclick | `'6dllcEHSxYdSb6yLmCqE'` | `string` |
 | `accountId` | required | Unique name provided by bizzclick | `'bizzclick-test'` | `string` |
-| `host` | required | Bizzclick server region. US East by default | `'USE'` | `string` |
-| `placementId` | optional | AD placement identificator | `'D5V5LFCsSpJeltDtyAuF'` | `string` |
+| `host` | optional | Bizzclick server region. US East by default | `'us-e-node1'` | `string` |
