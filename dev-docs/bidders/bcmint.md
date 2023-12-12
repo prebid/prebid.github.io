@@ -15,6 +15,7 @@ schain_supported: true
 multiformat_supported: will-bid-on-one
 userIds: all
 sidebarType: 1
+aliasCode: aso
 ---
 ### Note
 
@@ -34,7 +35,6 @@ Note that the BCM International adapter expects a client-side Prebid Cache to be
 
 ```js
 pbjs.setConfig({
-    usePrebidCache: true,
     cache: {
         url: 'https://prebid.adnxs.com/pbc/v1/cache'
     }

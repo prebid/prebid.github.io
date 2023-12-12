@@ -51,6 +51,14 @@
   subgroup: 0
 
 - sbSecId: 0
+  title: Glossary
+  link: /overview/glossary.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 0
   title: Codes of Conduct
   link:
   isHeader: 1
@@ -264,7 +272,7 @@
   subgroup: 1
 
 - sbSecId: 1
-  title: Using Prebid.js with AppNexus Publisher Ad Server
+  title: Using Prebid.js with Microsoft Monetize Ad Server
   link: /dev-docs/examples/use-prebid-with-appnexus-ad-server.html
   isHeader: 0
   isSectionHeader: 0
@@ -367,6 +375,14 @@
 - sbSecId: 1
   title: Publisher API Reference
   link: /dev-docs/publisher-api-reference.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 1
+  title: Internal API Reference
+  link: /dev-docs/internal-api-reference.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -886,6 +902,14 @@
   sectionTitle:
   subgroup: 3
 
+- sbSecId: 2
+  title: Prebid Plugin Renderer
+  link: /prebid-mobile/pbm-api/android/pbm-plugin-renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
 #--------------Ad Ops--------------|
 
 - sbSecId: 3
@@ -1090,7 +1114,7 @@
   subgroup: 2
 
 - sbSecId: 3
-  title: "AppNexus Publisher"
+  title: "Microsoft Monetize Publisher"
   link:
   isHeader: 0
   isSectionHeader: 0
@@ -1331,6 +1355,14 @@
   subgroup: 0
 
 - sbSecId: 5
+  title: 'PBS+Digital Out Of Home'
+  link: /prebid-server/use-cases/pbs-dooh.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 5
   title: 'Hosting Your Own PBS'
   link: /prebid-server/hosting/pbs-hosting.html
   isHeader: 0
@@ -1492,7 +1524,6 @@
   sectionTitle:
   subgroup: 3
 
-
 - sbSecId: 5
   title: Modules
   link: /prebid-server/pbs-modules/
@@ -1537,6 +1568,14 @@
 - sbSecId: 5
   title: Building a Module
   link: /prebid-server/developers/add-a-module.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 5
+  title: Building a Privacy Module
+  link: /prebid-server/developers/add-a-privacy-module.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1835,15 +1874,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 0
-
-- sbSecId: 8
-  title: Dr. Prebid Validation App
-  link: /prebid-mobile/dr-prebid.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
-
 
  #-------------- Prebid Identity --------------|
 

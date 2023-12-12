@@ -8,9 +8,9 @@ title: Prebid Server | Developers | Building a Bid Adapter (Go)
 # Prebid Server - New Bid Adapter (Go)
 {: .no_toc}
 
-Thank you for contributing a bid adapter to the open source Prebid Server project. Each new adapter gives publishers more options for monetizing their inventory and strengthens the header bidding community.
+Thank you for your valuable contribution of a bid adapter to the open source Prebid Server project. Each new adapter expands the monetization possibilities for publishers and provides greater options to maximize their inventory's potential. We truly appreciate your support in making this ecosystem thrive!
 
-This document guides you through the process of developing a new bid adapter for your bidding server. We encourage you to look at [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance. You can also ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server/issues/new).
+This document guides you through the process of developing a new bid adapter for your bidding server. We encourage you to look at [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance. You can ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server/issues/new).
 
 {: .alert.alert-info :}
 There are two implementations of Prebid Server, [PBS-Go](https://github.com/prebid/prebid-server) and [PBS-Java](https://github.com/prebid/prebid-server-java). We recommend you build new adapters for PBS-Go and allow us to port it to PBS-Java within a couple of months. If you'd like to build both yourself, please also follow these [instructions for building an adapter in PBS-Java](/prebid-server/developers/add-new-bidder-java.html).
@@ -55,7 +55,7 @@ Failure to follow the rules will lead to delays in approving your adapter. If yo
 
 ### Support and Maintenance
 
-You are expected to provide support and maintenance for the code you contribute to Prebid Server as part of your bid adapter. We ask that you proactively update your adapter when your bidding server introduces new features or breaking changes.
+**You are expected to provide support and maintenance for the code you contribute to Prebid Server as part of your bid adapter.** We ask that you proactively update your adapter when your bidding server introduces new features or breaking changes.
 
 Occasionally, we'll introduce changes to the core framework as part of our ongoing maintenance and enhancement of the project. If this causes a compilation error or a performance impact to your adapter, we will update the affected portion of your bid adapter code and provide full unit test coverage of our changes. We will notify you via email if this happens and give you at least one week to review the PR and provide comments. Please understand that we will not wait for your explicit approval for these kinds of changes unless you respond to our email or comment on the PR.
 
@@ -74,7 +74,7 @@ Our project is written in the [Go programming language](https://golang.org/). We
 
 ### Bidder Info
 
-Let's begin with your adapter's bidder information YAML file. This file is required and contains your bid adapter's maintainer email address, outgoing compression support, [GDPR Global Vendor List (GVL) ID](https://iabeurope.eu/vendor-list-tcf-v2-0/), supported ad formats, user sync endpoints, and allows you to opt-out of video impression tracking.
+Let's begin with your adapter's bidder information YAML file. This file is required and contains your bid adapter's maintainer email address, outgoing compression support, [GDPR Global Vendor List (GVL) ID](https://iabeurope.eu/tcf-for-vendors/), supported ad formats, user sync endpoints, and allows you to opt-out of video impression tracking.
 
 Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with the following template:
 
@@ -108,7 +108,7 @@ Modify this template for your bid adapter:
 
 * Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
 * Remove the `endpointCompression` value if your bidding server does not accept gzip compressed bid requests. Setting this value to `gzip` will save on network bandwidth at the expense of slightly increased cpu and memory usage for the host.
-* Change the `gvlVendorID` from the sample value of `42` to the id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/), or remove this line entirely if your bidding server is not registered with IAB Europe.
+* Change the `gvlVendorID` from the sample value of `42` to the id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/tcf-for-vendors/), or remove this line entirely if your bidding server is not registered with IAB Europe.
 * Change the `modifyingVastXmlAllowed` value to `false` if you'd like to opt-out of [video impression tracking](https://github.com/prebid/prebid-server/issues/1015), or remove this line entirely if your adapter doesn't support VAST video ads.
 * Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
 * Add the `extra_info` if you'd like to pass extra value adapter may need.
@@ -881,24 +881,27 @@ Either `.Bids[].BidVideo.PrimaryCategory` or `.Bids[].Bid.Cat` should be provide
 Prebid has introduced a standard object model for sharing granular bid response data with publishers, analytics, and reporting systems. We encourage adapters to provide as much information as possible in the bid response.
 
 {: .alert.alert-danger :}
-Bid metadata will be *required* in Prebid.js 5.X+ release, specifically for bid.ADomain and MediaType. We recommend making sure your adapter sets these values or Prebid.js may throw out the bid.
+Bid metadata may be required in a future Prebid.js release. The AdvertiserDomains field and the DChain object are particularly useful. We recommend ensuring your adapter sets these fields or Prebid.js may reject your bid.
 
 {: .table .table-bordered .table-striped }
 | Path | Description
 | - | -
-| `.NetworkID` | Bidder-specific network/DSP id.
-| `.NetworkName` | Bidder-specific network/DSP name.
-| `.AgencyID` | Bidder-specific agency id.
-| `.AgencyName` | Bidder-specific agency name.
+| `.AdvertiserDomains` | Domains for the landing page(s) aligning with the OpenRTB `adomain` field.
 | `.AdvertiserID` | Bidder-specific advertiser id.
 | `.AdvertiserName` | Bidder-specific advertiser name.
+| `.AgencyID` | Bidder-specific agency id.
+| `.AgencyName` | Bidder-specific agency name.
 | `.BrandID` | Bidder-specific brand id for advertisers with multiple brands.
 | `.BrandName` | Bidder-specific brand name.
-| `.DemandSource` | Bidder-specific demand source. Some adapters may functionally serve multiple SSPs or exchanges, and this specifies which.
 | `.DChain` | Demand chain object.
+| `.DemandSource` | Bidder-specific demand source. Some adapters may functionally serve multiple SSPs or exchanges, and this specifies which.
+| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. This is used in the scenario where a bidder responds with a mediatype different than the stated type. e.g. native when the impression is for a banner. One use case is to help publishers determine whether the creative should be wrapped in a safeframe.
+| `.NetworkID` | Bidder-specific network/DSP id.
+| `.NetworkName` | Bidder-specific network/DSP name.
+| `.RendererName` | Name of the desired renderer for the creative.
+| `.RendererVersion` | Version of the desired renderer for the creative.
 | `.PrimaryCategoryID` | Primary IAB category id.
 | `.SecondaryCategoryIDs` | Secondary IAB category ids.
-| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. This is used in the scenario where a bidder responds with a mediatype different than the stated type. e.g. native when the impression is for a banner. One use case is to help publishers determine whether the creative should be wrapped in a safeframe.
 
 <p></p>
 
@@ -920,23 +923,24 @@ func (a *adapter) MakeBids(request *openrtb2.BidRequest, requestData *adapters.R
 }
 
 func getBidMeta(bid *adapters.TypedBid) *openrtb_ext.ExtBidPrebidMeta {
-  // Not all fields are required. This example includes all fields for
-  // demonstration purposes.
+  // This example includes all fields for demonstration purposes.
   return &openrtb_ext.ExtBidPrebidMeta {
-    NetworkID:            1,
-    NetworkName:          "Some Network Name",
-    AgencyID:             2,
-    AgencyName:           "Some Agency Name",
+    AdvertiserDomains:    []string{"Some Domain"},
     AdvertiserID:         3,
     AdvertiserName:       "Some Advertiser Name",
-    AdvertiserDomains:    []string{"Some Domain"},
-    DemandSource:         "Some Demand Source",
-    DChain:               json.RawMessage(`{Some Demand Chain JSON}`),
+    AgencyID:             2,
+    AgencyName:           "Some Agency Name",
     BrandID:              4,
     BrandName:            "Some Brand Name",
+    DChain:               json.RawMessage(`{Some Demand Chain JSON}`),
+    DemandSource:         "Some Demand Source",
+    MediaType:            "banner",
+    NetworkID:            1,
+    RendererName:         "Some Renderer",
+    RendererVersion:      "1.0",
+    NetworkName:          "Some Network Name",
     PrimaryCategoryID:    "IAB-1",
     SecondaryCategoryIDs: []string{"IAB-2", "IAB-3"},
-    MediaType:            "banner",
   }
 }
 ```
@@ -1002,10 +1006,11 @@ If your bidding endpoint can support more than one biddercode, you shouldn't rep
 the whole adapter codebase. Rather, follow these steps to create a 'hardcoded' alias:
 
 1. Create a config yaml file in static/bidder-info - e.g. static/bidder-info/myalias.yaml
-1. Copy the “source” bidder json schema and place it in the static/bidder-params directory - e.g. static/bidder-params/myalias.json
-1. Add the new alias to the openrtb_ext/bidders.go file -- e.g. BidderMyAlias BidderName = "myalias"
-1. Map the alias to the adapter in exchange/adapter_builders.go . e.g. openrtb_ext.BidderMyAlias: myMain.Builder
-1. Test: build the server locally and try sending a request with the alias as a bidder.
+1. Add "aliasOf" in the config.yaml file with its value set to the name of the adapter you are creating an alias for
+
+```yaml
+aliasOf: "appnexus"
+```
 
 Notes:
 
@@ -1283,7 +1288,7 @@ tcfeu_supported: true/false
 gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
-gpp_supported: true/false
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true/false
 dchain_supported: true/false
 userId: <list of supported vendors>

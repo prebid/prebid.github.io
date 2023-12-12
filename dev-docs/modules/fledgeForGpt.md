@@ -145,9 +145,9 @@ function interpretResponse(resp, req) {
     const bids = parseBids(resp);
 
     // Load the auctionConfigs from the response - also adapter specific
-    const auctionConfigs = parseAuctionConfigs(resp);
+    const fledgeAuctionConfigs = parseAuctionConfigs(resp);
 
-    if (auctionConfigs) {
+    if (fledgeAuctionConfigs) {
         // Return a tuple of bids and auctionConfigs. It is possible that bids could be null.
         return {bids, fledgeAuctionConfigs};
     } else {
