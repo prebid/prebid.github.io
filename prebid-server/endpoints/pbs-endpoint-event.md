@@ -136,3 +136,7 @@ The response to the client is JSON containing the cache UUIDs that can be used t
 
 - This application does *not* validate XML. If users `POST` malformed XML, they'll `GET` a bad response too.
 - The host company can set a max length on payload size limits in the application config. This limit will vary from host company to host company.
+
+## Further Reading
+
+- [Endpoint overview](/prebid-server/endpoints/pbs-endpoint-overview)
