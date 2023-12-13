@@ -6,6 +6,7 @@ sidebarType: 2
 ---
 
 # Prebid AMP Implementation Guide
+
 {: .no_toc}
 
 This page has instructions for showing ads on Accelerated Mobile Pages (AMP) using Prebid.js.
@@ -14,11 +15,11 @@ Through this implementation, [Prebid Server][PBS] fetches demand and returns key
 
 For more information about AMP RTC, see:
 
-+ [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp.html)
-+ [Prebid Server AMP Endpoint Technical Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html)
-+ [Prebid Server Stored Bid Requests](https://github.com/prebid/prebid-server/blob/master/docs/developers/stored-requests.md#stored-bidrequests)
-+ [AMP RTC Overview](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)
-+ [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
+* [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp.html)
+* [Prebid Server AMP Endpoint Technical Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html)
+* [Prebid Server Stored Bid Requests](https://github.com/prebid/prebid-server/blob/master/docs/developers/stored-requests.md#stored-bidrequests)
+* [AMP RTC Overview](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)
+* [AMP RTC Publisher Integration Guide](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-publisher-implementation-guide.md)
 
 {% capture tipNote %}
 For ad ops setup instructions, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
@@ -33,18 +34,18 @@ For ad ops setup instructions, see [Google Ad Manager with Prebid Step by Step](
 
 To set up Prebid to serve ads into your AMP pages, you'll need:
 
-+ An account with a [Prebid Server][PBS] instance
-+ One or more Prebid Server Stored Bid Requests. A Stored Bid Request is a partial OpenRTB JSON request which:
-    + Specifies properties like currency, schain, price granularity, etc.
-    + Contains a list of demand partners and their respective parameters
-+ An AMP page containing at least one amp-ad element for an AMP ad network that supports Fast Fetch and AMP RTC
+* An account with a [Prebid Server][PBS] instance
+* One or more Prebid Server Stored Bid Requests. A Stored Bid Request is a partial OpenRTB JSON request which:
+  * Specifies properties like currency, schain, price granularity, etc.
+  * Contains a list of demand partners and their respective parameters
+* An AMP page containing at least one amp-ad element for an AMP ad network that supports Fast Fetch and AMP RTC
 
 ## Implementation
 
-+ [Prebid Server Stored Request](#prebid-server-stored-request): This is the Prebid Server Stored Bid Request.
-+ [AMP content page](#amp-content-page): This is where your content lives.
-+ [HTML Creative](#html-creative): This is the creative your Ad Ops team puts in your ad server.
-+ [User Sync in AMP](#user-sync): This is the `amp-iframe` pixel that must be added to your AMP page to sync users with Prebid Server.
+* [Prebid Server Stored Request](#prebid-server-stored-request): This is the Prebid Server Stored Bid Request.
+* [AMP content page](#amp-content-page): This is where your content lives.
+* [HTML Creative](#html-creative): This is the creative your Ad Ops team puts in your ad server.
+* [User Sync in AMP](#user-sync): This is the `amp-iframe` pixel that must be added to your AMP page to sync users with Prebid Server.
 
 ### Prebid Server Stored Request
 
@@ -53,15 +54,14 @@ You will have to create at least one Stored Request for Prebid Server.  Valid St
 An example Stored Request is given below. You'll see that the Stored Request contains some important info
 that doesn't come from /amp parameters:
 
-- cur
-- schain
-- ext.prebid.cache.bids - needed to let Prebid Server know that you want it to store the result in PBC
-- ext.prebid.targeting.pricegranularity - needed to let Prebid Server know how to calculate the price bucket
-- ext.prebid.aliases
-- bidders and their parameters
+* cur
+* schain
+* ext.prebid.cache.bids - needed to let Prebid Server know that you want it to store the result in PBC
+* ext.prebid.targeting.pricegranularity - needed to let Prebid Server know how to calculate the price bucket
+* ext.prebid.aliases
+* bidders and their parameters
 
-```html
-
+```json
 {
     "id": "some-request-id",
     "cur": ["USD"],
@@ -114,25 +114,28 @@ that doesn't come from /amp parameters:
     }]
 }
 ```
+
 This basic OpenRTB record will be enhanced by the parameters from the call to the [/amp endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-amp.html).
 
 ### AMP content page
 
 First ensure that the amp-ad component is imported in the header.
 
-```
+```html
 <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
 ```
+
 This script provides code libraries that will convert `<amp-ad>` properties to the endpoint query parameters usint the [Real Time Config](https://github.com/ampproject/amphtml/blob/main/extensions/amp-a4a/rtc-documentation.md) (RTC) protocol.
 
 The `amp-ad` elements in the page body need to be set up as shown below, especially the following attributes:
 
-+ `data-slot`: Identifies the ad slot for the auction.
-+ `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which handles the communication with AMP RTC.
-    + `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js](https://github.com/ampproject/amphtml/blob/master/src/service/real-time-config/callout-vendors.js). We recommend working with your Prebid Server hosting company to set up which bidders and parameters should be involved for each AMP ad unit.
-    + `timeoutMillis` is an optional integer that defines the timeout in milliseconds for each individual RTC callout.  The configured timeout must be greater than 0 and less than 1000ms.  If omitted, the timeout value defaults to 1000ms.
+* `data-slot`: Identifies the ad slot for the auction.
+* `rtc-config`: Used to pass JSON configuration data to [Prebid Server][PBS], which handles the communication with AMP RTC.
+  * `vendors` is an object that defines any vendors that will be receiving RTC callouts (including Prebid Server) up to a maximum of five.  The list of supported RTC vendors is maintained in [callout-vendors.js](https://github.com/ampproject/amphtml/blob/master/src/service/real-time-config/callout-vendors.js). We recommend working with your Prebid Server hosting company to set up which bidders and parameters should be involved for each AMP ad unit.
+  * `timeoutMillis` is an optional integer that defines the timeout in milliseconds for each individual RTC callout.  The configured timeout must be greater than 0 and less than 1000ms.  If omitted, the timeout value defaults to 1000ms.
 
 e.g. for the AppNexus cluster of Prebid Servers:
+
 ```html
 <amp-ad width="300" height="250"
     type="doubleclick"
@@ -142,6 +145,7 @@ e.g. for the AppNexus cluster of Prebid Servers:
 ```
 
 e.g. for Rubicon Project's cluster of Prebid Servers:
+
 ```html
 <amp-ad width="300" height="250"
     type="doubleclick"
@@ -151,6 +155,7 @@ e.g. for Rubicon Project's cluster of Prebid Servers:
 ```
 
 For other hosts, you can specify the URL directly rather than using one of the convenient vendor aliases. e.g.
+
 ```html
 <amp-ad width="300" height="250"
     type="doubleclick"
@@ -172,8 +177,7 @@ You can always get the latest version of the creative code below from [the AMP e
 For Google Ad Manager:
 
 ```html
-
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
@@ -193,8 +197,7 @@ For Google Ad Manager:
 For all other ad servers:
 
 ```html
-
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%MACRO:hb_format%%.js"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
@@ -213,7 +216,6 @@ For all other ad servers:
     console.log(e);
   }
 </script>
-
 ```
 
 Replace `MACRO` in the preceding example with the appropriate macro for the ad server. (Refer to your ad server's documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
@@ -225,11 +227,13 @@ To sync user IDs with Prebid Server, the `amp-iframe` below may be added to your
 Note that AMP constrains syncing as described in the [amp-iframe](https://amp.dev/documentation/components/amp-iframe) documentation. You may only have *one* amp-iframe on your page that is small, e.g. 1x1. Many publishers already have some kind of analytics or tracking frame on their page, so they may find it difficult to manage this. Several hacks are possible, including building a 'frankenstein' script that combines all of your required tracking into one or tying the sync to an image that's large enough to be visible.
 
 Notes:
-- The following examples include a transparent image as a placeholder which will allow you to place the example at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://amp.dev/documentation/components/amp-iframe/)
-- Note that the `sandbox` parameter to the amp-iframe must include both "allow-scripts" and "allow-same-origin".
-- The load-cookie-with-consent.html file has the same argument syntax as load-cookie.html. It's a different file because it's larger and depends on the existence of an AMP Consent Management Platform.
+
+* The following examples include a transparent image as a placeholder which will allow you to place the example at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://amp.dev/documentation/components/amp-iframe/)
+* Note that the `sandbox` parameter to the amp-iframe must include both "allow-scripts" and "allow-same-origin".
+* The load-cookie-with-consent.html file has the same argument syntax as load-cookie.html. It's a different file because it's larger and depends on the existence of an AMP Consent Management Platform.
 
 If you're using AppNexus' managed service, you would enter something like this:
+
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
@@ -241,6 +245,7 @@ If you're using AppNexus' managed service, you would enter something like this:
 ```
 
 If you are utilizing Magnite's managed service, there's an extra `args` parameter:
+
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
@@ -252,6 +257,7 @@ If you are utilizing Magnite's managed service, there's an extra `args` paramete
 ```
 
 Or you can specify a full URL to another Prebid Server location (including a QA site) by setting `endpoint` to a URL-encoded string. e.g.
+
 ```html
 <amp-iframe width="1" title="User Sync"
   height="1"
@@ -267,35 +273,39 @@ See [manually initiating a sync](/prebid-server/developers/pbs-cookie-sync.html#
 ### AMP RTC
 
 If you're using a custom RTC callout rather than one of the pre-defined [vendor callouts](https://github.com/ampproject/amphtml/blob/main/src/service/real-time-config/callout-vendors.js), here are the parameters that can be passed through the RTC string:
-- tag_id (this correspondes to the Prebid Server stored request ID)
-- w=ATTR(width)
-- h=ATTR(height)
-- ow=ATTR(data-override-width)
-- oh=ATTR(data-override-height)
-- ms=ATTR(data-multi-size)
-- slot=ATTR(data-slot)
-- targeting=TGT
-- curl=CANONICAL_URL
-- timeout=TIMEOUT
-- adc=ADCID
-- purl=HREF
-- gdpr_consent=CONSENT_STRING
-- consent_type=CONSENT_METADATA(consentStringType)
-- gdpr_applies=CONSENT_METADATA(gdprApplies)
-- attl_consent=CONSENT_METADATA(additionalConsent)
+
+* tag_id (this correspondes to the Prebid Server stored request ID)
+* w=ATTR(width)
+* h=ATTR(height)
+* ow=ATTR(data-override-width)
+* oh=ATTR(data-override-height)
+* ms=ATTR(data-multi-size)
+* slot=ATTR(data-slot)
+* targeting=TGT
+* curl=CANONICAL_URL
+* timeout=TIMEOUT
+* adc=ADCID
+* purl=HREF
+* gdpr_consent=CONSENT_STRING
+* consent_type=CONSENT_METADATA(consentStringType)
+* gdpr_applies=CONSENT_METADATA(gdprApplies)
+* attl_consent=CONSENT_METADATA(additionalConsent)
 
 ## Debugging Tips
+
 To review that Prebid on AMP is working properly the following aspects can be looked at:
-+ Include `#development=1` to the URL to review AMP specifc debug messages in the browser console.
-+ Look for the Prebid server call in the network panel. You can open this URL in a new tab to view additional debugging information relating to the Prebid Server Stored Bid Request. If working properly, Prebid server will display the targeting JSON for AMP to use.
-+ Look for the network call from the Ad Server to ensure that key values are being passed. (For Google Ad Manager these are in the `scp` query string parameter in the network request)
-+ Most of the debugging information is omitted from the Prebid Server response unless the `debug=1` parameter is present in the Prebid Server query string. AMP won't add this parameter, so you'll need to grab the Prebid Server URL and manually add it to see the additional information provided.
+
+* Include `#development=1` to the URL to review AMP specifc debug messages in the browser console.
+* Look for the Prebid server call in the network panel. You can open this URL in a new tab to view additional debugging information relating to the Prebid Server Stored Bid Request. If working properly, Prebid server will display the targeting JSON for AMP to use.
+* Look for the network call from the Ad Server to ensure that key values are being passed. (For Google Ad Manager these are in the `scp` query string parameter in the network request)
+* Most of the debugging information is omitted from the Prebid Server response unless the `debug=1` parameter is present in the Prebid Server query string. AMP won't add this parameter, so you'll need to grab the Prebid Server URL and manually add it to see the additional information provided.
 
 ## Further Reading
 
-+ [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp.html)
-+ [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html) (Ad Ops Setup)
-+ [AMP RTC Overview](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)
+* [Prebid Server and AMP](/prebid-server/use-cases/pbs-amp.html)
+* [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html) (Ad Ops Setup)
+* [AMP RTC Overview](https://github.com/ampproject/amphtml/blob/master/extensions/amp-a4a/rtc-documentation.md)
+* [callout-vendors.js]
 
 <!-- Reference Links -->
 

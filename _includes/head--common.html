@@ -8,25 +8,24 @@
     <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico">
 
 
+
     {% if page.head_title %}
         <title>{{page.head_title}}</title>
     {% else %}
         <title>{{page.title}} for Header Bidding</title>
     {% endif %}
 
-    {% if jekyll.environment == "production" %}
-      <!-- OneTrust Cookies Consent Notice start for docs.prebid.org -->
-      <script type="text/javascript">
-        // Global Promise we can check to make sure OneTrust is loaded.
-        let resolveOneTrust;
-        window.onetrustLoaded = new Promise((resolve) => resolveOnetrust = resolve);
-        function OptanonWrapper() {
-          resolveOnetrust();
-        }
-      </script>
-      <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="031ad285-43ce-45f1-a493-8188aaf238cf"></script>
-      <!-- OneTrust Cookies Consent Notice end for docs.prebid.org -->
-    {% endif %}
+    <!-- OneTrust Cookies Consent Notice start for docs.prebid.org -->
+    <script type="text/javascript">
+      // Global Promise we can check to make sure OneTrust is loaded.
+      let resolveOneTrust;
+      window.onetrustLoaded = new Promise((resolve) => resolveOnetrust = resolve);
+      function OptanonWrapper() {
+        resolveOnetrust();
+      }
+    </script>
+    <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="031ad285-43ce-45f1-a493-8188aaf238cf"></script>
+    <!-- OneTrust Cookies Consent Notice end for docs.prebid.org -->
 
 	<link href="{{site.baseurl}}/assets/css/main-bundle.css?v=11" rel="stylesheet">
 
@@ -35,13 +34,12 @@
 	<link href="{{site.baseurl}}/assets/images/apple-touch-icon.png" rel="apple-touch-icon">
 
 
-	<script src="{{site.baseurl}}/assets/js/prism.js"></script>
     <script src="{{site.baseurl}}/assets/js/jquery.min.js"></script>
     <script src="{{site.baseurl}}/assets/js/docs.min.js"></script>
     <script src="{{site.baseurl}}/assets/js/easing.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="{{site.baseurl}}/assets/js/main.js"></script>
     <script type="text/javascript" src="{{site.baseurl}}/assets/js/pbjs_home.js"></script>
-	<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+    <link href="{{site.baseurl}}/assets/css/prism.css" rel="stylesheet" />
 

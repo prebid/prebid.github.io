@@ -23,7 +23,7 @@ gulp build --modules=gravitoIdSystem
 
 ## Gravito ID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -31,4 +31,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

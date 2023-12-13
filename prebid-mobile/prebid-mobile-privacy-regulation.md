@@ -9,6 +9,7 @@ sidebarType: 2
 ---
 
 # Prebid Mobile Guide to Privacy Regulation
+
 {:.no_toc}
 
 {% capture legalNotice %}
@@ -17,7 +18,7 @@ sidebarType: 2
 
 {% include /alerts/alert_important.html content=legalNotice %}
 
-* TOC
+- TOC
 {:toc}
 
 ## Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice (GDPR)
@@ -36,22 +37,22 @@ This is a reference for mobile app publishers using Prebid Mobile to surface not
 
 Prebid Mobile provides API for app publishers to use with the Framework. This API allow you to:
 
--   Define whether the user is located in the European Economic Area (the "EEA") and if European privacy regulations should apply
--   Set the [IAB Europe](https://www.iabeurope.eu/) (IAB) consent string
+- Define whether the user is located in the European Economic Area (the "EEA") and if European privacy regulations should apply
+- Set the [IAB Europe](https://www.iabeurope.eu/) (IAB) consent string
 
-This information will be persisted by Prebid Mobile and will be added to each ad call to the demand partners. 
+This information will be persisted by Prebid Mobile and will be added to each ad call to the demand partners.
 
-Publishers/Consent Management Platforms (CMPs) are free to store these values in an `UserDefaults`/`SharedPreferences` interface (as defined by [IAB Tech Lab - CMP API v2](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md)) instead of passing them via the new APIs, and Prebid SDK will read the values as a fallback. The consent API's will check for TCF2.0 params -`IABTCF_gdprApplies` and `IABTCF_TCString`. 
+Publishers/Consent Management Platforms (CMPs) are free to store these values in an `UserDefaults`/`SharedPreferences` interface (as defined by [IAB Tech Lab - CMP API v2](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md)) instead of passing them via the new APIs, and Prebid SDK will read the values as a fallback. The consent API's will check for TCF2.0 params -`IABTCF_gdprApplies` and `IABTCF_TCString`.
 
 Publishers are responsible for providing notice, transparency and choice and collecting consent from their users in accordance with [the Framework policies](https://www.iab.com/topics/consumer-privacy/gdpr/), either using their own CMP or working with a vendor.
 
--   [Register your own CMP](https://register.consensu.org/CMP)
--   [List of registered CMPs](https://iabeurope.eu/cmp-list/)
+- [Register your own CMP](https://register.consensu.org/CMP)
+- [List of registered CMPs](https://iabeurope.eu/cmp-list/)
 
 All vendor SDKs (including mediation SDKs) are responsible for looking up approved vendor and consent information on their own.
 
--   [iOS - Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
--   [Android - Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
+- [iOS - Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
+- [Android - Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
 
 ### Sending Device Information
 
@@ -78,7 +79,7 @@ To ensure proper monetization and relevant targeting, the SDK should be enabled 
 
 #### iOS
 
-```
+```swift
 Targeting.shared.subjectToGDPR = false;
 
 Targeting.shared.gdprConsentString = "BOMyQRvOMyQRvABABBAAABAAAAAAEA";
@@ -90,7 +91,7 @@ let deviceAccessConsent = Targeting.shared.getDeviceAccessConsent();
 
 #### Android
 
-```
+```swift
 TargetingParams.setSubjectToGDPR(context, true);
 
 TargetingParams.setGDPRConsentString("BOMyQRvOMyQRvABABBAAABAAAAAAEA");
@@ -105,11 +106,10 @@ TargetingParams.setPurposeConsents("101010001");
 In order for publishers to meet their notice and opt out obligations under the CCPA,
 Prebid Mobile supports the IAB US Privacy signal as defined in the in-app section of the [IAB US Privacy signal for CCPA](https://iabtechlab.com/standards/ccpa/).  
 
-This is a reference for mobile app publishers using Prebid Mobile to surface notice, transparency and choice to end users located in California, United States, passing notice and opt out signals where necessary, to demand sources and their vendors.    
+This is a reference for mobile app publishers using Prebid Mobile to surface notice, transparency and choice to end users located in California, United States, passing notice and opt out signals where necessary, to demand sources and their vendors.
 
 {% endcapture %}
 {% include alerts/alert_note.html content=ccpaNote %}
-
 
 ### Notice and Opt out signal
 
@@ -120,14 +120,12 @@ Prebid mobile supports the [IAB US Privacy signal](https://iabtechlab.com/standa
 - Store IAB US Privacy signal in `UserDefaults` for iOS or `SharedPreferences` for Android for persistent storage allowing access for vendors per IAB recommendations
 
 The job of the Prebid SDK will:
+
 - Read from `UserDefaults` (iOS) or `SharedPreferences` (Android) for US Privacy signal
-	- Prebid SDK will look for the key `IABUSPrivacy_String`, all other key names or spellings will be ignored
-	- If the `IABUSPrivacy_String` key is present with a non-empty string value, the Prebid SDK will relay the privacy string to Prebid Server in the `regs.ext.us_privacy` extention
+  - Prebid SDK will look for the key `IABUSPrivacy_String`, all other key names or spellings will be ignored
+  - If the `IABUSPrivacy_String` key is present with a non-empty string value, the Prebid SDK will relay the privacy string to Prebid Server in the `regs.ext.us_privacy` extention
 - Not perform or make any attempt to validate or ensure correctness of the US Privacy string
 - Not strip any user data or signaling of the request regardless of Notice and Opt out signal
 
 It is worth noting Prebid Server will be a passthrough as well and will not validate format or correctness of US Privacy signal nor strip any user data from the request either, even if the presence of an opt out.
 
-
-
-<script type="text/javascript" src="/assets/js/video/pb-code-highlight.js"></script>
