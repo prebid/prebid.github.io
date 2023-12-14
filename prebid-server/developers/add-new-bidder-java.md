@@ -55,12 +55,12 @@ Failure to follow the rules will lead to delays in approving your adapter for in
 
 ### Multiformat
 
-Publishers are using multiformat ad units more nowadays, e.g. an impression object that contains both banner and video. It is important that your
+Publishers are utilizing multiformat ad units more frequently, e.g. an impression object that contains both banner and video. It is important that your
 adapter handle this scenario. Here are your options:
 
 1. Set `ortb.multiformat-supported: false` in your bidder YAML file. This will cause PBS to choose a format for you based on publisher configuration or discard any requests that are multiformat.
-1. Or have your adapter choose one of the available formats. e.g. "if both banner and video are present, always choose video".
-1. Or have your adapter make multiple requests to your auction endpoint. e.g. "if both banner and video are present, make two calls to the endpoint".
+1. Or code your adapter to choose one of the available formats. e.g. "if both banner and video are present, always choose video".
+1. Or code your adapter to make multiple requests to your auction endpoint. e.g. "if both banner and video are present, make two calls to the endpoint".
 
 ### Ongoing Support and Maintenance
 

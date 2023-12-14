@@ -1520,7 +1520,9 @@ PBS-Java only
 
 This feature can be useful when a bid adapter either chokes on multiformat request, or if it makes a sub-optimal choice
 about which of multiple formats to consider. The publisher may be able to override bidder behavior from the request
-by passing in ext.prebid.bidder.BIDDERCODE.prefmtype.
+by passing in ext.prebid.bidder.BIDDERCODE.prefmtype. The value must be "banner", "video", or "native".
+
+For example:
 
 ```json
 ext.prebid.bidder: {
