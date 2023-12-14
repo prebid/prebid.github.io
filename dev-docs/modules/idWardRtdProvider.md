@@ -13,7 +13,7 @@ sidebarType : 1
 
 > **Warning!**
 >
-> The **idWardRtdProvider** module has been renamed to [anonymisedRtdProvider](anonymisedRtdProvider.md) in light of the company's rebranding.
+> The **idWardRtdProvider** module has been renamed to [anonymisedRtdProvider](anonymisedrtdprovider) in light of the company's rebranding.
 > **idWardRtdProvider** module is maintained for backward compatibility until the next major Prebid release.
 >
 > Please use anonymisedRtdProvider instead of idWardRtdProvider in your Prebid integration.
