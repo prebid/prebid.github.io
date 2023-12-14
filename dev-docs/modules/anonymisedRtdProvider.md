@@ -36,7 +36,9 @@ gulp build --modules=anonymisedRtdProvider,...
          name: "anonymised",
          waitForIt: true,
          params: {
-           cohortStorageKey: "cohort_ids",      
+           cohortStorageKey: "cohort_ids",
+           bidders: ["smartadserver", "appnexus"],
+           segtax: 1000
          }
        }
      ]
@@ -54,5 +56,6 @@ Please reach out to Anonymised [representative](mailto:support@anonymised.io) if
 | :------------ | :------------ | :------------ |:------------ |
 | name | String | Anonymised Rtd module name | 'anonymised' always|
 | waitForIt | Boolean | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
-| cohortStorageKey | String | the `localStorage` key, under which Anonymised Pixel stores the segment IDs | 'cohort_ids' always |
-| segtax | Integer | the taxonomy for Anonymised | Getting this value is in progress, once done this will become optional |
+| params.cohortStorageKey | String | the `localStorage` key, under which Anonymised Marketing Tag stores the segment IDs | 'cohort_ids' always |
+| params.bidders | Array | Bidders with which to share segment information | Required |
+| params.segtax | Integer | The taxonomy for Anonymised | '1000' always |
