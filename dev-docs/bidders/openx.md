@@ -249,3 +249,8 @@ pbjs.setConfig({
    }
 });
 ```
+
+## Additional Details
+
+* [Banner Ads](https://docs.openx.com/publishers/prebid-adapter-web/) (Customer login required.)
+* [Video Ads](https://docs.openx.com/publishers/prebid-adapter-video/) (Customer login required.)
