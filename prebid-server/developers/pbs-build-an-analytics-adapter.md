@@ -95,7 +95,7 @@ analytics:
         cookie_sync:
             sample_rate: 0 # events are not sampled
             filter: "" 
-        notification:
+        notification:         // aka events
             sample_rate: 1
             filter: "" 
 ```
@@ -108,7 +108,7 @@ Analytics objects can be of the following types:
 - amp
 - video
 - cookiesync
-- notification
+- notification (aka events)
 - setuid
 
 Here is a sample of the JSON output for each type:
