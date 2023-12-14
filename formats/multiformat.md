@@ -16,6 +16,7 @@ How precisely multiformat is supported is defined by each bid adapter on their p
 - will-not-bid: the adapter will not bid on any adunits with more than one format.
 
 ## Prebid.js
+[Bid adapters](/dev-docs/bidders.html) declare which formats (banner, video, and/or native) they're ready to receive.
 
 ### Adops
 
@@ -27,4 +28,4 @@ How precisely multiformat is supported is defined by each bid adapter on their p
 
 ## Prebid Server
 
-Bid adapters declare which formats (banner, video, and/or native) they're ready to receive.
+[Bid adapters](/dev-docs/pbs-bidders.html) declare which formats (banner, video, and/or native) they're ready to receive.
