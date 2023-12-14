@@ -5,7 +5,7 @@ description: Prebid Invibes Bidder Adaptor
 biddercode: invibes
 pbjs: true
 pbs: true
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 436
 userIds: pubCommonId, pubProvidedId, uid2, zeotapIdPlus, id5id
 safeframes_ok: false

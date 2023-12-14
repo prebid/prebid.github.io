@@ -66,7 +66,7 @@ Here are the parameters supported in the `consentManagement` object specific for
 | gpp.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GPP consent information. Default is `10000`. | `10000` |
 | gpp.consentData | `Object` | An object representing the IAB GPP consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 | gpp.consentData.sectionId | `integer` | Indicates the header section of the GPP consent string, recommended to be `3`. | |
-| gpp.consentData.gppVersion | `integer` | The version number parsed from the header of the GPP consent string. | |
+| gpp.consentData.gppVersion | `string` | The version number parsed from the header of the GPP consent string. | |
 | gpp.consentData.sectionList | `Array of integers` | The sections contained within the encoded GPP string as parsed from the header. | |
 | gpp.consentData.applicableSections | `Array of integers` | Section ID considered to be in force for this transaction.  In most cases, this field should have a single section ID. In rare occasions where such a single section ID can not be determined, the field may contain up to 2 values. The value can be 0 or a Section ID specified by the Publisher / Advertiser, during stub / load. When no section is applicable, the value will be -1. | |
 | gpp.consentData.gppString | `String` | The complete encoded GPP string. | |
@@ -207,6 +207,6 @@ var idx_gdpr=0;
 - [IAB Global Privacy Platform CMP API Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md)
 - [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagement.html)
 - [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)
-- [Prebid Activity Controls](/dev-docs/dev-docs/activity-controls.html)
+- [Prebid Activity Controls](/dev-docs/activity-controls.html)
 - [Prebid Activity Controls -- GPP control module - usnat](/dev-docs/modules/gppControl_usnat.html)
 - [CMP Best Practices](https://docs.prebid.org/dev-docs/cmp-best-practices.html)

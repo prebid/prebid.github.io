@@ -3,7 +3,7 @@ layout: analytics
 title: Adxcg
 description: Adxcg Analytics Adapter
 modulecode: adxcg
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 prebid_member: false

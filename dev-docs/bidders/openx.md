@@ -7,7 +7,7 @@ pbs: true
 biddercode: openx
 media_types: banner, video
 schain_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 gpp_supported: true
@@ -249,8 +249,3 @@ pbjs.setConfig({
    }
 });
 ```
-
-## Additional Details
-
-* [Banner Ads](https://docs.openx.com/Content/developers/containers/prebid-adapter.html) (Customer login required.)
-* [Video Ads](https://docs.openx.com/Content/developers/containers/prebid-video-adapter.html) (Customer login required.)

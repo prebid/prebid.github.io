@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: ucfunnel
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 userIds: unifiedId
 coppa_supported: true

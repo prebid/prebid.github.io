@@ -1,0 +1,26 @@
+@import '../node_modules/awesomplete/awesomplete.base';
+.awesomplete {
+  > ul {
+    background: #333;
+    padding: 0 !important;
+
+    > li {
+      padding: 10px 15px;
+      border-bottom: 1px solid #707070;
+      color: #efefef;
+      font-size: 17px;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &[aria-selected="true"] {
+        background-color: #ff6f00;
+      }
+
+      &::before {
+        content: none !important;
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ title: Etarget
 description: Prebid Etarget Bidder Adaptor 
 biddercode: etarget
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 pbjs: true
 fpd_supported: true
