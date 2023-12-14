@@ -451,6 +451,7 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
 | includeformat | no | Whether to include the "hb_format" targeting key. Defaults to false. | false | boolean |
 | preferdeals | no | If targeting is returned and this is true, PBS will choose the highest value deal before choosing the highest value non-deal. Defaults to false. | true | boolean |
 | alwaysincludedeals | no | (PBS-Java only) If true, generate hb_ATTR_BIDDER values for all bids that have a dealid | true | boolean |
+| prefix | no | (PBS-Java only) Instead of emitting all targeting values with the default prefix `hb`, use this value. Note that long prefixes are discouraged because GAM has a 20-char limit on key value pairs and some Prebid targeting values (e.g. hb_cache_host_bidderA) are already more than 20 chars. | "hb2" | string |
 
 **Request format** (optional param `request.ext.prebid.targeting`)
 
@@ -482,7 +483,7 @@ The list of price granularity ranges must be given in order of increasing `max` 
 
 For backwards compatibility the following strings will also be allowed as price granularity definitions. There is no guarantee that these will be honored in the future. "One of ['low', 'med', 'high', 'auto', 'dense']" See [price granularity definitions](/adops/price-granularity.html).
 
-One of "includewinners" or "includebidderkeys" must be true (both default to false if unset). If both are false, then no targeting keys will be set, which is better configured by omitting targeting altogether.
+One of "includewinners" or "includebidderkeys" should be true if you want targeting - both default to false if unset. If both are false, then no targeting keys will be set, which is better configured by omitting targeting altogether.
 
 The parameter "includeformat" indicates the type of the bid (banner, video, etc) for multiformat requests. It will add the key `hb_format` and/or `hb_format_{bidderName}` as per "includewinners" and "includebidderkeys" above.
 
@@ -1512,6 +1513,27 @@ ext.prebid: {
 }
 ```
 
+##### Preferred Media Type
+
+{: .alert.alert-info :}
+PBS-Java only
+
+This feature can be useful when a bid adapter either chokes on multiformat request, or if it makes a sub-optimal choice
+about which of multiple formats to consider. The publisher may be able to override bidder behavior from the request
+by passing in ext.prebid.bidder.BIDDERCODE.prefmtype.
+
+```json
+ext.prebid.bidder: {
+     "bidderB": { "prefmtype": "video" },
+     "bidderC": { "prefmtype": "native" }
+}
+```
+
+Here's how this works:
+
+1. If the bid adapter YAML declares support of multiformat, then `prefmtype` is ignored in the request. The default value of multiformat supported is `true` in PBS 2.0, but will be `false` in PBS 3.0.
+1. If the bidder declares that they don't support multiformat and the incoming request contains multiple formats, then one of the formats is chosen by either `$.ext.prebid.bidder.BIDDER.prefmtype` or config `auction.preferredmediatype.BIDDER`
+
 #### OpenRTB Response Extensions
 
 ##### Bidder Response Times
@@ -1777,6 +1799,7 @@ The Prebid SDK version comes from:
 | imp<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. (ae stands for auction environment) | integer | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
+| ext<wbr>.prebid<wbr>.bidder<wbr>.BIDDERCODE<wbr>.prefmtype | Override the mediatype sent to the named bidder if they don't support multiformat. | string | no |
 
 #### Response
 {:.no_toc}
