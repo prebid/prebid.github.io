@@ -350,8 +350,10 @@ Prebid Server supports the following "standard" industry extensions:
 
 ##### Global Bid Adapter Parameters
 
-If a bid adapter has a parameter that is the same across all imp[] entries,
-it can be supplied
+PBS supports two scenarios:
+
+1. If a bid adapter has a parameter that is the same across all imp[] entries,
+it can be supplied on `ext.prebid.bidderparams.BIDDER`:
 
 ```json
 {
@@ -375,6 +377,26 @@ it can be supplied
 ```
 
 Bid adapters do not need to read this data from ext.prebid. PBS will merge the attributes to each imp[] in the request so the adapter can read them normally.
+
+{:start="2"}
+2. If a bid adapter has a parameter that alters its runtime behavior, but is not a formal parameter, it can be supplied on `ext.prebid.bidders.BIDDER`. The adapter will see this on `ext.prebid.bidders.bidder`.
+
+```json
+{
+  "ext": {
+    "prebid": {
+      "bidders": {
+        "bidderA": {
+          "option": "value"
+        },
+        "bidderB": {
+          "option": "value"
+        }
+      }
+    }
+  }
+}
+```
 
 ##### Bid Adjustments
 
@@ -1802,6 +1824,7 @@ The Prebid SDK version comes from:
 | app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
 | ext<wbr>.prebid<wbr>.bidder<wbr>.BIDDERCODE<wbr>.prefmtype | Override the mediatype sent to the named bidder if they don't support multiformat. | string | no |
+| ext<wbr>.prebid<wbr>.bidders | Publishers can specify an adapter-specific flag, see [global bid parameters](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#global-bid-adapter-parameters) | object | seen on ext<wbr>.prebid<wbr>.bidderparams<wbr>.bidder |
 
 #### Response
 {:.no_toc}
