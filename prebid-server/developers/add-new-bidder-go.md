@@ -13,18 +13,25 @@ Thank you for your valuable contribution of a bid adapter to the open source Pre
 This document guides you through the process of developing a new bid adapter for your bidding server. We encourage you to look at [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance. You can ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server/issues/new).
 
 {: .alert.alert-info :}
-There are two implementations of Prebid Server, [PBS-Go](https://github.com/prebid/prebid-server) and [PBS-Java](https://github.com/prebid/prebid-server-java). We recommend you build new adapters for PBS-Go and allow us to port it to PBS-Java within a couple of months. If you'd like to build both yourself, please also follow these [instructions for building an adapter in PBS-Java](/prebid-server/developers/add-new-bidder-java.html).
+There are two implementations of Prebid Server: [PBS-Go](https://github.com/prebid/prebid-server) and [PBS-Java](https://github.com/prebid/prebid-server-java). We recommend you build new adapters for PBS-Go and allow us to port it to PBS-Java within a couple of months. If you'd like to build both yourself, please also follow these [instructions for building an adapter in PBS-Java](/prebid-server/developers/add-new-bidder-java.html).
 
 * TOC
 {:toc }
 
 ## Overview
 
-Bid adapters are responsible for translating an [OpenRTB 2.5 Bid Request](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=13) to your bidding server's protocol and mapping your server's response to an [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=32).
+Bid adapters are responsible for translating a 'Prebid-flavored' OpenRTB Bid Request to your bidding server's protocol and mapping your server's response to a Prebid-flavored reponse.
 
-An OpenRTB 2.5 Bid Request contains one or more Impressions, each representing a single ad placement. An Impression may define multiple sizes and/or multiple ad formats. If your bidding server limits requests to a single ad placement, size, or format, then your adapter will need to split the Impression into multiple calls and merge the responses.
+"Prebid-flavored OpenRTB" means:
+
+1. [OpenRTB 2.6](https://github.com/InteractiveAdvertisingBureau/openrtb2.x) as defined by the IAB.
+1. Certain Prebid extensions as defined in the [/auction endpoint documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html).
+
+OpenRTB Bid Requests contain one or more impression objects, each representing a single ad placement. An impression may define multiple sizes and/or multiple ad formats. If your bidding server limits requests to a single ad placement, size, or format, then your adapter will need to split the impression into multiple calls and merge the responses.
 
 ## Plan Your Bid Adapter
+
+The job of your bid adapter is to adapt. You'll need to think about currency, floors, mediatypes, and other details as noted below.
 
 ### Choose A Name
 
@@ -34,6 +41,28 @@ We ask that the first 6 letters of the name you choose be unique among the exist
 
 Throughout the rest of this document, substitute `{bidder}` with the name you've chosen.
 
+### Consider Your Geography
+
+Most bidders run their auction endpoints in multiple datacenters because their
+business is continental or global.
+
+Prebid Server is open source software that is run by many "host companies" that may be calling
+your bid adapter from various places. It may be useful to consider how you want to
+communicate your geographic preferences to the host companies.
+
+{: .alert.alert-info :}
+Please don't bother publishers by asking them to enter a geographic location 'host' parameter. Most publishers do not have the tech to choose which of your regional endpoints to hit.
+
+These are the recommended technical solutions:
+
+1. Use a "Global Services Load Balancing" vendor so there's just one smart hostname that figures out where to send each user. Just do an internet search for "gslb services".
+1. In your bidder yaml file, let the host companies know which regional endpoints you support. They can take care of mapping their regions to your regions. See the YAML file below for an example of how to communicate this.
+
+You should also consider entering geographic scoping information into your YAML file so
+host companies can disable your bidder in regions where you're not going to bid. e.g.
+bidders that are not GDPR-compliant probably won't bid much in Europe. It costs both you and the host company networking fees to send bid requests, so it's in
+your interest to declare your scope of business. See below for syntax details.
+
 ### Respect The Rules
 
 We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://prebid.org/code-of-conduct/) and [module rules](/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
@@ -41,7 +70,7 @@ We are proud to run the Prebid Server project as a transparent and trustworthy h
 **Please take the time to read the rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
 
 * Adapters must include maintainer information with a group email address for Prebid.org to contact for ongoing support and maintenance.
-* Your bidder's endpoint domain name cannot be variable. If you want to have different endpoints in different geographical locations, Prebid Server host companies can do that for you. Publisher information can be in the query string, but not the domain.
+* Your bidder's endpoint domain name cannot be fully variable. We will accept endpoint domains that include account IDs, but we do not like them, and Prebid Server host companies may disable adapters using this approach if there are technical issues with it. We will not accept hostnames that have a required dynamic element for the purpose of sending traffic to different geographic regions.
 * If you have a client-side adapter, all parameters (including biddercodes and aliases) must be consistent between your client- and server-side adapters. This allows publishers to utilize the PBJS [s2sTesting module](/dev-docs/modules/s2sTesting.html).
 * Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
 * Adapters must use the functions provided by the core framework for all external communication. Initiation of any form of network connection outside of what is provided by the core framework is strictly prohibited. No exceptions will be made for this rule.
@@ -79,10 +108,15 @@ Let's begin with your adapter's bidder information YAML file. This file is requi
 Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with the following template:
 
 ```yaml
-endpoint: "http://foo.com/openrtb2"
+# We have the following regional endpoint domains: us-east and us-west
+# Please deploy this config in each of your datacenters with the appropriate regional subdomain
+endpoint: "http://REGION.example.com/openrtb2"
+endpointCompression: gzip
+geoscope:
+  - USA
+  - CAN
 maintainer:
   email: prebid-maintainer@example.com
-endpointCompression: gzip
 gvlVendorID: 42
 modifyingVastXmlAllowed: true
 capabilities:
@@ -112,23 +146,33 @@ userSync:
 
 Modify this template for your bid adapter:
 
-* Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
+* The endpoint can be static if you only have one datacenter or use a Global Load Balancer as described in 'Planning Your Adapter' above.
 * Remove the `endpointCompression` value if your bidding server does not accept gzip compressed bid requests. Setting this value to `gzip` will save on network bandwidth at the expense of slightly increased cpu and memory usage for the host.
+* The `geoscope` parameter is not currently read programmatically. Instead, it's intended to be used by PBS host companies to disable your adapter in geographic regions where you don't do business. However, we may make a module for this someday, so we ask that you follow this syntax for `geoscope`:
+    * YAML array
+    * Values can be either a 3-letter country code, "EEA", or "global". (EEA means European Economic Area)
+    * Values can be negated. e.g. "!EEA"
+* Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
 * Change the `gvlVendorID` from the sample value of `42` to the id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/tcf-for-vendors/), or remove this line entirely if your bidding server is not registered with IAB Europe.
-* Change the `modifyingVastXmlAllowed` value to `false` if you'd like to opt-out of [video impression tracking](https://github.com/prebid/prebid-server/issues/1015), or remove this line entirely if your adapter doesn't support VAST video ads.
+* If absolutely necessary, change the `modifyingVastXmlAllowed` value to `false` to opt-out of [video impression tracking](https://github.com/prebid/prebid-server/issues/1015). However, please note that Prebid Server host companies depend on this feature being enabled to track video analytics. This feature has been live for many years with no known problems.
 * Remove the `capabilities` (app/site/dooh) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support. (Note: 'dooh' is [Digital Out Of Home](/prebid-server/use-cases/pbs-dooh.html))
-* Add the `extra_info` if you'd like to pass extra value adapter may need.
+* Add an `extra_info` field if you'd like to pass additional values that your adapter may need. See below for an example.
 * Add the `disabled` flag and set it to true if you would like to unregister adapter from the core. It's enabled by default.
 * Follow the [User Sync Configuration](#user-sync-configuration) documentation below to configure the endpoints for your bid adapter, or remove the `userSync` section if not supported.
+
+#### Additional Bidder Info Examples
 
 <details markdown="1">
   <summary>Example: Website with banner ads only.</summary>
 
 ```yaml
-endpoint: "http://foo.com/openrtb2"
+# global endpoint
+endpoint: "http://auction.example.com/openrtb2"
+endpointCompression: gzip
+geoscope:
+  - global
 maintainer:
   email: prebid-maintainer@example.com
-endpointCompression: gzip
 gvlVendorID: 42
 capabilities:
   site:
@@ -149,7 +193,6 @@ userSync:
 endpoint: "http://foo.com/openrtb2"
 maintainer:
   email: prebid-maintainer@example.com
-endpointCompression: gzip
 capabilities:
   site:
     mediaTypes:
@@ -307,7 +350,7 @@ Publishers will provide extra information using an OpenRTB 2.5 Bid Request Exten
 We request you do not duplicate information already present in the [OpenRTB 2.5 Bid Request specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=13) or already part of an established Prebid convention. For example, your bidder parameters should not include first party data, bid floors, schain, video parameters, referrer information, or privacy consent including COPPA, CCPA, and GDPR TCF. For video parameters in particular, you must prefer the OpenRTB 2.5 Bid Request standard of `request.imp[].video`.
 
 {: .alert.alert-warning :}
-You may not use an endpoint domain as a bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a portion of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may choose to disable your adapter if it uses a dynamically configured domain.
+You may not try so set the full endpoint domain from a publisher-specified bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a _portion_ of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may choose to disable your adapter if it uses a dynamically configured domain.
 
 Create a file with the path `static/bidder-params/{bidder}.json` and use [JSON Schema](https://spacetelescope.github.io/understanding-json-schema/) to define your bidder parameters. Prebid Server requires this file for every adapter, even if yours doesn't require bidder parameters (see the 'no parameters' example at the end of this section).
 

@@ -18,6 +18,15 @@ In general, a PBS host company may want to run only the server-side bid adapters
 
 PBS-Go enables most bidders by default. PBS-Java doesn't enable any bidders by default.
 
+### Geographic Regions
+
+Bidders can declare certain geographic details in their YAML that host companies should be aware of:
+
+1. Some bidders (e.g. rubicon) have region-specific auction endpoints. They want the host company to choose the closest matching endpoint. e.g. if the bidder says they have two endpoint "us" and "eu", you should deploy that bidders YAML with the appropriate endpoint value when you deploy to your various datacenters. Your DevOps team should be able to do this with whatever system you're using to deploy.
+1. Some bidders (e.g. 33across) don't do business globally. They won't bid on requests in certain regions, so it helps everyone to avoid sending them bid requests outside of their scope of business. Please look for a `geoscope` parameter in the bidder's YAML file and consider disabling that bidder in regions where it might not make sense to call them. Again, your DevOps team should be able to manage this.
+
+Note that Prebid Server does not have the ability to automatically determine its datacenter region and take these actions for host companies. It must be done as part of the deploy.
+
 ### PBS-Go
 
 You might want to consider disabling bid adapters that you're not 
@@ -31,7 +40,7 @@ adapters:
     disabled: true
 ```
 
-If the bidder supports different endpoints per geography, you can deploy different
+As noted above, if the bidder supports different endpoints per geography, you can deploy different
 config in each of your datacenters:
 
 ```
@@ -50,7 +59,7 @@ adapters:
     enabled: true
 ```
 
-If the bidder supports different endpoints per geography, you can deploy different
+As noted above, if the bidder supports different endpoints per geography, you can deploy different
 config in each of your datacenters:
 
 ```
@@ -60,7 +69,7 @@ adapters:
     endpoint: REGION_SPECIFIC_ENDPOINT
 ```
 
-## Bidders
+## Bidder-Specific Details
 
 ### Rubicon
 
