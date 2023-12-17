@@ -5,7 +5,7 @@ description: Prebid NextRoll Bidder Adapter
 pbjs: true
 biddercode: nextroll
 media_types: display, native
-gdpr_supported: false
+tcfeu_supported: false
 floors_supported: true
 usp_supported: true
 prebid_member: true
@@ -23,6 +23,7 @@ sidebarType: 1
 | `bidfloor`     | optional | Per ad-unit bid floor, used if the floor module is not available                                  | `2.3`                       | `number` |
 
 #### Example of Banner Ad-unit
+
 ```
 var adUnits = [
     {
@@ -72,6 +73,7 @@ var adUnits = [
 ```
 
 #### Example of Native Ad-unit
+
 ```
 var adUnits = [
     {

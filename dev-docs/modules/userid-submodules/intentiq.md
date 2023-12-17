@@ -9,14 +9,14 @@ useridmodule: intentIqIdSystem
 
 By leveraging the Intent IQ identity graph, our module helps publishers, SSPs, and DSPs overcome the challenges of monetizing cookie-less inventory and preparing for a future without 3rd-party cookies. Our solution implements 1st-party data clustering and provides Intent IQ person IDs with over 90% coverage and unmatched accuracy in supported countries while remaining privacy-friendly and CCPA compliant. This results in increased CPMs, higher fill rates, and, ultimately, lifting overall revenue
 
-# All you need is a few basic steps to start using our solution.
+# All you need is a few basic steps to start using our solution
 
 ## Registration
 
-Navigate to [our portal ](https://www.intentiq.com/) and contact our team for partner ID.
-check our [documentation](https://pbmodule.documents.intentiq.com/) to get more information about our solution and how utilze it's full potential 
+Navigate to [our portal](https://www.intentiq.com/) and contact our team for partner ID.
+check our [documentation](https://pbmodule.documents.intentiq.com/) to get more information about our solution and how utilze it's full potential
 
-## Integration     
+## Integration
 
 {: .alert.alert-info :}
 gulp build –modules=intentIqIdSystem
@@ -29,8 +29,6 @@ We recommend including the Intent IQ Analytics adapter module for improved visib
 
 Please find below list of parameters that could be used in configuring Intent IQ Universal ID module
 
-
-
 {: .table .table-bordered .table-striped }
 
 | Param under userSync.userIds[] | Scope    | Type   | Description                                                                                                                                                                                                  | Example         |
@@ -41,10 +39,11 @@ Please find below list of parameters that could be used in configuring Intent IQ
 | params.percentage              | Required | Number | This a percentage value for our A/B testing group distribution. The values supposed to be in range of 0 to 100. We suggest to set it to 95 percent for optimal balance ofbetween prefromance and preceision. | `95`            |
 | params.pcid                    | Optional | String | This is the partner cookie ID, it is a dynamic value attached to the request.                                                                                                                                | `"g3hC52b"`     |
 | params.pai                     | Optional | String | This is the partner customer ID / advertiser ID, it is a dynamic value attached to the request.                                                                                                              | `"advertiser1"` |
+| params.enableCookieStorage     | Optional | Boolean | This is a parameter allowing to enable or disable cookie storage. Defaults to false.                                                                                                             | `"true"` |
 
 ### Configuration example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [
@@ -53,6 +52,7 @@ pbjs.setConfig({
         params: {
           partner: 123456, // valid partner id
           percentage: 95,
+          enableCookieStorage: true
         },
         storage: {
           type: "html5",
@@ -65,9 +65,9 @@ pbjs.setConfig({
     syncDelay: 3000,
   },
 });
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -76,7 +76,8 @@ pbjs.setConfig({
                 partner: 123456     // valid partner id
                 pcid: PCID_VARIABLE,   // string value, dynamically loaded into a variable before setting the configuration
                 pai: PAI_VARIABLE ,  // string value, dynamically loaded into a variable before setting the configuration
-                percentage: 95
+                percentage: 95,
+                enableCookieStorage: false
             },
             storage: {
                 type: "html5",
@@ -87,4 +88,4 @@ pbjs.setConfig({
         syncDelay: 3000
     }
 });
-{% endhighlight %}
+```

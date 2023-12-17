@@ -6,19 +6,19 @@ sidebarType: 1
 ---
 
 # Prebid.js and Ad Server Key Values
+
 {: .no_toc}
 
-* TOC
+- TOC
 {:toc}
 
-
 The point of header bidding is to supply bids into the regular ad server calls.
-Prebid.js provides many ways to do this. This document describes the 
-controls for obtaining auction results.
+Prebid.js provides many ways to do this. This document describes the controls for obtaining auction results.
 
 ## Overview
 
 Here's the general way PBJS is integrated into the page:
+
 1. Define AdUnits so they can be linked to existing ad server ad slots in the page
 1. Set auction parameters
 1. Initiate the auction
@@ -27,6 +27,7 @@ Here's the general way PBJS is integrated into the page:
 
 This last step has historically been called "targeting" in Prebid.js, but really what's
 sent to the adserver is a set of Key Value Pairs (KVPs) that serve several purposes:
+
 - **Ad server line item targeting**. These values are used to pick out which line items match the request. Generally targets depend on the hb_pb attribute, but could also include hb_deal and hb_format.
 - **Display**. Some of these values are needed for rendering the creative properly when the Prebid line item is chosen, including hb_adid, hb_uuid, hb_size, and for AMP/app hb_cache_host.
 - **Reporting**. Some publishers rely on ad server key-values for important business reporting. The keys used for reporting could be any of the above, along with hb_source.
@@ -45,6 +46,7 @@ In order to have header bidding compete with direct-sold demand,
 a publisher can set up placeholder line items in their ad server.
 
 Prebid.org recommends setting up separate line items for each bidder. Benefits to this approach include:
+
 - You can use ad server reporting to get a view of which bidders are performing well.
 - You can control ad decisions with the ad server.
 - Video bids have a fallback available.
@@ -55,7 +57,7 @@ Once implemented in the ad server, setting this up in Prebid.js is
 simple, as it is the default [Send All Bids](#send-all-kvps) mode. However
 to limit the number of values sent to the ad server, some flavor of
 this solution like the [Top Two Bids and Deals](#top-two-bids-and-deals)
-may be of interest. 
+may be of interest.
 
 {: .alert.alert-info :}
 Note that `enableSendAllBids` mode can send a lot of keys to your
@@ -65,6 +67,7 @@ publishers monitor the key traffic and [control](#controls) as necessary.
 ### Only One Set of Ad Server Line Items are Created
 
 There are reasons a publisher may not want to create separate line items for each bidder. For example:
+
 - Some ad servers have a limit on how many line items can be created.
 - It takes work to set up line items.
 - The volume of key-value pairs (KVPs) can be a factor.
@@ -147,13 +150,13 @@ The list is ordered by those functions that Prebid recommends starting with:
 
 ### Examples
 
-Here are a few scenarios to give you a sense of the configurability. 
+Here are a few scenarios to give you a sense of the configurability.
 
 #### Send All KVPs
 
 If the number of KVPs sent to the ad server is not a concern, then the recommended approach is to Send All Bids and all deals:
 
-```
+```javascript
 pbjs.setConfig({
     enableSendAllBids: true,
     targetingControls: {
@@ -166,7 +169,7 @@ pbjs.setConfig({
 
 The opposite approach is to send only the winning set of KVPs directly needed for targeting line items and rendering.
 
-```
+```javascript
 pbjs.setConfig({
     enableSendAllBids: false,
     targetingControls: {
@@ -179,7 +182,7 @@ Note: This example lacks video support, deal support, and doesn't even tell you 
 
 #### Top Two Bids and Deals
 
-```
+```javascript
 pbjs.setConfig({
     sendBidsControl: { bidLimit: 2 },
     targetingControls: {
@@ -191,6 +194,7 @@ pbjs.setConfig({
     }
 });
 ```
+
 Note: This assumes that video creatives are set up refering to HB_UUID rather than bidder-specific UUID values.
 
 #### Completely Custom KVPs
@@ -198,7 +202,7 @@ Note: This assumes that video creatives are set up refering to HB_UUID rather th
 Publishers that don't want to use KVPs prefixed with "hb_" can change them with
 bidderSettings:
 
-```
+```javascript
 pbjs.setConfig({
     enableSendAllBids: false
 });
@@ -207,8 +211,8 @@ pbjs.bidderSettings={
     adserverTargeting: [{
         key: "pb_price",
         // note the price granularity assumption below is Medium Granularity
-	//   other options are pbAg (auto), pbCg (custom), pbDg (dense),
-	//   pbHg (high), pbLg (low)
+    //   other options are pbAg (auto), pbCg (custom), pbDg (dense),
+    //   pbHg (high), pbLg (low)
         val: function(bidResponse) { return bidResponse.pbMg; } 
     },{
         key: "pb_size",

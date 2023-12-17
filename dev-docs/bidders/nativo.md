@@ -3,17 +3,18 @@ layout: bidder
 title: Nativo
 description: Prebid Nativo Bidder Adapter
 pbjs: true
+pbs: true
 gvl_id: 263
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 userIds: all 
 biddercode: nativo
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Nativo Bidder adapter requires setup before beginning. Please contact us at prebiddev@nativo.com beforehand.
+The Nativo Bidder adapter requires setup before beginning. Please contact us at <prebiddev@nativo.com> beforehand.
 
 ### Bid Params
 
