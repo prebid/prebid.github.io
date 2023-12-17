@@ -22,13 +22,13 @@ Get started with Prebid Mobile by creating a [Prebid Server account](/prebid-mob
 
 If you are not familiar with using Cocoapods for dependency management, visit their [getting started page](https://guides.cocoapods.org/using/getting-started.html). Once you have your `Podfile` setup, include the following:
 
-```
+```bash
 target 'MyAmazingApp' do
     pod 'PrebidMobile'
 end
 ```
 
-Now run `pod install` to add the Prebid SDK to project dependencies. 
+Now run `pod install` to add the Prebid SDK to project dependencies.
 
 ### Carthage
 
@@ -47,34 +47,34 @@ If you are not familiar with the Carthage package builder, please refer to the p
 
 ### Swift PM
 
-SPM isn't supported for Prebid SDK `2.0.0` and higher ([details](https://github.com/prebid/prebid-mobile-ios/issues/640)). 
+SPM isn't supported for Prebid SDK `2.0.0` and higher ([details](https://github.com/prebid/prebid-mobile-ios/issues/640)).
 
-The next guide is applicable to `1.x` versions of the SDK. 
+The next guide is applicable to `1.x` versions of the SDK.
 
 If you are not familiar with the Swift Package Manager, please refer to the project [github page](https://github.com/apple/swift-package-manager) for more details.
 
-1. Add Prebid dependency `File -> Swift Packages -> Add Package Dependency...` 
+1. Add Prebid dependency `File -> Swift Packages -> Add Package Dependency...`
 2. Select desired version, branch or commit
 3. Select Prebid [module]({{site.baseurl}}/prebid-mobile/modules/modules-overview.html)
-3. Build the specific schema `CarthageBuild.sh`
+4. Build the specific schema `CarthageBuild.sh`
 
     **Variant 1**
 
-    - Run CarthageBuild.sh script from Cartfile folder. The path should be:
+    * Run CarthageBuild.sh script from Cartfile folder. The path should be:
         `.../Carthage/Checkouts/prebid-mobile-ios/scripts/CarthageBuild.sh`
 
-    - Enter Schema name (PrebidMobile or PrebidMobileCore)
-        - If you run CarthageBuild.sh and see Permission denied use:
+    * Enter Schema name (PrebidMobile or PrebidMobileCore)
+        * If you run CarthageBuild.sh and see Permission denied use:
              `chmod +x <path_to_CarthageBuild.sh>`
 
     **Variant 2**
 
-    - Open `PrebidMobile.xcodeproj` at `.../Carthage/Checkouts/prebid-mobile-ios/PrebidMobile.xcodeproj` using Xcode
+    * Open `PrebidMobile.xcodeproj` at `.../Carthage/Checkouts/prebid-mobile-ios/PrebidMobile.xcodeproj` using Xcode
 
-    - Manage Schemes -> Check Shared checkbox for a necessary schema
+    * Manage Schemes -> Check Shared checkbox for a necessary schema
 
-    - run `carthage build prebid-mobile-ios`
-4. Integrate the binary into your project
+    * run `carthage build prebid-mobile-ios`
+5. Integrate the binary into your project
 
 You can find the schema name in the build PrebidSDK framework inside Info.plist with `PrebidMobileName` key
 
@@ -82,7 +82,7 @@ You can find the schema name in the build PrebidSDK framework inside Info.plist 
 
 Build Prebid Mobile from source code. After [cloning the repo](https://github.com/prebid/prebid-mobile-ios), use Terminal or another command line tool, change to the root directory and run:
 
-```
+```bash
 scripts/buildPrebidMobile.sh
 ```
 
@@ -94,14 +94,14 @@ This will output the PrebidMobile.framework.
 
 Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add 'account' info to the Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
 
-```
+```swift
 Prebid.shared.prebidServerAccountId = YOUR_ACCOUNT_ID
 Prebid.shared.prebidServerHost = .Appnexus
 ```
 
 If you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app. Make sure that your URL points to the [/openrtb2/auction](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
 
-```
+```swift
 try! Prebid.shared.setCustomPrebidServer(url: PREBID_SERVER_AUCTION_ENDPOINT)
 ```
 
@@ -109,12 +109,12 @@ This method throws an exception if the provided URL is invalid.
 
 ### Initialize SDK
 
-Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. There are several options for how to do it. 
+Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. There are several options for how to do it.
 
-If you integrate Prebid Mobile with GMA SDK, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app: 
+If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10.7.0, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app:
 
-``` swift
-Prebid.initializeSDK(GADMobileAds.sharedInstance()) { status, error in
+```swift
+Prebid.initializeSDK(gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
     switch status {
     case .succeeded:
         print("Prebid SDK successfully initialized")
@@ -132,11 +132,32 @@ Prebid.initializeSDK(GADMobileAds.sharedInstance()) { status, error in
 }            
 ```
 
+If you integrate Prebid Mobile with GMA SDK with version lower than 10.7.0, use the following initializer:
+
+```swift
+Prebid.initializeSDK(GADMobileAds.sharedInstance()) { status, error in
+    switch status {
+    case .succeeded:
+        print("Prebid SDK successfully initialized")
+    case .failed:
+        if let error = error {
+            print("An error occurred during Prebid SDK initialization: \(error.localizedDescription)")
+        }
+    case .serverStatusWarning:
+        if let error = error {
+            print("Prebid Server status checking failed: \(error.localizedDescription)")
+        }
+    default:
+        break
+    }
+}
+```
+
 Check the log messages of the app. If the provided GMA SDK version is not verified for compatibility, the Prebid SDK informs about it.
 
-For the No Ad Server scenario, use the following initialization: 
+For the No Ad Server scenario, use the following initialization:
 
-``` swift
+```swift
 Prebid.initializeSDK { status, error in
     // ....
 }
@@ -144,14 +165,13 @@ Prebid.initializeSDK { status, error in
 
 During the initialization, SDK creates internal classes and performs the health check request to the [/status](https://docs.prebid.org/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If you use a custom PBS host you should provide a custom status endpoint as well:
 
-```
+```swift
 Prebid.shared.customStatusEndpoint = PREBID_SERVER_STATUS_ENDPOINT
 ```
 
 If something goes wrong with the request, the status of the initialization callback will be `.serverStatusWarning`. It doesn't affect an SDK flow and just informs you about the health check result.
 
-
-## Set Targeting Parameters 
+## Set Targeting Parameters
 
 Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
 
@@ -165,15 +185,13 @@ The `Prebid` class is a singleton that enables the user to apply global settings
 
 `prebidServerAccountId`: String containing the Prebid Server account ID.
 
-
 `prebidServerHost`: String containing configuration your Prebid Server host with which Prebid SDK will communicate. Choose from the system-defined Prebid Server hosts or define your own custom Prebid Server host.
-
 
 `shareGeoLocation`: Optional Bool, if this flag is True AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s geographical location data to Prebid Server. If this flag is False OR the app does not collect the user’s geographical location data, Prebid Mobile will not populate any user geographical location information in the call to Prebid Server. The default setting is false.
 
 `logLevel`: Optional level of logging to output in the console. Options are one of the following sorted by a verbosity of the log:
 
-``` swift
+```swift
 public static let debug = LogLevel(stringValue: "[💬]", rawValue: 0)
 public static let verbose = LogLevel(stringValue: "[🔬]", rawValue: 1)
 public static let info = LogLevel(stringValue: "[ℹ️]", rawValue: 2)
@@ -184,11 +202,13 @@ public static let severe = LogLevel(stringValue: "[🔥]", rawValue: 5)
 
 `timeoutMillis`: The Prebid timeout (accessible to Prebid SDK 1.2+), set in milliseconds, will return control to the ad server SDK to fetch an ad once the expiration period is achieved. Because Prebid SDK solicits bids from Prebid Server in one payload, setting Prebid timeout too low can stymie all demand resulting in a potential negative revenue impact.
 
+`creativeFactoryTimeout`: Controls how long banner creative has to load before it is considered a failure.
+
+`creativeFactoryTimeoutPreRenderContent`: Controls how long video and interstitial creatives have to load before it is considered a failure.
 
 `storedAuctionResponse`: Set as type string, stored auction responses signal Prebid Server to respond with a static response matching the storedAuctionResponse found in the Prebid Server Database, useful for debugging and integration testing. No bid requests will be sent to any bidders when a matching storedAuctionResponse is found. For more information on how stored auction responses work, refer to the written [description on github issue 133](https://github.com/prebid/prebid-mobile-android/issues/133).
 
 `pbsDebug`: adds the debug flag ("test":1) on the outbound http call to Prebid Server. The test:1 flag will signal to Prebid Server to emit the full resolved request (resolving any Stored Request IDs) as well as the full Bid Request and Bid Response to and from each bidder.
-
 
 ### Methods
 
@@ -217,17 +237,57 @@ func clearStoredBidResponses()
 
 The following methods enable the customization of the HTTP call to the prebid server:
 
-```
+```swift
 func addCustomHeader(name: String, value: String) 
 ```
 
-```
+```swift
 func clearCustomHeaders() 
 ```
 
+### Server Side Configuration
+
+You can pass some SDK configuration properties from PBS to the SDK using the `ext.prebid.passthrough` object, [supported](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#request-passthrough) by Prebid Server, in the stored request.
+
+For now Prebid SDK supports the following configuration properties:
+
+* `cftbanner` - see the `Prebid.creativeFactoryTimeout`
+* `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
+
+An example of a stored request:
+
+```json
+{
+  "app": {
+    "publisher": {
+      "ext": {
+        "prebid": {
+
+        }
+      }
+    }
+  },
+  "ext": {
+    "prebid": {
+      "passthrough": [
+        {
+          "type": "prebidmobilesdk",
+          "sdkconfiguration": {
+            "cftbanner": 42,
+            "cftprerender": 4242
+          }
+        }
+      ]
+    }
+  },
+  "test": 1
+}
+```
+
+All values received in the `passthrough` of the bid response will be applied to the respective `Prebid.*` properties with the highest priority. After that, the SDK will utilize new values received in the bid response.
+
 ### Examples
 {:.no_toc}
-
 
 ```swift
 // Host
@@ -267,12 +327,11 @@ Prebid.shared.addStoredBidResponse(bidder: "rubicon", responseId: "221155")
 
 Follow the corresponding guide to integrate Prebid Mobile:
 
-- [GAM using Original API](code-integration-ios.html)
-- [No Ad Server](../../modules/rendering/ios-sdk-integration-pb.html)
-- [GAM using Rendering API](../../modules/rendering/ios-sdk-integration-gam.html)
-- [AdMob](../../modules/rendering/ios-sdk-integration-gam.html)
-- [AppLovin MAX](../../modules/rendering/ios-sdk-integration-max.html)
-
+* [GAM using Original API](code-integration-ios.html)
+* [No Ad Server](../../modules/rendering/ios-sdk-integration-pb.html)
+* [GAM using Rendering API](../../modules/rendering/ios-sdk-integration-gam.html)
+* [AdMob](../../modules/rendering/ios-sdk-integration-gam.html)
+* [AppLovin MAX](../../modules/rendering/ios-sdk-integration-max.html)
 
 ### Test configs
 
@@ -281,20 +340,17 @@ In the table below, you can find Prebid's test IDs that are used in the Demo App
 {: .table .table-bordered .table-striped }
 
 | Config ID            | Ad Format        | Description            |
-| -------------------- | ---------------- | ---------------------- | 
+| -------------------- | ---------------- | ---------------------- |
 |`https://prebid-server-test-j.prebid.org/openrtb2/auction` | **Custom Prebid Server Host**|A PBS instance that is dedicated to testing purposes.|
 |`0689a263-318d-448b-a3d4-b02e8a709d9d`| **Stored Request ID**|The test account ID on the test server.|
-|`imp-prebid-banner-320-50`|**HTML Banner**|Returns a stored response that contains a Banner 320x50 winning bid.|
-|`imp-prebid-display-interstitial-320-480`|**HTML Interstitial**|Returns a stored response that contains a Interstitial 320x480 winning bid.|
-|`imp-prebid-video-outstream-original-api`|**Outstream Video** (Original API)|Returns a stored response that contains a Video 320x50 winning bid.|
-|`imp-prebid-video-outstream`|**Outstream Video** (Rendering API)|Returns a stored response that contains a Video 320x50 winning bid.|
-|`imp-prebid-video-interstitial-320-480-original-api`|**Video Interstitial** (Original API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
-|`imp-prebid-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
-|`imp-prebid-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
-|`imp-prebid-video-rewarded-320-480`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
-|`imp-prebid-video-interstitial-320-480`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid.|
-|`imp-prebid-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
-|`imp-prebid-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|
-
-
-
+|`prebid-demo-banner-320-50`|**HTML Banner**|Returns a stored response that contains a Banner 320x50 winning bid.|
+|`prebid-demo-display-interstitial-320-480`|**HTML Interstitial**|Returns a stored response that contains a Interstitial 320x480 winning bid.|
+|`prebid-demo-video-outstream-original-api`|**Outstream Video** (Original API)|Returns a stored response that contains a Video 320x50 winning bid.|
+|`prebid-demo-video-outstream`|**Outstream Video** (Rendering API)|Returns a stored response that contains a Video 320x50 winning bid.|
+|`prebid-demo-video-interstitial-320-480-original-api`|**Video Interstitial** (Original API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
+|`prebid-demo-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
+|`prebid-demo-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
+|`prebid-demo-video-rewarded-320-480`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
+|`prebid-demo-video-interstitial-320-480`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid.|
+|`prebid-demo-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
+|`prebid-demo-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|

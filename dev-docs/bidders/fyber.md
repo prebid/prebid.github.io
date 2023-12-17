@@ -8,6 +8,9 @@ media_types: banner
 sidebarType: 1
 ---
 
+{: .alert.alert-warning :}
+Fyber is probably a defunct bidder, as the domain previously registered, inner-active.com, is no-longer-active.
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -15,4 +18,4 @@ sidebarType: 1
 |----------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|----------|
 | `appId`        | required | The app. ID provided by Inneractive                                                                                                                                  | `'Company_App_OS'` | `string` |
 | `adSpotType`   | required | The ad spot type (`'BANNER'`/`RECTANGLE`)                                                                                                                            | `'BANNER'`         | `string` |
-| `customParams` | optional | Allows passing custom parameters in the bid request. See more details at: https://confluence.inner-active.com/display/DevWiki/IA+Adapter+AdUnit+Bidder+Configuration |                    | `object` |
+| `customParams` | optional | Allows passing custom parameters in the bid request. |                    | `object` |

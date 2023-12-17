@@ -9,16 +9,17 @@ sidebarType: 4
 
 
 # Getting Started with Video for Prebid.js
+
 {: .no_toc }
 
 If you’re new to header bidding and Prebid, your implementation of Prebid for video demand will likely go much smoother if you first read the following:
 
--	[What Is Prebid?](/overview/intro.html)
--	[Getting Started with Prebid for Developers](/dev-docs/getting-started.html)
+- [What Is Prebid?](/overview/intro.html)
+- [Getting Started with Prebid for Developers](/dev-docs/getting-started.html)
 
 See [Prebid.js Video Overview](/prebid-video/video-overview.html) for a general description and high-level overview of working with video demand in Prebid.js.
 
-* TOC
+- TOC
 {:toc}
 
 ## Ad Ops
@@ -38,9 +39,9 @@ Once you understand the general setup requirements, follow the instructions for 
 
 If you’re using another ad server:
 Follow the instructions for your ad server to create line items for instream video content.  The primary points to keep in mind as you set up your line items include:
-•	Line items must target Prebid key-values.
-•	The VAST creative URL must be in the format `https://prebid.adnxs.com/pbc/v1/cache?uuid={hb_cache_id}`, where `{hb_cache_id}` is the value passed to the ad server from Prebid.js.
 
+- Line items must target Prebid key-values.
+- The VAST creative URL must be in the format `https://prebid.adnxs.com/pbc/v1/cache?uuid={hb_cache_id}`, where `{hb_cache_id}` is the value passed to the ad server from Prebid.js.
 
 #### Outstream
 
@@ -48,8 +49,6 @@ If you already have a Prebid integration for banner, you don’t need to do anyt
 
 {: .alert.alert-info :}
 **Prebid Server** If you’ve decided to conduct your header bidding auctions server-side rather than on the client, you need to have a Prebid Server account or set up your own. See the [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html) to begin your integration.
-
-
 
 ## Developers
 
@@ -69,6 +68,7 @@ Your first step to implementing header bidding for video is to [download Prebid.
 The Video Module is a new way of handling Video in Prebid.
 
 To integrate Prebid with a video player, we recommend using the Video Module. The Video Module will allow Prebid.js to automatically:
+
 - render bids in your desired video player
 - mark used bids as won
 - trigger player and media events
@@ -82,5 +82,5 @@ If you prefer to fully own the integration between Prebid and Video, you can fol
 
 ## Further Reading
 
--   [Prebid.js for Video Overview](/prebid-video/video-overview.html)
--   [What is Prebid?](/overview/intro.html)
+- [Prebid.js for Video Overview](/prebid-video/video-overview.html)
+- [What is Prebid?](/overview/intro.html)

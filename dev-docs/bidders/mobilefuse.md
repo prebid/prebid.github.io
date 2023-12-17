@@ -4,7 +4,8 @@ title: MobileFuse
 pbs: true
 pbjs: false
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
+gpp_supported: true
 schain_supported: true
 usp_supported: true
 coppa_supported: true
@@ -21,8 +22,7 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description            | Example | Type     |
-|------------|----------|------------------------|---------|----------|
-| placement_id | required | An ID which identifies this specific inventory placement | 1111 | integer |
-| pub_id | required | An ID which identifies the publisher selling the inventory| 2222 | integer |
-| tagid_src | optional | ext if passing publisher's ids, empty if passing MobileFuse IDs in placement_id field. Defaults to empty | '' | string |
+| Name         | Scope    | Description                                                | Example | Type    |
+| ------------ | -------- | ---------------------------------------------------------- | ------- | ------- |
+| placement_id | required | An ID which identifies this specific inventory placement   | 1111    | integer |
+| pub_id       | required | An ID which identifies the publisher selling the inventory | 2222    | integer |

@@ -6,15 +6,16 @@ sidebarType: 2
 ---
 
 # GAM with Prebid Rendering
+
 {:.no_toc}
 
 The integration of Prebid Rendering API with Google Ad Manager (GAM) assumes that the publisher has an account on GAM and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app project.
 
 If you do not have GMA SDK in the app yet, refer to the [Google Integration Documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/quick-start).
 
-* TOC
+- TOC
 {:toc}
- 
+
 ## GAM Integration Overview
 
 ![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-GAM.png)
@@ -31,9 +32,9 @@ If you do not have GMA SDK in the app yet, refer to the [Google Integration Docu
   
 ## Integrate Event Handlers
 
-Prebid SDK provides rendering integration into GAM setup thru [app events ](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner#app_events) mechanism. To integrate Prebid Event Handlers into your app, add the following line to your Podfile:
+Prebid SDK provides rendering integration into GAM setup thru [app events](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner#app_events) mechanism. To integrate Prebid Event Handlers into your app, add the following line to your Podfile:
 
-```
+```pod
 pod 'PrebidMobileAdMobAdapters'
 ```
 
@@ -44,7 +45,7 @@ pod 'PrebidMobileAdMobAdapters'
 
 To avoid this error add the following line to your app right after initialization of GMA SDK:
 
-```
+```swift
 GAMUtils.shared.initializeGAM()
 ```
 
@@ -52,7 +53,7 @@ GAMUtils.shared.initializeGAM()
 
 Integration example:
 
-``` swift
+```swift
 // 1. Create an Event Handler
 let eventHandler = GAMBannerEventHandler(adUnitID: GAM_AD_UNIT_ID,
                                          validGADAdSizes: [NSValueFromGADAdSize(adSize)])
@@ -69,18 +70,18 @@ addBannerToUI(banner: banner)
 banner.loadAd()
 ```
 
-#### Step 1: Create Event Handler
+### Step 1: Create Event Handler
+
 {:.no_toc}
 
-To create the `GAMBannerEventHandler ` you should provide:
+To create the `GAMBannerEventHandler` you should provide:
 
 - a **GAM Ad Unit Id** 
 - the list of available **sizes** for this ad unit.
 
+### Step 2: Create Ad View
 
-#### Step 2: Create Ad View
 {:.no_toc}
-
 
 `BannerView` - is a view that will display the particular ad. It should be added to the UI. To create a BannerView you should provide:
 
@@ -89,7 +90,8 @@ To create the `GAMBannerEventHandler ` you should provide:
 
 You should also add the instance of `BannerView` to the UI.
 
-#### Step 3: Load the Ad
+### Step 3: Load the Ad
+
 {:.no_toc}
 
 Call the method `loadAd()` which will:
@@ -97,18 +99,20 @@ Call the method `loadAd()` which will:
 - make a bid request to Prebid Server.
 - render the winning bid on display.
 
-### Banner Video
+## Banner Video
+
 {:.no_toc}
 
 For **Banner Video** you also need to specify the ad format:
 
-``` swift
+```swift
 banner.adFormat = .video
 ```
 
 The rest of the code will be the same as for integration of Display Banner.
 
 ### Migration from the original API
+
 {:.no_toc}
 
 GAM setup:
@@ -129,7 +133,7 @@ Integration:
 
 Integration example:
 
-``` swift
+```swift
 // 1. Create Event Handler
 let eventHandler = GAMInterstitialEventHandler(adUnitID: GAM_AD_UNIT_ID)
     
@@ -154,7 +158,7 @@ if interstitial.isReady {
 
 The **default** ad format for interstitial is **.banner**. In order to make a `multiformat bid request`, set the respective values in the `adFormats` property.
 
-``` swift
+```swift
 // Make bid request for video ad                                     
 adUnit?.adFormats = [.video]
 
@@ -166,13 +170,14 @@ adUnit?.adFormats = [.banner]
 
 ```
 
+### Step 1: Create Event Handler
 
-#### Step 1: Create Event Handler
 {:.no_toc}
 
 To create an event handler you should provide a **GAM Ad Unit**.
 
-#### Step 2: Create Interstitial Ad Unit
+### Step 2: Create Interstitial Ad Unit
+
 {:.no_toc}
 
 Initialize the `InterstitialRenderingAdUnit` with properties:
@@ -183,19 +188,20 @@ Initialize the `InterstitialRenderingAdUnit` with properties:
 
 > **NOTE:** the `minSizePercentage` - plays an important role in the bidding process for display ads. If provided space is not enough demand partners won't respond with bids.
 
+### Step 3: Load the Ad
 
-#### Step 3: Load the Ad
 {:.no_toc}
 
 Call the method `loadAd()` which will make a bid request to Prebid Server.
 
-#### Step 4: Show the Ad when it is ready
+### Step 4: Show the Ad when it is ready
+
 {:.no_toc}
 
 Wait for the Prebid Server to return an ad and show it to the user in any suitable time.
 
 
-``` swift
+```swift
 // MARK: InterstitialRenderingAdUnitDelegate
     
 func interstitialDidReceiveAd(_ interstitial: InterstitialAdUnit) {
@@ -204,6 +210,7 @@ func interstitialDidReceiveAd(_ interstitial: InterstitialAdUnit) {
 ```
 
 ### Migration from the original API
+
 {:.no_toc}
 
 GAM setup:
@@ -220,12 +227,11 @@ Integration:
 4. Remove original `InterstitialAdUnit`.
 5. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
 
-
 ## Rewarded API
 
 Integration example:
 
-``` swift
+```swift
  // 1. Create an Event Handler
 let eventHandler = GAMRewardedEventHandler(adUnitID: GAM_AD_UNIT_ID)
     
@@ -251,24 +257,26 @@ The proccess for displaying the Rewarded Ad is the same as for the Interstitial 
 
 To be notified when a user earns a reward - implement the method of `RewardedAdUnitDelegate`:
 
-``` swift
+```swift
 - (void)rewardedAdUserDidEarnReward:(RewardedAdUnit *)rewardedAd;
 ```
 
 The reward object is stored in the `RewardedAdUnit`:
 
-```
+```swift
 if let reward = rewardedAd.reward as? GADAdReward {
     // ...
 }
 ```
 
-#### Step 1: Create Event Handler
+### Step 1: Create Event Handler
+
 {:.no_toc}
 
 To create an event handler you should provide a **GAM Ad Unit ID**.
 
-#### Step 2: Create Rewarded Ad Unit
+### Step 2: Create Rewarded Ad Unit
+
 {:.no_toc}
 
 Create the `RewardedAdUnit` object with parameters:
@@ -276,18 +284,19 @@ Create the `RewardedAdUnit` object with parameters:
 - `configID` - an ID of Stored Impression on the Prebid server
 - `eventHandler` - the instance of rewarded event handler
 
-#### Step 3: Load the Ad
+### Step 3: Load the Ad
+
 {:.no_toc}
 
 Call the `loadAd()` method which will make a bid request to Prebid server.
 
-#### Step 4: Show the Ad when it is ready
+### Step 4: Show the Ad when it is ready
+
 {:.no_toc}
 
 Wait for the ad to load and display it to the user in any suitable time.
 
-
-``` swift
+```swift
 // MARK: RewardedAdUnitDelegate
     
 func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
@@ -296,6 +305,7 @@ func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
 ```
 
 ### Migration from the original API
+
 {:.no_toc}
 
 GAM setup:
