@@ -17,7 +17,7 @@ sidebarType: 1
 
 ### Note
 
-The Publir adapter requires setup and approval. Please reach out to prebid@publir.com to setup an Publir account.
+The Publir adapter requires setup and approval. Please reach out to info@publir.com to setup an Publir account.
 
 ### Bid Parameters
 
