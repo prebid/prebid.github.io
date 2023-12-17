@@ -2,7 +2,7 @@
 
 layout: page_v2
 title: Custom or No mediation
-description: How to integrate the Prebid SDK without a primary Ad Server
+description: Android SDK Custom Bidding Integration
 sidebarType: 2
 
 ---
@@ -12,7 +12,18 @@ sidebarType: 2
 # Custom Bidding Integration
 {:.no_toc}
 
-## Before you start
+## Introduction
+* TOC
+{:toc}
+
+In this article, we will show you how to do the following:
+
+1. Initialize the Prebid Mobile Android SDK.
+2. Set up various types of AdUnits.
+3. How to initialize the auction.
+4. Finally, how to render the results.
+
+## Initialization
 
 Before implementing the instructions in this guide, you need to ensure that you have correctly initialized the Prebid Mobile SDK in your app. The initialization method has the following pattern:
 
@@ -40,8 +51,7 @@ Prebid.init(getApplicationContext(), adUnits, "INSERT-ACCOUNT-ID-HERE", Prebid.A
 
 You can use Prebid SDK to monetize your app with a custom ad server or even without one. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without the primary ad server and its SDK.
 
-* TOC
-{:toc}
+
 
 ## Transport API
 
