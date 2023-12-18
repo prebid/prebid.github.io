@@ -17,7 +17,7 @@ sidebarType: 1
 
 ### Note
 
-The Publir adapter requires setup and approval. Please reach out to info@publir.com to setup an Publir account.
+The Publir adapter requires setup and approval. Please reach out to [info@publir.com] to setup an Publir account.
 
 ### Bid Parameters
 
@@ -29,6 +29,7 @@ The Publir adapter requires setup and approval. Please reach out to info@publir.
 | `pubId` | required | String |  Publir publisher Id provided by your Publir representative  | "1234567890abcdef12345678"
 
 ## Example
+
 ```javascript
 var adUnits = [{
     code: 'hre_div-hre-vcn-1',
@@ -50,4 +51,5 @@ var adUnits = [{
 ```
 
 ### Configuration
+
 Publir required setting UserSync by iframe for monetization.
