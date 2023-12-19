@@ -96,6 +96,8 @@ The following table lists the media types that Index supports. For information a
 
 To call Index from a web browser environment using a Prebid Server integration, see the Index-specific configuration steps in [Setup instructions to call Index through Prebid Server]([https://docs.prebid.org/dev-docs/bidders/ix.html](https://docs.prebid.org/dev-docs/bidders/ix-server.html#setup-instructions-to-call-index-through-prebid-server) in our Prebid Server documentation on the Prebid site.
 
+<a id="server-side-adapter"></a>
+
 ## Set up Prebid.js to call Index through Prebid Server (server-side adapter)
 
 In this configuration, Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Index. Complete the following steps to configure Index as a demand source:
