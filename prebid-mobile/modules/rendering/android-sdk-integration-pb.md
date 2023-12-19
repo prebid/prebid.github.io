@@ -9,7 +9,7 @@ sidebarType: 2
 
 
 
-# Custom Bidding Integration
+# Android SDK Custom Bidding Integration
 {:.no_toc}
 
 ## Introduction
@@ -28,7 +28,7 @@ In this article, we will show you how to do the following:
 Before implementing the instructions in this guide, you need to ensure that you have correctly initialized the Prebid Mobile SDK in your app. The initialization method has the following pattern:
 
 ```java
-Prebid.init(context, adUnit, accountID, adServer, host);
+Prebid.init(context, accountID, adServer, host);
 ```
 
 To use the above code snippet, you will need to [setup a Prebid server.](https://docs.prebid.org/prebid-mobile/prebid-mobile-getting-started.html#set-up-prebid-server) You can either register with a [Prebid.org member that hosts Prebid Server](https://prebid.org/managed-services/) or [setup your own Prebid server.](https://docs.prebid.org/prebid-server/hosting/pbs-hosting.html)
@@ -55,28 +55,28 @@ You can use Prebid SDK to monetize your app with a custom ad server or even with
 
 ## Transport API
 
-The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the [`fetchDemand`](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#html-banner) function. This function returns the Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice.
+The default ad server for Prebid's Mobile SDK is GAM. You can use the [`fetchDemand`](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#html-banner) function to support 3rd-party ad servers. This function returns the Prebid Server bidder key/values (targeting keys), which you can then pass to the ad server of your choice.
 
-In this mode, the publisher will be responsible for the following actions:
+You will need to perform the following actions:
 
-* Call `fetchDemand` with extended `targetingDict` callback
-* Retrieve targeting keys from the extended `fetchDemand` function
-* Convert targeting keys into the format for your ad server
-* Pass converted keys to your ad server
-* Render ad with Prebid Universal Creative or custom renderer
+* Call `fetchDemand` with extended `targetingDict` callback.
+* Retrieve targeting keys from the extended `fetchDemand` function.
+* Convert targeting keys into the format used by your ad server.
+* Pass the targeting keys to your ad server.
+* Render the ad with the Prebid Universal Creative or custom renderer.
 
-This approach is available for the following ad formats:
+This approach is available for the ad formats listed below. For detailed integration steps, click on the link corresponding to the ad format:
 
-* Display Banner via `BannerAdUnit`
-* Video Banner and Instream Video via `VideoAdUnit`
-* Display Interstitial via `InterstitialAdUnit`
-* Video Interstitial via `VideoInterstitialAdUnit`
-* Rewarded Video via `RewardedVideoAdUnit`
-* Native Styles via `NativeRequest`
+* [Display Banner](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#banner-api)  via `BannerAdUnit`
+* [Video Banner](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#video-banner-outstream-video) and Instream Video via `VideoAdUnit`
+* [Display Interstitial](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#interstitial-api) via `InterstitialAdUnit`
+* [Video Interstitial](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#video-interstitial) via `InterstitialAdUnit`
+* [Rewarded Video](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#rewarded-video-api) via `RewardedVideoAdUnit`
+* [Native Banner](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#native-api) via `NativeAdUnit`
 
-The basic integration steps for these ad units you can find on the page for integration using [Original API](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html). The difference is that you should use  the `fetchDemand` function with the following signature:
+You will also need to use the `fetchDemand` function with the following signature:
 
-```kotlin
+```java
 public void fetchDemand(OnFetchDemandResult listener) { ... }
 
 public interface OnFetchDemandResult {
@@ -84,9 +84,9 @@ public interface OnFetchDemandResult {
 }
 ```
 
-Examples:
+Example:
 
-``` kotlin
+```java
 adUnit?.fetchDemand { bidInfo ->
     if(bidInfo.getResultCode() == ResultCode.SUCCESS) {
         val keywords = bidInfo.targetingKeywords
@@ -96,19 +96,20 @@ adUnit?.fetchDemand { bidInfo ->
 }
 ```
 
-The `BidInfo` provides the following properties:
+The `bidInfo` object provides the following properties:
 
-* `resultCode` - the object of type `ResultCode` describing the status of the bid request.
+* `resultCode` - an object of type `ResultCode` describing the status of the bid request.
 * `targetingKeywords` - the targeting keywords of the winning bid
 * `exp` - the number of seconds that may elapse between the auction and the actual impression. In this case, it indicates the approximate TTL of the bid in the Prebid Cache. Note that the actual expiration time of the bid will be less than this number due to the network and operational overhead. The Prebid SDK doesn't make any adjustments to this value.
-* `nativeAdCacheId` - the local cache ID of the winning bid. Applied only to the `native` ad format.
-* `events` - the map of some publically available event URLs attached to the bid. These can be used to enable Prebid Server-based analytics when the Prebid Universal Creative (PUC) is not involved in the rendering process. If the PUC is used for rendering, it will take care of hitting these events. These are the available event URLs:
+* `nativeAdCacheId` - is the local cache ID of the winning bid. Applied only to the `native` ad format.
+* `events` - the map of publically available event URLs attached to the bid. These can be used to enable Prebid Server-based analytics when the Prebid Universal Creative (PUC) is not involved in the rendering process. If the PUC is used for rendering, it will take care of hitting these events. These are the available event URLs:
+
   * **EVENT_WIN** - this bid was chosen by the ad server as the one to display. This is the main metric for banner and native. This returns the OpenRTB `seatbid.bid.ext.prebid.events.win` field. (requires SDK v2.1.6)
   * **EVENT_IMP** - the ad creative for this bid was actually displayed. This is often the main metric for video ads. This returns the OpenRTB `seatbid.bid.ext.prebid.events.imp` field. (requires SDK v2.1.6)
 
 Code sample to extract the events:
 
-``` kotlin
+```kotlin
 val win = bidInfo.events.get(BidInfo.EVENT_WIN)
 val imp = bidInfo.get(BidInfo.EVENT_IMP)
 ```
@@ -169,7 +170,7 @@ bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other availabl
 
 Integration example:
 
-``` kotlin
+```kotlin
 // 1. Create an Interstitial Ad Unit
 interstitialAdUnit = InterstitialAdUnit(requireContext(), configId, minSizePercentage)
 interstitialAdUnit?.setInterstitialAdUnitListener(this)
@@ -187,7 +188,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
+The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, you need to set the respective values using the `AdUnitFormat` object.
 
 ``` kotlin
 interstitialAdUnit = InterstitialAdUnit(
