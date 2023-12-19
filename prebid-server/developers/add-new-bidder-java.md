@@ -99,6 +99,11 @@ adapters:
         - video
         - audio
         - native
+      dooh-media-types:
+        - banner
+        - video
+        - audio
+        - native
       supported-vendors:
       vendor-id: your_vendor_id
     usersync:
@@ -120,7 +125,7 @@ Modify this template for your bid adapter:
 - Change the `pbs-enforces-ccpa` to `false` if you'd like to disable ccpa enforcement. Defaults to `true`.
 - Change the `vendor-id` value to id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/tcf-for-vendors/). Leave this as `0` if you are not registered with IAB Europe.
 - Choose the `supported-vendors` constants: These constants should be unique. The list of existing vendor constants can be found [here](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/bidder/ViewabilityVendors.java).
-- Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
+- Remove the `capabilities` (app/site/dooh) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support. (Note: 'dooh' is [Digital Out Of Home](/prebid-server/use-cases/pbs-dooh.html))
 - If your auction endpoint supports gzip compression, setting 'endpoint-compression' to 'gzip' will save on network fees.
 
 If you does not support user syncing, you can remove `usersync` section of configuration.
