@@ -13,7 +13,9 @@ sidebarType: 2
 {:.no_toc}
 
 ## Introduction
+
 * TOC
+
 {:toc}
 
 In this article, we will show you how to do the following:
@@ -50,8 +52,6 @@ Prebid.init(getApplicationContext(), adUnits, "INSERT-ACCOUNT-ID-HERE", Prebid.A
 ```
 
 You can use Prebid SDK to monetize your app with a custom ad server or even without one. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without the primary ad server and its SDK.
-
-
 
 ## Transport API
 
