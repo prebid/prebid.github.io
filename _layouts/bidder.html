@@ -107,8 +107,8 @@
                   <tr>
                     <th class="pbTh">Safeframes OK</th>
                     <td class="pbTd">{% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %}</td>
-                    <th class="pbTh"></th>
-                    <td class="pbTd"></td>
+                    <th class="pbTh">Privacy Sandbox</th>
+                    <td class="pbTd">{% if page.privacy_sandbox %}{{page.privacy_sandbox}}{% else %}check with bidder{% endif %}</td>
                   </tr>
                 </table>
 
