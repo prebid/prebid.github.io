@@ -1542,12 +1542,12 @@ PBS-Java only
 
 This feature can be useful when a bid adapter either chokes on multiformat request, or if it makes a sub-optimal choice
 about which of multiple formats to consider. The publisher may be able to override bidder behavior from the request
-by passing in ext.prebid.bidder.BIDDERCODE.prefmtype. The value must be "banner", "video", or "native".
+by passing in ext.prebid.biddercontrols.BIDDERCODE.prefmtype. The value must be "banner", "video", or "native".
 
 For example:
 
 ```json
-ext.prebid.bidder: {
+ext.prebid.biddercontrols: {
      "bidderB": { "prefmtype": "video" },
      "bidderC": { "prefmtype": "native" }
 }
@@ -1556,7 +1556,7 @@ ext.prebid.bidder: {
 Here's how this works:
 
 1. If the bid adapter YAML declares support of multiformat, then `prefmtype` is ignored in the request. The default value of multiformat supported is `true` in PBS 2.0, but will be `false` in PBS 3.0.
-1. If the bidder declares that they don't support multiformat and the incoming request contains multiple formats, then one of the formats is chosen by either `$.ext.prebid.bidder.BIDDER.prefmtype` or config `auction.preferredmediatype.BIDDER`
+1. If the bidder declares that they don't support multiformat and the incoming request contains multiple formats, then one of the formats is chosen by either `$.ext.prebid.biddercontrols.BIDDER.prefmtype` or config `auction.preferredmediatype.BIDDER`
 
 #### OpenRTB Response Extensions
 
@@ -1823,7 +1823,7 @@ The Prebid SDK version comes from:
 | imp<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. (ae stands for auction environment) | integer | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
-| ext<wbr>.prebid<wbr>.bidder<wbr>.BIDDERCODE<wbr>.prefmtype | Override the mediatype sent to the named bidder if they don't support multiformat. | string | no |
+| ext<wbr>.prebid<wbr>.biddercontrols<wbr>.BIDDERCODE<wbr>.prefmtype | Override the mediatype sent to the named bidder if they don't support multiformat. | string | no |
 | ext<wbr>.prebid<wbr>.bidders | Publishers can specify an adapter-specific flag, see [global bid parameters](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#global-bid-adapter-parameters) | object | seen on ext<wbr>.prebid<wbr>.bidderparams<wbr>.bidder |
 
 #### Response
