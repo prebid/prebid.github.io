@@ -7,12 +7,13 @@ pbjs: true
 biddercode: publir
 media_types: banner
 schain_supported: true
-gdpr_supported: true
+tcfeu_supported: false
+gvl_id: none
 usp_supported: true
 floors_supported: true
 userIds: all
-gvl_id: none
 sidebarType: 1
+safeframes_ok: true
 ---
 
 ### Note
