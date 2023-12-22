@@ -49,6 +49,19 @@ pbjs.setBidderConfig({
 })
 ```
 
+#### Currency
+
+By default, the currency used for requires is `USD`. But you can use any other currency in the request. To do this, you must set this currency through the Prebid.js configuration and all responses will be returned in this currency.
+```
+pbjs.setConfig({
+    // ...
+    "currency": {
+       "adServerCurrency": "JPY",
+    }
+    // ...
+});
+```
+
 #### OpenRTB 2.5 supported parameters
 
 The adapter for Prebid.js supports the following options: `site.pagecat`, `site.content.cat` and `site.content.language`. You can set these parameters through the Prebid.js configuration setup functions: [pbjs.setConfig](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) or [pbjs.setBidderConfig](https://docs.prebid.org/dev-docs/publisher-api-reference/setBidderConfig.html).
