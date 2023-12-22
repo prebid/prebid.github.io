@@ -52,7 +52,8 @@ pbjs.setBidderConfig({
 #### Currency
 
 By default, the currency used for requires is `USD`. But you can use any other currency in the request. To do this, you must set this currency through the Prebid.js configuration and all responses will be returned in this currency.
-```
+
+```javascript
 pbjs.setConfig({
     // ...
     "currency": {
