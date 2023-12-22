@@ -5,7 +5,7 @@ description: MyGaru User ID sub-module
 useridmodule: mygaruIdSystem
 ---
 
-MyGaru provides single use tokens as a UserId for SSPs and DSP that consume  telecom DMP data.
+MyGaru provides single use tokens as a UserId for SSPs and DSP that consume telecom DMP data.
 
 ## MyGaru ID Configuration
 
