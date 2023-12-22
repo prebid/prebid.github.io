@@ -50,17 +50,35 @@ Prebid SDK does not support a [limited bid cache](dev-docs/faq.html#does-prebidj
 1. If Prebid Cache is being utilized, the Time-To-Live for that cache should be understood. By default, the TTL for Prebid Cache is 5 minutes for banners and 15 minutes for video, but this can be changed.
 2. No matter what the Cache TTL is set to, it's important that any pre-fetch or bid-cache feature built into the app should respect the OpenRTB `seatbid.bid.exp` field for each bid, which is the expiration of the bid in seconds.
 
+### Does Prebid SDK support integration into the Unity SDK?
+
+Prebid does not support Unity directly and no one in the community has recent experience with it. We believe that it may be possible to call for bids  using the [custom bidding integration(/prebid-mobile/modules/rendering/ios-sdk-integration-pb.html) approach.
+
+Contributions from the community (whether code or documentation) would be welcome.
+
 ## Dependencies
 
 ### Does the SDK use third-party libraries?  
 
-Just the Open Measurement SDK.
+Prebid Mobile SDK is bundled with the Open Measurement (OM) SDK. If you will be using Prebid Mobile SDK to render ads, then the Open Measurement signals are available and are passed in the ad request. If you are using different SDK (e.g. GAM) to render ads, then the OM signals should be checked with the respective SDK (e.g. if there is OM SDK dependency there).
+
+### Is Prebid Certified for the Open Measurement SDK?
+
+No, the Prebid SDK is currently not certified with the IAB. The open-source nature of the Prebid SDK means that app developers can modify the code, which means that publishers requiring certification need to reach out to the IAB and get their particular implementation of the Prebid + OM SDK dependency certified.
+
+Advertisers can leverage 3rd party vendors of their choice when measuring viewability using OM SDK. Majority of the vendors are providing viewability scores for all types of the OM SDK integrations allowing advertisers to independently measure viewability across any publisher independently of their certifications. The only known exception currently is MOAT. This vendor is known to nullify the viewability scores if the integration is not certified. In this case, publishers can directly reach out to the IAB and get their own version of the Prebid SDK integration with OM SDK dependency certified.
+
+More details available at:
+
+- [IAB OM SDK](https://iabtechlab.com/standards/open-measurement-sdk/)
+- [Prebid iOS OM SDK](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#open-measurement-sdk-omsdk-api)
+- [Prebid Android OM SDK](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html#open-measurement-sdk-omsdk-api)
 
 ### Does it have external dependencies?  
 
 No.
 
-### Does it use open-source libraries? If so, which licences are used?
+### Does it use open-source libraries? If so, which licenses are used?
 
 No. The Prebid SDK is itself a library open sourced under the Apache 2 license.
 

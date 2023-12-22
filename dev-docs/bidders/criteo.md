@@ -109,6 +109,18 @@ var adUnits = [
 
 ### Additional Config (Optional)
 
+If you don't want to use the FastBid adapter feature, you can disable it via this configuration:
+
+```javascript
+pbjs.setConfig({
+  'criteo': {
+    fastBidVersion: 'none',
+  }
+});
+```
+
+Criteo teams are planning to completely remove this feature with Prebid 9.0
+
 Criteo Bid Adapter supports the collection of the user's hashed email, if available.
 
 Please consider passing it to the adapter, following [these guidelines](https://publisherdocs.criteotilt.com/prebid/#hashed-emails).
