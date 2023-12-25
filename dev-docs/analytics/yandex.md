@@ -9,11 +9,11 @@ modulecode: generic
 
 This adapter is designed to work with [Yandex Metrica](https://metrica.yandex.com/about) - Top-5 worldwide web analytics tool.
 
-Disclosure: provider loads Metrica Tag build based on https://github.com/yandex/metrica-tag, ~60 kB gzipped.
+Disclosure: provider loads Metrica Tag build based on [github.com/yandex/metrica-tag](https://github.com/yandex/metrica-tag), ~60 kB gzipped.
 
 ## How to setup provider
 
-Register your application on https://metrica.yandex.com/ and get counter id
+Register your application on [metrica.yandex.com](https://metrica.yandex.com/) and get counter id
 
 Init provider like this, where `123` is your counter id
 
@@ -30,4 +30,4 @@ pbjs.enableAnalytics({
 
 ## Where to find data
 
-Go to https://metrika.yandex.ru/dashboard -> Prebid Analytics
+Go to [metrika.yandex.ru/dashboard](https://metrika.yandex.ru/dashboard) -> Prebid Analytics
