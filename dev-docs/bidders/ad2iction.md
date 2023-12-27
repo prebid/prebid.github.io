@@ -10,7 +10,7 @@ sidebarType: 1
 ---
 
 ### Note
-The Ad2iction Bidding adapter requires setup before beginning. Please contact us on https://www.ad2iction.com.
+The Ad2iction Bidding adapter requires setup before beginning. Please contact us on [https://www.ad2iction.com](https://www.ad2iction.com).
 
 ### Bid Params
 
