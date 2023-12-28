@@ -25,7 +25,7 @@ pbjs.setConfig({
     userSync: {
         auctionDelay: 100,
         userIds: [{
-            name: 'mygaru',
+            name: 'mygaruId',
         }]
     }
 });
