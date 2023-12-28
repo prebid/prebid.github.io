@@ -14,6 +14,8 @@ userIds: AdmixerID
 prebid_member: true
 floors_supported: true
 sidebarType: 1
+multiformat_supported: will-bid-on-any
+safeframes_ok: true
 ---
 
 ### Bid Params
