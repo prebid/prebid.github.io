@@ -1,7 +1,7 @@
 ---
 layout: analytics
 title: Yandex Metrica
-description: Track your Prebid.js in Yandex Metrica - Top-5 worldwide web analytics tool.
+description: Track your Prebid.js in Yandex Metrica
 modulecode: generic
 ---
 
