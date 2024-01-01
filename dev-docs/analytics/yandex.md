@@ -7,7 +7,7 @@ modulecode: generic
 
 # Description
 
-This adapter is designed to work with [Yandex Metrica](https://metrica.yandex.com/about) - Top-5 worldwide web analytics tool.
+This adapter is designed to work with [Yandex Metrica](https://metrica.yandex.com/about) - a web analytics tool.
 
 Disclosure: provider loads Metrica Tag build based on [github.com/yandex/metrica-tag](https://github.com/yandex/metrica-tag), ~60 kB gzipped.
 
