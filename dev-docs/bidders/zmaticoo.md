@@ -18,7 +18,6 @@ To use this bidder you will need a valid pubId. For further information, please 
 
 ### Bid Params
 
-
 {: .table .table-bordered .table-striped }
 | Name                 | Scope    | Description                                                                                                                | Example                 | Type           |
 |----------------------|----------|----------------------------------------------------------------------------------------------------------------------------|-------------------------|----------------|
