@@ -19,6 +19,7 @@ Then configure the MyGaru id submodule in your `userSync` configuration:
 
 Params configuration is not required.
 Mygaru id system is asynchronous and in order to get ids for initial ad auctions you need to add an `auctionDelay` param to your `userSync` config.
+_Currently, Mygaru id system does not operate in EU region._
 
 ```javascript
 pbjs.setConfig({
