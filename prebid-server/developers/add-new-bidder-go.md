@@ -46,9 +46,9 @@ Throughout the rest of this document, substitute `{bidder}` with the name you've
 Most bidders run their auction endpoints in multiple datacenters because their
 business is continental or global.
 
-Prebid Server is open source software that is run by many "host companies" that may be calling
+Prebid Server is open source software that is run by many host companies that may be calling
 your bid adapter from various places. It may be useful to consider how you want to
-communicate your geographic preferences to the host companies.
+communicate your geographic preferences to these companies.
 
 {: .alert.alert-info :}
 Please don't bother publishers by asking them to enter a geographic location 'host' parameter. Most publishers do not have the tech to choose which of your regional endpoints to hit.
@@ -1352,6 +1352,7 @@ pbs_app_supported: true/false
 prebid_member: true/false
 multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ortb_blocking_supported: true/partial/false
+privacy_sandbox: no or comma separated list of `paapi`, `topics`
 ---
 
 ### Registration
