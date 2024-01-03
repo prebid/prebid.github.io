@@ -22,11 +22,11 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `placementId`      | optional | Placement Id         | `'0'`    | `'string'` |
-| `endpointId`      | optional | Endpoint Id         | `'0'`    | `'string'` |
-| `host`      | required | region         | `'eu'`    | `'string'` |
+| Name          | Scope    | Description  | Example                         | Type       |
+|---------------|----------|--------------|---------------------------------|------------|
+| `placementId` | optional | Placement Id | `'0'`                           | `'string'` |
+| `endpointId`  | optional | Endpoint Id  | `'0'`                           | `'string'` |
+| `region`      | optional | Region       | `'us-east'` (default) or `'eu'` | `'string'` |
 
 ### Note
 
