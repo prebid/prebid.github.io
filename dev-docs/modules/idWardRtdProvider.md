@@ -6,18 +6,11 @@ description: ID Ward Real Time Data Provider Module
 page_type: module
 module_type: rtd
 module_code : idWardRtdProvider
-enable_download : false
+enable_download : true
 vendor_specific: true
 sidebarType : 1
 ---
 
-> **Warning!**
->
-> The **idWardRtdProvider** module has been renamed to [anonymisedRtdProvider](anonymisedrtdprovider) in light of the company's rebranding.
-> **idWardRtdProvider** module is maintained for backward compatibility until the next major Prebid release.
->
-> Please use anonymisedRtdProvider instead of idWardRtdProvider in your Prebid integration.
->
 # ID Ward Real Time Data Provider Module
 
 ID Ward is a data anonymization technology for privacy-preserving advertising. Publishers and advertisers are able to target and retarget custom audience segments covering 100% of consented audiences.
