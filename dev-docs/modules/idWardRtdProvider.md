@@ -6,7 +6,7 @@ description: ID Ward Real Time Data Provider Module
 page_type: module
 module_type: rtd
 module_code : idWardRtdProvider
-enable_download : true
+enable_download : false
 vendor_specific: true
 sidebarType : 1
 ---
