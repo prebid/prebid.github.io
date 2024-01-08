@@ -9,7 +9,7 @@ sbUUID: 3.2
 # Ad Ops Planning Guide
 {: .no_toc }
 
-* TOC
+- TOC
 {: toc }
 
 There are several decisions you need to make as you’re planning out your Prebid implementation. The following diagram guides you through these decisions. Click on the boxes to navigate to detailed information about each one. (See below for an overview of these options.)
@@ -77,4 +77,4 @@ Throughout this planning guide, we use the following terms to describe elements 
 
 ## Next Step
 
-* [Ad Server Integration](/adops/ad-server-integration.html)
+- [Ad Server Integration](/adops/ad-server-integration.html)
