@@ -3,14 +3,19 @@ layout: bidder
 title: SilverMob
 description: SilverMob Bidder Adapter
 biddercode: silvermob
-tcfeu_supported: true
 media_types: banner, video, native
 pbjs: true
 pbs: true
-gdpr_supported: true
+tcfeu_supported: true
+gvl_id: 1058
 usp_supported: true
 coppa_supported: true
 schain_supported: true
+safeframes_ok: true
+deals_supported: true
+fpd_supported: false
+floors_supported: true
+multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
