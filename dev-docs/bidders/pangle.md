@@ -23,8 +23,8 @@ multiformat_supported: true
 The Pangle Bidding adapter requires setup before beginning. Please contact the Pangle team.
 
 **Media type support:**
-Pangle Prebid.js adapter supports banner and video, native is not supported yet.
-Pangle Prebid Server adapter supports banner, video and native media types. 
+* Pangle Prebid.js adapter supports banner and video, native is not supported yet.
+* Pangle Prebid Server adapter supports banner, video and native media types. 
 
 ### Bid Params
 
