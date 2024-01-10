@@ -20,8 +20,6 @@ gvl_id: 883
 
 The bidder requires setup before usage. Please get in touch with our team at <prebid@onlinemediasolutions.com> to get started.
 
-
-
 ### Prebid.JS Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -30,7 +28,6 @@ The bidder requires setup before usage. Please get in touch with our team at <pr
 | ---- | ----- | ----------- | ------- | ---- |
 | `publisherId`       | required | Unique publisher ID  | `12345` | `integer` |
 | `bidFloor`    | optional | The minimum bid value desired      | `1.23`  | `float` |
-
 
 ### Prebid Server Bid Params
 
