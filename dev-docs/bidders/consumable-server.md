@@ -39,7 +39,6 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
 | `unitName` | required | The unit name from Consumable. | `cnsmbl-unit`  | `string` |
 | `placementId` | required | the placementid from Consumable. | `0421008445828ceb46f496700a5fa65e` | `string` |
 
-
 ## Table of contents
 
 * [Table of contents](#table-of-contents)
@@ -63,7 +62,6 @@ Publishers can use Prebid Server in any of the following ways with Consumable. C
 * If you want to call Consumable from a web environment, you can use Prebid.js to call Prebid Server, and then Prebid Server uses our server-side adapter to call Consumable. This reduces workload on the browser. For set up instructions, see [Call Consumable from a web browser](#call-consumable-from-a-web-browser) section on this page.
 * In mobile apps, you can use the Prebid Mobile SDK to call Prebid Server and then Prebid Server uses our server-side adapter to call Consumable. For set up instructions, see [Call Consumable from Prebid Mobile SDK](#call-consumable-from-prebid-mobile-sdk) section on this page.
 * In CTV apps and other long-form video environments, you (or the SSAI vendor) can make a call to Prebid Server using OpenRTB, and then Prebid Server uses our server-side adapter to call Consumable. For set up instructions, see [Call Consumable from CTV/long-form video environment](#call-consumable-from-ctvlong-form-video-environment) section on this page.
-* In any other server-to-server OpenRTB environment, you can send OpenRTB bid requests to the Prebid Server host of your choice. For set up instructions, see [Call Consumable from any other server-to-server OpenRTB environment](#call-consumable-from-ortb) section on this page.
 
 <a id="supported-media-types"></a>
 
@@ -93,24 +91,21 @@ If you are using an existing Prebid Server instance that is already configured t
 To call Consumable from a web browser using Prebid Server, you must first configure Prebid.js to call Consumable directly from the browser using our client-side adapter. Follow the quick start instructions provided in Prebid's [Getting Started for Developers](/dev-docs/getting-started.html) documentation. Complete the following steps to complete the Consumable-specific configuration:
 
 1. Build the binary in one of the following ways:
-  * [Download Prebid.js](/download.html) from the Prebid site to use the standard compiled binary that Prebid includes in the download process and select **Consumable Exchange** as an adapter.
+   [Download Prebid.js](/download.html) from the Prebid site to use the standard compiled binary that Prebid includes in the download process and select **Consumable Exchange** as an adapter.
 2. Define the Consumable-specific parameters at the bidder level which include adding `consumable` as the bidder and the `siteId`. For Consumable's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
-
-    ```javascript
-    {
-        bidder: 'consumable',
-        params: {
-            "networkId": 11,
-            "siteId": 32,
-            "unitId": 42,
-            "unitName": "cnsmbl-audio-728x90-slider"
-        }
-    }
-    ```
-
+   ```javascript
+   {
+       bidder: 'consumable',
+       params: {
+           "networkId": 11,
+           "siteId": 32,
+           "unitId": 42,
+           "unitName": "cnsmbl-audio-728x90-slider"
+       }
+   }
+   ```
 3. Define your ad units in the `adUnit` object. This includes the details about the ad slots such as the media types, ad size, and ad code. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.
 4. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function. Consumable strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Consumable bid rate and bid price. Make  sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Consumable.
-
     ```javascript
     pbjs.setConfig({
         userSync: {
@@ -124,7 +119,6 @@ To call Consumable from a web browser using Prebid Server, you must first config
         }
     });
     ```
-
 5. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](/dev-docs/bidders/consumable.html#set-up-first-party-data-fpd) section in our Prebid.js documentation on the Prebid site.
 6. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function as follows: <br />
 
@@ -135,8 +129,7 @@ To call Consumable from a web browser using Prebid Server, you must first config
         }
     });
     ```
-
-
+   
 <a name="call-Consumable-from-prebid-mobile-sdk"></a>
 
 ### Call Consumable from Prebid Mobile SDK
@@ -164,8 +157,6 @@ To add Consumable as a bidder:
 1. Inform your Prebid Server hosting company to add `consumable`as a bidder in the configuration and include the `placementId` that Consumable provides to you at the time of integration.
 2. Define the Consumable-specific parameters at the bidder level. For information about these parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 3. Include any ad unit level required or optional parameters provided in Prebid's [/openrtb2/video](/prebid-server/endpoints/openrtb2/pbs-endpoint-video.html) documentation.
-
-<a id="call-Consumable-from-ortb"></a>
 
 <a id="bid-request-parameters"></a>
 
