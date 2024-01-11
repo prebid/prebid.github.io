@@ -17,6 +17,10 @@ gvl_id: 280
 sidebarType: 1
 ---
 
+### Prebid Server Notes
+
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
+
 ### Bid params
 
 {: .table .table-bordered .table-striped }

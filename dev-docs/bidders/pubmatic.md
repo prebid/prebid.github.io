@@ -23,6 +23,10 @@ multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
+### Prebid Server Note
+
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
