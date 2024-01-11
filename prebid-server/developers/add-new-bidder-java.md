@@ -80,6 +80,15 @@ We are proud to run the Prebid Server project as a transparent and trustworthy h
 {: .alert.alert-warning :}
 Failure to follow the rules will lead to delays in approving your adapter for inclusion in Prebid Server. If you'd like to discuss an exception to a rule, please make your request by [submitting a GitHub issue](https://github.com/prebid/prebid-server-java/issues/new).
 
+### Multiformat
+
+Publishers are utilizing multiformat ad units more frequently, e.g. an impression object that contains both banner and video. It is important that your
+adapter handle this scenario. Here are your options:
+
+1. Set `ortb.multiformat-supported: false` in your bidder YAML file. This will cause PBS to choose a format for you based on publisher configuration or discard any requests that are multiformat.
+1. Or code your adapter to choose one of the available formats. e.g. "if both banner and video are present, always choose video".
+1. Or code your adapter to make multiple requests to your auction endpoint. e.g. "if both banner and video are present, make two calls to the endpoint".
+
 ### Ongoing Support and Maintenance
 
 **You are expected to provide support and maintenance for the code you contribute to Prebid Server as part of your bid adapter.** We ask that you proactively update your adapter when your bidding server introduces new features or breaking changes.
