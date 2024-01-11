@@ -93,6 +93,7 @@ To call Consumable from a web browser using Prebid Server, you must first config
 1. Build the binary in one of the following ways:
    [Download Prebid.js](/download.html) from the Prebid site to use the standard compiled binary that Prebid includes in the download process and select **Consumable Exchange** as an adapter.
 2. Define the Consumable-specific parameters at the bidder level which include adding `consumable` as the bidder and the `siteId`. For Consumable's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
+
    ```javascript
    {
        bidder: 'consumable',
@@ -104,9 +105,11 @@ To call Consumable from a web browser using Prebid Server, you must first config
        }
    }
    ```
+   
 3. Define your ad units in the `adUnit` object. This includes the details about the ad slots such as the media types, ad size, and ad code. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.
 4. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function. Consumable strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Consumable bid rate and bid price. Make  sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Consumable.
-    ```javascript
+    
+   ```javascript
     pbjs.setConfig({
         userSync: {
             iframeEnabled: true,
@@ -119,16 +122,17 @@ To call Consumable from a web browser using Prebid Server, you must first config
         }
     });
     ```
+   
 5. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](/dev-docs/bidders/consumable.html#set-up-first-party-data-fpd) section in our Prebid.js documentation on the Prebid site.
 6. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function as follows: <br />
 
-    ```javascript
+   ```javascript
     pbjs.setConfig({
         cache: {
             url: 'https://prebid.adnxs.com/pbc/v1/cache'
         }
     });
-    ```
+   ```
    
 <a name="call-Consumable-from-prebid-mobile-sdk"></a>
 
@@ -307,6 +311,7 @@ You must include these parameters at the bidder level.
   "tmax": 1000
 }
 ```
+
 **Audio**
 
 ```json
@@ -365,3 +370,4 @@ You must include these parameters at the bidder level.
   "at": 1,
   "tmax": 1000
 }
+```

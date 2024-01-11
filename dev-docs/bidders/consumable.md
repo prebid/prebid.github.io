@@ -46,12 +46,12 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
 * [Set up Prebid.js to call Consumable directly from the browser](#set-up-prebidjs-to-call-consumable-directly-from-the-browser-client-side-adapter)
 * [Set up Prebid.js to call Consumable through Prebid Server](#set-up-prebidjs-to-call-consumable-through-prebid-server-server-side-adapter)
 * [Set up First Party Data (FPD)](#set-up-first-party-data-fpd)
-    * [Global data](#prebid-fpd-module)
-    * [Consumable bidder-specific data](#consumable-bidder-specific-fpd-module)
-    * [AdUnit-specific data](#adunit-specific-data)
+  * [Global data](#prebid-fpd-module)
+  * [Consumable bidder-specific data](#consumable-bidder-specific-fpd-module)
+  * [AdUnit-specific data](#adunit-specific-data)
 * [Bid request parameters](#bid-request-parameters)
-    * [Banner](#banner)
-    * [Video](#video)
+  * [Banner](#banner)
+  * [Video](#video)
 * [Examples](#examples)
 
 <a id="introduction"></a>
@@ -107,7 +107,8 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
 3. Define the Consumable-specific parameters at the bidder level. For Consumable's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.
 5. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function. Consumable strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Consumable bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Consumable.   <br />
-    ```javascript
+    
+   ```javascript
     pbjs.setConfig({
         userSync: {
             iframeEnabled: true,
@@ -122,7 +123,8 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
     ```
 6. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
 7. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
-    ```javascript
+    
+   ```javascript
     pbjs.setConfig({
         cache: {
                 url: 'https://prebid.adnxs.com/pbc/v1/cache'
