@@ -5,16 +5,17 @@ description: zMaticoo Prebid Bidder Adapter
 pbjs: true
 biddercode: zmaticoo
 deals_supported: false
+tcfeu_supported: true
+tcf2_supported: true
 media_types: banner
 sidebarType: 1
+safeframes_ok: true
+ortb_blocking_supported: partial
 ---
 
-### Registration
+### Note
 
-All references to the OpenRTB spec refer to OpenRtb
-v2.5 (<https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf>)
-
-To use this bidder you will need a valid pubId. For further information, please contact <adam.li@eclicktech.com.cn>.
+To use this bidder you will need a valid pubId. For further information, please contact <support@zmaticoo.com>.
 
 ### Bid Params
 
