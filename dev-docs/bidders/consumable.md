@@ -121,6 +121,7 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
         }
     });
     ```
+   
 6. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
 7. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
     
