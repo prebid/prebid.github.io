@@ -9,7 +9,7 @@ media_types: banner,video,native
 tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
 userIds: criteo, id5Id, sharedId, unifiedId
