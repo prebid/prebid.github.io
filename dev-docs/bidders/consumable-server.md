@@ -22,7 +22,7 @@ sidebarType: 1
 
 ### Note
 
-The Consumable adaptor requires setup and approval from your Consumable account manager, even for existing Consumable publishers. Please reach out to your account manager to enable Prebid.js for your account.
+The Consumable adaptor requires setup and approval from your Consumable account manager, even for existing Consumable publishers. Please reach out to your account manager to enable Prebid for your account.
 
 ### Disclosure
 
@@ -45,28 +45,25 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
 * [Supported media types](#supported-media-types)
-* [Setup instructions to call Index through Prebid Server](#setup-instructions-to-call-index-through-prebid-server)
-  * [Call Index from a web browser](#call-index-from-a-web-browser)
-  * [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk)
-  * [Call Index from CTV/long-form video environment](#call-index-from-ctvlong-form-video-environment)
-  * [Call Index from any other server-to-server OpenRTB environment](#call-index-from-any-other-server-to-server-openrtb-environment)
+* [Setup instructions to call Consumable through Prebid Server](#setup-instructions-to-call-consumable-through-prebid-server)
+  * [Call Consumable from a web browser](#call-consumable-from-a-web-browser)
+  * [Call Consumable from Prebid Mobile SDK](#call-consumable-from-prebid-mobile-sdk)
+  * [Call Consumable from CTV/long-form video environment](#call-consumable-from-ctvlong-form-video-environment)
 * [Bid request parameters](#bid-request-parameters)
-  * [Banner](#banner)
-  * [Video](#video)
+  * [Site](#site)
+  * [App](#app)
 * [Examples](#examples)
 
 <a id="introduction"></a>
 
 ## Introduction
 
-Publishers can use Prebid Server in any of the following ways with Consumable (Consumable). Consumable's adapter supports all of the following methods:
+Publishers can use Prebid Server in any of the following ways with Consumable. Consumable's adapter supports all of the following methods:
 
 * If you want to call Consumable from a web environment, you can use Prebid.js to call Prebid Server, and then Prebid Server uses our server-side adapter to call Consumable. This reduces workload on the browser. For set up instructions, see [Call Consumable from a web browser](#call-consumable-from-a-web-browser) section on this page.
 * In mobile apps, you can use the Prebid Mobile SDK to call Prebid Server and then Prebid Server uses our server-side adapter to call Consumable. For set up instructions, see [Call Consumable from Prebid Mobile SDK](#call-consumable-from-prebid-mobile-sdk) section on this page.
 * In CTV apps and other long-form video environments, you (or the SSAI vendor) can make a call to Prebid Server using OpenRTB, and then Prebid Server uses our server-side adapter to call Consumable. For set up instructions, see [Call Consumable from CTV/long-form video environment](#call-consumable-from-ctvlong-form-video-environment) section on this page.
 * In any other server-to-server OpenRTB environment, you can send OpenRTB bid requests to the Prebid Server host of your choice. For set up instructions, see [Call Consumable from any other server-to-server OpenRTB environment](#call-consumable-from-ortb) section on this page.
-
-**Note about sending multiple ad slots in a single bid request:** Consumable accepts up to 100 valid ad slots in a single bid request. If a single bid request contains more than 100 ad slots (including invalid ad slots), only the first 100 valid ad slots are accepted and the rest are ignored. For example,  streaming TV media owners can signal multiple ad pods for long-form programming in a single request.
 
 <a id="supported-media-types"></a>
 
@@ -175,24 +172,25 @@ To add Consumable as a bidder:
 ## Bid request parameters
 
 For a list of the OpenRTB fields that Consumable supports in bid requests, see [List of supported OpenRTB bid request fields for sellers](https://kb.Consumableexchange.com/publishers/openrtb_integration/list_of_supported_openrtb_bid_request_fields_for_sellers.htm#List_of_supported_OpenRTB_bid_request_fields_for_sellers). The following are the required fields for the various supported media types.
+### Site (Banner, Video, Audio)
+<a id="site"></a>
+You must include these parameters at the bidder level.
 
-### Banner
-
+{: .table .table-bordered .table-striped }
+| Name        | Scope    | Description                    | Example | Type      |
+|-------------|----------|--------------------------------|---------|-----------|
+| `siteId`    | required | The site ID from Consumable.    | `12345` | `integer` |
+| `networkId` | required | The network ID from Consumable. | `9969`  | `integer` |
+| `unitId` | required | The unit ID from Consumable. | `987654`  | `integer` |
+| `unitName` | required | The unit name from Consumable. | `cnsmbl-unit`  | `string` |
+### App or CTV (Banner, Video, Audio)
+<a id="app"></a>
 You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
 | Key | Scope | Type | Description |
 |---|---|---|---|
-| `placementId` | Required | String | An Consumable-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
-
-### Video
-
-You must include these parameters at the bidder level.
-
-{: .table .table-bordered .table-striped }
-| Key | Scope | Type | Description |
-|---|---|---|---|
-| `placementId` | Required | String | An Consumable-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
+| `placementId` | Required | String | An Consumable-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'0421008445828ceb46f496700a5fa65e'`|
 
 <a id="examples"></a>
 
