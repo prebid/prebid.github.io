@@ -1,7 +1,7 @@
 ---
 layout: bidder
 title: Consumable
-description: Prebid Consumable Bidder Adaptor
+description: Prebid Consumable Bidder adapter
 userIds: all
 pbjs: true
 pbs: true
@@ -22,7 +22,7 @@ sidebarType: 1
 
 ### Note
 
-The Consumable adaptor requires setup and approval from your Consumable account manager, even for existing Consumable publishers. Please reach out to your account manager to enable Prebid.js for your account.
+The Consumable adapter requires setup and approval from your Consumable account manager, even for existing Consumable publishers. Please reach out to your account manager to enable Prebid.js for your account.
 
 ### Disclosure
 
