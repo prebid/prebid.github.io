@@ -34,6 +34,7 @@ Submit a GitHub issue for [Prebid.js](https://github.com/prebid/Prebid.js/issues
 - You have found a bug in the code.
 
 For more information about how to contribute, see:
+
 - [Prebid.js](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md)
 - [Prebid Server GoLang](https://github.com/prebid/prebid-server/blob/master/docs/developers/contributing.md)
 - [Prebid Server Java](https://github.com/prebid/prebid-server-java/blob/master/docs/developers/contributing.md)

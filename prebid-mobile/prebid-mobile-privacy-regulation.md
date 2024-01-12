@@ -123,4 +123,3 @@ The job of the Prebid SDK will:
 - Not strip any user data or signaling of the request regardless of Notice and Opt out signal
 
 It is worth noting Prebid Server will be a passthrough as well and will not validate format or correctness of US Privacy signal nor strip any user data from the request either, even if the presence of an opt out.
-
