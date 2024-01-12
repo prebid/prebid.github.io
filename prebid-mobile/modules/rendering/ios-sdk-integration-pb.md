@@ -1,16 +1,29 @@
 ---
 
 layout: page_v2
-title: Custom or No mediation
-description: How to integrate the Prebid SDK without a primary Ad Server SDK
+title: iOS SDK Custom Bidding Integration
+description: This guide covers initializing the SDK, setting up various AdUnits, running auctions, and rendering results for display, video, interstitial, and rewarded ad formats. 
 sidebarType: 2
 
 ---
 
-# Custom Bidding Integration
-{:.no_toc}
+# iOS SDK Custom Bidding Integration
+* TOC
 
-## Before you start
+{:toc}
+
+## Introduction
+
+The Prebid SDK can monetize your app with or [without](https://docs.prebid.org/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html) a custom ad server.
+
+This article guides you on using Prebid SDK with a custom ad server. We will explore how to do the following:
+
+1. Initializing the Prebid Mobile iOS SDK.
+2. Getting the targeting keys and setting up various types of adUnits.
+3. Initializing the ad auction.
+4. Rendering the results.
+
+## Initializing the iOS SDK
 
 Before implementing the instructions in this guide, you need to ensure that you have correctly initialized the Prebid Mobile SDK in your app. You can do so using the code snippet below:
 
@@ -41,7 +54,7 @@ Prebid.shared.requestBids { resultCode in
 
 To use the above code snippet, you will need to [setup a Prebid server.](https://docs.prebid.org/prebid-mobile/prebid-mobile-getting-started.html#set-up-prebid-server) You can either register with a [Prebid.org member that hosts Prebid Server](https://prebid.org/managed-services/) or [setup your own Prebid server.](https://docs.prebid.org/prebid-server/hosting/pbs-hosting.html)
 
-* `Prebid.shared.prebidServerAccountId`: The `prebidServerAccountId` is the id you use to initialize the Prebid Mobile SDK is the unique identifier your Prebid Server provider assigned to you. This links requests from your app to server-side settings such as timeout, price granularity, and others.
+* `Prebid.shared.prebidServerAccountId`: The `prebidServerAccountId` is used to define the "account settings" used for this app in Prebid Server, which defines attributes like timeout and price granularity.
 
 * `Prebid.shared.adServer`: This property represents the ad server that the Prebid SDK should integrate with. It's an enum value of type `PrebidAdServer`. The possible values include `.dfp` for Google Ad Manager (formerly DoubleClick for Publishers), `.moPub` for MoPub, and others. The `adServer` property is part of the `Prebid.shared` singleton instance.
 
@@ -52,34 +65,30 @@ Prebid.shared.prebidServerHost = .custom
 Prebid.shared.prebidServerCustomHostURL = "https://your-prebid-server-url.com"
 ```
 
-You can use Prebid SDK to monetize your app with a custom ad server or even without it. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without primary ad server and its SDK.
+## Obtaining Prebid server targeting keys
 
-* TOC
-{:toc}
+The default ad server for Prebid's Mobile SDK is [GAM](https://docs.prebid.org/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#html-banner).
 
-## Transport API
+When using a custom or 3rd-party ad server, you must first get the targeting keys using the `fetchDemand` method. This function provides the bidder key/values (targeting keys). You can then pass these targeting keys to the ad server of your choice.
 
-The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns additional bid information like Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice.
+You will need to perform the following actions:
 
-In this mode, the publisher will be responsible for the following actions:
+* Call `fetchDemand` with extended `targetingDict` callback.
+* Retrieve the targeting keys from `fetchDemand`.
+* Convert targeting keys into the format used by your ad server.
+* Pass the targeting keys to your ad server.
+* Render the ad with the Prebid Universal Creative or custom renderer.
 
-* Call the `fetchDemand` method with specific callback
-* Retrieve targeting keys from the `BidInfo` callback parameter
-* Convert targeting keys into the format for your ad server
-* Pass converted keys to your ad server
-* Render ad with Prebid Universal Creative or custom renderer
+This approach is available for the ad formats listed below. For detailed integration steps, click on the link corresponding to the ad format:
 
-This approach is available for the following ad formats:
+* [Display Banner](https://docs.prebid.org/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#banner-api)  via `BannerAdUnit`
+* [Video Banner](https://docs.prebid.org/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#video-banner-outstream-video) and Instream Video via `VideoAdUnit`
+* [Display Interstitial](https://docs.prebid.org/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#interstitial-api) via `InterstitialAdUnit`
+* [Video Interstitial](https://docs.prebid.org/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#video-interstitial) via `InterstitialAdUnit`
+* [Rewarded Video](https://docs.prebid.org/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#rewarded-video-api) via `RewardedVideoAdUnit`
+* [Native Banner](https://docs.prebid.org/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#native-api) via `NativeAdUnit`
 
-* Display Banner via `BannerAdUnit`
-* Video Banner and Instream Video via `VideoAdUnit`
-* Display Interstitial via `InterstitialAdUnit`
-* Video Interstitial via `VideoInterstitialAdUnit`
-* Rewarded Video via `RewardedVideoAdUnit`
-* Native Styles via `NativeRequest`
-* Multiformat ad unit via `PrebidAdUnit`
-
-The basic integration steps for these ad units you can find at the page for integration using [Original API](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html). The diference is that you should use  the `fetchDemand` function with following signature:
+You will also need to use the `fetchDemand` function with the following signature:
 
 ``` swift
 public func fetchDemand(adObject: AnyObject, request: PrebidRequest,
@@ -115,13 +124,15 @@ let win = bidInfo.events[BidInfo.EVENT_WIN]
 let imp = bidInfo.events[BidInfo.EVENT_IMP]
 ```
 
-## Rendering API
+## Initializing ad auctions and Rendering ads
 
-The Rendering API integration and usage are similar to any other Ad SDK. In this case, Prebid SDK sends the bid requests to the Prebid Server and renders the winning bid.
+![Ad Rendering Illustration](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
-![In-App Bidding with Prebid](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
+After you have made an ad request(1), your ad server will run an ad auction (2) and return the winning bid(3). You will then have to render the winning ad in your app(4).
 
-### Banner API
+Here is how you can do this for the various ad formats. 
+
+### Banner ads
 
 Integration example:
 
@@ -150,21 +161,21 @@ Initialize the `BannerView` object with these properties:
 #### Step 2: Load the Ad
 {:.no_toc}
 
-Call the method `loadAd()` which will:
+Call the `loadAd()` method which will:
 
 * make a bid request to the Prebid Server.
-* render the winning bid on display.
+* render the winning bid.
 
 #### Outstream Video
 {:.no_toc}
 
-For **Banner Video** you also need to specify the ad format:
+For **video banner ads**, you will also need to specify the ad format:
 
 ``` swift
 banner.adFormat = .video
 ```
 
-### Interstitial API
+### Interstitial ads
 
 Integration example:
 
@@ -184,10 +195,11 @@ interstitial.loadAd()
 if interstitial.isReady {
     interstitial.show(from: self)
 }
-
 ```
 
-The **default** ad format for interstitial is **.banner**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
+When you create an interstitial ad in Prebid iOS SDK, it is, by default, configured to request interstitial ads in the **.banner** format.
+
+Prebid Mobile also allows you to make multiformat bid requests. Multiformat requests allow a single ad unit to request multiple ad formats, such as **.banner**, **.video**, or others. To do this, you must specify the desired formats using the `adFormats` property.
 
 ``` swift
 // Make bid request for video ad
@@ -214,12 +226,12 @@ Initialize the Interstitial Ad Unit with properties:
 #### Step 2: Load the Ad
 {:.no_toc}
 
-Call the method `loadAd()` which will make a bid request to Prebid server.
+Call the `loadAd()` method, which will make a bid request to the Prebid server.
 
 #### Step 3: Show the Ad when it is ready
 {:.no_toc}
 
-Wait until the ad will be loaded and present it to the user in any suitable time.
+Wait until the ad is loaded, then present it to the user. 
 
 ``` swift
 // MARK: InterstitialRenderingAdUnitDelegate
@@ -229,7 +241,9 @@ func interstitialDidReceiveAd(_ interstitial: InterstitialRenderingAdUnit) {
 }
 ```
 
-### Rewarded API
+### Rewarded ads
+
+A Rewarded ad is a specific type of advertising unit that provides users with a reward, such as virtual currency, premium content, or other incentives, in exchange for engaging with and completing the ad experience.
 
 Integration example:
 
@@ -259,12 +273,12 @@ Create the `RewardedAdUnit` object with the parameter:
 #### Step 2: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` method which will make a bid request to Prebid server.
+Call the `loadAd()` method to make a bid request.
 
 #### Step 3: Show the Ad when it is ready
 {:.no_toc}
 
-Wait until the ad will be loaded and present it to the user in any suitable time.
+Wait until the ad is loaded, then present it to the user. 
 
 ``` swift
 // MARK: RewardedAdUnitDelegate

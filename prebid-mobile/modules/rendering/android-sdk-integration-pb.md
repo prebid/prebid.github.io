@@ -1,31 +1,29 @@
 ---
 
 layout: page_v2
-title: Custom or No mediation
-description: Android SDK Custom Bidding Integration
+title: Android SDK Custom Bidding Integration
+description: This guide covers initializing the SDK, setting up various AdUnits, running auctions, and rendering results for display, video, interstitial, and rewarded ad formats. 
 sidebarType: 2
 
 ---
 
-
-
 # Android SDK Custom Bidding Integration
-{:.no_toc}
-
-## Introduction
-
 * TOC
 
 {:toc}
 
-In this article, we will show you how to do the following:
+## Introduction
 
-1. Initialize the Prebid Mobile Android SDK.
-2. Set up various types of AdUnits.
-3. How to initialize the auction.
-4. Finally, how to render the results.
+The Prebid SDK can monetize your app with or [without](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html) a custom ad server.
 
-## Initialization
+This article guides you on using Prebid SDK with a custom ad server. We will explore how to do the following:
+
+1. Initializing the Prebid Mobile Android SDK.
+2. Getting the targeting keys and setting up various types of adUnits.
+3. Initializing the ad auction.
+4. Rendering the results.
+
+## Initializing the Android SDK
 
 Before implementing the instructions in this guide, you need to ensure that you have correctly initialized the Prebid Mobile SDK in your app. The initialization method has the following pattern:
 
@@ -39,7 +37,7 @@ To use the above code snippet, you will need to [setup a Prebid server.](https:/
 
 * `adUnitId`: This is the value of the adunit name in the ad server. e.g. for GAM, it's the adunit name. Other ad servers may call this something different, but the idea is that the buyers want to know which slot in the app is up for auction for targeting and reporting. An example would be "/home/upper-mobile-banner".
 
-* `accountId`: The `accountId` you use to initialize the Prebid Mobile SDK is the unique identifier your Prebid Server provider assigned to you. This links requests from your app to server-side settings such as timeout, price granularity, and others.
+* `accountId`: The accountId is used to define the "account settings" used for this app in Prebid Server, which defines attributes like timeout and price granularity.
 
 * `adServer`: This parameter specifies the ad server you are using. It is an enum value of the type `Prebid.AdServer`. The possible values include `Prebid.AdServer.DFP` for Google Ad Manager and `Prebid.AdServer.MOPub` for MoPub.
 
@@ -51,16 +49,16 @@ Here is a working example:
 Prebid.init(getApplicationContext(), adUnits, "INSERT-ACCOUNT-ID-HERE", Prebid.AdServer.DFP, Prebid.Host.RUBICON);
 ```
 
-You can use Prebid SDK to monetize your app with a custom ad server or even without one. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without the primary ad server and its SDK.
+## Obtaining Prebid server targeting keys
 
-## Transport API
+The default ad server for Prebid's Mobile SDK is [GAM](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#html-banner).
 
-The default ad server for Prebid's Mobile SDK is GAM. You can use the [`fetchDemand`](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#html-banner) function to support 3rd-party ad servers. This function returns the Prebid Server bidder key/values (targeting keys), which you can then pass to the ad server of your choice.
+When using a custom or 3rd-party ad server, you must first get the targeting keys using the `fetchDemand` method. This function provides the bidder key/values (targeting keys). You can then pass these targeting keys to the ad server of your choice.
 
 You will need to perform the following actions:
 
 * Call `fetchDemand` with extended `targetingDict` callback.
-* Retrieve targeting keys from the extended `fetchDemand` function.
+* Retrieve the targeting keys from `fetchDemand`.
 * Convert targeting keys into the format used by your ad server.
 * Pass the targeting keys to your ad server.
 * Render the ad with the Prebid Universal Creative or custom renderer.
@@ -114,13 +112,15 @@ val win = bidInfo.events.get(BidInfo.EVENT_WIN)
 val imp = bidInfo.get(BidInfo.EVENT_IMP)
 ```
 
-## Rendering API
+## Initializing ad auctions and Rendering ads
 
-The integration and usage of the Rendering API is similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid.
+![Ad Rendering Illustration](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
-![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
+After you have made an ad request(1), your ad server will run an ad auction (2) and return the winning bid(3). You will then have to render the winning ad in your app(4).
 
-### Banner API
+Here is how you can do this for the various ad formats. 
+
+### Banner ads
 
 Integration example:
 
@@ -137,7 +137,7 @@ bannerView?.loadAd()
 ```
 
 {% capture warning_note %}
-Pay attention that the `loadAd()` should be called on the main thread.
+The `loadAd()` method should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
@@ -149,24 +149,26 @@ Initialize the `BannerView` object with the following properties:
 * `configId` - this is the ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) generated on your Prebid server.
 * `adSize` - this is the size of the ad unit which will be used in the bid request and returned to your application.
 
+Then add the `BannerView` object to your view Container
+
 #### Step 2: Load the Ad
 {:.no_toc}
 
 Call `loadAd()` and the Prebid SDK will:
 
-* make bid request to Prebid Server
-* render the winning bid on display
+* make bid request to Prebid Server.
+* render the winning bid.
 
 #### Outstream Video
 {:.no_toc}
 
-For **Banner Video** you will also need to specify the `bannerView.videoPlacementType`:
+For **video banner ads** you will also need to specify the `bannerView.videoPlacementType`:
 
 ``` kotlin
 bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
 ```
 
-### Interstitial API
+### Interstitial ads
 
 Integration example:
 
@@ -184,11 +186,15 @@ interstitialAdUnit?.show()
 ```
 
 {% capture warning_note %}
-Pay attention that the `loadAd()` should be called on the main thread.
+The `loadAd()` method should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, you need to set the respective values using the `AdUnitFormat` object.
+When you create an `InterstitialAdUnit` in Prebid Android SDK, it is, by default, configured to request interstitial ads in the **DISPLAY** format.
+
+Prebid Mobile also allows you to make multiformat bid requests. Multiformat requests allow a single ad unit to request multiple ad formats, such as **BANNER**, **VIDEO**, or others. To do this, you must specify the desired formats using the `adUnitFormats` property.
+
+For example:
 
 ``` kotlin
 interstitialAdUnit = InterstitialAdUnit(
@@ -212,12 +218,12 @@ You can also assign the listener to process ad events.
 #### Step 2: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` to make a bid request.
+Call the `loadAd()` method to make a bid request.
 
 #### Step 3: Show the Ad when it is ready
 {:.no_toc}
 
-Wait until the ad is loaded and present it to the user in any suitable time.
+Wait until the ad is loaded, then present it to the user. 
 
 ``` kotlin
 override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
@@ -225,7 +231,9 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 }
 ```
 
-### Rewarded API
+### Rewarded ads
+
+A Rewarded ad is a specific type of advertising unit that provides users with a reward, such as virtual currency, premium content, or other incentives, in exchange for engaging with and completing the ad experience.
 
 Integration example:
 
@@ -244,7 +252,7 @@ rewardedAdUnit?.show()
 ```
 
 {% capture warning_note %}
-Pay attention that the `loadAd()` should be called on the main thread.
+The `loadAd()` method should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
@@ -258,12 +266,12 @@ Create the `RewardedAdUnit` object with the parameters:
 #### Step 2: Load the Ad
 {:.no_toc}
 
-Call the `loadAd()` to make a bid request.
+Call the `loadAd()` method to make a bid request.
 
 #### Step 3: Show the Ad when it is ready
 {:.no_toc}
 
-Wait until the ad is loaded and present it to the user in any suitable time.
+Wait until the ad is loaded, then present it to the user. 
 
 ``` kotlin
 // Make an ad request 
