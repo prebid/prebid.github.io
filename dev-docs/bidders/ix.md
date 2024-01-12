@@ -22,7 +22,7 @@ deals_supported: true
 prebid_member: yes
 multiformat_supported: yes
 sidebarType: 1
-privacy_sandbox: `paapi`, `topics`
+privacy_sandbox: paapi, topics
 ---
 
 ## Table of contents
