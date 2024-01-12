@@ -8,6 +8,7 @@ sidebarType: 2
 ---
 
 # Android SDK Custom Bidding Integration
+
 * TOC
 
 {:toc}

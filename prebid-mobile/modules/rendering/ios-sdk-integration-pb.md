@@ -8,6 +8,7 @@ sidebarType: 2
 ---
 
 # iOS SDK Custom Bidding Integration
+
 * TOC
 
 {:toc}
