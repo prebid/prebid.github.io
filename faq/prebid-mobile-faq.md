@@ -45,7 +45,7 @@ Prebid SDK is always async. The completion handler for the main fetchDemand() me
 
 ### How long do bids remain valid?
 
-Prebid SDK does not support a [limited bid cache](dev-docs/faq.html#does-prebidjs-cache-bids) like Prebid.js does. Which means it's up to the app to build any kind of pre-fetch or bid-cache feature. Notes:
+Prebid SDK does not support a [limited bid cache](/dev-docs/faq.html#does-prebidjs-cache-bids) like Prebid.js does. Which means it's up to the app to build any kind of pre-fetch or bid-cache feature. Notes:
 
 1. If Prebid Cache is being utilized, the Time-To-Live for that cache should be understood. By default, the TTL for Prebid Cache is 5 minutes for banners and 15 minutes for video, but this can be changed.
 2. No matter what the Cache TTL is set to, it's important that any pre-fetch or bid-cache feature built into the app should respect the OpenRTB `seatbid.bid.exp` field for each bid, which is the expiration of the bid in seconds.
@@ -84,7 +84,7 @@ No. The Prebid SDK is itself a library open sourced under the Apache 2 license.
 
 ### Are there any back-end dependencies to this SDK?
 
-Yes - the app developer must have a [Prebid Server](/prebid-server/prebid-server-overview.html) at their disposal. This is open source software that they may run themselves, or they may contract with a [Managed Service](https://prebid.org/product-suite/managed-services/).
+Yes - the app developer must have a [Prebid Server](/prebid-server/overview/prebid-server-overview.html) at their disposal. This is open source software that they may run themselves, or they may contract with a [Managed Service](https://prebid.org/product-suite/managed-services/).
 
 ## Communication
 
