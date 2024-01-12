@@ -21,6 +21,7 @@ floors_supported: true
 coppa_supported: true
 gpp_sids: false
 fpd_supported: false
+privacy_sandbox: paapi, topics
 sidebarType: 1
 ---
 
