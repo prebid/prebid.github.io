@@ -113,7 +113,7 @@ val win = bidInfo.events.get(BidInfo.EVENT_WIN)
 val imp = bidInfo.get(BidInfo.EVENT_IMP)
 ```
 
-## Initializing ad auctions and Rendering ads
+## Initializing ad auctions and rendering ads
 
 ![Ad Rendering Illustration](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
