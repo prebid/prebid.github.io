@@ -125,7 +125,7 @@ let win = bidInfo.events[BidInfo.EVENT_WIN]
 let imp = bidInfo.events[BidInfo.EVENT_IMP]
 ```
 
-## Initializing ad auctions and Rendering ads
+## Initializing ad auctions and rendering ads
 
 ![Ad Rendering Illustration](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
 
