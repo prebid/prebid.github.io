@@ -35,6 +35,7 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 | `sourceId` | required | Unique hash provided by bizzclick | `'6dllcEHSxYdSb6yLmCqE'` | `string` |
 | `accountId` | required | Unique name provided by bizzclick | `'bizzclick-test'` | `string` |
 | `host` | optional | Bizzclick server region. US East by default | `'us-e-node1'` | `string` |
+| `placementId` | required | Deprecated parameter. Please use sourceId instead |`'6dllcEHSxYdSb6yLmCqE'`|`string` |
 
 ### Bid Params for Prebid.js
 
