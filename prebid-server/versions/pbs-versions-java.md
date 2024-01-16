@@ -20,7 +20,6 @@ The Java version of Prebid Server is for those who prefer the Java language.
 </div>
 </div>
 
-
 ## Features
 
 We recommend you review the [feature comparison list](/prebid-server/features/pbs-feature-idx.html) to familiarize yourself with the differences between this and PBS-Go in deciding which version is right for you.
