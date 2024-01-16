@@ -1471,37 +1471,6 @@ simply copy that object to the bidresponse ext.prebid.passthrough with no valida
 
 The initial use is for the SDK to define render-time parameters, but this mechanism may find use in other applications.
 
-##### PG Deals Extensions
-
-{: .alert.alert-info :}
-PBS-Java only
-
-In support of [Programmatic Guaranteed](/prebid-server/features/pg/pbs-pg-idx.html),
-there are two extensions at the bidder level to control behavior:
-
-- imp[].ext.prebid.bidder.BIDDER.`dealsonly` - if `true`, PBS will call the bidder, but if there's no deal ID in the response, it will reject the bid. This allows for scenarios where a bidder is called twice, once for Open Market bids, once for deals bids. Defaults to `false`.
-- imp[].ext.prebid.bidder.BIDDER.`pgdealsonly` - If `true` and no PG line item for this bidder matches in this impression, PBS will not even call the bid adapter. This saves network bandwidth when no PG line items are available. Defaults to `false`. If set to 'true', this flag forces the `dealsonly` flag (above) to true.
-
-These flags can be used separately or together. For example:
-
-```json
-{
-  "imp": [{
-    "ext": {
-      "prebid": {
-        "bidder": {
-          "bidderA": {
-            ...,
-            "dealsonly": true,
-            "pgdealsonly": true
-          }
-        }
-      }
-    }
-  }]
-}
-```
-
 ##### Floors
 
 {: .alert.alert-info :}
@@ -1780,8 +1749,6 @@ The Prebid SDK version comes from:
 | imp[]<wbr>.ext<wbr>.data<wbr>.ATTR | Publisher-specific adunit-level first party data.<br>ex: `{"pmp_elig": true}` | any  | yes |
 | imp[]<wbr>.ext<wbr>.BIDDER | DEPRECATED bidder parameters.<br>ex: `imp[].ext.prebid.bidder.biddera: { placement: 123 }` | object | Seen as imp[]<wbr>.ext<wbr>.bidder |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.bidder<wbr>.BIDDER | Bidder parameters.<br>ex: `imp[].ext.prebid.bidder.biddera: { placement: 123 }` | object | Seen as imp[]<wbr>.ext.<wbr>bidder |
-| imp[]<wbr>.ext<wbr>.prebid<wbr>.bidder<wbr>.BIDDER<wbr>.dealsonly | PG: Suppress bid responses that arent deals, see [pg deals](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#pg-deals-extensions). | boolean | yes |
-| imp[]<wbr>.ext<wbr>.prebid<wbr>.bidder<wbr>.BIDDER<wbr>.pgdealsonly | PG: Don't call adapter if there aren't line items ready to deliver, see [ps deals](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#pg-deals-extensions). | boolean | yes |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.options<wbr>.echovideoattrs | Causes PBS-core to [echo video attributes](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#echo-storedrequest-video-attributes) on seatbid[].bid[].ext.prebid.storedrequestattributes so the player has access to them<br>ex: `true` | boolean | yes |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedauctionresponse | PBS-Core skips the auction and uses the response in the DB instead, see [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses). | object | no |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedbidresponse | PBS-Core calls the adapter with the response in the DB instead of actually running the auction,see [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses). | object | no |

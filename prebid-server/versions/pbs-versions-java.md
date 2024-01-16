@@ -10,11 +10,7 @@ title: Prebid Server | Versions | Java
 <div class="row">
     <div class="col-md-6">
 
-The Java version of Prebid Server is for those who:
-<ul>
-<li> Want to host Programmatic Guaranteed</li>
-<li> Or just prefer the Java language</li>
-</ul>
+The Java version of Prebid Server is for those who prefer the Java language.
 
 </div>
 <div class="col-md-6 centered">

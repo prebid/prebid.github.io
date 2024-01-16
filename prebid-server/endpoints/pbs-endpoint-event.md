@@ -13,7 +13,7 @@ title: Prebid Server | Endpoints | Events
 
 ## GET /event
 
-This endpoint alerts Prebid Server to process the event. Most of the time this just means informing the analytics adapter. But it's also used in the Programmatic Guaranteed context to affect line item pacing.
+This endpoint alerts Prebid Server to process the event and informing the analytics adapter.
 
 ### Query Params
 
