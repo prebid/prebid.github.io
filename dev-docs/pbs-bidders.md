@@ -55,7 +55,7 @@ Publishers are advised to check with legal counsel before doing business with an
 | **Mobile App Support** | {% if page.pbs_app_supported == false %}no{% elsif page.pbs_app_supported == true %}yes{% else %}check with bidder{% endif %} | **Prebid Server Adapter** | yes |
 | **Floors Support** | {% if page.floors_supported == false %}no{% elsif page.floors_supported == true %}yes{% else %}check with bidder{% endif %} | **First Party Data Support** | {% if page.fpd_supported == true %}yes{% elsif page.fpd_supported == false %}no{% else %}check with bidder{% endif %} |
 | **Multi Format Support** | {% if page.multiformat_supported %}{{page.multiformat_supported}}{% else %}check with bidder{% endif %} | **ORTB Blocking Support** | {% if page.ortb_blocking_supported == true %}yes{% elsif page.ortb_blocking_supported == false %}no{% elsif page.ortb_blocking_supported == 'partial' %}partial{% else %}check with bidder{% endif %} |
-| **GPP Support** | {% if page.gpp_sids and page.gpp_sids != '' %}{{page.gpp_sids}}{% elsif page.gpp_supported == true and page.gpp_sids == nil %}some (check with bidder){% elsif page.gpp_supported == false and gpp_sids == nil %}None{% else %}check with bidder{% endif %} |
+| **GPP Support** | {% if page.gpp_sids and page.gpp_sids != '' %}{{page.gpp_sids}}{% elsif page.gpp_supported == true and page.gpp_sids == nil %}some (check with bidder){% elsif page.gpp_supported == false and gpp_sids == nil %}None{% else %}check with bidder{% endif %} | **Privacy Sandbox** | {% if page.privacy_sandbox %}{{page.privacy_sandbox}}{% else %}check with bidder{% endif %}
 
 <h3>"Send All Bids" Ad Server Keys</h3>
 
