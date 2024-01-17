@@ -47,9 +47,10 @@ For the identity resolution the LiveIntent ID sub-module makes a request to Live
 
 The first-party cookie generation and identity resolution functionality is provided by the LiveConnect JS library, included within the LiveIntent ID sub-module. LiveIntent has created a shared library that is open source, available at [www.npmjs.com/package/live-connect-js](https://www.npmjs.com/package/live-connect-js).
 
-The LiveIntent ID sub-module follows the standard Prebid.js initialization based on the GDPR consumer opt-out choices. With regard to CCPA, the LiveConnect JS receives a us_privacy string from the Prebid US Privacy Consent Management Module and respects opt-outs.
+The SharedId can also be provided by the liveconnect user ID module. There are two possible setup depending on the configuration of the liveconnect module:
 
-The SharedID is exposed via LiveIntent’s user id module based on page's own cookies or LiveConnect provided peopleVerifiedId with the name 'pubcid' but LiveIntent's user id module will not return sharedID when COPPA applies.
+1. If idcookie.mode is set to 'generated', a generated first-party cookie managed by liveintent's javascript is provided.
+2. If idcookie.mode is set to 'provided', a cookie or localstorage entry from the page is used. As these cookies can be set using a set-cookie header, they will potentially have a longer lifetime than cookies set by (1). Because of this, prefer configuring a provided idcookie if you have access to a stable identifier on your page.
 
 ## Configuring requested attributes
 
@@ -95,6 +96,25 @@ For example, in case 'uid2' is configured to be requested - additionally to the 
 Note that 'uid2' is exposed as part of 'lipb' as well as separately as 'uid2'. 'medianet', 'magnite', 'bidswitch', 'index', 'pubmatic', 'openx' and 'pubcid' behave the same way.
 
 For the attributes 'lipbid' (nonID), 'uid2', 'medianet', 'magnite', 'bidswitch', 'index', 'pubmatic', 'openx' and 'pubcid' there is also support for their conversion into OpenRTB EIDS format. Please refer to [userId.md](../userId.md) for more information on conversion and [eids.md](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.md) for output format examples.
+
+### SharedID
+
+LiveIntent's user id sub-module exposes SharedId.
+
+```javascript
+{
+    // ...
+	name: 'liveIntentId',
+	params: {
+	    sharedId: {
+		  mode: 'generated' | 'provided',
+          name: '__super_duper_cookie' // the cookie/ls key name; only if the mode is provided
+          strategy: 'cookie' or 'localStorage' // where to get the identifier from - cookie jar or local storage; only if the mode is provided
+		}
+	}
+    //...
+}
+```
 
 ### Requesting uid2
 
