@@ -74,18 +74,33 @@ See [Chrome's PAAPI documentation](https://developers.google.com/privacy-sandbox
 
 To enable Interest Group bidding in Prebid, you can add the Prebid [Fledge For GPT Module](/dev-docs/modules/fledgeForGpt.html).
 
+{: .alert.alert-info :}
+Note that 'FLEDGE' was the original name of the Protected Audience feature. The name of the Prebid.js module may change in the future.
+
 ##### Test Period
 
 During the first part of 2024, Chrome and GAM are running a test of PAAPI on a limited subset of traffic. However, the
 [Fledge For GPT Module](/dev-docs/modules/fledgeForGpt.html) enables Interest Group auctions 100% of the time. During the test
-period, publishers can better align browser and programmatic ad behavior by only enabling Interest Group auctions for
-the relevant Chrome testing labels. Here's example code:
+period, publishers can better align browser and programmatic ad behavior by only enabling Prebid interest group bids for
+the relevant Chrome testing labels.
 
+If you want to gather interest group bids only when IG auctions are very likely to run, you can enable the module like this:
 ```javascript
 Promise.resolve(navigator.cookieDeprecationLabel?.getValue?.()).then(label => {
     pbjs.setConfig({
         fledgeForGpt: {
             enabled: !label || label.startsWith("treatment_") || label === 'label_only_5'
+        }
+    });
+});
+```
+
+If you want to gather interest group bids whenever when IG auctions _might_ run, you can enable the module like this:
+```javascript
+Promise.resolve(navigator.cookieDeprecationLabel?.getValue?.()).then(label => {
+    pbjs.setConfig({
+        fledgeForGpt: {
+            enabled: !label || label.startsWith("treatment_") || label != 'label_only_1'
         }
     });
 });
