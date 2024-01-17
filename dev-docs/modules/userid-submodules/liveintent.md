@@ -47,6 +47,8 @@ For the identity resolution the LiveIntent ID sub-module makes a request to Live
 
 The first-party cookie generation and identity resolution functionality is provided by the LiveConnect JS library, included within the LiveIntent ID sub-module. LiveIntent has created a shared library that is open source, available at [www.npmjs.com/package/live-connect-js](https://www.npmjs.com/package/live-connect-js).
 
+The LiveIntent ID sub-module follows the standard Prebid.js initialization based on the GDPR consumer opt-out choices. With regard to CCPA, the LiveConnect JS receives a us_privacy string from the Prebid US Privacy Consent Management Module and respects opt-outs.
+
 The SharedId can also be provided by the liveconnect user ID module. There are two possible setup depending on the configuration of the liveconnect module:
 
 1. If idcookie.mode is set to 'generated', a generated first-party cookie managed by liveintent's javascript is provided.
