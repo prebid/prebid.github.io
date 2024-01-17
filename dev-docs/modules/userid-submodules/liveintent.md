@@ -49,11 +49,6 @@ The first-party cookie generation and identity resolution functionality is provi
 
 The LiveIntent ID sub-module follows the standard Prebid.js initialization based on the GDPR consumer opt-out choices. With regard to CCPA, the LiveConnect JS receives a us_privacy string from the Prebid US Privacy Consent Management Module and respects opt-outs.
 
-The SharedId can also be provided by the liveconnect user ID module. There are two possible setup depending on the configuration of the liveconnect module:
-
-1. If idcookie.mode is set to 'generated', a generated first-party cookie managed by liveintent's javascript is provided.
-2. If idcookie.mode is set to 'provided', a cookie or localstorage entry from the page is used. As these cookies can be set using a set-cookie header, they will potentially have a longer lifetime than cookies set by (1). Because of this, prefer configuring a provided idcookie if you have access to a stable identifier on your page.
-
 ## Configuring requested attributes
 
 Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option.
@@ -101,19 +96,21 @@ For the attributes 'lipbid' (nonID), 'uid2', 'medianet', 'magnite', 'bidswitch',
 
 ### SharedID
 
-LiveIntent's user id sub-module exposes SharedId.
+The SharedId can also be provided by the liveconnect user ID module. There are two possible modes depending on the configuration of the liveconnect module:
+
+1. If idcookie.mode is set to 'generated', a generated first-party cookie managed by liveintent's javascript is provided.
+2. If idcookie.mode is set to 'provided', a cookie or localstorage entry from the page is used. As these cookies can be set using a set-cookie header, they will potentially have a longer lifetime than cookies set by (1). Because of this, prefer configuring a provided idcookie if you have access to a stable identifier on your page.
+
+When COPPA applies, LiveIntent’s user ID module does not return the SharedId.
+
+Module prioritization for SharedId works just as it does for others.
 
 ```javascript
 {
-    // ...
-	"name": 'liveIntentId',
-	"params": {
-	    "sharedId": {
-		  "mode": "generated" | "provided",
-          "name": "__super_duper_cookie" // the cookie/ls key name; only if the mode is provided
-          "strategy": "cookie or 'localStorage" // where to get the identifier from - cookie jar or local storage; only if the mode is provided
-		}
-	}
+    //...
+    "idPriority": {
+        pubcid: ['sharedId', 'liveIntentId']
+    }
     //...
 }
 ```
@@ -164,6 +161,10 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 | storage.type | Required | String | This parameter defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'cookie'` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'pbjs_li_nonid'` |
 | storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `1` | `1` |
+| idcookie.mode | Optional | String | This parameter defines how LiveIntent resolves SharedId. Read more details about SharedId support [here](#sharedid) | `'provided'`
+| idcookie.name | Optional | String | Only if the idcookie.mode is `'provided'`, the parameter is cookie/localstorage key name | `'__super_duper_cookie'`
+| idcookie.strategy | Optional | String | Only if the idcooke.mode is `'provided'`, the parameter defines where to get the identifier from. Either from the cookie jar, `'cookie'`, or from the local storage, `'ls'`. | `'ls'`
+
 
 ## LiveIntent ID examples
 
