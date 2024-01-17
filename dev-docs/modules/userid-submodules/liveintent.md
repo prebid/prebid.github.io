@@ -51,7 +51,6 @@ The LiveIntent ID sub-module follows the standard Prebid.js initialization based
 
 The SharedID is exposed via LiveIntent’s user id module based on page's own cookies or LiveConnect provided peopleVerifiedId with the name 'pubcid' but LiveIntent's user id module will not return sharedID when COPPA applies.
 
-
 ## Configuring requested attributes
 
 Attributes other than the nonID can be requested using the `requestedAttributesOverrides` configuration option.
