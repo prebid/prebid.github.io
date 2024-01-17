@@ -106,12 +106,12 @@ LiveIntent's user id sub-module exposes SharedId.
 ```javascript
 {
     // ...
-	name: 'liveIntentId',
-	params: {
-	    sharedId: {
-		  mode: 'generated' | 'provided',
-          name: '__super_duper_cookie' // the cookie/ls key name; only if the mode is provided
-          strategy: 'cookie' or 'localStorage' // where to get the identifier from - cookie jar or local storage; only if the mode is provided
+	"name": 'liveIntentId',
+	"params": {
+	    "sharedId": {
+		  "mode": "generated" | "provided",
+          "name": "__super_duper_cookie" // the cookie/ls key name; only if the mode is provided
+          "strategy": "cookie or 'localStorage" // where to get the identifier from - cookie jar or local storage; only if the mode is provided
 		}
 	}
     //...
