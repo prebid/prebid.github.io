@@ -85,6 +85,7 @@ period, publishers can better align browser and programmatic ad behavior by only
 the relevant Chrome testing labels.
 
 If you want to gather interest group bids only when IG auctions are very likely to run, you can enable the module like this:
+
 ```javascript
 Promise.resolve(navigator.cookieDeprecationLabel?.getValue?.()).then(label => {
     pbjs.setConfig({
@@ -96,6 +97,7 @@ Promise.resolve(navigator.cookieDeprecationLabel?.getValue?.()).then(label => {
 ```
 
 If you want to gather interest group bids whenever when IG auctions _might_ run, you can enable the module like this:
+
 ```javascript
 Promise.resolve(navigator.cookieDeprecationLabel?.getValue?.()).then(label => {
     pbjs.setConfig({
