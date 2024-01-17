@@ -165,7 +165,6 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 | idcookie.name | Optional | String | Only if the idcookie.mode is `'provided'`, the parameter is cookie/localstorage key name | `'__super_duper_cookie'`
 | idcookie.strategy | Optional | String | Only if the idcooke.mode is `'provided'`, the parameter defines where to get the identifier from. Either from the cookie jar, `'cookie'`, or from the local storage, `'ls'`. | `'ls'`
 
-
 ## LiveIntent ID examples
 
 1. To receive the LiveIntent ID, the setup looks like this.
