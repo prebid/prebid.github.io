@@ -98,7 +98,7 @@ For the attributes 'lipbid' (nonID), 'uid2', 'medianet', 'magnite', 'bidswitch',
 
 The SharedId can also be provided by the liveconnect user ID module. There are two possible modes depending on the configuration of the liveconnect module:
 
-1. If idcookie.mode is set to 'generated', a generated first-party cookie managed by liveintent's javascript is provided.
+1. If idcookie.mode is set to 'generated', a generated first-party cookie managed by LiveIntent's javascript is provided.
 2. If idcookie.mode is set to 'provided', a cookie or localstorage entry from the page is used. As these cookies can be set using a set-cookie header, they will potentially have a longer lifetime than cookies set by (1). Because of this, prefer configuring a provided idcookie if you have access to a stable identifier on your page.
 
 When COPPA applies, LiveIntent’s user ID module does not return the SharedId.
