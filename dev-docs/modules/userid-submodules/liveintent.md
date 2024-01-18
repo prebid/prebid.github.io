@@ -96,16 +96,7 @@ For the attributes 'lipbid' (nonID), 'uid2', 'medianet', 'magnite', 'bidswitch',
 
 ### SharedID
 
-The SharedId can also be provided by the liveconnect user ID module. There are two possible modes depending on the configuration of the liveconnect module:
-
-1. If idcookie.mode is set to 'generated', a generated first-party cookie managed by LiveIntent's javascript is provided.
-2. If idcookie.mode is set to 'provided', a cookie or localstorage entry from the page is used. As these cookies can be set using a set-cookie header, they will potentially have a longer lifetime than cookies set by (1). Because of this, prefer configuring a provided idcookie if you have access to a stable identifier on your page.
-
-When COPPA applies, LiveIntent’s user ID module does not return the SharedId.
-
-### Requesting idCookie
-
-Set the request attributes option to true to configure enable idCookie resolution.
+The SharedId can also be provided by the liveconnect user ID module. In order to enable resolution of the SharedId add it (with the internal name idcookie) to the requested attributes:
 
 ```javascript
 {
@@ -114,6 +105,13 @@ Set the request attributes option to true to configure enable idCookie resolutio
     //...
 }
 ```
+
+There are two possible modes depending on the configuration of the liveconnect module:
+
+1. If idcookie.mode is set to 'generated', a generated first-party cookie managed by LiveIntent's javascript is provided.
+2. If idcookie.mode is set to 'provided', a cookie or localstorage entry from the page is used. As these cookies can be set using a set-cookie header, they will potentially have a longer lifetime than cookies set by (1). Because of this, prefer configuring a provided idcookie if you have access to a stable identifier on your page.
+
+When COPPA applies, LiveIntent’s user ID module does not return the SharedId.
 
 Module prioritization for SharedId works just as it does for others.
 
@@ -169,13 +167,13 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 | params.liCollectConfig.fpiExpirationDays |Optional| Number |The expiration time of an identifier created and updated by LiveConnect.By default, 730 days.|`729`|
 | params.liCollectConfig.collectorUrl |Optional| String |The parameter defines where the signal pixels are pointing to. The params and paths will be defined subsequently. If the parameter is not set, LiveConnect will by default emit the signal towards `https://rp.liadm.com`.|`'https://rp.liadm.com'`|
 | params.liCollectConfig.appId |Optional| String |LiveIntent's media business entity application id.|`'a-0012'`|
+| params.idCookie.mode | Optional | String | This parameter defines how LiveIntent resolves SharedId. Read more details about SharedId support [here](#sharedid) | `'provided'`
+| params.idCookie.name | Optional | String | Only if the idcookie.mode is `'provided'`, the parameter is cookie/localstorage key name | `'__super_duper_cookie'`
+| params.idCookie.strategy | Optional | String | Only if the idcooke.mode is `'provided'`, the parameter defines where to get the identifier from. Either from the cookie jar, `'cookie'`, or from the local storage, `'localstorage'`. | `'localstorage'`
 | storage | Required | Object | This object defines where and for how long the results of the call to get a user ID will be stored. | |
 | storage.type | Required | String | This parameter defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'cookie'` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'pbjs_li_nonid'` |
 | storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `1` | `1` |
-| params.idCookie.mode | Optional | String | This parameter defines how LiveIntent resolves SharedId. Read more details about SharedId support [here](#sharedid) | `'provided'`
-| params.idCookie.name | Optional | String | Only if the idcookie.mode is `'provided'`, the parameter is cookie/localstorage key name | `'__super_duper_cookie'`
-| params.idCookie.strategy | Optional | String | Only if the idcooke.mode is `'provided'`, the parameter defines where to get the identifier from. Either from the cookie jar, `'cookie'`, or from the local storage, `'localstorage'`. | `'localstorage'`
 
 ## LiveIntent ID examples
 
