@@ -31,4 +31,4 @@ pbjs.enableAnalytics({
 
 ## Where to find data
 
-Go to [metrika.yandex.ru/dashboard](https://metrika.yandex.ru/dashboard) -> Prebid Analytics
+Go to [metrika.yandex.com/dashboard](https://metrika.yandex.com/dashboard) -> Prebid Analytics
