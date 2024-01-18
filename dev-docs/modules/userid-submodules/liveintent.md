@@ -103,6 +103,18 @@ The SharedId can also be provided by the liveconnect user ID module. There are t
 
 When COPPA applies, LiveIntent’s user ID module does not return the SharedId.
 
+### Requesting idCookie
+
+Set the request attributes option to true to configure enable idCookie resolution.
+
+```javascript
+{
+    //...
+    "requestedAttributesOverrides": {'idCookie': true}
+    //...
+}
+```
+
 Module prioritization for SharedId works just as it does for others.
 
 ```javascript
@@ -161,9 +173,9 @@ NOTE: For optimal performance, the LiveIntent ID module should be called at ever
 | storage.type | Required | String | This parameter defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'cookie'` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'pbjs_li_nonid'` |
 | storage.expires | Recommended | Integer | How long (in days) the user ID information will be stored. The recommended value is `1` | `1` |
-| idcookie.mode | Optional | String | This parameter defines how LiveIntent resolves SharedId. Read more details about SharedId support [here](#sharedid) | `'provided'`
-| idcookie.name | Optional | String | Only if the idcookie.mode is `'provided'`, the parameter is cookie/localstorage key name | `'__super_duper_cookie'`
-| idcookie.strategy | Optional | String | Only if the idcooke.mode is `'provided'`, the parameter defines where to get the identifier from. Either from the cookie jar, `'cookie'`, or from the local storage, `'ls'`. | `'ls'`
+| params.idCookie.mode | Optional | String | This parameter defines how LiveIntent resolves SharedId. Read more details about SharedId support [here](#sharedid) | `'provided'`
+| params.idCookie.name | Optional | String | Only if the idcookie.mode is `'provided'`, the parameter is cookie/localstorage key name | `'__super_duper_cookie'`
+| params.idCookie.strategy | Optional | String | Only if the idcooke.mode is `'provided'`, the parameter defines where to get the identifier from. Either from the cookie jar, `'cookie'`, or from the local storage, `'localstorage'`. | `'localstorage'`
 
 ## LiveIntent ID examples
 
