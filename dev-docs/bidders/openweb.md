@@ -35,7 +35,7 @@ OpenWeb header bidding adapter provides solution for accessing banner demand.
 
 ### Test Parameters
 
-```
+```javascript
 var adUnits = [
     // Banner adUnit
     {
