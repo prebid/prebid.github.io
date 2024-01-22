@@ -162,7 +162,7 @@ for more details. This means that the AuctionConfig objects returned from `inter
 the request it should be associated with. This may raise the question: why isn't the AuctionConfig object returned as part of the bid? The
 answer is that it's possible to participate in the FLEDGE auction without returning a contextual bid.
 
-An example of this can be seen in the OpenX OpenRTB bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/openxOrtbBidAdapter.js#L327) or RTB House bid adapter [here](https://github.com/prebid/Prebid.js/blob/8fe7115021fd348d0f3b090da48c40c095078800/modules/rtbhouseBidAdapter.js#LL135C4-L135C4).
+An example of this can be seen in the OpenX bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/openxBidAdapter.js) or RTB House bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/rtbhouseBidAdapter.js).
 
 Other than the addition of the `bidId` field, the `AuctionConfig` object should adhere to the requirements set forth in FLEDGE. The details of creating an
 `AuctionConfig` object are beyond the scope of this document.
