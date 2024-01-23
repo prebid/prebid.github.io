@@ -6,7 +6,7 @@ pbjs: true
 biddercode: zmaticoo
 deals_supported: false
 tcfeu_supported: true
-tcf2_supported: true
+gvl_id: 803
 media_types: banner
 sidebarType: 1
 safeframes_ok: true
