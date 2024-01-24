@@ -77,57 +77,58 @@ The following table lists the media types that Index supports. For information a
 If you are hosting your own Prebid Server instance, depending on whether you are using Prebid Server Go or Prebid Server Java version, complete one of the following steps: 
 
 * If you are using the Prebid Server Go version, in the `static/bidder-info/ix.yaml` file, complete the following:
+   
   1. Enable the adapter by deleting the `disabled: true` entry.
   2. Add the following new entry and include the regional endpoint provided to you by Index:
 
-  ```javascript
-  endpoint: "https://<ENDPOINT URL>"
-  ```
+     ```javascript
+     endpoint: "https://<ENDPOINT URL>"
+     ```
 
   3. Edit the below existing entry and include your publisher ID in the `s` parameter:
 
-  ```javascript
-  userSync:  
-    redirect:  
+     ```javascript
+     userSync:  
+     redirect:  
        url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
-  ```
+    ```
 
   4. Edit the below existing entry and include your publisher ID in the `s` parameter:
 
-  ```javascript
-   userSync: 
-      redirect: 
-        iframe: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
-  ```
+     ```javascript
+      userSync: 
+ 		     redirect: 
+  		     iframe: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+     ```         
 
 * If you are using [Prebid Server Java](https://github.com/prebid/prebid-server-java) version, edit the `prebid-server-java` entry in the `src/main/resources/bidder-config/ix.yaml` file as follows:
   1. Edit the below existing entry and include the endpoint URL provided to you by Index.
 
-  ```javascript
-  adapters: 
+    ```javascript
+    adapters: 
      ix: 
        endpoint: "https://<ENDPOINT URL>"
-  ```
+    ```
 
   2. Edit the below existing entry and include your publisher ID in the `s` parameter:
 
-  ```javascript
+    ```javascript
      adapters: 
         ix: 
            usersync: 
              redirect: 
                 url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}" 
-   ```
+    ```
 
   3. Add the below entry and include your publisher ID in the `s` parameter:
 
-  ```javascript
+    ```javascript
    adapters: 
  	   ix: 
         usersync: 
          iframe: 
            url: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
-  ```
+    ```
 
 
 <a id="call-index"></a>
