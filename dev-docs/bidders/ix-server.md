@@ -80,9 +80,11 @@ If you are hosting your own Prebid Server instance, depending on whether you are
 
   * Enable the adapter by deleting the `disabled: true` entry.
   * Add the following new entry and include the regional endpoint provided to you by Index:
+
     ```javascript
      endpoint: "https://<ENDPOINT URL>"
      ```
+
   * Edit the below existing entry and include your publisher ID in the `s` parameter:
 
     ```javascript
