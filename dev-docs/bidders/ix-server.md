@@ -31,6 +31,7 @@ privacy_sandbox: paapi
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
 * [Supported media types](#supported-media-types)
+* [Hosting your own Prebid Server instance](#hosting-instance)
 * [Setup instructions to call Index through Prebid Server](#setup-instructions-to-call-index-through-prebid-server)
   * [Call Index from a web browser](#call-index-from-a-web-browser)
   * [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk)
@@ -67,11 +68,65 @@ The following table lists the media types that Index supports. For information a
 | video   | Supported, including ad pods for OTT    |
 | native      | Supported       |
 
+<a id="hosting-instance"></a>
+
+## Hosting your own Prebid Server instance 
+
+**Before you begin:** Contact your Index Exchange Representative to get an endpoint and setup instructions.
+
+If you are hosting your own Prebid Server instance, depending on whether you are using Prebid Server Go or Prebid Server Java version, complete one of the following steps: 
+
+* If you are using the Prebid Server Go version, in the `static/bidder-info/ix.yaml` file, complete the following:
+  1. Enable the adapter by deleting the `disabled: true` entry.
+  2. Add the following new entry and include the regional endpoint provided to you by Index:
+
+  ```javascript
+  endpoint: "https://<ENDPOINT URL>"
+  ```
+  3. Edit the below existing entry and include your publisher ID in the `s` parameter:
+
+  ```javascript
+  userSync:  
+    redirect:  
+       url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+  ```
+  4. Edit the below existing entry and include your publisher ID in the `s` parameter:
+  ```javascript
+   userSync: 
+      redirect: 
+        iframe: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+  ```
+
+* If you are using [Prebid Server Java](https://github.com/prebid/prebid-server-java) version, edit the `prebid-server-java` entry in the `src/main/resources/bidder-config/ix.yaml` file as follows:
+  1. Edit the below existing entry and include the endpoint URL provided to you by Index.
+
+  ```javascript
+  adapters: 
+     ix: 
+       endpoint: "https://<ENDPOINT URL>"
+  ```
+  2. Edit the below existing entry and include your publisher ID in the `s` parameter:
+
+  ```javascript
+     adapters: 
+        ix: 
+           usersync: 
+             redirect: 
+                url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}" 
+   ```
+  3. Add the below entry and include your publisher ID in the `s` parameter:
+  ```javascript
+   adapters: 
+ 	   ix: 
+        usersync: 
+         iframe: 
+           url: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+  ```
+
+
 <a id="call-index"></a>
 
 ## Setup instructions to call Index through Prebid Server
-
-**Note:** If you are hosting your own Prebid Server instance, you must contact your Index Exchange Representative to get an endpoint and setup instructions.
 
 If you are using an existing Prebid Server instance that is already configured to call Index, depending on whether you want to call Index from the browser, mobile app, CTV, or long-form video, follow any of the below sections to complete the Index-specific configuration.
 
