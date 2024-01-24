@@ -113,22 +113,22 @@ If you are hosting your own Prebid Server instance, depending on whether you are
 
   2. Edit the below existing entry and include your publisher ID in the `s` parameter:
 
-    ```javascript
+     ```javascript
      adapters: 
-        ix: 
-           usersync: 
-             redirect: 
-                url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}" 
-    ```
+       ix: 
+        usersync: 
+         redirect: 
+          url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}" 
+     ```
 
   3. Add the below entry and include your publisher ID in the `s` parameter:
 
     ```javascript
-   adapters: 
+    adapters: 
  	   ix: 
-        usersync: 
-         iframe: 
-           url: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+       usersync: 
+        iframe: 
+          url: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
     ```
 
 <a id="call-index"></a>
