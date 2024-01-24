@@ -124,6 +124,7 @@ Module prioritization for SharedId works just as it does for others.
     //...
 }
 ```
+
 NOTE: `uid2` is exposed as part of `lipb` as well as separately as `uid2`. `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, `sovrn`, and `index` behave the same way.
 
 ### Request uid2
