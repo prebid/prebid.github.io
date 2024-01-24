@@ -83,6 +83,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
   ```javascript
   endpoint: "https://<ENDPOINT URL>"
   ```
+
   3. Edit the below existing entry and include your publisher ID in the `s` parameter:
 
   ```javascript
@@ -90,7 +91,9 @@ If you are hosting your own Prebid Server instance, depending on whether you are
     redirect:  
        url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
   ```
+
   4. Edit the below existing entry and include your publisher ID in the `s` parameter:
+
   ```javascript
    userSync: 
       redirect: 
@@ -105,6 +108,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
      ix: 
        endpoint: "https://<ENDPOINT URL>"
   ```
+
   2. Edit the below existing entry and include your publisher ID in the `s` parameter:
 
   ```javascript
@@ -114,7 +118,9 @@ If you are hosting your own Prebid Server instance, depending on whether you are
              redirect: 
                 url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}" 
    ```
+
   3. Add the below entry and include your publisher ID in the `s` parameter:
+
   ```javascript
    adapters: 
  	   ix: 
