@@ -96,9 +96,9 @@ If you are hosting your own Prebid Server instance, depending on whether you are
   4. Edit the below existing entry and include your publisher ID in the `s` parameter:
 
      ```javascript
-     userSync: 
- 		    redirect: 
-  		     iframe: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+     userSync:  
+      redirect:  
+       iframe: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
       ```         
 
 * If you are using [Prebid Server Java](https://github.com/prebid/prebid-server-java) version, edit the `prebid-server-java` entry in the `src/main/resources/bidder-config/ix.yaml` file as follows:
