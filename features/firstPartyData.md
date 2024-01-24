@@ -109,7 +109,21 @@ pbjs.setConfig({
         },
         regs: {
             gpp: "abc1234",
-            gpp_sid: [7]
+            gpp_sid: [7],
+            ext: {
+              dsa: {
+                required: 3,
+                pubrender: 0,
+                datatoput: 2,
+                transparency: [{
+                  domain: 'platform1domain.com',
+                  params: [1]
+                }, {
+                  domain: 'platform2domain.com',
+                  params: [1, 2]
+                }]
+              }
+            }
         }
     }
 });
