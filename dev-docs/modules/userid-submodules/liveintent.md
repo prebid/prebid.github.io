@@ -126,7 +126,6 @@ Module prioritization for SharedId works just as it does for others.
 ```
 NOTE: `uid2` is exposed as part of `lipb` as well as separately as `uid2`. `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, `sovrn`, and `index` behave the same way.
 
-
 ### Request uid2
 
 An attribute that requires special mention here is `uid2`. If this attribute is resolved by the ID sub-module, it will be exposed in the same format as from the Unified ID 2.0 user ID module. If both the LiveIntent sub-module and the `uid2` module manage to resolve a `uid2`, the one with the highest priority according to the configuration will be used. See the [Prebid multiple identifiers populated by user id sub-module](../userId.md#prebid-multiple-identifiers-populated-by-user-id-submodule) section of the User ID documentation for more information.
