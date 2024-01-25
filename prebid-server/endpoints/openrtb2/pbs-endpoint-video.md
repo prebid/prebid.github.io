@@ -47,7 +47,7 @@ These key-values are returned to the SSAI server as part of the video response.
 10. The stitched stream is returned to the application.
 
 <br>
-<img src="/assets/images/flowcharts/pb-lfv-serverside.png">
+<img src="/assets/images/flowcharts/pb-lfv-serverside.png" alt="architecture diagram">
 <br>
 
  **Parameters**<a name="parameters"></a>
