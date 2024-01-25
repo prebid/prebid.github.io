@@ -217,17 +217,15 @@ Now that you've defined your native template you can create your native creative
 
 ### Create Mobile In-App Creative
 
-{:.no_toc}
+Use these instructions if you integrate In-App native ads on [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#in-app-native) or [Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#in-app-native). The difference is in choosing the GAM option for supporting Android & iOS app code.
 
-Use this instruction only if you integrate In-App native ads on [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#in-app-native) or [Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#in-app-native).
-
-* `Step 1`: Sign in to Google Ad Manager.
-* `Step 2`: Create an ad unit with fluid ad size.
-* `Step 3`: Click `Delivery` and then `Native`
-* `Step 4`: Click `Create native ad`.
-* `Step 5`: Click `Android & iOS app code`.
-* `Step 6`: Name your new format.
-* `Step 7`: Choose `ADD VARIABLE` and add the following variable names and placeholders.
+1. Sign in to Google Ad Manager.
+2. Create an ad unit with fluid ad size.
+3. Click `Delivery` and then `Native`
+4. Click `New native style`.
+5. Click `Android & iOS app code`.
+6. Name your new format.
+7. Choose `Add variable` and add the following variable names and placeholders as type `text`.
 
 {: .table .table-bordered .table-striped }
 | Variable Name       | Placeholder             | Type |
@@ -237,7 +235,10 @@ Use this instruction only if you integrate In-App native ads on [iOS](/prebid-mo
 
 Make sure to indicate that the variables are required.
 
-* `Step 8`: Return to the home screen, click `Delivery > Creatives`, and create a creative with `Native Format`, choosing the template you created. In the user-defined variables you just created, set the following values:
+{:start="8"}
+8. Hit "Save".
+9. Return to the home screen, click `Delivery > Creatives`, and create a creative with `Native Format`, choosing the format you created.
+10. Choose a creative name and other desired settings. In the user-defined variables you just created, set the following values:
 
 {: .table .table-bordered .table-striped }
 | Variable Name       | Value                            |
@@ -245,7 +246,8 @@ Make sure to indicate that the variables are required.
 | isPrebid            | 1                                |
 | hb_cache_id_local   | %%PATTERN:hb_cache_id_local%%    |
 
-* `Step 9`: Create Prebid line items with price priority and a display ad type that is targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (making sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
+{:start="11"}
+11. Create Prebid line items with price priority and a display ad type that is targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (making sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
 
 ## Attach the Creative to Your Line Item
 
