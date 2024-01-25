@@ -215,12 +215,11 @@ Now that you've defined your native template you can create your native creative
 {:start="7"}
 7. Click **Save and preview**.
 
-
 ### Create Mobile In-App Creative
 
 {:.no_toc}
 
-Use this instruction if you integrate In-App native ads on [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#in-app-native) or [Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#in-app-native).
+Use this instruction only if you integrate In-App native ads on [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#in-app-native) or [Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#in-app-native).
 
 * `Step 1`: Sign in to Google Ad Manager.
 * `Step 2`: Create an ad unit with fluid ad size.
