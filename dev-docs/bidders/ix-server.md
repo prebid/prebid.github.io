@@ -70,6 +70,8 @@ The following table lists the media types that Index supports. For information a
 
 ## Setup instructions to call Index through Prebid Server
 
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
+
 **Note:** If you are hosting your own Prebid Server instance, you must contact your Index Exchange Representative to get an endpoint and setup instructions.
 
 If you are using an existing Prebid Server instance that is already configured to call Index, depending on whether you want to call Index from the browser, mobile app, CTV, or long-form video, follow any of the below sections to complete the Index-specific configuration.
