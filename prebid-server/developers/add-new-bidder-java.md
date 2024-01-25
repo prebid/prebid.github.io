@@ -604,6 +604,7 @@ There are a several values of a bid request that publishers may supply that your
 | Test | OpenRTB | `request.test` <br/> The publisher is sending non-production traffic which also enables verbose debugging information from Prebid Server.
 | Video | OpenRTB | `request.imp[].video` <br/> The publisher is specifying video ad requirements or preferences.
 | Rewarded inventory | OpenRTB | `request.imp[].ext.prebid.is_rewarded_inventory` <br/> Signal to indicate the inventory is rewarded.
+| Digital Services Act (DSA) | OpenRTB | `request.regs.ext.dsa` <br/> The publisher will indicate that a transaction is subject to DSA and whether they will render the required transparency information themselves.
 
 ##### Request compression
 
@@ -649,6 +650,7 @@ Please review the entire [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-conte
 | `.Bids[].Bid.W` | Optional | Width of the creative in pixels.
 | `.Bids[].Bid.H` | Optional | Height of the creative in pixels.
 | `.Bids[].Bid.Ext.Prebid.Meta` | Optional | Embedded JSON containing Prebid metadata (see below) or custom information.
+| `.Bids[].Bid.Ext.Dsa` | Optional | Embedded JSON containing DSA Transparency information (see below).
 
 {: .alert.alert-info :}
 We recommend resolving creative OpenRTB macros in your adapter. Otherwise, AUCTION_PRICE will eventually get resolved by the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative), but by then the bid price will be in the ad server currency and quantized by the price granularity.
@@ -693,6 +695,18 @@ Bid metadata may be required in a future Prebid.js release. The AdvertiserDomain
 | `.RendererUrl` | Url of the desired renderer for the creative.
 | `.PrimaryCategoryID` | Primary IAB category id.
 | `.SecondaryCategoryIDs` | Secondary IAB category ids.
+
+##### DSA
+
+In order to allow for DSPs to provide publishers with the requested transparency information and indicate whether they will render the required transparency information.
+
+{: .table .table-bordered .table-striped }
+| Path | Description |
+| - | -
+| `.Behalf` | A name of whose behalf the ad is displayed.
+| `.Paid` | A name of who paid for the ad.
+| `.Adrender` | Flag to indicate that buyer/advertiser will render their own DSA transparency information inside the creative.
+| `.Transparency` | The domains of the entities that applied user parameters and the parameters they applied.
 
 <p></p>
 
