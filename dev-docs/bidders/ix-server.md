@@ -133,6 +133,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
 
 <a id="call-index"></a>
 
+
 ## Publisher instructions to call Index through Prebid Server
 
 If you are using an existing Prebid Server instance that is already configured to call Index, depending on whether you want to call Index from the browser, mobile app, CTV, or long-form video, follow any of the below sections to complete the Index-specific configuration.
