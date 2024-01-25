@@ -698,7 +698,9 @@ Bid metadata may be required in a future Prebid.js release. The AdvertiserDomain
 
 ##### DSA
 
-In order to allow for DSPs to provide publishers with the requested transparency information and indicate whether they will render the required transparency information.
+See the [IAB's DSA protocol](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/dsa_transparency.md) for background information.
+
+This response object allows DSPs to provide publishers with requested transparency and render information. Your bid adapter should place it in the standard ORTB location. The Java object is .Bids[].Bid.Ext.Dsa. Fields within this object:
 
 {: .table .table-bordered .table-striped }
 | Path | Description |
