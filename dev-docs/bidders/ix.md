@@ -37,6 +37,7 @@ privacy_sandbox: paapi, topics
   * [Global data](#prebid-fpd-module)
   * [Index bidder-specific data](#index-bidder-specific-fpd-module)
   * [AdUnit-specific data](#adunit-specific-data)
+* [Monetize instream video](#instream-video)
 * [Index's outstream video player](#index-outstream-video-player)
 * [Prebid Native configuration](#prebid-native-configuration)
 * [Protected Audience API support](#protected-audience-api-support)
@@ -124,16 +125,7 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
     ```
 
 6. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
-7. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
-
-    ```javascript
-    pbjs.setConfig({
-        cache: {
-                url: 'https://prebid.adnxs.com/pbc/v1/cache'
-            }
-    });
-    ```
-
+7. (Optional) If you want to monetize instream video, see the [Monetize instream video](#instream-video) section below.
 8. (Optional) If you want to monetize outstream video, you can choose among the following options:
     * Use Index's outstream video player. For more information, see the [Index's outstream video player](#index-outstream-video-player) section below.
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](/dev-docs/show-outstream-video-ads.html)
@@ -221,6 +213,26 @@ ortb2Imp: {
     }
 }
 ```
+
+<a id="instream-video"></a>
+
+## Monetize instream video 
+
+Unlike Outstream Video, instream video does not use the Prebid Universal Creative. Instead, video bids provide VAST that Prebid caches to obtain a cache ID that can be retrieved with a URL. The cache ID is passed as a key value to the ad server.  
+
+To monetize instream video, complete the following steps: 
+
+1. Enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
+
+   ```javascript
+   pbjs.setConfig({ 
+     cache: { 
+             url: 'https://prebid.adnxs.com/pbc/v1/cache' 
+         } 
+   });
+   ```
+
+2. Set up your line items in Google Ad manger by following the instructions in Prebid's [Setting Up Video In GAM](/adops/setting-up-prebid-video-in-dfp.html) documentation. 
 
 <a id="index-outstream-video-player"></a>
 
