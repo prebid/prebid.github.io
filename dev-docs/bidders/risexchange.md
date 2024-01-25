@@ -13,7 +13,7 @@ tcfeu_supported: true
 usp_supported: true
 floors_supported: true
 userIds: all
-gvl_id: 1043 (rise)
+gvl_id: 1043
 sidebarType: 1
 ---
 
