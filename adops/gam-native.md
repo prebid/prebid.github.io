@@ -215,6 +215,39 @@ Now that you've defined your native template you can create your native creative
 {:start="7"}
 7. Click **Save and preview**.
 
+
+### Create Mobile In-App Creative
+
+{:.no_toc}
+
+Use this instruction if you integrate In-App native ads on [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#in-app-native) or [Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#in-app-native).
+
+* `Step 1`: Sign in to Google Ad Manager.
+* `Step 2`: Create an ad unit with fluid ad size.
+* `Step 3`: Click `Delivery` and then `Native`
+* `Step 4`: Click `Create native ad`.
+* `Step 5`: Click `Android & iOS app code`.
+* `Step 6`: Name your new format.
+* `Step 7`: Choose `ADD VARIABLE` and add the following variable names and placeholders.
+
+{: .table .table-bordered .table-striped }
+| Variable Name| Placeholder|
+|--------------+------------|
+| isPrebid            | [%isPrebid%]                |
+| hb_cache_id_local   | [%hb_cache_id_local%]       |
+
+Make sure to indicate that the variables are required.
+
+* `Step 8`: Return to the home screen, click `Delivery > Creatives`, and create a creative with `Native Format`, choosing the template you created. In the user-defined variables you just created, set the following values:
+
+{: .table .table-bordered .table-striped }
+| Variable Name       | Value                            |
+|---------------------+----------------------------------|
+| isPrebid            | 1                                |
+| hb_cache_id_local   | %%PATTERN:hb_cache_id_local%%    |
+
+* `Step 9`: Create Prebid line items with price priority and a display ad type that is targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (making sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
+
 ## Attach the Creative to Your Line Item
 
 Follow the instructions in [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html#duplicate-creative) to duplicate your creative and attach it to your line item.
