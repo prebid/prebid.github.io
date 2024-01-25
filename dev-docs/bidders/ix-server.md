@@ -21,6 +21,7 @@ deals_supported: true
 prebid_member: yes
 multiformat_supported: yes
 sidebarType: 1
+privacy_sandbox: paapi
 ---
 
 
@@ -30,7 +31,8 @@ sidebarType: 1
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
 * [Supported media types](#supported-media-types)
-* [Setup instructions to call Index through Prebid Server](#setup-instructions-to-call-index-through-prebid-server)
+* [Configure the Index adapter in your Prebid Server instance](#hosting-instance)
+* [Publisher instructions to call Index through Prebid Server](#call-index)
   * [Call Index from a web browser](#call-index-from-a-web-browser)
   * [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk)
   * [Call Index from CTV/long-form video environment](#call-index-from-ctvlong-form-video-environment)
@@ -66,13 +68,72 @@ The following table lists the media types that Index supports. For information a
 | video   | Supported, including ad pods for OTT    |
 | native      | Supported       |
 
+<a id="hosting-instance"></a>
+
+## Configure the Index adapter in your Prebid Server instance 
+
+**Before you begin:** Contact your Index Exchange Representative to get an endpoint and setup instructions.
+
+If you are hosting your own Prebid Server instance, depending on whether you are using Prebid Server Go or Prebid Server Java version, complete one of the following steps: 
+
+* If you are using the Prebid Server Go version, in the `static/bidder-info/ix.yaml` file, complete the following:
+
+  * Enable the adapter by deleting the `disabled: true` entry.
+  * Add the following new entry and include the regional endpoint provided to you by Index:
+
+    ```javascript
+     endpoint: "https://<ENDPOINT URL>"
+     ```
+
+  * Edit the below existing entry and include your publisher ID in the `s` parameter:
+
+    ```javascript
+     userSync:  
+      redirect:  
+       url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+     ```
+
+  * Edit the below existing entry and include your publisher ID in the `s` parameter:
+
+     ```javascript
+     userSync:  
+      redirect:  
+       iframe: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+      ```         
+
+* If you are using [Prebid Server Java](https://github.com/prebid/prebid-server-java) version, edit the `prebid-server-java` entry in the `src/main/resources/bidder-config/ix.yaml` file as follows:
+
+  * Edit the below existing entry and include the endpoint URL provided to you by Index.
+
+    ```javascript
+    adapters: 
+     ix: 
+       endpoint: "https://<ENDPOINT URL>"
+    ```
+
+  * Edit the below existing entry and include your publisher ID in the `s` parameter:
+
+    ```javascript
+     adapters: 
+       ix: 
+        usersync: 
+         redirect: 
+          url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}" 
+    ```
+
+  * Add the below entry and include your publisher ID in the `s` parameter:
+
+    ```javascript
+    adapters: 
+      ix: 
+       usersync: 
+        iframe: 
+         url: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+    ```
+
 <a id="call-index"></a>
 
-## Setup instructions to call Index through Prebid Server
-
-{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
-
-**Note:** If you are hosting your own Prebid Server instance, you must contact your Index Exchange Representative to get an endpoint and setup instructions.
+## Publisher instructions to call Index through Prebid Server
 
 If you are using an existing Prebid Server instance that is already configured to call Index, depending on whether you want to call Index from the browser, mobile app, CTV, or long-form video, follow any of the below sections to complete the Index-specific configuration.
 
@@ -91,7 +152,7 @@ To call Index from a web browser using Prebid Server, you must first configure P
     {
         bidder: 'ix',
         params: {
-            siteId: '123456'
+            siteId: '9999990'
         }
     }
     ```
@@ -171,7 +232,7 @@ To request bids from Index:
     "imp": [{
            "ext": {
               "ix": {
-                "siteId": "12345"
+                "siteId": "9999990"
               }
         }
       }],
@@ -190,7 +251,7 @@ You must include these parameters at the bidder level.
 {: .table .table-bordered .table-striped }
 | Key | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`|
 
 ### Video
 
@@ -199,7 +260,7 @@ You must include these parameters at the bidder level.
 {: .table .table-bordered .table-striped }
 | Key | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
 
 If you are using Index's outstream ad unit and have placed the video object at the bidder level, you must include the Index required parameters at the bidder level. You can include the optional parameters to specify the outstream ad unit configurations.
 
@@ -249,7 +310,7 @@ If you are using Index's outstream ad unit and have placed the video object at t
       "secure": 1,
       "ext": {
         "ix": {
-          "siteId": "123456"
+          "siteId": "9999990"
         }
       }
     }
@@ -313,7 +374,7 @@ If you are using Index's outstream ad unit and have placed the video object at t
       "secure": 1,
       "ext": {
         "ix": {
-          "siteId": "654321"
+          "siteId": "9999990"
         }
       }
     }
