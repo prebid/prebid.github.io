@@ -31,8 +31,8 @@ privacy_sandbox: paapi
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
 * [Supported media types](#supported-media-types)
-* [Hosting your own Prebid Server instance](#hosting-instance)
-* [Setup instructions to call Index through Prebid Server](#setup-instructions-to-call-index-through-prebid-server)
+* [Configure the Index adapter in your Prebid Server instance](#hosting-instance)
+* [Publisher instructions to call Index through Prebid Server](#setup-instructions-to-call-index-through-prebid-server)
   * [Call Index from a web browser](#call-index-from-a-web-browser)
   * [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk)
   * [Call Index from CTV/long-form video environment](#call-index-from-ctvlong-form-video-environment)
@@ -70,7 +70,7 @@ The following table lists the media types that Index supports. For information a
 
 <a id="hosting-instance"></a>
 
-## Hosting your own Prebid Server instance 
+## Configure the Index adapter in your Prebid Server instance 
 
 **Before you begin:** Contact your Index Exchange Representative to get an endpoint and setup instructions.
 
@@ -133,7 +133,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
 
 <a id="call-index"></a>
 
-## Setup instructions to call Index through Prebid Server
+## Publisher instructions to call Index through Prebid Server
 
 If you are using an existing Prebid Server instance that is already configured to call Index, depending on whether you want to call Index from the browser, mobile app, CTV, or long-form video, follow any of the below sections to complete the Index-specific configuration.
 
