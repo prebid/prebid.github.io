@@ -32,7 +32,7 @@ privacy_sandbox: paapi
 * [Introduction](#introduction)
 * [Supported media types](#supported-media-types)
 * [Configure the Index adapter in your Prebid Server instance](#hosting-instance)
-* [Publisher instructions to call Index through Prebid Server](#setup-instructions-to-call-index-through-prebid-server)
+* [Publisher instructions to call Index through Prebid Server](#call-index)
   * [Call Index from a web browser](#call-index-from-a-web-browser)
   * [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk)
   * [Call Index from CTV/long-form video environment](#call-index-from-ctvlong-form-video-environment)
@@ -132,7 +132,6 @@ If you are hosting your own Prebid Server instance, depending on whether you are
     ```
 
 <a id="call-index"></a>
-
 
 ## Publisher instructions to call Index through Prebid Server
 
