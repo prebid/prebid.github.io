@@ -230,10 +230,10 @@ Use this instruction only if you integrate In-App native ads on [iOS](/prebid-mo
 * `Step 7`: Choose `ADD VARIABLE` and add the following variable names and placeholders.
 
 {: .table .table-bordered .table-striped }
-| Variable Name| Placeholder|
-|--------------+------------|
-| isPrebid            | [%isPrebid%]                |
-| hb_cache_id_local   | [%hb_cache_id_local%]       |
+| Variable Name       | Placeholder             | Type |
+|---------------------+-------------------------+------|
+| isPrebid            | [%isPrebid%]            | Text |
+| hb_cache_id_local   | [%hb_cache_id_local%]   | Text |
 
 Make sure to indicate that the variables are required.
 
