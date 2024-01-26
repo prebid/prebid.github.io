@@ -85,6 +85,13 @@ Configuration file: /Users/me/git/prebid.github.io/_config.yml
 
 Open the `Server address` URL in your browser, and you should see a locally running copy of the site.
 
+### Running in a docker container
+
+```bash
+docker build . -t prebid.github.io
+docker run -i -t -p 8080:8080 prebid.github.io
+```
+
 <a name="building-assets"></a>
 
 ## Building Assets
