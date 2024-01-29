@@ -18,6 +18,8 @@ gvl_id: 591
 deals_supported: true
 fpd_supported: true
 sidebarType: 1
+multiformat_supported: will-bid-on-one
+safeframes_ok: true
 ---
 
 ### Note
@@ -49,11 +51,9 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
   * [Call Consumable from Prebid Mobile SDK](#call-consumable-from-prebid-mobile-sdk)
   * [Call Consumable from CTV/long-form video environment](#call-consumable-from-ctvlong-form-video-environment)
 * [Bid request parameters](#bid-request-parameters)
-  * [Site](#site)
-  * [App](#app)
+  * [Site](#Site-Banner-Video-Audio)
+  * [App](#App-or-CTV-Banner-Video-Audio)
 * [Examples](#examples)
-
-<a id="introduction"></a>
 
 ## Introduction
 
@@ -62,8 +62,6 @@ Publishers can use Prebid Server in any of the following ways with Consumable. C
 * If you want to call Consumable from a web environment, you can use Prebid.js to call Prebid Server, and then Prebid Server uses our server-side adapter to call Consumable. This reduces workload on the browser. For set up instructions, see [Call Consumable from a web browser](#call-consumable-from-a-web-browser) section on this page.
 * In mobile apps, you can use the Prebid Mobile SDK to call Prebid Server and then Prebid Server uses our server-side adapter to call Consumable. For set up instructions, see [Call Consumable from Prebid Mobile SDK](#call-consumable-from-prebid-mobile-sdk) section on this page.
 * In CTV apps and other long-form video environments, you (or the SSAI vendor) can make a call to Prebid Server using OpenRTB, and then Prebid Server uses our server-side adapter to call Consumable. For set up instructions, see [Call Consumable from CTV/long-form video environment](#call-consumable-from-ctvlong-form-video-environment) section on this page.
-
-<a id="supported-media-types"></a>
 
 ## Supported media types
 
@@ -76,15 +74,11 @@ The following table lists the media types that Consumable supports. For informat
 | video   | Supported, including ad pods for OTT    |
 | audio      | Supported       |
 
-<a id="call-consumable"></a>
-
 ## Setup instructions to call Consumable through Prebid Server
 
 **Note:** If you are hosting your own Prebid Server instance, you must contact your Consumable Exchange Representative to get an endpoint and setup instructions.
 
 If you are using an existing Prebid Server instance that is already configured to call Consumable, depending on whether you want to call Consumable from the browser, mobile app, CTV, or long-form video, follow any of the below sections to complete the Consumable-specific configuration.
-
-<a id="call-consumable-from-a-web-browser"></a>
 
 ### Call Consumable from a web browser
 
@@ -133,8 +127,6 @@ To call Consumable from a web browser using Prebid Server, you must first config
         }
     });
    ```
-   
-<a name="call-Consumable-from-prebid-mobile-sdk"></a>
 
 ### Call Consumable from Prebid Mobile SDK
 
@@ -148,8 +140,6 @@ To add Consumable as a bidder to your mobile app:
 2. Define the Consumable-specific parameters at the bidder level. For information about these parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 3. Include any ad unit level required or optional parameters provided in Prebid's [Prebid Mobile API - iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html) and [Prebid Mobile API - Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html) documentation.
 
-<a id="call-Consumable-from-ctv-long-form-video-environment"></a>
-
 ### Call Consumable from CTV/long-form video environment
 
 **Before you begin:** Contact your Consumable Exchange Representative to get the `placementId`. You must provide this placement ID to your Prebid Server host company.
@@ -162,13 +152,11 @@ To add Consumable as a bidder:
 2. Define the Consumable-specific parameters at the bidder level. For information about these parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 3. Include any ad unit level required or optional parameters provided in Prebid's [/openrtb2/video](/prebid-server/endpoints/openrtb2/pbs-endpoint-video.html) documentation.
 
-<a id="bid-request-parameters"></a>
-
 ## Bid request parameters
 
 For a list of the OpenRTB fields that Consumable supports in bid requests, see [List of supported OpenRTB bid request fields for sellers](https://kb.Consumableexchange.com/publishers/openrtb_integration/list_of_supported_openrtb_bid_request_fields_for_sellers.htm#List_of_supported_OpenRTB_bid_request_fields_for_sellers). The following are the required fields for the various supported media types.
 ### Site (Banner, Video, Audio)
-<a id="site"></a>
+
 You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
@@ -179,15 +167,13 @@ You must include these parameters at the bidder level.
 | `unitId` | required | The unit ID from Consumable. | `987654`  | `integer` |
 | `unitName` | required | The unit name from Consumable. | `cnsmbl-unit`  | `string` |
 ### App or CTV (Banner, Video, Audio)
-<a id="app"></a>
+
 You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
 | Key | Scope | Type | Description |
 |---|---|---|---|
 | `placementId` | Required | String | An Consumable-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'0421008445828ceb46f496700a5fa65e'`|
-
-<a id="examples"></a>
 
 ## Examples
 

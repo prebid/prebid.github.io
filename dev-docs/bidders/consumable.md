@@ -18,6 +18,8 @@ gvl_id: 591
 deals_supported: true
 fpd_supported: true
 sidebarType: 1
+multiformat_supported: will-bid-on-one
+safeframes_ok: true
 ---
 
 ### Note
@@ -46,15 +48,13 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
 * [Set up Prebid.js to call Consumable directly from the browser](#set-up-prebidjs-to-call-consumable-directly-from-the-browser-client-side-adapter)
 * [Set up Prebid.js to call Consumable through Prebid Server](#set-up-prebidjs-to-call-consumable-through-prebid-server-server-side-adapter)
 * [Set up First Party Data (FPD)](#set-up-first-party-data-fpd)
-  * [Global data](#prebid-fpd-module)
-  * [Consumable bidder-specific data](#consumable-bidder-specific-fpd-module)
+  * [Global data](#Set-up-First-Party-Data-FPD)
+  * [Consumable bidder-specific data](#Consumable-bidder-specific-data)
   * [AdUnit-specific data](#adunit-specific-data)
 * [Bid request parameters](#bid-request-parameters)
   * [Banner](#banner)
   * [Video](#video)
 * [Examples](#examples)
-
-<a id="introduction"></a>
 
 ## Introduction
 
@@ -77,8 +77,6 @@ pbjs.bidderSettings = {
 };
 ```
 
-<a id="supported-media-types"></a>
-
 ## Supported media types
 
 The following table lists the media types that Consumable supports. 
@@ -90,13 +88,9 @@ The following table lists the media types that Consumable supports.
 | banner | Supported       |
 | video  | Supported      |
 
-<a id="client-side-adapter"></a>
-
 ## Set up Prebid.js to call Consumable directly from the browser (client-side adapter)
 
 To call Consumable from a web browser environment using a Prebid Server integration, see the Consumable-specific configuration steps in [Setup instructions to call Consumable through Prebid Server](/dev-docs/bidders/consumable-server.html#setup-instructions-to-call-consumable-through-prebid-server) in our Prebid Server documentation on the Prebid site.
-
-<a id="server-side-adapter"></a>
 
 ## Set up Prebid.js to call Consumable through Prebid Server (server-side adapter)
 
@@ -133,13 +127,9 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
     });
     ```
 
-<a id="set-up-first-party-data-fpd"></a>
-
 ## Set up First Party Data (FPD)
 
 You can set up the Prebid.js FPD module using Global data, Consumable bidder-specific site data, or ad unit-specific data. Consumable supports deal targeting in all the three FPD types.
-
-<a name="prebid-fpd-module"></a>
 
 ### Global data
 
@@ -160,8 +150,6 @@ pbjs.setConfig({
 });
 ```
 
-<a id="consumable-bidder-specific-fpd-module"></a>
-
 ### Consumable bidder-specific data
 
 This data type is available from Prebid version 7.49.0 and above. You can use it to specify key-value pairs that will be included in your query string when targeting deals. For example, if a user visits a news page, you can pass that information by submitting a key-value pair for `category = news`. You can then create a deal in the Consumable UI and activate the deal only on pages that contain `category = news` as the key-value pair.
@@ -180,8 +168,6 @@ pbjs.setConfig({
 });
 ```
 
-<a id="adunit-specific-data"></a>
-
 ### AdUnit-specific data
 
 Use this data type to specify key-value pairs at the ad unit level when targeting deals and apply it to all bidders. This will be available from Prebid.js version 7.46 and above. To include the adUnit-specific data in a bid request, see Prebid's [Supplying AdUnit-Specific Data](/features/firstPartyData.html#supplying-adunit-specific-data) documentation.
@@ -196,8 +182,6 @@ ortb2Imp: {
     }
 }
 ```
-
-<a id="bid-request-parameters"></a>
 
 ## Bid request parameters
 
@@ -224,8 +208,6 @@ You must include these parameters at the bidder level.
 | `networkId` | required | The network ID from Consumable. | `9969`  | `integer` |
 | `unitId` | required | The unit ID from Consumable. | `987654`  | `integer` |
 | `unitName` | required | The unit name from Consumable. | `cnsmbl-unit`  | `string` |
-
-<a id="examples"></a>
 
 ## Examples
 
