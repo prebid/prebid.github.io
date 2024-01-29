@@ -9,10 +9,17 @@ LiveIntent offers audience resolution by leveraging its next-generation identity
 
 The LiveIntent `nonID` is a user identifier tied to an active, encrypted email in the graph and functions in cookie-challenged environments and browsers. Alongside the `nonID`, LiveIntent's user ID sub-module can resolve multiple other user identifiers called _attributes_ - such as `uid2`, `pubmatic`, and others. See the [Multiple user IDs](#multiple-user-ids) section for more details.
 
-To add the functionality of LiveIntent Identity sub-module to your _Prebid.js_ package, use the following command:
+There are two ways to add the functionality of LiveIntent Identity sub-module to your _Prebid.js_ package:
+1. The standard version which allows publishers to include the module with full functionalities, like hashing email addresses and identity resolution. Use the following command:
 
 ```bash
 gulp build --modules=userId,liveIntentIdSystem
+```
+
+2. The minimal version, which allows publishers to deploy a smaller bundle with minimal features, including identity resolution. Use the following command:
+
+```bash
+LiveConnectMode=minimal gulp build --modules=liveIntentIdSystem
 ```
 
 This is an example of how the `request.userId.lipb` object which contains the resolution result would look like:
