@@ -7,6 +7,7 @@ pbs: true
 biddercode: yandex
 media_types: banner, native
 sidebarType: 1
+privacy_sandbox: topics
 ---
 
 ### Prebid Client
@@ -87,6 +88,25 @@ const adUnits = [{
     }
   ]
 }];
+```
+
+#### Topics Iframe Configuration
+
+[Topics First Party Data (FPD) Module](/dev-docs/modules/topicsFpdModule.html) `topicsFpdModule` should be included in prebid final package to call topics API.
+
+```js
+pbjs.setConfig({
+  userSync: {
+    // ...,
+    topics: {
+      bidders: [{
+        bidder: 'yandex',
+        iframeURL: 'https://yandex.ru/ads/prebid/topics_frame.html'
+      }]
+    }
+    // ...
+  }
+})
 ```
 
 ### Prebid Server
