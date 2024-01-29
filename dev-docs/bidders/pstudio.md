@@ -3,7 +3,7 @@ layout: bidder
 title: PStudio
 description: Prebid PStudio Bidder Adapter
 biddercode: pstudio
-gdpr_supported: false
+tcfeu_supported: false
 gvl_id: none
 usp_supported: false
 coppa_supported: true
