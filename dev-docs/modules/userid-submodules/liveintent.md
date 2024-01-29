@@ -171,9 +171,9 @@ NOTE: For optimal performance, the LiveIntent ID sub-module should be called at 
 | params.liCollectConfig.fpiExpirationDays |Optional| Number |The expiration time of an identifier created and updated by LiveConnect.By default, 730 days.|`729`|
 | params.liCollectConfig.collectorUrl |Optional| String |The parameter defines where the signal pixels are pointing to. The params and paths will be defined subsequently. If the parameter is not set, LiveConnect will by default emit the signal towards `https://rp.liadm.com`.|`'https://rp.liadm.com'`|
 | params.liCollectConfig.appId |Optional| String |LiveIntent's media business entity application id.|`'a-0012'`|
-| params.sharedId.mode | Optional | String | This parameter defines how LiveIntent resolves SharedId. Read more details about SharedId support [here](#sharedid) | `'provided'`
-| params.sharedId.name | Optional | String | Only if the idcookie.mode is `'provided'`, the parameter is cookie/localstorage key name | `'__super_duper_cookie'`
-| params.sharedId.strategy | Optional | String | Only if the idcooke.mode is `'provided'`, the parameter defines where to get the identifier from. Either from the cookie jar, `'cookie'`, or from the local storage, `'localstorage'`. | `'localstorage'`
+| params.sharedId.mode | Optional | String | This parameter defines how LiveIntent resolves SharedId. Read more details about SharedId support [here](#sharedid) | `'provided'`|
+| params.sharedId.name | Optional | String | Only if the idcookie.mode is `'provided'`, the parameter is cookie/localstorage key name | `'__super_duper_cookie'`|
+| params.sharedId.strategy | Optional | String | Only if the idcooke.mode is `'provided'`, the parameter defines where to get the identifier from. Either from the cookie jar, `'cookie'`, or from the local storage, `'localstorage'`. | `'localstorage'`|
 | storage | Required | Object | This object defines where and for how long the results of the call to get a user ID will be stored. | |
 | storage.type | Required | String | This parameter defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'cookie'` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'pbjs_li_nonid'` |
