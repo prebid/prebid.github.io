@@ -28,7 +28,7 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | params.create | Optional | Boolean | For publisher server support only.  If true, the publisher's server will create the (pubcid) cookie.  Default is true. | `true` |
 | params.pixelUrl | Optional | String | For publisher server support only. Where to call out to for a server cookie -- see [Prebid Identity](/identity/sharedid.html) for more information. | `/wp-json/pubcid/v1/extend/` |
 | params.extend | Optional | Boolean | If true, the expiration time of the stored IDs will be refreshed during each page load. Default is false. | `false` |
-| storage | Required | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. |
+| storage | Required | Object | The publisher must specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. |  |
 | storage.expires | Integer | Required | How long the user ID information will be stored. | `365` |
 | storage.name | String | Required | The name of the cookie or html5 local storage where the user ID will be stored. | `_pubcid` |
 | storage.type | String | Required | This is where the results of the user ID will be stored. Must be either: Must be either: "cookie" or "html5". For server side implementations, which have the best identifier life and revenue impact, this must be a cookie. | `cookie` |
