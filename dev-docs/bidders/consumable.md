@@ -48,8 +48,8 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
 * [Set up Prebid.js to call Consumable directly from the browser](#set-up-prebidjs-to-call-consumable-directly-from-the-browser-client-side-adapter)
 * [Set up Prebid.js to call Consumable through Prebid Server](#set-up-prebidjs-to-call-consumable-through-prebid-server-server-side-adapter)
 * [Set up First Party Data (FPD)](#set-up-first-party-data-fpd)
-  * [Global data](#Set-up-First-Party-Data-FPD)
-  * [Consumable bidder-specific data](#Consumable-bidder-specific-data)
+  * [Global data](#set-up-first-party-data-fpd)
+  * [Consumable bidder-specific data](#consumable-bidder-specific-data)
   * [AdUnit-specific data](#adunit-specific-data)
 * [Bid request parameters](#bid-request-parameters)
   * [Banner](#banner)
@@ -60,8 +60,8 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
 
 Publishers can use Prebid.js to call Consumable Exchange (Consumable) in any of the following ways:
 
-* **Call through our client-side adapter:** Prebid.js calls Consumable directly from the browser using our client-side adapter. This option tends to have a better cookie match rate. For configuration instructions, see the [Set up Prebid.js to call Consumable directly from the browser (client-side adapter)](#client-side-adapter) on this page.
-* **Call through our server-side adapter**: Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Consumable. This reduces workload on the browser. For configuration instructions, see the [Set up Prebid.js to call Consumable through Prebid Server (server-side adapter)](#server-side-adapter) on this page.
+* **Call through our client-side adapter:** Prebid.js calls Consumable directly from the browser using our client-side adapter. This option tends to have a better cookie match rate. For configuration instructions, see the [Set up Prebid.js to call Consumable directly from the browser (client-side adapter)](#set-up-prebidjs-to-call-consumable-directly-from-the-browser-client-side-adapter) on this page.
+* **Call through our server-side adapter**: Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Consumable. This reduces workload on the browser. For configuration instructions, see the [Set up Prebid.js to call Consumable through Prebid Server (server-side adapter)](#set-up-prebidjs-to-call-consumable-through-prebid-server-server-side-adapter) on this page.
 
 **Notes:**
 

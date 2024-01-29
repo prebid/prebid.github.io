@@ -51,8 +51,8 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
   * [Call Consumable from Prebid Mobile SDK](#call-consumable-from-prebid-mobile-sdk)
   * [Call Consumable from CTV/long-form video environment](#call-consumable-from-ctvlong-form-video-environment)
 * [Bid request parameters](#bid-request-parameters)
-  * [Site](#Site-Banner-Video-Audio)
-  * [App](#App-or-CTV-Banner-Video-Audio)
+  * [Site](#site-banner-video-audio)
+  * [App](#app-or-ctv-banner-video-audio)
 * [Examples](#examples)
 
 ## Introduction
