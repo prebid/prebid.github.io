@@ -33,6 +33,7 @@ sidebarType: 1
 | `pos`         | optional | ad position as per IAB standards       | `1`                | `number` |
 
 ### Example
+
 ```javascript
 var adUnitsBannerOnly = [
   {
@@ -89,6 +90,7 @@ var adUnitsBannerOnly = [
 | `video.api`            | optional    | List of supported API frameworks for this impression. Refer to [API Frameworks](#api-frameworks) | `[2, 7]`                   |
 
 ### Example
+
 ```javascript
 var adUnits = [
     {
@@ -242,4 +244,3 @@ var adUnits = [
 | `15`  | Has Audio On/Off Button |
 | `16`  | Ad Provides Skip Button (e.g., VPAID-rendered skip button on pre-roll video) |
 | `17`  | Adobe Flash |
-
