@@ -10,6 +10,7 @@ schain_supported: true
 coppa_supported: true
 pbs: true
 tcfeu_supported: true
+gpp_supported: true
 usp_supported: true
 floors_supported: true
 userIds: all
