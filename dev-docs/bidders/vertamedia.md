@@ -5,6 +5,7 @@ description: Prebid Vertamedia Bidder Adaptor
 pbjs: true
 biddercode: vertamedia
 media_types: video
+sidebarType: 1
 ---
 
 ### Bid params
@@ -14,14 +15,15 @@ media_types: video
 |-------|----------|--------------------------------|----------|-----------|
 | `aid` | required | The source ID from Vertamedia. | `350975` | `integer` |
 
-
 ### Description
+
 Get access to multiple demand partners across VertaMedia AdExchange and maximize your yield with VertaMedia header bidding adapter.
 
 VertaMedia header bidding adapter connects with VertaMedia demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand
 
 ### Test Parameters
+
 ```
     var adUnits = [
 

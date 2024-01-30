@@ -3,23 +3,28 @@ layout: bidder
 title: The Trade Desk
 description: The Trade Desk Prebid Bidder Adapter
 biddercode: ttd
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 21
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 schain_supported: true
 dchain_supported: false
 userIds: unifiedId, uid2
 media_types: banner, video
 floors_supported: true
-fpd_supported: true
 pbjs: true
 pbs: false
 prebid_member: true
+sidebarType: 1
 ---
 
+### Disclosure
+
+This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
+
 {: .alert.alert-danger :}
-Note: The Trade Desk Header Bidding adapter requires setup and approval before beginning. Please reach out to OpenPathPublishers@thetradedesk.com for more details.
+Note: The Trade Desk Header Bidding adapter requires setup and approval before beginning. Please reach out to <OpenPathPublishers@thetradedesk.com> for more details.
 
 ### Bid Params
 
@@ -27,10 +32,10 @@ Note: The Trade Desk Header Bidding adapter requires setup and approval before b
 Name | Scope | Description | Example | Type
 --- | --- | --- | --- | ----
 `supplySourceId` | required | The TTD-provided supply source name. | `'supplier'` | `String`
-`publisherId` | required | The publisher ID. This should be the same as the seller_id in the sellers.json for the site being trafficked. | `'1427ab10f2e448057ed3b422'` | `String`
-`siteId` | required | The publisher defined site ID. This should be unique per site. Can be any string that is under 50 characters. | `'site_123'` | `String`
-`placementId` | required | The publisher defined placement ID. Can be any string that is under 128 characters. | `'side-Bar_1/123'` | `String`
+`publisherId` | required | The publisher ID. If there is a sellers.json, this should be the same as the seller_id in the sellers.json for the site being trafficked. If there is no sellers.json, this should be hardcoded to "1". | `'1427ab10f2e448057ed3b422'` | `String`
+`placementId` | optional | This field is optional if GPID is passed through the GPT module <https://docs.prebid.org/dev-docs/modules/gpt-pre-auction.html>. If that module isn't used, the GPID value should be passed in this field. | `'/1111/home#header'` | `String`
 `banner` | optional | Display banner targeting parameters. See the banner section below. | `{}` | `object`
+`bidfloor` | optional | Sets a bid floor price | `0.95` | `Float`
 
 ### Banner Object
 
@@ -67,7 +72,8 @@ var bannerAdUnit = {
                 placementId: 'sidebar_1',
                 banner: {
                     expdir: [1, 3]
-                }
+                },
+                bidfloor: 0.95
             }
         }
     ]
@@ -114,7 +120,8 @@ var videoAdUnit = {
                 supplySourceId: 'supplier',
                 publisherId: '1427ab10f2e448057ed3b422',
                 siteId: 'site-123',
-                placementId: 'video1'
+                placementId: 'video1',
+                bidfloor: 0.95
             }
         }
     ]
@@ -175,3 +182,11 @@ Lists of `api`, `playbackmethod`, `protocols`, `pos`, and `expdir` potential val
 - `3` : Up
 - `4` : Down
 - `5` : Full Screen
+
+### First Party Data (Supported starting prebid v7.49)
+
+Publishers should set [First Party Data](https://docs.prebid.org/features/firstPartyData.html) in the `ortb2` and `ortb2Imp` objects. These fields are supported:
+
+- `ortb2.site.ext.data`
+- `ortb2.user.ext.data`
+- `AdUnit.ortb2Imp.ext.data` (for AdUnit data)

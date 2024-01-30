@@ -6,9 +6,10 @@ sidebarType: 7
 ---
 
 # Prebid Server Troubleshooting
+
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 ## Get More Debugging Information
@@ -18,51 +19,49 @@ There are several ways to get more debug info from Prebid Server.
 ### Direct Prebid Server Invocation
 
 If you're invoking Prebid Server directly, add one of these parameters to the OpenRTB:
-- `"test":1`: This will inform bidders that this request should be treated as a test (non-billable), and provides additional debug information in the OpenRTB response.
-- `"debug":1`: Similar to `test`, but just adds  debug info, without declaring the request non-billable.
 
-{% highlight bash %}
+- `"test":1`: This will inform bidders that this request should be treated as a test (non-billable), and provides additional debug information in the OpenRTB response.
+- `"ext.prebid.debug":true`: Similar to `test`, but just adds debug info, without declaring the request non-billable.
+
+```bash
 POST https://prebid-server.rubiconproject.com/openrtb2/auction
 {
     ...
     "test":1
 }
-{% endhighlight %}
+```
 
 ### Invoked from Prebid.js
 
 If you're invoking Prebid Server from Prebid.js, turn on the OpenRTB `test` flag from Prebid.js using one of these options:
 
-1) Add **?pbjs_debug=true** to the URL of the page. This will cause the pbsBidAdapter to send `ext.prebid.debug:1` to PBS, which will turn on additional debugging.
+1. Add **?pbjs_debug=true** to the URL of the page. This will cause the pbsBidAdapter to send `ext.prebid.debug:true` to PBS, which will turn on additional debugging.
 
-2) Add the following `setConfig` to the page to get the same result:
+2. Add the following `setConfig` to the page to get the same result:
 
-{% highlight bash %}
+    ```javascript
     pbjs.setConfig({"debug":true});
-{% endhighlight %}
+    ```
 
-3) If instead of ext.prebid.debug you would like to set the OpenRTB 2.5 'test' flag, you can set that using the 'ortb2' approach:
+3. If instead of ext.prebid.debug you would like to set the OpenRTB 2.5 'test' flag, you can set that using the 'ortb2' approach:
 
-{% highlight bash %}
+    ```javascript
     pbjs.setConfig({
         "ortb2": {
             "test":1
         }
     });
-{% endhighlight %}
+    ```
 
 ### Invoked from AMP
 
 If you're invoking Prebid Server from AMP, you'll be unable to get debug info from the AMP page. However, you can capture the Prebid Server AMP call and append `&debug=1` to it:
 
-{% highlight bash %}
+```text
 https://my-prebid-server.com/openrtb2/amp?tag_id=1111111111111&w=300&h=50&...&debug=1
-{% endhighlight %}
+```
 
 ## Stored Responses
-
-{: .pb-alert .pb-alert-important :}
-Currently, this approach only works with the Java version of Prebid Server.
 
 Sometimes it's hard to get a test bid. Other times, you may want to test a
 very specific bid, such as one that has a particular CPM value or
@@ -88,7 +87,8 @@ A `storedauctionresponse` ID can be specified in `imp[].ext.prebid`. If specifie
 - The impid of the original request is copied through to the response.
 
 So for example, this OpenRTB request:
-{% highlight bash %}
+
+```bash
 {
   "test":1,
   "tmax":500,
@@ -111,11 +111,11 @@ So for example, this OpenRTB request:
     }
   ]
 }
-{% endhighlight %}
+```
 
 Could result in this response, assuming that the IDs exist in the database table read by Prebid Server:
 
-{% highlight bash %}
+```bash
 {
     "id": "test-auction-id",
     "seatbid": [
@@ -129,25 +129,27 @@ Could result in this response, assuming that the IDs exist in the database table
        }
   ]
 }
-{% endhighlight %}
+```
 
 ## Request Logging
 
 (PBS-Java only)
 
 Sometimes you want to see what's coming into the server before being processed by PBS.
-If the admin endpoints are enabled and you have the admin endpoint password, you can 
+If the admin endpoints are enabled and you have the admin endpoint password, you can
 hit these two URLs with the desired parameter values:
 
-- https://HOST/logging/[changelevel](/prebid-server/endpoints/pbs-endpoint-admin.html#loggingchangelevel)?level=debug&duration=10000
-- https://HOST/logging/[httpinteraction](/prebid-server/endpoints/pbs-endpoint-admin.html#logginghttpinteraction)?limit=100&endpoint=auction&account=1111
+- `https://HOST/logging/[changelevel](/prebid-server/endpoints/pbs-endpoint-admin.html#loggingchangelevel)?level=debug&duration=10000`
+- `https://HOST/logging/[httpinteraction](/prebid-server/endpoints/pbs-endpoint-admin.html#logginghttpinteraction)?limit=100&endpoint=auction&account=1111`
 
 Then you can check server logs for output like:
-```
-http-interaction : Requested URL: "/openrtb2/auction?debug=1", request body: "{ ... }"
+
+```text
+http-interaction : Requested URL: "/openrtb2/auction", request body: "{ ... }"
 ```
 
 ## Related Topics
+
 {:.no_toc}
 
-+ [Prebid.js Troubleshooting](/troubleshooting/troubleshooting-guide.html)
+- [Prebid.js Troubleshooting](/troubleshooting/troubleshooting-guide.html)

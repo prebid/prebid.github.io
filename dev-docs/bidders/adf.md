@@ -4,7 +4,8 @@ title: AdformOpenRTB
 description: Prebid Adform Bidder Adaptor
 biddercode: adf
 media_types: banner, native, video
-gdpr_supported: true
+coppa_supported: true
+tcfeu_supported: true
 usp_supported: true
 prebid_member: true
 pbjs: true
@@ -14,7 +15,8 @@ userIds: all
 gvl_id: 50
 prevBiddercode: adformOpenRTB
 floors_supported: true
-fpd_supported: true
+multiformat_supported: will-bid-on-one
+sidebarType: 1
 ---
 
 ### Bid params

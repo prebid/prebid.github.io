@@ -10,9 +10,9 @@ sidebarType: 1
 
 The core of Prebid.js contains only the foundational code needed for header bidding. Any functionality that could be considered an add-on is part of a module. These are the major categories:
 
-- [Bidder adapters](/dev-docs/bidders.html)
-- [Analytics adapters](/overview/analytics.html)
-- Any other extensible functionality - documented on this page
+* [Bidder adapters](/dev-docs/bidders.html)
+* [Analytics adapters](/overview/analytics.html)
+* Any other extensible functionality - documented on this page
 
 * TOC
 {:toc}
@@ -68,6 +68,7 @@ than others. See [the realTimeData setConfig](/dev-docs/publisher-api-reference/
 </table>
 
 ## Vendor-Specific Modules
+
 These modules may require accounts with a service provider.
 <table class="table table-bordered table-striped">
   <thead>
@@ -90,7 +91,7 @@ These modules may require accounts with a service provider.
 
 ## Further Reading
 
-+ [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)
-+ [How to add a Bid Adapter](/dev-docs/bidder-adaptor.html)
-+ [How to add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html)
-+ [How to add a Real Time Data Submodule](/dev-docs/add-rtd-submodule.html)
+* [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)
+* [How to add a Bid Adapter](/dev-docs/bidder-adaptor.html)
+* [How to add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html)
+* [How to add a Real Time Data Submodule](/dev-docs/add-rtd-submodule.html)
