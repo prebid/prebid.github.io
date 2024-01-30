@@ -35,17 +35,17 @@ sidebarType: 1
 
 Add the following code to activate user sync. Setupad advises enabling user syncing through iFrames, as it significantly improves partners' user match rates and increases the Setupad bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
 
-```
+```javascript
 pbjs.setConfig({
-    userSync: {
-        iframeEnabled: true,
-        filterSettings: {
-            iframe: {
-                bidders: '*',   // '*' means all bidders
-                filter: 'include'
-            }
-        }
-    }
+  userSync: {
+    iframeEnabled: true,
+    filterSettings: {
+      iframe: {
+        bidders: '*', // '*' means all bidders
+        filter: 'include',
+      },
+    },
+  },
 });
 ```
 
