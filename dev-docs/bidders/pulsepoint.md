@@ -21,6 +21,10 @@ ortb_blocking_supported: true
 multiformat_supported: will-bid-on-one
 ---
 
+### Prebid Server Note
+
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
