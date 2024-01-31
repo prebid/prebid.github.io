@@ -5,7 +5,7 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: false
 pbs: true
-userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, 33acrossId, nonID
+userIds: idl, netId, fabrickId, zeotapIdPlus, uid2, TDID, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, utiq, criteoID, euid, imuid, 33acrossId, nonID, pairid
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
