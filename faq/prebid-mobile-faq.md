@@ -175,7 +175,6 @@ The `NSPrivacyCollectedDataTypePurposes` array should contain `NSPrivacyCollecte
 
 - `NSPrivacyAccessedAPITypes` array should contain the `NSPrivacyAccessedAPICategoryUserDefaults` item. The `NSPrivacyAccessedAPITypeReasons` for this item should contain `CA92.1` value.
 
-
 ## Performance
 
 ### Does the SDK do any work in the background?  If so, what is it?
