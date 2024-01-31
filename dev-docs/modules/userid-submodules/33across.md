@@ -29,7 +29,7 @@ The following configuration parameters are available:
 | storage |||||
 | storage.name | Required | String | The name of the cookie or html5 local storage key | `"33acrossId"` (recommended) |
 | storage.type | Required | String | This is where the 33across user ID will be stored | `"html5"` (recommended) or `"cookie"` |
-| storage.expires | Strongly Recommended | Number | How long (in days) the user ID information will be stored | `90` (recommended) |
+| storage.expires | Strongly Recommended | Number | How long (in days) the user ID information will be stored | `30` (recommended) |
 | storage.refreshInSeconds | Strongly Recommended | Number | How many seconds until the ID is refreshed | `8 * 3600` (recommended) |
 
 ## 33Across ID Example
@@ -45,7 +45,7 @@ pbjs.setConfig({
       storage: {
         name: "33acrossId",
         type: "html5",
-        expires: 90,
+        expires: 30,
         refreshInSeconds: 8 * 3600
       }
     }]
