@@ -156,6 +156,22 @@ Also note that Prebid.org is committed to other privacy initiatives such as the 
 
 SDK does’t commit any action on managing user data. Only publishers using SDK’s API can provide/store/remove user data.
 
+### Does SDK Provide an Apple Privacy Manifest? 
+
+No, because the Prebid SDK is an open-source SDK, that doesn't have a single domain to send bid requests.
+
+However, here is the list of items that the app developer can add to the application's privacy manifest to cover Prebid SDK activity and data consumption: 
+
+`NSPrivacyTracking` - true. Because Prebid SDK collects IDFA. 
+`NSPrivacyTrackingDomains` - the tracking domain for the PBS. 
+
+Pay attention - if `NSPrivacyTracking` is true, the tracking domain is provided, and the user doesn't allow the app to track him or her, iOS will block the bid requests. Prebid SDK doesn't support tracking and non-tracking endpoints yet. Follow the [issue](https://github.com/prebid/prebid-mobile-ios/issues/954) for the details. 
+
+The `NSPrivacyCollectedDataTypes` array should contain the following `NSPrivacyCollectedDataType` items: `NSPrivacyCollectedDataTypePreciseLocation`, `NSPrivacyCollectedDataTypeCoarseLocation`,`NSPrivacyCollectedDataTypeDeviceID`, `NSPrivacyCollectedDataTypeProductInteraction`, `NSPrivacyCollectedDataTypeAdvertisingData`. The values for `NSPrivacyCollectedDataTypeLinked` and `NSPrivacyCollectedDataTypeTracking` in each entry depend on your demand partners, you should consult with them to provide proper info.   The `NSPrivacyCollectedDataTypePurposes` array should contain `NSPrivacyCollectedDataTypePurposeThirdPartyAdvertising` and/or other purposes your demand partners require. Neither SDK nor Server process data.
+
+The `NSPrivacyAccessedAPITypes` array should contain the `NSPrivacyAccessedAPICategoryUserDefaults` item. The `NSPrivacyAccessedAPITypeReasons` for this item should contain `CA92.1` value.
+
+
 ## Performance
 
 ### Does the SDK do any work in the background?  If so, what is it?
