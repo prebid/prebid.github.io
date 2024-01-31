@@ -66,6 +66,7 @@ pbjs.setConfig({
 #### OpenRTB 2.5 supported parameters
 
 The adapter for Prebid.js supports the following options:
+
 * `site.pagecat`
 * `site.content.cat`
 * `site.content.language`
