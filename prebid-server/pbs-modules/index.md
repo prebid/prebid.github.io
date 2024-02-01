@@ -20,7 +20,7 @@ If you're looking for bidder adapter parameters, see [Bidders' Params](/dev-docs
 There are two types of modules:
 
 1. General Modules - these plug into various stages within the main auction workflow and can affect any part of the request or response.
-1. Privacy Modules - these are more limited, plugging into the [Activity Controls](/prebid-server/pbs-activitycontrols.html) system to delegate decisions about potentially privacy-sensitive scenarios.
+1. Privacy Modules - these are more limited, plugging into the [Activity Controls](/prebid-server/features/pbs-activitycontrols.html) system to delegate decisions about potentially privacy-sensitive scenarios.
 
 The full list of modules:
 

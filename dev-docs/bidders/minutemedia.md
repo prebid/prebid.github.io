@@ -9,6 +9,7 @@ multiformat_supported: will-bid-on-any
 schain_supported: true
 tcfeu_supported: true
 usp_supported: true
+pbs: true
 floors_supported: true
 userIds: all
 fpd_supported: true
