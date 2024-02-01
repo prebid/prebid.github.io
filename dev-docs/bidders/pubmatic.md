@@ -23,26 +23,30 @@ multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
+### Prebid Server Note
+
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description        | Example                      | Type     |
 |---------------|----------|--------------------|------------------------------|----------|
-| `publisherId` | required | Publisher ID          | `'32572'`                 | `string` |
+| `publisherId` | required | Publisher ID       | `'32572'`                    | `string` |
 | `adSlot`      | optional | Ad Slot Name (see below)| `'38519891'`            | `string` |
-| `pmzoneid`    | optional | Zone ID               | `'zone1,zone2'`           | `string` |
-| `lat`         | optional | Latitude <br/> (Supported until Prebid version 7.54.4 and starting from Prebid version 8.11.0 we have option to configure this using ortb2.(device OR user))              | `'40.712775'`             | `string` |
+| `pmzoneid`    | optional | Zone ID            | `'zone1,zone2'`              | `string` |
+| `lat`         | optional | Latitude <br/> (Supported until Prebid version 7.54.4 and starting from Prebid version 8.11.0 we have option to configure this using ortb2.(device OR user))             | `'40.712775'`             | `string` |
 | `lon`         | optional | Longitude <br/> (Supported until Prebid version 7.54.4 and starting from Prebid version 8.11.0 we have option to configure this using ortb2.(device OR user))            | `'-74.005973'`            | `string` |
-| `yob`         | optional | Year of Birth         | `'1982'`                  | `string` |
-| `gender`      | optional | Gender                | `'M'`                     | `string` |
-| `kadpageurl`  | optional | Overrides Page URL    |  `'http://www.yahoo.com/'`| `string` |
-| `kadfloor`    | optional | Bid Floor             | `'1.75'`                  | `string` |
-| `currency`    | optional | Bid currency           | `'AUD'` (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.)                    | `string` |
-| `dctr`        | optional | Deal Custom Targeting <br/> (Value configured in each adunit will be passed on inside adunit configs i.e. imp.ext) | `'key1=123|key2=345'`        | `string` |
-| `acat`    | optional | Allowed categories  <br/> (List of allowed categories for a given auction to be sent in either using ortb2 config (request.ext.prebid.bidderparams.pubmatic.acat) or using slot level params. If categories sent using both then priority will be given to ortb2 over slot level params.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]` | `array of strings` |
-| `bcat`    | optional | Blocked IAB Categories  <br/> (Values from all slots will be combined and only unique values will be passed. An array of strings only. Each category should be a string of a length of more than 3 characters.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`     | `array of strings` |
-| `deals`    | optional | PMP deals  <br/> (Values from each slot will be passed per slot. An array of strings only. Each deal-id should be a string of a length of more than 3 characters.) | `[ 'deal-id-5', 'deal-id-6', 'deal-id-7' ]`     | `array of strings` |
-| `outstreamAU`    | optional | Oustream AdUnit described in Blue BillyWig UI. This field is mandatory if mimeType is described as video and context is outstream (i.e., for outstream videos)           | `'renderer_test_pubmatic'`           | `string` |
+| `yob`         | optional | Year of Birth      | `'1982'`                     | `string` |
+| `gender`      | optional | Gender             | `'M'`                        | `string` |
+| `kadpageurl`  | optional | Overrides Page URL |  `'http://www.yahoo.com/'`   | `string` |
+| `kadfloor`    | optional | Bid Floor          | `'1.75'`                     | `string` |
+| `currency`    | optional | Bid currency       | `'AUD'` (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.)                | `string` |
+| `dctr`        | optional | Deal Custom Targeting <br/> (Value configured in each adunit will be passed on inside adunit configs i.e. imp.ext), `'key1=123|key2=345'`                                | `string` |
+| `acat`        | optional | Allowed categories  <br/> (List of allowed categories for a given auction to be sent in either using ortb2 config (request.ext.prebid.bidderparams.pubmatic.acat) or using slot level params. If categories sent using both then priority will be given to ortb2 over slot level params.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]` | `array of strings` |
+| `bcat`        | optional | Blocked IAB Categories  <br/> (Values from all slots will be combined and only unique values will be passed. An array of strings only. Each category should be a string of a length of more than 3 characters.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`     | `array of strings` |
+| `deals`       | optional | PMP deals  <br/> (Values from each slot will be passed per slot. An array of strings only. Each deal-id should be a string of a length of more than 3 characters.)       | `[ 'deal-id-5', 'deal-id-6', 'deal-id-7' ]`     | `array of strings` |
+| `outstreamAU` | optional | Oustream AdUnit described in Blue BillyWig UI. This field is mandatory if mimeType is described as video and context is outstream (i.e., for outstream videos)           | `'renderer_test_pubmatic'`           | `string` |
 
 ### Configuration
 
