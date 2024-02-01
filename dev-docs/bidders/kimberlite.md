@@ -17,14 +17,14 @@ floors_supported: true
 pbjs: true
 pbs: false
 prebid_member: false
-multiformat_supported: will-bid-on-one
+multiformat_supported: will-not-bid
 ortb_blocking_supported: partial
 sidebarType: 1
 ---
 
 ### Note
 
-The Kimberlite Bidding adapter requires setup before beginning. Please contact us at <dev@solta.io>.
+The Kimberlite Bidding adapter requires setup. Please contact us at <dev@solta.io>.
 
 ### Bid Params
 
