@@ -24,9 +24,9 @@ To start using this module, please contact [The Media Trust](https://mediatrust.
 
 1. Build Prebid bundle with The Media Filter module included.  
 
-```bash
-gulp build --modules=mediafilterRtdProvider
-```
+    ```bash
+    gulp build --modules=mediafilterRtdProvider
+    ```
 
 2. Include the bundled script in your application.
 
