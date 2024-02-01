@@ -5,7 +5,7 @@ description: Prebid Publir Bidder Adapter
 multiformat_supported: will-bid-on-any
 pbjs: true
 biddercode: publir
-media_types: banner
+media_types: banner, video
 schain_supported: true
 tcfeu_supported: false
 gvl_id: none
@@ -13,7 +13,8 @@ usp_supported: true
 floors_supported: true
 userIds: all
 sidebarType: 1
-safeframes_ok: true
+safeframes_ok: true,
+coppa_supported: true
 ---
 
 ### Note
