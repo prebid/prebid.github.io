@@ -21,9 +21,9 @@ multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
 ---
 
-### Note:
+### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at partner@adview.com
+The Example Bidding adapter requires setup before beginning. Please contact us at <partner@adview.com>
 
 ### Bid Params
 
