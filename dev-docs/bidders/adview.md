@@ -17,6 +17,7 @@ pbjs: false
 pbs: true
 pbs_app_supported: true
 prebid_member: false
+safeframes_ok: true
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
 ---
