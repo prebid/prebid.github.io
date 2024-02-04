@@ -44,6 +44,7 @@ The following configuration parameters are available:
 
 ### Sample Eids
 Below is an example of the EIDs stored in Local Store (customerEids)
+
 ```json
 [
    {
@@ -70,4 +71,3 @@ Below is an example of the EIDs stored in Local Store (customerEids)
    }
 ]
 ```
-
