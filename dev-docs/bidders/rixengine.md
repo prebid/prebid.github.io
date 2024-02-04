@@ -30,7 +30,7 @@ RixEngine Prebid.js adapter supports `banner`, video and native is not supported
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                                           | Example     | Type     |
 |---------------|----------|-------------------------------------------------------|-------------|----------|
-| endpoint         | required |  The endpoint created on RixEngine platform, please get them from the platform or contact RixEngine team    | 'http://demo.svr.rixengine.com/rtb'   | string   |
+| endpoint         | required |  The endpoint created on RixEngine platform, please get them from the platform or contact RixEngine team    | [http://demo.svr.rixengine.com/rtb](http://demo.svr.rixengine.com/rtb) | string   |
 | sid         | optional | The sid created on RixEngine platform, please get them from the platform or contact RixEngine team | '36529'   | string   |
 | token   | optional | The token created on RixEngine platform, please get them from the platform or contact RixEngine team | 'dddf27442edda20f7291c27e0fbafcbf' | string   |
 | bidfloor          | optional | Minimum bid for this impression expressed in CPM.  |  0.01         | float   |
