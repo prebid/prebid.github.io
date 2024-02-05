@@ -68,10 +68,10 @@ var adUnitsBannerOnly = [
 | `video.w`              | recommended | Width of the video player in device independent pixels (DIPS).  | `640`                         |
 | `video.h`              | recommended | Height of the video player in device independent pixels (DIPS). | `480`                         |
 | `video.placement`      | recommended | Video placement type. (see OpenRTB v2.5 section 5.9 for options)  | `3` |
-| `video.plcmt`          | recommended | Placement type for the impression. (See OpenRTB v2.6 Plcmt Subtypes - Video)            | `5`                           |
+| `video.plcmt`          | recommended | Placement type for the impression. (See [OpenRTB v2.6](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md) Plcmt Subtypes - Video)          | `5`                           |
 | `video.playerSize`     | optional    | Array of supported sizes of the player.                         | `[[300, 250], [300, 600]]`    |
 | `video.playbackmethod` | optional    | Playback methods that may be in use.(see OpenRTB v2.5 section 5.10 for options)  | `[1, 2, 3, 4]`                           |
-| `video.protocols`      | optional    | Supported video bid response protocol values. See [Video Protocols](#video-protocols) | `[2, 3, 5, 6, 7, 8]`                       |
+| `video.protocols`      | optional    | Supported video bid response protocol values are 2, 3, 5, 6, 7, 8. (see OpenRTB v2.5 section 5.8 for options) | `[2, 3, 5, 6, 7, 8]`                       |
 | `video.maxduration`    | optional    | Maximum video ad duration in seconds                            | `30`                          |
 | `video.minduration`    | optional    | Minimum video ad duration in seconds                            | `1`                          |
 | `video.skip`           | optional    | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes | `0` |
@@ -87,7 +87,7 @@ var adUnitsBannerOnly = [
 | `video.playbackend`    | optional    | The event that causes playback to end. (see OpenRTB v2.5 section 5.11 for options)  | `1` |
 | `video.delivery`       | optional    | Supported delivery methods (1 = streaming, 2 = progressive, 3 = download). If none specified, assume all are supported. | `[1, 2]`                      |
 | `video.pos`            | optional    | Ad position on screen. (see OpenRTB v2.5 section 5.4 for options)     | `1`                           |
-| `video.api`            | optional    | List of supported API frameworks for this impression. Refer to [API Frameworks](#api-frameworks) | `[2, 7]`                   |
+| `video.api`            | optional    | List of supported API frameworks for this impression. Supported API frameworks are between 1-7 (See [OpenRTB v2.6](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md) List API Frameworks) | `[2, 7]`                   |
 
 ### Example
 
@@ -124,28 +124,3 @@ var adUnits = [
         ...
     }];
 ```
-
-### Video Protocols
-
-{: .table .table-bordered .table-striped }
-| Value | Description                                              |
-|-------|----------------------------------------------------------|
-| `2`   | VAST 2.0                                                 |
-| `3`   | VAST 3.0                                                 |
-| `5`   | VAST 2.0 Wrapper                                         |
-| `6`   | VAST 3.0 Wrapper                                         |
-| `7`   | VAST 4.0                                                 |
-| `8`   | VAST 4.0 Wrapper                                         |
-
-#### API Frameworks
-
-{: .table .table-bordered .table-striped }
-| Value | Description |
-|-------|-------------|
-| `1`   | VPAID 1.0   |
-| `2`   | VPAID 2.0   |
-| `3`   | MRAID-1     |
-| `4`   | ORMMA       |
-| `5`   | MRAID-2     |
-| `6`   | MRAID-3     |
-| `7`   | OMID-1      |
