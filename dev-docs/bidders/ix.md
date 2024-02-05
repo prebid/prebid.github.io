@@ -37,8 +37,8 @@ privacy_sandbox: paapi, topics
   * [Global data](#prebid-fpd-module)
   * [Index bidder-specific data](#index-bidder-specific-fpd-module)
   * [AdUnit-specific data](#adunit-specific-data)
-* [Monetize instream video](#instream-video)
-* [Index's outstream video player](#index-outstream-video-player)
+* [Monetize instream video](#monitize-instream-video)
+* [Index's outstream video player](#index's-outstream-ad-unit)
 * [Prebid Native configuration](#prebid-native-configuration)
 * [Protected Audience API support](#protected-audience-api-support)
 * [Signal inventory using  external IDs](#signal-inventory-using-external-ids)
@@ -214,8 +214,6 @@ ortb2Imp: {
 }
 ```
 
-<a id="instream-video"></a>
-
 ## Monetize instream video 
 
 Unlike Outstream Video, instream video does not use the Prebid Universal Creative. Instead, video bids provide VAST that Prebid caches to obtain a cache ID that can be retrieved with a URL. The cache ID is passed as a key value to the ad server.  
@@ -233,8 +231,6 @@ To monetize instream video, complete the following steps:
    ```
 
 2. Set up your line items in Google Ad manger by following the instructions in Prebid's [Setting Up Video In GAM](/adops/setting-up-prebid-video-in-dfp.html) documentation. 
-
-<a id="index-outstream-video-player"></a>
 
 ## Index's outstream ad unit
 
