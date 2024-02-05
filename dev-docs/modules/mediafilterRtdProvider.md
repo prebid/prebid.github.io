@@ -18,7 +18,7 @@ sidebarType : 1
 As malvertising, scams, and controversial and offensive ad content proliferate across the digital media ecosystem, publishers need advanced controls to both shield audiences from malware attacks and ensure quality site experience. Via a speedy script, The Media Trust empowers publisher Ad/Revenue Operations teams to block malware, high-risk ad platforms, heavy ads, ads with sensitive or objectionable content, and custom lists (e.g., competitors)—all in real-time. Customizable replacement code calls for a new ad to ensure impressions are still monetized.
 
 {: .alert.alert-warning :}
-To start using this module, please contact [The Media Trust](https://mediatrust.com/how-we-help/media-filter/ "The Media Trust") to get a script and configuration hash for module configuration.
+To start using this module, please contact [The Media Trust](https://mediatrust.com/how-we-help/media-filter/) to get a script and configuration hash for module configuration.
 
 ## Integration
 
@@ -30,7 +30,7 @@ To start using this module, please contact [The Media Trust](https://mediatrust.
 
 2. Include the bundled script in your application.
 
-# Configuration
+## Configuration
 
 Add configuration entry to `realTimeData.dataProviders` for The Media Filter module.
 
@@ -40,7 +40,8 @@ pbjs.setConfig({
         dataProviders: [{
             name: 'mediafilter',
             params: {
-                configurationHash: '<configurationHash>', // Replace <configurationHash> with the configuration hash provided by your sales rep
+                // Replace <configurationHash> with the configuration hash provided by your sales rep
+                configurationHash: '<configurationHash>'
             }
         }]
     }
