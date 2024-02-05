@@ -8,7 +8,6 @@ media_types: banner, video
 multiformat_supported: will-bid-on-any
 schain_supported: true
 tcfeu_supported: true
-gpp_supported: true
 usp_supported: true
 pbs: true
 floors_supported: true
