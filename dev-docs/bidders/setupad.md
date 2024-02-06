@@ -2,7 +2,7 @@
 layout: bidder
 title: Setupad
 description: Setupad bid adapter
-gvl_id: dev-docs/bidders/setupad.md
+gvl_id: 1241
 tcfeu_supported: true
 usp_supported: true
 coppa_supported: false
@@ -41,7 +41,7 @@ pbjs.setConfig({
     iframeEnabled: true,
     filterSettings: {
       iframe: {
-        bidders: '*', // '*' means all bidders
+        bidders: ['setupad'],
         filter: 'include',
       },
     },
