@@ -25,7 +25,6 @@ sidebarType: 1
 
 The Lucead Bidding adapter requires setup before beginning. Please contact us at [aymeric@lucead.com](mailto:aymeric@lucead.com).
 
-
 ### Bid Params
 
 | Name          | Scope    | Description           | Example   | Type      |
