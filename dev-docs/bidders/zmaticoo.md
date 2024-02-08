@@ -23,8 +23,8 @@ To use this bidder you will need a valid pubId. For further information, please 
 | Name                 | Scope    | Description                                                                                                                | Example                 | Type           |
 |----------------------|----------|----------------------------------------------------------------------------------------------------------------------------|-------------------------|----------------|
 | `pubId`              | required | The pubId provided by zmaticoo                                                                                             |`"prebid_test"`          | `string`       |
-| `user`               | required | The object containing user data (See OpenRTB spec)                                                                         | `user: {}`              | `object`       |
-| `device`             | required | The object containing device data (See OpenRTB spec)                                                                       | `device: {}`            | `object`       |
+| `user`               | optional | The object containing user data (See OpenRTB spec)                                                                         | `user: {}`              | `object`       |
+| `device`             | optional | The object containing device data (See OpenRTB spec)                                                                       | `device: {}`            | `object`       |
 | `site`               | optional | The object containing site data (See OpenRTB spec)                                                                         | `site: {}`              | `object`       |
 | `app`                | optional | The object containing app data (See OpenRTB spec)                                                                          | `app: {}`               | `object`       |
 | `test`               | optional | Flag which will induce a sample bid response when true; only set to true for testing purposes (1 = true, 0 = false)        | `1`                     | `integer`      |
@@ -53,14 +53,9 @@ To use this bidder you will need a valid pubId. For further information, please 
     },
     bids: [{
         bidder: "zmaticoo",
-        bidId: '100001222',
         params: {
             pubId: 'prebid-test',
-            tagid:"001",
-            bidfloor:1,
-            device: {
-
-            }
+            tagid:"001"
         },
     }]
 }];
@@ -100,13 +95,9 @@ To use this bidder you will need a valid pubId. For further information, please 
     },
     bids: [{
         bidder: "zmaticoo",
-        bidId: '100001222',
         params: {
             pubId: 'prebid-test',
-            device: {
-            },
-            tagid:"001",
-            bidfloor:1
+            tagid:"001"
         }
     }]
 }];
