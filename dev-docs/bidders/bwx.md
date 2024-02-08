@@ -22,5 +22,5 @@ safeframes_ok: true
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                   | Example                            | Type      |
 |-------------|----------|-------------------------------|------------------------------------|-----------|
-| `env`       | required | Environment name              | `bwx-stage`                        | `string`  |
 | `pid`       | required | unique placement ID           | `aa8210e2013wc095fe9dba67981040b0` | `string`  |
+| `env`       | optional | Environment name              | `bwx-stage`                        | `string`  |
