@@ -186,9 +186,9 @@ var adaptersSupportingGpp=[];
 var idx_gdpr=0;
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% for item in bidder_pages %}
-    {% if item.gpp_supported == true %}
+    {% if item.gpp_supported == true or item.gpp_sids %}
     adaptersSupportingGpp[idx_gdpr]={};
-    adaptersSupportingGpp[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
+    adaptersSupportingGpp[idx_gdpr].href="/dev-docs/bidders/{{item.biddercode}}";
     adaptersSupportingGpp[idx_gdpr].text="{{item.title}}";
     idx_gdpr++;
     {% endif %}
