@@ -22,7 +22,7 @@ To use this bidder you will need a valid pubId. For further information, please 
 {: .table .table-bordered .table-striped }
 | Name                 | Scope    | Description                                                                                                                | Example                 | Type           |
 |----------------------|----------|----------------------------------------------------------------------------------------------------------------------------|-------------------------|----------------|
-| `pubId`              | required | The pubId provided by zmaticoo                                                                                    |        |`"prebid_test"`          | `string`       |
+| `pubId`              | required | The pubId provided by zmaticoo                                                                                             |`"prebid_test"`          | `string`       |
 | `user`               | required | The object containing user data (See OpenRTB spec)                                                                         | `user: {}`              | `object`       |
 | `device`             | required | The object containing device data (See OpenRTB spec)                                                                       | `device: {}`            | `object`       |
 | `site`               | optional | The object containing site data (See OpenRTB spec)                                                                         | `site: {}`              | `object`       |
