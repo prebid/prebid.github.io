@@ -6,7 +6,7 @@ biddercode: contentexchange
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-tcfeu_supported: false
+tcfeu_supported: true
 pbjs: true
 pbs: false
 pbs_app_supported: false
