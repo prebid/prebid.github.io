@@ -132,4 +132,4 @@ Below, these file demos help you integrate with no Admanager
 |----------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | `Banner`             | `https://creative.cdnyeah.com/tpl/renderer/template/banner-noadserver.md` | `https://creative.cdnyeah.com/tpl/renderer/template/banner-noadserver.html`        |
 | `outstream video`    | `https://creative.cdnyeah.com/tpl/renderer/template/video-outstream-noadserver.md` | `https://creative.cdnyeah.com/tpl/renderer/template/video-outstream-noadserver.html`    |
-| `instream video`     | `https://creative.cdnyeah.com/tpl/renderer/template/video-instream-noadserver.md` | `https://creative.cdnyeah.com/tpl/renderer/template/video-instream-noadserver.html `   |
+| `instream video`     | `https://creative.cdnyeah.com/tpl/renderer/template/video-instream-noadserver.md` | `https://creative.cdnyeah.com/tpl/renderer/template/video-instream-noadserver.html`   |
