@@ -33,7 +33,7 @@ const adUnits = [{
       sizes: [[240, 400]],
     }
   },
-  bids: [{
+  bids: [
     {
       bidder: 'yandex',
       params: {
@@ -41,7 +41,7 @@ const adUnits = [{
         cur: 'USD',
       },
     }
-  }]
+  ]
 }];
 
 // Native
