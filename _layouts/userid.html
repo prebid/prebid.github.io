@@ -1,0 +1,57 @@
+{% include head.html %}
+
+{% include nav.html %}
+
+
+<div class="container pb-docs-container">
+
+  <div class="row ">
+
+            <div class="col-lg-3 sidebar" id="sidebar">
+
+        <div>
+          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#sidebarContent" aria-controls="sidebarContent" aria-expanded="false" aria-label="Toggle Sidebar navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse d-lg-block" id="sidebarContent">
+                    {% include left_nav.html %}
+          </div>
+        </div>
+
+            </div>
+
+    <div class="col-lg-9">
+      <div class="pb-content" markdown="1">
+
+          <div class="row">
+
+            <div class="col-md-12" role="main">
+              <div class="bs-docs-section">
+                <p><a href="/dev-docs/modules/userId.html#user-id-sub-modules">Back to User ID Module</a></p>
+
+                <h2>{{ page.title }}</h2>
+
+                {{content}}
+
+                <p><a href="/dev-docs/modules/userId.html#user-id-sub-modules">Back to User ID Module</a></p>
+              </div>
+
+            </div>
+
+          </div>
+
+      </div>
+
+
+    </div>
+  </div>
+  <!--end row-->
+</div>
+  {% if page.title != "Credits" %}
+    {% if page.layout != "home" %}
+      {% include footer.html %}
+    {% endif %}
+  {% endif %}
+
+</body>
+</html>

@@ -5,35 +5,41 @@ description: Prebid APAC Digital Exchange Bidder Adapter
 pbjs: true
 biddercode: apacdex
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: false
 schain_supported: true
 usp_supported: true
 userIds: all
-getFloor: true
+floors_supported: true
+pbs: true
+pbs_app_supported: true
+sidebarType: 1
 ---
 
 ### Table of Contents
 
-- [Bid Params](#apacdex-bid-params)
-- [Geo Object](#apacdex-geo-object)
-- [Video Ad Unit](#apacdex-video-ad-unit)
-- [Sample Banner Ad Unit](#apacdex-sample-banner-ad-unit)
-- [Sample Video Ad Unit: Instream](#apacdex-sample-instream-ad-unit)
-- [Sample Video Ad Unit: Outstream](#apacdex-sample-outstream-ad-unit)
+- [Table of Contents](#table-of-contents)
+- [Bid Params](#bid-params)
+- [Geo Object](#geo-object)
+- [Video Ad Unit](#video-ad-unit)
+- [Sample Banner Ad Unit](#sample-banner-ad-unit)
+- [Sample Video Ad Unit: Instream](#sample-video-ad-unit-instream)
+- [Sample Video Ad Unit: Outstream](#sample-video-ad-unit-outstream)
 
-<a name="apacdex-bid-params" />
+<a name="apacdex-bid-params"></a>
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-|  Name        | Scope    | Description                                                                         | Example                                           | Type     |
-|--------------|----------|-------------------------------------------------------------------------------------|---------------------------------------------------|----------|
-| `siteId`     | required | Publisher site ID from Apacdex                                                      | `'apacdex1234'`                                   | `string` |
-| `floorPrice` | optional | CPM bidfloor in USD                                                                 | `0.03`                                            | `float`  |
-| `geo`        | optional | GEO data of device. See [Geo Object](#apacdex-geo-object) for details.              | `{"lat":17.98928,"lon":99.7741712,"accuracy":20}` | `object` |
+|  Name         | Scope    | Description                                                                         | Example                                           | Type     |
+|---------------|----------|-------------------------------------------------------------------------------------|---------------------------------------------------|----------|
+| `placementId`*| required | Placement ID provided by Apacdex                                                    | `'plc100000'`                                     | `string` |
+| `siteId`*     | required | Publisher site ID from Apacdex                                                      | `'apacdex1234'`                                   | `string` |
+| `floorPrice`  | optional | CPM bidfloor in USD                                                                 | `0.03`                                            | `float`  |
+| `geo`         | optional | GEO data of device. See [Geo Object](#apacdex-geo-object) for details.              | `{"lat":17.98928,"lon":99.7741712,"accuracy":20}` | `object` |
 
+(*) Please do not use `placementId` and `siteId` at the same time.
 
-<a name="apacdex-geo-object" />
+<a name="apacdex-geo-object"></a>
 
 ### Geo Object
 
@@ -48,7 +54,7 @@ If the publisher has GEO data of the user's device. Make it available through th
 | `lastfix`    | optional | Number of seconds since this geolocation fix was established. Note that devices may cache location data across multiple fetches. Ideally, this value should be from the time the actual fix was taken.                                                                                     | `30`            | `integer` |
 | `utcoffset`  | optional | Local time as the number +/- of minutes from UTC.                                                                                                                                                                                                                                          | `-420`          | `integer` |
 
-<a name="apacdex-video-ad-unit" />
+<a name="apacdex-video-ad-unit"></a>
 
 ### Video Ad Unit
 
@@ -59,9 +65,9 @@ Publishers declare video inventory by passing the following parameters via media
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | `context` | required | instream or outstream |`"outstream"` | `string` |
 | `playerSize`| required | width, height of the player in pixels | `[640,360]` - will be translated to w and h in bid request | `array<integers>` |
-| `mimes` | required | List of content MIME types supported by the player (see openRTB v2.5 for options) | `["video/mp4"]`| `array<string>`|
-| `protocols` | required | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | `[2,3,5,6]` | `array<integers>`|
-| `api` | required | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2 | `[2]` |  `array<integers>` |
+| `mimes` | recommended | List of content MIME types supported by the player (see openRTB v2.5 for options) | `["video/mp4"]`| `array<string>`|
+| `protocols` | recommended | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | `[2,3,5,6]` | `array<integers>`|
+| `api` | recommended | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2 | `[2]` |  `array<integers>` |
 | `maxduration` | recommended | Maximum video ad duration in seconds. | `30` | `integer` |
 | `minduration` | recommended | Minimum video ad duration in seconds | `6` | `integer` |
 | `playbackmethod` | recommended | Playback methods that may be in use. Only one method is typically used in practice. (see openRTB v2.5 section 5.10 for options)| `[2]`| `array<integers>` |
@@ -74,10 +80,11 @@ Publishers declare video inventory by passing the following parameters via media
 
 Lists of values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) documentation as referenced above.
 
-<a name="apacdex-sample-banner-ad-unit" />
+<a name="apacdex-sample-banner-ad-unit"></a>
 
 ### Sample Banner Ad Unit
-```
+
+```javascript
 var adUnits = [
   {
     code: 'test-div',
@@ -99,10 +106,11 @@ var adUnits = [
 ];
 ```
 
-<a name="apacdex-sample-instream-ad-unit" />
+<a name="apacdex-sample-instream-ad-unit"></a>
 
 ### Sample Video Ad Unit: Instream
-```
+
+```javascript
 var instreamAdUnit = {
   code: 'test-div',
   sizes: [[640, 480]],
@@ -133,13 +141,15 @@ var instreamAdUnit = {
   ]
 };
 ```
-mediaTypes.video object reference to section 3.2.7 Object: Video in the OpenRTB 2.5 document
+
+`mediaTypes.video` object reference to section 3.2.7 Object: Video in the OpenRTB 2.5 document
 You must review all video parameters to ensure validity for your player and DSPs
 
-<a name="apacdex-sample-outstream-ad-unit" />
+<a name="apacdex-sample-outstream-ad-unit"></a>
 
 ### Sample Video Ad Unit: Outstream
-```
+
+```javascript
 var outstreamAdUnit = {
   code: 'test-div',
   sizes: [[410, 231]],
@@ -169,5 +179,6 @@ var outstreamAdUnit = {
   ]
 };
 ```
-mediaTypes.video object reference to section 3.2.7 Object: Video in the OpenRTB 2.5 document
+
+`mediaTypes.video` object reference to section 3.2.7 Object: Video in the OpenRTB 2.5 document
 You must review all video parameters to ensure validity for your player and DSPs

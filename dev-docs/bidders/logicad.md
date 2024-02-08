@@ -6,11 +6,12 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 biddercode: logicad
-bidder_supports_deals: false
+deals_supported: false
 media_types: banner, native
 userIds: all
-gdpr_supported: false
+tcfeu_supported: false
 prebid_member: false
+sidebarType: 1
 ---
 
 

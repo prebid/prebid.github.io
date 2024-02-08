@@ -6,17 +6,26 @@ sidebarType: 6
 ---
 
 # Prebid Multi-Format
-{:.no_toc}
 
-Ad Units that support multiple formats are supported by Prebid.js. Prebid Server support is coming soon.
+Ad Units that support multiple formats are supported by Prebid.js and Prebid Server.
+
+How precisely multiformat is supported is defined by each bid adapter on their parameter page in the "Multi Format Support" field. These are the possible values:
+
+- will-bid-on-any: the adapter will consider all supported formats and bid on one or more.
+- will-bid-on-one: the adapter will consider only one of the supported formats for each auction.
+- will-not-bid: the adapter will not bid on any adunits with more than one format.
 
 ## Prebid.js
+[Bid adapters](/dev-docs/bidders.html) declare which formats (banner, video, and/or native) they're ready to receive.
 
 ### Adops
 
-- [Setting up Multi-Format in Google Ad Manager](/adops/setting-up-prebid-multi-format-in-dfp.html)
+- [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
 
 ### Developers
 
 - [Show Multi-Format Ads with Prebid.js](/dev-docs/show-multi-format-ads.html)
 
+## Prebid Server
+
+[Bid adapters](/dev-docs/pbs-bidders.html) declare which formats (banner, video, and/or native) they're ready to receive.

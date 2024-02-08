@@ -2,12 +2,12 @@
 <html lang="en" class="html--no-js">
 
 <head>
-{% include head--common.html %}    
+{% include head--common.html %}
     <!--production version of prebid.js-->
-    <script async src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
-    
+    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+
     <!--flowplayer & prebid js code-->
-    <script>
+    <script type="text/plain" class="optanon-category-C0003">
 		var pbjs = pbjs || {};
 		pbjs.que = pbjs.que || [];
 		iosDevice = !!navigator.platform.match(/iPhone|iPod|iPad/);
@@ -79,7 +79,7 @@
 		});
 
 	</script>
-    
+
 </head>
 
 <body>

@@ -4,6 +4,7 @@ title: Adoppler
 pbs: true
 media_types: video
 biddercode: adoppler
+sidebarType: 1
 ---
 
 ### Bid Params

@@ -22,8 +22,8 @@ The API endpoints recognized by Prebid Server:
 | [GET /getuids](/prebid-server/endpoints/pbs-endpoint-getuids.html) | Parses the `uids` cookie and returns JSON. |
 | [GET /status](/prebid-server/endpoints/pbs-endpoint-status.html) | A health check. |
 | [GET /info](/prebid-server/endpoints/info/pbs-endpoint-info.html) | Returns various information about how the server is configured. |
-| [GET /event](/prebid-server/endpoints/pbs-endpoint-event.html) | (PBS-Java only) Alerts Prebid Server to process an event. |
-| [POST /vtrack](/prebid-server/endpoints/pbs-endpoint-event.html) | (PBS-Java only) Cache VAST XML after inserting tracking string. |
+| [GET /event](/prebid-server/endpoints/pbs-endpoint-event.html) | Alerts Prebid Server to process an event. |
+| [POST /vtrack](/prebid-server/endpoints/pbs-endpoint-event.html) | Cache VAST XML after inserting tracking string. |
 | [/currency/rates](/prebid-server/endpoints/pbs-endpoint-admin.html) | (Admin port only) Retrieves the server's current currency conversion rates. |
 
 ## Prebid Cache

@@ -7,10 +7,12 @@ page_type: module
 module_type: rtd
 module_code : dgkeywordRtdProvider
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 
 # Digital Garage Keyword Module
+
 {:.no_toc}
 
 * TOC
@@ -18,13 +20,13 @@ sidebarType : 1
 
 ## Integration
 
-1) Compile the Digital Garage Keyword Module and Appnexus Bid Adapter into your Prebid build:  
+1. Compile the Digital Garage Keyword Module and Appnexus Bid Adapter into your Prebid build:  
 
-```
-gulp build --modules="dgkeywordRtdProvider,appnexusBidAdapter,..."  
-```
+    ```bash
+    gulp build --modules="dgkeywordRtdProvider,appnexusBidAdapter,..."  
+    ```
 
-2) Use `setConfig` to instruct Prebid.js to initilize the dgkeyword module, as specified below. 
+2. Use `setConfig` to instruct Prebid.js to initilize the dgkeyword module, as specified below.
 
 ## Configuration
 
@@ -55,4 +57,3 @@ Syntax details:
 | waitForIt | Boolean | Should be `true` if there's an `auctionDelay` defined (optional) | `false` |
 | params  | Object |   |   |
 | params.timeout  | Integer |timeout (ms)| 1000 |
-

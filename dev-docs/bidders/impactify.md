@@ -3,20 +3,22 @@ layout: bidder
 title: Impactify
 description: Prebid Impactify Bidder Adapter
 pbjs: true
-pbs: false
+pbs: true
 biddercode: impactify
-gdpr_supported: true
+tcfeu_supported: true
 tcf2_supported: true
 usp_supported: true
 schain_supported: true
 coppa_supported: true
 media_types: video
+userIds: criteo, id5Id, pubCommonId, unifiedId, uid2, netId
 gvl_id: 606
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Impactify adaptator requires setup and validation from the Impactify team. Simply email us your contact details at support@impactify.io and we'll make sure we'll connect you within 48h.
+The Impactify adaptator requires setup and validation from the Impactify team. Simply email us your contact details at <support@impactify.io> and we'll make sure we'll connect you within 48h.
 
 ### Bid Params
 
@@ -31,9 +33,17 @@ The Impactify adaptator requires setup and validation from the Impactify team. S
 
 Impactify recommends the UserSync configuration below. Without it, the Impactify adapter will not be able to perform user syncs, which lowers match rate and reduces monetization.
 
+Note : Impactify adapter needs storage access to work properly (Do not forget to set storageAllowed to true).
+
 For Prebid.js v1.15.0 and later:
 
 ```javascript
+pbjs.bidderSettings = {
+    impactify: {
+        storageAllowed: true // Mandatory
+    }
+};
+
 pbjs.setConfig({
   userSync: {
     filterSettings: {
@@ -49,6 +59,13 @@ pbjs.setConfig({
 For Prebid.js v1.14.0 and before:
 
 ```javascript
+
+pbjs.bidderSettings = {
+    impactify: {
+        storageAllowed: true // Mandatory
+    }
+};
+
 pbjs.setConfig({
    userSync: {
     iframeEnabled: true,

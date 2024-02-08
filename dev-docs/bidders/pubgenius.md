@@ -5,12 +5,13 @@ description: Prebid pubGENIUS Bidder Adaptor
 pbjs: true
 biddercode: pubgenius
 media_types: banner
-getFloor: true
-gdpr_supported: true
+floors_supported: true
+tcfeu_supported: false
 usp_supported: true
 schain_supported: true
 coppa_supported: true
 userIds: unifiedId
+sidebarType: 1
 ---
 
 ### Bid Params

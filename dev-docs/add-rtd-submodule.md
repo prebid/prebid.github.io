@@ -6,16 +6,17 @@ sidebarType: 1
 ---
 
 # How to Add a Real Time Data Submodule
+
 {:.no_toc}
 
 Sub-modules interact with the Real-Time Data (RTD) core module to
 add data to bid requests or add targeting values for the primary ad server.
 
-
 * TOC
 {:toc }
 
 ## Overview
+
 The point of the Real Time Data (RTD) infrastructure is to make configuration consistent for publishers. Rather than having dozens of different modules with disparate config approaches, being a Real-Time Data sub-module means plugging into a framework
 for publishers to control how sub-modules behave. For example, publishers can define how long the auction can be delayed and give some
 sub-modules priority over others.
@@ -40,13 +41,13 @@ Here is the flow for how the RTD-core module interacts with its sub-modules:
 The activities performed by the RTD-core module are on the left-hand side, while the functions
 that can be provided by your RTD sub-module are on the right-hand side. Note that you don't need to implement all of the functions - you'll want to plan out your functionality and develop the appropriate functions.
 
-
 ## Creating a Sub-Module
 
 When you create a Real-Time Data sub-module, you will be operating under the umbrella of the Real-Time Data core module. Here are the services core provides:
-- your sub-module will be initialized as soon as pbjs.setConfig({realTimeData}) is called. If you can initialize at the time of code load, that can be done at the bottom of your javascript file.
-- whenever any of your functions is called, it will be passed the config params provided by the publisher. As a result, you should not call getConfig().
-- your functions will also be passed all available privacy information. As a result, you do not need to query to get GDPR, US Privacy, or any other consent parameters.
+
+* your sub-module will be initialized as soon as pbjs.setConfig({realTimeData}) is called. If you can initialize at the time of code load, that can be done at the bottom of your javascript file.
+* whenever any of your functions is called, it will be passed the config params provided by the publisher. As a result, you should not call getConfig().
+* your functions will also be passed all available privacy information. As a result, you do not need to query to get GDPR, US Privacy, or any other consent parameters.
 
 Working with any Prebid project requires using Github. In general, we recommend the same basic workflow for any project:
 
@@ -65,7 +66,8 @@ with the [module rules](/dev-docs/module-rules.html) that apply globally and to 
 Create a markdown file under `modules` with the name of the module suffixed with 'RtdProvider', e.g., `exRtdProvider.md`
 
 Example markdown file:
-{% highlight text %}
+
+```md
 # Overview
 
 Module Name: Ex Rtd Provider
@@ -76,7 +78,7 @@ Maintainer: prebid@example.com
 
 RTD provider for Example.com. Contact prebid@example.com for information.
 
-{% endhighlight %}
+```
 
 ### Step 2: Build the Module
 
@@ -90,40 +92,45 @@ In order to let RTD-core know where to find the functions in your sub-module, cr
 |  param name | type  | Scope | Description | Params |
 | :------------ | :------------ | :------ | :------ | :------ |
 | name  | string  | required | must match the name provided by the publisher in the on-page config | n/a |
-|  init | function | required | defines the function that does any auction-level initialization required | config, userConsent |
-|  getTargetingData  | function | optional | defines a function that provides ad server targeting data to RTD-core | adUnitArray, config, userConsent |
-|  getBidRequestData  | function | optional | defines a function that provides bid request data to RTD-core | reqBidsConfigObj, callback, config, userConsent  |
-|  onAuctionInitEvent | function | optional | listens to the AUCTION_INIT event and calls a sub-module function that lets it inspect and/or update the auction | auctionDetails, config, userConsent |
-|  onAuctionEndEvent | function |optional | listens to the AUCTION_END event and calls a sub-module function that lets it know when auction is done | auctionDetails, config, userConsent |
-|  onBidResponseEvent | function |optional | listens to the BID_RESPONSE event and calls a sub-module function that lets it know when a bid response has been collected | bidResponse, config, userConsent |
+| gvlid | number | optional | global vendor list ID for your submodule | n/a |
+| init | function | required | defines the function that does any auction-level initialization required | config, userConsent |
+| getTargetingData  | function | optional | defines a function that provides ad server targeting data to RTD-core | adUnitArray, config, userConsent |
+| getBidRequestData  | function | optional | defines a function that provides bid request data to RTD-core | reqBidsConfigObj, callback, config, userConsent  |
+| onAuctionInitEvent | function | optional | listens to the AUCTION_INIT event and calls a sub-module function that lets it inspect and/or update the auction | auctionDetails, config, userConsent |
+| onAuctionEndEvent | function |optional | listens to the AUCTION_END event and calls a sub-module function that lets it know when auction is done | auctionDetails, config, userConsent |
+| onBidRequestEvent | function |optional | listens to the BID_REQUESTED event and calls a sub-module function that lets it know when a bid is about to be requested | bidRequest, config, userConsent |
+| onBidResponseEvent | function |optional | listens to the BID_RESPONSE event and calls a sub-module function that lets it know when a bid response has been collected | bidResponse, config, userConsent |
 
 For example:
-{% highlight text %}
+
+```javascript
 export const subModuleObj = {
   name: 'ExampleRTDModule',
   init: init,
   getTargetingData: sendDataToModule
 };
-{% endhighlight %}
+```
 
 #### Register the submodule
 
 Register submodule to RTD-core:
 
-{% highlight text %}
+```javascript
 submodule('realTimeData', subModuleObject);
-{% endhighlight %}
+```
 
 #### User Consent
 
 Several of the interfaces get a `userConsent` object. It's an object that carries these attributes:
-- [gdpr](/dev-docs/modules/consentManagement.html#bidder-adapter-gdpr-integration) - GDPR
-- [usp](/dev-docs/modules/consentManagementUsp.html#bidder-adapter-us-privacy-integration) - US Privacy (aka CCPA)
-- [coppa](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa) - the Child Online Privacy Protection Act
+
+* [gdpr](/dev-docs/modules/consentManagement.html#bidder-adapter-gdpr-integration) - GDPR
+* [usp](/dev-docs/modules/consentManagementUsp.html#bidder-adapter-us-privacy-integration) - US Privacy (aka CCPA)
+* [coppa](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa) - the Child Online Privacy Protection Act
 
 These are provided so you can do the right thing with respect to regulations. The only privacy requirement imposed by the RTD-core is that sub-modules make make use of the StorageManager instead of attempting to access cookies or localstorage directly.
 
 #### The init() function
+
 1. This function receives module configuration and userConsent parameters
 2. If the function returns `false`, the submodule will be ignored.
 
@@ -135,7 +142,8 @@ This is the function that will allow RTD sub-modules to merge ad server targetin
 
 1. RTD-core will call this function with an array of adUnits, config, and userConsent as parameters
 2. Your sub-module should respond with per-adslot data that should be set as key values on the ad server targeting in this format:
-{% highlight text %}
+
+```json
 {
   "slotA":{
       "p":0.56,   // ad server targeting variable (e.g. p) for slotA is 0.56
@@ -144,11 +152,11 @@ This is the function that will allow RTD sub-modules to merge ad server targetin
       "p":0.824,  // ad server targeting variable (e.g. p) for slotB is 0.824
   }
 }
-{% endhighlight %}
+```
 
 **Code Example**
 
-{% highlight text %}
+```javascript
 /** @type {RtdSubmodule} */
 export const subModuleObj = {
   name: 'ExampleRTDModule',
@@ -168,32 +176,49 @@ function returnTargetingData(adUnits, config, userConsent) {
 }
 
 submodule('realTimeData', subModuleObj);
-{% endhighlight %}
+```
 
 #### getBidRequestData
 
 This is the function that will allow RTD sub-modules to modify the AdUnit object for each auction. It's called as part of the requestBids hook.
 
 1. RTD-core will call this function with:
-    - reqBidsConfigObj: the object that's passed to [`pbjs.requestBids`](). Note that several auctions can happen concurrently, so the sub-module must be ready to support this.
-    - callback: lets RTD-core know which auction the sub-module is done with.
-    - config: the sub-module's config params provided by the publisher
-    - userConsent object (see above)
+    1. reqBidsConfigObj: a slightly modified version of the object that's passed to `pbjs.requestBids` (see [below](#reqBidsConfigObj)). Note that several auctions can happen concurrently, so the sub-module must be ready to support this.
+    2. callback: lets RTD-core know which auction the sub-module is done with.
+    3. config: the sub-module's config params provided by the publisher
+    4. userConsent object (see above)
 2. Your sub-module may update the reqBidsConfigObj and hit the callback. To inject data into the bid requests, you should follow one of these conventions:
-    - Recommended: use one of these [First Party Data](/features/firstPartyData.html) conventions:
-        - For AdUnit-specific first party data, set AdUnit.fpd.context.data.ATTRIBUTES
-        - For global first party data, call 'pbjs.[getConfig](/dev-docs/publisher-api-reference/setConfig.html)({fpd.context})' or 'pbjs.getConfig({fpd.user})', merge in the new global data, and update with `pbjs.[setConfig](/dev-docs/publisher-api-reference/setConfig.html)()'.
-        - If the data is not meant to go to all bidders, the module should use 'pbjs.[setBidderConfig](/dev-docs/publisher-api-reference/setBidderConfig.html)()' and support a parameter to allow the publisher to define which bidders are to receive the data.
-    - Not recommended: Place your data in bidRequest.rtd.RTDPROVIDERCODE.ATTRIBUTES and then get individual adapters to specifically read that location. Note that this method won't pass data to Prebid Server adapters.
+    1. Recommended: use one of these [First Party Data](/features/firstPartyData.html) conventions:
+        1. For AdUnit-specific first party data, set AdUnit.ortb2Imp.ext.data.ATTRIBUTES
+        2. For global first party data, including bidder-specific data, modify the `reqBidsConfigObj` as shown [below](#reqBidsConfigObj)
+    2. Not recommended: Place your data in bidRequest.rtd.RTDPROVIDERCODE.ATTRIBUTES and then get individual adapters to specifically read that location. Note that this method won't pass data to Prebid Server adapters.
+
+<a id="reqBidsConfigObj"></a>
+
+The `reqBidsConfigObj` parameter is a copy of the object passed to [`requestBids`](/dev-docs/publisher-api-reference/requestBids.html), except for:
+
+* `adUnits` and `timeout` are always defined (if the publisher didn't provide them, the default values are filled in - `pbjs.adUnits` and `getConfig('bidderTimeout')` respectively)
+* `ortb2` is replaced with an `ortb2Fragments` object, intended to be inspected and / or modified by your module.
+
+The `ortb2Fragments` parameter is an object containing two properties:
+
+* `global`, an object containing global (not bidder-specific) first party data in the same OpenRTB format used by `setConfig({ortb2})`
+* `bidder`, a map from bidder code to bidder-specific, OpenRTB-formatted first party data.
+
+Your module may modify either or both with additional data. If adding bidder-specific data in `ortb2Fragments.bidder`, it should also support a parameter to allow the publisher to define which bidders are to receive the data.
+
+{: .alert.alert-warning :}
+Before version 7, the pattern for first party data inspection and enrichment by RTD modules was `getConfig({ortb2])` / `mergeConfig({ortb2})`. With the introduction of [auction-specific data](/features/firstPartyData.html#supplying-auction-specific-data) in 7, the global `getConfig('ortb2')` is "frozen"
+at the time `requestBids` is called, and RTD submodules that wish to modify it are required to work on `ortb2Fragments` instead - as any additional call to `mergeConfig` will only take effect on the *next* auction.  
 
 **Code Example**
 
-{% highlight text %}
+```javascript
 /** @type {RtdSubmodule} */
 export const subModuleObj = {
   name: 'ExampleRTDModule2',
   init: init,
-  setBidRequestsData: alterBidRequests
+  getBidRequestData: alterBidRequests
 };
 
 function init(config, userConsent) {
@@ -204,18 +229,25 @@ function init(config, userConsent) {
 
 function alterBidRequests(reqBidsConfigObj, callback, config, userConsent) {
   // do stuff
-  // put data in AdUnit.fpd.* or rtd.RTDPROVIDERCODE.*
+  // put data in adUnits' ortb2Imp:
+  reqBidsConfigObj.adUnits.forEach((adUnit) => mergeDeep(adUnit, 'ortb2Imp.ext', myCustomData);
+  // or in global first party data:
+  mergeDeep(reqBidsConfigObj.ortb2Fragments.global, myCustomData);
+  // or in bidder-specific first party data:
+  config.bidders.forEach((bidderCode) => mergeDeep(reqBidsConfigObj.ortb2Fragments.bidder, {[bidderCode]: myCustomData});
   callback();
 }
 
 submodule('realTimeData', subModuleObj);
-{% endhighlight %}
+```
 
 #### beforeInit
+
 1. Use this function to take action to make sure data will be served as soon as possible (AJAX calls, pixels, etc..)
 2. This function is **not** invoked by the RTD module, and should be invoked at the bottom of the submodule.
 
 #### Using event listeners
+
 1. The RTD-core module listens for 3 events - `AUCTION_INIT`, `AUCTION_END`, and `BID_RESPONSE`.
 2. Each time one of the events fires, RTD-core will invoke the corresponding function on each sub-module, allowing the sub-module to make changes to the event object.
 3. To use this on your sub-module, define the required functions as noted in the table above and the examples below.
@@ -223,13 +255,15 @@ submodule('realTimeData', subModuleObj);
 **Code Example**
 
 Here is a code example with both mandatory and optional functions:
-{% highlight text %}
+
+```javascript
 /** @type {RtdSubmodule} */
 export const subModuleObj = {
   name: 'ExampleRTDModule3',
   init: init,
   onAuctionInitEvent: onAuctionInit,
   onAuctionEndEvent: onAuctionEnd,
+  onBidRequestEvent: onBidRequest,
   onBidResponseEvent: onBidResponse
 };
 
@@ -241,8 +275,12 @@ function onAuctionEnd(auctionDetails, config, userConsent) {
   // take note of auction end
 }
 
+function onBidRequest(bidRequest, config, userConsent) {
+  // optionally update bidRequest
+}
+
 function onBidResponse(bidResponse, config, userConsent) {
-  //optionally update bidResponse
+  // optionally update bidResponse
 }
 
 function init(config, userConsent) {
@@ -257,8 +295,7 @@ function beforeInit(){
 }
 
 beforeInit();
-{% endhighlight %}
-
+```
 
 ### Step 3: Add unit tests
 
@@ -276,10 +313,11 @@ Once everything looks good, submit the code, tests, and markdown as a pull reque
 
 2. Create a new file for your RTD sub-module in dev-docs/modules/ExampleRtdProvider.md. Take a look at the other *RtdProvider.md files in that directory for the important header values. Specifically it requires the following:
 
-    ```
+    ```markdown
     ---
     layout: page_v2
     title: Example Module
+    display_name: Example
     description: Useful statement for what this does
     page_type: module
     module_type: rtd
@@ -292,6 +330,7 @@ Once everything looks good, submit the code, tests, and markdown as a pull reque
 
     [Useful publisher-facing documentation]
     ```
+
 3. Submit the pull request to the prebid.github.io repo.
 
 ### Step 6: Wait for Prebid volunteers to review

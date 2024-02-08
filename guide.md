@@ -9,18 +9,54 @@ sidebarType: 0
 
 # Prebid Website Maintenance Guide
 
-v 1.1  
-Sept 7, 2019
+{:.no_toc}
 
-***
+Updated Feb 9, 2023
+
+- TOC
+{:toc}
+
+## Getting started
+
+The easiest way to setup an environment to contribute to the docs or review pull requests is [Github Codespaces](https://github.com/features/codespaces).
+
+1. Open [github.com/prebid/prebid.github.io](https://github.com/prebid/prebid.github.io)
+2. Click on the `Code` drop down menu and select "create new codespace from master". If you have no access to prebid.github.io, then you should do this on your fork of the repository
+3. Install the [markdownlint extension](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+    1. go to _Extensions_
+    2. search for _markdownlint_ and hit install
+    3. now you get direct feedback on linting errors
+4. Start the jekyll build as described in the `TERMINAL` of your codespace
+    1. `bundle install`
+    2. `JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental`
+    3. Codespaces will display a notification to open the running instance in the browser.
+5. In the `PORTS` tab you find the running instance
+
+## Reviewing Pull Requests and Issues
+
+Being a reviewer means you're in weekly rotation where you keep an eye on pull requests (PRs) and issues opened in this repo.
+
+### PR Review Guidelines
+
+1. Make sure no inappropriate changes are made. This covers obvious things like bad language and content, but we also don't allow overt marketing language on the site. Phrases like "we're the best BLAH" or "number one FOOZIT" need to be toned down.
+2. Make sure competitors aren't messing with each other's docs. This can be hard to tell because we don't know which github handles belong to which companies, but in general, if a destructive or suspicious change is being made to a doc, check on the Prebid Slack channel to confirm that the affected company approves the change.
+3. Make sure the change doesn't break formatting. It's not always necessary to preview locally, but for large changes, it's worthwhile verifying visually because markdown can be cranky.
+4. Help the author with basic readability - if you as a reviewer don't understand a sentence, probably others will have trouble too. Push back and ask questions about what they're really trying to say.
+5. We don't generally merge a docs PR until the related code is released. Prebid.js releases happen on Weds or Thurs, and people really like to have their docs PRs merged shortly after the code is released. For Prebid Server, it's ok to merge the docs after the code is merged.
+6. Fix broken or out-of-date things you run across. At least flag it in the team slack channel so we can fix it someday.
+7. Bid Adapter Guidelines
+    1. Check the front-matter: required fields are title and either pbjs or pbs.
+    2. Every adapter needs a parameters table that contains exactly 5 columns in this order: Name, Scope, Description, Example, Type.
+    3. Discourage full-page HTML examples. Better to have just the bidder-specific logic and a pointer to a standard Prebid.js example.
+    4. All headers must be level 3, 4, or 5.
 
 ## Core Technologies
 
-The Prebid website is developed using [Jekyll](https://jekyllrb.com/), a static site generator which uses the following technology to create and style HTML pages.
+The Prebid website is developed using [GitHub pages](https://pages.github.com/) and [Jekyll](https://jekyllrb.com/), a static site generator which uses the following technology to create and style HTML pages. See the [main README file](https://github.com/prebid/prebid.github.io/blob/master/README.md) for instructions on how to set this up.
 
 **Markdown**: The majority of the content is written in Markdown language. Jekyll transform this into raw HTML.
 
-Learn more about Markdown](https://www.markdownguide.org/)
+Learn more about [Markdown](https://www.markdownguide.org/)
 
 **Bootstrap**: A CSS template for responsive site design. Bootstrap provides the base formatting for the site.
 
@@ -34,11 +70,18 @@ Learn more about [Liquid](https://help.shopify.com/en/themes/liquid/basics)
 
 **CSS**: The site builds on the base Bootstrap template with custom CSS stored in the style.css file.
 
-***
+### Environment
+
+- prebid.org is built with Wordpress. We call it "the marketing site". We generally use a contracting company to make major updates there so it's pretty. But if you know Wordpress, we may give you permissions to do minor updates there.
+- docs.prebid.org is the Github pages site. We call it "the docs site".
+- dev.prebid.org is served through Netlify from the 'dev' branch of the repo. It's often out of date and only used for major projects or for sharing major docs for external review.
+- stage.prebid.org is also served through Netlify, but from the 'staging' branch. You should assume it's out of date.
+
+On the rare occasions where we need to use the 'dev' or 'stage' sites, we just check with each other to make sure it's not already being used for something.
 
 ## Site Config
 
-The _config.yml file (note underscore prefix) sets the base configuration for the site. Refer to [Jekyll](https://jekyllrb.com/docs/configuration/) documentation on which properties can be set in the _congig.yml file.
+The `_config.yml` file (note underscore prefix) sets the base configuration for the site. Refer to [Jekyll](https://jekyllrb.com/docs/configuration/) documentation on which properties can be set in the `_config.yml` file.
 
 ***
 
@@ -51,19 +94,17 @@ Jekyll requires adherence to a certain directory structure to generate the site.
 For the Prebid.org site the following directories are used:
 
 **_data**  
-Jekyll was originally designed specifically for creation of blogging websites and not for dynamic, data-driven sites. However, by including the _data directory we can mimic a database structure to create a more robust site. Files in this directory can be saved in either *json*, *yml* or *csv* format. For Prebid.org they have been saved in *yml*.
+Jekyll was originally designed specifically for creation of blogging websites and not for dynamic, data-driven sites. However, by including the _data directory we can mimic a database structure to create a more robust site. Files in this directory can be saved in either _json_, _yml_ or _csv_ format. For Prebid.org they have been saved in _yml_.
 
 Learn more about YML [here](https://yaml.org/start.html)
 
 There are several YML files in the Prebid _data directory
 
-- [dropdown_v2](#Dropdown)
-- [sidebar](#Sidebar)
-- [messages](#Messages)
-- [partners](#Partners)
+- [dropdown_v2](#dropdown)
+- [sidebar](#sidebar)
+- [partners](#partners)
 
 The contents of these files are used throughout the Prebid.org site for dynamically creating the navigation and displaying messages. See the [Data Model](#data-models) section for a review of how the data is structured and to see sample code.
-
 
 **_layouts**  
 
@@ -75,12 +116,11 @@ The includes directory contains HTML files that can be included within files, su
 
 **_bidders**
 
-The bidders directory is not a standard part of Jekyll; it’s a special use directory specifically for the Prebid.org site. The files in this directory are used to construct the table of partners on the partners/partners.html page.
+The bidders directory is not a standard part of Jekyll; it’s a special use directory specifically to construct the table of bidders on dev-docs/bidders.md and dev-docs/pbs-bidders.md
 
 **_sites**
 
 The sites directory is created by Jekyll. It contains the live site generated from the collected files and data listed above, combined with the CSS, JS and image assets and the Markdown files for individual pages.
-
 
 ***
 
@@ -88,25 +128,27 @@ The sites directory is created by Jekyll. It contains the live site generated fr
 
 The assets directory contains the CSS, Javascript, images and other assets used to create the site.
 
-The base CSS file used is Bootstrap (version 3.7.1) Custom CSS and modifications to Bootstrap classes are contained in the style.css file.
+The base CSS file used is Bootstrap (version 4.6.3) Custom CSS and modifications to Bootstrap classes are contained in the [_sass/vendor/_bootstrap.scss](_sass/vendor/_bootstrap.scss) file.
 
 The JS directory contains the Javascript files required for the Prebid.org site. It includes JQuery and Bootstrap javascript frameworks as well as other third party libraries and custom javascript written specifically for the Prebid site. For JQuery and Bootstrap both the expanded and minified versions of the javascript files are included but only the minified files are linked from the site header.
 
+### CSS
 
-#### CSS
-
-1. Styles all come from /assets/css/main-bundle.css
-1. These are generated from /_assets/sass
+1. Styles all come from `/assets/css/main-bundle.scss`
+1. These are generated from [_sass/main.scss](_sass/main.scss)
 1. To make a change, edit the relevant sass file
-1. Generate the css file from sass with 'npm run dev/prod'
-1. Commit all the changes including assets/css/main-bundle.css
-1. the _assets directory is not part of the _site tree
+
+If you want to upgrade bootstrap
+
+1. Upgrade bootstrap in the [package.json](package-lock)
+1. Run `npm install`. This will update the node_modules commited in [_sass/node_modules](_sass/node_modules)
+1. Commit the updated node module source files
 
 ## Data Models
 
 The data files are stored in the __data directory.
 
-<a name="Dropdown></a>
+<a name="Dropdown"></a>
 
 ### Dropdown
 
@@ -114,13 +156,13 @@ The dropdown_v2 YML file is used to construct the top nav when the site is viewe
 
 The YML map is divided into collections of menu sections. Menu sections are commented when they begin, for example;
 
-```Markdown
+```markdown
 #----------Product SubNav------------
 ```
 
 Each menu item is represented in the YML map as a collection of key value pairs and begins with a dash (-) symbol. An indented collection indicates it is a child of the collection above it. Example:
 
-```Markdown
+```markdown
 #-----------Overview---------------
 
 - sectionId: 0
@@ -158,13 +200,13 @@ The collection with the title property "What Is Prebid?" is a child of the colle
 | isSubsectionStart  | bool | 0 | Indicates if the item is the start of a subsection. **Deprecated** |
 
 **Code Use**  
-This data file is read in the nav.html file using Liquid. (__includes/nav.html).
+This data file is read in the nav.html file using Liquid. (_`_includes/nav.html`).
 
-<a name="Sidebar></a>
+<a name="Sidebar"></a>
 
 ### Sidebar
 
-The sidebar YML file is used to construct the left side navigation when the site is viewed on desktops and tablets and the top navigation when viewed on phones. 
+The sidebar YML file is used to construct the left side navigation when the site is viewed on desktops and tablets and the top navigation when viewed on phones.
 
 The YML map is divided into collections of menu sections. Menu sections are commented when they begin, for example;
 
@@ -218,17 +260,28 @@ Each menu item is represented in the YML map as a collection of key value pairs 
 | sbCollapseId |  string | overview  | Required if isSectionHeader = 1. Used to identify which div object is being toggled. |
 
 **Code Use**  
-This data file is read in the page_v2.html file using Liquid.
+This data file is read in the left_nav.html file using Liquid. (__includes/left_nav.html)
 
-**Code Use**  
-This data file is read in the home.html file using Liquid.
+**Files Not in the Sidebar**  
+If a page is open that is not listed in the sidebar.yml file, by default the sidebar will display only top-level options, with no options expanded or selected.
+
+In certain cases, it is helpful to the user to highlight a page in the left navigation that is not currently open. For example, when a bidder page is open (such as [docs.prebid.org/dev-docs/bidders/1ad4good.html](https://docs.prebid.org/dev-docs/bidders/1ad4good.html)), we don't want hundreds of bidders displayed in the left nav, but we want the user to be oriented to where they are in the documentation. In this case, that would be under Prebid.js > Reference > Bidder Params. To accomplish this, you must do two things:
+
+- Add `sidebarType: 1` to all bidder pages. This opens the Prebid.js menu. (If you want to extend this functionality to other pages, use the sbSecId in the sidebar.yml file of the top-level menu as the value for sidebarType.)
+- Modified the left_nav.html file's Liquid code to highlight Reference > Bidder Params anytime a page with layout=bidder is open.
+
+This has been done for both bidders pages (pages with `layout: bidder`) and the Publisher API Reference (`layout: api_prebidjs` and highlighting Prebid.js > Reference > Publish API Reference in the left nav), but can be extended to other pages as needed.
+
+## Partners
+
+TBD
 
 ## Bidder Files
 
 There are 200+ bidder files in the /dev-docs/bidders directory describing the parameters for each Prebid.js bidder. There are two unfortunately identical pieces of code that process them:
 
-- /\_layouts/bidder.html - this is used to generate the single-bidder version of the page like https://prebid.org/dev-docs/bidders/rubicon.html
-- /dev-docs/bidders.md - this is used to generate the (large) combined page at https://prebid.org/dev-docs/bidders.html
+- /\_layouts/bidder.html - this is used to generate the single-bidder version of the page like <https://prebid.org/dev-docs/bidders/rubicon.html>
+- /dev-docs/bidders.md - this is used to generate the (large) combined page at <https://prebid.org/dev-docs/bidders.html>
 
 The attributes in the Jekyll 'front matter' drive various behaviors and dynamic tables elsewhere on the site.
 
@@ -236,18 +289,16 @@ The attributes in the Jekyll 'front matter' drive various behaviors and dynamic 
 | ----- | ------ | ------ | ------ |
 | layout | yes | bidder | Links this file to the bidder.html layout |
 | title | yes | company name | For display |
+| pbjs | sorta | true or false | defines whether this is a Prebid.js bidder |
+| pbs | sorta | true or false | defines whether this is a Prebid Server bidder |
 | description | no | - | Not used |
-| hide | no | - | Not used |
 | biddercode | yes | preferred bidder code | Used as the default ad server targeting suffix and the default download filename |
-| aliasCode | no | download filename | Overrides the filename used to build the PBJS package on the download page |
+| aliasCode | no | bid adapter that actually implements this adapter | Overrides the filename used to build the PBJS package on the download page. Will be suffixed with "BidAdapter". This is also intended to be a valid bidder code. |
+| filename | no | bid adapter that actually implements this adapter | Used when a bid adapter is created with a filename that is not the bidder code. This completely overrides what is passed into the gulp build command, so needs to be fully specified. e.g. bidderaBidAdapter |
 | prevBiddercode | no | secondary bidder code | Adds a note about an alternate code that may have been used. |
-| bidder_supports_deals | no | true or false, whether the adapter supports deals | For display. Defaults to 'true'. |
-| s2s_only | no | true or false, whether the adapter is server-to-server only | Adds a note to the display. Defaults to 'false'. |
-| gdpr_supported | no | true or false, whether the adapter supports GDPR | For display. Defaults to 'false'. |
-| coppa_supported | no | true or false, whether the adapter supports COPPA | For display. Defaults to 'false'. |
-| media_types | no | comma-separated list of: banner, video, native | For display. |
-| userIds | no | comma-separated list of supported user id modules | For display. |
-| prebid_member | no | true or false, whether this company is a prebid.org member | For display. |
+| pbjs_version_notes | no | string | Displays on the download page |
+| sidebarType | yes | `1` | Used for navigation. This opens the Prebid.js portion of the menu so the sidebar can display the Reference/Prebid Params menu option when a bidder page is open.
+| ANYTHING ELSE | no | string | There are many pieces of metadata (e.g. GDPR support, user IDs supported) that bid adapters can disclose. They're displayed on the bidder's parameter page. |
 
 The bidderCode, aliasCode, and prevBiddercode parameters bear some description.
 Some adapters have a longer bidderCode and a shorter bidderCode -- their adapter supports both (with the `alias` feature) but
@@ -255,15 +306,39 @@ there's only one documentation file and of course one PBJS adapter file. An rela
 long bidderCode, but found it awkward to set up ad server targeting variables because GAM limits you to 20 chars, which is easy to exceed
 with a prefix like `hb_cache_host`. So they wanted to have shorter bidderCode for new customers while supporting the legacy targeting variables. In that scenario, they:
 
-1) add the shorter code as an alias in their PBJS file, which can stay the old longer name
-2) change the biddercode to the shorter name as it's the new preferred code
-3) add aliasCode so the Download page will pull in the right module
-4) optionally add prevBiddercode to add a note to the page about the legacy value
+1. add the shorter code as an alias in their PBJS file, which can stay the old longer name
+2. change the biddercode to the shorter name as it's the new preferred code
+3. add aliasCode so the Download page will pull in the right module
+4. optionally add prevBiddercode to add a note to the page about the legacy value
+5. optionally add filename if the bid adapter was created using a filename that's different than their bidder code. e.g. if the biddercode is "biddera" but they named the file "bidderABidAdapter", set the biddercode to "biddera" and the filename to "bidderABidAdapter".
 
 ## Algolia Search
 
-We use Algolia for site search. 
+We use Algolia for site search.
 
-- The configuration defining the search parameters is at https://github.com/algolia/docsearch-configs/blob/master/configs/prebid.json
+- The configuration defining the search parameters is at <https://github.com/algolia/docsearch-configs/blob/master/configs/prebid.json>
 - Only elements p, th, td, li, code, and h1-h3 are indexed
 - Code implementation in _includes/body-end.html and a the 'site-search' div in the header.
+
+## Cookie Privacy
+
+Prebid websites don't set their own cookies, but vendor products we use do. So we use the OneTrust CookiePro library to pop up a cookie banner. If the user hasn't consented to setting cookies, they will find reduced functionality on the site -- they won't be able to view JSFiddle examples or example videos.
+
+This is implemented with the [OneTrust](https://community.cookiepro.com/s/article/UUID-730ad441-6c4d-7877-7f85-36f1e801e8ca?language=en_US) library. See layout/example.md for how the OneTrust.InsertHtml function is used.
+The last argument to that function is the "group id", which declares what kind of cookies this vendor script is
+going to set. Here's how OneTrust defines the groups:
+
+1. Strictly Necessary cookies
+2. Performance cookies
+3. Function cookies
+4. Targeting cookies
+
+OneTrust categorizes cookies on their own, and it seems pretty random to us. Our guideline is to define tools as group 3 for small trusted vendors, or group 4 for large vendors that probably have a database of users.
+
+The test case for vendor code that drops cookies is simple:
+
+- clear your prebid.org cookies
+- reload the page
+- confirm the cookie banner appears
+- confirm the vendor's functionality doesn't appear
+- confirm that the vendor didn't set any cookies

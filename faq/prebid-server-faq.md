@@ -10,7 +10,7 @@ sidebarType: 5
 
 This page has answers to some frequently asked questions about Prebid Server. If you don't find what you're looking for here, there are other ways to [get help](/support/index.html).
 
-* TOC
+- TOC
 {:toc}
 
 ## Do we need to be a member of Prebid.org to submit a bidder adapter?
@@ -25,17 +25,19 @@ but it's not necessary for contributing code as a community member.
 
 ## How can I debug Prebid Server requests?
 
-+ When invoking Prebid Server through Prebid.js, this can be done just by adding `?pbjs_debug=true` to the page URL.
-+ Through AMP, you can put `test: 1` in the stored request, or add `debug=1` to the query string of Prebid Server's AMP endpoint.
-+ If calling directly, add `test: 1` to the JSON.
+- When invoking Prebid Server through Prebid.js, this can be done just by adding `?pbjs_debug=true` to the page URL.
+- Through AMP, you can put `ext.prebid.debug: true` in the stored request, or add `debug=1` to the query string of Prebid Server's AMP endpoint.
+- If calling directly, add `ext.prebid.debug: true` to the JSON.
+
+The OpenRTB `test:1` flag will also turn on debugging, and for true test requests, is the most appropriate thing to do, depending on your scenario. SSPs may not respond or log `test` requests.
 
 ## Why are there two versions of Prebid Server? Are they kept in sync?
 
 The original version of Prebid Server was the Go-Lang version. Rubicon Project
 ported it to Java because they had more Java talent than Go.
 
-+ [Prebid Server - Go](https://github.com/prebid/prebid-server)
-+ [Prebid Server - Java](https://github.com/prebid/prebid-server-java)
+- [Prebid Server - Go](https://github.com/prebid/prebid-server)
+- [Prebid Server - Java](https://github.com/prebid/prebid-server-java)
 
 Both versions are live in production, and they are kept identical in external APIs
 and reasonably close in functionality. See the [Prebid Server feature list](/prebid-server/features/pbs-feature-idx.html) for the list of differences.
@@ -43,6 +45,7 @@ and reasonably close in functionality. See the [Prebid Server feature list](/pre
 For demand partners, we recommend building new bid adapters in Go - the team will port it to Java for you within a couple of months.
 
 For those looking to host a Prebid Server:
+
 - If you plan to use long-form video, we recommend the Go version of the server.
 - Look over the features and see if there's any important to you.
 - Otherwise, just choose the language you're most comfortable with.
@@ -55,10 +58,10 @@ Just schedule a [post-bid creative]({{site.baseurl}}/dev-docs/examples/postbid.h
 1. Set up the AdUnit
 1. Set the app and device objects with setConfig(). e.g.
 
-```
+```javascript
 pbjs.setConfig({
     s2sConfig: {
-    ...
+    // ...
     },
     app: {
         bundle: "com.test.app"
@@ -68,6 +71,7 @@ pbjs.setConfig({
     }
 });
 ```
+
 ## How do user ID cookies and ID syncing work in Prebid Server?
 
 For Prebid SDK there's no concept of cookies, so no syncing takes place in that scenario. ID in mobile is based on IDFA.
@@ -83,7 +87,7 @@ See the [Prebid Server Privacy Feature Page](/prebid-server/features/pbs-privacy
 For Prebid.js-initated server requests, we've found that cookie match rates are about what can be expected given the constraints:
 
 - The [/cookie_sync](/prebid-server/developers/pbs-cookie-sync.html) process is initiated by Prebid.js the moment the [s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) is parsed.
-- A limited number of bidders will be synced at once. PBS-Go will sync all the bidders listed in the `bidders` array. PBS-Java will sync all of them and possibly additional bidders. Publishers can change the number of syncs by specifying `userSyncLimit` on the s2sConfig.
+- A limited number of bidders will be synced at once. Prebid Server will sync all bidders listed in the `bidders` array and possibly additional bidders. Publishers can change the number of syncs by specifying `userSyncLimit` on the s2sConfig.
 - Privacy settings (e.g. GDPR) can affect sync rate. e.g. If a lot of your traffic is in the EEA, it's going to be harder to set cookies.
 
 [AMP](/prebid-server/use-cases/pbs-amp.html) is a different story. There are several things you should check:
@@ -99,8 +103,8 @@ For Prebid.js-initated server requests, we've found that cookie match rates are 
 
 If a bidder adapter supplies 'nurl' in the bidResponse object, there are two paths:
 
-1) If it's cached in Prebid Cache (e.g. AMP and App), then the 'nurl' is cached along with the 'adm' and utilized by the Prebid Universal Creative.
-2) If it's not cached, the Prebid.js PrebidServerBidAdapter will append the 'nurl' to the bottom of the creative in a new div.
+1. If it's cached in Prebid Cache (e.g. AMP and App), then the 'nurl' is cached along with the 'adm' and utilized by the Prebid Universal Creative.
+2. If it's not cached, the Prebid.js PrebidServerBidAdapter will append the 'nurl' to the bottom of the creative in a new div.
 
 **Video**
 
@@ -168,3 +172,97 @@ Another way is to [register for our host company mailing list](/prebid-server/ho
 Prebid Server is not a full-fledged SSP. Any DSP bid adapters should keep this in mind when it comes to assuming SSP functionality like resolving OpenRTB macros. We debated building this functionality into PBS, but realized it would take precious milliseconds away from the overall header bidding auction to scan kilobytes of bidder creatives for the 9 different OpenRTB macros. Since so few bidders require this functionality, it makes sense to have those adapters do it themselves.
 
 If an adapter doesn't resolve its own macros, AUCTION_PRICE will eventually get resolved by the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative), but by then the bid price will be in the ad server currency and quantized by the price granularity. This will likely cause reporting discrepancies.
+
+## Does Prebid Server support region-specific endpoints for bidders?
+
+Yes. This is handled by the PBS host company in their datacenter config.
+Bidders that want to make use of region-specific endpoints will need to work
+with each PBS host company:
+
+- determine which regions the host company supports
+- map the regions to the bidder's endpoints
+- the host company overrides the bidder's default auction endpoint when they deploy the configuration for each region.
+
+We recognize that it's inconvenient for bidders to be required to have this
+conversation with each host company, but there's really not a better way
+in an open source project. Any number of companies may choose to host
+PBS and we cannot constrain them into a defined set of regions.
+
+## Can bidder endpoints differ by publisher?
+
+You may not use an endpoint domain as a bidder parameter. Prebid Server is not
+an open proxy. If absolutely necessary, you may specify a portion of the
+domain as a parameter to support geo regions or account specific servers.
+However, this is discouraged and may degrade the performance of your adapter
+since the server needs to maintain more outgoing connections. Host companies
+may choose to disable your adapter if it uses a dynamically configured domain.
+
+e.g. this config is not allowed because the entire domain name is a variable:
+
+```text
+endpoint: "https://{host}/path"
+```
+
+but this would be ok:
+
+```text
+endpoint: "https://{host}.example.com/path"
+```
+
+## Did the location of the bidder parameters change?
+
+Why yes, glad you noticed. The original 2017 OpenRTB extension where bidders
+and parameters were placed was imp[].ext.BIDDER. Since 2020, the recommended location
+is imp[].ext.prebid.bidder.BIDDER. This change was driven by the existence of
+other fields in imp[].ext that aren't bidders, like `skadn`, `data`, etc.
+
+Bidders are copied from imp[].ext to imp[].ext.prebid.bidder, and they will be copied for years to come, but we would ask that new implementations of stored requests
+utilize the new location.
+
+## Does PBS do a geo-lookup?
+
+PBS-Go does not currently support integration with a geo-lookup service.
+
+PBS-Java supports MaxMind and Netacuity. It performs the geo-lookup on every request **unless**:
+
+1. The config `gdpr.consent-string-means-in-scope` is true and provided `user.consent` string is valid
+2. `regs.gdpr` is specified in the request
+3. `device.geo.country` is specified in the request
+4. It is unable to determine the IP address from the header or `device.ip`
+5. There's no geo-location service configured
+
+## Does PBS support SSL?
+
+No, Prebid Server is intended to run behind a load balancer or proxy, so it does not currently support defining a security certificate.
+
+## How can we rename our bid adapter?
+
+If you have a company name change and need to add a new bidder code for the updated branding, here's the recommended approach:
+
+1. Keep the existing filenames and make the new name a hard-coded alias. There are separate instructions for this for [PBS-Go](/prebid-server/developers/add-new-bidder-go.html#aliasing-an-adapter) and [PBS-Java](/prebid-server/developers/add-new-bidder-java.html#create-bidder-alias).
+2. Update the contact email in your YAML file as needed ([PBS-Go](https://github.com/prebid/prebid-server/tree/master/static/bidder-info), [PBS-Java](https://github.com/prebid/prebid-server-java/tree/master/src/main/resources/bidder-config))
+3. **Copy** your bidder documentation file in [https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) so both names are available.
+
+In the long run, if you'd prefer to change the filenames too, that's ok - but our rule is that the old name needs to be available until the next major release to give time for publishers to transition. In that case:
+
+1. Submit a PR that changes the filenames and makes the old name a hard-coded alias.
+2. Keep both bidder documentation files.
+
+## Should Prebid bidders be in ads.txt?
+
+Publishers should be careful to list all their bidding partners in their ads.txt file. Bidders without an entry in ads.txt may be
+perceived by DSPs as unauthorized sources of your inventory. The domain for any ads.txt [inventory partners](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/dc71586842e648e89c1bbe6c666ffac8ff010a96/2.6.md?plain=1#L1752), if one exists, should be specified with a `setConfig({ortb2.site.inventorypartnerdomain})` call. For details of the specification of ads.txt entries, see [ads.txt v1.1](https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf)
+
+## How can I help with Prebid Server?
+
+Generally, people and companies will work on features and bug fixes that directly affect them. The process is:
+
+1. If there's not already an issue tracking the work, create an issue in the PBS-Go repo [here](https://github.com/prebid/prebid-server/issues/new). Note: we track enhancement requests in the PBS-Go repo. If it's a bug that affects PBS-Java only, then you can open the issue [here](https://github.com/prebid/prebid-server-java/issues/new).
+2. The issue should describe what you're planning to build/fix. We'll want to review any interfaces, config options, or metrics for consistency.
+3. After getting approval (if needed), you'll make a Pull Request against the appropriate repo, whether PBS-Go or PBS-Java. Be sure to have read the contribution guidelines for [PBS-Go](https://github.com/prebid/prebid-server/tree/master/docs/developers) or [PBS-Java](https://github.com/prebid/prebid-server-java/tree/master/docs/developers).
+4. The core team will review your PR.
+
+If you're looking to help but don't have a specific item in mind, there are two approaches:
+
+- You can scan the [issue list](https://github.com/prebid/prebid-server/issues) and add a note to one offering to take it. Someone will add your github handle as the `assignee`. A prioritized set of issues is available on our [project board](https://github.com/orgs/prebid/projects/4/views/1).
+- You can attend the Prebid Server committee meeting and ask about the issues currently ranked as most desirable by the group. Contact <membership@prebid.org> to get an invite to that meeting.

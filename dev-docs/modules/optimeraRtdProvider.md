@@ -7,10 +7,11 @@ page_type: module
 module_type: rtd
 module_code : optimeraRtdProvider
 enable_download : true
+vendor_specific: true
 sidebarType : 1
 ---
 
-# Optimera Real Time Date Module
+# Optimera Real Time Data Module
 
 # Overview
 
@@ -18,15 +19,15 @@ Optimera Real Time Data Module. Provides targeting for ad requests from data col
 
 ## Integration
 
-1) Compile the Optimera RTD Provider into your Prebid build:
+1. Compile the Optimera RTD Provider into your Prebid build:
 
-```
-`gulp build --modules=rtdModule,optimeraRtdProvider`...
-```
+    ```bash
+    gulp build --modules=rtdModule,optimeraRtdProvider
+    ```
 
-Note: You must include rtdModule in the build list.
+    Note: You must include `rtdModule` in the build list.
 
-2) Use `setConfig` to instruct Prebid.js to initialize the optimera module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initialize the optimera module, as specified below.
 
 ## Configuration
 
@@ -35,21 +36,23 @@ This module is configured as part of the `realTimeData.dataProviders` object.
 Configuration example for using RTD module with the `optimeraRTD` provider:
 
 ```javascript
-  pbjs.setConfig({
-    realTimeData: {
-      dataProviders: [
-        {
-          name: 'optimeraRTD',
-          waitForIt: true,
-          params: {
-            clientID: '9999',
-            optimeraKeyName: 'optimera',
-            device: 'de'
-          }
+pbjs.setConfig({
+  realTimeData: {
+    dataProviders: [
+      {
+        name: 'optimeraRTD',
+        waitForIt: true,
+        params: {
+          clientID: '9999',
+          optimeraKeyName: 'optimera',
+          device: 'de',
+          apiVersion: 'v0',
         }
-      ]
-    }
-``` 
+      }
+    ]
+  }
+})
+```
 
 ## Migration From the Optimera Bidder Adapter
 
@@ -68,21 +71,22 @@ Contact Optimera to get assistance with the params.
 | clientID  | string  | required | Optimera Client ID |
 | optimeraKeyName  | string  | optional |  GAM key name for Optimera. If migrating from the Optimera bidder adapter this will default to hb_deal_optimera and can be ommitted from the configuration. |
 | device  | string  | optional | Device type code for mobile, tablet, or desktop. Either mo, tb, de |
+| apiVersion  | string  | optional | Optimera API Versions. Either v0, or v1. ** Note: v1 wll need to be enabled specifically for your account, otherwise use v0.
 
 ## Example
 
 To view an integration example:
- 
-1) in your cli run:
 
-```
-gulp serve --modules=appnexusBidAdapter,optimeraRtdProvider`
-```
+1. in your cli run:
 
-2) in your browser, navigate to:
+    ```bash
+    gulp serve --modules=appnexusBidAdapter,optimeraRtdProvider`
+    ```
 
-```
-http://localhost:9999/integrationExamples/gpt/optimeraRtdProvider_example.html
-```
+2. in your browser, navigate to:
+
+    ```text
+    http://localhost:9999/integrationExamples/gpt/optimeraRtdProvider_example.html
+    ```
 
 You will be able to see targeting set for each ad request with the 'optimera' key name.

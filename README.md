@@ -1,51 +1,60 @@
+# docs.prebid.org source
+
 This repository contains the source files for the Prebid.js documentation site at [Prebid.org](https://prebid.org).
 
-Please see the sections below for more information.
+Please see the sections below for more information:
 
-+ [Contributing](#contributing)
-+ [License](#license)
-+ [Prerequisites](#prerequisites)
-+ [Running Jekyll Locally](#running-jekyll-locally)
-+ [Building Assets](#building-assets)
-+ [The Downloads Page](#the-downloads-page)
-+ [Thanks](#thanks)
+* [Contributing](#contributing)
+* [License](#license)
+* [Prerequisites](#prerequisites)
+* [Running Jekyll Locally](#running-jekyll-locally)
+* [Building Assets](#building-assets)
+* [The Downloads Page](#the-downloads-page)
+* [Thanks](#thanks)
 
-<a name="contributing" />
+<a name="contributing"></a>
 
 ## Contributing
 
-Thanks in advance for your contribution!  Contributors are listed in the **Thanks** section below.
+Thanks in advance for your contribution!
 
 For smaller changes, such as fixing a typo or adding a new section to an existing page, submit a pull request.
 
 For larger changes such as reorganizing the site and moving/removing content, you may want to open an issue so we can discuss the work beforehand.  This is a good idea because:
 
-+ We want to value your time, so you don't do unnecessary work
-+ We want to value our users' time; we don't want to break links and bookmarks for users
+* We want to value your time, so you don't do unnecessary work
+* We want to value our users' time; we don't want to break links and bookmarks for users
 
-<a name="license" />
+<a name="license"></a>
 
 ## License
 
 All docs are under the license shown in the `LICENSE` file in this directory.
 
-<a name="prerequisites" />
+<a name="prerequisites"></a>
 
 ## Prerequisites
 
-The site uses [Jekyll](https://jekyllrb.com/), which is written in the [Ruby](https://www.ruby-lang.org/en/) language.
+The site is hosted on GitHub pages, and uses [Jekyll](https://jekyllrb.com/) to generate the HTML. Jekyll is written in the [Ruby](https://www.ruby-lang.org/en/) language.
 
-1. follow the instructions at https://jekyllrb.com/docs/installation/ for your OS
+1. follow the instructions at [jekyllrb.com/docs/installation/](https://jekyllrb.com/docs/installation/) for your OS
 1. gem install github-pages
 1. start Jekyll as described below
 
-For CSS, the site uses Laravel Mix to build CSS from Sass (scss-flavored) source files. Under the hood Laravel Mix uses Webpack.
+For CSS, the site uses Jekyll board tools to compile SCSS down to CSS.
 
-1. follow the instructions at https://nodejs.dev to install Node.js for your OS
-1. `npm install` to install packages for building assets
-1. build assets as described below
+1. Install `boostrap` via `npm install` to make the build work
+1. [Jekyll assets management](https://jekyllrb.com/docs/assets/)
+1. [Jekyll SASS plugin](https://jekyllrb.com/docs/configuration/sass/)
 
-<a name="running-jekyll-locally" />
+The markdown files are linted via [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli). VSCode supports the [.markdownlintignore](.markdownlintignore) file.
+You may need to configure the disabled rules specified in [.markdownlint.json](.markdownlint.json) directly in your project settings. You can invoke linting in CLI via
+
+```bash
+markdownlint --config .markdownlint.json --ignore-path .markdownlintignore "**/*.md"
+```
+
+<a name="running-jekyll-locally"></a>
 
 ## Running Jekyll Locally
 
@@ -53,20 +62,21 @@ Before submitting a pull request, you should run the site locally to make sure y
 
 To get started editing the site and seeing your changes, clone this repo and enter the following commands in your terminal:
 
-- `cd path/to/prebid.github.io`
-- `bundle exec jekyll serve`
+```bash
+JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental
+```
 
 You should see output that looks something like this:
 
-```
-Configuration file: /Users/rloveland/Dropbox/Code/prebid.github.io/_config.yml  
-            Source: /Users/rloveland/Dropbox/Code/prebid.github.io  
-       Destination: /Users/rloveland/Dropbox/Code/prebid.github.io/_site  
+```bash
+Configuration file: /Users/me/git/prebid.github.io/_config.yml  
+            Source: /Users/me/git/prebid.github.io  
+       Destination: /Users/me/git/prebid.github.io/_site  
  Incremental build: disabled. Enable with --incremental  
       Generating...   
                     done in 13.596 seconds.  
- Auto-regeneration: enabled for '/Users/rloveland/Dropbox/Code/prebid.github.io'  
-Configuration file: /Users/rloveland/Dropbox/Code/prebid.github.io/_config.yml  
+ Auto-regeneration: enabled for '/Users/me/git/prebid.github.io'  
+Configuration file: /Users/me/git/prebid.github.io/_config.yml  
     Server address: http://127.0.0.1:8080/  
   Server running... press ctrl-c to stop.  
 ...  
@@ -75,13 +85,13 @@ Configuration file: /Users/rloveland/Dropbox/Code/prebid.github.io/_config.yml
 
 Open the `Server address` URL in your browser, and you should see a locally running copy of the site.
 
-<a name="building-assets"/>
+<a name="building-assets"></a>
 
 ## Building Assets
 
-- `npm run dev` to build unminified CSS for development
-- `npm run prod` to build minified CSS for production
-- `npm run watch` to use [Browsersync](https://browsersync.io) to rebuild CSS on demand and reload the browser
+* `npm run dev` to build unminified CSS for development
+* `npm run prod` to build minified CSS for production
+* `npm run watch` to use [Browsersync](https://browsersync.io) to rebuild CSS on demand and reload the browser
 
 ## The Downloads Page
 
@@ -96,7 +106,11 @@ The Downloads page is generated from [the Markdown bidder adapter docs](https://
 
 This means an adaptor is not available to download from Prebid.org as soon as the code gets merged into Prebid.js - it will be available after the next release (usually in a couple of weeks).
 
-<a name="thanks" />
+<a name="thanks"></a>
+
+## Liquid Templating
+
+* [jekyll - check for non empty](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/jekyll/liquid/conditionals/non-empty.html)
 
 ## Thanks
 

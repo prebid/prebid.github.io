@@ -16,6 +16,19 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
+| 8.0 | Module removals, reliabe (opt-in) transaction identifier, size mapping module & acitivy control. See the [PBJS 8 release notes](/dev-docs/pb8-notes.html) |
+| 7.0 | Cleanup of deprecated 'publisherDomain' and 'fpd' config. See the [PBJS 7 release notes](/dev-docs/pb7-notes.html) |
+| 6.0 | Removed transpiling for the MSIE 11 browser. [Blog post](https://prebid.org/blog/prebid-6-0-release/) |
+| 5.9 | Support numeric ad targeting keys |
+| 5.8 | [GPT Pre-Auction module](/dev-docs/modules/gpt-pre-auction.html) supports mcmEnabled flag |
+| 5.3 | add AD_RENDER_SUCCEEDED event |
+| 5.0 | See [Prebid.js 5.0 blog](https://prebid.org/blog/prebid-5-0-release/) |
+| 4.43 | Support [allowSendAllBidsTargetingKeys](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) option for control over which keys are sent to the ad server |
+| 4.41 | Support [suppressStaleRender](/dev-docs/publisher-api-reference/setConfig.html#auction-options) option |
+| 4.40 | First Party Data [enrichment](/dev-docs/modules/enrichmentFpdModule.html) and [validation](/dev-docs/modules/validationFpdModule.html) modules are introduced |
+| 4.39 | Prebid Core: removed size check on native icons and image assets |
+| 4.38 | PBS Bid Adapter allows stored impression configuration |
+| 4.37 | PBS bid adapter adds support for non-purpose1 consent domains |
 | 4.36 | Introduced pbjs.installedModules array |
 | 4.35 | Introduced pbjs.pbjs.getHighestUnusedBidResponseForAdUnitCode function |
 | 4.34 | Bug fix: canBidderRegisterSync ignoring iframe sync disabled by default |
@@ -26,7 +39,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 4.29 | PBS Bid Adapter: cooperative sync flag |
 | 4.28 | Prebid Server Bid Adapter: use floors module to obtain OpenRTB floor, Support for [ignoreBidderCacheKey](/dev-docs/publisher-api-reference/setConfig.html#setConfig-vast-cache) |
 | 4.27 | Update TTL logic |
-| 4.26 | [Bid Viewability Module](dev-docs/modules/bidviewable.html) |
+| 4.26 | Bid Viewability Module (subsequently deprecated) |
 | 4.25 | Extended ID permissions |
 | 4.24 | Support Multiple Prebid Servers |
 | 4.23 | Added skipPbsAliasing feature |
@@ -103,4 +116,4 @@ The table below is a summary of feature changes and important bug fixes in core 
 
 ## Further Reading
 
-+ [Getting Started With Prebid.js]({{site.github.url}}/overview/getting-started.html)
++ [Getting Started With Prebid.js](/dev-docs/getting-started.html)
