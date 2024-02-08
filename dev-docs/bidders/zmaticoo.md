@@ -124,7 +124,7 @@ To use this bidder you will need a valid pubId. For further information, please 
    | `instream video`     | `https://creative.cdnyeah.com/tpl/renderer/template/video-instream-gam.md` | `https://creative.cdnyeah.com/tpl/renderer/template/video-instream-gam.html`    |
 
 ### Use prebid.js for No Admanager
-If you don't want to use third-party Ad Server,you can direct integration with zMaticoo。zMaticoo  will provide you with a platform(https://adx.zmaticoo.com),You can count your request volume,impressions,and income.
+If you don't want to use third-party Ad Server,you can direct integration with zMaticoo。zMaticoo  will provide you with a platform(`https://adx.zmaticoo.com`),You can count your request volume,impressions,and income.
 Below, these file demos help you integrate with no Admanager
 
 {: .table .table-bordered .table-striped }
