@@ -50,12 +50,40 @@ pbjs.setBidderConfig({
         ext: {
           blockthrough: {
             ab: false,
-            orgID: 'orgID',
-            websiteID: 'websiteID',
+            orgID: '4829301576428910',
+            websiteID: '5654012389765432',
           },
         },
       },
     },
   },
 });
+```
+
+#### AdUnits configuration example
+
+```javascript
+var adUnits = [
+  {
+    code: 'banner-div-1',
+    mediaTypes: {
+      banner: {
+        sizes: [[728, 90]],
+      },
+    },
+    bids: [
+      {
+        bidder: 'blockthrough',
+        params: {
+          bidderA: {
+            publisherId: 55555,
+          },
+          bidderB: {
+            zoneId: 12,
+          },
+        },
+      },
+    ],
+  },
+];
 ```
