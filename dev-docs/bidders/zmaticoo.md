@@ -39,3 +39,101 @@ To use this bidder you will need a valid pubId. For further information, please 
 | `bapp`               | optional | Block list of applications by their platform-specific exchange independent application identifiers                         | `badv: ["com.blocked"]` | `string array` |
 | `source`             | optional | A Source object that provides data about the inventory source and which entity makes the final decision (See OpenRTB spec) | `source: {}`            | `object`       |
 | `ext`                | optional | An extension object that allows for custom fields and objects to be sent  (See OpenRTB spec)                               | `ext: {}`               | `object`       |
+
+### AdUnit Format Example
+#### AdUnit Format for Banner
+
+```javascript
+ var adUnits = [{
+    code: 'banner-01',
+    mediaTypes: {
+        banner: {
+            sizes: [[320, 50]]
+        }
+    },
+    bids: [{
+        bidder: "zmaticoo",
+        bidId: '100001222',
+        params: {
+            pubId: 'prebid-test',
+            tagid:"001",
+            bidfloor:1,
+            device: {
+
+            }
+        },
+     
+    }]
+
+}];
+```
+
+#### AdUnit Format for video
+
+```javascript
+     var adUnits = [{
+    code: 'video_ad_unit_1',
+    mediaTypes: {
+        video: {
+            playerSize: [480, 320],
+            mimes: ['video/mp4'],
+            context: 'outstream',
+        }
+
+    },
+    renderer: {
+        url: 'https://creative.cdnyeah.com/tpl/renderer/video/zmaticooOutsteam.js',
+        render: function (bid) {
+            adResponse = {
+                ad: {
+                    video: {
+                        content: bid.vastXml,
+                        player_height: 320,
+                        player_width: 480,
+                    },
+                },
+            }
+            bid.renderer.push(() => {
+                ZMOutstreamVideo.renderAd({
+                    vastUrl: bid.vastXml,
+                    adUnitCode: bid.adUnitCode
+                });
+            });
+        }
+    },
+    bids: [{
+        bidder: "zmaticoo",
+        bidId: '100001222',
+        params: {
+            pubId: 'prebid-test',
+            device: {
+            },
+            tagid:"001",
+            bidfloor:1
+        }
+    }]
+}];
+```
+
+### Use prebid.js for an Admanager
+   To use prebid.js，you can use an Ad Server，like：Google Ad Manager、Smart Ad Server、Xandr Monetize Ad Server。Ad Server helps you manage your ad order，and helps you record  ad rendor impression。
+   Below these file demo implemented settings with Google Ad Manager
+
+   {: .table .table-bordered .table-striped }
+   | mediaType            | demo(md)  | demo(html)                        |                                                                                       
+   |----------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+   | `Banner`             | https://creative.cdnyeah.com/tpl/renderer/template/banner-gam.md | https://creative.cdnyeah.com/tpl/renderer/template/banner-gam.html          |
+   | `outstream video`    | https://creative.cdnyeah.com/tpl/renderer/template/video-outstream-gam.md | https://creative.cdnyeah.com/tpl/renderer/template/video-outstream-gam.html    |
+   | `instream video`     | https://creative.cdnyeah.com/tpl/renderer/template/video-instream-gam.md | https://creative.cdnyeah.com/tpl/renderer/template/video-instream-gam.html     |
+
+
+### Use prebid.js for No Admanager
+If you don’t want to use third-party Ad Server，you  can direct integration with zMaticoo。zMaticoo  will provide you with a platform（https://adx.zmaticoo.com），You can count your request volume, impressions, and income。
+Below, these file demos help you integrate with no Admanager
+
+{: .table .table-bordered .table-striped }
+| mediaType            | demo(md)  | demo(html)                        |                                                                                       
+|----------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Banner`             | https://creative.cdnyeah.com/tpl/renderer/template/banner-noadserver.md | https://creative.cdnyeah.com/tpl/renderer/template/banner-noadserver.html        |
+| `outstream video`    | https://creative.cdnyeah.com/tpl/renderer/template/video-outstream-noadserver.md | https://creative.cdnyeah.com/tpl/renderer/template/video-outstream-noadserver.html    |
+| `instream video`     | https://creative.cdnyeah.com/tpl/renderer/template/video-instream-noadserver.md | https://creative.cdnyeah.com/tpl/renderer/template/video-instream-noadserver.html    |
