@@ -3,7 +3,7 @@ layout: bidder
 title: The Trade Desk
 description: The Trade Desk Prebid Bidder Adapter
 biddercode: ttd
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 21
 usp_supported: true
 coppa_supported: true

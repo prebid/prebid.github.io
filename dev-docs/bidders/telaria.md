@@ -6,7 +6,7 @@ pbjs: true
 pbs: false
 biddercode: telaria
 media_types: video, no-display
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: false
 coppa_supported: false
 schain_supported: true

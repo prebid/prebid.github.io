@@ -1,6 +1,6 @@
 ---
 layout: page_v2
-title: Intro to Prebid
+title: Introduction to Prebid
 description: An overview of Prebid org and products
 sidebarType: 0
 ---

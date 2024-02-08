@@ -12,7 +12,7 @@ fpd_supported: false
 multiformat_supported: will-not-bid
 ortb_blocking_supported: partial
 pbs_app_supported: true
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true 
 coppa_supported: true
 deals_supported: false

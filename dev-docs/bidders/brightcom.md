@@ -6,7 +6,8 @@ top_nav_section: dev_docs
 nav_section: reference
 pbjs: true
 biddercode: brightcom
-gdpr_supported: true
+gvl_id: 883
+tcfeu_supported: true
 sidebarType: 1
 ---
 

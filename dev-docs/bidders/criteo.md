@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: criteo
 media_types: display, video, native (pbjs only)
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
 prebid_member: true
@@ -108,6 +108,18 @@ var adUnits = [
 ```
 
 ### Additional Config (Optional)
+
+If you don't want to use the FastBid adapter feature, you can disable it via this configuration:
+
+```javascript
+pbjs.setConfig({
+  'criteo': {
+    fastBidVersion: 'none',
+  }
+});
+```
+
+Criteo teams are planning to completely remove this feature with Prebid 9.0
 
 Criteo Bid Adapter supports the collection of the user's hashed email, if available.
 

@@ -4,7 +4,7 @@ title: OpenWeb
 description: Prebid OpenWeb Bidder Adapter
 biddercode: openweb
 media_types: banner
-gdpr_supported: true
+tcfeu_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
 coppa_supported: true
@@ -16,6 +16,10 @@ pbs: true
 gvl_id: 280
 sidebarType: 1
 ---
+
+### Prebid Server Notes
+
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
 
 ### Bid params
 
@@ -31,7 +35,7 @@ OpenWeb header bidding adapter provides solution for accessing banner demand.
 
 ### Test Parameters
 
-```
+```javascript
 var adUnits = [
     // Banner adUnit
     {

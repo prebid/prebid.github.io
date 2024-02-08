@@ -1,19 +1,20 @@
 ---
 layout: bidder
-title: Index Exchange (Prebid.js)
+title: Index Exchange
 description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: false
-userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, imuid
+userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, imuid, 33acrossId, nonID
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 floors_supported: true
 usp_supported: true
 gpp_supported: true
 media_types: banner, video, native
+safeframes_ok: true
 fpd_supported: true
 gvl_id: 10
 dchain_supported: false
@@ -21,6 +22,7 @@ deals_supported: true
 prebid_member: yes
 multiformat_supported: yes
 sidebarType: 1
+privacy_sandbox: paapi, topics
 ---
 
 ## Table of contents
@@ -28,15 +30,17 @@ sidebarType: 1
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
 * [Supported media types](#supported-media-types)
-* [Set up Prebid.js to call Index directly from the browser (client-side adapter)](#set-up-prebidjs-to-call-index-directly-from-the-browser-client-side-adapter)
-* [Set up Prebid.js to call Index through Prebid Server (server-side adapter)](#set-up-prebidjs-to-call-index-through-prebid-server-server-side-adapter)
+* [Set up Prebid.js to call Index directly from the browser](#set-up-prebidjs-to-call-index-directly-from-the-browser-client-side-adapter)
+* [Set up Prebid.js to call Index through Prebid Server](#set-up-prebidjs-to-call-index-through-prebid-server-server-side-adapter)
 * [Modules to include in your build process](#modules-to-include-in-your-build-process)
 * [Set up First Party Data (FPD)](#set-up-first-party-data-fpd)
   * [Global data](#prebid-fpd-module)
   * [Index bidder-specific data](#index-bidder-specific-fpd-module)
   * [AdUnit-specific data](#adunit-specific-data)
-* [Index's outstream video player](#indexs-outstream-video-player)
+* [Index's outstream video player](#index-outstream-video-player)
 * [Prebid Native configuration](#prebid-native-configuration)
+* [Protected Audience API support](#protected-audience-api-support)
+* [Signal inventory using  external IDs](#signal-inventory-using-external-ids)
 * [Bid request parameters](#bid-request-parameters)
   * [Banner](#banner)
   * [Video](#video)
@@ -44,7 +48,7 @@ sidebarType: 1
 * [Multi-format ad units](#multi-format-ad-units)
 * [Examples](#examples)
 
-<a name="introduction"></a>
+<a id="introduction"></a>
 
 ## Introduction
 
@@ -73,7 +77,7 @@ pbjs.bidderSettings = {
 };
 ```
 
-<a name="supported-media-types"></a>
+<a id="supported-media-types"></a>
 
 ## Supported media types
 
@@ -87,27 +91,25 @@ The following table lists the media types that Index supports. For information a
 | video   | Supported      |
 | native      | Supported       |
 
-<a name="client-side-adapter"></a>
+<a id="client-side-adapter"></a>
 
 ## Set up Prebid.js to call Index directly from the browser (client-side adapter)
 
-In this configuration Prebid.js calls Index directly from the browser using our client-side adapter. Follow the quick start instructions provided in Prebid's [Getting Started for Developers](/dev-docs/getting-started.html) documentation. Complete the following steps to complete the Index-specific configuration:
+To call Index from a web browser environment using a Prebid Server integration, see the Index-specific configuration steps in [Setup instructions to call Index through Prebid Server](/dev-docs/bidders/ix-server.html#setup-instructions-to-call-index-through-prebid-server) in our Prebid Server documentation on the Prebid site.
 
-1. Build the binary in one of the following ways:
-   * [Download Prebid.js](https://docs.prebid.org/download.html) from the Prebid site to use the standard compiled binary that Prebid includes in the download process and select **Index Exchange** as an adapter.
-   * Build it on your own from the source code by following the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). If you use this method, you will need to include several modules in your build process. See the [Index modules to include in your build process](#modules-to-include-in-your-build-process) section below.
-2. Define the Index-specific parameters at the bidder level which include adding `ix` as the bidder and the `siteId`. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below. <br />
-   ```javascript
-{
-    bidder: 'ix',
-        params: {
-        siteId: '123456'
-    }
-}
-    ```
-3. Define your ad units in the `adUnit` object. This includes the details about the ad slots such as the media types, ad size, and ad code. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.
-4. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Make  sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.  <br />
-  ```javascript
+<a id="server-side-adapter"></a>
+
+## Set up Prebid.js to call Index through Prebid Server (server-side adapter)
+
+In this configuration, Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Index. Complete the following steps to configure Index as a demand source:
+
+1. If you are hosting your own Prebid Server instance, see [Setup instructions to call Index through Prebid Server](/dev-docs/pbs-bidders.html#setup-instructions-to-call-index-through-prebid-server).
+2. In the `[pbjs.setConfig()]` function, within the `s2sConfig` property, add `ix` to the `bidders` attribute.
+3. Define the Index-specific parameters at the bidder level. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
+4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.
+5. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.   <br />
+
+    ```javascript
     pbjs.setConfig({
         userSync: {
             iframeEnabled: true,
@@ -119,61 +121,25 @@ In this configuration Prebid.js calls Index directly from the browser using our 
             }
         }
     });
-  ```
-5. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
-6. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function as follows: <br />
-
-    ```javascript
-        pbjs.setConfig({
-            cache: {
-                url: 'https://prebid.adnxs.com/pbc/v1/cache'
-            }
-        });
     ```
-7. (Optional) If you want to monetize outstream video, you can choose among the following options:
-    * Use Index's outstream video player. For more information, see the [Index's outstream video player ](#indexs-outstream-video-player)section below. 
-    * Use your own outstream video player. For more information, see [Prebid's documentation on how to show video ads.](https://docs.prebid.org/dev-docs/show-outstream-video-ads.html)
-8. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
-<a name="server-side-adapter"></a>
-
-## Set up Prebid.js to call Index through Prebid Server (server-side adapter)
-
-In this configuration, Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Index. Complete the following steps to configure Index as a demand source:
-
-1. If you are hosting your own Prebid Server instance, see [Setup instructions to call Index through Prebid Server](/dev-docs/pbs-bidders.html#setup-instructions-to-call-index-through-prebid-server).
-2. In the `[pbjs.setConfig()]` function, within the `s2sConfig` property, add `ix` to the `bidders` attribute.
-3. Define the Index-specific parameters at the bidder level. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
-4. Define your ad units in the `adUnit` object. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.
-5. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Be sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.   <br />
-```javascript
-    pbjs.setConfig({
-        userSync: {
-             iframeEnabled: true,
-             filterSettings: {
-                 iframe: {
-                 bidders: ['ix'],
-                 filter: 'include'
-                 }
-             }
-         }
-     });
-```
 6. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
 7. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
-```javascript
+
+    ```javascript
     pbjs.setConfig({
         cache: {
-               url: 'https://prebid.adnxs.com/pbc/v1/cache'
+                url: 'https://prebid.adnxs.com/pbc/v1/cache'
             }
     });
-```
+    ```
+
 8. (Optional) If you want to monetize outstream video, you can choose among the following options:
-    * Use Index's outstream video player. For more information, see the [Index's outstream video player ](#indexs-outstream-video-player) section below. 
+    * Use Index's outstream video player. For more information, see the [Index's outstream video player](#index-outstream-video-player) section below.
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](/dev-docs/show-outstream-video-ads.html)
 9. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
-<a name="modules-to-include-in-your-build-process"></a>
+<a id="modules-to-include-in-your-build-process"></a>
 
 ## Modules to include in your build process
 
@@ -192,7 +158,7 @@ If you are using a JSON file to specify modules, add `ixBidAdapter` and `dfpAdSe
 ]
 ```
 
-<a name="set-up-first-party-data-fpd"></a>
+<a id="set-up-first-party-data-fpd"></a>
 
 ## Set up First Party Data (FPD)
 
@@ -219,7 +185,7 @@ pbjs.setConfig({
 });
 ```
 
-<a name="index-bidder-specific-fpd-module"></a>
+<a id="index-bidder-specific-fpd-module"></a>
 
 ### Index bidder-specific data
 
@@ -228,7 +194,7 @@ This data type is available from Prebid version 7.49.0 and above. You can use it
 To include the FPD in a bid request, in the `[pbjs.setConfig()]` object at the `ix` bidder level, provide the key-values in the `firstPartyData` parameter. Make sure that you set it before the `pbjs.requestBids` configuration. If you want to change the values, you can update the `pbjs.setConfig` once again. The change will be reflected in all future bid requests.
 
 ```javascript
- pbjs.setConfig({
+pbjs.setConfig({
     ix: {
         firstPartyData: {
             '<key name>': '<key value>',
@@ -239,7 +205,7 @@ To include the FPD in a bid request, in the `[pbjs.setConfig()]` object at the `
 });
 ```
 
-<a name="adunit-specific-data"></a>
+<a id="adunit-specific-data"></a>
 
 ### AdUnit-specific data
 
@@ -256,57 +222,58 @@ ortb2Imp: {
 }
 ```
 
-<a name="index-outstream-video-player"></a>
+<a id="index-outstream-video-player"></a>
 
-## Index's outstream video player
+## Index's outstream ad unit
 
-Publishers who are using Index as a bidding adapter in Prebid.js can show outstream video ads on their site using Index's outstream video player. This allows a video ad to be placed anywhere on a publisher’s site, such as in-article, in-feed, and more. To use Index's outstream renderer, you must be on Prebid.js version 5.13 or higher. However, if you are using your own outstream renderer, Index's adapter can accept video signals from version 2.41.0 or higher. <br />
-**Note:** When you use the Index renderer for outstream video, all impressions are considered viewable, which is similar to how Google's ActiveView counts impressions for outstream. This is because Index renders the outstream video as soon as it is in view and concurrently fires any impression pixels in the VAST.
+Publishers who are using Index as a bidding adapter in Prebid.js can show outstream video ads on their site using Index's outstream ad unit. This allows a video ad to be placed anywhere on a publisher’s site, such as in-article, in-feed, and more. To use Index's outstream ad unit, you must be on Prebid.js version 5.13 or higher. However, if you are using your own outstream video player, Index's adapter can accept video signals from version 2.41.0 or higher. <br />
+**Note:** When you use the Index ad unit for outstream video, all impressions are considered viewable, which is similar to how Google's ActiveView counts impressions for outstream. This is because Index plays the outstream video as soon as it is in view and concurrently fires any impression pixels in the VAST.
 
-To use Index’s outstream video player, in your Prebid.js configuration:<br />
+To use Index’s outstream ad unit, in your Prebid.js configuration:<br />
 
-1. Perform the following steps in your Prebid.js configuration to create a new section for Index's outstream video player:
+1. Perform the following steps in your Prebid.js configuration to create a new section for Index's outstream ad unit:
     * Add a new code property under `adUnits`. The code could be the `divID` or the Google Ad Manager adUnit code.
     * Within the `adUnits`, add `ix` as a `bidder`.
-    * (Recommended) At the `adUnit` level, under `mediaTypes`, add a `video` object that supports our required video parameters. For more information about which parameters to add, see the [Bid request parameters](#video) section below. This is useful for publishers who want to apply the same settings across all SSPs.
+    * At the `adUnit` level, under `mediaTypes`, you must add a `video` object that supports our required video parameters. For more information about which parameters to add, see the [Bid request parameters](#video) section below. This is useful for publishers who want to apply the same settings across all SSPs.
     * Optionally, you can add the `video` object at the bidder level under `bids.params`. This is useful for publishers who may want to set up different configurations for different SSPs.   <br />
 **Note:** The `bidder` level video configurations override the `adUnit` level configurations. The `playerConfig` is only a bidder level configuration.
-2. (Recommended) To force the Index renderer as the default renderer for Index, set `backupOnly` to true (see below example). This configuration allows you to use your own renderer only when an adapter does not provide their own renderer. This also forces any adapter that has a renderer to use their renderer by default. If no renderer is provided, by default,  we will use our own renderer script.
-3. Configure the player according to the options in the [Bid request parameters](#bid-request-parameters) section below.
+2. (Recommended) To force the Index ad unit as the default player for Index, set `backupOnly` to true (see below example). This configuration allows you to use your own player only when an adapter does not provide their own player. This also forces any adapter that has a player to use their player by default. If no player is provided, by default,  we will use our own ad unit script.
+3. Configure the ad unit according to the options in the [Bid request parameters](#bid-request-parameters) section below.
 4. Depending on your existing Prebid setup, complete one of the following:
     * If you have an existing Prebid.js integration for banner, you can use the corresponding line items in your Google Ad Manager (GAM) account to retrieve outstream video demand. For more information, see Prebid's documentation on [How to set up line items](/adops/step-by-step.html).
     * If you do not have an existing Prebid.js integration for banner, create a line item in your GAM account that is capable of serving an outstream video ad. For more information about how to do this, see Prebid's documentation on Setting up [Prebid Video in Google Ad Manager](/adops/setting-up-prebid-video-in-dfp.html).
-5. Notify your Index Representative and provide your test page URL for validation. They will work with you to test the video player and confirm that outstream video ads are being retrieved.<br />
+5. Notify your Index Representative and provide your test page URL for validation. They will work with you to test the video ad unit and confirm that outstream video ads are being retrieved.<br />
 
 For more information on how to structure the video object, refer to the following code example:<br />
 
 ```javascript
 pbjs.addAdUnit({
     code: 'video1',
-    // This renderer would apply to all prebid creatives...
+    // This video player would apply to all prebid creatives...
     renderer: {
         url: 'example.com/publishersCustomRenderer.js',
         backupOnly: true,
         render: function (bid) { renderAdUnit(...) }
     },
     mediaTypes: {
-        // Pub renderer video settings...
+        // Publisher video player video settings...
         video: {
             context: 'outstream',
             playerSize: [640, 480],
             mimes: ['video/mp4'],
             protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-            playbackmethod: [2],
-            skip: 1
-            plcmt: 2
+            placement: 3,
+            playbackmethod: [6],
+            skip: 1,
+            plcmt: 4
 
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '12345',
-            // Index renderer video settings...
+            siteId: '9999990',
+            // Index ad unit video settings...
             video: {
                 //minimum size for Video Player size is 144x144 in pixel
                 //maxduration can be any.
@@ -328,9 +295,10 @@ pbjs.addAdUnit({
     }]
 });
 ```
+
 *Please note that your use of the outstream video player will be governed by and subject to the terms and conditions of i) any master services or license agreement entered into by you and Index Exchange; ii) the information provided on our knowledge base linked [here](https://kb.indexexchange.com/publishers/prebid_integration/outstream_video_prebidjs.htm) and [here](https://kb.indexexchange.com/publishers/guidelines/standard_contractual_clauses.htm), and iii) our [Privacy Policy](https://www.indexexchange.com/privacy/). Your use of Index's outstream video player constitutes your acknowledgement and acceptance of the foregoing.*
 
-<a name="prebid-native-configuration"></a>
+<a id="prebid-native-configuration"></a>
 
 ## Prebid Native configuration
 
@@ -371,13 +339,96 @@ pbjs.addAdUnits({
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '715966'
+            siteId: '9999990'
         }
     }]
 });
 ```
 
-<a name="bid-request-parameters"></a>
+<a id="protected-audience-api-support"></a>
+
+## Protected Audience API support
+
+**Before you begin:**
+
+* You must have Google Ad Manager and the [fledgeForGpt](/dev-docs/modules/fledgeForGpt.html) module.
+* In your Google Ad Manager configuration, make sure that you have not opted out from using the Protected Audience API. For more information about the configuration, see Google's documentation on  [Protected Audience API and Ad Manager after Chrome GA](https://support.google.com/admanager/answer/13627134?hl=en&ref_topic=12264880&sjid=10591375417866092080-NA).
+
+Follow these steps to configure your Prebid.js to specify that your ad slots are enabled for [Protected Audience](https://github.com/WICG/turtledove/blob/main/FLEDGE.md) auctions:
+
+1. If required, update your Prebid.js version to 8.18.0 or later.
+2. Build the `fledgeForGpt` module in your Prebid.js configuration by adding `fledgeForGpt` to the list of modules that you are already using. For more information about the module, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation.
+3. Enable all ad units to use the `fledgeForGpt` module in your prebid.js configuration. You can do this in the global-level configuration, bidder level, or ad-unit level. For more information about the configurations, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation. Index recommends that you do this in the global-level configuration by using the `defaultForSlots` parameter with a value of `1`. <br />
+**Note:** If you are using the `fledgeForGpt.bidders[]`, make sure that you add `ix` to the list of bidders.<br />
+The following shows an example of the configuration done at the global level:
+
+```javascript
+pbjs.que.push(function() {
+  pbjs.setConfig({
+    fledgeForGpt: {
+      enabled: true,
+      defaultForSlots: 1
+    }
+  });
+});
+```
+
+The following shows an example of the configuration done at the ad-unit level:
+
+```javascript
+pbjs.addAdUnits({
+    code: "my-adunit-div",
+    // other config here
+    ortb2Imp: {
+        ext: {
+            ae: 1
+        }
+    }
+});
+```
+
+<a id="signal-inventory-using-external-ids"></a>
+
+## Signal inventory using  external IDs
+
+1. In the `pbjs.setBidderConfig` object at the `ix` bidder level, you must configure an `exchangeId` that applies to all your placements as follows. Note that the `exchangeId` is provided by Index.
+
+   ```javascript
+   pbjs.setBidderConfig({
+     bidders: ['ix'],
+     config: {
+        exchangeId: 123456 // Exchange-specific seller ID
+      }
+    });
+
+   ```
+
+2. Configure `externalId` at the bidder ad unit level under `bids.params`. The following shows an example of a banner ad that includes the `externalId` at the bidder level:
+
+  ```javascript
+   // Banner
+   var adUnits = [{
+     code: 'banner-div-a',
+     mediaTypes: {
+         banner: {
+             sizes: [
+                [300, 250],
+                [300, 600]
+             ]
+         }
+      },
+     bids: [{
+         bidder: 'ix',
+         params: {
+            externalId: "example_value" // External placement ID, which could include an integer or string           
+         }
+       }
+     ]
+   }];
+
+  ```
+
+<a id="bid-request-parameters"></a>
 
 ## Bid request parameters
 
@@ -391,7 +442,7 @@ You must include these parameters at the bidder level.
 
 | Name | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`|
 
 ### Video
 
@@ -401,16 +452,16 @@ You must include these parameters at the bidder level.
 
 | Name | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
 
-If you are using Index's outstream player and have placed the video object at the bidder level, you must include the Index required parameters at the bidder level. You can include the optional parameters to specify the outstream player configurations.
+If you are using Index's outstream ad unit and have placed the video object at the bidder level, you must include the Index required parameters at the bidder level. You can include the optional parameters to specify the outstream player configurations.
 
 {: .table .table-bordered .table-striped }
 
 | Name | Scope | Type | Description |
 |---|---|---|---|
-| `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
-| `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters, with a minimum video player size of `300 x 250`. |
+| `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters. We strongly recommend video sizes to be `256 x 256` or greater, `300 x 250`, or `320 x 180`. |
+| `video.h` | Required | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters. We strongly recommend video sizes to be `256 x 256` or greater, `300 x 250`, or `320 x 180`. |
 | `video.playerSize` | Required | Integer[] | The video player size that will be passed to demand partners. |
 | `video.playerConfig` | Optional | Hash | The Index-specific outstream player configurations. |
 | `video.playerConfig.floatOnScroll` | Optional | Boolean | A boolean specifying whether you want to use the player's floating capabilities, where:<br />- `true`: Use the Index player's float capabilities.<br /> **Note:** If you set `floatOnScroll` to `true`, Index updates the placement value to `5`.<br /> **Note:** We do not recommend using the player's default float capabilities if you have more than one outstream ad unit per page. <br /> - `false`: Do not use the Index player's float capabilities (default). |
@@ -421,7 +472,7 @@ If you are using Index's outstream player and have placed the video object at th
 
 Index supports the same set of native assets that Prebid.js recognizes. For the list of native assets, see [Prebid.js Native Implementation Guide on the Prebid site.](https://docs.prebid.org/prebid/native-implementation.html#3-prebidjs-native-adunit-overview)
 
-<a name="multi-format-ad-units"></a>
+<a id="multi-format-ad-units"></a>
 
 ## Multi-format ad units
 
@@ -433,12 +484,12 @@ The following are the parameters that you can specify for each multi-format type
 
 | Name | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`. <br><br><b>Note:</b> This will also act as the default siteID for multi-format adunits if a format specific siteId is not provided.|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`. <br><br><b>Note:</b> This will also act as the default siteID for multi-format adunits if a format specific siteId is not provided.|
 | `banner.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `banner` format in the multi-format ad unit.|
 | `video.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `video` format in the multi-format ad unit.|
 | `native.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `native` format in the multi-format ad unit.|
 
-<a name="examples"></a>
+<a id="examples"></a>
 
 ## Examples
 
@@ -458,7 +509,7 @@ var adUnits = [{
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '123456'
+            siteId: '9999990'
         }
     } 
     ]
@@ -489,7 +540,7 @@ var adUnits = [{
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '12345',
+            siteId: '9999990',
             video: {
                 // openrtb v2.5 compatible video obj
                 // If required, use this to override mediaTypes.video.XX properties
@@ -514,13 +565,15 @@ var adUnits = [{
             minduration: 5,
             maxduration: 30,
             mimes: ['video/mp4', 'application/javascript'],
-            placement: 5
+            placement: 3,
+            plcmt: 4,
+            playbackmethod: 6
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '715964'
+            siteId: '9999990'
             video: {
                 playerConfig: {
                     floatOnScroll: true,
@@ -570,7 +623,7 @@ pbjs.addAdUnits({
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '715966'
+            siteId: '9999990'
         }
     }]
 });
@@ -616,15 +669,15 @@ var adUnits = [{
    {
        bidder: 'ix',
        params: {
-           siteId: '1111',
+           siteId: '9999990',
            video: {
-               siteId: '2222'
+               siteId: '9999991'
            },
            native: {
-               siteId: '3333'
+               siteId: '9999992'
            },
            banner: {
-               siteId: '4444'
+               siteId: '9999993'
            }
        }
    },

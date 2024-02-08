@@ -3,10 +3,10 @@ layout: bidder
 title: AIDEM
 description: AIDEM Bidder Adapter
 biddercode: aidem
-gdpr_supported: true
-gvl_id: none
+tcfeu_supported: true
+gvl_id: 1218
 usp_supported: true
-coppa_supported: false
+coppa_supported: true
 schain_supported: false
 dchain_supported: false
 userId: none
@@ -14,10 +14,10 @@ media_types: banner, video
 safeframes_ok: true
 deals_supported: true
 floors_supported: true
-fpd_supported: false
+fpd_supported: true
 pbjs: true
-pbs: false
-prebid_member: false
+pbs: true
+prebid_member: true
 ortb_blocking_supported: false
 sidebarType: 1
 ---

@@ -7,7 +7,8 @@ pbs: true
 biddercode: adsyield
 aliasCode: admixer
 media_types: video
-gdpr_supported: true
+gvl_id: 1199
+tcfeu_supported: true
 usp_supported: true
 sidebarType: 1
 ---
