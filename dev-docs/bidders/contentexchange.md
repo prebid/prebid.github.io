@@ -6,6 +6,7 @@ biddercode: contentexchange
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
+gvl_id: 864
 tcfeu_supported: true
 pbjs: true
 pbs: false
