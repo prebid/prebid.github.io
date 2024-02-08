@@ -1381,6 +1381,8 @@ If the currency function is unable to derive the correct cpm in any of the scena
 | <img src="/assets/images/partners/leader/pubmatic.png" style="height:50px;"> | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
 | <img src="/assets/images/partners/leader/AssertiveYield_logo.png"> | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
 | pubx.ai | [hello@pubx.ai](mailto:hello@pubx.ai) | AI-powered dynamic floor optimization |
+| <img src="/assets/images/partners/leader/mile.png" style="height:50px"> | [hello@mile.tech](mailto:hello@mile.tech) | Boost your Prebid stack with Mile’s AI-powered dynamic flooring module that delivers an average revenue uplift of 22%. Sign-up for a free trial. |
+
 
 ## Further Reading
 
