@@ -146,6 +146,7 @@ called `pubcid` in results, _not_ `sharedId`:
 ```
 
 The same applies for the eids:
+
 ```javascript
 [{"source":"pubcid.org","uids":[{"id":"foobar","atype":1,"ext":{"provider":"liveintent.com"}}]}]
 ```
