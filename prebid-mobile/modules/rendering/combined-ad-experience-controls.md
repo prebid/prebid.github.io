@@ -282,6 +282,7 @@ This option switches on or off the visibility of the sound/mute button for users
 Here is how you can implement all the API's to customize your ad.
 
 {% capture android %}
+
   ```kotlin
   adUnit = MediationInterstitialAdUnit(
       activity,
@@ -297,9 +298,11 @@ Here is how you can implement all the API's to customize your ad.
   adUnit?.setSkipButtonPosition(Position.TOP_RIGHT)
   adUnit?.setCloseButtonPosition(Position.TOP_LEFT)
   ```
+
 {% endcapture %}
 
 {% capture ios %}
+
   ```swift
   interstitialController = InterstitialRenderingAdUnit(configID: prebidConfigId,
                                                         minSizePercentage: CGSize(width: 30, height: 30))
@@ -311,6 +314,7 @@ Here is how you can implement all the API's to customize your ad.
   interstitialController?.skipButtonPosition = .topRight
   interstitialController?.closeButtonPosition = .topRight
   ```
+  
 {% endcapture %}
 
 {% include code/mobile-sdk.html id="code-example" kotlin=android swift=ios %}
