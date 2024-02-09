@@ -314,15 +314,3 @@ Here is how you can implement all the API's to customize your ad.
 {% endcapture %}
 
 {% include code/mobile-sdk.html id="code-example" kotlin=android swift=ios %}
-
-
-
-
-
-
-
-
-
-
-
-
