@@ -69,7 +69,7 @@ This control sets the position of the close button on the screen.
 
 {: .table .table-bordered .table-striped }
 
-|**API Object**         `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+|**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
 |**Ad Unit Property**   | `adUnit.setCloseButtonPosition(Position.TOP_LEFT)`|
 |**Server Property**    | `closebuttonposition` *(pending for PBS implementation)*|
 |**Allowed Values**     | `Position.TOP_LEFT, Position.TOP_RIGHT`|
@@ -88,7 +88,7 @@ This control sets the percent of device screen which the skip button should occu
 
 {: .table .table-bordered .table-striped }
 
-|**API Object**         `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+|**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
 |**Ad Unit Property**   | `adUnit.setSkipButtonArea(factor)`|
 |**Server Property**    | `skipbuttonarea` *(pending for PBS implementation)*|
 |**Allowed Values**     | `0..1`|
@@ -107,7 +107,7 @@ This control sets the position of the skip button on the screen.
 
 {: .table .table-bordered .table-striped }
 
-|**API Object**         `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+|**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
 |**Ad Unit Property**   | `adUnit.setSkipButtonPosition(Position.TOP_LEFT)`|
 |**Server Property**    | `skipbuttonposition` *(pending for PBS implementation)*|
 |**Allowed Values**     | `Position.TOP_LEFT, Position.TOP_RIGHT`|
@@ -126,7 +126,7 @@ This control toggles the display of the sound/mute button to users.
 
 {: .table .table-bordered .table-striped }
 
-|**API Object**         `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+|**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
 |**Ad Unit Property**   | `adUnit.setIsSoundButtonVisible(true)`|
 |**Server Property**    | *not supported*|
 |**Default Value**      | `false`|
@@ -144,7 +144,7 @@ This control sets number of seconds which should be passed from the start of pla
 
 {: .table .table-bordered .table-striped }
 
-|**API Object**         `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
+|**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
 |**Ad Unit Property**   | `adUnit.setSkipDelay(seconds)`|
 |**Server Property**    | `skipdelay` *(pending for PBS implementation)*|
 |**Default Value**      | `10 seconds`|

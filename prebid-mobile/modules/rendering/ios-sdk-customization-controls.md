@@ -31,7 +31,7 @@ This control sets the maximum available video duration in seconds. Prebid SDK se
 |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
 |**Ad Unit Property**   | `adUnit.videoParameters.maxDuration`|
 |**Server Property**    | `maxvideoduration` *(pending for PBS implementation)*|
-|**Default Value**     | `3600 seconds`|
+|**Default Value**      | `3600 seconds`|
 
 ### Application Muted
 
@@ -42,7 +42,7 @@ This control enables playback to toggle sound on or off.
 |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
 |**Ad Unit Property**   | `adUnit.isMuted`|
 |**Server Property**    | `ismuted` *(pending for PBS implementation)*|
-|**Default Value**     | `false`|
+|**Default Value**      | `false`|
 
 ### Close Button Area
 
@@ -54,7 +54,7 @@ This control sets the percent of device screen which the close button should occ
 |**Ad Unit Property**   | `adUnit.closeButtonArea`|
 |**Server Property**    | `closebuttonarea` *(pending for PBS implementation)*|
 |**Allowed Values**     | `0..1`|
-|**Default Value**     | `0.1`|
+|**Default Value**      | `0.1`|
 
 Customization Example
 
@@ -73,7 +73,7 @@ This control sets the position of the close button on the screen.
 |**Ad Unit Property**   | `adUnit.closeButtonPosition`|
 |**Server Property**    | `closebuttonposition` *(pending for PBS implementation)*|
 |**Allowed Values**     | `topLeft, topRight`|
-|**Default Value**     | `topRight`|
+|**Default Value**      | `topRight`|
 
 Customization Example
 
@@ -92,7 +92,7 @@ This control sets the percent of device screen which the skip button should occu
 |**Ad Unit Property**   | `adUnit.skipButtonArea`|
 |**Server Property**    | `skipbuttonarea` *(pending for PBS implementation)*|
 |**Allowed Values**     | `0..1`|
-|**Default Value**     | `0.1`|
+|**Default Value**      | `0.1`|
 
 ### Skip Button Position
 
@@ -104,7 +104,7 @@ This control sets the position of the skip button on the screen.
 |**Ad Unit Property**   | `adUnit. skipButtonPosition`|
 |**Server Property**    | `skipbuttonposition` *(pending for PBS implementation)*|
 |**Allowed Values**     | `topLeft, topRight`|
-|**Default Value**     | `topLeft`|
+|**Default Value**      | `topLeft`|
 
 Customization Example
 
@@ -122,7 +122,7 @@ This control sets the number of seconds which should be passed from the start of
 |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
 |**Ad Unit Property**   | `adUnit.skipDelay`|
 |**Server Property**    | `skipdelay` *(pending for PBS implementation)*|
-|**Default Value**     | `10 seconds`|
+|**Default Value**      | `10 seconds`|
 
 ### Sound Button
 
@@ -135,7 +135,7 @@ This control toggles the display of the sound/mute button to users.
 |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
 |**Ad Unit Property**   | `adUnit.isSoundButtonVisible`|
 |**Server Property**    | *not supported*|
-|**Default Value**     | `false`|
+|**Default Value**      | `false`|
 
 Customization Example
 
