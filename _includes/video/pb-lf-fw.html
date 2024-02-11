@@ -20,24 +20,10 @@
     />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-      window.onetrustLoaded.then(() => {
-        OneTrust.InsertScript(
-          "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js",
-          "head",
-          null,
-          {},
-          "C0003"
-        );
-        OneTrust.InsertScript(
-          "https://mssl.fwmrm.net/libs/adm/6.24.0/AdManager-debug.js",
-          "head",
-          null,
-          {},
-          "C0003"
-        );
-        OneTrust.InsertScript("player.js", "head", null, {}, "C0003");
-      });
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/plain" class="cmplazyload" data-cmp-purpose="c51" data-cmp-src="https://mssl.fwmrm.net/libs/adm/6.24.0/AdManager-debug.js"></script>
+
     </script>
     <!--style specific to the long-form demo-->
     <style type="text/css">

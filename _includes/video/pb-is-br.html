@@ -3,16 +3,13 @@
 
 <head>
 {% include head--common.html %}
-    {% include prebidjs-non-prod.html %}
+{% include prebidjs-non-prod.html %}
 
     <!--brid & prebid js code-->
-    <script>
-      window.onetrustLoaded.then(() => {
-        OneTrust.InsertScript("//services.brid.tv/player/build/brid.min.js", 'head', null, {}, 'C0003');
-      })
+    <script type="text/plain" class="cmplazyload" data-cmp-purpose="c51" data-cmp-src="//services.brid.tv/player/build/brid.min.js">
     </script>
 
-    <script type="text/plain" class="optanon-category-C0003">
+    <script>
 
 		var pbjs = pbjs || {};
 		pbjs.que = pbjs.que || [];
