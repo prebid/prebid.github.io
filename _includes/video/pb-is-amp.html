@@ -3,8 +3,7 @@
 
 <head>
 {% include head--common.html %}
-    <!--production version of prebid.js-->
-    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+    {% include prebidjs-non-prod.html %}
     <script type="text/javascript" src="https://amp.akamaized.net/hosted/1.1/player.esi?apikey=prebid.org.samples"></script>
 
     <script type="text/javascript">
