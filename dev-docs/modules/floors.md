@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # Price Floors Module
-
 {:.no_toc}
 
 * TOC
@@ -361,6 +360,7 @@ a subset that will be merged under the 'data' object.
 | enforcement.floorDeals | boolean | Enforce floors for deal bid requests. | false |
 | enforcement.bidAdjustment | boolean | If true, the module will use the bidAdjustment function to adjust the floor per bidder. If false (or no bidAdjustment function is provided), floors will not be adjusted. Note: Setting this parameter to false may have unexpected results, such as signaling a gross floor when expecting net or vice versa. | true |
 | enforcement.enforceRate | integer | Prebid Server only: Defines a percentage for how often bid response enforcement activity should take place given that the floors feature is active. If the floors feature is skipped due to skipRate, this has no affect. For every non-skipped auction, this percent of them should be enforced: i.e. bids discarded. This feature lets publishers ease into enforcement in case bidders aren't adhering to floor rules. | 100 |
+| enforcement.noFloorSignalBidders | array of strings | (Prebid.js 8.31+) Bidders which should not receive floor signals. | none |
 | endpoint | object | Controls behavior for dynamically retrieving floors.  | - |
 | endpoint.url | string | URL of endpoint to retrieve dynamic floor data.  | - |
 | data | object (required) | Floor data used by the module to pass floor data to bidders and floor enforcement. | - |
@@ -370,6 +370,7 @@ a subset that will be merged under the 'data' object.
 | data.useFetchDataRate | integer | (Prebid Server only) useFetchDataRate is a random function whose input value is any integer 0 through 100 to determine when to skip dynamic floor data and fall back to static floor data. 0 means always use static floor data and 100 means always use dynamic floor data. The use case is for publishers or floor providers to confirm how dynamic floors data compares to static floors data. Analytics adapters will have access to the location of the actual floors data used, either "request" or "fetch". | 100 |
 | data.floorsSchemaVersion | string | The module supports two version of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows you to sample multiple models selected by supplied weights. If no schema version is provided, the module will assume version 1 for the sake of backwards compatiblity.| 1 |
 | data.modelTimestamp | int | Epoch timestamp associated with modelVersion. Can be used to track model creation of floor file for post auction analysis.| - |
+| data.noFloorSignalBidders | array of strings | (Prebid.js 8.31+) Bidders which should not receive floor signals. | none |
 | data.modelGroups | array of objects | Array of model objects to be used for A/B sampling multiple models. This field is only used when data.floorsSchemaVersion = 2 | - |
 | data.modelGroups[].currency | string | Currency of floor data. Floor Module will convert currency where necessary. See Currency section for more details. | 'USD' |
 | data.modelGroups[].skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will have access to model version (if defined) when skipped is true to signal the module is in floors mode. | 0 |
@@ -382,6 +383,7 @@ a subset that will be merged under the 'data' object.
 | data.modelGroups[].values."rule key" | string | Delimited field of attribute values that define a floor. | - |
 | data.modelGroups[].values."rule floor value" | float | The floor value for this key. | - |
 | data.modelGroups[].default | float | Floor used if no matching rules are found. | - |
+| data.modelGroups[].noFloorSignalBidders | array of strings | (Prebid.js 8.31+) Bidders which should not receive floor signals. | none |
 | additionalSchemaFields | object | Object contain the lookup function to map custom schema.fields. Not supported by Prebid Server. | - |
 | additionalSchemaFields."custom key" | string | custom key name | - |
 | additionalSchemaFields."key map function" | function | Function used to lookup the value for that particular custom key | - |

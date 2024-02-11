@@ -16,11 +16,7 @@ sidebarType : 1
 * TOC
 {: toc }
 
-{% capture legalNotice %}
-  This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
-  {% endcapture %}
-
-{% include /alerts/alert_important.html content=legalNotice %}
+{% include legal-warning.html %}
 
 {: .alert.alert-warning :}
 This module requires the [EU GDPR consent management module](/dev-docs/modules/consentManagement.html) (the base consent module), which reads consent values from the Consent Management Platform (CMP). The GDPR Enforcement Module

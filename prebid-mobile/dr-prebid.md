@@ -10,6 +10,9 @@ sidebarType: 3
 
 # Dr. Prebid
 
+{: .alert.alert-danger :}
+This app has been deprecated and is no longer available on any major app store.
+
 {:.no_toc}
 
 Dr. Prebid is a validation and troubleshooting app for publishers implementing Prebid Mobile. With this app you can validate your settings for your ad server setup, your Prebid Server configuration, and your end-to-end Prebid Mobile SDK implementation.
