@@ -106,7 +106,7 @@ For the attributes `lipbid` (nonID), `uid2`, `medianet`, `magnite`, `bidswitch`,
 
 ### SharedID
 
-The SharedId can also be provided by the liveconnect user ID module.
+The [SharedId](https://docs.prebid.org/identity/sharedid.html.) can also be provided by the liveconnect user ID module.
 
 In order to use this functionality tell the module which identifier you want
 to use as a sharedId in the config params:
@@ -139,7 +139,7 @@ Additionally, add it to the requested attributes:
 ```
 
 The user id result will contain both the SharedId directly in the lipb object and separately in a format compatible with the sharedId module (pubcid). Note that the ID is
-called `pubcid` in results, _not_ `sharedId`:
+called `pubcid` in results, _not_ `sharedId` due to historical reasons:
 
 ```javascript
 {"lipb":{"pubcid":"foobar"},"pubcid":{"id":"foobar","ext":{"provider":"liveintent.com"}}}
@@ -269,6 +269,10 @@ NOTE: For optimal performance, the LiveIntent ID sub-module should be called at 
               fpiExpirationDays: 730,
               collectorUrl: "https://rp.liadm.com",
               appId: "a-0012"
+            },
+            sharedId: {
+              strategy: "cookie"
+              name: "foobar"
             }
           }
         }]
