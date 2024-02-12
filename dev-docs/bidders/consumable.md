@@ -4,7 +4,7 @@ title: Consumable
 description: Prebid Consumable Bidder adapter
 userIds: all
 pbjs: true
-pbs: true
+pbs: false
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true

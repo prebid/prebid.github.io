@@ -3,7 +3,7 @@ layout: bidder
 title: Consumable
 description: Prebid Consumable Bidder adapter
 userIds: all
-pbjs: true
+pbjs: false
 pbs: true
 pbs_app_supported: true
 schain_supported: true
@@ -166,6 +166,7 @@ You must include these parameters at the bidder level.
 | `networkId` | required | The network ID from Consumable. | `9969`  | `integer` |
 | `unitId` | required | The unit ID from Consumable. | `987654`  | `integer` |
 | `unitName` | required | The unit name from Consumable. | `cnsmbl-unit`  | `string` |
+
 ### App or CTV (Banner, Video, Audio)
 
 You must include these parameters at the bidder level.
