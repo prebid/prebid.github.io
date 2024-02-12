@@ -10,8 +10,7 @@ title: Prebid Server | Features | Privacy
 * TOC
 {:toc}
 
-{: .alert.alert-danger :}
-Important: This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and individual state laws. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+{% include legal-warning.html %}
 
 ## Prebid Server Activity Control Infrastructure
 
