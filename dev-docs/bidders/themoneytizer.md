@@ -6,7 +6,6 @@ biddercode: themoneytizer
 media_types: display
 gvl_id: 1265
 pbjs: true
-userIds: criteo, id5Id, pubCommonId, unifiedId, quantcastId, lotamePanoramaId, sharedId
 tcfeu_supported: true
 safeframes_ok: false
 schain_supported: true
