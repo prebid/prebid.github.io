@@ -14,8 +14,8 @@ safeframes_ok: true
 deals_supported: true
 floors_supported: true
 fpd_supported: true
-pbjs: true/false
-pbs: true/false
+pbjs: true
+pbs: false
 prebid_member: true/false
 ortb_blocking_supported: false
 privacy_sandbox: paapi
