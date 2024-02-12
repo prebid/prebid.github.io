@@ -23,7 +23,7 @@ sidebarType: 1
 ---
 ### Note
 
-The Lucead Bidding adapter requires setup before beginning. Please contact us at [aymeric@lucead.com](mailto:aymeric@lucead.com).
+The Lucead Bidding adapter requires setup before beginning. Please contact us at [prebid@lucead.com](mailto:prebid@lucead.com).
 
 ### Bid Params
 
