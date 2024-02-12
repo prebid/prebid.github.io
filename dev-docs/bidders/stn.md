@@ -7,7 +7,7 @@ biddercode: stn
 media_types: banner, video
 multiformat_supported: will-bid-on-any
 schain_supported: true
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 pbs: false
 floors_supported: true
