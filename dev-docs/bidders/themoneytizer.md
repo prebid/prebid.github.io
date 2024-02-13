@@ -19,6 +19,8 @@ The Moneytizer Bidding adapter requires setup before beginning. Please contact u
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description                       | Example         | Type     |
-|------------|----------|-----------------------------------|-----------------|----------|
-| `pid`      | required | The Moneytizer's publisher token  | `1234`          | `integer`|
+| Name       | Scope    | Description                             | Example                                      | Type     |
+|------------|----------|-----------------------------------------|----------------------------------------------|----------|
+| `pid`      | required | The Moneytizer's publisher token        | `1234`                                       | `integer`|
+| `test`     | optional | Set to 1 to receive a test bid response | `1`                                          | `integer`|
+| `baseUrl`  | optional | Call on custom endpoint                 | `'https://custom-endpoint.biddertmz.com/m/'` | `string` |
