@@ -19,7 +19,6 @@ Return the latest available PAAPI auction configuration for each ad unit, option
 | options | Optional | `Object` |  |
 | options.adUnitCode | Optional | `String` | Ad unit filter; if provided, only return configuration for this ad unit |
 | options.auctionId | Optional | `String` | Auction filter; if provided, only return configuration from this auction  |
-| options.reuse | Optional | `Boolean` | If `false`, only return configuration that was not already returned in previous calls to `getPAAPIConfig`. Defaults to `true`.|
 
 **Example**:
 
