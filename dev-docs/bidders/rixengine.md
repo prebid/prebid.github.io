@@ -20,11 +20,7 @@ multiformat_supported: false
 
 ### Note
 
-The RixEngine Bidding adapter requires setup before beginning. Please contact the RixEngine team.
-
-**Media type support:**
-
-RixEngine Prebid.js adapter supports `banner`, video and native is not supported yet.
+The RixEngine Bidding adapter requires setup before beginning. Please contact the RixEngine team <contact@rixengine.com>.
 
 ### Bid Params
 {: .table .table-bordered .table-striped }
