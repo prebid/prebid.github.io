@@ -82,7 +82,7 @@ This module adds the following setting for bidders:
 | fledgeEnabled | Boolean | Enable/disable a bidder to participate in FLEDGE | Defaults to `false` |
 |defaultForSlots | Number |Default value for `imp.ext.ae` in requests for specified bidders |Should be 1|
 
-In addition to enabling PAAPI at the module level, individual can must also be enabled. This allows publishers to
+In addition to enabling PAAPI at the module level, individual bidders can also be enabled. This allows publishers to
 selectively test with one or more bidders as they desire. To enable one or more bidders, use the `setBidderConfig` method
 of Prebid.js:
 
