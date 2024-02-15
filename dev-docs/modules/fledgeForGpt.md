@@ -9,10 +9,9 @@ enable_download : true
 sidebarType : 1
 ---
 
-# Fledge (PAAPI) for GPT Module
+# Protected Audience API (PAAPI) for GPT Module
 
-This module allows Prebid.js to support PAAPI by integrating with GPT's [experimental
-support](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing).
+This module allows Prebid.js to support PAAPI (formerly FLEDGE) by integrating with GPT's support for [component auctions](https://developers.google.com/publisher-tag/reference#googletag.config.componentauctionconfig).
 
 To learn more about PAAPI in general, go [here](https://github.com/WICG/turtledove/blob/main/FLEDGE.md).
 

@@ -16,8 +16,7 @@ This module allows Prebid.js to support PAAPI, formerly known as [FLEDGE](https:
 This document covers the steps necessary for publishers to enable PAAPI on their inventory. It also describes
 the changes Bid Adapters need to implement in order to support PAAPI.
 
-A related module, [fledgeForGpt](/dev-docs/modules/fledgeForGpt.html), adds support specifically for GPT's [experimental FLEDGE
-support](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing).
+A related module, [fledgeForGpt](/dev-docs/modules/fledgeForGpt.html), adds support specifically for GPT's [component auctions](https://developers.google.com/publisher-tag/reference#googletag.config.componentauctionconfig).
 
 ## Publisher Integration
 
@@ -46,16 +45,28 @@ This module exposes the following settings:
 |defaultForSlots | Number |Default value for `imp.ext.ae` in requests for specified bidders |Should be 1 |
 
 As noted above, PAAPI support is disabled by default. To enable it, set the `enabled` value to `true` for this module and configure `defaultForSlots` to be `1` (meaning _Client-side auction_).
-using the `setConfig` method of Prebid.js. Optionally, a list of
-bidders to apply these settings to may be provided:
+using the `setConfig` method of Prebid.js:
 
 ```js
 pbjs.que.push(function() {
   pbjs.setConfig({
     paapi: {
       enabled: true,
-      bidders: ['openx', 'rtbhouse'],
       defaultForSlots: 1
+    }
+  });
+});
+```
+
+Optionally, PAAPI support can be limited to specific bidders:
+
+```js
+pbjs.que.push(function() {
+  pbjs.setConfig({
+    paapi: {
+      enabled: true,
+      defaultForSlots: 1,
+      bidders: ['bidderA', 'bidderB']
     }
   });
 });
@@ -71,13 +82,13 @@ This module adds the following setting for bidders:
 | fledgeEnabled | Boolean | Enable/disable a bidder to participate in FLEDGE | Defaults to `false` |
 |defaultForSlots | Number |Default value for `imp.ext.ae` in requests for specified bidders |Should be 1|
 
-In addition to enabling PAAPI at the module level, individual bidders must also be enabled. This allows publishers to
+In addition to enabling PAAPI at the module level, individual can must also be enabled. This allows publishers to
 selectively test with one or more bidders as they desire. To enable one or more bidders, use the `setBidderConfig` method
 of Prebid.js:
 
 ```js
 pbjs.setBidderConfig({
-    bidders: ["openx"],
+    bidders: ["bidderA"],
     config: {
         fledgeEnabled: true,
         defaultForSlots: 1
