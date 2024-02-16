@@ -951,6 +951,7 @@ Bid metadata may be required in a future Prebid.js release. The AdvertiserDomain
 | `.RendererVersion` | Version of the desired renderer for the creative.
 | `.PrimaryCategoryID` | Primary IAB category id.
 | `.SecondaryCategoryIDs` | Secondary IAB category ids.
+| `.RendererUrl` | Dynamic renderer URL for use in outstream rendering
 
 <p></p>
 
@@ -990,6 +991,7 @@ func getBidMeta(bid *adapters.TypedBid) *openrtb_ext.ExtBidPrebidMeta {
     NetworkName:          "Some Network Name",
     PrimaryCategoryID:    "IAB-1",
     SecondaryCategoryIDs: []string{"IAB-2", "IAB-3"},
+    RendererUrl:          "https://example-renderer-url.com/path/render.js"
   }
 }
 ```
