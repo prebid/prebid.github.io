@@ -9,7 +9,7 @@ sidebarType : 5
 # Richmedia Filter Module
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc }
 
 ## Overview
@@ -32,7 +32,8 @@ The parameters to the module are:
 | mraid-script-pattern | string | optional | Required if filter-mraid is true, defines what pattern is used to identity MRAID creatives. | No default |
 
 Here's an example of the account config used in PBS-Java:
-```
+
+```json
 {
    "hooks": {
       "modules": {
@@ -88,4 +89,4 @@ Here's an example of the account config used in PBS-Java:
 ## Further Reading
 
 - [Prebid Server Module List](/prebid-server/pbs-modules/index.html)
-- [Building a Prebid Server Module ](/prebid-server/developers/add-a-module.html)
+- [Building a Prebid Server Module](/prebid-server/developers/add-a-module.html)
