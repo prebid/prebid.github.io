@@ -814,7 +814,7 @@ These fields will be forwarded to each Bidder, so they can decide how to process
 
 ##### Interstitial support
 Additional support for interstitials is enabled through the addition of two fields to the request:
-`device.ext.prebid.interstitial.minwidthperc` and `device.ext.interstitial.minheightperc`.
+`device.ext.prebid.interstitial.minwidthperc` and `device.ext.prebid.interstitial.minheightperc`.
 The values will be numbers that indicate the minimum allowed size for the ad, as a percentage of the base side. For example, a width of 600 and `"minwidthperc": 60` would allow ads with widths from 360 to 600 pixels inclusive.
 
 Example:
@@ -1464,10 +1464,11 @@ which causes PBS-core to place the video-related attributes on the response.
 
 ##### Request Passthrough
 
-In support of the Prebid SDK, PBS supports a simple passthrough mechanism:
+In support of the Prebid SDK, PBS supports a simple passthrough mechanism at two levels:
 
-If the bidrequest contains ext.prebid.passthrough
-simply copy that object to the bidresponse ext.prebid.passthrough with no validation other than it being valid JSON.
+If the bidrequest contains a global `$.ext.prebid.passthrough` object, the object is copied to the bidresponse `$.ext.prebid.passthrough` with no validation other than it being valid JSON.
+
+If the bidrequest contains impression-level `$.imp[].ext.prebid.passthrough` object, that object is copied to the bidresponse `$.seatbid.bid.ext.prebid.passthrough` with no validation other than it being valid JSON.
 
 The initial use is for the SDK to define render-time parameters, but this mechanism may find use in other applications.
 
@@ -1680,6 +1681,8 @@ The codes currently returned:
 | 202 | Request Blocked due to mediatype | Java | This impression not sent to the bid adapter because it doesn't support the requested mediatype. |
 | 301 | Response Rejected - Below Floor | Java | The bid response did not meet the floor for this impression. |
 
+See the [IAB's community extension](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/seat-non-bid.md) for the full list of status codes that may be supported in the future.
+
 ### OpenRTB Ambiguities
 
 This section describes the ways in which Prebid Server **implements** OpenRTB spec ambiguous parts.
@@ -1754,7 +1757,7 @@ The Prebid SDK version comes from:
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedbidresponse | PBS-Core calls the adapter with the response in the DB instead of actually running the auction,see [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses). | object | no |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedrequest<wbr>.id | Look up the defined stored request and merge the DB contents with this imp, see [stored requests](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-requests). | object | no (yes with [issue 2292](https://github.com/prebid/prebid-server/issues/2292) |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.is_rewarded_inventory | (deprecated) Passed through to bid adapters, see [rewarded video](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#rewarded-video). (use imp.rwdd in ORTB 2.6) | integer | yes |
-| imp[]<wbr>.ext<wbr>.prebid<wbr>.passthrough | Allows an application to pass a value through to the response, see [request passthrough](#request-passthrough). | object | no |
+| imp[]<wbr>.ext<wbr>.prebid<wbr>.passthrough | Copied to the response in seatbid.bid.ext.prebid.passthrough. Allows an application to pass a value through to the response, see [request passthrough](#request-passthrough). | object | no |
 | imp<wbr>.ext<wbr>.prebid<wbr>.adunitcode | Prebid.js adunit code | string | yes |
 | device<wbr>.ext<wbr>.prebid<wbr>.interstitial | PBS-core will adjust the sizes on a request for interstitials,see [interstitial support](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#interstitial-support). | object | yes |
 | user<wbr>.ext<wbr>.prebid<wbr>.buyeruids | An alternate to [/cookie_sync](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), the request can supply bidder ID values, see [buyer uid](#buyer-uid). | object | no |
@@ -1777,12 +1780,11 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.experiment<wbr>adscert<wbr>.enabled | Enabled Ads.Cert 2.0 Authenticated Connections on supported outgoing bidder requests. | boolean | no |
 | ext<wbr>.prebid<wbr>.integration | host-dependent integration type passed through to events and analytics.<br>ex: `"managed"` | string | yes |
 | ext<wbr>.prebid<wbr>.multibid | allows bidders to respond with more than one bid, see [multi-bid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid) | object | yes, but only their value |
-| ext<wbr>.prebid<wbr>.passthrough | Allows an application to pass a value through to the response, see [request passthrough](#request-passthrough). | object | no |
+| ext<wbr>.prebid<wbr>.passthrough | Copied to the response in ext.prebid.passthrough. Allows an application to pass a value through to the response, see [request passthrough](#request-passthrough). | object | no |
 | ext<wbr>.prebid<wbr>.schains | Bidder-specific supply chains, see [supply chain support](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#supply-chain-support) | object | no |
 | ext<wbr>.prebid<wbr>.targeting | defines the key-value pairs that PBS-core places in seatbid.bid.ext.prebid.targeting, see [ad server targeting](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) | object | no |
 | ext<wbr>.prebid<wbr>.no-sale | turns off CCPA processing for the named bidder(s).<br>ex: `["bidderA"]` | array of strings | no |
 | ext<wbr>.prebid<wbr>.server | additional Prebid Server metadata | object | yes |
-| ext<wbr>.prebid<wbr>.pbs.endpoint | additional Prebid Server metadata | string | yes |
 | ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
 | ext<wbr>.prebid<wbr>.createtid | Ties to the transmitTid activity. If false, transmitTid is denied. | boolean | no |
 | ext<wbr>.prebid<wbr>.returnallbidstatus | If true, PBS returns [ext.seatnonbid](#seat-non-bid) with details about bidders that didn't bid. | boolean | no |
@@ -1807,8 +1809,8 @@ The Prebid SDK version comes from:
 | seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.prebid<wbr>.storedrequestattributes | results of the ext.prebid.options.echovideoattrs option above, see [echo video attributes](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#echo-storedrequest-video-attributes). | object |
 | seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.prebid<wbr>.targeting | Ad server targeting values related to req ext.prebid.targeting. See [ad server targeting](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#ad-server-targeting) | object |
 | seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.prebid<wbr>.type | Type of the bid creative, either "banner", "video", "native", or "audio". | string |
-| response<wbr>.seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.origbidcpm | Copy of the unadjusted bid price, see [original bid cpm](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#original-bid-cpm). | float |
-| response<wbr>.seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.origbidcur | Copy of the original bid currency, see [original bid cpm](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#original-bid-cpm). | string |
+| seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.origbidcpm | Copy of the unadjusted bid price, see [original bid cpm](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#original-bid-cpm). | float |
+| seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.origbidcur | Copy of the original bid currency, see [original bid cpm](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#original-bid-cpm). | string |
 | ext<wbr>.debug | debug mode: useful output, see [debug output](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#debug-output). | object |
 | ext<wbr>.debug<wbr>.httpcalls<wbr>.BIDDER |Debug Mode: the HTTP request/response from the named bidder | object |
 | ext<wbr>.errors<wbr>.BIDDER | Debug Mode: errors from the named bidder | object |
