@@ -1373,6 +1373,7 @@ description: Prebid {Bidder} Bidder Adapter
 biddercode: {bidder}
 tcfeu_supported: true/false
 gvl_id: 111
+dsa_supported: true/false
 usp_supported: true/false
 coppa_supported: true/false
 gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp

@@ -4,6 +4,7 @@ title: Rubicon Project
 description: Rubicon Project Prebid Bidder Adapter
 biddercode: rubicon
 tcfeu_supported: true
+dsa_supported: true
 gpp_sids: tcfeu, usnat, usstate_all, usp
 usp_supported: true
 coppa_supported: true

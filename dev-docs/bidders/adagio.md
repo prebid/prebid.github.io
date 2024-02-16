@@ -8,6 +8,7 @@ media_types: banner, native, video
 userIds: all
 floors_supported: true
 tcfeu_supported: true
+dsa_supported: true
 usp_supported: true
 gpp_supported: true
 coppa_supported: true
