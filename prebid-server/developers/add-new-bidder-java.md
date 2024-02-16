@@ -676,25 +676,25 @@ In order to share granular bid response data with publishers, analytics, and rep
 Bid metadata may be required in a future Prebid.js release. The AdvertiserDomains field and the DChain object are particularly useful. We recommend ensuring your adapter sets these fields or Prebid.js may reject your bid.
 
 {: .table .table-bordered .table-striped }
-| Path | Description |
-| - | - |
-| `.AdvertiserDomains` | Domains for the landing page(s) aligning with the OpenRTB `adomain` field. |
-| `.AdvertiserID` | Bidder-specific advertiser id. |
-| `.AdvertiserName` | Bidder-specific advertiser name. |
-| `.AgencyID` | Bidder-specific agency id. |
-| `.AgencyName` | Bidder-specific agency name. |
-| `.BrandID` | Bidder-specific brand id for advertisers with multiple brands. |
-| `.BrandName` | Bidder-specific brand name. |
-| `.DChain` | Demand chain object. |
-| `.DemandSource` | Bidder-specific demand source. Some adapters may functionally serve multiple SSPs or exchanges, and this specifies which. |
-| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. This is used in the scenario where a bidder responds with a mediatype different than the stated type. e.g. native when the impression is for a banner. One use case is to help publishers determine whether the creative should be wrapped in a safeframe. |
-| `.NetworkID` | Bidder-specific network/DSP id. |
-| `.NetworkName` | Bidder-specific network/DSP name. |
-| `.RendererName` | Name of the desired renderer for the creative. |
-| `.RendererVersion` | Version of the desired renderer for the creative. |
-| `.RendererUrl` | Url of the desired renderer for the creative. |
-| `.PrimaryCategoryID` | Primary IAB category id. |
-| `.SecondaryCategoryIDs` | Secondary IAB category ids. |
+| Path | Description
+| - | -
+| `.AdvertiserDomains` | Domains for the landing page(s) aligning with the OpenRTB `adomain` field.
+| `.AdvertiserID` | Bidder-specific advertiser id.
+| `.AdvertiserName` | Bidder-specific advertiser name.
+| `.AgencyID` | Bidder-specific agency id.
+| `.AgencyName` | Bidder-specific agency name.
+| `.BrandID` | Bidder-specific brand id for advertisers with multiple brands.
+| `.BrandName` | Bidder-specific brand name.
+| `.DChain` | Demand chain object.
+| `.DemandSource` | Bidder-specific demand source. Some adapters may functionally serve multiple SSPs or exchanges, and this specifies which.
+| `.MediaType` | Either `banner`, `audio`, `video`, or `native`. This is used in the scenario where a bidder responds with a mediatype different than the stated type. e.g. native when the impression is for a banner. One use case is to help publishers determine whether the creative should be wrapped in a safeframe.
+| `.NetworkID` | Bidder-specific network/DSP id.
+| `.NetworkName` | Bidder-specific network/DSP name.
+| `.RendererName` | Name of the desired renderer for the creative.
+| `.RendererVersion` | Version of the desired renderer for the creative.
+| `.RendererUrl` | Url of the desired renderer for the creative.
+| `.PrimaryCategoryID` | Primary IAB category id.
+| `.SecondaryCategoryIDs` | Secondary IAB category ids.
 
 ##### DSA
 
@@ -703,12 +703,12 @@ See the [IAB's DSA protocol](https://github.com/InteractiveAdvertisingBureau/ope
 This response object allows DSPs to provide publishers with requested transparency and render information. Your bid adapter should place it in the standard ORTB location. The Java object is .Bids[].Bid.Ext.Dsa. Fields within this object:
 
 {: .table .table-bordered .table-striped }
-| Path | Description |
-| - | - |
-| `.Behalf` | A name of whose behalf the ad is displayed. |
-| `.Paid` | A name of who paid for the ad. |
-| `.Adrender` | Flag to indicate that buyer/advertiser will render their own DSA transparency information inside the creative. |
-| `.Transparency` | The domains of the entities that applied user parameters and the parameters they applied. |
+| Path | Description
+| - | -
+| `.Behalf` | A name of whose behalf the ad is displayed.
+| `.Paid` | A name of who paid for the ad.
+| `.Adrender` | Flag to indicate that buyer/advertiser will render their own DSA transparency information inside the creative.
+| `.Transparency` | The domains of the entities that applied user parameters and the parameters they applied.
 
 <p></p>
 
