@@ -1,12 +1,12 @@
 ---
 layout: page_v2
 page_type: pbs-module
-title: Prebid Server Richmedia Blocking Module
-display_name : Richmedia Blocking Module
+title: Prebid Server Richmedia Filter Module
+display_name : Richmedia Filter Module
 sidebarType : 5
 ---
 
-# Richmedia Blocking Module
+# Richmedia Filter Module
 {:.no_toc}
 
 * TOC

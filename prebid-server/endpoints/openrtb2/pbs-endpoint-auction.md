@@ -1773,7 +1773,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.data.<wbr>eidpermissions | Allows publishers to define which bidders are allowed to see which extended IDs, see [eid permissions](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#eid-permissions) | object  | no |
 | ext<wbr>.prebid<wbr>.debug | Provides debug output in response. | boolean | yes |
 | ext<wbr>.prebid<wbr>.trace | Provides trace output in response. | "verbose" or "basic" | yes |
-| ext<wbr>.prebid<wbr>.events | Enables VAST impression tracking injection for the request when an empty object is provided. This is an alernative method from using account configuration. | object | no
+| ext<wbr>.prebid<wbr>.events | Enables VAST impression tracking injection for the request when an empty object is provided. This is an alernative method from using account configuration. | object | no |
 | ext<wbr>.prebid<wbr>.experiment<wbr>adscert<wbr>.enabled | Enabled Ads.Cert 2.0 Authenticated Connections on supported outgoing bidder requests. | boolean | no |
 | ext<wbr>.prebid<wbr>.integration | host-dependent integration type passed through to events and analytics.<br>ex: `"managed"` | string | yes |
 | ext<wbr>.prebid<wbr>.multibid | allows bidders to respond with more than one bid, see [multi-bid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid) | object | yes, but only their value |
