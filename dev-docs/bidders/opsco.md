@@ -24,5 +24,6 @@ Opsco header bidding adapter connects with Opsco demand sources. Please reach ou
 | `placementId` | required | The Placement ID | `'123'` | `string` |
 | `publisherId` | required | The Publisher ID | `'123'` | `string` |
 | `siteId` | optional | The Site ID | `'123'` | `string` |
+| `test` | optional | Whether the request is for testing only. | `true` | `boolean` |
 
 
