@@ -8,7 +8,6 @@ sidebarType: 2
 ---
 
 # Ad Experience Controls
-
 {:.no_toc}
 
 If you use Prebid SDK to render the winning bid you can customize behaviour using the following API.
