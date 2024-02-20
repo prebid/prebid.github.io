@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # User ID Module
-
 {:.no_toc}
 
 * TOC
@@ -225,7 +224,7 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 | Admixer ID | Admixer | admixerId | admixer.net | "1111" |
 | adQuery QiD | adQuery | qid | adquery.io | "p9v2dpnuckkzhuc..." |
 | Adriver ID | Adriver | adriverId | adriver.ru | "1111" |
-| Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
+| Adtelligent ID | Adtelligent | adtelligentId | adtelligent.com | `"1111"` |
 | AMX ID | AMX | amxId | amxdt.net | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
 | AudienceOne ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
