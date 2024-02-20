@@ -115,7 +115,7 @@ to use as a sharedId in the config params:
 {
   "params": {
     "sharedId": {
-      "strategy": "cookie", // "cookie" | "localstorage" -- Where the identifier should be read from
+      "strategy": "cookie", // "cookie" | "html5" -- Where the identifier should be read from
       "name": "foobar" // key in the chosen storage backend
     }
   }
@@ -210,7 +210,7 @@ NOTE: For optimal performance, the LiveIntent ID sub-module should be called at 
 | params.liCollectConfig.collectorUrl |Optional| String |The parameter defines where the signal pixels are pointing to. The params and paths will be defined subsequently. If the parameter is not set, LiveConnect will by default emit the signal towards `https://rp.liadm.com`.| `https://rp.liadm.com`|
 | params.liCollectConfig.appId |Optional| String |LiveIntent's media business entity application ID.|`a-0012`|
 | params.sharedId.name | Optional | String | The parameter is cookie/localstorage key name | `'__super_duper_cookie'`|
-| params.sharedId.strategy | Optional | String | The parameter defines where to get the identifier from. Either from the cookie jar, `'cookie'`, or from the local storage, `'localstorage'`. | `'localstorage'`|
+| params.sharedId.strategy | Optional | String | The parameter defines where to get the identifier from. Either from the cookie jar, `'cookie'`, or from the local storage, `'html5'`. | `'html5'`|
 | storage | Required | Object | This object defines where and for how long the results of the call to get a user ID will be stored. | |
 | storage.type | Required | String | This parameter defines where the resolved user ID will be stored (either `'cookie'` or `'html5'` localstorage).| `'cookie'` |
 | storage.name | Required | String | The name of the cookie or html5 localstorage where the resolved user ID will be stored. | `'pbjs_li_nonid'` |
