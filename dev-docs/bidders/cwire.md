@@ -5,7 +5,7 @@ description: C-WIRE Prebid Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: cwire
-tcfeu_supported: false
+tcfeu_supported: true
 usp_supported: false
 schain_supported: false
 userIds: none
