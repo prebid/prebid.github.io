@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - PAAPI
-description: Protected audience API
+description: Protected Audience API
 module_code : paapi
 display_name : PAAPI
 enable_download : true
@@ -177,6 +177,6 @@ Other than the addition of the `bidId` field, the `AuctionConfig` object should 
 ## Related Reading
 
 - [fledgeForGpt module](/dev-docs/modules/fledgeForGpt.html)
-- [FLEDGE](https://github.com/WICG/turtledove/blob/main/FLEDGE.md)
+- [Protected Audience API (PAAPI)](https://github.com/WICG/turtledove/blob/main/FLEDGE.md), formerly FLEDGE
 - [Component Auctions](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction)
 - [getPAAPIConfig](/dev-docs/publisher-api-reference/getPAAPIConfig.html)
