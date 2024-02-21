@@ -12,8 +12,6 @@ sidebarType: 2
 
 If you use Prebid SDK to render the winning bid you can customize behaviour using the following API.
 
-> NOTE: Planned future enhancements will support Server Side Configuration. Follow this [feature request](https://github.com/prebid/prebid-server/issues/2186) for the details.
-
 * TOC
 {:toc}
 
@@ -29,14 +27,14 @@ This setting determines the longest video duration allowed, measured in seconds.
 {: .table .table-bordered .table-striped }
   |**API Object**         | `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
   |**Ad Unit Property**   | `adUnit.setMaxVideoDuration(seconds)`|
-  |**Server Property**    | `maxvideoduration` *(pending for PBS implementation)*|
+  |**Server Property**    | `maxvideoduration` |
   |**Default Value**      | `3600 seconds`|
 {% endcapture %}
 {% capture ios %}
   {: .table .table-bordered .table-striped }
   |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
   |**Ad Unit Property**   | `adUnit.videoParameters.maxDuration`|
-  |**Server Property**    | `maxvideoduration` *(pending for PBS implementation)*|
+  |**Server Property**    | `maxvideoduration` |
   |**Default Value**      | `3600 seconds`|
 {% endcapture %}
 
@@ -50,14 +48,14 @@ This option lets you switch the sound on or off during playback.
   {: .table .table-bordered .table-striped }
   |**API Object**         | `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
   |**Ad Unit Property**   | `adUnit.setIsMuted(true)`|
-  |**Server Property**    | `ismuted` *(pending for PBS implementation)*|
+  |**Server Property**    | `ismuted` |
   |**Default Value**      | `false`|
 {% endcapture %}
 {% capture ios %}
   {: .table .table-bordered .table-striped }
   |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
   |**Ad Unit Property**   | `adUnit.isMuted`|
-  |**Server Property**    | `ismuted` *(pending for PBS implementation)*|
+  |**Server Property**    | `ismuted` |
   |**Default Value**       | `false`|
 {% endcapture %}
 
@@ -71,7 +69,7 @@ This setting determines the percentage of the device screen that the close butto
   {: .table .table-bordered .table-striped }
   |**API Object**         | `InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
   |**Ad Unit Property**   | `adUnit.setCloseButtonArea(factor)`|
-  |**Server Property**    | `closebuttonarea` *(pending for PBS implementation)*|
+  |**Server Property**    | `closebuttonarea` |
   |**Allowed Values**     | `0..1`|
   |**Default Size**       | `70dp`|
 
@@ -87,7 +85,7 @@ This setting determines the percentage of the device screen that the close butto
   {: .table .table-bordered .table-striped }
   |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
   |**Ad Unit Property**   | `adUnit.closeButtonArea`|
-  |**Server Property**    | `closebuttonarea` *(pending for PBS implementation)*|
+  |**Server Property**    | `closebuttonarea` |
   |**Allowed Values**     | `0..1`|
   |**Default Value**      | `0.1`|
 
@@ -110,7 +108,7 @@ This setting controls where the close button appears on the screen.
 
   |**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
   |**Ad Unit Property**   | `adUnit.setCloseButtonPosition(Position.TOP_LEFT)`|
-  |**Server Property**    | `closebuttonposition` *(pending for PBS implementation)*|
+  |**Server Property**    | `closebuttonposition` |
   |**Allowed Values**     | `Position.TOP_LEFT, Position.TOP_RIGHT`|
   |**Default Value**      | `Position.TOP_RIGHT`|
 
@@ -127,7 +125,7 @@ This setting controls where the close button appears on the screen.
 
   |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
   |**Ad Unit Property**   | `adUnit.closeButtonPosition`|
-  |**Server Property**    | `closebuttonposition` *(pending for PBS implementation)*|
+  |**Server Property**    | `closebuttonposition` *|
   |**Allowed Values**     | `topLeft, topRight`|
   |**Default Value**      | `topRight`|
 
@@ -150,7 +148,7 @@ This setting determines the percentage of the device screen that the skip button
 
   |**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
   |**Ad Unit Property**   | `adUnit.setSkipButtonArea(factor)`|
-  |**Server Property**    | `skipbuttonarea` *(pending for PBS implementation)*|
+  |**Server Property**    | `skipbuttonarea` |
   |**Allowed Values**     | `0..1`|
   |**Default Value**      | `70dp`|
 {% endcapture %}
@@ -160,7 +158,7 @@ This setting determines the percentage of the device screen that the skip button
 
   |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
   |**Ad Unit Property**   | `adUnit.skipButtonArea`|
-  |**Server Property**    | `skipbuttonarea` *(pending for PBS implementation)*|
+  |**Server Property**    | `skipbuttonarea` |
   |**Allowed Values**     | `0..1`|
   |**Default Value**      | `0.1`|
 {% endcapture %}
@@ -183,7 +181,7 @@ This control sets the position of the skip button.
 
   |**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
   |**Ad Unit Property**   | `adUnit.setSkipButtonPosition(Position.TOP_LEFT)`|
-  |**Server Property**    | `skipbuttonposition` *(pending for PBS implementation)*|
+  |**Server Property**    | `skipbuttonposition` |
   |**Allowed Values**     | `Position.TOP_LEFT, Position.TOP_RIGHT`|
   |**Default Value**      | `Position.TOP_RIGHT`|
 
@@ -200,7 +198,7 @@ This control sets the position of the skip button.
 
   |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
   |**Ad Unit Property**   | `adUnit. skipButtonPosition`|
-  |**Server Property**    | `skipbuttonposition` *(pending for PBS implementation)*|
+  |**Server Property**    | `skipbuttonposition` |
   |**Allowed Values**     | `topLeft, topRight`|
   |**Default Value**      | `topLeft`|
 
@@ -223,7 +221,7 @@ This setting determines the number of seconds after the start of playback before
 
   |**API Object**         |`InterstitialAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedVideoAdUnit` |
   |**Ad Unit Property**   | `adUnit.setSkipDelay(seconds)`|
-  |**Server Property**    | `skipdelay` *(pending for PBS implementation)*|
+  |**Server Property**    | `skipdelay` |
   |**Default Value**      | `10 seconds`|
 {% endcapture %}
 
@@ -232,7 +230,7 @@ This setting determines the number of seconds after the start of playback before
 
   |**API Object**         |`InterstitialRenderingAdUnit`, `RewardedAdUnit`, <br />`MediationInterstitialAdUnit`, `MediationRewardedAdUnit` |
   |**Ad Unit Property**   | `adUnit.skipDelay`|
-  |**Server Property**    | `skipdelay` *(pending for PBS implementation)*|
+  |**Server Property**    | `skipdelay` |
   |**Default Value**      | `10 seconds`|
 {% endcapture %}
 
