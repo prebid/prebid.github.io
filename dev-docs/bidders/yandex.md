@@ -12,6 +12,11 @@ privacy_sandbox: topics
 
 ### Prebid Client
 
+This Adapter integrates with Yandex's ad services.
+
+{: .alert.alert-info :}
+Note: For detailed auction analytics, check out our [Analytics Adapter](https://docs.prebid.org/dev-docs/analytics/yandex.html).
+
 #### Client Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -33,7 +38,7 @@ const adUnits = [{
       sizes: [[240, 400]],
     }
   },
-  bids: [{
+  bids: [
     {
       bidder: 'yandex',
       params: {
@@ -41,7 +46,7 @@ const adUnits = [{
         cur: 'USD',
       },
     }
-  }]
+  ]
 }];
 
 // Native
