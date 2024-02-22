@@ -81,8 +81,8 @@ Prebid relies on the IAB and community members to determine what tools are neede
 
 This option to the ConsentManagement module was removed a long time ago in PBJS 4.0. Why?
 
-- It was a poorly named flag. What it did was let the auction happen on the first page before the user had responded to the CMP.
-- It was replaced by a combination of the "defaultGdprScope" flag and the ability for a publisher to disable enforcement of the `basicAds` TCF purpose.
+* It was a poorly named flag. What it did was let the auction happen on the first page before the user had responded to the CMP.
+* It was replaced by a combination of the "defaultGdprScope" flag and the ability for a publisher to disable enforcement of the `basicAds` TCF purpose.
 
 See the [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html) documentation for more details.
 
