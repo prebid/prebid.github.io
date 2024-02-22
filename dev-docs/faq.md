@@ -25,11 +25,11 @@ Nope. The only approval process is a code review. There are separate instruction
 As for [membership](https://prebid.org/membership/) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
 but it's not necessary for contributing code as a community member.
 
-## How often is Prebid.js updated?
+### How often is Prebid.js updated?
 
 We release almost every week. See [the GitHub release schedule](https://github.com/prebid/Prebid.js/blob/master/RELEASE_SCHEDULE.md) for more details.
 
-## When do I have to upgrade my version of Prebid.js?
+### When do I have to upgrade my version of Prebid.js?
 
 Prebid.org does not support any version of Prebid.js prior to the previous version. e.g. if the current version is 8.x, we'll help debug 7.x, but not 6.x. If you want continued support through updates and documentation you should upgrade to a newer version.
 
