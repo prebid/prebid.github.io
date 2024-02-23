@@ -7,7 +7,7 @@ title: First Party Data - Prebid Server
 # Prebid Server First Party Data
 {: .no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 Prebid allows publishers to supply attributes related to their content
@@ -64,7 +64,8 @@ Note that 'Topics' in Google's Privacy Sandbox are implemented in Prebid as user
 ## OpenRTB Examples
 
 In this example, only BidderA has access to the global first party data:
-```
+
+```json
 {
     ext: {
        prebid: {
@@ -104,7 +105,8 @@ In this example, only BidderA has access to the global first party data:
 ```
 
 This example shows an array of bidder-specific config:
-```
+
+```json
 {
     ext: {
        prebid: {
