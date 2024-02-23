@@ -98,6 +98,9 @@ title: Prebid Server | Features
 | Modules | [ortb2-blocking](/prebid-server/pbs-modules/ortb2-blocking.html) | Configure per-account OpenRTB blocking details. | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 | Anti-Fraud | Ads.Cert 2.0 Authenticated Connections | Includes authenticated connection signing header on outgoing bid requests to supported adapters. *  | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> | |
 | Request Enrichment | Enhanced tid and request IDs | Fills out id, imp.id, source.tid, and imp.ext.tid  | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
+| Privacy Sandbox | Passthrough | "auction enabled" flags are passed through to bidders and auctionconfig is forwarded from bidders. | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
+| Privacy Sandbox | Topics headers | PBS reads the Chrome topics header and copies to user.data segments. | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
+| Privacy Sandbox | Testing labels | PBS reads the Chrome labels header and copies to device.ext.cdep | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 | Auction Response | Bidders can supply [Fledge](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing) auction config | If the request contains imp.ext.ae, bid adapters can return ext.prebid.fledge.auctionconfigs | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 
 \* Experimental feature not yet recommended for production.

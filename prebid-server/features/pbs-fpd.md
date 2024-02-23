@@ -4,7 +4,7 @@ sidebarType: 5
 title: First Party Data - Prebid Server
 ---
 
-# First Party Data - Prebid Server
+# Prebid Server First Party Data
 {: .no_toc}
 
 * TOC
@@ -21,8 +21,8 @@ party data from the standard Prebid locations.
 
 ## How It Works
 
-Each of the three main sources of Prebid Server traffic will place
-First Party Data in the OpenRTB JSON in several places:
+Each source of Prebid Server traffic will place
+First Party Data in the OpenRTB JSON in several locations:
 
 {: .table .table-bordered .table-striped }
 | OpenRTB Attribute | Description | Prebid.js Source | SDK Source | AMP Source |
@@ -30,8 +30,13 @@ First Party Data in the OpenRTB JSON in several places:
 | site.ATTR | Only standard OpenRTB attributes should be here: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. | config ortb2.site.ATTR | n/a | Stored Request |
 | site.ext.data.ATTR | Any other site-related attributes should go here. | config ortb2.site.ext.data | n/a | Stored Request |
 | site.keywords | Site keywords | config ortb2.site.keywords | n/a | Stored Request |
+| site.content.data | Contextual Seller Defined Data segments | config ortb2.site.content.data | n/a | n/a |
 | app.ext.data.ATTR | Any app-related attributes should go here. | n/a | Targeting addContextData() | n/a |
 | app.keywords | App keywords | n/a | Targeting addContextKeywords() | n/a |
+| app.content.data | Contextual Seller Defined Data segments | config ortb2.app.content.data | setRTBConfig() | n/a |
+| dooh.ext.data.ATTR | Any dooh-related attributes should go here. | n/a | n/a | n/a |
+| dooh.keywords | DOOH keywords | n/a | n/a | n/a |
+| dooh.content.data | Contextual Seller Defined Data segments | n/a | n/a | n/a |
 | user.keywords | User keywords | config ortb2.user.keywords | addUserKeywords | n/a |
 | user.ATTR | Only standard OpenRTB attributes should be here: yob, gender, keywords. | config ortb2.user.ATTR | n/a | n/a |
 | user.ext.data.ATTR | Any other user-related attributes should go here. | config ortb2.user.ext.data.ATTR | Targeting addUserData() | n/a |
@@ -47,6 +52,14 @@ This diagram summarizes how first party data flows into the OpenRTB JSON:
 Note that Prebid.js directly supports the [`setBidderConfig`](/dev-docs/publisher-api-reference/setBidderConfig.html) method of defining
 bidder-specific first party data, while SDK only supports the `ext.prebid.data.bidders[]` approach with an in-app call.
 Both SDK and AMP can have the stored request define bidder FPD permissions.
+
+## Seller Defined Audience (SDA)
+
+Many publishers utlize data segments that apply to context and audience. See the Prebid.js writeup on [Segments and Taxonomy](/features/firstPartyData.html#segments-and-taxonomy) for more information.
+
+Prebid Server supports these values in `user.data` and `{site,app,dooh}.content.data`.
+
+Note that 'Topics' in Google's Privacy Sandbox are implemented in Prebid as user-related SDA segments with segtaxes in the range 600-609.
 
 ## OpenRTB Examples
 
@@ -70,8 +83,6 @@ In this example, only BidderA has access to the global first party data:
     },
     user: {
         keywords: "",
-        gender: "",
-        yob: 1999,
         geo: {},
         ext: {
             data: {

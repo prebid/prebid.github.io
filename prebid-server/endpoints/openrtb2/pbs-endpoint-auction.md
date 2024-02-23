@@ -1679,6 +1679,7 @@ The codes currently returned:
 | 101 | Timeout | Java | The bid adapter timed out. |
 | 200 | Request Blocked - General | Java | This impression not sent to the bid adapter for an unspecified reason. |
 | 202 | Request Blocked due to mediatype | Java | This impression not sent to the bid adapter because it doesn't support the requested mediatype. |
+| 300 | Response Rejected - General | Java | The bid response was rejected for an unspecified reason. See warnings in debug mode. (Mostly caused by DSA validation rules) |
 | 301 | Response Rejected - Below Floor | Java | The bid response did not meet the floor for this impression. |
 
 See the [IAB's community extension](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/seat-non-bid.md) for the full list of status codes that may be supported in the future.
