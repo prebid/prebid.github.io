@@ -2,7 +2,7 @@
 layout: page_v2
 title: Prebid MSPA Support
 description: Prebid MSPA Support
-sidebarType: 0
+sidebarType: 7
 ---
 
 # Prebid Multi-State Privacy Agreement Support
@@ -11,8 +11,7 @@ sidebarType: 0
 - TOC
 {:toc}
 
-{: .alert.alert-warning :}
-This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and/or US regulations, including the GDPR, the ePrivacy Directive, CCPA, other state privacy laws, etc, and how you implement the tools outlined in this document. Only your lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+{% include legal-warning.html %}
 
 ## Overview
 
@@ -70,7 +69,7 @@ Here's a summary of the privacy features in Prebid.js that publishers may use to
 | ----------------- | ---------------------- | ----- |
 | before 7.30 | None | If you operate in the US, you should consider upgrading. |
 | 7.30-7.51 | **GPP module** | The [GPP module](/dev-docs/modules/consentManagementGpp.html) reads the GPP string from a compliant CMP and passes to compliant bid adapters. Not many bid adapters supported GPP in earlier versions. |
-| 7.52-8.1 | GPP module <br/> **Activity&nbsp;Controls** | [Activity Controls](/dev-docs/activity-controls.html) provide the ability for publishers to allow or restrict certain privacy-sensitive activities for particular bidders and modules. See examples in that document for supporting CCPA directly.
+| 7.52-8.1 | GPP module <br/> **Activity&nbsp;Controls** | [Activity Controls](/dev-docs/activity-controls.html) provide the ability for publishers to allow or restrict certain privacy-sensitive activities for particular bidders and modules. See examples in that document for supporting CCPA directly. |
 | 8.2-8.x | GPP module<br/>Activity Controls<br/>**USNat module** | The [USNat module](/dev-docs/modules/gppControl_usnat.html) processes SID 7. |
 | After 8.x | GPP module<br/>Activity Controls<br/>USNat module<br/>**US&nbsp;State&nbsp;module** | The US State module processes SIDs 8 through 12 after normalizing protocol differences. |
 | After 8.10 | **GPP Module**  | The [GPP module](/dev-docs/modules/consentManagementGpp.html) now understands GPP 1.1 which makes it incompatible with GPP 1.0. Publishers **<u>MUST</u>** upgrade for continued GPP support. |
@@ -85,10 +84,10 @@ Here's a summary of the privacy features in Prebid Server that publishers may us
 | PBS-Go before 0.236<br/>PBS-Java before 1.110 | None | If you operate in the US, you should consider upgrading. |
 | PBS-Go 0.236<br/>PBS-Java 1.110 | **GPP passthrough** | PBS reads the GPP string from the ORTB request and passes to compliant bid adapters. Not many bid adapters supported GPP in earlier versions. |
 | PBS&#8209;Go&nbsp;0.248&nbsp;and&nbsp;later<br/>PBS&#8209;Java&nbsp;1.113&nbsp;and&nbsp;later | GPP passthrough<br/>**GPP US Privacy** | PBS will read SID 6 out of the GPP string and process it as if regs.us_privacy were present on the request. |
-| PBS-Go TBD<br/>PBS-Java 1.118 | GPP passthrough<br/>GPP US Privacy<br/>**Activity Controls** | [Activity Controls](/prebid-server/features/pbs-activitycontrols.html) grant the ability for publishers to allow or restrict certain privacy-sensitive activities for particular bidders and modules. |
+| PBS-Go 2.2<br/>PBS-Java 1.118 | GPP passthrough<br/>GPP US Privacy<br/>**Activity Controls** | [Activity Controls](/prebid-server/features/pbs-activitycontrols.html) grant the ability for publishers to allow or restrict certain privacy-sensitive activities for particular bidders and modules. |
 | PBS-Go TBD<br/>PBS-Java 1.122 | GPP passthrough<br/>GPP US Privacy<br/>**Enhanced Activity Controls** | Activity controls support additional conditions for defining USNat-related rules: gppSid, geo, and gpc. |
 | PBS-Go TBD<br/>PBS-Java 1.126 | GPP passthrough<br/>GPP US Privacy<br/>Enhanced Activity Controls<br/>**USGen Module** | The [USGen module](/prebid-server/features/pbs-usgen.html) processes SIDs 7 through 12 after normalizing protocol differences. |
-| TBD | GPP passthrough<br/>GPP US Privacy<br/>Enhanced Activity Controls<br/>USNat Module<br/>**US&nbsp;Custom&nbsp;Logic&nbsp;module** | Allows publishers to provide alternate interpretations of the USNat string as it applies to Activity Controls. |
+| PBS-Go TBD<br/>PBS-Java 1.130 | GPP passthrough<br/>GPP US Privacy<br/>Enhanced Activity Controls<br/>USNat Module<br/>**US&nbsp;Custom&nbsp;Logic&nbsp;module** | Allows publishers to provide alternate interpretations of the USNat string as it applies to Activity Controls. |
 
 ### Prebid SDK
 

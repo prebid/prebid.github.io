@@ -24,6 +24,7 @@ sidebarType: 1
 |-------------|----------|----------------------------------------------------------------------|----------|----------|
 | `auId` | required | The ad unit ID `'0000000000072345'` leading zeros can be omitted. | `'0000000000072345'` | `string` |
 | `network` | optional | Used if you want to make requests to multiple networks in adnuntius. | `'adnuntius'` | `string`|
+| `userId` | optional | Allows you to set a specific user id in the request. | `'userId'` | `string`|
 | `targeting` | optional | Targeting to be sent through to adnuntius with the request. | `{ c: ['prebids'] }` | `string`|
 | `maxDeals` | optional | The maximum number of deal bids to include. Default 0. | `1` | `Integer` |
 | `bidType` | optional | Whether to use `grossBid` or `netBid` from the server response as the cpm bid. Default is `grossBid`. | `grossBid` | `string` |
@@ -52,6 +53,7 @@ Here's an example of sending targeting information about categories to adnuntius
             "params": {
                 "auId": "8b6bc",
                 "network": "adnuntius",
+                "userId": "<USERID>",
                 "targeting": {
                     "c": ["prebids"]
                 }

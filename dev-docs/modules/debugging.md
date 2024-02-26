@@ -16,7 +16,7 @@ This module allows to "intercept" bids and replace their contents with arbitrary
 Bids intercepted in this way are never seen by bid adapters or their backend SSPs, but they are nonetheless injected into the auction as if they originated from them.
 
 {: .pb-alert .pb-alert-warning :}
-For convenience, `debugging` configuration is persisted to the browser's session storage, so that you may type `pbjs.setConfig({debugging: ...})` in the console and reload the page to immediately see the effects. This means that you need to remember to **deactivate debuggging (or clear session storage) when you are done**.
+For convenience, `debugging` configuration is persisted to the browser's session storage, so that you may type `pbjs.setConfig({debugging: ...})` in the console and reload the page to immediately see the effects. This means that you need to remember to **deactivate debugging (or clear session storage) when you are done**.
 
 <a name="example"></a>
 

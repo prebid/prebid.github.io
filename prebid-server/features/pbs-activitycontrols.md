@@ -39,8 +39,7 @@ The Activity Control configuration has two components:
 
 ### Prebid Server Is a Toolkit
 
-{: .alert.alert-danger :}
-Important: This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+{% include legal-warning.html %}
 
 Activity Controls and privacy features within Prebid Server are tools meant to be useful to
 publishers within their overall privacy strategy. Prebid assumes a larger context around these

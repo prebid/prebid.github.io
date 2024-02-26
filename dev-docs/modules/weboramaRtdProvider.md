@@ -135,9 +135,9 @@ On this section we will explain the `params.weboCtxConf` subconfiguration:
 | setProfileAsBidderKeywords | String or Array | If present, specify one or more bidders to send data also as keywords (`site.content.keywords` or `user.keywords`) | Optional. Default is `appnexus`. |
 | checkBidderAliasForKeywords | Boolean | Modify `setProfileAsBidderKeywords` to search in the bidder alias registry. | Optional. Default is `true` |
 
-#### WAM User-Centric Configuration
+#### User-Centric Configuration
 
-To be possible use the integration with Weborama Audience Manager (WAM) you must be a client with an account id and you lust include the `wamfactory` script in your pages with `wam2gam` feature activated.
+To be possible use the integration with Weborama Audience Manager (WAM) you must be a client with an account id and you must include the `wamfactory` script in your pages with `wam2gam` feature activated.
 Please contact weborama if you don't have it.
 
 On this section we will explain the `params.weboUserDataConf` subconfiguration:
