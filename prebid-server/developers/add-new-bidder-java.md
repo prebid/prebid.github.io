@@ -674,7 +674,7 @@ In order to share granular bid response data with publishers, analytics, and rep
 Bid metadata may be required in a future Prebid.js release. The AdvertiserDomains field and the DChain object are particularly useful. We recommend ensuring your adapter sets these fields or Prebid.js may reject your bid.
 
 {: .table .table-bordered .table-striped }
-| Path | Description |
+| Path | Description
 | - | -
 | `.AdvertiserDomains` | Domains for the landing page(s) aligning with the OpenRTB `adomain` field.
 | `.AdvertiserID` | Bidder-specific advertiser id.
