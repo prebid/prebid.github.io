@@ -15,6 +15,8 @@ This module allows Prebid.js to support PAAPI (formerly FLEDGE) by integrating w
 
 To learn more about PAAPI in general, go [here](https://github.com/WICG/turtledove/blob/main/FLEDGE.md).
 
+Note that Prebid can't help anyone with which fields to include in auctionconfig, but you can start by looking in [this section](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction) of the PAAPI documentation.
+
 ## Publisher Integration
 
 To use PAAPI with GPT:
