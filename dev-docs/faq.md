@@ -6,7 +6,6 @@ sidebarType: 1
 ---
 
 # Prebid.js FAQ
-
 {:.no_toc}
 
 This page has answers to some frequently asked questions about Prebid.js.  If you don't find what you're looking for here, there are other ways to [get help](/support/index.html).
@@ -14,7 +13,9 @@ This page has answers to some frequently asked questions about Prebid.js.  If yo
 * TOC
 {:toc}
 
-## Do we need to be a member of Prebid.org to submit a bidder adapter or analytics adapter?
+## General
+
+### Do we need to be a member of Prebid.org to submit a bidder adapter or analytics adapter?
 
 Nope. The only approval process is a code review. There are separate instructions for:
 
@@ -24,7 +25,29 @@ Nope. The only approval process is a code review. There are separate instruction
 As for [membership](https://prebid.org/membership/) in Prebid.org, that's entirely optional -- we'd be happy to have you join and participate in the various committees,
 but it's not necessary for contributing code as a community member.
 
-## How does Prebid support privacy regulations?
+### How often is Prebid.js updated?
+
+We release almost every week. See [the GitHub release schedule](https://github.com/prebid/Prebid.js/blob/master/RELEASE_SCHEDULE.md) for more details.
+
+### When do I have to upgrade my version of Prebid.js?
+
+Prebid.org does not support any version of Prebid.js prior to the previous version. e.g. if the current version is 8.x, we'll help debug 7.x, but not 6.x. If you want continued support through updates and documentation you should upgrade to a newer version.
+
+### Does Prebid.js support Amazon TAM?
+
+We would love for Amazon to contribute a TAM adapter, but so far that's not happened. Publishers that want to sync IDs across multiple header bidding wrappers should be aware of these resources:
+
+* You can generate the auctionId parameter outside of Prebid and pass it when calling [pbjs.requestBids()](/dev-docs/publisher-api-reference/requestBids.html)
+* [Example of Synchronizing Transaction IDs with Another Library](/dev-docs/examples/sync-tid.html)
+
+### Should Prebid bidders be in ads.txt?
+
+Publishers should be careful to list all their bidding partners in their ads.txt file. Bidders without an entry in ads.txt may be
+perceived by DSPs as unauthorized sources of your inventory. The domain for any ads.txt [inventory partners](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/dc71586842e648e89c1bbe6c666ffac8ff010a96/2.6.md?plain=1#L1752), if one exists, should be specified with a `setConfig({ortb2.site.inventorypartnerdomain})` call. For details of the specification of ads.txt entries, see [ads.txt v1.1](https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf)
+
+## Privacy
+
+### How does Prebid support privacy regulations?
 
 Prebid understands that publishers are under increasing pressure to respond and adapt to privacy regulations. For instance, an increasing number of laws (including California’s CPRA and laws in Colorado, Virginia, Connecticut, and Utah) already require, or will require in 2023, specific disclosures around and ability to opt out of targeted advertising activities as well as “sales” of consumer data. While we cannot give legal advice, we do provide a toolkit that supports publishers in their efforts to comply with the laws that apply to them. If there’s a tool you need that you don’t see listed below, please do open an issue in the appropriate repository ([PBJS](https://github.com/prebid/Prebid.js/issues), [PBS](https://github.com/prebid/prebid-server/issues), [SDK](https://github.com/prebid/prebid-mobile-ios/issues)).
 
@@ -54,7 +77,18 @@ After you’ve determined your legal obligations, consider the tools Prebid make
 
 Prebid relies on the IAB and community members to determine what tools are needed to support publishers in meeting their legal obligations. As noted above, if there’s another tool you need, please open an issue in the appropriate repository, or join the org and help us improve the system!
 
-## What should my timeouts be?
+### What happened to the allowAuctionWithoutConsent flag?
+
+This option to the ConsentManagement module was removed a long time ago in PBJS 4.0. Why?
+
+* It was a poorly named flag. What it did was let the auction happen on the first page before the user had responded to the CMP.
+* It was replaced by a combination of the "defaultGdprScope" flag and the ability for a publisher to disable enforcement of the `basicAds` TCF purpose.
+
+See the [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html) documentation for more details.
+
+## Implementation
+
+### What should my timeouts be?
 
 Below is a set of recommended best practice starting points for your timeout settings:
 
@@ -69,7 +103,7 @@ For examples of setting up these timeouts, please refer to the [Basic Example]({
 
 See the [Prebid Timeouts Reference](/features/timeouts.html) for more information about timeouts in general.
 
-## How many header bidders should I have?
+### How many bid adapters should I have?
 
 Every publisher is different.  In order to answer this question you'll need to run some tests, gather data, and decide what works for you based on your performance and monetization needs.
 
@@ -81,7 +115,7 @@ There is an analysis from the Prebid team here which may be useful:
 
 [How many bidders should I work with?](https://prebid.org/blog/how-many-bidders-for-header-bidding)
 
-## Does Prebid.js cache bids?
+### Does Prebid.js cache bids?
 
 It can. Versions 1.x of Prebid.js would re-consider previous bids under limited circumstances. In Prebid.js 2.0 and later, the [`useBidCache`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Use-Bid-Cache) option can be used to enable this functionality.
 
@@ -112,13 +146,13 @@ Here's how it works:
 1. A cached bid may be used if its CPM beats the new bids.
 1. Bids that win are removed from the pool. This is automatic for display and native ads, and can be done manually by the publisher for video ads by using the [markWinningBidAsUsed](/dev-docs/publisher-api-reference/markWinningBidAsUsed.html) function.
 
-## Some of my demand partners send gross bids while others send net bids; how can I account for this difference?
+### Some of my demand partners send gross bids while others send net bids; how can I account for this difference?
 
 You will want to adjust the gross bids so that they compete fairly with the rest of your demand, so that you are seeing the most revenue possible.
 
 In Prebid.js, you can use a `bidCpmAdjustment` function in [the `bidderSettings` object](/dev-docs/publisher-api-reference/bidderSettings.html) to adjust any bidder that sends gross bids.
 
-## Does Prebid.js support synchronous ad server tags?
+### Does Prebid.js support synchronous ad server tags?
 
 Short answer: not out of the box, because of header bidding partners' limitations. But there are workarounds.
 
@@ -138,7 +172,7 @@ Here are a couple of alternative workarounds:
 
     Use post-bid. The downsides are that post-bid no longer allows your header bidding partners to compete with Google Ad Manager/AdX, but they can still compete with each other.  For more information, see [What is post-bid?]({{site.baseurl}}/overview/what-is-post-bid.html).
 
-## How do I use Prebid.js on secure (HTTPS) pages?
+### How do I use Prebid.js on secure (HTTPS) pages?
 
 All prebid adapters that get merged should automatically detect if they're serving into a secure page environment and respond appropriately.
 
@@ -150,15 +184,7 @@ In other words, you shouldn't have to do anything other than make sure your own 
 
 (Except that you should *never never never* use the copy of Prebid.js at that URL in production, it isn't meant for production use and may break everything at any time.)
 
-## How often is Prebid.js updated?
-
-See [the GitHub release schedule](https://github.com/prebid/Prebid.js/blob/master/RELEASE_SCHEDULE.md) for more details.
-
-## When do I have to upgrade my version of Prebid.js?
-
-Prebid.org does not support any version of Prebid.js prior to the previous version. e.g. if the current version is 4.x, we'll help debug 3.x, but not 2.x. If you want continued support through updates and documentation you should upgrade to a newer version.
-
-## How can I change the price granularity for different ad units?
+### How can I change the price granularity for different ad units?
 
 If you need different [price granularities](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Price-Granularity) for different AdUnits (e.g. video and display), the only way for now is to make sure the auctions don't run at the same time. e.g. Run one of them first, then kick off the other in the bidsBackHandler. e.g. here's one approach:
 
@@ -171,7 +197,7 @@ If you need different [price granularities](/dev-docs/publisher-api-reference/se
 
 The handling of this scenario will be improved in a future release.
 
-## How can I control how many targeting variables are sent to my ad server?
+### How can I control how many targeting variables are sent to my ad server?
 
 One way to limit the number of bytes sent to the ad server is to send only the winning bid by disabling the [enableSendAllBids](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-All-Bids) option. However, there are optimization and reporting
 benefits for sending more than one bid.
@@ -179,7 +205,7 @@ benefits for sending more than one bid.
 Once you find the right balance for your application, you can specify
 what's sent to the ad server with [targetingControls.auctionKeyMaxChars](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) and/or [sendBidsControl.bidLimit](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Send-Bids-Control)
 
-## Can I run multiple different versions of Prebid.js concurrently?
+### Can I run multiple different versions of Prebid.js concurrently?
 
 It's technically possible, but we don't recommend doing this:
 
@@ -189,12 +215,12 @@ It's technically possible, but we don't recommend doing this:
 
 If all this wasn't enough to warn you away from trying, it should work if you name the PBJS global differently for each instance (Update the value of 'globalVarName' in <https://github.com/prebid/Prebid.js/blob/master/package.json>)
 
-## Can I filter bid responses that don't meet my criteria?
+### Can I filter bid responses that don't meet my criteria?
 
 Yes. Many bidders provide metadata about the bid that can be used in troubleshooting
 and filtering. See the [list of bid response metadata](/dev-docs/bidder-adaptor.html#interpreting-the-response) and the [filtering example](/dev-docs/examples/meta-bid-filtering.html).
 
-## Does Prebid.js resolve the AUCTION_PRICE macro?
+### Does Prebid.js resolve the AUCTION_PRICE macro?
 
 Yes, but in a way that could cause discrepancies in reporting. It's recommended
 that [bid adapters resolve OpenRTB macros](/dev-docs/bidder-adaptor.html#resolve-openrtb-macros-in-the-creatives) themselves before giving them to Prebid.js.
@@ -202,7 +228,7 @@ that [bid adapters resolve OpenRTB macros](/dev-docs/bidder-adaptor.html#resolve
 For historic reasons, Prebid will resolve the AUCTION_PRICE macro.
  Header Bidding is a first-price auction, the best candidate for “clearing price” is the original bid itself. Prebid may deprecate this resolution; it is not recommended to be resolved client-side, as it opens opportunities for abuse.
 
-## How does Prebid interact with the GAM yield group header bidding feature?
+### How does Prebid interact with the GAM yield group header bidding feature?
 
 Google is developing this technology to help publishers create and manage line items in bulk. This should enable more publishers to integrate their sites with header bidding on the open web. Here is Google's [official blog post](https://blog.google/products/admanager/improved-header-bidding-support-in-google-ad-manager/) on yield group. This feature is currently in beta production.
 
@@ -219,7 +245,9 @@ What we know about yield group feature:
 1. The Yield Group should win when the adjusted bid price is higher than the header bidding price bucket (hp_pb), which should typically occur if the publisher is rounding bids down, as is the Prebid default.
 1. While detailed performance testing has not taken place, we hope that the improved auction dynamics from no longer using price bucketing will have beneficial effects on auction outcomes.
 
-## I'm a developer - how do I change the name of my module?
+## Developers
+
+### I'm a developer - how do I change the name of my module?
 
 Sometimes the owner of a bid adapter or other kind of module wants to rename their module. However, Prebid considers module renames a
 'breaking change' -- publishers' build processes and pages could break as a result of a renaming, so Prebid's policy on renaming is:
@@ -228,18 +256,6 @@ Sometimes the owner of a bid adapter or other kind of module wants to rename the
 2. If they're basically the same code base, change the old file so that it includes the new file. This prevents duplicate maintenance of code. In general we don't approve modules including each other, but we'll approve it to avoid repetition.
 3. The docs repo should contain both names, with the old name referring to the new name. You can add the "enable_download: false" flag to prevent installations of the old name.
 4. At the next major release the old files may be removed.
-
-## Does Prebid.js support Amazon TAM?
-
-We would love for Amazon to contribute a TAM adapter, but so far that's not happened. Publishers that want to sync IDs across multiple header bidding wrappers should be aware of these resources:
-
-* You can generate the auctionId parameter outside of Prebid and pass it when calling [pbjs.requestBids()](/dev-docs/publisher-api-reference/requestBids.html)
-* [Example of Synchronizing Transaction IDs with Another Library](/dev-docs/examples/sync-tid.html)
-
-## Should Prebid bidders be in ads.txt?
-
-Publishers should be careful to list all their bidding partners in their ads.txt file. Bidders without an entry in ads.txt may be
-perceived by DSPs as unauthorized sources of your inventory. The domain for any ads.txt [inventory partners](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/dc71586842e648e89c1bbe6c666ffac8ff010a96/2.6.md?plain=1#L1752), if one exists, should be specified with a `setConfig({ortb2.site.inventorypartnerdomain})` call. For details of the specification of ads.txt entries, see [ads.txt v1.1](https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf)
 
 ## Related Reading
 
