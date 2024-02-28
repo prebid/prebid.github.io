@@ -27,7 +27,7 @@
       <th class="pbTh">GPP Support</th>
       <td class="pbTd">{% if page.gpp_sids and page.gpp_sids != '' %}{{page.gpp_sids}}{% elsif page.gpp_supported == true and page.gpp_sids == nil %}some (check with bidder){% elsif page.gpp_supported == false and gpp_sids == nil %}None{% else %}check with bidder{% endif %}</td>
       <th class="pbTh">DSA Support</th>
-      <td class="pbTd">{% if page.dsa_supported %}{{page.dsa_supported}}{% else %}check with bidder{% endif %}</td>
+      <td class="pbTd">{% if page.dsa_supported == true %}yes{% elsif page.dsa_supported == false %}no{% else %}check with bidder{% endif %}</td>
     </tr>
     <tr>
       <th class="pbTh">USP/CCPA Support</th>
