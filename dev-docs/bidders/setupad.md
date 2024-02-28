@@ -48,17 +48,3 @@ pbjs.setConfig({
   },
 });
 ```
-
-#### disabledSendingStatisticData
-
-The `disabledSendingStatisticData` parameter disables sending statistics data to the Setupad server, such as bidRequested, bidResponse, noBid, and bidTimeout events.
-An example of enabling this option:
-
-```javascript
-pbjs.setBidderConfig({
-  bidders: ['setupad'],
-  config: {
-    disabledSendingStatisticData: true,
-  },
-});
-```
