@@ -5,7 +5,16 @@ description: Prebid Opsco Bid Adapter
 pbjs: true
 biddercode: opsco
 media_types: banner
-tcfeu_supported: true
+tcfeu_supported: false
+gvl_id: none
+prebid_member: false
+deals_supported: false
+floors_supported: false
+coppa_supported: false
+fpd_supported: false
+ortb_blocking_supported: false
+gpp_sids: check with bidder
+safeframes_ok: true
 usp_supported: true
 schain_supported: true
 sidebarType: 1
