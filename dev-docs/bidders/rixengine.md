@@ -28,8 +28,8 @@ The RixEngine Bidding adapter requires setup before beginning. Please contact th
 | Name    | Scope    | Description                                                                 | Example     | Type     |
 |---------|----------|-----------------------------------------------------------------------------|-------------|----------|
 | endpoint| required |The endpoint created on RixEngine platform, please get them from the platform| [http://demo.svr.rixengine.com/rtb](http://demo.svr.rixengine.com/rtb) | string   |
-| sid     | optional |The sid created on RixEngine platform, please get them from the platform     | '36540'                                     | string   |
-| token   | optional |The token created on RixEngine platform, please get them from the platform   | '1e05a767930d7d96ef6ce16318b4ab99'          | string   |
+| sid     | required |The sid created on RixEngine platform, please get them from the platform     | '36540'                                     | string   |
+| token   | required |The token created on RixEngine platform, please get them from the platform   | '1e05a767930d7d96ef6ce16318b4ab99'          | string   |
 
 ### Test Parameters
 
