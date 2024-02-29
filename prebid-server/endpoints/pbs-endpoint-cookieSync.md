@@ -56,18 +56,20 @@ The client code is responsible for taking the `url` response parameter and invok
 
 ### Request Parameters
 
+All of these parameters may be sent in the POST body.
+
 {: .table .table-bordered .table-striped }
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
 | bidders | optional | Array of bid adapters on the page or those the publisher wishes to sync. | ["bidderA"] | array of strings |
 | gdpr | optional | Flag indicating whether the request is in-scope for GDPR processing. | 1 | 0 or 1 |
-| gdpr_consent | optional | GDPR consent string from the CMP. | | string |
-| gpp          | optional | Global Privacy Platform String. | DBABTA~1--- | string |
-| gpp_sid          | optional | GPP Section ID . | "7" | string |
-| us_privacy | optional | US Privacy consent string from the CMP. | 1NYN | string |
+| gdpr_consent | optional | GDPR consent string from the CMP. | "..." | string |
+| gpp          | optional | Global Privacy Platform String. | "DBABTA~1---" | string |
+| gpp_sid          | optional | GPP Section ID(s). Number in string form or comma-separated list of numbers | "5,7" | string |
+| us_privacy | optional | US Privacy consent string from the CMP. | "1NYN" | string |
 | limit | optional | Max number of sync URLs to return. | 5 | integer |
 | coopSync | optional | Cooperative syncing is a way for publishers to help each other by allowing PBS to sync bidders beyond those specified by the `bidders` argument. See below for details. The default depends on PBS host company settings. | true | boolean |
-| account | optional | Prebid Server specific account ID. | | string
+| account | optional | Prebid Server specific account ID. | "1001" | string
 | filterSettings | optional | Object defining which types of syncs are allowed for which bidders. Modeled after the similar Prebid.js feature. | | object |
 | filterSettings.iframe | optional | Defines the filter settings for iframe syncs. | | object |
 | filterSettings.image | optional | Defines the filter settings for redirect syncs. | | object |
