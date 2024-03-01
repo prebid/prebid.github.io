@@ -32,22 +32,32 @@ The Adlive Plus adapter requires setup before beginning. Please contact us at [s
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId` | required | Placement id          | `'11111'` | `string`  |
+| `region`      | optional | Endpoint region       | `'us'`    | `string`  |
+
+### Params type definition
+```typescript
+type Params = {
+    placementId: string;
+    region?: 'eu' | 'us' | 'ap';
+};
+```
 
 ### Test Parameters
 
 ```javascript
 const adUnits = [
-       {
-           code: 'test-div',
-           sizes: [[300, 250]],
-           bids: [
-               {
-                   bidder: 'adliveplus',
-                   params: {
-                       placementId: '1',
-                   }
-               }
-           ]
-       }
-   ];
+	{
+		code: 'test-div',
+		sizes: [[300, 250]],
+		bids: [
+			{
+				bidder: 'lucead',
+				params: {
+					placementId: '1', // required
+					region: 'us', // optional 'eu', 'us', 'ap'
+				}
+			}
+		]
+	}
+];
 ```

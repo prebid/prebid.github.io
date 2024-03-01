@@ -31,6 +31,15 @@ The Lucead Bidding adapter requires setup before beginning. Please contact us at
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId` | required | Placement id          | `'11111'` | `string`  |
+| `region`      | optional | Endpoint region       | `'us'`    | `string`  |
+
+### Params type definition
+```typescript
+type Params = {
+    placementId: string;
+    region?: 'eu' | 'us' | 'ap';
+};
+```
 
 ### Test Parameters
 
@@ -43,7 +52,8 @@ const adUnits = [
                {
                    bidder: 'lucead',
                    params: {
-                       placementId: '1',
+                       placementId: '1', // required
+                       region: 'us', // optional 'eu', 'us', 'ap'
                    }
                }
            ]
