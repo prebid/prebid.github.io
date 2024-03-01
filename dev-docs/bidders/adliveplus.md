@@ -1,8 +1,9 @@
 ---
 layout: bidder
-title: Lucead
-description: Prebid Lucead Bidder Adapter
-biddercode: lucead
+title: Adlive Plus
+description: Adlive Plus adapter
+biddercode: adliveplus
+aliasCode: lucead
 tcfeu_supported: false
 gvl_id: none
 usp_supported: false
@@ -23,7 +24,7 @@ sidebarType: 1
 ---
 ### Note
 
-The Lucead Bidding adapter requires setup before beginning. Please contact us at [prebid@lucead.com](mailto:prebid@lucead.com).
+The Adlive Plus adapter requires setup before beginning. Please contact us at [support@adlive.io](mailto:support@adlive.io).
 
 ### Bid Params
 
@@ -41,7 +42,7 @@ const adUnits = [
            sizes: [[300, 250]],
            bids: [
                {
-                   bidder: 'lucead',
+                   bidder: 'adliveplus',
                    params: {
                        placementId: '1',
                    }
