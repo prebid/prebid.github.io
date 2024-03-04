@@ -37,7 +37,13 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 
 #### Bid Config
 
-Make sure to set required ab, orgID, websiteID values received after approval using `pbjs.setBidderConfig`.
+Make sure to set required orgID, websiteID values received after approval using `pbjs.setBidderConfig`.
+
+{: .table .table-bordered .table-striped }
+| Name | Scope | Description | Example | Type |
+| ----------- | -------- | ---------------------------------- | ------------------ | --------- |
+| `orgID` | required | A unique ID for your organization provided by the Blockthrough team. | `4829301576428910` | `string` |
+| `websiteID` | required | A unique ID for your site provided by the Blockthrough team. | `5654012389765432` | `string` |
 
 #### Example
 
@@ -49,7 +55,6 @@ pbjs.setBidderConfig({
       site: {
         ext: {
           blockthrough: {
-            ab: false,
             orgID: '4829301576428910',
             websiteID: '5654012389765432',
           },
