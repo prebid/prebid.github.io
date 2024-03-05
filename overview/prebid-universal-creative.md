@@ -9,7 +9,6 @@ nav_section: intro
 <div class="bs-docs-section" markdown="1">
 
 # Prebid Universal Creative
-
 {:.no_toc}
 
 - TOC
@@ -25,9 +24,9 @@ when a Prebid ad has won the auction. There are a number of use cases:
 {: .table .table-bordered .table-striped }
 | Use Case | PUC file | Alternate Approach |
 | --- | --- | --- |
-| web banner: iframe | banner.js (or creative.js) | [Banner and Outstream Video iframes](#alternate-method-for-banner-and-outstream-video-iframes) |
-| web banner: safeframe | banner.js (or creative.js) | [Banner Safeframes](#alternate-method-for-banner-safeframes) |
-| web outstream video: iframe | video.js (or creative.js) | [Banner and Outstream Video iframes](#alternate-method-for-banner-and-outstream-video-iframes) |
+| web banner: iframe | banner.js (or creative.js) | [Banner and Outstream Video iframes](#alt-iframes) |
+| web banner: safeframe | banner.js (or creative.js) | [Banner Safeframes](#alt-safeframes) |
+| web outstream video: iframe | video.js (or creative.js) | [Banner and Outstream Video iframes](#alt-iframes) |
 | web outstream video: safeframe | n/a | Outstream renderers each choose where to render differently, but none writes to the safeframe. |
 | AMP banner: always safeframe | amp.js (or creative.js) | n/a |
 | native: iframe | native.js (or native-render.js) | n/a |
@@ -78,22 +77,27 @@ While Prebid recommends the use of creative.js because we regularly add
 features and fix bugs, publishers may choose to hardcode the functionality
 into their ad server creatives.
 
-They would do this differently for each of the scenarios below.
+<a name="alt-iframes"></a>
 
-### Alternate method for Banner and Outstream Video iframes
+### Alternate methods for Banner and Outstream Video iframes
 
-If you only ever need to display non-safeframed banner and outstream-video creatives, you may use
-the simple approach of just calling the Prebid.js `renderAd` function directly:
+If you only ever need to display non-safeframed banner and outstream-video creatives, there are several ways to replace the `jsdelivr` call in your ad server creative:
+
+1. Copy the contents of `https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js` into each creative.
+1. Directly call the Prebid.js `renderAd` function:
 
 ```html
 <script> var w = window; for (i = 0; i < 10; i++) { w = w.parent; if (w.pbjs) { try { w.pbjs.renderAd(document, '%%PATTERN:hb_adid%%'); break; } catch (e) { continue; } } } </script>
 ```
 
+<a name="alt-safeframes"></a>
+
 ### Alternate Method for Banner Safeframes
 
-See the example at [github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html)
+If safeframe support is required, some options are:
 
-This is basically just part of the PUC that's been isolated to be standalone.
+1. Copy the contents of `https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js` into each ad server creative.
+1. Copy the example at [github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html) into each ad server creative. This is basically just part of the PUC that's been isolated to be standalone.
 
 ## Further Reading
 

@@ -5,7 +5,7 @@ description: Prebid Pixad Bidder Adapter.
 pbjs: true
 pbs: false
 biddercode: pixad
-media_types: banner,video
+media_types: banner,video,native
 tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
@@ -13,7 +13,7 @@ schain_supported: false
 dchain_supported: false
 userIds: criteo, id5Id, sharedId, unifiedId
 safeframes_ok: true
-floors_supported: false
+floors_supported: true
 aliasCode: admatic
 multiformat_supported: will-bid-on-any
 sidebarType: 1
@@ -21,7 +21,7 @@ sidebarType: 1
 
 ### Description
 
-Pixad header bidding adapter connects with Pixad demand sources to fetch bids for banner network ID. Please reach out to your account manager or <prebid@pixad.com.tr> for more information.
+Pixad header bidding adapter connects with Pixad demand sources to fetch bids for network ID. Please reach out to your account manager or <prebid@pixad.com.tr> for more information.
 
 ### Bid params
 
@@ -35,10 +35,12 @@ Pixad header bidding adapter connects with Pixad demand sources to fetch bids fo
 
 300x250 banner test
 
-```
+```javascript
 var adUnits = [{
-  code: 'your-slot_1-div', //use exactly the same code as your slot div id.
-  sizes: [[300, 250]],
+  code: 'your-slot_1-div',
+  mediaTypes: {
+    banner: { sizes: [[300, 250]] },
+  },
   bids: [{
       bidder: 'pixad',
       params: { 
@@ -47,8 +49,22 @@ var adUnits = [{
       }
   }]
 },{
-  code: 'your-slot_2-div', //use exactly the same code as your slot div id.
-  sizes: [[600, 800]],
+  code: 'your-slot_2-div',
+  mediaTypes: {
+    native: { ... },
+  },
+  bids: [{
+      bidder: 'pixad',
+      params: { 
+          networkId: 12345,
+          host: 'rtb.network.pixad.com.tr'
+      }
+  }]
+},{
+  code: 'your-slot_3-div',
+  mediaTypes: {
+    video: { ... },
+  },
   bids: [{
       bidder: 'pixad',
       params: { 
@@ -61,12 +77,13 @@ var adUnits = [{
 
 ## UserSync example
 
-```
+```javascript
 pbjs.setConfig({
   userSync: {
     iframeEnabled: true,
     syncEnabled: true,
-    syncDelay: 1
+    syncDelay: 1,
+    aliasSyncEnabled: true
   }
 });
 ```

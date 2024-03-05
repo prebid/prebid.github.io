@@ -21,6 +21,7 @@ fpd_supported: true
 ortb_blocking_supported: partial
 gvl_id: 52
 multiformat_supported: will-bid-on-one
+privacy_sandbox: paapi, topics
 sidebarType: 1
 ---
 
@@ -175,9 +176,9 @@ The following video parameters are supported here so publishers may fully declar
 | skipafter| optional | Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable. | 6 | integer|
 | minbitrate | optional | Minimum bit rate in Kbps. | 300 | integer |
 | maxbitrate | optional | Maximum bit rate in Kbps. | 9600 | integer |
-| startdelay* | recommended | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.<br /> >0: Mid-Roll (value indicates start delay in second)<br /> 0: Pre-Roll<br />-1: Generic Mid-Roll<br />-2: Generic Post-Roll | 0 | integer |
-| placement* | recommended | Placement type for the impression. (see openRTB v2.5 section 5.9 for options) | 1 | integer |
-| | | | | |
+| startdelay | recommended | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.<br /> >0: Mid-Roll (value indicates start delay in second)<br /> 0: Pre-Roll<br />-1: Generic Mid-Roll<br />-2: Generic Post-Roll | 0 | integer |
+| placement | recommended | Placement type for the impression. (see OpenRTB v2.5 section 5.9 for options) | 1 | integer |
+| plcmt | recommended | Placement type for the impression. (See [OpenRTB v2.6](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md) Plcmt Subtypes - Video) | 1 | integer |
 
 ##### bids.params.video
 
@@ -249,10 +250,9 @@ pbjs.setConfig({
 });
 ```
 
-* The Magnite exchange does not make multi-format requests unless the `bidonmultiformat` parameter is set to true. By default, if multiple mediatypes are defined and `bidonmultiformat` is false, we bid on banner first, then video, then native.
-* The client-side adapter supports native as of PBJS 7.39.
-
 #### Native
+
+Note: the client-side adapter supports native as of PBJS 7.39.
 
 We recommend using the ORTB Native spec 1.2, but do support versions 1.0 and 1.1. Here the parameters required for each version:
 
@@ -340,3 +340,4 @@ pbjs.setConfig({ rubicon: {netRevenue: false} });
 ### Notes
 
 1. There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
+2. PAAPI and Topics support released in PBJS 8.23

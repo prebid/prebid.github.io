@@ -5,8 +5,13 @@ description: Prebid Lemmadigital Bidder Adapter
 biddercode: lemmadigital
 media_types: video,banner
 pbjs: true
+pbs: true
 schain_supported: true
 floors_supported: true
+pbs_app_supported: true
+multiformat_supported: will-bid-on-one
+safeframes_ok: true
+ortb_blocking_supported: partial
 userIds: all
 sidebarType: 1
 ---
@@ -16,15 +21,17 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name  | Scope    | Description                     | Example  | Type      |
 |-------|----------|---------------------------------|----------|-----------|
-| `pubId` | required | Lemmadigital publisher Id provided by your Lemma representative   | `1` | `integer` |
-| `adunitId` | required | Lemmadigital ad unit Id provided by your Lemma representative   | `3768` | `string` |
-| `device_type`         | optional | Device Type              | `'2'`             | `integer` |
-| `latitude`         | optional | Latitude              | `'40.712775'`             | `string` |
-| `longitude`         | optional | Longitude             | `'-74.005973'`            | `string` |
-| `currency`         | optional | Currency             | `'USD'`            | `string` |
-| `bidFloor`         | optional | Bid Floor             | `1.00`            | `integer` |
-| `category`         | optional | Allowed categories             | `[ 'IAB1-5', 'IAB1-6' ]`            | `array of strings` |
-| `page_category`         | optional | Allowed page categories             | `[ 'IAB1-5', 'IAB1-6' ]`            | `array of strings` |
+| `pid` | required (for prebid-server) | Lemmadigital publisher Id provided by your Lemma representative   | `1` | `integer` |
+| `aid` | required (for prebid-server) | Lemmadigital ad unit Id provided by your Lemma representative   | `3768` | `integer` |
+| `pubId` | required (for prebid.js) | Lemmadigital publisher Id provided by your Lemma representative   | `1` | `integer` |
+| `adunitId` | required (for prebid.js) | Lemmadigital ad unit Id provided by your Lemma representative   | `3768` | `string` |
+| `device_type`         | optional (for prebid.js) | Device Type              | `'2'`             | `integer` |
+| `latitude`         | optional (for prebid.js) | Latitude              | `'40.712775'`             | `string` |
+| `longitude`         | optional (for prebid.js) | Longitude             | `'-74.005973'`            | `string` |
+| `currency`         | optional (for prebid.js) | Currency             | `'USD'`            | `string` |
+| `bidFloor`         | optional (for prebid.js) | Bid Floor             | `1.00`            | `integer` |
+| `category`         | optional (for prebid.js) | Allowed categories             | `[ 'IAB1-5', 'IAB1-6' ]`            | `array of strings` |
+| `page_category`         | optional (for prebid.js) | Allowed page categories             | `[ 'IAB1-5', 'IAB1-6' ]`            | `array of strings` |
 
 ### Description
 
@@ -104,3 +111,40 @@ var bannerAdUnits = [
 ### Additional Configuration
 
 Lemmadigital recommends setting UserSync by iframe for monetization.
+
+### Prebid Server Test Request
+
+The following test request can be used to verify that Prebid Server is working properly with the lemmadigital adapter. This example includes an `imp` object with a Lemma test publisher id, and ad id.
+
+```json
+{
+        "id": "test-request-id",
+        "imp": [{
+            "id": "test-imp-id",
+            "banner": {
+                "format": [{
+                    "w": 1920,
+                    "h": 1080
+                }],
+                "w": 1920,
+                "h": 1080
+            },
+            "ext": {
+                "lemmadigital": {
+                    "aid": 3768,
+                    "pid": 1
+                }
+            },
+            "bidfloor": 0.1
+        }],
+        "device": {
+            "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+        },
+        "site": {
+            "id": "siteID",
+            "publisher": {
+                "id": "1"
+            }
+        }
+}
+```
