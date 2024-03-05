@@ -32,9 +32,9 @@ The Lucead Bidding adapter requires setup before beginning. Please contact us at
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId` | required | Placement id          | `'11111'` | `string`  |
 
-
 ### Test Parameters
-```
+
+```javascript
 const adUnits = [
        {
            code: 'test-div',

@@ -33,9 +33,9 @@ The Adlive Plus adapter requires setup before beginning. Please contact us at [s
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId` | required | Placement id          | `'11111'` | `string`  |
 
-
 ### Test Parameters
-```
+
+```javascript
 const adUnits = [
        {
            code: 'test-div',
