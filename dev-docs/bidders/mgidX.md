@@ -26,7 +26,10 @@ sidebarType: 1
 |---------------|----------|--------------|---------------------------------|------------|
 | `placementId` | optional | Placement Id | `'0'`                           | `'string'` |
 | `endpointId`  | optional | Endpoint Id  | `'0'`                           | `'string'` |
+| `region`      | optional | Region (for Prebid.js) | `'us-east'` (default) or `'eu'` | `'string'` |
 
 ### Note
 
 For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
+
+For the prebid server, you must enable the adapter and set the endpoint (check file static/bidder-info/mgidX.yaml)
