@@ -77,7 +77,7 @@ To use this module, you'll need to work with [JW Player](https://www.jwplayer.co
           data: {
             jwTargeting: {
               // Note: the following Ids are placeholders and should be replaced with your Ids.
-              playerID: 'abcd',
+              playerDivId: 'abcd',
               mediaID: '1234'
             }
           }
@@ -100,7 +100,7 @@ To use this module, you'll need to work with [JW Player](https://www.jwplayer.co
 | :------------ | :------------ | :------------ |:------------ |
 | ortb2Imp.ext.data.jwTargeting | Object | | |
 | ortb2Imp.ext.data.jwTargeting.mediaID | String | Media Id of the content associated to the Ad Unit | Optional but highly recommended |
-| ortb2Imp.ext.data.jwTargeting.playerID | String | the ID of the HTML div element used when instantiating the JW Player instance that will render the content associated with the Ad Unit | Optional but recommended. You can retrieve this ID by calling `player.id`, where player is the JW Player instance variable. |
+| ortb2Imp.ext.data.jwTargeting.playerDivId | String | the ID of the HTML div element used when instantiating the JW Player instance that will render the content associated with the Ad Unit | Optional but recommended. You can retrieve this ID by calling `player.id`, where player is the JW Player instance variable. |
 
 ## Implementation for Bid Adapters
 
@@ -118,6 +118,8 @@ Each bidRequest for which targeting information was found will conform to the fo
     site: {
       content: {
         id: 'jw_abc123',
+        title: 'media title',
+        url: 'https:www.cdn.com/media.mp4',
         data: [
           {
             name: 'jwplayer.com',
@@ -134,7 +136,10 @@ Each bidRequest for which targeting information was found will conform to the fo
               }
             ]
           }
-        ]
+        ],
+        ext: {
+          description: 'media description'
+        }
       }
     }
   }
@@ -152,6 +157,9 @@ The content's ID can be obtained in the `bid.ortb2.site.content.id` property pat
 | :------------ | :------------ | :------------ |:------------ |
 | ortb2.site.content | Object | | |
 | ortb2.site.content.id | String | Unique identifier for the specific media asset | |
+| ortb2.site.content.url | String | URL for the specific media asset | |
+| ortb2.site.content.title | String | The title of the media content | |
+| ortb2.site.content.ext.description | String | The description of the media content | |
 | ortb2.site.content.data | Array | Contains segment taxonomy objects | |
 | ortb2.site.content.data[index].name | String | the `jwplayer.com` string indicating the provider name | |
 | ortb2.site.content.data[index].ext.segtax | Integer | the `502` value is the unique identifier for JW Player's proprietary taxonomy | |
