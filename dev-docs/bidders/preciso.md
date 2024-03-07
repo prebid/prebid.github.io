@@ -27,7 +27,9 @@ sidebarType: 1
 SharedID: We need you to include SharedID module,which is used to get prebid user commonid.It can better differentiating users to bid on ads.
 
 Example configuration:
+
 ``````javascript
+
 pbjs.setConfig({
         userSync: {
           userIds: [{
@@ -50,12 +52,14 @@ pbjs.setConfig({
           }
         },enableTIDs: true
       });
+
 ``````
 ### Registration
 
-The preciso Bidding adapter requires setup before beginning. Please contact us at tech@preciso.net
+The preciso Bidding adapter requires setup before beginning. Please contact us at [tech@preciso.net]
 
 ### Note
+
 - Supports `display` format.
 - Uses `OpenRTB` standard.
 
@@ -70,9 +74,10 @@ The following table contains currently supported parameters we parse.
 | `badv`             | optional | Blocked Advertiser Domains                                    | `['example.com']` | `string array` |
 | `wlang`            | optional | Allow List of languages for creatives using ISO-639-1-alpha-2 | `['fr', 'en']`    | `string array` |
 
-
 Example configuration:
+
 ```javascript
+
 pbjs.setConfig({
     ortb2: {
       bcat: ['IAB1-1'],
@@ -95,6 +100,7 @@ pbjs.setConfig({
 | `badv`        | optional | Blocked Advertiser Domains| `'example.com'`   | `string array`| 
 
 Notes:
+
 - Preferred to provide the `bcat` and `badv` within the first party data (above). When both methods are provided, first party data values will be prioritized.
 
 ### Example Ad Unit
