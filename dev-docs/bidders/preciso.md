@@ -54,6 +54,7 @@ pbjs.setConfig({
       });
 
 ``````
+
 ### Registration
 
 The preciso Bidding adapter requires setup before beginning. Please contact us at [tech@preciso.net]
