@@ -35,4 +35,3 @@ Opsco header bidding adapter connects with Opsco demand sources. Please reach ou
 | `siteId` | optional | The Site ID | `'123'` | `string` |
 | `test` | optional | Whether the request is for testing only. | `true` | `boolean` |
 
-
