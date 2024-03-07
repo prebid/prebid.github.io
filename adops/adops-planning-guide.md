@@ -9,7 +9,7 @@ sbUUID: 3.2
 # Ad Ops Planning Guide
 {: .no_toc }
 
-* TOC
+- TOC
 {: toc }
 
 There are several decisions you need to make as you’re planning out your Prebid implementation. The following diagram guides you through these decisions. Click on the boxes to navigate to detailed information about each one. (See below for an overview of these options.)
@@ -28,6 +28,18 @@ There are several decisions you need to make as you’re planning out your Prebi
 
 {: .alert.alert-success :}
 As you go through the steps, we recommend that you document all your decisions. Many of the decisions will need to be made only once when you first set up Prebid, so good documentation will help you and future users understand the decisions and why they were made.
+
+## AdOps Video Overview
+
+An overview of the process of planning a Prebid integration for ad operations.
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/891677441?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Prebid Ad Operations Planning"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+Notes:
+
+- [Creative Considerations](/adops/creative-considerations.html)
+- [Deals in Prebid](/adops/deals.html)
+- [Transcript of this video overview](/adops/adops-overview-video.html)
 
 ## Planning Process
 
@@ -64,4 +76,5 @@ Throughout this planning guide, we use the following terms to describe elements 
 **Key Value Pair (KVP)**: Additional parameters sent to the ad server to provide additional targeting or reporting information. Prebid sends keys with associated values that enable the ad server to match a line item to the bid and display the winning creative. A key value pair for a Prebid parameter can include things like the bid price or the name of the bidder. See [Key Values](/adops/key-values.html) for more information.
 
 ## Next Step
-[Ad Server Integration](/adops/ad-server-integration.html)
+
+- [Ad Server Integration](/adops/ad-server-integration.html)

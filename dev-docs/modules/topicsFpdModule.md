@@ -9,9 +9,9 @@ enable_download : true
 sidebarType : 1
 ---
 
-# Overview
-This module is use to call the Topics API (document.browsingTopics()) which will fetch the first party domain as well third party domain(Iframe) topics data which will be sent onto user.data in bid stream. 
+# Topics First Party Data (FPD) Module
 
+This module is use to call the Topics API (document.browsingTopics()) which will fetch the first party domain as well third party domain(Iframe) topics data which will be sent onto user.data in bid stream.
 
 To learn more about topics in general, visit [googles blog "Get to know the new Topics API for Privacy Sandbox"](https://blog.google/products/chrome/get-know-new-topics-api-privacy-sandbox/).
 
@@ -19,20 +19,22 @@ This document covers the steps necessary for publishers to enable Topics Data on
 the configuration needed to override topics Iframe Default implementation
 
 ## Publisher Integration
+
 Publishers wishing to enable must compile Prebid.js with support for this module.
 This is accomplished by adding the `topicsFpdModule` module to the list of modules they are already using:
 
-```
+```bash
 gulp build --modules=topicsFpdModule,...
 ```
 
 # Description
-The intent of the Topics API is to provide callers (including third-party ad-tech or advertising providers on the page that run script) with coarse-grained advertising topics that the page visitor might currently be interested in. 
+
+The intent of the Topics API is to provide callers (including third-party ad-tech or advertising providers on the page that run script) with coarse-grained advertising topics that the page visitor might currently be interested in.
 
 Topics Module(topicsFpdModule) should be included in prebid final package to call topics API.
 Module topicsFpdModule helps to call the Topics API which will send topics data in bid stream (onto user.data)
 
-```
+```javascript
 try {
     if ('browsingTopics' in document && document.featurePolicy.allowsFeature('browsing-topics')) {
         topics = document.browsingTopics();
@@ -43,15 +45,15 @@ try {
 ```
 
 # Topics Iframe Configuration
-Topics iframe implementation is the enhancements of existing module under topicsFpdModule.js where different bidders will call the topic API under their domain to fetch the topics for respective domain and the segment data will be part of ORTB request under user.data object. Default config is maintained in the module itself. 
 
+Topics iframe implementation is the enhancements of existing module under topicsFpdModule.js where different bidders will call the topic API under their domain to fetch the topics for respective domain and the segment data will be part of ORTB request under user.data object. Default config is maintained in the module itself.
 
 Below are the configuration which can be used to configure and override the default config maintained in the module.
 
-```
+```javascript
 pbjs.setConfig({
     userSync: {
-        ...,
+        // ...,
         topics: { 
             maxTopicCaller: 3, // SSP rotation 
             bidders: [{
@@ -59,16 +61,12 @@ pbjs.setConfig({
                 iframeURL: 'https://ads.pubmatic.com/AdServer/js/topics/topics_frame.html',
                 expiry: 7 // Configurable expiry days
             },{
-                bidder: 'rubicon',
-                iframeURL: 'https://rubicon.com:8080/topics/fpd/topic.html', // dummy URL
-                expiry: 7 // Configurable expiry days
-            },{
                 bidder: 'appnexus',
                 iframeURL: 'https://appnexus.com:8080/topics/fpd/topic.html', // dummy URL
                 expiry: 7 // Configurable expiry days
             }]
         }
-        ....
+        // ...
     }
 })
 ```

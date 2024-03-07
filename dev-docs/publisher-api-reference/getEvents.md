@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getEvents()
-description: 
+description: getEvents API
 sidebarType: 1
 ---
 
@@ -14,16 +14,17 @@ The `getEvents` method returns a copy of all emitted events since the page loade
 **Returns**: `array of objects`
 
 **Returned Object Params**:
-- eventType (see table below)
-- args (varies for each event type)
-- id (only for bidWon, set to adUnit.code)
-- elapsedTime
+
+* eventType (see table below)
+* args (varies for each event type)
+* id (only for bidWon, set to adUnit.code)
+* elapsedTime
 
 The available events are:
 
 {: .table .table-bordered .table-striped }
 | Event         | Description                             | Callback Arguments |
-|---------------+-----------------------------------------|--------------------|
+| --- | --- | --- |
 | auctionInit   | The auction has started                 | Object containing auction details |
 | auctionEnd    | The auction has ended                   | Object containing auction details |
 | beforeRequestBids | Bids are about to be requested from adapters (added in 3.x) | Array of adunits in the auction |
@@ -44,16 +45,17 @@ The available events are:
 | bidderDone    | A bidder has signaled they are done responding | Bid request object |
 | bidderError    | A bidder responded with an error | Object with the XMLHttpRequest error and the bid request object `{ error, bidderRequest }` |
 | tcf2Enforcement | There was a TCF2 enforcement action taken | `{ storageBlocked: ['moduleA', 'moduleB'], biddersBlocked: ['moduleB'], analyticsBlocked: ['moduleC'] }` |
+| bidAccepted | A bid was accepted and is about to be added to auction | Bid response object |
 
 The example below shows how these events can be used.
 
-{% highlight js %}
-      pbjs.getEvents().forEach(event => {
-        console.log("event: "+event.eventType)
-      });
-{% endhighlight %}
-
+```javascript
+pbjs.getEvents().forEach(event => {
+  console.log("event: "+event.eventType)
+});
+```
 
 ## See Also
-- [onEvent](/dev-docs/publisher-api-reference/onEvent.html)
-- [offEvent](/dev-docs/publisher-api-reference/offEvent.html)
+
+* [onEvent](/dev-docs/publisher-api-reference/onEvent.html)
+* [offEvent](/dev-docs/publisher-api-reference/offEvent.html)

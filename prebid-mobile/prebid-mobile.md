@@ -8,13 +8,14 @@ sidebarType: 2
 ---
 
 # Prebid Mobile Overview
+
 {:.no_toc}
 
-Prebid Mobile is an open-source library that provides an end-to-end header bidding solution for mobile app publishers. 
+Prebid Mobile is an open-source library that provides an end-to-end header bidding solution for mobile app publishers.
 
 Prebid Mobile libraries are available for iOS and Android.
 
-* TOC
+- TOC
 {:toc}
 
 ## Video Overview of Prebid Mobile
@@ -24,6 +25,7 @@ A high-level overview of Prebid Mobile, Prebid’s header bidding product for iO
 <div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/822158733?h=0d6369cf0c&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="1.4_Intro-to-Prebid-Mobile_v3"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 Further Content:
+
 - [Transcript of this video](/prebid-mobile/prebid-mobile-video.html)
 - [Prebid Managed Services](https://prebid.org/product-suite/managed-services/)
 
@@ -39,7 +41,7 @@ Prebid SDK rendering offers the following benefits:
 - **Framework support**: Full support of SKAdNetworks and similar frameworks
 - **MRAID 3.0 support**
 - **Flexible Ad Measurement**: Controlling the rendering and Open Measurement process allows publishers to potentially configure any measurement provider in a transparent and open source process. Prebid SDK will eventually be IAB Open Measurement certified.
-- **Ad Server Support**: can be integrated in any potential monetization stack. 
+- **Ad Server Support**: can be integrated in any potential monetization stack.
 - **Community driven**: Being a part of Prebid, there is the ability to add features not readily or easily available either through the Ad Server or other SDKs
 
 ### Potential Features
@@ -47,21 +49,19 @@ Prebid SDK rendering offers the following benefits:
 This set of features are not supported in the current release but are designated for future implementation.
 
 - **Multiformat Ad Unit**: The rendering engine will enable Prebid SDK to display any bid format in the given inventory regardless of Primary Ad Server capabilities.
-- **Support of Custom Ad Servers**: With rendering engine, the Prebid SDK can work with any Ad Server. Right now it supports GAM, AdMob, and MAX. 
-- **Rendering Delegation**: The module will potentially delegate rendering of the winning bid to the Demand Partner SDK if it is required for special creatives.
-
+- **Support of Custom Ad Servers**: With rendering engine, the Prebid SDK can work with any Ad Server. Right now it supports GAM, AdMob, and MAX.
 
 ## How It Works
 
 Prebid SDK supports following integration scenarios:
 
-* **Custom or No mediation** when no Primay Ad Server is used. The SDK renders the winning bid immediately when it is available.
-* **Using a Primary Ad Server**. There are three aproaches are avaliable for integration with primary ad server
-  * **Original API**. In this case the SDK plays a transport role of the bid from PBS to Primary ad Server where it takes place in the internal auction and the winning bid is rendered later with Prebid Universal Creative as part of Primary Ad Server Creaitve
-  * **Rendering API** Prebid SDK detects when a Prebid line item wins on the ad server and renders the cached bid in the owned Web view or Video view.
-  * **Mediation API** Prebid Adapter detects when a Prebid line item corresponds to the winning bid and renders the cached bid in the owned Web view or Video view.
+- **Custom or No mediation** when no Primay Ad Server is used. The SDK renders the winning bid immediately when it is available.
+- **Using a Primary Ad Server**. There are three aproaches are avaliable for integration with primary ad server
+  - **Original API**. In this case the SDK plays a transport role of the bid from PBS to Primary ad Server where it takes place in the internal auction and the winning bid is rendered later with Prebid Universal Creative as part of Primary Ad Server Creaitve
+  - **Rendering API** Prebid SDK detects when a Prebid line item wins on the ad server and renders the cached bid in the owned Web view or Video view.
+  - **Mediation API** Prebid Adapter detects when a Prebid line item corresponds to the winning bid and renders the cached bid in the owned Web view or Video view.
 
-In all scenarios, Prebid SDK leverages Prebid Server for demand. 
+In all scenarios, Prebid SDK leverages Prebid Server for demand.
 
 The following chart shows which API is used for which Ad Server
 
@@ -95,10 +95,10 @@ Supported Ad Servers: GAM.
 1. Prebid Mobile sends a request to Prebid Server. This request consists of the Prebid Server account ID and config ID for each tag included in the request.
 1. Prebid Server constructs an OpenRTB bid request and passes it to the demand partners. Each demand partner returns a bid response to Prebid Server. The bid response includes the bid price and the creative content.
 1. Prebid Server sends the bid responses to Prebid Mobile.
-1. Prebid Mobile sets key/value targeting for each ad slot through the primary ad server mobile SDK. 
-2. The primary ad server SDK sends the ad request enriched with targeting keywords of the wiining bid.
+1. Prebid Mobile sets key/value targeting for each ad slot through the primary ad server mobile SDK.
+1. The primary ad server SDK sends the ad request enriched with targeting keywords of the wiining bid.
 1. The primary ad server responds with an ad. If the line item associated with the Prebid Mobile bid wins, the primary ad server returns the Prebid Universal Creative (PUC) to the ad server's SDK.
-2. The primary ad server SDK starts the rendering recived ad markup.
+1. The primary ad server SDK starts the rendering recived ad markup.
 1. The PUC fetches creative content of the winning bid from the Previd Cache and renders it.
 
 ### With Ad Server: Rendering API
@@ -127,15 +127,15 @@ Supported Ad Servers: AdMob, MAX.
 1. The Prebid SDK sends the bid request to the Prebid server.
 1. Prebid server runs the header bidding auction among preconfigured demand partners.
 1. Prebid Server responds with the winning bid that contains targeting keywords.
-1. [OPTIONAL] The Prebid SDK sets up the targeting keywords of the winning bid into the ad unit of the primary ad server SDK. 
+1. [OPTIONAL] The Prebid SDK sets up the targeting keywords of the winning bid into the ad unit of the primary ad server SDK.
 1. The primary ad server SDK sends the ad request to the primary ad server.
 1. The primary ad server responds with a mediation chain.
 1. The Primary Ad Server SDK runs the Waterfall.
-1. If the mediation item contains the name Prebid Adatper it instantiates the respoctive class. 
+1. If the mediation item contains the name Prebid Adatper it instantiates the respoctive class.
 1. [OPTIONAL] adaters checks the wheather the Line Item's targeting keywors match the bid targeting keywords
 1. Adapter renders a wiining bid cached in the SDK.
 
-Note: passing the targeting keywords to the ad server depends on the server's ability to target line items. If the server doesn't provide such a feature, Prebid SDK doesn't enrich an ad request with targeting info. But activation of a line item with the proper price still works. The implementation details of such selection you can find in the respective integration guide. 
+Note: passing the targeting keywords to the ad server depends on the server's ability to target line items. If the server doesn't provide such a feature, Prebid SDK doesn't enrich an ad request with targeting info. But activation of a line item with the proper price still works. The implementation details of such selection you can find in the respective integration guide.
 
 ## Integration Reference
 
@@ -145,24 +145,23 @@ You must have a Prebid Server account in order to use Prebid Mobile. Prebid Serv
 
 To set up your Prebid Server account for Prebid Mobile, refer to [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-getting-started.html).
 
-
 ### Android
 
 Follow these steps to integrate the Prebid SDK:
 
 1. If integrating into an ad server, create line items specific for rendering (line items for rendering API are unique and do not coincide with the standard Prebid SDK line items):
-    * [GAM Original API](../adops/step-by-step.html)
-    * [GAM Rendering API](../adops/mobile-rendering-gam-line-item-setup.html)
-    * [AdMob](../adops/mobile-rendering-admob-line-item-setup.html)
-    * [MAX](../adops/mobile-rendering-max-line-item-setup.html)
+    - [GAM Original API](../adops/step-by-step.html)
+    - [GAM Rendering API](../adops/mobile-rendering-gam-line-item-setup.html)
+    - [AdMob](../adops/mobile-rendering-admob-line-item-setup.html)
+    - [MAX](../adops/mobile-rendering-max-line-item-setup.html)
 1. [Integrate Prebid SDK](pbm-api/android/code-integration-android.html) into your project.
-1. Add prebid's ad units to your app respectively to the monetization scenario: 
-    * [GAM Original API](pbm-api/android/android-sdk-integration-gam-original-api.html)
-    * [Custom in-app bidding](modules/rendering/android-sdk-integration-pb.html) integration without primary ad server.
-    * [GAM Rendering API](modules/rendering/android-sdk-integration-gam.html) as a primary ad server
-    * [AdMob](modules/rendering/android-sdk-integration-admob) as a primary ad server.
-    * [AppLovin MAX](modules/rendering/android-sdk-integration-max.html) as a primary ad server.
-    
+1. Add prebid's ad units to your app respectively to the monetization scenario:
+    - [GAM Original API](pbm-api/android/android-sdk-integration-gam-original-api.html)
+    - [Custom in-app bidding](modules/rendering/android-sdk-integration-pb.html) integration without primary ad server.
+    - [GAM Rendering API](modules/rendering/android-sdk-integration-gam.html) as a primary ad server
+    - [AdMob](modules/rendering/android-sdk-integration-admob) as a primary ad server.
+    - [AppLovin MAX](modules/rendering/android-sdk-integration-max.html) as a primary ad server.
+
 1. Actualize the [integration and targeting](pbm-api/android/pbm-targeting-params-android.html) properties.  
 
 ### iOS
@@ -170,17 +169,17 @@ Follow these steps to integrate the Prebid SDK:
 Follow these steps to integrate the rendering API:
 
 1. If integrating into an ad server, create line items specific for rendering (line items are uniqe for the Rendering Module and do not cooicide with the standard Prebid SDK line items):
-    * [GAM Original API](../adops/step-by-step.html)
-    * [GAM](../adops/mobile-rendering-gam-line-item-setup.html)
-    * [AdMob](../adops/mobile-rendering-admob-line-item-setup.html)
-    * [MAX](../adops/mobile-rendering-max-line-item-setup.html)
+    - [GAM Original API](../adops/step-by-step.html)
+    - [GAM](../adops/mobile-rendering-gam-line-item-setup.html)
+    - [AdMob](../adops/mobile-rendering-admob-line-item-setup.html)
+    - [MAX](../adops/mobile-rendering-max-line-item-setup.html)
 1. [Integrate Prebid SDK](pbm-api/ios/code-integration-ios.html).
-1.  Add prebid's ad units to your app respectively to the monetization scenario: 
-    * [GAM Original API](pbm-api/ios/code-integration-ios.html)
-    * [Custom in-app bidding](modules/rendering/ios-sdk-integration-pb.html) integration without a primary ad server.
-    * [GAM Rendering API](modules/rendering/ios-sdk-integration-gam.html) as a primary ad server.
-    * [AdMob](modules/rendering/ios-sdk-integration-gam.html) as a primary ad server.
-    * [AppLovin MAX](modules/rendering/ios-sdk-integration-max.html) as a primary ad server.
+1. Add prebid's ad units to your app respectively to the monetization scenario:
+    - [GAM Original API](pbm-api/ios/code-integration-ios.html)
+    - [Custom in-app bidding](modules/rendering/ios-sdk-integration-pb.html) integration without a primary ad server.
+    - [GAM Rendering API](modules/rendering/ios-sdk-integration-gam.html) as a primary ad server.
+    - [AdMob](modules/rendering/ios-sdk-integration-gam.html) as a primary ad server.
+    - [AppLovin MAX](modules/rendering/ios-sdk-integration-max.html) as a primary ad server.
 1. Actualize the [integration and targeting](pbm-api/ios/pbm-targeting-params-ios.html) properties.
 
 ## Additional refences

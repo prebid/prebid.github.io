@@ -5,7 +5,7 @@ description: Prebid Vidoomy Bidder Adaptor
 pbjs: true
 biddercode: vidoomy
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 380
 usp_supported: true
 coppa_supported: true
@@ -17,9 +17,9 @@ userIds: all
 floors_supported: true
 ---
 
-### Note:
+### Note
 
-[Vidoomy](https://vidoomy.com/), for more info please contact support@vidoomy.com
+[Vidoomy](https://vidoomy.com/), for more info please contact <support@vidoomy.com>
 
 ### Client Side Bid Params
 
@@ -30,7 +30,6 @@ floors_supported: true
 | `pid`   | required | pid | `'123123'` | `string` |
 | `bidfloor`   | optional | CPM bidfloor in USD | `0.08` | `float` |
 
-
 ### Server Side Bid Params (Prebid Server)
 
 {: .table .table-bordered .table-striped }
@@ -39,7 +38,7 @@ floors_supported: true
 |----------|----------|---------------------------------------------|-------------------|----------------|
 | `zoneId` | required | Zone Id                                     | `'123123'`          | `string`       |
 | `bcat`   | optional | List of blocked advertiser categories (IAB) | `['IAB1-1']`      | `string array` |
-| `badv`   | optional | Blocked Advertiser Domains                  | `['example.com']` | `string array` | 
+| `badv`   | optional | Blocked Advertiser Domains                  | `['example.com']` | `string array` |
 | `bapp`   | optional | blocked advertiser mobile app bundles       | `['app.com']`     | `string array` |
 | `btype`  | optional | blocked creative types (e.g. XHTML)         | `[1, 2, 3]`       | `int array`    |
 | `battr`  | optional | blocked creative attributes (e.g. audio)    | `[1, 2, 3]`       | `int array`    |
@@ -63,7 +62,7 @@ The following table contains currently supported parameters we parse.
 | Name    | Scope    | Description                                 | Example           | Type    |
 |---------|----------|---------------------------------------------|-------------------|---------|
 | `bcat`  | optional | List of blocked advertiser categories (IAB) | `['IAB1-1']`      | `Array` |
-| `badv`  | optional | Blocked Advertiser Domains                  | `['example.com']` | `Array` | 
+| `badv`  | optional | Blocked Advertiser Domains                  | `['example.com']` | `Array` |
 | `bapp`  | optional | blocked advertiser mobile app bundles       | `['app.com']`     | `Array` |
 | `btype` | optional | blocked creative types (e.g. XHTML)         | `[1, 2, 3]`       | `Array` |
 | `battr` | optional | blocked creative attributes (e.g. audio)    | `[1, 2, 3]`       | `Array` |

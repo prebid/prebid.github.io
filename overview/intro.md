@@ -1,14 +1,15 @@
 ---
 layout: page_v2
-title: Intro to Prebid
+title: Introduction to Prebid
 description: An overview of Prebid org and products
 sidebarType: 0
 ---
 
 # Introduction to Prebid
+
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 Prebid is the leading header bidding solution. It is free and fully open source, available to any publisher who wants to implement header bidding. This introduction describes Prebid and its benefits. For a general overview of header bidding, see [Introduction to Header Bidding](/overview/intro-to-header-bidding.html).
@@ -23,6 +24,7 @@ A video overview of Prebid.
 <div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/819942988?h=1a3701d51a&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Intro to Prebid"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 Further Reading:
+
 - [Transcript of this video overview](/overview/intro-video.html)
 - [Introduction for Developers](/developers.html)
 - [Prebid Membership](https://prebid.org/membership)
@@ -66,11 +68,11 @@ Launched in 2015 as a collaboration of several leading ad tech companies, Prebid
 ## Prebid Products
 
 Since the launch of Prebid.js, the Prebid line or products has continued to grow. Our product line includes:
+
 - **Prebid.js:** Provides a powerful and easy-to-implement code set to improve header bidding for display and video ads on a publisher’s website and within OTT applications.
 - **Prebid Server:** Provides a server-side solution for header bidding. Utilizing Prebid Server can support additional use cases such as mobile apps, reduce latency between bid request and ad selection, and speed the presentation of your site and ads. Can be used as an option for managing the number of bidders, with some calls to bidders through the client and some server-side.
 - **Prebid Mobile:** Our native iOS and Android solutions to enable header bidding within a mobile app.
 - **SharedID:** Native hosted ID offering that is simple, free, robust, and privacy-minded.
-
 
 ### Prebid.js
 
@@ -126,7 +128,6 @@ Additional modules are available that support identity, price floors, testing, c
 </p>
 </div>
 
-
 ## Benefits of Using Prebid Products
 
 The Prebid product suite offers publishers multiple benefits designed to foster a better header bidding experience, including:
@@ -149,7 +150,7 @@ Publishers who don’t have engineering and/or ad ops resources available can st
 
 If you decide to use in-house resources to implement Prebid, keep in mind that regular software upgrades are critical. Prebid is continually releasing bug fixes, performance improvements, new features, better regulation support, etc. We suggest you upgrade at least every six months.
 
-<iframe    
+<iframe
   src="https://sincera.metabaseapp.com/public/question/5242802a-75be-4dff-a49c-095769016410"
   frameborder="0"
   width="800"
@@ -164,6 +165,7 @@ If you decide to use in-house resources to implement Prebid, keep in mind that r
 </div>
 
 <a name="latency"></a>
+
 ## Prebid and Latency
 
 With header bidding, the publisher creates a short delay in their ad serving to obtain bids that might be used in the ad decisioning. Often a major concern with this process is the latency caused by this delay. By delaying the ad serving, you may lose impressions from users who bounce very quickly. Prebid provides several options for minimizing this issue.
@@ -188,6 +190,7 @@ The ad server you’re working with makes their money by taking a cut of the win
 You don’t have to be a Prebid.org member to use Prebid. However, we do highly encourage you to explore the benefits of membership and consider joining. No matter the size of your company, Prebid has membership options available that will provide value to anyone interested in header bidding today and in the future. For more information on Prebid.org membership, see [Prebid.org Membership Overview](https://prebid.org/membership/).
 
 ## Related Reading
+
 - [Introduction to Header Bidding](/overview/intro-to-header-bidding-video.html)
 - [Prebid Product Suite](https://prebid.org/product-suite/)
 - [What is Prebid.js](/prebid/prebidjs.html)

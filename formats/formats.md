@@ -6,6 +6,7 @@ sidebarType: 6
 ---
 
 # Prebid Formats
+
 {:.no_toc}
 
 Prebid supports header bidding for many ad formats. This page outlines the available formats and where to find more information.

@@ -5,7 +5,8 @@ description: Prebid Vidazoo Bidder Adaptor
 biddercode: vidazoo
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 media_types: banner, video
-gdpr_supported: true
+gvl_id: 744
+tcfeu_supported: true
 gpp_supported: true
 usp_supported: true
 pbjs: true
