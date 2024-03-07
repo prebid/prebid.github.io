@@ -69,7 +69,7 @@ To use this module, you'll need to work with [JW Player](https://www.jwplayer.co
 4. Include the content's media ID and/or the player's ID in the matching AdUnit's `fpd.context.data.jwTargeting` before calling `addAdUnits`:
 
     ```javascript
-    const adUnit = {1
+    const adUnit = {
       code: '/19968336/prebid_native_example_1',
       ...,
       ortb2Imp: {
@@ -101,6 +101,7 @@ To use this module, you'll need to work with [JW Player](https://www.jwplayer.co
 | ortb2Imp.ext.data.jwTargeting | Object | | |
 | ortb2Imp.ext.data.jwTargeting.mediaID | String | Media Id of the content associated to the Ad Unit | Optional but highly recommended |
 | ortb2Imp.ext.data.jwTargeting.playerDivId | String | the ID of the HTML div element used when instantiating the JW Player instance that will render the content associated with the Ad Unit | Optional but recommended. You can retrieve this ID by calling `player.id`, where player is the JW Player instance variable. |
+| ortb2Imp.ext.data.jwTargeting.playerID | String | Deprecated as of 8.40.0 - use playerDivId instead | |
 
 ## Implementation for Bid Adapters
 
