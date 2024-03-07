@@ -62,7 +62,13 @@
     <tr>
       <th class="pbTh">Privacy Sandbox</th>
       <td class="pbTd">{% if page.privacy_sandbox %}{{page.privacy_sandbox}}{% else %}check with bidder{% endif %}</td>
+      {% if page.pbs == true %}
+      <th class="pbTh">Prebid Server App Support</th>
+      <td class="pbTd">{% if page.pbs_app_supported == false %}no{% elsif page.pbs_app_supported == true %}yes{% else %}check with bidder{% endif %}</td>
+      {% else %}
       <th class="pbTh"></th>
       <td class="pbTd"></td>
+      {% endif %}
     </tr>
+
   </table>
