@@ -95,7 +95,7 @@ pbjs.setConfig({
 |---------------|----------|---------------------|---------------|----------|
 | `publisherId` | required | Numeric Publisher ID <br>(as provided by Preciso)  | `'123AB123'`    | `string` |
 | `region`      | optional,recommended | 3 letter country code     | `'IND'` | `string` |
-| `bidfloor`    | optional,recommended | Minimum bid for this impression expressed in CPM (USD)  | `0.01`        | `float`  |
+| `bidFloor`    | optional,recommended | Minimum bid for this impression expressed in CPM (USD)  | `0.01`        | `float`  |
 | `pageType`    | optional, recommended  | Kind of content present in the page   | `'homepage'`          | `String`     |
 | `bcat`        | optional | List of blocked advertiser categories (IAB)   | `['IAB1-1']`          | `string array`    |
 | `badv`        | optional | Blocked Advertiser Domains| `'example.com'`   | `string array`| 
@@ -120,7 +120,7 @@ Notes:
       publisherId: 'your-publisher-id',
       region: 'IND',
       pageType: 'news',// Optional
-      bidfloor: 0.25, // Optional - default is 0.0
+      bidFloor: 0.25, // Optional - default is 0.0
       bcat: ['IAB1-1'], // Optional - default is []
       badv: ['example.com']  // Optional - default is []
     }
