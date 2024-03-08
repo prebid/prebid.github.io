@@ -7,7 +7,7 @@ tcfeu_supported: true
 gvl_id: 1022
 usp_supported: true
 coppa_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, usca
 schain_supported: true
 dchain_supported: false
 media_types: banner, video, native
