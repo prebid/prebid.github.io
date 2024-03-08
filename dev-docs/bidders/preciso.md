@@ -1,7 +1,6 @@
 ---
 layout: bidder
 title: Preciso
-
 description: Prebid Preciso Bid Adapter
 gdpr_supported: true
 gvl_id: 874
@@ -9,7 +8,7 @@ media_types: display
 gdpr_supported: true
 usp_supported: true
 pbjs: true
-pbs: true
+pbs: false
 biddercode: preciso
 prebid_member: true
 floors_supported: true
@@ -17,7 +16,6 @@ safeframes_ok: true
 schain_supported: true
 userIds: sharedId
 deals_supported: false
-pbs_app_supported: false
 coppa_supported: true
 sidebarType: 1
 ---
