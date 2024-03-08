@@ -17,6 +17,8 @@ schain_supported: true
 userIds: sharedId
 deals_supported: false
 coppa_supported: true
+multiformat_supported: false
+ortb_blocking_supported: true
 sidebarType: 1
 ---
 
