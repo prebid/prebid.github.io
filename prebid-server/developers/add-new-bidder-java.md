@@ -33,7 +33,7 @@ OpenRTB Bid Requests contain one or more impression objects, each representing a
 
 ### Choose A Name
 
-You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `data`, `general`, `prebid`, `skadn` or `tid` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder).
+You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `data`, `general`, `prebid`, `skadn`, `tid`, `all` or `ae` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder).
 
 We ask that the first 6 letters of the name you choose be unique among the existing bid adapters. This consideration helps with generating targeting keys for use by some ad exchanges, such as Google Ad Manager.
 
@@ -1026,7 +1026,7 @@ private static BidRequest givenBidRequest(
 ```
 
 ### Bidder Integration Tests
-Go to `test-application.properties` file and add folowing properties
+Go to `test-application.properties` file and add following properties
 
 ```yaml
 adapters.{bidder}.enabled=true
@@ -1280,41 +1280,6 @@ Add files with content specific to your case:
     }
     ```
 
-5. `test-cache-{bidder}-request.json`
-
-    ```json
-    {
-      "puts": [
-        {
-          "type": "json",
-          "value": {
-            "id": "bid001",
-            "impid": "impId001",
-            "price": 3.33,
-            "adm": "adm001",
-            "adid": "adid001",
-            "cid": "cid001",
-            "crid": "crid001",
-            "w": 300,
-            "h": 250
-          }
-        }
-      ]
-    }
-    ```
-
-6. `test-cache-{bidder}-response.json`
-
-    ```json
-    {
-      "responses": [
-        {
-          "uuid": "f0ab9105-cb21-4e59-b433-70f5ad6671cb"
-        }
-      ]
-    }
-    ```
-
 Create class `{bidder}Test`in test directory in package `org.prebid.server.it`. Extend `IntegrationTest` class with following content
 
 ```java
@@ -1344,11 +1309,6 @@ public class {bidder}Test extends IntegrationTest {
         WIRE_MOCK_RULE.stubFor(post(urlPathEqualTo("/{bidder}-exchange"))
                 .withRequestBody(equalToJson(jsonFrom("openrtb2/{bidder}/test-{bidder}-bid-request.json")))
                 .willReturn(aResponse().withBody(jsonFrom("openrtb2/{bidder}/test-{bidder}-bid-response.json"))));
-
-        // pre-bid cache
-        WIRE_MOCK_RULE.stubFor(post(urlPathEqualTo("/cache"))
-                .withRequestBody(equalToJson(jsonFrom("openrtb2/{bidder}/test-cache-{bidder}-request.json")))
-                .willReturn(aResponse().withBody(jsonFrom("openrtb2/{bidder}/test-cache-{bidder}-response.json"))));
 
         // when
         final Response response = responseFor("openrtb2/{bidder}/test-auction-{bidder}-request.json",
@@ -1459,8 +1419,6 @@ Notes on the metadata fields:
   - `resources/org/prebid/server/it/openrtb2/{bidder}/test-auction-{bidder}-response.json` (test directory)
   - `resources/org/prebid/server/it/openrtb2/{bidder}/test-{bidder}-bid-request.json` (test directory)
   - `resources/org/prebid/server/it/openrtb2/{bidder}/test-{bidder}-bid-response.json` (test directory)
-  - `resources/org/prebid/server/it/openrtb2/{bidder}/test-cache-{bidder}-request.json` (test directory)
-  - `resources/org/prebid/server/it/openrtb2/{bidder}/test-cache-{bidder}-response.json` (test directory)
 - Register With The Core
   - `org/prebid/server/spring/config/bidder/{bidder}Configuration.java`
 
