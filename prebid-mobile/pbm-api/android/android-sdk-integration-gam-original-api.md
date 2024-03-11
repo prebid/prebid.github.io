@@ -1561,6 +1561,18 @@ Using the following method, you can set the impression-level [GPID](https://docs
 adUnit?.gpid = "/36117602/hnp-sfgate.com/Homepage/AP300"
 ```
 
+### ORTBConfig
+
+(requires SDK v2.2.1)
+
+Provides a way for app publishers to customize most ORTB fields in the partial bid request that Prebid Mobile sends to the Prebid Server.  The customization comes in the form of the setORTBConfig() method that takes a JSON String as input.  The JSON string must follow the [ORTB guidelines](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/develop/2.6.md#321---object-bidrequest-) as it will be merged with the current JSON of the bid request. If you choose to input extra data using the setORTBConfig() method, please extensively test your requests sent to Prebid Server. 
+
+There are certain protected fields such as regs, device, geo, ext.gdpr, ext.us_privacy, and ext.consent which cannot be changed.
+
+``` kotlin
+adUnit?.ortbConfig = "{"ext":{"prebid":{"debug":1,"trace":"verbose"}}}"
+```
+
 ### UserKeyword
 
 #### setUserKeyword
