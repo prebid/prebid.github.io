@@ -1,26 +1,24 @@
 ---
 layout: bidder
-title: MinuteMedia
-description: Prebid MinuteMedia Bidder Adapter
+title: STN
+description: Prebid STN Bidder Adapter
 pbjs: true
-biddercode: minutemedia
+biddercode: stn
 media_types: banner, video
 multiformat_supported: will-bid-on-any
 schain_supported: true
-tcfeu_supported: true
-gpp_supported: true
+tcfeu_supported: false
 usp_supported: true
-pbs: true
+pbs: false
 floors_supported: true
 userIds: all
 fpd_supported: true
-gvl_id: 918
 sidebarType: 1
 ---
 
 ### Note
 
-The MinuteMedia adapter requires setup and approval. Please reach out to <hb@minutemedia.com> to setup an MinuteMedia account.
+The STN adapter requires setup and approval. Please reach out to <hb@stnvideo.com> to setup an STN account.
 
 ### Bid Parameters
 
@@ -29,7 +27,7 @@ The MinuteMedia adapter requires setup and approval. Please reach out to <hb@min
 {: .table .table-bordered .table-striped }
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
-| `org` | required | String |  MinuteMedia publisher Id provided by your MinuteMedia representative  | "1234567890abcdef12345678"
+| `org` | required | String |  STN publisher Id provided by your STN representative  | "0987654321abcdef87654321"
 | `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
@@ -49,9 +47,9 @@ var adUnits = [{
           }
       },
       bids: [{
-          bidder: 'minutemedia',
+          bidder: 'stn',
           params: {
-              org: '1234567890abcdef12345678', // Required
+              org: '0987654321abcdef87654321', // Required
               floorPrice: 0.05, // Optional
               placementId: '12345678', // Optional
               testMode: false // Optional
@@ -72,9 +70,9 @@ var adUnits = [{
           }
       },
       bids: [{
-          bidder: 'minutemedia',
+          bidder: 'stn',
           params: {
-              org: '1234567890abcdef12345678', // Required
+              org: '0987654321abcdef87654321', // Required
               floorPrice: 5.00, // Optional
               placementId: '12345678', // Optional
               testMode: false // Optional
@@ -86,4 +84,4 @@ var adUnits = [{
 
 ### Configuration
 
-MinuteMedia recommends setting UserSync by iframe for monetization.
+STN recommends setting UserSync by iframe for monetization.
