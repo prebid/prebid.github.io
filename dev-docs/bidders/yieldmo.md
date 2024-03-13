@@ -9,6 +9,7 @@ gvl_id: 173
 tcfeu_supported: true
 usp_supported: true
 schain_supported: true
+gpp_supported: true
 prebid_member: true
 pbjs: true
 pbs: true

@@ -42,10 +42,10 @@ pbjs.setConfig({
 
 This module will then enforce that:
 
- - all bids include DSA information, if required (`dsarequired` is either `2` or `3`);
- - all bids that provide DSA information use a compatible rendering method:
-   * if the request indicates that the publisher can't render (`pubrender` is `0`), then the advertiser must (`adrender` cannot be `0`);
-   * if it indicates that the publisher will render (`pubrender` is `2`), then the advertiser must not (`adrender` cannot be `1`).
+* all bids include DSA information, if required (`dsarequired` is either `2` or `3`);
+* all bids that provide DSA information use a compatible rendering method:
+  * if the request indicates that the publisher can't render (`pubrender` is `0`), then the advertiser must (`adrender` cannot be `0`);
+  * if it indicates that the publisher will render (`pubrender` is `2`), then the advertiser must not (`adrender` cannot be `1`).
    
 Bids that fail the checks above are rejected with a console warning and removed from the auction.  
 
