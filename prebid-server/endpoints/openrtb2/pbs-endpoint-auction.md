@@ -1784,7 +1784,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.passthrough | Copied to the response in ext.prebid.passthrough. Allows an application to pass a value through to the response, see [request passthrough](#request-passthrough). | object | no |
 | ext<wbr>.prebid<wbr>.schains | Bidder-specific supply chains, see [supply chain support](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#supply-chain-support) | object | no |
 | ext<wbr>.prebid<wbr>.targeting | defines the key-value pairs that PBS-core places in seatbid.bid.ext.prebid.targeting, see [ad server targeting](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) | object | no |
-| ext<wbr>.prebid<wbr>.no-sale | turns off CCPA processing for the named bidder(s).<br>ex: `["bidderA"]` | array of strings | no |
+| ext<wbr>.prebid<wbr>.nosale | turns off CCPA processing for the named bidder(s).<br>ex: `["bidderA"]`. A value of ["*"] is allowed. | array of strings | no |
 | ext<wbr>.prebid<wbr>.server | additional Prebid Server metadata | object | yes |
 | ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
 | ext<wbr>.prebid<wbr>.createtid | Ties to the transmitTid activity. If false, transmitTid is denied. | boolean | no |
