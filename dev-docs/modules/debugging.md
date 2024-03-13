@@ -157,7 +157,7 @@ To illustrate, the following definitions are equivalent:
 |---------+------------------+--------------+------------------------------------------------------------------------------------------------------------------------|
 |`delay`  |Number            |0             |Delay (in milliseconds) before intercepted bids are injected into the auction. Can be used to simulate network latency. |
 
-### Examples
+## Examples
 
 ### Force a video bid
 
