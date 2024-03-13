@@ -173,13 +173,13 @@ pbjs.setConfig({
         },
         then: {
           cpm: 10,
-			    mediaType: "video",
-			    source: "client",
-			    currency: "SEK",
-			    cpm: 50.00,
-			    creativeId: "11111",
-			    width: 640,
-			    height: 360,
+          mediaType: "video",
+          source: "client",
+          currency: "SEK",
+          cpm: 50.00,
+          creativeId: "11111",
+          width: 640,
+          height: 360,
           vastXml: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><VAST version=\"2.0\"><Ad id=\"TestAd\"><InLine><AdSystem>Prebid Test</AdSystem><AdTitle>VAST 2.0 Linear Ad</AdTitle><Error><![CDATA[http://myErrorURL/error]]></Error><Impression><![CDATA[]]></Impression><Creatives><Creative id=\"2014\" AdID=\"20150911\" sequence=\"1\"><Linear><Duration>00:00:15</Duration><TrackingEvents><Tracking event=\"creativeView\"><![CDATA[]]></Tracking><Tracking event=\"start\"><![CDATA[]]></Tracking><Tracking event=\"firstQuartile\"><![CDATA[]]></Tracking><Tracking event=\"midpoint\"><![CDATA[]]></Tracking><Tracking event=\"thirdQuartile\"><![CDATA[]]></Tracking><Tracking event=\"complete\"><![CDATA[]]></Tracking></TrackingEvents><VideoClicks><ClickThrough><![CDATA[http://prebid.org/]]></ClickThrough><ClickTracking><![CDATA[]]></ClickTracking></VideoClicks><MediaFiles><MediaFile delivery=\"progressive\" width=\"960\" height=\"540\" type=\"video/mp4\"><![CDATA[https://s3.amazonaws.com/files.prebid.org/creatives/PrebidLogo.mp4]]></MediaFile></MediaFiles></Linear></Creative></Creatives></InLine></Ad></VAST>"
         }
       },
