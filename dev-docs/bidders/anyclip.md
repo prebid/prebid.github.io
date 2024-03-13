@@ -3,7 +3,7 @@ layout: bidder
 title: AnyClip
 description: AnyClip Bidder Adapter
 biddercode: anyclip
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 gpp_supported: true
@@ -14,6 +14,7 @@ floors_supported: true
 pbjs: true
 pbs: false
 prebid_member: false
+safeframes_ok: true
 sidebarType: 1
 ---
 
