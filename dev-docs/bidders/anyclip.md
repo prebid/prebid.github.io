@@ -43,7 +43,7 @@ var adUnits = [{
                 [728, 90]
             ]
         }
-    }
+    },
     bids: [{
         bidder: 'anyclip',
         params: {
