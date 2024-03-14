@@ -9,7 +9,9 @@ media_types: banner, video
 schain_supported: true
 coppa_supported: true
 pbs: true
+pbs_app_supported: true
 tcfeu_supported: true
+gpp_supported: true
 usp_supported: true
 floors_supported: true
 userIds: all
@@ -34,6 +36,7 @@ The Rise adapter requires setup and approval. Please reach out to [prebid-rise-e
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 | `rtbDomain` | optional | String |  Sets the seller end point    | "www.test.com"
 | `is_wrapper` | private | Boolean |  Please don't use unless your account manager asked you to    | false
+| `currency` | optional | String | 3 letters currency | "EUR"
 
 ## Example
 

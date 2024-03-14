@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # Price Floors Module
-
 {:.no_toc}
 
 * TOC
@@ -361,6 +360,7 @@ a subset that will be merged under the 'data' object.
 | enforcement.floorDeals | boolean | Enforce floors for deal bid requests. | false |
 | enforcement.bidAdjustment | boolean | If true, the module will use the bidAdjustment function to adjust the floor per bidder. If false (or no bidAdjustment function is provided), floors will not be adjusted. Note: Setting this parameter to false may have unexpected results, such as signaling a gross floor when expecting net or vice versa. | true |
 | enforcement.enforceRate | integer | Prebid Server only: Defines a percentage for how often bid response enforcement activity should take place given that the floors feature is active. If the floors feature is skipped due to skipRate, this has no affect. For every non-skipped auction, this percent of them should be enforced: i.e. bids discarded. This feature lets publishers ease into enforcement in case bidders aren't adhering to floor rules. | 100 |
+| enforcement.noFloorSignalBidders | array of strings | (Prebid.js 8.31+) Bidders which should not receive floor signals. | none |
 | endpoint | object | Controls behavior for dynamically retrieving floors.  | - |
 | endpoint.url | string | URL of endpoint to retrieve dynamic floor data.  | - |
 | data | object (required) | Floor data used by the module to pass floor data to bidders and floor enforcement. | - |
@@ -369,6 +369,7 @@ a subset that will be merged under the 'data' object.
 | data.skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will  have access to model version (if defined) when skipped is true to signal the module is in floors mode. If skipRate is supplied in both the root level of the floors object and within the data object, the skipRate configuration within the data object shall prevail.| 0 |
 | data.floorsSchemaVersion | string | The module supports two version of the data schema. Version 1 allows for only one model to be applied in a given data set, whereas Version 2 allows you to sample multiple models selected by supplied weights. If no schema version is provided, the module will assume version 1 for the sake of backwards compatiblity.| 1 |
 | data.modelTimestamp | int | Epoch timestamp associated with modelVersion. Can be used to track model creation of floor file for post auction analysis.| - |
+| data.noFloorSignalBidders | array of strings | (Prebid.js 8.31+) Bidders which should not receive floor signals. | none |
 | data.modelGroups | array of objects | Array of model objects to be used for A/B sampling multiple models. This field is only used when data.floorsSchemaVersion = 2 | - |
 | data.modelGroups[].currency | string | Currency of floor data. Floor Module will convert currency where necessary. See Currency section for more details. | 'USD' |
 | data.modelGroups[].skipRate | integer | skipRate is a random function whose input value is any integer 0 through 100 to determine when to skip all floor logic, where 0 is always use floor data and 100 is always skip floor data. The use case is for publishers or floor providers to learn bid behavior when floors are applied or skipped. Analytics adapters will have access to model version (if defined) when skipped is true to signal the module is in floors mode. | 0 |
@@ -381,6 +382,7 @@ a subset that will be merged under the 'data' object.
 | data.modelGroups[].values."rule key" | string | Delimited field of attribute values that define a floor. | - |
 | data.modelGroups[].values."rule floor value" | float | The floor value for this key. | - |
 | data.modelGroups[].default | float | Floor used if no matching rules are found. | - |
+| data.modelGroups[].noFloorSignalBidders | array of strings | (Prebid.js 8.31+) Bidders which should not receive floor signals. | none |
 | additionalSchemaFields | object | Object contain the lookup function to map custom schema.fields. Not supported by Prebid Server. | - |
 | additionalSchemaFields."custom key" | string | custom key name | - |
 | additionalSchemaFields."key map function" | function | Function used to lookup the value for that particular custom key | - |
@@ -1376,11 +1378,12 @@ If the currency function is unable to derive the correct cpm in any of the scena
 
 {: .table  }
 | Partner | Contact | About |
-| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;"> | [globalsupport@magnite.com](mailto:globalsupport@magnite.com) | Magnite data-science applied to dynamic floors. (Currently only available to Demand Manager customers) |
-| <img src="/assets/images/partners/leader/openx.png" style="height:50px;"> | Reach out to OpenX at [apollo@openx.com](mailto:apollo@openx.com) | Dynamic floor optimization and more |
-| <img src="/assets/images/partners/leader/pubmatic.png" style="height:50px;"> | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
-| <img src="/assets/images/partners/leader/AssertiveYield_logo.png"> | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
-| pubx.ai | [hello@pubx.ai](mailto:hello@pubx.ai) | AI-powered dynamic floor optimization |
+| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;" alt="magnite"> | [globalsupport@magnite.com](mailto:globalsupport@magnite.com) | Magnite data-science applied to dynamic floors. (Currently only available to Demand Manager customers) |
+| <img src="/assets/images/partners/leader/openx.png" style="height:50px;" alt="openx"> | Reach out to OpenX at [apollo@openx.com](mailto:apollo@openx.com) | Dynamic floor optimization and more |
+| <img src="/assets/images/partners/leader/pubmatic.png" style="height:50px;" alt="pubmatic"> | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
+| <img src="/assets/images/partners/leader/AssertiveYield_logo.png" alt="assertive_yield"> | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
+| <img src="/assets/images/partners/leader/pubx.png" style="height:50px;" alt="pubx.ai"> | [hello@pubx.ai](mailto:hello@pubx.ai) | pubX is an ML-led, dynamic flooring solution covering the full programmatic revenue spectrum (the header + GAM). pubX integrates with your current set-up, so no need to replace any part of the current stack. Our team is solely focussed on delivering the best flooring technology to publishers. |
+| <img src="/assets/images/partners/leader/mile.png" style="height:25px" alt="mile.tech" alt="mile"> | [hello@mile.tech](mailto:hello@mile.tech) | Boost your Prebid stack with Mile’s AI-powered dynamic flooring module that delivers an average revenue uplift of 22%. Sign-up for a free trial. |
 
 ## Further Reading
 
