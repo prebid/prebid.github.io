@@ -86,7 +86,7 @@ All global rules apply.
     1. Ability for the publisher to control the additional functionality.
     1. Ensuring auctions are still operable if the publisher turns off the additional functionality; i.e., bid adapters may log certain analytics events, but if a publisher turns it off, the auction should still happen.
     1. Building a Real-Time Data sub-module that obtains data in a way that can be utilized by other bidders as well if a bidder would like to incorporate an external data fetch that would influence the auction.
-1. Bidder modules must not obtain bid information from or about any other party in the auction. E.g., they cannot listen to ad server events and forward information naming other bidders back to their endpoint - that is the job of an analytics module.
+1. Bidder modules must not obtain bid information from or about any other party in the auction. E.g., they cannot listen to ad server events and forward information naming other bidders back to their endpoint - that is the job of an analytics module. They cannot import the events system; they can only use event methods provided such as onBidWon().
 1. Bidder modules must not cache bids from previous auctions. That functionality is reserved for Prebid core.
 1. Bidders must accept parameters in the conventional location in preference to bidder-specific parameters. The list of these parameters is in the bidder adapter documentation for [PBJS](/dev-docs/bidder-adaptor.html#std-param-location) and [PBS](/prebid-server/developers/add-new-bidder-go.html#bidder-parameters).
 1. Bidders must not override the standard ad server targeting values: hb_adid, hb_bidder, hb_pb, hb_deal, or hb_size, hb_source, hb_format.
