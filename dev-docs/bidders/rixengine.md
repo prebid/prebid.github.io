@@ -23,12 +23,13 @@ multiformat_supported: false
 The RixEngine Bidding adapter requires setup before beginning. Please contact the RixEngine team <contact@rixengine.com>.
 
 ### Bid Params
+
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                                           | Example     | Type     |
-|---------------|----------|-------------------------------------------------------|-------------|----------|
-| endpoint         | required |  The endpoint created on RixEngine platform, please get them from the platform or contact RixEngine team    | [http://demo.svr.rixengine.com/rtb](http://demo.svr.rixengine.com/rtb) | string   |
-| sid         | optional | The sid created on RixEngine platform, please get them from the platform or contact RixEngine team | '36529'   | string   |
-| token   | optional | The token created on RixEngine platform, please get them from the platform or contact RixEngine team | 'dddf27442edda20f7291c27e0fbafcbf' | string   |
+| Name    | Scope    | Description                                                                 | Example     | Type     |
+|---------|----------|-----------------------------------------------------------------------------|-------------|----------|
+| endpoint| required |The endpoint created on RixEngine platform, please get them from the platform| [http://demo.svr.rixengine.com/rtb](http://demo.svr.rixengine.com/rtb) | string   |
+| sid     | required |The sid created on RixEngine platform, please get them from the platform     | '36540'                                     | string   |
+| token   | required |The token created on RixEngine platform, please get them from the platform   | '1e05a767930d7d96ef6ce16318b4ab99'          | string   |
 
 ### Test Parameters
 
