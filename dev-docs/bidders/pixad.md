@@ -6,7 +6,7 @@ pbjs: true
 pbs: false
 biddercode: pixad
 media_types: banner,video,native
-gvl_id: 1281
+gvl_id: 1281 (admatic)
 tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
