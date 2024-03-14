@@ -6,6 +6,7 @@ pbjs: true
 pbs: false
 biddercode: admatic
 media_types: banner,video,native
+gvl_id: 1281
 tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
