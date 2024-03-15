@@ -371,8 +371,8 @@ There are a number of important values that a publisher expects to be handled in
 | Parameter | Description                                   | Example               |
 | ----- | ------------ | ---------- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
-| Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
-| COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
+| Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | bidderRequest.timeout; |
+| COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | bidderRequest.ortb2.regs.coppa; |
 | First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
