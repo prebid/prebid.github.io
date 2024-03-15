@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Opsco
-description: Prebid Opsco Bid Adapter
+title: OpsCo
+description: Prebid OpsCo Bid Adapter
 pbjs: true
 biddercode: opsco
 media_types: banner
@@ -23,7 +23,7 @@ sidebarType: 1
 
 ### Integration Note
 
-Opsco header bidding adapter connects with Opsco demand sources. Please reach out to <prebid@ops.co> for more information.
+OpsCo header bidding adapter connects with OpsCo demand sources. Please reach out to <prebid@ops.co> for more information.
 
 ### Bid Params
 
