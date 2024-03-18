@@ -31,6 +31,3 @@ sidebarType: 1
 ### Note
 
 For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
-
-For the prebid server, you must enable the adapter and set the endpoint based on your geographical region.
-Please refer to the file static/bidder-info/mgidX.yaml for details.
