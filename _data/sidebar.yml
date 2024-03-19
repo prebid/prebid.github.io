@@ -793,7 +793,7 @@
   
 - sbSecId: 2
   title: Ad Experience Controls
-  link: /prebid-mobile/modules/rendering/ios-sdk-customization-controls.html
+  link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -874,7 +874,7 @@
   
 - sbSecId: 2
   title: Ad Experience Controls
-  link: /prebid-mobile/modules/rendering/android-sdk-customization-controls.html
+  link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
