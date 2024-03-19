@@ -3,19 +3,15 @@ layout: bidder
 title: EXADS
 description: EXADS Bidder Adapter
 pbjs: true
-pbs: false ?
 biddercode: exadsadserver
-gvl_id: 1084 ? // found here https://iabeurope.eu/vendor-list-tcf/
-tcfeu_supported: true?
-usp_supported: false?
+gvl_id: 1084 - waiting Tiago/Barry
+tcfeu_supported: true
 media_types: banner, video, native
-gpp_sids: ?
-schain_supported: ?
-dchain_supported: ?
-safeframes_ok: ?
-deals_supported: ?
-floors_supported: ?
-ortb_blocking_supported: ?
+gpp_sids: tcfeu
+safeframes_ok: false
+deals_supported: false
+floors_supported: true
+ortb_blocking_supported: true
 ---
 
 ### Configuration
