@@ -14,8 +14,45 @@ floors_supported: true
 ortb_blocking_supported: true
 ---
 
-### Configuration
+### Example
 
+A very minimal RTB Banner example that shows how to use the EXADS adapter.
+The most important attributes are: **endpoint**, **fid** and **zoneId**. You can get them after configuring the zones.
+For more details about ad formats and parameters, read it in the next sections.
+
+```
+adUnits = [
+  {
+    code: 'postbid_iframe', // the frame where to render the creative
+    mediaTypes: {
+      banner: {
+        sizes: [300, 250],
+      },
+    },
+    bids: [
+      {
+        bidder: 'exadsadserver',
+        params: {
+          zoneId: 12345,
+          fid: '829a896f011475d50da0d82cfdd1af8d9cdb07ff',
+          partner: 'ortb_2_4',
+          siteId: '123',
+          siteName: 'test.com',
+          country: 'IRL,
+          userIp: '0.0.0.0',
+          userId: '1234',
+          impressionId: impression_id.toString(),
+          mimes: ['image/jpg'],
+          endpoint: 'https://your-ad-network.com/rtb.php',
+        },
+      },
+    ],
+  },
+];
+```
+
+### Configuration
+##### General settings
 Use `setConfig` to instruct Prebid.js to initilize the exadsBidAdapter, as specified below. 
 * Set "debug" as true if you need to read logs;
 * Set "gdprApplies" as true if you need to pass gdpr consent string;
@@ -41,6 +78,9 @@ pbjs.setConfig({
   },
 });
 ```
+
+##### Video settings
+If you will work with video stream ad formats you could choose to use the prebidJS video module to render the video using  already supported video players as videoJS.
 Add the `video` config if you need to render videos using the video module.
 For more info navigate to https://docs.prebid.org/prebid-video/video-module.html.
 ```
@@ -81,7 +121,7 @@ pbjs.setConfig({
 | `banner.sizes`      | required |  [width, height]          | `[145,256]`    | `integer array` |
 | `userIp`      | required |  IP address of the user, ipv4 or ipv6          | `'0.0.0.0'`    | `string` |
 | `userId`      | *required |  Unique user ID (string). *If you cannot generate a user ID, you can leave it empty (""). The request will get a response as long as “user” object is included in the request          | `''`    | `string` |
-| `country`      | optional |  country ISO3          | `'IRL'`    | `string` |
+| `country`      | required |  country ISO3          | `'IRL'`    | `string` |
 | `impressionId`      | required |  Unique impression ID within this bid request           | `'abcde'`    | `string` |
 | `keywords`      | optional |  Keywords can be used to ensure ad zones get the right type of advertising. Keywords should be a string of comma-separated words           | `'lifestyle, humour'`    | `string` |
 | `bidfloor`      | optional |  Minimum bid for this impression (CPM) / click (CPC) and account currency           | `0.00000011`    | `float` |
@@ -201,7 +241,7 @@ adUnits = [
 | `siteName`      |  |  Site name            | `'test.com'`    | `string` |
 | `userIp`      | required |  IP address of the user, ipv4 or ipv6          | `'0.0.0.0'`    | `string` |
 | `userId`      | *required |  Unique user ID (string). *If you cannot generate a user ID, you can leave it empty (""). The request will get a response as long as “user” object is included in the request          | `''`    | `string` |
-| `country`      | optional |  country ISO3          | `'IRL'`    | `string` |
+| `country`      | required |  country ISO3          | `'IRL'`    | `string` |
 | `impressionId`      | required |  Unique impression ID within this bid request           | `'abcde'`    | `string` |
 | `keywords`      | optional |  Keywords can be used to ensure ad zones get the right type of advertising. Keywords should be a string of comma-separated words           | `'lifestyle, humour'`    | `string` |
 | `bidfloor`      | optional |  Minimum bid for this impression (CPM) / click (CPC) and account currency           | `0.00000011`    | `float` |
@@ -290,7 +330,7 @@ adUnits = [
 | `siteName`      |  |  Site name            | `'test.com'`    | `string` |
 | `userIp`      | required |  IP address of the user, ipv4 or ipv6          | `'0.0.0.0'`    | `string` |
 | `userId`      | *required |  Unique user ID (string). *If you cannot generate a user ID, you can leave it empty (""). The request will get a response as long as “user” object is included in the request          | `''`    | `string` |
-| `country`      | optional |  country ISO3          | `'IRL'`    | `string` |
+| `country`      | required |  country ISO3          | `'IRL'`    | `string` |
 | `impressionId`      | required |  Unique impression ID within this bid request           | `'abcde'`    | `string` |
 | `keywords`      | optional |  Keywords can be used to ensure ad zones get the right type of advertising. Keywords should be a string of comma-separated words           | `'lifestyle, humour'`    | `string` |
 | `bidfloor`      | optional |  Minimum bid for this impression (CPM) / click (CPC) and account currency           | `0.00000011`    | `float` |
