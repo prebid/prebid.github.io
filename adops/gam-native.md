@@ -7,6 +7,7 @@ sidebarType: 3
 ---
 
 # GAM Step by Step - Native Creatives
+
 {: .no_toc}
 
 * TOC
@@ -18,7 +19,6 @@ This page walks you through the steps required to create a native ad template an
 For complete instructions on setting up Prebid line items in Google Ad Manager, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
 
 For more information about Google Ad Manager native ad setup, see the [Google Ad Manager native ads](https://support.google.com/admanager/answer/6366845) documentation.
-
 
 ## Create a Native Ad
 
@@ -62,9 +62,9 @@ If this creative is served, it will fire impression trackers on load. Clicking t
 
 The creative template HTML will depend on which of the three scenarios you're implementing. You can choose to manage the native template:
 
-- in GAM ([Managing the Native Template in GAM](#managing-the-native-template-in-gam) below)
-- in the Prebid.js AdUnit ([Managing the Native Template Outside of GAM](#managing-the-native-template-outside-of-gam) below)
-- in a separate JavaScript file ([Managing the Native Template Outside of GAM](#managing-the-native-template-outside-of-gam) below)
+* in GAM ([Managing the Native Template in GAM](#managing-the-native-template-in-gam) below)
+* in the Prebid.js AdUnit ([Managing the Native Template Outside of GAM](#managing-the-native-template-outside-of-gam) below)
+* in a separate JavaScript file ([Managing the Native Template Outside of GAM](#managing-the-native-template-outside-of-gam) below)
 
 {: .alert.alert-info :}
 For engineering instructions, see [Native Implementation Guide](/prebid/native-implementation.html).
@@ -81,13 +81,13 @@ There are three key aspects of the native template:
 1. Build the creative with special Prebid.js macros, e.g. `##hb_native_assetname##`. Note that macros can be placed in the body (HTML) and/or head (CSS) of the native creative.
 2. Load the Prebid.js native rendering code. You can utilize the jsdelivr version of native.js or host your own copy. If you use the version hosted on jsdelivr, make sure to declare jsdelivr as an ad technology provider in GAM. (Go to **Privacy & messaging** and click the Settings icon under **GDPR**. Under **Review your ad partners** click into **Commonly used ad partners**.) See Step 6 under [Create a New Native Creative](#create-a-new-native-creative) below.
 3. Invoke the Prebid.js native rendering function with an object containing the following attributes:
-    - adid - Used to identify which Prebid.js creative holds the appropriate native assets.
-    - pubUrl - The URL of the page, which is needed for the HTML postmessage call.
-    - requestAllAssets - Tells the renderer to get all the native assets from Prebid.js.
+    * adid - Used to identify which Prebid.js creative holds the appropriate native assets.
+    * pubUrl - The URL of the page, which is needed for the HTML postmessage call.
+    * requestAllAssets - Tells the renderer to get all the native assets from Prebid.js.
 
 Example creative HTML:
 
-```
+```html
 <div class="sponsored-post">
   <div class="thumbnail" style="background-image: url(##hb_native_image##);"></div>
   <div class="content">
@@ -112,7 +112,7 @@ When using Send All Bids, use `pbNativeTagData.adId = "%%PATTERN:hb_adid_BIDDERC
 
 Example CSS:
 
-```
+```css
 .sponsored-post {
     background-color: #fffdeb;
     font-family: sans-serif;
@@ -166,12 +166,13 @@ The GAM creative is identical whether the template is defined in the AdUnit or t
 
 1. Load the Prebid.js native rendering code. You may utilize the jsdelivr version of native.js or host your own copy. If you use the version hosted on jsdelivr, make sure to declare jsdelivr as an ad technology provider in GAM. Admin → EU User Consent → Declare ad technology providers.
 2. Invoke the Prebid.js native rendering function with an object containing the following attributes:
-    - adid - Used to identify which Prebid.js creative holds the appropriate native assets.
-    - pubUrl - The URL of the page, which is needed for the HTML postmessage call.
-    - requestAllAssets - Tells the renderer to get all the native assets from Prebid.js.
+    * adid - Used to identify which Prebid.js creative holds the appropriate native assets.
+    * pubUrl - The URL of the page, which is needed for the HTML postmessage call.
+    * requestAllAssets - Tells the renderer to get all the native assets from Prebid.js.
 
 Example creative HTML:
-```
+
+```html
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
     var ucTagData = {};
@@ -188,9 +189,7 @@ Example creative HTML:
 {: .alert.alert-warning :}
 When using Send All Bids, use `ucTagData.adId = "%%PATTERN:hb_adid_BIDDERCODE%%";` rather than `ucTagData.adId = "%%PATTERN:hb_adid%%";` for each bidder’s creative, replacing `BIDDERCODE` with the actual bidder code, such as `%%PATTERN:hb_adid_BidderA%%`.
 
-
 The example CSS in the previous section applies here as well.
-
 
 ## Create a New Native Creative
 
@@ -216,15 +215,49 @@ Now that you've defined your native template you can create your native creative
 {:start="7"}
 7. Click **Save and preview**.
 
+### Create Mobile In-App Creative
+
+Use these instructions if you integrate In-App native ads on [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#in-app-native) or [Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#in-app-native). The difference is in choosing the GAM option for supporting Android & iOS app code.
+
+1. Sign in to Google Ad Manager.
+2. Create an ad unit with fluid ad size.
+3. Click `Delivery` and then `Native`
+4. Click `New native style`.
+5. Click `Android & iOS app code`.
+6. Name your new format.
+7. Choose `Add variable` and add the following variable names and placeholders as type `text`.
+
+{: .table .table-bordered .table-striped }
+| Variable Name       | Placeholder             | Type |
+|---------------------+-------------------------+------|
+| isPrebid            | [%isPrebid%]            | Text |
+| hb_cache_id_local   | [%hb_cache_id_local%]   | Text |
+
+Make sure to indicate that the variables are required.
+
+{:start="8"}
+8. Hit "Save".
+9. Return to the home screen, click `Delivery > Creatives`, and create a creative with `Native Format`, choosing the format you created.
+10. Choose a creative name and other desired settings. In the user-defined variables you just created, set the following values:
+
+{: .table .table-bordered .table-striped }
+| Variable Name       | Value                            |
+|---------------------+----------------------------------|
+| isPrebid            | 1                                |
+| hb_cache_id_local   | %%PATTERN:hb_cache_id_local%%    |
+
+{:start="11"}
+11. Create Prebid line items with price priority and a display ad type that is targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (making sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
+
 ## Attach the Creative to Your Line Item
 
 Follow the instructions in [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html#duplicate-creative) to duplicate your creative and attach it to your line item.
 
 ## Further Reading
 
-- [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
-- [Prebid Native Implementation Guide](/prebid/native-implementation.html)
-- [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html)
-- [Prebid Universal Creatives](/overview/prebid-universal-creative.html)
-- [Creative Considerations](/adops/creative-considerations.html)
-- [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
+* [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
+* [Prebid Native Implementation Guide](/prebid/native-implementation.html)
+* [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html)
+* [Prebid Universal Creatives](/overview/prebid-universal-creative.html)
+* [Creative Considerations](/adops/creative-considerations.html)
+* [Ad Ops Planning Guide](/adops/adops-planning-guide.html)

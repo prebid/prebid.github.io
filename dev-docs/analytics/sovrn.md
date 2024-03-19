@@ -8,5 +8,4 @@ prebid_member: true
 
 #### Registration
 
-Please visit [https://www.sovrn.com/](https://www.sovrn.com/) for more information.
-
+Please visit [www.sovrn.com](https://www.sovrn.com/) for more information.

@@ -25,4 +25,3 @@ For more information, visit [MicroAd website](https://www.microad.co.jp/contact/
 | `appid`    | optional | App ID parameter. Effective only when provided by MicroAd.        | `'${COMPASS_EXT_APPID}'`             | `string`        |
 | `geo`      | optional | Geo parameter. Effective only when provided by MicroAd.           | `'${COMPASS_EXT_GEO}'`               | `string`        |
 | `aids`     | optional | User IDs parameter. `type` indicates User IDs type.               | `[{type: 6, id: '*******'}]`         | `Array<Object>` |
-

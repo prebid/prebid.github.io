@@ -8,7 +8,8 @@ biddercode: trustx
 aliasCode: grid
 media_types: banner, video
 multiformat_supported: will-bid-on-any
-gdpr_supported: true
+gvl_id: 686 (grid)
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 floors_supported: true
@@ -27,7 +28,7 @@ sidebarType: 1
 - [Bidder Config](#bidder-config)
 - [First Party Data](#first-party-data)
 
-<a name="trustx-bid-params" />
+<a name="trustx-bid-params"></a>
 
 ### Bid Params
 
@@ -39,7 +40,8 @@ sidebarType: 1
 | `bidFloor`     | optional  | Floor of the impression opportunity. If present in the request overrides XML info.                       | `0.8`                                     | `float`   |
 
 Parameter `keywords` must have following format:
-```
+
+```javascript
 {
    "site":{
       "publisher1":[
@@ -61,12 +63,13 @@ Parameter `keywords` must have following format:
 }
 ```
 
-<a name="trustx-bidder-config" />
+<a name="trustx-bidder-config"></a>
 
 ### Bidder Config
 
 You can allow writing in localStorage `pbjs.setBidderConfig` for the bidder `trustx`
-```
+
+```javascript
 pbjs.setBidderConfig({
     bidders: ["trustx"],
     config: {
@@ -74,10 +77,12 @@ pbjs.setBidderConfig({
     }
 })
 ```
+
 If it will be "true" this allow TheMediaGrid Bid Adapter to write userId in first party localStorage
 
 If you want to make alias on TrustX Bid Adapter, you must set `forceBidderName` in bidderConfig as `"trustx"`.
-```
+
+```javascript
 pbjs.setBidderConfig({
     bidders: ["aliasName"],
     config: {
@@ -86,7 +91,7 @@ pbjs.setBidderConfig({
 })
 ```
 
-<a name="trustx-first-party" />
+<a name="trustx-first-party"></a>
 
 ### First Party Data
 

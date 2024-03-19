@@ -8,11 +8,11 @@ enable_download: false
 
 #### Registration
 
-[GrowthCode](https://growthcode.io) offers scaled infrastructure-as-a-service to 
-empower independent publishers to harness data and take control of identity and 
+[GrowthCode](https://growthcode.io) offers scaled infrastructure-as-a-service to
+empower independent publishers to harness data and take control of identity and
 audience while rapidly aligning to industry changes and margin pressure.
 
-Please visit [https://growthcode.io/](https://growthcode.io/) for more information.
+Please visit [growthcode.io](https://growthcode.io/) for more information.
 
 #### Analytics Options
 

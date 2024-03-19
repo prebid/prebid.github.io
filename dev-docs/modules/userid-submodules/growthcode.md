@@ -26,22 +26,48 @@ pbjs.setConfig({
     userIds: [{
       name: 'growthCodeId',
       params: {
-          pid: 'TEST01', // Set your Partner ID here for production (obtained from Growthcode)
-          publisher_id: '_sharedID',
-          publisher_id_storage: 'html5'
+          customerEids: 'customerEids', 
       }
     }]
   }
 });
 ```
+
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
-| Param under userSync.userIds[] | Scope    | Type   | Description | Example         |
-|--------------------------------|----------|--------| --- |-----------------|
-| name                           | Required | String | The name of this module. | `"growthCodeId"` |
-| params                         | Required | Object | Details of module params. |                 |
-| params.pid                     | Required | String | This is the Partner ID value obtained from GrowthCode | `"TEST01"`        |
-| params.url | Optional | String | Custom URL for server | |
-| params.publisher_id | Optional | String | Name if the variable that holds your publisher ID | `"_sharedID"` |
-| params.publisher_id_storage | Optional | String | Publisher ID storage (cookie, html5) | `"html5"` |
+| Param under userSync.userIds[] | Scope    | Type   | Description                                                            | Example         |
+|--------------------------------|----------|--------|------------------------------------------------------------------------|-----------------|
+| name                           | Required | String | The name of this module.                                               | `"growthCodeId"` |
+| params                         | Required | Object | Details of module params.                                              |                 |
+| params.customerEids | Optional | String | Name of the variable name where the customer EID information is stored | |
+
+### Sample Eids
+Below is an example of the EIDs stored in Local Store (customerEids)
+
+```json
+[
+   {
+      "source":"domain.com",
+      "uids":[
+         {
+            "id":"8212212191539393121",
+            "ext":{
+               "stype":"ppuid"
+            }
+         }
+      ]
+   },
+   {
+      "source":"example.com",
+      "uids":[
+         {
+            "id":"e06e9e5a-273c-46f8-aace-6f62cf13ea71",
+            "ext":{
+               "stype":"ppuid"
+            }
+         }
+      ]
+   }
+]
+```

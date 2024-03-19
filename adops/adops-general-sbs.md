@@ -8,6 +8,7 @@ sidebarType: 3
 ---
 
 # General Ad Server Prebid Setup
+
 {: .no_toc }
 
 * TOC
@@ -17,10 +18,10 @@ sidebarType: 3
 
 Prebid.org provides step-by-step instructions for manually configuring Prebid in the following ad servers:
 
-- [Google Ad Manager](/adops/step-by-step.html)
-- [Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-appnexus-ad-server.html)
-- [Freewheel](/adops/setting-up-prebid-video-in-freewheel.html)
-- [Smart Ad Server](/adops/setting-up-prebidjs-with-Smart-Ad-Server.html)
+* [Google Ad Manager](/adops/step-by-step.html)
+* [Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-appnexus-ad-server.html)
+* [Freewheel](/adops/setting-up-prebid-video-in-freewheel.html)
+* [Smart Ad Server](/adops/setting-up-prebidjs-with-Smart-Ad-Server.html)
 
 If you’re using a different ad server, you can use the general instructions provided here and adapt them to your ad server.
 
@@ -40,8 +41,8 @@ For the purposes of this discussion, we’re going to refer to the elements in y
 
 Ad servers typically work in a hierarchical structure, with advertisers containing orders, which in turn contain line items. You need to have your advertisers and orders set up before you can start creating line items and creatives. The advertisers you create for Prebid will typically depend on whether you’re sending all bids or only the top price bid to the ad server.
 
-- Send Top Bid: Create one general Prebid advertiser
-- Send All Bids: Create one Prebid advertiser per bidder where orders are organized by bidder, with one or more orders containing line items targeted towards a single bidder.
+* Send Top Bid: Create one general Prebid advertiser
+* Send All Bids: Create one Prebid advertiser per bidder where orders are organized by bidder, with one or more orders containing line items targeted towards a single bidder.
 
 ### Create Native Template
 
@@ -58,12 +59,12 @@ See [Key Values](/adops/key-values.html) for information on the keys you’ll ne
 The exact order of the following steps will differ depending on your ad server.
 
 ### General Settings
- 
+
 1. Enter a name for your line item. Suggested format: Prebid – format - bidder – price bucket. For example, `Prebid – banner - BidderA – 1.50`.
 2. Set the priority of your line item to whatever you think is appropriate. Typically Prebid line items are prioritized below direct-sold but above house/remnant.
 3. Enter the sizes of your creatives:
-- Banner/Outstream/AMP/Video: Select the sizes of all ad slots included in the Prebid process.
-- Native: Select a native template.
+    * Banner/Outstream/AMP/Video: Select the sizes of all ad slots included in the Prebid process.
+    * Native: Select a native template.
 4. Long-Form (OTT) Video only:
 If you’re using competitive exclusions, fill in the associated field with the appropriate value. You’ll need to include this value when you set your targeting for the `hb_pb_cat_dur` key. See [Targeting](#targeting) below for more information.
 5. Set your line item to start immediately, with no end date.
@@ -72,16 +73,16 @@ If you’re using competitive exclusions, fill in the associated field with the 
 
 ### Targeting
 
-You’ll need to apply custom targeting specific to the Prebid values that are passed in with the ad request. 
- 
+You’ll need to apply custom targeting specific to the Prebid values that are passed in with the ad request.
+
 {: .alert.alert-info :}
 These instructions assume you’re sending all bids to the ad server (the default). If you’re sending only the top price bid, your targeting keys will not include the bidder code. For example, rather than targeting price buckets with `hb_pb_BidderA`, you’ll target `hb_pb`. See [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html) for more information.
 
 Target the price bucket key: `hb_pb_BIDDERCODE` (where BIDDERCODE is the actual code for your bidder, such as BidderA) with the value of the price bucket you entered as the price for this line item.
 
 The following additional keys must be added for the corresponding formats:
- 
-**Banner/Outstream/Native:** 
+
+**Banner/Outstream/Native:**
 
 You can use the same line item for banner, outstream, and/or native creatives. If your ad slot could be filled by two or more of these formats, you should include the hb_format_BIDDERCODE key with values specifying all expected formats.
 
@@ -90,16 +91,16 @@ If you combine native with another format in a single line item, you’ll need t
 
 **In-Player and Outstream Video:**
 
-Both in-player (instream) and outstream video ads receive the `hb_format_BIDDERCODE=video` key-value pair, so targeting on that key alone is not enough to choose the correct line items. If you're running both in-player and outstream video ads, they will most likely be separate line items, so you will need to target outstream line items to a “display” inventory type, or perhaps separate them by adunits. 
+Both in-player (instream) and outstream video ads receive the `hb_format_BIDDERCODE=video` key-value pair, so targeting on that key alone is not enough to choose the correct line items. If you're running both in-player and outstream video ads, they will most likely be separate line items, so you will need to target outstream line items to a “display” inventory type, or perhaps separate them by adunits.
 
 **Long-Form (OTT) Video:**
- 
+
 For long-form video the custom key `hb_pb_cat_dur_BIDDERCODE` is required. The value of this key breaks down like this:
 
-- _pb represents the price bucket. This is the currency amount entered as the line item price.
-- _cat indicates the competitive exclusion industry code. (For engineering information, refer to the [Category Translation module](/dev-docs/modules/categoryTranslation.html)). This is the value entered as the competitive exclusion. If you are not using competitive exclusion, you can omit this portion of the value.
-- _dur is the length of the video in seconds. This is the value you’ll enter as the maximum duration of the video.
- 
+* _pb represents the price bucket. This is the currency amount entered as the line item price.
+* _cat indicates the competitive exclusion industry code. (For engineering information, refer to the [Category Translation module](/dev-docs/modules/categoryTranslation.html)). This is the value entered as the competitive exclusion. If you are not using competitive exclusion, you can omit this portion of the value.
+* _dur is the length of the video in seconds. This is the value you’ll enter as the maximum duration of the video.
+
 For example, for a line item with a $10.00 CPM as the price, a competitive exclusion of “news”, and 30s entered for the video duration, you would enter the following in the custom key-value field: `hb_pb_cat_dur_BIDDERCODE = 10.00_news_30s`. If you’re not using competitive exclusion, you can have a value such as this: `hb_pb_cat_dur_BIDDERCODE = 10.00_30s`.
 
 {: .alert.alert-info :}
@@ -118,19 +119,19 @@ You’ve now added all fields required for targeting Prebid line items. You can 
 
 ## Create Your Creatives
 
-The process of creating your creatives will differ based on the type of creative. 
+The process of creating your creatives will differ based on the type of creative.
 
 In general, you can interpret the instructions for setting up creatives in Google Ad Manager with some modifications; specifically, to the MACROs used in the ad tag. (See below for details.) Refer to the following for GAM documentation:
 
-- [GAM Creative Setup: Banner/Outstream/AMP](/adops/gam-creative-banner-sbs.html)
-- [GAM Creative Setup: Native](/adops/gam-native.html)
-- [GAM Creative Setup: Video](/adops/setting-up-prebid-video-in-dfp.html)
+* [GAM Creative Setup: Banner/Outstream/AMP](/adops/gam-creative-banner-sbs.html)
+* [GAM Creative Setup: Native](/adops/gam-native.html)
+* [GAM Creative Setup: Video](/adops/setting-up-prebid-video-in-dfp.html)
 
 We recommend using the [Prebid Universal Creative](/overview/prebid-universal-creative.html) and targeting an ad unit size of 1x1.
 
 If you’re working with banner or outstream creatives, the HTML you’ll enter in the creatives will be similar to the following (utilizing whatever macro format is supported by your ad server):
 
-```
+```html
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
 <script>
   var ucTagData = {};
@@ -145,17 +146,18 @@ If you’re working with banner or outstream creatives, the HTML you’ll enter 
   ucTagData.size = "%%MACRO:hb_size_BIDDERCODE%%";
   ucTagData.hbPb = "%%MACRO:hb_pb_BIDDERCODE%%";
   try {
-	ucTag.renderAd(document, ucTagData);
+    ucTag.renderAd(document, ucTagData);
   } catch (e) {
-	console.log(e);
+    console.log(e);
   }
 </script>
 ```
 
 {: .alert.alert-warning :}
-- Replace `%%MACRO%%` with the appropriate macro for your ad server. (Refer to your ad server’s documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
-- Replace BIDDERCODE with the appropriate code for the bidder your line item is targeting. For example, if you’re targeting BidderA, the macro variable for adId might look like `ucTagData.adId = "%%PATTERN:hb_adid_BidderA%%";`.
-- If you're hosting your own Prebid Universal Creative, make sure it's version 1.15 or later, or replace `%%PATTERN:hb_format%%.js` with `creative.js`.
+
+* Replace `%%MACRO%%` with the appropriate macro for your ad server. (Refer to your ad server’s documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
+* Replace BIDDERCODE with the appropriate code for the bidder your line item is targeting. For example, if you’re targeting BidderA, the macro variable for adId might look like `ucTagData.adId = "%%PATTERN:hb_adid_BidderA%%";`.
+* If you're hosting your own Prebid Universal Creative, make sure it's version 1.15 or later, or replace `%%PATTERN:hb_format%%.js` with `creative.js`.
 
 The example above uses the jsdelvr CDN as the domain from which the creative will serve. However, you may obtain the creative from a managed service or host it yourself. You might need to edit the creative and make adjustments to your creative settings depending on the CDN you're using.
 
@@ -169,6 +171,6 @@ The final steps in configuring Prebid on your ad server are to do the following:
 
 ## Further Reading
 
-- [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
-- [Ad Ops and Prebid Overview](/adops/before-you-start.html)
+* [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
+* [Ad Ops and Prebid Overview](/adops/before-you-start.html)
   

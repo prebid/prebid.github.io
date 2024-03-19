@@ -21,20 +21,30 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('consent', 'default', {'ad_storage': 'denied','analytics_storage': 'denied'});
+  gtag('consent', 'default', {
+    'analytics_storage': 'granted',
+    'region': ['US']
+  });
+  gtag('consent', 'default', {'ad_storage': 'denied','analytics_storage': 'denied', 'wait_for_update': 500});
   gtag("config", "G-GM972HCTEB", {
       anonymize_ip: true
   });
 
-  // new google analytics v4 property
-  gtag('config', 'G-GM972HCTEB');
-
-  // use the global variable provided in the head-common to wait for onetrust
-  window.onetrustLoaded.then(() => {
-    // grant consent if one trust says so. We use the callback to update gtag consent status
+  // grant consent if one trust says so. We use the callback to update gtag consent status
+  function oneTrustGaConsent() {
     OneTrust.InsertHtml('<span>given</span>', 'prebid-google-analytics-consent', function() {
       gtag('consent', 'update', {'ad_storage': 'granted','analytics_storage': 'granted'});
     }, {}, 'C0002');
+  }
+
+
+  // use the global variable provided in the head-common to wait for onetrust
+  window.onetrustLoaded.then(() => {
+    // if consent has already been given
+    oneTrustGaConsent();
+
+    // if a users sees the first layer message and gives consent
+    OneTrust.OnConsentChanged(() => oneTrustGaConsent());
   });
 
 </script>

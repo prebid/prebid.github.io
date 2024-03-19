@@ -4,14 +4,14 @@ title: Nexx360
 description: Prebid Nexx360 Bidder Adapter
 pbjs: true
 biddercode: nexx360
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 floors_supported: true
 userIds: all
 tcf2_supported: true
 media_types: banner, video, native
-glv_id: 965
+gvl_id: 965
 pbs: false
 sidebarType: 1
 
@@ -34,7 +34,8 @@ sidebarType: 1
 ### Bidder Config
 
 You can allow writing in localStorage `pbjs.bidderSettings` for the bidder `nexx360`
-```
+
+```javascript
 pbjs.bidderSettings = {
     nexx360: {
         storageAllowed : true
@@ -48,7 +49,7 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 
 ### Test Parameters
 
-```
+```javascript
 var adUnits = [
    // Banner adUnit
    {
@@ -84,7 +85,7 @@ var adUnits = [
      // Native adUnit
    {
         code: 'native1',
-        mediaTypes:
+        mediaTypes: {
             native: {
                 title: {
                     required: true

@@ -9,13 +9,13 @@ biddercode: onomagic
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Onomagic bidder adapter requires setup and approval from the Onomagic team. Please reach out to your account manager for more information and to start using it.
 
 ### Bid Params
 
-{: .table .table-bordered .table-striped } 
+{: .table .table-bordered .table-striped }
 
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |

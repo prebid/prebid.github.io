@@ -6,18 +6,17 @@ sidebarType: 0
 ---
 
 # Prebid.org Events
+
 {:.no_toc}
 
-## Upcoming Event:
+## Upcoming Event
 
 {: .table .table-bordered .table-striped }
 | <b>Title:</b> | How to Make Prebid the Supply Path Buyers Choose |
 | <b>Date:</b> | Aug 27, 2020 |
 | <b>Registration:</b> | [link](https://event.on24.com/eventRegistration/EventLobbyServlet?target=reg20.jsp&referrer=&eventid=2543494&sessionid=1&key=A724FF00CF11F4BF9C611B265C62DAEE&regTag=&sourcepage=register) |
 
-
-
-## Past Events:
+## Past Events
 
 {: .table .table-bordered .table-striped }
 | Date | Description | Location |

@@ -8,9 +8,10 @@ sidebarType: 3
 ---
 
 # GAM Step by Step - Video Creatives
+
 {: .no_toc }
 
-* TOC
+- TOC
 {:toc}
 
 This page walks you through the steps required to create in-player and long-form video creatives to attach to your Prebid line items in Google Ad Manager (GAM).
@@ -20,7 +21,6 @@ For complete instructions on setting up Prebid line items in Google Ad Manager, 
 
 {: .alert.alert-info :}
 For engineering setup instructions, see [Show Video Ads with a Google Ad Manager Video Tag](/dev-docs/show-video-with-a-dfp-video-tag.html).
-
 
 Each VAST creative contains a URL that points to the cached VAST XML. (This is because most video players can only work with a URL that returns VAST XML.) When setting up video creatives, it's important to understand where the VAST XML is stored for each of your bidders. The most common place to store VAST XML is the AppNexus cache, but some bidders (such as RubiconProject and SpotX) use their own cache services. To support such bidders, see [Multiple Cache Locations](#multiple-cache-locations) below.
 
@@ -61,7 +61,6 @@ If you’re using Send All Bids, the VAST URL will include the bidder-specific t
 or
 
 `[other bidder cache location]`
-
 
 **Long-Form Video Cache Location**
 

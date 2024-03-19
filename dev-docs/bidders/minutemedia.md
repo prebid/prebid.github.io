@@ -7,8 +7,10 @@ biddercode: minutemedia
 media_types: banner, video
 multiformat_supported: will-bid-on-any
 schain_supported: true
-gdpr_supported: true
+tcfeu_supported: true
+gpp_supported: true
 usp_supported: true
+pbs: true
 floors_supported: true
 userIds: all
 fpd_supported: true
@@ -18,7 +20,7 @@ sidebarType: 1
 
 ### Note
 
-The MinuteMedia adapter requires setup and approval. Please reach out to hb@minutemedia.com to setup an MinuteMedia account.
+The MinuteMedia adapter requires setup and approval. Please reach out to <hb@minutemedia.com> to setup an MinuteMedia account.
 
 ### Bid Parameters
 
@@ -31,8 +33,10 @@ The MinuteMedia adapter requires setup and approval. Please reach out to hb@minu
 | `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
+| `currency` | optional | String | 3 letters currency | "EUR"
 
 ## Example
+
 ```javascript
 var adUnits = [{
       code: 'banner-div',
@@ -81,4 +85,5 @@ var adUnits = [{
 ```
 
 ### Configuration
+
 MinuteMedia recommends setting UserSync by iframe for monetization.
