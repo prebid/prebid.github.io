@@ -1050,7 +1050,7 @@
   sectionTitle:
   subgroup: 2
 
-  - sbSecId: 3
+- sbSecId: 3
   title: 'Line Item Setup'
   link: /adops/step-by-step.html
   isHeader: 0

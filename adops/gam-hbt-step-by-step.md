@@ -44,6 +44,7 @@ First, configure prebid to collect bids from your selected bidders and pass thos
 
 ![Get Started with Prebid](/assets/images/ad-ops/gam-hbt-sbs/hbt-start.png)
 
+{:start="4"}
 5. Review each detected bidder.
 
 ![Review Bidders](/assets/images/ad-ops/gam-hbt-sbs/hbt-bidders.png)
@@ -54,11 +55,13 @@ For each bidder, there are three configuration options:
 - *Enable optimized Private Auction deals*: When enabled, bids that include a deal ID will enter the auction at the optimized Private Auction priority. If disabled, such bids will continue to work with any relevant line items in your network.
 - *Allow ads on child-directed requests*: When enabled, the associated bidder’s ads may show on inventory that is classified in Ad Manager as child-directed.
 
+{:start="6"}
 6. Click *Continue*.
 7. Select *Run Prebid on entire network*
 
 ![Run Prebid](/assets/images/ad-ops/gam-hbt-sbs/hbt-run-prebid.png)
 
+{:start="8"}
 8. Click *Finish*. Your Ad Manager UI should look like this, with your own bidders and specified configuration settings listed.
 
 ![Finished](/assets/images/ad-ops/gam-hbt-sbs/hbt-setup-finished.png)
