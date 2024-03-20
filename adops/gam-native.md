@@ -215,6 +215,40 @@ Now that you've defined your native template you can create your native creative
 {:start="7"}
 7. Click **Save and preview**.
 
+### Create Mobile In-App Creative
+
+Use these instructions if you integrate In-App native ads on [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#in-app-native) or [Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#in-app-native). The difference is in choosing the GAM option for supporting Android & iOS app code.
+
+1. Sign in to Google Ad Manager.
+2. Create an ad unit with fluid ad size.
+3. Click `Delivery` and then `Native`
+4. Click `New native style`.
+5. Click `Android & iOS app code`.
+6. Name your new format.
+7. Choose `Add variable` and add the following variable names and placeholders as type `text`.
+
+{: .table .table-bordered .table-striped }
+| Variable Name       | Placeholder             | Type |
+|---------------------+-------------------------+------|
+| isPrebid            | [%isPrebid%]            | Text |
+| hb_cache_id_local   | [%hb_cache_id_local%]   | Text |
+
+Make sure to indicate that the variables are required.
+
+{:start="8"}
+8. Hit "Save".
+9. Return to the home screen, click `Delivery > Creatives`, and create a creative with `Native Format`, choosing the format you created.
+10. Choose a creative name and other desired settings. In the user-defined variables you just created, set the following values:
+
+{: .table .table-bordered .table-striped }
+| Variable Name       | Value                            |
+|---------------------+----------------------------------|
+| isPrebid            | 1                                |
+| hb_cache_id_local   | %%PATTERN:hb_cache_id_local%%    |
+
+{:start="11"}
+11. Create Prebid line items with price priority and a display ad type that is targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (making sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
+
 ## Attach the Creative to Your Line Item
 
 Follow the instructions in [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html#duplicate-creative) to duplicate your creative and attach it to your line item.
