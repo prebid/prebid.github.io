@@ -14,7 +14,7 @@ sidebarType: 3
 - TOC
 {: toc }
 
-Publishers new to header bidding can use this guide to set up header bidding trafficking for Prebid in Google Ad Manager. Unlike a line item setup, header bidding trafficking provides publishers with precise bid prices to compete in the auction, no need for shell creatives, unified reporting, and a straightforward workflow. These instructions describe only the specific settings required for header bidding trafficking; they are not intended to be comprehensive instructions that replace or duplicate the GAM documentation.
+Publishers new to header bidding can use this guide to set up header bidding trafficking for Prebid in Google Ad Manager. Unlike a line item setup, header bidding trafficking provides publishers with precise bid prices to compete in the auction and no need for shell creatives. It also provides unified reporting, and a straightforward workflow. These instructions describe only the specific settings required for header bidding trafficking; they are not intended to be comprehensive instructions that replace or duplicate the GAM documentation.
 
 - If you prefer to use line items to manage your header bidding setup, visit [Line item setup](/adops/step-by-step.html).
 - For how to migrate from line items to header bidding trafficking, visit [Header bidding trafficking](https://support.google.com/admanager/answer/12273163) and the corresponding [FAQ](https://support.google.com/admanager/answer/12270263).  These instructions also describe how to run an experiment to show potential revenue uplift from migrating to header bidding trafficking from a line item setup. 
