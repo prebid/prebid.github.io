@@ -9,7 +9,7 @@ media_types: banner, video
 tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
-gpp_supported: true
+gpp_sids: none
 gvl_id: 541
 sidebarType: 1
 ---
