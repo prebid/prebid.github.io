@@ -17,12 +17,12 @@ sidebarType: 7
 
 Starting September 2023, new privacy regulations came into effect in Quebec, a province of Canada, governing about a quarter of Canada's population.
 
-IAB Canada has offered a modified version of the Transparency and Consent Framework (TCF) as a solution to cover user consent preferences in Quebec. However, as of Mar 2024, guidance from regulators, TCF Canada, and major advertising entities in Canada is still in flux. The Canadian [vendor list](https://iabcanada.com/tcf-canada/vendor-list/) does not have enough vendors for meaningful adoption of the framework by any publisher, as it does not include the primary publisher ad server nor many large DSPs, nor many of the top five CMPs [registered as CMPs with TCF Canada](https://iabcanada.com/tcf-canada/cmp-list/).
+IAB Canada has offered a modified version of the Transparency and Consent Framework (TCF) as a solution to cover user consent preferences in Quebec. However, as of Feb 2024, guidance from regulators, TCF Canada, and major advertising entities in Canada is still in flux. The Canadian [vendor list](https://iabcanada.com/tcf-canada/vendor-list/) does not have enough vendors for meaningful adoption of the framework by any publisher, as it does not include the primary publisher ad server nor many large DSPs, nor many of the top five CMPs [registered as CMPs with TCF Canada](https://iabcanada.com/tcf-canada/cmp-list/).
 
 Here is the most recent update from IAB Canada:
 
 {: .alert.alert-info :}
-CAI released new guidance in October but unfortunately it did not clear up the confusion around whether or not expressed consent is required for personalized advertising. Conflicting interpretations of the statue remain and as a result we are left with organizations taking different approaches based on their analysis. TCF Canada has the flexibility built in to allow for either approach and for it to be used across our market regardless of the form of consent you are collecting.
+CAI released new guidance in October 2023 but unfortunately it did not clear up the confusion around whether or not expressed consent is required for personalized advertising. Conflicting interpretations of the statute remain and as a result we are left with organizations taking different approaches based on their analysis. TCF Canada has the flexibility built in to allow for either approach and for it to be used across our market regardless of the form of consent you are collecting.
 
 Given this context, Prebid has identified publisher concern that many will not be able to transact programmatically in Quebec until broader adoption of the IAB TCF-Canada spec is achieved. This document is intended to provide guidance on conveying user notification and consent signals as gathered by the publisher to Prebid software independent of the GPP signals in Section 5 and the lack of a working consent string framework from IAB Canada.
 
