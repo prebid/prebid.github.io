@@ -33,6 +33,8 @@ Required one of the two parameters placement_id or group_id.
 
 Further information for the auction on NextMillennium side is generated automatically.
 
+For video ad requests, we recommend that you configure the `mediaTypes.video` parameters in your Ad Units ([https://docs.prebid.org/dev-docs/adunit-reference.html#video](https://docs.prebid.org/dev-docs/adunit-reference.html#video)).
+
 ### Additional options
 
 #### disabledSendingStatisticData
