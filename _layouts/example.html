@@ -61,10 +61,17 @@
 
         <div class="row">
           <!-- JSFiddle -->
-          <div id="jsfiddle" class="col-md-12"> 
-            <h2>(Sorry, JSFiddle code examples aren't available with your cookie privacy settings.)</h2>
-            <p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
-          </div>
+          <iframe width="100%" height="{{page.code_height}}" src="about:blank"
+                  allowfullscreen="allowfullscreen" allowpaymentrequest
+                  frameborder="0"noresize="noresize" scrolling="no" frameborder="0" marginheight="0" marginwidth="0" 
+                  class="cmplazyload" 
+                  data-cmp-purpose="1"
+                  data-cmp-src="//{{page.jsfiddle_link}}"
+                  data-cmp-preview-headline="JSFiddle"
+                  data-cmp-preview-text="Sorry, JSFiddle code examples aren't available with your cookie privacy settings."
+                  data-cmp-preview-checkbox=""
+                  ALLOWTRANSPARENCY="true">
+          </iframe>
         </div>
 
         <div class="row">
@@ -98,20 +105,6 @@
   </div>
 </div>
 
-<script type="text/javascript">
-function runOt() {
-  OneTrust.InsertHtml('<iframe width="100%" height="{{page.code_height}}" src="//{{page.jsfiddle_link}}" allowfullscreen="allowfullscreen" frameborder="0"></iframe>', 'jsfiddle', null, {deleteSelectorContent: true}, 3); 
-}
-function onOtLoad(cb) {
-    const tmr = setInterval(function () {
-        if (window.OneTrust != null) {
-            clearInterval(tmr);
-            cb();
-        }
-    }, 100);
-}
-onOtLoad(runOt);
-</script>
 {% include footer.html %}
 
 </body>

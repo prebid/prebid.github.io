@@ -3,17 +3,10 @@
 
 <head>
 {% include head--common.html %}
-    <!--production version of prebid.js-->
-    <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+{% include prebidjs-non-prod.html %}
 
-    <!--Ad Player Pro & prebid js code-->
-    <script>
-
-      window.onetrustLoaded.then(() => {
-        OneTrust.InsertScript("https://static.adplayer.pro/player/demo.js", 'head', null, {}, 'C0003');
-      })
-    </script>
-    <script type="text/plain" class="optanon-category-C0003">
+    <script type="text/plain" class="cmplazyload" data-cmp-purpose="c51" data-cmp-src="https://static.adplayer.pro/player/demo.js"></script>
+    <script type="text/plain" class="cmplazyload" data-cmp-purpose="c51">
     	var pbjs = pbjs || {};
     	pbjs.que = pbjs.que || [];
 

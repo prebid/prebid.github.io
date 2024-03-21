@@ -7,6 +7,7 @@ isVideo: true
 sidebarType: 4
 code_height: 2300
 ---
+
 <style>
   #mainContainer {
     position: relative;
@@ -28,22 +29,14 @@ code_height: 2300
     overflow: hidden;
   }
 </style>
-<script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+{% include prebidjs-non-prod.html %}s
 <div class="container">
-    <div class="row">
-        <div class="vidHeader" style="width:75vw;">
-            <h1>{{ page.title }}</h1>
-            <p>{{ page.description }}</p>
-        </div>
-
-
-    <div id="videoExample" class="col-md-12">
-      <h2>(Sorry, video code examples aren't available with your cookie privacy settings.)</h2>
-      <p><a class="optanon-show-settings">Cookie Settings</a></p><br/>
+  <div class="row">
+    <div class="vidHeader" style="width: 75vw">
+      <h1>{{ page.title }}</h1>
+      <p>{{ page.description }}</p>
     </div>
 
-    <script>
-      const exampleHTML = `
           <!--video warning-->
           <div class="pb-alert pb-alert-important">
               <p style="color:#85720f"><b>Important:</b>
@@ -67,91 +60,104 @@ code_height: 2300
              <div class="pb-code-hl-wrap">
                <pre id='codeExample' class="pb-code-hl"></pre>
              </div>
-          </div>`;
-      </script>
-    </div>
+          </div>
+  </div>
 </div>
 
-<script id='adCode' type="text/javascript">
+<script id="adCode" type="text/javascript">
   var pbjs = pbjs || {};
   pbjs.que = pbjs.que || [];
 
   function render(bid) {
-    const videoContent = document.getElementById('contentElement');
-    const adContainer = document.getElementById('adContainer');
-    const adDisplayContainer = new google.ima.AdDisplayContainer(adContainer, videoContent);
+    const videoContent = document.getElementById("contentElement");
+    const adContainer = document.getElementById("adContainer");
+    const adDisplayContainer = new google.ima.AdDisplayContainer(
+      adContainer,
+      videoContent
+    );
 
     const adsRequest = new google.ima.AdsRequest();
-    adsRequest.adTagUrl = '';
+    adsRequest.adTagUrl = "";
     adsRequest.adsResponse = bid.vastXml;
 
     adsLoader = new google.ima.AdsLoader(adDisplayContainer);
     adsLoader.requestAds(adsRequest);
 
-    adsLoader.addEventListener(google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED, (adsManagerLoadedEvent) => {
-      const adsRenderingSettings = new google.ima.AdsRenderingSettings();
-      adsRenderingSettings.restoreCustomPlaybackStateOnAdBreakComplete = true;
-      /* videoContent should be set to the video DOM element. */
-      const adsManager = adsManagerLoadedEvent.getAdsManager(videoContent, adsRenderingSettings);
+    adsLoader.addEventListener(
+      google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
+      (adsManagerLoadedEvent) => {
+        const adsRenderingSettings = new google.ima.AdsRenderingSettings();
+        adsRenderingSettings.restoreCustomPlaybackStateOnAdBreakComplete = true;
+        /* videoContent should be set to the video DOM element. */
+        const adsManager = adsManagerLoadedEvent.getAdsManager(
+          videoContent,
+          adsRenderingSettings
+        );
 
-      /* Ad event listeners */
-      adsManager.addEventListener(google.ima.AdEvent.Type.LOADED, () => videoContent.play());
-      adsManager.addEventListener(google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED, () => videoContent.pause());
-      adsManager.addEventListener(google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED, () => videoContent.play());
+        /* Ad event listeners */
+        adsManager.addEventListener(google.ima.AdEvent.Type.LOADED, () =>
+          videoContent.play()
+        );
+        adsManager.addEventListener(
+          google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED,
+          () => videoContent.pause()
+        );
+        adsManager.addEventListener(
+          google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED,
+          () => videoContent.play()
+        );
 
-      /* Play the ad */
-      videoContent.load();
-      adDisplayContainer.initialize();
-      adsManager.init(640, 360, google.ima.ViewMode.NORMAL);
-      adsManager.start();
-    }, false);
+        /* Play the ad */
+        videoContent.load();
+        adDisplayContainer.initialize();
+        adsManager.init(640, 360, google.ima.ViewMode.NORMAL);
+        adsManager.start();
+      },
+      false
+    );
   }
 
   /* Prebid video ad unit */
   const videoAdUnit = {
-    code: 'adContainer',
+    code: "adContainer",
     renderer: {
       render,
-      url: 'https://imasdk.googleapis.com/js/sdkloader/ima3.js'
+      url: "https://imasdk.googleapis.com/js/sdkloader/ima3.js",
     },
     mediaTypes: {
       video: {
-        context: 'outstream',
+        context: "outstream",
         playerSize: [640, 480],
-        mimes: ['video/mp4'],
+        mimes: ["video/mp4"],
         protocols: [1, 2, 3, 4, 5, 6, 7, 8],
         playbackmethod: [2],
         skip: 1,
-      }
+      },
     },
-    bids: [{
-      bidder: 'appnexus',
-      params: {
-        placementId: 13232385
-      }
-    }]
+    bids: [
+      {
+        bidder: "appnexus",
+        params: {
+          placementId: 13232385,
+        },
+      },
+    ],
   };
 
   pbjs.que.push(() => {
     pbjs.addAdUnits(videoAdUnit);
 
-    window.onetrustLoaded.then(() => {
-      pbjs.requestBids({
-        bidsBackHandler: (bids) => {
-          const highestCpmBids = pbjs.getHighestCpmBids('adContainer');
-          pbjs.renderAd(document, highestCpmBids[0].adId);
-        }
-      });
+    pbjs.requestBids({
+      bidsBackHandler: (bids) => {
+        const highestCpmBids = pbjs.getHighestCpmBids("adContainer");
+        pbjs.renderAd(document, highestCpmBids[0].adId);
+      },
     });
   });
 </script>
 <script>
-  window.onetrustLoaded.then(() => {
-    OneTrust.InsertHtml(exampleHTML, 'videoExample', null, {deleteSelectorContent: true}, 'C0003');
-
     /* Display ad code as example on page. */
-    const codeExample = document.getElementById('codeExample');
-    const adCode = document.getElementById('adCode');
-    codeExample.innerHTML = `&lt;script&gt;${adCode.innerHTML}&lt;/script&gt;`
-  })
+    const codeExample = document.getElementById("codeExample");
+    const adCode = document.getElementById("adCode");
+    codeExample.innerHTML = `&lt;script&gt;${adCode.innerHTML}&lt;/script&gt;`;
 </script>
