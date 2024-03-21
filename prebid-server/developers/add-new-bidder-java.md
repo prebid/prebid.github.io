@@ -1390,7 +1390,7 @@ Notes on the metadata fields:
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
 - If you support video, native, or audio mediaTypes add `media_types: video, native, audio`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 - If you support the COPPA flag, add `coppa_supported: true`. Default is false.
-- If you support the IAB's GPP consent string, add `gpp_supported: true`. Default is false.
+- If you support sections within the IAB's GPP consent string, add `gpp_sids:' and then which sections you support: tcfeu, tcfca, usnat, usstate_all, usp
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
