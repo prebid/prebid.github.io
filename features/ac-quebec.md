@@ -17,7 +17,7 @@ sidebarType: 7
 
 Starting September 2023, new privacy regulations came into effect in Quebec, a province of Canada, governing about a quarter of Canada's population.
 
-IAB Canada has offered a modified version of the Transparency and Consent Framework (TCF) as a solution to cover user consent preferences in Quebec. However, as of Mar 2024, guidance from regulators, TCF Canada, and major advertising entities in Canada is still in flux. The Canadian vendor list does not have enough vendors for meaningful adoption of the framework by any publisher, as it does not include the primary publisher ad server nor many large DSPs, nor many of the top five CMPs [registered as CMPs with TCF Canada](https://iabcanada.com/tcf-canada/cmp-list/).
+IAB Canada has offered a modified version of the Transparency and Consent Framework (TCF) as a solution to cover user consent preferences in Quebec. However, as of Mar 2024, guidance from regulators, TCF Canada, and major advertising entities in Canada is still in flux. The Canadian [vendor list](https://iabcanada.com/tcf-canada/vendor-list/) does not have enough vendors for meaningful adoption of the framework by any publisher, as it does not include the primary publisher ad server nor many large DSPs, nor many of the top five CMPs [registered as CMPs with TCF Canada](https://iabcanada.com/tcf-canada/cmp-list/).
 
 Here is the most recent update from IAB Canada:
 
