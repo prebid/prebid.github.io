@@ -15,6 +15,8 @@ userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrable
 schain_supported: true
 floors_supported: true
 sidebarType: 1
+coppa_supported: true
+privacy_sandbox: topics
 ---
 
 

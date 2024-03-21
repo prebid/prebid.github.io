@@ -62,12 +62,14 @@ Privacy Sandbox is the name the Chrome browser has given to a series of features
 At a high level, the "Topics" feature is Chrome's way of defining a taxonomy of information that can be used for ad targeting. See 
 [Chrome Topics](https://privacysandbox.com/proposals/topics/) for details.
 
-There's actually nothing to do to enable Topics in Prebid – bidders will receive their own Topics if they've implemented that feature.
-That said, Prebid does have a [Topics FPD Module](/dev-docs/modules/topicsFpdModule.html) that allows bidders to share each other's Topics.
+There's actually nothing to do to enable Topics in Prebid.js – bidders will receive their own Topics if they've implemented that feature.
+That said, Prebid.js does have a [Topics FPD Module](/dev-docs/modules/topicsFpdModule.html) that allows bidders to share each other's Topics.
+
+Prebid Server supports reading the Topics headers and inserting them into the OpenRTB at `user.data`.
 
 #### Protected Audience API
 
-PAAPI is Chrome's solution for ad targeting done in a privacy-friendly way. In short, GAM will kick off an in-browser auction after
+PAAPI (also called PAA) is Chrome's solution for ad targeting done in a privacy-friendly way. In short, GAM will kick off an in-browser auction after
 the contextual auction. If the in-browser auction wins, it can override the ad chosen by GAM. 
 
 See [Chrome's PAAPI documentation](https://developers.google.com/privacy-sandbox/relevance/protected-audience) for the full background.
@@ -77,14 +79,14 @@ To enable Interest Group bidding in Prebid, you can add the Prebid [Fledge For G
 {: .alert.alert-info :}
 Note that 'FLEDGE' was the original name of the Protected Audience feature. The name of the Prebid.js module may change in the future.
 
-##### Test Period
+##### Prebid.js and the PAA Test Period
 
 During the first part of 2024, Chrome and GAM are running a test of PAAPI on a limited subset of traffic. However, the
 [Fledge For GPT Module](/dev-docs/modules/fledgeForGpt.html) enables Interest Group auctions 100% of the time. During the test
 period, publishers can better align browser and programmatic ad behavior by only enabling Prebid interest group bids for
 the relevant Chrome testing labels.
 
-If you want to gather interest group bids only when IG auctions are very likely to run, you can enable the module like this:
+If you want to gather interest group bids only when InterestGroup (IG) auctions are very likely to run, you can enable the module like this:
 
 ```javascript
 Promise.resolve(navigator.cookieDeprecationLabel?.getValue?.()).then(label => {
@@ -108,6 +110,12 @@ Promise.resolve(navigator.cookieDeprecationLabel?.getValue?.()).then(label => {
 });
 ```
 
+##### Prebid Server and the PAA Test Period
+
+Chrome sets "cookie-deprecation" labels to let the ecosystem know whether the current request is enabled for IG auctions and whether 3rd party cookies are active.
+
+Prebid Server reads the HTTP header set by Chrome and copies the value to the OpenRTB at `device.ext.cdep`.
+
 #### Prebid.js Versions Supporting Privacy Sandbox
 
 This table may be useful to publishers trying to decide which version of Prebid.js to use to support Privacy Sandbox.
@@ -119,6 +127,19 @@ This table may be useful to publishers trying to decide which version of Prebid.
 | 8.15| Added floor signal to the fledgeForGpt module |
 | 8.9| Initial release of the fledgeForGpt module, Sec-Browsing-Topics header enabled |
 | 8.8| The topicsFpd module is released, allowing bidders to share topics |
+
+#### Prebid Server Versions Supporting Privacy Sandbox
+
+{: .table .table-bordered .table-striped }
+| PBS-Go Version | Notes |
+|-------------------|-------|
+| 0.239.0 | Basic passthrough support |
+
+{: .table .table-bordered .table-striped }
+| PBS-Java Version | Notes |
+|-------------------|-------|
+| 2.11| Topics and Test Labels |
+| 1.111| Basic passthrough support |
 
 ## Further Reading
 

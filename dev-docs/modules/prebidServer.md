@@ -11,7 +11,6 @@ sidebarType : 1
 ---
 
 # Prebid Server Adapter
-
 {: .no_toc}
 
 * TOC
@@ -75,7 +74,7 @@ There are many configuration options for s2sConfig:
 | `allowUnknownBidderCodes` | Optional | Boolean | Allow Prebid Server to bid on behalf of bidders that are not explicitly listed in the adUnit. See important [note](#allowUnknownBidderCodes) below. Defaults to `false`. |
 | `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.  Individual properties can be overridden by including them in the config along with this setting. See the Additional Notes below for more information. |
 | `enabled` | Optional | Boolean | Enables this s2sConfig block - defaults to `false` |
-| `timeout` | Required | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. See the Additional Notes below for more information. |
+| `timeout` | Optional | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. Defaults to 1000ms. |
 | `adapter` | Required | String | Adapter to use to connect to Prebid Server. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL or Object | Defines the auction endpoint for the Prebid Server cluster.  See table below for object config properties. |
 | `syncEndpoint` | Required | URL or Object | Defines the cookie_sync endpoint for the Prebid Server cluster. See table below for object config properties. |
@@ -100,7 +99,7 @@ If `endpoint` and `syncEndpoint` are objects, these are the supported properties
 * Currently supported vendors are: appnexus, openx, and rubicon
 * When using `defaultVendor` option, `accountId` still needs to be defined.
 * If `bidders` is omitted, only adUnits that also omit bidders will be sent to Prebid Server. See the [stored impressions](#stored-imp) example below.
-* If the `s2sConfig` timeout is greater than the Prebid.js timeout, the `s2sConfig` timeout will be automatically adjusted to 75% of the Prebid.js timeout in order to fit within the auction process.
+* If the `s2sConfig` timeout is not specified, Prebid Server will utilize a configured default for `tmax`.
 * When using the `endpoint` or `syncEndpoint` object configs, you should define both properties.  If either property is not defined, Prebid Server requests for that type of user will not be made.  If you do not need to distinguish endpoints for consent reasons, you can simply define the same URL value in both fields or use the String version of the field (which is configured to use defined URL for all users).
 * <a name="allowUnknownBidderCodes" ></a> When `allowUnknownBidderCodes` is `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction. This can break custom logic that relies on the availability of a bid request object for any given bid. Known scenarios where custom code won't get the request when there's an "unknown bidder":
   * There will not be a [`bidRequested`](/dev-docs/publisher-api-reference/getEvents.html) event.
