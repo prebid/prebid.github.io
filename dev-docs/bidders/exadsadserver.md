@@ -4,7 +4,7 @@ title: EXADS
 description: EXADS Bidder Adapter
 pbjs: true
 biddercode: exadsadserver
-gvl_id: 1084 - waiting Tiago/Barry
+gvl_id: 1084
 tcfeu_supported: true
 media_types: banner, video, native
 gpp_sids: tcfeu
