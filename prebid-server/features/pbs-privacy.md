@@ -10,8 +10,7 @@ title: Prebid Server | Features | Privacy
 * TOC
 {:toc}
 
-{: .alert.alert-danger :}
-Important: This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and individual state laws. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+{% include legal-warning.html %}
 
 ## Prebid Server Activity Control Infrastructure
 
@@ -51,7 +50,7 @@ for each 'Purpose' with different consequences for each:
 | Responding to /cookie-sync requests | Purpose 1 (Device Access) |
 | Setting a cookie on /setuid requests | Purpose 1 (Device Access) |
 | Conducting auctions | Purpose 2 (Basic Ads) |
-| Passing User IDs into an auction | Any Purpose 2-10. User IDs are important for more than personalizing ads - they can be used in frequency capping, building profiles, counting unique users, etc. So Prebid Server should pass User IDs through the auction if any of Purposes 2-10 pass the legal basis test. |
+| Passing User IDs into an auction | Any Purpose 2-10. User IDs are important for more than personalizing ads - they can be used in frequency capping, building profiles, counting unique users, etc. So Prebid Server should pass User IDs through the auction if any of Purposes 2-10 pass the legal basis test. In PBS-Java 2.12 and later, accounts can set configuration which requires user P4 consent before extended IDs can be passed. |
 | Invoke an analytics adapter | Purpose 7 |
 | Pass the user’s precise geographic information into auctions | Special Feature 1 |
 
@@ -73,6 +72,48 @@ consider:
 
 The specific details vary between [PBS-Go](https://github.com/prebid/prebid-server/blob/master/config/config.go) and [PBS-Java](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md), so check the
 version-specific documentation for more information.
+
+## DSA
+
+The Digital Services Act (DSA) in the EU requires that end users of "very large online platforms" be able to understand whether any of their personal data was used in targeting a particular ad. At a high level, it's similar to the ancient "Ad Choices" program where users were supposed to be able to understand why they were seeing the particular ads.
+
+See the IAB's [DSA document](https://iabtechlab.com/blog/iab-tech-lab-releases-for-public-comment-specification-for-dsa-transparency/) for background.
+
+Basically, the OpenRTB request and response have new objects defined [in the ORTB extension](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/dsa_transparency.md).
+
+```text
+Request: $.regs.ext.dsa
+Response: $.seatbid.bid.ext.dsa
+```
+
+Prebid Server supports passing these fields through the bidstream and it does validations
+on the bid responses to make sure they contain publisher-required values.
+
+In general, publishers are responsible for creating the DSA object in Prebid.js, but in some use cases, they can't, including App and AMP. In addition, some Publishers might find it difficult to update their Prebid.js configuration across a broad network of sites in a short period.
+
+Prebid Server host companies can help resolve this by updating stored requests, but making a broad update across potentially thousands of DB entries can be difficult or undesirable. So PBS-Java also supports account-level
+configuration to have Prebid Server inject a default DSA object. e.g.
+
+```yaml
+privacy:
+  dsa:
+    default: >
+    {
+                    "required": 1,
+                    "pubrender": 1,
+                    "datatopub": 1,
+                    "transparency": [{
+                        "domain": "example.com",
+                        "params":[1]
+                    }]
+   }
+   gdpr-only: true
+```
+
+1. If regs.ext.dsa exists and is not null, use that.
+2. else, if privacy.dsa.default exists and is not null:
+    1. If privacy.dsa.gdpr-only is false (defaults to false) copy the default value into regs.ext.dsa. Done.
+    2. If privacy.dsa.gdpr-only is true (defaults to false) check the internal_gdpr flag, and if true, copy the default value into regs.ext.dsa. Done.
 
 ## GPP
 

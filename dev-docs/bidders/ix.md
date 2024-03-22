@@ -5,11 +5,12 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: false
-userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, imuid, 33acrossId, nonID
+userIds: idl, netId, fabrickId, zeotapIdPlus, uid2, TDID, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, utiq, criteoID, euid, imuid, 33acrossId, nonID, pairid, MRKL
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
 tcfeu_supported: true
+dsa_supported: true
 floors_supported: true
 usp_supported: true
 gpp_supported: true
@@ -22,6 +23,7 @@ deals_supported: true
 prebid_member: yes
 multiformat_supported: yes
 sidebarType: 1
+privacy_sandbox: paapi, topics
 ---
 
 ## Table of contents
@@ -36,7 +38,8 @@ sidebarType: 1
   * [Global data](#prebid-fpd-module)
   * [Index bidder-specific data](#index-bidder-specific-fpd-module)
   * [AdUnit-specific data](#adunit-specific-data)
-* [Index's outstream video player](#index-outstream-video-player)
+* [Monetize instream video](#monetize-instream-video)
+* [Index's outstream ad unit](#indexs-outstream-ad-unit) 
 * [Prebid Native configuration](#prebid-native-configuration)
 * [Protected Audience API support](#protected-audience-api-support)
 * [Signal inventory using  external IDs](#signal-inventory-using-external-ids)
@@ -123,18 +126,9 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
     ```
 
 6. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
-7. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
-
-    ```javascript
-    pbjs.setConfig({
-        cache: {
-                url: 'https://prebid.adnxs.com/pbc/v1/cache'
-            }
-    });
-    ```
-
+7. (Optional) If you want to monetize instream video, see the [Monetize instream video](#monetize-instream-video) section below.
 8. (Optional) If you want to monetize outstream video, you can choose among the following options:
-    * Use Index's outstream video player. For more information, see the [Index's outstream video player](#index-outstream-video-player) section below.
+    * Use Index's outstream video player. For more information, see the [Index's outstream ad unit](#indexs-outstream-ad-unit) section below.
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](/dev-docs/show-outstream-video-ads.html)
 9. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
@@ -221,7 +215,23 @@ ortb2Imp: {
 }
 ```
 
-<a id="index-outstream-video-player"></a>
+## Monetize instream video 
+
+Unlike Outstream Video, instream video does not use the Prebid Universal Creative. Instead, video bids provide VAST that Prebid caches to obtain a cache ID that can be retrieved with a URL. The cache ID is passed as a key value to the ad server.  
+
+To monetize instream video, complete the following steps: 
+
+1. Enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
+
+   ```javascript
+   pbjs.setConfig({ 
+     cache: { 
+             url: 'https://prebid.adnxs.com/pbc/v1/cache' 
+         } 
+   });
+   ```
+
+2. Set up your line items in Google Ad manger by following the instructions in Prebid's [Setting Up Video In GAM](/adops/setting-up-prebid-video-in-dfp.html) documentation. 
 
 ## Index's outstream ad unit
 
@@ -261,16 +271,17 @@ pbjs.addAdUnit({
             playerSize: [640, 480],
             mimes: ['video/mp4'],
             protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-            playbackmethod: [2],
-            skip: 1
-            plcmt: 2
+            placement: 3,
+            playbackmethod: [6],
+            skip: 1,
+            plcmt: 4
 
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '12345',
+            siteId: '9999990',
             // Index ad unit video settings...
             video: {
                 //minimum size for Video Player size is 144x144 in pixel
@@ -337,7 +348,7 @@ pbjs.addAdUnits({
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '715966'
+            siteId: '9999990'
         }
     }]
 });
@@ -440,7 +451,7 @@ You must include these parameters at the bidder level.
 
 | Name | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`|
 
 ### Video
 
@@ -450,7 +461,7 @@ You must include these parameters at the bidder level.
 
 | Name | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
 
 If you are using Index's outstream ad unit and have placed the video object at the bidder level, you must include the Index required parameters at the bidder level. You can include the optional parameters to specify the outstream player configurations.
 
@@ -482,7 +493,7 @@ The following are the parameters that you can specify for each multi-format type
 
 | Name | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`. <br><br><b>Note:</b> This will also act as the default siteID for multi-format adunits if a format specific siteId is not provided.|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`. <br><br><b>Note:</b> This will also act as the default siteID for multi-format adunits if a format specific siteId is not provided.|
 | `banner.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `banner` format in the multi-format ad unit.|
 | `video.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `video` format in the multi-format ad unit.|
 | `native.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `native` format in the multi-format ad unit.|
@@ -507,7 +518,7 @@ var adUnits = [{
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '123456'
+            siteId: '9999990'
         }
     } 
     ]
@@ -538,7 +549,7 @@ var adUnits = [{
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '12345',
+            siteId: '9999990',
             video: {
                 // openrtb v2.5 compatible video obj
                 // If required, use this to override mediaTypes.video.XX properties
@@ -563,13 +574,15 @@ var adUnits = [{
             minduration: 5,
             maxduration: 30,
             mimes: ['video/mp4', 'application/javascript'],
-            placement: 5
+            placement: 3,
+            plcmt: 4,
+            playbackmethod: 6
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '715964'
+            siteId: '9999990'
             video: {
                 playerConfig: {
                     floatOnScroll: true,
@@ -619,7 +632,7 @@ pbjs.addAdUnits({
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '715966'
+            siteId: '9999990'
         }
     }]
 });
@@ -665,15 +678,15 @@ var adUnits = [{
    {
        bidder: 'ix',
        params: {
-           siteId: '1111',
+           siteId: '9999990',
            video: {
-               siteId: '2222'
+               siteId: '9999991'
            },
            native: {
-               siteId: '3333'
+               siteId: '9999992'
            },
            banner: {
-               siteId: '4444'
+               siteId: '9999993'
            }
        }
    },

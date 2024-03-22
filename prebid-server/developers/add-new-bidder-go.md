@@ -951,6 +951,7 @@ Bid metadata may be required in a future Prebid.js release. The AdvertiserDomain
 | `.RendererVersion` | Version of the desired renderer for the creative.
 | `.PrimaryCategoryID` | Primary IAB category id.
 | `.SecondaryCategoryIDs` | Secondary IAB category ids.
+| `.RendererUrl` | Dynamic renderer URL for use in outstream rendering
 
 <p></p>
 
@@ -990,6 +991,7 @@ func getBidMeta(bid *adapters.TypedBid) *openrtb_ext.ExtBidPrebidMeta {
     NetworkName:          "Some Network Name",
     PrimaryCategoryID:    "IAB-1",
     SecondaryCategoryIDs: []string{"IAB-2", "IAB-3"},
+    RendererUrl:          "https://example-renderer-url.com/path/render.js"
   }
 }
 ```
@@ -1376,7 +1378,7 @@ Notes on the metadata fields:
 * If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
 * If you support video, native, or audio mediaTypes add `media_types: video, native, audio`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 * If you support COPPA, add `coppa_supported: true`. Default is false.
-* If you support GPP, add `gpp_supported: true`. Default is false.
+* If you support sections within the IAB's GPP consent string, add `gpp_sids:' and then which sections you support: tcfeu, tcfca, usnat, usstate_all, usp
 * If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 * If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 * If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
