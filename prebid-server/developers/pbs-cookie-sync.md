@@ -73,9 +73,6 @@ Cookie sync for AMP works in a way quite similar to Prebid.js.
     </amp-iframe>
     ```
 
-    {: .alert.alert-info :}
-    If the publisher has an AMP Consent Management Platform, they should use `load-cookie-with-consent.html`.
-
 3. At runtime, the `load-cookie` script just calls the Prebid Server /cookie_sync endpoint. The rest works similar to what's described for Prebid.js above. One difference is that the bidders are not known on the AMP page so those aren't passed. Another difference is that AMP doesn't support iframe syncs, so load-cookie passes instructions to PBS so only pixel syncs are returned.
 
 ### Cooperative Syncing
@@ -155,27 +152,31 @@ Here's how you could invoke it with an iframe:
 <iframe
   height="1"
   frameborder="0"
-  src="https://HOST/HTMLFILE?endpoint=PBSHOST&max_sync_count=5">
+  src="https://HOST/load-cookie.html?endpoint=PBSHOST&max_sync_count=5">
 ```
 
 Where:
 
-* HOST is the location where the HTMLFILE is stored
-* HTMLFILE can be load-cookie.html or load-cookie-with-consent.html, which interacts with an AMP-compatible CMP.
+* HOST is the location where `load-cookie.html` is stored
 * PBSHOST is the (encoded) main URL for your Prebid Server, e.g. https%3A%2F%2Fprebid-server.example.com%2Fcookie_sync
 
 Here are all the arguments supported:
 
 {: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-|----|-----|-----|-----|-------- |
-| endpoint | recommended | string | A URL-encoded pointer to Prebid Server | https%3A%2F%2Fprebid-server.example.com%2Fcookie_sync |
-| max_sync_count | optional | integer | How many syncs are allowed. See the userSyncLimit option above. | 5 |
-| bidders | optional(*) | string | Which bidders are in the page. Required if coop-sync is not on for Prebid Server. This is a URL-encoded comma-separate list of bidder codes. | bidderA%2CbidderB |
-| source | optional(*) | string | Recommended for AMP. If set to 'amp', will force the response to be pixels only. | amp |
-| gdpr | optional | integer | 0 if the request is in GDPR-scope, 1 if not. | 0 |
-| gdpr_consent | optional | string | TCF consent string | |
-| args | optional | string | Passed through to the /cookie_sync call query string. Used by some host companies. | |
+
+| Parameter        | Scope        | Type    | Description                                                                                                                                              | Example                                              |
+|------------------|--------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
+| endpoint         | recommended  | string  | A URL-encoded pointer to Prebid Server                                                                                                                   | https%3A%2F%2Fprebid-server.example.com%2Fcookie_sync |
+| max_sync_count   | optional     | integer | How many syncs are allowed                                                                                                                               | 5                                                    |
+| bidders          | optional(*)  | string  | Which bidders are in the page. Required if coop-sync is not on for Prebid Server. This is a URL-encoded comma-separate list of bidder codes.             | bidderA%2CbidderB                                    |
+| source           | optional(*)  | string  | Recommended for AMP. If set to 'amp' will attempt to retrieve consent information from it, and force the response to be pixels only.                     | amp                                                  |
+| gdpr             | optional     | integer | 1 if the request is in GDPR-scope, 0 if not.                                                                                                             | 0                                                    |
+| gdpr_consent     | optional     | string  | TCF consent string                                                                                                                                       |                                                      |
+| defaultGdprScope | optional     | integer | if set to 1 (the default), consider GDPR to be in scope when consent information cannot be retrieved from AMP. Has no effect when `source` is not "amp". | 0                                                    |
+| gpp_sid          | optional | string  | GPP Section ID(s). Number in string form or comma-separated list of numbers                                                                              | 6,7                                                  |
+| gpp              | optional | string | Global Privacy Platform string                                                                                                                           |                                             |
+| timeout          | optional     | integer | Timeout (in milliseconds) to wait for consent data from AMP. Defaults to 10000. Has no effect when `source` is not "amp".                                | 500                                                  |
+| args             | optional     | string  | Passed through to the /cookie_sync call query string. Used by some host companies.                                                                       |                                                      |
 
 Note that enabling or disabling [Cooperative Sync](#cooperative-syncing) is not currently supported in load-cookie. Please make sure the account default is set up appropriately in PBS config.
 
