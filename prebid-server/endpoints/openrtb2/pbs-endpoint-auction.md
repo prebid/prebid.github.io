@@ -10,7 +10,7 @@ title: Prebid Server | Endpoints | OpenRTB2 | Auction
 ## POST /openrtb2/auction
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc }
 
 This endpoint runs an auction with the given OpenRTB 2.x bid request.
@@ -19,7 +19,7 @@ This endpoint runs an auction with the given OpenRTB 2.x bid request.
 
 This is a sample OpenRTB 2.x bid request:
 
-```
+```json
 {
   "id": "some-request-id",
   "test": 1,
@@ -63,7 +63,7 @@ This endpoint will respond with either:
 
 This is a corresponding sample response to a sample bid request:
 
-```
+```json
 {
   "id": "some-request-id",
   "seatbid": [{
@@ -137,7 +137,7 @@ Prebid Server accepts all OpenRTB 2.x fields and passes them in the request to a
 | exp | 2.5 | See the [expiration](#expiration) section below |
 | tmax | 2.5 | See the [timeout](#timeout) section below |
 | device.lmt | 2.5 | See special processing for iOS apps defined in [issue 1699](https://github.com/prebid/prebid-server/issues/1699) |
-| regs.gdpr | 2.6 | Bidders supporting 2.5 only: downgraded to regs.ext.gdpr | 
+| regs.gdpr | 2.6 | Bidders supporting 2.5 only: downgraded to regs.ext.gdpr |
 | regs.us_privacy | 2.6 | Bidders supporting 2.5 only: downgraded to regs.ext.us_privacy |
 | user.consent | 2.6 | Bidders supporting 2.5 only: downgraded to user.ext.consent |
 | imp.rwdd | 2.6 | Bidders supporting 2.5 only: downgraded to imp.ext.prebid.is_rewarded_inventory |
@@ -159,7 +159,7 @@ Prebid Server has the ability to fill in key IDs in the request.
 
 ##### request.id
 
-```
+```text
 if host config generate_request_id (Go) / generate-storedrequest-bidrequest-id (Java) is true
     if $.id is not set, generate a random value
     if the storedrequest is from AMP or from ext.prebid.storedrequest, then replace any existing $.id with a random value
@@ -168,7 +168,9 @@ if $.id contains "{{UUID}}", replace that macro with a random value
 
 ##### request.source.tid
 
-```
+PBS-Go - this will change once [issue 2727](https://github.com/prebid/prebid-server/issues/2727) is implemented to link the transmitTid activity.
+
+```text
 if source.tid is not set:
    set source.tid to a random UUID
 if host config auto_gen_source_tid (Go) / generate-storedrequest-bidrequest-id (Java) is true
@@ -176,9 +178,19 @@ if host config auto_gen_source_tid (Go) / generate-storedrequest-bidrequest-id (
 if $.source.tid contains "{{UUID}}", replace that macro with a random value
 ```
 
+PBS-Java
+
+```text
+if source.tid is not set and the transmitTid activity is allowed:
+   set source.tid to a random UUID
+if host config generate-storedrequest-bidrequest-id config is true and the transmitTid activity is allowed
+    if the storedrequest is from AMP or from a top-level stored request (ext.prebid.storedrequest), then replace any existing $.source.tid with a random value
+if $.source.tid contains "{{UUID}}", replace that macro with a random value
+```
+
 ##### request.imp[].id
 
-```
+```text
 if host config generate-storedrequest-bidrequest-id config is true
     if any $.imp[].id is missing, set it to a random 16-digit string. (Note: this wasn't in issue 1507)
     if the storedrequest is from AMP **or** from a top-level stored request (ext.prebid.storedrequest), confirm that all $.imp[].id fields in the request are different. If not different, re-number them all starting from "1".
@@ -186,12 +198,25 @@ if host config generate-storedrequest-bidrequest-id config is true
 
 ##### request.imp[].ext.tid
 
-```
+PBS-Go - this will change once [issue 2727](https://github.com/prebid/prebid-server/issues/2727) is implemented to link the transmitTid activity.
+
+```text
 if imp[n].ext.tid is not set:
        set imp[n].ext.tid to a randomly generated UUID
    if host config generate-storedrequest-bidrequest-id config is true
        if the storedrequest is from AMP or from ext.prebid.storedrequest, then replace any existing $.imp[n].ext.tid with a random value
 if $.imp[n].ext.tid contains "{{UUID}}", replace that macro with a random value
+```
+
+PBS-Java
+
+```text
+for each imp:
+   if imp[n].ext.tid is not set and the transmitTid activity is allowed:
+       set imp[n].ext.tid to a randomly generated UUID
+   if host config generate-storedrequest-bidrequest-id config is true and the transmitTid activity is allowed
+       if the storedrequest is from AMP or from a top-level stored request (ext.prebid.storedrequest), then replace any existing $.imp[n].ext.tid with a random value
+  if $.imp[n].ext.tid contains "{{UUID}}", replace that macro with a random value
 ```
 
 #### Expiration
@@ -234,8 +259,49 @@ This field is used in different ways by PBS-Go and PBS-Java:
 
 ##### PBS-Go
 
-1. if tmax is not specified or is 0, use the host configured default value (auction_timeout_ms.default)
-1. if tmax is over the host defined max, cap it to the host defined max (auction_timeout_ms.max)
+Hosts can configure `auction_timeouts_ms` and `tmax_adjustments` to enable the utilization of tmax in auction endpoints.
+
+The `auction_timeouts_ms` parameter comprises default and max values. These values serve the purpose of determining the tmax duration PBS has for processing an auction request.
+
+- If tmax value is not specified or is set to 0 in the auction request, PBS will use the default value configured by the host (auction_timeouts_ms.default) as the tmax.
+- If tmax value specified in the auction request exceeds the maximum value defined by the host (auction_timeouts_ms.max), PBS will use host defined max (auction_timeouts_ms.max) as tmax.
+
+The resultant tmax, as determined by the above rules is employed in conjunction with the `tmax_adjustments` to estimate the tmax value for bidders i.e `bidder_tmax`. This estimated value indicates the time allotted for bidders to respond to a bid request.
+
+The `tmax_adjustments` parameter encompasses the following values:
+
+- enabled (required): indicates whether the estimation of bidder_tmax should be enabled or not. Hosts can set it to "false" to disable the estimation of bidder_tmax.
+- bidder_network_latency_buffer_ms: accounts for network delays that may occur between PBS and the bidder servers. A value of 0 indicates that no network latency buffer should be accounted for bidder_tmax calculation.
+- bidder_response_duration_min_ms (required): minimum amount of time that PBS can expect to receive response from a bidder server.
+- pbs_response_preparation_duration_ms (required): defines time needed for PBS to process all the responses from the bidders and generate the final response for a request.
+
+Additionally, PBS takes into account the request_processing_time when estimating the bidder_tmax value. The request_processing_time represents the duration PBS takes to process a specific auction request before sending it to the bidder servers. It's important to note that the request_processing_time is calculated at runtime.
+
+PBS won't send a request to the bidder if the calculated bidder_tmax is less than the pbs_response_preparation_duration_ms.
+
+To summarize the process:
+
+- If request.tmax is 0:
+
+  ```text
+  tmax = auction_timeouts_ms.default
+  ```
+
+- If request.tmax is set to a large value, PBS attempts to cap tmax:
+
+  ```text
+  tmax = min(request.tmax, auction_timeouts_ms.max)
+  ```
+
+- bidder_tmax is calculated as follows:
+
+  ```text
+  bidder_tmax = tmax - request_processing_time - bidder_network_latency_buffer_ms - bidder_response_duration_min_ms
+  ```
+
+- If bidder_tmax is less than pbs_response_preparation_duration_ms, the request is not sent to the bidder server.
+
+- In case tmax_adjustments.enabled is set to false, PBS continues to apply its rules for determining tmax, but bidder_tmax will not be calculated, and PBS will consistently send the request to the bidder server.
 
 ##### PBS-Java
 
@@ -284,10 +350,12 @@ Prebid Server supports the following "standard" industry extensions:
 
 ##### Global Bid Adapter Parameters
 
-If a bid adapter has a parameter that is the same across all imp[] entries,
-it can be supplied
+PBS supports two scenarios:
 
-```
+1. If a bid adapter has a parameter that is the same across all imp[] entries,
+it can be supplied on `ext.prebid.bidderparams.BIDDER`:
+
+```json
 {
   "ext": {
     "prebid": {
@@ -307,14 +375,35 @@ it can be supplied
   }
 }
 ```
+
 Bid adapters do not need to read this data from ext.prebid. PBS will merge the attributes to each imp[] in the request so the adapter can read them normally.
+
+{:start="2"}
+2. If a bid adapter has a parameter that alters its runtime behavior, but is not a formal parameter, it can be supplied on `ext.prebid.bidders.BIDDER`. The adapter will see this on `ext.prebid.bidders.bidder`.
+
+```json
+{
+  "ext": {
+    "prebid": {
+      "bidders": {
+        "bidderA": {
+          "option": "value"
+        },
+        "bidderB": {
+          "option": "value"
+        }
+      }
+    }
+  }
+}
+```
 
 ##### Bid Adjustments
 
 Bidders are encouraged to make Net bids. However, there's no way for Prebid to enforce this.
 If you find that some bidders use Gross bids, publishers can adjust for it with `request.ext.prebid.bidadjustmentfactors`:
 
-```
+```json
 {
   "ext": {
     "prebid": {
@@ -330,7 +419,8 @@ If you find that some bidders use Gross bids, publishers can adjust for it with 
 This may also be useful for publishers who want to account for different discrepancies with different bidders.
 
 It's also possible to define different bid adjustment factors by mediatype, which can be helpful to adjust discrepancies that differ across mediatypes (PBS-Java only):
-```
+
+```json
 {
   "ext": {
     "prebid": {
@@ -383,10 +473,11 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
 | includeformat | no | Whether to include the "hb_format" targeting key. Defaults to false. | false | boolean |
 | preferdeals | no | If targeting is returned and this is true, PBS will choose the highest value deal before choosing the highest value non-deal. Defaults to false. | true | boolean |
 | alwaysincludedeals | no | (PBS-Java only) If true, generate hb_ATTR_BIDDER values for all bids that have a dealid | true | boolean |
+| prefix | no | (PBS-Java only) Instead of emitting all targeting values with the default prefix `hb`, use this value. Note that long prefixes are discouraged because GAM has a 20-char limit on key value pairs and some Prebid targeting values (e.g. hb_cache_host_bidderA) are already more than 20 chars. | "hb2" | string |
 
 **Request format** (optional param `request.ext.prebid.targeting`)
 
-```
+```json
 {
   "ext": {
     "prebid": {
@@ -409,18 +500,20 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
   }
 }
 ```
+
 The list of price granularity ranges must be given in order of increasing `max` values. If `precision` is omitted, it will default to `2`. The minimum of a range will be 0 or the previous `max`. Any cpm above the largest `max` will go in the `max` pricebucket.
 
 For backwards compatibility the following strings will also be allowed as price granularity definitions. There is no guarantee that these will be honored in the future. "One of ['low', 'med', 'high', 'auto', 'dense']" See [price granularity definitions](/adops/price-granularity.html).
 
-One of "includewinners" or "includebidderkeys" must be true (both default to false if unset). If both are false, then no targeting keys will be set, which is better configured by omitting targeting altogether.
+One of "includewinners" or "includebidderkeys" should be true if you want targeting - both default to false if unset. If both are false, then no targeting keys will be set, which is better configured by omitting targeting altogether.
 
 The parameter "includeformat" indicates the type of the bid (banner, video, etc) for multiformat requests. It will add the key `hb_format` and/or `hb_format_{bidderName}` as per "includewinners" and "includebidderkeys" above.
 
 MediaType PriceGranularity - when a single OpenRTB request contains multiple impressions with different mediatypes, or a single impression supports multiple formats, the different mediatypes may need different price granularities. If `mediatypepricegranularity` is present, `pricegranularity` would only be used for any mediatypes not specified.
 
 For example:
-```
+
+```json
 {
   "ext": {
     "prebid": {
@@ -448,7 +541,7 @@ For example:
 
 **Response format** (returned in `bid.ext.prebid.targeting`)
 
-```
+```json
 {
   "seatbid": [{
     "bid": [{
@@ -471,6 +564,7 @@ The winning bid for each `request.imp[i]` will also contain `hb_bidder`, `hb_siz
 (with _no_ {bidderName} suffix). To prevent these keys, set `request.ext.prebid.targeting.includeWinners` to false.
 
 **NOTES**:
+
 - Targeting keys are limited to 20 characters. If {bidderName} is too long, the returned key
 will be truncated to only include the first 20 characters.
 
@@ -484,7 +578,7 @@ In most cases, this is probably a bad idea.
 
 2. The request payload can store a `buyeruid` for each Bidder by defining `request.user.ext.prebid.buyeruids` like so:
 
-    ```
+    ```json
     {
       "user": {
         "ext": {
@@ -511,13 +605,12 @@ In most cases, this is probably a bad idea.
 
 For each native request, the `assets` object's `id` field is optional and if not defined, Prebid Server will set this automatically, using the index of the asset in the array as the ID.
 
-
 ##### Bidder Aliases
 
 Requests can define Bidder aliases if they want to refer to a Bidder by a separate name.
 This can be used to request bids from the same Bidder with different params. For example:
 
-```
+```json
 {
   "imp": [{
     "id": "some-impression-id",
@@ -552,7 +645,7 @@ This prevents breaking API changes as new Bidders are added to the project.
 
 For example, if the Request defines an alias like this:
 
-```
+```json
 "aliases": {
   "appnexus": "rubicon"
 }
@@ -567,7 +660,7 @@ For environments that have turned on [GDPR enforcement](/prebid-server/features/
 
 To do this, just set `ext.prebid.aliasgvlids` alongside ext.prebid.aliases:
 
-```
+```json
 "ext": {
   "prebid": {
     "aliases": {
@@ -586,7 +679,7 @@ To do this, just set `ext.prebid.aliasgvlids` alongside ext.prebid.aliases:
 
 A typical `storedrequest` value looks like this:
 
-```
+```json
 {
   "imp": [{
     "ext": {
@@ -606,7 +699,7 @@ For more information, see the docs for [Stored Requests](/prebid-server/features
 
 Bids can be temporarily cached on the server by sending instructions in `request.ext.prebid.cache`:
 
-```
+```json
 {
   "ext": {
     "prebid": {
@@ -715,13 +808,13 @@ Prebid Server supports the IAB's [GDPR recommendations](https://iabtechlab.com/w
 This adds two optional properties:
 
 - `request.user.ext.consent`: Is the consent string required by the IAB standards.
-- `request.regs.ext.gdpr`: Is 0 if the caller believes that the user is *not* under GDPR, 1 if the user *is* under GDPR, and undefined if the caller is uncertain.
+- `request.regs.ext.gdpr`: Is 0 if the caller believes that the user is not under GDPR, 1 if the user is in GDPR-scope, and undefined if the caller is uncertain.
 
 These fields will be forwarded to each Bidder, so they can decide how to process them.
 
 ##### Interstitial support
 Additional support for interstitials is enabled through the addition of two fields to the request:
-`device.ext.prebid.interstitial.minwidthperc` and `device.ext.interstitial.minheightperc`.
+`device.ext.prebid.interstitial.minwidthperc` and `device.ext.prebid.interstitial.minheightperc`.
 The values will be numbers that indicate the minimum allowed size for the ad, as a percentage of the base side. For example, a width of 600 and `"minwidthperc": 60` would allow ads with widths from 360 to 600 pixels inclusive.
 
 Example:
@@ -784,17 +877,17 @@ An additional option is `usepbsrates`. When `true`, this flag indicates that dyn
 
 ##### Supply Chain Support
 
-
 Basic supply chains are passed to Prebid Server on `source.ext.schain` and passed through to bid adapters. Prebid Server does not currently offer the ability to add a node to the supply chain.
 
 Bidder-specific schains:
 
-```
+```json
 "ext.prebid.schains": [
    { "bidders": ["bidderA"], "schain": { SCHAIN OBJECT 1}},
    { "bidders": ["*"], "schain": { SCHAIN OBJECT 2}}
 ]
 ```
+
 In this scenario, Prebid Server sends the first schain object to `bidderA` and the second schain object to everyone else.
 
 If there's already an source.ext.schain and a bidder is named in ext.prebid.schains (or covered by the wildcard condition), ext.prebid.schains takes precedent.
@@ -860,6 +953,18 @@ To be deprecated for `request.imp[].rwdd` introduced in OpenRTB 2.6.
 
 Rewarded video is a way to incentivize users to watch ads by giving them 'points' for viewing an ad. A Prebid Server
 client can declare a given adunit as eligible for rewards by declaring `imp.ext.prebid.is_rewarded_inventory:1`.
+
+##### Create Transaction ID
+
+The request can contain the global `createtid` flag to control the `transmitTid` [Activity Control](/prebid-server/features/pbs-activitycontrols.html).
+
+```text
+ext.request.createtid: false
+```
+
+If the value is `false`, the `transmitTid` activity is overridden to "denied", which means bid adapters will not get unique transaction IDs. If not specified, then the value of the transmitTid activity for the account is used. The overall default value it `true`, which translates to "allow" the generation of TIDs.
+
+See the [endpoint documentation on IDs](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#ids) for details on how PBS creates the various IDs including transaction IDs.
 
 ##### Debug Flag
 
@@ -979,6 +1084,7 @@ an array of ortb2 seatbid objects. e.g.
   }
 ]
 ```
+
 **Multiple Stored Bid Response IDs**
 
 In contrast to the feature above, using `storedbidresponse` (instead of stored**auction**response) lets real auctions take place while the actual bidder response is overridden in such a way that it still exercises adapter code.
@@ -990,7 +1096,7 @@ the adapter will be called as usual.
 
 For example, this request:
 
-```
+```json
 {
   "test": 1,
   "tmax": 500,
@@ -1036,9 +1142,10 @@ For example, this request:
   ]
 }
 ```
+
 Could result in this response:
 
-```
+```json
 {
   "id": "test-auction-id",
   "seatbid": [
@@ -1063,20 +1170,20 @@ Could result in this response:
 ```
 
 Notes:
+
 - The DB entries for this stored-response scenario are quite different: they need to be in whatever format the bid adapter's endpoint responds with. i.e. the host company will need to capture an actual bid response from the specific bidders and enter it into the DB table.
 - The `replaceimpid` parameter tells PBS to ignore the impid supplied in the DB and instead create/overwrite seatbid.bid.impid with the value that matches the incoming request. This simplifies debugging.
 - `replaceimpid` doesn't work in PBS-Java. Instead, the implementation there is to use the `##PBSIMPID##` macro in the body of the stored response, which will be replaced by PBS-core.
 
 See Prebid.org [troubleshooting pages](/troubleshooting/pbs-troubleshooting.html#manual-specification-of-stored-responses-in-openrtb) for how to utilize this feature within the context of the browser.
 
-
 ##### First Party Data Support
 
-This is the Prebid Server version of the Prebid.js First Party Data feature. It's a standard way for the page (or app) to supply first party data and control which bidders have access to it.
+This is a standard way for the page (or app) to supply first party data and control which bidders have access to it.
 
 It specifies where in the OpenRTB request non-standard attributes should be passed. For example:
 
-```
+```json
 {
   "ext": {
     "prebid": {
@@ -1113,7 +1220,8 @@ It specifies where in the OpenRTB request non-standard attributes should be pass
 ```
 
 Bidder-specific data can be defined with ext.prebid.bidderconfig:
-```
+
+```json
 "ext": {
   "prebid": {
     "bidderconfig": [
@@ -1156,7 +1264,7 @@ An OpenRTB extension, whether in the the original request or the [stored-request
 
 The OpenRTB field is `ext.prebid.adservertargeting`. Here's an example:
 
-```
+```json
 "ext.prebid.adservertargeting":  [
   {
     "key": "hb_amp_ow",           // the targeting key
@@ -1173,6 +1281,7 @@ The OpenRTB field is `ext.prebid.adservertargeting`. Here's an example:
   }
 ]
 ```
+
 `ext.prebid.adservertargeting` is an array objects. Each object has the following format:
 
 {: .table .table-bordered .table-striped }
@@ -1183,7 +1292,8 @@ The OpenRTB field is `ext.prebid.adservertargeting`. Here's an example:
 | value | yes | Along with `source`, defines the value part of the targeting key-value-pair. If source=bidrequest or source=bidresponse, `value` is taken to be an openrtb path. | "seatbid.bid.ext.custom1" | string |
 
 In order to pull AMP parameters out into targeting, Prebid Server places AMP query string parameters in ext.prebid.amp.data. e.g.
-```
+
+```json
 "ext": {
   "prebid": {
     "amp": {
@@ -1219,7 +1329,7 @@ See the [Prebid.js MultiBid Module](/dev-docs/modules/multibid.html) for backgro
 
 The Prebid extension to the OpenRTB protocol is `ext.prebid.multibid`. For example:
 
-```
+```json
 {
   "ext": {
     "prebid": {
@@ -1257,7 +1367,8 @@ Prebid Server core does the following when it sees `ext.prebid.multibid`:
 3. Adds the additional specified targeting on `seatbid[].bid[].ext.prebid.targeting` and repeats the biddercode used for targeting on `seatbid[].bid[].ext.prebid.targetbiddercode`.
 
 Here's an example response:
-```
+
+```json
 {
   "seatbid": [{
     "seat": "bidderA",
@@ -1299,7 +1410,7 @@ the device player would not have context to at time of render.
 The requester (e.g. Prebid SDK) can send this signal to Prebid Server,
 which causes PBS-core to place the video-related attributes on the response.
 
-```
+```json
 {
   ...
   "imp": [{
@@ -1322,10 +1433,11 @@ which causes PBS-core to place the video-related attributes on the response.
   ...
 }
 ```
+
 1. Prebid Server receives this request and expands the `storedrequest` value, merging it with the imp object.
 2. Because `echovideoattrs` is true, video parameters in the storedrequest imp[].video are copied to seatbid.bid.ext.prebid.storedrequestattributes.
 
-```
+```json
 {
   "seatbid": [{
     "bid": [{
@@ -1352,43 +1464,14 @@ which causes PBS-core to place the video-related attributes on the response.
 
 ##### Request Passthrough
 
-In support of the Prebid SDK, PBS supports a simple passthrough mechanism:
+In support of the Prebid SDK, PBS supports a simple passthrough mechanism at two levels:
 
-If the bidrequest contains ext.prebid.passthrough
-simply copy that object to the bidresponse ext.prebid.passthrough with no validation other than it being valid JSON.
+If the bidrequest contains a global `$.ext.prebid.passthrough` object, the object is copied to the bidresponse `$.ext.prebid.passthrough` with no validation other than it being valid JSON.
+
+If the bidrequest contains impression-level `$.imp[].ext.prebid.passthrough` object, that object is copied to the bidresponse `$.seatbid.bid.ext.prebid.passthrough` with no validation other than it being valid JSON.
 
 The initial use is for the SDK to define render-time parameters, but this mechanism may find use in other applications.
 
-##### PG Deals Extensions
-
-{: .alert.alert-info :}
-PBS-Java only
-
-In support of [Programmatic Guaranteed](/prebid-server/features/pg/pbs-pg-idx.html),
-there are two extensions at the bidder level to control behavior:
-
-- imp[].ext.prebid.bidder.BIDDER.`dealsonly` - if `true`, PBS will call the bidder, but if there's no deal ID in the response, it will reject the bid. This allows for scenarios where a bidder is called twice, once for Open Market bids, once for deals bids. Defaults to `false`.
-- imp[].ext.prebid.bidder.BIDDER.`pgdealsonly` - If `true` and no PG line item for this bidder matches in this impression, PBS will not even call the bid adapter. This saves network bandwidth when no PG line items are available. Defaults to `false`. If set to 'true', this flag forces the `dealsonly` flag (above) to true.
-
-These flags can be used separately or together. For example:
-
-```
-{
-  "imp": [{
-    "ext": {
-      "prebid": {
-        "bidder": {
-          "bidderA": {
-            ...,
-            "dealsonly": true,
-            "pgdealsonly": true
-          }
-        }
-      }
-    }
-  }]
-}
-```
 ##### Floors
 
 {: .alert.alert-info :}
@@ -1400,7 +1483,7 @@ See the [Prebid Server Floors Feature](/prebid-server/features/pbs-floors.html) 
 
 PBS-core creates this block before sending to bid adapters. They receive additional metadata about the PBS calling them. e.g.
 
-```
+```json
 "server": {
   "externalurl": "https://prebid-server.rubiconproject.com",
   "gvlid": 52,
@@ -1412,7 +1495,7 @@ PBS-core creates this block before sending to bid adapters. They receive additio
 
 Some analytics adapters may support special flags that can be passed on ext.prebid.analytics. e.g.
 
-```
+```json
 ext.prebid: {
   analytics: {
     myanalyticsadapter: {
@@ -1421,6 +1504,29 @@ ext.prebid: {
   }
 }
 ```
+
+##### Preferred Media Type
+
+{: .alert.alert-info :}
+PBS-Java only
+
+This feature can be useful when a bid adapter either chokes on multiformat request, or if it makes a sub-optimal choice
+about which of multiple formats to consider. The publisher may be able to override bidder behavior from the request
+by passing in ext.prebid.biddercontrols.BIDDERCODE.prefmtype. The value must be "banner", "video", or "native".
+
+For example:
+
+```json
+ext.prebid.biddercontrols: {
+     "bidderB": { "prefmtype": "video" },
+     "bidderC": { "prefmtype": "native" }
+}
+```
+
+Here's how this works:
+
+1. If the bid adapter YAML declares support of multiformat, then `prefmtype` is ignored in the request. The default value of multiformat supported is `true` in PBS 2.0, but will be `false` in PBS 3.0.
+1. If the bidder declares that they don't support multiformat and the incoming request contains multiple formats, then one of the formats is chosen by either `$.ext.prebid.biddercontrols.BIDDER.prefmtype` or config `auction.preferredmediatype.BIDDER`
 
 #### OpenRTB Response Extensions
 
@@ -1440,7 +1546,7 @@ However, the publisher can improve performance by only offering impressions whic
 
 For example, a request may return this in `response.ext`
 
-```
+```json
 {
   "ext": {
     "errors": {
@@ -1459,7 +1565,7 @@ For example, a request may return this in `response.ext`
 
 The codes currently defined are:
 
-```
+```text
 0   NoErrorCode
 1   TimeoutCode
 2   BadInputCode
@@ -1478,7 +1584,7 @@ Prebid Server will generate ad server targeting variables as defined by request 
 1. If the bid response defines a deal, any targeting objects will also contain hb_deal or hb_deal_BIDDER
 1. If ext.prebid.adservertargeting is defined, arbitrary targeting values may be specified.
 
-```
+```json
 {
   "seatbid": [{
     "seat": "bidderA",
@@ -1516,7 +1622,7 @@ It is only returned on `test` bids for performance reasons, but may be useful du
 
 This contains the request after the resolution of stored requests and implicit information (e.g. site domain, device user agent).
 
-```
+```json
 "ext": {
   "debug": {
     "httpcalls": {
@@ -1544,7 +1650,8 @@ Prebid Server supports an ORTB extension that allows callers to get more informa
 To enable the additional output, set `ext.prebid.returnallbidstatus: true`.
 
 Here's a sample response:
-```
+
+```json
 {
    ...
    "ext": {
@@ -1572,8 +1679,10 @@ The codes currently returned:
 | 101 | Timeout | Java | The bid adapter timed out. |
 | 200 | Request Blocked - General | Java | This impression not sent to the bid adapter for an unspecified reason. |
 | 202 | Request Blocked due to mediatype | Java | This impression not sent to the bid adapter because it doesn't support the requested mediatype. |
+| 300 | Response Rejected - General | Java | The bid response was rejected for an unspecified reason. See warnings in debug mode. (Mostly caused by DSA validation rules) |
 | 301 | Response Rejected - Below Floor | Java | The bid response did not meet the floor for this impression. |
 
+See the [IAB's community extension](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/seat-non-bid.md) for the full list of status codes that may be supported in the future.
 
 ### OpenRTB Ambiguities
 
@@ -1616,7 +1725,7 @@ Publishers who run `https` sites and want insecure ads can still set this to `0`
 
 In order to facilitate compatibility and analytics, Prebid Server will add the x-prebid HTTP header to outgoing requests. Some examples:
 
-```
+```text
 x-prebid: pbs-go/0.155
 x-prebid: pbjs/4.39,pbs-go/0.155
 x-prebid: prebid-mobile/1.2.3,pbs-java/1.64
@@ -1625,13 +1734,13 @@ x-prebid: prebid-mobile/1.2.3,pbs-java/1.64
 The PBJS version comes from ext.prebid.channel: `{name: "pbjs", version: "4.39"}`
 
 The Prebid SDK version comes from:
-```
+
+```json
 "app.ext.prebid": {
    "source":  "prebid-mobile"
    "version": "1.2.3"
 }
 ```
-
 
 ### Prebid Server ORTB2 Extension Summary
 
@@ -1644,17 +1753,13 @@ The Prebid SDK version comes from:
 | imp[]<wbr>.ext<wbr>.data<wbr>.ATTR | Publisher-specific adunit-level first party data.<br>ex: `{"pmp_elig": true}` | any  | yes |
 | imp[]<wbr>.ext<wbr>.BIDDER | DEPRECATED bidder parameters.<br>ex: `imp[].ext.prebid.bidder.biddera: { placement: 123 }` | object | Seen as imp[]<wbr>.ext<wbr>.bidder |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.bidder<wbr>.BIDDER | Bidder parameters.<br>ex: `imp[].ext.prebid.bidder.biddera: { placement: 123 }` | object | Seen as imp[]<wbr>.ext.<wbr>bidder |
-| imp[]<wbr>.ext<wbr>.prebid<wbr>.bidder<wbr>.BIDDER<wbr>.dealsonly | PG: Suppress bid responses that arent deals, see [pg deals](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#pg-deals-extensions). | boolean | yes |
-| imp[]<wbr>.ext<wbr>.prebid<wbr>.bidder<wbr>.BIDDER<wbr>.pgdealsonly | PG: Don't call adapter if there aren't line items ready to deliver, see [ps deals](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#pg-deals-extensions). | boolean | yes |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.options<wbr>.echovideoattrs | Causes PBS-core to [echo video attributes](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#echo-storedrequest-video-attributes) on seatbid[].bid[].ext.prebid.storedrequestattributes so the player has access to them<br>ex: `true` | boolean | yes |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedauctionresponse | PBS-Core skips the auction and uses the response in the DB instead, see [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses). | object | no |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedbidresponse | PBS-Core calls the adapter with the response in the DB instead of actually running the auction,see [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses). | object | no |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedrequest<wbr>.id | Look up the defined stored request and merge the DB contents with this imp, see [stored requests](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-requests). | object | no (yes with [issue 2292](https://github.com/prebid/prebid-server/issues/2292) |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.is_rewarded_inventory | (deprecated) Passed through to bid adapters, see [rewarded video](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#rewarded-video). (use imp.rwdd in ORTB 2.6) | integer | yes |
-| imp[]<wbr>.ext<wbr>.prebid<wbr>.passthrough | Allows an application to pass a value through to the response, see [request passthrough](#request-passthrough). | object | no |
+| imp[]<wbr>.ext<wbr>.prebid<wbr>.passthrough | Copied to the response in seatbid.bid.ext.prebid.passthrough. Allows an application to pass a value through to the response, see [request passthrough](#request-passthrough). | object | no |
 | imp<wbr>.ext<wbr>.prebid<wbr>.adunitcode | Prebid.js adunit code | string | yes |
-| app<wbr>.ext<wbr>.source | Defined by Prebid SDK.<br>ex: `"prebid-mobile"` | string | yes |
-| app<wbr>.ext<wbr>.version | Defined by Prebid SDK,<br>ex: `"1.6"` | string | yes |
 | device<wbr>.ext<wbr>.prebid<wbr>.interstitial | PBS-core will adjust the sizes on a request for interstitials,see [interstitial support](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#interstitial-support). | object | yes |
 | user<wbr>.ext<wbr>.prebid<wbr>.buyeruids | An alternate to [/cookie_sync](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), the request can supply bidder ID values, see [buyer uid](#buyer-uid). | object | no |
 | ext<wbr>.prebid<wbr>.adservertargeting | advanced targeting value rules, see [custom targeting](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#custom-targeting). | object | no |
@@ -1672,22 +1777,24 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.data.<wbr>eidpermissions | Allows publishers to define which bidders are allowed to see which extended IDs, see [eid permissions](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#eid-permissions) | object  | no |
 | ext<wbr>.prebid<wbr>.debug | Provides debug output in response. | boolean | yes |
 | ext<wbr>.prebid<wbr>.trace | Provides trace output in response. | "verbose" or "basic" | yes |
-| ext<wbr>.prebid<wbr>.events | Enables VAST impression tracking injection for the request when an empty object is provided. This is an alernative method from using account configuration. | object | no
+| ext<wbr>.prebid<wbr>.events | Enables VAST impression tracking injection for the request when an empty object is provided. This is an alernative method from using account configuration. | object | no |
 | ext<wbr>.prebid<wbr>.experiment<wbr>adscert<wbr>.enabled | Enabled Ads.Cert 2.0 Authenticated Connections on supported outgoing bidder requests. | boolean | no |
 | ext<wbr>.prebid<wbr>.integration | host-dependent integration type passed through to events and analytics.<br>ex: `"managed"` | string | yes |
 | ext<wbr>.prebid<wbr>.multibid | allows bidders to respond with more than one bid, see [multi-bid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid) | object | yes, but only their value |
-| ext<wbr>.prebid<wbr>.passthrough | Allows an application to pass a value through to the response, see [request passthrough](#request-passthrough). | object | no |
+| ext<wbr>.prebid<wbr>.passthrough | Copied to the response in ext.prebid.passthrough. Allows an application to pass a value through to the response, see [request passthrough](#request-passthrough). | object | no |
 | ext<wbr>.prebid<wbr>.schains | Bidder-specific supply chains, see [supply chain support](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#supply-chain-support) | object | no |
 | ext<wbr>.prebid<wbr>.targeting | defines the key-value pairs that PBS-core places in seatbid.bid.ext.prebid.targeting, see [ad server targeting](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) | object | no |
-| ext<wbr>.prebid<wbr>.no-sale | turns off CCPA processing for the named bidder(s).<br>ex: `["bidderA"]` | array of strings | no |
+| ext<wbr>.prebid<wbr>.nosale | turns off CCPA processing for the named bidder(s).<br>ex: `["bidderA"]`. A value of ["*"] is allowed. | array of strings | no |
 | ext<wbr>.prebid<wbr>.server | additional Prebid Server metadata | object | yes |
-| ext<wbr>.prebid<wbr>.pbs.endpoint | additional Prebid Server metadata | string | yes |
 | ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
+| ext<wbr>.prebid<wbr>.createtid | Ties to the transmitTid activity. If false, transmitTid is denied. | boolean | no |
 | ext<wbr>.prebid<wbr>.returnallbidstatus | If true, PBS returns [ext.seatnonbid](#seat-non-bid) with details about bidders that didn't bid. | boolean | no |
 | ext<wbr>.prebid<wbr>.analytics | Arguments that can be passed through to individual analytics adapters | object | no |
 | imp<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. (ae stands for auction environment) | integer | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
+| ext<wbr>.prebid<wbr>.biddercontrols<wbr>.BIDDERCODE<wbr>.prefmtype | Override the mediatype sent to the named bidder if they don't support multiformat. | string | no |
+| ext<wbr>.prebid<wbr>.bidders | Publishers can specify an adapter-specific flag, see [global bid parameters](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#global-bid-adapter-parameters) | object | seen on ext<wbr>.prebid<wbr>.bidderparams<wbr>.bidder |
 
 #### Response
 {:.no_toc}
@@ -1703,14 +1810,14 @@ The Prebid SDK version comes from:
 | seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.prebid<wbr>.storedrequestattributes | results of the ext.prebid.options.echovideoattrs option above, see [echo video attributes](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#echo-storedrequest-video-attributes). | object |
 | seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.prebid<wbr>.targeting | Ad server targeting values related to req ext.prebid.targeting. See [ad server targeting](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#ad-server-targeting) | object |
 | seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.prebid<wbr>.type | Type of the bid creative, either "banner", "video", "native", or "audio". | string |
-| response<wbr>.seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.origbidcpm | Copy of the unadjusted bid price, see [original bid cpm](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#original-bid-cpm). | float |
-| response<wbr>.seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.origbidcur | Copy of the original bid currency, see [original bid cpm](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#original-bid-cpm). | string |
+| seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.origbidcpm | Copy of the unadjusted bid price, see [original bid cpm](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#original-bid-cpm). | float |
+| seatbid[]<wbr>.bid[]<wbr>.ext<wbr>.origbidcur | Copy of the original bid currency, see [original bid cpm](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#original-bid-cpm). | string |
 | ext<wbr>.debug | debug mode: useful output, see [debug output](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#debug-output). | object |
 | ext<wbr>.debug<wbr>.httpcalls<wbr>.BIDDER |Debug Mode: the HTTP request/response from the named bidder | object |
 | ext<wbr>.errors<wbr>.BIDDER | Debug Mode: errors from the named bidder | object |
 | ext<wbr>.responsetimemillisv.BIDDER | Debug Mode: how long the named bidder took to respond with a bid. | integer |
 | ext<wbr>.prebid<wbr>.passthrough | Copy of request ext.prebid.passthrough, see [passthrough](#request-passthrough). | object|
-| ext<wbr>.seatnonbid | Details on which bidders did not bid on each imp. See [seatnonbid]()#seat-non-bid| object|
+| ext<wbr>.seatnonbid | Details on which bidders did not bid on each imp. See [seatnonbid](#seat-non-bid)| object|
 | ext<wbr>.prebid<wbr>.fledge.auctionconfigs | Bidder-supplied [Fledge](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing) responses. | array of objects |
 
 ### Further Reading

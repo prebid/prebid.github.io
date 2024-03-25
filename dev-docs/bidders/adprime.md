@@ -2,7 +2,7 @@
 layout: bidder
 title: Adprime
 description: Prebid Adprime Bidder Adapter
-biddercode: false
+biddercode: adprime
 tcfeu_supported: false
 usp_supported: true
 media_types: banner, video, native

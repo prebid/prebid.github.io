@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # User ID Module
-
 {:.no_toc}
 
 * TOC
@@ -86,14 +85,14 @@ The table below has the options that are common across ID systems. See the secti
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be any of the following values: {% for page in userid_pages -%}{% if count == 1 %}{{ name_string | append: ", " -}}{% endif %}{% assign count = 1 %}`"{{ name_string | append: name_string -}}{{ name_string | append: page.useridmodule -}}"`{% endfor %} | `"unifiedId"`
+| name | Required | String | May be any of the following values: {% for page in userid_pages -%}{% if count == 1 %}{{ name_string | append: ", " -}}{% endif %}{% assign count = 1 %}`"{{ name_string | append: name_string -}}{{ name_string | append: page.useridmodule -}}"`{% endfor %} | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
 | storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
 | storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
-| storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
+| storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires. | `30` |
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
 ## Permissions
@@ -154,6 +153,51 @@ The Rubicon bid adapter would then receive
 }
 ```
 
+## Prebid multiple identifiers populated by user id submodule
+
+It is possible for a user id submodule to populate several identifiers including identifiers that could also be populated by other user id submodules leading to collisions. In such cases of id collisions, it is possible to add a configurable prioritization to the core user id module. This will allow publishers to specify which user id submodule has priority for populating the identifier over other user id submodules.
+
+This can be configured inside the `userSync` object in the following manner:
+
+Let's say that the UID2 token populated by the trade desk user id submodule has the value 'uid2_value' and the UID2 token populated by Liveintent user id module has the value 'liveIntentUid2_value' (The actual identifiers populated in this case should be one and the same however the values are written differently in order to help the reader understand the source from which the identifiers get picked up from)
+
+```javascript
+"userSync": {
+    "idPriority": {
+      "uid2": ['liveIntentId', 'uid2']
+    }
+  }
+
+```
+
+The corresponding user id object and the eids array will look like this:
+
+```javascript
+{
+  // ...
+  "userId": {
+    "uid2": {
+      "id": "liveIntentUid2_value_98*******"
+    }
+  },
+  "userIdAsEids": [
+    {
+      "source": "uidapi.com",
+      "uids": [
+        {
+          "id": "liveIntentUid2_value_98*******",
+          "atype": 3,
+          "ext": {
+            "provider": "liveintent.com"
+          }
+        }
+      ]
+    }
+  ],
+  // ...
+}
+```
+
 ## User ID Sub-Modules
 
 {% assign userid_pages = site.pages | where: "layout", "userid" | sort_natural: "title" %}
@@ -174,12 +218,12 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr: bidRequest.userId. | EID Source | Example Value |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | 33Across ID | 33Across | 33acrossId | 33across.com | "1111" |
 | Admixer ID | Admixer | admixerId | admixer.net | "1111" |
 | adQuery QiD | adQuery | qid | adquery.io | "p9v2dpnuckkzhuc..." |
 | Adriver ID | Adriver | adriverId | adriver.ru | "1111" |
-| Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
+| Adtelligent ID | Adtelligent | adtelligentId | adtelligent.com | `"1111"` |
 | AMX ID | AMX | amxId | amxdt.net | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
 | AudienceOne ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
@@ -319,7 +363,7 @@ Alternatively, GAM can now pull IDs from Prebid for UserId submodules that [regi
 | encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
 | encryptedSignalSources.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
 | encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
-| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in milliseconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
+| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in milliseconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. | `3000` |
 
 {: .alert.alert-info :}
 **NOTE:**

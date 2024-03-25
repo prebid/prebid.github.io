@@ -1,7 +1,7 @@
 ---
 layout: page_v2
 page_type: module
-title: Module - Size Mapping
+title: Module - Advanced Size Mapping
 description: Display Responsive AdUnits in demanding page environments.
 module_code: sizeMappingV2
 display_name: Advanced Size Mapping
@@ -265,5 +265,5 @@ gulp build --modules=sizeMappingV2,bidAdapter1,bidAdapter2
 
 ## Further Reading
 
-* [Global sizeConfig](/dev-docs/publisher-api-reference.html#setConfig-Configure-Responsive-Ads)
+* [Global sizeConfig](/dev-docs/modules/sizeMapping.html)
 * [Conditional Ad Units](/dev-docs/conditional-ad-units.html)

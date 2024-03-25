@@ -5,6 +5,7 @@ description: Prebid AppNexus Bidder Adaptor
 biddercode: appnexus
 media_types: banner, video, native
 tcfeu_supported: true
+dsa_supported: true
 prebid_member: true
 userIds: all (with commercial activation)
 schain_supported: true
@@ -20,13 +21,8 @@ gvl_id: 32
 sidebarType: 1
 ---
 
-### Disclosure
-
-This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
-
 ### Table of Contents
 
-- [Disclosure:](#disclosure)
 - [Table of Contents](#table-of-contents)
   - [Bid Params](#bid-params)
   - [Video Object](#video-object)
@@ -61,7 +57,7 @@ The table below will reflect both formats, though it's recommended to use the lo
 | `member`                                        | optional | The member ID  from AppNexus. Must be used with `invCode`.                                                                                                                    | `'12345'`                                             | `string`         |
 | `invCode` or `inv_code`                             | optional | The inventory code from AppNexus. Must be used with `member`.                                                                                                                 | `'abc123'`                                            | `string`         |
 | `publisherId` or `publisher_id`                    | optional | The publisher ID from AppNexus. It is used by the AppNexus end point to identify the publisher when placement id is not provided and `invCode` goes wrong. The `publisherId` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred.                                                                                                                    | `12345`                                             | `integer`         |
-| `frameworks`                                    | optional | Array of integers listing API frameworks for Banner supported by the publisher. | `integer` |
+| `frameworks`                                    | optional | Array of integers listing API frameworks for Banner supported by the publisher. | `[1,2]` | `array of integer` |
 | `user`                                          | optional | Object that specifies information about an external user. See [User Object](#appnexus-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
 | `allowSmallerSizes` or `allow_smaller_sizes`               | optional | If `true`, ads smaller than the values in your ad unit's `sizes` array will be allowed to serve. Defaults to `false`.                                                         | `true`                                                | `boolean`        |
 | `usePaymentRule` (PBJS) or `use_pmt_rule` (PBS+PBJS) | optional | If `true`, Appnexus will return net price to Prebid.js after publisher payment rules have been applied.                                                                       | `true`                                                | `boolean`        |

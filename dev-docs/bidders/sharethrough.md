@@ -5,8 +5,9 @@ biddercode: sharethrough
 description: Prebid Sharethrough Adaptor
 tcfeu_supported: true
 coppa_supported: true
+gpp_supported: true
 floors_supported: true
-media_types: banner, video
+media_types: banner, video, native
 safeframes_ok: true
 schain_supported: true
 gvl_id: 80
@@ -14,14 +15,11 @@ userIds: all
 usp_supported: true
 pbjs: true
 pbs: true
+prebid_member: true
 fpd_supported: true
 ortb_blocking_supported: partial
 sidebarType: 1
 ---
-
-### Disclosure
-
-This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
 
 ### Note
 

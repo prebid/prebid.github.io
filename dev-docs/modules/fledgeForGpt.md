@@ -9,7 +9,7 @@ enable_download : true
 sidebarType : 1
 ---
 
-# Fledge for GPT Module
+# Fledge (Protected Audience) for GPT Module
 
 This module allows Prebid.js to support FLEDGE by integrating it with GPT's [experimental FLEDGE
 support](https://github.com/google/ads-privacy/tree/master/proposals/fledge-multiple-seller-testing).
@@ -28,8 +28,8 @@ This is accomplished by adding the `fledgeForGpt` module to the list of modules 
 gulp build --modules=fledgeForGpt,...
 ```
 
-Second, they must enable FLEDGE in their Prebid.js configuration. To provide a high degree of flexiblity for testing, FLEDGE
-settings exist at the module level, the bidder level, and the adunit level.
+Second, they must enable FLEDGE in their Prebid.js configuration.
+This is done through module level configuration, but to provide a high degree of flexiblity for testing, FLEDGE settings also exist at the bidder level and slot level.
 
 ### Module Configuration
 
@@ -39,15 +39,20 @@ This module exposes the following settings:
 |Name |Type |Description |Notes |
 | ------------ | ------------ | ------------ |------------ |
 |enabled | Boolean |Enable/disable the module |Defaults to `false` |
+|bidders | Array[String] |Optional list of bidders |Defaults to all bidders |
+|defaultForSlots | Number |Default value for `imp.ext.ae` in requests for specified bidders |Should be 1 |
 
-As noted above, FLEDGE support is disabled by default. To enable it, set the `enabled` value to `true` for this module
-using the `setConfig` method of Prebid.js:
+As noted above, FLEDGE support is disabled by default. To enable it, set the `enabled` value to `true` for this module and configure `defaultForSlots` to be `1` (meaning _Client-side auction_).
+using the `setConfig` method of Prebid.js. Optionally, a list of
+bidders to apply these settings to may be provided:
 
 ```js
 pbjs.que.push(function() {
   pbjs.setConfig({
     fledgeForGpt: {
-      enabled: true
+      enabled: true,
+      bidders: ['openx', 'rtbhouse'],
+      defaultForSlots: 1
     }
   });
 });
@@ -61,6 +66,7 @@ This module adds the following setting for bidders:
 |Name |Type |Description |Notes |
 | ------------ | ------------ | ------------ |------------ |
 | fledgeEnabled | Boolean | Enable/disable a bidder to participate in FLEDGE | Defaults to `false` |
+|defaultForSlots | Number |Default value for `imp.ext.ae` in requests for specified bidders |Should be 1|
 
 In addition to enabling FLEDGE at the module level, individual bidders must also be enabled. This allows publishers to
 selectively test with one or more bidders as they desire. To enable one or more bidders, use the `setBidderConfig` method
@@ -70,15 +76,17 @@ of Prebid.js:
 pbjs.setBidderConfig({
     bidders: ["openx"],
     config: {
-        fledgeEnabled: true
+        fledgeEnabled: true,
+        defaultForSlots: 1
     }
 });
 ```
 
 ### AdUnit Configuration
 
-Enabling an adunit for FLEDGE eligibility is accomplished by setting an attribute of the `ortb2Imp` object for that
-adunit.
+All adunits can be opted-in to FLEDGE in the global config via the `defaultForSlots` parameter.
+If needed, adunits can be configured individually by setting an attribute of the `ortb2Imp` object for that
+adunit. This attribute will take precedence over `defaultForSlots` setting.
 
 {: .table .table-bordered .table-striped }
 |Name |Type |Description |Notes |
@@ -137,11 +145,11 @@ function interpretResponse(resp, req) {
     const bids = parseBids(resp);
 
     // Load the auctionConfigs from the response - also adapter specific
-    const auctionConfigs = parseAuctionConfigs(resp);
+    const fledgeAuctionConfigs = parseAuctionConfigs(resp);
 
-    if (auctionConfigs) {
+    if (fledgeAuctionConfigs) {
         // Return a tuple of bids and auctionConfigs. It is possible that bids could be null.
-        return {bids, auctionConfigs};
+        return {bids, fledgeAuctionConfigs};
     } else {
         return bids;
     }
@@ -154,7 +162,7 @@ for more details. This means that the AuctionConfig objects returned from `inter
 the request it should be associated with. This may raise the question: why isn't the AuctionConfig object returned as part of the bid? The
 answer is that it's possible to participate in the FLEDGE auction without returning a contextual bid.
 
-An example of this can be seen in the OpenX OpenRTB bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/openxOrtbBidAdapter.js#L327) or RTB House bid adapter [here](https://github.com/prebid/Prebid.js/blob/8fe7115021fd348d0f3b090da48c40c095078800/modules/rtbhouseBidAdapter.js#LL135C4-L135C4).
+An example of this can be seen in the OpenX bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/openxBidAdapter.js) or RTB House bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/rtbhouseBidAdapter.js).
 
 Other than the addition of the `bidId` field, the `AuctionConfig` object should adhere to the requirements set forth in FLEDGE. The details of creating an
 `AuctionConfig` object are beyond the scope of this document.
