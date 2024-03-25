@@ -9,7 +9,8 @@ media_types: video
 safeframes_ok: true
 deals_supported: false
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
 floors_supported: true
 schain_supported: true
 multiformat_supported: will-bid-on-one
