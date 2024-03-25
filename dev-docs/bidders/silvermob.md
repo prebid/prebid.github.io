@@ -6,6 +6,7 @@ biddercode: silvermob
 media_types: banner, video, native
 pbjs: true
 pbs: true
+prebid_member: true
 tcfeu_supported: true
 gvl_id: 1058
 usp_supported: true
