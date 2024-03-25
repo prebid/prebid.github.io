@@ -33,7 +33,7 @@ OpenRTB Bid Requests contain one or more impression objects, each representing a
 
 ### Choose A Name
 
-You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `data`, `general`, `prebid`, `skadn` or `tid` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder).
+You will need to choose a unique name for your bid adapter. Names should be written in lower case and may not contain special characters or emoji. If you already have a Prebid.js bid adapter, we encourage you to use the same name with the same bidder parameters. You may not name your adapter `all`, `context`, `data`, `general`, `prebid`, `skadn`, `tid`, `all` or `ae` as those have special meaning in various contexts. Existing bid adapter names are [maintained here](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder).
 
 We ask that the first 6 letters of the name you choose be unique among the existing bid adapters. This consideration helps with generating targeting keys for use by some ad exchanges, such as Google Ad Manager.
 
@@ -1026,7 +1026,7 @@ private static BidRequest givenBidRequest(
 ```
 
 ### Bidder Integration Tests
-Go to `test-application.properties` file and add folowing properties
+Go to `test-application.properties` file and add following properties
 
 ```yaml
 adapters.{bidder}.enabled=true
@@ -1280,41 +1280,6 @@ Add files with content specific to your case:
     }
     ```
 
-5. `test-cache-{bidder}-request.json`
-
-    ```json
-    {
-      "puts": [
-        {
-          "type": "json",
-          "value": {
-            "id": "bid001",
-            "impid": "impId001",
-            "price": 3.33,
-            "adm": "adm001",
-            "adid": "adid001",
-            "cid": "cid001",
-            "crid": "crid001",
-            "w": 300,
-            "h": 250
-          }
-        }
-      ]
-    }
-    ```
-
-6. `test-cache-{bidder}-response.json`
-
-    ```json
-    {
-      "responses": [
-        {
-          "uuid": "f0ab9105-cb21-4e59-b433-70f5ad6671cb"
-        }
-      ]
-    }
-    ```
-
 Create class `{bidder}Test`in test directory in package `org.prebid.server.it`. Extend `IntegrationTest` class with following content
 
 ```java
@@ -1344,11 +1309,6 @@ public class {bidder}Test extends IntegrationTest {
         WIRE_MOCK_RULE.stubFor(post(urlPathEqualTo("/{bidder}-exchange"))
                 .withRequestBody(equalToJson(jsonFrom("openrtb2/{bidder}/test-{bidder}-bid-request.json")))
                 .willReturn(aResponse().withBody(jsonFrom("openrtb2/{bidder}/test-{bidder}-bid-response.json"))));
-
-        // pre-bid cache
-        WIRE_MOCK_RULE.stubFor(post(urlPathEqualTo("/cache"))
-                .withRequestBody(equalToJson(jsonFrom("openrtb2/{bidder}/test-cache-{bidder}-request.json")))
-                .willReturn(aResponse().withBody(jsonFrom("openrtb2/{bidder}/test-cache-{bidder}-response.json"))));
 
         // when
         final Response response = responseFor("openrtb2/{bidder}/test-auction-{bidder}-request.json",
@@ -1389,6 +1349,7 @@ description: Prebid {Bidder} Bidder Adapter
 biddercode: {bidder}
 tcfeu_supported: true/false
 gvl_id: 111
+dsa_supported: true/false
 usp_supported: true/false
 coppa_supported: true/false
 gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
@@ -1430,7 +1391,7 @@ Notes on the metadata fields:
 - If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
 - If you support video, native, or audio mediaTypes add `media_types: video, native, audio`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 - If you support the COPPA flag, add `coppa_supported: true`. Default is false.
-- If you support the IAB's GPP consent string, add `gpp_supported: true`. Default is false.
+- If you support sections within the IAB's GPP consent string, add `gpp_sids:' and then which sections you support: tcfeu, tcfca, usnat, usstate_all, usp
 - If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 - If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 - If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.
@@ -1459,8 +1420,6 @@ Notes on the metadata fields:
   - `resources/org/prebid/server/it/openrtb2/{bidder}/test-auction-{bidder}-response.json` (test directory)
   - `resources/org/prebid/server/it/openrtb2/{bidder}/test-{bidder}-bid-request.json` (test directory)
   - `resources/org/prebid/server/it/openrtb2/{bidder}/test-{bidder}-bid-response.json` (test directory)
-  - `resources/org/prebid/server/it/openrtb2/{bidder}/test-cache-{bidder}-request.json` (test directory)
-  - `resources/org/prebid/server/it/openrtb2/{bidder}/test-cache-{bidder}-response.json` (test directory)
 - Register With The Core
   - `org/prebid/server/spring/config/bidder/{bidder}Configuration.java`
 
