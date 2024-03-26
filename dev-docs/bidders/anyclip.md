@@ -6,14 +6,19 @@ biddercode: anyclip
 tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
-gpp_supported: true
+gpp_sids: usp
 schain_supported: true
+dchain_supported: false
 userId: pubProvidedId, unifiedId
 media_types: banner
 floors_supported: true
+fpd_supported: false
 pbjs: true
 pbs: false
 prebid_member: false
+multiformat_supported: will-not-bid
+ortb_blocking_supported: true
+privacy_sandbox: no
 safeframes_ok: true
 sidebarType: 1
 ---
