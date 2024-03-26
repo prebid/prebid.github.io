@@ -4,6 +4,7 @@ title: Loyal
 description: Prebid Loyal Bidder Adapter
 biddercode: loyal
 usp_supported: true
+tcfeu_supported: false
 coppa_supported: true
 schain_supported: true
 floors_supported: true
@@ -13,6 +14,8 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 safeframes_ok: true
+deals_supported: false
+ortb_blocking_supported: false
 sidebarType: 1
 ---
 
