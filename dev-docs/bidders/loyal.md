@@ -16,6 +16,7 @@ pbs_app_supported: true
 safeframes_ok: true
 deals_supported: false
 ortb_blocking_supported: false
+fpd_supported: false
 sidebarType: 1
 ---
 
