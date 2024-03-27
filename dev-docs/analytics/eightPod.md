@@ -13,4 +13,3 @@ enable_download: false       (in case you don't want users of the website to dow
 
 ### Disclosure
 The adapter subscribe on events from 8pod's ad unit when the bidWon event for each ad slot and then send internal event to our tracker once in 10 sec.
-

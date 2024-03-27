@@ -19,20 +19,17 @@ pbjs: true
 pbs: false
 prebid_member: false
 sidebarType: 1
-
-safeframes_ok: true/false
-multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
+safeframes_ok: false
+multiformat_supported: will-not-bid
 privacy_sandbox: no
 ortb_blocking_supported: false
 ---
 
 ### Registration
 
-The Example Bidding adapter requires setup before beginning. Please contact us at ewald@8pod.com
-
+The Example Bidding adapter requires setup before beginning. Please contact us at <ewald@8pod.com>
 
 ### Bid Params
-
 
 | Name          | Scope    | Description                                                                                                 | Example                    | Type     |
 |---------------|----------|-------------------------------------------------------------------------------------------------------------|----------------------------|----------|
