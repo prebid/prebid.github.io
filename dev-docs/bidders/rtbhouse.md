@@ -4,6 +4,7 @@ title: RTBHouse
 description: Prebid RTB House Bidder Adapter
 gvl_id: 16
 tcfeu_supported: true
+dsa_supported: true
 pbjs: true
 pbs: true
 biddercode: rtbhouse

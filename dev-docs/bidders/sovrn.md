@@ -22,7 +22,7 @@ sidebarType: 1
 | Name         | Scope    | Description          | Example          | Type     |
 |--------------|----------|----------------------|------------------|----------|
 | `tagid`      | required | The sovrn Ad Tag ID  | `'315045'`       | `string` |
-| `bidfloor`   | optional | Bid floor in dollars | `'0.04'`         | `string` |
+| `bidfloor`   | optional | Bid floor in dollars | `0.04`           | `float`  |
 | `adunitcode` | optional | Ad unit identifier   | `'example_code'` | `string` |
 
 Bid Params for video ads. These params should be added to `mediatype.video`.
@@ -31,7 +31,7 @@ Bid Params for video ads. These params should be added to `mediatype.video`.
 | Name             | Scope       | Description                                                                                                                    | Example         | Type            |
 |------------------|-------------|--------------------------------------------------------------------------------------------------------------------------------|-----------------|-----------------|
 | `mimes`          | required    | Content MIME types supported                                                                                                   | `['video/mp4']` | `string array`  |
-| `minduration`    | required    | Minimum video ad duration in seconds                                                                                           | `5`             | `integer`       |
+| `minduration`    | recommended | Minimum video ad duration in seconds                                                                                           | `5`             | `integer`       |
 | `maxduration`    | required    | Maximum video ad duration in seconds                                                                                           | `10`            | `integer`       |
 | `protocols`      | required    | The array of supported video protocols                                                                                         | `[1, 2]`        | `integer array` |
 | `w`              | recommended | Width of the video player in device independent pixels (DIPS)                                                                  | `5`             | `integer`       |
