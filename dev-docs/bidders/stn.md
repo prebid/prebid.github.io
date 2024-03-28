@@ -9,6 +9,8 @@ multiformat_supported: will-bid-on-any
 schain_supported: true
 tcfeu_supported: false
 usp_supported: true
+gpp_supported: true
+gpp_sids: tcfeu, usstate_all, usp
 pbs: false
 floors_supported: true
 userIds: all
