@@ -2,7 +2,9 @@
 layout: bidder
 title: Online Media Solutions
 description: Prebid Online Media Solutions(OMS) Bidder Adapter
-tcfeu_supported: false
+tcfeu_supported: true
+coppa_supported: true
+usp_supported: true
 pbjs: true
 pbs: true
 biddercode: oms
@@ -15,6 +17,9 @@ userIds: id5Id, identityLink, pubProvidedId
 pbs_app_supported: true
 sidebarType: 1
 gvl_id: 883
+fpd_supported: true
+gpp_sids: tcfeu, usnat
+ortb_blocking_supported: true
 ---
 ### Note
 
