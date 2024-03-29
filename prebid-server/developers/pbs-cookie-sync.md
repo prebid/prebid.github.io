@@ -35,17 +35,17 @@ Here's how these IDs get placed in the cookie from Prebid.js:
 
 1. When the [s2sConfig](/dev-docs/modules/prebidServer.html) is set, Prebid.js initiates a call to the Prebid Server [`/cookie_sync`](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), letting it know which server-side bidders will be participating in the header bidding auction.
 
-    ```text
+```text
     POST https://prebid-server.example.com/cookie_sync
 
     {"bidders":["bidderA","bidderB"], "gdpr":1, "gdpr_consent":"...", "us_privacy": "..."}
-    ```
+```
 
 2. If privacy regulations allow, Prebid Server will look at the `uids` cookie in the host domain and determine whether any bidders are missing or need to be refreshed. It responds with an array of pixel syncs. e.g.
 
-    ```javascript
+```javascript
     {"status":"ok","bidder_status":[{"bidder":"bidderA","no_cookie":true,"usersync":{"url":"//biddera.com/getuid?https%3A%2F%2Fprebid-server.example.com%2Fsetuid%3Fbidder%3DbidderA%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D%26uid%3D%24UID","type":"redirect","supportCORS":false}},{"bidder":"bidderB","no_cookie":true,"usersync":{"url":"https://bidderB.com/u/match?gdpr=&euconsent=&us_privacy=&redir=https%3A%2F%2Fprebid-server.example.com%2Fsetuid%3Fbidder%3DbidderB%26gdpr%3D%26gdpr_consent%3D%26us_privacy%3D%26uid%3D","type":"redirect","supportCORS":false}}]}
-    ```
+```
 
 3. When it receives the response, Prebid.js loops through each element of `bidder_status[]`, creating a pixel for each `bidder_status[].usersync.url`.
 
@@ -61,7 +61,7 @@ Cooperative sync defaults can be configured at the host and account level. See t
 
 This is how to control the coop syncing behavior from Prebid.js:
 
-    ```javascript
+```javascript
     pbjs.setConfig({
       s2sConfig: {
         ...
@@ -70,7 +70,7 @@ This is how to control the coop syncing behavior from Prebid.js:
         ...
       }
     });
-    ```
+```
 
 ### Manually initiating a sync
 
@@ -87,7 +87,7 @@ This approach works in a way quite similar to Prebid.js except that the [/cookie
 
 For AMP pages:
 
-    ```html
+```html
     <amp-iframe width="1" title="User Sync"
       height="1"
       sandbox="allow-scripts allow-same-origin"
@@ -95,15 +95,16 @@ For AMP pages:
       src="https://HOST/load-cookie.html?source=amp&endpoint=PBSHOST&max_sync_count=5">
       <amp-img layout="fill" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" placeholder></amp-img>
     </amp-iframe>
-    ```
+```
 On regular web pages:
 
-    ```html
+```html
     <iframe
       height="1"
       frameborder="0"
       src="https://HOST/load-cookie.html?endpoint=PBSHOST&max_sync_count=5&bidders=bidderA%2CbidderB">
-    ```
+```
+
 Where:
 
 * HOST is the location where `load-cookie.html` is stored
@@ -115,7 +116,6 @@ Where:
 Here are all the arguments supported:
 
 {: .table .table-bordered .table-striped }
-
 | Parameter        | Scope        | Type    | Description                                                                                                                                              | Example                                              |
 |------------------|--------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
 | endpoint         | recommended  | string  | A URL-encoded pointer to Prebid Server                                                                                                                   | https%3A%2F%2Fprebid-server.example.com%2Fcookie_sync |
