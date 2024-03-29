@@ -27,7 +27,7 @@ ortb_blocking_supported: false
 
 ### Registration
 
-The Example Bidding adapter requires setup before beginning. Please contact us at <ewald@8pod.com>
+The EightPod adapter requires setup before beginning. Please contact us at <ewald@8pod.com>
 
 ### Bid Params
 
