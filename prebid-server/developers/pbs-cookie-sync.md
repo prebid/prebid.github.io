@@ -61,16 +61,16 @@ Cooperative sync defaults can be configured at the host and account level. See t
 
 This is how to control the coop syncing behavior from Prebid.js:
 
-```javascript
-pbjs.setConfig({
-  s2sConfig: {
-    ...
-    coopSync: true,
-    userSyncLimit: 5
-    ...
-  }
-});
-```
+    ```javascript
+    pbjs.setConfig({
+      s2sConfig: {
+        ...
+        coopSync: true,
+        userSyncLimit: 5
+        ...
+      }
+    });
+    ```
 
 ### Manually initiating a sync
 
@@ -108,7 +108,8 @@ Where:
 
 * HOST is the location where `load-cookie.html` is stored
 * PBSHOST is the (encoded) main URL for your Prebid Server, e.g. https%3A%2F%2Fprebid-server.example.com%2Fcookie_sync
-    
+
+{:start="3"}
 3. At runtime, the `load-cookie` script calls the Prebid Server [/cookie_sync endpoint](/endpoints/pbs-endpoint-cookieSync.html). The rest works similar to what's described for Prebid.js above. One difference is that the bidders must be manually added to the call. Another difference is that AMP doesn't support iframe syncs, so load-cookie passes instructions to PBS so only pixel syncs are returned.
 
 Here are all the arguments supported:
