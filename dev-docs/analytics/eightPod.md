@@ -8,7 +8,7 @@ usp_supported: false
 coppa_supported: false
 prebid_member: false
 gvl_id: none
-enable_download: false       (in case you don't want users of the website to download your adapter)
+enable_download: false
 ---
 
 ### Disclosure
