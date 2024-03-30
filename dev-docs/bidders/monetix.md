@@ -8,7 +8,7 @@ pbs: false
 media_types: banner, native, video
 gvl_id: 14 (adkernel)
 tcfeu_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, usp
 usp_supported: true
 coppa_supported: true
 pbs_app_supported: false
