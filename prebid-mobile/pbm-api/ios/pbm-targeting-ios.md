@@ -110,7 +110,6 @@ Targeting.shared.purposeConsents = "100000000000000000000000"
 |`domain`|Retrieve and set the domain of your app|Optional|
 |`itunesID`|Retrieve and set the domain of your iTunes ID with the below command. This field will be transmitted to buyers as the bundle ID as recommended in OpenRTB 2.5. Failure to supply this value can have a negative monetary impact.|Optional|
 
-
 The code sample:
 
 ```swift
@@ -128,11 +127,12 @@ targeting.userID = "X345Y678Z890"
 OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is eligible for OMSDK support. Original API of prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
 
 There three components to signaling support for OMSDK:
+
 * Partner Name
 * Partner Version
 * API code
 
-#### Partner Name
+### Partner Name
 {:.no_toc}
 
 This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. See below for configuration and examples
@@ -141,7 +141,7 @@ This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.i
 Targeting.shared.omidPartnerName = "Google"
 ```
 
-#### Partner Version
+### Partner Version
 {:.no_toc}
 
 The OMSDK version number the partner integrated with. See below for configuration and examples.
@@ -200,7 +200,6 @@ Targeting.shared.addUserData(key: "globalUserDataKey1", value: "globalUserDataVa
 
 Prebid provides following functions to manage First Party Inventory Data:
 
-
 ```swift
 func addContextData(key: String, value: String)
 
@@ -221,7 +220,6 @@ Targeting.shared.addContextData(key: "globalContextDataKey1", value: "globalCont
 
 The First Party Data Access Control List provides a methods to restrict access to first party data to a supplied list of bidders.
 
-
 ```swift
 func addBidderToAccessControlList(_ bidderName: String)
 
@@ -235,7 +233,6 @@ Example:
 ```swift
 Targeting.shared.addBidderToAccessControlList(Prebid.bidderNameRubiconProject)
 ```
-
 
 ### Custom Params
 
