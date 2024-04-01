@@ -281,6 +281,7 @@ adUnit.setOrtbConfig("{"ext":{"gpid":"abc123"}}")
 ## User Identity API
 
 Prebid SDK supports two interfaces to pass / maintain User IDs and ID vendor details:
+
 * Real-time in Prebid SDK's API field externalUserIdArray
 * Store User Id(s) in local storage
 
@@ -289,7 +290,6 @@ Any identity vendor's details in local storage will be sent over to Prebid Serve
 ### Prebid SDK API Access
 
 Prebid SDK supports passing an array of UserID(s) at auction time in the field externalUserIdArray, that is globably scopped. It is sufficient enough to set the externalUserIdArray object once per user session, as these values would be used in all consecutive ad auctions in the same session.
-
 
 ```swift
 public var externalUserIdArray = [ExternalUserId]()
