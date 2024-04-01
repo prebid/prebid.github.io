@@ -31,17 +31,15 @@ If you need to use an API way, ensure that all the following properties are set 
 
 If you need to use a CMP way, ensure that you don't set any of the following API properties. 
 
-
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
-
 
 ### Subject To GPDR
 {:.no_toc}
 
 Enable (true) or disable (false) the ability to provide consent.
 
-```
+```kotlin
 TargetingParams.isSubjectToGDPR()
 TargetingParams.setSubjectToGDPR(true)
 ```
@@ -49,7 +47,7 @@ TargetingParams.setSubjectToGDPR(true)
 ### GDPR Consent String
 {:.no_toc}
 
-```
+```java
 val consent = TargetingParams.getGDPRConsentString();
 TargetingParams.setGDPRConsentString(string);
 ```
@@ -57,7 +55,7 @@ TargetingParams.setGDPRConsentString(string);
 ### Purpose Consent
 {:.no_toc}
 
-```
+```kotlin
 val consent = TargetingParams.getPurposeConsents()
 TargetingParams.setPurposeConsents(string)
 ```
@@ -68,10 +66,9 @@ Prebid supports passing of the Child Online Privacy Prection (COPPA) signal to P
 
 Example:
 
-```
+```java
 TargetingParams.setSubjectToCOPPA(true);
 ```
-
 
 ## Parameters
 
@@ -103,30 +100,31 @@ You can use `Targeting` to pass ad call request parameters.
 | User ID                        | `setUserId`               | ID of the user within the app. For example: `"24601"` | ❗ Highly Recommended  |
 |Year of Birth|`setYearOfBirth`| The year of user's birth||
 
-
 Example:
 
 ``` java
 // Set user parameters to enrich ad request data.
 // Please see Targeting for the userKeys and the APIs available.
 TargetingParams.addUserKeyword("socialNetworking");
-TargetingParams.setUserAge(18); 
+TargetingParams.setUserAge(18);
 ```
 
 ### ORTBConfig
 
 (requires SDK v2.2.1)
 
-Provides a way for app publishers to customize most ORTB fields in the partial bid request that Prebid Mobile sends to the Prebid Server.  The customization comes in the form of the ortbConfig parameter that takes a JSON String as input.  The JSON string must follow the [ORTB guidelines](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/develop/2.6.md#321---object-bidrequest-) as it will be merged with the current JSON of the bid request. If you choose to input extra data using the setORTBConfig() method, please extensively test your requests sent to Prebid Server. 
+Provides a way for app publishers to customize most ORTB fields in the partial bid request that Prebid Mobile sends to the Prebid Server.  The customization comes in the form of the ortbConfig parameter that takes a JSON String as input.  The JSON string must follow the [ORTB guidelines](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/develop/2.6.md#321---object-bidrequest-) as it will be merged with the current JSON of the bid request. If you choose to input extra data using the ortbConfig parameter, please extensively test your requests sent to Prebid Server. 
 
 There are certain protected fields such as regs, device, geo, ext.gdpr, ext.us_privacy, and ext.consent which cannot be changed.
 
 ``` kotlin
+//global invocation
 adUnitConfiguration?.ortbConfig = "{"ext":{"prebid":{"debug":1,"trace":"verbose"}}}"
 ```
 
 ``` kotlin
-adUnit?.ortbConfig = "{"ext":{"prebid":{"debug":1,"trace":"verbose"}}}"
+//ad unit / impression-level
+adUnit?.ortbConfig = "{"ext":{"gpid":"abc123"}}"
 ```
 
 ### Global User Targeting
@@ -137,7 +135,7 @@ adUnit?.ortbConfig = "{"ext":{"prebid":{"debug":1,"trace":"verbose"}}}"
 
 User keywords are a list of keywords, intrests or intent as defined by user.keywords in OpenRTB 2.5. Any keywords passed in the UserKeywords object may be passsed to DSPs.
 
-```
+```k otlin
 void addUserKeyword(String keyword)
 void addUserKeywords(Set<String> keywords)
 void removeUserKeyword(String keyword)
