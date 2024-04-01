@@ -57,7 +57,6 @@ guard let subjectToGDPR = Targeting.shared.subjectToGDPR else {
 Targeting.shared.subjectToGDPR = false
 ```
  
-
 ### GDPR Consent String
 
 ```swift
