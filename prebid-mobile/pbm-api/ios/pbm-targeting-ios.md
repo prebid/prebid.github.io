@@ -40,54 +40,53 @@ If you need to use a CMP way, ensure that you don't set any of the following API
 
 ### Subject To GPDR
 
-```
+```swift
 public var subjectToGDPR:Bool?
 ```
 
 You can retrieve and set the subjectToGDPR for targeting:
 
-```
+```swift
 guard let subjectToGDPR = Targeting.shared.subjectToGDPR else {
     print("There was an error retrieving subjectToGDPR)
     return
 }
 ```
 
-```
+```swift
 Targeting.shared.subjectToGDPR = false
 ```
  
 
 ### GDPR Consent String
 
-```
+```swift
 public var gdprConsentString?
 ```
 
 You can retrieve and set the subjectToGDPR for targeting:
 
-```
+```swift
 guard let gdprConsentString = Targeting.shared.gdprConsentString else {
     print("There was an error retrieving gdprConsentString")
     return
 }
 ```
 
-```
+```swift
 Targeting.shared.gdprConsentString = "A String"
 ```
 
 ### Purpose Consent
 
-```
+```swift
 public var purposeConsents: String?
 ```
 
 You can retrieve and set the purposeConsents for targeting:
 
-```
+```swift
 Targeting.shared.purposeConsents = "100000000000000000000000"
-
 ```
 
 ## Targeting properties
@@ -159,8 +158,7 @@ Targeting.shared.omidPartnerVersion = "1.0"
 
 Context Keywords are a list of keywords about the app as referenced in OpenRTB 2.5 as app.keywords. Any keyword passed in the context keyword field may be passed to the buyer for targeting. Prebid provides following functions to manage context keywords:
 
-
-```
+```swift
 func addContextKeyword(_ newElement: String)
 
 func addContextKeywords(_ newElements: Set<String>)
@@ -182,7 +180,7 @@ Targeting.shared.addContextKeyword("globalContextKeywordValue3")
 
 Prebid provides following functions to manage First Party User Data:
 
-```
+```swift
 func addUserData(key: String, value: String)
 
 func updateUserData(key: String, value: Set<String>)
@@ -203,7 +201,7 @@ Targeting.shared.addUserData(key: "globalUserDataKey1", value: "globalUserDataVa
 Prebid provides following functions to manage First Party Inventory Data:
 
 
-```
+```swift
 func addContextData(key: String, value: String)
 
 func updateContextData(key: String, value: Set<String>)
@@ -224,7 +222,7 @@ Targeting.shared.addContextData(key: "globalContextDataKey1", value: "globalCont
 The First Party Data Access Control List provides a methods to restrict access to first party data to a supplied list of bidders.
 
 
-```
+```swift
 func addBidderToAccessControlList(_ bidderName: String)
 
 func removeBidderFromAccessControlList(_ bidderName: String)
@@ -243,7 +241,7 @@ Targeting.shared.addBidderToAccessControlList(Prebid.bidderNameRubiconProject)
 
 The methods that add or change the custom parameters. The name will be auto-prepended with `c.` to avoid collisions. 
 
-```
+```swift
 public func addCustomParam(_ value: String, withName: String?)
 
 public func setCustomParams(_ params: [String : String]?)
@@ -253,7 +251,7 @@ public func setCustomParams(_ params: [String : String]?)
 
 Adds a new param by name and sets its value.
 
-``` 
+```swift
 public func addParam(_ value: String, withName: String?)
 ```
 
@@ -261,7 +259,7 @@ public func addParam(_ value: String, withName: String?)
 
 Store location in the user's section
 
-```
+```swift
 public func setLatitude(_ latitude: Double, longitude: Double)
 ```
 
@@ -273,12 +271,12 @@ Provides a way for app publishers to customize most ORTB fields in the partial b
 
 There are certain protected fields such as regs, device, geo, ext.gdpr, ext.us_privacy, and ext.consent which cannot be changed.
 
-``` swift
+```swift
 //global invocation
 adUnitConfig.setOrtbConfig("{"ext":{"prebid":{"debug":1,"trace":"verbose"}}}")
 ```
 
-``` swift
+```swift
 //ad unit / impression-level
 adUnit.setOrtbConfig("{"ext":{"gpid":"abc123"}}")
 ```
@@ -321,7 +319,7 @@ Prebid SDK provides a local storage interface to set, retrieve or update an arra
 
 Prebid SDK Provides five functions to handle User ID details:
 
-```
+```swift
 public func storeExternalUserId(_ externalUserId: ExternalUserId)
 
 public func fetchStoredExternalUserIds() -> [ExternalUserId]?
