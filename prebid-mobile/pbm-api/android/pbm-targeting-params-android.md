@@ -385,4 +385,3 @@ TargetingParams.removeStoredExternalUserId("adserver.org");
 //Remove All External UserID
 TargetingParams.clearStoredExternalUserIds();
 ```
-

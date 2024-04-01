@@ -345,4 +345,3 @@ Targeting.shared.removeStoredExternalUserId("sharedid.org")
 //Remove All External UserID
 Targeting.shared.removeStoredExternalUserIds()
 ```
-
