@@ -266,7 +266,7 @@ Inventory specific free form data decribing the context of the inventory.
 #### Global Context Data
 {:.no_toc}
 
-```
+```kotlin
 void addContextData(String key, String value)
 void updateContextData(String key, Set<String> value)
 void removeContextData(String key)
@@ -275,7 +275,7 @@ void clearContextData()
 
 Example:
 
-```
+```kotlin
 TargetingParams.addContextData("globalContextDataKey1", "globalContextDataValue1, globalContextDataValue2")
 ```
 
@@ -291,20 +291,22 @@ The First Party Data Access Control List provides a method to restrict access to
 
 Only bidders supplied in the ACL will have access to the first party data. If no bidder is supplied, Prebid Server will supply first party data to all bid adapers.
 
-```
+```java
 void addBidderToAccessControlList(String bidderName)
 void removeBidderFromAccessControlList(String bidderName)
 void clearAccessControlList()
 ```
 
 Example:
-```
+
+```java
 TargetingParams.addBidderToAccessControlList(TargetingParams.BIDDER_NAME_RUBICON_PROJECT);
 ```
 
 ## User Identity
 
 Prebid SDK supports two interfaces to pass / maintain User IDs and ID vendor details:
+
 * Real-time in Prebid SDK's API field setExternalUserIds
 * Store User Id(s) in local storage
 
@@ -323,7 +325,7 @@ public static List<ExternalUserId> getExternalUserIds()
 
 Exmaple (JAVA):
 
-```
+```java
 // User Id from External Third Party Sources
 ArrayList<ExternalUserId> externalUserIdArray = new ArrayList<>();
 externalUserIdArray.add(new ExternalUserId("adserver.org", "111111111111", null, new HashMap() {
@@ -352,7 +354,7 @@ Prebid SDK provides a local storage interface to set, retrieve or update an arra
 
 Prebid SDK Provides five functions to handle User ID details:
 
-```
+```java
 public static void storeExternalUserId(ExternalUserId externalUserId)
 public static ExternalUserId fetchStoredExternalUserId(@NonNull String source)
 public static List<ExternalUserId> fetchStoredExternalUserIds()
