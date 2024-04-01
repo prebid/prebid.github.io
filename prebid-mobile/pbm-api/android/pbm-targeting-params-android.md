@@ -96,7 +96,7 @@ You can use `Targeting` to pass ad call request parameters.
 | Keywords                   | `addUserKeywords`         | Comma separated list of keywords, interests, or intent. | Optional |
 | Lat, Lon                   | `setUserLatLng`           | Location of the user’s home base defined by a provided longitude and latitude. It's highly recommended to provide Geo data to improve the request.| Optional |
 | Publisher Name                  | `setPublisherName`        | Publisher name (may be aliased at the publisher’s request).| Recommended if available  |
-| Store Url               | `setStoreUrl`    | The URL for the mobile application in Google Play. That field is required in the request. <br />**For example:**` https://play.google.com/store/apps/details?id=com.outfit7.talkingtom`. | ❗ Required  |
+| Store Url               | `setStoreUrl`    | The URL for the mobile application in Google Play. That field is required in the request. <br />**For example:**`https://play.google.com/store/apps/details?id=com.outfit7.talkingtom`. | ❗ Required  |
 | User ID                        | `setUserId`               | ID of the user within the app. For example: `"24601"` | ❗ Highly Recommended  |
 |Year of Birth|`setYearOfBirth`| The year of user's birth||
 
@@ -129,13 +129,12 @@ adUnit?.ortbConfig = "{"ext":{"gpid":"abc123"}}"
 
 ### Global User Targeting
 
-
 #### User Keywords
 {:.no_toc}
 
 User keywords are a list of keywords, intrests or intent as defined by user.keywords in OpenRTB 2.5. Any keywords passed in the UserKeywords object may be passsed to DSPs.
 
-```k otlin
+```kotlin
 void addUserKeyword(String keyword)
 void addUserKeywords(Set<String> keywords)
 void removeUserKeyword(String keyword)
@@ -156,8 +155,7 @@ TargetingParams.addUserKeyword("globalUserKeywordValue2")
 
 Context Keywords are a list of keywords about the app as referenced in OpenRTB 2.5 as app.keywords. Any keyword passed in the context keyword field may be passed to the buyer for targeting.
 
-
-```
+```kotlin
 void addContextKeyword(String keyword)
 void addContextKeywords(Set<String> keywords)
 void removeContextKeyword(String keyword)
@@ -166,24 +164,23 @@ void clearContextKeywords()
 
 Example:
 
-```
+```kotlin
 TargetingParams.addContextKeyword("globalContextKeywordValue1")
 TargetingParams.addContextKeyword("globalContextKeywordValue2")
 ```
-
 
 ### Bundle ID
 {:.no_toc}
 
 Use the following code to retrieve the platform-specific bundle/package name:
 
-```
+```kotlin
 bundleName = TargetingParams.getBundleName()
 ```
 
 Pass in the platform-specific identifier - the bundle/package name - to set the bundle ID:
 
-```
+```kotlin
 TargetingParams.setBundleName(bundleName)
 ```
 
@@ -205,6 +202,7 @@ val domain = TargetingParams.getDomain()
 OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
 
 There three components to signaling support for OMSDK:
+
 * Partner Name
 * Partner Version
 * API code
