@@ -10,6 +10,7 @@ pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
 tcfeu_supported: true
+dsa_supported: true
 floors_supported: true
 usp_supported: true
 gpp_supported: true
