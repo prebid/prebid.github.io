@@ -78,7 +78,6 @@ The more data about the user, app, and device that can be provided the more chan
 It is advised that you strictly follow the recommendations in the tables below. Any field marked with an ❗is required and recommended. 
 
 1. [Targeting Params](#targeting)
-2. [SDK Settings](#prebidrenderingsettings)
 
 ### Targeting
 
@@ -207,24 +206,25 @@ There three components to signaling support for OMSDK:
 * Partner Version
 * API code
 
-#### Partner Name
+### Partner Name
 {:.no_toc}
 
 This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. See below for configuration and examples
 
 Open Measurement partner name. 
 
-```
+```kotlin
 TargetingParams.setOmidPartnerName("Google")
 ```
 
-#### Partner Version
+### Partner Version
 {:.no_toc}
 
 The OMSDK version number the partner integrated with. See below for configuration and examples.
 
 Partner's OMSDK version number implementation
-```
+
+```java
 TargetingParams.setOmidPartnerVersion();
 ```
 
@@ -233,19 +233,19 @@ TargetingParams.setOmidPartnerVersion();
 First Party Data (FPD) is free form data supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
 
 Data is broken up into two different data types:
+
 * User
   * Global in scope only
 * Inventory (context)
   * Global scope
   * Ad Unit grain
 
-
 ### First Party User Data
 {:.no_toc}
 
 User specic data is passed in the global scope (i.e. applicable to all ad units).
 
-```
+```java
 void addUserData(String key, String value)
 void updateUserData(String key, Set<String> value)
 void removeUserData(String key)
@@ -253,7 +253,8 @@ void clearUserData()
 ```
 
 Example:
-```
+
+```java
 TargetingParams.addUserData("globalUserDataKey1", "globalUserDataValue1")
 ```
 
