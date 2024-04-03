@@ -365,10 +365,10 @@ pbjs.addAdUnits({
 
 Follow these steps to configure your Prebid.js to specify that your ad slots are enabled for [Protected Audience](https://github.com/WICG/turtledove/blob/main/FLEDGE.md) auctions:
 
-1. Index recommends that you update your Prebid.js version to 8.37.0 or later.</br>
+1. Index recommends that you update your Prebid.js version to 8.37.0 or later.<br />
 **Note:** Prebid.js version 8.18.0 or later is supported. However, Prebid's `fledgeForGpt` module has been improved in version 8.37.0, which fixes some issues from the earlier version.
 2. Build the `fledgeForGpt` module in your Prebid.js configuration by adding `fledgeForGpt` to the list of modules that you are already using. For more information about the module, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation.
-3. If you are using a Prebid.js version that is between 8.18.0 and 8.36.0, you must configure your ad units to make them eligible for Protected Audience API demand. You can do this in the global-level configuration, bidder level, or ad-unit level. For more information about the configurations, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation. Index recommends that you do this in the global-level configuration by using the `defaultForSlots` parameter with a value of `1`. <br />
+3. If you are using a Prebid.js version that is between 8.18.0 and 8.36.0, you must configure your ad units to make them eligible for Protected Audience API demand. You can do this in the global-level configuration, bidder level, or ad-unit level. For more information about the configurations, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation. Index recommends that you do this in the global-level configuration by using the `defaultForSlots` parameter with a value of `1`.<br />
 
 The following shows an example of the configuration done at the global level:
 
@@ -397,9 +397,8 @@ pbjs.que.push(function() {
 });
 ```
 
-4. If you are using Prebid.js version 8.37.0 or later, you must complete the following steps to make your ad units eligible for Protected Audience API demand:</br>
-**Note:** If you continue to use the `fledgeForGpt` property, you will receive a warning message in the console logs stating that the `fledgeForGpt` configuration options will soon be renamed to `paapi`. Therefore, Index recommends that you use the `paapi` property, which is available in Prebid.js version 8.37.0 or later.
-  * In the `pbjs.setConfig().paapi` field, set the `defaultForSlots` parameter to `1`:
+4. If you are using Prebid.js version 8.37.0 or later, you must complete the following steps to make your ad units eligible for Protected Audience API demand:<br />
+    * In the `pbjs.setConfig().paapi` field, set the `defaultForSlots` parameter to `1`:
 
  ```javascript
  pbjs.que.push(function() {
@@ -412,7 +411,7 @@ pbjs.que.push(function() {
 });
  ```
 
-  * In the `paapi.gpt.autoconfig` field, set `autoconfig` to `false`. This step is important because, by default, the `fledgeForGpt` module expects the Google Publisher Tag (GPT) ad units to be loaded before the Protected Audience configuration is added to the ad unit. Setting `autoconfig` to `false` will avoid any race conditions resulting from asynchronous libraries being loaded out of order, which would prevent the ad unit from being properly configured for Protected Audience API.</br>
+    * In the `paapi.gpt.autoconfig` field, set `autoconfig` to `false`. This step is important because, by default, the `fledgeForGpt` module expects the Google Publisher Tag (GPT) ad units to be loaded before the Protected Audience configuration is added to the ad unit. Setting `autoconfig` to `false` will avoid any race conditions resulting from asynchronous libraries being loaded out of order, which would prevent the ad unit from being properly configured for Protected Audience API.</br>
 **Note:** The `fledgeForGpt.autoconfig` property is also backward compatible and can be used in place of the `paapi.gpt.autoconfig` property. However, Index recommends that you use the `paapi.gpt.autoconfig` property.</br>
 
 ```javascript
@@ -429,7 +428,7 @@ pbjs.que.push(function() {
 });
  ```
 
-  * In the `pbjs.requestBids.bidsBackHandler` function, call the `pbjs.setPAAPIConfigForGPT()` function as follows:
+    * In the `pbjs.requestBids.bidsBackHandler` function, call the `pbjs.setPAAPIConfigForGPT()` function as follows:
 
  ```javascript
  pbjs.requestBids({, ,  
