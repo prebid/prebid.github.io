@@ -387,19 +387,18 @@ pbjs.que.push(function() {
 
 ```javascript
 pbjs.que.push(function() { 
-  pbjs.setConfig({ 
+  pbjs.setConfig({
     fledgeForGpt: { 
-	enabled: true, 
-	bidders: ['ix', /* any other bidders */], 
-	defaultForSlots: 1 
-	} 
-   }); 
+    enabled: true,
+    bidders: ['ix', /* any other bidders */],
+    defaultForSlots: 1
+      }
+   });
 });
 ```
 
 4. If you are using Prebid.js version 8.37.0 or later, you must complete the following steps to make your ad units eligible for Protected Audience API demand:</br>
 **Note:** If you continue to use the `fledgeForGpt` property, you will receive a warning message in the console logs stating that the `fledgeForGpt` configuration options will soon be renamed to `paapi`. Therefore, Index recommends that you use the `paapi` property, which is available in Prebid.js version 8.37.0 or later.
-
   * In the `pbjs.setConfig().paapi` field, set the `defaultForSlots` parameter to `1`:
 
  ```javascript
