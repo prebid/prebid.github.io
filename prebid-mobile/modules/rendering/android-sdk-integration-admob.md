@@ -9,11 +9,16 @@ sidebarType: 2
 
 # AdMob Integration
 
+{:.no_toc}
+
 The integration of Prebid Mobile with Google AdMob assumes that the publisher has an AdMob account and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app. 
 
 See the [Google's integration documentation](https://developers.google.com/admob/android/quick-start) for the AdMob integration details.
 
 Prebid is integrated into the AdMob monetization via adapters.
+
+* TOC
+{:toc}
 
 ## AdMob Integration Overview
 
@@ -25,45 +30,15 @@ Prebid is integrated into the AdMob monetization via adapters.
 
 **Step 4** For each prebid's ad source, the GMA SDK sequentially instantiates an adapter. 
 
-**Step 5** The adapter verifies the targeting keywords of the winning bid and the server properties of the given ad source. If they match adapter will render the winning bid. Otherwise, it will fail with "no ad" immediately and the next ad source will instantiate the same adapter but for another set of server params.
+**Step 5** The adapter verifies the targeting keywords of the winning bid and the server properties of the given ad source. If they match the adapter will render the winning bid. Otherwise, it will immediately fail with a "no ad" error and the next ad source will instantiate the same adapter but for another set of server params.
 
-Prebid Mobile supports these ad formats:
+## Integrate Prebid Adapters
 
-- Display Banner
-- Display Interstitial
-- Video Interstitial 
-- Rewarded Video
-- Native
-
-They can be integrated using these mediation API categories:
-
-- [**Banner API**](#banner-api) - for *Display Banner* 
-- [**Interstitial API**](#interstitial-api) - for *Display* and *Video* Interstitials
-- [**Rewarded API**](#rewarded-api) - for *Rewarded Video*
-- [**Native API**](#native-api) - for *Native Ads*
-
-
-## Init Prebid Rendering Module
-
-To start running bid requests you have to set the Prebid Server **Host** and **Account Id** and then initilize the SDK with application context. The best place for this is the `onCreate()` method of your Application class.
-
-```
-PrebidMobile.setBidServerHost(HOST)
-PrebidMobile.setAccountId(YOUR_ACCOUNT_ID)
-
-// Init SDK
-PrebidMobile.setApplicationContext(this)
-```
-
-> **NOTE:** The account ID is an identifier of the **Stored Request**.
-
-### Prebid Adapters
-
-To integrate Prebid Adapters just add the following lines into your build.gradle files:
+To integrate Prebid Adapters for AdMob just add the following lines into your build.gradle files:
 
 Root build.gradle
 
-```
+```gradle
 allprojects {
     repositories {
       ...
@@ -75,7 +50,7 @@ allprojects {
 
 App module build.gradle:
 
-```
+```gradle
 implementation('org.prebid:prebid-mobile-sdk-admob-adapters:x.x.x')
 ```
 
@@ -83,17 +58,17 @@ implementation('org.prebid:prebid-mobile-sdk-admob-adapters:x.x.x')
 
 Integration example:
 
-
-``` kotlin
+```kotlin
 // 1. Create AdView and AdRequest
 bannerView = AdView(activity)
 bannerView?.adSize = AdSize.BANNER
 bannerView?.adUnitId = adUnitId
+adWrapperView.addView(bannerView)
 
 val extras = Bundle()
 val request = AdRequest
         .Builder()
-        .addCustomEventExtrasBundle(PrebidBannerAdapter::class.java, extras)
+        .addNetworkExtrasBundle(PrebidBannerAdapter::class.java, extras)
         .build()
 
 // 2. Create AdMobBannerMediationUtils
@@ -117,37 +92,46 @@ adUnit?.fetchDemand { result ->
 }
 ```
 
-#### Step 1: Create AdView and AdRequest
+### Step 1: Create AdView and AdRequest
 
-This step is totally the same as for the original [AdMob integration](https://developers.google.com/admob/android/banner). You don't have to make any modifications here.
+{:.no_toc}
 
+This step is the same as for the original [AdMob integration](https://developers.google.com/admob/android/banner). You don't have to make any modifications here.
 
-#### Step 2: Create AdMobMediationBannerUtils
+### Step 2: Create AdMobMediationBannerUtils
 
-The `AdMobBannerMediationUtils` is a helper class, wich performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+{:.no_toc}
 
-#### Step 3: Create MediationBannerAdUnit
+The `AdMobBannerMediationUtils` is a helper class, which performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+
+### Step 3: Create MediationBannerAdUnit
+
+{:.no_toc}
 
 The `MediationBannerAdUnit` is part of the prebid mediation API. This class is responsible for making the bid request and providing the winning bid and targeting keywords to the mediating SDKs.  
 
-#### Step 4: Make a bid request
+### Step 4: Make a bid request
+
+{:.no_toc}
 
 The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
 
-#### Step 5: Make an Ad Reuest
+### Step 5: Make an Ad Request
 
-Now you should just make a regular AdMob's ad request. Evetything else will be handled by GMA SDK and prebid adapters.
+{:.no_toc}
+
+Now you should just make a regular AdMob's ad request. Everything else will be handled by GMA SDK and prebid adapters.
 
 ## Interstitial API
 
 Integration example:
 
-``` kotlin
+```kotlin
 // 1. Create AdRequest
 val extras = Bundle()
 val request = AdRequest
     .Builder()
-    .addCustomEventExtrasBundle(PrebidInterstitialAdapter::class.java, extras)
+    .addNetworkExtrasBundle(PrebidInterstitialAdapter::class.java, extras)
     .build()
 
 // 2. Create AdMobInterstitialMediationUtils
@@ -157,7 +141,7 @@ val mediationUtils = AdMobInterstitialMediationUtils(extras)
 adUnit = MediationInterstitialAdUnit(
     activity,
     configId,
-    AdUnitFormat.DISPLAY,
+    AdUnitFormat.BANNER,
     mediationUtils
 )
 
@@ -181,47 +165,58 @@ adUnit?.fetchDemand { result ->
 }
 ```
 
-#### Step 1: Create AdRequest
+### Step 1: Create AdRequest
 
-This step is totally the same as for original [AdMob integration](https://developers.google.com/admob/android/interstitial). You don't have to make any modifications here.
+{:.no_toc}
 
-#### Step 2: Create AdMobInterstitialMediationUtils
+This step is the same as for original [AdMob integration](https://developers.google.com/admob/android/interstitial). You don't have to make any modifications here.
 
-The `AdMobInterstitialMediationUtils` is a helper class, wich performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
+### Step 2: Create AdMobInterstitialMediationUtils
 
-#### Step 3: Create MediationInterstitialAdUnit
+{:.no_toc}
+
+The `AdMobInterstitialMediationUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
+
+### Step 3: Create MediationInterstitialAdUnit
+
+{:.no_toc}
 
 The `MediationInterstitialAdUnit` is part of the prebid mediation API. This class is responsible for making a bid request and providing the winning bid and targeting keywords to mediating SDKs.  
 
 The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
-```
+```kotlin
 adUnit = MediationInterstitialAdUnit(
             activity,
             configId,
-            EnumSet.of(AdUnitFormat.DISPLAY, AdUnitFormat.VIDEO),
+            EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO),
             mediationUtils
         )
 ```
 
-#### Step 4: Make a bid request
+### Step 4: Make a bid request
+
+{:.no_toc}
 
 The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
 
-#### Step 5: Make an ad reuest
+### Step 5: Make an ad request
+
+{:.no_toc}
 
 Now you should just make a regular AdMob's ad request. Evetything else will be handled by GMA SDK and prebid adapters.
 
-#### Step 6: Display an ad
+### Step 6: Display an ad
+
+{:.no_toc}
 
 Once you receive the ad it will be ready for display. You can show interstitial right in the listener or later according to the app logic.
-
 
 ## Rewarded API
 
 Integration example:
 
-``` kotlin
+```kotlin
 // 1. Create AsRequest
 val extras = Bundle()
 val request = AdRequest
@@ -261,35 +256,47 @@ adUnit?.fetchDemand { result ->
 }
 ```
 
-#### Step 1: Create AdRequest
+### Step 1: Create AdRequest
 
-This step is totally the same as for the original [AdMob integration](https://developers.google.com/admob/android/rewarded). You don't have to make any modifications here.
+{:.no_toc}
 
-#### Step 2: Create AdMobRewardedMediationUtils
+This step is the same as for the original [AdMob integration](https://developers.google.com/admob/android/rewarded). You don't have to make any modifications here.
 
-The `AdMobRewardedMediationUtils ` is a helper class, wich performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
+### Step 2: Create AdMobRewardedMediationUtils
 
-#### Step 3: Create MediationRewardedVideoAdUnit
+{:.no_toc}
+
+The `AdMobRewardedMediationUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
+
+### Step 3: Create MediationRewardedVideoAdUnit
+
+{:.no_toc}
 
 The `MediationRewardedVideoAdUnit` is part of the prebid mediation API. This class is responsible for making bid request and managing the winning bid.
 
-#### Step 4: Make a bid request
+### Step 4: Make a bid request
+
+{:.no_toc}
 
 The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
 
-#### Step 5: Make an ad reuest
+### Step 5: Make an ad request
+
+{:.no_toc}
 
 Now you should just make a regular AdMob's ad request. Evetything else will be handled by GMA SDK and prebid adapters.
 
-#### Step 6: Display an ad
+### Step 6: Display an ad
+
+{:.no_toc}
 
 Once you receive the ad it will be ready for display. You can show interstitial right in the listener or later according to the app logic.
 
 ## Native API
 
-Integration example: 
+Integration example:
 
-```
+```kotlin
 // 1. Create AdLoader and AdRequest
 val nativeAdOptions = NativeAdOptions
     .Builder()
@@ -312,7 +319,7 @@ val adLoader = AdLoader
 val extras = Bundle()
 val adRequest = AdRequest
     .Builder()
-    .addCustomEventExtrasBundle(PrebidNativeAdapter::class.java, extras)
+    .addNetworkExtrasBundle(PrebidInterstitialAdapter::class.java, extras)
     .build()
 
 // 2. Create Native AdUnit
@@ -330,22 +337,27 @@ nativeAdUnit.fetchDemand(extras) { resultCode ->
 }
 ```
 
+### Step 1: Create AdRequest
 
-#### Step 1: Create AdRequest
+{:.no_toc}
 
 Prepare the `AdLoader` and `AdRequest` objects before you make the bid request. They are needed for prebid mediation utils. Follow the [AdMob integration instructions](https://developers.google.com/admob/android/native/start) for this step.
 
-#### Step 2: Create NativeAdUnit
+### Step 2: Create NativeAdUnit
+
+{:.no_toc}
 
 The `NativeAdUnit` is responsible for making bid requests. Once the bid responce is received you can load an ad from AdMob.
- 
-#### Step 3: Configure NativeAdUnit
 
-The bid request for native ad should have a descrition of expected assets. The full spec for the Native template you can find in the [Native Ad Specification from IAB](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf). 
+### Step 3: Configure NativeAdUnit
 
-The example of creating the assets array and configuring the `NativeAdUnit`:
+{:.no_toc}
 
-``` kotlin
+The bid request for native ad should have a description of expected assets. The full spec for the Native template can be found in the [Native Ad Specification from IAB](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf).
+
+Example of creating the assets array and configuring the `NativeAdUnit`:
+
+```kotlin
 private fun configureNativeAdUnit(nativeAdUnit: NativeAdUnit) {
 
     // Configure Ad Unit
@@ -402,10 +414,14 @@ private fun configureNativeAdUnit(nativeAdUnit: NativeAdUnit) {
 }
 ```
 
-#### Step 4: Make a bid request
+### Step 4: Make a bid request
+
+{:.no_toc}
 
 The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
-        
-#### Step 5: make an ad request
-    
-Now just load a native ad from AdMob according to the [AdMob instructions](https://developers.google.com/admob/android/native/start). Everything else will be handled by GMA SDK and prebid adapters. 
+
+### Step 5: make an ad request
+
+{:.no_toc}
+
+Now load an native ad from AdMob according to the [AdMob instructions](https://developers.google.com/admob/android/native/start). Everything else will be handled by GMA SDK and prebid adapters.

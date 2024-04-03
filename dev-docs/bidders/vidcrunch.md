@@ -6,14 +6,17 @@ pbjs: true
 biddercode: vidcrunch
 aliasCode: aniview
 media_types: banner, video
-gdpr_supported: true
+gvl_id: 780 (aniview)
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: true
+sidebarType: 1
 ---
 
-### Note:
-For more information about [VidCrunch](https://vidcrunch.com/), please contact info@vidcrunch.com.
+### Note
+
+For more information about [VidCrunch](https://vidcrunch.com/), please contact <info@vidcrunch.com>.
 
 ### Bid Params
 
@@ -24,8 +27,9 @@ For more information about [VidCrunch](https://vidcrunch.com/), please contact i
 | `AV_CHANNELID`   | required | Channel id       | `'5a5f17a728a06102d14c2718'` | `string` |
 
 ### Test Parameters
-```
-videoAdUnit = [
+
+```javascript
+const videoAdUnit = [
 {
   code: 'video1',
   mediaTypes: {

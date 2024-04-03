@@ -7,20 +7,21 @@ pbs: true
 biddercode: openx
 media_types: banner, video
 schain_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 floors_supported: true
-userIds: admixerId, adtelligentId, amxId, britepoolId, criteo, dapId, deepintentId, dmdId, fabrickId, flocId, hadronId, id5Id, identityLink, idxId, imuId, intentIqId, kinessoId, liveIntentId, lotamePanoramaId, merkleId, mwOpenLinkId, naveggId, netId, novatiq, parrableId, pubCommonId, publinkId, quantcastId, sharedId, tapadId, uid2, unifiedId, verizonMediaId, zeotapIdPlus
+userIds: admixerId, adtelligentId, amxId, britepoolId, criteo, dapId, deepintentId, dmdId, fabrickId, hadronId, id5Id, identityLink, idxId, imuId, intentIqId, kinessoId, liveIntentId, lotamePanoramaId, merkleId, mwOpenLinkId, naveggId, netId, novatiq, parrableId, pubCommonId, publinkId, quantcastId, sharedId, tapadId, uid2, unifiedId, verizonMediaId, zeotapIdPlus
 prebid_member: true
 fpd_supported: true
 gvl_id: 69
-fpd_supported: true
+sidebarType: 1
 ---
 
 ### Registration
 
-If you have any questions regarding set up, please reach out to your account manager or support@openx.com.
+If you have any questions regarding set up, please reach out to your account manager or <support@openx.com>.
 
 Please note that OpenX is transitioning its serving architecture and currently has 2 bid adapters as of Prebid 7. The legacy adapter is named openxBidAdapter.
 The newer of the two is openxOrtbBidAdapter. Publishers are welcome to test with openxOrtbBidAdapter and give feedback.
@@ -28,20 +29,28 @@ After the transition openxOrtbBidAdapter will replace openxBidAdapter.
 
 IMPORTANT: only include either openxBidAdapter or openxOrtbBidAdapter in your build.
 
+### Prebid Server Note
+
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
+
 ### Bid Parameters
+
 #### Banner
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
-| `delDomain` or `platform` | required | OpenX delivery domain or platform id provided by your OpenX representative. Both may be present. `platform` is preferred | "PUBLISHER-d.openx.net" or "555not5a-real-plat-form-id0123456789" | String |
+| `delDomain` ~~or `platform`~~** | required | OpenX delivery domain provided by your OpenX representative. | "PUBLISHER-d.openx.net" | String |
 | `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String |
 | `customParams` | optional | User-defined targeting key-value pairs. customParams applies to a specific unit. | `{key1: "v1", key2: ["v2","v3"]}` | Object |
-| `customFloor` | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 1.50 | Number |
+| `customFloor` | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue.<br/><br/>Note:<br/> OpenX suggests using the [Price Floor Module](/dev-docs/modules/floors.html) instead of customFloor. The Price Floor Module is prioritized over customFloor if both are present. | 1.50 | Number |
 | `doNotTrack` | optional | Prevents advertiser from using data for this user. <br/><br/> **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean |
 | `coppa` | optional | Enables Child's Online Privacy Protection Act (COPPA) regulations. **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean |
 
+** platform is deprecated. Please use delDomain instead. If you have any questions please contact your representative.
+
 ### AdUnit Format for Banner
+
 ```javascript
 var adUnits = [
   {
@@ -63,7 +72,7 @@ var adUnits = [
         bidder: 'openx',
         params: {
           unit: '539439964',
-          platform: 'a3aece0c-9e80-4316-8deb-faf804779bd1',
+          delDomain: 'se-demo-d.openx.net',
           customParams: {
             key1: 'v1',
             key2: ['v2', 'v3']
@@ -81,7 +90,9 @@ var adUnits = [
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String |
-| `delDomain` or `platform` | required | OpenX delivery domain or platform id provided by your OpenX representative. Both may be present. `platform` is preferred | "PUBLISHER-d.openx.net" or "555not5a-real-plat-form-id0123456789" | String |
+| `delDomain` ~~or `platform`~~** | required | OpenX delivery domain provided by your OpenX representative. | "PUBLISHER-d.openx.net" | String |
+
+** platform is deprecated. Please use delDomain instead. If you have any questions please contact your representative.
 
 #### mediaTypes.video
 
@@ -90,7 +101,7 @@ The following video parameters are supported here so publishers may fully declar
 {: .table .table-bordered .table-striped }
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
-| context | required | instream or outstream |"outstream" | string | 
+| context | required | instream or outstream |"outstream" | string |
 | playerSize| required | width, height of the player in pixels | [640,360] - will be translated to w and h in bid request | array<integers> |
 | mimes | required | List of content MIME types supported by the player (see openRTB v2.5 for options) | ["video/mp4"]| array<string>|
 | protocols | recommended | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | [2,3,5,6] | array<integers>|
@@ -106,8 +117,8 @@ The following video parameters are supported here so publishers may fully declar
 | placement | recommended | Placement type for the impression. (see openRTB v2.5 section 5.9 for options) | 1 | integer |
 | | | | | |
 
-
 ### AdUnit Format for Video
+
 ```javascript
 var videoAdUnits = [
 {
@@ -140,8 +151,8 @@ var videoAdUnits = [
 }]
 ```
 
-
 ## Example
+
 ```javascript
 var adUnits = [
   {
@@ -163,7 +174,7 @@ var adUnits = [
         bidder: 'openx',
         params: {
           unit: '539439964',
-          platform: 'a3aece0c-9e80-4316-8deb-faf804779bd1',
+          delDomain: 'se-demo-d.openx.net',
           customParams: {
             key1: 'v1',
             key2: ['v2', 'v3']
@@ -192,13 +203,14 @@ var adUnits = [
 ];
 ```
 
-#### First Party Data
-OpenX supports FPD configured under `ortb2.user`and `ortb2.site.content` as described [here]((/features/firstPartyData.html)).
-Ad unit specific FPD is not supported, and segment taxonomies (`segtax`) are simply passed through. If you have any 
-questions, please reach out to us at prebid@openx.com
+### First Party Data
 
-Example: 
-```
+OpenX supports FPD configured under `ortb2.user`and `ortb2.site.content` as described [here](/features/firstPartyData.html).
+Ad unit specific FPD is not supported, and segment taxonomies (`segtax`) are simply passed through. If you have any questions, please reach out to us at [prebid@openx.com]
+
+Example:
+
+```javascript
 pbjs.setConfig({
    ...
    ortb2: {
@@ -229,6 +241,7 @@ pbjs.setConfig({
 ```
 
 ### Configuration
+
 Add the following code to enable user syncing. By default, Prebid.js version 0.34.0+ turns off user syncing through iframes.
 OpenX strongly recommends enabling user syncing through iframes. This functionality improves DSP user match rates and increases the
 OpenX bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
@@ -242,6 +255,6 @@ pbjs.setConfig({
 ```
 
 ## Additional Details
-[Banner Ads](https://docs.openx.com/Content/developers/containers/prebid-adapter.html)
 
-[Video Ads](https://docs.openx.com/Content/developers/containers/prebid-video-adapter.html)
+* [Banner Ads](https://docs.openx.com/publishers/prebid-adapter-web/) (Customer login required.)
+* [Video Ads](https://docs.openx.com/publishers/prebid-adapter-video/) (Customer login required.)

@@ -6,10 +6,11 @@ biddercode: smarthub
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: false
 pbjs: true
 pbs: true
 pbs_app_supported: true
+sidebarType: 1
 ---
 
 ### Prebid.js Bid Params

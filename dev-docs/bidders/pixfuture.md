@@ -4,13 +4,15 @@ title: PixFuture
 description: Prebid PixFuture Bidder Adapter
 biddercode: pixfuture
 media_types: banner
-gdpr_supported: true
+gvl_id: 839
+tcfeu_supported: true
 prebid_member: false
 coppa_supported: true
 usp_supported: true
-userIds: flocId, criteoId, unifiedId, id5Id, sharedId, identityLink, liveIntentId, fabrickId
+userIds: criteoId, unifiedId, id5Id, sharedId, identityLink, liveIntentId, fabrickId
 pbs: false
 pbjs: true
+sidebarType: 1
 ---
 #### Bid Params
 

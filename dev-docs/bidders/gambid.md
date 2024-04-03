@@ -11,6 +11,7 @@ media_types: banner, video
 biddercode: gambid
 aliasCode: gamoshi
 userIds: id5Id, unifiedId
+sidebarType: 1
 ---
 
 ### Bid params
@@ -19,4 +20,3 @@ userIds: id5Id, unifiedId
 | Name              | Scope    | Description                                                   | Example              | Type     |
 |-------------------|----------|---------------------------------------------------------------|----------------------|----------|
 | `supplyPartnerId` | required | ID of the supply partner | `'12345'`            | `string` |
-

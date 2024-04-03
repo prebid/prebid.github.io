@@ -96,4 +96,4 @@ For example:
 }
 ```
 
-The exact contents of the json-schema values can be found at [https://github.com/prebid/prebid-server/tree/master/static/bidder-params](https://github.com/prebid/prebid-server/tree/master/static/bidder-params)
+The exact contents of the json-schema values can be found at [github.com/prebid/prebid-server/tree/master/static/bidder-params](https://github.com/prebid/prebid-server/tree/master/static/bidder-params)

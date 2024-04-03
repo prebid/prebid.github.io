@@ -6,20 +6,21 @@ biddercode: lasso
 pbjs: true
 pbs: false
 media_types: banner
-gdpr_supported: false
+tcfeu_supported: false
 gvl_id: none
-usp_supported: false
 coppa_supported: true
-ccpa_supported: true
+usp_supported: true
 safeframes_ok: false
 deals_supported: false
 floors_supported: false
 fpd_supported: false
 multiformat_supported: will-not-bid
+sidebarType: 1
 ---
 
-### Note:
-The Lasso Bidding adapter requires setup before beginning. Please contact us at headerbidding@lassomarketing.io
+### Note
+
+The Lasso Bidding adapter requires setup before beginning. Please contact us at <headerbidding@lassomarketing.io>
 
 ### Bid Params
 

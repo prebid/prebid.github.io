@@ -9,17 +9,44 @@
       </div>
     </div>
   </div>
+  <div id="prebid-google-analytics-consent" style="display: none;"></div>
 </footer>
   <!-- / copyrights -->
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130832561-2"></script>
+<!-- Global tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GM972HCTEB"></script>
 <script>
+  // OneTrust has no TCF support, so we disable it explicitly here
+  window['gtag_enable_tcf_support'] = false;
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+  gtag('consent', 'default', {
+    'analytics_storage': 'granted',
+    'region': ['US']
+  });
+  gtag('consent', 'default', {'ad_storage': 'denied','analytics_storage': 'denied', 'wait_for_update': 500});
+  gtag("config", "G-GM972HCTEB", {
+      anonymize_ip: true
+  });
 
-  gtag('config', 'UA-130832561-2');
+  // grant consent if one trust says so. We use the callback to update gtag consent status
+  function oneTrustGaConsent() {
+    OneTrust.InsertHtml('<span>given</span>', 'prebid-google-analytics-consent', function() {
+      gtag('consent', 'update', {'ad_storage': 'granted','analytics_storage': 'granted'});
+    }, {}, 'C0002');
+  }
+
+
+  // use the global variable provided in the head-common to wait for onetrust
+  window.onetrustLoaded.then(() => {
+    // if consent has already been given
+    oneTrustGaConsent();
+
+    // if a users sees the first layer message and gives consent
+    OneTrust.OnConsentChanged(() => oneTrustGaConsent());
+  });
+
 </script>
 
 
