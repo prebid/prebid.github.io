@@ -8,7 +8,6 @@ sidebarType: 3
 ---
 
 # Google Ad Manager with Prebid Step by Step
-
 {: .no_toc }
 
 - TOC
@@ -21,9 +20,21 @@ Because integrating with Prebid could mean having to create thousands of line it
 {: .alert.alert-success :}
 Prebid provides a script you can use to automate these steps: [Prebid Line Item Manager](/tools/line-item-manager.html).
 
+{: .alert.alert-info :}
+Note that running "outstream" video ads requires special attention if you're a publisher
+that utilizes both Prebid.js and Prebid Mobile. See the [planning guide note](/adops/adops-planning-guide.html#rendering-mobile-outstream-ads) for more background.
+
 ## Prerequisites
 
 Before you begin, we recommend you read through our [Planning Guide](/adops/adops-planning-guide.html) to make sure you know what your configuration is going to look like and you’ve thoroughly documented your decisions.
+
+### Ad Units
+
+For the most part, your existing GAM Ad Units will work fine. The exception is
+if you're going to run Prebid Mobile app outstream:
+
+- You'll need to add a _video size_ to the adunit. Prebid Mobile renders outstream as a VAST URL creative.
+- Add the video size with a slightly different dimension, e.g. 300x251v vs 300x250v. See the [planning guide](/adops/adops-planning-guide.html#rendering-mobile-outstream-ads) for background on why.
 
 ### Create Advertisers and Orders
 
@@ -68,7 +79,7 @@ From the **Settings** tab, do the following:
 3. Set the **Line Item Type** to **Price priority (12)**. (This will most likely be higher for deals. See [Deals in Prebid](/adops/deals.html) for more information.)
 
 4. Enter your **Expected Creatives**:
-    - Banner/Outstream/AMP/Video: Select the sizes of all ad slots included in the Prebid process.
+    - Banner/Outstream/AMP/Video: Select the sizes of all ad slots included in the Prebid process. Note: for outstream in Prebid Mobile, the size must be a video size, and we recommend using a slightly different size, e.g. 300x251v instead of 300x250v. See the [planning guide](/adops/adops-planning-guide.html#rendering-mobile-outstream-ads) for background.
     - Native: Select a native template. (See [GAM Step by Step - Native Creatives](/adops/gam-native.html) for instructions on creating native templates.)
 
 ![New line item settings](/assets/images/ad-ops/gam-sbs/line-item-settings.png)
@@ -99,20 +110,10 @@ Leave **is any of** and enter (or select) your price bucket.
 
 ![Custom targeting on price bucket](/assets/images/ad-ops/gam-sbs/custom-targeting-pb.png)
 
-The following additional keys must be added for the corresponding formats:
-
-**Banner/Outstream/Native**:
-
-You can use the same line item for banner, outstream, and/or native creatives. If your ad slot could be filled by two or more of these formats, you must include the hb_format key with values specifying all expected formats. Select **hb_format_BIDDERCODE > is any of > video, banner, native**.
-
-![Custom targeting on format](/assets/images/ad-ops/gam-sbs/custom-targeting-format.png)
-
-{: .alert.alert-warning :}
-If you combine native with another format in a single line item, you’ll need to add creative-level targeting to designate which creatives target which format. See [Creative-level Targeting](#creative-level-targeting) below.
-
-**In-Player and Outstream Video**:
-
-Both in-player (instream) and outstream video ads supply the `hb_format_BIDDERCODE=video` key-value pair, so targeting on that key alone is not enough to choose the correct line items. If you're running both instream and outstream video ads, they will most likely be separate line items, so you will need to target outstream line items to either "Inventory Type=display" or "Inventory in (list of GAM AdUnits)".
+{: .alert.alert-info :}
+Note that in previous versions of this documentation, it was recommended to target
+to the `hb_format` key value pair. This is not necessary as GAM will take care of choosing
+the correct line item using the creative size.
 
 **Long-Form (OTT) Video**:
 
@@ -132,7 +133,7 @@ Engineers will need to include the [Adpod module](/dev-docs/modules/adpod.html) 
 
 ### Creative-level Targeting
 
-In the **Expected Creatives** section, you can add targeting that applies to creatives rather than to the entire line item. For Prebid you might want to do this if you’re going to use a single line item for multiple formats, or if you have multiple video cache locations.
+In the **Expected Creatives** section, you can add targeting that applies to creatives rather than to the entire line item. For Prebid you might want to do this if you’re going to use a single line item for multiple formats that need to be rendered differently or if you have multiple video cache locations.
 
 To set creative-level targeting, do the following:
 
@@ -151,9 +152,9 @@ You’ve now added all fields necessary for targeting Prebid line items. You can
 
 The process you use to create your creatives differs based on the media type. Follow the instructions for the appropriate media type:
 
-- [Banner/Outstream/AMP](/adops/gam-creative-banner-sbs.html)
+- [Banner/AMP/Outstream(Prebid.js))](/adops/gam-creative-banner-sbs.html)
 - [Native](/adops/gam-native.html)
-- [Video](/adops/setting-up-prebid-video-in-dfp.html)
+- [Instream/Outstream(Mobile)](/adops/setting-up-prebid-video-in-dfp.html)
 
 ## Duplicate Creative
 

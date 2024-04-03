@@ -37,7 +37,7 @@ You can work with your engineers to modify the default list. See [Restricting Da
 | hb_adid | rendering | All | The ad ID. Used by the Prebid Universal Creative (PUC) ad server creative to render the winning Prebid ad. | 123456 |
 | hb_bidder | targeting and reporting | Could be used for creative-level targeting in video scenarios; reporting for all scenarios | The bidder code. Used for logging and reporting to learn which bidder has higher fill rate/CPM. | BidderA |
 | hb_size | rendering | Banner, native, outstream. Not used for video. | The size used for resizing the iframe for the winning creative. | 300x250 |
-| hb_format | targeting and reporting | Needed only if there's a different set of line items for different media types | Used when creating a separate set of line items for banner vs video | video |
+| hb_format | targeting and reporting | Needed only for ad servers that don't support implicit size targeting or when special creatives are desired. | Optional targeting element for edge cases. | video |
 | hb_deal | targeting | All | Target private marketplace deals | 7777777 |
 | hb_uuid | rendering | Video only | Carries the cache retrieval ID for VAST video creatives | 1111-2222-3333-4444 |
 | hb_cache_id | rendering | Banner, native, outstream; mobile app only | Carries the cache retrieval ID for mobile bids | 2222-3333-4444-5555 |

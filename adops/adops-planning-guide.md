@@ -63,6 +63,28 @@ Some additional resources that might be helpful as you work through your setup i
 
 [Deals in Prebid](/adops/deals.html): You can negotiate deals with header bidding demand partners and have them compete with ad server inventory. You’ll need to create additional line items to support these deals. This document explains how to set up Prebid to make that happen.
 
+## Special Considerations
+
+### Rendering mobile outstream ads
+
+The 'outstream' format requires different ways of rendering for Prebid.js vs Mobile:
+
+- For Prebid.js web integrations, outstream ads are rendered like banners.
+- For Prebid Mobile integrations, outstream must be rendered similar to instream video.
+
+This difference has implications on the ad server setup; if not done carefully, it
+can cause the ad server to choose the wrong line item and cause the creative to
+not render properly.
+
+Prebid's recommendation is to
+consider setting up outstream adunits as slightly different sizes.
+This should not affect actual rendering, but will help make sure the ad server
+chooses the correct line item in the correct scenario. e.g. Use size "300x251v" for
+outstream ads on mobile adunits, and define the OpenRTB height and width parameters
+on the video portion of the Prebid Mobile adunit appropriately.
+
+Look for details in the ad server guides.
+
 ## Terminology
 
 Throughout this planning guide, we use the following terms to describe elements within the ad server. These terms may vary among different ad servers.

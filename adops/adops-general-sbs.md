@@ -8,7 +8,6 @@ sidebarType: 3
 ---
 
 # General Ad Server Prebid Setup
-
 {: .no_toc }
 
 * TOC
@@ -37,6 +36,16 @@ At a high level, configuring an ad server to work with Prebid involves creating 
 
 For the purposes of this discussion, we’re going to refer to the elements in your ad server that contain the details of the bid, such as the price, priority, and media format, as “line items.” Line Items live in a container that we’ll refer to as an "order". These elements may have different names in your ad server.
 
+It will be important to understand how your ad server targets line items at runtime. It's not required, but many Prebid publishers set up two
+parallel sets of line items: one for display ads and one for video ads. In this kind of setup, you'll need to consider
+how the ad server will choose between competing Prebid line items besides the price. Some ad servers filter
+eligible line items by size and some may understand the mediatype. If nothing else, you may use the `hb_format` key-value pair to help your ad server differentiate appropriately.
+
+### Inventory
+
+Most ad servers will have a step where an 'adunit' is created. For Prebid Mobile outstream, you'll want to confirm that
+the adunit will support a video size with a slightly different dimension, e.g. 300x251v vs 300x250v. See the [planning guide](/adops/adops-planning-guide.html#rendering-mobile-outstream-ads) for background on why.
+
 ### Create Advertisers and Orders
 
 Ad servers typically work in a hierarchical structure, with advertisers containing orders, which in turn contain line items. You need to have your advertisers and orders set up before you can start creating line items and creatives. The advertisers you create for Prebid will typically depend on whether you’re sending all bids or only the top price bid to the ad server.
@@ -47,6 +56,9 @@ Ad servers typically work in a hierarchical structure, with advertisers containi
 ### Create Native Template
 
 If you’re working with native inventory, you’ll most likely need to have your native template created and stored before you begin creating your line item. Follow your ad server’s instructions for setting up native creative templates.
+
+If your ad server does not support native, Prebid has options for creating templates in the adunit or in an
+external script. See the [native implementation guide](/prebid/native-implementation.html) for more detail.
 
 ### Create Keys
 
@@ -82,16 +94,10 @@ Target the price bucket key: `hb_pb_BIDDERCODE` (where BIDDERCODE is the actual 
 
 The following additional keys must be added for the corresponding formats:
 
-**Banner/Outstream/Native:**
-
-You can use the same line item for banner, outstream, and/or native creatives. If your ad slot could be filled by two or more of these formats, you should include the hb_format_BIDDERCODE key with values specifying all expected formats.
-
-{: .alert.alert-warning :}
-If you combine native with another format in a single line item, you’ll need to add creative-level targeting to designate which creatives target which format. If your ad server doesn't support creative-level targeting, you may need to break out a separate set of line items.
-
-**In-Player and Outstream Video:**
-
-Both in-player (instream) and outstream video ads receive the `hb_format_BIDDERCODE=video` key-value pair, so targeting on that key alone is not enough to choose the correct line items. If you're running both in-player and outstream video ads, they will most likely be separate line items, so you will need to target outstream line items to a “display” inventory type, or perhaps separate them by adunits.
+{: .alert.alert-info :}
+Note that in previous versions of this documentation, it was recommended to target
+to the `hb_format` key value pair. This is not necessary if your ad servr can choose
+the correct line item using the creative size.
 
 **Long-Form (OTT) Video:**
 
@@ -111,7 +117,7 @@ Engineers will need to include the [Adpod module](/dev-docs/modules/adpod.html) 
 
 ### Creative-level Targeting
 
-If your ad server supports targeting creatives within the line item, it could come in handy. For example, if you’re going to use a single line item for multiple formats, or if you have multiple video cache locations, you’d need to set additional targeting that’s specific to the creative rather than at the line item level.
+If your ad server supports targeting creatives within the line item, it could come in handy. For example, if you’re going to use a single line item for multiple formats, or if you have multiple video cache locations, you may need to set additional targeting that’s specific to the creative rather than at the line item level.
 
 ### Save the Line Item
 
@@ -127,40 +133,6 @@ In general, you can interpret the instructions for setting up creatives in Googl
 * [GAM Creative Setup: Native](/adops/gam-native.html)
 * [GAM Creative Setup: Video](/adops/setting-up-prebid-video-in-dfp.html)
 
-We recommend using the [Prebid Universal Creative](/overview/prebid-universal-creative.html) and targeting an ad unit size of 1x1.
-
-If you’re working with banner or outstream creatives, the HTML you’ll enter in the creatives will be similar to the following (utilizing whatever macro format is supported by your ad server):
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
-<script>
-  var ucTagData = {};
-  ucTagData.adServerDomain = "";
-  ucTagData.pubUrl = "%%MACRO:url%%";
-  ucTagData.adId = "%%MACRO:hb_adid_BIDDERCODE%%";
-  ucTagData.cacheHost = "%%MACRO:hb_cache_host_BIDDERCODE%%";
-  ucTagData.cachePath = "%%MACRO:hb_cache_path_BIDDERCODE%%";
-  ucTagData.uuid = "%%MACRO:hb_cache_id_BIDDERCODE%%";
-  ucTagData.mediaType = "%%MACRO:hb_format_BIDDERCODE%%";
-  ucTagData.env = "%%MACRO:hb_env%%";
-  ucTagData.size = "%%MACRO:hb_size_BIDDERCODE%%";
-  ucTagData.hbPb = "%%MACRO:hb_pb_BIDDERCODE%%";
-  try {
-    ucTag.renderAd(document, ucTagData);
-  } catch (e) {
-    console.log(e);
-  }
-</script>
-```
-
-{: .alert.alert-warning :}
-
-* Replace `%%MACRO%%` with the appropriate macro for your ad server. (Refer to your ad server’s documentation or consult with a representative for specific details regarding the proper macros and how to use them.)
-* Replace BIDDERCODE with the appropriate code for the bidder your line item is targeting. For example, if you’re targeting BidderA, the macro variable for adId might look like `ucTagData.adId = "%%PATTERN:hb_adid_BidderA%%";`.
-* If you're hosting your own Prebid Universal Creative, make sure it's version 1.15 or later, or replace `%%PATTERN:hb_format%%.js` with `creative.js`.
-
-The example above uses the jsdelvr CDN as the domain from which the creative will serve. However, you may obtain the creative from a managed service or host it yourself. You might need to edit the creative and make adjustments to your creative settings depending on the CDN you're using.
-
 ## Additional Steps
 
 The final steps in configuring Prebid on your ad server are to do the following:
@@ -173,4 +145,3 @@ The final steps in configuring Prebid on your ad server are to do the following:
 
 * [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
 * [Ad Ops and Prebid Overview](/adops/before-you-start.html)
-  

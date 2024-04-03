@@ -7,10 +7,12 @@ pid: 2
 sidebarType: 3
 ---
 
-
 # GAM Step by Step - Banner/Outstream/AMP Creatives
 
 This page walks you through the steps required to create banner and outstream creatives to attach to your Prebid line items in Google Ad Manager (GAM).
+
+{: .alert.alert-warning :}
+Outstream ads for Prebid Mobile must be set up as [video creatives](/adops/setting-up-prebid-video-in-dfp.html).
 
 {: .alert.alert-success :}
 For complete instructions on setting up Prebid line items in Google Ad Manager, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
