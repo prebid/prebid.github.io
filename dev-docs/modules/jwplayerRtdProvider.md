@@ -70,7 +70,7 @@ To use this module, you'll need to work with [JW Player](https://www.jwplayer.co
     | params.overrideContentTitle | String enum: 'always', 'whenEmpty' or 'never' | Determines when the module should update the oRTB site.content.title | Defaults to 'whenEmpty' |
     | params.overrideContentDescription | String enum: 'always', 'whenEmpty' or 'never' | Determines when the module should update the oRTB site.content.ext.description | Defaults to 'whenEmpty' |
 
-5. Include the content's media ID and/or the player's ID in the matching AdUnit's `fpd.context.data.jwTargeting` before calling `addAdUnits`:
+4. Include the content's media ID and/or the player's ID in the matching AdUnit's `fpd.context.data.jwTargeting` before calling `addAdUnits`:
 
     ```javascript
     const adUnit = {
