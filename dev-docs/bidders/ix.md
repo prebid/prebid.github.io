@@ -397,25 +397,25 @@ pbjs.que.push(function() {
 });
 ```
 
-4. If you are using Prebid.js version 8.37.0 or later, you must complete the following steps to make your ad units eligible for Protected Audience API demand:<br />
+4. If you are using Prebid.js version 8.37.0 or later, you must complete the following steps to make your ad units eligible for Protected Audience API demand:
     * In the `pbjs.setConfig().paapi` field, set the `defaultForSlots` parameter to `1`:
 
- ```javascript
- pbjs.que.push(function() {
+     ```javascript
+     pbjs.que.push(function() {
 	pbjs.setConfig({
 		paapi: {
 			enabled: true,
 			defaultForSlots: 1
 			bidders: ['ix', /* any other bidders */],
-		});
-});
- ```
+ 		});
+      });
+     ```
 
-    * In the `paapi.gpt.autoconfig` field, set `autoconfig` to `false`. This step is important because, by default, the `fledgeForGpt` module expects the Google Publisher Tag (GPT) ad units to be loaded before the Protected Audience configuration is added to the ad unit. Setting `autoconfig` to `false` will avoid any race conditions resulting from asynchronous libraries being loaded out of order, which would prevent the ad unit from being properly configured for Protected Audience API.</br>
-**Note:** The `fledgeForGpt.autoconfig` property is also backward compatible and can be used in place of the `paapi.gpt.autoconfig` property. However, Index recommends that you use the `paapi.gpt.autoconfig` property.</br>
+    * In the `paapi.gpt.autoconfig` field, set `autoconfig` to `false`. This step is important because, by default, the `fledgeForGpt` module expects the Google Publisher Tag (GPT) ad units to be loaded before the Protected Audience configuration is added to the ad unit. Setting `autoconfig` to `false` will avoid any race conditions resulting from asynchronous libraries being loaded out of order, which would prevent the ad unit from being properly configured for Protected Audience API.<br />
+**Note:** The `fledgeForGpt.autoconfig` property is also backward compatible and can be used in place of the `paapi.gpt.autoconfig` property. However, Index recommends that you use the `paapi.gpt.autoconfig` property.<br />
 
-```javascript
- pbjs.que.push(function() {
+     ```javascript
+     pbjs.que.push(function() {
 	pbjs.setConfig({
 		paapi: {
 			enabled: true,
@@ -425,21 +425,21 @@ pbjs.que.push(function() {
 			}, 
 			bidders: ['ix', /* any other bidders */],  
 		});  
-});
- ```
+      });
+     ```
 
     * In the `pbjs.requestBids.bidsBackHandler` function, call the `pbjs.setPAAPIConfigForGPT()` function as follows:
 
- ```javascript
- pbjs.requestBids({, ,  
-  // ... 
-  bidsBackHandler: function(bids, timedOut, auctionId) {  
-     pbjs.setPAAPIConfigForGPT(); 
-     pbjs.setTargetingForGPTAsync(); 
-     // ... 
-  } 
-}) 
- ```
+     ```javascript
+      pbjs.requestBids({, ,  
+       // ... 
+       bidsBackHandler: function(bids, timedOut, auctionId) {  
+         pbjs.setPAAPIConfigForGPT(); 
+         pbjs.setTargetingForGPTAsync(); 
+        // ... 
+        } 
+      }) 
+     ```
 
 **Note:** When calling the pbjs.setPAAPIConfigForGPT(); function, make sure that you check the following:</br>
 a. The function must be called in the `bidsBackHandler` each time new bids are requested (for example when refreshing `adSlots`). This is important because, when `autoconfig` is disabled, the `auctionConfig` needs to be associated with a GPT ad unit manually by calling `pbjs.setPAAPIConfigForGPT()`.</br>
