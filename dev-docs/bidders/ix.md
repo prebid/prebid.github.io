@@ -370,44 +370,44 @@ Follow these steps to configure your Prebid.js to specify that your ad slots are
 2. Build the `fledgeForGpt` module in your Prebid.js configuration by adding `fledgeForGpt` to the list of modules that you are already using. For more information about the module, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation.
 3. If you are using a Prebid.js version that is between 8.18.0 and 8.36.0, you must configure your ad units to make them eligible for Protected Audience API demand. You can do this in the global-level configuration, bidder level, or ad-unit level. For more information about the configurations, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation. Index recommends that you do this in the global-level configuration by using the `defaultForSlots` parameter with a value of `1`.<br />
 
-The following shows an example of the configuration done at the global level:
+  The following shows an example of the configuration done at the global level:
 
-```javascript
-pbjs.que.push(function() {
-  pbjs.setConfig({
-    fledgeForGpt: {
+  ```javascript
+  pbjs.que.push(function() {
+    pbjs.setConfig({
+      fledgeForGpt: {
       enabled: true,
       defaultForSlots: 1
-    }
+       }
+     });
   });
-});
-```
+  ```
 
-**Note:** If you are using the `fledgeForGpt.bidders[]`, make sure that you include `ix` to the list of bidders as follows:
+  **Note:** If you are using the `fledgeForGpt.bidders[]`, make sure that you include `ix` to the list of bidders as follows:
 
-```javascript
-pbjs.que.push(function() { 
-  pbjs.setConfig({
-    fledgeForGpt: { 
-    enabled: true,
-    bidders: ['ix', /* any other bidders */],
-    defaultForSlots: 1
-      }
-   });
-});
-```
+  ```javascript
+  pbjs.que.push(function() { 
+    pbjs.setConfig({
+      fledgeForGpt: { 
+      enabled: true,
+      bidders: ['ix', /* any other bidders */],
+      defaultForSlots: 1
+        }
+     });
+  });
+  ```
 
 4. If you are using Prebid.js version 8.37.0 or later, you must complete the following steps to make your ad units eligible for Protected Audience API demand:
     * In the `pbjs.setConfig().paapi` field, set the `defaultForSlots` parameter to `1`:
 
      ```javascript
      pbjs.que.push(function() {
-	pbjs.setConfig({
-		paapi: {
-			enabled: true,
-			defaultForSlots: 1
-			bidders: ['ix', /* any other bidders */],
- 		});
+       pbjs.setConfig({
+         paapi: {
+          enabled: true,
+          defaultForSlots: 1
+          bidders: ['ix', /* any other bidders */],
+          });
       });
      ```
 
@@ -416,16 +416,16 @@ pbjs.que.push(function() {
 
      ```javascript
      pbjs.que.push(function() {
-	pbjs.setConfig({
-		paapi: {
-			enabled: true,
-			defaultForSlots: 1  
-			gpt: { 
-				autoconfig: false 
-			}, 
-			bidders: ['ix', /* any other bidders */],  
-		});  
-      });
+       pbjs.setConfig({
+         paapi: {
+           enabled: true,
+           defaultForSlots: 1
+           gpt: {
+              autoconfig: false
+               },
+           bidders: ['ix', /* any other bidders */],
+          });
+        });
      ```
 
     * In the `pbjs.requestBids.bidsBackHandler` function, call the `pbjs.setPAAPIConfigForGPT()` function as follows:
