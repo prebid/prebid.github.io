@@ -1384,7 +1384,7 @@ If the currency function is unable to derive the correct cpm in any of the scena
 | <img alt="Pubmatic logo" src="/assets/images/partners/leader/pubmatic.png" style="height:50px;" alt="pubmatic"> | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
 | <img alt="Assertive Yield logo" src="/assets/images/partners/leader/AssertiveYield_logo.png" alt="assertive_yield"> | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
 | <img alt="PubX logo" src="/assets/images/partners/leader/pubx.png" style="height:50px;" alt="pubx.ai"> | [hello@pubx.ai](mailto:hello@pubx.ai) | pubX is an ML-led, dynamic flooring solution covering the full programmatic revenue spectrum (the header + GAM). pubX integrates with your current set-up, so no need to replace any part of the current stack. Our team is solely focussed on delivering the best flooring technology to publishers. |
-| <img alt="Mile logo" src="/assets/images/partners/leader/mile.png" style="height:25px" alt="mile.tech" alt="mile"> | [hello@mile.tech](mailto:hello@mile.tech) | Boost your Prebid stack with Mile’s AI-powered dynamic flooring module that delivers an average revenue uplift of 22%. Sign-up for a free trial. |
+| <img alt="Mile logo" src="/assets/images/partners/leader/mile.png" style="height:50px" alt="mile.tech" alt="mile"> | [hello@mile.tech](mailto:hello@mile.tech) | Boost your Prebid stack with Mile’s AI-powered dynamic flooring module that delivers an average revenue uplift of 22%. Sign-up for a free trial. |
 
 ## Further Reading
 
