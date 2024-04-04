@@ -119,9 +119,9 @@ the correct line item using the creative size.
 
 For long-form video the custom key **hb_pb_cat_dur_BIDDERCODE** is required. The value of this key breaks down like this:
 
-- *_pb* represents the price bucket. This is the currency amount entered in the **Rate** field of the **Settings** section.
-- *_cat* indicates the competitive exclusion industry code. (For engineering information, refer to the [Category Translation module](/dev-docs/modules/categoryTranslation.html)). This is the value entered in the **Label** field for the purpose of competitive exclusion. Having this value in the target helps GAM choose the line items that declare the competitive exclusion label. If you are not using competitive exclusion, you can omit this portion of the value.
-- *_dur* is the length of the video in seconds. This is the value listed in the **Max duration** field in the **Creative forecasting defaults** section. Having this value in the target helps GAM choose the line items whose creatives are set up with the right duration.
+- `_pb` represents the price bucket. This is the currency amount entered in the **Rate** field of the **Settings** section.
+- `_cat` indicates the competitive exclusion industry code. (For engineering information, refer to the [Category Translation module](/dev-docs/modules/categoryTranslation.html)). This is the value entered in the **Label** field for the purpose of competitive exclusion. Having this value in the target helps GAM choose the line items that declare the competitive exclusion label. If you are not using competitive exclusion, you can omit this portion of the value.
+- `_dur` is the length of the video in seconds. This is the value listed in the **Max duration** field in the **Creative forecasting defaults** section. Having this value in the target helps GAM choose the line items whose creatives are set up with the right duration.
 
 For example, for a line item with a $10.00 CPM entered in the Rate field, a Label of “news”, and 30s entered in the Duration field, you would enter the following in the Custom key-value field: `hb_pb_cat_dur_BIDDERCODE = 10.00_news_30s`. If you’re not using competitive exclusion, you can have a value such as this: `hb_pb_cat_dur_BIDDERCODE = 10.00_30s`.
 
