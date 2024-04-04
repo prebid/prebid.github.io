@@ -20,7 +20,8 @@ A very minimal RTB Banner example that shows how to use the EXADS adapter.
 The most important attributes are: **endpoint**, **fid** and **zoneId**. You can get them after configuring the zones.
 For more details about ad formats and parameters, read it in the next sections.
 
-```
+```js
+
 adUnits = [
   {
     code: 'postbid_iframe', // the frame where to render the creative
@@ -52,14 +53,17 @@ adUnits = [
 ```
 
 ### Configuration
-##### General settings
-Use `setConfig` to instruct Prebid.js to initilize the exadsBidAdapter, as specified below. 
+
+#### General settings
+
+Use `setConfig` to instruct Prebid.js to initilize the exadsBidAdapter, as specified below.
+
 * Set "debug" as true if you need to read logs;
 * Set "gdprApplies" as true if you need to pass gdpr consent string;
 * The tcString is the iabtcf consent string for gdpr;
 * Uncomment the cache instruction if you need to configure a cache server (e.g. for instream video)
 
-```
+```js
 pbjs.setConfig({
   debug: false,
   //cache: { url: "https://prebid.adnxs.com/pbc/v1/cache" },
@@ -80,10 +84,12 @@ pbjs.setConfig({
 ```
 
 ##### Video settings
+
 If you will work with video stream ad formats you could choose to use the prebidJS video module to render the video using  already supported video players as videoJS.
 Add the `video` config if you need to render videos using the video module.
-For more info navigate to https://docs.prebid.org/prebid-video/video-module.html.
-```
+For more info navigate to <https://docs.prebid.org/prebid-video/video-module.html>.
+
+```js
 pbjs.setConfig({
   video: {
     providers: [
@@ -139,11 +145,11 @@ pbjs.setConfig({
 |---------------|----------|-----------------------|-----------|-----------|
 | `dsarequired`      | optional |  flag to indicate if DSA information should be made available          | `3`    | `integer` |
 | `pubrender`      | optional | flag to indicate if the publisher will render the DSA Transparency info          | `0`    | `integer` |
-| `datatopub`      | optional | ndependent of pubrender, the publisher may need the transparency data for audit purposes           | `2`    | `integer` |
+| `datatopub`      | optional | independent of pubrender, the publisher may need the transparency data for audit purposes           | `2`    | `integer` |
 
 ##### RTB Banner 2.4 (Image)
 
-```javascript
+```js
 adUnits = [
   {
     code: 'postbid_iframe', // the frame where to render the creative
@@ -187,7 +193,7 @@ adUnits = [
 
 ##### RTB Banner 2.4 (Video)
 
-```javascript
+```js
 adUnits = [
   {
     code: 'postbid_iframe', // the frame where to render the creative
@@ -268,9 +274,9 @@ adUnits = [
 |---------------|----------|-----------------------|-----------|-----------|
 | `dsarequired`      | optional |  flag to indicate if DSA information should be made available          | `3`    | `integer` |
 | `pubrender`      | optional | flag to indicate if the publisher will render the DSA Transparency info          | `0`    | `integer` |
-| `datatopub`      | optional | ndependent of pubrender, the publisher may need the transparency data for audit purposes           | `2`    | `integer` |
+| `datatopub`      | optional | independent of pubrender, the publisher may need the transparency data for audit purposes           | `2`    | `integer` |
 
-```javascript
+```js
 adUnits = [
   {
     code: 'postbid_iframe',
@@ -345,32 +351,32 @@ adUnits = [
 ##### Assets
 
 * **assets (title)**
-    * **id** - unique asset ID, assigned by exchange. Typically a counter for the array (integer): 
-        * 1 - image asset ID
+  * **id** - unique asset ID, assigned by exchange. Typically a counter for the array (integer):
+        *1 - image asset ID
         * 2 - title asset ID
         * 3 - description asset ID
-    * **required** - set to 1 if asset is required or 0 if asset is optional (integer)
-    * **title**
+  * **required** - set to 1 if asset is required or 0 if asset is optional (integer)
+  * **title**
         * len (required) - maximum length of the text in the title element (integer)
 * **assets (data)**
-    * **id** - unique asset ID, assigned by exchange. Typically a counter for the array (integer):
-        * 1 - image asset ID
+  * **id** - unique asset ID, assigned by exchange. Typically a counter for the array (integer):
+        *1 - image asset ID
         * 2 - title asset ID
         * 3 - description asset ID
     * **data**
-        * **type** - type ID of the element supported by the publisher (integer). We support: 
-            * 1 - sponsored - sponsored By message where response should contain the brand name of the sponsor
+      * **type** - type ID of the element supported by the publisher (integer). We support:
+            *1 - sponsored - sponsored By message where response should contain the brand name of the sponsor
             * 2 - desc - descriptive text associated with the product or service being advertised
         * **len** - maximum length of the text in the element’s response (integer)
 * **assets (img)**
-    * **id** - unique asset ID, assigned by exchange. Typically a counter for the array (integer): 
-        * 1 - image asset ID
+  * **id** - unique asset ID, assigned by exchange. Typically a counter for the array (integer):
+        *1 - image asset ID
         * 2 - title asset ID
         * 3 - description asset ID
     * **required** - set to 1 if asset is required or 0 if asset is optional (integer)
     * **img**
-        * **type** - type ID of the image element supported by the publisher. We support: 
-            * 1 - icon image (integer)
+      * **type** - type ID of the image element supported by the publisher. We support:
+            *1 - icon image (integer)
             * 3 - large image preview for the ad (integer)
         * **w** - width of the image in pixels, optional (integer)
         * **h** - height of the image in pixels, optional (integer)
@@ -382,9 +388,9 @@ adUnits = [
 |---------------|----------|-----------------------|-----------|-----------|
 | `dsarequired`      | optional |  flag to indicate if DSA information should be made available          | `3`    | `integer` |
 | `pubrender`      | optional | flag to indicate if the publisher will render the DSA Transparency info          | `0`    | `integer` |
-| `datatopub`      | optional | ndependent of pubrender, the publisher may need the transparency data for audit purposes           | `2`    | `integer` |
+| `datatopub`      | optional | independent of pubrender, the publisher may need the transparency data for audit purposes           | `2`    | `integer` |
 
-```javascript
+```js
 adUnits = [
   {
     code: 'postbid_iframe',
@@ -454,9 +460,11 @@ adUnits = [
 ];
 ```
 
-# DSA Transparency
+### DSA Transparency
+
 All DSA information, returned by the ad server, can be found into the **meta** tag of the response. As:
-```
+
+```js
 "meta": {
     "dsa": {
         "behalf": "...",
@@ -472,4 +480,5 @@ All DSA information, returned by the ad server, can be found into the **meta** t
     }
 }
 ```
-For more information navigate to https://docs.prebid.org/dev-docs/bidder-adaptor.html.
+
+For more information navigate to <https://docs.prebid.org/dev-docs/bidder-adaptor.html>.
