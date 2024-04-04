@@ -6,11 +6,12 @@ pbjs: true
 biddercode: pubgenius
 media_types: banner
 floors_supported: true
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 schain_supported: true
 coppa_supported: true
 userIds: unifiedId
+sidebarType: 1
 ---
 
 ### Bid Params

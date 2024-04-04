@@ -22,32 +22,35 @@ The example request below returns a set of URLs to enable cookie syncs across bi
 must supply a JSON object to define the list of bidders that may need to be synced.
 
 POST request:
-```
+
+```json
 {
-    "bidders": ["bidderA", "bidderB"],
-    "gdpr": 1,
-    "gdpr_consent": "BONV8oqONXwgmADACHENAO7pqzAAppY"
+  "bidders": ["bidderA", "bidderB"],
+  "gdpr": 1,
+  "gdpr_consent": "BONV8oqONXwgmADACHENAO7pqzAAppY"
 }
 ```
 
 Response:
-```
+
+```json
 {
-    "status": "ok",
-    "bidder_status": [
-        {
-            "bidder": "bidderA",
-            "usersync": {
-                "url": "someurl.com",
-                "type": "redirect",
-                "supportCORS": false
-            }
-        }
-    ]
+  "status": "ok",
+  "bidder_status": [
+    {
+      "bidder": "bidderA",
+        "usersync": {
+          "url": "someurl.com",
+          "type": "redirect",
+          "supportCORS": false
+      }
+    }
+  ]
 }
 ```
 
 The client code is responsible for taking the `url` response parameter and invoking it in the appropriate way. For example:
+
 - if `type` is "redirect", place an `img` tag in the page
 - if `type` is "iframe", place an `iframe` tag in the page
 
@@ -56,16 +59,20 @@ The client code is responsible for taking the `url` response parameter and invok
 {: .table .table-bordered .table-striped }
 | Name         | Scope              | Description                                                                                                                 | Example                                                                             | Type             |
 |-------------|---------|--------------------|-----------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------|
-| bidders | optional | array of bid adapters in the page or those the publisher wishes to sync with | ["bidderA"] | array of strings |
-| gdpr | optional | flag indicating whether the request is in-scope for GDPR processing | 1 | 0 or 1 |
-| gdpr_consent | optional | GDPR consent string from the CMP | | string |
-| limit | optional | number indicating the max number of sync URLs to return | 5 | integer |
-| coopSync | optional | (PBS-Java only) Cooperative syncing is a way for publishers to help each other by allowing PBS to sync bidders beyond those specified by the `bidders` argument. See below for details. The default depends on PBS host company settings. | true | boolean |
-| filterSettings | optional | object defining which types of syncs are allowed for which bidders. Modeled after the similar Prebid.js feature. | | object |
-| filterSettings.iframe | optional | define the filter settings for iframe syncs | | object |
-| filterSettings.image | optional | define the filter settings for redirect syncs | | object |
-| filterSettings. iframe/image.bidders | optional | define which bidders are in scope for this setting. Can be "*" | ["bidderA"] | array of strings or "*" |
-| filterSettings. iframe/image.filter | optional | define whether to include or exclude the named bidders for this entry. May be "include" or "exclude". Defaults to "include" | "exclude" | string |
+| bidders | optional | Array of bid adapters on the page or those the publisher wishes to sync. | ["bidderA"] | array of strings |
+| gdpr | optional | Flag indicating whether the request is in-scope for GDPR processing. | 1 | 0 or 1 |
+| gdpr_consent | optional | GDPR consent string from the CMP. | | string |
+| gpp          | optional | Global Privacy Platform String. | DBABTA~1--- | string |
+| gpp_sid          | optional | GPP Section ID . | "7" | string |
+| us_privacy | optional | US Privacy consent string from the CMP. | 1NYN | string |
+| limit | optional | Max number of sync URLs to return. | 5 | integer |
+| coopSync | optional | Cooperative syncing is a way for publishers to help each other by allowing PBS to sync bidders beyond those specified by the `bidders` argument. See below for details. The default depends on PBS host company settings. | true | boolean |
+| account | optional | Prebid Server specific account ID. | | string
+| filterSettings | optional | Object defining which types of syncs are allowed for which bidders. Modeled after the similar Prebid.js feature. | | object |
+| filterSettings.iframe | optional | Defines the filter settings for iframe syncs. | | object |
+| filterSettings.image | optional | Defines the filter settings for redirect syncs. | | object |
+| filterSettings. iframe/image.bidders | optional | Defines which bidders are in scope for this setting. Can be "*" to include all bidders. | ["bidderA"] | array of strings or "*" |
+| filterSettings. iframe/image.filter | optional | Defines whether to include or exclude the named bidders for this entry. May be "include" or "exclude", Defaults to "include". | "include" | string |
 
 Here's how PBS determines which bidders to sync:
 
@@ -85,7 +92,6 @@ Here's how PBS determines which bidders to sync:
 If `gdpr` is  omitted, callers are still encouraged to send `gdpr_consent` if they have it.
 Depending on how the Prebid Server host company has configured their servers, they may or may not require it for cookie syncs.
 
-
 ### FilterSettings
 
 This is a flexible setting based on the Prebid.js feature of the same name
@@ -93,28 +99,31 @@ that allows publishers control over which bidders are allowed to drop iframes
 vs images.
 
 It could be specified in a detailed way like this:
-```
-        filterSettings: {
-            iframe: {
-                bidders: ['def'],  // only this bidder is excluded from syncing iframe pixels, all other bidders are allowed
-                filter: 'exclude'
-            },
-            image: {
-                bidders: ['abc', 'def', 'xyz'],  //only these 3 bidders are allowed to sync image pixels
-                filter: 'include'
-            }
-        },
+
+```json
+"filterSettings": {
+  "iframe": {
+    "bidders": ["bidderA"], // only this bidder is excluded from syncing iframe pixels, all other bidders are allowed
+      "filter": "exclude"
+  },
+  "image": {
+    "bidders": ["bidderB", "bidderC"], //only these 2 bidders are allowed to sync image pixels
+    "filter": "include"
+  }
+}
 ```
 
 But the main use case for Prebid Server is what [load-cookie.html](/dev-docs/show-prebid-ads-on-amp-pages.html#user-sync) does in AMP, which is to disallow iframes:
-```
-        filterSettings: {
-            iframe: {
-                bidders: '*',
-                filter: 'exclude'
-            }
-        },
+
+```json
+"filterSettings": {
+  "iframe": {
+    "bidders": "*",
+    "filter": "exclude"
+  }
+}
 ```
 
 ## Related Reading
+
 - [Cookie Sync developer docs](/prebid-server/developers/pbs-cookie-sync.html)

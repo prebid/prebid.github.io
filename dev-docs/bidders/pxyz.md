@@ -2,11 +2,13 @@
 layout: bidder
 title: Playground XYZ
 description: Prebid Playground XYZ Bidder Adapter
-gdpr_supported: true
+gvl_id: 490
+tcfeu_supported: true
 usp_supported: true
 pbjs: true
 biddercode: pxyz
 prevBiddercode: playgroundxyz
+sidebarType: 1
 ---
 
 ### Bid Params

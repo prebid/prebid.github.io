@@ -38,7 +38,7 @@ ad server call, Prebid Server shaves off a safety buffer and responds to the cli
 configurable values (`auction.timeout-adjustment-ms` and `auction.cache.expected-request-time-ms`), which can be expected to shave 30-100ms off of `tmax`. For example, if tmax=1000 and the Prebid Server host company has 40ms of safety margin configured,
 bidders will actually timeout at 960ms.
 
-### Prebid SDK Timeouts
+## Prebid SDK Timeouts
 
 The SDK `setTimeoutMillis()` function is a "failsafe" timeout on the app side.
 
@@ -47,14 +47,14 @@ The Prebid Server timeout value comes from `tmax` in the top level stored reques
 There is no "Timeout Buffer" in the SDK scenario, but Prebid Server will shave
 off the Timeout Adjustment.
 
-### AMP Timeouts
+## AMP Timeouts
 
 AMP pages may pass a timeout attribute on the query string. This value will override the default that's set in the stored request.
 
 There is no "Timeout Buffer" in the AMP scenario, but Prebid Server will shave
 off the Timeout Adjustment.
 
-## Related Resources
+# Related Resources
 
 - [Prebid.js timeoutBuffer](/dev-docs/publisher-api-reference/setConfig.html#setConfig-timeoutBuffer)
 - [FAQ: What should I set my timeouts to?](/dev-docs/faq.html#what-should-my-timeouts-be)

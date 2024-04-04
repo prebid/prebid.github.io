@@ -6,6 +6,7 @@ pbjs: true
 biddercode: go2net
 aliasCode: admixer
 media_types: video
+sidebarType: 1
 ---
 
 ### bid params

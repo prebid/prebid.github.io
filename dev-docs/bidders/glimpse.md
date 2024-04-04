@@ -4,37 +4,42 @@ title: Glimpse Protocol
 description: Glimpse Protocol Bid Adapter
 biddercode: glimpse
 pbjs: true
-gdpr_supported: true
+tcfeu_supported: true
+usp_supported: true
 deals_supported: true
 media_types: banner
 gvl_id: 1012
+sidebarType: 1
 ---
+
+{: .alert.alert-warning :}
+glimpse is probably a defunct bidder, as the glimpseportal.io domain is no longer active.
 
 ## Overview
 
-```
+```text
 Module Name: Glimpse Protocol Bid Adapter
 Module Type: Bidder Adapter
-Maintainer: publisher@glimpseprotocol.io
+Maintainer: support@glimpseportal.io
 ```
 
 ## Description
 
-This module connects publishers to Glimpse Protocol's demand sources via Prebid.js. Our innovative marketplace protects consumer privacy while allowing precise targeting.
+Glimpse protects consumer privacy while allowing precise targeting. This module connects publishers
+to Glimpse Protocol's demand sources via Prebid.js.
 
 ## Supported Media Types
 
-| Type     | Sizes                                     |
+{: .table .table-bordered .table-striped }
+| Type | Sizes |
 | -------- | ----------------------------------------- |
 | `Banner` | 300x250, 300x600, 320x50, 728x90, 970x250 |
 
 ## Setup
 
-This section shows how to configure your Prebid.js integration to work with the Glimpse module.
-
 ### Prerequisites
 
-Before you start to configure Glimpse, you will need to build a `prebid.js` file with the Glimpse module included, and include both `gpt.js` and `prebid.js` in the `head` of each page with supply. An example of a typical pair of script tags might be:
+Before you start, you will need to build a `prebid.js` file with the Glimpse module included, and include both `gpt.js` and `prebid.js` in the `head` of each page with supply. An example of a typical pair of script tags might be:
 
 ```html
 <script
@@ -45,29 +50,16 @@ Before you start to configure Glimpse, you will need to build a `prebid.js` file
 <script async src="https://<PUBLISHER_DOMAIN>/prebid.js"></script>
 ```
 
-### Publisher Registration
-
-Coming soon.
-
-### Domain Registration
-
-Coming soon.
-
-### Ad Unit Registration
-
-Coming soon.
-
 ## Configuration
 
 ### Bid Requests
 
-Our adapter captures the following values in the `params` block of each bid request:
+Our adapter expects the following values in the `params` block of each bid request:
 
-| Name          | Scope    | Type                | Description                                                                                                                   | Example                |
-| ------------- | -------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `placementId` | Required | string              | A unique identifier associated with a publisher and ad unit, provided by the Glimpse Publisher Portal when registering a unit | 'glimpse-placement-id' |
-| `demand`      | Optional | string              | Target demand source (defaults to 'glimpse')                                                                                  | 'xandr'                |
-| `keywords`    | Optional | Record<string, any> | Audience targeting data (applies to the single ad unit)                                                                       | { sticky: true }       |
+{: .table .table-bordered .table-striped }
+| Name | Scope | Type | Description | Example |
+| ----- | -------- | ------ | --------------------------------------------------------------------------------------------------- | ---------------------- |
+| `pid` | Required | string | A unique identifier representing an ad unit. It is provided by Glimpse when registering an ad unit. | 'glimpse-placement-id' |
 
 #### Example
 
@@ -82,11 +74,7 @@ const units = [
       {
         bidder: "glimpse",
         params: {
-          placementId: "glimpse-placement-id",
-          demand: "glimpse",
-          keywords: {
-            sticky: true,
-          },
+          pid: "glimpse-placement-id",
         },
       },
     ],
@@ -96,43 +84,47 @@ const units = [
 
 ### First Party Data
 
-Our adapter captures site and user level data that can be passed to all units using the `ortb2` block, as described [here](https://docs.prebid.org/features/firstPartyData.html).
+Our adapter works with first party data providers as described [here](https://docs.prebid.org/features/firstPartyData.html). In this example we add Permutive data to our bidder request using [setBidderConfig](https://docs.prebid.org/features/firstPartyData.html#supplying-bidder-specific-data).
 
 #### Example
 
 ```javascript
 pbjs.que.push(() => {
-  pbjs.setConfig({
-    ortb2: {
-      site: {
-        keywords: "sports, basketball",
-        ext: {
-          data: {
-            title: "The Premier League",
+  pbjs.setBidderConfig({
+    bidders: ["glimpse"],
+    config: {
+      ortb2: {
+        site: {
+          keywords: "business,finance,crypto",
+          ext: {
+            data: {
+              permutive: {
+                pvc: JSON.parse(localStorage.getItem("permutive-pvc")) ?? {},
+              },
+            },
+          },
+        },
+        user: {
+          ext: {
+            data: {
+              permutive: {
+                keywords: JSON.parse(localStorage.getItem("_psegs")) ?? [],
+                enrichers:
+                  JSON.parse(
+                    localStorage.getItem("permutive-data-enrichers")
+                  ) ?? {},
+              },
+            },
           },
         },
       },
-      user: {
-        keywords: "food, takeaway",
-        ext: {
-          data: {
-            firstVisit: true,
-          },
-        },
-      },
-    }
+    },
   })
-
-  ...
 })
 ```
 
 ## FAQs
 
-### Can I test my setup without a Publisher Portal Account?
-
-Yes, to test your setup, you can trigger Glimpse to respond with randomly-generated bids for your correctly-configured units by setting `demand: 'demo'` in the `params` of each unit.
-
 ### Can you provide additional support?
 
-Of course! You can check the Glimpse Prebid Adapter documentation, [here](https://docs.glimpseportal.io/en/latest/), or reach out to us at [publisher@glimpseprotocol.io](mailto:publisher@glimpseprotocol.io).
+Of course! You can check the Glimpse Prebid Adapter documentation or reach out to us at <support@glimpseportal.io>.

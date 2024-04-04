@@ -6,10 +6,12 @@ biddercode: contentexchange
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-gdpr_supported: true
+gvl_id: 864
+tcfeu_supported: true
 pbjs: true
 pbs: false
 pbs_app_supported: false
+sidebarType: 1
 ---
 
 ### Prebid.JS Bid Params
