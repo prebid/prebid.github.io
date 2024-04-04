@@ -96,7 +96,7 @@ The following additional keys must be added for the corresponding formats:
 
 {: .alert.alert-info :}
 Note that in previous versions of this documentation, it was recommended to target
-to the `hb_format` key value pair. This is not necessary if your ad servr can choose
+to the `hb_format` key value pair. This is not necessary if your ad server can choose
 the correct line item using the creative size.
 
 **Long-Form (OTT) Video:**
