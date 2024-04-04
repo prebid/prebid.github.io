@@ -28,4 +28,5 @@ sidebarType: 1
 | Name        | Scope    | Description          | Example            | Type      |
 |-------------|----------|----------------------|--------------------|-----------|
 | `adUnitId`  | required | ID of the Ad Unit    | `8ao`              | `string`  |
+| `accountId` | optional | Your identifier for the account (Prebid Server only) | `12345` | `string`  |
 | `url`       | optional | URL from the Page    | `example.tld`      | `string`  |
