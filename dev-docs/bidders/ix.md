@@ -427,9 +427,9 @@ Follow these steps to configure your Prebid.js to specify that your ad slots are
         });
      ```
 
-    * In the `pbjs.requestBids.bidsBackHandler` function, call the `pbjs.setPAAPIConfigForGPT()` function as follows:</br>
-**Note:** When calling the `pbjs.setPAAPIConfigForGPT();` function, make sure that you check the following:</br>
-       * The function must be called in the `bidsBackHandler` each time new bids are requested (for example when refreshing `adSlots`). This is important because, when `autoconfig` is disabled, the `auctionConfig` needs to be associated with a GPT ad unit manually by calling `pbjs.setPAAPIConfigForGPT()`.</br>
+    * In the `pbjs.requestBids.bidsBackHandler` function, call the `pbjs.setPAAPIConfigForGPT()` function as follows:<br />
+**Note:** When calling the `pbjs.setPAAPIConfigForGPT();` function, make sure that you check the following:
+       * The function must be called in the `bidsBackHandler` each time new bids are requested (for example when refreshing `adSlots`). This is important because, when `autoconfig` is disabled, the `auctionConfig` needs to be associated with a GPT ad unit manually by calling `pbjs.setPAAPIConfigForGPT()`.
        * The function must be called before the `pbjs.setTargetingForGPTAsync()` function. This is important because the Protected Audience configuration needs to be associated with a GPT ad unit before the Google Ad Manager call is executed.
 
      ```javascript
