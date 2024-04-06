@@ -297,7 +297,7 @@ The attributes in the Jekyll 'front matter' drive various behaviors and dynamic 
 | filename | no | bid adapter that actually implements this adapter | Used when a bid adapter is created with a filename that is not the bidder code. This completely overrides what is passed into the gulp build command, so needs to be fully specified. e.g. bidderaBidAdapter |
 | prevBiddercode | no | secondary bidder code | Adds a note about an alternate code that may have been used. |
 | pbjs_version_notes | no | string | Displays on the download page |
-| sidebarType | yes | `1` | Used for navigation. This opens the Prebid.js portion of the menu so the sidebar can display the Reference/Prebid Params menu option when a bidder page is open.
+| sidebarType | yes | `1` | Used for navigation. This opens the Prebid.js portion of the menu so the sidebar can display the Reference/Prebid Params menu option when a bidder page is open. |
 | ANYTHING ELSE | no | string | There are many pieces of metadata (e.g. GDPR support, user IDs supported) that bid adapters can disclose. They're displayed on the bidder's parameter page. |
 
 The bidderCode, aliasCode, and prevBiddercode parameters bear some description.
