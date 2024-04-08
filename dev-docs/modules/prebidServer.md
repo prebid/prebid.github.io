@@ -24,6 +24,17 @@ A request for the set of auctions is sent to Prebid Server, which performs
 all the auctions server-to-server (S2S), responding in time for Prebid.js to
 send the results to the ad server. This lightens the performance load on the user's device.
 
+### Prebid Server Adapter Video Overview
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/922780542?h=f7d8e81488&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Server-Side Header Bidding with Prebid.js"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+Notes:
+
+- [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html)
+- [Prebid Managed Services](https://prebid.org/managed-services/)
+- [Header Bidding with Prebid](/overview/intro.html#header-bidding-with-prebid)
+- [Transcript of this video overview](/dev-docs/pbsBidAdapter-video-overview.html)
+
 ## Configuration
 
 Here's an example config enabling the AppNexus Prebid Server:
