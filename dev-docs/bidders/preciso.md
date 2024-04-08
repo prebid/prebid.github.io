@@ -17,52 +17,21 @@ schain_supported: true
 userIds: sharedId
 deals_supported: false
 coppa_supported: true
-multiformat_supported: false
+multiformat_supported: will-not-bid
 ortb_blocking_supported: true
 sidebarType: 1
 ---
 
 ### Modules
 
-SharedID: We need you to include SharedID module,which is used to get prebid user commonid.It can better differentiating users to bid on ads.
+SharedID: We need you to include the [SharedID module](/dev-docs/modules/userid-submodules/sharedid.html) in order to bid effectively on your inventory.
 
-Example configuration:
 
-``````javascript
-
-pbjs.setConfig({
-        userSync: {
-          userIds: [{
-            name: 'sharedId',
-            storage: {
-              name: '_sharedid',
-              type: 'cookie',
-              expires: 365
-            }
-          }],
-          filterSettings: {
-            iframe: {
-              bidders: ['preciso'],
-              filter: 'include'
-            },
-            image: {
-              bidders: ['preciso'],
-              filter: 'include'
-            }
-          }
-        },enableTIDs: true
-      });
-
-``````
 
 ### Registration
 
 The preciso Bidding adapter requires setup before beginning. Please contact us at [tech@preciso.net]
 
-### Note
-
-- Supports `display` format.
-- Uses `OpenRTB` standard.
 
 #### OpenRTB Parameters
 The following table contains currently supported parameters we parse.
