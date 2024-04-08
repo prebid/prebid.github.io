@@ -26,12 +26,9 @@ sidebarType: 1
 
 SharedID: We need you to include the [SharedID module](/dev-docs/modules/userid-submodules/sharedid.html) in order to bid effectively on your inventory.
 
-
-
 ### Registration
 
 The preciso Bidding adapter requires setup before beginning. Please contact us at [tech@preciso.net]
-
 
 #### OpenRTB Parameters
 The following table contains currently supported parameters we parse.
