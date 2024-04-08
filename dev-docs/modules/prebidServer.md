@@ -13,7 +13,7 @@ sidebarType : 1
 # Prebid Server Adapter
 {: .no_toc}
 
-* TOC
+- TOC
 {:toc }
 
 ## Overview
