@@ -32,7 +32,7 @@ Video notes:
 
 - [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html)
 - [Prebid Managed Services](https://prebid.org/managed-services/)
-- [Header Bidding with Prebid](/overview/intro.html#header-bidding-with-prebid)
+- [Header Bidding with Prebid](/overview/intro.html)
 - [Transcript of this video overview](/dev-docs/pbsBidAdapter-video-overview.html)
 
 ## Configuration
