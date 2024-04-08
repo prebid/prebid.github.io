@@ -50,7 +50,7 @@ for each 'Purpose' with different consequences for each:
 | Responding to /cookie-sync requests | Purpose 1 (Device Access) |
 | Setting a cookie on /setuid requests | Purpose 1 (Device Access) |
 | Conducting auctions | Purpose 2 (Basic Ads) |
-| Passing User IDs into an auction | Any Purpose 2-10. User IDs are important for more than personalizing ads - they can be used in frequency capping, building profiles, counting unique users, etc. So Prebid Server should pass User IDs through the auction if any of Purposes 2-10 pass the legal basis test. |
+| Passing User IDs into an auction | Any Purpose 2-10. User IDs are important for more than personalizing ads - they can be used in frequency capping, building profiles, counting unique users, etc. So Prebid Server should pass User IDs through the auction if any of Purposes 2-10 pass the legal basis test. In PBS-Java 2.12 and later, accounts can set configuration which requires user P4 consent before extended IDs can be passed. |
 | Invoke an analytics adapter | Purpose 7 |
 | Pass the user’s precise geographic information into auctions | Special Feature 1 |
 
