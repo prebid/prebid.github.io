@@ -4,7 +4,11 @@ title: Insticator
 description: Prebid Insticator Bidder Adapter
 biddercode: insticator
 tcfeu_supported: true
+dsa_supported: true
+gpp_sids: tcfeu, usnat, usstate_all, usp
 usp_supported: true
+coppa_supported: true
+gdpr_supported: true
 schain_supported: true
 media_types: banner, video
 multiformat_supported: will-bid-on-any
@@ -29,7 +33,6 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description               | Example              | Type     |
 |---------------|----------|---------------------------|----------------------|----------|
-| `sizes`       | Required | The ad sizes provided by Insticator | `[[300, 250], [300, 600]]` | `array` |
 | `pos`         | optional | ad position as per IAB standards       | `1`                | `number` |
 
 ### Example
@@ -59,7 +62,53 @@ var adUnitsBannerOnly = [
 ];
 ```
 
-### video parameters
+#### First Party Data
+
+In release 8.44 and later, Insticator has added support for first party data which are optional and partners can send us. The following fields are supported:
+
+* ortb2.site.keywords
+* ortb2.site.content.*
+* ortb2.site.search
+* ortb2.site.cat
+* ortb2.site.pagecat
+* ortb2.site.sectioncat
+* ortb2.user.ext.*
+* ortb2.user.data.*
+
+
+Here is an example first party data that insticator support.
+
+```javascript
+pbjs.setConfig({
+  ortb2: {
+    site: {
+      keywords: "kw1,kw2",   
+      content: {
+        title: 'title',
+        genre: 'rock',
+      },
+      cat: ['IAB1-1'],
+      pagecat: ['IAB1-1'],
+      sectioncat: ['IAB1-1'],           
+      ext: {
+        data: {
+           prodtype: ["a","b"]  
+        }
+      }
+    },
+    user: {
+      ext: {
+        data: {
+          ucat:["anything"]                 
+        }
+      }
+    }
+  }
+};
+```
+
+### Media Types 
+#### Video parameters
 
 {: .table .table-bordered .table-striped }
 | Name                   | Scope       | Description                                                     | Example                       |
