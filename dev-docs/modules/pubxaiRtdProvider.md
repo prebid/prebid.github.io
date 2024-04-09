@@ -44,24 +44,24 @@ To use the Pubx.ai RTD module, add `realTimeData` with the parameters mentioned 
 ```js
 const AUCTION_DELAY = 100;
 pbjs.setConfig({
-	// rest of the config
-	...,
-	realTimeData: {
-		auctionDelay: AUCTION_DELAY,
-		dataProviders: {
-			name: "pubxai",
-			waitForIt: true,
-			params: {
-				pubxId: `<publisher_id>`,
-				endpoint: `<publisher_endpoint>`, // (optional)
-				floorMin: `<floorMin>`, // (optional)
-				enforcement: `<enforcement>`, // (optional)
-				data: `<defaultConfig>` // (optional)
-			}
-		}
-	}
-	// rest of the config
-	...,
+    // rest of the config
+    ...,
+    realTimeData: {
+        auctionDelay: AUCTION_DELAY,
+        dataProviders: {
+            name: "pubxai",
+            waitForIt: true,
+            params: {
+                pubxId: `<publisher_id>`,
+                endpoint: `<publisher_endpoint>`, // (optional)
+                floorMin: `<floorMin>`, // (optional)
+                enforcement: `<enforcement>`, // (optional)
+                data: `<defaultConfig>` // (optional)
+            }
+        }
+    }
+    // rest of the config
+    ...,
 });
 ```
 
