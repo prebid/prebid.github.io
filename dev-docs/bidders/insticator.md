@@ -27,7 +27,7 @@ sidebarType: 1
 | `gender`                    | optional | Gender                                                                                  | `'M'`                              | `string` |
 | `instl`                     | optional | 1 = the ad is interstitial or full screen, 0 = not interstitial.                        | `1`                                | `number` |
 | `pos`                       | optional | ad position as per IAB standards                                                        | `1`                                | `number` |
-| `bid_endpoint_request_url`  | optional | Url string representing the endpoint Insticator adaptor should make the request bid to. | `https://ex.ingage.com/v1/openrtb` | `string` |
+| `bid_endpoint_request_url`  | optional | Url string representing the endpoint Insticator adaptor should make the request bids to. | `https://ex.ingage.com/v1/openrtb` | `string` |
 
 
 ### Banner Params
