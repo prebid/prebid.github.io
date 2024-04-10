@@ -14,7 +14,7 @@ safeframes_ok: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 prebid_member: false
 pbjs: true
-gvl_id:
+gvl_id: 1288
 schain_supported: true
 floors_supported: true
 fpd_supported: true
