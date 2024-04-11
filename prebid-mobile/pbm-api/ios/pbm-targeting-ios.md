@@ -35,60 +35,57 @@ If you need to use an API way, ensure that all the following properties are set 
 
 If you need to use a CMP way, ensure that you don't set any of the following API properties. 
 
-
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
 ### Subject To GPDR
 
-```
+```swift
 public var subjectToGDPR:Bool?
 ```
 
 You can retrieve and set the subjectToGDPR for targeting:
 
-```
+```swift
 guard let subjectToGDPR = Targeting.shared.subjectToGDPR else {
     print("There was an error retrieving subjectToGDPR)
     return
 }
 ```
 
-```
+```swift
 Targeting.shared.subjectToGDPR = false
 ```
  
-
 ### GDPR Consent String
 
-```
+```swift
 public var gdprConsentString?
 ```
 
 You can retrieve and set the subjectToGDPR for targeting:
 
-```
+```swift
 guard let gdprConsentString = Targeting.shared.gdprConsentString else {
     print("There was an error retrieving gdprConsentString")
     return
 }
 ```
 
-```
+```swift
 Targeting.shared.gdprConsentString = "A String"
 ```
 
 ### Purpose Consent
 
-```
+```swift
 public var purposeConsents: String?
 ```
 
 You can retrieve and set the purposeConsents for targeting:
 
-```
+```swift
 Targeting.shared.purposeConsents = "100000000000000000000000"
-
 ```
 
 ## Targeting properties
@@ -112,7 +109,6 @@ Targeting.shared.purposeConsents = "100000000000000000000000"
 |`domain`|Retrieve and set the domain of your app|Optional|
 |`itunesID`|Retrieve and set the domain of your iTunes ID with the below command. This field will be transmitted to buyers as the bundle ID as recommended in OpenRTB 2.5. Failure to supply this value can have a negative monetary impact.|Optional|
 
-
 The code sample:
 
 ```swift
@@ -130,11 +126,12 @@ targeting.userID = "X345Y678Z890"
 OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is eligible for OMSDK support. Original API of prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
 
 There three components to signaling support for OMSDK:
+
 * Partner Name
 * Partner Version
 * API code
 
-#### Partner Name
+### Partner Name
 {:.no_toc}
 
 This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. See below for configuration and examples
@@ -143,7 +140,7 @@ This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.i
 Targeting.shared.omidPartnerName = "Google"
 ```
 
-#### Partner Version
+### Partner Version
 {:.no_toc}
 
 The OMSDK version number the partner integrated with. See below for configuration and examples.
@@ -160,8 +157,7 @@ Targeting.shared.omidPartnerVersion = "1.0"
 
 Context Keywords are a list of keywords about the app as referenced in OpenRTB 2.5 as app.keywords. Any keyword passed in the context keyword field may be passed to the buyer for targeting. Prebid provides following functions to manage context keywords:
 
-
-```
+```swift
 func addContextKeyword(_ newElement: String)
 
 func addContextKeywords(_ newElements: Set<String>)
@@ -183,7 +179,7 @@ Targeting.shared.addContextKeyword("globalContextKeywordValue3")
 
 Prebid provides following functions to manage First Party User Data:
 
-```
+```swift
 func addUserData(key: String, value: String)
 
 func updateUserData(key: String, value: Set<String>)
@@ -203,8 +199,7 @@ Targeting.shared.addUserData(key: "globalUserDataKey1", value: "globalUserDataVa
 
 Prebid provides following functions to manage First Party Inventory Data:
 
-
-```
+```swift
 func addContextData(key: String, value: String)
 
 func updateContextData(key: String, value: Set<String>)
@@ -224,8 +219,7 @@ Targeting.shared.addContextData(key: "globalContextDataKey1", value: "globalCont
 
 The First Party Data Access Control List provides a methods to restrict access to first party data to a supplied list of bidders.
 
-
-```
+```swift
 func addBidderToAccessControlList(_ bidderName: String)
 
 func removeBidderFromAccessControlList(_ bidderName: String)
@@ -239,12 +233,11 @@ Example:
 Targeting.shared.addBidderToAccessControlList(Prebid.bidderNameRubiconProject)
 ```
 
-
 ### Custom Params
 
 The methods that add or change the custom parameters. The name will be auto-prepended with `c.` to avoid collisions. 
 
-```
+```swift
 public func addCustomParam(_ value: String, withName: String?)
 
 public func setCustomParams(_ params: [String : String]?)
@@ -254,7 +247,7 @@ public func setCustomParams(_ params: [String : String]?)
 
 Adds a new param by name and sets its value.
 
-``` 
+```swift
 public func addParam(_ value: String, withName: String?)
 ```
 
@@ -262,13 +255,32 @@ public func addParam(_ value: String, withName: String?)
 
 Store location in the user's section
 
-```
+```swift
 public func setLatitude(_ latitude: Double, longitude: Double)
+```
+
+### ORTBConfig
+
+(requires SDK v2.2.1)
+
+Provides a way for app publishers to customize most ORTB fields in the partial bid request that Prebid Mobile sends to the Prebid Server.  The customization comes in the form of the setOrtbConfig() method that takes a JSON String as input.  The JSON string must follow the [ORTB guidelines](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/develop/2.6.md#321---object-bidrequest-) as it will be merged with the current JSON of the bid request. If you choose to input extra data using the setOrtbConfig() method, please extensively test your requests sent to Prebid Server. 
+
+There are certain protected fields such as regs, device, geo, ext.gdpr, ext.us_privacy, and ext.consent which cannot be changed.
+
+```swift
+//global invocation
+adUnitConfig.setOrtbConfig("{"ext":{"prebid":{"debug":1,"trace":"verbose"}}}")
+```
+
+```swift
+//ad unit / impression-level
+adUnit.setOrtbConfig("{"ext":{"gpid":"abc123"}}")
 ```
 
 ## User Identity API
 
 Prebid SDK supports two interfaces to pass / maintain User IDs and ID vendor details:
+
 * Real-time in Prebid SDK's API field externalUserIdArray
 * Store User Id(s) in local storage
 
@@ -277,7 +289,6 @@ Any identity vendor's details in local storage will be sent over to Prebid Serve
 ### Prebid SDK API Access
 
 Prebid SDK supports passing an array of UserID(s) at auction time in the field externalUserIdArray, that is globably scopped. It is sufficient enough to set the externalUserIdArray object once per user session, as these values would be used in all consecutive ad auctions in the same session.
-
 
 ```swift
 public var externalUserIdArray = [ExternalUserId]()
@@ -304,7 +315,7 @@ Prebid SDK provides a local storage interface to set, retrieve or update an arra
 
 Prebid SDK Provides five functions to handle User ID details:
 
-```
+```swift
 public func storeExternalUserId(_ externalUserId: ExternalUserId)
 
 public func fetchStoredExternalUserIds() -> [ExternalUserId]?
@@ -334,4 +345,3 @@ Targeting.shared.removeStoredExternalUserId("sharedid.org")
 //Remove All External UserID
 Targeting.shared.removeStoredExternalUserIds()
 ```
-
