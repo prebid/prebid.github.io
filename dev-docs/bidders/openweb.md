@@ -12,6 +12,7 @@ tcfeu_supported: true
 gpp_supported: true
 gpp_sids: tcfeu, usstate_all, usp
 usp_supported: true
+safeframes_ok: false
 pbs: false
 floors_supported: true
 userIds: all
