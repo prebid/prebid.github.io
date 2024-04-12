@@ -59,7 +59,7 @@ adUnits = [
 
 If you will work with video stream ad formats you could choose to use the prebidJS video module to render the video using  already supported video players as videoJS.
 Add the `video` config if you need to render videos using the video module.
-For more info navigate to <https://docs.prebid.org/prebid-video/video-module.html>.
+For more info navigate to [instructions](/prebid-video/video-module.html).
 
 #### RTB Banner 2.4
 
@@ -401,4 +401,4 @@ All DSA information, returned by the ad server, can be found into the **meta** t
 }
 ```
 
-For more information navigate to <https://docs.prebid.org/dev-docs/bidder-adaptor.html>.
+For more information navigate to the [page](/dev-docs/bidder-adaptor.html).
