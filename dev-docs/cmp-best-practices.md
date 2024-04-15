@@ -35,7 +35,7 @@ The indicates the determination of whether GDPR applies in this context. The CMP
 
 ### Prebid gdpr.defaultGdprScope
 
-This indicates the behavior of Prebid when the CMP **does not** provide a value for `gdprApplies`. Critically, the **defaultGdprScope** is applied if the user times-out in replying to the CMP's questions. While this also can happen if the CMP doesn't set the value in certain cases, or the CMP isn't loaded, the timeout behavior critical to understand. Essentially, the value of this config variable takes the place of the CMP `gdprApplies` when `gdprApplies` value cannot be determined.
+This indicates the behavior of Prebid when the CMP **does not** provide a value for `gdprApplies`. Critically, the **defaultGdprScope** is applied if the user times-out in replying to the CMP's questions. While this also can happen if the CMP doesn't set the value in certain cases, or the CMP isn't loaded, the timeout behavior is critical to understand. Essentially, the value of this config variable takes the place of the CMP `gdprApplies` when `gdprApplies` value cannot be determined.
 
 ## What does that mean?
 
