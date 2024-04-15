@@ -29,8 +29,8 @@ sidebarType: 1
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
 * [Modules to include in your build process](#modules-to-include-in-your-build-process)
+* [Bid Params](#bid-request-parameters)
 * [Set up First Party Data (FPD)](#set-up-first-party-data-fpd)
-* [Bid Request Parameters](#bid-request-parameters)
 * [Examples](#examples)
 
 <a id="introduction"></a>
@@ -72,12 +72,42 @@ or
 ]
 ```
 
+<a id="bid-request-parameters"></a>
+
+## Bid Params
+
+We support all oRTB params and encourage populating as many as possible.
+
+### Required Bidder params
+
+You must include the following parameters at the bidder level.
+
+{: .table .table-bordered .table-striped }
+
+| Name | Scope | Type | Description                                          |
+|---|---|---|------------------------------------------------------|
+| `siteId` | Required | String | Site-specific id that is provided by JW Player.      |
+| `publisherId` | Required | String | Publisher-specific id that is provided by JW Player. |
+| `placementId` | Required | String | Placement-specific id that is provided by JW Player. |
+
+### Bid Request fields
+
+{: .table .table-bordered .table-striped }
+
+| Name               | Scope       | Type    | Description                                                                                                                                                                                                                                                                                                             |
+|--------------------|-------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `site.content.url` | Required    | string  | Populated automatically when the `jwplayerVideoProvider` or `jwplayerRtdProvider` are included. This is the URL of the media being rendered in the video player, for buy-side contextualization or review. This needs to be accessible (w/o DRM, Geo-blocking etc.) and without parameters (Such as size, quality etc.) |
+| `site.page`        | Required    | string  | URL of the page where the impression will be shown.                                                                                                                                                                                                                                                                     |
+| `video.w`          | Recommended    | Integer | Populated automatically when using the `jwplayerVideoProvider`. The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters.                                                                              |
+| `video.h`          | Recommended    | Integer | Populated automatically when using the `jwplayerVideoProvider`. The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters.                                                                             |
+| `video.plcmt`      | Recommended | Integer | The video's placement type, where: <br /> - `1` = Instream<br /> - `2` = Accompanying Content <br /> - `3` = Interstitial <br /> - `4` = No Content/Standalone                                                                                                                                                          |
+
 <a id="set-up-first-party-data-fpd"></a>
 
 ## Set up First Party Data (FPD)
 
-You can set up the Prebid.js FPD module using Global data.
 To supply data that is accessible to all bidders, use the `[pbjs.setConfig()]` object as illustrated below. Use the `[setBidderConfig()]` function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](/features/firstPartyData.html) documentation.
+We suggest using this mechanism to set the `site.content.url` when not using the `jwplayerVideoProvider` or `jwplayerRtdProvider`.
 
 ```javascript
 pbjs.setConfig({
@@ -91,32 +121,6 @@ pbjs.setConfig({
             }
 });
 ```
-
-<a id="bid-request-parameters"></a>
-
-## Bid request parameters
-
-We support all oRTB params and encourage populating as many as possible.
-
-You must include the following parameters at the bidder level.
-
-{: .table .table-bordered .table-striped }
-
-| Name | Scope | Type | Description                                          |
-|---|---|---|------------------------------------------------------|
-| `siteId` | Required | String | Site-specific id that is provided by JW Player.      |
-| `publisherId` | Required | String | Publisher-specific id that is provided by JW Player. |
-| `placementId` | Required | String | Placement-specific id that is provided by JW Player. |
-
-{: .table .table-bordered .table-striped }
-
-| Name               | Scope       | Type    | Description                                                                                                                                                                                                                                                                                                             |
-|--------------------|-------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `site.content.url` | Required    | string  | Populated automatically when the `jwplayerVideoProvider` or `jwplayerRtdProvider` are included. This is the URL of the media being rendered in the video player, for buy-side contextualization or review. This needs to be accessible (w/o DRM, Geo-blocking etc.) and without parameters (Such as size, quality etc.) |
-| `site.page`        | Required    | string  | URL of the page where the impression will be shown.                                                                                                                                                                                                                                                                     |
-| `video.w`          | Recommended    | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters.                                                                                                                                              |
-| `video.h`          | Recommended    | Integer | The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters.                                                                                                                                             |
-| `video.plcmt`      | Recommended | Integer | The video's placement type, where: <br /> - `1` = Instream<br /> - `2` = Accompanying Content <br /> - `3` = Interstitial <br /> - `4` = No Content/Standalone                                                                                                                                                          |
 
 <a id="examples"></a>
 
