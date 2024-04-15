@@ -30,7 +30,9 @@ sidebarType: 1
 * [Introduction](#introduction)
 * [Modules to include in your build process](#modules-to-include-in-your-build-process)
 * [Bid Params](#bid-request-parameters)
-* [Set up First Party Data (FPD)](#set-up-first-party-data-fpd)
+  * [Required Bidder Params](#required-bidder-params)
+  * [mediaTypes.video](#mediatypes-video)
+  * [First Party Data (FPD)](#set-up-first-party-data-fpd)
 * [Examples](#examples)
 
 <a id="introduction"></a>
@@ -78,6 +80,8 @@ or
 
 We support all oRTB params and encourage populating as many as possible.
 
+<a id="required-bidder-params"></a>
+
 ### Required Bidder params
 
 You must include the following parameters at the bidder level.
@@ -90,7 +94,27 @@ You must include the following parameters at the bidder level.
 | `publisherId` | Required | String | Publisher-specific id that is provided by JW Player. |
 | `placementId` | Required | String | Placement-specific id that is provided by JW Player. |
 
-### Bid Request fields
+<a id="mediatypes-video"></a>
+
+### mediaTypes.video
+
+We recommend populating as many params as possible in `mediaTypes.video`. When using the [jwplayerVideoProvider](dev-docs/modules/jwplayerVideoProvider.md), these fields are populated automatically. 
+
+{: .table .table-bordered .table-striped }
+
+| Name               | Scope       | Type    | Description                                                                                                                                                                                                                                                                                                             |
+|--------------------|-------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `video.w`          | Recommended | Integer | Populated automatically when using the `jwplayerVideoProvider`. The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters.                                                                              |
+| `video.h`          | Recommended | Integer | Populated automatically when using the `jwplayerVideoProvider`. The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters.                                                                             |
+| `video.plcmt`      | Recommended | Integer | The video's placement type, where: <br /> - `1` = Instream<br /> - `2` = Accompanying Content <br /> - `3` = Interstitial <br /> - `4` = No Content/Standalone                                                                                                                                                          |
+
+
+<a id="set-up-first-party-data-fpd"></a>
+
+### First Party Data (FPD)
+
+In release 4.30 and later, publishers who are not using the [jwplayerVideoProvider](dev-docs/modules/jwplayerVideoProvider.md) or [jwplayerRtdProvider](dev-docs/modules/jwplayerRtdProvider.md) can use the ortb2 method of setting First Party Data. 
+The following fields are required:
 
 {: .table .table-bordered .table-striped }
 
@@ -98,16 +122,8 @@ You must include the following parameters at the bidder level.
 |--------------------|-------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `site.content.url` | Required    | string  | Populated automatically when the `jwplayerVideoProvider` or `jwplayerRtdProvider` are included. This is the URL of the media being rendered in the video player, for buy-side contextualization or review. This needs to be accessible (w/o DRM, Geo-blocking etc.) and without parameters (Such as size, quality etc.) |
 | `site.page`        | Required    | string  | URL of the page where the impression will be shown.                                                                                                                                                                                                                                                                     |
-| `video.w`          | Recommended    | Integer | Populated automatically when using the `jwplayerVideoProvider`. The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters.                                                                              |
-| `video.h`          | Recommended    | Integer | Populated automatically when using the `jwplayerVideoProvider`. The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters.                                                                             |
-| `video.plcmt`      | Recommended | Integer | The video's placement type, where: <br /> - `1` = Instream<br /> - `2` = Accompanying Content <br /> - `3` = Interstitial <br /> - `4` = No Content/Standalone                                                                                                                                                          |
-
-<a id="set-up-first-party-data-fpd"></a>
-
-## Set up First Party Data (FPD)
 
 To supply data that is accessible to all bidders, use the `[pbjs.setConfig()]` object as illustrated below. Use the `[setBidderConfig()]` function to supply bidder-specific data. For more information about the standard or more detailed examples, see Prebid's [First Party Data Feature](/features/firstPartyData.html) documentation.
-We suggest using this mechanism to set the `site.content.url` when not using the `jwplayerVideoProvider` or `jwplayerRtdProvider`.
 
 ```javascript
 pbjs.setConfig({
