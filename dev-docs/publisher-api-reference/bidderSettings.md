@@ -248,6 +248,8 @@ By default, 0 CPM bids are ignored by Prebid.js entirely.  However if there's a 
 either specific bid adapter(s) or all bid adapters the permission for these bids to be processed by Prebid.js and potentially sent to the respective ad server
 (depending on the Prebid.js auction results).
 
+<a id="storageAllowed"></a>
+
 ##### 2.7. storageAllowed
 
 This setting defines if the bid adapter can access browser cookies or local storage. Allowed values are:
