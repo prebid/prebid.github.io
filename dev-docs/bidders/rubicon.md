@@ -4,6 +4,7 @@ title: Rubicon Project
 description: Rubicon Project Prebid Bidder Adapter
 biddercode: rubicon
 tcfeu_supported: true
+dsa_supported: true
 gpp_sids: tcfeu, usnat, usstate_all, usp
 usp_supported: true
 coppa_supported: true
@@ -21,6 +22,7 @@ fpd_supported: true
 ortb_blocking_supported: partial
 gvl_id: 52
 multiformat_supported: will-bid-on-one
+privacy_sandbox: paapi, topics
 sidebarType: 1
 ---
 
@@ -339,3 +341,4 @@ pbjs.setConfig({ rubicon: {netRevenue: false} });
 ### Notes
 
 1. There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
+2. PAAPI and Topics support released in PBJS 8.23
