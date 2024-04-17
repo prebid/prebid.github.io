@@ -7,6 +7,7 @@ pbs: true
 biddercode: criteo
 media_types: display, video, native (pbjs only)
 tcfeu_supported: true
+dsa_supported: true
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
 prebid_member: true
@@ -73,8 +74,8 @@ In addition, Criteo adapter relies on parameters specified in the mediaTypes.vid
 | `context`         | required | `outstream`, `instream` or `long-form`                                                                                                                                                                                                                                       | `instream`      | `string`         |
 | `mimes`           | required | List of the content MIME types supported by the player                                                                                                                                                                                                                       | `["video/mp4"]` | `Array<string>`  |
 | `playerSize`      | required | Width and height of the player                                                                                                                                                                                                                                               | `[640, 480]`    | `Array<integer>` |
-| `protocols`       | required | Supported video bid response protocols. VAST 1.0: `1`; VAST 2.0: `2`; VAST 3.0: `3`; VAST 1.0 Wrapper: `4`; VAST 2.0 Wrapper: `5`; VAST 3.0 Wrapper: `6`;                                                                                                                    | `|5, 6]`        | `Array<integer>` |
-| `maxduration`     | required | Maximum ad duration in seconds                                                                                                                                                                                                                                               | `20`            | `integer`        |
+| `protocols`       | required | Supported video bid response protocols. VAST 1.0: `1`; VAST 2.0: `2`; VAST 3.0: `3`; VAST 1.0 Wrapper: `4`; VAST 2.0 Wrapper: `5`; VAST 3.0 Wrapper: `6`;  | `[5, 6]` | `Array<integer>` |
+| `maxduration`     | required | Maximum ad duration in seconds               | `20`            | `integer`        |
 | `api`             | required | API frameworks supported. VPAID 1.0: `1`; VPAID 2.0: `2`; MRAID 1.0: `3`; ORMMA: `4`; MRAID 2.0: `5`; MRAID 3.0: `6`; OMID 1.0: `7`;                                                                                                                                                                            | `[1, 2]`        | `Array<integer>` |
 | `plcmt`           | optional | 1=in-stream, 2=accompanying content, 3=interstitial, 4=no content/standalone. Highly recommended to comply with new IAB video specifications.                                                                                                                                | `1`             | `integer`        |
 

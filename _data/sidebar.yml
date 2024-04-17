@@ -130,20 +130,6 @@
   isSectionHeader: 0
   subgroup: 2
 
-- sbSecId: 0
-  title: Prebid and MSPA
-  link: /features/mspa-usnat.html
-  isHeader: 0
-  isSectionHeader: 0
-  subgroup: 2
-
-- sbSecId: 0
-  title: Prebid and Quebec Privacy Support
-  link: /features/ac-quebec.html
-  isHeader: 0
-  isSectionHeader: 0
-  subgroup: 2
-
 #--------------Prebid.js--------------|
 
 - sbSecId: 1
@@ -807,7 +793,7 @@
   
 - sbSecId: 2
   title: Ad Experience Controls
-  link: /prebid-mobile/modules/rendering/ios-sdk-customization-controls.html
+  link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -888,7 +874,7 @@
   
 - sbSecId: 2
   title: Ad Experience Controls
-  link: /prebid-mobile/modules/rendering/android-sdk-customization-controls.html
+  link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1815,12 +1801,34 @@
   subgroup: 0
 
 - sbSecId: 7
-  title: Training Videos
-  link: /videos/
-  isHeader: 0
+  title: Privacy Resources
+  link:
+  isHeader: 1
+  headerId: privacy
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 1
+
+- sbSecId: 7
+  title: Prebid Privacy Overview
+  link: /support/privacy-resources.html
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 1
+
+- sbSecId: 7
+  title: Prebid and MSPA
+  link: /features/mspa-usnat.html
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 1
+
+- sbSecId: 7
+  title: Prebid and Quebec Privacy Support
+  link: /features/ac-quebec.html
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 1
 
 - sbSecId: 7
   title: FAQs

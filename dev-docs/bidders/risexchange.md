@@ -8,8 +8,10 @@ biddercode: risexchange
 media_types: banner, video
 schain_supported: true
 coppa_supported: true
-pbs: true
+pbs: false
 tcfeu_supported: true
+gpp_supported: true
+gpp_sids: tcfeu, usstate_all, usp
 usp_supported: true
 floors_supported: true
 userIds: all
