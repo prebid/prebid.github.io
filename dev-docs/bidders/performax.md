@@ -31,5 +31,3 @@ The Performax Bidding Adapter requires setup before beginning. Please contact us
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `tagid`       | required | Placement id          | `sample`  | `string`  |
-
-
