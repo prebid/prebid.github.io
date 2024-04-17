@@ -66,7 +66,7 @@ var adUnitsBannerOnly = [
 
 #### First Party Data
 
-In release 8.44 and later, Insticator has added support for first party data which are optional and partners can send us. The following fields are supported:
+In release 8.45 and later, Insticator has added support for first party data which are optional and partners can send us. The following fields are supported:
 
 * ortb2.site.keywords
 * ortb2.site.content.*
