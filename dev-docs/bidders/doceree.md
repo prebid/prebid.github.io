@@ -3,7 +3,7 @@ layout: bidder
 title: Doceree
 description: Prebid DivReach Bidder Adapter
 pbjs: true
-biddercode: docereeAdManager
+biddercode: doceree
 media_types: banner
 gvl_id: 1063
 tcf2_supported: true
