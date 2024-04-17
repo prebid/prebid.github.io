@@ -29,7 +29,6 @@ sidebarType: 1
 | `pos`                       | optional | ad position as per IAB standards                                                        | `1`                                | `number` |
 | `bid_endpoint_request_url`  | optional | Url string representing the endpoint Insticator adaptor should make the request bids to. | `https://ex.ingage.com/v1/openrtb` | `string` |
 
-
 ### Banner Params
 
 {: .table .table-bordered .table-striped }
@@ -76,7 +75,6 @@ In release 8.45 and later, Insticator has added support for first party data whi
 * ortb2.site.sectioncat
 * ortb2.user.ext.*
 * ortb2.user.data.*
-
 
 Here is an example first party data that insticator support.
 
