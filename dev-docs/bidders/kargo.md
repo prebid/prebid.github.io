@@ -73,7 +73,7 @@ pbjs.setConfig({
 )};
 ```
 
-#### ORTB Blocking specific only to rtbhouse bidder
+#### ORTB Blocking specific only to the Kargo bidder
 
 ```javascript
 pbjs.setBidderConfig({
