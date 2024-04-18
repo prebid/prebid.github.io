@@ -8,7 +8,6 @@ sidebarType: 3
 ---
 
 # Header Bidding Trafficking with Prebid Step by Step
-
 {: .no_toc }
 
 - TOC
@@ -26,6 +25,7 @@ Before you begin, we recommend you read through our [Planning Guide](/adops/adop
 ## Requirements
 
 To use header bidding trafficking, you must:
+
 - Be on Google Ad Manager 360.
 - Use a "[standard implementation](https://support.google.com/admanager/answer/12270263?sjid=14160336224257855972-NA#standard&zippy=%2Cwhats-a-standard-implementation-of-the-prebid-wrapper)" of Prebid.js.
 - Use Google Publisher Tag (GPT) on your website.
@@ -44,7 +44,7 @@ First, configure prebid to collect bids from your selected bidders and pass thos
 
 ![Get Started with Prebid](/assets/images/ad-ops/gam-hbt-sbs/hbt-start.png)
 
-{:start="4"}
+{:start="5"}
 5. Review each detected bidder.
 
 ![Review Bidders](/assets/images/ad-ops/gam-hbt-sbs/hbt-bidders.png)
@@ -69,11 +69,13 @@ For each bidder, there are three configuration options:
 ## Header bidding reporting
 
 Historical reporting in Ad Manager helps you understand how header bidding is performing.
+
 - Use the Bidder dimension to see performance by exchange.
 - Add the Demand Channel dimension to see whether buyers accessed your inventory through header bidding (the Demand Channel dimension has a value of “Header bidding”).
 
 ## Using protections with header bidding
 
 To exclude the header bidders from the auction:
+
 - Create an [inventory exclusion protection](https://support.google.com/admanager/answer/9376326).
 - Select the header bidding demand source and appropriate targeting.
