@@ -33,7 +33,7 @@ To use header bidding trafficking, you must:
 Note: You don't have to set up any line items, including price priority line items, to use header bidding trafficking.
 
 ### Tagging
-First, configure prebid to collect bids from your selected bidders and pass those bids onto Ad Manager. For details on tagging changes, visit [Getting Started for Developers](/dev-docs/getting-started.html). 
+First, configure Prebid.js to collect bids from your selected bidders and pass those bids onto Ad Manager. For details on tagging changes, visit [Getting Started for Developers](/dev-docs/getting-started.html). 
 
 ## Enable Header Bidding for you Ad Manager Network
 
