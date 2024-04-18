@@ -19,7 +19,8 @@ Compile Prebid with the appropriate configurations, and deploy.
 First, make sure to add the lockr’s AIM submodule to your Prebid.js package with:
 The following configuration parameters are available:
 AIM supports all Single Sign On functions, newsletter registrations, UTM parameters, etc. For the sake of clarity, a few examples are shared below.
-**Google oAuth: **
+
+**Google oAuth:**
 If you are using Google oAuth (_as an example_), the onSignIn function will subsequently call window.lockr.setAdditionalData function and include a raw email.
 
 ```
@@ -65,68 +66,14 @@ function statusChangeCallback(response) {
 
 **Note:** The above code can be triggered from anywhere on the domain (i.e. a subscription form).
 
-<table>
-  <tr>
-   <td><strong>Param</strong>
-   </td>
-   <td><strong>Scope</strong>
-   </td>
-   <td><strong>Type</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
-   <td><strong>Example</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>name
-   </td>
-   <td>Required
-   </td>
-   <td>String
-   </td>
-   <td>The name of this module: <code>"lockrAIMId"</code>
-   </td>
-   <td><code>"lockrAIMId"</code>
-   </td>
-  </tr>
-  <tr>
-   <td>params
-   </td>
-   <td>Required
-   </td>
-   <td>Object
-   </td>
-   <td>Details for the configuration.
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>params.email
-   </td>
-   <td>Required
-   </td>
-   <td>String
-   </td>
-   <td>Email address for identity tokens.
-   </td>
-   <td><code>test@example.com</code>
-   </td>
-  </tr>
-  <tr>
-   <td>params.appID
-   </td>
-   <td>Required
-   </td>
-   <td>String
-   </td>
-   <td>Identity lockr appID
-   </td>
-   <td><code>test@example.com</code>
-   </td>
-  </tr>
-</table>
+{: .table .table-bordered .table-striped }
+| Param          | Scope    | Type   | Description                            | Example               |
+|----------------|----------|--------|----------------------------------------|-----------------------|
+| name           | Required | String | The name of this module: `"lockrAIMId"`| `"lockrAIMId"`        |
+| params         | Required | Object | Details for the configuration.         |                       |
+| params.email   | Required | String | Email address for identity tokens.     | `test@example.com`    |
+| params.appID   | Required | String | Identity lockr appID                   | `e84afc5f-4adf-4144-949f-1de5bd151fcc`    |
+
 
 **lockr AIM Example**
 
