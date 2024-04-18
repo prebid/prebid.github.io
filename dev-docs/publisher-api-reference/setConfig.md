@@ -84,6 +84,8 @@ pbjs.setConfig({ deviceAccess: false });
 
 This can be useful in GDPR, CCPA, COPPA or other privacy scenarios where a publisher has determined that header bidding should not read from or write the user's device.
 
+Note that bid adapters are normally denied access to device storage even when `deviceAccess` is `true`; see the [`storageAllowed` bidder setting](/dev-docs/publisher-api-reference/bidderSettings.html#deviceAccess).
+
 <a name="setConfig-Bidder-Timeouts"></a>
 
 #### Bidder Timeouts

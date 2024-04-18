@@ -13,7 +13,7 @@ sidebarType : 1
 # Prebid Server Adapter
 {: .no_toc}
 
-* TOC
+- TOC
 {:toc }
 
 ## Overview
@@ -23,6 +23,17 @@ rather a way to get a batch of bids from other bidders with one request.
 A request for the set of auctions is sent to Prebid Server, which performs
 all the auctions server-to-server (S2S), responding in time for Prebid.js to
 send the results to the ad server. This lightens the performance load on the user's device.
+
+### Prebid Server Adapter Video Overview
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/922780542?h=f7d8e81488&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Server-Side Header Bidding with Prebid.js"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+Video notes:
+
+- [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html)
+- [Prebid Managed Services](https://prebid.org/managed-services/)
+- [Header Bidding with Prebid](/overview/intro.html)
+- [Transcript of this video overview](/dev-docs/pbsBidAdapter-video-overview.html)
 
 ## Configuration
 
@@ -96,25 +107,25 @@ If `endpoint` and `syncEndpoint` are objects, these are the supported properties
 
 **Notes on s2sConfig properties**
 
-* Currently supported vendors are: appnexus, openx, and rubicon
-* When using `defaultVendor` option, `accountId` still needs to be defined.
-* If `bidders` is omitted, only adUnits that also omit bidders will be sent to Prebid Server. See the [stored impressions](#stored-imp) example below.
-* If the `s2sConfig` timeout is not specified, Prebid Server will utilize a configured default for `tmax`.
-* When using the `endpoint` or `syncEndpoint` object configs, you should define both properties.  If either property is not defined, Prebid Server requests for that type of user will not be made.  If you do not need to distinguish endpoints for consent reasons, you can simply define the same URL value in both fields or use the String version of the field (which is configured to use defined URL for all users).
-* <a name="allowUnknownBidderCodes" ></a> When `allowUnknownBidderCodes` is `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction. This can break custom logic that relies on the availability of a bid request object for any given bid. Known scenarios where custom code won't get the request when there's an "unknown bidder":
-  * There will not be a [`bidRequested`](/dev-docs/publisher-api-reference/getEvents.html) event.
-  * In the [MASS custom renderers](/dev-docs/modules/mass.html#configuration-parameters) module, `payload.bidRequest` will be undefined.
-  * In the [Price Floors module](/dev-docs/modules/floors.html), custom schema functions will see the bidRequest object as undefined.
+- Currently supported vendors are: appnexus, openx, and rubicon
+- When using `defaultVendor` option, `accountId` still needs to be defined.
+- If `bidders` is omitted, only adUnits that also omit bidders will be sent to Prebid Server. See the [stored impressions](#stored-imp) example below.
+- If the `s2sConfig` timeout is not specified, Prebid Server will utilize a configured default for `tmax`.
+- When using the `endpoint` or `syncEndpoint` object configs, you should define both properties.  If either property is not defined, Prebid Server requests for that type of user will not be made.  If you do not need to distinguish endpoints for consent reasons, you can simply define the same URL value in both fields or use the String version of the field (which is configured to use defined URL for all users).
+- <a name="allowUnknownBidderCodes" ></a> When `allowUnknownBidderCodes` is `true`, bidders that have not been explicitly requested in [`adUnit.bids`](../adunit-reference.html#adunitbids) may take part in the auction. This can break custom logic that relies on the availability of a bid request object for any given bid. Known scenarios where custom code won't get the request when there's an "unknown bidder":
+  - There will not be a [`bidRequested`](/dev-docs/publisher-api-reference/getEvents.html) event.
+  - In the [MASS custom renderers](/dev-docs/modules/mass.html#configuration-parameters) module, `payload.bidRequest` will be undefined.
+  - In the [Price Floors module](/dev-docs/modules/floors.html), custom schema functions will see the bidRequest object as undefined.
 
 Additional options for `s2sConfig` may be enabled by including the [Server-to-Server testing module]({{site.baseurl}}/dev-docs/modules/s2sTesting.html).
 
 **Passing the Referrer to Server Side Adapters**
 
-* Setting `extPrebid.origreferrer` will be recognized by some server-side adapters as the referring URL for the current page.
+- Setting `extPrebid.origreferrer` will be recognized by some server-side adapters as the referring URL for the current page.
 
 **Emitting SeatNonBid Data**
 
-* Prebid Server can be instructed to return additional [SeatNonBid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) information about why bidders might not have bid on certain adunits. You can get this extra information by setting `extPrebid.returnallbidstatus` equal to `true`. Note that client-side analytics adapters can receive this data by listening to the `seatNonBid` event.
+- Prebid Server can be instructed to return additional [SeatNonBid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid) information about why bidders might not have bid on certain adunits. You can get this extra information by setting `extPrebid.returnallbidstatus` equal to `true`. Note that client-side analytics adapters can receive this data by listening to the `seatNonBid` event.
 
 ## Bid Params
 
@@ -269,4 +280,4 @@ pbjs.addAdUnits([{
 
 ## Related Reading
 
-* [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html)
+- [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html)

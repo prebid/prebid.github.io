@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Lucead adapter
+title: Lucead
 description: Prebid Lucead Bidder Adapter
 biddercode: lucead
 tcfeu_supported: false
@@ -27,6 +27,26 @@ The Lucead Bidding adapter requires setup before beginning. Please contact us at
 
 ### Bid Params
 
+{: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId` | required | Placement id          | `'11111'` | `string`  |
+
+### Test Parameters
+
+```javascript
+const adUnits = [
+       {
+           code: 'test-div',
+           sizes: [[300, 250]],
+           bids: [
+               {
+                   bidder: 'lucead',
+                   params: {
+                       placementId: '1',
+                   }
+               }
+           ]
+       }
+   ];
+```

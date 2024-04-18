@@ -9,6 +9,7 @@ pbjs: true
 pbjs_version_notes: please avoid using v7.20.0 and v7.21.0
 biddercode: teads
 tcfeu_supported: true
+dsa_supported: true
 usp_supported: true
 schain_supported: true
 userIds: uid2Id, identityLinkId, lotamePanoramaId, id5Id, criteoId, connectId, quantcastId, publinkId, sharedId, merkleId, kinessoId
