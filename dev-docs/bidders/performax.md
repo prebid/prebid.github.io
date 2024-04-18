@@ -15,7 +15,7 @@ deals_supported: false
 floors_supported: true
 fpd_supported: false
 pbjs: true
-pbs: true
+pbs: false
 prebid_member: false
 multiformat_supported: will-not-bid
 sidebarType: 1
@@ -28,6 +28,6 @@ The Performax Bidding Adapter requires setup before beginning. Please contact us
 ### Bid Params
 
 {: .table . table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `tagid`       | required | Placement id          | `sample`  | `string`  |
+| Name          | Scope    | Description           | Example     | Type      |
+|---------------|----------|-----------------------|-------------|-----------|
+| `tagid`       | required | Placement id          | `'sample'`  | `string`  |
