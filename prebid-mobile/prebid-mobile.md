@@ -82,7 +82,7 @@ The following sections describe each integration method.
 
 1. The Prebid SDK sends the bid request to the Prebid Server
 1. Prebid Server runs the header bidding auction among preconfigured demand partners
-1. Prebid Server responses with the winning bid
+1. Prebid Server responds with the winning bid
 1. The rendering module renders the winning bid
 
 ### With Ad Server: Original API
@@ -182,7 +182,7 @@ Follow these steps to integrate the rendering API:
     - [AppLovin MAX](modules/rendering/ios-sdk-integration-max.html) as a primary ad server.
 1. Actualize the [integration and targeting](pbm-api/ios/pbm-targeting-params-ios.html) properties.
 
-## Additional refences
+## Additional References
 
 - [Deep Links Support](modules/rendering/rendering-deeplinkplus.html)
 - [Impression Tracking](modules/rendering/rendering-impression-tracking.html)
