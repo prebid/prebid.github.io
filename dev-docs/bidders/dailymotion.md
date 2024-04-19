@@ -10,6 +10,7 @@ gvl_id: 573
 tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 deals_supported: true
 floors_supported: true
 sidebarType: 1
