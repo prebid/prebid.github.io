@@ -30,9 +30,13 @@ The first decision you’ll need to make when it comes to creatives (with the ex
 
 The big advantage to using the PUC is that it’s the simplest approach to configuring Prebid in your ad server. It provides a robust mechanism that can be used across several formats, platforms, devices, and ad servers.
 
-The primary disadvantage to using the PUC is that it takes an extra fetch to load the PUC file vs doing everything inline to the creative. Also, in version 1.14.1 and earlier of the PUC, loading a “universal” creative means that more bytes are loaded than are actually necessary for the display of a single creative. This all leads to a very slight performance penalty.
+The primary disadvantage to using the PUC is that it takes an extra fetch to load the PUC file vs doing everything inline to the creative. Also, loading a “universal” creative means that more bytes are loaded than are actually necessary for the display of a single creative. This all leads to a slight performance penalty.
 
 You’ll need to determine whether the ease of implementation is worth the small performance penalty.
+
+## Prebid.js dynamic creatives
+
+If you have line items that target only browsers running Prebid.js, you can use [dynamic creatives](/adops/js-dynamic-creative.html) to avoid the PUC performance penalty but keep the same ease of setup and maintenance. The disadvantage of this approach is that it does not support platforms that do not run Prebid.js, such as AMP or mobile apps.  
 
 ## Where to Host the PUC
 
