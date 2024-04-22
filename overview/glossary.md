@@ -76,7 +76,7 @@ The header-bidding auction takes place on a server. Notable server side bidding 
 
 ## Ad Server
 
-A system that allows a content publisher to manage their portfoliio of ads and deliver those ads according to the defined targeting and pacing rules.
+A system that allows a content publisher to manage their portfolio of ads and deliver those ads according to the defined targeting and pacing rules.
 
 ### Placement
 
