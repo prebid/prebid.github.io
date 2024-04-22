@@ -1656,20 +1656,21 @@ To enable the additional output, set `ext.prebid.returnallbidstatus: true`.
 Here's a sample response:
 
 ```json
-{
-   ...
-   "ext": {
-      "seatnonbid": [
-        {
-          "seat": "rubiconAlias",
-          "nonbid": [
-            {
-              "impid": "test-div",
-              "statuscode": 0
-            }
-          ]
-        }
-     }
+{ 
+  ...
+  "ext": {
+    "seatnonbid": [
+      {
+        "seat": "rubiconAlias",
+        "nonbid": [
+          {
+            "impid": "test-div",
+            "statuscode": 0
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
 
