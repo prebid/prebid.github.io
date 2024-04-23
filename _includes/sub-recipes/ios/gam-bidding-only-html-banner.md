@@ -7,6 +7,7 @@ func createAd() {
     // 1. Create a BannerAdUnit using Prebid Mobile SDK
     adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
     adUnit.setAutoRefreshMillis(time: 30000)
+    adUnit.addAdditionalSize(adSize2)
     
     // 2. Configure banner parameters using Prebid Mobile SDK
     let parameters = BannerParameters()
@@ -33,7 +34,9 @@ func createAd() {
 }
 ```
 
-If you want to support several ad sizes, you also need to implement `GADBannerViewDelegate` to adjust banner view size according to the creative size
+If you want to support several ad sizes, you also need to implement `GADBannerViewDelegate` to adjust banner view size according to the creative size.
+
+In case you use a single-size banner (e.g., 300x250), you don't need to make a call to the `AdViewUtils.findPrebidCreativeSize` routine because you already know the size of the creative. However, you still need to call `bannerView.resize` because the creative in GMA has a default size of 1x1, and without this call, it will be rendered as a pixel.
 
 ```swift
 func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
@@ -92,3 +95,12 @@ Ensure that you call the _load_ method with the same `GAMRequest` object that yo
 #### Step 6: Adjust the ad view size
 
 Once an app receives a signal that an ad is loaded, you should use the method `AdViewUtils.findPrebidCreativeSize` to verify whether it's Prebid Server’s ad and resize the ad slot respectively to the creative's properties. 
+
+```swift
+// GMA SDK functions
+func validBannerSizes(for adLoader: GADAdLoader) -> [NSValue] {
+    return [NSValueFromGADAdSize(GADAdSizeFromCGSize(adSize))]
+}
+```
+
+The function above provides valid banner sizes for the ad loader. Adjust it according to the size of your ad.
