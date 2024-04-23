@@ -7,6 +7,7 @@ usp_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
+gpp_supported: true
 media_types: banner, video, native
 multiformat_supported: will-not-bid
 pbjs: true
