@@ -64,7 +64,7 @@ The [IAB](https://www.iab.com/) is the ad tech industry standards body.
 
 ### Programmatic Ads
 
-Ads delivered either through an open marketplace through an auction, or as a pre-arranged "deal" that was initiated through systems outside of the publishers ad server.
+Ads delivered either through an open marketplace through an auction, or as a pre-arranged "deal" that was initiated through systems outside of the publisher's ad server.
 
 ## Server Side Header Bidding
 
