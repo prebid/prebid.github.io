@@ -31,11 +31,11 @@ An AdUnit that can display creatives of multiple media formats: banner, native, 
 ### Page-Initated Video
 
 Also called 'outstream', these are AdUnits that work in Prebid.js just like banners, but are displayed with
-a special 'renderer' to play a video ad instead of a static image.
+a special 'renderer' to play a video ad instead of a static image. Said renderer only renders the ad and does not render content.
 
 ### Player-Initiated Video
 
-Once called 'instream', these are AdUnits that live within a video player.
+Once called 'instream', these are AdUnits that are rendered in a video player before, during or after content.
 
 ### Interstitial
 
