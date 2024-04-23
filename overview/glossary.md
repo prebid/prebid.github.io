@@ -39,7 +39,7 @@ Once called 'instream', these are AdUnits that are rendered in a video player be
 
 ### Interstitial
 
-Interstitial ads are full-screen ads that cover most of the visible UI. They're typically displayed at during navigation, e.g. clicking a link or going to the next level in a game.
+Interstitial ads are full-screen ads that cover most of the visible UI. They're typically displayed during navigation, e.g. clicking a link or going to the next level in a game.
 
 ## Ad Tech Industry
 
