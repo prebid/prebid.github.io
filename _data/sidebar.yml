@@ -808,6 +808,14 @@
   subgroup: 2
 
 - sbSecId: 2
+  title: GAM Bidding Only iOS
+  link: /prebid-mobile/new-docs/gam-bidding-only-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
   title: "For Android"
   link:
   isHeader: 1
@@ -895,6 +903,25 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
+
+  #--------------New Docs--------------|
+
+#   - sbSecId: 2
+#   title: "New Documentation"
+#   link:
+#   isHeader: 1
+#   headerId: newDocs
+#   isSectionHeader: 0
+#   sectionTitle:
+#   subgroup: 4
+
+# - sbSecId: 2
+#   title: GAM Bidding Only iOS
+#   link: /prebid-mobile/new-docs/gam-bidding-only-ios.html
+#   isHeader: 0
+#   isSectionHeader: 0
+#   sectionTitle:
+#   subgroup: 4
 
 #--------------Ad Ops--------------|
 

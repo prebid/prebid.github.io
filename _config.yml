@@ -96,6 +96,6 @@ keep_files:
 
 plugins:
   - jekyll-mentions
-  - jemoji
+  # - jemoji
   - jekyll-redirect-from
   - jekyll-sitemap
