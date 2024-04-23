@@ -3,12 +3,26 @@ layout: bidder
 title: Invibes
 description: Prebid Invibes Bidder Adaptor
 biddercode: invibes
-pbjs: true
-pbs: true
 tcfeu_supported: true
 gvl_id: 436
-userIds: pubCommonId, pubProvidedId, uid2, zeotapIdPlus, id5id
+usp_supported: false
+coppa_supported: false
+gpp_sids: tcfeu
+schain_supported: false 
+dchain_supported: false
+userId: pubcid, pubProvidedId, uid2, zeotapIdPlus, id5id
+media_types: banner, native
 safeframes_ok: false
+deals_supported: false
+floors_supported: false
+fpd_supported: false
+pbjs: true
+pbs: true
+pbs_app_supported: false
+prebid_member: false
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: false
+privacy_sandbox: no
 sidebarType: 1
 ---
 
