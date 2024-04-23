@@ -49,68 +49,7 @@
 
                 <h3>Features</h3>
 
-                <table class="table table-bordered table-striped">
-                  <tr>
-                    <th class="pbTh">Bidder Code</th>
-                    <td class="pbTd">{{ page.biddercode }}</td>
-                    <th class="pbTh">Prebid.org Member</th>
-                    <td class="pbTd">{% if page.prebid_member == true %}yes{% else %}no{% endif %}</td>
-                  </tr>
-                  <tr>
-                    <th class="pbTh">Media Types</th>
-                    <td class="pbTd">{% unless page.media_types contains 'no-display' %}display{% if page.media_types contains 'video' %},{% endif %}{% endunless %}{% if page.media_types contains 'video' %} video{% endif %}{% if page.media_types != "no-display, native" and page.media_types contains 'native' %}, native{% endif %}{% if page.media_types == "no-display, native" %}native{% endif %}</td>
-                    <th class="pbTh">TCF-EU Support</th>
-                    <td class="pbTd">{% if page.tcfeu_supported == true %}yes{% else %}no{% endif %}</td>
-                  </tr>
-                  <tr>
-                    <th class="pbTh">User IDs</th>
-                    <td class="pbTd">{% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %}</td>
-                    <th class="pbTh">USP/CCPA Support</th>
-                    <td class="pbTd">{% if page.usp_supported == true %}yes{% elsif page.usp_supported == false %}no{% else %}check with bidder{% endif %}</td>
-                  </tr>
-                  <tr>
-                    <th class="pbTh">Supply Chain Support</th>
-                    <td class="pbTd">{% if page.schain_supported == true %}yes{% elsif page.schain_supported  == false %}no{% else %}check with bidder{% endif %}</td>
-                    <th class="pbTh">COPPA Support</th>
-                    <td class="pbTd">{% if page.coppa_supported == true %}yes{% elsif page.coppa_supported == false %}no{% else %}check with bidder{% endif %}</td>
-                  </tr>
-                  <tr>
-                    <th class="pbTh">Demand Chain Support</th>
-                    <td class="pbTd">{% if page.dchain_supported == true %}yes{% elsif page.dchain_supported == false %}no{% else %}check with bidder{% endif %}</td>
-                    <th class="pbTh">GPP Support</th>
-                    <td class="pbTd">{% if page.gpp_supported == true %}yes{% elsif page.gpp_supported == false %}no{% else %}check with bidder{% endif %}</td>
-                  </tr>
-                  <tr>
-                    <th class="pbTh">Supports Deals</th>
-                    <td class="pbTd">{% if page.deals_supported == false %}no{% elsif page.deals_supported == true %}yes{% else %}check with bidder{% endif %}</td>
-                    <th class="pbTh">Prebid.js Adapter</th>
-                    <td class="pbTd">{% if page.pbjs == true %}yes{% else %}no{% endif %}</td>
-                  </tr>
-                  <tr>
-                    <th class="pbTh">IAB GVL ID</th>
-                    <td class="pbTd">{% if page.gvl_id %}{{page.gvl_id}}{% else %}check with bidder{% endif %}</td>
-                    <th class="pbTh">Prebid Server Adapter</th>
-                    <td class="pbTd">{% if page.pbs == true %}yes{% else %}no{% endif %}</td>
-                  </tr>
-                  <tr>
-                    <th class="pbTh">Floors Module Support</th>
-                    <td class="pbTd">{% if page.floors_supported == true %}yes{% elsif page.floors_supported == false %}no{% else %}check with bidder{% endif %}</td>
-                    <th class="pbTh">First Party Data Support</th>
-                    <td class="pbTd">{% if page.fpd_supported == true %}yes{% elsif page.fpd_supported == false %}no{% else %}check with bidder{% endif %}</td>
-                  </tr>
-                  <tr>
-                    <th class="pbTh">Multi Format Support</th>
-                    <td class="pbTd">{% if page.multiformat_supported %}{{page.multiformat_supported}}{% else %}check with bidder{% endif %}</td>
-                    <th class="pbTh">ORTB Blocking Support</th>
-                    <td class="pbTd">{% if page.ortb_blocking_supported == true %}yes{% elsif page.ortb_blocking_supported == false %}no{% elsif page.ortb_blocking_supported == 'partial' %}partial{% else %}check with bidder{% endif %}</td>
-                  </tr>
-                  <tr>
-                    <th class="pbTh">Safeframes OK</th>
-                    <td class="pbTd">{% if page.safeframes_ok == false %}no{% elsif page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %}</td>
-                    <th class="pbTh"></th>
-            <td class="pbTd"></td>
-                  </tr>
-                </table>
+                {% include dev-docs/bidder-meta-data.html page=page %}
 
                 {{content}}
 

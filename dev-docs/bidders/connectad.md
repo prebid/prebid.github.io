@@ -20,6 +20,8 @@ sidebarType: 1
 
 ### Prebid Server Note
 
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
+
 Please reach out to your ConnectAd Account Manager before configuring the S2S adapter for approval and setup.
 
 ### Bid Params

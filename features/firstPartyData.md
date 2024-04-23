@@ -45,6 +45,60 @@ The Prebid First Party Data JSON structure reflects the OpenRTB standard.
 - Fields that are meant to be standard [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) should be in `ortb2.site` or `ortb2.user`. Specfically, the standard values for 'site' are: name, domain, cat, sectioncat, pagecat, page, ref, search, keywords. For 'user' these are: yob, gender, keywords.
 - Segment taxonomy values go in `ortb2.site.content.data` or `ortb2.user.data` using the IAB standard representation.
 
+### Automatically collected first party data
+
+If not specified through any of the methods above, Prebid.js attempts to automatically fill a number of fields:
+
+{: .table .table-bordered .table-striped }
+| Field | Value | Notes |
+|-----------+--------------|
+| `site.page` | Site URL, from `pageUrl` falling back to `location.href` | [`pageUrl` config](/dev-docs/publisher-api-reference/setConfig.md#setConfig-Page-URL) |
+| `site.ref` | `document.referrer` | |
+| `site.domain` | Domain portion of `site.page` | |
+| `site.keywords` | Contents of `<meta name="keywords">`, if such a tag is present on the page | |
+| `site.publisher.domain` | Second level domain portion of `site.domain` | The second-level domain portion of `sub.example.publisher.com` is `publisher.com`|
+| `device.w` | Viewport width |
+| `device.h` | Viewport height |
+| `device.dnt` | Do Not Track setting | [Navigator.doNotTrack](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/doNotTrack) |
+| `device.language` | User's language | [Navigator.language](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/language) |
+| `device.ua` | User agent | [Navigator.userAgent](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent) |
+| `device.sua` | User agent client hints | [uaHints config](#uaHints) |  
+| `device.ext.webdriver`| `true` if the browser declares to be an automation tool | [Navigator.webdriver](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/webdriver) |
+| `device.ext.cdep`| Google Chrome cookie deprecation label | [Chrome-facilitated testing](https://developers.google.com/privacy-sandbox/setup/web/chrome-facilitated-testing) |
+| `regs.coppa` | COPPA Regulation flag | [COPPA config](/dev-docs/publisher-api-reference/setConfig.md#setConfig-coppa)
+| `regs.ext.gpc` | Global Privacy Control setting | [Navigator.globalPrivacyControl](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/globalPrivacyControl) |
+
+Publisher-provided first party data always takes precedence for all fields; you can also set `null` to disable them. For example, the following discards the automatically collected `device.keywords`:  
+
+```javascript
+pbjs.setConfig({
+    ortb2: {
+        device: {
+            keywords: null
+        }
+    }
+})
+```
+
+<a id="uaHints"></a>
+
+#### User Agent client hints
+
+`device.sua` is populated with UA client hints retrieved from [`navigator.userAgentData`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgentData). You can specify the list of hints using the `uaHints` option with [any available high entropy hint](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData#returning_high_entropy_values):
+
+```javascript
+pbjs.setConfig({
+    firstPartyData: {
+        uaHints: [
+            'platform',
+            // ...
+        ]
+    }
+})
+```
+
+If `uaHints` is set to an empty array or is not set, only low-entropy hints are used.
+
 ### Supplying Global Data
 
 Here's how a publisher can let all bid adapters have access
@@ -109,7 +163,24 @@ pbjs.setConfig({
         },
         regs: {
             gpp: "abc1234",
-            gpp_sid: [7]
+            gpp_sid: [7],
+            ext: {
+                dsa: {
+                    dsarequired: 3,
+                    pubrender: 0,
+                    datatopub: 2,
+                    transparency: [
+                        {
+                            domain: 'platform1domain.com',
+                            dsaparams: [1]
+                        },
+                        {
+                            domain: 'platform2domain.com',
+                            dsaparams: [1, 2]
+                        }
+                    ]
+                }
+            }
         }
     }
 });
@@ -117,8 +188,8 @@ pbjs.setConfig({
 
 {: .alert.alert-warning :}
 Note that supplying first party **user** data may require special
-consent in certain regions. Prebid.js does **not** police the passing
-of user data as part of its GDPR or CCPA modules.
+consent in certain regions. By default, Prebid's [gdprEnforcement](/dev-docs/modules/gdprEnforcement.html) module does **not** police the passing
+of user data, but can optionally do so if the `personalizedAds` rule is enabled.
 
 {: .alert.alert-warning :}
 If you're using PBJS version 4.29 or before, replace the following in the example above: 'ortb' with 'fpd', 'site' with 'context' and 'site.ext.data' with 'context.data'.

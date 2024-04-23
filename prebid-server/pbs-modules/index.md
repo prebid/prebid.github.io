@@ -17,13 +17,23 @@ If you're looking for bidder adapter parameters, see [Bidders' Params](/dev-docs
 
 ## The Modules
 
-{: .table .table-bordered .table-striped }
-| Module              | Description  | PBS-Go | PBS-Java |
-|---------------------+--------------+--------+----------|
-| [**ORTB2 Blocking**](/prebid-server/pbs-modules/ortb2-blocking.html)           | Support bidders that aren't full-service SSPs.       | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
-| [**Confiant Ad Quality**](/prebid-server/pbs-modules/confiant-ad-quality.html) | Scans bid responses for security and quality issues. |                                                                  | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
+There are two types of modules:
 
-## Installing a PBS Module
+1. General Modules - these plug into various stages within the main auction workflow and can affect any part of the request or response.
+1. Privacy Modules - these are more limited, plugging into the [Activity Controls](/prebid-server/features/pbs-activitycontrols.html) system to delegate decisions about potentially privacy-sensitive scenarios.
+
+The full list of modules:
+
+{: .table .table-bordered .table-striped }
+| Module              | Description  | Type | PBS-Go | PBS-Java |
+|---------------------+--------------+------+--------+----------|
+| [**ORTB2 Blocking**](/prebid-server/pbs-modules/ortb2-blocking.html) | Support bidders that aren't full-service SSPs. | general | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
+| [**Confiant Ad Quality**](/prebid-server/pbs-modules/confiant-ad-quality.html) | Scans bid responses for security and quality issues. | general | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
+| [**US Gen Privacy**](/prebid-server/features/pbs-usgen.html) | Links with the [Activity Controls](/prebid-server/pbs-activitycontrols.html) to process GPP strings to determine whether an activity should be allowed. | privacy | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
+| [**US Custom Logic Privacy**](/prebid-server/features/pbs-uscustomlogic.html) | Similar to the `US Gen Privacy` module, but publishers define their own interpretation of the GPP string. | privacy | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
+| [**Richmedia Filter**](/prebid-server/pbs-modules/richmedia.html) | Can filter MRAID creatives from the bid stream. | validation | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
+
+## Installing a PBS General Module
 
 Once a Prebid Server host company decides which modules they want to support,
 here's how installation works:
@@ -85,7 +95,7 @@ hooks:
                     "modulecode": "modulecode3",
                     "hookimplcode": "hook3-depends-on-hook1"
                   }
-        ]
+                ]
               }
             ]
           }
@@ -126,7 +136,13 @@ Modules may require configuration at startup or during the request:
 describe where the config file lives and what format it should take.
 * If the module requires runtime config, it should be passed via the account-conig mechanism.
 
+## Installing a PBS Privacy Module
+
+Privacy modules are already built into the code base. They just need to be linked to the
+relevant 'Activity' using the `privacyreg` directive as described in the [Activity Control reference](/prebid-server/features/pbs-activitycontrols.html).
+
 ## Further Reading
 
-* [Developing a Prebid Server Module](/prebid-server/developers/add-a-module.html)
+* [Developing a Prebid Server General Module](/prebid-server/developers/add-a-module.html)
+* [Developing a Prebid Server Privacy Module](/prebid-server/developers/add-a-privacy-module.html)
 * [Prebid Server Features](/prebid-server/features/pbs-feature-idx.html)

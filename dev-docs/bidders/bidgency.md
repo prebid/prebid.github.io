@@ -5,16 +5,19 @@ description: Bidgency Group Bid Adapter
 biddercode: bidgency
 tcfeu_supported: false
 usp_supported: true
-media_types: video
+media_types: video, native
 safeframes_ok: true
-deals_supported: false
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
 floors_supported: true
 schain_supported: true
+fpd_supported: true
+ortb_blocking_supported: true
 multiformat_supported: will-bid-on-one
 userIds: all
 sidebarType: 1
+aliasCode: aso
 ---
 ### Note
 
@@ -34,7 +37,6 @@ Note that the Bidgency Group adapter expects a client-side Prebid Cache to be en
 
 ```js
 pbjs.setConfig({
-    usePrebidCache: true,
     cache: {
         url: 'https://prebid.adnxs.com/pbc/v1/cache'
     }

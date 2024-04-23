@@ -12,8 +12,10 @@ usp_supported: true
 safeframes_ok: true
 prebid_member: true
 pbjs: true
-pbs: true
+pbs: false
+enable_download: false
 sidebarType: 1
+pbjs_version_notes: removed in 8.13.0
 ---
 
 ### Bid params

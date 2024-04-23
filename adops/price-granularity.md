@@ -90,11 +90,11 @@ The auto option contains a series of predefined buckets. Any bid over the cap fa
 {: .table .table-bordered .table-striped }  
 | Increment | Cap | Number of Line Items Required per Bidder |
 | --------- | --- | ---------------------------------------- |
-| 0.05 | 5.00 | 51 |
+| 0.05 | 5.00 | 101 |
 | 0.10 | 10.00 | 50 |
-| 0.50 | 20.00 | 10 |
+| 0.50 | 20.00 | 20 |
 | Any bid > 20.00 | 20.00 | n/a |
-| | | Total: 111 |
+| | | Total: 171 |
 
 #### Dense
 

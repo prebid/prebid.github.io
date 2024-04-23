@@ -31,17 +31,15 @@ If you need to use an API way, ensure that all the following properties are set 
 
 If you need to use a CMP way, ensure that you don't set any of the following API properties. 
 
-
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
-
 
 ### Subject To GPDR
 {:.no_toc}
 
 Enable (true) or disable (false) the ability to provide consent.
 
-```
+```kotlin
 TargetingParams.isSubjectToGDPR()
 TargetingParams.setSubjectToGDPR(true)
 ```
@@ -49,7 +47,7 @@ TargetingParams.setSubjectToGDPR(true)
 ### GDPR Consent String
 {:.no_toc}
 
-```
+```java
 val consent = TargetingParams.getGDPRConsentString();
 TargetingParams.setGDPRConsentString(string);
 ```
@@ -57,7 +55,7 @@ TargetingParams.setGDPRConsentString(string);
 ### Purpose Consent
 {:.no_toc}
 
-```
+```kotlin
 val consent = TargetingParams.getPurposeConsents()
 TargetingParams.setPurposeConsents(string)
 ```
@@ -68,10 +66,9 @@ Prebid supports passing of the Child Online Privacy Prection (COPPA) signal to P
 
 Example:
 
-```
+```java
 TargetingParams.setSubjectToCOPPA(true);
 ```
-
 
 ## Parameters
 
@@ -81,7 +78,6 @@ The more data about the user, app, and device that can be provided the more chan
 It is advised that you strictly follow the recommendations in the tables below. Any field marked with an ❗is required and recommended. 
 
 1. [Targeting Params](#targeting)
-2. [SDK Settings](#prebidrenderingsettings)
 
 ### Targeting
 
@@ -99,10 +95,9 @@ You can use `Targeting` to pass ad call request parameters.
 | Keywords                   | `addUserKeywords`         | Comma separated list of keywords, interests, or intent. | Optional |
 | Lat, Lon                   | `setUserLatLng`           | Location of the user’s home base defined by a provided longitude and latitude. It's highly recommended to provide Geo data to improve the request.| Optional |
 | Publisher Name                  | `setPublisherName`        | Publisher name (may be aliased at the publisher’s request).| Recommended if available  |
-| Store Url               | `setStoreUrl`    | The URL for the mobile application in Google Play. That field is required in the request. <br />**For example:**` https://play.google.com/store/apps/details?id=com.outfit7.talkingtom`. | ❗ Required  |
+| Store Url               | `setStoreUrl`    | The URL for the mobile application in Google Play. That field is required in the request. <br />**For example:**`https://play.google.com/store/apps/details?id=com.outfit7.talkingtom`. | ❗ Required  |
 | User ID                        | `setUserId`               | ID of the user within the app. For example: `"24601"` | ❗ Highly Recommended  |
 |Year of Birth|`setYearOfBirth`| The year of user's birth||
-
 
 Example:
 
@@ -110,18 +105,35 @@ Example:
 // Set user parameters to enrich ad request data.
 // Please see Targeting for the userKeys and the APIs available.
 TargetingParams.addUserKeyword("socialNetworking");
-TargetingParams.setUserAge(18); 
+TargetingParams.setUserAge(18);
+```
+
+### ORTBConfig
+
+(requires SDK v2.2.1)
+
+Provides a way for app publishers to customize most ORTB fields in the partial bid request that Prebid Mobile sends to the Prebid Server.  The customization comes in the form of the ortbConfig parameter that takes a JSON String as input.  The JSON string must follow the [ORTB guidelines](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/develop/2.6.md#321---object-bidrequest-) as it will be merged with the current JSON of the bid request. If you choose to input extra data using the ortbConfig parameter, please extensively test your requests sent to Prebid Server. 
+
+There are certain protected fields such as regs, device, geo, ext.gdpr, ext.us_privacy, and ext.consent which cannot be changed.
+
+``` kotlin
+//global invocation
+adUnitConfiguration?.ortbConfig = "{"ext":{"prebid":{"debug":1,"trace":"verbose"}}}"
+```
+
+``` kotlin
+//ad unit / impression-level
+adUnit?.ortbConfig = "{"ext":{"gpid":"abc123"}}"
 ```
 
 ### Global User Targeting
-
 
 #### User Keywords
 {:.no_toc}
 
 User keywords are a list of keywords, intrests or intent as defined by user.keywords in OpenRTB 2.5. Any keywords passed in the UserKeywords object may be passsed to DSPs.
 
-```
+```kotlin
 void addUserKeyword(String keyword)
 void addUserKeywords(Set<String> keywords)
 void removeUserKeyword(String keyword)
@@ -142,8 +154,7 @@ TargetingParams.addUserKeyword("globalUserKeywordValue2")
 
 Context Keywords are a list of keywords about the app as referenced in OpenRTB 2.5 as app.keywords. Any keyword passed in the context keyword field may be passed to the buyer for targeting.
 
-
-```
+```kotlin
 void addContextKeyword(String keyword)
 void addContextKeywords(Set<String> keywords)
 void removeContextKeyword(String keyword)
@@ -152,24 +163,23 @@ void clearContextKeywords()
 
 Example:
 
-```
+```kotlin
 TargetingParams.addContextKeyword("globalContextKeywordValue1")
 TargetingParams.addContextKeyword("globalContextKeywordValue2")
 ```
-
 
 ### Bundle ID
 {:.no_toc}
 
 Use the following code to retrieve the platform-specific bundle/package name:
 
-```
+```kotlin
 bundleName = TargetingParams.getBundleName()
 ```
 
 Pass in the platform-specific identifier - the bundle/package name - to set the bundle ID:
 
-```
+```kotlin
 TargetingParams.setBundleName(bundleName)
 ```
 
@@ -191,28 +201,30 @@ val domain = TargetingParams.getDomain()
 OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
 
 There three components to signaling support for OMSDK:
+
 * Partner Name
 * Partner Version
 * API code
 
-#### Partner Name
+### Partner Name
 {:.no_toc}
 
 This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. See below for configuration and examples
 
 Open Measurement partner name. 
 
-```
+```kotlin
 TargetingParams.setOmidPartnerName("Google")
 ```
 
-#### Partner Version
+### Partner Version
 {:.no_toc}
 
 The OMSDK version number the partner integrated with. See below for configuration and examples.
 
 Partner's OMSDK version number implementation
-```
+
+```java
 TargetingParams.setOmidPartnerVersion();
 ```
 
@@ -221,19 +233,19 @@ TargetingParams.setOmidPartnerVersion();
 First Party Data (FPD) is free form data supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
 
 Data is broken up into two different data types:
+
 * User
   * Global in scope only
 * Inventory (context)
   * Global scope
   * Ad Unit grain
 
-
 ### First Party User Data
 {:.no_toc}
 
 User specic data is passed in the global scope (i.e. applicable to all ad units).
 
-```
+```java
 void addUserData(String key, String value)
 void updateUserData(String key, Set<String> value)
 void removeUserData(String key)
@@ -241,7 +253,8 @@ void clearUserData()
 ```
 
 Example:
-```
+
+```java
 TargetingParams.addUserData("globalUserDataKey1", "globalUserDataValue1")
 ```
 
@@ -253,7 +266,7 @@ Inventory specific free form data decribing the context of the inventory.
 #### Global Context Data
 {:.no_toc}
 
-```
+```kotlin
 void addContextData(String key, String value)
 void updateContextData(String key, Set<String> value)
 void removeContextData(String key)
@@ -262,7 +275,7 @@ void clearContextData()
 
 Example:
 
-```
+```kotlin
 TargetingParams.addContextData("globalContextDataKey1", "globalContextDataValue1, globalContextDataValue2")
 ```
 
@@ -278,20 +291,22 @@ The First Party Data Access Control List provides a method to restrict access to
 
 Only bidders supplied in the ACL will have access to the first party data. If no bidder is supplied, Prebid Server will supply first party data to all bid adapers.
 
-```
+```java
 void addBidderToAccessControlList(String bidderName)
 void removeBidderFromAccessControlList(String bidderName)
 void clearAccessControlList()
 ```
 
 Example:
-```
+
+```java
 TargetingParams.addBidderToAccessControlList(TargetingParams.BIDDER_NAME_RUBICON_PROJECT);
 ```
 
 ## User Identity
 
 Prebid SDK supports two interfaces to pass / maintain User IDs and ID vendor details:
+
 * Real-time in Prebid SDK's API field setExternalUserIds
 * Store User Id(s) in local storage
 
@@ -310,7 +325,7 @@ public static List<ExternalUserId> getExternalUserIds()
 
 Exmaple (JAVA):
 
-```
+```java
 // User Id from External Third Party Sources
 ArrayList<ExternalUserId> externalUserIdArray = new ArrayList<>();
 externalUserIdArray.add(new ExternalUserId("adserver.org", "111111111111", null, new HashMap() {
@@ -339,7 +354,7 @@ Prebid SDK provides a local storage interface to set, retrieve or update an arra
 
 Prebid SDK Provides five functions to handle User ID details:
 
-```
+```java
 public static void storeExternalUserId(ExternalUserId externalUserId)
 public static ExternalUserId fetchStoredExternalUserId(@NonNull String source)
 public static List<ExternalUserId> fetchStoredExternalUserIds()
@@ -370,4 +385,3 @@ TargetingParams.removeStoredExternalUserId("adserver.org");
 //Remove All External UserID
 TargetingParams.clearStoredExternalUserIds();
 ```
-

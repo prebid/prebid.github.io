@@ -19,10 +19,11 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description          | Example    | Type     |
-|------------|----------|----------------------|------------|----------|
-| `tagid`    | required | The sovrn Ad Tag ID  | `'315045'` | `string` |
-| `bidfloor` | optional | Bid floor in dollars | `'0.04'`   | `string` |
+| Name         | Scope    | Description          | Example          | Type     |
+|--------------|----------|----------------------|------------------|----------|
+| `tagid`      | required | The sovrn Ad Tag ID  | `'315045'`       | `string` |
+| `bidfloor`   | optional | Bid floor in dollars | `0.04`           | `float`  |
+| `adunitcode` | optional | Ad unit identifier   | `'example_code'` | `string` |
 
 Bid Params for video ads. These params should be added to `mediatype.video`.
 
@@ -30,7 +31,7 @@ Bid Params for video ads. These params should be added to `mediatype.video`.
 | Name             | Scope       | Description                                                                                                                    | Example         | Type            |
 |------------------|-------------|--------------------------------------------------------------------------------------------------------------------------------|-----------------|-----------------|
 | `mimes`          | required    | Content MIME types supported                                                                                                   | `['video/mp4']` | `string array`  |
-| `minduration`    | required    | Minimum video ad duration in seconds                                                                                           | `5`             | `integer`       |
+| `minduration`    | recommended | Minimum video ad duration in seconds                                                                                           | `5`             | `integer`       |
 | `maxduration`    | required    | Maximum video ad duration in seconds                                                                                           | `10`            | `integer`       |
 | `protocols`      | required    | The array of supported video protocols                                                                                         | `[1, 2]`        | `integer array` |
 | `w`              | recommended | Width of the video player in device independent pixels (DIPS)                                                                  | `5`             | `integer`       |
@@ -55,7 +56,7 @@ Bid Params for video ads. These params should be added to `mediatype.video`.
 
 ### Note
 
-[Protocols list](#epsilon-protocols)
+[Protocols list](https://docs.prebid.org/dev-docs/bidders/epsilon.html#protocols)
 
 #### MIME types
 
@@ -125,7 +126,7 @@ Source: [OpenRTB scpecification](https://www.iab.com/wp-content/uploads/2016/03/
 
 #### Video instream adUnit
 
-```
+```javascript
     var instreamAdUnit = {
       code: 'instream-div',
       sizes: [[640, 480]],
@@ -148,7 +149,7 @@ Source: [OpenRTB scpecification](https://www.iab.com/wp-content/uploads/2016/03/
 
 #### Video outstream adUnit
 
-```
+```javascript
     var outstreamAdUnit = {
       code: 'outstream-div',
       sizes: [[640, 480]],
@@ -166,12 +167,12 @@ Source: [OpenRTB scpecification](https://www.iab.com/wp-content/uploads/2016/03/
           tagid: '315045'
         }
       }]
-    },
+    }
 ```
 
 #### Banner adUnit
 
-```
+```javascript
     var bannerAdUnit = {
       code: 'banner-div',
       sizes: [[300, 250]],
