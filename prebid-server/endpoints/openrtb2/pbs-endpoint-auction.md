@@ -1646,10 +1646,7 @@ The value in seatbid[].bid[].price may be converted for currency and adjusted wi
 
 ##### Seat Non-Bid
 
-{: .alert.alert-info :}
-PBS-Java only
-
-Prebid Server supports an ORTB extension that allows callers to get more information about bidders that may have had a chance to bid but did not. Eventually the system will support a fine-grained set of codes describing why a given bidder didn't bid on a particular impression, but for now we're phasing in the necessary internal infrastructure.
+Prebid Server supports the [Seat Non-Bid OpenRTB Extension](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/extensions/community_extensions/seat-non-bid.md) that allows callers to get more information about bidders that had a chance to bid but did not. Eventually the system will support a fine-grained set of codes describing why a given bidder didn't bid on a particular impression, but for now we're phasing in the necessary internal infrastructure.
 
 To enable the additional output, set `ext.prebid.returnallbidstatus: true`.
 
@@ -1661,7 +1658,7 @@ Here's a sample response:
   "ext": {
     "seatnonbid": [
       {
-        "seat": "rubiconAlias",
+        "seat": "someBidder",
         "nonbid": [
           {
             "impid": "test-div",
@@ -1684,10 +1681,13 @@ The codes currently returned:
 | 101 | Timeout | Java | The bid adapter timed out. |
 | 200 | Request Blocked - General | Java | This impression not sent to the bid adapter for an unspecified reason. |
 | 202 | Request Blocked due to mediatype | Java | This impression not sent to the bid adapter because it doesn't support the requested mediatype. |
-| 300 | Response Rejected - General | Java | The bid response was rejected for an unspecified reason. See warnings in debug mode. (Mostly caused by DSA validation rules) |
+| 300 | Response Rejected - General | Go + Java | The bid response was rejected for an unspecified reason. See warnings in debug mode. (Mostly caused by DSA validation rules) |
 | 301 | Response Rejected - Below Floor | Java | The bid response did not meet the floor for this impression. |
+| 303 | Response Rejected - Category Mapping Invalid | Go | The bid response did not include a category to map. |
+| 351 | Response Rejected - Invalid Creative (Size Not Allowed) | Go | The bid response banner size exceeds the max size, when creative validation is enabled. |
+| 352 | Response Rejected - Invalid Creative (Not Secure) | Go | The bid response adm does not use https, when secure markup validation is enabled. |
 
-See the [IAB's community extension](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/seat-non-bid.md) for the full list of status codes that may be supported in the future.
+See the [IAB's Seat Non-Bid OpenRTB Extension](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/seat-non-bid.md) for the full list of status codes that may be supported in the future.
 
 ### OpenRTB Ambiguities
 
