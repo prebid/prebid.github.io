@@ -140,13 +140,17 @@ Deprecated - this was Prebid's attempt at a unique placement ID before GPID came
 
 [Open Real Time Bidding](https://www.iab.com/guidelines/openrtb/) is a protocol defined and managed by the IAB for transacting programmatic ad auctions.
 
+### Billing URL (burl)
+
+A URL provided by a bidder requesting to be notified when their bid has been rendered. Prebid.js creates a pixel with this URL just before the BID_WON event.
+
 ### Loss URL (lurl)
 
-A URL provided by a bidder requesting to be notified when their bid did not win the auction.
+A URL provided by a bidder requesting to be notified when their bid did not win the auction. Prebid does not do anything with loss URLs.
 
 ### Notice URL (nurl)
 
-A URL provided by a bidder requesting to be notified when their bid wins the auction.
+A URL provided by a bidder as an alternate source of the creative. See the [nurl FAQ entry](/faq/prebid-server-faq.html#how-does-the-notice-url-work-for-prebid-server) for Prebid-specfic details.
 
 ## Prebid Mobile
 
