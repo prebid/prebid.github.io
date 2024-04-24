@@ -422,7 +422,7 @@ If you find that some bidders use Gross bids, publishers can adjust for it with 
 
 This may also be useful for publishers who want to account for different discrepancies with different bidders.
 
-It's also possible to define different bid adjustment factors by mediatype, which can be helpful to adjust discrepancies that differ across mediatypes (PBS-Java only):
+It's also possible to define different bid adjustment factors by mediatype, which can be helpful to adjust discrepancies that differ across mediatypes:
 
 ```json
 {
@@ -476,7 +476,7 @@ to set these params on the response at `response.seatbid[i].bid[j].ext.prebid.ta
 | includebidderkeys | no | Whether to include targeting for the best bid from each bidder in response.seatbid[].bid[]. ext.prebid.targeting. Defaults to false. | true | boolean |
 | includeformat | no | Whether to include the "hb_format" targeting key. Defaults to false. | false | boolean |
 | preferdeals | no | If targeting is returned and this is true, PBS will choose the highest value deal before choosing the highest value non-deal. Defaults to false. | true | boolean |
-| alwaysincludedeals | no | (PBS-Java only) If true, generate hb_ATTR_BIDDER values for all bids that have a dealid | true | boolean |
+| alwaysincludedeals | no | If true, generate hb_ATTR_BIDDER values for all bids that have a dealid | true | boolean |
 | prefix | no | (PBS-Java only) Instead of emitting all targeting values with the default prefix `hb`, use this value. Note that long prefixes are discouraged because GAM has a 20-char limit on key value pairs and some Prebid targeting values (e.g. hb_cache_host_bidderA) are already more than 20 chars. | "hb2" | string |
 
 **Request format** (optional param `request.ext.prebid.targeting`)
@@ -1477,9 +1477,6 @@ If the bidrequest contains impression-level `$.imp[].ext.prebid.passthrough` obj
 The initial use is for the SDK to define render-time parameters, but this mechanism may find use in other applications.
 
 ##### Floors
-
-{: .alert.alert-info :}
-PBS-Java only
 
 See the [Prebid Server Floors Feature](/prebid-server/features/pbs-floors.html) for more info.
 
