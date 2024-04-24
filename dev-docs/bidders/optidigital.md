@@ -8,7 +8,7 @@ floors_supported: true
 tcfeu_supported: true
 tcf2_supported: true
 usp_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, usnat, usp
 schain_supported: true
 ortb_blocking_supported: true
 safeframes_ok: true
