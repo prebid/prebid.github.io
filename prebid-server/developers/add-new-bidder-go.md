@@ -567,7 +567,7 @@ type adapter struct {
   endpoint string
 }
 
-// Builder builds a new instance of the Foo adapter for the given bidder with the given config.
+// Builder builds a new instance of the {bidder} adapter for the given bidder with the given config.
 func Builder(bidderName openrtb_ext.BidderName, config config.Adapter, server config.Server) (adapters.Bidder, error) {
   bidder := &adapter{
     endpoint: config.Endpoint,
@@ -585,6 +585,7 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapte
     Method:  "POST",
     Uri:     a.endpoint,
     Body:    requestJSON,
+    ImpIDs:  openrtb_ext.GetImpIDs(request.Imp),
   }
 
   return []*adapters.RequestData{requestData}, nil
@@ -736,7 +737,7 @@ func buildDefaultExtraInfo() extraInfo {
 
 #### MakeRequests
 
-The `MakeRequests` method is responsible for returning none, one, or many HTTP requests to be sent to your bidding server. Bid adapters are forbidden from directly initiating any form of network communication and must entirely rely upon the core framework. This allows the core framework to optimize outgoing connections using a managed pool and record networking metrics. The return type `adapters.RequestData` allows your adapter to specify the HTTP method, url, body, and headers.
+The `MakeRequests` method is responsible for returning none, one, or many HTTP requests to be sent to your bidding server. Bid adapters are forbidden from directly initiating any form of network communication and must entirely rely upon the core framework. This allows the core framework to optimize outgoing connections using a managed pool and record networking metrics. The return type `adapters.RequestData` allows your adapter to specify the HTTP method, url, body, headers, and ids of the impressions in the request.
 
 This method is called once by the core framework for bid requests which have at least one valid Impression for your adapter. Impressions not configured for your adapter are not accessible.
 
@@ -793,6 +794,7 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapte
       Method: "POST",
       Uri:    a.endpoint,
       Body:   requestJSON,
+      ImpIDs: []string{imp.ID},
     }
     requests = append(requests, requestData)
   }
@@ -842,6 +844,7 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapte
     Method:  "POST",
     Uri:     a.endpoint,
     Body:    requestJSON,
+    ImpIDs:  openrtb_ext.GetImpIDs(request.Imp),
   }
 
   return []*adapters.RequestData{requestData}, nil
