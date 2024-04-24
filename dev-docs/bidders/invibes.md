@@ -10,7 +10,7 @@ coppa_supported: false
 gpp_sids: tcfeu
 schain_supported: false 
 dchain_supported: false
-userId: pubcid, pubProvidedId, uid2, zeotapIdPlus, id5id
+userId: pubCommonId, pubProvidedId, uid2, zeotapIdPlus, id5id
 media_types: banner, native
 safeframes_ok: false
 deals_supported: false
