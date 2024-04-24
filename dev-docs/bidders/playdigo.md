@@ -3,11 +3,15 @@ layout: bidder
 title: Playdigo
 description: Prebid Playdigo Bidder Adapter
 biddercode: playdigo
+gpp_sids: usstate_all
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
+deals_supported: false
 floors_supported: true
-gpp_supported: true
+fpd_supported: false
+ortb_blocking_supported: false
 media_types: banner, video, native
 multiformat_supported: will-not-bid
 pbjs: true
