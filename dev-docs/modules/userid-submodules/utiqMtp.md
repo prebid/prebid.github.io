@@ -7,7 +7,7 @@ useridmodule: utiqMtpIdSystem
 
 Utiq generates unique tokens, enabling improved efficiency in programmatic advertising while safeguarding transparency and control for end customers via `consenthub.utiq.com`. A website visitor’s Utiq ID is generated based on network identifiers provided by network operators and requires explicit user consent.
 
-Utiq provides different tokens type, known as 'adtechpass' and 'martechpass'. UtiqMtpId module helps publishers support and pass the 'martechpass' token to their SSP partners of choice. 'martechpass' is a first party ID meant to be enable first party audience in the SSP and shouldn't be forwarded to other parties.
+Utiq provides different tokens type, known as 'adtechpass' and 'martechpass'. UtiqMtpId module helps publishers support and pass the 'martechpass' token to their SSP partners of choice. 'martechpass' is a first party ID meant to enable first party audiences in the SSP and shouldn't be forwarded to other parties.
 
 Both Utiq and UtiqMtpId user id submodules can be used in parallel as both supports different use cases and scenarios.
 
