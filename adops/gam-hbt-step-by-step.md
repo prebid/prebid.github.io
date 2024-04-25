@@ -13,7 +13,7 @@ sidebarType: 3
 - TOC
 {: toc }
 
-Publishers new to header bidding can use this guide to set up header bidding trafficking for Prebid in Google Ad Manager. Unlike a line item setup, header bidding trafficking provides publishers with precise bid prices to compete in the auction and no need for shell creatives. It also provides unified reporting, and a straightforward workflow. These instructions describe only the specific settings required for header bidding trafficking; they are not intended to be comprehensive instructions that replace or duplicate the GAM documentation.
+Publishers new to header bidding can use this guide to set up header bidding trafficking for Prebid in Google Ad Manager. Unlike a line item setup, header bidding trafficking provides publishers with precise bid prices to compete in the auction and no need for header bidding creatives. It also provides unified reporting, and a straightforward workflow. These instructions describe only the specific settings required for header bidding trafficking; they are not intended to be comprehensive instructions that replace or duplicate the GAM documentation.
 
 - If you prefer to use line items to manage your header bidding setup, visit [Line item setup](/adops/step-by-step.html).
 - For how to migrate from line items to header bidding trafficking, visit [Header bidding trafficking](https://support.google.com/admanager/answer/12273163) and the corresponding [FAQ](https://support.google.com/admanager/answer/12270263).  These instructions also describe how to run an experiment to show potential revenue uplift from migrating to header bidding trafficking from a line item setup. 
@@ -52,7 +52,7 @@ First, configure Prebid.js to collect bids from your selected bidders and pass t
 For each bidder, there are three configuration options:
 
 - *Enable SafeFrame*: When enabled, ads returned by the bidder will render inside of a SafeFrame. Bidders may vary in their compatibility with SafeFrame.
-- *Enable optimized Private Auction deals*: When enabled, bids that include a deal ID will enter the auction at the optimized Private Auction priority. If disabled, such bids will continue to work with any relevant line items in your network.
+- *Enable optimized Private Auction deals*: When enabled, bids that include a deal ID will enter the auction at the optimized Private Auction [priority](https://support.google.com/admanager/answer/10863708). If disabled, such bids will continue to work with any relevant line items in your network.
 - *Allow ads on child-directed requests*: When enabled, the associated bidder’s ads may show on inventory that is classified in Ad Manager as child-directed.
 
 {:start="6"}
@@ -70,8 +70,8 @@ For each bidder, there are three configuration options:
 
 Historical reporting in Ad Manager helps you understand how header bidding is performing.
 
-- Use the Bidder dimension to see performance by exchange.
-- Add the Demand Channel dimension to see whether buyers accessed your inventory through header bidding (the Demand Channel dimension has a value of “Header bidding”).
+- Use the Bidder dimension to see performance by exchange. In Data Transfer files, this is called Buyer Network.
+- Add the Demand Channel dimension to see whether buyers accessed your inventory through header bidding (the Demand Channel dimension has a value of “Header bidding”). This is called Product in Data Transfer files.
 
 ## Using protections with header bidding
 
@@ -79,3 +79,6 @@ To exclude the header bidders from the auction:
 
 - Create an [inventory exclusion protection](https://support.google.com/admanager/answer/9376326).
 - Select the header bidding demand source and appropriate targeting.
+- To exclude certain formats from Header Bidding Trafficking, you can create an
+  inventory exclusion that targets the relevant hb_format key-value. Header 
+  Bidding Trafficking supports display and outstream video, but not native ads.
