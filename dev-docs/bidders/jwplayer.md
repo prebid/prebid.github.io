@@ -6,7 +6,7 @@ biddercode: jwplayer
 gvl_id: 1046
 pbjs: true
 pbs: false
-media_types: video
+media_types: no-display, video
 userIds: all (with commercial activation)
 tcfeu_supported: true
 dsa_supported: true
@@ -14,7 +14,6 @@ prebid_member: true
 schain_supported: true
 coppa_supported: true
 usp_supported: true
-gpp_supported: true
 floors_supported: true
 fpd_supported: true
 deals_supported: true
@@ -84,10 +83,9 @@ We support all oRTB params and encourage populating as many as possible.
 
 ### Required Bidder params
 
-You must include the following parameters at the bidder level.
+You must include the following parameters at the bidder level, in `adUnit.bids[index].params`.
 
 {: .table .table-bordered .table-striped }
-
 | Name | Scope | Type | Description                                          |
 |---|---|---|------------------------------------------------------|
 | `siteId` | Required | String | Site-specific id that is provided by JW Player.      |
@@ -98,16 +96,14 @@ You must include the following parameters at the bidder level.
 
 ### mediaTypes.video
 
-We recommend populating as many params as possible in `mediaTypes.video`. When using the [jwplayerVideoProvider](dev-docs/modules/jwplayerVideoProvider.md), these fields are populated automatically. 
+We recommend populating as many params as possible in `adUnit.mediaTypes.video`. When using the [jwplayerVideoProvider](dev-docs/modules/jwplayerVideoProvider.md), these fields are populated automatically. 
 
 {: .table .table-bordered .table-striped }
-
 | Name               | Scope       | Type    | Description                                                                                                                                                                                                                                                                                                             |
 |--------------------|-------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `video.w`          | Recommended | Integer | Populated automatically when using the `jwplayerVideoProvider`. The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters.                                                                              |
 | `video.h`          | Recommended | Integer | Populated automatically when using the `jwplayerVideoProvider`. The height of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters.                                                                             |
 | `video.plcmt`      | Recommended | Integer | The video's placement type, where: <br /> - `1` = Instream<br /> - `2` = Accompanying Content <br /> - `3` = Interstitial <br /> - `4` = No Content/Standalone                                                                                                                                                          |
-
 
 <a id="set-up-first-party-data-fpd"></a>
 
@@ -117,7 +113,6 @@ In release 4.30 and later, publishers who are not using the [jwplayerVideoProvid
 The following fields are required:
 
 {: .table .table-bordered .table-striped }
-
 | Name               | Scope       | Type    | Description                                                                                                                                                                                                                                                                                                             |
 |--------------------|-------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `site.content.url` | Required    | string  | Populated automatically when the `jwplayerVideoProvider` or `jwplayerRtdProvider` are included. This is the URL of the media being rendered in the video player, for buy-side contextualization or review. This needs to be accessible (w/o DRM, Geo-blocking etc.) and without parameters (Such as size, quality etc.) |
@@ -250,6 +245,57 @@ pbjs.que.push(function() {
         content: {
           url: 'test.mp4' // Necessary only when bidding before the JW Player instance is instantiated. 
         }
+      }
+    }
+  });
+});
+```
+
+### Without the JW Player additional modules
+
+```javascript
+const adUnit = {
+    code: 'test-ad-unit',
+    mediaTypes: {
+      video: {
+        pos: 0,
+        w: 640,
+        h: 480,
+        mimes :  ['application/vnd.apple.mpegurl', 'video/mp4'],
+        minduration : 0,
+        maxduration: 60,
+        protocols : [2,3,7,5,6,8],
+        startdelay: 0,
+        placement: 1,
+        plcmt: 1,
+        skip: 1,
+        skipafter: 10,
+        playbackmethod: [3],
+        api: [2],
+        linearity: 1
+      }
+    },
+    bids: [{
+      bidder: 'jwplayer',
+      params: {
+        publisherId: 'test-publisher-id',
+        siteId: 'test-site-id',
+        placementId: 'test-placement-id'
+      }
+    }]
+};
+
+var pbjs = pbjs || {};
+pbjs.que = pbjs.que || [];
+
+pbjs.que.push(function() {
+  pbjs.setConfig({
+    ortb2: {
+      site: {
+        content: {
+          url: 'test.mp4'
+        },
+        page: 'your-page-url'
       }
     }
   });
