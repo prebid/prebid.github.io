@@ -30,8 +30,8 @@ An AdUnit that can display creatives of multiple media formats: banner, native, 
 
 ### Page-Initated Video
 
-Also called 'outstream', these are AdUnits that work in Prebid.js just like banners, but are displayed with
-a special 'renderer' to play a video ad instead of a static image. Said renderer only renders the ad and does not render content.
+Also called 'outstream', these are ads that can share an AdUnit in Prebid.js with banners, but are displayed with
+a special 'renderer' to play a video ad instead of a static image. Unlike 'player-initiated' units (aka 'instream video'), this renderer only renders the ad and does not show content.
 
 ### Player-Initiated Video
 
@@ -113,8 +113,8 @@ A description of the context where an ad may be served.
 The 'hole' in the web page or mobile app where an ad may appear. This is very similar to `AdUnit`, but is
 the technical implementation defining which ad sizes and formats may appear within it.
 
-In the "Google Publisher Tag" (GPT), the "defineSlot()" function call maps an HTML div (the technical
-implementation) to the AdUnit, (the sellable item).
+e.g. With the"Google Publisher Tag" (GPT) library, the "defineSlot()" function call maps an HTML div - this is the technical
+implementation and is referred to as the AdSlot. The defineSlot() function maps the div to the GAM AdUnit which is the sellable item that shows up in the ad server user interface.
 
 ### AdUnit
 
