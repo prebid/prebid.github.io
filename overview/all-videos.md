@@ -20,3 +20,4 @@ Multimedia overviews covering various aspect of Header Bidding and Prebid.
 1. [Components of Prebid.js](/prebid/prebidjs-components-video.html) - An explanation of Prebid.js’ components and a guide to using Prebid.js reference documentation.
 1. [Prebid.js and The Video Ad Format](/prebid-video/video-overview-video.html) - An introduction to how video works with Prebid.js.
 1. [Prebid and Ad Operations](/adops/adops-overview-video.html) - An overview of the process of planning a Prebid integration for ad operations.
+1. [Floors in Prebid.js and Prebid Server](/dev-docs/floors-video-overview.html) - An overview of the Prebid.js and Prebid Server price floor features.
