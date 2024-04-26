@@ -54,9 +54,9 @@ Web sites running Prebid.js will utilize this client-side module.
 <p/>
 Notes:
 
-- [Price Floors in Prebid Server](/prebid-server/features/pbs-floors.html#prebid-server--features--price-floors)
-- [Prebid Floor Service Providers](/dev-docs/modules/floors.html#floors-providers)
-- [Transcript of this video](/dev-docs/floors-video-overview.html)
+* [Price Floors in Prebid Server](/prebid-server/features/pbs-floors.html#prebid-server--features--price-floors)
+* [Prebid Floor Service Providers](/dev-docs/modules/floors.html#floors-providers)
+* [Transcript of this video](/dev-docs/floors-video-overview.html)
 
 ## How it Works
 
