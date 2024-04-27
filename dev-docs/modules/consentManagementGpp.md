@@ -12,17 +12,12 @@ sidebarType : 1
 ---
 
 # GPP Consent Management Module
-
 {: .no_toc }
 
 - TOC
 {: toc }
 
-{% capture legalNotice %}
-  This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company's collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European, Canadian and /or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
-  {% endcapture %}
-
-{% include /alerts/alert_important.html content=legalNotice %}
+{% include legal-warning.html %}
 
 ## Overview
 
@@ -186,9 +181,9 @@ var adaptersSupportingGpp=[];
 var idx_gdpr=0;
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% for item in bidder_pages %}
-    {% if item.gpp_supported == true %}
+    {% if item.gpp_supported == true or item.gpp_sids %}
     adaptersSupportingGpp[idx_gdpr]={};
-    adaptersSupportingGpp[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
+    adaptersSupportingGpp[idx_gdpr].href="/dev-docs/bidders/{{item.biddercode}}";
     adaptersSupportingGpp[idx_gdpr].text="{{item.title}}";
     idx_gdpr++;
     {% endif %}

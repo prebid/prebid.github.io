@@ -5,7 +5,7 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: false
 pbs: true
-userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, 33acrossId, nonID
+userIds: idl, netId, fabrickId, zeotapIdPlus, uid2, TDID, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, utiq, criteoID, euid, imuid, 33acrossId, nonID, pairid
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
@@ -21,6 +21,7 @@ deals_supported: true
 prebid_member: yes
 multiformat_supported: yes
 sidebarType: 1
+privacy_sandbox: paapi
 ---
 
 
@@ -30,7 +31,8 @@ sidebarType: 1
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
 * [Supported media types](#supported-media-types)
-* [Setup instructions to call Index through Prebid Server](#setup-instructions-to-call-index-through-prebid-server)
+* [Configure the Index adapter in your Prebid Server instance](#hosting-instance)
+* [Publisher instructions to call Index through Prebid Server](#call-index)
   * [Call Index from a web browser](#call-index-from-a-web-browser)
   * [Call Index from Prebid Mobile SDK](#call-index-from-prebid-mobile-sdk)
   * [Call Index from CTV/long-form video environment](#call-index-from-ctvlong-form-video-environment)
@@ -51,7 +53,7 @@ Publishers can use Prebid Server in any of the following ways with Index Exchang
 * In CTV apps and other long-form video environments, you (or the SSAI vendor) can make a call to Prebid Server using OpenRTB, and then Prebid Server uses our server-side adapter to call Index. For set up instructions, see [Call Index from CTV/long-form video environment](#call-index-from-ctvlong-form-video-environment) section on this page.
 * In any other server-to-server OpenRTB environment, you can send OpenRTB bid requests to the Prebid Server host of your choice. For set up instructions, see [Call Index from any other server-to-server OpenRTB environment](#call-index-from-ortb) section on this page.  
 
-**Note about sending multiple ad slots in a single bid request:** Index accepts up to 100 valid ad slots in a single bid request. If a single bid request contains more than 100 ad slots (including invalid ad slots), only the first 100 valid ad slots are accepted and the rest are ignored. For example streaming TV media owners can signal multiple ad pods for long-form programming in a single request.
+**Note about sending multiple ad slots in a single bid request:** Index accepts up to 100 valid ad slots in a single bid request. If a single bid request contains more than 100 ad slots (including invalid ad slots), only the first 100 valid ad slots are accepted and the rest are ignored. For example,  streaming TV media owners can signal multiple ad pods for long-form programming in a single request.
 
 <a id="supported-media-types"></a>
 
@@ -66,11 +68,72 @@ The following table lists the media types that Index supports. For information a
 | video   | Supported, including ad pods for OTT    |
 | native      | Supported       |
 
+<a id="hosting-instance"></a>
+
+## Configure the Index adapter in your Prebid Server instance 
+
+**Before you begin:** Contact your Index Exchange Representative to get an endpoint and setup instructions.
+
+If you are hosting your own Prebid Server instance, depending on whether you are using Prebid Server Go or Prebid Server Java version, complete one of the following steps: 
+
+* If you are using the Prebid Server Go version, in the `static/bidder-info/ix.yaml` file, complete the following:
+
+  * Enable the adapter by deleting the `disabled: true` entry.
+  * Add the following new entry and include the regional endpoint provided to you by Index:
+
+    ```javascript
+     endpoint: "https://<ENDPOINT URL>"
+     ```
+
+  * Edit the below existing entry and include your publisher ID in the `s` parameter:
+
+    ```javascript
+     userSync:  
+      redirect:  
+       url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+     ```
+
+  * Edit the below existing entry and include your publisher ID in the `s` parameter:
+
+     ```javascript
+     userSync:  
+      redirect:  
+       iframe: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+      ```         
+
+* If you are using [Prebid Server Java](https://github.com/prebid/prebid-server-java) version, edit the `prebid-server-java` entry in the `src/main/resources/bidder-config/ix.yaml` file as follows:
+
+  * Edit the below existing entry and include the endpoint URL provided to you by Index.
+
+    ```javascript
+    adapters: 
+     ix: 
+       endpoint: "https://<ENDPOINT URL>"
+    ```
+
+  * Edit the below existing entry and include your publisher ID in the `s` parameter:
+
+    ```javascript
+     adapters: 
+       ix: 
+        usersync: 
+         redirect: 
+          url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}" 
+    ```
+
+  * Add the below entry and include your publisher ID in the `s` parameter:
+
+    ```javascript
+    adapters: 
+      ix: 
+       usersync: 
+        iframe: 
+         url: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+    ```
+
 <a id="call-index"></a>
 
-## Setup instructions to call Index through Prebid Server
-
-**Note:** If you are hosting your own Prebid Server instance, you must contact your Index Exchange Representative to get an endpoint and setup instructions.
+## Publisher instructions to call Index through Prebid Server
 
 If you are using an existing Prebid Server instance that is already configured to call Index, depending on whether you want to call Index from the browser, mobile app, CTV, or long-form video, follow any of the below sections to complete the Index-specific configuration.
 
@@ -78,7 +141,54 @@ If you are using an existing Prebid Server instance that is already configured t
 
 ### Call Index from a web browser
 
-If you want to call Index from a web environment, you can use Prebid.js to call Prebid Server and then Prebid Server uses our server-side adapter to call Index. For setup instructions, see the Index-specific configuration steps in [Set up instructions for Prebid.js](https://docs.prebid.org/dev-docs/bidders/ix.html) in our Prebid.js documentation on the Prebid site.
+To call Index from a web browser using Prebid Server, you must first configure Prebid.js to call Index directly from the browser using our client-side adapter. Follow the quick start instructions provided in Prebid's [Getting Started for Developers](/dev-docs/getting-started.html) documentation. Complete the following steps to complete the Index-specific configuration:
+
+1. Build the binary in one of the following ways:
+   * [Download Prebid.js](/download.html) from the Prebid site to use the standard compiled binary that Prebid includes in the download process and select **Index Exchange** as an adapter.
+   * Build it on your own from the source code by following the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). If you use this method, you will need to include several modules in your build process. See the [Index modules to include in your build process](/dev-docs/bidders/ix.html#modules-to-include-in-your-build-process) section in our Prebid.js documentation on the Prebid site.
+2. Define the Index-specific parameters at the bidder level which include adding `ix` as the bidder and the `siteId`. For Index's bidder-specific parameters, see the [Bid request parameters](#bid-request-parameters) section below.
+
+    ```javascript
+    {
+        bidder: 'ix',
+        params: {
+            siteId: '9999990'
+        }
+    }
+    ```
+
+3. Define your ad units in the `adUnit` object. This includes the details about the ad slots such as the media types, ad size, and ad code. For more information about this object, see Prebid's [Ad Unit Reference](/dev-docs/adunit-reference.html) documentation.
+4. Enable user syncing by adding the following code in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function. Index strongly recommends enabling user syncing through iFrames, though we do also support image-based syncing. This functionality improves DSP user match rates and increases the Index bid rate and bid price. Make  sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Index.
+
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            iframeEnabled: true,
+            filterSettings: {
+                iframe: {
+                    bidders: ['ix'],
+                    filter: 'include'
+                }
+            }
+        }
+    });
+    ```
+
+5. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](/dev-docs/bidders/ix.html#set-up-first-party-data-fpd) section in our Prebid.js documentation on the Prebid site.
+6. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the [pbjs.setConfig()](/dev-docs/publisher-api-reference/setConfig.html) function as follows: <br />
+
+    ```javascript
+    pbjs.setConfig({
+        cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        }
+    });
+    ```
+
+7. (Optional) If you want to monetize outstream video, you can choose among the following options:
+    * Use Index's outstream video player. For more information, see the [Index's outstream video player](/dev-docs/bidders/ix.html#index-outstream-video-player) section in our Prebid.js documentation on the Prebid site.
+    * Use your own outstream video player. For more information, see [Prebid's documentation on how to show video ads.](/dev-docs/show-outstream-video-ads.html)
+8. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](/dev-docs/bidders/ix.html#prebid-native-configuration) section in our Prebid.js documentation on the Prebid site. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
 <a name="call-index-from-prebid-mobile-sdk"></a>
 
@@ -86,13 +196,13 @@ If you want to call Index from a web environment, you can use Prebid.js to call 
 
 **Before you begin:** Contact your Index Exchange representative to get your `siteId`. You must provide this site ID to your Prebid Server host company.
 
-**Note:** To implement Prebid Mobile SDK, follow Prebid's [Getting Started with Prebid Mobile](https://docs.prebid.org/prebid-mobile/prebid-mobile-getting-started.html) documentation.
+**Note:** To implement Prebid Mobile SDK, follow Prebid's [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-getting-started.html) documentation.
 
 To add Index as a bidder to your mobile app:
 
 1. Inform your Prebid Server hosting company to add `ix`as a bidder in the configuration and include the `siteId` that Index provides to you at the time of integration.
 2. Define the Index-specific parameters at the bidder level. For information about these parameters, see the [Bid request parameters](#bid-request-parameters) section below.
-3. Include any ad unit level required or optional parameters provided in Prebid's [Prebid Mobile API - iOS](https://docs.prebid.org/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html) and [Prebid Mobile API - Android](https://docs.prebid.org/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html) documentation.
+3. Include any ad unit level required or optional parameters provided in Prebid's [Prebid Mobile API - iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html) and [Prebid Mobile API - Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html) documentation.
 
 <a id="call-index-from-ctv-long-form-video-environment"></a>
 
@@ -100,13 +210,13 @@ To add Index as a bidder to your mobile app:
 
 **Before you begin:** Contact your Index Exchange Representative to get the `siteId`. You must provide this site ID to your Prebid Server host company.
 
-**Note:** To implement CTV and long-form video using Prebid Server, follow Prebid's [Long Form Video](https://docs.prebid.org/prebid-server/use-cases/pbs-lfv.html) documentation.
+**Note:** To implement CTV and long-form video using Prebid Server, follow Prebid's [Long Form Video](/prebid-server/use-cases/pbs-lfv.html) documentation.
 
 To add Index as a bidder:
 
 1. Inform your Prebid Server hosting company to add `ix`as a bidder in the configuration and include the `siteId` that Index provides to you at the time of integration.
 2. Define the Index-specific parameters at the bidder level. For information about these parameters, see the [Bid request parameters](#bid-request-parameters) section below.
-3. Include any ad unit level required or optional parameters provided in Prebid's [/openrtb2/video](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-video.html) documentation.
+3. Include any ad unit level required or optional parameters provided in Prebid's [/openrtb2/video](/prebid-server/endpoints/openrtb2/pbs-endpoint-video.html) documentation.
 
 <a id="call-index-from-ortb"></a>
 
@@ -122,7 +232,7 @@ To request bids from Index:
     "imp": [{
            "ext": {
               "ix": {
-                "siteId": "12345"
+                "siteId": "9999990"
               }
         }
       }],
@@ -141,7 +251,7 @@ You must include these parameters at the bidder level.
 {: .table .table-bordered .table-striped }
 | Key | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`|
 
 ### Video
 
@@ -150,7 +260,7 @@ You must include these parameters at the bidder level.
 {: .table .table-bordered .table-striped }
 | Key | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
 
 If you are using Index's outstream ad unit and have placed the video object at the bidder level, you must include the Index required parameters at the bidder level. You can include the optional parameters to specify the outstream ad unit configurations.
 
@@ -200,7 +310,7 @@ If you are using Index's outstream ad unit and have placed the video object at t
       "secure": 1,
       "ext": {
         "ix": {
-          "siteId": "123456"
+          "siteId": "9999990"
         }
       }
     }
@@ -264,7 +374,7 @@ If you are using Index's outstream ad unit and have placed the video object at t
       "secure": 1,
       "ext": {
         "ix": {
-          "siteId": "654321"
+          "siteId": "9999990"
         }
       }
     }
