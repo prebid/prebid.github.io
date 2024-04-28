@@ -11,6 +11,13 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 sidebarType: 1
+coppa_supported: true
+dchain_supported: true
+safeframes_ok: true
+deals_supported: true
+floors_supported: true
+multiformat_supported: true
+fpd_supported: false
 ---
 
 ### Prebid.js Bid Params
