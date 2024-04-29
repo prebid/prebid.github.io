@@ -29,6 +29,7 @@ The following configuration parameters are available:
 | name | Required | String | The name of this module: `"id5Id"` | `"id5Id"` |
 | params | Required | Object | Details for the ID5 ID. | |
 | params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
+| params.externalModuleUrl | Optional | String | URL to the external ID5 module. Highly recommended for the best integration possible. | `https://cdn.id5-sync.com/api/1.0/id5PrebidModule.js` |
 | params.pd | Optional | String | Partner-supplied data used for linking ID5 IDs across domains. See [our documentation](https://wiki.id5.io/en/identitycloud/retrieve-id5-ids/passing-partner-data-to-id5) for details on generating the string. Omit the parameter or leave as an empty string if no data to supply | `"MT1iNTBjY..."` |
 | params.abTesting | Optional | Object | Allows publishers to easily run an A/B Test. If enabled and the user is in the Control Group, the ID5 ID will NOT be exposed to bid adapters for that request | Disabled by default |
 | params.abTesting.enabled | Optional | Boolean | Set this to `true` to turn on this feature | `true` or `false` |
@@ -58,6 +59,7 @@ pbjs.setConfig({
       name: 'id5Id',
       params: {
         partner: 173,            // change to the Partner Number you received from ID5
+        externalModuleUrl: 'https://cdn.id5-sync.com/api/1.0/id5PrebidModule.js',
         pd: 'MT1iNTBjY...',      // optional, see table above for a link to how to generate this
         abTesting: {             // optional
           enabled: true,         // false by default
@@ -77,4 +79,4 @@ pbjs.setConfig({
 ```
 
 {: .alert.alert-warning :}
-**ATTENTION:** As of Prebid.js v4.14.0, ID5 requires `storage.type` to be `"html5"` and `storage.name` to be `"id5id"`. Using other values will display a warning today, but in an upcoming release, it will prevent the ID5 module from loading. This change is to ensure the ID5 module in Prebid.js interoperates properly with the [ID5 API](https://github.com/id5io/id5-api.js) and to reduce the size of publishers' first-party cookies that are sent to their web servers. If you have any questions, please reach out to us at [prebid@id5.io](mailto:prebid@id5.io).
+**ATTENTION:** As of Prebid.js v4.14.0, ID5 requires `storage.type` to be `"html5"` and `storage.name` to be `"id5id"`. Using other values will display a warning today, but in an upcoming release, it will prevent the ID5 module from loading. This change is to ensure the ID5 module in Prebid.js interoperates properly with the [ID5 API](https://github.com/id5io/id5-api.js) and to reduce the size of publishers' first-party cookies that are sent to their web servers. For the same reasons it is very important as of Prebid.js v8.33.0 to provide the `externalModuleUrl` parameter and set it to the latest available module version at `https://cdn.id5-sync.com/api/1.0/id5PrebidModule.js`. If you have any questions, please reach out to us at [prebid@id5.io](mailto:prebid@id5.io).

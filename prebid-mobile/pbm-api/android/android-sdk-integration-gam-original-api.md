@@ -911,7 +911,22 @@ Be sure that you make the ad request with the same `AdManagerAdRequest` object t
 
 ### In-App Native
 
-Integration example:
+Visit the [AdOps guide](/adops/gam-native.html#create-mobile-in-app-creative) for instructions on setting up the In-App creatives on GAM. 
+
+At a high level, the in-app workflow is happening the following way:
+
+1. The publisher prepares the ad layout and provides the native ad configuration to the SDK's ad unit.
+2. Prebid SDK fetches native demand. However, instead of caching the native assets on the server, the assets are cached locally in the SDK.
+3. Ad request are made to Google Ad Manager.
+4. Upon receiving results from Google Ad Manager, the SDK determines if any of the received items are from Prebid Server.
+5. If there are Prebid ads, the cached assets are then rendered.
+
+{% capture importantNote %}
+The cached assets might expire. If this occurs the publisher will receive a notification and they will have to fetch the assets again.
+{% endcapture %}
+
+#### Integration Example
+{:.no_toc}
 
 ```kotlin
 private fun createAd() {
@@ -1074,14 +1089,14 @@ private class SafeNativeListener : PrebidNativeAdEventListener {
 }
 ```
 
-#### Step 1: Create a NativeAdUnit
+##### Step 1: Create a NativeAdUnit
 {:.no_toc}
 
 Initialize the `NativeAdUnit` with the following properties:
 
 * `configId` - an ID of the Stored Impression on the Prebid Server
 
-#### Step 2: Add Native Assets and Event Trackers
+##### Step 2: Add Native Assets and Event Trackers
 {:.no_toc}
 
 In order to make a bid request for the native ads you should provide a description of native assets that should be present in the native bid response. Prebid SDK supports the following set of assets to request.
@@ -1090,32 +1105,32 @@ In order to make a bid request for the native ads you should provide a descripti
 * `NativeDataAsset`
 * `NativeTitleAsset`
 
-#### Step 3: Make a bid request
+##### Step 3: Make a bid request
 {:.no_toc}
 
 The `fetchDemand` method makes a bid request to the Prebid Server. You should provide an `AdManagerAdRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
 
-#### Step 4: Configure and make a GAM ad request
+##### Step 4: Configure and make a GAM ad request
 {:.no_toc}
 
 Prepare the `AdManagerAdRequest` and run an ad request as described in the GMA SDK docs for the [native ads](https://developers.google.com/ad-manager/mobile-ads-sdk/android/native/start).
 
 If the `AdManagerAdRequest` contains targeting keywords, the respective Prebid line item will be returned from GAM, and GMA SDK will render its creative. Be sure that you make the ad request with the same `AdManagerAdRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
-#### Step 4: Implement OnCustomFormatAdLoadedListener protocol
+##### Step 5: Implement OnCustomFormatAdLoadedListener protocol
 {:.no_toc}
 
-In order to capture the native ad response you will need to implement [OnCustomFormatAdLoadedListener](https://developers.google.com/android/reference/com/google/android/gms/ads/nativead/NativeCustomFormatAd.OnCustomFormatAdLoadedListener) protocol.
+In order to capture the native ad response, you will need to implement [OnCustomFormatAdLoadedListener](https://developers.google.com/android/reference/com/google/android/gms/ads/nativead/NativeCustomFormatAd.OnCustomFormatAdLoadedListener) protocol.
 
-You should use following Prebid function to determine whether the Prebid line item should be rendered:
+You should use the following Prebid function to determine whether the Prebid line item should be rendered:
 
 ```kotlin
  AdViewUtils.findNative(...)
 ```
 
-Without it the SDK won't be able to recognize the Prebid line item.
+Without it, the SDK won't be able to recognize the Prebid line item.
 
-#### Step 6: Inflate the native layout
+##### Step 6: Inflate the native layout
 {:.no_toc}
 
 Once the Prebid line item is recognized you should extract the ad from the winning bid and init the view properties with native assets data.
@@ -1549,6 +1564,16 @@ void removeContextData(String key)
 
 ```java
 void clearContextData()
+```
+
+### GPID
+
+(requires SDK v2.1.6)
+
+Using the following method, you can set the impression-level [GPID](https://docs.prebid.org/features/pbAdSlot.html#the-gpid) value to the bid request:
+
+``` kotlin
+adUnit?.gpid = "/36117602/hnp-sfgate.com/Homepage/AP300"
 ```
 
 ### UserKeyword

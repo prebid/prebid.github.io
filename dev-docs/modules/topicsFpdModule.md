@@ -9,7 +9,7 @@ enable_download : true
 sidebarType : 1
 ---
 
-# Overview
+# Topics First Party Data (FPD) Module
 
 This module is use to call the Topics API (document.browsingTopics()) which will fetch the first party domain as well third party domain(Iframe) topics data which will be sent onto user.data in bid stream.
 
@@ -59,10 +59,6 @@ pbjs.setConfig({
             bidders: [{
                 bidder: 'pubmatic',
                 iframeURL: 'https://ads.pubmatic.com/AdServer/js/topics/topics_frame.html',
-                expiry: 7 // Configurable expiry days
-            },{
-                bidder: 'rubicon',
-                iframeURL: 'https://rubicon.com:8080/topics/fpd/topic.html', // dummy URL
                 expiry: 7 // Configurable expiry days
             },{
                 bidder: 'appnexus',

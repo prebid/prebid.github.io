@@ -898,48 +898,19 @@ Be sure that you make the ad request with the same `GAMRequest` object that you 
 
 ### In-App Native
 
-At a high level the in app rendering process works like this:
+Visit the [AdOps guide](/adops/gam-native.html#create-mobile-in-app-creative) for instructions on setting up the In-App creatives on GAM. 
 
-1. The publisher configures a native ad unit.
-2. PBM fetches native demand. However, instead of caching the native assets on the server, the assets are cached locally in the SDK.
+At a high level, the in-app workflow is happening the following way:
+
+1. The publisher prepares the ad layout and provides the native ad configuration to the SDK's ad unit.
+2. Prebid SDK fetches native demand. However, instead of caching the native assets on the server, the assets are cached locally in the SDK.
 3. Ad request are made to Google Ad Manager.
-4. Upon receiving results from Google Ad Manager, PBM determines if any of the received items are from Prebid Server.
+4. Upon receiving results from Google Ad Manager, the SDK determines if any of the received items are from Prebid Server.
 5. If there are Prebid ads, the cached assets are then rendered.
 
 {% capture importantNote %}
 The cached assets might expire. If this occurs the publisher will receive a notification and they will have to fetch the assets again.
 {% endcapture %}
-
-### Ad Ops Setup
-{:.no_toc}
-
-These instructions will enable you to create a creative template in either Google Ad Manager that can then be applied to native ads in your app.
-
-* `Step 1`: Sign in to Google Ad Manager.
-* `Step 2`: Create an ad unit with fluid ad size.
-* `Step 3`: Click `Delivery` and then `Native`
-* `Step 4`: Click `Create native ad`.
-* `Step 5`: Click `Android & iOS app code`.
-* `Step 6`: Name your new format.
-* `Step 7`: Choose `ADD VARIABLE` and add the following variable names and placeholders.
-
-{: .table .table-bordered .table-striped }
-| Variable Name| Placeholder|
-|--------------+------------|
-| isPrebid            | [%isPrebid%]                |
-| hb_cache_id_local   | [%hb_cache_id_local%]       |
-
-Make sure to indicate that the variables are required.
-
-* `Step 8`: Return to the home screen, click `Delivery > Creatives`, and create a creative with `Native Format`, choosing the template you created. In the user-defined variables you just created, set the following values:
-
-{: .table .table-bordered .table-striped }
-| Variable Name       | Value                            |
-|---------------------+----------------------------------|
-| isPrebid            | 1                                |
-| hb_cache_id_local   | %%PATTERN:hb_cache_id_local%%    |
-
-* `Step 9`: Create Prebid line items with price priority and a display ad type that is targeting `hb_pb key-values`. Associate the creative you added in steps 4 thru 8 (making sure to choose your native format as expected creatives on the line item) to the ad unit you created in the second step.
 
 #### Integration Example
 {:.no_toc}
@@ -1384,6 +1355,16 @@ func addAppContentData(_ dataObjects: [ContentDataObject])
 func removeAppContentData(_ dataObject: ContentDataObject)
 
 func clearAppContentData()
+```
+
+### GPID
+
+(requires SDK v2.1.6)
+
+Using the following method, you can set the impression-level [GPID](https://docs.prebid.org/features/pbAdSlot.html#the-gpid) value to the bid request:
+
+``` swift
+adUnit.setGPID("/36117602/hnp-sfgate.com/Homepage/AP300")
 ```
 
 ### User Data
