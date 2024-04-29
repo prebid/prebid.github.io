@@ -45,17 +45,7 @@ Publishers are advised to check with legal counsel before doing business with an
 
 <h4>Features</h4>
 
-{: .table .table-bordered .table-striped }
-| **Bidder Code** | {{ page.biddercode }} | **Prebid.org Member** | {% if page.prebid_member == true %}yes{% else %}no{% endif %} |
-| **Media Types** | {% unless page.media_types contains 'no-display' %}display{% endunless %}{% if page.media_types contains 'video' %},{% endif %}{% if page.media_types contains 'video' %} video{% endif %}{% if page.media_types != "no-display, native" and page.media_types contains 'native' %}, native{% endif %}{% if page.media_types == "no-display, native" %}native{% endif %} | **TCF-EU protocol Support** | {% if page.tcfeu_supported == true %}yes{% else %}no{% endif %} |
-| **User IDs** | {% if page.userIds and page.userIds != '' %}{{page.userIds}}{% else %}none{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% else %}no{% endif %} |
-| **Supply Chain Support** | {% if page.schain_supported == true %}yes{% elsif page.schain_supported == false %}no{% else %}check with bidder{% endif %} | **COPPA Support** | {% if page.coppa_supported == true %}yes{% elsif page.coppa_supported == false %}no{% else %}check with bidder{% endif %} |
-| **Demand Chain Support** | {% if page.dchain_supported == true %}yes{% elsif page.dchain_supported == false %}no{% else %}check with bidder{% endif %} | **Safeframes OK** | {% if page.safeframes_ok and page.safeframes_ok == false %}no{% elsif page.safeframes_ok and page.safeframes_ok == true %}yes{% else %}check with bidder{% endif %} |
-| **Supports Deals** | {% if page.deals_supported == false %}no{% elsif page.deals_supported == true %}yes{% else %}check with bidder{% endif %} | **Prebid.js Adapter** | {% if page.pbjs == true %}yes{% else %}no{% endif %} |
-| **Mobile App Support** | {% if page.pbs_app_supported == false %}no{% elsif page.pbs_app_supported == true %}yes{% else %}check with bidder{% endif %} | **Prebid Server Adapter** | yes |
-| **Floors Support** | {% if page.floors_supported == false %}no{% elsif page.floors_supported == true %}yes{% else %}check with bidder{% endif %} | **First Party Data Support** | {% if page.fpd_supported == true %}yes{% elsif page.fpd_supported == false %}no{% else %}check with bidder{% endif %} |
-| **Multi Format Support** | {% if page.multiformat_supported %}{{page.multiformat_supported}}{% else %}check with bidder{% endif %} | **ORTB Blocking Support** | {% if page.ortb_blocking_supported == true %}yes{% elsif page.ortb_blocking_supported == false %}no{% elsif page.ortb_blocking_supported == 'partial' %}partial{% else %}check with bidder{% endif %} |
-| **GPP Support** | {% if page.gpp_sids and page.gpp_sids != '' %}{{page.gpp_sids}}{% elsif page.gpp_supported == true and page.gpp_sids == nil %}some (check with bidder){% elsif page.gpp_supported == false and gpp_sids == nil %}None{% else %}check with bidder{% endif %} | **Privacy Sandbox** | {% if page.privacy_sandbox %}{{page.privacy_sandbox}}{% else %}check with bidder{% endif %}
+{% include dev-docs/bidder-meta-data.html page=page %}
 
 <h3>"Send All Bids" Ad Server Keys</h3>
 
