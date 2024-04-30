@@ -19,6 +19,7 @@ sidebarType : 1
 {:toc}
 
 ## Description
+
 51Degrees module enriches an OpenRTB request with [51Degrees Device Data](https://51degrees.com/documentation/index.html).
 
 51Degrees module sets the following fields of the device object: `make`, `model`, `os`, `osv`, `h`, `w`, `ppi`, `pixelratio` - interested bidder adapters may use these fields as needed. In addition the module sets `device.ext.fiftyonedegrees_deviceId` to a permanent device ID which can be rapidly looked up in on premise data exposing over 250 properties including the device age, chip set, codec support, and price, operating system and app/browser versions, age, and embedded features.
@@ -37,7 +38,7 @@ Free cloud and on premise solutions can be expanded to support unlimited request
 
 Compile the 51Degrees RTD Module with other modules and adapters into your Prebid.js build:
 
-```
+```bash
 gulp build --modules="rtdModule,51DegreesRtdProvider,appnexusBidAdapter,..."  
 ```
 
@@ -46,7 +47,9 @@ gulp build --modules="rtdModule,51DegreesRtdProvider,appnexusBidAdapter,..."
 ### Prerequisites
 
 #### Resource Key
+
 In order to use the module please first obtain a Resource Key using the [Configurator tool](https://configure.51degrees.com/tWrhNfY6) - choose the following properties:
+
 * DeviceId
 * DeviceType
 * HardwareVendor
@@ -117,7 +120,7 @@ pbjs.setConfig({
 | waitForIt             | Boolean | Should be `true` if there's an `auctionDelay` defined (mandatory)                            | `false`            |
 | params                | Object  |                                                                                              |                    |
 | params.resourceKey    | String  | Your 51Degrees Cloud Resource Key                                                            |                    |
-| params.onPremiseJSUrl | String  | Direct URL to your self-hosted on-premise JS file (e.g. https://localhost/51Degrees.core.js) |                    |
+| params.onPremiseJSUrl | String  | Direct URL to your self-hosted on-premise JS file (e.g. https://your.domain/51Degrees.core.js) |                    |
 
 ## Example 
 
