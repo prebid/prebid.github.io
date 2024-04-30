@@ -27,7 +27,7 @@ team for more information.
 
 ### Example Configuration
 
-```
+```javascript
   pbjs.enableAnalytics({
     provider: 'magnite',
     options: {
