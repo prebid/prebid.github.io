@@ -114,13 +114,13 @@ pbjs.setConfig({
 
 > Note that `resourceKey` and `onPremiseJSUrl` are mutually exclusive parameters.  Use strictly one of them: either a `resourceKey` for cloud integration and `onPremiseJSUrl` for the on-premise self-hosted integration. 
 
-| Name                  | Type    | Description                                                                                  | Default            |
-|:----------------------|:--------|:---------------------------------------------------------------------------------------------|:-------------------|
-| name                  | String  | Real time data module name                                                                   | Always '51Degrees' |
-| waitForIt             | Boolean | Should be `true` if there's an `auctionDelay` defined (mandatory)                            | `false`            |
-| params                | Object  |                                                                                              |                    |
-| params.resourceKey    | String  | Your 51Degrees Cloud Resource Key                                                            |                    |
-| params.onPremiseJSUrl | String  | Direct URL to your self-hosted on-premise JS file (e.g. https://your.domain/51Degrees.core.js) |                    |
+| Name                  | Type    | Description                                                                                      | Default            |
+|:----------------------|:--------|:-------------------------------------------------------------------------------------------------|:-------------------|
+| name                  | String  | Real time data module name                                                                       | Always '51Degrees' |
+| waitForIt             | Boolean | Should be `true` if there's an `auctionDelay` defined (mandatory)                                | `false`            |
+| params                | Object  |                                                                                                  |                    |
+| params.resourceKey    | String  | Your 51Degrees Cloud Resource Key                                                                |                    |
+| params.onPremiseJSUrl | String  | Direct URL to your self-hosted on-premise JS file (e.g. `https://your.domain/51Degrees.core.js`) |                    |
 
 ## Example 
 
