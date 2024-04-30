@@ -20,7 +20,7 @@ This document guides you through the process of developing a new bid adapter for
 
 ## Introduction
 
-Bid adapters are responsible for translating a 'Prebid-flavored' OpenRTB Bid Request to your bidding server's protocol and mapping your server's response to a Prebid-flavored reponse.
+Bid adapters are responsible for translating a 'Prebid-flavored' OpenRTB Bid Request to your bidding server's protocol and mapping your server's response to a Prebid-flavored response.
 
 "Prebid-flavored OpenRTB" means:
 
@@ -254,9 +254,9 @@ Look for other doc entries containing an `aliasCode` metadata entry.
 
 Your bid adapter might require extra information from the publisher to form a request to your bidding server. The bidder parameters JSON Schema codifies this information to allow Prebid Server to verify requests and to provide an API for third party configuration systems.
 
-Publishers will provide extra information using an OpenRTB 2.5 Bid Request Extension, preferably at `request.imp[].ext.prebid.bidder.{bidder}` but also supported at `request.imp[].ext.{bidder}`. Prebid Server will validate the publisher information based on your schema and relocate the data to `request.imp[].ext.bidder`, regardless of your bidder name or the publisher's chosen location.
+Publishers will provide extra information using an OpenRTB 2.x Bid Request Extension, preferably at `request.imp[].ext.prebid.bidder.{bidder}` but also supported at `request.imp[].ext.{bidder}`. Prebid Server will validate the publisher information based on your schema and relocate the data to `request.imp[].ext.bidder`, regardless of your bidder name or the publisher's chosen location.
 
-We request that you do not duplicate information that is already present in the [OpenRTB 2.5 Bid Request specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=13) or is already part of an established Prebid convention. For example, your bidder parameters should not include first party data, bid floors, schain, video parameters, referrer information, or privacy consent including COPPA, CCPA, and GDPR TCF. For video parameters in particular, you must prefer the OpenRTB 2.5 Bid Request standard of `request.imp[].video`.
+We request that you do not duplicate information that is already present in the [OpenRTB 2.x request](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md)  or is already part of an established Prebid convention. For example, your bidder parameters should not include first party data, bid floors, schain, video parameters, referrer information, or privacy consent including COPPA, CCPA, and GDPR TCF. For video parameters in particular, you must prefer the OpenRTB 2.x Bid Request standard of `request.imp[].video`.
 
 {: .alert.alert-warning :}
 **ENDPOINT NOTE:** You may not try so set the full endpoint domain from a publisher-specified bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a *portion* of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may choose to disable your adapter if it uses a dynamically configured domain.
@@ -268,8 +268,8 @@ Let's start with this example which defines one required `placementId` string pa
 ```json
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Foo Adapter Params",
-  "description": "A schema which validates params accepted by the Foo adapter",
+  "title": "BidderA Adapter Params",
+  "description": "A schema which validates params accepted by the BidderA adapter",
   "type": "object",
 
   "properties": {
@@ -283,9 +283,9 @@ Let's start with this example which defines one required `placementId` string pa
 }
 ```
 
-We encourage you to utilize the full features of [JSON Schema](https://spacetelescope.github.io/understanding-json-schema/) to narrowly define your bidder parameter data types. If you copy and paste these examples, please remember to change the  `title` and `description` to refer to your bidder name instead of our fictional Foo example.
+We encourage you to utilize the full features of [JSON Schema](https://spacetelescope.github.io/understanding-json-schema/) to narrowly define your bidder parameter data types. If you copy and paste these examples, please remember to change the  `title` and `description` to refer to your bidder name instead of our fictional BidderA example.
 
-When choosing your parameter names, please consider aligning with the OpenRTB 2.5 standard by using lower case letters without camel casing or special characters.
+When choosing your parameter names, please consider aligning with the OpenRTB 2.x standard by using lower case letters without camel casing or special characters.
 
 In addition to the examples listed below, please refer to [existing bidder parameter files](https://github.com/prebid/prebid-server-java/tree/master/src/main/resources/static/bidder-params) for guidance.
 
@@ -295,8 +295,8 @@ In addition to the examples listed below, please refer to [existing bidder param
 ```json
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Foo Adapter Params",
-  "description": "A schema which validates params accepted by the Foo adapter",
+  "title": "BidderA Adapter Params",
+  "description": "A schema which validates params accepted by the BidderA adapter",
   "type": "object",
 
   "properties": {}
@@ -311,8 +311,8 @@ In addition to the examples listed below, please refer to [existing bidder param
 ```json
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Foo Adapter Params",
-  "description": "A schema which validates params accepted by the Foo adapter",
+  "title": "BidderA Adapter Params",
+  "description": "A schema which validates params accepted by the BidderA adapter",
   "type": "object",
 
   "properties": {
@@ -335,8 +335,8 @@ In addition to the examples listed below, please refer to [existing bidder param
 ```json
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Foo Adapter Params",
-  "description": "A schema which validates params accepted by the Foo adapter",
+  "title": "BidderA Adapter Params",
+  "description": "A schema which validates params accepted by the BidderA adapter",
   "type": "object",
   
   "properties": {
@@ -363,8 +363,8 @@ In addition to the examples listed below, please refer to [existing bidder param
 ```json
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Foo Adapter Params",
-  "description": "A schema which validates params accepted by the Foo adapter",
+  "title": "BidderA Adapter Params",
+  "description": "A schema which validates params accepted by the BidderA adapter",
   "type": "object",
 
   "properties": {
@@ -418,15 +418,15 @@ Please follow [Java standard naming convention](https://www.oracle.com/java/tech
 
 ### Adapter Code
 
-Now it's time to write the bulk of your bid adapter code.
+Now it's time to write your bid adapter code.
 
-Each adapter has its own directory (a 'package' in java parlance) for all code and tests associated with translating an OpenRTB 2.5 Bid Request to your bidding server's protocol and mapping your server's response to an OpenRTB 2.5 Bid Response. The use of separate packages provide each adapter with its own naming scope to avoid conflicts and gives the freedom to organize files as you best see fit (although we make suggestions in this guide).
+Each adapter has its own directory (a 'package' in java parlance) for all code and tests associated with translating an OpenRTB 2.x Bid Request to your bidding server's protocol and mapping your server's response to an OpenRTB 2.x Bid Response. The use of separate packages provide each adapter with its own naming scope to avoid conflicts and gives the freedom to organize files as you best see fit (although we make suggestions in this guide).
 
 Create a file with the path `org.prebid.server.bidder.{bidder}/{bidder}Bidder.java`. Your bid adapter code will need to implement Bidder<T> interface where `T` is a model which will represent HttpRequest body.
 
 - The `Bidder<T>` interface consisting of the `MakeHttpRequests` method to create outgoing requests to your bidding server and the `MakeBids` method to create bid responses.
 
-Here is a reference implementation for a bidding server which uses the OpenRTB 2.5 protocol:
+Here is a reference implementation for a bidding server which uses the OpenRTB 2.x protocol:
 
 ```java
 package org.prebid.server.bidder.{bidder};
@@ -530,11 +530,11 @@ public class {bidder}Bidder implements Bidder<BidRequest> {
 
 #### MakeHttpRequests
 
-The `MakeHttpRequests` method is responsible for returning zero or more HTTP requests to be sent to your bidding server. Bid adapters are forbidden from directly initiating any form of network communication and must entirely rely upon the core framework. This allows the core framework to optimize outgoing connections using a managed pool and record networking metrics. The return type `adapters.RequestData` allows your adapter to specify the HTTP method, url, body, and headers.
+The `MakeHttpRequests` method is responsible for returning zero or more HTTP requests to be sent to your bidding server. Bid adapters are forbidden from directly initiating any form of network communication and must entirely rely upon the core framework. This allows the core framework to optimize outgoing connections using a managed pool and record networking metrics. The return type `adapters.RequestData` allows your adapter to specify the HTTP method, url, body, headers, and ids of the impressions in the request.
 
 This method is called once by the core framework for bid requests which have at least one valid Impression for your adapter. Impressions not configured for your adapter will be removed and are not accessible.
 
-The argument, `request`, is the OpenRTB 2.5 Bid Request object. Extension information is stored as `com.fasterxml.jackson.databind.node.ObjectNode` byte arrays and must be converted from node to be read and/or mutated. It is *critical* to understand that the `request` object contains pointers to shared memory. If your adapter needs to alter any data referenced by a pointer then you *must* first make a shallow copy(you can do it by using toBuilder() method on model you want to change, but remember about objects like Lists and always create copy's of this data types). The exact same instance of the `request` object is also passed to the `MakeBids` method, so please be careful when mutating. It's safe to assume that `request.Imp[]` always contains at least one element and that the `request.Imp[].ext.bidder` was successfully validated by your bidder parameter JSON Schema.
+The argument, `request`, is the OpenRTB 2.x Bid Request object. Extension information is stored as `com.fasterxml.jackson.databind.node.ObjectNode` byte arrays and must be converted from node to be read and/or mutated. It is *critical* to understand that the `request` object contains pointers to shared memory. If your adapter needs to alter any data referenced by a pointer then you *must* first make a shallow copy(you can do it by using toBuilder() method on model you want to change, but remember about objects like Lists and always create copy's of this data types). The exact same instance of the `request` object is also passed to the `MakeBids` method, so please be careful when mutating. It's safe to assume that `request.Imp[]` always contains at least one element and that the `request.Imp[].ext.bidder` was successfully validated by your bidder parameter JSON Schema.
 
 <details markdown="1">
   <summary>Example: Mutating banner shared memory (make a copy).</summary>
@@ -586,7 +586,7 @@ If your bidding server supports multiple currencies, please be sure to pass thro
 
 Please ensure you forward the bid floor (`request.imp[].bidfloor`) and bid floor currency (`request.imp[].bidfloorcur`) values to your bidding server for enforcement.
 
-There are a several values of a bid request that publishers may supply that your adapter and endpoint should be aware of. Some are defined by the OpenRTB 2.5 specification and some are defined by Prebid conventions:
+There are a several values of a bid request that publishers may supply that your adapter and endpoint should be aware of. Some are defined by the OpenRTB 2.x specification and some are defined by Prebid conventions:
 
 {: .table .table-bordered .table-striped }
 | Parameter | Definer | Path & Description
@@ -621,7 +621,7 @@ private static MultiMap resolveHeaders() {
 
 #### Response
 
-The `MakeBids` method in your adapter is responsible for parsing the bidding server's response and mapping it to the [OpenRTB 2.5 Bid Response object model](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=32).
+The `MakeBids` method in your adapter is responsible for parsing the bidding server's response and mapping it to the [OpenRTB 2.x Bid Response](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#objectbidresponse).
 
 This method is called for each response received from your bidding server within the bidding window (`request.tmax`). If there are no requests or if all requests time out, the `MakeBids` method will not be called.
 
@@ -630,11 +630,11 @@ It's *imperative* to include all required information in the response for your b
 
 The first argument, `HttpCall`, is the HTTP response received from your bidding(contains the status code, body, and headers) and also specific to your bid `HttpRequest<T>` request. If your bidding server replies with a GZIP encoded body, it will be automatically decompressed.
 
-The second argument, `request`, is the exact same OpenRTB 2.5 Bid Request object provided to (and potentially mutated by) the `MakeRequests` method. The information in the `request` may be useful when detecting the media type.
+The second argument, `request`, is the exact same OpenRTB 2.x Bid Request object provided to (and potentially mutated by) the `MakeRequests` method. The information in the `request` may be useful when detecting the media type.
 
-The `MakeBids` method is expected to return an `Result` object with one or more bids mapped from your bidding server's response. This may be as simple as decorating an OpenRTB 2.5 Bid Response with a some Prebid Server metadata (such as the media type) or more complicated mapping logic depending on your server's response format.
+The `MakeBids` method is expected to return an `Result` object with one or more bids mapped from your bidding server's response. This may be as simple as decorating an OpenRTB 2.x Bid Response with a some Prebid Server metadata (such as the media type) or more complicated mapping logic depending on your server's response format.
 
-Please review the entire [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=32) documentation to fully understand the response object model and expectations. We've summarized some common fields below. Data which is listed as required is enforced by the core framework and cannot be omitted.
+Please review the entire [OpenRTB 2.x Bid Response](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#objectbidresponse)  documentation to fully understand the response object model and expectations. We've summarized some common fields below. Data which is listed as required is enforced by the core framework and cannot be omitted.
 
 {: .table .table-bordered .table-striped }
 | BidderResponse Path | Scope | Description

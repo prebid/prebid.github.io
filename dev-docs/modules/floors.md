@@ -47,6 +47,17 @@ The expectation with the Prebid Server floors feature is that
 Publishers will use it mainly for mobile app and AMP scenarios.
 Web sites running Prebid.js will utilize this client-side module.
 
+### Video Overview of Floors
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/938434804?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Price Floors in Prebid.js and Prebid Server"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+<p/>
+Notes:
+
+* [Price Floors in Prebid Server](/prebid-server/features/pbs-floors.html#prebid-server--features--price-floors)
+* [Prebid Floor Service Providers](/dev-docs/modules/floors.html#floors-providers)
+* [Transcript of this video](/dev-docs/floors-video-overview.html)
+
 ## How it Works
 
 There are several places where the Floor module changes the behavior of the Prebid.js auction process. Below is a diagram describing the general flow of the client-side Price Floors Module:
