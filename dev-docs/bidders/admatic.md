@@ -3,7 +3,7 @@ layout: bidder
 title: AdMatic
 description: Prebid AdMatic Bidder Adapter.
 pbjs: true
-pbs: false
+pbs: true
 biddercode: admatic
 media_types: banner,video,native
 gvl_id: 1281
