@@ -31,8 +31,8 @@ This is an example of how the `request.userId.lipb` object, which contains the r
 
 ```json
 {
-  "lipbid": "T7JiRRvsRAmh88",
-  "pubmatic": "9E76F017-86D2-444B-BB4B-9DB35347DB54"
+  "lipbid": "T7JiRRvsRAmh88",
+  "pubmatic": "9E76F017-86D2-444B-BB4B-9DB35347DB54"
 }
 ```
 
@@ -63,20 +63,20 @@ For example, the configuration below requests the `nonID` as well as `uid2`, the
 
 ```javascript
 pbjs.setConfig({
-  userSync: {
-    userIds: [{
-      name: "liveIntentId",
-      params: {
-        publisherId: "12432415",
-        requestedAttributesOverrides: {
-          uid2: true,
-          medianet: true,
-          bidswitch: true,
-          magnite: true
-        }
-      }
-    }]
-  }
+  userSync: {
+    userIds: [{
+      name: "liveIntentId",
+      params: {
+        publisherId: "12432415",
+        requestedAttributesOverrides: {
+          uid2: true,
+          medianet: true,
+          bidswitch: true,
+          magnite: true
+        }
+      }
+    }]
+  }
 });
 ```
 
@@ -88,15 +88,15 @@ For example, in case `uid2` is configured to be requested in addition to the `no
 
 ```javascript
 {
-  // ...
-  "lipb" : {
-    "lipbid": "sample-nonid-value",
-    "uid2" : "sample-uid2-value"
-  },
-  "uid2" : {
-    "id" : "sample-uid2-value"
-  }
-  //...
+  // ...
+  "lipb" : {
+    "lipbid": "sample-nonid-value",
+    "uid2" : "sample-uid2-value"
+  },
+  "uid2" : {
+    "id" : "sample-uid2-value"
+  }
+  //...
 }
 ```
 
@@ -157,15 +157,15 @@ Enabling this option in addition to the `uid2` module is an easy way to increase
 
 ```javascript
 pbjs.setConfig({
-  userSync: {
-    userIds: [{
-      name: "liveIntentId",
-      params: {
-        publisherId: "12432415",
-        requestedAttributesOverrides: { uid2: true }
-      }
-    }]
-  }
+  userSync: {
+    userIds: [{
+      name: "liveIntentId",
+      params: {
+        publisherId: "12432415",
+        requestedAttributesOverrides: { uid2: true }
+      }
+    }]
+  }
 });
 ```
 
@@ -207,7 +207,7 @@ NOTE: For optimal performance, the LiveIntent ID sub-module should be called at 
     ```javascript
     pbjs.setConfig({
       userSync: {
-        userIds: [{
+        userIds: [{
           name: "liveIntentId",
           params: {
             publisherId: "9896876"
