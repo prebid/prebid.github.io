@@ -32,6 +32,7 @@ sidebarType: 1
 | `cId`      | required | The connection ID from KueezRTB.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
 | `pId`      | required | The publisher ID from KueezRTB.                                                           | `'59ac17c192832d0011283fe3'` | `string` |
 | `bidFloor` | optional | The minimum bid value desired. KueezRTB will not respond with bids lower than this value. | `0.90`                       | `float`  |
+| `mode`     | optional | Mode in which the adapter works. Available Modes: 'LATEST' (default), 'BASIC'             | `LATEST`                     | `string` |
 
 ## Example
 
@@ -51,7 +52,6 @@ var adUnits = [{
             params: {
                 cId: '562524b21b1c1f08117fc7f9', // Required - PROVIDED DURING SETUP...
                 pId: '59ac17c192832d0011283fe3', // Required - PROVIDED DURING SETUP...
-                bidFloor: 1.23                   // Optional
             }
         }]
     }
@@ -69,3 +69,6 @@ pbjs.setConfig({
     }
 });
 ```
+
+## KueezRTB Disclosure
+This adapter in `LATEST` mode loads an external JavaScript. It is possible to disable loading of additional script using `BASIC` mode.
