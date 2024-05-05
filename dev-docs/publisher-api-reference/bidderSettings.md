@@ -189,7 +189,7 @@ header bidding auction. Otherwise, this bidder's gross price will unfairly win o
 other demand sources who report the real price.
 
 Custom adjustment can be provided as a function taking 3 arguments: `bidCpmAdjustment(cpm, bidResponse, bidRequest)`.
-Note that either `bidResponse` or `bidRequest` may be missing, although at least one of them is guaranteed to be present. This is because Prebid will sometimes need to run adjustment when no bid has been made yet; see [inverseBidAdjustment](#23-inverseBidAdjustment) below.
+Note that either `bidResponse` or `bidRequest` may be missing, although at least one of them is guaranteed to be present. This is because Prebid will sometimes need to run adjustment when no bid has been made yet; see [inverseBidAdjustment](#23-inversebidadjustment) below.
 
 For example:
 
