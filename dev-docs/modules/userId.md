@@ -345,10 +345,10 @@ If you're an ID provider that wants to get on this page:
 * Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
 * Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
 * Update the Prebid docs
-  1. Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io)
-  2. Add `/dev-docs/modules/userid-submodules/<userIdModuleName>.md`
-  3. Add a new row to `/dev-docs/modules/userId.md#prebidjs-adapters`
-  4. Submit a documentation Pull Request
+  * Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io)
+  * Add `/dev-docs/modules/userid-submodules/<userIdModuleName>.md`
+  * Add a new row to `/dev-docs/modules/userId.md#prebidjs-adapters`
+  * Submit a documentation Pull Request
 
 <a name="getUserIds"></a>
 
