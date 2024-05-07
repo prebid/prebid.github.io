@@ -62,7 +62,7 @@ Examples:
 ```kotlin
 PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
 PrebidMobile.setPrebidServerHost(Host.RUBICON)
-PrebidMobile.setPrebidServerHost(Host.createCustomHost(`https://prebidserver.example.com/openrtb2/auction`))
+PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebidserver.example.com/openrtb2/auction"))
 ```
 
 #### setCustomStatusEndpoint()
