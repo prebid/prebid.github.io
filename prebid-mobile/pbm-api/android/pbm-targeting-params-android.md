@@ -10,378 +10,744 @@ sidebarType: 2
 # Global Targeting Parameters
 {:.no_toc}
 
-Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
+This page documents various global parameters you can set on the Prebid SDK. It describes the properties and methods of the Prebid SDK that allow you to supply important parameters to the header bidding auction.
 
 * TOC
 {:toc}
 
-## Global GDPR Targeting
+## Prebid Global Properties and Methods
 
-Prebid Mobile supports the [IAB GDPR recommendations](https://www.iab.com/topics/consumer-privacy/gdpr/). For a general overview of Prebid Mobile support for GDPR, see [Prebid Mobile Guide to European Ad Inventory and Providing Notice, Transparency and Choice](/prebid-mobile/prebid-mobile-privacy-regulation.html)
+The `Prebid` class is a singleton that enables you to apply global settings. It covers:
 
-Prebid SDK doesn't modify values for IAB-defined keys in the `SharedPreferences`. Instead, SDK will keep the provided value in the in-memory property.
+- attributes that are defined during initialization (e.g. the Prebid Server connection)
+- values affecting the behavior of the Prebid SDK (e.g. timeout)
+- items influencing the OpenRTB output (e.g. shareGeoLocation)
 
-The values provided via targeting API will be included in the bid request according to the `TCF v2` framework.
+### Global Properties
 
-{% capture warning_note %}  
+(TBD - where are these set? Need an example. )
 
-Since the SDK API has priority over CMP values, using the API blocks the CMP signals. Use a single way to provide the TCF signals. 
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Purpose | Description | Example |
+| --- | --- | --- | --- | --- |
+| isCoppaEnabled | optional | boolean | ORTB | Set this to true if this app is aimed at children. It sets the ORTB COPPA flag. Default is false. | `true` |
+| useExternalBrowser | optional | boolean | ORTB | TBD? Defaults to `false`. | `true` |
+| sendMraidSupportParams | optional | boolean | ORTB | TBD If `true`, the SDK sends "af=3,5", indicating support for MRAID. Defaults to `true`. | `false` |
 
-If you need to use an API way, ensure that all the following properties are set in the app code. 
+### Global Methods
 
-If you need to use a CMP way, ensure that you don't set any of the following API properties. 
+#### setPrebidServerAccountId()
 
-{% endcapture %}
-{% include /alerts/alert_warning.html content=warning_note %}
+Your Prebid Server team will tell you whether this is required or not and if so, the value. See the initialization page for [Android](/prebid-mobile/pbm-api/android/code-integration-android.html).
 
-### Subject To GPDR
-{:.no_toc}
+#### setPrebidServerHost()
 
-Enable (true) or disable (false) the ability to provide consent.
+This is where the Prebid SDK will send the auction information.
+
+Signature:
 
 ```kotlin
-TargetingParams.isSubjectToGDPR()
+func setPrebidServerHost(host: String)
+```
+
+Parameters: 
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| host | required | object | Host.APPNEXUS, Host.RUBICON, Host.createCustomHost(PREBID_SERVER_AUCTION_ENDPOINT) | Host.createCustomHost<wbr>("https://prebidserver<wbr>.example.com<wbr>/openrtb2/auction") |
+
+Examples:
+
+```kotlin
+PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
+PrebidMobile.setPrebidServerHost(Host.RUBICON)
+PrebidMobile.setPrebidServerHost(Host.createCustomHost(https://prebidserver.example.com/openrtb2/auction))
+```
+
+#### setCustomStatusEndpoint()
+
+Signature:
+
+```kotlin
+    public static void setCustomStatusEndpoint(String url) {
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| url | required | string | Use this URL to check the status of Prebid Server. The default status endpoint is the PBS URL appended with '/status'. | "https://prebidserver<wbr>.example<wbr>.com/custom<wbr>/status" |
+
+#### setTimeoutMillis()
+
+The Prebid SDK timeout. When this number of milliseconds passes, the Prebid SDK returns control to the ad server SDK to fetch an ad without Prebid bids. See the initialization page for [Android](/prebid-mobile/pbm-api/android/code-integration-android.html).
+
+#### setShareGeoLocation()
+
+If this flag is true AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s lat/long geographical location data to the Prebid Server. The default is false.
+
+#### setIncludeWinnersFlag()
+
+If `true`, Prebid sdk will add the `includewinners` flag inside the targeting object described in [PBS Documentation](prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . This is needed if you've set up line items in an ad server in "Send Top Bid" mode, as it's what creates the key value pairs like `hb_pb`. 
+
+Signature:
+
+```kotlin
+    public static void setIncludeWinnersFlag(boolean includeWinners)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| includeWinners | required | boolean | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
+
+#### setIncludeBidderKeysFlag()
+
+If `true`, Prebid sdk will add the `includebidderkeys` flag inside the targeting object described in [PBS Documentation](prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . This is needed if you've set up line items in an ad server in "Send All Bids" mode, as it's what creates the key value pairs like `hb_pb_bidderA`. 
+
+Signature:
+
+```kotlin
+    public static boolean setIncludeBidderKeysFlag(boolean includeBidderKeys) {
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| includeBidderKeys | required | boolean | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
+
+#### setStoredAuctionResponse()
+
+For testing and debugging. Get this value from your Prebid Server team. It signals Prebid Server to respond with a static response from the Prebid Server Database. 
+See [more information on stored auction responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses).
+
+Signature:
+
+```kotlin
+public static void setStoredAuctionResponse(@Nullable String storedAuctionResponse)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| storedAuctionResponse | required | string | Key as defined by Prebid Server. Get this value from your Prebid Server team. | "abc123-sar-test-320x50" |
+
+#### addStoredBidResponse()
+
+Stored Bid Responses are for testing and debugging similar to Stored Auction Responses (see the Global Properties above). They signal Prebid Server to respond with a static pre-defined response, except Stored Bid Responses actually exercise the bidder adapter. For more information on how stored bid responses work, refer to the [Prebid Server endpoint doc](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses). Your Prebid Server team will help you determine how best to setup test and debug.
+
+Signature:
+
+```kotlin
+void addStoredBidResponse(String bidder, String responseId)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| bidder | required | string | Bidder name as defined by Prebid Server | "bidderA" |
+| responseId | required | string | ID used in the Prebid Server Database. Get this value from your Prebid Server team. | "abc123-sbr-test-300x250" |
+
+#### clearStoredBidResponses()
+
+This method clears any stored bid responses. It doesn’t take any parameters.
+
+Signature:
+
+```kotlin
+void clearStoredBidResponses()
+```
+
+Parameters: none.
+
+#### setLogLevel
+
+Controls the level of logging output to the console.
+
+Signature:
+
+```kotlin
+    public static void setLogLevel(LogLevel logLevel)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| logLevel | required | enum | The value can be ERROR, DEBUG, WARN, and NONE. The default is `.NONE`. | `.DEBUG` |
+
+#### setPbsDebug()
+
+Adds the debug flag (`test`:1) on the outbound http call to the Prebid Server. The `test` flag signals to the Prebid Server to emit the full resolved request and the full Bid Request and Bid Response to and from each bidder.
+
+Signature:
+
+```kotlin
+public static void setPbsDebug(boolean pbsDebug)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| pbsDebug | required | boolean | Turn on/off debug mode. Defaults to `false`. | `true` |
+
+#### assignNativeAssetID()
+
+Whether to automatically assign an assetID for a Native ad. Default is `false`.
+
+Signature:
+
+```kotlin
+    public static void assignNativeAssetID(boolean assignNativeAssetID) {
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| assignNativeAssetID | required | boolean | Whether to automatically assign an assetID for a Native ad. Defaults to `false`. | `true` |
+
+#### setCreativeFactoryTimeout()
+
+Controls how long a banner creative has to load before it is considered a failure.
+
+Signature:
+
+```kotlin
+    public static void setCreativeFactoryTimeout(int creativeFactoryTimeout)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| creativeFactoryTimeout | required | integer | Controls how long a banner creative has to load before it is considered a failure. (TBD - is this milliseconds? Need the default value) | 2000 |
+
+#### setCreativeFactoryTimeoutPreRenderContent()
+
+Controls how much time video and interstitial creatives have to load before it is considered a failure.
+
+Signature:
+
+```kotlin
+    public static void setCreativeFactoryTimeoutPreRenderContent(int creativeFactoryTimeoutPreRenderContent)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| creativeFactoryTimeoutPreRenderContent | required | integer | Controls how much time video and interstitial creatives have to load before it is considered a failure. (TBD - is this milliseconds? Need the default value) | 2000 |
+
+#### setCustomHeaders()
+
+This method enables you to customize the HTTP call to Prebid Server.
+
+Signature:
+
+```kotlin
+    public static void setCustomHeaders(@Nullable HashMap<String, String> customHeaders)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| customHeaders | required | hashmap | Hashmap of custom headers | "X-mycustomheader: customvalue" |
+
+#### setCustomLogger()
+
+TBD
+
+Signature:
+
+```kotlin
+    public static void setCustomLogger(@NonNull PrebidLogger logger)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| logger | required | ? | TBD | TBD |
+
+## Consent Management
+
+This section describes how app developers can provide info on user consent to the Prebid SDK and how SDK behaves under different kinds of restrictions.
+
+### GDPR / TCF-EU
+
+Prebid Mobile supports [IAB TCF](https://iabeurope.eu/transparency-consent-framework/). For a general overview of Prebid Mobile support for GDPR, see the [Prebid Mobile Guide to Privacy Regulation](/prebid-mobile/prebid-mobile-privacy-regulation.html).
+
+There are two ways to provide information on user consent to the Prebid SDK:
+
+- Explicitly via Prebid SDK API: publishers can provide TCF data via Prebid SDK’s Targeting API
+- Implicitly set through the Consent Management Platform (CMP): Prebid SDK reads the TCF data stored in the `SharedPreferences`. This is the preferred approach.
+
+{: .alert.alert-warning :}
+The Prebid SDK prioritizes values set explicitly through the API over those stored by the CMP.  If the publisher provides TCF data both ways, the values set through the API will be sent to the PBS, and values stored by the CMP will be ignored. 
+
+#### Setting TCF-EU Values with the API
+
+Prebid SDK provides three properties to set TCF consent values explicitly, though this method is not preferred. Ideally, the Consent Management Platform will set these values – see the next section.
+
+If you need to set the values directly, here's how to indicate that the user is subject to GDPR:
+
+```kotlin
 TargetingParams.setSubjectToGDPR(true)
 ```
 
-### GDPR Consent String
-{:.no_toc}
-
-```java
-val consent = TargetingParams.getGDPRConsentString();
-TargetingParams.setGDPRConsentString(string);
-```
-
-### Purpose Consent
-{:.no_toc}
+To provide the consent string:
 
 ```kotlin
-val consent = TargetingParams.getPurposeConsents()
-TargetingParams.setPurposeConsents(string)
+TargetingParams.setGDPRConsentString("BOMyQRvOMyQRvABABBAAABAAAAAAEA")
 ```
 
-## COPPA
-
-Prebid supports passing of the Child Online Privacy Prection (COPPA) signal to Prebid Server (PBS) for all COPPA traffic. When PBS receives the COPPA flag we strip out all personal data from the requeset. For a general overview of COPPA, see the [FTC's guidlines](https://www.ftc.gov/enforcement/rules/rulemaking-regulatory-reform-proceedings/childrens-online-privacy-protection-rule).
-
-Example:
-
-```java
-TargetingParams.setSubjectToCOPPA(true);
-```
-
-## Parameters
-
-The tables below list the methods and properties that the Prebid Rendering API uses for customization.
-The more data about the user, app, and device that can be provided the more chances to win an impression.
-
-It is advised that you strictly follow the recommendations in the tables below. Any field marked with an ❗is required and recommended. 
-
-1. [Targeting Params](#targeting)
-
-### Targeting
-
-You can use `Targeting` to pass ad call request parameters.
-
-{: .table .table-bordered .table-striped }
-
-| **Parameter**              | **Method**                | Description                                                  | Required?|
-| -------------------------- | ------------------------- | ------------------------------------------------------------ | -------- |
-| User Age                        | `setUserAge`              | Age of the user in years. For example: `35`   | ❗ Highly Recommended  |
-| Buyer Id                    | `setBuyerId`              | Buyer-specific ID for the user as mapped by the exchange for the buyer. | Optional |
-| Custom User Data                 | `setUserCustomData`       | Optional feature to pass bidder data that was set in the exchange’s cookie. The string must be in base85 cookie safe characters and be in any format. Proper JSON encoding must be used to include “escaped” quotation marks. | Optional |
-| User Extensions                        | `setUserExt`              | Placeholder for exchange-specific extensions to OpenRTB. | Optional |
-| User Gender                        | `setGender`           | The gender of the user (Male, Female, Other, Unknown). For example: `Gender.FEMALE`  | ❗ Highly Recommended |
-| Keywords                   | `addUserKeywords`         | Comma separated list of keywords, interests, or intent. | Optional |
-| Lat, Lon                   | `setUserLatLng`           | Location of the user’s home base defined by a provided longitude and latitude. It's highly recommended to provide Geo data to improve the request.| Optional |
-| Publisher Name                  | `setPublisherName`        | Publisher name (may be aliased at the publisher’s request).| Recommended if available  |
-| Store Url               | `setStoreUrl`    | The URL for the mobile application in Google Play. That field is required in the request. <br />**For example:**`https://play.google.com/store/apps/details?id=com.outfit7.talkingtom`. | ❗ Required  |
-| User ID                        | `setUserId`               | ID of the user within the app. For example: `"24601"` | ❗ Highly Recommended  |
-|Year of Birth|`setYearOfBirth`| The year of user's birth||
-
-Example:
-
-``` java
-// Set user parameters to enrich ad request data.
-// Please see Targeting for the userKeys and the APIs available.
-TargetingParams.addUserKeyword("socialNetworking");
-TargetingParams.setUserAge(18);
-```
-
-### ORTBConfig
-
-(requires SDK v2.2.1)
-
-Provides a way for app publishers to customize most ORTB fields in the partial bid request that Prebid Mobile sends to the Prebid Server.  The customization comes in the form of the ortbConfig parameter that takes a JSON String as input.  The JSON string must follow the [ORTB guidelines](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/develop/2.6.md#321---object-bidrequest-) as it will be merged with the current JSON of the bid request. If you choose to input extra data using the ortbConfig parameter, please extensively test your requests sent to Prebid Server. 
-
-There are certain protected fields such as regs, device, geo, ext.gdpr, ext.us_privacy, and ext.consent which cannot be changed.
-
-``` kotlin
-//global invocation
-adUnitConfiguration?.ortbConfig = "{"ext":{"prebid":{"debug":1,"trace":"verbose"}}}"
-```
-
-``` kotlin
-//ad unit / impression-level
-adUnit?.ortbConfig = "{"ext":{"gpid":"abc123"}}"
-```
-
-### Global User Targeting
-
-#### User Keywords
-{:.no_toc}
-
-User keywords are a list of keywords, intrests or intent as defined by user.keywords in OpenRTB 2.5. Any keywords passed in the UserKeywords object may be passsed to DSPs.
+To set the purpose consent: 
 
 ```kotlin
-void addUserKeyword(String keyword)
-void addUserKeywords(Set<String> keywords)
-void removeUserKeyword(String keyword)
-void clearUserKeywords()
+TargetingParams.setPurposeConsents("100000000000000000000000")
 ```
 
-Example:
+See also the API references for isSubjectToGDPR(), getGDPRConsentString(), getPurposeConsent(int index), getPurposeConsents(), getDeviceAccessConsent()
+
+#### Getting Consent Values from the CMP
+
+Prebid SDK reads the values for the following keys from the `SharedPreferences` object:
+
+- **IABTCF_gdprApplies** - indicates whether the user is subject to GDPR
+- **IABTCF_TCString** - full encoded TC string
+- **IABTCF_PurposeConsents** - indicates the consent status for the purpose. 
+
+For more detailed information, read the [In-App Details section](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md#in-app-details) of the TCF.
+
+{: .alert.alert-warning :}
+Publishers shouldn’t explicitly assign values for these keys unless they have a custom-developed Consent Management Platform (CMP). If the publisher wants to provide this data to the Prebid SDK, they should use the explicit APIs described above.
+
+Here's how Prebid SDK processes CMP values:
+
+- It reads CMP values during the initialization and on each bid request, so the latest value is always used.
+- It doesn’t verify or validate CMP values in any way
+
+### CCPA / US Privacy
+
+The California Consumer Protection Act prompted the IAB to implement the "US Privacy" protocol.
+
+Prebid SDK reads and sends USP/CCPA signals according to the [US Privacy User Signal Mechanism](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md) and [OpenRTB extension](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/7f4f1b2931cca03bd4d91373bbf440071823f257/CCPA/OpenRTB%20Extension%20for%20USPrivacy.md). 
+
+Prebid SDK reads the value for the `IABUSPrivacy_String` key from `SharedPreferences` and sends it in the `regs.ext.us_privacy` object of the OpenRTB request.
+
+### COPPA
+
+The Children's Online Privacy Protection Act of the United States is a way for content producers to declare that their content is aimed at children, which invokes additional privacy protections.
+
+Prebid SDK follows the OpenRTB 2.6 spec and provides an API to indicate whether the current content falls under COPPA regulation. Publishers can set the respective flag using the targeting API: 
 
 ```kotlin
-TargetingParams.addUserKeyword("globalUserKeywordValue1")
-TargetingParams.addUserKeyword("globalUserKeywordValue2")
+TargetingParams.setSubjectToCOPPA(true)
 ```
 
-## Global Application Targeting
+Prebid SDK passes this flag in the `regs.coppa` object of the bid requests.
 
-### Inventory (Context) Keywords
-{:.no_toc}
+If you're app developer setting this COPPA flag, we recommend you also:
 
-Context Keywords are a list of keywords about the app as referenced in OpenRTB 2.5 as app.keywords. Any keyword passed in the context keyword field may be passed to the buyer for targeting.
+- set the `shareGeoLocation` property to false
+- avoid passing any sensitive first party data
+
+### Global Privacy Platform (GPP)
+
+A Consent Management Platform (CMP) utilizing [IAB's Global Privacy Protocol](https://iabtechlab.com/gpp/) is a comprehensive way for apps to manage user consent across multiple regulatory environments.
+
+Since version 2.0.6, Prebid SDK reads and sends GPP signals:
+
+- The GPP string is read from IABGPP_HDR_GppString in `SharedPreferences`. It is sent to Prebid Server on `regs.gpp`.
+- The GPP Section ID is likewise read from IABGPP_GppSID. It is sent to Prebid Server on `regs.gpp_sid`.
+
+## First Party Data
+
+First Party Data (FPD) is information about the app or user known by the developer that may be of interest to advertisers. 
+
+- User FPD includes details about a specific user like "frequent user" or "job title". This data if often subject to regulatory control, so needs to be specified as user-specific data. Note that some attributes like health status are limited in some regions. App developers are strongly advised to speak with their legal counsel before passing User FPD.
+- Inventory FPD includes details about the particular part of the app where the ad will displayed like "sports/basketball" or "editor 5-star rating".
+
+### User FPD
+
+Prebid SDK provides following functions to manage First Party User Data:
 
 ```kotlin
-void addContextKeyword(String keyword)
-void addContextKeywords(Set<String> keywords)
-void removeContextKeyword(String keyword)
-void clearContextKeywords()
+void addUserData(String key, String value)
+
+void updateUserData( String key, Set<String> value)
+
+void removeUserData(String key)
+
+void clearUserData()
+
+Map<String, Set<String>> getUserDataDictionary() {
+
+void addUserKeywords(Set<String> keywords) {
+
+void removeUserKeyword(String keyword) {
+
+void clearUserKeywords() {
+
+String getUserKeywords() {
+
+Set<String> getUserKeywordsSet() {
 ```
 
 Example:
 
 ```kotlin
-TargetingParams.addContextKeyword("globalContextKeywordValue1")
-TargetingParams.addContextKeyword("globalContextKeywordValue2")
+TargetingParams.addUserData("globalUserDataKey1", "globalUserDataValue1")
 ```
 
-### Bundle ID
-{:.no_toc}
+### Inventory FPD
 
-Use the following code to retrieve the platform-specific bundle/package name:
+Prebid provides following functions to manage First Party Inventory Data:
 
 ```kotlin
-bundleName = TargetingParams.getBundleName()
+void addExtData(String key, String value)
+
+void updateExtData(String key, Set<String> value)
+
+void removeExtData(String key)
+
+Map<String, Set<String>> getExtDataDictionary()
+
+void addExtKeyword(String keyword)
+
+void addExtKeywords(Set<String> keywords)
+
+void removeExtKeyword(String keyword)
+
+void clearExtKeywords()
+
+Set<String> getExtKeywordsSet()
 ```
 
-Pass in the platform-specific identifier - the bundle/package name - to set the bundle ID:
+Example:
 
 ```kotlin
-TargetingParams.setBundleName(bundleName)
+Targeting.addExtData("globalContextDataKey1", "globalContextDataValue1")
 ```
 
-### Domain
-{:.no_toc}
+### Controlling Bidder Access to FPD
 
-Retrieve and set the domain of your app with the following commands:
+Prebid Server will let you control which bidders are allowed access to First Party Data. Prebid SDK collects this an Access Control List with the following methods:
 
 ```kotlin
-TargetingParams.setDomain(domain)
+void addBidderToAccessControlList(String bidderName)
 
-val domain = TargetingParams.getDomain()
+void removeBidderFromAccessControlList(String bidderName)
+
+void clearAccessControlList()
+
+Set<String> getAccessControlList()
+```
+
+Example:
+
+```kotlin
+Targeting.addBidderToAccessControlList("bidderA")
+```
+
+## User Identity
+
+Mobile apps traditionally rely on IDFA-type device IDs for advertising, but there are other User ID systems available to app developers and more will be made available in the future. Prebid SDK supports two ways to maintain Extended User ID (EID) details:
+
+- A global property - in this approach, the app developer sets the IDs while initializing the Prebid SDK. This data persists only for the user session.
+- Local storage - the developer can choose to store the IDs persistently in local storage and Prebid SDK will utilize them on each bid request.
+
+Any identity vendor's details in local storage will be sent to Prebid Server unadulterated. If user IDs are set both in the property and entered into local storage, the property data will prevail.
+
+{: .alert.alert-info :}
+Note that the phrase "EID" stands for "Extended IDs" in [OpenRTB 2.6](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md), but for historic reasons, Prebid SDK methods use the word "external" rather than "extended". Please consider the phrase "external ID" a synonym for "extended ID".
+
+### Prebid SDK API Access
+
+Prebid SDK supports passing an array of EIDs at auction time with the function storeExternalUserId, which is globably scoped. It is sufficient to set the externalUserIdArray object once per user session, as these values would be used in all consecutive ad auctions in the same session.
+
+```kotlin
+void storeExternalUserId(<ExternalUserId> externalUserIds)
+
+List<ExternalUserId> fetchStoredExternalUserIds()
+
+ExternalUserId fetchStoredExternalUserId(@NonNull String source) 
+
+void removeStoredExternalUserId(@NonNull String source) {
+
+void clearStoredExternalUserIds() {
+```
+
+Example:
+
+```kotlin
+  // User Id from External Third Party Sources
+  ArrayList<ExternalUserId> externalUserIdArray = new ArrayList<>();
+  externalUserIdArray.add(new ExternalUserId("adserver.org", "111111111111", null, new HashMap() {
+    {
+        put ("rtiPartner", "TDID");
+    }
+}));
+
+  externalUserIdArray.add(new ExternalUserId("netid.de", "999888777", null, null));
+  externalUserIdArray.add(new ExternalUserId("criteo.com", "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", null, null));
+  externalUserIdArray.add(new ExternalUserId("liveramp.com", "AjfowMv4ZHZQJFM8TpiUnYEyA81Vdgg", null, null));
+  externalUserIdArray.add(new ExternalUserId("sharedid.org", "111111111111", 1, null));
+}));
+
+//Set External User IDs
+PrebidMobile.storeExternalUserId(externalUserIdArray);
 ```
 
 ## Open Measurement SDK (OMSDK) API
 
-**NOTE**: these properties are relevant only for the original Prebid integration into GAM monetization. In this case the creative is rendered by GMA SDK and publishers should provide OMID description in the bid re qest. If you use Prebid SDK as a rendering engine you shouldn’t use these properties. Prebid SDK sends them automaticaly according to the current OMID setup.
+{: .alert.alert-info :}
+Defining OMSDK values is only relevant for the 'Bidding-Only' Prebid integration with GAM. In this case the creative is rendered by GMA SDK and publishers should provide OMID description in the bid request. If you use Prebid SDK as a rendering engine you shouldn’t use these properties -- it sends them automaticaly according to the current OMID setup.
 
-OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters, by way of Prebid Server, indicating the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters by way of Prebid Server, indicating that the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
 
 There three components to signaling support for OMSDK:
 
-* Partner Name
-* Partner Version
-* API code
+- Partner Name
+- Partner Version
+- API code - TBD - what to do for this is missing
 
 ### Partner Name
-{:.no_toc}
 
-This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. See below for configuration and examples
-
-Open Measurement partner name. 
+This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. 
 
 ```kotlin
 TargetingParams.setOmidPartnerName("Google")
 ```
 
 ### Partner Version
-{:.no_toc}
 
-The OMSDK version number the partner integrated with. See below for configuration and examples.
-
-Partner's OMSDK version number implementation
-
-```java
-TargetingParams.setOmidPartnerVersion();
-```
-
-## First Party Data
-
-First Party Data (FPD) is free form data supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
-
-Data is broken up into two different data types:
-
-* User
-  * Global in scope only
-* Inventory (context)
-  * Global scope
-  * Ad Unit grain
-
-### First Party User Data
-{:.no_toc}
-
-User specic data is passed in the global scope (i.e. applicable to all ad units).
-
-```java
-void addUserData(String key, String value)
-void updateUserData(String key, Set<String> value)
-void removeUserData(String key)
-void clearUserData()
-```
-
-Example:
-
-```java
-TargetingParams.addUserData("globalUserDataKey1", "globalUserDataValue1")
-```
-
-### First Party Inventory (Context) Data
-{:.no_toc}
-
-Inventory specific free form data decribing the context of the inventory.
-
-#### Global Context Data
-{:.no_toc}
+The OMSDK version number for the integration partner.
 
 ```kotlin
-void addContextData(String key, String value)
-void updateContextData(String key, Set<String> value)
-void removeContextData(String key)
-void clearContextData()
+TargetingParams.setOmidPartnerVersion("1.0");
 ```
 
-Example:
+## Arbitrary OpenRTB
+
+(requires SDK v2.2.1)
+
+While there are many specific methods for adding data to the request detailed in
+this document, OpenRTB is big and it moves quickly. To cover scenarios not already covered by an existing method,
+Prebid SDK Provides a way for app publishers to customize most ORTB fields in the partial bid request that Prebid Mobile sends to the Prebid Server. The customization comes in the form of the ortbConfig parameter that takes a JSON String as input. The JSON string must follow the [OpenRTB structure](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md) -- it will be merged with the current JSON of the bid request. If you choose to input extra data using the ortbConfig parameter, please extensively test your requests sent to Prebid Server.
+
+There are certain protected fields such as regs, device, geo, ext.gdpr, ext.us_privacy, and ext.consent which cannot be changed.
 
 ```kotlin
-TargetingParams.addContextData("globalContextDataKey1", "globalContextDataValue1, globalContextDataValue2")
+//global invocation
+adUnitConfiguration?.ortbConfig = "{"ext":{"prebid":{"debug":1,"trace":"verbose"}}}"
 ```
 
-#### Ad Unit Context Data
-{:.no_toc}
-
-For ad unit context data, please refer to the [ad unit](pbm-adunit-android.html) section.
-
-### Access Control List
-{:.no_toc}
-
-The First Party Data Access Control List provides a method to restrict access to first party data to a supplied list of bidders.
-
-Only bidders supplied in the ACL will have access to the first party data. If no bidder is supplied, Prebid Server will supply first party data to all bid adapers.
-
-```java
-void addBidderToAccessControlList(String bidderName)
-void removeBidderFromAccessControlList(String bidderName)
-void clearAccessControlList()
+```kotlin
+//ad unit / impression-level
+adUnit?.ortbConfig = "{"ext":{"gpid":"abc123"}}"
 ```
 
-Example:
+## Other Targeting Values
 
-```java
-TargetingParams.addBidderToAccessControlList(TargetingParams.BIDDER_NAME_RUBICON_PROJECT);
+There are several other fields app developers may want to set to give bidders additional information about the auction.
+
+### Methods
+
+#### setYearOfBirth()
+
+Sets the user's year of birth for buyers to be able to target age ranges.
+
+Signature:
+
+```kotlin
+void setYearOfBirth(int yob)
 ```
 
-## User Identity
+Parameters:
 
-Prebid SDK supports two interfaces to pass / maintain User IDs and ID vendor details:
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| yob | required | integer | User's year of birth. | 1990 |
 
-* Real-time in Prebid SDK's API field setExternalUserIds
-* Store User Id(s) in local storage
+See also the API references for getYearOfBirth(), clearYearOfBirth(), and setUserAge().
 
-Any identity vendor's details in local storage will be sent over to Prebid Server as is, unadulterated. If data is sent in the API and entered into local storage, the API detail will prevail.
+#### setGender()
 
-### Prebid SDK API Access
-{:.no_toc}
+Sets the user's gender for buyer targeting. It's incumbent upon to the app developer to make sure they have permission to read this data. Prebid Server may remove it under some privacy scenarios.
 
-Prebid SDK supports passing an array of UserID(s) at auction time in the field setExternalUserIds, that is globably scopped. It is sufficient enough to set the externalUserIdArray object once per user session, as these values would be used in all consecutive ad auctions in the same session.
+Signature:
 
-```java
-public static void setExternalUserIds(List<ExternalUserId> externalUserIds)
-
-public static List<ExternalUserId> getExternalUserIds() 
+```kotlin
+void setGender(GENDER gender)
 ```
 
-Exmaple (JAVA):
+Parameters:
 
-```java
-// User Id from External Third Party Sources
-ArrayList<ExternalUserId> externalUserIdArray = new ArrayList<>();
-externalUserIdArray.add(new ExternalUserId("adserver.org", "111111111111", null, new HashMap() {
-    {
-        put ("rtiPartner", "TDID");
-    }
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| gender | required | enum | Valid values are MALE, FEMALE, and UNKNOWN. Defaults to UNKNOWN. | MALE |
 
-}));
-externalUserIdArray.add(new ExternalUserId("netid.de", "999888777", null, null));
-externalUserIdArray.add(new ExternalUserId("criteo.com", "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", null, null));
-externalUserIdArray.add(new ExternalUserId("liveramp.com", "AjfowMv4ZHZQJFM8TpiUnYEyA81Vdgg", null, null));
-externalUserIdArray.add(new ExternalUserId("sharedid.org", "111111111111", 1, new HashMap() {
-    {
-        put("third", "01ERJWE5FS4RAZKG6SKQ3ZYSKV");
-    }
+See also the API reference for getGender().
 
-}));
-//Set External User ID
-PrebidMobile.setExternalUserIds(externalUserIdArray);
+#### setUserLatLng()
+
+Sets the device location for buyer targeting. It's incumbent upon to the app developer to make sure they have permission to read this data. Prebid Server may remove it under some privacy scenarios.
+
+Signature:
+
+```kotlin
+void setUserLatLng( Float latitude, Float longitude)
 ```
 
-### Local Storage
-{:.no_toc}
+Parameters:
 
-Prebid SDK provides a local storage interface to set, retrieve or update an array of user IDs with associated identity vendor details. Prebid SDK will retrieve and pass User IDs and ID vendor details to PBS if values are present in local storage. The main difference between the Prebid API interface and the local storage interface is the persistence of storage of data. Local Storage data will persist across user sessions whereas the Prebid API interface (setExternalUserIds) persists only for the user session. If a vendor's details are passed both in local storage and the Prebid API at the same time, the Prebid  API data (setExternalUserIds) will prevail.
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| latitude | required | double | The device latitude. | 40.71 |
+| longitude | required | double | The device longitude. | 74.01 |
 
-Prebid SDK Provides five functions to handle User ID details:
+#### setPublisherName()
 
-```java
-public static void storeExternalUserId(ExternalUserId externalUserId)
-public static ExternalUserId fetchStoredExternalUserId(@NonNull String source)
-public static List<ExternalUserId> fetchStoredExternalUserIds()
-public static void removeStoredExternalUserId(@NonNull String source)
-public static void clearStoredExternalUserIds()
+Define the OpenRTB app.publisher.name field.
+
+Signature:
+
+```kotlin
+void setPublisherName(String publisherName)
 ```
 
-Examples
+Parameters:
 
-```java
-//Set External User ID
-TargetingParams.storeExternalUserId(new ExternalUserId("sharedid.org", "111111111111", 1, new HashMap() {
-    {
-        put ("third", "01ERJWE5FS4RAZKG6SKQ3ZYSKV");
-    }
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| publisherName | required | string | Publisher name | "publisher 1" |
 
-}));
+See also the API reference for getPublisherName().
 
-//Get External User ID
-ExternalUserId externalUserId = TargetingParams.fetchStoredExternalUserId("sharedid.org");
+#### setDomain()
 
-//Get All External User IDs
-List<ExternalUserId> externalUserIdList = TargetingParams.fetchStoredExternalUserIds();
+Define the OpenRTB app.domain field.
 
-//Remove External UserID
-TargetingParams.removeStoredExternalUserId("adserver.org");
+Signature:
 
-//Remove All External UserID
-TargetingParams.clearStoredExternalUserIds();
+```kotlin
+void setDomain(String domain)
 ```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| domain | required | string | Domain | "example.com" |
+
+See also the API reference for getDomain().
+
+#### setStoreUrl()
+
+Define the OpenRTB app.storeurl field.
+
+Signature:
+
+```kotlin
+void setStoreUrl(String storeUrl)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| storeUrl | required | string | App store URL | TBD |
+
+See also the API reference for getStoreUrl().
+
+#### setBundleName()
+
+Define the OpenRTB app.storeurl field.
+
+Signature:
+
+```kotlin
+void setBundleName(String bundleName) {
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| bundleName | required | string | App bundle name | TBD |
+
+See also the API reference for getBundleName().
+
+#### setOmidPartnerName()
+
+Define the OpenRTB source.ext.omidpn field.
+
+Signature:
+
+```kotlin
+setOmidPartnerName(@Nullable String omidPartnerName)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| omidPartnerName | required | string | Open Measurement Partner name | "MyIntegrationPartner" |
+
+See also the API reference for getOmidPartnerName().
+
+#### setOmidPartnerVersion()
+
+Define the OpenRTB source.ext.omidpv field.
+
+Signature:
+
+```kotlin
+setOmidPartnerVersion(@Nullable String omidPartnerVersion)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| omidPartnerVerson | required | string | Open Measurement Partner version | "7.1" |
+
+See also the API reference for getOmidPartnerVersion().
+
+TBD
+    public static void setUserCustomData(@Nullable String data) {
+    public static String getUserCustomData() {
+    public static void setUserId(String userId) {
+    public static String getUserId() {
+    public static void setUserExt(Ext ext) {
+    public static Ext getUserExt() {
