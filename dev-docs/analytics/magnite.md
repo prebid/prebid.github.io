@@ -14,8 +14,8 @@ enable_download: false
 #### Registration
 
 The Magnite analytics adapter requires setup and approval from the
-Magnite team, even for existing accounts. Please reach out to your account
-team or <globalsupport@magnite.com> for more information.
+Magnite team, even for existing accounts. Please reach out to your Magnite account
+team for more information.
 
 #### Analytics Options
 
@@ -27,7 +27,7 @@ team or <globalsupport@magnite.com> for more information.
 
 ### Example Configuration
 
-```
+```javascript
   pbjs.enableAnalytics({
     provider: 'magnite',
     options: {
