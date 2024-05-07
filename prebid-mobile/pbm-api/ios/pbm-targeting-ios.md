@@ -32,7 +32,7 @@ The `Prebid` class is a singleton that enables you to apply global settings. It 
 | --- | --- | --- | --- | --- | --- |
 | prebidServerAccountId | either | string | init | Your Prebid Server team will tell you whether this is required or not and if so, the value. | "abc123" |
 | prebidServerHost | optional | enum | init | This can take the values "Appnexus", "Rubicon", or "Custom". If "Custom", you need to use the setCustomPrebidServerUrl() method to set a URL. This is where the Prebid SDK will send the auction information. Your Prebid Server team will tell you which value to use. The default is "Custom". | "Custom" |
-| customStatusEndpoint | optional | string | init | Use this URL to check the status of Prebid Server. The default status endpoint is the PBS URL appended with '/status'. | "https://prebidserver<wbr>.example<wbr>.com/custom<wbr>/status" |
+| customStatusEndpoint | optional | string | init | Use this URL to check the status of Prebid Server. The default status endpoint is the PBS URL appended with '/status'. | `https://prebidserver`<wbr>`.example`<wbr>`.com/custom`<wbr>`/status` |
 | shareGeoLocation | optional | boolean | ORTB | If this flag is true AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s lat/long geographical location data to the Prebid Server. The default is false. | `true` |
 | locationUpdatesEnabled | optional | boolean | ORTB | If true, the SDK will periodically try to listen for location updates. Default is `false`. | `true` |
 | logLevel | optional | enum | SDK control | This property controls the level of logging output to the console. The value can be .error, .info, .debug, .verbose, .warn, .severe, and .info. The default is `.debug`. | `.error` |
@@ -45,7 +45,7 @@ The `Prebid` class is a singleton that enables you to apply global settings. It 
 | shouldAssignNativeAssetID | optional | boolean | ORTB | Whether to automatically assign an assetID for a Native ad. Default is `false`. | true |
 | useCacheForReportingWithRenderingAPI | optional | boolean | ORTB | Indicates whether PBS should cache the bid on the server side. If the value is `true` the Prebid SDK will make the cache request to retrieve the cached asset. Default is `false`. | true |
 | useExternalClickthroughBrowser | optional | boolean | SDK control | Controls whether to use PrebidMobile's in-app browser or the Safari App for displaying ad clickthrough content. Default is false. | true |
-| impClickbrowserType | optional | enum | ORTB | Indicates the type of browser opened upon clicking the creative in an app. This corresponds to the OpenRTB imp.clickbrowser field. Values are "embedded" and "native". Default is "native". | "native".
+| impClickbrowserType | optional | enum | ORTB | Indicates the type of browser opened upon clicking the creative in an app. This corresponds to the OpenRTB imp.clickbrowser field. Values are "embedded" and "native". Default is "native". | "native". |
 | includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 | includeBidderKeys | optional | boolean | ORTB | If `true`, Prebid sdk will add `includebidderkeys` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 
@@ -537,6 +537,5 @@ Parameters:
 
 TBD - what is parameterDictionary? Looks like a mix of user- and inventory-related things.
 
-    public func setCustomParams(_ params: [String : String]?) {
-    public func addCustomParam(_ value: String, withName: String?) {
-
+- public func setCustomParams(_ params: [String : String]?) {
+- public func addCustomParam(_ value: String, withName: String?) {

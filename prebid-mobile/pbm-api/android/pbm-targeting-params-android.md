@@ -55,14 +55,14 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| host | required | object | Host.APPNEXUS, Host.RUBICON, Host.createCustomHost(PREBID_SERVER_AUCTION_ENDPOINT) | Host.createCustomHost<wbr>(`https://prebidserver`<wbr>`.example.com`<wbr>`/openrtb2/auction`) |
+| host | required | object | Host.APPNEXUS, Host.RUBICON, Host.createCustomHost<wbr>(PREBID_SERVER<wbr>_AUCTION_ENDPOINT) | Host.createCustomHost<wbr>(`https://prebidserver`<wbr>`.example.com`<wbr>`/openrtb2/auction`) |
 
 Examples:
 
 ```kotlin
 PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
 PrebidMobile.setPrebidServerHost(Host.RUBICON)
-PrebidMobile.setPrebidServerHost(Host.createCustomHost(https://prebidserver.example.com/openrtb2/auction))
+PrebidMobile.setPrebidServerHost(Host.createCustomHost(`https://prebidserver.example.com/openrtb2/auction`))
 ```
 
 #### setCustomStatusEndpoint()
@@ -78,7 +78,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| url | required | string | Use this URL to check the status of Prebid Server. The default status endpoint is the PBS URL appended with '/status'. | "https://prebidserver<wbr>.example<wbr>.com/custom<wbr>/status" |
+| url | required | string | Use this URL to check the status of Prebid Server. The default status endpoint is the PBS URL appended with '/status'. | `https://prebidserver`<wbr>`.example`<wbr>`.com/custom`<wbr>`/status` |
 
 #### setTimeoutMillis()
 
