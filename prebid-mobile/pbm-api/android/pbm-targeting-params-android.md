@@ -12,7 +12,7 @@ sidebarType: 2
 
 This page documents various global parameters you can set on the Prebid SDK. It describes the properties and methods of the Prebid SDK that allow you to supply important parameters to the header bidding auction.
 
-* TOC
+- TOC
 {:toc}
 
 ## Prebid Global Properties and Methods

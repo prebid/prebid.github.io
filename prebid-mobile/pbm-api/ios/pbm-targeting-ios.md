@@ -10,7 +10,7 @@ sidebarType: 2
 # Global Parameters - iOS
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 This page documents various global parameters you can set on the Prebid SDK. It describes the properties and methods of the Prebid SDK that allow you to supply important parameters to the header bidding auction.
