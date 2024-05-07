@@ -55,7 +55,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| host | required | object | Host.APPNEXUS, Host.RUBICON, Host.createCustomHost(PREBID_SERVER_AUCTION_ENDPOINT) | Host.createCustomHost<wbr>("https://prebidserver<wbr>.example.com<wbr>/openrtb2/auction") |
+| host | required | object | Host.APPNEXUS, Host.RUBICON, Host.createCustomHost(PREBID_SERVER_AUCTION_ENDPOINT) | Host.createCustomHost<wbr>(`https://prebidserver`<wbr>`.example.com`<wbr>`/openrtb2/auction`) |
 
 Examples:
 
