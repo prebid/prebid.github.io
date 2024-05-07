@@ -7,15 +7,15 @@ nav_section: prebid-mobile
 sidebarType: 2
 ---
 
-# Global Parameters - iOS
+# Prebid SDK Global Parameters - iOS
 {:.no_toc}
 
 - TOC
 {:toc}
 
-This page documents various global parameters you can set on the Prebid SDK. It describes the properties and methods of the Prebid SDK that allow you to supply important parameters to the header bidding auction.
-
 ## Prebid Global Properties and Methods
+
+This page documents various global parameters you can set on the Prebid SDK. It describes the properties and methods of the Prebid SDK that allow you to supply important parameters to the header bidding auction.
 
 The `Prebid` class is a singleton that enables you to apply global settings. It covers:
 
@@ -23,7 +23,7 @@ The `Prebid` class is a singleton that enables you to apply global settings. It 
 - values affecting the behavior of the Prebid SDK (e.g. timeout)
 - items influencing the OpenRTB output (e.g. shareGeoLocation)
 
-### Global Properties
+### Prebid Global Properties
 
 (TBD - how are these set? Need an example. )
 
@@ -49,7 +49,7 @@ The `Prebid` class is a singleton that enables you to apply global settings. It 
 | includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 | includeBidderKeys | optional | boolean | ORTB | If `true`, Prebid sdk will add `includebidderkeys` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 
-### Global Methods
+### Prebid Global Methods
 
 #### setCustomPrebidServerUrl()
 

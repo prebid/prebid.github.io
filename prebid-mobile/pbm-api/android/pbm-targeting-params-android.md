@@ -7,15 +7,15 @@ nav_section: prebid-mobile
 sidebarType: 2
 ---
 
-# Global Targeting Parameters
+# Prebid SDK Global Parameters - Android
 {:.no_toc}
-
-This page documents various global parameters you can set on the Prebid SDK. It describes the properties and methods of the Prebid SDK that allow you to supply important parameters to the header bidding auction.
 
 - TOC
 {:toc}
 
 ## Prebid Global Properties and Methods
+
+This page documents various global parameters you can set on the Prebid SDK. It describes the properties and methods of the Prebid SDK that allow you to supply important parameters to the header bidding auction.
 
 The `Prebid` class is a singleton that enables you to apply global settings. It covers:
 
@@ -23,7 +23,7 @@ The `Prebid` class is a singleton that enables you to apply global settings. It 
 - values affecting the behavior of the Prebid SDK (e.g. timeout)
 - items influencing the OpenRTB output (e.g. shareGeoLocation)
 
-### Global Properties
+### Prebid Global Properties
 
 (TBD - where are these set? Need an example. )
 
@@ -34,7 +34,7 @@ The `Prebid` class is a singleton that enables you to apply global settings. It 
 | useExternalBrowser | optional | boolean | ORTB | TBD? Defaults to `false`. | `true` |
 | sendMraidSupportParams | optional | boolean | ORTB | TBD If `true`, the SDK sends "af=3,5", indicating support for MRAID. Defaults to `true`. | `false` |
 
-### Global Methods
+### Prebid Global Methods
 
 #### setPrebidServerAccountId()
 
