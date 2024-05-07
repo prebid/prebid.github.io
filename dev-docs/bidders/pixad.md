@@ -3,7 +3,7 @@ layout: bidder
 title: Pixad
 description: Prebid Pixad Bidder Adapter.
 pbjs: true
-pbs: false
+pbs: true
 biddercode: pixad
 media_types: banner,video,native
 gvl_id: 1281 (admatic)
