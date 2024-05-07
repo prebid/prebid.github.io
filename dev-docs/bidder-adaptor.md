@@ -325,7 +325,7 @@ Here is a sample bidderRequest object:
     canonicalUrl: null,
     page: "http://mypage.org?pbjs_debug=true",
     domain: "mypage.org",
-    ref: null,
+    referer: null,
     numIframes: 0,
     reachedTop: true,
     isAmp: false,

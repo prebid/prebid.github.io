@@ -47,6 +47,17 @@ The expectation with the Prebid Server floors feature is that
 Publishers will use it mainly for mobile app and AMP scenarios.
 Web sites running Prebid.js will utilize this client-side module.
 
+### Video Overview of Floors
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/938434804?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Price Floors in Prebid.js and Prebid Server"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+<p/>
+Notes:
+
+* [Price Floors in Prebid Server](/prebid-server/features/pbs-floors.html#prebid-server--features--price-floors)
+* [Prebid Floor Service Providers](/dev-docs/modules/floors.html#floors-providers)
+* [Transcript of this video](/dev-docs/floors-video-overview.html)
+
 ## How it Works
 
 There are several places where the Floor module changes the behavior of the Prebid.js auction process. Below is a diagram describing the general flow of the client-side Price Floors Module:
@@ -1378,7 +1389,7 @@ If the currency function is unable to derive the correct cpm in any of the scena
 
 {: .table  }
 | Partner | Contact | About |
-| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;" alt="magnite"> | [globalsupport@magnite.com](mailto:globalsupport@magnite.com) | Magnite data-science applied to dynamic floors. (Currently only available to Demand Manager customers) |
+| <img src="/assets/images/partners/leader/Magnite_logo.png" style="height:50px;" alt="magnite"> | Your Magnite account team | Magnite data-science applied to dynamic floors. (Currently only available to Demand Manager customers) |
 | <img src="/assets/images/partners/leader/openx.png" style="height:50px;" alt="openx"> | Reach out to OpenX at [apollo@openx.com](mailto:apollo@openx.com) | Dynamic floor optimization and more |
 | <img src="/assets/images/partners/leader/pubmatic.png" style="height:50px;" alt="pubmatic"> | [header-bidding@pubmatic.com](mailto:header-bidding@pubmatic.com) | PubMatic's ML powered dynamic Floor Optimization |
 | <img src="/assets/images/partners/leader/AssertiveYield_logo.png" alt="assertive_yield"> | [assertiveyield.com](https://assertiveyield.com) | Holistic flooring covering Prebid, Amazon, GAM UPR, RTB and more |
