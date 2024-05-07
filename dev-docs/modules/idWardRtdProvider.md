@@ -6,10 +6,18 @@ description: ID Ward Real Time Data Provider Module
 page_type: module
 module_type: rtd
 module_code : idWardRtdProvider
-enable_download : true
+enable_download : false
 vendor_specific: true
 sidebarType : 1
 ---
+
+> **Warning!**
+>
+> The **idWardRtdProvider** module has been renamed to [anonymisedRtdProvider](anonymisedrtdprovider) in light of the company's rebranding.
+> **idWardRtdProvider** module is maintained for backward compatibility until the next major Prebid release.
+>
+> Please use anonymisedRtdProvider instead of idWardRtdProvider in your Prebid integration.
+>
 
 # ID Ward Real Time Data Provider Module
 
