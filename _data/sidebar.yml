@@ -809,7 +809,7 @@
 
 - sbSecId: 2
   title: GAM Bidding Only iOS
-  link: /prebid-mobile/new-docs/gam-bidding-only-ios.html
+  link: /prebid-mobile/recipes/gam-bidding-only-ios.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

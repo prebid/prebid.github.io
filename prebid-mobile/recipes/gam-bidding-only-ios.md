@@ -97,7 +97,7 @@ Assuming your app is already built with GMA AdUnits, the technical implementatio
 
 This section describes the integration details for different ad formats. In each scenario, you'll be asked for a `configId` - this is a key worked out with your Prebid Server provider. It's used at runtime to pull in the bidders and parameters specific to this adunit. Depending on your Prebid Server partner, it may be a UUID or constructed out of parts like your account number and adunit name.
 
-### Format: HTML Banner
+<!-- ### Format: HTML Banner
 
 {% include /sub-recipes/ios/gam-bidding-only-html-banner.md %}
 
@@ -119,4 +119,18 @@ This section describes the integration details for different ad formats. In each
 
 ### Format: Multiformat (Banner + In-App Native) 
 
-{% include /sub-recipes/ios/gam-bidding-only-banner-in-app-native.md %}
+{% include /sub-recipes/ios/gam-bidding-only-banner-in-app-native.md %} -->
+
+###  [Format: HTML Banner](/prebid-mobile/recipes/sub-recipes/ios/gam-bidding-only-html-banner.html)
+
+###  [Format: Multiformat (banner+video)](/prebid-mobile/recipes/sub-recipes/ios/gam-bidding-only-multiformat.html)
+
+###  [Format: Interstitial Banner](/prebid-mobile/recipes/sub-recipes/ios/gam-bidding-only-interstitial-banner.html)
+
+###  [Format: Video Interstitial](/prebid-mobile/recipes/sub-recipes/ios/gam-bidding-only-video-interstitial.html)
+
+###  [Format: Rewarded Video Ad](/prebid-mobile/recipes/sub-recipes/ios/gam-bidding-only-rewarded-video.html)
+
+###  [Format: Multiformat (Banner + In-App Native)](/prebid-mobile/recipes/sub-recipes/ios/gam-bidding-only-banner-in-app-native.html)
+
+
