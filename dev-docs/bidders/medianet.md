@@ -162,4 +162,5 @@ pbjs.que.push(function() {
 });
 ```
 
-For a detailed guide to enabling PAAPI auctions follow Prebid's documentation on [fledgeForGpt](https://docs.prebid.org/dev-docs/modules/fledgeForGpt.html)
+For a detailed guide to enabling PAAPI auctions follow Prebid's documentation 
+on [`fledgeForGpt`](https://docs.prebid.org/dev-docs/modules/fledgeForGpt.html)
