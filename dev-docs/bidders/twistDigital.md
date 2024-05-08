@@ -9,6 +9,12 @@ gvl_id: 1292
 tcfeu_supported: true
 gpp_supported: true
 usp_supported: true
+coppa_supported: false
+multiformat_supported: will-bid-on-one
+floors_supported: true
+schain_supported: true
+safeframes_ok: false
+deals_supported: false
 pbjs: true
 sidebarType: 1
 ---
