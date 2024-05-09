@@ -29,7 +29,7 @@ The following configuration parameters are available:
 | params.storeFpid | Optional | Boolean | Indicates whether a supplemental first-party ID may be stored to improve addressability | `false` (default) or `true` |
 | storage |||||
 | storage.name | Required | String | The name of the cookie or html5 local storage key | `"33acrossId"` (recommended) |
-| storage.type | Required | String | This is where the 33across user ID will be stored | `"html5"` (recommended) or `"cookie"` |
+| storage.type | Required | String | This is where the 33across user ID will be stored | `"cookie&html5"` (recommended) or `"html5"` or `"cookie"` |
 | storage.expires | Strongly Recommended | Number | How long (in days) the user ID information will be stored | `30` (recommended) |
 | storage.refreshInSeconds | Strongly Recommended | Number | How many seconds until the ID is refreshed | `8 * 3600` (recommended) |
 
@@ -46,7 +46,7 @@ pbjs.setConfig({
       },
       storage: {
         name: "33acrossId",
-        type: "html5",
+        type: "cookie&html5",
         expires: 30,
         refreshInSeconds: 8 * 3600
       }
