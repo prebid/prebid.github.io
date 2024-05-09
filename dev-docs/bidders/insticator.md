@@ -10,6 +10,7 @@ usp_supported: true
 coppa_supported: true
 gdpr_supported: true
 schain_supported: true
+floors_supported: true
 media_types: banner, video
 multiformat_supported: will-bid-on-any
 pbjs: true
@@ -28,6 +29,8 @@ sidebarType: 1
 | `instl`                     | optional | 1 = the ad is interstitial or full screen, 0 = not interstitial.                        | `1`                                | `number` |
 | `pos`                       | optional | ad position as per IAB standards                                                        | `1`                                | `number` |
 | `bid_endpoint_request_url`  | optional | Url string representing the endpoint Insticator adaptor should make the request bids to. | `https://ex.ingage.com/v1/openrtb` | `string` |
+| `floor`                     | optional | Sets a floor for bidder                                                                  | `0.50`                             | `float` |
+| `bidfloorcur`               | optional | Currency of the floor.                                                                   | `USD`                              | `string` |
 
 ### Banner Params
 
