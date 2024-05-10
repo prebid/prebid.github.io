@@ -7,8 +7,7 @@ modulecode: smartyads
 
 #### Example Configuration
 
-```
-
+```javascript
 pbjs.que.push(function () {
     pbjs.enableAnalytics({
         provider: 'smartyads'
