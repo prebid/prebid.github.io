@@ -1,17 +1,22 @@
 ---
 layout: bidder
-title: colombia
-description: Prebid colombia Bidder Adaptor
+title: Colombia
+description: Prebid Colombia Bidder Adaptor
 biddercode: colombia
-usp_supported: true
-schain_supported: true
 media_types: banner, video, native
-userIds: britepoolid, identityLink, unifiedId, id5Id, uid2
-gdpr: true
-pbjs: false
-pbs: true
-pbs_app_supported: true
-sidebarType: 1
+usp_supported: true
+coppa_supported: true
+gpp_supported: true
+schain_supported: true
+dchain_supported: true
+floors_supported: true
+userIds: all
+prebid_member: true
+pbjs: true
+pbs: false
+pbs_app_supported: false
+fpd_supported: true
+multiformat_supported: will-bid-on-one
 ---
 
 ### Disclosure
