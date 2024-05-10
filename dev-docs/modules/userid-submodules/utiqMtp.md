@@ -13,10 +13,10 @@ Both Utiq and UtiqMtpId user id submodules can be used in parallel as both suppo
 
 Utiq is also the brand name of the service, which is provided by Utiq SA/NV.
 
-## Utiq installation ##
+## Utiq installation
 
-In order to use utiq in your prebid setup, you must first integrate utiq solution on your website as per https://docs.utiq.com/
-If you are interested in using Utiq on your website, please contact Utiq on https://utiq.com/contact/
+In order to use utiq in your prebid setup, you must first integrate utiq solution on your website as per <https://docs.utiq.com/>
+If you are interested in using Utiq on your website, please contact Utiq on <https://utiq.com/contact/>
 
 ## UtiqMtp ID configuration
 
