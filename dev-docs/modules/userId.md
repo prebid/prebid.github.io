@@ -258,6 +258,7 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 | Unified ID | Trade Desk | tdid | adserver.org | "1111" |
 | ConnectID | Yahoo | connectId | yahoo.com | {"connectId": "72d04af6..."} |
 | FreePass ID | FreePass | freepassId | | "1111" |
+| UtiqMtp ID | Utiq | utiqMtpId | utiq-mtp.com | "1111" |
 
 For example, the adapter code might do something like:
 
