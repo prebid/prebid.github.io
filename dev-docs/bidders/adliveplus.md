@@ -31,10 +31,11 @@ The Adlive Plus adapter requires setup before beginning. Please contact us at [s
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placementId` | required | Placement id          | `'11111'` | `string`  |
+| `placementId` | required | Placement id          | `'1'`     | `string`  |
 | `region`      | optional | Endpoint region       | `'us'`    | `string`  |
 
 ### Params type definition
+
 ```typescript
 type Params = {
     placementId: string;
