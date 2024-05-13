@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: performax
-description Prebid Performax bidder Adapter
+title: Performax
+description: Prebid Performax bidder Adapter
 biddercode: performax
 tcfeu_supported: true
 gvl_id: 732
