@@ -4,7 +4,7 @@ title: EXADS
 description: EXADS Bidder Adapter
 pbjs: true
 multiformat_supported: will-not-bid
-biddercode: exadsadserver
+biddercode: exads
 dsa_supported: true
 gvl_id: 1084
 tcfeu_supported: true
@@ -33,7 +33,7 @@ adUnits = [
     },
     bids: [
       {
-        bidder: 'exadsadserver',
+        bidder: 'exads',
         params: {
           zoneId: 12345,
           fid: '829a896f011475d50da0d82cfdd1af8d9cdb07ff',
@@ -98,7 +98,7 @@ adUnits = [
     },
     bids: [
       {
-        bidder: 'exadsadserver',
+        bidder: 'exads',
         params: {
           zoneId: 12345,
           fid: '829a896f011475d50da0d82cfdd1af8d9cdb07ff',
@@ -142,7 +142,7 @@ adUnits = [
     },
     bids: [
       {
-        bidder: 'exadsadserver',
+        bidder: 'exads',
         params: {
           zoneId: 12345,
           fid: '829a896f011475d50da0d82cfdd1af8d9cdb07ff',
@@ -218,7 +218,7 @@ adUnits = [
     },
     bids: [
       {
-        bidder: 'exadsadserver',
+        bidder: 'exads',
         params: {
           zoneId: 12345,
           fid: '829a896f011475d50da0d82cfdd1af8d9cdb07ff',
@@ -347,7 +347,7 @@ adUnits = [
     },
     bids: [
       {
-        bidder: 'exadsadserver',
+        bidder: 'exads',
         params: {
           zoneId: 12345,
           fid: '829a896f011475d50da0d82cfdd1af8d9cdb07ff',
