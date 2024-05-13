@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: performax
+title: Performax
 description: Prebid Performax bidder Adapter
 biddercode: performax
 tcfeu_supported: true
