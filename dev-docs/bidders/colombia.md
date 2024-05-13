@@ -21,7 +21,7 @@ multiformat_supported: will-bid-on-one
 
 ### Note
 
-The DisplayioAds bidding adapter requires setup and approval before implementation. Please reach out to <elena@display.io> for more details.
+The Colombia bidding adapter requires setup and approval before implementation. Please reach out to <adserver@colombiaonline.com> for more details.
 
 ### Prebid.js Bid Params
 
