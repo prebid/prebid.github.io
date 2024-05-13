@@ -19,18 +19,26 @@ fpd_supported: true
 multiformat_supported: will-bid-on-one
 ---
 
-### Disclosure
+### Note
 
-This adapter is known to use an HTTP 1 endpoint. Header bidding often generates multiple requests to the same host and bidders are encouraged to change to HTTP 2 or above to help improve publisher page performance via multiplexing.
+The DisplayioAds bidding adapter requires setup and approval before implementation. Please reach out to <elena@display.io> for more details.
 
-### Prebid.Server Bid Params
+### Prebid.js Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name           | Scope    | Description                                              | Example    | Type      |
 |----------------|----------|----------------------------------------------------------|------------|-----------|
-| `TagID` | optional | Placement Id will be generated on colombia SSP Platform. | `'0'`        | `string` |
-| `groupId` | optional | Group Id will be generated on colombia SSP Platform. | `'0'`        | `string` |
+| `adSlot` | Required | adSlot will be generated on colombia SSP Platform. | `'3849382'`        | `string` |
+| `keywords` | optional | Comma separated string. | `'India, India news, India news today'`        | `string` |
+| `category` | optional | Page Categorization. | `'Election, Sports, Entertainments'`        | `string` |
+| `pagetype` | optional | Type of page. | `'Listing, Show, Liveblog, Photostory'`        | `string` |
+| `incognito` | optional | 1, for incognito mode. | `'1'`        | `string` |
+| `dsmi` | optional | CCPA Compliance Flag. | `'0|1'`        | `string` |
+| `optout` | optional | GDPR Compliance Flag. | `'0|1'`        | `string` |
+| `yob` | optional | Year of Birth. | `'1982'`        | `string` |
+| `gender` | optional | Gender M/F | `'M|F'`        | `string` |
+| `floor` | optional | Bid Floor. | `'1.75'`        | `string` |
+| `currency` | optional | Bid currency. | `'AUD|USD'`        | `string` |
+| `acat` | optional | Allowed categories. | `'[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]'`        | `string` |
+| `bcat` | optional | Blocked IAB Categories. | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`        | `string` |
 
-You only need to use one parameter: either TagID or groupId
-
-*For prebidJS parametres, look into colombiassp.md*
