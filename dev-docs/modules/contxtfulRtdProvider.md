@@ -63,12 +63,8 @@ pbjs.setConfig({
 |                     |          |          | Receptivity API.                           |
 | `customer`          | `String` | Required | Your unique customer identifier.           |
 | `hostname`          | `String` | Optional | Default is "api.receptivity.io"            |
-| `adServerTargeting` | `Boolean`| Optional | `getTargetingData` will do nothing when    |
-|                     |          |          | `adServerTargeting` === false.             |
-|                     |          |          | Default is true.                           |
-| `bidders`           | `Array`  | Optional | `getBidRequestData` will write receptivity |
-|                     |          |          | to `ortb2Fragments.bidder[bidderCode]` for |
-|                     |          |          | these `bidders`. Default is [].            |
+| `adServerTargeting` | `Boolean`| Optional | `getTargetingData` will do nothing when `adServerTargeting` is false or 'false'. Default is true.                           |
+| `bidders`           | `Array`  | Optional | `getBidRequestData` will write receptivity to `ortb2Fragments.bidder[bidderCode]` for these `bidders`. Default is [].            |
 
 ## Usage
 
