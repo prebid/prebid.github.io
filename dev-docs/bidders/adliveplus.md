@@ -47,18 +47,18 @@ type Params = {
 
 ```javascript
 const adUnits = [
-	{
-		code: 'test-div',
-		sizes: [[300, 250]],
-		bids: [
-			{
-				bidder: 'lucead',
-				params: {
-					placementId: '1', // required
-					region: 'us', // optional 'eu', 'us', 'ap'
-				}
-			}
-		]
-	}
+    {
+        code: 'test-div',
+        sizes: [[300, 250]],
+        bids: [
+            {
+                bidder: 'lucead',
+                params: {
+                    placementId: '1', // required
+                    region: 'us', // optional 'eu', 'us', 'ap'
+                }
+            }
+        ]
+    }
 ];
 ```

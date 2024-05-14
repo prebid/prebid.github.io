@@ -46,10 +46,10 @@ type Params = {
 
 ```javascript
 const adUnits = [
-       {
-           code: 'test-div',
-           sizes: [[300, 250]],
-           bids: [
+    {
+        code: 'test-div',
+            sizes: [[300, 250]],
+            bids: [
                {
                    bidder: 'lucead',
                    params: {
