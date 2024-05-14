@@ -2,7 +2,7 @@
 layout: bidder
 title: AlgoriX
 description: Prebid AlgoriX Bidder Adapter
-biddercode: algorix
+biddercode: rixengine
 tcfeu_supported: true
 gvl_id:
 usp_supported: true
