@@ -54,8 +54,7 @@ and many versions of the GDPR vendors list.
 
 Other services you may want to run alongside Prebid Server are:
 
-* Geographic lookup (for GDPR scope determination)
-* Device lookup service (future: for Programmatic Guaranteed targeting)
+* Geographic lookup (e.g. GDPR scope determination)
 
 Note that neither Prebid Server nor Prebid Cache supports configuring an SSL certificate. It's intended that they run behind a load balancer or proxy server (e.g. nginx) that provides SSL.
 
