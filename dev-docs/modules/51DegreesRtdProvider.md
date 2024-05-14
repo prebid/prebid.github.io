@@ -11,6 +11,9 @@ vendor_specific: true
 sidebarType : 1
 ---
 
+{: .alert.alert-warning :}
+This module loads an external dynamically generated JavaScript based on the evidence available. The platform and browser evolution requires constant adaptation of the techniques to accurately identify devices - hence these can not be hardcoded and require an external resource.
+
 # 51Degrees RTD Submodule
 
 {:.no_toc}
@@ -22,7 +25,7 @@ sidebarType : 1
 
 51Degrees module enriches an OpenRTB request with [51Degrees Device Data](https://51degrees.com/documentation/index.html).
 
-51Degrees module sets the following fields of the device object: `make`, `model`, `os`, `osv`, `h`, `w`, `ppi`, `pixelratio` - interested bidder adapters may use these fields as needed. In addition the module sets `device.ext.fiftyonedegrees_deviceId` to a permanent device ID which can be rapidly looked up in on premise data exposing over 250 properties including the device age, chip set, codec support, and price, operating system and app/browser versions, age, and embedded features.
+51Degrees module sets the following fields of the device object: `make`, `model`, `os`, `osv`, `h`, `w`, `ppi`, `pxratio` - interested bidder adapters may use these fields as needed. In addition the module sets `device.ext.fiftyonedegrees_deviceId` to a permanent device ID which can be rapidly looked up in on premise data exposing over 250 properties including the device age, chip set, codec support, and price, operating system and app/browser versions, age, and embedded features.
 
 The module supports on premise and cloud device detection services with free options for both. 
 
