@@ -86,7 +86,7 @@ On a Bid Request Event, all bidders in the configuration will inherit the Recept
 Default is `[]` (an empty array)
 RECOMMENDED : Add all the bidders active like this `["bidderCode1", "bidderCode", "..."]`
 
-### Example
+## Example
 
 To view an integration example:
 
@@ -106,7 +106,7 @@ To view an integration example:
 
 To utilize this module, you need to register for an account with [Contxtful](https://contxtful.com). For inquiries, please contact [contact@contxtful.com](mailto:contact@contxtful.com).
 
-# Links
+## Links
 
 - [Basic Prebid.js Example](https://docs.prebid.org/dev-docs/examples/basic-example.html)
 - [How Bid Adapters Should Read First Party Data](https://docs.prebid.org/features/firstPartyData.html#how-bid-adapters-should-read-first-party-data)
