@@ -63,10 +63,10 @@ pbjs.setConfig({
 |                     |          |          | Receptivity API.                           |
 | `customer`          | `String` | Required | Your unique customer identifier.           |
 | `hostname`          | `String` | Optional | Target URL for CONTXTFUL external JavaScript file. Default is "api.receptivity.io". Changing default behaviour is not recommended. Please reach out to contact@contxtful.com if you experience issues. |
-| `adServerTargeting` | `Boolean`| Optional | Enables the getTargetingData to inject targeting value in ad unit. Setting this parameter to true enables the feature. [Default] Setting this parameter to false disables the feature.       |
-| `bidders`           | `Array`  | Optional | Setting this array enables Receptivity in the ortb2 object through getBidRequestData for all the listed bidders. Default is [] (an empty array). RECOMMENDED : Add all the bidders active like this ["bidderCode1", "bidderCode", "..."] |
+| `adServerTargeting` | `Boolean`| Optional | Enables the `getTargetingData` to inject targeting value in ad units. Setting this parameter to true enables the feature. [Default] Setting this parameter to false disables the feature.       |
+| `bidders`           | `Array`  | Optional | Setting this array enables Receptivity in the `ortb2` object through `getBidRequestData` for all the listed `bidders`. Default is `[]` (an empty array). RECOMMENDED : Add all the bidders active like this `["bidderCode1", "bidderCode", "..."]` |
 
-## Usage
+## Usage: Injection in Ad Servers
 
 The `contxtfulRtdProvider` module loads an external JavaScript file and authenticates with Contxtful APIs. The `getTargetingData` function then adds a `ReceptivityState` to each ad slot, which can have one of two values: `Receptive` or `NonReceptive`.
 
@@ -78,6 +78,13 @@ The `contxtfulRtdProvider` module loads an external JavaScript file and authenti
 ```
 
 This module also integrates seamlessly with Google Ad Manager, ensuring that the `ReceptivityState` is available as early as possible in the ad serving process.
+
+## Usage: Injection in ortb2 for bidders
+
+Setting the `bidders` field in the configuration parameters enables Receptivity in the `ortb2` object through `getBidRequestData` for all the listed bidders.
+On a Bid Request Event, all bidders in the configuration will inherit the Receptivity data through `ortb2`
+Default is `[]` (an empty array)
+RECOMMENDED : Add all the bidders active like this `["bidderCode1", "bidderCode", "..."]`
 
 ### Example
 
