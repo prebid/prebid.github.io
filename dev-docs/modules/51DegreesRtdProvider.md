@@ -12,7 +12,7 @@ sidebarType : 1
 ---
 
 {: .alert.alert-warning :}
-This module loads a dynamically generated JavaScript from cloud.51degrees.com based on the evidence available. The platform and browser evolution requires constant adaptation of the techniques to accurately identify devices - hence these can not be hardcoded and require an external resource.
+This module loads a dynamically generated JavaScript from cloud.51degrees.com (or your self-hosted domain) based on the evidence (HTTP headers and API results) available. The external resource is used to handle constant platform and browser evolution without requiring frequent changes to the Prebid source code.
 
 # 51Degrees RTD Submodule
 
