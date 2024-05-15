@@ -27,7 +27,7 @@ To incorporate this module into your `prebid.js`, compile the module using the f
 gulp build --modules=rtdModule,contxtfulRtdProvider,<other modules...>
 ```
 
-### Configuration
+## Configuration
 
 Configure the `contxtfulRtdProvider` by passing the required settings through the `setConfig` function in `prebid.js`.
 
@@ -54,7 +54,7 @@ pbjs.setConfig({
 });
 ```
 
-#### Parameters
+## Parameters
 
 {: .table .table-bordered .table-striped }
 | Name                | Type     | Scope    | Description                                |
