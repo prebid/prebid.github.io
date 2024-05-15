@@ -62,7 +62,7 @@ pbjs.setConfig({
 | `version`           | `String` | Required | Specifies the version of the Contxtful     |
 |                     |          |          | Receptivity API.                           |
 | `customer`          | `String` | Required | Your unique customer identifier.           |
-| `hostname`          | `String` | Optional | Default is "api.receptivity.io"            |
+| `hostname`          | `String` | Optional | Target URL for CONTXTFUL external JavaScript file. Default is "api.receptivity.io". Changing default behaviour is not recommended. Please reach out to contact@contxtful.com if you experience issues. |
 | `adServerTargeting` | `Boolean`| Optional | `getTargetingData` will do nothing when `adServerTargeting` is false or 'false'. Default is true.                           |
 | `bidders`           | `Array`  | Optional | `getBidRequestData` will write receptivity to `ortb2Fragments.bidder[bidderCode]` for these `bidders`. Default is [].            |
 
