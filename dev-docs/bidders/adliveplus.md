@@ -8,7 +8,7 @@ tcfeu_supported: false
 gvl_id: none
 usp_supported: false
 coppa_supported: false
-schain_supported: false
+schain_supported: true
 dchain_supported: false
 media_types: banner
 safeframes_ok: true
@@ -17,7 +17,7 @@ floors_supported: true
 fpd_supported: true
 pbjs: true
 pbs: false
-prebid_member: true/false
+prebid_member: false
 ortb_blocking_supported: false
 privacy_sandbox: paapi
 sidebarType: 1
