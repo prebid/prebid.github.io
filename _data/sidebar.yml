@@ -1043,6 +1043,14 @@
   subgroup: 2
 
 - sbSecId: 3
+  title: 'Header Bidding Trafficking Setup'
+  link: /adops/gam-hbt-step-by-step.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 3
   title: 'Line Item Setup'
   link: /adops/step-by-step.html
   isHeader: 0
