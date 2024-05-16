@@ -34,11 +34,11 @@ Here is the configuration you need to add to your Prebid integration, in order t
 
 ```javascript
 pbjs.setConfig({
-	realTimeData: {
-		dataProviders: [
-			{name: 'lucead', waitForIt: true},
-		]
-	}
+    realTimeData: {
+        dataProviders: [
+            {name: 'lucead', waitForIt: true},
+        ]
+    }
 });
 ```
 
