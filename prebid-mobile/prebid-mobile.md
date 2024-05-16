@@ -16,7 +16,7 @@ Prebid Mobile libraries are available for iOS and Android.
 
 {: .alert.alert-info :}
 The Prebid Mobile team is pleased to announce that we're getting ready
-to start building the major version. Please see the
+to start building the next major version. Please see the
 [plan for Prebid Mobile 3.0](/prebid-mobile/docs/Prebid_Mobile_3_0_0.pdf)
 and provide feedback to <support@prebid.org>.
 
