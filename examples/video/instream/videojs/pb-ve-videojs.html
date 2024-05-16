@@ -29,11 +29,12 @@ sidebarType: 4
     <div class="example-video-container">
       <video
         id="vid1"
-        class="video-js vjs-default-skin vjs-big-play-centered"
+        class="video-js vjs-default-skin vjs-big-play-centered cmplazyload"
         controls
         data-setup="{}"
         width="640"
         height="480"
+        data-cmp-purpose="c51"
       >
         <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
         <source src="https://vjs.zencdn.net/v/oceans.webm" type="video/webm" />
@@ -199,7 +200,7 @@ sidebarType: 4
 </div>
 
 <!--video player code-->
-<script type="text/plain" class="cmplazyload" data-cmp-purpose="c51">
+<script>
   function runVideoJSCode() {
     var page_load_time;
 

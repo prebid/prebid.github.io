@@ -1,9 +1,14 @@
-<iframe width="640" height="360" webkitallowfullscreen mozallowfullscreen allowfullscreen
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;">
+<iframe frameborder="0" marginheight="0" marginwidth="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;"
         noresize="noresize" scrolling="no"
-        frameborder="0" marginheight="0" marginwidth="0"
         class="cmplazyload"
         src="about:blank"
         data-cmp-vendor="s77"
-        data-cmp-src="https://player.vimeo.com/video/{{ include.id }}"
-        ALLOWTRANSPARENCY="true"
+        data-cmp-src="https://player.vimeo.com/video/{{ include.id }}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+        allowtransparency="true"
+        title="{{ include.title }}"
 ></iframe>
+<script async type="text/plain" class="cmplazyload" data-cmp-vendor="s77" src="https://player.vimeo.com/api/player.js"></script>
+</div>
