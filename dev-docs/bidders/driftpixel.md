@@ -26,7 +26,6 @@ safeframes_ok: true
 | `env`       | required | Environment name            | `driftpixel`  | `string`  |
 | `ext`       | optional | Specific integration config | `{}`          | `object`  |
 
-
 ### Prebid Server Bid params
 
 {: .table .table-bordered .table-striped }
