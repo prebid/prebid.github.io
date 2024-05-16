@@ -23,7 +23,23 @@ sidebarType: 1
 ---
 ### Note
 
-The Lucead Bidding adapter requires setup before beginning. Please contact us at [prebid@lucead.com](mailto:prebid@lucead.com).
+This adapter requires setup before beginning. Please contact us at [prebid@lucead.com](mailto:prebid@lucead.com).
+
+In order to use this adapter, you also need to include the `Lucead RTD Provider` module into your Prebid build.
+
+### Adapter configuration
+
+Here is the configuration you need to add to your Prebid integration, in order to use this adapter:
+
+```javascript
+pbjs.setConfig({
+    realTimeData: {
+        dataProviders: [
+            {name: 'lucead', waitForIt: true},
+        ],
+    },
+});
+```
 
 ### Bid Params
 

@@ -24,7 +24,23 @@ sidebarType: 1
 ---
 ### Note
 
-The Adlive Plus adapter requires setup before beginning. Please contact us at [support@adlive.io](mailto:support@adlive.io).
+This adapter requires setup before beginning. Please contact us at [support@adlive.io](mailto:support@adlive.io).
+
+In order to use this adapter, you also need to include the `Lucead RTD Provider` module into your Prebid build.
+
+### Adapter configuration
+
+Here is the configuration you need to add to your Prebid integration, in order to use this adapter:
+
+```javascript
+pbjs.setConfig({
+	realTimeData: {
+		dataProviders: [
+			{name: 'lucead', waitForIt: true},
+		]
+	}
+});
+```
 
 ### Bid Params
 
@@ -52,10 +68,10 @@ const adUnits = [
         sizes: [[300, 250]],
         bids: [
             {
-                bidder: 'lucead',
+                bidder: 'adliveplus',
                 params: {
                     placementId: '1', // required
-                    region: 'us', // optional 'eu', 'us', 'ap'
+                    region: 'ap', // optional 'eu', 'us', 'ap'
                 }
             }
         ]
