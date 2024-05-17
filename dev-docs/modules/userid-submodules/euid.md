@@ -106,7 +106,7 @@ There is a server-only mode where the value of the advertising token can be prov
 For a server-side integration, you can create a smaller Prebid.js build by disabling client-side integration functionality. To do this, pass the `--disable UID2_CSTG` flag:
 
 ```
-    $ gulp build --modules=euidIdSystem --disable UID2_CSTG
+    gulp build --modules=euidIdSystem --disable UID2_CSTG
 ```
 
 ### Cookie-based server-only mode
