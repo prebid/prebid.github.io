@@ -35,10 +35,4 @@ The Colombia bidding adapter requires setup and approval before implementation. 
 | `incognito` | optional | 1, for incognito mode. | `'1'`        | `string` |
 | `dsmi` | optional | CCPA Compliance Flag. | `'0|1'`        | `string` |
 | `optout` | optional | GDPR Compliance Flag. | `'0|1'`        | `string` |
-| `yob` | optional | Year of Birth. | `'1982'`        | `string` |
-| `gender` | optional | Gender M/F | `'M|F'`        | `string` |
-| `floor` | optional | Bid Floor. | `'1.75'`        | `string` |
-| `currency` | optional | Bid currency. | `'AUD|USD'`        | `string` |
-| `acat` | optional | Allowed categories. | `'[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]'`        | `string` |
-| `bcat` | optional | Blocked IAB Categories. | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`        | `string` |
 
