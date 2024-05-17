@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: BizzClick
-description: Prebid BizzClick Bidder Adaptor
-biddercode: bizzclick
+title: Blasto
+description: Prebid Blasto Bidder Adaptor
+biddercode: blasto
 tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
@@ -25,16 +25,16 @@ userIds: all
 
 ### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at <support@bizzclick.com> .BizzClick will only respond to the first impression and that multiple ad formats of that single impression are not supported.
+The Example Bidding adapter requires setup before beginning. Please contact us at <support@blasto.ai>. Blasto will only respond to the first impression and that multiple ad formats of that single impression are not supported.
 
 ### Bid Params for Prebid Server and Prebid Mobile
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |---------------|----------|-----------------------|-----------|-----------|
-| `sourceId` | required | Unique hash provided by bizzclick | `'6dllcEHSxYdSb6yLmCqE'` | `string` |
-| `accountId` | required | Unique name provided by bizzclick | `'bizzclick-test'` | `string` |
-| `host` | optional | Bizzclick server region. US East by default | `'us-e-node1'` | `string` |
+| `sourceId` | required | Unique hash provided by blasto | `'6dllcEHSxYdSb6yLmCqE'` | `string` |
+| `accountId` | required | Unique name provided by blasto | `'blasto-test'` | `string` |
+| `host` | optional | Blasto server region. US East by default | `'us-e-node1'` | `string` |
 | `placementId` | required | Deprecated parameter. Please use sourceId instead |`'6dllcEHSxYdSb6yLmCqE'`|`string` |
 
 ### Bid Params for Prebid.js
@@ -42,6 +42,6 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |---------------|----------|-----------------------|-----------|-----------|
-| `sourceId` | required | Unique hash provided by bizzclick | `'6dllcEHSxYdSb6yLmCqE'` | `string` |
-| `accountId` | required | Unique name provided by bizzclick | `'bizzclick-test'` | `string` |
-| `host` | optional | Bizzclick server region. US East by default | `'us-e-node1'` | `string` |
+| `sourceId` | required | Unique hash provided by blasto | `'6dllcEHSxYdSb6yLmCqE'` | `string` |
+| `accountId` | required | Unique name provided by blasto | `'blasto-test'` | `string` |
+| `host` | optional | Blasto server region. US East by default | `'us-e-node1'` | `string` |
