@@ -57,7 +57,7 @@ To use the cookie-based server-only mode, set a cookie named `__uid2_advertising
 
 For a server-side integration, you can create a smaller Prebid.js build by disabling client-side integration functionality. To do this, pass the `--disable UID2_CSTG` flag:
 
-```
+```bash
     gulp build --modules=uid2IdSystem --disable UID2_CSTG
 ```
 
