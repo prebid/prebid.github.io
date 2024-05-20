@@ -744,6 +744,14 @@
   subgroup: 2
 
 - sbSecId: 2
+  title: Global Parameters
+  link: /prebid-mobile/pbm-api/ios/pbm-targeting-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 2
   title: GAM Original Integration
   link: /prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html
   isHeader: 0
@@ -784,14 +792,6 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: Targeting Parameters
-  link: /prebid-mobile/pbm-api/ios/pbm-targeting-ios.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-  
-- sbSecId: 2
   title: Ad Experience Controls
   link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html
   isHeader: 0
@@ -824,6 +824,14 @@
   sectionTitle:
   subgroup: 3
 
+- sbSecId: 2
+  title: Global Parameters
+  link: /prebid-mobile/pbm-api/android/pbm-targeting-params-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+  
 - sbSecId: 2
   title: GAM Original Integration
   link: /prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html
@@ -864,14 +872,6 @@
   sectionTitle:
   subgroup: 3
 
-- sbSecId: 2
-  title: Targeting Parameters
-  link: /prebid-mobile/pbm-api/android/pbm-targeting-params-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-  
 - sbSecId: 2
   title: Ad Experience Controls
   link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html

@@ -1037,7 +1037,7 @@ Be sure that you make the ad request with the same `GAMRequest` object that you 
 ##### Step 4: Implement GADCustomNativeAdLoaderDelegate protocol
 {:.no_toc}
 
-In order to capture the native ad response you need to implement [GADCustomNativeAdLoaderDelegate](GADCustomNativeAdLoaderDelegate) protocol.
+In order to capture the native ad response you need to implement the GADCustomNativeAdLoaderDelegate protocol.
 
 In the method `-adLoader:didReceiveCustomNativeAd:` you should pass the following Prebid functions:
 
@@ -1299,67 +1299,12 @@ Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-re
 
 Allows to resume the stopped autorefresh for the ad unit with predefined autorefresh value.
 
-### Context Keyword
-
-#### addContextKeyword
-{:.no_toc}
-
-Ad Unit context keywords object is a free form list of comma separated keywords about the app as defined in app.keyword in OpenRTB 2.5. The `addContextKeyword` function adds a single keyword to the ad unit.
-
-``` swift
-func addContextKeyword(_ newElement: String)
-```
-
-#### addContextKeywords
-{:.no_toc}
-
-Ad Unit context keywords object is a free form list of comma separated keywords about the app as defined in app.keyword in OpenRTB 2.5. The `addContextKeywords` function adds a multiple keyword to the ad unit.
-
-``` swift
-func addContextKeywords(_ newElements: Set<String>)
-```
-
-#### removeContextKeyword
-{:.no_toc}
-
-``` swift
-func removeContextKeyword(_ element: String)
-```
-
-### clearContextKeywords
-{:.no_toc}
-
-``` swift
-func clearContextKeywords()
-```
-
-### App Content
-
-The `ContentObject` allows you to provide more details about content within the app. All properties provided to the `ContentObject` will be sent in the `app.content` field of the bid request.
-
-``` swift
-func setAppContent(_ appContent: ContentObject)
-
-func getAppContent() -> ContentObject?
-
-func clearAppContent()
-```
-
-### App Content Data
-
-Using the following methods you can add `app.content.data` objects to the bid requests.
-
-``` swift
-func addAppContentData(_ dataObjects: [ContentDataObject])
-
-func removeAppContentData(_ dataObject: ContentDataObject)
-
-func clearAppContentData()
-```
-
 ### GPID
 
 (requires SDK v2.1.6)
+
+The Global Placement ID (GPID) is a key that uniquely identifies a specific instance of an adunit. Some bidders require this value. An important scenario is "infinite scroll" -- if your app creates instances
+of an adunit dynamically as the user scrolls through content, the the GPID must be different for each by appending some kind of sequence or ID. e.g. "/newsfeed#7"
 
 Using the following method, you can set the impression-level [GPID](https://docs.prebid.org/features/pbAdSlot.html#the-gpid) value to the bid request:
 
@@ -1367,70 +1312,8 @@ Using the following method, you can set the impression-level [GPID](https://docs
 adUnit.setGPID("/36117602/hnp-sfgate.com/Homepage/AP300")
 ```
 
-### User Data
+## Further Reading
 
-Using the following methods you can add `user.data` objects to the bid requests.
-
-``` swift
-func getUserData() -> [PBMORTBContentData]?
-
-func addUserData(_ userDataObjects: [PBMORTBContentData])
-
-func removeUserData(_ userDataObject: PBMORTBContentData)
-
-func clearUserData()
-```
-
-### Data Object
-
-The Data object is free form data (also known as First Party Data) supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
-
-Data is broken up into two different data types:
-
-* User
-  * Global in scope only
-* Inventory (context)
-  * Global scope
-  * Ad Unit grain
-
-The first party inventory context below will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data) page.
-
-#### addContextData
-{:.no_toc}
-
-``` swift
-func addContextData(key: String, value: String)
-```
-
-**Parameters**
-`key`: string containing the key for the specific data object
-`value`: String containing the value for the supplied key
-
-#### updateContextData
-{:.no_toc}
-
-``` swift
-func updateContextData(key: String, value: Set<String>)
-```
-
-**Parameters**
-`key`: string containing the key for the specific data object
-`value`: String containing the value for the supplied key
-
-#### removeContextData
-{:.no_toc}
-
-``` swift
-func removeContextData(forKey: String)
-```
-
-**Parameters**
-`key`: string containing the key for the specific data object
-`value`: String containing the value for the supplied key
-
-#### clearContextData
-{:.no_toc}
-
-``` swift
-func clearContextData()
-```
+- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
+- [Prebid SDK iOS integration](/prebid-mobile/pbm-api/ios/code-integration-ios.html)
+- [Prebid SDK Global Parameters - iOS](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)

@@ -148,7 +148,7 @@ Open your AndroidManifest.xml and add the following permissions and activity dec
 
 **Notes:**
 
-* `ACCESS_COARSE_LOCATION` or `ACCESS_FINE_LOCATION` will automatically allow the device to send user location for targeting, which can help increase revenue by increasing the value of impressions to buyers.
+* `ACCESS_COARSE_LOCATION` or `ACCESS_FINE_LOCATION` will automatically allow the device to send user location as First Party Data, which can help increase revenue by increasing the value of impressions to buyers.
 * `WRITE_EXTERNAL_STORAGE` is optional and only required for MRAID 2.0 storePicture ads.
 
 For *banner and interstitial ads only*, include the following custom activities (even though you won't instantiate them directly). This is not necessary for video interstitial ads.
@@ -175,11 +175,16 @@ Add this tag to your `<application>` to use Google Play Services:
 <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 ```
 
-## Set Targeting Parameters
+## Set Global Parameters
 
-Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
+There are several types of parameters app developers should consider providing to Prebid SDK:
 
-View the full list of [targeting parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html).
+- Values that control Prebid SDK behavior (timeout, etc)
+- Privacy consent settings (TCF, GPP, COPPA, etc).
+- First Party Data to help bidders understand the context and/or u
+ser better.
+
+See the [global parameters page](/prebid-mobile/pbm-api/android/pbm-targeting-android.html) for details.
 
 ## Supported Android versions
 

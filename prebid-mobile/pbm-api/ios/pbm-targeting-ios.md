@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: Global Targeting Parameters - iOS
-description: Prebid Mobile API global targeting parameters for iOS
+title: Global Parameters - iOS
+description: Prebid Mobile API global parameters for iOS
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
 sidebarType: 2
@@ -13,19 +13,34 @@ sidebarType: 2
 - TOC
 {:toc}
 
-## Prebid Global Properties and Methods
+## How to Read this Guide
 
-This page documents various global parameters you can set on the Prebid SDK. It describes the properties and methods of the Prebid SDK that allow you to supply important parameters to the header bidding auction.
+This page documents various global parameters you can set on the Prebid SDK for iOS. It describes the properties and methods of the Prebid SDK that allow you to supply important parameters to the header bidding auction.
 
-The `Prebid` class is a singleton that enables you to apply global settings. It covers:
+Specifically, app developers should consider each of these general sections:
 
-- attributes that are defined during initialization (e.g. the Prebid Server connection)
-- values affecting the behavior of the Prebid SDK (e.g. timeout)
-- items influencing the OpenRTB output (e.g. shareGeoLocation)
+- Prebid SDK class parameters: these cover behavior of the SDK. Some values are required like a Prebid Server.
+- Privacy / Consent Management parameters: we recommend developing a clear plan for user privacy with your legal counsel.
+- First Party Data: data about the app or user that helps bidders choose an appropriate ad.
 
-### Prebid Global Properties
+{: .alert.alert-info :}
+Note that the SDK's Targeting class uses the term "Targeting" loosely. It's mostly about
+passing data to bidders that would help improve auction results. But there are also fields and methods
+in the Targeting class that convey privacy data, Open Measurement info, and other data used beyond actual
+bid targeting.
 
-(TBD - how are these set? Need an example. )
+## Prebid Class Global Properties and Methods
+
+The `Prebid` class is a singleton that enables you to apply certain global settings.
+
+### Prebid Class Global Properties
+
+All of these properties of the Prebid class can be set on the `shared` object like this:
+
+```swift
+Prebid.shared.prebidServerAccountId="12345"
+Prebid.shared.customStatusEndpoint="https://pbs.example.com/v2/status"
+```
 
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Purpose | Description | Example |
@@ -38,18 +53,18 @@ The `Prebid` class is a singleton that enables you to apply global settings. It 
 | logLevel | optional | enum | SDK control | This property controls the level of logging output to the console. The value can be .error, .info, .debug, .verbose, .warn, .severe, and .info. The default is `.debug`. | `.error` |
 | debugLogFileEnabled | optional | boolean | SDK control | If set to true, the output of PrebidMobile's internal logger is written to a text file. Default is `false`. | `true` |
 | timeoutMillis | optional | integer | init | (SDK v1.2+) The Prebid SDK timeout. When this number of milliseconds passes, the Prebid SDK returns control to the ad server SDK to fetch an ad without Prebid bids. | 1000 |
-| creativeFactoryTimeout | optional | integer | SDK control | Controls how long a banner creative has to load before it is considered a failure. (TBD - is this milliseconds? Need the default value) | 2000 |
-| creativeFactoryTimeoutPreRenderContent | optional | integer | SDK control | Controls how much time video and interstitial creatives have to load before it is considered a failure. (TBD - is this milliseconds? Need the default value) | 2000 |
+| creativeFactoryTimeout | optional | integer | SDK control | Controls how long a banner creative has to load before it is considered a failure. This value is in seconds. The default is 6 seconds. | 10 |
+| creativeFactory<wbr>TimeoutPreRenderContent | optional | integer | SDK control | Controls how much time video and interstitial creatives have to load before it is considered a failure. This value is in seconds. The default is 30 seconds. | 60 |
 | storedAuctionResponse | optional | string | ORTB | For testing and debugging. Get this value from your Prebid Server team. It signals Prebid Server to respond with a static response from the Prebid Server Database. See [more information on stored auction responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses). | "abc123-sar-test-320x50" |
 | pbsDebug | optional | boolean | ORTB | Adds the debug flag (`test`:1) on the outbound http call to the Prebid Server. The `test` flag signals to the Prebid Server to emit the full resolved request and the full Bid Request and Bid Response to and from each bidder. | true |
-| shouldAssignNativeAssetID | optional | boolean | ORTB | Whether to automatically assign an assetID for a Native ad. Default is `false`. | true |
-| useCacheForReportingWithRenderingAPI | optional | boolean | ORTB | Indicates whether PBS should cache the bid on the server side. If the value is `true` the Prebid SDK will make the cache request to retrieve the cached asset. Default is `false`. | true |
-| useExternalClickthroughBrowser | optional | boolean | SDK control | Controls whether to use PrebidMobile's in-app browser or the Safari App for displaying ad clickthrough content. Default is false. | true |
+| shouldAssign<wbr>NativeAssetID | optional | boolean | ORTB | Whether to automatically assign an assetID for a Native ad. Default is `false`. | true |
+| useCacheForReporting<wbr>WithRenderingAPI | optional | boolean | ORTB | Indicates whether PBS should cache the bid on the server side. If the value is `true` the Prebid SDK will make the cache request to retrieve the cached asset. Default is `false`. | true |
+| useExternal<wbr>ClickthroughBrowser | optional | boolean | SDK control | Controls whether to use PrebidMobile's in-app browser or the Safari App for displaying ad clickthrough content. Default is false. | true |
 | impClickbrowserType | optional | enum | ORTB | Indicates the type of browser opened upon clicking the creative in an app. This corresponds to the OpenRTB imp.clickbrowser field. Values are "embedded" and "native". Default is "native". | "native". |
 | includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 | includeBidderKeys | optional | boolean | ORTB | If `true`, Prebid sdk will add `includebidderkeys` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 
-### Prebid Global Methods
+### Prebid Class Global Methods
 
 #### setCustomPrebidServerUrl()
 
@@ -115,7 +130,9 @@ func clearCustomHeaders()
 
 Parameters: none
 
-## Consent Management
+---
+
+## Consent Management Parameters
 
 This section describes how app developers can provide info on user consent to the Prebid SDK and how SDK behaves under different kinds of restrictions.
 
@@ -129,7 +146,7 @@ Prebid Mobile supports [IAB TCF](https://iabeurope.eu/transparency-consent-frame
 
 There are two ways to provide information on user consent to the Prebid SDK:
 
-- Explicitly via Prebid SDK API: publishers can provide TCF data via Prebid SDK’s Targeting API
+- Explicitly via Prebid SDK API: publishers can provide TCF data via Prebid SDK’s 'Targeting' class.
 - Implicitly set through the Consent Management Platform (CMP): Prebid SDK reads the TCF data stored in `UserDefaults`. This is the preferred approach.
 
 {: .alert.alert-warning :}
@@ -145,6 +162,7 @@ Swift:
 
 ```swift
 Targeting.shared.subjectToGDPR = false
+Targeting.shared.setSubjectToGDPR(false)
 ```
 
 To provide the consent string:
@@ -162,6 +180,8 @@ Swift:
 ```swift
 Targeting.shared.purposeConsents = "100000000000000000000000"
 ```
+
+See also the API references for getSubjectToGDPR(), getDeviceAccessConsent(), getDeviceAccessConsentObjc, getPurposeConsent(), isAllowedAccessDeviceData().
 
 #### Getting Consent Values from the CMP
 
@@ -217,6 +237,52 @@ Since version 2.0.6, Prebid SDK reads and sends GPP signals:
 - The GPP string is read from IABGPP_HDR_GppString in `UserDefaults`. It is sent to Prebid Server on `regs.gpp`.
 - The GPP Section ID is likewise read from IABGPP_GppSID. It is sent to Prebid Server on `regs.gpp_sid`.
 
+---
+
+## Open Measurement SDK (OMSDK) API
+
+{: .alert.alert-info :}
+Defining OMSDK values is only relevant for the 'Bidding-Only' Prebid integration with GAM. In this case the creative is rendered by GMA SDK and publishers should provide OMID description in the bid request. If you use Prebid SDK as a rendering engine you shouldn’t use these properties -- it sends them automaticaly according to the current OMID setup.
+
+OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters by way of Prebid Server, indicating that the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+
+There are three components to signaling support for OMSDK:
+
+- Partner Name
+- Partner Version
+- Banner API code
+
+### Partner Name
+{:.no_toc}
+
+The [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec.
+
+```swift
+Targeting.shared.omidPartnerName = "Google"
+```
+
+### Partner Version
+{:.no_toc}
+
+The OMSDK version number for the integration partner.
+
+```swift
+Targeting.shared.omidPartnerVersion = "1.0"
+```
+
+### Banner API Code
+
+The following code lets bidders know that Open Measurement is being used for this adunit:
+
+```swift
+let parameters = BannerParameters()
+parameters.api = [Signals.Api.OMID_1]
+```
+
+This translates in OpenRTB to `imp[].banner.api=7`.
+
+---
+
 ## First Party Data
 
 First Party Data (FPD) is information about the app or user known by the developer that may be of interest to advertisers.
@@ -226,9 +292,11 @@ First Party Data (FPD) is information about the app or user known by the develop
 
 ### User FPD
 
-Prebid SDK provides following functions to manage First Party User Data:
+Prebid SDK provides a number of properties in the [Targeting class](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#targeting-class-properties-and-methods) for setting user-oriented First Party Data.
 
 ```swift
+func setLatitude(latitude: Double, longitude: Double)
+
 func addUserData(key: String, value: String)
 
 func updateUserData(key: String, value: Set<String>)
@@ -254,9 +322,15 @@ Example:
 Targeting.shared.addUserData(key: "globalUserDataKey1", value: "globalUserDataValue1")
 ```
 
+{: .alert.alert-info :}
+Note: The 'UserData' functions end up putting data into the OpenRTB user.ext.data object while the 'UserKeywords' functions
+put data into user.keywords.
+
+See also the API reference for setYearOfBirth(), getYearOfBirth() and clearYearOfBirth().
+
 ### Inventory FPD
 
-Prebid provides following functions to manage First Party Inventory Data:
+Prebid SDK provides a number of methods and properties in the [Targeting class](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#targeting-class-properties-and-methods) for setting content-oriented First Party Data.
 
 ```swift
 func addAppExtData(key: String, value: String)
@@ -304,7 +378,7 @@ Example:
 Targeting.shared.addBidderToAccessControlList(Prebid.bidderNameRubiconProject)
 ```
 
-TBD - replace rubicon with bidderA
+---
 
 ## User Identity
 
@@ -382,34 +456,41 @@ Targeting.shared.removeStoredExternalUserId("sharedid.org")
 Targeting.shared.removeStoredExternalUserIds()
 ```
 
-## Open Measurement SDK (OMSDK) API
+---
 
-{: .alert.alert-info :}
-Defining OMSDK values is only relevant for the 'Bidding-Only' Prebid integration with GAM. In this case the creative is rendered by GMA SDK and publishers should provide OMID description in the bid request. If you use Prebid SDK as a rendering engine you shouldn’t use these properties -- it sends them automaticaly according to the current OMID setup.
+## Targeting Class Properties and Methods
 
-OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters by way of Prebid Server, indicating that the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+There are several other fields app developers may want to set to give bidders additional information about the auction.
 
-There three components to signaling support for OMSDK:
+### Targeting Class Properties
 
-- Partner Name
-- Partner Version
-- API code - TBD - what to do for this is missing
+Note that several of the properties noted here are also mentioned above for other use cases, e.g. `subjectToCOPPA`. All properties of the 'Targeting' class are listed here.
 
-### Partner Name
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Platform | Description | Example |
+| --- | --- | --- | --- | --- | --- |
+| storeURL | recommended | string | both | App store URL for an installed app; for Inventory Quality Guidelines 2.1 compliance. Translates to OpenRTB app.storeurl | "https://apps.apple.com/app/id111111111" |
+| contentUrl | recommended | string | both | This is the deep-link URL for the app screen that is displaying the ad. This can be an iOS universal link. | |
+| publisherName | recommended | string | both | OpenRTB app.publisher.name | "Example, Co." |
+| itunesID | recommended | string | both | Translates to OpenRTB app.bundle | "11111111" |
+| coppa | optional | integer | objC | Defines whether this content is meant for children. 0=false, 1=true. Defaults to false. | 1 |
+| subjectToCOPPA | optional | boolean | swift | Defines whether this content is meant for children. Defaults to false. | `true` |
+| sourceapp | optional | string | both | Translates to OpenRTB app.name | "Example App" |
+| domain | optional | string | both | Translates to OpenRTB app.domain | "example.com" |
+| omidPartnerName | optional | string | both | The [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. | "Google" |
+| omidPartnerVersion | optional | string | both | The OMSDK version number for the integration partner. | "1.0" |
+| userGender | optional | enum | both | "M" = male, "F" = female, "O" = known to be other (i.e., omitted is unknown) | "F" |
+| userExt | optional | array of key-value pairs | both | This is a dictionary of key-value pairs that forms the user.ext object. Prebid requires user-first party data in user.ext.data, so this should be a dictionary that contains a 'data' key whose value is another dictionary. | { data: { key1: val1, key2: val2 }}|
+| subjectToGDPR | discouraged | boolean | ? | Defines whether this request is in-scope for European privacy regulations. See [above](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) for more information. | `true` |
+| gdprConsentString | discouraged | string | both | See the [GDPR settings](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) section above. | |
+| purposeConsents | discouraged | string | both | See the [GDPR settings](/prebid-mobile/pbm-api/ios/pbm-targeting-ios#gdpr--tcf-eu) section above. | |
 
-This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec.
+### Targeting Class Methods
 
-```swift
-Targeting.shared.omidPartnerName = "Google"
-```
+All of the targeting class methods have been mentioned above in the context of First Party Data and are linked to
+the API reference.
 
-### Partner Version
-
-The OMSDK version number for the integration  partner.
-
-```swift
-Targeting.shared.omidPartnerVersion = "1.0"
-```
+---
 
 ## Arbitrary OpenRTB
 
@@ -431,111 +512,7 @@ adUnitConfig.setOrtbConfig("{"ext":{"prebid":{"debug":1,"trace":"verbose"}}}")
 adUnit.setOrtbConfig("{"ext":{"gpid":"abc123"}}")
 ```
 
-## Other Targeting Values
+## Further Reading
 
-There are several other fields app developers may want to set to give bidders additional information about the auction.
-
-### Properties
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Platform | Description | Example |
-| --- | --- | --- | --- | --- | --- |
-| contentUrl | optional | string | both | This is the deep-link URL for the app screen that is displaying the ad. This can be an iOS universal link. | |
-| publisherName | optional | string | both | TBD - OpenRTB app.publisher.name | |
-| sourceapp | optional | string | both | TBD - OpenRTB app.name | |
-| storeURL | optional | string | both | TBD - OpenRTB app.storeurl | |
-| domain | optional | string | both | TBD - OpenRTB app.domain | |
-| itunesID | optional | string | both | TBD - OpenRTB app.bundle | |
-| locationPrecision | optional | integer | both | TBD | |
-| omidPartnerName | optional | string | both | | |
-| omidPartnerVersion | optional | string | both | | |
-| userGender | optional | enum | both | "M" = male, "F" = female, "O" = known to be other (i.e., omitted is unknown) | "F" |
-| userID | optional | string | both | TBD - xid? | |
-| userExt | optional | array of strings | both | TBD | |
-| coppa | optional | integer | objC | Defines whether this content is meant for children. 0=false, 1=true. Defaults to false. | 1 |
-| subjectToCOPPA | optional | boolean | swift | Defines whether this content is meant for children. Defaults to false. | `true` |
-| subjectToGDPR | optional | boolean | ? | Defines whether this request is in-scope for European privacy regulations. See [Prebid Server GDPR Support](/prebid-server/features/pbs-privacy.html#gdpr) | `true` |
-| gdprConsentString | optional | string | both | See the [GDPR settings](TBD) section above. | |
-| purposeConsents | optional | string | both | TBD | |
-
-### Methods
-
-#### setYearOfBirth()
-
-Sets the user's year of birth for buyers to be able to target age ranges. It's incumbent upon to the app developer to make sure they have permission to read this data. Prebid Server may remove it under some privacy scenarios.
-
-Signature:
-
-```swift
-func setYearOfBirth(yob: Int)
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| yob | required | integer | User's year of birth. | 1990 |
-
-ee also the API reference for getYearOfBirth() and clearYearOfBirth().
-
-#### setSubjectToGDPR()
-
-Manually sets the GDPR scope. It's recommended to use a Consent Management Platform instead of this approach. See the [Getting Consent Values from the CMP](TBD) section above for details.
-
-```swift
-   public func setSubjectToGDPR(gdprFlag: NSNumber)
-``
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| gdprFlag | required | integer | 1=this request is in-scope for GDPR, 0=not in-scope. There's no default. | 1 |
-
-See also the API references for getSubjectToGDPR(), getDeviceAccessConsent(), getDeviceAccessConsentObjc, getPurposeConsent(), isAllowedAccessDeviceData().
-
-#### setLocationPrecision()
-
-TBD
-
-Signature:
-
-```swift
-func setLocationPrecision(precision: NSNumber)
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| precision | required | integer | TBD - The device lat/long is rounded off to this many digits of precision.| 2 |
-
-See also the API reference for getLocationPrecision()
-
-#### setLatitude()
-
-Sets the device location for buyer targeting. It's incumbent upon to the app developer to make sure they have permission to read this data. Prebid Server may remove it under some privacy scenarios.
-
-Signature:
-
-```swift
-func setLatitude(latitude: Double, longitude: Double)
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| latitude | required | double | The device latitude. | 40.71 |
-| longitude | required | double | The device longitude. | 74.01 |
-
-#### setCustomParams
-
-TBD - what is parameterDictionary? Looks like a mix of user- and inventory-related things.
-
-- public func setCustomParams(_ params: [String : String]?) {
-- public func addCustomParam(_ value: String, withName: String?) {
+- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
+- [Prebid SDK iOS integration](/prebid-mobile/pbm-api/ios/code-integration-ios.html)

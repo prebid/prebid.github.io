@@ -1444,13 +1444,6 @@ PB Ad Slot is an identifier tied to the placement the ad will be delivered in. T
 
 `adUnit.ortb2Imp.ext.data.pbadslot = "/1111111/homepage/med-rect-2"`
 
-### AppContext
-
-#### setAppContent
-{:.no_toc}
-
-Provides targeting information for the `app.content` field of the bid request. Parameter is an `ContentObject` which provides all respective fields.
-
 ### Auto Refresh
 
 #### setAutoRefreshPeriodMillis
@@ -1472,103 +1465,12 @@ Starts the auto-refresh behavior for a given Prebid Mobile ad unit.
 
 Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-refresh behavior has been set, `stopAutoRefresh` will be ignored.
 
-### Context Keywords
-
-#### addContextKeywords
-{:.no_toc}
-
-Ad Unit context keywords object is a free form list of comma separated keywords about the app as defined in app.keyword in OpenRTB 2.5.
-
-**Parameters**
-`keyword` : a keyword of type string.
-
-```java
-void addContextKeyword(String keyword)
-```
-
-#### addContextKeywords
-{:.no_toc}
-
-**Parameters**
-`keyword` : a keyword of type string.
-
-```java
-void addContextKeywords(Set<String> keywords)
-```
-
-#### removeContextKeywords
-{:.no_toc}
-
-**Parameters**
-`keyword`: a keyword of type string.
-
-```java
-void removeContextKeyword(String keyword)
-```
-
-#### clearContextKeywords
-{:.no_toc}
-
-```java
-void clearContextKeywords()
-```
-
-### First Party Data
-
-First Party Data (FPD) is free form data supplied by the publisher to provide additional targeting of the user or inventory context. It is used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
-
-Data is broken up into two different data types:
-
-* User
-  * Global in scope only
-* Inventory (context)
-  * Global scope
-  * Ad Unit grain
-
- The first party inventory context will apply to the specic ad unit the data object it is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](pbm-targeting-params-android#first-party-data) page.
-
-#### addContextData
-{:.no_toc}
-
-**Parameters**
-`key`: string containing the key for the specific data object
-`value`: String containing the value for the supplied key
-
-```java
-void addContextData(String key, String value)
-```
-
-#### updateContextData
-{:.no_toc}
-
-**Parameters**
-`key`: string containing the key for the specific data object
-`value`: String containing the value for the supplied key
-
-```java
-void updateContextData(String key, Set<String> value)
-```
-
-#### removeContextData
-{:.no_toc}
-
-**Parameters**
-`key`: string containing the key
-
-```java
-void removeContextData(String key)
-```
-
-#### clearContextData
-{:.no_toc}
-
-```java
-void clearContextData()
-```
-
 ### GPID
 
 (requires SDK v2.1.6)
+
+The Global Placement ID (GPID) is a key that uniquely identifies a specific instance of an adunit. Some bidders require this value. An important scenario is "infinite scroll" -- if your app creates instances
+of an adunit dynamically as the user scrolls through content, the the GPID must be different for each by appending some kind of sequence or ID. e.g. "/newsfeed#7"
 
 Using the following method, you can set the impression-level [GPID](https://docs.prebid.org/features/pbAdSlot.html#the-gpid) value to the bid request:
 
@@ -1576,64 +1478,8 @@ Using the following method, you can set the impression-level [GPID](https://docs
 adUnit?.gpid = "/36117602/hnp-sfgate.com/Homepage/AP300"
 ```
 
-### UserKeyword
+## Further Reading
 
-#### setUserKeyword
-{:.no_toc}
-
-Set a single key-value pair.
-
-**Parameters**
-
-* `key`: String containing the key.
-* `value`: String containing the value.
-
-#### setUserKeywords
-{:.no_toc}
-
-Define multiple values for a single key.
-
-**Parameters**
-
-* `key`: String containing the key.
-* `values`: String array containing the list of values for the key.
-
-#### removeUserKeyword
-{:.no_toc}
-
-Remove a key and all its associated values from a given Prebid Mobile ad unit.
-
-**Parameters**
-
-* `key`: String containing the key you want to remove.
-
-#### removeUserKeywords
-{:.no_toc}
-
-Clear all key-value combinations from the Prebid Mobile ad unit.
-
-### UserData
-
-The following methods enable adding `user.data[]` objects into the bid request:
-
-```kotlin
-public void addUserData(DataObject dataObject)
-
-public ArrayList<DataObject> getUserData()
-
-public void clearUserData()
-```
-
-### App Content Data
-
-In order to set the `app.contnent.data[]` objects use the `getAppContent()` first and then one of the respective methods of the `ContentObject` class:
-
-```kotlin
-public void addData(@NonNull DataObject dataObject)
-
-public ArrayList<DataObject> getDataList()
-
-public void setDataList(@NonNull ArrayList<DataObject> dataObjects)
-
-public void clearDataList()
-```
+- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
+- [Prebid SDK Android integration](/prebid-mobile/pbm-api/android/code-integration-android.html)
+- [Prebid SDK Global Parameters - Android](/prebid-mobile/pbm-api/android/pbm-targeting-android.html)

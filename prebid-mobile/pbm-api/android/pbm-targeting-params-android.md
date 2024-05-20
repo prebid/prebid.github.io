@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: Global Targeting Parameters - Android
-description: Prebid Mobile API global targeting parameters for Android
+title: Global Parameters - Android
+description: Prebid Mobile API global parameters for Android
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile
 sidebarType: 2
@@ -13,19 +13,33 @@ sidebarType: 2
 - TOC
 {:toc}
 
+## How to Read this Guide
+
+This page documents various global parameters you can set on the Prebid SDK for Android. It describes the properties and methods of the Prebid SDK that allow you to supply important parameters to the header bidding auction.
+
+Specifically, app developers should consider each of these general sections:
+
+- Prebid SDK class parameters: these cover behavior of the SDK. Some values are required like a Prebid Server.
+- Privacy / Consent Management parameters: we recommend developing a clear plan for user privacy with your legal counsel.
+- First Party Data: data about the app or user that helps bidders choose an appropriate ad.
+
+{: .alert.alert-info :}
+Note that the SDK's Targeting class uses the term "Targeting" loosely. It's mostly about
+passing data to bidders that would help improve auction results. But there are also fields and methods
+in the Targeting class that convey privacy data, Open Measurement info, and other data used beyond actual
+bid targeting.
+
 ## Prebid Global Properties and Methods
 
-This page documents various global parameters you can set on the Prebid SDK. It describes the properties and methods of the Prebid SDK that allow you to supply important parameters to the header bidding auction.
+The `Prebid` class is a singleton that enables you to apply certain global settings.
 
-The `Prebid` class is a singleton that enables you to apply global settings. It covers:
+### Prebid Class Global Properties
 
-- attributes that are defined during initialization (e.g. the Prebid Server connection)
-- values affecting the behavior of the Prebid SDK (e.g. timeout)
-- items influencing the OpenRTB output (e.g. shareGeoLocation)
+All of these properties of the Prebid class can be set on the `shared` object like this:
 
-### Prebid Global Properties
-
-(TBD - where are these set? Need an example. )
+```kotlin
+Prebid.shared.sendMraidSupportParams=true
+```
 
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Purpose | Description | Example |
@@ -34,7 +48,7 @@ The `Prebid` class is a singleton that enables you to apply global settings. It 
 | useExternalBrowser | optional | boolean | ORTB | TBD? Defaults to `false`. | `true` |
 | sendMraidSupportParams | optional | boolean | ORTB | TBD If `true`, the SDK sends "af=3,5", indicating support for MRAID. Defaults to `true`. | `false` |
 
-### Prebid Global Methods
+### Prebid Class Global Methods
 
 #### setPrebidServerAccountId()
 
@@ -274,7 +288,7 @@ Parameters:
 
 #### setCustomLogger()
 
-TBD
+Define a custom PrebidLogger object.
 
 Signature:
 
@@ -289,7 +303,9 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | logger | required | ? | TBD | TBD |
 
-## Consent Management
+---
+
+## Consent Management Parameters
 
 This section describes how app developers can provide info on user consent to the Prebid SDK and how SDK behaves under different kinds of restrictions.
 
@@ -299,7 +315,7 @@ Prebid Mobile supports [IAB TCF](https://iabeurope.eu/transparency-consent-frame
 
 There are two ways to provide information on user consent to the Prebid SDK:
 
-- Explicitly via Prebid SDK API: publishers can provide TCF data via Prebid SDK’s Targeting API
+- Explicitly via Prebid SDK API: publishers can provide TCF data via Prebid SDK’s 'Targeting' class.
 - Implicitly set through the Consent Management Platform (CMP): Prebid SDK reads the TCF data stored in the `SharedPreferences`. This is the preferred approach.
 
 {: .alert.alert-warning :}
@@ -381,6 +397,48 @@ Since version 2.0.6, Prebid SDK reads and sends GPP signals:
 - The GPP string is read from IABGPP_HDR_GppString in `SharedPreferences`. It is sent to Prebid Server on `regs.gpp`.
 - The GPP Section ID is likewise read from IABGPP_GppSID. It is sent to Prebid Server on `regs.gpp_sid`.
 
+---
+
+## Open Measurement SDK (OMSDK) API
+
+{: .alert.alert-info :}
+Defining OMSDK values is only relevant for the 'Bidding-Only' Prebid integration with GAM. In this case the creative is rendered by GMA SDK and publishers should provide OMID description in the bid request. If you use Prebid SDK as a rendering engine you shouldn’t use these properties -- it sends them automaticaly according to the current OMID setup.
+
+OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters by way of Prebid Server, indicating that the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+
+There are three components to signaling support for OMSDK:
+
+- Partner Name
+- Partner Version
+- Banner API code
+
+### Partner Name
+
+The [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec.
+
+```kotlin
+TargetingParams.setOmidPartnerName("Google")
+```
+
+### Partner Version
+
+The OMSDK version number for the integration partner.
+
+```kotlin
+TargetingParams.setOmidPartnerVersion("1.0");
+```
+
+### Banner API Code
+
+The following code lets bidders know that Open Measurement is being used for this adunit:
+
+```swift
+let parameters = BannerParameters()
+parameters.api = [Signals.Api.OMID_1]
+```
+
+---
+
 ## First Party Data
 
 First Party Data (FPD) is information about the app or user known by the developer that may be of interest to advertisers. 
@@ -390,7 +448,8 @@ First Party Data (FPD) is information about the app or user known by the develop
 
 ### User FPD
 
-Prebid SDK provides following functions to manage First Party User Data:
+Prebid SDK provides a number of properties in the [Targeting class](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#targeting-class-properties-and-
+methods) for setting user-oriented First Party Data.
 
 ```kotlin
 void addUserData(String key, String value)
@@ -420,9 +479,13 @@ Example:
 TargetingParams.addUserData("globalUserDataKey1", "globalUserDataValue1")
 ```
 
+{: .alert.alert-info :}
+Note: The 'UserData' functions end up putting data into the OpenRTB user.ext.data object while the 'UserKeywords' functions
+put data into user.keywords.
+
 ### Inventory FPD
 
-Prebid provides following functions to manage First Party Inventory Data:
+Prebid SDK provides a number of methods in the [Targeting class](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#targeting-class-properties-and-methods) for setting content-oriented First Party Data.
 
 ```kotlin
 void addExtData(String key, String value)
@@ -469,6 +532,8 @@ Example:
 ```kotlin
 Targeting.addBidderToAccessControlList("bidderA")
 ```
+
+---
 
 ## User Identity
 
@@ -519,34 +584,145 @@ Example:
 PrebidMobile.storeExternalUserId(externalUserIdArray);
 ```
 
-## Open Measurement SDK (OMSDK) API
+---
 
-{: .alert.alert-info :}
-Defining OMSDK values is only relevant for the 'Bidding-Only' Prebid integration with GAM. In this case the creative is rendered by GMA SDK and publishers should provide OMID description in the bid request. If you use Prebid SDK as a rendering engine you shouldn’t use these properties -- it sends them automaticaly according to the current OMID setup.
+## Targeting Class Methods
 
-OMSDK is designed to facilitate 3rd party viewability and verification measurement for ads served in mobile app enviroments. Prebid SDK will provide the signaling component to Bid Adapters by way of Prebid Server, indicating that the impression is eligible for OMSDK support. Prebid SDK does not currently integrate with OMSDK itself, instead it will rely on a publisher ad server to render viewability and verification measurement code.
+There are several other fields app developers may want to set to give bidders additional information about the auction.
 
-There three components to signaling support for OMSDK:
+### setUserLatLng()
 
-- Partner Name
-- Partner Version
-- API code - TBD - what to do for this is missing
+Sets the device location for buyer targeting. It's incumbent upon to the app developer to make sure they have permission to read this data. Prebid Server may remove it under some privacy scenarios.
 
-### Partner Name
-
-This will be the [IAB OMSDK compliant partner name](https://complianceomsdkapi.iabtechlab.com/compliance/latest) responsible for integrating with the OMSDK spec. 
+Signature:
 
 ```kotlin
-TargetingParams.setOmidPartnerName("Google")
+void setUserLatLng( Float latitude, Float longitude)
 ```
 
-### Partner Version
+Parameters:
 
-The OMSDK version number for the integration partner.
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| latitude | required | double | The device latitude. | 40.71 |
+| longitude | required | double | The device longitude. | 74.01 |
+
+### setPublisherName()
+
+Define the OpenRTB app.publisher.name field.
+
+Signature:
 
 ```kotlin
-TargetingParams.setOmidPartnerVersion("1.0");
+void setPublisherName(String publisherName)
 ```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| publisherName | required | string | Publisher name | "publisher 1" |
+
+See also the API reference for getPublisherName().
+
+### setDomain()
+
+Define the OpenRTB app.domain field.
+
+Signature:
+
+```kotlin
+void setDomain(String domain)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| domain | required | string | Domain | "example.com" |
+
+See also the API reference for getDomain().
+
+### setStoreUrl()
+
+Define the OpenRTB app.storeurl field.
+
+Signature:
+
+```kotlin
+void setStoreUrl(String storeUrl)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| storeUrl | required | string | App store URL | TBD |
+
+See also the API reference for getStoreUrl().
+
+### setBundleName()
+
+Define the OpenRTB app.storeurl field.
+
+Signature:
+
+```kotlin
+void setBundleName(String bundleName) {
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| bundleName | required | string | App bundle name | TBD |
+
+See also the API reference for getBundleName().
+
+### setOmidPartnerName()
+
+Define the OpenRTB source.ext.omidpn field.
+
+Signature:
+
+```kotlin
+setOmidPartnerName(@Nullable String omidPartnerName)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| omidPartnerName | required | string | Open Measurement Partner name | "MyIntegrationPartner" |
+
+See also the API reference for getOmidPartnerName().
+
+### setOmidPartnerVersion()
+
+Define the OpenRTB source.ext.omidpv field.
+
+Signature:
+
+```kotlin
+setOmidPartnerVersion(@Nullable String omidPartnerVersion)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| omidPartnerVerson | required | string | Open Measurement Partner version | "7.1" |
+
+See also the API reference for getOmidPartnerVersion().
+
+---
 
 ## Arbitrary OpenRTB
 
@@ -568,186 +744,7 @@ adUnitConfiguration?.ortbConfig = "{"ext":{"prebid":{"debug":1,"trace":"verbose"
 adUnit?.ortbConfig = "{"ext":{"gpid":"abc123"}}"
 ```
 
-## Other Targeting Values
+## Further Reading
 
-There are several other fields app developers may want to set to give bidders additional information about the auction.
-
-### Methods
-
-#### setYearOfBirth()
-
-Sets the user's year of birth for buyers to be able to target age ranges.
-
-Signature:
-
-```kotlin
-void setYearOfBirth(int yob)
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| yob | required | integer | User's year of birth. | 1990 |
-
-See also the API references for getYearOfBirth(), clearYearOfBirth(), and setUserAge().
-
-#### setGender()
-
-Sets the user's gender for buyer targeting. It's incumbent upon to the app developer to make sure they have permission to read this data. Prebid Server may remove it under some privacy scenarios.
-
-Signature:
-
-```kotlin
-void setGender(GENDER gender)
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| gender | required | enum | Valid values are MALE, FEMALE, and UNKNOWN. Defaults to UNKNOWN. | MALE |
-
-See also the API reference for getGender().
-
-#### setUserLatLng()
-
-Sets the device location for buyer targeting. It's incumbent upon to the app developer to make sure they have permission to read this data. Prebid Server may remove it under some privacy scenarios.
-
-Signature:
-
-```kotlin
-void setUserLatLng( Float latitude, Float longitude)
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| latitude | required | double | The device latitude. | 40.71 |
-| longitude | required | double | The device longitude. | 74.01 |
-
-#### setPublisherName()
-
-Define the OpenRTB app.publisher.name field.
-
-Signature:
-
-```kotlin
-void setPublisherName(String publisherName)
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| publisherName | required | string | Publisher name | "publisher 1" |
-
-See also the API reference for getPublisherName().
-
-#### setDomain()
-
-Define the OpenRTB app.domain field.
-
-Signature:
-
-```kotlin
-void setDomain(String domain)
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| domain | required | string | Domain | "example.com" |
-
-See also the API reference for getDomain().
-
-#### setStoreUrl()
-
-Define the OpenRTB app.storeurl field.
-
-Signature:
-
-```kotlin
-void setStoreUrl(String storeUrl)
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| storeUrl | required | string | App store URL | TBD |
-
-See also the API reference for getStoreUrl().
-
-#### setBundleName()
-
-Define the OpenRTB app.storeurl field.
-
-Signature:
-
-```kotlin
-void setBundleName(String bundleName) {
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| bundleName | required | string | App bundle name | TBD |
-
-See also the API reference for getBundleName().
-
-#### setOmidPartnerName()
-
-Define the OpenRTB source.ext.omidpn field.
-
-Signature:
-
-```kotlin
-setOmidPartnerName(@Nullable String omidPartnerName)
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| omidPartnerName | required | string | Open Measurement Partner name | "MyIntegrationPartner" |
-
-See also the API reference for getOmidPartnerName().
-
-#### setOmidPartnerVersion()
-
-Define the OpenRTB source.ext.omidpv field.
-
-Signature:
-
-```kotlin
-setOmidPartnerVersion(@Nullable String omidPartnerVersion)
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| omidPartnerVerson | required | string | Open Measurement Partner version | "7.1" |
-
-See also the API reference for getOmidPartnerVersion().
-
-TBD
-    public static void setUserCustomData(@Nullable String data) {
-    public static String getUserCustomData() {
-    public static void setUserId(String userId) {
-    public static String getUserId() {
-    public static void setUserExt(Ext ext) {
-    public static Ext getUserExt() {
+- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
+- [Prebid SDK Android integration](/prebid-mobile/pbm-api/android/code-integration-android.html)

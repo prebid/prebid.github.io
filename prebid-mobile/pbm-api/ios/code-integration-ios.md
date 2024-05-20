@@ -171,11 +171,15 @@ Prebid.shared.customStatusEndpoint = PREBID_SERVER_STATUS_ENDPOINT
 
 If something goes wrong with the request, the status of the initialization callback will be `.serverStatusWarning`. It doesn't affect an SDK flow and just informs you about the health check result.
 
-## Set Targeting Parameters
+## Set Global Parameters
 
-Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
+There are several types of parameters app developers should consider providing to Prebid SDK:
 
-View the full list of [targeting parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html).
+- Values that control Prebid SDK behavior (timeout, etc)
+- Privacy consent settings (TCF, GPP, COPPA, etc).
+- First Party Data to help bidders understand the context and/or user better.
+
+See the [global parameters page](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html) for details.
 
 ## Setup SDK
 
@@ -328,10 +332,10 @@ Prebid.shared.addStoredBidResponse(bidder: "rubicon", responseId: "221155")
 Follow the corresponding guide to integrate Prebid Mobile:
 
 * [GAM using Original API](code-integration-ios.html)
-* [No Ad Server](../../modules/rendering/ios-sdk-integration-pb.html)
-* [GAM using Rendering API](../../modules/rendering/ios-sdk-integration-gam.html)
-* [AdMob](../../modules/rendering/ios-sdk-integration-gam.html)
-* [AppLovin MAX](../../modules/rendering/ios-sdk-integration-max.html)
+* [No Ad Server](/prebid-mobile/modules/rendering/ios-sdk-integration-pb.html)
+* [GAM using Rendering API](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html)
+* [AdMob](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html)
+* [AppLovin MAX](/prebid-mobile/modules/rendering/ios-sdk-integration-max.html)
 
 ### Test configs
 

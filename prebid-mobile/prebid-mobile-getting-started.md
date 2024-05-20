@@ -7,7 +7,6 @@ sidebarType: 2
 
 
 # Getting Started with Prebid Mobile
-
 {:.no_toc}
 
 This page gives an overview of steps you need to take, either as an ad ops user or as a developer, to start using Prebid Mobile.
@@ -101,12 +100,10 @@ The following resources are available for further information on working with Pr
 
 ### Mobile Developers
 
-#### Targeting Parameters
+#### Global Parameters
 
-Learn about the parameters available in the Prebid SDK
-
-- [iOS Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html) Learn about the parameters available in the iOS Prebid Mobile SDK.
-- [Android  Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html) Learn about the parameters available in the Android Prebid Mobile SDK.
+- [iOS Global Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html) Learn about the parameters available in the iOS Prebid Mobile SDK.
+- [Android Global Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html) Learn about the parameters available in the Android Prebid Mobile SDK.
 
 #### GDPR
 
