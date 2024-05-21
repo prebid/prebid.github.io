@@ -17,7 +17,7 @@ schain_supported: true
 pbs_app_supported: true
 floors_supported: true
 ortb_blocking_supported: true
-multiformat: will-not-bid
+multiformat: will-bid-on-any
 ---
 
 ### Note
