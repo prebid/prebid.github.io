@@ -107,7 +107,7 @@ pbjs.setConfig({
 | params.setGptKeyValues             | Boolean | Sets Targeting for GPT/GAM                                                                                                              | Optional. Default to true                                                                                |
 | params.avoidPostEids               | Boolean | Block Eids usage for graph resolution                                                                                                   | Optional. Default to false, and setting it to true results in lowest segment access                      |
 | params.avoidPostContent            | Boolean | Block contextual data POST from user's device (a crawler is use instead)                                                                | Optional. Default to false, and setting it to true results in your content downloaded by Sirdata crawler |
-| params.contextualMinRelevancyScore | Integer | Min relevancy score to filter categories sent to the bidders (0-100 scale). Optional. Defaults to 30.                                   |
+| params.contextualMinRelevancyScore | Integer | Min relevancy score to filter categories sent to the bidders (0-100 scale).                                                             | Optional. Defaults to 30                                                                                 |
 | params.bidders                     | Object  | Bidders you want to supply your own data to (works only with your private data bought to Sirdata)                                       | Optional                                                                                                 |
 
 Bidders can receive common setting :
