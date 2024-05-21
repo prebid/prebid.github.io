@@ -14,9 +14,33 @@ sidebarType : 5
 
 ## Overview
 
-51Degrees module enriches an incoming OpenRTB request [51Degrees Device Data](https://51degrees.com/documentation/_device_detection__overview.html).
+51Degrees module enriches an incoming OpenRTB request with [51Degrees Device Data](https://51degrees.com/documentation/_device_detection__overview.html).
 
 51Degrees module sets the following fields of the device object: `make`, `model`, `os`, `osv`, `h`, `w`, `ppi`, `pxratio` - interested bidder adapters may use these fields as needed.  In addition the module sets `device.ext.fiftyonedegrees_deviceId` to a permanent device ID which can be rapidly looked up in on premise data exposing over 250 properties including the device age, chip set, codec support, and price, operating system and app/browser versions, age, and embedded features.
+
+## Operation Details
+
+### Evidence
+
+To do device detection module uses `device.ua` (User Agent) and `device.sua` (Structured User Agent) provided in the oRTB request payload as input or evidence in 51degrees terminology.  There is a fallback to the corresponding HTTP request headers if any of these are not present in the oRTB payload - in particular: `User-Agent` and `Sec-CH-UA-*` (aka User-Agent Client Hints).  To make sure Prebid.js sends Structured User Agent in the oRTB payload - we strongly advice publishers to enable [First Party Data Enrichment module](https://docs.prebid.org/dev-docs/modules/enrichmentFpdModule.html) for their wrappers and specify 
+
+```js
+pbjs.setConfig({
+    firstPartyData: {
+        uaHints: [
+          'architecture',
+          'model',
+          'platform',
+          'platformVersion',
+          'fullVersionList',
+        ]
+    }
+})
+```
+
+### Data File Updates
+
+The module operates **fully autonomously and does not make any requests to any cloud services in real time to do device detection**. This is an [on-premise data](https://51degrees.com/developers/deployment-options/on-premise-data) deployment in 51Degrees terminology. The module operates using a local data file that is loaded into memory fully or partially during operation. The data file is occasionally updated to accomodate new devices, so it is recommended to enable automatic data updates in the module configuration. Alternatively `watch_file_system` option can be used and the file may be downloaded and replaced on disk manually. See the configuration options below. 
 
 ## Setup
 
@@ -102,14 +126,16 @@ PBS-Go version of the same config:
       "fiftyone_degrees": {
         "device_detection": {
           "enabled": true,
+          "make_temp_copy": true,
           "data_file": {
             "path": "path/to/51Degrees-LiteV4.1.hash",
             "update": {
               "auto": true,
-              "url": "https://my.datafile.com/datafile.gz",
-              "polling_interval": 3600,
-              "license_key": "your_license_key",
-              "product": "V4Enterprise"
+              "url": "<optional custom URL>",
+              "polling_interval": 1800,
+              "license_key": "<your_license_key>",
+              "product": "V4Enterprise",
+              "watch_file_system": "true"
             }
           }
         }
@@ -165,10 +191,10 @@ PBS-Go version of the same config:
       * `on-startup` - _(boolean)_ - Enable/Disable update on startup. Defaults to enabled. If enabled, the auto update system will be used to check for an update before the device detection engine is created. If an update is available, it will be downloaded and applied before the pipeline is built and returned for use so this may take some time.
       * `url` - _(string)_ - Configure the engine to use the specified URL when looking for an updated data file. Default is the 51Degrees update URL.
       * `license-key` - _(string)_ - Set the license key used when checking for new device detection data files. Defaults to null.
-      * `watch-file-system` - _(boolean)_ - The DataUpdateService has the ability to watch a file on disk and refresh the engine as soon as that file is updated. This setting enables/disables that feature. Defaults to true.
+      * `watch-file-system` - _(boolean)_ - The data update service has the ability to watch a file on disk and refresh the engine as soon as that file is updated. This setting enables/disables that feature. Defaults to true.
       * `polling-interval` - _(int, seconds)_ - Set the time between checks for a new data file made by the DataUpdateService in seconds. Default = 30 minutes.
-  * `performance`
-    * `profile` - _(string)_ - Set the performance profile for the device detection engine. Must be one of: LowMemory, MaxPerformance, HighPerformance, Balanced, BalancedTemp. Defaults to balanced.
+  * `performance` - please note: this is the speed of device detection, do not confuse with revenue performance of the module
+    * `profile` - _(string)_ - Set the performance profile for the device detection engine. Must be one of: `LowMemory`, `MaxPerformance`, `HighPerformance`, `Balanced`, `BalancedTemp`, `InMemory`. Defaults to `Balanced`.
     * `concurrency` - _(int)_ - Set the expected number of concurrent operations using the engine. This sets the concurrency of the internal caches to avoid excessive locking. Default: 10.
     * `difference` - _(int)_ - Set the maximum difference to allow when processing HTTP headers. The meaning of difference depends on the Device Detection API being used. The difference is the difference in hash value between the hash that was found, and the hash that is being searched for. By default this is 0. For more information see [51Degrees documentation](https://51degrees.com/documentation/_device_detection__hash.html).
     * `allow-unmatched` - _(boolean)_ - If set to false, a non-matching User-Agent will result in properties without set values.
