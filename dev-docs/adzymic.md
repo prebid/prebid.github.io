@@ -10,7 +10,7 @@ gdpr_supported: true
 media_types: banner, video, native
 safeframes_ok: false
 multiformat_supported: will-bid-on-any
-gvl_id: 32
+gvl_id: 723
 schain_supported: true
 userId: all
 sidebarType: 1
