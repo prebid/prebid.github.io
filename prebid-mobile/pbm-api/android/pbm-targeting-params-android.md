@@ -588,16 +588,20 @@ PrebidMobile.storeExternalUserId(externalUserIdArray);
 
 ## Targeting Class Methods
 
-There are several other fields app developers may want to set to give bidders additional information about the auction.
+There are several other fields app developers may want to set to give bidders additional information about the auction. Prebid recommends that app developers consider setting the following values for best auction performance:
 
-### setUserLatLng()
+- setBundleName()
+- setPublisherName()
+- setStoreUrl()
 
-Sets the device location for buyer targeting. It's incumbent upon to the app developer to make sure they have permission to read this data. Prebid Server may remove it under some privacy scenarios.
+### setBundleName()
+
+Define the OpenRTB app.storeurl field.
 
 Signature:
 
 ```kotlin
-void setUserLatLng( Float latitude, Float longitude)
+void setBundleName(String bundleName) {
 ```
 
 Parameters:
@@ -605,27 +609,9 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| latitude | required | double | The device latitude. | 40.71 |
-| longitude | required | double | The device longitude. | 74.01 |
+| bundleName | required | string | App bundle name | TBD |
 
-### setPublisherName()
-
-Define the OpenRTB app.publisher.name field.
-
-Signature:
-
-```kotlin
-void setPublisherName(String publisherName)
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| publisherName | required | string | Publisher name | "publisher 1" |
-
-See also the API reference for getPublisherName().
+See also the API reference for getBundleName().
 
 ### setDomain()
 
@@ -646,6 +632,25 @@ Parameters:
 
 See also the API reference for getDomain().
 
+### setPublisherName()
+
+Define the OpenRTB app.publisher.name field.
+
+Signature:
+
+```kotlin
+void setPublisherName(String publisherName)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| publisherName | required | string | Publisher name | "publisher 1" |
+
+See also the API reference for getPublisherName().
+
 ### setStoreUrl()
 
 Define the OpenRTB app.storeurl field.
@@ -664,25 +669,6 @@ Parameters:
 | storeUrl | required | string | App store URL | TBD |
 
 See also the API reference for getStoreUrl().
-
-### setBundleName()
-
-Define the OpenRTB app.storeurl field.
-
-Signature:
-
-```kotlin
-void setBundleName(String bundleName) {
-```
-
-Parameters:
-
-{: .table .table-bordered .table-striped }
-| Parameter | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| bundleName | required | string | App bundle name | TBD |
-
-See also the API reference for getBundleName().
 
 ### setOmidPartnerName()
 
@@ -721,6 +707,24 @@ Parameters:
 | omidPartnerVerson | required | string | Open Measurement Partner version | "7.1" |
 
 See also the API reference for getOmidPartnerVersion().
+
+### setUserLatLng()
+
+Sets the device location for buyer targeting. It's incumbent upon to the app developer to make sure they have permission to read this data. Prebid Server may remove it under some privacy scenarios.
+
+Signature:
+
+```kotlin
+void setUserLatLng( Float latitude, Float longitude)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| latitude | required | double | The device latitude. | 40.71 |
+| longitude | required | double | The device longitude. | 74.01 |
 
 ---
 
