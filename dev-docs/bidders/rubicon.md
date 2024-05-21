@@ -4,6 +4,7 @@ title: Rubicon Project
 description: Rubicon Project Prebid Bidder Adapter
 biddercode: rubicon
 tcfeu_supported: true
+dsa_supported: true
 gpp_sids: tcfeu, usnat, usstate_all, usp
 usp_supported: true
 coppa_supported: true
@@ -21,12 +22,13 @@ fpd_supported: true
 ortb_blocking_supported: partial
 gvl_id: 52
 multiformat_supported: will-bid-on-one
+privacy_sandbox: paapi, topics
 sidebarType: 1
 ---
 
 ### Registration
 
-For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account team or <globalsupport@magnite.com> for more information.
+For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account manager for more information.
 
 ### Bid Params
 
@@ -166,11 +168,11 @@ The following video parameters are supported here so publishers may fully declar
 | playerSize| required | width, height of the player in pixels | [640,360] - will be translated to w and h in bid request | array<integers> |
 | mimes | required | List of content MIME types supported by the player (see openRTB v2.5 for options) | ["video/mp4"]| array<string>|
 | protocols | required | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | [2,3,5,6] | array<integers>|
-| api | required | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2 | [2] |  array<integers> |
 | linearity | required | OpenRTB2 linearity. 1: linear (in-stream ad), 2: non-linear (overlay ad) | 1 | integer |
 | maxduration | recommended | Maximum video ad duration in seconds. | 30 | integer |
 | minduration | recommended | Minimum video ad duration in seconds | 6 | integer |
 | playbackmethod | recommended | Playback methods that may be in use. Only one method is typically used in practice. (see openRTB v2.5 section 5.10 for options)| [2]| array<integers> |
+| api | optional | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2 | [2] |  array<integers> |
 | skip | optional | Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes. | 1 | integer |
 | skipafter| optional | Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable. | 6 | integer|
 | minbitrate | optional | Minimum bit rate in Kbps. | 300 | integer |
@@ -303,7 +305,7 @@ var nativeAdUnit = {
 
 ### Setting up the Prebid Server Adapter
   
-If you're a Prebid Server host company looking to enable the Rubicon server-side adapter, you'll need to contact <globalsupport@magnite.com>. They will provide:
+If you're a Prebid Server host company looking to enable the Rubicon server-side adapter, you'll need to contact your Magnite account team. They will provide:
 
 * a Magnite DV+ XAPI login and password that you'll place in the PBS config
 * a partner code you can use for cookie-syncing with Magnite's service
@@ -339,3 +341,4 @@ pbjs.setConfig({ rubicon: {netRevenue: false} });
 ### Notes
 
 1. There can only be one siteId and zoneId in an AdUnit bid. To get bids on multiple sitesIds or zoneIds, just add more 'rubicon' entries in the bids array.
+2. PAAPI and Topics support released in PBJS 8.23
