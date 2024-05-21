@@ -44,7 +44,6 @@ Before configuring the display.io adapter you must reach out your account manage
 | `custom.adContainerBackgroundColor`| optional | String | Ad container body background color, "transparent" by default | "#000"                                                       |
 | `custom.fixedHeaderSelector`| optional | String | In case your webpage has a fixed header – the header Id attribute or header class attribute should be defined as a value for parameter fixedHeaderSelector. | ".site-header"                                               |
 
-
 ### Prebid Server Params
 
 {: .table .table-bordered .table-striped }
