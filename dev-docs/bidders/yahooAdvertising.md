@@ -76,4 +76,3 @@ For further setup details & examples please see <https://github.com/prebid/Prebi
 * User ID Modules - ConnectId and others
 * First Party Data (ortb2 & ortb2Imp)
 * Custom TTL (time to live)
-
