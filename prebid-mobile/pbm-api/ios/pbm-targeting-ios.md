@@ -469,7 +469,7 @@ Note that several of the properties noted here are also mentioned above for othe
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Platform | Description | Example |
 | --- | --- | --- | --- | --- | --- |
-| storeURL | recommended | string | both | App store URL for an installed app; for Inventory Quality Guidelines 2.1 compliance. Translates to OpenRTB app.storeurl | "https://apps.apple.com/app/id111111111" |
+| storeURL | recommended | string | both | App store URL for an installed app; for Inventory Quality Guidelines 2.1 compliance. Translates to OpenRTB app.storeurl | `https://apps.apple.com/app/id111111111` |
 | contentUrl | recommended | string | both | This is the deep-link URL for the app screen that is displaying the ad. This can be an iOS universal link. | |
 | publisherName | recommended | string | both | OpenRTB app.publisher.name | "Example, Co." |
 | itunesID | recommended | string | both | Translates to OpenRTB app.bundle | "11111111" |

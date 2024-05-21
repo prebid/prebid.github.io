@@ -199,7 +199,6 @@ Call the method `loadAd()` which will make a bid request to Prebid Server.
 
 Wait for the Prebid Server to return an ad and show it to the user in any suitable time.
 
-
 ```swift
 // MARK: InterstitialRenderingAdUnitDelegate
     

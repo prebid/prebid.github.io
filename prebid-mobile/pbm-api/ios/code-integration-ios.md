@@ -13,7 +13,7 @@ sidebarType: 2
 
 Get started with Prebid Mobile by creating a [Prebid Server account](/prebid-mobile/prebid-mobile-getting-started.html). Once your account is set up include the Prebid Mobile SDK in your app by either using dependencies managers or by [cloning the repo](https://github.com/prebid/prebid-mobile-ios) and using our included script to build the SDK.
 
-* TOC
+- TOC
 {:toc}
 
 ## SDK Integration
@@ -221,8 +221,8 @@ public static let severe = LogLevel(stringValue: "[🔥]", rawValue: 5)
 
 `addStoredBidResponse`: Function containing two properties:
 
-* `bidder`: Bidder name as defined by Prebid Server bid adapter of type string.
-* `responseId`: Configuration ID used in the Prebid Server Database to store static bid responses.
+- `bidder`: Bidder name as defined by Prebid Server bid adapter of type string.
+- `responseId`: Configuration ID used in the Prebid Server Database to store static bid responses.
 
 Stored Bid Responses are similar to Stored Auction Responses in that they signal to Prebid Server to respond with a static pre-defined response, except Stored Bid Responses is done at the bidder level, with bid requests sent out for any bidders not specified in the bidder parameter. For more information on how stored auction responses work, refer to the written [description on github issue 133](https://github.com/prebid/prebid-mobile-android/issues/133).
 
@@ -255,8 +255,8 @@ You can pass some SDK configuration properties from PBS to the SDK using the `ex
 
 For now Prebid SDK supports the following configuration properties:
 
-* `cftbanner` - see the `Prebid.creativeFactoryTimeout`
-* `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
+- `cftbanner` - see the `Prebid.creativeFactoryTimeout`
+- `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
 
 An example of a stored request:
 
@@ -331,11 +331,11 @@ Prebid.shared.addStoredBidResponse(bidder: "rubicon", responseId: "221155")
 
 Follow the corresponding guide to integrate Prebid Mobile:
 
-* [GAM using Original API](code-integration-ios.html)
-* [No Ad Server](/prebid-mobile/modules/rendering/ios-sdk-integration-pb.html)
-* [GAM using Rendering API](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html)
-* [AdMob](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html)
-* [AppLovin MAX](/prebid-mobile/modules/rendering/ios-sdk-integration-max.html)
+- [GAM using Original API](code-integration-ios.html)
+- [No Ad Server](/prebid-mobile/modules/rendering/ios-sdk-integration-pb.html)
+- [GAM using Rendering API](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html)
+- [AdMob](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html)
+- [AppLovin MAX](/prebid-mobile/modules/rendering/ios-sdk-integration-max.html)
 
 ### Test configs
 

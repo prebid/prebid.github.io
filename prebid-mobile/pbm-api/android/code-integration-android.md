@@ -13,7 +13,7 @@ sidebarType: 2
 
 Get started with Prebid Mobile by creating a [Prebid Server account](/prebid-mobile/prebid-mobile-getting-started.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Maven or by [cloning the repo](https://github.com/prebid/prebid-mobile-android) and using our included script to build the SDK.
 
-* TOC
+- TOC
 {:toc}
 
 ## SDK Integration
@@ -148,8 +148,8 @@ Open your AndroidManifest.xml and add the following permissions and activity dec
 
 **Notes:**
 
-* `ACCESS_COARSE_LOCATION` or `ACCESS_FINE_LOCATION` will automatically allow the device to send user location as First Party Data, which can help increase revenue by increasing the value of impressions to buyers.
-* `WRITE_EXTERNAL_STORAGE` is optional and only required for MRAID 2.0 storePicture ads.
+- `ACCESS_COARSE_LOCATION` or `ACCESS_FINE_LOCATION` will automatically allow the device to send user location as First Party Data, which can help increase revenue by increasing the value of impressions to buyers.
+- `WRITE_EXTERNAL_STORAGE` is optional and only required for MRAID 2.0 storePicture ads.
 
 For *banner and interstitial ads only*, include the following custom activities (even though you won't instantiate them directly). This is not necessary for video interstitial ads.
 
@@ -190,9 +190,9 @@ See the [global parameters page](/prebid-mobile/pbm-api/android/pbm-targeting-an
 
 Prebid supports the following versions by release:
 
-* Prebid SDK version 1.0 or 1.1 supports Android 16+
-* Prebid SDK version 1.1.1+ supports Android 19+
-* Prebid SDK version 2.0.0+ supporst Android 16+
+- Prebid SDK version 1.0 or 1.1 supports Android 16+
+- Prebid SDK version 1.1.1+ supports Android 19+
+- Prebid SDK version 2.0.0+ supporst Android 16+
 
 ## Setup SDK
 
@@ -309,8 +309,8 @@ You can pass some SDK configuration properties from PBS to the SDK using the `ex
 
 For now Prebid SDK supports the following configuration properties:
 
-* `cftbanner` - see the `Prebid.creativeFactoryTimeout`
-* `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
+- `cftbanner` - see the `Prebid.creativeFactoryTimeout`
+- `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
 
 An example of a stored request:
 
@@ -348,11 +348,11 @@ All values received in the `passthrough` of the bid response will be applied to 
 
 Follow the corresponding guide to integrate Prebid Mobile:
 
-* [GAM using Original API](android-sdk-integration-gam-original-api.html)
-* [No Ad Server](../../modules/rendering/android-sdk-integration-pb.html)
-* [GAM using Rendering API](../../modules/rendering/android-sdk-integration-gam.html)
-* [AdMob](../../modules/rendering/android-sdk-integration-admob)
-* [AppLovin MAX](../../modules/rendering/android-sdk-integration-max.html)
+- [GAM using Original API](android-sdk-integration-gam-original-api.html)
+- [No Ad Server](../../modules/rendering/android-sdk-integration-pb.html)
+- [GAM using Rendering API](../../modules/rendering/android-sdk-integration-gam.html)
+- [AdMob](../../modules/rendering/android-sdk-integration-admob)
+- [AppLovin MAX](../../modules/rendering/android-sdk-integration-max.html)
 
 ### Test configs
 
