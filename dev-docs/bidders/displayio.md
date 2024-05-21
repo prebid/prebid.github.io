@@ -8,17 +8,23 @@ tcfeu_supported: true
 usp_supported: true
 safeframes_ok: true
 pbjs: true
-pbs: false
+pbs: true
 prebid_member: false
 gvl_id: none
 sidebarType: 1
+coppa_supported: true
+schain_supported: true
+pbs_app_supported: true
+floors_supported: true
+ortb_blocking_supported: true
+multiformat: will-not-bid
 ---
 
 ### Note
 
 Before configuring the display.io adapter you must reach out your account manager from display.io team  (or send a request to <contact@display.io>) for approval and setup steps.
 
-### Bid Params
+### Prebid.js params
 
 {: .table .table-bordered .table-striped }
 
@@ -37,3 +43,14 @@ Before configuring the display.io adapter you must reach out your account manage
 | `custom.headerBackgroundColor`| optional | String | Ad container header background color, "black" by default | "#fff"                                                       |
 | `custom.adContainerBackgroundColor`| optional | String | Ad container body background color, "transparent" by default | "#000"                                                       |
 | `custom.fixedHeaderSelector`| optional | String | In case your webpage has a fixed header – the header Id attribute or header class attribute should be defined as a value for parameter fixedHeaderSelector. | ".site-header"                                               |
+
+
+### Prebid Server Params
+
+{: .table .table-bordered .table-striped }
+
+| Name  | Scope | Type | Description                            | Example                                                      |
+|----------------| ----- | ---- |----------------------------------------|--------------------------------------------------------------|
+| `publisherId`  | required | String | Publisher Id on the display.io platform (please ask your Account Manager for your publisher id). | "101"                                                         |
+| `inventoryId`  | required | String | Inventory Id on the display.io platform (please ask your Account Manager for your inventory id). | "1011"                                                        |
+| `placementId`  | required | String | Placement Id on the display.io platform (please ask your Account Manager for your placement id). | "1011"                                                        |
