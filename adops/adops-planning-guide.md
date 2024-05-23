@@ -33,7 +33,7 @@ As you go through the steps, we recommend that you document all your decisions. 
 
 An overview of the process of planning a Prebid integration for ad operations.
 
-<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/891677441?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Prebid Ad Operations Planning"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+{% include vimeo-iframe.html id="891677441" title="Prebid Ad Operations Planning" %}
 
 Notes:
 
