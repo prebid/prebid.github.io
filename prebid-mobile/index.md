@@ -1,3 +1,3 @@
 ---
-redirect_to: "/prebid-mobile/prebid-mobile.html"
+redirect_to: "prebid-mobile/prebid-mobile.html"
 ---

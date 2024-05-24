@@ -4,10 +4,12 @@ title: PubMatic
 description: Prebid PubMatic Bidder Adaptor
 biddercode: pubmatic
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 schain_supported: true
+dchain_supported: true
 floors_supported: true
 userIds: all
 prebid_member: true
@@ -16,29 +18,36 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 fpd_supported: true
+ortb_blocking_supported: true
 gvl_id: 76
+multiformat_supported: will-bid-on-one
+sidebarType: 1
 ---
+
+### Prebid Server Note
+
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description        | Example                      | Type     |
 |---------------|----------|--------------------|------------------------------|----------|
-| `publisherId` | required | Publisher ID          | `'32572'`                 | `string` |
+| `publisherId` | required | Publisher ID       | `'32572'`                    | `string` |
 | `adSlot`      | optional | Ad Slot Name (see below)| `'38519891'`            | `string` |
-| `pmzoneid`    | optional | Zone ID               | `'zone1,zone2'`           | `string` |
-| `lat`         | optional | Latitude              | `'40.712775'`             | `string` |
-| `lon`         | optional | Longitude             | `'-74.005973'`            | `string` |
-| `yob`         | optional | Year of Birth         | `'1982'`                  | `string` |
-| `gender`      | optional | Gender                | `'M'`                     | `string` |
-| `kadpageurl`  | optional | Overrides Page URL    |  `'http://www.yahoo.com/'`| `string` |
-| `kadfloor`    | optional | Bid Floor             | `'1.75'`                  | `string` |
-| `currency`    | optional | Bid currency    	   | `'AUD'` (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.) 				   | `string` |
-| `dctr`		| optional | Deal Custom Targeting <br/> (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.) | `'key1=123|key2=345'` 	   | `string` |
-| `acat`    | optional | Allowed categories  <br/> (List of allowed categories for a given auction to be sent in request.ext.prebid.bidderparams.pubmatic.acat) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]` | `array of strings` |
-| `bcat`    | optional | Blocked IAB Categories  <br/> (Values from all slots will be combined and only unique values will be passed. An array of strings only. Each category should be a string of a length of more than 3 characters.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`     | `array of strings` |
-| `deals`    | optional | PMP deals  <br/> (Values from each slot will be passed per slot. An array of strings only. Each deal-id should be a string of a length of more than 3 characters.) | `[ 'deal-id-5', 'deal-id-6', 'deal-id-7' ]`     | `array of strings` |
-| `outstreamAU`    | optional | Oustream AdUnit described in Blue BillyWig UI. This field is mandatory if mimeType is described as video and context is outstream (i.e., for outstream videos)           | `'renderer_test_pubmatic'`           | `string` |
+| `pmzoneid`    | optional | Zone ID            | `'zone1,zone2'`              | `string` |
+| `lat`         | optional | Latitude <br/> (Supported until Prebid version 7.54.4 and starting from Prebid version 8.11.0 we have option to configure this using ortb2.(device OR user))             | `'40.712775'`             | `string` |
+| `lon`         | optional | Longitude <br/> (Supported until Prebid version 7.54.4 and starting from Prebid version 8.11.0 we have option to configure this using ortb2.(device OR user))            | `'-74.005973'`            | `string` |
+| `yob`         | optional | Year of Birth      | `'1982'`                     | `string` |
+| `gender`      | optional | Gender             | `'M'`                        | `string` |
+| `kadpageurl`  | optional | Overrides Page URL |  `'http://www.yahoo.com/'`   | `string` |
+| `kadfloor`    | optional | Bid Floor          | `'1.75'`                     | `string` |
+| `currency`    | optional | Bid currency       | `'AUD'` (Value configured only in the 1st adunit will be passed on. <br/> Values if present in subsequent adunits, will be ignored.)                | `string` |
+| `dctr`        | optional | Deal Custom Targeting <br/> (Value configured in each adunit will be passed on inside adunit configs i.e. imp.ext), `'key1=123|key2=345'`                                | `string` |
+| `acat`        | optional | Allowed categories  <br/> (List of allowed categories for a given auction to be sent in either using ortb2 config (request.ext.prebid.bidderparams.pubmatic.acat) or using slot level params. If categories sent using both then priority will be given to ortb2 over slot level params.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]` | `array of strings` |
+| `bcat`        | optional | Blocked IAB Categories  <br/> (Values from all slots will be combined and only unique values will be passed. An array of strings only. Each category should be a string of a length of more than 3 characters.) | `[ 'IAB1-5', 'IAB1-6', 'IAB1-7' ]`     | `array of strings` |
+| `deals`       | optional | PMP deals  <br/> (Values from each slot will be passed per slot. An array of strings only. Each deal-id should be a string of a length of more than 3 characters.)       | `[ 'deal-id-5', 'deal-id-6', 'deal-id-7' ]`     | `array of strings` |
+| `outstreamAU` | optional | Oustream AdUnit described in Blue BillyWig UI. This field is mandatory if mimeType is described as video and context is outstream (i.e., for outstream videos)           | `'renderer_test_pubmatic'`           | `string` |
 
 ### Configuration
 
@@ -72,26 +81,28 @@ The adSlot parameter supports two different formats:
 adSlot parameter is optional.  To omit the adSlot parameter, your publisher account must have default site and tag enabled.  Consult your account manager to find out if default site and tag is enabled on your account.  If used, both formats are supported.  Without Size is the recommended option.  Both options will send the ad request with all sizes specified in the Prebid ad unit configuration.
 
 ### video parameters
+
 The PubMatic adapter supports video as of Prebid v1.16.0
 
 {: .table .table-bordered .table-striped }
-| Name 					 | Scope    | Description        										  | Example |
+| Name                      | Scope    | Description                                              | Example |
 | :----------------------| :------- | :---------------------------------------------------------- | :------ |
-| `video.mimes` 		 | required | Video MIME types 											  | `['video/mp4','video/x-flv']` |
-| `video.skippable` 	 | optional | If 'true', user can skip ad 								  | `true` |
-| `video.minduration` 	 | optional | Minimum ad duration in seconds							  | `5` |
-| `video.maxduration`  	 | optional | Maximum ad duration in seconds 							  | `30` |
-| `video.startdelay` 	 | optional | Start delay in seconds for pre-roll, mid-roll, or post-roll ad placements | `5` |
-| `video.playbackmethod` | optional | Defines whether inventory is user-initiated or autoplay sound on/off<br/>Values:<br/>`1`: Auto-play, sound on<br/>`2`: Auto-play, sound off<br/>`3`: Click-to-play<br/>`4`: mouse-over	  | `1` |
-| `video.api` 			 | optional | API frameworks supported<br/>Values:<br/>`1`: VPAID 1.0<br/>`2`: VPAID 2.0<br/>`3`: MRAID-1<br/>`4`: ORMMA<br/>`5`: MRAID-2 																		   | `[1, 2]` |
-| `video.protocols` 	 | optional |  Supported video bid response protocols<br/>Values<br/>`1`: VAST 1.0<br/>`2`: VAST 2.0<br/>`3`: VAST 3.0<br/> `4`: VAST 1.0 Wrapper<br/>`5`: VAST 2.0 Wrapper<br/>`6`: VAST 3.0 Wrapper			| `[5, 6]` |
-| `video.battr` 		 | optional | Blocked creative attributes, See [OpenRTB 2.5 specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf), List 5.3 for values 			| `[3, 9]` |
-| `video.linearity` 	 | optional | Indicates if the impression is linear or nonlinear<br/>Values:<br/>`1`: Linear/In-Stream<br/>`2`: Non-Linear/Overlay. 	 																		  | `1` |
-| `video.placement` 	 | optional | Video placement type.  See [OpenRTB 2.5 specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf), List 5.9 for Values 						   | `1` |
-| `video.minbitrate` 	 | optional | Minumim bit rate in Kbps. 								  | 50 |
-| `video.maxbitrate` 	 | optional | Maximum bit rate in Kbps. 								  | 70 |
+| `video.mimes`          | required | Video MIME types                                            | `['video/mp4','video/x-flv']` |
+| `video.skippable`      | optional | If 'true', user can skip ad                                 | `true` |
+| `video.minduration`    | optional | Minimum ad duration in seconds                              | `5` |
+| `video.maxduration`    | optional | Maximum ad duration in seconds                              | `30` |
+| `video.startdelay`     | optional | Start delay in seconds for pre-roll, mid-roll, or post-roll ad placements | `5` |
+| `video.playbackmethod` | optional | Defines whether inventory is user-initiated or autoplay sound on/off<br/>Values:<br/>`1`: Auto-play, sound on<br/>`2`: Auto-play, sound off<br/>`3`: Click-to-play<br/>`4`: mouse-over      | `1` |
+| `video.api`            | optional | API frameworks supported<br/>Values:<br/>`1`: VPAID 1.0<br/>`2`: VPAID 2.0<br/>`3`: MRAID-1<br/>`4`: ORMMA<br/>`5`: MRAID-2                                                                            | `[1, 2]` |
+| `video.protocols`      | optional |  Supported video bid response protocols<br/>Values<br/>`1`: VAST 1.0<br/>`2`: VAST 2.0<br/>`3`: VAST 3.0<br/> `4`: VAST 1.0 Wrapper<br/>`5`: VAST 2.0 Wrapper<br/>`6`: VAST 3.0 Wrapper            | `[5, 6]` |
+| `video.battr`          | optional | Blocked creative attributes, See [OpenRTB 2.5 specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf), List 5.3 for values             | `[3, 9]` |
+| `video.linearity`      | optional | Indicates if the impression is linear or nonlinear<br/>Values:<br/>`1`: Linear/In-Stream<br/>`2`: Non-Linear/Overlay.                                                                                | `1` |
+| `video.placement`      | optional | Video placement type.  See [OpenRTB 2.5 specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf), List 5.9 for Values                            | `1` |
+| `video.minbitrate`     | optional | Minumim bit rate in Kbps.                                   | 50 |
+| `video.maxbitrate`     | optional | Maximum bit rate in Kbps.                                   | 70 |
 
 ### AdUnit Format for Video
+
 ```javascript
 var videoAdUnits = [
 {
@@ -125,8 +136,8 @@ var videoAdUnits = [
 }]
 ```
 
-
 ### AdUnit Format for Native
+
 ```javascript
 var adUnits = [
 {
@@ -160,8 +171,10 @@ var adUnits = [
 ```
 
 ### Configuration for video
+
 For Video ads, prebid cache needs to be enabled for PubMatic adapter.
-```
+
+```javascript
 pbjs.setConfig({
     cache: {
         url: 'https://prebid.adnxs.com/pbc/v1/cache'
@@ -175,10 +188,11 @@ The following test parameters can be used to verify that Prebid Server is workin
 PubMatic adapter. This example includes an `imp` object with an PubMatic test publisher ID, ad slot,
 and sizes that would match with the test creative.
 
-```
+```json
+{
 "imp":[
       {
-         "id":“"some-impression-id”,
+         "id":"some-impression-id",
          "banner":{
             "format":[
                {
@@ -193,11 +207,21 @@ and sizes that would match with the test creative.
          },
          "ext":{
             "pubmatic":{
-               "publisherId":“156276”,
+               "publisherId": "156276",
                "adSlot":"pubmatic_test"
             }
          }
       }
    ]
+}
 ```
+
+### First Party Data
+
+Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html). The following fields are supported:
+
+- `ortb2.site.*`
+- `ortb2.user.*`
+
+AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
 <!-- workaround bug where code blocks at end of a file are incorrectly formatted-->

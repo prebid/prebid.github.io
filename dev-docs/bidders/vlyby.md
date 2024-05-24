@@ -7,13 +7,12 @@ media_types: banner, video
 schain_supported: false
 prebid_member: false
 pbjs: true
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The VLYBY Header Bidder Adapter needs a Contract with VLYBY Digital GmbH, Munich. Please contact prebid@vlyby.com for additional information.
-
-
+The VLYBY Header Bidder Adapter needs a Contract with VLYBY Digital GmbH, Munich. Please contact <prebid@vlyby.com> for additional information.
 
 ### Bid Params
 

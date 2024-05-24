@@ -7,6 +7,7 @@ pbjs: true
 deals_supported: true
 userIds: sharedId, id5Id, uid2Id, adriverId
 floors_supported: true
+sidebarType: 1
 ---
 
 

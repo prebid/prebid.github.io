@@ -4,19 +4,20 @@ title: DistrictmDMX
 description: Prebid DistrictmDMX Bidder Adaptor
 pbjs: true
 biddercode: districtmDMX
-gdpr_supported: true
+tcfeu_supported: false
 schain_supported: true
 floors_supported: true
 usp_supported: true
 coppa_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, intentiq, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+pbjs_version_notes: not supported in 7.0+
+sidebarType: 1
 ---
-
 
 
 ### Bid Params
 
-##### Prebid version 1.0 and above.
+#### Prebid version 1.0 and above
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description         | Example          |    Type   |
@@ -24,7 +25,7 @@ userIds: britepoolId, criteo, id5Id, identityLink, intentiq, liveIntentId, netId
 | `dmxid`    | required | Placement Id        |  `100001`          | `integer` |
 | `memberid` | required | Account id          |  `100003`          | `integer` |
 
-##### Prebid 0.34~ legacy
+#### Prebid 0.34~ legacy
 
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description             | Example          | Type      |

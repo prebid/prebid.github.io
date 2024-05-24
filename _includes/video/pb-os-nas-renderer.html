@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" class="html--no-js">
+    <head>
+        {% include head--common.html %}
+        {% include prebidjs-non-prod.html %}
+
+        <!--pbjs and player code -->
+        <script >
+            var pbjs = pbjs || {};
+            pbjs.que = pbjs.que || [];
+
+            function callANRenderer(bid, ad) {
+              const adResponse = {
+                  ad: {
+                      video: {
+                          content: ad,
+                          player_width: 640,
+                          player_height: 480,
+                      }
+                  }
+              }
+
+              bid.renderer.push(() => {
+                  window.ANOutstreamVideo.renderAd({
+                      targetId: bid.adUnitCode,
+                      adResponse,
+                  });
+              });
+            }
+
+            function render(bid) {
+                let ad = bid.ad || bid.vastXml;
+
+                if (ad) {
+                    callANRenderer(bid, ad)
+                } else {
+                    if (bid.vastUrl) {
+                      (async () => {
+                          ad = await fetch(resp).then(resp => resp.text());
+
+                          if (typeof ad === 'string') {
+                              callANRenderer(bid, ad);
+                          } else {
+                              console.log('Invalid VAST');
+                          }
+                      })();
+                    } else {
+                        console.log('Invalid ad');
+                    }
+                }
+            }
+
+            const adUnits = [{
+                code: 'video1',
+                mediaTypes: {
+                    video: {
+                        context: 'outstream',
+                        playerSize: [640, 480],
+                        mimes: ['video/mp4'],
+                        protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+                        playbackmethod: [2],
+                        skip: 1,
+                        renderer: {
+                            render,
+                            url: "https://acdn.adnxs.com/video/outstream/ANOutstreamVideo.js"
+                        },
+                    }
+                },
+                bids: [{
+                    bidder: 'appnexus',
+                    params: {
+                        placementId: 13232385
+                    }
+                }]
+            }];
+
+            pbjs.que.push(function() {
+                pbjs.addAdUnits(adUnits);
+                pbjs.requestBids({
+                    timeout: 1000,
+                    bidsBackHandler: function(bids) {
+                        const highestCpmBids = pbjs.getHighestCpmBids('video1');
+                        pbjs.renderAd(document, highestCpmBids[0].adId);
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+</html>

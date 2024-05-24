@@ -3,16 +3,26 @@ layout: bidder
 title: SilverMob
 description: SilverMob Bidder Adapter
 biddercode: silvermob
-gdpr_supported: true/false
 media_types: banner, video, native
-pbjs: false
+pbjs: true
 pbs: true
-prebid_member: false
+prebid_member: true
+tcfeu_supported: true
+gvl_id: 1058
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+safeframes_ok: true
+deals_supported: true
+fpd_supported: false
+floors_supported: true
+multiformat_supported: will-bid-on-one
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The SilverMob Bidding adapter requires setup before beginning. Please contact us at partners@silvermob.com
+The SilverMob Bidding adapter requires setup before beginning. Please contact us at <partners@silvermob.com>
 
 ### Bid Params
 
