@@ -3,7 +3,7 @@ layout: bidder
 title: IQzone
 description: Prebid IQzone Bidder Adapter
 biddercode: iqzone
-≠gpp_sids: usstate_all
+gpp_sids: usstate_all
 tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
