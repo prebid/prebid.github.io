@@ -285,6 +285,15 @@
     sectionName: Support
     title: Prebid Server
     link: /faq/prebid-server-faq.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 3
+    sectionId: 2
+    sectionName: Support
+    title: Prebid Mobile
+    link: /faq/prebid-mobile-faq.html
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 0

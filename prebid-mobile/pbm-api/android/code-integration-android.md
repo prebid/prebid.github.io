@@ -8,7 +8,7 @@ nav_section: prebid-mobile-android
 sidebarType: 2
 ---
 
-# Integration for Android
+# Prebid SDK Integration for Android
 {:.no_toc}
 
 Get started with Prebid Mobile by creating a [Prebid Server account](/prebid-mobile/prebid-mobile-getting-started.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Maven or by [cloning the repo](https://github.com/prebid/prebid-mobile-android) and using our included script to build the SDK.

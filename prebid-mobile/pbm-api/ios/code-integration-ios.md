@@ -8,7 +8,7 @@ nav_section: prebid-mobile-ios
 sidebarType: 2
 ---
 
-# Integration for iOS
+# Prebid SDK Integration for iOS
 {:.no_toc}
 
 Get started with Prebid Mobile by creating a [Prebid Server account](/prebid-mobile/prebid-mobile-getting-started.html). Once your account is set up include the Prebid Mobile SDK in your app by either using dependencies managers or by [cloning the repo](https://github.com/prebid/prebid-mobile-ios) and using our included script to build the SDK.
