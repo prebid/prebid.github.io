@@ -1,39 +1,33 @@
 ---
 layout: bidder
 title: Performax
-description: Prebid Performax Bidder Adaptor
-pbjs: true
+description: Prebid Performax bidder Adapter
 biddercode: performax
+tcfeu_supported: true
+gvl_id: 732
+usp_supported: true
+coppa_supported: false
+schain_supported: true
+userId: all
 media_types: banner
-enable_download: false
-pbjs_version_notes: not ported to 5.x
+safeframes_ok: true
+deals_supported: false
+floors_supported: true
+fpd_supported: false
+pbjs: true
+pbs: false
+prebid_member: false
+multiformat_supported: will-not-bid
+sidebarType: 1
 ---
 
-### Note:
-Performax adapter requires setup and approval from the Performax team. Please reach out to your account team or info@performax.cz for more information.
+### Note
+
+The Performax Bidding Adapter requires setup before beginning. Please contact us at [ae@performax.cz](mailto:ae@performax.cz).
 
 ### Bid Params
 
-{: .table .table-bordered .table-striped }
-| Name          | Scope    | Description        | Example                      | Type     |
-|---------------|----------|--------------------|------------------------------|----------|
-| `slotId`      | required | Slot ID            | `32572`                      | `Integer`|
-
-### Example
-
-```javascript
-    var adUnits = [
-        {
-            code: 'performax-div',
-            sizes: [[300, 300]],
-            bids: [
-                {
-                    bidder: "performax",
-                    params: {
-                        slotId: 28   // required
-                    }
-                }
-            ]
-        }
-    ];
-```
+{: .table . table-bordered .table-striped }
+| Name          | Scope    | Description           | Example     | Type      |
+|---------------|----------|-----------------------|-------------|-----------|
+| `tagid`       | required | Placement id          | `'sample'`  | `string`  |

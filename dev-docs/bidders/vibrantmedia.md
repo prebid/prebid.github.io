@@ -3,18 +3,18 @@ layout: bidder
 title: Vibrant Media
 description: Vibrant Media Prebid Bidder Adapter
 biddercode: vibrantmedia
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 7
 usp_supported: true
 media_types: banner, video, native
 safeframes_ok: false
 pbjs: true
-pbjs_version_notes: 6.4.0 and later
+sidebarType: 1
 ---
 
 ### Preliminaries
 
-The Vibrant Media Adapter requires set-up before being enabled. Please contact us at intellitxtsupport@vibrantmedia.com.
+The Vibrant Media Adapter requires set-up before being enabled. Please contact us at <intellitxtsupport@vibrantmedia.com>.
 
 Note: For video, we support outstream only.
 

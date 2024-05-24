@@ -247,15 +247,6 @@
   - subsectionId: 2
     sectionId: 2
     sectionName: Support
-    title: Training Videos
-    link: /videos/index.html
-    needsDivider: 0
-    isHeader: 0
-    isSubSectionStart: 0
-
-  - subsectionId: 2
-    sectionId: 2
-    sectionName: Support
     title: Debugging Extension
     link: /debugging/debugging.html
     needsDivider: 1
@@ -312,7 +303,7 @@
     sectionId: 3
     sectionName: Download
     title: Prebid Mobile
-    link:  /prebid-mobile/download.html
+    link:  /prebid-mobile/prebid-mobile-download.html
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 1

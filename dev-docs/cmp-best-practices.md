@@ -14,11 +14,7 @@ of Prebid.js and Consent Management Platforms.
 
 ## NOT LEGAL ADVICE
 
-{% capture legalNotice %}
-  This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and/or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
-  {% endcapture %}
-
-{% include /alerts/alert_important.html content=legalNotice %}
+{% include legal-warning.html %}
 
 ## General
 
@@ -35,17 +31,17 @@ Instead, here are some general guidelines:
 
 ### CMP/TCF gdprApplies
 
-The indicates the determination of whether GDPR applies in this context. The CMP, in most cases, is responsible for this. The publisher provides this value when supplying [static](/dev-docs/modules/consentManagement.html) consent data. 
+The indicates the determination of whether GDPR applies in this context. The CMP, in most cases, is responsible for this. The publisher provides this value when supplying [static](/dev-docs/modules/consentManagement.html) consent data.
 
 ### Prebid gdpr.defaultGdprScope
 
-This indicates the behavior of Prebid when the CMP __does not__ provide a value for `gdprApplies`. Critically, the __defaultGdprScope__ is applied if the user times-out in replying to the CMP's questions. While this also can happen if the CMP doesn't set the value in certain cases, or the CMP isn't loaded, the timeout behavior critical to understand. Essentially, the value of this config variable takes the place of the CMP `gdprApplies` when `gdprApplies` value cannot be determined.
+This indicates the behavior of Prebid when the CMP **does not** provide a value for `gdprApplies`. Critically, the **defaultGdprScope** is applied if the user times-out in replying to the CMP's questions. While this also can happen if the CMP doesn't set the value in certain cases, or the CMP isn't loaded, the timeout behavior is critical to understand. Essentially, the value of this config variable takes the place of the CMP `gdprApplies` when `gdprApplies` value cannot be determined.
 
 ## What does that mean?
 
-Prebid.js doesn't have a concept of the geographic region where it's running. It's up to the CMP and/or publisher to configure Prebid.js correctly. Here are some options for discussing with with your lawyers, engineers, and CMP provider:
+Prebid.js doesn't have a concept of the geographic region where it's running. It's up to the CMP and/or publisher to configure Prebid.js correctly. Here are some options for discussing with your lawyers, engineers, and CMP provider:
 
-- If you use a CMP and they __always__ return a proper tcfapi function for all pageviews, even when geo targeting is used, then you should set gdpr.defaultGdprScope to true and let the functionality work as intended.
+- If you use a CMP and they **always** return a proper tcfapi function for all pageviews, even when geo targeting is used, then you should set gdpr.defaultGdprScope to true and let the functionality work as intended.
 - If you otherwise remove the CMP from the page based on Geo, then you should align your Prebid config to that and consider removing the `consentManagement` config from the Prebid.js entirely when GDPR does not apply.
 - Because of the timeout behavior, gdpr.defaultGdprScope should not be set to false globally. This value could be modified based on Publisher defined logic, but a blanket `false` will result in timeouts in the EEA being treated as GDPR not applying, when it should.
 
