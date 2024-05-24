@@ -57,20 +57,22 @@ one adunit. The configuration will be in the form of a JSON structure that will 
 
 ```json
 {
-	"cur": [ "EUR" ],
-	"ext": {
-		"prebid": {
-			"cache": {
-				"bids": {}
-			},
-			"targeting": {
-				"pricegranularity": "dense",
-				"includewinners": true,
-				"includebidderkeys": true,
-				"includeformat": true
-			}
-		}
-	}
+  "cur": [
+    "EUR"
+  ],
+  "ext": {
+    "prebid": {
+      "cache": {
+        "bids": {}
+      },
+      "targeting": {
+        "pricegranularity": "dense",
+        "includewinners": true,
+        "includebidderkeys": true,
+        "includeformat": true
+      }
+    }
+  }
 }
 ```
 
