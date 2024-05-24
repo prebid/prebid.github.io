@@ -51,6 +51,7 @@ For further information, please contact <adops@beachfront.com>.
 | `mimes` | optional | Array of strings listing supported MIME types. | `["video/mp4", "application/javascript"]` | `Array<string>` |
 | `playbackmethod` | optional | Playback method supported by the publisher.<br/>`1`: Auto-play sound on<br/>`2`: Auto-play sound off<br/>`3`: Click-to-play<br/>`4`: Mouse-over | `1` | `integer` |
 | `maxduration` | optional | Maximum video ad duration in seconds. | `30` | `integer` |
+| `placement` | optional | Placement type for the impression.<br/>`1`: In-Stream<br/>`2`: In-Banner<br/>`3`: In-Article<br/>`4`: In-Feed<br/>`5`: Interstitial/Slider/Floating | `1` | `integer` |
 | `plcmt` | optional | Placement type for the impression. See [AdCOM v1 spec](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md#list_plcmtsubtypesvideo) | `1` | `integer` |
 | `skip` | optional | Indicates if the player will allow the video to be skipped. | `1` | `integer` |
 | `skipmin` | optional | Videos of total duration greater than this number of seconds can be skippable. | `15` | `integer` |
