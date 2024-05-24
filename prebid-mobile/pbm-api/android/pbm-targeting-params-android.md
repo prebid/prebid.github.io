@@ -44,9 +44,9 @@ Prebid.shared.sendMraidSupportParams=true
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Purpose | Description | Example |
 | --- | --- | --- | --- | --- |
-| isCoppaEnabled | optional | boolean | ORTB | Set this to true if this app is aimed at children. It sets the ORTB COPPA flag. Default is false. | `true` |
-| useExternalBrowser | optional | boolean | ORTB | TBD? Defaults to `false`. | `true` |
-| sendMraidSupportParams | optional | boolean | ORTB | TBD If `true`, the SDK sends "af=3,5", indicating support for MRAID. Defaults to `true`. | `false` |
+| isCoppaEnabled | optional | boolean | ORTB | Set this to true if this app is aimed at children. It sets the ORTB `regs.coppa` flag. Default is false. | `true` |
+| useExternalBrowser | optional | boolean | behavior | If true, clicking on the ad will open your default browser instead of showing within the app's webview. Defaults to `false`. | `true` |
+| sendMraidSupportParams | optional | boolean | ORTB | If `true`, the SDK sends imp[].banner.api=[3,5], indicating support for MRAID. Defaults to `true`. | `false` |
 
 ### Prebid Class Global Methods
 
@@ -199,7 +199,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| logLevel | required | enum | The value can be ERROR, DEBUG, WARN, and NONE. The default is `.NONE`. | `.DEBUG` |
+| logLevel | required | enum | The value can be NONE, VERBOSE, DEBUG, INFO, WARN, ERROR, ASSERT. The default is `NONE`. | `DEBUG` |
 
 #### setPbsDebug()
 
@@ -250,7 +250,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| creativeFactoryTimeout | required | integer | Controls how long a banner creative has to load before it is considered a failure. (TBD - is this milliseconds? Need the default value) | 2000 |
+| creativeFactoryTimeout | required | integer | Controls how long a banner creative has to load before it is considered a failure. This value is in seconds. The default is 6 seconds. | 10 |
 
 #### setCreativeFactoryTimeoutPreRenderContent()
 
@@ -267,7 +267,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| creativeFactoryTimeoutPreRenderContent | required | integer | Controls how much time video and interstitial creatives have to load before it is considered a failure. (TBD - is this milliseconds? Need the default value) | 2000 |
+| creativeFactoryTimeoutPreRenderContent | required | integer | Controls how much time video and interstitial creatives have to load before it is considered a failure. This value is in seconds. The default is 30 seconds. | 60 |
 
 #### setCustomHeaders()
 
@@ -301,7 +301,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| logger | required | ? | TBD | TBD |
+| logger | required | object | The PrebidLogger interface enables the app developer to define where the Prebid SDK should send log-level details about the header bidding transaction. | |
 
 ---
 
@@ -609,7 +609,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| bundleName | required | string | App bundle name | TBD |
+| bundleName | required | string | App bundle name. Sets ORTB `app.bundle`. | "com.example" |
 
 See also the API reference for getBundleName().
 
@@ -628,7 +628,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| domain | required | string | Domain | "example.com" |
+| domain | required | string | Domain. Sets `app.domain`. | "example.com" |
 
 See also the API reference for getDomain().
 
@@ -647,7 +647,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| publisherName | required | string | Publisher name | "publisher 1" |
+| publisherName | required | string | Publisher name. Sets `app.publisher.name`. | "publisher 1" |
 
 See also the API reference for getPublisherName().
 
@@ -666,7 +666,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| storeUrl | required | string | App store URL | TBD |
+| storeUrl | required | string | App store URL. Sets `app.storeurl` | `https://play.google.com/store/apps/details?id=1234` |
 
 See also the API reference for getStoreUrl().
 
@@ -685,7 +685,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| omidPartnerName | required | string | Open Measurement Partner name | "MyIntegrationPartner" |
+| omidPartnerName | required | string | Open Measurement Partner name. | "MyIntegrationPartner" |
 
 See also the API reference for getOmidPartnerName().
 
