@@ -250,7 +250,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| creativeFactoryTimeout | required | integer | Controls how long a banner creative has to load before it is considered a failure. This value is in seconds. The default is 6 seconds. | 10 |
+| creativeFactoryTimeout | required | integer | Controls how long a banner creative has to load before it is considered a failure. This value is in milliseconds. The default is 6,000 milliseconds. | 10000 |
 
 #### setCreativeFactoryTimeoutPreRenderContent()
 
@@ -267,7 +267,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| creativeFactoryTimeoutPreRenderContent | required | integer | Controls how much time video and interstitial creatives have to load before it is considered a failure. This value is in seconds. The default is 30 seconds. | 60 |
+| creativeFactoryTimeoutPreRenderContent | required | integer | Controls how much time video and interstitial creatives have to load before it is considered a failure. This value is in milliseconds. The default is 30,000 milliseconds. | 60000 |
 
 #### setCustomHeaders()
 
@@ -740,12 +740,12 @@ There are certain protected fields such as regs, device, geo, ext.gdpr, ext.us_p
 
 ```kotlin
 //global invocation
-adUnitConfiguration?.ortbConfig = "{"ext":{"prebid":{"debug":1,"trace":"verbose"}}}"
+adUnitConfiguration?.ortbConfig = "{\"ext\":{\"prebid\":{\"debug\":1,\"trace\":\"verbose\"}}}"
 ```
 
 ```kotlin
 //ad unit / impression-level
-adUnit?.ortbConfig = "{"ext":{"gpid":"abc123"}}"
+adUnit?.ortbConfig = "{\"ext\":{\"gpid\":\"abc123\"}}"
 ```
 
 ## Further Reading

@@ -62,9 +62,9 @@ If you see errors while building the Prebid Mobile SDK or Demo Applications, mak
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-## Add SDK
+## Add the Prebid SDK
 
-### Set Prebid Server
+### Point to a Prebid Server
 
 {% capture warning_note %}
 All integration examples for Android are written in `Kotlin`.
@@ -81,10 +81,22 @@ PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
 ```
 
-If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
 
 ```kotlin
-PrebidMobile.setPrebidServerHost(Host.createCustomHost(PREBID_SERVER_AUCTION_ENDPOINT))
+PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebidserver.example.com/openrtb2/auction"))
+```
+
+#### Account Settings ID
+
+Each mobile app may have its own "account settings ID". This is used to look up data in Prebid Server like timeout, targeting, and price granularity.
+
+By default the Account Settings ID is set to be the same as the Account ID. i.e. the setPrebidServerAccountId() function will set both values.
+If you want to define a different Account Settings ID as determined in conjunction with
+your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html#arbitrary-openrtb) method like this:
+
+```kotlin
+adUnitConfiguration?.ortbConfig = "{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}"
 ```
 
 ### Initialize SDK

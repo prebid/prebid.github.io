@@ -5,7 +5,6 @@ description: Getting Started with Prebid Mobile
 sidebarType: 2
 ---
 
-
 # Getting Started with Prebid Mobile
 {:.no_toc}
 
@@ -33,40 +32,75 @@ Prebid Server is an open source project. This allows you to host your own implem
 
 See the [Prebid Server documentation](/prebid-server/overview/prebid-server-overview.html) for more information on [setting up your own server host](/prebid-server/hosting/pbs-hosting.html).
 
-### A note on Accounts  
+### Accounts and Account Settings
 
-Several pages and examples in the mobile documentation refer to entering your "Prebid Server Account ID".
+Several pages and examples in the mobile documentation refer to entering a "Prebid Server Account ID".
 
-In actuality, an `account ID` is just the name of the “top-level” stored request as described on the [Prebid Server Stored Request page](/prebid-server/features/pbs-storedreqs.html).
+There are actually two important concepts:
 
-By convention, most Prebid Server host companies define the top level stored request ID as the account ID they assign to the publisher.
-This is a convenient convention since publishers generally set the same timeout and price granularity across all apps.
-But it may not be the case for your Prebid Server host company, so please check with them.
-If you’re hosting your own Prebid Server, this value can be whatever value you wish, not necessarily an account ID.
+- The Prebid Server "account id" is given by your Prebid Server provider. If you're an app developer running your own Prebid Server, you may not have an account ID at all.
+- Each mobile app may have its own "account settings ID". This is used to look up data in Prebid Server like timeout, targeting, and price granularity. It's possible for the "account id" and the "auction settings id" to be the same thing, but this is not always the case.
+
+Work with your Prebid Server team to determine which scenario to implement:
+
+- keep "account ID" and "account settings ID" the same.
+- establish separate "account ID" and "account settings ID"
+
+See the "integration" pages for each platform for details on how to set up both scenarios.
 
 ## Configure Prebid Server
 
-After you've registered with your chosen Prebid Server host, you need to create at least one Prebid Server bidder configuration in a [stored request](/prebid-server/features/pbs-storedreqs.html). Each stored request configuration contains a list of bidders and their parameters. The configuration will be in the form of a JSON structure, similar to this:
+### Auction Setting IDs / Top-Level Stored Requests
+
+Working with your Prebid Server host, you will need to create at least one "account settings" block. Prebid Server calls this a [top-level stored request](/prebid-server/features/pbs-storedreqs.html). Each top-level stored request contains parameters that are global to the entire auction, not just
+one adunit. The configuration will be in the form of a JSON structure that will be merged into the OpenRTB. Something like this:
 
 ```json
-[
-    {
-        "bidder": "appnexus",
-        "params": {
-            "placementId": 13144370
-        }
-    }
-]
+{
+	"cur": [ "EUR" ],
+	"ext": {
+		"prebid": {
+			"cache": {
+				"bids": {}
+			},
+			"targeting": {
+				"pricegranularity": "dense",
+				"includewinners": true,
+				"includebidderkeys": true,
+				"includeformat": true
+			}
+		}
+	}
+}
 ```
 
-The preceding is an example "impression-level stored request" using AppNexus as the bidder. The parameters you need to set differ for each bidder. See [Bidder Parameters](/prebid-server/developers/add-new-bidder-go.html) for a full list of parameters for available Prebid Server bidders.
+Your Prebid Server team should be able to help you decide which parameters are needed and how to get them into Prebid Server.
 
-Each block of JSON like this is called a "stored request" and gets an ID called a "stored request ID". This ID is then programmed into an adslot using the iOS or Android SDKs. Doing it this way allows the publisher to change bidders and parameters without
+### Config IDs / Impression-Level Stored Requests
+
+Again, working with your Prebid Server host, there are likely to be many adunit configurations. Prebid Mobile calls this thing a "Config ID", while Prebid Server calls it an [impression-level stored request](/prebid-server/features/pbs-storedreqs.html). Each stored request configuration contains a list of bidders and their parameters. The configuration will be in the form of a JSON structure that will be merged into the OpenRTB `imp` element. Something like this:
+
+```json
+{
+  "ext": {
+    "prebid": {
+        "bidder": "bidderA",
+        "params": {
+            "placementId": 1111111111
+        }
+    }
+  }
+}
+```
+
+Each block of JSON like this is called a "stored request" and gets an ID called a "stored request ID". This ID is then linked to an adslot using the iOS or Android SDKs, which refer to it as a "Config ID". Doing it this way allows the publisher to change bidders and parameters without
 having to change the app.
 
-### Testing with stored configurations
+In general, the recommendation is to create different imp-level stored request for each adunit in your app so that you can manage the bidders and their inventory parameters separately.
 
-If you want to verify the SDK integration with test placements, you can add some [Stored Responses](https://docs.prebid.org/troubleshooting/pbs-troubleshooting.html#stored-responses) to your Prebid Server:
+### Testing with stored responses
+
+If you want to verify the SDK integration with test placements, you can add some [Stored Responses](/troubleshooting/pbs-troubleshooting.html#stored-responses) to your Prebid Server:
 
 1. Work with your Prebid Server provider to install the [Mobile Test Stored Requests](https://github.com/prebid/prebid-mobile-ios/tree/master/Example/PrebidDemo/stored-configs/stored-impressions) and [Mobile Test Stored Responses](https://github.com/prebid/prebid-mobile-ios/tree/master/Example/PrebidDemo/stored-configs/stored-responses). (Note: stored "impressions" are a special case of stored "requests" - your Prebid Server provider will know what to do.)
     1. Confirm that the bid prices in the stored responses reflects what you want to test. If you're using an ad server, you'll need line items set up that reflect the test bid CPMs and your price granularity setup.
@@ -82,31 +116,20 @@ If you want to verify the SDK integration with test placements, you can add some
 Ad ops users configure the primary ad server with Prebid Mobile line items targeted to key/values.
 
 - [Set Up Line Items for Google Ad Manager](/adops/step-by-step.html)
+- [Price Granularity](/adops/price-granularity.html) Additional details to help you ensure your line items are set up to target bid prices at an appropriate level of granularity.
 
 ## Developers - Using the SDK
 
 To begin using Prebid Mobile follow the instructions for the respective platforms and integration approach:
 
-- [iOS Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/ios/code-integration-ios.html)
-- [Android Code Integration]({{site.github.url}}/prebid-mobile/pbm-api/android/code-integration-android.html)
+- [iOS Code Integration](/prebid-mobile/pbm-api/ios/code-integration-ios.html)
+- [Android Code Integration](/prebid-mobile/pbm-api/android/code-integration-android.html)
 
 ## Additional Information
 
 The following resources are available for further information on working with Prebid Mobile:
 
-### Ad Ops
+## Futher Reading
 
-- [Price Granularity](/adops/price-granularity.html) Additional details to help you ensure your line items are set up to target bid prices at an appropriate level of granularity.
-
-### Mobile Developers
-
-#### Global Parameters
-
-- [iOS Global Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html) Learn about the parameters available in the iOS Prebid Mobile SDK.
-- [Android Global Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html) Learn about the parameters available in the Android Prebid Mobile SDK.
-
-#### GDPR
-
-Prebid Mobile provides APIs for app publishers in support of the [IAB Europe Transparency & Consent Framework](https://www.iab.com/topics/consumer-privacy/gdpr/).
-
-For general information on these APIs see [Prebid Mobile Guide to Privacy Regulation]({{site.baseurl}}/prebid-mobile/prebid-mobile-privacy-regulation.html).
+- [How Prebid Server works with Prebid SDK](/prebid-server/use-cases/pbs-sdk.html)
+- [Prebid Mobile FAQ](https://docs.prebid.org/faq/prebid-mobile-faq.html)

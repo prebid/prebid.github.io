@@ -504,12 +504,12 @@ There are certain protected fields such as regs, device, geo, ext.gdpr, ext.us_p
 
 ```swift
 //global invocation
-adUnitConfig.setOrtbConfig("{"ext":{"prebid":{"debug":1,"trace":"verbose"}}}")
+adUnitConfig.setOrtbConfig("{\"ext\":{\"prebid\":{\"debug\":1,\"trace\":\"verbose\"}}}")
 ```
 
 ```swift
 //ad unit / impression-level
-adUnit.setOrtbConfig("{"ext":{"gpid":"abc123"}}")
+adUnit.setOrtbConfig("{\"ext\":{\"gpid\":\"abc123"}}\")
 ```
 
 ## Further Reading

@@ -86,9 +86,9 @@ scripts/buildPrebidMobile.sh
 
 This will output the PrebidMobile.framework.
 
-## Add SDK
+## Add the Prebid SDK
 
-### Set Prebid Server
+### Point to a Prebid Server
 
 Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add 'account' info to the Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
 
@@ -97,13 +97,25 @@ Prebid.shared.prebidServerAccountId = YOUR_ACCOUNT_ID
 Prebid.shared.prebidServerHost = .Appnexus
 ```
 
-If you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app. Make sure that your URL points to the [/openrtb2/auction](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+If you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
 
 ```swift
-try! Prebid.shared.setCustomPrebidServer(url: PREBID_SERVER_AUCTION_ENDPOINT)
+try! Prebid.shared.setCustomPrebidServer(url: "https://prebidserver.example.com/openrtb2/auction")
 ```
 
 This method throws an exception if the provided URL is invalid.
+
+#### Account Settings ID
+
+Each mobile app may have its own "account settings ID". This is used to look up data in Prebid Server like timeout, targeting, and price granularity.
+
+By default the Account Settings ID is set to be the same as the Account ID. i.e. the Prebid.shared.prebidServerAccountId property will set both values.
+If you want to define a different Account Settings ID as determined in conjunction with
+your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html#arbitrary-openrtb) method like this:
+
+```swift
+adUnitConfig.setOrtbConfig = "{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}"
+```
 
 ### Initialize SDK
 
