@@ -21,7 +21,7 @@ Module Name: Lucead Rtd Provider
 
 Module Type: Rtd Provider
 
-Maintainer: prebid@lucead.com
+Maintainer: [prebid@lucead.com](mailto:prebid@lucead.com)
 
 ## Description
 
