@@ -596,7 +596,7 @@ There are several other fields app developers may want to set to give bidders ad
 
 ### setBundleName()
 
-Define the OpenRTB app.storeurl field.
+Define the OpenRTB app.bundle field.
 
 Signature:
 
