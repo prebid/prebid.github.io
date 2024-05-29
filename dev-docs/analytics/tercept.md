@@ -3,6 +3,7 @@ layout: analytics
 title: Tercept
 description: Tercept Analytics Adapter
 modulecode: tercept
+enable_download: true
 ---
 #### Registration
 To start using Prebid Analytics, please, email us at <contact@tercept.com> to provide us with your billing info and get your personal publisher ID & Key along with other details which are used in the prebid config on your site/s.
