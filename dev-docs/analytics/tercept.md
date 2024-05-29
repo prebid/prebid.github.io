@@ -9,7 +9,7 @@ To start using Prebid Analytics, please, email us at <contact@tercept.com> to pr
 Add the following code to your prebid.js config to activate Prebid Analytics:
 #### Example Configuration
 
-```
+```text
 pbjs.que.push(function() {
     pbjs.enableAnalytics({
     provider: 'tercept',
