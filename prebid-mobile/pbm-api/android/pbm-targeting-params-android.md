@@ -343,7 +343,7 @@ To set the purpose consent:
 TargetingParams.setPurposeConsents("100000000000000000000000")
 ```
 
-See also the API references for isSubjectToGDPR(), getGDPRConsentString(), getPurposeConsent(int index), getPurposeConsents(), getDeviceAccessConsent()
+Related functions: isSubjectToGDPR(), getGDPRConsentString(), getPurposeConsent(int index), getPurposeConsents(), getDeviceAccessConsent()
 
 #### Getting Consent Values from the CMP
 
@@ -611,7 +611,7 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | bundleName | required | string | App bundle name. Sets ORTB `app.bundle`. | "com.example" |
 
-See also the API reference for getBundleName().
+Related function: getBundleName().
 
 ### setDomain()
 
@@ -630,7 +630,7 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | domain | required | string | Domain. Sets `app.domain`. | "example.com" |
 
-See also the API reference for getDomain().
+Related function: getDomain().
 
 ### setPublisherName()
 
@@ -649,7 +649,7 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | publisherName | required | string | Publisher name. Sets `app.publisher.name`. | "publisher 1" |
 
-See also the API reference for getPublisherName().
+Related function: getPublisherName().
 
 ### setStoreUrl()
 
@@ -668,7 +668,7 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | storeUrl | required | string | App store URL. Sets `app.storeurl` | `https://play.google.com/store/apps/details?id=1234` |
 
-See also the API reference for getStoreUrl().
+Related function: getStoreUrl().
 
 ### setOmidPartnerName()
 
@@ -687,7 +687,7 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | omidPartnerName | required | string | Open Measurement Partner name. | "MyIntegrationPartner" |
 
-See also the API reference for getOmidPartnerName().
+Related function: getOmidPartnerName().
 
 ### setOmidPartnerVersion()
 
@@ -706,7 +706,7 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | omidPartnerVerson | required | string | Open Measurement Partner version | "7.1" |
 
-See also the API reference for getOmidPartnerVersion().
+Related function: getOmidPartnerVersion().
 
 ### setUserLatLng()
 

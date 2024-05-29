@@ -181,7 +181,7 @@ Swift:
 Targeting.shared.purposeConsents = "100000000000000000000000"
 ```
 
-See also the API references for getSubjectToGDPR(), getDeviceAccessConsent(), getDeviceAccessConsentObjc, getPurposeConsent(), isAllowedAccessDeviceData().
+Related functions: getSubjectToGDPR(), getDeviceAccessConsent(), getDeviceAccessConsentObjc, getPurposeConsent(), isAllowedAccessDeviceData().
 
 #### Getting Consent Values from the CMP
 
@@ -326,7 +326,7 @@ Targeting.shared.addUserData(key: "globalUserDataKey1", value: "globalUserDataVa
 Note: The 'UserData' functions end up putting data into the OpenRTB user.ext.data object while the 'UserKeywords' functions
 put data into user.keywords.
 
-See also the API reference for setYearOfBirth(), getYearOfBirth() and clearYearOfBirth().
+Related functions: setYearOfBirth(), getYearOfBirth() and clearYearOfBirth().
 
 ### Inventory FPD
 
@@ -487,8 +487,7 @@ Note that several of the properties noted here are also mentioned above for othe
 
 ### Targeting Class Methods
 
-All of the targeting class methods have been mentioned above in the context of First Party Data and are linked to
-the API reference.
+All of the targeting class methods have been mentioned above in the context of First Party Data section above.
 
 ---
 
