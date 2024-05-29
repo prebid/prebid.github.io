@@ -2,7 +2,7 @@
 layout: bidder
 title: BigoAd
 description: Prebid BigoAd Bidder Adapter
-biddercode: {bigoad}
+biddercode: bigoad
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -11,7 +11,7 @@ media_types: banner, video, native
 
 ### Registration
 
-The BigoAd Bidding adapter requires setup before beginning. Please contact us at BigoAds@bigo.sg
+The BigoAd Bidding adapter requires setup before beginning. Please contact us at <BigoAds@bigo.sg>
 
 ### Bid Params
 
