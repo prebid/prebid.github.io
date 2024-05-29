@@ -11,12 +11,7 @@ vendor_specific: true
 sidebarType : 1
 ---
 
-# Adagio Realtime Module
-
-{:.no_toc}
-
-* TOC
-{:toc}
+# Adagio Real Time Data Module
 
 ## Overview
 
