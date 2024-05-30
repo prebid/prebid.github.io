@@ -8,13 +8,11 @@ nav_section: analytics
 sidebarType: 1
 ---
 
-
-
 # Prebid Analytics with GA
-
 {:.no_toc}
 
-> Are my header bidding demand partners generating more revenue for me? If not, is it because of latency or is it due to low bid CPM? How about discrepancies?
+{: .alert.alert-warning :}
+Since Prebid.js 8.0, there's no longer a Google Analytics module. Please consider one of the [many other analytics adapters](/overview/analytics.html).
 
 - TOC
 {:toc}
@@ -26,8 +24,6 @@ It includes:
 - Bidder bid/win price analysis by geo, domain, with price range distribution.
 - Bid latency by bidder, geo, and domain.
 - Seamless integration with your Google Analytics account and scheduled reports delivered to your mailbox.
-
-<br />
 
 ## Example reports by Prebid Analytics
 
