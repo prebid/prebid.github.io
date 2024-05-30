@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Sirdata RTD/SDA Module
-
 {:.no_toc}
 
 * TOC
@@ -32,6 +31,7 @@ Now supports Seller Defined Audience !
 
 Please contact <prebid@sirdata.com> for more information.
 
+{: .alert.alert-warning :}
 Disclosure: This module harvests all page content, even for logged in users, and some EIDs, including the SharedId
 
 ## Publisher Usage
