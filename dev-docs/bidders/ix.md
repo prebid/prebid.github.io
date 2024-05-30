@@ -318,30 +318,46 @@ pbjs.addAdUnits({
     code: slot.code,
     mediaTypes: {
         native: {
-            image: {
-                required: true,
-                sizes: [150, 50]
-            },
-            title: {
-                required: true,
-                len: 80
-            },
-            sponsoredBy: {
-                required: true
-            },
-            clickUrl: {
-                required: true
-            },
-            privacyLink: {
-                required: false
-            },
-            body: {
-                required: true
-                len: 90
-            },
-            icon: {
-                required: true,
-                sizes: [50, 50]
+            ortb: {
+                assets: [{
+                    id: 1,
+                    required: 1,
+                    img: {
+                        type: 3,
+                        w: 150,
+                        h: 50,
+                    }
+                },
+                {
+                    id: 2,
+                    required: 1,
+                    title: {
+                        len: 80
+                    }
+                },
+                {
+                    id: 3,
+                    required: 1,
+                    data: {
+                        type: 1
+                    }
+                },
+                {
+                    id: 4,
+                    required: 1,
+                    data: {
+                        type: 2
+                    }
+                },
+                {
+                    id: 6,
+                    required: 1,
+                    img: {
+                        type: 1,
+                        w: 50,
+                        h: 50,
+                    }
+                }]
             }
         }
     },
