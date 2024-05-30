@@ -22,7 +22,6 @@ Related Videos:
 - [Prebid.js Impression Flow](/prebid/prebidjs-flow-video.html)
 - [Prebid Mobile Planning Guide](/prebid-mobile/prebid-mobile-video-planning.html)
 
-
 ## Transcript
 
 ### Introduction
@@ -40,8 +39,11 @@ Prebid Mobile allows app developers to access demand from multiple programmatic 
 Let’s start by covering the basic structure of the Prebid Mobile solution.
 
 The Prebid Mobile solution consists of two components that work closely together: the Prebid SDK and Prebid Server. SDK stands for “Software Development Kit”, which is a type of module that can be installed into an app and has specific functionality. The Prebid SDK is responsible for communicating between the app, Prebid Server, and the primary ad server, if one exists. It also helps to render ads from Prebid Mobile demand sources. 
+
 Prebid Server is responsible for running the auction among demand partners. It allows multiple demand partners to bid simultaneously on each ad opportunity, and it’s where inventory and auction controls are set. 
+
 Prebid Server is open source code. To use it, you’ll need to set up your own hosting server or find a partner to manage the hosting server for you.
+
 For more information on this process, check out our other video on planning a Prebid Mobile integration. 
 
 ### Impression Flow
