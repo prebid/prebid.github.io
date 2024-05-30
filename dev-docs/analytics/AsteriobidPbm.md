@@ -2,7 +2,7 @@
 layout: analytics
 title: Asteriobid PBM
 description: Asteriobid PBM Analytics Adapter
-modulecode: prebidmanager
+modulecode: asteriobidpbm
 ---
 
 #### Registration
