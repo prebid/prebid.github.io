@@ -185,6 +185,14 @@
   subgroup: 0
 
 - sbSecId: 1
+  title: Analytics For Prebid
+  link: /overview/analytics.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 1
   title: Consent Management Best Practices
   link: /dev-docs/cmp-best-practices.html
   isHeader: 0
@@ -506,31 +514,6 @@
   isSectionHeader: 0
   sectionTitle:
   subgroup: 6
-
-- sbSecId: 1
-  title: Analytics
-  link:
-  isHeader: 1
-  headerId: analytics
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 7
-
-- sbSecId: 1
-  title: Analytics For Prebid
-  link: /overview/analytics.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 7
-
-- sbSecId: 1
-  title: Prebid Analytics for GA
-  link: /overview/ga-analytics.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 7
 
 - sbSecId: 1
   title: Features
