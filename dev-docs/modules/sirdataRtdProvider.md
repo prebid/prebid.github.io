@@ -32,7 +32,7 @@ Now supports Seller Defined Audience !
 
 Please contact <prebid@sirdata.com> for more information.
 
-## Disclosure: This module harvests all page content, even for logged in users, and some EIDs, including the SharedId
+Disclosure: This module harvests all page content, even for logged in users, and some EIDs, including the SharedId
 
 ## Publisher Usage
 
