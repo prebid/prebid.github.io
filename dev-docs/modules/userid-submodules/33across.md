@@ -26,8 +26,8 @@ The following configuration parameters are available:
 | name | Required | String | The name of this sub-module | `"33acrossId"` |
 | params ||| Details for the sub-module initialization ||
 | params.pid | Required | String | Partner ID (PID) | Please reach out to [PrebidUIM@33across.com](mailto:PrebidUIM@33across.com) and request your PID |
-| params.storeFpid | Optional | Boolean | Indicates whether a supplemental first-party ID may be stored to improve addressability | `false` (default) or `true` |
-| params.storeTpid | Optional | Boolean | Indicates whether a supplemental third-party ID may be stored to improve addressability | `false` (default) or `true` |
+| params.storeFpid | Optional | Boolean | Indicates whether a supplemental first-party ID may be stored to improve addressability | `true` (default) or `false` |
+| params.storeTpid | Optional | Boolean | Indicates whether a supplemental third-party ID may be stored to improve addressability | `true` (default) or `false` |
 | storage |||||
 | storage.name | Required | String | The name of the cookie or html5 local storage key | `"33acrossId"` (recommended) |
 | storage.type | Required | String | This is where the 33across user ID will be stored | `"html5"` (recommended) or `"cookie"` |
