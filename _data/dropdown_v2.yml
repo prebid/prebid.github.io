@@ -61,16 +61,6 @@
   - subsectionId: 0
     sectionId: 1
     sectionName: Product
-    title: Analytics
-    link: /overview/analytics.html
-    needsDivider: 0
-    isHeader: 0
-    isSubHeader: 0
-    isSubSectionStart: 0
-
-  - subsectionId: 0
-    sectionId: 1
-    sectionName: Product
     title: Modules
     link: /dev-docs/modules/index.html
     needsDivider: 0
@@ -93,6 +83,16 @@
     sectionName: Product
     title: Bidder Params
     link: /dev-docs/bidders.html
+    needsDivider: 0
+    isHeader: 0
+    isSubHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 0
+    sectionId: 1
+    sectionName: Product
+    title: Analytics
+    link: /overview/analytics.html
     needsDivider: 0
     isHeader: 0
     isSubHeader: 0
