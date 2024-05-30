@@ -33,4 +33,3 @@ safeframes_ok: true
 |-------------|----------|-----------------------------|---------------|-----------|
 | `pid`       | required | Unique placement ID         | `pid1`        | `string`  |
 | `env`       | optional | Driftpixel environment      | `test`        | `string`  |
-
