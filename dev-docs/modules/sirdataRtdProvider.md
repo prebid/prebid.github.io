@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Sirdata RTD/SDA Module
-
 {:.no_toc}
 
 * TOC
@@ -31,6 +30,9 @@ ORTB2 compliant and FPD support for Prebid versions < 4.29
 Fully supports Seller Defined Audience ! Please find the full SDA taxonomy ids list <a href='https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/segtax.md' target='_blank'>here</a>.
 
 Please contact <prebid@sirdata.com> for more information.
+
+{: .alert.alert-warning :}
+Disclosure: This module harvests all page content, even for logged in users, and some EIDs, including the SharedId
 
 ## Publisher Usage
 
