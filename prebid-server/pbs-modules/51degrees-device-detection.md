@@ -92,7 +92,7 @@ hooks:
             "raw-auction-request": {
               "groups": [
                 {
-                  "timeout": 100,
+                  "timeout": 10,
                   "hook-sequence": [
                     {
                       "module-code": "fiftyone-devicedetection",
