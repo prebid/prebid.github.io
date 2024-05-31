@@ -109,6 +109,7 @@ hooks:
 ```
 
 Sample module enablement configuration in JSON and YAML formats:
+
 ```json
 {
   "modules":
