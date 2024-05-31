@@ -3,7 +3,7 @@ layout: bidder
 title: ogury
 description: Ogury Bidder Adapter
 biddercode: ogury
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 31
 usp_supported: false
 coppa_supported: false
@@ -37,13 +37,6 @@ The minimal list of bid params is:
 | `adUnitId`    | required | Your ad unit id configured with Ogury | `'2c4d61d0-90aa-0139-0cda-0242ac120004'` | `string`  |
 
 ### Optional bid Params
-
-The minimal list of bid params is:
-
-{: .table .table-bordered .table-striped }
-| Name           | Scope    | Description           | Example   | Type      |
-|----------------|----------|-----------------------|-----------|-----------|
-| `skipSizeCheck`| optional |By default, the sizes field must include [1,1]. Otherwise the Ogury Bidder doesn't participate in the auction. However, if it isn't possible for some reasons to include it, you may use this option to enable bidding even on other sizes.| `true` | `boolean`  |
 
 Depending on your advertising format needs, other optional parameters can be used. Supported parameters are detailed [here](https://ogury-ltd.gitbook.io/mobile-web/header-bidding/ogury-prebid.js-adapter-integration#optional-configuration).
 

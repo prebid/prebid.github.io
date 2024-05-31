@@ -6,7 +6,8 @@ pbjs: true
 biddercode: playwire
 aliasCode: grid
 media_types: banner, video
-gdpr_supported: true
+gvl_id: 686 (grid)
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 floors_supported: true

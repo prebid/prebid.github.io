@@ -7,7 +7,7 @@ pbs: true
 biddercode: openx
 media_types: banner, video
 schain_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 gpp_supported: true
@@ -28,6 +28,10 @@ The newer of the two is openxOrtbBidAdapter. Publishers are welcome to test with
 After the transition openxOrtbBidAdapter will replace openxBidAdapter.
 
 IMPORTANT: only include either openxBidAdapter or openxOrtbBidAdapter in your build.
+
+### Prebid Server Note
+
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
 
 ### Bid Parameters
 
@@ -252,5 +256,5 @@ pbjs.setConfig({
 
 ## Additional Details
 
-* [Banner Ads](https://docs.openx.com/Content/developers/containers/prebid-adapter.html) (Customer login required.)
-* [Video Ads](https://docs.openx.com/Content/developers/containers/prebid-video-adapter.html) (Customer login required.)
+* [Banner Ads](https://docs.openx.com/publishers/prebid-adapter-web/) (Customer login required.)
+* [Video Ads](https://docs.openx.com/publishers/prebid-adapter-video/) (Customer login required.)

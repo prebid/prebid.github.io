@@ -99,6 +99,7 @@ Each module can perform two actions:
 
 This is the main configuration section
 
+{: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | name | String | Real time data module name | Mandatory. Always 'Weborama' |
@@ -117,6 +118,7 @@ To be possible use the integration with Weborama Contextual Service you must be 
 
 On this section we will explain the `params.weboCtxConf` subconfiguration:
 
+{: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | token | String | Security Token provided by Weborama, unique per client | Mandatory |
@@ -129,13 +131,14 @@ On this section we will explain the `params.weboCtxConf` subconfiguration:
 | enabled | Boolean| if false, will ignore this configuration| Default is `true` if this section is present|
 | baseURLProfileAPI | String| if present, update the domain of the contextual api| Optional. Default is `ctx.weborama.com` |
 
-#### WAM User-Centric Configuration
+#### User-Centric Configuration
 
-To be possible use the integration with Weborama Audience Manager (WAM) you must be a client with an account id and you lust include the `wamfactory` script in your pages with `wam2gam` feature activated.
+To be possible use the integration with Weborama Audience Manager (WAM) you must be a client with an account id and you must include the `wamfactory` script in your pages with `wam2gam` feature activated.
 Please contact weborama if you don't have it.
 
 On this section we will explain the `params.weboUserDataConf` subconfiguration:
 
+{: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | accountId|Number|WAM account id. If you don't have it, please contact weborama. | Recommended.|
@@ -146,12 +149,22 @@ On this section we will explain the `params.weboUserDataConf` subconfiguration:
 | localStorageProfileKey| String | can be used to customize the local storage key | Optional |
 | enabled | Boolean| if false, will ignore this configuration| Default is `true` if this section is present|
 
+##### User Consent
+
+The WAM User-Centric configuration will check for user consent if gdpr applies. It will check for consent:
+
+* Vendor ID 284 (Weborama)
+* Purpose IDs: 1, 3, 4, 5 and 6
+
+If the user consent does not match such conditions, this module will not load, means we will not check for any data in local storage and the default profile will be ignored.
+
 #### Sfbx LiTE Site-Centric Configuration
 
 To be possible use the integration between Weborama and Sfbx LiTE you should also contact SFBX® to setup this product.
 
 On this section we will explain the `params.sfbxLiteDataConf` subconfiguration:
 
+{: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | setPrebidTargeting|Various|If true, will use the user profile to set the prebid (GPT/GAM or AST) targeting of all adunits managed by prebid.js| Optional. Default is `params.setPrebidTargeting` (if any) or `true`.|
@@ -165,6 +178,7 @@ On this section we will explain the `params.sfbxLiteDataConf` subconfiguration:
 
 This property support the following types
 
+{: .table .table-bordered .table-striped }
 | Type  | Description | Example   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | Boolean|If true, set prebid targeting for all adunits, or not in case of false| `true` | default value |
@@ -182,6 +196,7 @@ setPrebidTargeting: function(adUnitCode, data, metadata){
 
 This callback will be executed with the adUnitCode, profile and a metadata with the following fields
 
+{: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | user | Boolean | If true, it contains user-centric data |  |
@@ -205,6 +220,7 @@ setPrebidTargeting: function(adUnitCode, data, metadata){
 
 This property support the following types
 
+{: .table .table-bordered .table-striped }
 | Type  | Description | Example   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | Boolean|If true, send data to all bidders, or not in case of false| `true` | default value |
@@ -232,6 +248,7 @@ sendToBidders: function(bid, adUnitCode, data, metadata){
 
 This callback will be executed with the bid object (contains a field `bidder` with name), adUnitCode, profile and a metadata with the following fields
 
+{: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | user | Boolean | If true, it contains user-centric data |  |
@@ -299,6 +316,7 @@ We can specify a callback to handle the profile data from site-centric or user-c
 
 This callback will be executed with the profile and a metadata with the following fields
 
+{: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
 | user | Boolean | If true, it contains user-centric data |  |
@@ -429,6 +447,7 @@ pbjs.que.push(function () {
 
 Imagine we need to configure the following options using the previous example, we can write the configuration like the one below.
 
+{: .table .table-bordered .table-striped }
 ||contextual|wam|lite|
 | :------------ | :------------ | :------------ |:------------ |
 |setPrebidTargeting|true|false|true|

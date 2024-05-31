@@ -3,7 +3,7 @@ layout: analytics
 title: Adloox
 description: Adloox Prebid Analytics Adapter
 modulecode: adloox
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: false
 prebid_member: false

@@ -9,12 +9,23 @@ on:
       - master
 
 jobs:
+  # based on https://github.com/DavidAnson/markdownlint-cli2-action/blob/main/.github/workflows/changed.yml
+  # runs markdown lint only for changed files
   markdownlint:
     name: run markdownlint
     runs-on: ubuntu-latest
-    container: ghcr.io/igorshubovych/markdownlint-cli:v0.35.0
     steps:
-      - uses: actions/checkout@master
-      - name: markdownlint-cli
-        run: |
-          markdownlint --config .markdownlint.json --ignore-path .markdownlintignore "**/*.md"
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: tj-actions/changed-files@v41
+        id: changed-files
+        with:
+          files: '**/*.md'
+          separator: ","
+      - uses: DavidAnson/markdownlint-cli2-action@v15
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
+          globs: "${{ steps.changed-files.outputs.all_changed_files }},!_includes"
+          separator: ","
+          config: '.markdownlint.json'

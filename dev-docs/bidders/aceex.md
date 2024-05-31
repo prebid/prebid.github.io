@@ -3,7 +3,7 @@ layout: bidder
 title: Aceex
 description: Prebid Aceex Bidder Adaptor
 biddercode: aceex
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true

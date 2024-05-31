@@ -4,7 +4,7 @@ title: fluct
 description: Prebid fluct Bidder Adapter
 biddercode: fluct
 media_types: banner
-gdpr_supported: false
+tcfeu_supported: false
 coppa_supported: false
 usp_supported: false
 schain_supported: true

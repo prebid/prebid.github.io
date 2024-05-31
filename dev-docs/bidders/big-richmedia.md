@@ -11,7 +11,7 @@ coppa_supported: true
 usp_supported: true
 floors_supported: true
 fpd_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 32
 sidebarType: 1
 ---

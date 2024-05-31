@@ -166,8 +166,9 @@ When using the Video Module, the mediaTypes.video properties get filled out auto
 * [Banner](#adUnit-banner-example)
 * [Video](#adUnit-video-example)  
   * [With the Video Module](#adUnit-video-module-example)
-  * [Instream](#adUnit-video-example-instream)  
-  * [Outstream](#adUnit-video-example-outstream)  
+  * [Instream Sound-On](#adUnit-video-example-instream)
+  * [Accompanying Content](#adUnit-video-example-accompanying)
+  * [No Content/Standalone](#adUnit-video-example-outstream)
   * [Adpod (Long-Form)](#adUnit-video-example-adpod)
 * [Native](#adUnit-native-example)
 * [Multi-Format](#adUnit-multi-format-example)
@@ -199,11 +200,11 @@ pbjs.addAdUnits({
 });
 ```
 
-<a name="adUnit-video-example">
+<a name="adUnit-video-example"></a>
 
 ### Video
 
-<a name="adUnit-video-module-example">
+<a name="adUnit-video-module-example"></a>
 
 #### With the Video Module
 
@@ -233,7 +234,7 @@ pbjs.addAdUnits({
 
 <a name="adUnit-video-example-instream"></a>
 
-#### Instream
+#### Instream Sound-On
 
 For an example of an instream video ad unit that you handle on your own, see below. For more detailed instructions, see [Show Video Ads]({{site.baseurl}}/dev-docs/show-video-with-a-dfp-video-tag.html).
 
@@ -243,10 +244,40 @@ pbjs.addAdUnits({
     mediaTypes: {
         video: {
             context: 'instream',
+            plcmt: 1,
             playerSize: [640, 480],
             mimes: ['video/mp4'],
             protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-            playbackmethod: [2],
+            playbackmethod: [5],
+            skip: 1
+        },
+    },
+    bids: [{
+        bidder: 'appnexus',
+        params: {
+            placementId: 13232361
+        }
+    }]
+});
+```
+
+<a name="adUnit-video-example-accompanying"></a>
+
+#### Player contains video content with sound off
+
+The IAB calls this scenario "Accompanying Content". Previously, this might have been called "instream with sound-off", but as of April 2023, the IAB has reclassified this scenario.
+
+```javascript
+pbjs.addAdUnits({
+    code: slot.code,
+    mediaTypes: {
+        video: {
+            context: 'instream',
+            plcmt: 2,
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [6],
             skip: 1
         },
     },
@@ -261,7 +292,9 @@ pbjs.addAdUnits({
 
 <a name="adUnit-video-example-outstream"></a>
 
-#### Outstream
+#### Standalone ad wit no video content
+
+This is the scenario formerly known as Outstream. As of April 2023, the IAB now calls this scenario "No Content/Standalone".
 
 For an example of an outstream video ad unit that you handle on your own, see below.  For more detailed instructions, see [Show Outstream Video Ads]({{site.baseurl}}/dev-docs/show-outstream-video-ads.html).
 
@@ -271,8 +304,11 @@ pbjs.addAdUnits({
     mediaTypes: {
         video: {
             context: 'outstream',
-            useCacheKey: false,
-            playerSize: [640, 480]
+            plcmt: 4,
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [6],
         }
     },
     renderer: {
@@ -296,8 +332,12 @@ pbjs.addAdUnits({
     mediaTypes: {
         video: {
             context: 'outstream',
+            plcmt: 4,
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [6],
             useCacheKey: true,
-            playerSize: [640, 480]
         }
     },
     renderer: {
@@ -513,46 +553,46 @@ where bidders have different capabilities for the same spot on the page. e.g.
 In this example, bidderA gets both banner and outstream, while bidderB gets only banner.
 
 ```javascript
-    var adUnits = [
-           {
-               code: 'test-div',
-                mediaTypes: {
-                    video: {
-                        context: "outstream",
-                        playerSize: [[300,250]]
+var adUnits = [
+        {
+            code: 'test-div',
+            mediaTypes: {
+                video: {
+                    context: "outstream",
+                    playerSize: [[300,250]]
+                }
+            },
+            bids: [
+                {
+                    bidder: 'bidderA',
+                    params: {
+                            ...
                     }
-                },
-               bids: [
-                   {
-                        bidder: 'bidderA',
-                        params: {
-                             ...
-                        }
-                   }
-               ]
-           },
-           {
-               code: 'test-div',
-                mediaTypes: {
-                    banner: {
-                        sizes: [[300,250],[300,600],[728,90]]
+                }
+            ]
+        },
+        {
+            code: 'test-div',
+            mediaTypes: {
+                banner: {
+                    sizes: [[300,250],[300,600],[728,90]]
+                }
+            },
+            bids: [
+                {
+                    bidder: 'bidderB',
+                    params: {
+                        ...
                     }
-                },
-               bids: [
-                   {
-                       bidder: 'bidderB',
-                       params: {
-                           ...
-                       }
-                   },{
-                        bidder: 'bidderA',
-                        params: {
-                           ...
-                        }
-                   }
-               ]
-           }
-       ];
+                },{
+                    bidder: 'bidderA',
+                    params: {
+                        ...
+                    }
+                }
+            ]
+        }
+    ];
 ```
 
 In this example, bidderA receives 2 bidRequest objects while bidderB receives one. If a bidder provides more than one bid for the same AdUnit.code, Prebid.js will use the highest bid when it's
@@ -573,14 +613,14 @@ pbjs.addAdUnits({
         }
     },
     ortb2Imp: {
-         ext: {
-        data: {
-                pbadslot: "homepage-top-rect",
-                adUnitSpecificContextAttribute: "123"
+        ext: {
+            data: {
+                    pbadslot: "homepage-top-rect",
+                    adUnitSpecificContextAttribute: "123"
+            }
         }
-         }
     },
-    ...
+    // ...
 });
 ```
 
@@ -606,7 +646,7 @@ pbjs.addAdUnits({
     ortb2Imp: {
         instl:1
     },
-    ...
+    // ...
 });
 ```
 

@@ -5,7 +5,8 @@ description: Reset Digital Bidder Module
 pbjs: true
 pbs: true
 biddercode: resetdigital
-gdpr_supported: true
+gvl_id: 1162
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true

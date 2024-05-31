@@ -3,7 +3,7 @@ layout: analytics
 title: ATS Analytics
 description: ATS Prebid Analytics Adapter
 modulecode: ats
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 prebid_member: true
 gvl_id: 97

@@ -26,8 +26,7 @@ Several, but not all, of the popular consent strings have modules (eg [Prebid Ac
 
 ### Prebid Is a Toolkit
 
-{: .alert.alert-danger :}
-Important: This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+{% include legal-warning.html %}
 
 1. Get a privacy lawyer.
 2. Consider all the privacy regulations your content business is subject to.
@@ -73,7 +72,7 @@ pbjs.setConfig({
               },
               allow: true
            }]
-       }`
+       }
    }
 })
 ```
@@ -218,7 +217,7 @@ These are the parameters available to the condition function:
 | `componentName` | String | All activities | Name of the component; this is (depending on the type) either a bidder code, user ID or RTD submodule name, analytics provider code, or module name. |
 | `component`     | String | All activities | This is always a dot-separated concatenation of `componentType` and `componentName`; for example, with `{componentType: 'bidder', componentName: 'bidderX'}`, `component` is `'bidder.bidderX'`. |
 | `adapterCode`   | String | All activities | If `componentType` is `'bidder'`, and `componentName` is an [alias](/dev-docs/publisher-api-reference/aliasBidder.html), then `adapterCode` is the bidder code that was aliased; or identical to `componentName` if the bidder is not an alias. This is undefined when the component is not a bidder.|
-| `configName`    | String | <a id="params-fetchBids"></a> `fetchBids`    | When the Prebid Server adapter is part of an auction, this is the name given to its [s2s configuration](/dev-docs/modules/prebidServer.md), if any. |
+| `configName`    | String | <a id="params-fetchBids"></a> `fetchBids`    | When the Prebid Server adapter is part of an auction, this is the name given to its [s2s configuration](/dev-docs/modules/prebidServer.html), if any. |
 | `storageType`   | String | <a id="params-accessDevice"></a> `accessDevice` | Either `'html5'` or `'cookie'` - the device storage mechanism being accessed. |
 | `syncType`      | String | <a id="params-syncUser"></a> `syncUser`     | Either `'iframe'` or `'image'` - the type of user sync. |
 | `syncUrl`       | String | `syncUser`     | URL of the user sync. |
@@ -264,7 +263,7 @@ pbjs.setConfig({
             default: false,
             rules: [{
                 condition({syncUrl}) {
-                    return DOMAINLIST.find(domain => syncUrl.startsWith(domain))
+                    return DOMAINLIST.some(domain => syncUrl.startsWith(domain));
                 },
                 allow: true
             }]

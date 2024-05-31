@@ -5,7 +5,7 @@ description: Prebid Adot Bidder Adapter
 biddercode: adot
 media_types: banner, video, native
 userIds: pubProvidedId
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 272
 pbjs: true
 pbs: true
