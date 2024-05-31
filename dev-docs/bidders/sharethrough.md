@@ -19,7 +19,7 @@ ortb_blocking_supported: partial
 sidebarType: 1
 ---
 
-### Note
+### Before You Begin
 
 The Sharethrough bidder adapter requires additional setup and approval from the Sharethrough Integrations team. Please reach out to your account manager for more information to start using it.
 
@@ -32,8 +32,47 @@ The Sharethrough bidder adapter requires additional setup and approval from the 
 | `bcat`      | optional | (deprecated) Array of blocked IAB Categories               | `['IAB1-2', 'IAB1-3']`       | `string[]`           |
 | `badv`      | optional | (deprecated) Array of blocked Advertisers by their domains | `['ford.com', 'pepsi.com']`  | `string[]`           |
 
-Note: Providing `bcat` and `badv` via Bid Params is deprecated, the First Party Data method should be preferred (see below).
-When both methods are provided, first party data values will be used and bid param values will be ignored.
+**Note**: Providing `bcat` and `badv` via Bid Params is deprecated, the First Party Data method should be preferred (see below).
+When both methods are provided (i.e. when `badv` and `bcat` are specified both as bid params and through the first party ortb2 method), first party data values will be used and bid param values will be ignored.
+
+#### Configuration
+
+Sample banner setup:
+
+```
+<script>
+  var adUnits = [
+    {
+      code: "my-html-div-tag-id",
+      ortb2Imp: {
+        ext: {
+            gpid: "/1111/homepage-leftnav",
+        }
+      },
+      mediaTypes: {
+        banner: {
+          sizes: [[250,250],[300,300]]
+        }
+      },
+      bids: [
+        {
+          bidder: "sharethrough",
+          params: {
+            pkey: "pkey1",
+            // you can set badv and bcat here too, but it is not recommended
+            // see the "ORTB Blocking" section for a preferred alternate setup for
+            // badv and bcat
+          }
+        }
+      ]
+    },
+  ]
+
+  pbjs.que.push(function() {
+    pbjs.addAdUnits(adUnits);
+  });
+</script>
+```
 
 #### First Party Data
 
@@ -84,3 +123,31 @@ pbjs.setConfig({
   }
 });
 ```
+
+### Additional Notes
+
+#### Request and Response Attributes
+
+- TTL is 360 for display and native, 3600 for video (in milliseconds).
+- Safeframes are supported.
+- Advertiser domains are available in bid responses at `meta.advertiserDomains`
+- Bids are returned in **net** - that is, the bids returned reflect the bid amount with revenue sharing already taken into account. No adjustment is necessary.
+- Sharethrough is GDPR and COPPA compliant.
+
+#### Supported Media Types
+
+- Banner
+- Native
+- Video (instream and outstream)
+
+#### Default Ad Server Key Value
+
+- `sharethrough`
+
+### Prebid Module Support
+
+For publishers using PBJS version 5 and above, current module support includes:
+
+- Price Floors
+- Supply Chain Object
+- User ID
