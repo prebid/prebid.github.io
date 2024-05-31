@@ -92,6 +92,7 @@ The PubMatic adapter supports video as of Prebid v1.16.0
 | `video.battr`          | optional | Blocked creative attributes, See [OpenRTB 2.5 specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf), List 5.3 for values             | `[3, 9]` |
 | `video.linearity`      | optional | Indicates if the impression is linear or nonlinear<br/>Values:<br/>`1`: Linear/In-Stream<br/>`2`: Non-Linear/Overlay.                                                                                | `1` |
 | `video.placement`      | optional | Video placement type.  See [OpenRTB 2.5 specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf), List 5.9 for Values                            | `1` |
+| `video.plcmt`          | optional | Video placement type. See [OpenRTB 2.6 specification - github](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/develop/2.6.md#327---object-video-), For values [plcmt subtypes](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md#list_plcmtsubtypesvideo)                            | `1` |
 | `video.minbitrate`     | optional | Minumim bit rate in Kbps.                                   | 50 |
 | `video.maxbitrate`     | optional | Maximum bit rate in Kbps.                                   | 70 |
 
@@ -114,8 +115,9 @@ var videoAdUnits = [
             api: [ 1, 2 ],                        // optional
             protocols: [ 2, 3 ],                  // optional
             battr: [ 13, 14 ],                    // optional
-            linearity: 1,                         // optional
+            linearity: 1,                         // optional            
             placement: 2,                         // optional
+            plcmt: 1,                             // optional
             minbitrate: 10,                       // optional
             maxbitrate: 10                        // optional
         }
