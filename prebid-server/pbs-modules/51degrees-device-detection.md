@@ -10,7 +10,7 @@ sidebarType : 5
 {:.no_toc}
 
 * TOC
-  {:toc }
+{:toc }
 
 ## Overview
 
@@ -108,13 +108,26 @@ hooks:
     }
 ```
 
-Minimal sample (only required):
+Sample module enablement configuration in JSON and YAML formats:
+```json
+{
+  "modules":
+  {
+    "fiftyone-devicedetection":
+    {
+      "data-file": {
+        "path": "/path/to/51Degrees-LiteV4.1.hash"
+      }
+    }
+  }
+}
+```
 
 ```yaml
   modules:
     fiftyone-devicedetection:
       data-file:
-        path: "51Degrees-LiteV4.1.hash" # string, REQUIRED, download the sample from https://github.com/51Degrees/device-detection-data/blob/main/51Degrees-LiteV4.1.hash or Enterprise from https://51degrees.com/pricing
+        path: "/path/to/51Degrees-LiteV4.1.hash" 
 ```
 
 PBS-Go version of the same config:
@@ -182,24 +195,24 @@ PBS-Go version of the same config:
 ## List of module configuration options (same for PBS-Java and PBS-Go)
 
 * `account-filter`
-  * `allow-list` - _(list of strings)_ -  A list of account IDs that are allowed to use this module. If empty, everyone is allowed. Full-string match is performed (whitespaces and capitalization matter). Defaults to empty.
-  * `data-file`
-    * `path` - _(string, **REQUIRED**)_ -  The full path to the device detection data file. Sample file can be downloaded from [data repo on GitHub](https://github.com/51Degrees/device-detection-data/blob/main/51Degrees-LiteV4.1.hash).
-    * `make-temp-copy` - _(boolean)_ - If true, the engine will create a temporary copy of the data file rather than using the data file directly. Defaults to false.
-    * `update`
-      * `auto` - _(boolean)_ - Enable/Disable auto update. Defaults to enabled. If enabled, the auto update system will automatically download and apply new data files for device detection.
-      * `on-startup` - _(boolean)_ - Enable/Disable update on startup. Defaults to enabled. If enabled, the auto update system will be used to check for an update before the device detection engine is created. If an update is available, it will be downloaded and applied before the pipeline is built and returned for use so this may take some time.
-      * `url` - _(string)_ - Configure the engine to use the specified URL when looking for an updated data file. Default is the 51Degrees update URL.
-      * `license-key` - _(string)_ - Set the license key used when checking for new device detection data files. Defaults to null.
-      * `watch-file-system` - _(boolean)_ - The data update service has the ability to watch a file on disk and refresh the engine as soon as that file is updated. This setting enables/disables that feature. Defaults to true.
-      * `polling-interval` - _(int, seconds)_ - Set the time between checks for a new data file made by the DataUpdateService in seconds. Default = 30 minutes.
-  * `performance` - please note: this is the speed of device detection, do not confuse with revenue performance of the module
-    * `profile` - _(string)_ - Set the performance profile for the device detection engine. Must be one of: `LowMemory`, `MaxPerformance`, `HighPerformance`, `Balanced`, `BalancedTemp`, `InMemory`. Defaults to `Balanced`.
-    * `concurrency` - _(int)_ - Set the expected number of concurrent operations using the engine. This sets the concurrency of the internal caches to avoid excessive locking. Default: 10.
-    * `difference` - _(int)_ - Set the maximum difference to allow when processing HTTP headers. The meaning of difference depends on the Device Detection API being used. The difference is the difference in hash value between the hash that was found, and the hash that is being searched for. By default this is 0. For more information see [51Degrees documentation](https://51degrees.com/documentation/_device_detection__hash.html).
-    * `allow-unmatched` - _(boolean)_ - If set to false, a non-matching User-Agent will result in properties without set values.
-      If set to true, a non-matching User-Agent will cause the 'default profiles' to be returned. This means that properties will always have values (i.e. no need to check .hasValue) but some may be inaccurate. By default, this is false.
-    * `drift` - _(int)_ - Set the maximum drift to allow when matching hashes. If the drift is exceeded, the result is considered invalid and values will not be returned. By default this is 0. For more information see [51Degrees documentation](https://51degrees.com/documentation/_device_detection__hash.html).
+  * `allow-list` - _(list of strings)_ -  A list of account IDs that are allowed to use this module - only relevant if enabled globally for the host. If empty, all accounts are allowed. Full-string match is performed (whitespaces and capitalization matter). Defaults to empty.
+* `data-file`
+  * `path` - _(string, **REQUIRED**)_ -  The full path to the device detection data file. Sample file can be downloaded from [data repo on GitHub](https://github.com/51Degrees/device-detection-data/blob/main/51Degrees-LiteV4.1.hash), or get an Enterprise data file [here](https://51degrees.com/pricing).
+  * `make-temp-copy` - _(boolean)_ - If true, the engine will create a temporary copy of the data file rather than using the data file directly. Defaults to false.
+  * `update`
+    * `auto` - _(boolean)_ - Enable/Disable auto update. Defaults to enabled. If enabled, the auto update system will automatically download and apply new data files for device detection.
+    * `on-startup` - _(boolean)_ - Enable/Disable update on startup. Defaults to enabled. If enabled, the auto update system will be used to check for an update before the device detection engine is created. If an update is available, it will be downloaded and applied before the pipeline is built and returned for use so this may take some time.
+    * `url` - _(string)_ - Configure the engine to use the specified URL when looking for an updated data file. Default is the 51Degrees update URL.
+    * `license-key` - _(string)_ - Set the license key used when checking for new device detection data files. Defaults to null.
+    * `watch-file-system` - _(boolean)_ - The data update service has the ability to watch a file on disk and refresh the engine as soon as that file is updated. This setting enables/disables that feature. Defaults to true.
+    * `polling-interval` - _(int, seconds)_ - Set the time between checks for a new data file made by the DataUpdateService in seconds. Default = 30 minutes.
+* `performance` - please note: this is the speed of device detection, do not confuse with revenue performance of the module
+  * `profile` - _(string)_ - Set the performance profile for the device detection engine. Must be one of: `LowMemory`, `MaxPerformance`, `HighPerformance`, `Balanced`, `BalancedTemp`, `InMemory`. Defaults to `Balanced`.
+  * `concurrency` - _(int)_ - Set the expected number of concurrent operations using the engine. This sets the concurrency of the internal caches to avoid excessive locking. Default: 10.
+  * `difference` - _(int)_ - Set the maximum difference to allow when processing HTTP headers. The meaning of difference depends on the Device Detection API being used. The difference is the difference in hash value between the hash that was found, and the hash that is being searched for. By default this is 0. For more information see [51Degrees documentation](https://51degrees.com/documentation/_device_detection__hash.html).
+  * `allow-unmatched` - _(boolean)_ - If set to false, a non-matching User-Agent will result in properties without set values.
+    If set to true, a non-matching User-Agent will cause the 'default profiles' to be returned. This means that properties will always have values (i.e. no need to check .hasValue) but some may be inaccurate. By default, this is false.
+  * `drift` - _(int)_ - Set the maximum drift to allow when matching hashes. If the drift is exceeded, the result is considered invalid and values will not be returned. By default this is 0. For more information see [51Degrees documentation](https://51degrees.com/documentation/_device_detection__hash.html).
 
 ### Example
 
@@ -348,4 +361,3 @@ Or just open new [issue](https://github.com/prebid/prebid-server-java/issues/new
 ## Further Reading
 
 * [Prebid Server Module List](/prebid-server/pbs-modules/index.html)
-* [Building a Prebid Server Module](/prebid-server/developers/add-a-module.html)
