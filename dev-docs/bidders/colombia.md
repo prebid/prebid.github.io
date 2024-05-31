@@ -26,6 +26,5 @@ The Colombia bidding adapter requires setup and approval before implementation. 
 | `category` | optional | Page Categorization. | `'Election, Sports, Entertainments'`        | `string` |
 | `pagetype` | optional | Type of page. | `'Listing, Show, Liveblog, Photostory'`        | `string` |
 | `incognito` | optional | 1, for incognito mode. | `'1'`        | `string` |
-| `dsmi` | optional | CCPA Compliance Flag. | `'0|1'`        | `string` |
-| `optout` | optional | GDPR Compliance Flag. | `'0|1'`        | `string` |
-
+| `dsmi` | optional | CCPA Compliance Flag. | `'0','1'`        | `string` |
+| `optout` | optional | GDPR Compliance Flag. | `'0','1'`        | `string` |
