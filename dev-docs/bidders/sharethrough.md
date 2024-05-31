@@ -65,7 +65,7 @@ Sample banner setup:
           }
         }
       ]
-    },
+    }
   ]
 
   pbjs.que.push(function() {
