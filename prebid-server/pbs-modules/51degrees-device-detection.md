@@ -22,7 +22,7 @@ The module sets the following fields of the device object: `make`, `model`, `os`
 
 ### Evidence
 
-To do device detection module uses `device.ua` (User Agent) and `device.sua` (Structured User Agent) provided in the oRTB request payload as input or evidence in 51degrees terminology.  There is a fallback to the corresponding HTTP request headers if any of these are not present in the oRTB payload - in particular: `User-Agent` and `Sec-CH-UA-*` (aka User-Agent Client Hints).  To make sure Prebid.js sends Structured User Agent in the oRTB payload - we strongly advice publishers to enable [First Party Data Enrichment module](https://docs.prebid.org/dev-docs/modules/enrichmentFpdModule.html) for their wrappers and specify 
+The module uses `device.ua` (User Agent) and `device.sua` (Structured User Agent) provided in the oRTB request payload as input (or 'evidence' in 51Degrees terminology).  There is a fallback to the corresponding HTTP request headers if any of these are not present in the oRTB payload - in particular: `User-Agent` and `Sec-CH-UA-*` (aka User-Agent Client Hints).  To make sure Prebid.js sends Structured User Agent in the oRTB payload - we strongly advice publishers to enable [First Party Data Enrichment module](dev-docs/modules/enrichmentFpdModule.html) for their wrappers and specify 
 
 ```js
 pbjs.setConfig({
