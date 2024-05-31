@@ -4,13 +4,6 @@ title: Colombia
 description: Prebid Colombia Bidder Adaptor
 biddercode: colombia
 media_types: banner, video, native
-usp_supported: true
-coppa_supported: true
-gpp_supported: true
-schain_supported: true
-dchain_supported: true
-floors_supported: true
-userIds: all
 prebid_member: true
 pbjs: true
 pbs: false
