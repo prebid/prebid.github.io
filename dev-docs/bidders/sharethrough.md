@@ -39,7 +39,7 @@ When both methods are provided (i.e. when `badv` and `bcat` are specified both a
 
 Sample banner setup:
 
-```
+```js
 <script>
   var adUnits = [
     {
