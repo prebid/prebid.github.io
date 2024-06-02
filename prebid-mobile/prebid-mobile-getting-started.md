@@ -10,14 +10,30 @@ sidebarType: 2
 
 This page gives an overview of steps you need to take, either as an ad ops user or as a developer, to start using Prebid Mobile.
 
-{% capture alertNote %}
+{: .alert.alert-info :}
 If this is your first time working with header bidding, we recommend that you read [What is Prebid?](/overview/intro.html) before diving into Prebid Mobile.
-{% endcapture %}
-
-{% include alerts/alert_note.html content=alertNote %}
 
 - TOC
 {:toc}
+
+## Video Overviews
+
+{% include vimeo-iframe.html id="945961210" title="Prebid Mobile Impression Flow" %}
+
+Further Content:
+
+- [Transcript of this video](/prebid-mobile/prebid-mobile-video-flow.html)
+- [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-getting-started.html)
+- [All videos](/overview/all-videos.html)
+
+{% include vimeo-iframe.html id="948475423" title="Prebid Mobile Planning Guide" %}
+
+Further Content:
+
+- [Transcript of this video](/prebid-mobile/prebid-mobile-video-planning.html)
+- [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-getting-started.html)
+- [Prebid Managed Services](https://prebid.org/product-suite/managed-services/)
+- [All videos](/overview/all-videos.html)
 
 ## Set Up Prebid Server
 

@@ -29,7 +29,7 @@ The following configuration parameters are available:
 | name | Required | String | The name of this module: `"id5Id"` | `"id5Id"` |
 | params | Required | Object | Details for the ID5 ID. | |
 | params.partner | Required | Number | This is the ID5 Partner Number obtained from registering with ID5. | `173` |
-| params.externalModuleUrl | Optional | String | URL to the external ID5 module. Highly recommended for the best integration possible. | `https://cdn.id5-sync.com/api/1.0/id5PrebidModule.js` |
+| params.externalModuleUrl | Optional | String | URL to the external ID5 module. Highly recommended for the best integration possible. This is additional javascript unreviewed by the prebid.js community | `https://cdn.id5-sync.com/api/1.0/id5PrebidModule.js` |
 | params.pd | Optional | String | Partner-supplied data used for linking ID5 IDs across domains. See [our documentation](https://wiki.id5.io/en/identitycloud/retrieve-id5-ids/passing-partner-data-to-id5) for details on generating the string. Omit the parameter or leave as an empty string if no data to supply | `"MT1iNTBjY..."` |
 | params.abTesting | Optional | Object | Allows publishers to easily run an A/B Test. If enabled and the user is in the Control Group, the ID5 ID will NOT be exposed to bid adapters for that request | Disabled by default |
 | params.abTesting.enabled | Optional | Boolean | Set this to `true` to turn on this feature | `true` or `false` |
