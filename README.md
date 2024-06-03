@@ -108,10 +108,6 @@ This means an adaptor is not available to download from Prebid.org as soon as th
 
 <a name="thanks"></a>
 
-## Liquid Templating
-
-* [jekyll - check for non empty](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/jekyll/liquid/conditionals/non-empty.html)
-
 ## Thanks
 
 Many thanks to the following people who have submitted content to Prebid.org.  We really appreciate the help!
