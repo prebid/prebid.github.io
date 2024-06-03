@@ -113,9 +113,9 @@ It serves 2 purposes:
                 "schain": { SCHAIN OBJECT 1} // bid adapters will see their schain on source.[ext.]schain.
             }],
             "server": {
-	        "externalurl": "https://prebid-server.example.com",
-	        "gvlid": 9999999,
-	        "datacenter": "us-east-1"
+                "externalurl": "https://prebid-server.example.com",
+                "gvlid": 9999999,
+                "datacenter": "us-east-1"
             },
             "data": {
                 "eidpermissions": [       // bid adapters don't see this object
