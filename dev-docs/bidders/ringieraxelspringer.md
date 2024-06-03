@@ -2,7 +2,7 @@
 layout: bidder
 title: RingierAxelSpringer
 description: Prebid RingierAxelSpringer Bidder Adapter
-biddercode: ras
+biddercode: ringieraxelspringer
 media_types: banner, native
 pbjs: true
 gvl_id: 1021
