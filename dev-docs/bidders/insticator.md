@@ -4,8 +4,13 @@ title: Insticator
 description: Prebid Insticator Bidder Adapter
 biddercode: insticator
 tcfeu_supported: true
+dsa_supported: true
+gpp_sids: tcfeu, usnat, usstate_all, usp
 usp_supported: true
+coppa_supported: true
+gdpr_supported: true
 schain_supported: true
+floors_supported: true
 media_types: banner, video
 multiformat_supported: will-bid-on-any
 pbjs: true
@@ -16,20 +21,22 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description               | Example              | Type     |
-|---------------|----------|---------------------------|----------------------|----------|
-| `adUnitId`    | Required | The ad unit ID provided by Insticator | `'test'` | `string` |
-| `yob`         | optional | Year of Birth             | `'1982'`             | `string` |
-| `gender`      | optional | Gender                    | `'M'`                | `string` |
-| `instl`       | optional | 1 = the ad is interstitial or full screen, 0 = not interstitial.    | `1`    | `number` |
-| `pos`         | optional | ad position as per IAB standards       | `1`                | `number` |
+| Name                        | Scope    | Description                                                                             | Example                            | Type     |
+|-----------------------------|----------|-----------------------------------------------------------------------------------------|------------------------------------|----------|
+| `adUnitId`                  | Required | The ad unit ID provided by Insticator                                                   | `'test'`                           | `string` |
+| `yob`                       | optional | Year of Birth                                                                           | `'1982'`                           | `string` |
+| `gender`                    | optional | Gender                                                                                  | `'M'`                              | `string` |
+| `instl`                     | optional | 1 = the ad is interstitial or full screen, 0 = not interstitial.                        | `1`                                | `number` |
+| `pos`                       | optional | ad position as per IAB standards                                                        | `1`                                | `number` |
+| `bid_endpoint_request_url`  | optional | Url string representing the endpoint Insticator adaptor should make the request bids to.| `https://ex.ingage.com/v1/openrtb` | `string` |
+| `floor`                     | optional | Sets a floor for bidder.                                                                | `0.50`                             | `float`  |
+| `bidfloorcur`               | optional | Currency of the floor. (Insticator only supports USD floors)                            | `USD`                              | `string` |
 
 ### Banner Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description               | Example              | Type     |
 |---------------|----------|---------------------------|----------------------|----------|
-| `sizes`       | Required | The ad sizes provided by Insticator | `[[300, 250], [300, 600]]` | `array` |
 | `pos`         | optional | ad position as per IAB standards       | `1`                | `number` |
 
 ### Example
@@ -59,7 +66,52 @@ var adUnitsBannerOnly = [
 ];
 ```
 
-### video parameters
+#### First Party Data
+
+In release 8.45 and later, Insticator has added support for first party data which are optional and partners can send us. The following fields are supported:
+
+* ortb2.site.keywords
+* ortb2.site.content.*
+* ortb2.site.search
+* ortb2.site.cat
+* ortb2.site.pagecat
+* ortb2.site.sectioncat
+* ortb2.user.ext.*
+* ortb2.user.data.*
+
+Here is an example first party data that insticator support.
+
+```javascript
+pbjs.setConfig({
+  ortb2: {
+    site: {
+      keywords: "kw1,kw2",   
+      content: {
+        title: 'title',
+        genre: 'rock',
+      },
+      cat: ['IAB1-1'],
+      pagecat: ['IAB1-1'],
+      sectioncat: ['IAB1-1'],           
+      ext: {
+        data: {
+           prodtype: ["a","b"]  
+        }
+      }
+    },
+    user: {
+      ext: {
+        data: {
+          ucat:["anything"]                 
+        }
+      }
+    }
+  }
+};
+```
+
+### Media Types 
+#### Video parameters
 
 {: .table .table-bordered .table-striped }
 | Name                   | Scope       | Description                                                     | Example                       |

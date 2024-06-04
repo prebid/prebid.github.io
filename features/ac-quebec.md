@@ -28,8 +28,8 @@ Given this context, Prebid has identified publisher concern that many will not b
 
 References:
 
-- [TCF Canada Infographic on Quebec Privacy Law](https://iabcanada.com/content/uploads/2022/04/IAB-Canada_Quebec-Privacy-Law-Inforgraphic.pdf)
 - [IAB Canada TCF Canada policies](https://iabcanada.com/tcf-canada/for-publishers/)
+- [IAB Canada Quebec Privacy Legislation (Law 25) Resource Centre](https://iabcanada.com/iab-standards-and-guidelines/law25-resource-centre/)
 - [IABTL's GPP Canada section spec](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/Canada/GPPExtension%3A%20IAB%20Canada%20TCF.md)
 
 ## TCF Canada and GPP Support in Prebid.js
