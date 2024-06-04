@@ -3,6 +3,7 @@ layout: bidder
 title: Tredio
 description: Tredio Bidder Adapter
 biddercode: tredio
+aliasCode : smarthub
 usp_supported: true
 coppa_supported: true
 schain_supported: true
