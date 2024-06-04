@@ -3,6 +3,7 @@ layout: bidder
 title: MarkApp
 description: MarkApp Bidder Adapter
 biddercode: markapp
+aliasCode : smarthub
 usp_supported: true
 coppa_supported: true
 schain_supported: true
