@@ -42,7 +42,7 @@ sidebarType: 1
 |h|integer|(Recommended) Specifies the height of the video player, in pixels. Required if playerSize not present in `mediaTypes.video`|480|
 |startdelay|integer |(Recommended) Specifies the start delay of the video ad|0|
 |battr|array of integers|Specifies the video creative attributes to block. Refer to section 5.3 of the IAB specification for a list of attributes.| [ 13, 14 ]|
-playbackmethod|array of integers|Specifies the allowed playback methods. If not specified, all are assumed to be allowed. Currently supported values are: `1: Autoplay, sound on`; `2: Autoplay, sound off`; `3: Click to play`; `4: Mouse over to play`|[1, 3]|
+|playbackmethod|array of integers|Specifies the allowed playback methods. If not specified, all are assumed to be allowed. Currently supported values are: `1: Autoplay, sound on`; `2: Autoplay, sound off`; `3: Click to play`; `4: Mouse over to play`|[1, 3]|
 |api| array of integers|Specifies the supported API frameworks for this impression. If an API is not explicitly listed, it is assumed not to be supported. Currently supported values are: `1: VPAID 1.0`; `2: VPAID 2.0`; `3: MRAID-1`; `4: ORMMA`; `5: MRAID-2`|[1, 2]|
 |protocols|array of integers|Array of supported video protocols. Currently supported values are: `1: VAST 1.0`; `2: VAST 2.0`; `3: VAST 3.0`; `4: VAST 1.0 Wrapper`; `5: VAST 2.0 Wrapper`; `6: VAST 3.0 Wrapper`; `7: VAST 4.0`|[1, 2]|
 |placement|integer|Placement type for the impression. Possible options: `1: In-Stream`; `2: In-banner`; `3: Outstream/In-article`; `4: In-feed`; `5: Interstitial/Slider/Floating`; `6: Long-Form`;|1|
@@ -143,3 +143,25 @@ var adUnits = [{
   }]
 }];
 ```
+
+# Protected Audience API (FLEDGE)
+
+To enable PAAPI auctions follow the instructions below:
+
+1. Add the `fledgeForGpt` and `paapi` modules to your prebid bundle.
+2. Add the following configuration for the module
+
+```javascript
+pbjs.que.push(function() {
+  pbjs.setConfig({
+    fledgeForGpt: {
+      enabled: true,
+      bidders: ['medianet'],
+      defaultForSlots: 1
+    }
+  });
+});
+```
+
+For a detailed guide to enabling PAAPI auctions follow Prebid's documentation 
+on [`fledgeForGpt`](https://docs.prebid.org/dev-docs/modules/fledgeForGpt.html)
