@@ -37,8 +37,6 @@ Contact us at [advertising@bidmatic.io](mailto:advertising@bidmatic.io).
 |---------------|----------|-----------------------|-----------|-----------|
 | `source`      | required | Traffic source origin id      | `'11111'`    | `int` |
 
-
-
 ### Test Parameters
 
 ``` javascript
