@@ -3,6 +3,7 @@ layout: bidder
 title: JDPMedia
 description: JDPMedia Bidder Adapter
 biddercode: jdpmedia
+aliasCode : smarthub
 usp_supported: true
 coppa_supported: true
 schain_supported: true
