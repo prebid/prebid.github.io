@@ -25,4 +25,4 @@ The Freedom Ad Network Adapter requires setup before beginning. Please contact u
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placement`      | required | Placement ID         | `'e6203f1e-bd6d-4f42-9895-d1a19cdb83c8'`    | `string` |
+| `placementId`      | required | Placement ID         | `'e6203f1e-bd6d-4f42-9895-d1a19cdb83c8'`    | `string` |
