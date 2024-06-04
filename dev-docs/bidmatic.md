@@ -1,3 +1,4 @@
+---
 layout: bidder
 title: Bidmatic Bid Adapter
 description: Prebid example Bidder Adapter
@@ -23,6 +24,7 @@ multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
 sidebarType: 1
 ---
+
 ### Note
 
 Unleash the power of fast client-oRTB connection.
@@ -34,3 +36,27 @@ Contact us at [advertising@bidmatic.io](mailto:advertising@bidmatic.io).
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `source`      | required | Traffic source origin id      | `'11111'`    | `int` |
+
+
+
+### Test Parameters
+
+``` javascript
+    var adUnits = [
+      // Banner adUnit
+      {
+        code: 'elemtId',
+        mediaTypes:{
+            banner:{
+                sizes: [[300, 250]]
+            }
+        }
+        bids: [{
+          bidder: 'bidmatic',
+          params: {
+            source: 886409
+          }
+        }]
+      }
+    ];
+```
