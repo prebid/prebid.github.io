@@ -75,7 +75,7 @@ adapters:
 
 If you'd like to run the [rubicon](/dev-docs/bidders/rubicon.html) Prebid Server adapter, here's the process:
 
-1. Contact <globalsupport@magnite.com> explaining who you are and that you'd like to set up a Prebid Server that utilizes the rubicon adapter.
+1. Contact <accountservices@magite.com> explaining who you are and that you'd like to set up a Prebid Server that utilizes the rubicon adapter.
 2. They will ask you a bunch of questions and hopefully approve your application.
 3. If they do approve, you'll be given a login and password to place in your configuration. Please do not share this with anyone else. You'll also be provided a usersync URL.
 4. The Magnite XAPI has several regional endpoints that you can utilize. Note that the default endpoint in the open source config is for US-East, which may not perform as well for you as the other regional options if your datacenters are in Europe or Asia.
