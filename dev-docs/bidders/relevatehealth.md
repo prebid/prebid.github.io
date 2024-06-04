@@ -17,7 +17,7 @@ sidebarType: 1
 
 | Name          | Scope     | Description           | Example        | Type     |
 |---------------|-----------|-----------------------|----------------|----------|
-| `placementId` | mandatory | Placement Id          | `110011`       | `number` |
+| `placement_id` | mandatory | Placement Id          | `110011`       | `number` |
 | `user_id`     | mandatory | Unique id for HCP     | `'1111111'`    | `string` |
 | `height`      | optional  | Height of the creative| `600`          | `number` |
 | `width`       | optional  | Width of the creative | `160`          | `number` |
@@ -38,7 +38,7 @@ var adUnits = [
                 bids: [{
                     bidder: 'relevatehealth',
                     params: {
-                        placementId: 547,
+                        placement_id: 110011,
                         user_id: '',
                         height: 600,
                         width: 160,
