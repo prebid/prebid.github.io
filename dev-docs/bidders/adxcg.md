@@ -15,6 +15,8 @@ sidebarType: 1
 
 ### Note
 
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
+
 Prebid-server activation requires setup and approval before beginning. Please reach out to your account manager or <info@adxcg.com> for more details.
 
 ### Bid Params
