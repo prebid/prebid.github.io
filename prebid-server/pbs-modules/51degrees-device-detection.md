@@ -193,27 +193,37 @@ PBS-Go version of the same config:
 }
 ```
 
-## List of module configuration options (same for PBS-Java and PBS-Go)
+## Module Configuration Parameters (for PBS-Java and PBS-Go)
 
-* `account-filter`
-  * `allow-list` - _(list of strings)_ -  A list of account IDs that are allowed to use this module - only relevant if enabled globally for the host. If empty, all accounts are allowed. Full-string match is performed (whitespaces and capitalization matter). Defaults to empty.
-* `data-file`
-  * `path` - _(string, **REQUIRED**)_ -  The full path to the device detection data file. Sample file can be downloaded from [data repo on GitHub](https://github.com/51Degrees/device-detection-data/blob/main/51Degrees-LiteV4.1.hash), or get an Enterprise data file [here](https://51degrees.com/pricing).
-  * `make-temp-copy` - _(boolean)_ - If true, the engine will create a temporary copy of the data file rather than using the data file directly. Defaults to false.
-  * `update`
-    * `auto` - _(boolean)_ - Enable/Disable auto update. Defaults to enabled. If enabled, the auto update system will automatically download and apply new data files for device detection.
-    * `on-startup` - _(boolean)_ - Enable/Disable update on startup. Defaults to enabled. If enabled, the auto update system will be used to check for an update before the device detection engine is created. If an update is available, it will be downloaded and applied before the pipeline is built and returned for use so this may take some time.
-    * `url` - _(string)_ - Configure the engine to use the specified URL when looking for an updated data file. Default is the 51Degrees update URL.
-    * `license-key` - _(string)_ - Set the license key used when checking for new device detection data files. Defaults to null.
-    * `watch-file-system` - _(boolean)_ - The data update service has the ability to watch a file on disk and refresh the engine as soon as that file is updated. This setting enables/disables that feature. Defaults to true.
-    * `polling-interval` - _(int, seconds)_ - Set the time between checks for a new data file made by the DataUpdateService in seconds. Default = 30 minutes.
-* `performance` - please note: this is the speed of device detection, do not confuse with revenue performance of the module
-  * `profile` - _(string)_ - Set the performance profile for the device detection engine. Must be one of: `LowMemory`, `MaxPerformance`, `HighPerformance`, `Balanced`, `BalancedTemp`, `InMemory`. Defaults to `Balanced`.
-  * `concurrency` - _(int)_ - Set the expected number of concurrent operations using the engine. This sets the concurrency of the internal caches to avoid excessive locking. Default: 10.
-  * `difference` - _(int)_ - Set the maximum difference to allow when processing HTTP headers. The meaning of difference depends on the Device Detection API being used. The difference is the difference in hash value between the hash that was found, and the hash that is being searched for. By default this is 0. For more information see [51Degrees documentation](https://51degrees.com/documentation/_device_detection__hash.html).
-  * `allow-unmatched` - _(boolean)_ - If set to false, a non-matching User-Agent will result in properties without set values.
-    If set to true, a non-matching User-Agent will cause the 'default profiles' to be returned. This means that properties will always have values (i.e. no need to check .hasValue) but some may be inaccurate. By default, this is false.
-  * `drift` - _(int)_ - Set the maximum drift to allow when matching hashes. If the drift is exceeded, the result is considered invalid and values will not be returned. By default this is 0. For more information see [51Degrees documentation](https://51degrees.com/documentation/_device_detection__hash.html).
+The parameter names are specified with full path using dot-notation.  F.e. `section-name` .`sub-section` .`param-name` would result in this nesting in the JSON configuration:
+
+```json
+{
+  "section-name": {
+    "sub-section": {
+      "param-name": "param-value"
+    }
+  }
+}
+```
+
+{: .table .table-bordered .table-striped }
+| PBS-Java Name | PBS-Go Name | Required| Type | Default  value | Description |
+|:-------|:-------|:------|:------|:------|:---------------------------------------|
+| `account-filter` .`allow-list` |  `account_filter` .`allow_list`  |  No | list of strings | [] (empty list) | A list of account IDs that are allowed to use this module - only relevant if enabled globally for the host. If empty, all accounts are allowed. Full-string match is performed (whitespaces and capitalization matter). |
+| `data-file` .`path`    |  `data_file` .`path`  |  **Yes** | string | null |The full path to the device detection data file. Sample file can be downloaded from [data repo on GitHub](https://github.com/51Degrees/device-detection-data/blob/main/51Degrees-LiteV4.1.hash), or get an Enterprise data file [here](https://51degrees.com/pricing). |
+| `data-file` .`make-temp-copy` | `data_file` .`make_temp_copy` | No | boolean | true | If true, the engine will create a temporary copy of the data file rather than using the data file directly. |
+| `data-file` .`update` .`auto` | `data_file` .`update` .`auto` | No | boolean | true | If enabled, the engine will periodically (at predefined time intervals - see `polling-interval` parameter) check if new data file is available. When the new data file is available engine downloads it and switches to it for device detection. If custom `url` is not specified `license_key` param is required. |
+| `data-file` .`update` .`on-startup` | `data_file` .`update` .`on_startup` | No | boolean | true | If enabled, engine will check for the updated data file right away without waiting for the defined time interval. |
+| `data-file` .`update` .`url` | `data_file` .`update` .`url` | No | string | null | Configure the engine to check the specified URL for the availability of the updated data file. If not specified the [51Degrees distributor service](https://51degrees.com/documentation/4.4/_info__distributor.html) URL will be used, which requires a License Key. |
+| `data-file` .`update` .`license-key` | `data_file` .`update` .`license_key` | No | string | null | Required if `auto` is true and custom `url` is not specified. Allows to download the data file from the [51Degrees distributor service](https://51degrees.com/documentation/4.4/_info__distributor.html). |
+| `data-file` .`update` .`watch-file-system` | `data_file` .`update` .`watch_file_system` | No | boolean | true | If enabled the engine will watch the data file path for any changes, and automatically reload the data file from disk once it is updated. |
+| `data-file` .`update`.`polling-interval` | `data_file` .`update` .`polling_interval` | No | int | 1800 | The time interval in seconds between consequent attempts to download an updated data file. Default = 1800 seconds = 30 minutes. |
+| `performance` .`profile` | `performance` .`profile` | No | string | `Balanced` | `performance.*` parameters are related to the tradeoffs between speed of device detection and RAM consumption or accuracy. `profile` dictates the proportion between the use of the RAM (the more RAM used - the faster is the device detection) and reads from disk (less RAM but slower device detection). Must be one of: `LowMemory`, `MaxPerformance`, `HighPerformance`, `Balanced`, `BalancedTemp`, `InMemory`. Defaults to `Balanced`.  |
+| `performance` .`concurrency` | `performance` .`concurrency` | No | int | 10 |  Specify the expected number of concurrent operations that engine does. This sets the concurrency of the internal caches to avoid excessive locking. Default: 10.  |
+| `performance` .`difference` | `performance` .`difference` | No | int | 0 |  Set the maximum difference to allow when processing evidence (HTTP headers). The meaning is the difference in hash value between the hash that was found, and the hash that is being searched for. By default this is 0. For more information see [51Degrees documentation](https://51degrees.com/documentation/_device_detection__hash.html).  |
+| `performance` .`drift` | `performance` .`drift` | No | int | 0 |  Set the maximum drift to allow when matching hashes. If the drift is exceeded, the result is considered invalid and values will not be returned. By default this is 0. For more information see [51Degrees documentation](https://51degrees.com/documentation/_device_detection__hash.html).  |
+| `performance` .`allow-unmatched` | `performance` .`allow_unmatched` | No | boolean | false |  If set to false, a non-matching evidence will result in properties with no values set. If set to true, a non-matching evidence will cause the 'default profiles' to be returned. This means that properties will always have values (i.e. no need to check .hasValue) but some may be inaccurate. By default, this is false. |
 
 ### Example
 
