@@ -64,7 +64,7 @@ There is no host-company level config for this module.
 
 ### Account-Level Config
 
-To start using current module in PBS-Java you have to enable module and add `fiftyone-devicedetection-entrypoint-hook` and `fiftyone-devicedetection-raw-auction-request-hook` into hooks execution plan inside your yaml file:
+To start using current module in PBS-Java you have to enable module and add `fiftyone-devicedetection-entrypoint-hook` and `fiftyone-devicedetection-raw-auction-request-hook` into hooks execution plan inside your config file:
 Here's a general template for the account config used in PBS-Java:
 
 ```yaml
@@ -161,7 +161,7 @@ PBS-Go version of the same config:
               "entrypoint": {
                 "groups": [
                   {
-                    "timeout": 100,
+                    "timeout": 10,
                     "hook_sequence": [
                       {
                         "module_code": "fiftyone-devicedetection",
@@ -174,7 +174,7 @@ PBS-Go version of the same config:
               "raw_auction_request": {
                 "groups": [
                   {
-                    "timeout": 100,
+                    "timeout": 10,
                     "hook_sequence": [
                       {
                         "module_code": "fiftyone-devicedetection",
