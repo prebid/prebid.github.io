@@ -4,7 +4,7 @@ title: MediaGo
 description: MediaGo Prebid Bidder Adapter
 biddercode: mediago
 media_types: banner,native
-prebid_member: false
+prebid_member: true
 userIds: all (with commercial activation)
 tcfeu_supported: true
 coppa_supported: true
