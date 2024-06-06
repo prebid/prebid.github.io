@@ -225,32 +225,6 @@ The parameter names are specified with full path using dot-notation.  F.e. `sect
 | `performance` .`drift` | `performance` .`drift` | No | int | 0 |  Set the maximum drift to allow when matching hashes. If the drift is exceeded, the result is considered invalid and values will not be returned. By default this is 0. For more information see [51Degrees documentation](https://51degrees.com/documentation/_device_detection__hash.html).  |
 | `performance` .`allow-unmatched` | `performance` .`allow_unmatched` | No | boolean | false |  If set to false, a non-matching evidence will result in properties with no values set. If set to true, a non-matching evidence will cause the 'default profiles' to be returned. This means that properties will always have values (i.e. no need to check .hasValue) but some may be inaccurate. By default, this is false. |
 
-### Example
-
-```yaml
-hooks:
-  modules:
-    fiftyone-devicedetection:
-      account-filter:
-        allow-list: [] # list of strings, account ids for enabled publishers, or empty for all
-      data-file:
-        path: ~ # string, REQUIRED, download the sample from https://github.com/51Degrees/device-detection-data/blob/main/51Degrees-LiteV4.1.hash or Enterprise from https://51degrees.com/pricing
-        make-temp-copy: ~ # boolean
-        update:
-          auto: ~ # boolean
-          on-startup: ~ # boolean
-          url: ~ # string
-          license-key: ~ # string
-          watch-file-system: ~ # boolean
-          polling-interval: ~ # int, seconds
-      performance:
-        profile: ~ # string, one of [LowMemory,MaxPerformance,HighPerformance,Balanced,BalancedTemp]
-        concurrency: ~ # int
-        difference: ~ # int
-        allow-unmatched: ~ # boolean
-        drift: ~ # int
-```
-
 ## Running the demo (PBS-Java)
 
 1. Build the server bundle JAR as described in [Build Project](https://github.com/prebid/prebid-server-java/blob/master/docs/build.md#build-project), e.g.
