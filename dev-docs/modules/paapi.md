@@ -45,7 +45,6 @@ This module exposes the following settings:
 |defaultForSlots | Number |Default value for `imp.ext.ae` in requests for specified bidders |Should be 1 |
 |componentSeller | Object |Configuration for publishers acting as component sellers | See [note](#componentSeller) |
 
-
 As noted above, PAAPI support is disabled by default. To enable it, set the `enabled` value to `true` for this module and configure `defaultForSlots` to be `1` (meaning _Client-side auction_).
 using the `setConfig` method of Prebid.js:
 
@@ -113,7 +112,6 @@ Some adapters may act as PAAPI buyers: instead of a full component auction, they
 | ------------ | ------------ | ------------ |
 |componentSeller.auctionConfig | Object | [AuctionConfig](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction) object to use for the component auction(s) |
 |componentSeller.separateAuctions | Boolean | If `true`, generate a component auction for each bid adapter. If `false` (the default), buyers are collected into as few component auctions as possible (typically one, but multiple are possible if multiple bidders reply with the same buyer) |
-
 
 ## Bid Adapter Integration
 

@@ -46,10 +46,9 @@ pbjs.requestBids({
     pbjs.setPAAPIConfigForGPT();
   }
 })
-
 ```
-See the [API reference](/dev-docs/publisher-api-reference/setPAAPIConfigForGpt.html) for more options.
 
+See the [API reference](/dev-docs/publisher-api-reference/setPAAPIConfigForGpt.html) for more options.
 
 ## Automatic PAAPI configuration with GPT targeting
 
