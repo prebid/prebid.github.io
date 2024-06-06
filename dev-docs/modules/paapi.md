@@ -16,7 +16,7 @@ This module allows Prebid.js to support PAAPI, formerly known as [FLEDGE](https:
 This document covers the steps necessary for publishers to enable PAAPI on their inventory. It also describes
 the changes Bid Adapters need to implement in order to support PAAPI.
 
-A related module, [fledgeForGpt](/dev-docs/modules/fledgeForGpt.html), adds support specifically for GPT's [component auctions](https://developers.google.com/publisher-tag/reference#googletag.config.componentauctionconfig).
+A related module, [paapiForGpt](/dev-docs/modules/paapiForGpt.html), adds support specifically for GPT's [component auctions](https://developers.google.com/publisher-tag/reference#googletag.config.componentauctionconfig).
 
 ## Publisher Integration
 
@@ -29,7 +29,7 @@ To use PAAPI, publishers must:
    ```
 
 - enable PAAPI, globally or by ad unit, through [configuration](#config)
-- manage the PAAPI auctions. This can be delegated to GPT with the [fledgeForGpt module](/dev-docs/modules/fledgeForGpt.html); homegrown solutions are possible with [getPAAPIConfig](/dev-docs/publisher-api-reference/getPAAPIConfig.html), but out of scope for this document.
+- manage the PAAPI auctions. This can be delegated to GPT with the [paapiForGpt module](/dev-docs/modules/paapiForGpt.html); homegrown solutions are possible with [topLevelPaapi](/dev-docs/modules/topLevelPaapi.html).
 
 <a id="config"></a>
 
@@ -43,6 +43,8 @@ This module exposes the following settings:
 |enabled | Boolean |Enable/disable the module |Defaults to `false` |
 |bidders | Array[String] |Optional list of bidders |Defaults to all bidders |
 |defaultForSlots | Number |Default value for `imp.ext.ae` in requests for specified bidders |Should be 1 |
+|componentSeller | Object |Configuration for publishers acting as component sellers | See [note](#componentSeller) |
+
 
 As noted above, PAAPI support is disabled by default. To enable it, set the `enabled` value to `true` for this module and configure `defaultForSlots` to be `1` (meaning _Client-side auction_).
 using the `setConfig` method of Prebid.js:
@@ -69,30 +71,6 @@ pbjs.que.push(function() {
       bidders: ['bidderA', 'bidderB']
     }
   });
-});
-```
-
-### Bidder Configuration
-
-This module adds the following setting for bidders:
-
-{: .table .table-bordered .table-striped }
-|Name |Type |Description |Notes |
-| ------------ | ------------ | ------------ |------------ |
-| fledgeEnabled | Boolean | Enable/disable a bidder to participate in FLEDGE | Defaults to `false` |
-|defaultForSlots | Number |Default value for `imp.ext.ae` in requests for specified bidders |Should be 1|
-
-In addition to enabling PAAPI at the module level, individual bidders can also be enabled. This allows publishers to
-selectively test with one or more bidders as they desire. To enable one or more bidders, use the `setBidderConfig` method
-of Prebid.js:
-
-```js
-pbjs.setBidderConfig({
-    bidders: ["bidderA"],
-    config: {
-        fledgeEnabled: true,
-        defaultForSlots: 1
-    }
 });
 ```
 
@@ -124,6 +102,19 @@ pbjs.addAdUnits({
 });
 ```
 
+<a id="componentSeller"></a>
+### Advanced usage: publisher-managed component auction
+
+Bid adapters typically act as PAAPI sellers, each providing one or more [component auctions](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#24-scoring-bids-in-component-auctions) in a multi-seller PAAPI auction.
+Some adapters may act as PAAPI buyers: instead of a full component auction, they can reply directly with buyer information. By configuring `componentSeller`, these buyers are collected into one or more publisher-managed component auctions.
+
+{: .table .table-bordered .table-striped }
+|Name |Type |Description |
+| ------------ | ------------ | ------------ |
+|componentSeller.auctionConfig | Object | [AuctionConfig](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction) object to use for the component auction(s) |
+|componentSeller.separateAuctions | Boolean | If `true`, generate a component auction for each bid adapter. If `false` (the default), buyers are collected into as few component auctions as possible (typically one, but multiple are possible if multiple bidders reply with the same buyer) |
+
+
 ## Bid Adapter Integration
 
 Chrome has enabled a two-tier auction in PAAPI. This allows multiple sellers (frequently SSPs) to act on behalf of the publisher with
@@ -134,49 +125,62 @@ bids to the final layer. To learn more about Component Auctions, go [here](https
 
 The PAAPI auction, including Component Auctions, are configured via an `AuctionConfig` object that defines the parameters of the auction for a given
 seller. This module enables PAAPI support by allowing bid adaptors to return `AuctionConfig` objects in addition to bids. If a bid adaptor returns an
-`AuctionConfig` object, Prebid.js will make it available through [`getPAAPIConfig`](/dev-docs/publisher-api-reference/getPAAPIConfig.html), as well as other PAAPI modules such as [fledgeForGpt](/dev-docs/modules/fledgeForGpt.html).
+`AuctionConfig` object, Prebid.js will make it available through [`getPAAPIConfig`](/dev-docs/publisher-api-reference/getPAAPIConfig.html), as well as other PAAPI modules such as [paapiForGpt](/dev-docs/modules/paapiForGpt.html).
+
+{: .alert.alert-warning :}
+If your adapter interfaces with an ORTB backend, you may take advantage of Prebid's [ORTB conversion library](https://github.com/prebid/Prebid.js/blob/master/libraries/ortbConverter/README.md), which implements the following using [protected audience community extensions](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/Protected%20Audience%20Support.md)
 
 Modifying a bid adapter to support PAAPI is a straightforward process and consists of the following steps:
 
 1. Detecting when a bid request is PAAPI eligible
-2. Responding with AuctionConfig
+2. Responding with AuctionConfig or InterestGroupBuyer in addition to (or instead of) bids
 
-PAAPI eligibility is made available to bid adapters' [`buildRequests`](/dev-docs/bidder-adaptor.html#building-the-request) method through the `ortb2Imp.ext.ae` property of bid requests; it is set to `1` when the browser supports PAAPI and publisher configuration has enabled it as described above. Bid adapters
-who wish to participate should read this flag and pass it to their server. 
+### Input parameters
 
-When a bid request is PAAPI enabled, a bid adapter can return a tuple consisting of bids and AuctionConfig objects rather than just a list of bids:
+When PAAPI is configured, the following fields are made available to adapters' [`buildRequests`](/dev-docs/bidder-adaptor.html#building-the-request):
+
+{: .table .table-bordered .table-striped }
+|Name |Type |Description |Notes |
+| ------------ | ------------ | ------------ |
+| `validBidRequests[].ortb2Imp.ext.ae` | Integer | `1` when the PAAPI is enabled for the request |
+| `validBidRequests[].ortb2Imp.ext.igs` | Object | [InterestGroupSupport](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/Protected%20Audience%20Support.md#object-interestgroupauctionsupport) object|
+| `validBidRequests[].ortb2Imp.ext.igs.ae` | Integer | duplicate of `ortb2Imp.ext.ae` |
+| `validBidRequests[].ortb2Imp.ext.igs.biddable` | Integer | `1` when `ae` is `1` |
+| `validBidRequests[].ortb2Imp.ext.paapi.requestedSize` | Object | Size (as an object `{width, height}`) that will be passed as `requestedSize` to [`runAdAuction`](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction) | 
+| `bidderRequest.paapi.enabled` | Boolean | `true` if the publisher has enabled PAAPI and the browser supports it |
+| `bidderRequest.paapi.componentSeller` | Boolean | `true` if the publisher can act as a component seller and accept `igb` objects instead of auction configs |
+
+### Output values
+
+When a bid request is PAAPI enabled, a bid adapter can return a tuple consisting of bids and PAAPI objects rather than just a list of bids:
 
 ```js
 function interpretResponse(resp, req) {
     // Load the bids from the response - this is adapter specific
     const bids = parseBids(resp);
 
-    // Load the auctionConfigs from the response - also adapter specific
-    const fledgeAuctionConfigs = parseAuctionConfigs(resp);
-
-    if (fledgeAuctionConfigs) {
-        // Return a tuple of bids and auctionConfigs. It is possible that bids could be null.
-        return {bids, fledgeAuctionConfigs};
-    } else {
-        return bids;
-    }
+    // Load auction configs or igb from the response - also adapter specific
+    const paapi = parsePaapi(resp);
+    return {bids, paapi};
 }
 ```
 
-An AuctionConfig must be associated with an adunit and auction, and this is accomplished using the value in the `bidId` field from the objects in the
-`validBidRequests` array passed to the `buildRequests` function - see [here](/dev-docs/bidder-adaptor.html#ad-unit-params-in-the-validbidrequests-array)
-for more details. This means that the AuctionConfig objects returned from `interpretResponse` must contain a `bidId` field whose value corresponds to
-the request it should be associated with. This may raise the question: why isn't the AuctionConfig object returned as part of the bid? The
-answer is that it's possible to participate in the PAAPI auction without returning a contextual bid.
+`paapi` must be an array of objects containing:
+
+{: .table .table-bordered .table-striped }
+|Name |Type |Description |Notes |
+| ------------ | ------------ | ------------ |
+| `bidId` | String | one of the input requests' `bidId`. Used to identify the slot that this object refers to. |
+| `igb` | Object | [InterestGroupBuyer](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/Protected%20Audience%20Support.md#object-interestgroupauctionsupport) object|
+| `config` | Object | [AuctionConfig](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction) object |
+
+Each object must specify exactly one of `igb` or `config`.
 
 An example of this can be seen in the OpenX bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/openxBidAdapter.js) or RTB House bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/rtbhouseBidAdapter.js).
 
-Other than the addition of the `bidId` field, the `AuctionConfig` object should adhere to the requirements set forth in PAAPI. The details of creating an
-`AuctionConfig` object are beyond the scope of this document.
-
 ## Related Reading
 
-- [fledgeForGpt module](/dev-docs/modules/fledgeForGpt.html)
+- [paapiForGpt module](/dev-docs/modules/paapiForGpt.html)
 - [Protected Audience API (PAAPI)](https://github.com/WICG/turtledove/blob/main/FLEDGE.md), formerly FLEDGE
 - [Component Auctions](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction)
 - [getPAAPIConfig](/dev-docs/publisher-api-reference/getPAAPIConfig.html)
