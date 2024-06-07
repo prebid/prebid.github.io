@@ -9,7 +9,7 @@ sidebarType: 0
 
 A high-level overview of Prebid Mobile, Prebid’s header bidding product for iOS and Android applications.
 
-<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/822158733?h=0d6369cf0c&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="1.4_Intro-to-Prebid-Mobile_v3"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+{% include vimeo-iframe.html id="822158733" title="1.4_Intro-to-Prebid-Mobile_v3" %}
 
 Further Content:
 

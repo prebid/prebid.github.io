@@ -9,7 +9,7 @@ schain_supported: false
 media_types: banner
 safeframes_ok: false
 deals_supported: false
-pbjs: false
+pbjs: true
 pbs: false
 pbs_app_supported: false
 prebid_member: true

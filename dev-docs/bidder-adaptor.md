@@ -325,7 +325,7 @@ Here is a sample bidderRequest object:
     canonicalUrl: null,
     page: "http://mypage.org?pbjs_debug=true",
     domain: "mypage.org",
-    ref: null,
+    referer: null,
     numIframes: 0,
     reachedTop: true,
     isAmp: false,
@@ -1308,6 +1308,7 @@ description: Prebid example Bidder Adapter
 biddercode: example
 aliasCode: fileContainingPBJSAdapterCodeIfDifferentThenBidderCode
 tcfeu_supported: true/false
+dsa_supported: true/false
 gvl_id: none
 usp_supported: true/false
 coppa_supported: true/false
