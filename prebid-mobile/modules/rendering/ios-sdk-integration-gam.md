@@ -34,7 +34,7 @@ If you do not have GMA SDK in the app yet, refer to the [Google Integration Docu
 Prebid SDK provides rendering integration into GAM setup thru [app events](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner#app_events) mechanism. To integrate Prebid Event Handlers into your app, add the following line to your Podfile:
 
 ```pod
-pod 'PrebidMobileAdMobAdapters'
+pod 'PrebidMobileGAMEventHandlers'
 ```
 
 ## Event Handlers Initialization
