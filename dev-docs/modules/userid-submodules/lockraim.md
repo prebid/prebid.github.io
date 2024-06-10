@@ -31,7 +31,7 @@ The following configuration parameters are available:
 **Google oAuth:**
 If you are using Google oAuth (_as an example_), the onSignIn function will subsequently call window.lockr.setAdditionalData function and include a raw email.
 
-```
+```javascript
 function onSignIn(googleUser) {
    pbjs.setConfig({
       userSync: {
@@ -50,7 +50,7 @@ function onSignIn(googleUser) {
 **Facebook oAuth:**
 If you are using Facebook Login (_as an example_), the statusChangeCallback function will subsequently call window.lockr.setAdditionalData function and include a raw email.
 
-```
+```javascript
 function statusChangeCallback(response) {
    console.log('statusChangeCallback');
    console.log(response);
@@ -74,10 +74,9 @@ function statusChangeCallback(response) {
 
 **Note:** The above code can be triggered from anywhere on the domain (i.e. a subscription form).
 
-
 **lockr AIM Example**
 
-```
+```javascript
 pbjs.setConfig({
     userSync: {
        userIds: [{
@@ -101,7 +100,7 @@ _Note_: lockr’s AIM self-service interface empowers publishers with the abilit
 4. Debugging:
    Enable the debug flag to true in the setConfig call:
 
-```
+```javascript
 pbjs.setConfig({
     debug: true,
     userSync: {
