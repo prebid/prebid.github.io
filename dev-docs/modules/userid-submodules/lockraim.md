@@ -6,19 +6,27 @@ useridmodule: lockrAIMIdSystem
 ---
 
 Alternative Identity Manager (AIM) is a unified container for identity and data management.
-With AIM’s self-service platform, publishers seamlessly integrate and activate alternative IDs like LiveRamp’s Authenticated Traffic Solution (ATS), Unified ID 2.0 (UID2), ID5 and more. The burden of due diligence and maintenance, coupled with the benefits of server-side calls result in the adoption of multiple alternative IDs, clean rooms like InfoSum and CDPs like Blueconic based on their specific needs.
+AIM includes a self-service platform for publishers seamlessly integrate and activate alternative IDs like LiveRamp’s Authenticated Traffic Solution (ATS), Unified ID 2.0 (UID2), ID5. The self-service component allows the publisher to easily enable or disable IDs and to send identity clusters to CDPs or cleanrooms without engaging engineering teams.  For more information about AIM and detailed integration docs, please visit [our documentation](https://sso.loc.kr/api/lockr_reference.html#tag/Alternate-Identity-Management-(AIM)).
 
 ### **Account Creation | AIM**
 
-Sign up for an [Identity lockr account.](https://sso.loc.kr/console/signup)
-Setup your app and activate the AIM library.
-Compile Prebid with the appropriate configurations, and deploy.
+1. Sign up for an [Identity lockr account.](https://sso.loc.kr/console/signup)
+2. Setup your app and activate the AIM library.
+3. Compile Prebid with the appropriate configurations, and deploy.
 
 ### **Configuration | AIM**
 
-First, make sure to add the lockr’s AIM submodule to your Prebid.js package with:
+Add the lockr’s AIM submodule to your Prebid.js package by running:
+`gulp build –modules=lockrAIMIdSystem`
+
 The following configuration parameters are available:
-AIM supports all Single Sign On functions, newsletter registrations, UTM parameters, etc. For the sake of clarity, a few examples are shared below.
+{: .table .table-bordered .table-striped }
+| Param          | Scope    | Type   | Description                            | Example               |
+|----------------|----------|--------|----------------------------------------|-----------------------|
+| name           | Required | String | The name of this module: `"lockrAIMId"`| `"lockrAIMId"`        |
+| params         | Required | Object | Details for the configuration.         |                       |
+| params.email   | Required | String | Email address for identity tokens.     | `test@example.com`    |
+| params.appID   | Required | String | Identity lockr appID                   | `e84afc5f-4adf-4144-949f-1de5bd151fcc`    |
 
 **Google oAuth:**
 If you are using Google oAuth (_as an example_), the onSignIn function will subsequently call window.lockr.setAdditionalData function and include a raw email.
@@ -65,14 +73,6 @@ function statusChangeCallback(response) {
 ```
 
 **Note:** The above code can be triggered from anywhere on the domain (i.e. a subscription form).
-
-{: .table .table-bordered .table-striped }
-| Param          | Scope    | Type   | Description                            | Example               |
-|----------------|----------|--------|----------------------------------------|-----------------------|
-| name           | Required | String | The name of this module: `"lockrAIMId"`| `"lockrAIMId"`        |
-| params         | Required | Object | Details for the configuration.         |                       |
-| params.email   | Required | String | Email address for identity tokens.     | `test@example.com`    |
-| params.appID   | Required | String | Identity lockr appID                   | `e84afc5f-4adf-4144-949f-1de5bd151fcc`    |
 
 
 **lockr AIM Example**
