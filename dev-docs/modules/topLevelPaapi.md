@@ -13,7 +13,7 @@ sidebarType : 1
 
 This module allows Prebid.js to support PAAPI by running on-device auctions as the top level seller.
 
-### Comparison with paapiForGpt
+## Comparison with paapiForGpt
 
 Both this module and [paapiForGpt](/dev-docs/modules/paapiForGpt.html) allow bid adapters to participate in PAAPI auctions as component sellers.
 
@@ -34,6 +34,7 @@ To use topLevelPaapi:
 - [configure this module](#config)
 - render PAAPI bids (see [examples](#examples)) 
 
+<a id="config"></a>
 ## Module Configuration
 
 This module exposes the following settings:
