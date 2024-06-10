@@ -6,7 +6,7 @@ useridmodule: lockrAIMIdSystem
 ---
 
 Alternative Identity Manager (AIM) is a unified container for identity and data management.
-AIM includes a self-service platform for publishers seamlessly integrate and activate alternative IDs like LiveRamp’s Authenticated Traffic Solution (ATS), Unified ID 2.0 (UID2), ID5. The self-service component allows the publisher to easily enable or disable IDs and to send identity clusters to CDPs or cleanrooms without engaging engineering teams.  For more information about AIM and detailed integration docs, please visit [our documentation](https://sso.loc.kr/api/lockr_reference.html#tag/Alternate-Identity-Management-(AIM)).
+AIM includes a self-service platform for publishers to seamlessly integrate and activate alternative IDs like LiveRamp’s Authenticated Traffic Solution (ATS), Unified ID 2.0 (UID2), and ID5. The self-service component allows the publisher to easily enable or disable IDs and to send identity clusters to CDPs or cleanrooms without engaging engineering teams. For more information about AIM and detailed integration docs, please visit [our documentation](https://sso.loc.kr/api/lockr_reference.html#tag/Alternate-Identity-Management-(AIM)).
 
 ### **Account Creation | AIM**
 
@@ -17,7 +17,10 @@ AIM includes a self-service platform for publishers seamlessly integrate and act
 ### **Configuration | AIM**
 
 Add the lockr’s AIM submodule to your Prebid.js package by running:
-`gulp build –modules=lockrAIMIdSystem`
+
+```
+gulp build –modules=lockrAIMIdSystem,...
+```
 
 The following configuration parameters are available:
 {: .table .table-bordered .table-striped }
