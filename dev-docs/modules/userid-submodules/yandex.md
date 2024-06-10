@@ -21,10 +21,17 @@ Include the following call to `setConfig` in your Prebid.js code:
 ```javascript
 pbjs.setConfig({
     userSync: {
-        userIds: [{
-            name: 'yandex',
-            bidders: ['yandex'],
-        }]
-    }
+        userIds: [
+            {
+                name: 'yandex',
+                bidders: ['yandex'],
+                storage: {
+                    type: 'cookie',
+                    name: '_ym_uid',
+                    expires: 365,
+                },
+            },
+        ],
+    },
 });
 ```
