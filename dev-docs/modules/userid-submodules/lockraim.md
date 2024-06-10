@@ -18,7 +18,7 @@ AIM includes a self-service platform for publishers to seamlessly integrate and 
 
 Add the lockr’s AIM submodule to your Prebid.js package by running:
 
-```
+```sh
 gulp build –modules=lockrAIMIdSystem,...
 ```
 
