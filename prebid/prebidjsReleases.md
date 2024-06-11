@@ -66,7 +66,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 3.17 | UserID module also exports IDs as eids |
 | 3.16 | isSafariBrowser fixed for Chrome and Firefox on iOS |
 | 3.15 | Advanced Size Mapping module support adunits of the same name |
-| 3.14 | New [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) supports enforcing Purpose 1 - DeviceAccess |
+| 3.14 | New [GDPR enforcement module](/dev-docs/modules/tcfControl.html) supports enforcing Purpose 1 - DeviceAccess |
 | 3.13 | GDPR module supports defaultGdprScope option |
 | 3.12 | Initial support for TCF2 - reading and passing consent strings, added [DeviceAccess](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) configuration setting |
 | 3.11 | [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) |

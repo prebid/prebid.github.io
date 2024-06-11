@@ -157,7 +157,7 @@ You can find available configuration options for the SharedID module [here](http
 There are several privacy scenarios in which a user ID is not created or read:
 
 1. The User ID module suppresses all cookie reading and setting activity
-   when the [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html) is in place and there's no consent for Purpose 1.
+   when the [TCF Control Module](/dev-docs/modules/tcfControl.html) is in place and there's no consent for Purpose 1.
 2. The User ID module infrastructure supports a first-party opt-out, by setting the `_pbjs_id_optout` cookie or local storage to any value. No other cookies will be set if this one is set.
 3. The SharedId module will suppress the ID when the COPPA flag is set.
 

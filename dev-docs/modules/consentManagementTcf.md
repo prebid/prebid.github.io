@@ -210,7 +210,7 @@ Here is a sample of how the data is structured in the `bidderRequest` object:
 
 **_consentString_**
 
-This field contains the user's choices on consent, represented as an encoded string value.  In certain scenarios, this field might come to you with an `undefined` value; normally this happens when there was an error (or timeout) during the CMP interaction and the publisher turned off GDPR enforcement.  If you don't want to pass `undefined` to your system, you can check for this value and replace it with a valid consent string.  See the _consent_required_ code in the example below (under "gdprApplies") for a possible approach to checking and replacing values.
+This field contains the user's choices on consent, represented as an encoded string value.  In certain scenarios, this field might come to you with an `undefined` value; normally this happens when there was an error (or timeout) during the CMP interaction and the publisher turned off TCF controls.  If you don't want to pass `undefined` to your system, you can check for this value and replace it with a valid consent string.  See the _consent_required_ code in the example below (under "gdprApplies") for a possible approach to checking and replacing values.
 
 **_addtlConsent_**
 

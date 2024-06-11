@@ -23,7 +23,7 @@ flavored CMPs for that.
 
 Instead, here are some general guidelines:
 
-- You can't just automatically turn on the GDPR Enforcement Module when not in GDPR scope.
+- You can't just automatically turn on the TCF Control Module when not in GDPR scope.
 - You need to understand how your CMP works, how you want to handle the "first page" scenario where the user hasn't yet had time to answer CMP questions, and how your site is laid out geographically.
 - We recommend that the page first load a CMP stub synchronously, then asynchronously load the CMP code and the Prebid code
 
@@ -52,7 +52,7 @@ Here are some approaches where PBJS config can be the same across all geos:
 
 In these approaches, the publisher has to be aware of the geo and tell Prebid.js what to do:
 
-- When in the EEA, the page sets `consentManagement` config, but when not in the EEA, the page avoids setting the `consentManagement` config, turning off GDPR enforcement.
+- When in the EEA, the page sets `consentManagement` config, but when not in the EEA, the page avoids setting the `consentManagement` config, turning off TCF controls.
 - When not in the EEA, the page sets `consentManagement` config with defaultGdprScope=false so that if the CMP is slow to respond then enforcement is off.
 
 ## CMP Best Practices
@@ -76,4 +76,4 @@ Please follow the guidelines in the [Sirdata documentation](https://cmp.docs.sir
 ## Further Reading
 
 - [IAB TCF Implementation Guidelines](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md)
-- [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html)
+- [TCF Control Module](/dev-docs/modules/tcfControl.html)
