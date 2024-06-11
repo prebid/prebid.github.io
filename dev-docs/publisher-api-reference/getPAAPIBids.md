@@ -5,7 +5,7 @@ description: getPAAPIBids API
 sidebarType: 1
 ---
 
-Returns a promise the latest PAAPI bid for each ad unit, optionally filtered by auction or ad unit.
+Returns a promise of the latest PAAPI bid for each ad unit, optionally filtered by auction or ad unit.
 
 **Kind**: static method of pbjs API. Only available when the [topLevelPaapi module](/dev-docs/modules/topLevelPaapi.html) is installed.
 
