@@ -25,7 +25,7 @@ This consent management module is designed to support the California Consumer Pr
 This module works with an IAB-compatible US Privacy API (USP-API) to fetch an encoded string representing the user's notice and opt-out choices and make it available for adapters to consume and process. In Prebid 7+; the module defaults to working with an IAB-compatible US Privacy API; in prior versions, the module had to be configured to be in effect.
 
 {: .alert.alert-info :}
-See also the [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagement.html) for supporting the EU General Data Protection Regulation (GDPR)
+See also the [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagementTcf.html) for supporting the EU General Data Protection Regulation (GDPR)
 
 Here's a summary of the interaction process:
 

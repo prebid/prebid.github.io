@@ -19,12 +19,12 @@ sidebarType : 1
 {% include legal-warning.html %}
 
 {: .alert.alert-warning :}
-This module requires the [EU GDPR consent management module](/dev-docs/modules/consentManagement.html) (the base consent module), which reads consent values from the Consent Management Platform (CMP). The GDPR Enforcement Module
-will then take action based on the results. See the [base module page](/dev-docs/modules/consentManagement.html) for general background, usage, and legal disclaimers.
+This module requires the [EU GDPR consent management module](/dev-docs/modules/consentManagementTcf.html) (the base consent module), which reads consent values from the Consent Management Platform (CMP). The GDPR Enforcement Module
+will then take action based on the results. See the [base module page](/dev-docs/modules/consentManagementTcf.html) for general background, usage, and legal disclaimers.
 
 ## Overview
 
-The [base consent module](/dev-docs/modules/consentManagement.html) performs the following actions:
+The [base consent module](/dev-docs/modules/consentManagementTcf.html) performs the following actions:
 
 1. Fetches the user's GDPR consent data from the CMP.
 2. Incorporates this data into the auction objects for adapters to collect.
@@ -61,7 +61,7 @@ To turn on Prebid.js enforcement you must:
 (1) Include the gdprEnforcement module in the Prebid.js build
 and (2) setConfig `consentManagement.gdpr.cmpApi` to either 'iab' or 'static'
 
-The following fields related to GDPR enforcement are supported in the [`consentManagement`](/dev-docs/modules/consentManagement.html) object:
+The following fields related to GDPR enforcement are supported in the [`consentManagement`](/dev-docs/modules/consentManagementTcf.html) object:
 
 {: .table .table-bordered .table-striped }
 | Param | Type | Description | Example |
@@ -235,7 +235,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 
 ## Further Reading
 
-* [EU GDPR Consent Management Module](/dev-docs/modules/consentManagement.html)
+* [EU GDPR Consent Management Module](/dev-docs/modules/consentManagementTcf.html)
 * [IAB TCF Implementation Guidelines](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md)
 * [IAB TCF2 Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md)
 * [Prebid TCF2 Support](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#)

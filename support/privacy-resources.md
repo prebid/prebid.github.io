@@ -42,7 +42,7 @@ The privacy tools that Prebid has built in support of European rules may help ad
 The IAB defined the Transparency and Consent Framework (TCF) to address European GDPR rules. Prebid support for TCF is described:
 
 - [Prebid.js CMP Best Practices](/dev-docs/cmp-best-practices.html)
-- [Prebid.js GDPR Consent Management Module](/dev-docs/modules/consentManagement.html)
+- [Prebid.js GDPR Consent Management Module](/dev-docs/modules/consentManagementTcf.html)
 - [Prebid.js GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html)
 - [Prebid Server GDPR Support](/prebid-server/features/pbs-privacy.html#gdpr)
 - [White paper: Prebid Support for Enforcing TCF 2](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E)

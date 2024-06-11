@@ -31,7 +31,7 @@ Instead, here are some general guidelines:
 
 ### CMP/TCF gdprApplies
 
-The indicates the determination of whether GDPR applies in this context. The CMP, in most cases, is responsible for this. The publisher provides this value when supplying [static](/dev-docs/modules/consentManagement.html) consent data.
+The indicates the determination of whether GDPR applies in this context. The CMP, in most cases, is responsible for this. The publisher provides this value when supplying [static](/dev-docs/modules/consentManagementTcf.html) consent data.
 
 ### Prebid gdpr.defaultGdprScope
 

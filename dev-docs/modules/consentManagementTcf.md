@@ -1,16 +1,16 @@
 ---
 layout: page_v2
 page_type: module
-title: Consent Management - GDPR
-description: If you have users in Europe, this module works with your Consent Management Platform to pass consent info to bidders and help align with EU regulations. See also the GDPR Enforcement module.
-module_code : consentManagement
-display_name : Consent Management - GDPR
+title: Consent Management - TCF
+description: If you have users in Europe, this module works with your Consent Management Platform to pass consent info to bidders and help align with EU regulations. See also the TCF Control module.
+display_name : Consent Management - TCF
+module_code : consentManagementTcf
 enable_download : true
 recommended: true
 sidebarType : 1
 ---
 
-# GDPR Consent Management Module
+# TCF Consent Management Module
 {: .no_toc }
 
 - TOC
@@ -28,12 +28,12 @@ This module works with supported [Consent Management Platforms](https://www.cmsw
 Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws.
 **We recommend consulting with your legal counsel before determining how to utilize these features in support of your overall privacy approach.**
 
-This base EU GDPR consent management module performs these actions:
+This base EU TCF consent management module performs these actions:
 
 1. Fetch the user's GDPR & Google additional consent data from the CMP.
 2. Incorporate this data into the auction objects for adapters to collect.
 
-The optional [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) adds on these actions:
+The optional [TCF control module](/dev-docs/modules/tcfControl.html) adds on these actions:
 
 1. Allows the page to define which activities should be enforced at the Prebid.js level.
 2. Actively enforces those activities based on user consent data (in the TCF string, not the AC string).
@@ -71,16 +71,16 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr.actionTimeout | `integer` | Length of time (in milliseconds) to allow the user to take action to consent if they have not already done so. The actionTimer first waits for the CMP to load, then the actionTimeout begins for the specified duration. Default is `undefined`. | `10000` |
 | gdpr.defaultGdprScope | `boolean` | Defines what the `gdprApplies` flag should be when the CMP doesn't respond in time or the static data doesn't supply. Defaults to `false`. | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
-| gdpr.consentData.getTCData.tcString | `string` | Base64url-encoded TCF v2.x string with segments. | |
-| gdpr.consentData.getTCData.addtlConsent | `string` | Additional consent string if available from the cmp TCData object | |
-| gdpr.consentData.getTCData.gdprApplies | `boolean` | Defines whether or not this pageview is in GDPR scope. | |
-| gdpr.consentData.getTCData.purpose.consents | `Object` | An object representing the user's consent status for specific purpose IDs. | |
-| gdpr.consentData.getTCData.purpose.legitimateInterests | `Object` | An object representing the user's legitimate interest status for specific purpose IDs. | |
-| gdpr.consentData.getTCData.vendor.consents | `Object` | An object representing the user's consent status for specific vendor IDs. | |
-| gdpr.consentData.getTCData.vendor.legitimateInterests | `Object` | An object representing the user's legitimate interest status for specific vendors IDs. | |
+| gdpr.consentData.tcString | `string` | Base64url-encoded TCF v2.x string with segments. | |
+| gdpr.consentData.addtlConsent | `string` | Additional consent string if available from the cmp TCData object | |
+| gdpr.consentData.gdprApplies | `boolean` | Defines whether or not this pageview is in GDPR scope. | |
+| gdpr.consentData.purpose.consents | `Object` | An object representing the user's consent status for specific purpose IDs. | |
+| gdpr.consentData.purpose.legitimateInterests | `Object` | An object representing the user's legitimate interest status for specific purpose IDs. | |
+| gdpr.consentData.vendor.consents | `Object` | An object representing the user's consent status for specific vendor IDs. | |
+| gdpr.consentData.vendor.legitimateInterests | `Object` | An object representing the user's legitimate interest status for specific vendors IDs. | |
 
 {: .alert.alert-info :}
-NOTE: The `purpose` and `vendor` objects are required if you are using the `gdprEnforcement` module.  If the data is not included, your bid adapters, analytics adapters, and/or userId systems will likely be excluded from the auction as Prebid will assume the user has not given consent for these entities.
+NOTE: The `purpose` and `vendor` objects are required if you are using the `tcfControl` module.  If the data is not included, your bid adapters, analytics adapters, and/or userId systems will likely be excluded from the auction as Prebid will assume the user has not given consent for these entities.
 
 A related parameter is `deviceAccess`, which is at the global level of Prebid.js configuration because it can be used GDPR, CCPA, or custom privacy implementations:
 
@@ -369,7 +369,7 @@ This should be false if there was some error in the consent data; otherwise set 
 
 ## Further Reading
 
-- [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html)
+- [TCF Control Module](/dev-docs/modules/tcfControl.html)
 - [IAB TCF Implementation Guide](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/TCF-Implementation-Guidelines.md)
 - [IAB Transparancy and Consent Framework Policies](https://iabeurope.eu/iab-europe-transparency-consent-framework-policies/)
 - [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)

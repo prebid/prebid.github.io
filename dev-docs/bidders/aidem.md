@@ -70,7 +70,7 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 {: .table .table-bordered .table-striped }
 | Name   | Scope    | Description                                                                                      | Example | Type     |
 |--------|----------|--------------------------------------------------------------------------------------------------|---------|----------|
-| `gdpr` | optional | GDPR Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagement.html) | `{}`    | `Object` |
+| `gdpr` | optional | GDPR Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagementTcf.html) | `{}`    | `Object` |
 | `usp`  | optional | USP Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagementUsp.html)                                                                     | `{}`    | `Object` |
 
 #### Example Banner ad unit
