@@ -212,7 +212,7 @@ For video: gulp serve --modules=aidemBidAdapter,dfpAdServerVideo
 
 ## FAQs
 
-#### How do I view AIDEM bid request?
+### How do I view AIDEM bid request?
 
 Navigate to a page where AIDEM is setup to bid. In the network tab,
 search for requests to `zero.aidemsrv.com/bid/request`.

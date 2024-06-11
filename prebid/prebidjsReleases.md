@@ -95,7 +95,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 2.10 | [User ID module](/dev-docs/modules/userId.html) released with support for PubCommon ID and Unified ID |
 | 2.10 | A bidder which responded in time is now considered a timely bidder, even if it responded with no bids. See [PR 3696](https://github.com/prebid/Prebid.js/pull/3696) |
 | 2.9 | Add 'hb_cache_host' targeting for video bids when cache is set to support upcoming video cache redirector |
-| 2.9 | remove removeRequestId logic. See [PR 3698](https://github.com/prebid/Prebid.js/pull/3698)
+| 2.9 | remove removeRequestId logic. See [PR 3698](https://github.com/prebid/Prebid.js/pull/3698) |
 | 2.8 | Added [s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) `syncUrlModifier` option to modify userSync URLs |
 | 2.8 | Add hb_uuid and hb_cache_id back to dfp module after having been removed in 2.7 |
 | 2.6 | Update auction algorithm logic for long-form. See [PR 3625](https://github.com/prebid/Prebid.js/pull/3625) |
