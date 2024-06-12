@@ -23,6 +23,7 @@ sidebarType: 1
 |-------|----------|---------------------------------|----------|-----------|
 | `pid` | required (for prebid-server) | Lemmadigital publisher Id provided by your Lemma representative   | `1` | `integer` |
 | `aid` | required (for prebid-server) | Lemmadigital ad unit Id provided by your Lemma representative   | `3768` | `integer` |
+| `host` | required (for prebid-server) | Host for the region where the ad unit is expected to be served. Allowed values: `"uses", "usws", "usct", "emea", "sg", "doohsg", "doohus"` where `doohsg` and `doohus` are dooh specific | `sg` | `string` |
 | `pubId` | required (for prebid.js) | Lemmadigital publisher Id provided by your Lemma representative   | `1` | `integer` |
 | `adunitId` | required (for prebid.js) | Lemmadigital ad unit Id provided by your Lemma representative   | `3768` | `string` |
 | `device_type`         | optional (for prebid.js) | Device Type              | `'2'`             | `integer` |
@@ -114,7 +115,7 @@ Lemmadigital recommends setting UserSync by iframe for monetization.
 
 ### Prebid Server Test Request
 
-The following test request can be used to verify that Prebid Server is working properly with the lemmadigital adapter. This example includes an `imp` object with a Lemma test publisher id, and ad id.
+The following test request can be used to verify that Prebid Server is working properly with the lemmadigital adapter. This example includes an `imp` object with a Lemma test publisher id, ad id, and host.
 
 ```json
 {
@@ -132,7 +133,8 @@ The following test request can be used to verify that Prebid Server is working p
             "ext": {
                 "lemmadigital": {
                     "aid": 3768,
-                    "pid": 1
+                    "pid": 1,
+                    "host": "sg"
                 }
             },
             "bidfloor": 0.1
