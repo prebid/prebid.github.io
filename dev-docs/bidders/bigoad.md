@@ -35,4 +35,3 @@ The BigoAd Bidding adapter requires setup before beginning. Please contact us at
 | Name          | Scope    | Description  | Example    | Type     |
 |---------------|----------|--------------|------------|----------|
 | `sspid`       | required | Ssp ID       | `"123"`    | `string` |
-| `host`        | required | host         | `"abc.com"`| `string` |
