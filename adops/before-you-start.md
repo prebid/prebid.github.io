@@ -7,7 +7,6 @@ sbUUID: 3.2
 ---
 
 # Ad Ops and Prebid
-
 {: .no_toc }
 
 Ad Operations (Ad Ops) are the people who work directly with the ad server software to create, analyze, and update ad campaigns. In companies that use automated processes rather than working directly in the ad server UI, people in Ad Ops define the inputs to the automation that ensure campaigns run as expected. Whatever your actual job title or exact job description, when we refer to “Ad Ops” we’re talking about the non-engineering tasks involved in running and managing ad campaigns.

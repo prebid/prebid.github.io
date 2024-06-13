@@ -248,6 +248,10 @@ In the long run, if you'd prefer to change the filenames too, that's ok - but ou
 1. Submit a PR that changes the filenames and makes the old name a hard-coded alias.
 2. Keep both bidder documentation files.
 
+## May I build a server that calls Prebid Server?
+
+Sure. The main endpoint you're going to utilize is the [auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html). Basically, it's just OpenRTB 2.6, but with quite a few Prebid-specific extensions. See the [auction request example](/prebid-server/endpoints/openrtb2/auction-request-example.html).
+
 ## Should Prebid bidders be in ads.txt?
 
 Publishers should be careful to list all their bidding partners in their ads.txt file. Bidders without an entry in ads.txt may be

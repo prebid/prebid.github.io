@@ -5,7 +5,7 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: false
-userIds: idl, netId, fabrickId, zeotapIdPlus, uid2, TDID, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, utiq, criteoID, euid, imuid, 33acrossId, nonID, pairid, MRKL
+userIds: amazonAdvertisingID, fabrickId, zeotapIdPlus, TDID, tpid, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, trustpid, utiqMtpId, criteoID, euid, imuid, 33acrossId, nonID, pairId, M1ID, RampID, connectId
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
@@ -318,30 +318,46 @@ pbjs.addAdUnits({
     code: slot.code,
     mediaTypes: {
         native: {
-            image: {
-                required: true,
-                sizes: [150, 50]
-            },
-            title: {
-                required: true,
-                len: 80
-            },
-            sponsoredBy: {
-                required: true
-            },
-            clickUrl: {
-                required: true
-            },
-            privacyLink: {
-                required: false
-            },
-            body: {
-                required: true
-                len: 90
-            },
-            icon: {
-                required: true,
-                sizes: [50, 50]
+            ortb: {
+                assets: [{
+                    id: 1,
+                    required: 1,
+                    img: {
+                        type: 3,
+                        w: 150,
+                        h: 50,
+                    }
+                },
+                {
+                    id: 2,
+                    required: 1,
+                    title: {
+                        len: 80
+                    }
+                },
+                {
+                    id: 3,
+                    required: 1,
+                    data: {
+                        type: 1
+                    }
+                },
+                {
+                    id: 4,
+                    required: 1,
+                    data: {
+                        type: 2
+                    }
+                },
+                {
+                    id: 6,
+                    required: 1,
+                    img: {
+                        type: 1,
+                        w: 50,
+                        h: 50,
+                    }
+                }]
             }
         }
     },
@@ -582,7 +598,6 @@ var adUnits = [{
     mediaTypes: {
         video: {
             // Preferred location as of version 4.43
- video obj
             context: 'instream',
             playerSize: [300, 250],
             api: [2],
@@ -590,7 +605,8 @@ var adUnits = [{
             minduration: 5,
             maxduration: 30,
             mimes: ['video/mp4', 'application/javascript'],
-            placement: 3
+            placement: 3,
+            plcmt: 1
         }
     },
     bids: [{
@@ -649,30 +665,46 @@ pbjs.addAdUnits({
     code: slot.code,
     mediaTypes: {
         native: {
-            image: {
-                required: true,
-                sizes: [150, 50]
-            },
-            title: {
-                required: true,
-                len: 80
-            },
-            sponsoredBy: {
-                required: true
-            },
-            clickUrl: {
-                required: true
-            },
-            privacyLink: {
-                required: false
-            },
-            body: {
-                required: true
-                len: 90
-            },
-            icon: {
-                required: true,
-                sizes: [50, 50]
+            ortb: {
+                assets: [{
+                    id: 1,
+                    required: 1,
+                    img: {
+                        type: 3,
+                        w: 150,
+                        h: 50,
+                    }
+                },
+                {
+                    id: 2,
+                    required: 1,
+                    title: {
+                        len: 80
+                    }
+                },
+                {
+                    id: 3,
+                    required: 1,
+                    data: {
+                        type: 1
+                    }
+                },
+                {
+                    id: 4,
+                    required: 1,
+                    data: {
+                        type: 2
+                    }
+                },
+                {
+                    id: 6,
+                    required: 1,
+                    img: {
+                        type: 1,
+                        w: 50,
+                        h: 50,
+                    }
+                }]
             }
         }
     },

@@ -150,6 +150,7 @@ There are two error events analytics modules may wish to listen for: auctionDebu
 
 * listen only to the events required
 * batch up calls to the backend for post-auction logging rather than calling immediately after each event.
+* consider using the keepalive option on the ajax request to keep the priority low and the request queued after the pageview dies
 
 ### Step 3: Add unit tests
 

@@ -40,6 +40,6 @@ To render native ads, you also need to include the [nativeRendering](/dev-docs/m
 
 ## Further reading
 
-- [Creative Considerations](/adops/creative-considerations.md)
+- [Creative Considerations](/adops/creative-considerations.html)
 - [Prebid Universal Creative](/overview/prebid-universal-creative.html)
 - [Native rendering module](/dev-docs/modules/nativeRendering.html)

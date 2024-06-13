@@ -5,8 +5,10 @@ description: FTrack ID from Flashtalking By Mediaocean User ID sub-module
 useridmodule: ftrackIdSystem
 ---
 
-
 The FTrack Identity Framework (["FTrack"](https://www.flashtalking.com/identity-framework#FTrack)) User ID Module allows publishers to take advantage of Flashtalking's FTrack ID during the bidding process.
+
+{: .alert.alert-warning :}
+Disclosure: This module loads javascript unreviewed by the prebid.js community.
 
 Flashtalking’s cookieless tracking technology uses probabilistic device recognition to derive a privacy-friendly persistent ID for each device.
 

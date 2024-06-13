@@ -205,6 +205,43 @@ To support modules that need to obtain information about the local CPU environme
 cpuLoadAverageStats.getCpuLoadAverage();  // returns a float
 ```
 
+#### Interaction with Activity Infrastructure
+
+For modules that need to check whether certain activity is allowed, follow the next example:
+
+```java
+public class MyHook<PAYLOAD, CONTEXT extends AuctionInvocationContext> implements Hook<PAYLOAD, CONTEXT> {
+
+   private final UserFpdActivityMask userFpdActivityMask; // inject this bean using Spring if needed
+
+   // ...
+
+   @Override
+   public Future<InvocationResult<PAYLOAD>> call(PAYLOAD payload, CONTEXT invocationContext) {
+      // ...
+
+      final AuctionContext auctionContext = invocationContext.auctionContext();
+      final ActivityInfrastructure activityInfrastructure = auctionContext.getActivityInfrastructure();
+
+      final ActivityInvocationPayload activityInvocationPayload = BidRequestActivityInvocationPayload.of(
+              ActivityInvocationPayloadImpl.of(
+                      ComponentType.GENERAL_MODULE, // or ComponentType.RTD_MODULE
+                      "MODULE NAME"),
+              auctionContext.getBidRequest());
+
+      final boolean isTransmitUfpdAllowed = activityInfrastructure.isAllowed(
+              Activity.TRANSMIT_UFPD, // You can check for any activity that interest you
+              activityInvocationPayload);
+
+      // Then you can use activity masks for Device and User if needed
+      final User maskedUser = userFpdActivityMask.maskUser(user, !isTransmitUfpdAllowed, false);
+      final Device maskedDevice = userFpdActivityMask.maskDevice(device, !isTransmitUfpdAllowed, false);
+
+      // ...
+   }
+}
+```
+
 ### Configuration
 
 It's possible to define default module configuration which can be read by the module at PBS startup. Please see the [Configuration](https://docs.google.com/document/d/1VP_pi7L5Iy3ikHMbtC2_rD5RZTVSc3OkTWKvtRS5x5Y/edit#heading=h.mh3urph3k1mk) section of the technical specification.
