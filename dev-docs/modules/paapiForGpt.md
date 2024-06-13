@@ -28,31 +28,13 @@ To use PAAPI with GPT:
     ```
 
 - [configure PAAPI](/dev-docs/modules/paapi.html#config)
-- invoke [setPAAPIConfigForGPT](/dev-docs/publisher-api-reference/setPAAPIConfigForGPT.html) at end of auction.
+- (optional) invoke [setPAAPIConfigForGPT](/dev-docs/publisher-api-reference/setPAAPIConfigForGPT.html) at end of auction.
 
-### Example
+## Explicit configuration
 
-```javascript
-// enable PAAPI for all slots
-pbjs.setConfig({
-  paapi: {
-      enabled: true,
-      defaultForSlots: 1
-  }
-});
-pbjs.requestBids({
-  bidsBackHandler: function(bids, timedOut, auctionId) {
-    // configure GPT slots for PAAPI
-    pbjs.setPAAPIConfigForGPT();
-  }
-})
-```
+By default, Prebid.js attempts to configure GPT slots for PAAPI together with their targeting (that is, when [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) is called).
 
-See the [API reference](/dev-docs/publisher-api-reference/setPAAPIConfigForGpt.html) for more options.
-
-## Automatic PAAPI configuration with GPT targeting
-
-The module can be configured to set up PAAPI as part of `setTargetingForGPTAsync`:
+For more control how GPT slots are configured, you can set `configWithTargeting: false` and explicitly call [setPAAPIConfigForGPT](/dev-docs/publisher-api-reference/setPAAPIConfigForGPT.html). For example:  
 
 ```js
 pbjs.setConfig({
@@ -60,14 +42,15 @@ pbjs.setConfig({
         enabled: true,
         defaultForSlots: 1,
         gpt: {
-            configWithTargeting: true
+            configWithTargeting: false
         }
     }
 })
 pbjs.requestBids({
+  // ...
   bidsBackHandler: function(bids, timedOut, auctionId) {
-    // with configWithTargeting =true, the following will automatically run `setPAAPIConfigForGPT`: 
-    pbjs.setTargetingForGPTAsync(); 
+    pbjs.setPAAPIConfigForGPT();
+    // ...
   }
 })
 ```
