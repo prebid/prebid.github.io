@@ -5,9 +5,14 @@ description: Prebid RelevateHealth Bidder Adaptor
 pbjs: true
 biddercode: relevatehealth
 media_types: banner
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 gpp_sids: usstate_all
+schain_supported: false
+safeframes_ok: false
+ortb_blocking_supported: false
+dsa_supported: false
 deals_supported: true
 floors_supported: true
 sidebarType: 1
