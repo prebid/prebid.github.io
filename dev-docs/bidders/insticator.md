@@ -16,6 +16,7 @@ multiformat_supported: will-bid-on-any
 pbjs: true
 gvl_id: 910
 sidebarType: 1
+userIds: all
 ---
 
 ### Bid Params
