@@ -5,6 +5,8 @@ description: Prebid RingierAxelSpringer Bidder Adapter
 biddercode: ringieraxelspringer
 media_types: banner, native
 pbjs: true
+pbs: false
+prebid_member: false
 gvl_id: 1021
 tcfeu_supported: true
 safeframes_ok: false
@@ -13,6 +15,14 @@ floors_supported: false
 fpd_supported: false
 sidebarType: 1
 multiformat_supported: will-bid-on-one
+dsa_supported: true
+privacy_sandbox: paapi
+ortb_blocking_supported: false
+schain_supported: false
+dchain_supported: false
+gpp_sids: None
+coppa_supported: false
+usp_supported: false
 ---
 
 
