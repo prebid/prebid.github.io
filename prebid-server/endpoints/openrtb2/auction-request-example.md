@@ -14,7 +14,7 @@ It serves 2 purposes:
 
 ## POST /openrtb2/auction
 
-```json
+```json5
 {
     "id": "123456789",
     "source": {
