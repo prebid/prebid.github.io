@@ -133,6 +133,7 @@ pbjs.setConfig({
 
 > Note that `resourceKey` and `onPremiseJSUrl` are mutually exclusive parameters.  Use strictly one of them: either a `resourceKey` for cloud integration and `onPremiseJSUrl` for the on-premise self-hosted integration. 
 
+{: .table .table-bordered .table-striped }
 | Name                  | Type    | Description                                                                                      | Default            |
 |:----------------------|:--------|:-------------------------------------------------------------------------------------------------|:-------------------|
 | name                  | String  | Real time data module name                                                                       | Always '51Degrees' |
