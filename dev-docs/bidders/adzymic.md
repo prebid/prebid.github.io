@@ -6,13 +6,16 @@ biddercode: adzymic
 pbjs: true
 pbs: false
 aliasCode: appnexus
-gdpr_supported: true
+tcfeu_supported: true
+usp_supported: false
+coppa_supported: false
+gpp_supported: false
 media_types: banner, video, native
 safeframes_ok: false
 multiformat_supported: will-bid-on-any
-gvl_id: 32
+gvl_id: 723
 schain_supported: true
-userId: all
+userIds: all
 sidebarType: 1
 ---
 ### Bid Params
