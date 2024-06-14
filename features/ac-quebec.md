@@ -101,9 +101,6 @@ bidders are in such alignment.
 
 An alternate solution would utilize the Prebid Server version of the [Activity Control system](/prebid-server/features/pbs-activitycontrols.html).
 
-{: .alert.alert-info :}
-Only the Java version of Prebid Server currently supports targeting Activity Controls to geographic regions.
-
 Here's an example account configuration that utilizes the user's geographic region to determine
 whether to allow or deny the named activities. Publishers will need to confirm the details with
 their Prebid Server host company.
