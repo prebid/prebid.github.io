@@ -6,7 +6,7 @@ gvl_id: 972
 pbjs: true
 biddercode: kargo
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 userIds: unifiedId
 usp_supported: true
 coppa_supported: false
@@ -21,6 +21,7 @@ pbs_app_supported: false
 prebid_member: true
 gpp_supported: true
 multiformat_supported: will-bid-on-any
+pbjs_version_notes: if you require schains, avoid versions 7.46 to 7.53
 sidebarType: 1
 ---
 
@@ -51,3 +52,37 @@ pbjs.bidderSettings = {
 | Name          | Scope    | Description | Example | Type     |
 |---------------|----------|-------------|---------|----------|
 | `placementId`       | required | The placementId of the ad slot. |`'_jWuc8Hks'`| `string` |
+
+### ORTB Blocking
+
+Kargo supports blocking advertisers in `badv` and categories in `bcat` parameters.
+The blocked advertisers/categories list has no length limitation, but response timeout is more likely to occur as the number of entries grow.
+Blocked advertisers list (`badv`) is an array of domains as strings.
+Blocked categories list (`bcat`) is an array of IAB categories as strings.
+
+For example:
+
+#### Globally defined ORTB Blocking
+
+```javascript
+pbjs.setConfig({
+  ortb2: {
+    badv: ["domain1.com", "domain2.com"],
+    bcat: ["IAB23-1", "IAB23-5", "IAB25-3", "IAB25-2"]
+  }
+)};
+```
+
+#### ORTB Blocking specific only to the Kargo bidder
+
+```javascript
+pbjs.setBidderConfig({
+  bidders: ['kargo'],
+  config:{
+    ortb2: {
+      badv: ["domain1.com", "domain2.com"],
+      bcat: ["IAB23-1", "IAB23-5", "IAB25-3", "IAB25-2"]
+    }
+  }
+});
+```

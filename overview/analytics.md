@@ -58,7 +58,7 @@ pbjs.que.push(function() {
 
 {: .table .table-bordered .table-striped }
 | **Module Code** | {{ page.modulecode }} | **Prebid.org Member** | {% if page.prebid_member == true %}yes{% else %}no{% endif %} |
-| **GDPR Support** | {% if page.gdpr_supported == true %}yes{% elsif page.gdpr_supported == false %}no{% else %}Check with vendor{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% elsif page.usp_supported == false %}no{% else %}Check with vendor{% endif %} |
+| **GDPR Support** | {% if page.tcfeu_supported == true %}yes{% elsif page.tcfeu_supported == false %}no{% else %}Check with vendor{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% elsif page.usp_supported == false %}no{% else %}Check with vendor{% endif %} |
 | **IAB GVL ID** | {% if page.gvl_id %}{{page.gvl_id}}{% else %}Check with vendor{% endif %} | **COPPA Support** | {% if page.coppa_supported == true %}yes{% elsif page.coppa_supported == false %}no{% else %}Check with vendor{% endif %} |
 
 {{ page.content }}

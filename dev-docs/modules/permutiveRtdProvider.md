@@ -16,7 +16,7 @@ sidebarType : 1
 {:.no_toc}
 
 * TOC
-  {:toc}
+{:toc}
 
 ## Prebid Config for Permutive RTD Module
 

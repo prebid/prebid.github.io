@@ -16,6 +16,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
+| 8.0 | Module removals, reliabe (opt-in) transaction identifier, size mapping module & acitivy control. See the [PBJS 8 release notes](/dev-docs/pb8-notes.html) |
 | 7.0 | Cleanup of deprecated 'publisherDomain' and 'fpd' config. See the [PBJS 7 release notes](/dev-docs/pb7-notes.html) |
 | 6.0 | Removed transpiling for the MSIE 11 browser. [Blog post](https://prebid.org/blog/prebid-6-0-release/) |
 | 5.9 | Support numeric ad targeting keys |

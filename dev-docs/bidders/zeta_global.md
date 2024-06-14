@@ -6,7 +6,7 @@ pbjs: true
 biddercode: zeta_global
 deals_supported: false
 media_types: banner
-gdpr_supported: true
+tcfeu_supported: true
 tcf2_supported: true
 gvl_id: 469
 sidebarType: 1

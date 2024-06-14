@@ -5,7 +5,7 @@ description: Prebid Dianomi Bidder Adaptor
 biddercode: dianomi
 media_types: banner, native, video
 coppa_supported: false
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 prebid_member: true
 pbjs: true

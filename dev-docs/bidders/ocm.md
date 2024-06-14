@@ -5,7 +5,8 @@ description: Prebid OCM Bidder Adapter
 biddercode: ocm
 aliasCode: adtelligent
 media_types: video,banner
-gdpr_supported: true
+tcfeu_supported: true
+gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
 coppa_supported: true
@@ -33,7 +34,7 @@ This adapter provides a solution for accessing Video demand and display demand.
 
 ### Test Parameters
 
-```
+``` javascript
     var adUnits = [
 
       // Video instream adUnit

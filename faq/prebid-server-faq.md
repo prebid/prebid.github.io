@@ -235,6 +235,23 @@ PBS-Java supports MaxMind and Netacuity. It performs the geo-lookup on every req
 
 No, Prebid Server is intended to run behind a load balancer or proxy, so it does not currently support defining a security certificate.
 
+## How can we rename our bid adapter?
+
+If you have a company name change and need to add a new bidder code for the updated branding, here's the recommended approach:
+
+1. Keep the existing filenames and make the new name a hard-coded alias. There are separate instructions for this for [PBS-Go](/prebid-server/developers/add-new-bidder-go.html#aliasing-an-adapter) and [PBS-Java](/prebid-server/developers/add-new-bidder-java.html#create-bidder-alias).
+2. Update the contact email in your YAML file as needed ([PBS-Go](https://github.com/prebid/prebid-server/tree/master/static/bidder-info), [PBS-Java](https://github.com/prebid/prebid-server-java/tree/master/src/main/resources/bidder-config))
+3. **Copy** your bidder documentation file in [https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) so both names are available.
+
+In the long run, if you'd prefer to change the filenames too, that's ok - but our rule is that the old name needs to be available until the next major release to give time for publishers to transition. In that case:
+
+1. Submit a PR that changes the filenames and makes the old name a hard-coded alias.
+2. Keep both bidder documentation files.
+
+## May I build a server that calls Prebid Server?
+
+Sure. The main endpoint you're going to utilize is the [auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html). Basically, it's just OpenRTB 2.6, but with quite a few Prebid-specific extensions. See the [auction request example](/prebid-server/endpoints/openrtb2/auction-request-example.html).
+
 ## Should Prebid bidders be in ads.txt?
 
 Publishers should be careful to list all their bidding partners in their ads.txt file. Bidders without an entry in ads.txt may be

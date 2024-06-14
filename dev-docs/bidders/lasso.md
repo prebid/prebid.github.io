@@ -6,7 +6,7 @@ biddercode: lasso
 pbjs: true
 pbs: false
 media_types: banner
-gdpr_supported: false
+tcfeu_supported: false
 gvl_id: none
 coppa_supported: true
 usp_supported: true

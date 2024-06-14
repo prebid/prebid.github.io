@@ -5,7 +5,7 @@ description: Prebid Engageya Bidder Adapter
 media_type: banner, native
 biddercode: engageya
 pbjs: true
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

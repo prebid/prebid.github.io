@@ -8,23 +8,23 @@ nav_section: prebid-mobile-android
 sidebarType: 2
 ---
 
-# Integration for Android
+# Prebid SDK Integration for Android
 {:.no_toc}
 
 Get started with Prebid Mobile by creating a [Prebid Server account](/prebid-mobile/prebid-mobile-getting-started.html). Once your account is set up include the Prebid Mobile SDK in your app by either using Maven or by [cloning the repo](https://github.com/prebid/prebid-mobile-android) and using our included script to build the SDK.
 
-* TOC
+- TOC
 {:toc}
 
 ## SDK Integration
 
 ### Maven
 
-If you are not familar with using Maven for build management visit the [Maven website](https://maven.apache.org/index.html).
+If you are not familiar with using Maven for build management visit the [Maven website](https://maven.apache.org/index.html).
 
 To include the Prebid Mobile SDK simply add this line to your gradle dependencies to get the latest stable release:
 
-```
+```bash
 dependencies {
     ////
     
@@ -38,11 +38,11 @@ Prebid is going to release beta versions of the SDK from time to time. If you do
 
 If you still use the range notation like this:
 
-```
+```bash
 implementation 'org.prebid:prebid-mobile-sdk:[1,2)'
 ```
 
-please change it to the strict version. 
+please change it to the strict version.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
@@ -50,25 +50,24 @@ please change it to the strict version.
 
 After [cloning the repo](https://github.com/prebid/prebid-mobile-android), use Terminal or another command line tool to change to the root directory and run:
 
-```
+```bash
 scripts/buildPrebidMobile.sh
 ```
 
 This will output the PrebidMobile framework for Android.
 
-{% capture warning_note %}  
+{% capture warning_note %}
 If you see errors while building the Prebid Mobile SDK or Demo Applications, make sure that the needed Android SDK version is set up on your machine. Check the gradle build configs for the project and applications for details about the current required version.
 
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
+## Add the Prebid SDK
 
-## Add SDK
+### Point to a Prebid Server
 
-### Set Prebid Server
-
-{% capture warning_note %}  
-All integration examples for Android are written in `Kotlin`. 
+{% capture warning_note %}
+All integration examples for Android are written in `Kotlin`.
 
 The corresponding Java code can be found in the [Demo Java](https://github.com/prebid/prebid-mobile-android/tree/master/Example/PrebidDemoJava) application
 
@@ -77,21 +76,32 @@ The corresponding Java code can be found in the [Demo Java](https://github.com/p
 
 Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add the 'account' info to Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
 
-```
+```kotlin
 PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
 ```
 
-If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
 
-
+```kotlin
+PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebidserver.example.com/openrtb2/auction"))
 ```
-PrebidMobile.setPrebidServerHost(Host.createCustomHost(PREBID_SERVER_AUCTION_ENDPOINT))
+
+#### Account Settings ID
+
+Each mobile app may have its own "account settings ID". This is used to look up data in Prebid Server like timeout, targeting, and price granularity.
+
+By default the Account Settings ID is set to be the same as the Account ID. i.e. the setPrebidServerAccountId() function will set both values.
+If you want to define a different Account Settings ID as determined in conjunction with
+your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html#arbitrary-openrtb) method like this:
+
+```kotlin
+adUnitConfiguration?.ortbConfig = "{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}"
 ```
 
 ### Initialize SDK
 
-Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. Use the following initialization for Prebid SDK: 
+Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. Use the following initialization for Prebid SDK:
 
 ```kotlin
 PrebidMobile.initializeSdk(applicationContext) { status ->
@@ -106,14 +116,14 @@ PrebidMobile.initializeSdk(applicationContext) { status ->
 }
 ```
 
-{% capture warning_note %}  
-Pay attention that SDK should be initialized on the main thread. 
+{% capture warning_note %}
+Pay attention that SDK should be initialized on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
 During the initialization, SDK creates internal classes and performs the health check request to the [/status](https://docs.prebid.org/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If you use a custom PBS host you should provide a custom status endpoint as well:
 
-```
+```kotlin
 PrebidMobile.setCustomStatusEndpoint(PREBID_SERVER_STATUS_ENDPOINT)
 ```
 
@@ -121,17 +131,18 @@ If something goes wrong with the request, the status of the initialization callb
 
 ### Check compatibility with your GMA SDK
 
-If you integrate Prebid Mobile with GMA SDK, use the following method, which checks the compatibility of Prebid SDK with GMA SDK used in the app: 
+If you integrate Prebid Mobile with GMA SDK, use the following method, which checks the compatibility of Prebid SDK with GMA SDK used in the app:
 
 ```kotlin
 PrebidMobile.checkGoogleMobileAdsCompatibility(MobileAds.getVersion().toString())
 ```
+
 Check the log messages of the app. If the provided GMA SDK version is not verified for compatibility, the Prebid SDK will log a warning.
 
 ## Updating your Android manifest
 
-{% capture warning_note %}  
-This section applies only to scenarios when when Prebid SDK renders a winning bid: `No Ad Server`, `AdMob`, `MAX`, `GAM Event Handlers`. If you integrate Prebid with GAM using the original integration scenario skip this step.  
+{% capture warning_note %}
+This section applies only to scenarios when when Prebid SDK renders a winning bid: `No Ad Server`, `AdMob`, `MAX`, `GAM Event Handlers`. If you integrate Prebid with GAM using the original integration scenario skip this step.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
@@ -147,9 +158,9 @@ Open your AndroidManifest.xml and add the following permissions and activity dec
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-**Notes:** 
+**Notes:**
 
-- `ACCESS_COARSE_LOCATION` or `ACCESS_FINE_LOCATION` will automatically allow the device to send user location for targeting, which can help increase revenue by increasing the value of impressions to buyers.
+- `ACCESS_COARSE_LOCATION` or `ACCESS_FINE_LOCATION` will automatically allow the device to send user location as First Party Data, which can help increase revenue by increasing the value of impressions to buyers.
 - `WRITE_EXTERNAL_STORAGE` is optional and only required for MRAID 2.0 storePicture ads.
 
 For *banner and interstitial ads only*, include the following custom activities (even though you won't instantiate them directly). This is not necessary for video interstitial ads.
@@ -162,7 +173,7 @@ Custom Activities:
     android:configChanges="orientation|screenSize|keyboardHidden"
     android:theme="@android:style/Theme.Translucent.NoTitleBar"
     android:windowSoftInputMode="adjustPan|stateHidden"
-    android:launchMode="singleTop"/>  
+    android:launchMode="singleTop"/>
 ```
 
 **NOTE**
@@ -173,27 +184,31 @@ Custom Activities:
 Add this tag to your `<application>` to use Google Play Services:
 
 ``` xml
-<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />  
+<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 ```
 
-## Set Targeting Parameters 
+## Set Global Parameters
 
-Targeting parameters enable you to define the target audience for the bid request. Prebid Mobile supports the following global targeting parameters. These targeting parameters are set only once and apply to all Prebid Mobile ad units. They do not change for a given user session.
+There are several types of parameters app developers should consider providing to Prebid SDK:
 
-View the full list of [targeting parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html).
+- Values that control Prebid SDK behavior (timeout, etc)
+- Privacy consent settings (TCF, GPP, COPPA, etc).
+- First Party Data to help bidders understand the context and/or u
+ser better.
+
+See the [global parameters page](/prebid-mobile/pbm-api/android/pbm-targeting-android.html) for details.
 
 ## Supported Android versions
 
 Prebid supports the following versions by release:
 
-* Prebid SDK version 1.0 or 1.1 supports Android 16+
-* Prebid SDK version 1.1.1+ supports Android 19+
-* Prebid SDK version 2.0.0+ supporst Android 16+
+- Prebid SDK version 1.0 or 1.1 supports Android 16+
+- Prebid SDK version 1.1.1+ supports Android 19+
+- Prebid SDK version 2.0.0+ supporst Android 16+
 
 ## Setup SDK
 
 Apply global settings with the `PrebidMobile` object.
-
 
 ### AccountId
 {:.no_toc}
@@ -229,6 +244,17 @@ PrebidMobile.setTimeoutMillis(3000)
 var timeout = PrebidMobile.getTimeoutMillis()
 ```
 
+### Creative Factory Timeout
+{:.no_toc}
+
+Indicates how long each creative has to load before it is considered a failure.
+
+```kotlin
+PrebidMobile.setCreativeFactoryTimeout(7000);
+PrebidMobile.setCreativeFactoryTimeoutPreRenderContent(25000);
+```
+
+The `creativeFactoryTimeoutPreRenderContent` controls the timeout for video and interstitial ads. The `creativeFactoryTimeout` is used for HTML banner ads.
 
 ### ShareGeoLocation
 {:.no_toc}
@@ -251,7 +277,7 @@ var headers = HashMap<String, String> ()
 headers.put("custom-header-1", "prebid-in-action")
 
 PrebidMobile.setCustomHeaders(headers)
-        
+
 headers = PrebidMobile.getCustomHeaders()
 ```
 
@@ -273,6 +299,7 @@ Stored Bid Responses are similar to Stored Auction Responses in that they signal
 PrebidMobile.addStoredBidResponse("appnexus", "221144");
 PrebidMobile.addStoredBidResponse("rubicon", "221155");
 ```
+
 To stop sending stored bid response signals use the following method:
 
 ```kotlin
@@ -287,6 +314,47 @@ void clearStoredBidResponses()
 ```kotlin
 PrebidMobile.setPbsDebug(true)
 ```
+
+### Server Side Configuration
+
+You can pass some SDK configuration properties from PBS to the SDK using the `ext.prebid.passthrough` object, [supported](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#request-passthrough) by Prebid Server, in the stored request.
+
+For now Prebid SDK supports the following configuration properties:
+
+- `cftbanner` - see the `Prebid.creativeFactoryTimeout`
+- `cftprerender` - see the `Prebid.creativeFactoryTimeoutPreRenderContent`
+
+An example of a stored request:
+
+```json
+{
+  "app": {
+    "publisher": {
+      "ext": {
+        "prebid": {
+          
+        }
+      }
+    }
+  },
+  "ext": {
+    "prebid": {
+      "passthrough": [
+        {
+          "type": "prebidmobilesdk",
+          "sdkconfiguration": {
+            "cftbanner": 42,
+            "cftprerender": 4242
+          }
+        }
+      ]
+    }
+  },
+  "test": 1
+}
+```
+
+All values received in the `passthrough` of the bid response will be applied to the respective `Prebid.*` properties with the highest priority. After that, the SDK will utilize new values received in the bid response.
 
 ## Integrate Ad Units
 
@@ -305,17 +373,17 @@ In the table below, you can find Prebid's test IDs that are used in the Demo App
 {: .table .table-bordered .table-striped }
 
 | Config ID            | Ad Format        | Description            |
-| -------------------- | ---------------- | ---------------------- | 
+| -------------------- | ---------------- | ---------------------- |
 |`https://prebid-server-test-j.prebid.org/openrtb2/auction` | **Custom Prebid Server Host**|A PBS instance that is dedicated to testing purposes.|
 |`0689a263-318d-448b-a3d4-b02e8a709d9d`| **Stored Request ID**|The test account ID on the test server.|
-|`imp-prebid-banner-320-50`|**HTML Banner**|Returns a stored response that contains a Banner 320x50 winning bid.|
-|`imp-prebid-display-interstitial-320-480`|**HTML Interstitial**|Returns a stored response that contains a Interstitial 320x480 winning bid.|
-|`imp-prebid-video-outstream-original-api`|**Outstream Video** (Original API)|Returns a stored response that contains a Video 320x50 winning bid.|
-|`imp-prebid-video-outstream`|**Outstream Video** (Rendering API)|Returns a stored response that contains a Video 320x50 winning bid.|
-|`imp-prebid-video-interstitial-320-480-original-api`|**Video Interstitial** (Original API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
-|`imp-prebid-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
-|`imp-prebid-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
-|`imp-prebid-video-rewarded-320-480`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
+|`prebid-demo-banner-320-50`|**HTML Banner**|Returns a stored response that contains a Banner 320x50 winning bid.|
+|`prebid-demo-display-interstitial-320-480`|**HTML Interstitial**|Returns a stored response that contains a Interstitial 320x480 winning bid.|
+|`prebid-demo-video-outstream-original-api`|**Outstream Video** (Original API)|Returns a stored response that contains a Video 320x50 winning bid.|
+|`prebid-demo-video-outstream`|**Outstream Video** (Rendering API)|Returns a stored response that contains a Video 320x50 winning bid.|
+|`prebid-demo-video-interstitial-320-480-original-api`|**Video Interstitial** (Original API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
+|`prebid-demo-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
+|`prebid-demo-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
+|`prebid-demo-video-rewarded-320-480`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
 |`sample_video_response`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid. Note: on Android we have an [issue](https://github.com/prebid/prebid-mobile-android/issues/517) with Instream Video demo example. When it is fixed the config id will be updated to the new one.|
-|`imp-prebid-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
-|`imp-prebid-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|
+|`prebid-demo-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
+|`prebid-demo-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|

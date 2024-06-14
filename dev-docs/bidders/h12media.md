@@ -5,7 +5,7 @@ description: Prebid H12 Media Bidder Adaptor
 pbjs: true
 biddercode: h12media
 media_types: banner
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 userIds: all
 sidebarType: 1
@@ -26,7 +26,7 @@ sidebarType: 1
 
 Example:
 
-``` bash
+```javascript
 {
     bidder: "h12media",
     params: {

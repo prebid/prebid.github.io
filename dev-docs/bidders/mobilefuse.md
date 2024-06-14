@@ -4,7 +4,7 @@ title: MobileFuse
 pbs: true
 pbjs: false
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 gpp_supported: true
 schain_supported: true
 usp_supported: true
