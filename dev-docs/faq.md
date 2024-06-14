@@ -62,7 +62,7 @@ After you’ve determined your legal obligations, consider the tools Prebid make
 * [Disable User ID modules](/dev-docs/modules/userId.html) - there are controls for different ID modules and which bidders can get which IDs.
 * [Disable device access](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) - no adapter or module will be able to create a cookie or HTML5 localstorage object.
 * For GDPR:
-  * Consider the [GDPR](/dev-docs/modules/consentManagement.html) and [GDPR Enforcement](/dev-docs/modules/gdprEnforcement.html) modules, which flexibly support various actions like cancelling usersyncs, auctions, and analytics. Using these modules, bid adapters can receive the IAB TCF string from the CMP.
+  * Consider the [TCF](/dev-docs/modules/consentManagementTcf.html) and [TCF Control](/dev-docs/modules/tcfControl.html) modules, which flexibly support various actions like cancelling usersyncs, auctions, and analytics. Using these modules, bid adapters can receive the IAB TCF string from the CMP.
   * Note that TCF 2.2 is functionally the same as TCF 2.0 from the Prebid.js perspective. The code has always relied on event listeners to get the TCF string, so when `getTCData` was deprecated in 2.2 the modules were unaffected. There are still references in the code only because it is still accepted as a place for statically-supplied data.
   * Alternatively, the page can just avoid turning on certain bidders or modules.
 * For CCPA / CPRA / US-Privacy:
@@ -84,7 +84,7 @@ This option to the ConsentManagement module was removed a long time ago in PBJS 
 * It was a poorly named flag. What it did was let the auction happen on the first page before the user had responded to the CMP.
 * It was replaced by a combination of the "defaultGdprScope" flag and the ability for a publisher to disable enforcement of the `basicAds` TCF purpose.
 
-See the [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html) documentation for more details.
+See the [TCF Control Module](/dev-docs/modules/tcfControl.html) documentation for more details.
 
 ## Implementation
 
