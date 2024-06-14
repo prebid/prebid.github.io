@@ -10,13 +10,10 @@ enable_download : true
 vendor_specific: false
 sidebarType : 1
 ---
-
 # Mobian Brand Safety Module
 
 Mobian uses AI to determine the GARM risk level of articles from our publisher partners.
 This methodology is contextual, rather than keyword-based.
 Our evaluation of articles is openly available through our API. This prebid header
 exposes that API at prebid time so that advertisers can easily target articles with
-the desired
-mobianGarmRisk
-
+the desired mobianGarmRisk
