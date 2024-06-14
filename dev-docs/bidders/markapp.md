@@ -16,7 +16,7 @@ fpd_supported: false
 pbjs: true
 pbs: true
 pbs_app_supported: true
-multiformat_supported: true
+multiformat_supported: will-bid-on-any
 ---
 
 ### Prebid.js Bid Params
