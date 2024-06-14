@@ -11,7 +11,7 @@ gpp_sids: tcfeu, usp
 schain_supported: false
 dchain_supported: false
 userId: none
-media_types: banner
+media_types: video, banner
 safeframes_ok: true
 deals_supported: true
 floors_supported: true
@@ -32,7 +32,38 @@ sidebarType: 1
 | `placementId` | required | Placement id | `'ed8a9c16-88ea-4724-aa0d-013c3e595e49'` | `string` |
 | `bidfloor` | optional | Floor price | `2.5` | `float` |
 
-#### Example
+#### Example Video Media Type
+
+```js
+var adUnits = [
+  {
+    code: "1",
+    mediaTypes: {
+      video: {
+        context: "instream",
+        placement: 1,
+        plcmt: 1,
+        mimes: ["video/mp4"],
+        minduration: 30,
+        maxduration: 60,
+      },
+    },
+    bids: [
+      {
+        bidder: "connatix",
+        params: {
+          placementId: "e4984e88-9ff4-45a3-8b9d-33aabcad634e", // required
+          bidfloor: 2.5, // optional
+        },
+      },
+      // Add more bidders and their parameters as needed
+    ],
+  },
+  // Define more ad units here if necessary
+];
+```
+
+#### Example Banner Media Type
 
 ```js
 var adUnits = [
