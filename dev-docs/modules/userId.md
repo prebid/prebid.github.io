@@ -39,7 +39,7 @@ Not all bidder adapters support all forms of user ID. See the tables below for a
 
 ## User ID, GDPR, Permissions, and Opt-Out
 
-When paired with the [Consent Management](/dev-docs/modules/consentManagement.html) module, privacy rules are enforced:
+When paired with the [Consent Management](/dev-docs/modules/consentManagementTcf.html) module, privacy rules are enforced:
 
 * The module checks the GDPR consent string
 * If no consent string is available OR if the user has not consented to Purpose 1 (local storage):
@@ -411,4 +411,4 @@ This will have no effect until you call the `registerSignalSources` API. This me
 ## Further Reading
 
 * [Prebid.js Usersync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing)
-* [GDPR ConsentManagement Module](/dev-docs/modules/consentManagement.html)
+* [TCF ConsentManagement Module](/dev-docs/modules/consentManagementTcf.html)
