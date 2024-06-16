@@ -74,7 +74,7 @@ the contextual auction. If the in-browser auction wins, it can override the ad c
 
 See [Chrome's PAAPI documentation](https://developers.google.com/privacy-sandbox/relevance/protected-audience) for the full background.
 
-To enable Interest Group bidding in Prebid, you can add the Prebid [Fledge For GPT Module](/dev-docs/modules/fledgeForGpt.html).
+To enable Interest Group bidding in Prebid, you can add the Prebid [PAAPI For GPT Module](/dev-docs/modules/paapiForGpt.html).
 
 {: .alert.alert-info :}
 Note that 'FLEDGE' was the original name of the Protected Audience feature. The name of the Prebid.js module may change in the future.
@@ -82,7 +82,7 @@ Note that 'FLEDGE' was the original name of the Protected Audience feature. The 
 ##### Prebid.js and the PAA Test Period
 
 During the first part of 2024, Chrome and GAM are running a test of PAAPI on a limited subset of traffic. However, the
-[Fledge For GPT Module](/dev-docs/modules/fledgeForGpt.html) enables Interest Group auctions 100% of the time. During the test
+[PAAPI For GPT Module](/dev-docs/modules/paapiForGpt.html) enables Interest Group auctions 100% of the time. During the test
 period, publishers can better align browser and programmatic ad behavior by only enabling Prebid interest group bids for
 the relevant Chrome testing labels.
 
@@ -91,7 +91,7 @@ If you want to gather interest group bids only when InterestGroup (IG) auctions 
 ```javascript
 Promise.resolve(navigator.cookieDeprecationLabel?.getValue?.()).then(label => {
     pbjs.setConfig({
-        fledgeForGpt: {
+        paapiForGpt: {
             enabled: !label || label.startsWith("treatment_") || label === 'label_only_5'
         }
     });
@@ -103,7 +103,7 @@ If you want to gather interest group bids whenever when IG auctions _might_ run,
 ```javascript
 Promise.resolve(navigator.cookieDeprecationLabel?.getValue?.()).then(label => {
     pbjs.setConfig({
-        fledgeForGpt: {
+        paapiForGpt: {
             enabled: !label || label.startsWith("treatment_") || label != 'label_only_1'
         }
     });
@@ -124,8 +124,8 @@ This table may be useful to publishers trying to decide which version of Prebid.
 | Prebid.js Version | Notes |
 |-------------------|-------|
 | 8.22| Makes Prebid FPD available to the PAAPI generateBid, scoreAds, and reportResult functions |
-| 8.15| Added floor signal to the fledgeForGpt module |
-| 8.9| Initial release of the fledgeForGpt module, Sec-Browsing-Topics header enabled |
+| 8.15| Added floor signal to the paapiForGpt module |
+| 8.9| Initial release of the paapiForGpt module, Sec-Browsing-Topics header enabled |
 | 8.8| The topicsFpd module is released, allowing bidders to share topics |
 
 #### Prebid Server Versions Supporting Privacy Sandbox

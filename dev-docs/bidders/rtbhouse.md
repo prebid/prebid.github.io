@@ -74,30 +74,30 @@ pbjs.setBidderConfig({
 
 If you’re a Prebid Server host company looking to enable the RTB House server-side adapter, you'll need to contact <prebid@rtbhouse.com>. They will guide you through the process. Do not use the default bidder config file as it will require custom partner code to be entered. It will be provided by RTB House.
 
-### Protected Audience API (FLEDGE) support
+### Protected Audience API (PAAPI) support
 
 There’s an option to receive demand for Protected Audience API (FLEDGE/PAAPI)
 ads using RTB House bid adapter.
-Prebid’s [fledgeForGpt](https://docs.prebid.org/dev-docs/modules/fledgeForGpt.html)
+Prebid’s [paapiForGpt](https://docs.prebid.org/dev-docs/modules/paapiForGpt.html)
 module and Google Ad Manager is currently required.
 
 The following steps should be taken to setup Protected Audience for RTB House:
 
 1. Reach out to your RTB House representative for setup coordination.
 
-2. Build and enable FLEDGE module as described in
-[fledgeForGpt](https://docs.prebid.org/dev-docs/modules/fledgeForGpt.html)
+2. Build and enable PAAPI module as described in
+[paapiForGpt](https://docs.prebid.org/dev-docs/modules/paapiForGpt.html)
 module documentation.
 
-    a. Make sure to enable RTB House bidder to participate in FLEDGE. If there are any other bidders to be allowed for that, add them to the **bidders** array:
+    a. Make sure to enable RTB House bidder to participate in PAAPI. If there are any other bidders to be allowed for that, add them to the **bidders** array:
 
     ```javascript
-    pbjs.setBidderConfig({
-        bidders: ["rtbhouse"],
-        config: {
-            fledgeEnabled: true
-        }
-    });
+    pbjs.setConfig({
+        paapi: {
+           enabled: true,
+           bidders: ["rtbhouse"]           
+        }    
+    })
     ```
 
     b. If you as a publisher have your own [decisionLogicUrl](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#21-initiating-an-on-device-auction)
@@ -107,7 +107,6 @@ module documentation.
     pbjs.setBidderConfig({
         bidders: ["rtbhouse"],
         config: {
-            fledgeEnabled: true,
             fledgeConfig: {
                 seller: 'https://seller.domain',
                 decisionLogicUrl: 'https://seller.domain/decisionLogicFile.js',

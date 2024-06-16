@@ -120,7 +120,7 @@ Prebid Server's support for Fledge is a passthrough:
 1. If the request contains `imp.ext.ae: 1`
 2. Bid adapters may respond with 'auction config' that's placed in `ext.prebid.fledge.auctionconfigs[]`.
 
-The auction config must then be used by the client. See the Prebid.js [Fledge for GPT](/dev-docs/modules/fledgeForGpt.html) module for more information.
+The auction config must then be used by the client. See the Prebid.js [PAAPI for GPT](/dev-docs/modules/paapiForGpt.html) module for more information.
 
 ### OpenRTB Fields
 
