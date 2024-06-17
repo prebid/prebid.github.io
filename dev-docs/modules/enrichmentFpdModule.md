@@ -7,6 +7,7 @@ module_code : enrichmentFpdModule
 display_name : First Party Data Enrichment
 enable_download : true
 recommended: false
+pbjs_version_notes: removed in 9.0
 sidebarType : 1
 ---
 
