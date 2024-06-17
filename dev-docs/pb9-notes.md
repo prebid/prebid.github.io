@@ -57,7 +57,7 @@ The USP string was removed from the consent metadata; also USP module is no long
 
 ## Rendering:
 
-This (creative)[https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html)] is now the preferred creative choice for Google Ad Manager users for web. It is created as part of the build process. This (legacy implementation)[https://github.com/prebid/Prebid.js/blob/8.52.0/integrationExamples/gpt/creative_rendering.html] was deleted and examples using the Prebid Universal Creative (PUC) in documentation are being ported over to (the new guidance)[https://docs.prebid.org/adops/js-dynamic-creative.html]. Publishers also using Prebid Mobile SDK creative for apps may wish to remain on the PUC for ease of operations.
+This [creative](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html) is now the preferred creative choice for Google Ad Manager users for web. It is created as part of the build process. This [legacy implementation](https://github.com/prebid/Prebid.js/blob/8.52.0/integrationExamples/gpt/creative_rendering.html) was deleted and examples using the Prebid Universal Creative (PUC) in documentation are being ported over to [the new guidance](https://docs.prebid.org/adops/js-dynamic-creative.html). Publishers also using Prebid Mobile SDK creative for apps may wish to remain on the PUC for ease of operations.
 
 The legacy method of trafficking native creatives has also had a deprecation warning issued. Publishers should prefer the Ortb2 implementation as sendTargetingKeys for native, hb_native_ASSET, will no longer be supported in a coming version.
 
@@ -104,7 +104,7 @@ transformBidParams was removed from the build so publishers would not need an ad
 
 Private functions are no longer available to npm consumers.
 
-Some adapters changed their configuration, eg Improve Digital and 33Across. See (https://github.com/prebid/Prebid.js/issues/11608)[https://github.com/prebid/Prebid.js/issues/11608]
+Some adapters changed their configuration, eg Improve Digital and 33Across. See [https://github.com/prebid/Prebid.js/issues/11608](https://github.com/prebid/Prebid.js/issues/11608).
 
 ## Miscellaneous deprecation notices (modules):
 
