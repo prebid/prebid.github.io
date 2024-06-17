@@ -1824,6 +1824,7 @@ The Prebid SDK version comes from:
 
 ### Further Reading
 
+- [Example auction request](/prebid-server/endpoints/openrtb2/auction-request-example.html)
 - [OpenRTB 2.4 Specification](https://iabtechlab.com/wp-content/uploads/2016/04/OpenRTB-API-Specification-Version-2-4-FINAL.pdf)
 - [OpenRTB 2.5 Specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)
 - [OpenRTB 2.6 Specification](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md)

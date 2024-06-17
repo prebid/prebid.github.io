@@ -39,7 +39,7 @@ Not all bidder adapters support all forms of user ID. See the tables below for a
 
 ## User ID, GDPR, Permissions, and Opt-Out
 
-When paired with the [Consent Management](/dev-docs/modules/consentManagement.html) module, privacy rules are enforced:
+When paired with the [Consent Management](/dev-docs/modules/consentManagementTcf.html) module, privacy rules are enforced:
 
 * The module checks the GDPR consent string
 * If no consent string is available OR if the user has not consented to Purpose 1 (local storage):
@@ -259,6 +259,7 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 | ConnectID | Yahoo | connectId | yahoo.com | {"connectId": "72d04af6..."} |
 | FreePass ID | FreePass | freepassId | | "1111" |
 | UtiqMtp ID | Utiq | utiqMtpId | utiq-mtp.com | "1111" |
+| Yandex ID | Yandex | yandexId | yandex.com | "11111111111111111" |
 
 For example, the adapter code might do something like:
 
@@ -344,7 +345,11 @@ If you're an ID provider that wants to get on this page:
 * Add your *IdSystem name into the modules/.submodules.json file
 * Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
 * Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
-* Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify /dev-docs/modules/userId.md, /download.md, and submit a documentation Pull Request.
+* Update the Prebid docs
+  * Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io)
+  * Add `/dev-docs/modules/userid-submodules/<userIdModuleName>.md`
+  * Add a new row to `/dev-docs/modules/userId.md#prebidjs-adapters`
+  * Submit a documentation Pull Request
 
 <a name="getUserIds"></a>
 
@@ -411,4 +416,4 @@ This will have no effect until you call the `registerSignalSources` API. This me
 ## Further Reading
 
 * [Prebid.js Usersync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing)
-* [GDPR ConsentManagement Module](/dev-docs/modules/consentManagement.html)
+* [TCF ConsentManagement Module](/dev-docs/modules/consentManagementTcf.html)
