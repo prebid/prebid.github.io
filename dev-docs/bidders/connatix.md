@@ -43,9 +43,14 @@ var adUnits = [
         context: "instream",
         placement: 1,
         plcmt: 1,
-        mimes: ["video/mp4"],
+        api: [1, 2],
+        mimes: ["video/mp4", "application/javascript"],
         minduration: 30,
         maxduration: 60,
+        w: 1280,
+        h: 720,
+        startdelay: 0,
+        playerSize: [1280, 720], // recommended
       },
     },
     bids: [
