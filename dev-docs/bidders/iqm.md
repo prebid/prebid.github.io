@@ -4,6 +4,7 @@ title: iQM
 description: Prebid iQM Bidder Adaptor
 pbjs: true
 biddercode: iqm
+pbjs_version_notes: removed in 9.0
 sidebarType: 1
 ---
 
