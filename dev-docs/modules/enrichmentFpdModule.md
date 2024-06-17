@@ -6,7 +6,7 @@ description: Injects additional data into the auction stream, including&#58; dom
 module_code : enrichmentFpdModule
 display_name : First Party Data Enrichment
 enable_download : true
-recommended: true
+recommended: false
 sidebarType : 1
 ---
 
@@ -15,7 +15,7 @@ sidebarType : 1
 {:.no_toc}
 
 {: .alert.alert-warning :}
-Since version 7.29, this module does nothing; its functionality is instead included by default in all Prebid distributions.
+Since version 7.29, this module does nothing; its functionality is instead included by default in all Prebid distributions. Removed in 9.0.
 
 This module adds a number of First Party Data (FPD) fields from the environment.
 
