@@ -28,8 +28,8 @@ The following modules have been removed from Prebid.js as part of the 9.0 releas
 {: .table .table-bordered .table-striped }
 | Module      | Replacement |
 |:-----------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ... | ...
+| ... | ... |
 
 ## Coming Soon
 
-Placeholder text while we work on the notes. For now see https://github.com/prebid/Prebid.js/issues/11608
+Placeholder text while we work on the notes. For now see [https://github.com/prebid/Prebid.js/issues/11608](https://github.com/prebid/Prebid.js/issues/11608)
