@@ -63,8 +63,7 @@ The legacy method of trafficking native creatives has also had a deprecation war
 
 ## Video ORTB2 Objects
 
-The Ortb2 core adapter utility no longer infers placement from context. Context = 'instream' now only refers to the technical integration method the publisher is using to interact with the player and is not relevant to the ortb2 bid requests. Adapters should not infer placement nor plcmt is instream from this value. Adapters are not permitted to only support placement and not plcmt; they are welcome to pass both. It is however reasonable to infer plcmt = 4 from context = outstream. Publishers are advised to set plcmt on their video ad units explicitly to avoid downstream inferences causing buyer inventory quality enforcements.
-
+The Ortb2 core adapter utility no longer infers placement from context. Context = 'instream' now only refers to the technical integration method the publisher is using to interact with the player and is not relevant to the ortb2 bid requests. Adapters should not infer placement nor plcmt is instream from this value. It is however reasonable to infer plcmt = 4 from context = outstream. Adapters are not permitted to only support placement and not plcmt; they are welcome to pass both. Publishers are advised to set plcmt on their video ad units explicitly to avoid downstream inferences causing buyer inventory quality enforcements.
 ## PAAPI
 
 Any module described as Fledge is now PAAPI. PAAPI Configuration is simplified and publishers experimenting with Fledge in 8.x should refer to the module documentation for updates.
@@ -85,7 +84,7 @@ Bid adapters can now return either complete auction config or an `igb` object ac
     }
  })`
 
-PAAPI for GPT now supports custom slot configuration. Also, the autoConfig option has been removed and replaced with configWithTargeting, defaulting to true, which sets GPT targeting and submits auction configs together. It differs in the previous autoconfig in that it no longer relies on gpt being available at time of requestBids, only at the time of setTargeting. 
+PAAPI for GPT now supports custom slot configuration. Also, the autoConfig option has been removed and replaced with configWithTargeting, defaulting to true, which sets GPT targeting and submits auction configs together. It differs in the previous autoconfig in that it no longer relies on gpt being available at the time of requestBids, only at the time of setTargeting. 
 
 Publishers should be aware this behavior may prohibit submission of auction configuration to GPT sooner than the Prebid.js auction has completed, and will likely prefer to use `setPAAPIConfigForGPT`. We're hoping a futute gpt.js release will enable submission of configuration including unresolved promises earlier than the completion of the Prebid auction, by providing an `allConfigsSubmitted` type utility. Prebid support for other top level sellers will include this functionality in the near future.
 
@@ -113,7 +112,7 @@ Bidders should prefer the eids object in the bidrequest. The redundant userid ob
 
 Userid submodules may no longer be able to access set methods in storage manager in the future. The parent userid module is capable of setting the value returned by the submodule according to publisher configuration.
 
-A variety of performance degrading functions may become unavailable to bid adapters. Some already have, including .innerText and .outerText. Bidders should generally rely on the request object to interogate navigator, and if things are missing from the request object, we invite PRs on it as preferred over redundant module implementations.
+A variety of performance degrading functions may become unavailable to bid adapters. Some already have, including .innerText and .outerText. Bidders should generally rely on the request object to interrogate navigator, and if things are missing from the request object, we invite PRs on it as preferred over redundant module implementations.
 
 Some modules not using our methods, or using excessive payloads, for storage or network transmission were modified. 
 
