@@ -88,7 +88,7 @@ The table below has the options that are common across ID systems. See the secti
 | name | Required | String | May be any of the following values: {% for page in userid_pages -%}{% if count == 1 %}{{ name_string │ append: ", " -}}{% endif %}{% assign count = 1 %}`"{{ name_string │ append: name_string -}}{{ name_string │ append: page.useridmodule -}}"`{% endfor %} | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
-| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be cookie, HTML5 storage or both. This is not needed when `value` is specified or the ID system is managing its own storage | |
+| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be a cookie, HTML5 storage or both.| |
 | storage.type | Required | String | Must be `"cookie"`, `"html5"` or `"cookie&html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
