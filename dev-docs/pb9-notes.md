@@ -109,7 +109,7 @@ transformBidParams was removed from the build so publishers would not need an ad
 
 Private functions are no longer available to npm consumers.
 
-Some adapters changed their configuration. See (https://github.com/prebid/Prebid.js/issues/11608)[https://github.com/prebid/Prebid.js/issues/11608]
+Some adapters changed their configuration, eg Improve Digital and 33Across. See (https://github.com/prebid/Prebid.js/issues/11608)[https://github.com/prebid/Prebid.js/issues/11608]
 
 ## Miscellaneous deprecation notices (modules):
 
