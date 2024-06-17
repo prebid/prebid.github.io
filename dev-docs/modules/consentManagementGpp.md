@@ -200,7 +200,7 @@ var idx_gdpr=0;
 
 - [IAB Global Privacy Platform Full Specification Repository](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform)
 - [IAB Global Privacy Platform CMP API Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md)
-- [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagement.html)
+- [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagementTcf.html)
 - [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)
 - [Prebid Activity Controls](/dev-docs/activity-controls.html)
 - [Prebid Activity Controls -- GPP control module - usnat](/dev-docs/modules/gppControl_usnat.html)
