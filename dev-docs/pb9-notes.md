@@ -51,11 +51,11 @@ The following modules have been removed from Prebid.js as part of the 9.0 releas
 | Fledge for GPT | PAAPI for GPT |
 | DFP Video | Split into DFP Video and DFP AdPod |
 
-## Consent changes:
+## Consent changes
 
 The USP string was removed from the consent metadata; also USP module is no longer in the recommended build. The GDPR modules were renamed to TCF modules, to reflect their adherence to a technical specification and not imply adherence to the underlying legislation and case law. Support for GPP 1.0 was removed from the GPP module. Of particular importance, "vendorless" modules such as the sharedid module no longer rely on vendor consent in the TCF object, but instead rely on publisher purpose consent. Publishers should check their __tcfapi consent data object to confirm publisher purpose consents are requested by their CMP.
 
-## Rendering:
+## Rendering
 
 This [creative](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html) is now the preferred creative choice for Google Ad Manager users for web. It is created as part of the build process. This [legacy implementation](https://github.com/prebid/Prebid.js/blob/8.52.0/integrationExamples/gpt/creative_rendering.html) was deleted and examples using the Prebid Universal Creative (PUC) in documentation are being ported over to [the new guidance](https://docs.prebid.org/adops/js-dynamic-creative.html). Publishers also using Prebid Mobile SDK creative for apps may wish to remain on the PUC for ease of operations.
 
@@ -64,6 +64,7 @@ The legacy method of trafficking native creatives has also had a deprecation war
 ## Video ORTB2 Objects
 
 The Ortb2 core adapter utility no longer infers placement from context. Context = 'instream' now only refers to the technical integration method the publisher is using to interact with the player and is not relevant to the ortb2 bid requests. Adapters should not infer placement nor plcmt is instream from this value. It is however reasonable to infer plcmt = 4 from context = outstream. Adapters are not permitted to only support placement and not plcmt; they are welcome to pass both. Publishers are advised to set plcmt on their video ad units explicitly to avoid downstream inferences causing buyer inventory quality enforcements.
+
 ## PAAPI
 
 Any module described as Fledge is now PAAPI. PAAPI Configuration is simplified and publishers experimenting with Fledge in 8.x should refer to the module documentation for updates.
@@ -88,7 +89,7 @@ PAAPI for GPT now supports custom slot configuration. Also, the autoConfig optio
 
 Publishers should be aware this behavior may prohibit submission of auction configuration to GPT sooner than the Prebid.js auction has completed, and will likely prefer to use `setPAAPIConfigForGPT`. We're hoping a futute gpt.js release will enable submission of configuration including unresolved promises earlier than the completion of the Prebid auction, by providing an `allConfigsSubmitted` type utility. Prebid support for other top level sellers will include this functionality in the near future.
 
-## Miscellaneous configuration changes (publishers):
+## Miscellaneous configuration changes (publishers)
 
 Pbadslot has had a deprecation warning issued, it is redundant specifying with imp.ext.gpid. Publishers setting pbadslot explicitly will see a warning. In the future, the pre-auction module will not populate it and setting it in configuration will have no effect.
 
@@ -106,13 +107,13 @@ Private functions are no longer available to npm consumers.
 
 Some adapters changed their configuration, including JW Player RTD, Openweb, Yahoo Ads, Improve Digital and 33Across Id module. See [https://github.com/prebid/Prebid.js/issues/11608](https://github.com/prebid/Prebid.js/issues/11608).
 
-## Miscellaneous deprecation notices (modules):
+## Miscellaneous deprecation notices (module maintainers)
 
 Bidders should prefer the eids object in the bidrequest. The redundant userid object in bid requests will be removed in a future version.
 
 Userid submodules may no longer be able to access set methods in storage manager in the future. The parent userid module is capable of setting the value returned by the submodule according to publisher configuration.
 
-A variety of performance degrading functions may become unavailable to bid adapters. Some already have, including .innerText and .outerText. Bidders should generally rely on the request object to interrogate navigator, and if things are missing from the request object, we invite PRs on it as preferred over redundant module implementations.
+A variety of performance degrading functions may become unavailable to adapters. Some already have, including .innerText and .outerText. Bidders should generally rely on the request object to interrogate navigator, and if things are missing from the request object, we invite PRs on it as preferred over redundant module implementations.
 
 Some modules not using our methods, or using excessive payloads, for storage or network transmission were modified. 
 
