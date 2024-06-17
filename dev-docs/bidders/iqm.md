@@ -24,7 +24,7 @@ Module that connects to iQM demand sources
 
 ## Test Parameters
 
-```
+```javascript
 var adUnits = [{
         code: 'div-gpt-ad-1460505748561-0',
         mediaTypes: {
@@ -52,7 +52,7 @@ var adUnits = [{
 
 ## adUnit Video
 
-```
+```javascript
  var videoAdUnit = {
       code: 'video1',
       mediaTypes: {
