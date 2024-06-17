@@ -90,7 +90,7 @@ Publishers should be aware this behavior may prohibit submission of auction conf
 
 ## Miscellaneous configuration changes (publishers):
 
-Pbadslot has had a deprecation warning issued, it is redundant specifying with imp.ext.gpid. In the future, the pre-auction module will not populate it and publishers setting pbadslot explicitly will see a warning. 
+Pbadslot has had a deprecation warning issued, it is redundant specifying with imp.ext.gpid. Publishers setting pbadslot explicitly will see a warning. In the future, the pre-auction module will not populate it and setting it in configuration will have no effect.
 
 We stopped supporting top level site, app, and device configuration directly, eg `setConfig({device: X})`. Please prefer the ortb2 object in configuration (or in requestBids), eg `setConfig({ortb2: {device: X}})`
 
