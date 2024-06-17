@@ -121,3 +121,4 @@ Bidders may no longer import the events system.
 getConfig is no longer allowed to gather consent, as it may be stale; use the consent object.
 
 Bidder companion scripts are now completely removed; only other module types may source js.
+
