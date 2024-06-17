@@ -101,7 +101,7 @@ The Topics module now requires publishers to choose which external topics gather
 
 We now require node.js 20+ to build. Babel was upgraded; the build target was modernized. The test suite raised its browser version targets.
 
-transformBidParams was removed from the build so publishers would not need an adapter to use a bidder in prebid server. Appnexus adapter added anPspParamsConverter as a temporary measure to solve for their adapter.
+transformBidParams was removed from the build so publishers would not need an adapter to use a bidder in prebid server. Appnexus adapter added the anPspParamsConverter module as a temporary measure to solve for their adapter.
 
 Private functions are no longer available to npm consumers.
 
