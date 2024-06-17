@@ -48,7 +48,7 @@ The following modules have been removed from Prebid.js as part of the 9.0 releas
 | Utiq | UtiqId |
 | Prebid Manager | AsterioBid Prebid Manager |
 | Ras | RingierAxelSpringer |
-| Fledge modules | PAAPI modules |
+| Fledge for GPT | PAAPI for GPT |
 | DFP Video | Split into DFP Video and DFP AdPod |
 
 ## Consent changes:
