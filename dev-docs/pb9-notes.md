@@ -51,10 +51,6 @@ The following modules have been removed from Prebid.js as part of the 9.0 releas
 | Fledge modules | PAAPI modules |
 | DFP Video | Split into DFP Video and DFP AdPod |
 
-## Coming Soon
-
-Placeholder text while we work on the notes. For now see [https://github.com/prebid/Prebid.js/issues/11608](https://github.com/prebid/Prebid.js/issues/11608)
-
 ## Consent changes:
 
 The USP string was removed from the consent metadata; also USP module is no longer in the recommended build. The GDPR modules were renamed to TCF modules, to reflect their adherence to a technical specification and not imply adherence to the underlying legislation and case law. Support for GPP 1.0 was removed from the GPP module. Of particular importance, "vendorless" modules such as the sharedid module no longer rely on vendor consent in the TCF object, but instead rely on publisher purpose consent. Publishers should check their __tcfapi consent data object to confirm publisher purpose consents are requested by their CMP.
