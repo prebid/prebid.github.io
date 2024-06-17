@@ -63,7 +63,7 @@ The legacy method of trafficking native creatives has also had a deprecation war
 
 ## Video ORTB2 Objects
 
-The Ortb2 core adapter utility no longer infers placement from context. Context = 'instream' now only refers to the technical integration method the publisher is using to interact with the player and is not relevant to the ortb2 bid requests. Adapters should not infer placement nor plcmt is instream from this value. Adapters are not permitted to only support placement and not plcmt; they are welcome to pass both. It is however reasonable to infer plcmt = 4 from context = outstream.
+The Ortb2 core adapter utility no longer infers placement from context. Context = 'instream' now only refers to the technical integration method the publisher is using to interact with the player and is not relevant to the ortb2 bid requests. Adapters should not infer placement nor plcmt is instream from this value. Adapters are not permitted to only support placement and not plcmt; they are welcome to pass both. It is however reasonable to infer plcmt = 4 from context = outstream. Publishers are advised to set plcmt on their video ad units explicitly to avoid downstream inferences causing buyer inventory quality enforcements.
 
 ## PAAPI
 
