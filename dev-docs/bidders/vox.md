@@ -77,7 +77,7 @@ var adUnits = [{
     code: 'test-div',
     mediaTypes: {
         banner: {
-            sizes: [0, 0],
+            sizes: [0, 0]
         }
     },
     bids: [{
