@@ -73,7 +73,7 @@ Publishers wishing to support PAAPI should install the PAAPI module and select t
 
 Bid adapters can now return either complete auction config or an `igb` object according to the Ortb community extension for PAAPI. Publishers wishing to be or to designate a component seller to handle the `igb` objects returned by some bid modules should configure PAAPI with, for example
 
-` pbjs.setConfig({
+`pbjs.setConfig({
     paapi: {
        enabled: true,
        componentSeller: {
