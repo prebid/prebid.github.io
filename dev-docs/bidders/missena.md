@@ -8,6 +8,7 @@ pbjs: true
 safeframes_ok: false
 sidebarType: 1
 pbs_app_supported: true
+prebid_member: true
 ---
 
 ### Note
