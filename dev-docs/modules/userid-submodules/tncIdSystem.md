@@ -1,14 +1,14 @@
 # TNCID UserID Module
 
-### Prebid Configuration
+## Prebid Configuration
 
 First, make sure to add the TNCID submodule to your Prebid.js package with: 
 
-```
+```bash
 gulp build --modules=tncIdSystem,userId
 ```
 
-### TNCIDIdSystem module Configuration
+## TNCIDIdSystem module Configuration
 
 Disclosure: This module loads external script unreviewed by the prebid.js community
 
