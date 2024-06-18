@@ -1,8 +1,8 @@
 ---
 layout: analytics
-title: PrebidManager
-description: PrebidManager Analytics Adapter
-modulecode: prebidmanager
+title: Asteriobid PBM
+description: Asteriobid PBM Analytics Adapter
+modulecode: asteriobidpbm
 ---
 
 #### Registration
