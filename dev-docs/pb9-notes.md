@@ -39,7 +39,7 @@ The following modules have been removed from Prebid.js as part of the 9.0 releas
 | sigmoid Analytics | |
 | sonobi Analytics | |
 | staq Analytics | |
-| RichAudience | (Temporary) |
+| RichAudience | Update: added to 9.1.0 |
 | adbookpsp | |
 | yahooSSP | yahooAds |
 | GDPR Consent module | TCF Consent module |
