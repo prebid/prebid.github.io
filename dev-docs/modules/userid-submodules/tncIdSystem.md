@@ -27,7 +27,8 @@ pbjs.setConfig({
     }
 });
 ```
-#### Configuration Params
+
+## Configuration Params
 
 | Param Name | Required | Type | Description |
 | --- | --- | --- | --- |
