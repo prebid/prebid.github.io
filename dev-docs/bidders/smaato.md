@@ -59,7 +59,7 @@ The Smaato adapter will convert bidfloors to 'USD' currency as needed.
 | `adbreakId` | required | Your Smaato adbreak id. Required for adpod (long-form video) requests | `'41002234'`   | `string` |
 | `app` | optional | Object containing mobile app parameters.  See the [App Object](#smaato-app-object) for details.| `app : { ifa: '56700000-9cf0-22bd-b23e-46b96e40003a'}` | `object` |
 
-##### Note
+#### Note
 
 In case of AdPods, the Smaato adapter will only read the first `imp[].skadn` entry for each AdPod, such that there should only be one `skadn` occurrence per AdPod.
 
@@ -274,7 +274,7 @@ Following example includes sample `imp` object with publisherId and adSlot which
          },
          "ext":{
             "smaato":{
-               "publisherId":"100042525",
+               "publisherId":"1100042525",
                "adspaceId":"130563103"
             }
          }
