@@ -20,7 +20,7 @@ multiformat_supported: will-not-bid
 ortb_blocking_supported: true
 floors_supported: true
 coppa_supported: true
-gpp_sids: false
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 fpd_supported: false
 sidebarType: 1
 ---
