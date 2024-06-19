@@ -7,13 +7,14 @@ userIds: criteo, id5Id, identityLink, liveIntentId, pubCommonId, unifiedId
 media_types: banner, video
 tcfeu_supported: true
 gvl_id: 108
+gpp_supported: true
 safeframes_ok: false
 prebid_member: true
 pbjs: true
 pbs: true
 schain_supported: true
 floors_supported: true
-pbjs_version_notes: removed in 9.0
+pbjs_version_notes: Please use version 9.1; version 9.0 does not support our adapter.
 sidebarType: 1
 ---
 
