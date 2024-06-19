@@ -84,7 +84,7 @@ pbjs.setConfig({
 ### Provided eids
 The module provides following eids:
 
-```
+```json
 [
   {
     source: 'id5-sync.com',
@@ -125,10 +125,9 @@ The module provides following eids:
 
 The id from `id5-sync.com` should be always present (though the id provided will be '0' in case of no consent or optout)
 
-The id from `true-link-id5-sync.com` will be available if the page is integrated with TrueLink (if you are an ID5 partner you can learn more at https://wiki.id5.io/en/identitycloud/retrieve-id5-ids/true-link-integration)
+The id from `true-link-id5-sync.com` will be available if the page is integrated with TrueLink (if you are an ID5 partner you can learn more at [ID5 wiki](https://wiki.id5.io/en/identitycloud/retrieve-id5-ids/true-link-integration))
 
 The id from `uidapi.com` will be available if the partner that is used in ID5 user module has the EUID2 integration enabled (it has to be enabled on the ID5 side)
-
 
 ### Providing TrueLinkId as a Google PPID
 
