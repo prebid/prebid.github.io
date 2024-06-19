@@ -14,7 +14,7 @@ pbjs: true
 pbs: true
 schain_supported: true
 floors_supported: true
-pbjs_version_notes: removed in 9.0
+pbjs_version_notes: Please use version 9.1; version 9.0 does not support our adapter.
 sidebarType: 1
 ---
 
