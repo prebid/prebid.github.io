@@ -7,6 +7,7 @@ userIds: criteo, id5Id, identityLink, liveIntentId, pubCommonId, unifiedId
 media_types: banner, video
 tcfeu_supported: true
 gvl_id: 108
+gpp_supported: true
 safeframes_ok: false
 prebid_member: true
 pbjs: true
