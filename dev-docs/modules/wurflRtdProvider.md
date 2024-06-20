@@ -36,7 +36,7 @@ WURFL.js is fully compatible with Chromium's User-Agent Client Hints (UA-CH) ini
 
 ### Build
 
-```
+```bash
 gulp build --modules="rtdModule,wurflRtdProvider,appnexusBidAdapter,..."  
 ```
 
