@@ -73,7 +73,7 @@ as well as enabling settings for specific use cases mentioned above (e.g. acbidd
 
 Permutive is not listed as a TCF vendor as all data collection is on behalf of the publisher and based on consent the publisher has received from the user.
 Rather than through the TCF framework, this consent is provided to Permutive when the user gives the relevant permissions on the publisher website which allow the Permutive SDK to run.
-This means that if GDPR enforcement is configured _and_ the user consent isn’t given for Permutive to fire, no cohorts will populate.
+This means that if TCF controls are enabled _and_ the user consent isn’t given for Permutive to fire, no cohorts will populate.
 As Prebid utilizes TCF vendor consent, for the Permutive RTD module to load, Permutive needs to be labeled within the Vendor Exceptions
 
 ### Instructions
