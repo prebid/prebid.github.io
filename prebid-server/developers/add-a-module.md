@@ -2,7 +2,6 @@
 layout: page_v2
 sidebarType: 5
 title: Prebid Server | Developers | Adding a Module
-
 ---
 
 # Prebid Server - Adding a Module
@@ -11,7 +10,7 @@ title: Prebid Server | Developers | Adding a Module
 This document guides you through the process of developing a module for host companies to plug into their instance of Prebid Server.
 We encourage you to look at existing modules for working examples. You can also ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server/issues/new).
 
-* TOC
+- TOC
 {:toc }
 
 ## Overview
