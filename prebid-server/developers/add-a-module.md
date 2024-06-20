@@ -141,6 +141,7 @@ to the PBS host company. Examples:
 If your module either utilizes or supplies user-level data like User First Party Data or precise geographic information, it must adhere to the framework supplied by the [Activity Controls](/prebid-server/features/pbs-activitycontrols.html).
 
 For instance:
+
 - if your module is going to supply user-level data (e.g. "job title") to bid adapters, it must check permissions for the `enrichUfpd` activity.
 - if your module is going to forward the entire ORTB request to an endpoint, it must check the `transmitUfpd` and `transmitPreciseGeo` activity permissions.
 
@@ -172,7 +173,7 @@ The details of the implementation depend on the platform.
 Other rules for open source PBS pull request:
 
 - Unit test coverage must exceed 90%.
-- A maintainer email address must be provided and be a group, not an individual. e.g. "support@example.com rather than jsmith@example.com
+- A maintainer email address must be provided and be a group, not an individual. e.g. <support@example.com> rather than <jsmith@example.com>
 
 ### 10. Write the Module Documentation
 
