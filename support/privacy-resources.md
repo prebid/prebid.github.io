@@ -29,11 +29,11 @@ protocol is described:
 - [Prebid.js US Privacy Consent Management Module](/dev-docs/modules/consentManagementUsp.html)
 - [Prebid Server and CCPA/USP](/prebid-server/features/pbs-privacy.html#ccpa--us-privacy)
 
-After more states started making their own privacy regulations, the IAB developed the "Global Privacy Protocol" (GPP) and the
-Multi-State Privacy Agreement (MSPA). GPP is just a container that can hold specific regional protocols.
+After more states started making their own privacy regulations, the IAB developed the "Global Privacy Protocol" (GPP) and
+technical protocols for the US as a whole and for each state that has privacy regulations. GPP is just a container that can hold specific regional protocols.
 
 - [Prebid.js support for GPP](/dev-docs/modules/consentManagementGpp.html)
-- [Prebid Support for MSPA](/features/mspa-usnat.html).
+- [Prebid US Compliance Support](/features/mspa-usnat.html).
 
 ### Europe
 

@@ -184,7 +184,7 @@ create a file in /prebid-server/pbs-modules. You can start by copying one of the
 - Prerequisites: any necessary account activation, other required modules, etc.
 - Configuration: both init and runtime
 - Analytics Tag support
-- Privacy Support: disclose whether the module has user privacy implications and support for TCF-EU, TCF-CA, CCPA, MSPA, etc.
+- Privacy Support: disclose whether the module has user privacy implications and support for TCF-EU, TCF-CA, CCPA, etc.
 
 ### 11. Submit the Pull Requests
 
