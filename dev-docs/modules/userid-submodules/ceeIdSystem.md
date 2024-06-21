@@ -13,7 +13,6 @@ gulp build --modules=ceeIdSystem
 
 ## CEE ID Configuration
 
-{: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of CEE ID user ID module. | `"ceeId"` |
@@ -31,7 +30,6 @@ gulp build --modules=ceeIdSystem
 You can configure this submodule in your `userSync.userIds[]` configuration. Publishers manage ceeIds themselves can store ceeIds in local storage or 1st party cookies. You can use your custom name of token to read
 
 ```javascript
-
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -53,7 +51,6 @@ pbjs.setConfig({
 Or pass value directly thorugh params.value. Note that tokenName is not required then. This param shouldn't be set if token value will be taken from cookie or LS
 
 ```javascript
-
 pbjs.setConfig({
     userSync: {
         userIds: [{
