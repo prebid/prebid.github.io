@@ -275,7 +275,7 @@ Following example includes sample `imp` object with publisherId and adSlot which
          },
          "ext":{
             "smaato":{
-               "publisherId":"100042525",
+               "publisherId":"1100042525",
                "adspaceId":"130563103"
             }
          }
