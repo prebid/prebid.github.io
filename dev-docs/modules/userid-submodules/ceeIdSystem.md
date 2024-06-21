@@ -1,4 +1,4 @@
-# TNCID UserID Module
+# ceeIdSystem UserID Module
 
 ## Prebid Configuration
 
