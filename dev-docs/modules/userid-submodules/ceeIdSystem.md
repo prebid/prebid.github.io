@@ -5,10 +5,11 @@ description: ceeId User ID sub-module
 useridmodule: ceeIdSystem
 ---
 
-Add it to your Prebid.js package with:
+First, make sure to add ceeIdSystem to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=ceeIdSystem
+```
 
 ## CEE ID Configuration
 
@@ -22,12 +23,12 @@ gulp build --modules=ceeIdSystem
 | storage.expires | Optional | Int | Time when storage should expire it is recommended to use this options otherwise storage last only during session  | `7` |
 | storage.refreshInSeconds | Optional | Int | Time when storage value and expiration date will get refreshed in seconds  | `360` |
 | params | Required | Object | Container of all module params. |  |
-| params.tokenName | Required | String |  Your custom name of token to read |  |
-| params.value | Optional | String | Optional param if you want to pass token value directly through setConfig  |  |
+| params.tokenName | Required | String |  Your custom name of token to read | `'myExampleTokenName'` |
+| params.value | Optional | String | Optional param if you want to pass token value directly through setConfig  | `'someTokenValue'` |
 
 ## CEE ID Examples
 
-Publishers manage ceeIds themselves can store ceeIds in local storage or 1st party cookies. You can use your custom name of token to read
+You can configure this submodule in your `userSync.userIds[]` configuration. Publishers manage ceeIds themselves can store ceeIds in local storage or 1st party cookies. You can use your custom name of token to read
 
 ```javascript
 
