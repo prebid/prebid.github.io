@@ -3,27 +3,29 @@ layout: bidder
 title: AdView
 description: Prebid AdView Bidder Adapter
 biddercode: AdView
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 1022
 usp_supported: true
 coppa_supported: true
+gpp_sids: tcfeu, usca
 schain_supported: true
 dchain_supported: false
-userId: 
 media_types: banner, video, native
-safeframes_ok: true
+floors_supported: true
 bidder_supports_deals: true
 pbjs: false
 pbs: true
 pbs_app_supported: true
 prebid_member: false
+safeframes_ok: true
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: true
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-Currently adapter doesn’t support multi impression and can not perform impression splitting, so only the first impression will be delivered.
-
-The Example Bidding adapter requires setup before beginning. Please contact us at partner@adview.com
+The Example Bidding adapter requires setup before beginning. Please contact us at <partner@adview.com>
 
 ### Bid Params
 

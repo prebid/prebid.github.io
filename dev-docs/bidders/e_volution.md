@@ -2,22 +2,30 @@
 layout: bidder
 title: E-volution tech
 description: Prebid E-volution tech Bidder Adapter
-pbjs: true
 biddercode: e_volution
-gdpr_supported: true
+gpp_sids: usstate_all
+tcfeu_supported: true
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+deals_supported: false
+floors_supported: true
+fpd_supported: false
+ortb_blocking_supported: false
 media_types: banner, video, native
 gvl_id: 957
+multiformat_supported: will-bid-on-one
+userIds: all
+pbjs: true
 pbs: true
 pbs_app_supported: true
-usp_supported: true
-schain_supported: true
-pbjs_version_notes: in 6.8+
-userIds: id5Id
+safeframes_ok: true
+sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The E-volution Bidding adapter requires setup before beginning. Please contact us at admin@e-volution.ai
+The E-volution Bidding adapter requires setup before beginning. Please contact us at <admin@e-volution.ai>
 
 ### Prebid.JS Bid Params
 

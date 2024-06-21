@@ -4,7 +4,7 @@ title: SpotX
 description: Prebid SpotX Bidder Adaptor
 biddercode: spotx
 media_types: no-display, video
-gdpr_supported: true
+tcfeu_supported: true
 userIds: id5Id, sharedId, unifiedId
 prebid_member: true
 schain_supported: true
@@ -13,6 +13,8 @@ safeframes_ok: false
 pbjs: true
 gvl_id: 165
 floors_supported: true
+pbjs_version_notes: removed in 9.0
+sidebarType: 1
 ---
 
 ### Registration
@@ -33,15 +35,14 @@ The SpotX adapter requires setup and approval from your Magnite account manager.
 | `ad_volume`          | optional | Value between 0 and 1 to denote the volume the ad should start at                                                                                             |    `0.7`                                                                                                                                                                                                  | `float`     |
 | `price_floor`        | optional | Set the current channel price floor in real time.                                                                                                             | `10`                                                                                                                                                                                                   | `float`   |
 | `hide_skin`          | optional | Set to true to hide the SpotX skin                                                                                                                            |                                                                                                                                                                                                      | `boolean`   |
-| `custom`             | optional | An object containing key-value pairs for reporting. See SpotX documentation [here](https://developer.spotxchange.com/content/local/docs/sdkDocs/DirectSdk/dsdk-custom-configs.md#custom-key-value-pair-reporting) |                                                                                                                                                                                                      | `object`    |
+| `custom`             | optional | An object containing key-value pairs for reporting. See SpotX documentation. |                                                                                                                                                                                                      | `object`    |
 | `min_duration`       | optional | Minimum video ad duration in seconds                                                                                                                            |                                                                                                                                                                                                      | `integer`   |
 | `max_duration`       | optional | Maximum video ad duration in seconds                                                                                                                            |                                                                                                                                                                                                      | `integer`   |
-| `placement_type`     | optional | Number corresponding to the type of ad placement. See SpotX documentation [here](https://developer.spotxchange.com/content/local/docs/sdkDocs/EASI/easi-integration.md#common-javascript-attributes)                                                                                                                          |                                                                                                                                                                                                      | `integer`   |
-| `position`           | optional | Number corresponding to the position of the ad. See SpotX documentation [here](https://developer.spotxchange.com/content/local/docs/sdkDocs/EASI/easi-integration.md#common-javascript-attributes)                                                                                                                         |                                                                                                                                                                                                      | `integer`   |
+| `placement_type`     | optional | Number corresponding to the type of ad placement. See SpotX documentation.                                                                                                                          |                                                                                                                                                                                                      | `integer`   |
+| `position`           | optional | Number corresponding to the position of the ad. See SpotX documentation.                                                                                                                         |                                                                                                                                                                                                      | `integer`   |
 | `page`               | optional | The URL of the page the ad is being displayed on. Used to override the detected referrer if necessary                                                                                                                          | `'https://www.spotx.tv'`                                                                                                                                                                                         | `string`   |
 
-
-<a name="spotx-outstream-options-object" />
+<a name="spotx-outstream-options-object"></a>
 
 #### outstream_options Object
 
@@ -52,4 +53,4 @@ The SpotX adapter requires setup and approval from your Magnite account manager.
 | `ad_mute`               | optional | Set to true to start the ad with the volume muted.          | `true`      | `boolean` |
 | `playersize_auto_adapt` | optional | Set to true to make video auto-adapt to the ad's dimensions | `true`      | `boolean` |
 | `in_iframe`             | optional | ID of iFrame element to insert EASI script tag.             | `'iframe1'` | `string`  |
-| `custom_override`       | optional | Object of script tag attributes to override from the list here: [EASI Attributes](https://developer.spotxchange.com/content/local/docs/sdkDocs/EASI/easi-integration.md#common-javascript-attributes). (Note: Exclude `data-spotx_` from attribute name; `channel_id`, `vast_url`, `content_page_url`, and `ad_unit` overrides are ignored.) | `{content_height: 300, content_width: 400}` | `object` |
+| `custom_override`       | optional | Object of script tag attributes to override. (Note: Exclude `data-spotx_` from attribute name; `channel_id`, `vast_url`, `content_page_url`, and `ad_unit` overrides are ignored.) | `{content_height: 300, content_width: 400}` | `object` |

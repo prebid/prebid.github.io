@@ -10,9 +10,10 @@ sidebarType : 1
 ---
 
 # Bid Viewability - Ad Server Independent
+
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 ## Overview
@@ -20,9 +21,10 @@ sidebarType : 1
 This optional module will trigger a BID_VIEWABLE event which can be consumed by Analytics adapters. In addition, the winning bidder can implement an `onBidViewable` method to capture this event.
 
 Notes:
+
 - The module works with any adserver, or with no ad server at all.
 - Publishers using GAM/GPT might consider using the [Bid Viewable Event - GAM](/dev-docs/modules/bidViewable.html) module
-- Requires the site to polyfill the [IntersectionObserver API](https://github.com/w3c/IntersectionObserver/tree/main/polyfill) (v1) to find when a bid is viewable. This implementation assumes that the publisher and the bidder are acting in good faith, and does not attempt to detect any bad behavior from either party. We assume that the ad is rendered into the element it has been told to render into, and is not hidden or obfuscated at any time.
+- Requires the site to polyfill the [IntersectionObserver API](https://github.com/w3c/IntersectionObserver) (v1) to find when a bid is viewable. This implementation assumes that the publisher and the bidder are acting in good faith, and does not attempt to detect any bad behavior from either party. We assume that the ad is rendered into the element it has been told to render into, and is not hidden or obfuscated at any time.
 - This event is fired when an impression becomes viewable, according to IAB's viewability guidelines
 - When a rendered PBJS bid is determined to be viewable this module will trigger a BID_VIEWABLE event, which can be consumed by the winning bidder and analytics adapters
 - The module works with Banner creatives, with additional support to come.
@@ -33,10 +35,11 @@ Notes:
 This feature is not intended to be a perfect measure of viewability. It is however intended to be a reasonable approximation of a bids viewability for creative types that are supported.
 
 1. Only supports Banner creatives
-2. Only works on browsers that support or on sites that have [polyfilled the IntersectionObserver API](https://github.com/w3c/IntersectionObserver/tree/main/polyfill)
+2. Only works on browsers that support or on sites that have [polyfilled the IntersectionObserver API](https://github.com/GoogleChromeLabs/intersection-observer)
 3. Results can only be trusted if both the publisher and winning bidder are assumed to be acting in good faith.
 
 Note that there are other viewability modules in Prebid.js:
+
 - [Generic Viewability](/dev-docs/modules/viewability.html)
 - [Bid Viewability - GAM](/dev-docs/modules/bidViewable.html)
 - [Browsi Viewability](/dev-docs/modules/browsiRtdProvider.html)
@@ -50,20 +53,22 @@ Note that there are other viewability modules in Prebid.js:
 | `bidViewabilityIO.enabled` | Required | Boolean | when set to true, the module will emit BID_VIEWABLE when applicable. Default: `false` |
 
 ## Example of setting module config
-{% highlight js %}
-	pbjs.setConfig({
+
+```javascript
+    pbjs.setConfig({
         bidViewabilityIO: {
             enabled: true,
         }
     });
-{% endhighlight %}
+```
 
 ## Example of consuming BID_VIEWABLE event
-{% highlight js %}
-	pbjs.onEvent('bidViewable', function(bid){
-		console.log('got bid details in bidViewable event', bid);
-	});
-{% endhighlight %}
+
+```javascript
+    pbjs.onEvent('bidViewable', function(bid){
+        console.log('got bid details in bidViewable event', bid);
+    });
+```
 
 ## Related Reading
 

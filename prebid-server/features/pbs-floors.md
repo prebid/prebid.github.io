@@ -7,16 +7,10 @@ title: Prebid Server | Features | Price Floors
 # Prebid Server | Features | Price Floors
 {: .no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 ## Overview
-
-{: .alert.alert-danger :}
-This feature is in beta. Please post [questions and issues](https://github.com/prebid/prebid-server-java/issues).
-
-{: .alert.alert-warning :}
-The Floors feature is currently only available in PBS-Java.
 
 The Price Floors feature provides an open framework for Publishers to configure Prebid price floors on their own or to work with advanced vendors who can provide optimized floors.
 
@@ -28,6 +22,7 @@ The Prebid Server version of this feature is similar to the [Prebid.js Price Flo
 - Floor data is cached by PBS, so using server-side floors may lighten the load on the browser and perhaps improve auction performance. It no longer has to load floor data with the PBJS package or make a dynamic fetch for them. However, this PBS-based floors feature does not currently support client-side analytics, so in many cases, the Prebid.js client-side floors feature may still be necessary.
 
 Here are the differences between Prebid.js and Prebid Server floors:
+
 - As noted, floor data is retrieved outside the regular auction flow and cached for a period of time
 - Custom schema attributes are supported in Prebid.js but not in Prebid Server. This is because publishers cannot define arbitrary server-side javascript functions.
 - However, there are additional schema attributes supported in Prebid Server, e.g. country and deviceType. See [floor schema dimensions](/prebid-server/features/pbs-floors.html#floor-schema-dimensions) below for details.
@@ -37,7 +32,7 @@ The syntax of the floors schema is so similar between Prebid.js and Prebid Serve
 
 {: .alert.alert-info :}
 The PBS floors feature isn't a formal [PBS module](/prebid-server/pbs-modules/). Yeah, that bums us out too.
-Turns out that floors just don't fit the 7-stage module architecture model.
+Turns out that floors just don't fit the module architecture model.
 Specifically, modules don't support the feature where bid adapters need access to floor data.
 
 ### Terminology
@@ -47,6 +42,18 @@ Specifically, modules don't support the feature where bid adapters need access t
 - **Floor model**: a set of floor rules. optimization algorithms can define multiple sets of floor rules with different weights to experiment with different scenarios. i.e. A/B/C testing of floor values.
 - **Floor schema**: defines which attributes are in the floor rules. e.g. "adslot and mediaType".
 - **Floor rule**: A mapping of floor schema dimensions to a floor values. e.g. "if adslot is /111/homepage and mediaType is banner, then the floor is 1.00".
+
+### Floors Video Overview
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/938434804?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Price Floors in Prebid.js and Prebid Server"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+<p/>
+Notes:
+
+- [Prebid.js Price Floors Module](/dev-docs/modules/floors.html#overview)
+- [Price Floors in Prebid Server](/prebid-server/features/pbs-floors.html#prebid-server--features--price-floors)
+- [Prebid Floor Service Providers](/dev-docs/modules/floors.html#floors-providers)
+- [Transcript of this video](/dev-docs/floors-video-overview.html)
 
 ## How Floors work in Prebid Server
 
@@ -60,7 +67,7 @@ Here's the high level picture of what's happening in Prebid Server to support fl
 
 {: .alert.alert-info :}
 Vendor services generally calculate floors with optimization algorithms fed by an analytics adapter.
-Generally floors data would be updated hourly, or perhaps once per day.
+Floors data is expected to be updated hourly, or perhaps once per day.
 It is best practice is to avoid a "hardcode-and-forget" method of setting floors.
 If a publisher doesn't want to utilize a floors service, they should commit to periodically reviewing manually-defined numbers.
 
@@ -68,7 +75,7 @@ Drilling down one level into some detail, the PBS Floors feature has several mai
 
 ![Prebid Server Architecture](/assets/images/prebid-server/pbs-floors-detailed.png){:class="pb-xlg-img"}
 
-1. The **floor fetching** component should be thought of as an event-driven service that periodically polls a vendor to retrieve updated floors data specific for each account. 
+1. The **floor fetching** component should be thought of as an event-driven service that periodically polls a vendor to retrieve updated floors data specific for each account.
 2. The **floor signaling** component parses the floors data and determines the actual floor for each ORTB imp object in the auction. The floors data could come from: (a) the request/stored-request or (b) an external floors provider
 3. The best floor number is passed to the bid adapter on imp.bidfloor with the currency defined by imp.bidfloorcur. Certain bid adapters may be able to support more sophisticated floors for scenarios like multi-format. Due to bidder-specific [bid adjustment](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bid-adjustments) feature, each bid adapter may see a different floor value.
 4. The **floor enforcement** component verifies that each bid has met the floor for that adapter after currency and bid adjustments.
@@ -96,7 +103,6 @@ thread to read data from the URL. (Note: this means the first request from each 
 1. **Poll for updated data** - Once it's time to poll for new data, the next request from that account will trigger a refresh of floor data.
 1. **Expire stale data** - If the data ever gets more stale than a configured age, it will be flagged as invalid.
 1. **Surface data problems** - Operational metrics and log entries are made when there are problems obtaining floors data.
-
 
 ## Floor Signaling
 
@@ -148,12 +154,14 @@ completely backwards-compatible -- PBS will accept and process any Prebid.js flo
 ### Defining Floor data
 
 As described in the [Signaling](#floor-signaling) section above, floor data may be defined in several ways. Here's the order of priority:
+
 1. Dynamic data - if PBS finds recent (non-expired) floors data from a dynamic floors vendor, that takes precedence.
 1. Request data - ext.prebid.floors may be specified in the client-request or in a stored-request.
 1. Default floor - finally, the publisher may specify request imp.bidfloor as an overal default in case no other floors info is present.
 
 Here's an example of floors data coming in on the request:
-```
+
+```json
 {
   ...
   "ext": {
@@ -180,13 +188,13 @@ Prebid Server, it's possible to use the same system
 you're using for Prebid.js. Or you may want to take advantage of
 the additional dimensions available.
 
-You'll need to work with the Prebid Server host company on how to get the analytics. 
+You'll need to work with the Prebid Server host company on how to get the analytics.
 It may be necessary to build a [server-side analytics adapter](/prebid-server/developers/pbs-build-an-analytics-adapter.html) in order
 to get data about which models were used, skipRate effectiveness, etc.
 
 At this time, floors analytics data (e.g. skipped) is not passed back to the client.
 The expectation is that
-Publishers will use this floors feature mainly for mobile app and AMP scenarios. 
+Publishers will use this floors feature mainly for mobile app and AMP scenarios.
 It's assumed that Web sites running Prebid.js will utilize the client-side module and analytics.
 If the community requires client-side analytics for floors,
 please [open an issue](https://github.com/prebid/prebid-server/issues) with as much detail as you can about the requirements.
@@ -195,7 +203,6 @@ please [open an issue](https://github.com/prebid/prebid-server/issues) with as m
 Note: when producing a floors file, be aware that the entire contents are mered under
 the 'data' object of [Schema 2](/dev-docs/modules/floors.html#schema-2). i.e.
 the file should not contain the 'data' object, just attributes of the 'data' object.
-
 
 ### Processing Floor Rules
 
@@ -209,9 +216,9 @@ supported only in Prebid Server, not in Prebid.js.
 {: .table .table-bordered .table-striped }
 | Dimension | Type | Example | How it works |
 |---+---+---+---|
-| **siteDomain** | string | "level4.level3.example.com" | This is the full site domain. The value in the floor rule is compared to ORTB site.domain or app.domain |
-| **pubDomain** | string | "example.com" or "example.co.uk" | This is the publisher's base domain. It's compared to site.publisher.domain or app.publisher.domain |
-| domain | string | "example.com" | This is the robust way to check either the full domain or the base domain. It's compared against (site.domain and site.publisher.domain) or (app.domain and app.publisher.domain). If any of them match this part of the rule matches. |
+| **siteDomain** | string | "level4.level3.example.com" | This is the full site domain. The value in the floor rule is compared to ORTB {site,app,dooh}.domain |
+| **pubDomain** | string | "example.com" or "example.co.uk" | This is the publisher's base domain. It's compared to {site,app,dooh}.publisher.domain |
+| domain | string | "example.com" | This is the robust way to check either the full domain or the base domain. It's compared against {site,app,dooh}.domain and {site,app,dooh}.publisher.domain. If any of them match this part of the rule matches. |
 | **bundle** | string | "org.prebid.drprebid" | This value in the rule is compared to ORTB app.bundle |
 | **channel** | string | "app" | This rule value is compared against ORTB ext.prebid.channel.name |
 | mediaType | string | "video" | If more than one of the following ORTB objects exists, only the "*" rule value will match: imp.banner, imp.video, imp.native, imp.audio. Otherwise: {::nomarkdown}<ul><li>the "banner" rule value will match if imp.banner exists.</li><li> the "video-outstream" rule value will match if imp.video exists and imp.video.placement is not 1</li><li>the "video-instream" rule value will match if imp.video exists and imp.video placement exists and is 1</li><li>the "video" rule value is treated as "video-instream" above.</li><li>the "native" rule value will match if imp.native exists</li><li>the "audio" rule value will match if imp.audio exists</li></ul>{:/} |
@@ -226,7 +233,8 @@ another attribute to break out rules, please submit a code pull request with
 an enhancement.
 
 Here's an example of some rules using PBS-specific schema dimensions:
-```
+
+```json
 {
   ...
   "data": {  
@@ -278,18 +286,19 @@ The precise details of configuration may differ for PBS-Java vs PBS-Go. See the 
 
 ## Bid Adapter Floor Interface
 
-Most bid adapters will not need to do anything special to obtain floors. They can 
+Most bid adapters will not need to do anything special to obtain floors. They can
 just read imp.bidfloor and imp.bidfloorcur, converting currency as needed.
 
 However, there are some use cases where advanced adapters might want to
 get more granular access to floors data:
+
 - In a multi-format impression object, some adapters may choose to split the imp into two requests to their endpoint. e.g. one for video with a video floor, one for banner with a banner floor.
 - The endpoint may be capable of receiving a floor value for each different size. This is not part of the ORTB spec, but might be something an endpoint could handle.
 
 Let's look at the first use case in more detail. When the Floors Signaling component
 sees multiple media types in a single impression, it will always choose a "*"-valued rule for mediaType. Say we have this rule scenario:
 
-```
+```json
 {
   "data": {
     "currency": "USD",
@@ -313,8 +322,10 @@ sees multiple media types in a single impression, it will always choose a "*"-va
   }
 }
 ```
+
 And say this is the request:
-```
+
+```json
 {
     "imp": {
         "banner": {
@@ -327,6 +338,7 @@ And say this is the request:
     }
 }
 ```
+
 The Floors Signaling component sees that both banner and video are present,
 so will only match the "*" rule for mediaType. In other words, it will set
 imp.bidfloor to 0.99 in this scenario.
@@ -336,7 +348,10 @@ It would be easier to meet the 0.50 floor for banners.
 To address this, a special floor function enables adapters to retrieve more granular
 floor values for each impression in the auction. Due to the complexity of the rule system, deriving the correct floor would be a difficult task without this function.
 
-See the [developer bid adapter documentation](/prebid-server/developers/add-new-bidder-java.html) for details.
+See the developer bid adapter documentation for details:
+
+- [PBS-Go](/prebid-server/developers/add-new-bidder-go.html)
+- [PBS-Java](/prebid-server/developers/add-new-bidder-java.html)
 
 ## Analytics Adapters
 
@@ -361,7 +376,6 @@ Check the bid response object for this data:
 | floorRule | string | The matching rule for the given bidResponse. Only needed if the bidder calls getFloor(). |
 | floorRuleValue | float | Rule floor selected. This is to differentiate between the floor bound to the selected rule and the OpenRTB bidfloor (if available). Only needed if the bidder calls getFloor(). |
 | floorValue | float | The value of the floor enforced for this bidder. This will be the greater of the OpenRTB bidfloor and floorRuleValue. Only needed if the bidder calls getFloor or if the floor was adjusted due to bidCpmAdjustments. |
-
 
 See the [developer's guide to building an analytics adapter](/prebid-server/developers/pbs-build-an-analytics-adapter.html) for more details, and see existing code as an example.
 

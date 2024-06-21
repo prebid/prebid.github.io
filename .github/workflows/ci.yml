@@ -1,0 +1,31 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  # based on https://github.com/DavidAnson/markdownlint-cli2-action/blob/main/.github/workflows/changed.yml
+  # runs markdown lint only for changed files
+  markdownlint:
+    name: run markdownlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: tj-actions/changed-files@v44
+        id: changed-files
+        with:
+          files: '**/*.md'
+          separator: ","
+      - uses: DavidAnson/markdownlint-cli2-action@v16
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
+          globs: "${{ steps.changed-files.outputs.all_changed_files }},!_includes"
+          separator: ","
+          config: '.markdownlint.json'

@@ -6,6 +6,7 @@ pbjs: true
 biddercode: bridgewell
 media_types: display, native
 userIds: all
+sidebarType: 1
 ---
 
 ### Bid Params

@@ -2,11 +2,10 @@
 <html lang="en" class="html--no-js">
     <head>
         {% include head--common.html %}
-        <!--production version of prebid.js-->
-        <script async src="//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js"></script>
+        {% include prebidjs-non-prod.html %}
 
         <!--pbjs and player code -->
-        <script>
+        <script >
             var pbjs = pbjs || {};
             pbjs.que = pbjs.que || [];
 

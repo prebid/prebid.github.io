@@ -4,16 +4,20 @@ title: Glimpse Protocol
 description: Glimpse Protocol Bid Adapter
 biddercode: glimpse
 pbjs: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 deals_supported: true
 media_types: banner
 gvl_id: 1012
+sidebarType: 1
 ---
+
+{: .alert.alert-warning :}
+glimpse is probably a defunct bidder, as the glimpseportal.io domain is no longer active.
 
 ## Overview
 
-```
+```text
 Module Name: Glimpse Protocol Bid Adapter
 Module Type: Bidder Adapter
 Maintainer: support@glimpseportal.io
@@ -123,4 +127,4 @@ pbjs.que.push(() => {
 
 ### Can you provide additional support?
 
-Of course! You can check the Glimpse Prebid Adapter documentation [here](https://docs.glimpseportal.io/en/latest/) or reach out to us at [support@glimpseportal.io](mailto:support@glimpseportal.io).
+Of course! You can check the Glimpse Prebid Adapter documentation or reach out to us at <support@glimpseportal.io>.

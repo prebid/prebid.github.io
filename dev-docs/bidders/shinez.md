@@ -12,11 +12,12 @@ floors_supported: true
 userIds: all
 fpd_supported: true
 safeframes_ok: false
+sidebarType: 1
 ---
 
 ### Note
 
-The Shinez adapter requires setup and approval. Please reach out to tech-team@shinez.io to setup an Shinez account.
+The Shinez adapter requires setup and approval. Please reach out to <tech-team@shinez.io> to setup an Shinez account.
 
 ### Bid Parameters
 
@@ -31,6 +32,7 @@ The Shinez adapter requires setup and approval. Please reach out to tech-team@sh
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 
 ## Example
+
 ```javascript
 var adUnits = [{
         code: 'banner-div',
@@ -79,4 +81,5 @@ var adUnits = [{
 ```
 
 ### Configuration
+
 Shinez recommends setting UserSync by iframe for monetization.
