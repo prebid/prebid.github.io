@@ -48,7 +48,7 @@ pbjs.setConfig({
 });
 ```
 
-Or pass value directly thorugh params.value. Note that tokenName is not required then. This param shouldn't be set if token value will be taken from cookie or LS
+Or pass value directly thorugh params.value. Note that tokenName is not required then. This param shouldn't be set if token value will be taken by tokenName
 
 ```javascript
 pbjs.setConfig({
