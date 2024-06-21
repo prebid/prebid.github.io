@@ -1,9 +1,6 @@
----
-layout: userid
-title: Cee ID System
-description: ceeId User ID sub-module
-useridmodule: ceeIdSystem
----
+# TNCID UserID Module
+
+## Prebid Configuration
 
 First, make sure to add ceeIdSystem to your Prebid.js package with:
 
