@@ -15,7 +15,6 @@ sidebarType : 1
 This module loads a dynamically generated JavaScript from prebid.wurflcloud.com
 
 # WURFL RTD Submodule
-
 {:.no_toc}
 
 * TOC
