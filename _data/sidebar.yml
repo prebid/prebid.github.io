@@ -1487,14 +1487,6 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Programmatic Guaranteed
-  link: /prebid-server/features/pg/pbs-pg-idx.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
   title: Modules
   link: /prebid-server/pbs-modules/
   isHeader: 0
