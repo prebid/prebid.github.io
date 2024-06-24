@@ -36,10 +36,8 @@ WURFL.js is fully compatible with Chromium's User-Agent Client Hints (UA-CH) ini
 ### Build
 
 ```bash
-gulp build --modules="rtdModule,wurflRtdProvider,appnexusBidAdapter,..."  
+gulp build --modules="wurflRtdProvider,appnexusBidAdapter,..."  
 ```
-
-> Note that the global RTD module, `rtdModule`, is a prerequisite of the WURFL RTD module.
 
 ### Configuration
 
@@ -78,7 +76,7 @@ pbjs.setConfig({
 
 To view an example of how the WURFL RTD module works :
 
-`gulp serve --modules=rtdModule,wurflRtdProvider,appnexusBidAdapter`
+`gulp serve --modules=wurflRtdProvider,appnexusBidAdapter`
 
 and then point your browser at:
 
