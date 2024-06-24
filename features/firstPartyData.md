@@ -188,7 +188,7 @@ pbjs.setConfig({
 
 {: .alert.alert-warning :}
 Note that supplying first party **user** data may require special
-consent in certain regions. By default, Prebid's [gdprEnforcement](/dev-docs/modules/gdprEnforcement.html) module does **not** police the passing
+consent in certain regions. By default, Prebid's [tcfControl](/dev-docs/modules/tcfControl.html) module does **not** police the passing
 of user data, but can optionally do so if the `personalizedAds` rule is enabled.
 
 {: .alert.alert-warning :}
