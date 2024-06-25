@@ -87,7 +87,6 @@ The following table contains the field conventions.
 | activities. results. appliedto. request | no | The service examined the entire openrtb request object. This is in case the module updated something not adunit-specific. | boolean |
 | activities. results. appliedto. response | no | The service examined the entire openrtb response object. This is in case the module updated something not adunit-specific. | boolean |
 
-
 ## Designing Analytics Tags
 
 aTags are for reporting. Start by considering what the module's doing that consumers might want to display. Each processing stage the module operates in may be
