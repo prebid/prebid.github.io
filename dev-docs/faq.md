@@ -77,6 +77,19 @@ After you’ve determined your legal obligations, consider the tools Prebid make
 
 Prebid relies on the IAB and community members to determine what tools are needed to support publishers in meeting their legal obligations. As noted above, if there’s another tool you need, please open an issue in the appropriate repository, or join the org and help us improve the system!
 
+### Why doesn't Prebid.org have a GVL ID?
+
+Back when there was a 3rd party component to [SharedID](/identity/sharedid.html), Prebid did have a Global Vendor List ID. But that 3rd party aspect of SharedID has been shut down for a long time, so Prebid.org is completely out of the user data path and has not renewed the GVL registration.
+
+Because Prebid.org doesn't touch data, the only TCF Purpose that's relevant for Prebid.js functionality is Purpose 1: Device Access. The way it works is that several Prebid-based modules support a "VENDORLESS_GVLID". These are seen as the publisher asking Prebid.js to store stuff on their behalf:
+
+- shared ID - requests to store the sharedId to local storage
+- pubProvided ID - requests to store the pubProvidedId to local storage
+- consentManagement module - requests to store the CMP state to local storage so PBJS can tell when a change was made to the state.
+- geo location module - requests to retrieve the user's location from the browser.
+
+When the TCF Purpose 1 check is made for one of these VENDORLESS_GVLID scenarios, only the user's purpose consent is checked -- no vendor check is made. This makes sense because the 'vendor' in these scenarios is the publisher, and they're a first party, not a third party.
+
 ### What happened to the allowAuctionWithoutConsent flag?
 
 This option to the ConsentManagement module was removed a long time ago in PBJS 4.0. Why?
