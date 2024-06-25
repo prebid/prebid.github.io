@@ -8,7 +8,7 @@ sidebar_entry: /prebid-server/developers/add-a-module.html
 # Prebid Server - Module Analytics Tags Conventions
 {: .no_toc}
 
-* TOC
+- TOC
 {:toc }
 
 ## Overview
@@ -31,6 +31,7 @@ consistent aTags that can be easily read by analytics adapters.
 ## Analytics Tag Conventions
 
 The general idea is that aTags are a list of module-specific "activities" that have these attributes:
+
 - activity name: should be unique within the context of this module. e.g. 'enrich-request'
 - an overall status
 - an array of specific results within the activity
@@ -41,7 +42,7 @@ The general idea is that aTags are a list of module-specific "activities" that h
 
 Here's an example from the [ORTB2 Blocking module](/prebid-server/pbs-modules/ortb2-blocking.html):
 
-```
+```json
 [{
    // scenario: response from bidderA blocked on badv for imp=1
    activities: [{
@@ -123,6 +124,7 @@ Be sure to detail the results in your module documentation so that analytics ada
 aware of what they can look for.
 
 Let them know:
+
 - which activities your module supports
 - what kind of results to expect
 - whether the results objects have module-specific `values`
@@ -142,7 +144,8 @@ In short, to get analytics tags, you'll need to parse this data structure:
 
 Here's an example of the data structured as JSON, though the details
 of the actual object will differ in PBS-Java and PBS-Go.
-```
+
+```json
           "stages": [
             {
               "stage": "raw-auction-request",
