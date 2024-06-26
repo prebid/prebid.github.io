@@ -24,7 +24,7 @@ sidebarType: 1
 |---------------|-----------|-----------------------|----------------|----------|
 | `placement_id`| mandatory | Placement Id          | `110011`       | `number` |
 | `user_id`     | mandatory | Unique id for HCP     | `'1111111'`    | `string` |
-| `nid    `     | mandatory | Unique nid for client | `1`            | `number` |
+| `nid`         | mandatory | Unique nid for client | `1`            | `number` |
 | `height`      | optional  | Height of the creative| `600`          | `number` |
 | `width`       | optional  | Width of the creative | `160`          | `number` |
 | `domain`      | optional  | Domain                | `'domain.com'` | `string` |
