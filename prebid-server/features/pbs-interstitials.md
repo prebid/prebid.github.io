@@ -14,7 +14,7 @@ would allow ads with widths from 360 to 600 pixels inclusive.
 
 Example:
 
-```
+```json
 {
   "imp": [{
     ...
