@@ -86,9 +86,9 @@ pbjs.setBidderConfig({
 });
 ```
 
-### Disable cookies for adnuntius
+### Disable cookies for Adnuntius
 
-You have the option to tell adnuntius not to set cookies in your browser. This does not mean that third party ads being served through the ad server will not set cookies. Just that Adnuintius will not set it for internal ads.
+You have the option to tell adnuntius not to set cookies in your browser. This does not mean that third party ads being served through the ad server will not set cookies. Just that Adnuntius will not set it for internal ads.
 
 ```js
 pbjs.setBidderConfig({
@@ -100,6 +100,21 @@ pbjs.setBidderConfig({
 ```
 
 Use cookie will always be set to true by default. Changing it to false will disable cookies.
+
+### Trigger Advertiser Transparency Mode in Adnuntius
+
+You have the option to tell Adnuntius to only serve ads that have their Advertiser's legal name specified. 
+
+```js
+pbjs.setBidderConfig({
+    bidders: ['adnuntius'],
+    config: {
+        advertiserTransparency: true
+    }
+});
+```
+
+By default, `advertiserTransparency` is set to `false`, meaning there is no restriction on which ads can deliver. By setting `advertiserTransparency` to `true`, ad delivery is restricted to those that have their Advertiser's legal name specified.
 
 ### Prebid Server Test Request
 
