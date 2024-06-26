@@ -85,7 +85,7 @@ There are many configuration options for s2sConfig:
 | `allowUnknownBidderCodes` | Optional | Boolean | Allow Prebid Server to bid on behalf of bidders that are not explicitly listed in the adUnit. See important [note](#allowUnknownBidderCodes) below. Defaults to `false`. |
 | `defaultVendor` | Optional | String | Automatically includes all following options in the config with vendor's default values.  Individual properties can be overridden by including them in the config along with this setting. See the Additional Notes below for more information. |
 | `enabled` | Optional | Boolean | Enables this s2sConfig block - defaults to `false` |
-| `timeout` | Optional | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. Defaults to 1000ms. |
+| `timeout` | Optional | Integer | Number of milliseconds allowed for the server-side auctions. This should be approximately 200ms-300ms less than your Prebid.js timeout to allow for all bids to be returned in a timely manner. Defaults to 75% of [`bidderTimeout`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Bidder-Timeouts) or 750ms, whichever is lesser. | 
 | `adapter` | Required | String | Adapter to use to connect to Prebid Server. Defaults to 'prebidServer' |
 | `endpoint` | Required | URL or Object | Defines the auction endpoint for the Prebid Server cluster.  See table below for object config properties. |
 | `syncEndpoint` | Required | URL or Object | Defines the cookie_sync endpoint for the Prebid Server cluster. See table below for object config properties. |

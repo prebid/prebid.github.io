@@ -29,11 +29,11 @@ protocol is described:
 - [Prebid.js US Privacy Consent Management Module](/dev-docs/modules/consentManagementUsp.html)
 - [Prebid Server and CCPA/USP](/prebid-server/features/pbs-privacy.html#ccpa--us-privacy)
 
-After more states started making their own privacy regulations, the IAB developed the "Global Privacy Protocol" (GPP) and the
-Multi-State Privacy Agreement (MSPA). GPP is just a container that can hold specific regional protocols.
+After more states started making their own privacy regulations, the IAB developed the "Global Privacy Protocol" (GPP) and
+technical protocols for the US as a whole and for each state that has privacy regulations. GPP is just a container that can hold specific regional protocols.
 
 - [Prebid.js support for GPP](/dev-docs/modules/consentManagementGpp.html)
-- [Prebid Support for MSPA](/features/mspa-usnat.html).
+- [Prebid US Compliance Support](/features/mspa-usnat.html).
 
 ### Europe
 
@@ -42,8 +42,8 @@ The privacy tools that Prebid has built in support of European rules may help ad
 The IAB defined the Transparency and Consent Framework (TCF) to address European GDPR rules. Prebid support for TCF is described:
 
 - [Prebid.js CMP Best Practices](/dev-docs/cmp-best-practices.html)
-- [Prebid.js GDPR Consent Management Module](/dev-docs/modules/consentManagement.html)
-- [Prebid.js GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html)
+- [Prebid.js GDPR Consent Management Module](/dev-docs/modules/consentManagementTcf.html)
+- [Prebid.js GDPR Enforcement Module](/dev-docs/modules/tcfControl.html)
 - [Prebid Server GDPR Support](/prebid-server/features/pbs-privacy.html#gdpr)
 - [White paper: Prebid Support for Enforcing TCF 2](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E)
 
