@@ -25,8 +25,6 @@ coppa_supported: false
 usp_supported: false
 ---
 
-
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
