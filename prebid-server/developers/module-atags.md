@@ -280,12 +280,12 @@ Also, the "vendorA-brand-safety" module at the "all processed bid responses" sta
 
 ```json
 [{
-   activities: [{
-    name: "brand-safety",
-    status: "success",
-    results: [{
-        status: "success-allow",
-        appliedto: {
+   "activities": [{
+    "name": "brand-safety",
+    "status": "success",
+    "results": [{
+        "status": "success-allow",
+        "appliedto": {
           "bidder": "bidderA",
           "impids": ["1,","2","3","4"]
         }
