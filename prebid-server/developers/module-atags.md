@@ -295,27 +295,28 @@ Also, the "vendorA-brand-safety" module at the "all processed bid responses" sta
 
 The resulting response with the request ext.prebid.analytics.options.enableclientdetails: true and config analytics.options.enableclientdetails:true would be:
 
-```json
-ext.prebid.analytics.tags: [{
+```json5
+// this is actually a nested object - but aggregated for readablility
+"ext.prebid.analytics.tags": [{
   "stage": "processed-auction-request",
   "module": "pb-ortb-blocking",
   "analyticstags": [{
-     activities: [{
-      name: "enforce-blocking",
-      status: "success",
-      results: [{
-        status: "success-block",
-        values: {
+     "activities": [{
+      "name": "enforce-blocking",
+      "status": "success",
+      "results": [{
+        "status": "success-block",
+        "values": {
                   "attributes": ["badv"],
                   "adomain": ["bad.com"]
         },
-        appliedto: {
+        "appliedto": {
           "bidder": "bidderA",
-           impids: ["1"]
+           "impids": ["1"]
         }
     },{
-        status: "success-allow",
-        appliedto: {
+        "status": "success-allow",
+        "appliedto": {
           "bidder": "bidderA",
           "impids": ["2","3","4"]
         }
@@ -325,12 +326,12 @@ ext.prebid.analytics.tags: [{
   "stage": "all-processed-bid-responses",
   "module": "vendorA-brand-safety",
   "analyticstags": [{
-   activities: [{
-    name: "brand-safety",
-    status: "success",
-    results: [{
-        status: "success-allow",
-        appliedto: {
+   "activities": [{
+    "name": "brand-safety",
+    "status": "success",
+    "results": [{
+        "status": "success-allow",
+        "appliedto": {
           "bidder": "bidderA",
           "impids": ["1,","2","3","4"]
         }
