@@ -1,0 +1,32 @@
+<!-- 
+  provide the following variables:
+  - id: unique id for the example
+  - html: html code snippet
+  - js: js code snippet 
+--->
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item ui-tab" role="presentation">
+      <button class="nav-link active" id="{{ include.id }}-result-tab" data-toggle="tab" data-target="#{{ include.id }}-result" type="button" role="tab" aria-controls="result" aria-selected="true">result</button>
+    </li>
+    <li class="nav-item ui-tab" role="presentation">
+      <button class="nav-link" id="{{ include.id }}-html-tab" data-toggle="tab" data-target="#{{ include.id }}-html" type="button" role="tab" aria-controls="html" aria-selected="false">html</button>
+    </li>
+    <li class="nav-item ui-tab" role="presentation">
+      <button class="nav-link" id="{{ include.id }}-js-tab" data-toggle="tab" data-target="#{{ include.id }}-js" type="button" role="tab" aria-controls="js" aria-selected="false">js</button>
+    </li>
+</ul>
+<div class="tab-content" id="example-tab-content">
+  <div class="tab-pane fade show active" id="{{ include.id }}-result" role="tabpanel" aria-labelledby="{{ include.id }}-result-tab">
+    <div class="mt-2 p-3">
+      {{ include.html }}
+      <script>{{ include.js }}</script>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="{{ include.id }}-html" role="tabpanel" aria-labelledby="{{ include.id }}-html-tab">
+    <pre><code class="language-html">{{ include.html | xml_escape}}</code></pre>
+  </div>
+  <div class="tab-pane fade" id="{{ include.id }}-js" role="tabpanel" aria-labelledby="{{ include.id }}-js-tab">
+    <pre><code class="language-javascript">{{ include.js }}</code></pre>
+  </div>
+</div>
+  
