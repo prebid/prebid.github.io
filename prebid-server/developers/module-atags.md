@@ -253,28 +253,27 @@ The "pb-ortb-blocking" module at the "processed auction" stage adds the followin
 
 ```json
 [{
-   activities: [{
-    name: "enforce-blocking",
-    status: "success",
-    results: [{
-        status: "success-block",
-        values: {
+  "activities": [{
+    "name": "enforce-blocking",
+    "status": "success",
+    "results": [{
+        "status": "success-block",
+        "values": {
                   "attributes": ["badv"],
                   "adomain": ["bad.com"]
         },
-        appliedto: {
+        "appliedto": {
           "bidder": "bidderA",
-           impids: ["1"]
+           "impids": ["1"]
         }
     },{
-        status: "success-allow",
-        appliedto: {
+        "status": "success-allow",
+        "appliedto": {
           "bidder": "bidderA",
           "impids": ["2","3","4"]
         }
     }]
  }]
-```
 
 Also, the "vendorA-brand-safety" module at the "all processed bid responses" stage adds these aTags:
 
