@@ -71,6 +71,7 @@ but we recommend migrating to the new config structure as soon as possible.
 | gdpr.actionTimeout | `integer` | Length of time (in milliseconds) to allow the user to take action to consent if they have not already done so. The actionTimer first waits for the CMP to load, then the actionTimeout begins for the specified duration. Default is `undefined`. | `10000` |
 | gdpr.defaultGdprScope | `boolean` | Defines what the `gdprApplies` flag should be when the CMP doesn't respond in time or the static data doesn't supply. Defaults to `false`. | `true` |
 | gdpr.consentData | `Object` | An object representing the GDPR consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
+| gpdr.dsaPlatform | `boolean` | If true, indicates that the publisher is to be considered an "Online Platform" for the purposes of the [Digital Services Act](https://digital-strategy.ec.europa.eu/en/policies/digital-services-act-package) | |  
 | gdpr.consentData.tcString | `string` | Base64url-encoded TCF v2.x string with segments. | |
 | gdpr.consentData.addtlConsent | `string` | Additional consent string if available from the cmp TCData object | |
 | gdpr.consentData.gdprApplies | `boolean` | Defines whether or not this pageview is in GDPR scope. | |
