@@ -393,7 +393,8 @@ a subset that will be merged under the 'data' object.
 | data.modelGroups[].values."rule key" | string | Delimited field of attribute values that define a floor. | - |
 | data.modelGroups[].values."rule floor value" | float | The floor value for this key. | - |
 | data.modelGroups[].default | float | Floor used if no matching rules are found. | - |
-| data.modelGroups[].noFloorSignalBidders | array of strings | (PBJS 8.31+, PBS-Java 3.4+) This is an array of bidders for which to avoid sending floors. This is useful for bidders where the publishers has established different floor rules in their systems. The value can be `["*"]`. | - | | additionalSchemaFields | object | Object contain the lookup function to map custom schema.fields. Not supported by Prebid Server. | - |
+| data.modelGroups[].noFloorSignalBidders | array of strings | (PBJS 8.31+, PBS-Java 3.4+) This is an array of bidders for which to avoid sending floors. This is useful for bidders where the publishers has established different floor rules in their systems. The value can be `["*"]`. | - |
+| additionalSchemaFields | object | Object contain the lookup function to map custom schema.fields. Not supported by Prebid Server. | - |
 | additionalSchemaFields."custom key" | string | custom key name | - |
 | additionalSchemaFields."key map function" | function | Function used to lookup the value for that particular custom key | - |
 
