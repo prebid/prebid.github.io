@@ -106,10 +106,14 @@ Prebid supports many media types, and you can set up a single line item with mul
 
 Grouping media types within line items is typically dictated by the pricing structure:
 
-- Banner, outstream video, and native generally run together because they have similar pricing expectations and therefore can share [price granularities](/adops/price-granularity.html).
+- Banner and native generally run together because they have similar pricing expectations and therefore can share [price granularities](/adops/price-granularity.html).
 - Instream video is normally created as a separate set of line items because they are usually priced higher than other formats, often requiring custom price granularity.
+- Outstream video needs to run with a set of line items that will support appropriate rendering. For Prebid.js, outstream is delivered along with banner, while for Prebid Mobile, outstream goes with instream video.
 
-You must set a key value for each format used by an ad unit using the hb_format (or hb_format_BIDDER) key and setting its value to the appropriate format. For example, if the ad unit is set up as a banner ad, you would target hb_format=banner (along with the price, such as hb_pb=1.00). If your ad unit supports multiple types, set the key value to include all types: `hb_format` in `banner`,`native`.
+Targeting on these line items depends on the ad server. Some ad servers can handle
+choosing from the right set of line items without special KVP targeting. But if necessary,
+publishers can use the `hb_format` key-value pair to help target bids to the right
+line items.
 
 ## Example Line Item Setup
 
