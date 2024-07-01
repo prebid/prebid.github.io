@@ -1492,7 +1492,9 @@ PBS-core creates this block before sending to bid adapters. They receive additio
 }
 ```
 
-##### Analytics Extension
+##### Analytics Extensions
+
+###### Analytics adapter flags
 
 Some analytics adapters may support special flags that can be passed on ext.prebid.analytics. e.g.
 
@@ -1505,6 +1507,26 @@ ext.prebid: {
   }
 }
 ```
+
+###### Sending analytics tags to the client-side
+
+{: .alert.alert-info :}
+PBS-Java only
+
+[Analytics Tags](/prebid-server/developers/module-atags.html) (aka "aTags") are an advanced feature that some [modules](/prebid-server/pbs-modules/) and
+features utilize to communicate auction details to server-side analytics adapters.
+
+When there are Prebid.js-based analytics adapters in use, server-side details can be sent to them with aTags. This allows the client-side analytics systems
+to see what's happening within Prebid Server - all analytics tags created by all modules will be sent to the client.
+
+To allow the sharing of these details, there are two conditions:
+
+1. Server-side account configuration must allow sharing of these details by setting `analytics.allow-client-details: true`
+1. The ORTB request must contain `ext.prebid.analytics.options.enableclientdetails: true`
+
+If both are true, then any and all PBS analytics tags will be copied to the response field ext.prebid.analytics.tags.
+
+See the [Analytics Tags](/prebid-server/developers/module-atags.html) page for more information.
 
 ##### Preferred Media Type
 
@@ -1791,6 +1813,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
 | ext<wbr>.prebid<wbr>.returnallbidstatus | If true, PBS returns [ext.seatnonbid](#seat-non-bid) with details about bidders that didn't bid. | boolean | no |
 | ext<wbr>.prebid<wbr>.analytics | Arguments that can be passed through to individual analytics adapters | object | no |
+| ext<wbr>.prebid<wbr>.analytics<wbr>.options.<wbr>enableclientdetails | Requests that [aTags](/prebid-server/developers/module-atags.html) be sent to the client-side for analytics. | boolean | no |
 | imp<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. (ae stands for auction environment) | integer | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
