@@ -25,17 +25,18 @@ userIds: all
 
 ### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at <support@blasto.ai>. Blasto will only respond to the first impression and that multiple ad formats of that single impression are not supported.
+The Example Bidding adapter requires setup before beginning. Please contact us at <support@blasto.ai>. 
+Blasto will only respond to the first impression.
 
-### Bid Params for Prebid Server and Prebid Mobile
+### Bid Params for Prebid Server
+Blasto supports diffrent regions for the prebid server. By default US East.
+Please deploy the prebid config in each of your datacenters with the appropriate regional subdomain.
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |---------------|----------|-----------------------|-----------|-----------|
 | `sourceId` | required | Unique hash provided by blasto | `'6dllcEHSxYdSb6yLmCqE'` | `string` |
 | `accountId` | required | Unique name provided by blasto | `'blasto-test'` | `string` |
-| `host` | optional | Blasto server region. US East by default | `'us-e-node1'` | `string` |
-| `placementId` | required | Deprecated parameter. Please use sourceId instead |`'6dllcEHSxYdSb6yLmCqE'`|`string` |
 
 ### Bid Params for Prebid.js
 
