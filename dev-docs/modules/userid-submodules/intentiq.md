@@ -31,15 +31,16 @@ Please find below list of parameters that could be used in configuring Intent IQ
 
 {: .table .table-bordered .table-striped }
 
-| Param under userSync.userIds[] | Scope    | Type   | Description                                                                                                                                                                                                  | Example         |
-| ------------------------------ | -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
-| name                           | Required | String | The name of this module: "intentIqId"                                                                                                                                                                        | `"intentIqId"`  |
-| params                         | Required | Object | Details for IntentIqId initialization.                                                                                                                                                                       |                 |
-| params.partner                 | Required | Number | This is the partner ID value obtained from registering with IntentIQ.                                                                                                                                        | `1177538`       |
-| params.percentage              | Required | Number | This a percentage value for our A/B testing group distribution. The values supposed to be in range of 0 to 100. We suggest to set it to 95 percent for optimal balance ofbetween prefromance and preceision. | `95`            |
-| params.pcid                    | Optional | String | This is the partner cookie ID, it is a dynamic value attached to the request.                                                                                                                                | `"g3hC52b"`     |
-| params.pai                     | Optional | String | This is the partner customer ID / advertiser ID, it is a dynamic value attached to the request.                                                                                                              | `"advertiser1"` |
-| params.enableCookieStorage     | Optional | Boolean | This is a parameter allowing to enable or disable cookie storage. Defaults to false.                                                                                                             | `"true"` |
+| Param under userSync.userIds[] | Scope    | Type     | Description                                                                                                                         | Example                                         |
+| ------------------------------ | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| name                           | Required | String   | The name of this module: "intentIqId"                                                                                               | `"intentIqId"`                                  |
+| params                         | Required | Object   | Details for IntentIqId initialization.                                                                                              |                                                 |
+| params.partner                 | Required | Number   | This is the partner ID value obtained from registering with IntentIQ.                                                               | `1177538`                                       |
+| params.pcid                    | Optional | String   | This is the partner cookie ID, it is a dynamic value attached to the request.                                                       | `"g3hC52b"`                                     |
+| params.pai                     | Optional | String   | This is the partner customer ID / advertiser ID, it is a dynamic value attached to the request.                                     | `"advertiser1"`                                 |
+| params.callback                | Required | Function | This is a callback which is trigered with data and AB group                                                                         | `(data, group) => console.log({ data, group })` |
+| params.timeoutInMillis         | Optional | Number   | This is the timeout in milliseconds, which defines the maximum duration before the callback is triggered. The default value is 500. | `450`                                           |
+| params.browserBlackList        | Optional |  String  | This is the name of a browser that can be added to a blacklist.                                                                     | `"chrome"`                                      |
 
 ### Configuration example
 
@@ -51,14 +52,13 @@ pbjs.setConfig({
         name: "intentIqId",
         params: {
           partner: 123456, // valid partner id
-          percentage: 95,
-          enableCookieStorage: true
+          callback: (data, group) => window.pbjs.requestBids(),
         },
         storage: {
           type: "html5",
           name: "intentIqId", // set localstorage with this name
-          expires: 60,
-          refreshInSeconds: 4 * 3600, // refresh ID every 4 hours to ensure it's fresh
+          expires: 0,
+          refreshInSeconds: 0,
         },
       },
     ],
@@ -76,13 +76,14 @@ pbjs.setConfig({
                 partner: 123456     // valid partner id
                 pcid: PCID_VARIABLE,   // string value, dynamically loaded into a variable before setting the configuration
                 pai: PAI_VARIABLE ,  // string value, dynamically loaded into a variable before setting the configuration
-                percentage: 95,
-                enableCookieStorage: false
+                timeoutInMillis: 500,
+                browserBlackList: "chrome",
+                callback: (data, group) => window.pbjs.requestBids()
             },
             storage: {
                 type: "html5",
                 name: "intentIqId",    // set localstorage with this name
-                expires: 60
+                expires: 0
             }
         }],
         syncDelay: 3000
