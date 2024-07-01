@@ -85,7 +85,7 @@ pbjs.setConfig({
 ### Provided eids
 The module provides following eids:
 
-```json
+```javascript
 [
   {
     source: 'id5-sync.com',
