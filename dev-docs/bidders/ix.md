@@ -5,11 +5,12 @@ description: Prebid Index Exchange Bidder Adapter
 biddercode: ix
 pbjs: true
 pbs: false
-userIds: identityLink, netId, fabrickId, zeotapIdPlus, uid2, unifiedId, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, imuid, 33acrossId, nonID
+userIds: amazonAdvertisingID, fabrickId, zeotapIdPlus, TDID, tpid, id5Id, lotamePanoramaId, publinkId, hadronId, pubcid, trustpid, utiqMtpId, criteoID, euid, imuid, 33acrossId, nonID, pairId, M1ID, RampID, connectId
 pbs_app_supported: true
 schain_supported: true
 coppa_supported: true
 tcfeu_supported: true
+dsa_supported: true
 floors_supported: true
 usp_supported: true
 gpp_supported: true
@@ -22,6 +23,7 @@ deals_supported: true
 prebid_member: yes
 multiformat_supported: yes
 sidebarType: 1
+privacy_sandbox: paapi, topics
 ---
 
 ## Table of contents
@@ -36,7 +38,8 @@ sidebarType: 1
   * [Global data](#prebid-fpd-module)
   * [Index bidder-specific data](#index-bidder-specific-fpd-module)
   * [AdUnit-specific data](#adunit-specific-data)
-* [Index's outstream video player](#index-outstream-video-player)
+* [Monetize instream video](#monetize-instream-video)
+* [Index's outstream ad unit](#indexs-outstream-ad-unit) 
 * [Prebid Native configuration](#prebid-native-configuration)
 * [Protected Audience API support](#protected-audience-api-support)
 * [Signal inventory using  external IDs](#signal-inventory-using-external-ids)
@@ -123,18 +126,9 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
     ```
 
 6. (Optional) Set up First Party Data (FPD). For more information about the data types we support and the instructions for each option, see the [Set up First Party Data (FPD)](#set-up-first-party-data-fpd) section below.
-7. (Optional) If you want to monetize instream video, you need to enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
-
-    ```javascript
-    pbjs.setConfig({
-        cache: {
-                url: 'https://prebid.adnxs.com/pbc/v1/cache'
-            }
-    });
-    ```
-
+7. (Optional) If you want to monetize instream video, see the [Monetize instream video](#monetize-instream-video) section below.
 8. (Optional) If you want to monetize outstream video, you can choose among the following options:
-    * Use Index's outstream video player. For more information, see the [Index's outstream video player](#index-outstream-video-player) section below.
+    * Use Index's outstream video player. For more information, see the [Index's outstream ad unit](#indexs-outstream-ad-unit) section below.
     * Use your own outstream video player. For more information, see [Prebid’s documentation on how to show video ads.](/dev-docs/show-outstream-video-ads.html)
 9. (Optional) Configure Prebid Native with Index. For more information, see the [Prebid Native](#prebid-native-configuration) section below. Prebid Native is available from Prebid.js version 7.4.0 or higher.
 
@@ -221,7 +215,23 @@ ortb2Imp: {
 }
 ```
 
-<a id="index-outstream-video-player"></a>
+## Monetize instream video 
+
+Unlike Outstream Video, instream video does not use the Prebid Universal Creative. Instead, video bids provide VAST that Prebid caches to obtain a cache ID that can be retrieved with a URL. The cache ID is passed as a key value to the ad server.  
+
+To monetize instream video, complete the following steps: 
+
+1. Enable a cache endpoint in the `[pbjs.setConfig()]` function as follows:
+
+   ```javascript
+   pbjs.setConfig({ 
+     cache: { 
+             url: 'https://prebid.adnxs.com/pbc/v1/cache' 
+         } 
+   });
+   ```
+
+2. Set up your line items in Google Ad manger by following the instructions in Prebid's [Setting Up Video In GAM](/adops/setting-up-prebid-video-in-dfp.html) documentation. 
 
 ## Index's outstream ad unit
 
@@ -261,16 +271,17 @@ pbjs.addAdUnit({
             playerSize: [640, 480],
             mimes: ['video/mp4'],
             protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-            playbackmethod: [2],
-            skip: 1
-            plcmt: 2
+            placement: 3,
+            playbackmethod: [6],
+            skip: 1,
+            plcmt: 4
 
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '12345',
+            siteId: '9999990',
             // Index ad unit video settings...
             video: {
                 //minimum size for Video Player size is 144x144 in pixel
@@ -307,37 +318,53 @@ pbjs.addAdUnits({
     code: slot.code,
     mediaTypes: {
         native: {
-            image: {
-                required: true,
-                sizes: [150, 50]
-            },
-            title: {
-                required: true,
-                len: 80
-            },
-            sponsoredBy: {
-                required: true
-            },
-            clickUrl: {
-                required: true
-            },
-            privacyLink: {
-                required: false
-            },
-            body: {
-                required: true
-                len: 90
-            },
-            icon: {
-                required: true,
-                sizes: [50, 50]
+            ortb: {
+                assets: [{
+                    id: 1,
+                    required: 1,
+                    img: {
+                        type: 3,
+                        w: 150,
+                        h: 50,
+                    }
+                },
+                {
+                    id: 2,
+                    required: 1,
+                    title: {
+                        len: 80
+                    }
+                },
+                {
+                    id: 3,
+                    required: 1,
+                    data: {
+                        type: 1
+                    }
+                },
+                {
+                    id: 4,
+                    required: 1,
+                    data: {
+                        type: 2
+                    }
+                },
+                {
+                    id: 6,
+                    required: 1,
+                    img: {
+                        type: 1,
+                        w: 50,
+                        h: 50,
+                    }
+                }]
             }
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '715966'
+            siteId: '9999990'
         }
     }]
 });
@@ -354,36 +381,83 @@ pbjs.addAdUnits({
 
 Follow these steps to configure your Prebid.js to specify that your ad slots are enabled for [Protected Audience](https://github.com/WICG/turtledove/blob/main/FLEDGE.md) auctions:
 
-1. If required, update your Prebid.js version to 8.18.0 or later.
+1. Index recommends that you update your Prebid.js version to 8.37.0 or later.<br />
+**Note:** Prebid.js version 8.18.0 or later is supported. However, Prebid's `fledgeForGpt` module has been improved in version 8.37.0, which fixes some issues from the earlier version.
 2. Build the `fledgeForGpt` module in your Prebid.js configuration by adding `fledgeForGpt` to the list of modules that you are already using. For more information about the module, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation.
-3. Enable all ad units to use the `fledgeForGpt` module in your prebid.js configuration. You can do this in the global-level configuration, bidder level, or ad-unit level. For more information about the configurations, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation. Index recommends that you do this in the global-level configuration by using the `defaultForSlots` parameter with a value of `1`. <br />
-**Note:** If you are using the `fledgeForGpt.bidders[]`, make sure that you add `ix` to the list of bidders.<br />
-The following shows an example of the configuration done at the global level:
+3. If you are using a Prebid.js version that is between 8.18.0 and 8.36.0, you must configure your ad units to make them eligible for Protected Audience API demand. You can do this in the global-level configuration, bidder level, or ad-unit level. For more information about the configurations, see Prebid's [Fledge (Protected Audience) for GPT Module](/dev-docs/modules/fledgeForGpt.html) documentation. Index recommends that you do this in the global-level configuration by using the `defaultForSlots` parameter with a value of `1`. The following code is an example of the configuration done at the global level:
 
-```javascript
-pbjs.que.push(function() {
-  pbjs.setConfig({
-    fledgeForGpt: {
-      enabled: true,
-      defaultForSlots: 1
-    }
-  });
-});
-```
+    ```javascript
+     pbjs.que.push(function() {
+       pbjs.setConfig({
+        fledgeForGpt: {
+        enabled: true,
+        defaultForSlots: 1
+          }
+       });
+    });
+    ```
 
-The following shows an example of the configuration done at the ad-unit level:
+    **Note:** If you are using the `fledgeForGpt.bidders[]`, make sure that you include `ix` to the list of bidders as follows:
 
-```javascript
-pbjs.addAdUnits({
-    code: "my-adunit-div",
-    // other config here
-    ortb2Imp: {
-        ext: {
-            ae: 1
-        }
-    }
-});
-```
+    ```javascript
+     pbjs.que.push(function() { 
+       pbjs.setConfig({
+        fledgeForGpt: { 
+        enabled: true,
+        bidders: ['ix', /* any other bidders */],
+        defaultForSlots: 1
+          }
+       });
+    });
+    ```
+
+4. If you are using Prebid.js version 8.37.0 or later, you must complete the following steps to make your ad units eligible for Protected Audience API demand: <br />
+**Note:** If you continue to use the `fledgeForGpt` property, you will receive a warning message in the console logs stating that the `fledgeForGpt` configuration options will soon be renamed to `paapi`. Therefore, Index recommends that you use the `paapi` property, which is available in Prebid.js version 8.37.0 or later.
+    * In the `pbjs.setConfig().paapi` field, set the `defaultForSlots` parameter to `1`:
+
+     ```javascript
+     pbjs.que.push(function() {
+       pbjs.setConfig({
+         paapi: {
+          enabled: true,
+          defaultForSlots: 1
+          bidders: ['ix', /* any other bidders */],
+          });
+      });
+     ```
+
+    * In the `paapi.gpt.autoconfig` field, set `autoconfig` to `false`. This step is important because, by default, the `fledgeForGpt` module expects the Google Publisher Tag (GPT) ad units to be loaded before the Protected Audience configuration is added to the ad unit. Setting `autoconfig` to `false` will avoid any race conditions resulting from asynchronous libraries being loaded out of order, which would prevent the ad unit from being properly configured for Protected Audience API.<br />
+**Note:** The `fledgeForGpt.autoconfig` property is also backward compatible and can be used in place of the `paapi.gpt.autoconfig` property. However, Index recommends that you use the `paapi.gpt.autoconfig` property.<br />
+
+     ```javascript
+     pbjs.que.push(function() {
+       pbjs.setConfig({
+         paapi: {
+           enabled: true,
+           defaultForSlots: 1
+           gpt: {
+              autoconfig: false
+               },
+           bidders: ['ix', /* any other bidders */],
+          });
+        });
+     ```
+
+    * In the `pbjs.requestBids.bidsBackHandler` function, call the `pbjs.setPAAPIConfigForGPT()` function as follows:<br />
+**Note:** When calling the `pbjs.setPAAPIConfigForGPT();` function, make sure that you check the following:
+       * The function must be called in the `bidsBackHandler` each time new bids are requested (for example when refreshing `adSlots`). This is important because, when `autoconfig` is disabled, the `auctionConfig` needs to be associated with a GPT ad unit manually by calling `pbjs.setPAAPIConfigForGPT()`.
+       * The function must be called before the `pbjs.setTargetingForGPTAsync()` function. This is important because the Protected Audience configuration needs to be associated with a GPT ad unit before the Google Ad Manager call is executed.
+
+     ```javascript
+      pbjs.requestBids({, ,  
+       // ... 
+       bidsBackHandler: function(bids, timedOut, auctionId) {  
+         pbjs.setPAAPIConfigForGPT(); 
+         pbjs.setTargetingForGPTAsync(); 
+        // ... 
+        } 
+      }) 
+     ```
 
 <a id="signal-inventory-using-external-ids"></a>
 
@@ -440,7 +514,7 @@ You must include these parameters at the bidder level.
 
 | Name | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`|
 
 ### Video
 
@@ -450,7 +524,7 @@ You must include these parameters at the bidder level.
 
 | Name | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
 
 If you are using Index's outstream ad unit and have placed the video object at the bidder level, you must include the Index required parameters at the bidder level. You can include the optional parameters to specify the outstream player configurations.
 
@@ -482,7 +556,7 @@ The following are the parameters that you can specify for each multi-format type
 
 | Name | Scope | Type | Description |
 |---|---|---|---|
-| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'3723'`, `'6482'`, `'3639'`. <br><br><b>Note:</b> This will also act as the default siteID for multi-format adunits if a format specific siteId is not provided.|
+| `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`. <br><br><b>Note:</b> This will also act as the default siteID for multi-format adunits if a format specific siteId is not provided.|
 | `banner.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `banner` format in the multi-format ad unit.|
 | `video.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `video` format in the multi-format ad unit.|
 | `native.siteId` | Optional | String | An Index-specific identifier that is associated with this ad unit. This siteId will be prioritized over the default siteID for `native` format in the multi-format ad unit.|
@@ -507,7 +581,7 @@ var adUnits = [{
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '123456'
+            siteId: '9999990'
         }
     } 
     ]
@@ -524,7 +598,6 @@ var adUnits = [{
     mediaTypes: {
         video: {
             // Preferred location as of version 4.43
- video obj
             context: 'instream',
             playerSize: [300, 250],
             api: [2],
@@ -532,13 +605,14 @@ var adUnits = [{
             minduration: 5,
             maxduration: 30,
             mimes: ['video/mp4', 'application/javascript'],
-            placement: 3
+            placement: 3,
+            plcmt: 1
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '12345',
+            siteId: '9999990',
             video: {
                 // openrtb v2.5 compatible video obj
                 // If required, use this to override mediaTypes.video.XX properties
@@ -563,13 +637,15 @@ var adUnits = [{
             minduration: 5,
             maxduration: 30,
             mimes: ['video/mp4', 'application/javascript'],
-            placement: 5
+            placement: 3,
+            plcmt: 4,
+            playbackmethod: 6
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '715964'
+            siteId: '9999990'
             video: {
                 playerConfig: {
                     floatOnScroll: true,
@@ -589,37 +665,53 @@ pbjs.addAdUnits({
     code: slot.code,
     mediaTypes: {
         native: {
-            image: {
-                required: true,
-                sizes: [150, 50]
-            },
-            title: {
-                required: true,
-                len: 80
-            },
-            sponsoredBy: {
-                required: true
-            },
-            clickUrl: {
-                required: true
-            },
-            privacyLink: {
-                required: false
-            },
-            body: {
-                required: true
-                len: 90
-            },
-            icon: {
-                required: true,
-                sizes: [50, 50]
+            ortb: {
+                assets: [{
+                    id: 1,
+                    required: 1,
+                    img: {
+                        type: 3,
+                        w: 150,
+                        h: 50,
+                    }
+                },
+                {
+                    id: 2,
+                    required: 1,
+                    title: {
+                        len: 80
+                    }
+                },
+                {
+                    id: 3,
+                    required: 1,
+                    data: {
+                        type: 1
+                    }
+                },
+                {
+                    id: 4,
+                    required: 1,
+                    data: {
+                        type: 2
+                    }
+                },
+                {
+                    id: 6,
+                    required: 1,
+                    img: {
+                        type: 1,
+                        w: 50,
+                        h: 50,
+                    }
+                }]
             }
         }
     },
     bids: [{
         bidder: 'ix',
         params: {
-            siteId: '715966'
+            siteId: '9999990'
         }
     }]
 });
@@ -665,15 +757,15 @@ var adUnits = [{
    {
        bidder: 'ix',
        params: {
-           siteId: '1111',
+           siteId: '9999990',
            video: {
-               siteId: '2222'
+               siteId: '9999991'
            },
            native: {
-               siteId: '3333'
+               siteId: '9999992'
            },
            banner: {
-               siteId: '4444'
+               siteId: '9999993'
            }
        }
    },

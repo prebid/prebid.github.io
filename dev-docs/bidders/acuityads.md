@@ -3,7 +3,7 @@ layout: bidder
 title: AcuityAds
 description: Prebid AcuityAds Bidder Adaptor
 biddercode: acuityads
-filename: acuityAdsBidAdapter
+filename: acuityadsBidAdapter
 gvl_id: 231
 tcfeu_supported: true
 usp_supported: true

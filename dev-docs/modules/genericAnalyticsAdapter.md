@@ -28,9 +28,9 @@ This is an analytics adapter that can interface with any backend, meant for publ
 
 <a id="gdpr"></a>
 
-### Note on GDPR enforcement
+### Note on TCF controls
 
-If you are using the [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) to enforce purpose 7, by default this module will be blocked when GDPR is in scope.
+If you are using the [TCF control module](/dev-docs/modules/tcfControl.html) to enforce purpose 7, by default this module will be blocked when GDPR is in scope.
 To enable it, you may either specify the `gvlid` option (if you are interfacing with a partner) or declare a `softVendorException` if you deem that vendor consent is not required for compliance:
 
 ```javascript

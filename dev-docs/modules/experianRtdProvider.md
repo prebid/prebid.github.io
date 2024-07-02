@@ -5,7 +5,7 @@ display_name: Experian Real-Time ID Module
 description: Experian Real-Time ID Module
 page_type: module
 module_type: rtd
-module_code : experian_rtid
+module_code : experianRtdProvider
 enable_download : true
 vendor_specific: true
 sidebarType : 1

@@ -45,7 +45,7 @@ Prebid SDK is always async. The completion handler for the main fetchDemand() me
 
 ### How long do bids remain valid?
 
-Prebid SDK does not support a [limited bid cache](dev-docs/faq.html#does-prebidjs-cache-bids) like Prebid.js does. Which means it's up to the app to build any kind of pre-fetch or bid-cache feature. Notes:
+Prebid SDK does not support a [limited bid cache](/dev-docs/faq.html#does-prebidjs-cache-bids) like Prebid.js does. Which means it's up to the app to build any kind of pre-fetch or bid-cache feature. Notes:
 
 1. If Prebid Cache is being utilized, the Time-To-Live for that cache should be understood. By default, the TTL for Prebid Cache is 5 minutes for banners and 15 minutes for video, but this can be changed.
 2. No matter what the Cache TTL is set to, it's important that any pre-fetch or bid-cache feature built into the app should respect the OpenRTB `seatbid.bid.exp` field for each bid, which is the expiration of the bid in seconds.
@@ -84,7 +84,7 @@ No. The Prebid SDK is itself a library open sourced under the Apache 2 license.
 
 ### Are there any back-end dependencies to this SDK?
 
-Yes - the app developer must have a [Prebid Server](/prebid-server/prebid-server-overview.html) at their disposal. This is open source software that they may run themselves, or they may contract with a [Managed Service](https://prebid.org/product-suite/managed-services/).
+Yes - the app developer must have a [Prebid Server](/prebid-server/overview/prebid-server-overview.html) at their disposal. This is open source software that they may run themselves, or they may contract with a [Managed Service](https://prebid.org/product-suite/managed-services/).
 
 ## Communication
 
@@ -155,6 +155,25 @@ Also note that Prebid.org is committed to other privacy initiatives such as the 
 ### How does the SDK allow for deletion of user private data?
 
 SDK does’t commit any action on managing user data. Only publishers using SDK’s API can provide/store/remove user data.
+
+### Does SDK Provide an Apple Privacy Manifest? 
+
+No, because the Prebid SDK is an open-source SDK, that doesn't have a single domain to send bid requests.
+
+However, here is the list of items that the app developer can add to the application's privacy manifest to cover Prebid SDK activity and data consumption: 
+
+- `NSPrivacyTracking` - true. Because Prebid SDK collects IDFA. 
+- `NSPrivacyTrackingDomains` - the tracking domain for the PBS. 
+
+Pay attention - if `NSPrivacyTracking` is true, the tracking domain is provided, and the user doesn't allow the app to track him or her, iOS will block the bid requests. Prebid SDK doesn't support tracking and non-tracking endpoints yet. Follow the [issue](https://github.com/prebid/prebid-mobile-ios/issues/954) for the details. 
+
+- `NSPrivacyCollectedDataTypes` array should contain the following `NSPrivacyCollectedDataType` items: `NSPrivacyCollectedDataTypePreciseLocation`, `NSPrivacyCollectedDataTypeCoarseLocation`,`NSPrivacyCollectedDataTypeDeviceID`, `NSPrivacyCollectedDataTypeProductInteraction`, `NSPrivacyCollectedDataTypeAdvertisingData`. 
+
+The values for `NSPrivacyCollectedDataTypeLinked` and `NSPrivacyCollectedDataTypeTracking` in each entry depend on your demand partners, you should consult with them to provide proper info. Neither SDK nor Server uses these data for tracking or linking.
+  
+The `NSPrivacyCollectedDataTypePurposes` array should contain `NSPrivacyCollectedDataTypePurposeThirdPartyAdvertising` and/or other purposes your demand partners require. 
+
+- `NSPrivacyAccessedAPITypes` array should contain the `NSPrivacyAccessedAPICategoryUserDefaults` item. The `NSPrivacyAccessedAPITypeReasons` for this item should contain `CA92.1` value.
 
 ## Performance
 

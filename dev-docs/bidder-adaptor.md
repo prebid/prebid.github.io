@@ -325,7 +325,7 @@ Here is a sample bidderRequest object:
     canonicalUrl: null,
     page: "http://mypage.org?pbjs_debug=true",
     domain: "mypage.org",
-    ref: null,
+    referer: null,
     numIframes: 0,
     reachedTop: true,
     isAmp: false,
@@ -352,7 +352,7 @@ Notes on parameters in the bidderRequest object:
 Some of the data in `ortb2` is also made available through other `bidderRequest` fields:
 
 * **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
-* **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
+* **gdprConsent** is the object containing data from the [TCF ConsentManagement](/dev-docs/modules/consentManagementTcf.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
 * **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module.
 
 <a id="tid-warning"></a>
@@ -371,8 +371,8 @@ There are a number of important values that a publisher expects to be handled in
 | Parameter | Description                                   | Example               |
 | ----- | ------------ | ---------- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
-| Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | config.getConfig('bidderTimeout'); |
-| COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | config.getConfig('coppa'); |
+| Bidder Timeout | Use if your endpoint needs to know how long the page is allowing the auction to run. | bidderRequest.timeout; |
+| COPPA | If your endpoint supports the Child Online Privacy Protection Act, you should read this value. | bidderRequest.ortb2.regs.coppa; |
 | First Party Data | The publisher, as well as a number of modules, may provide [first party data](/features/firstPartyData.html) (e.g. page type). | bidderRequest.ortb2; validBidRequests[].ortb2Imp|
 | Floors | Adapters that accept a floor parameter must also support the [floors module](https://docs.prebid.org/dev-docs/modules/floors.html) | [`bidRequest.getFloor()`](/dev-docs/modules/floors.html#bid-adapter-interface) |
 | Page URL and referrer | Instead of building your own function to find the page location, domain, or referrer, look in the standard bidRequest location. | bidderRequest.refererInfo.page |
@@ -462,6 +462,7 @@ The `interpretResponse` function will be called when the browser has received th
             brandName: BRAND_NAME,
             dchain: DEMAND_CHAIN_OBJECT,
             demandSource: DEMAND_SOURCE,
+            dsa: IAB_DSA_RESPONSE_OBJECT,
             mediaType: MEDIA_TYPE,
             networkId: NETWORK_ID,
             networkName: NETWORK_NAME,
@@ -510,6 +511,7 @@ The parameters of the `bidResponse` object are:
 | `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
 | `meta.demandSource`     | Optional                                    | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`
 | `meta.dchain`     | Optional                                    | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
+| `meta.dsa` | Optional | The [IAB DSA response object](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/dsa_transparency.md) for the Digital Services Act (DSA) | `{ 'behalf': 'sample text', 'paid': 'sample value', 'transparency': [{ 'domain': 'sample domain', 'params': [1, 2] }], 'adrender': 1 }` | 
 | `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
 | `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
 | `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
@@ -1306,6 +1308,7 @@ description: Prebid example Bidder Adapter
 biddercode: example
 aliasCode: fileContainingPBJSAdapterCodeIfDifferentThenBidderCode
 tcfeu_supported: true/false
+dsa_supported: true/false
 gvl_id: none
 usp_supported: true/false
 coppa_supported: true/false
