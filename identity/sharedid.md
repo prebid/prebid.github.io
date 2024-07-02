@@ -6,11 +6,10 @@ sidebarType: 9
 ---
 
 # Prebid SharedID
-
 {: .no_toc}
 
 - TOC
-  {:toc}
+{:toc}
 
 {: .alert.alert-warning :}
 As of Prebid.js 5.0, PubCommon ID is no longer supported -- it's been merged into SharedId. Also, SharedId no longer syncs to sharedid.org like it did in Prebid.js 4.x.
