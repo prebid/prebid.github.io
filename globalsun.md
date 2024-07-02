@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Global Sun
-description: Global Sun Adaptor
+title: GlobalSun
+description: GlobalSun Adaptor
 biddercode: globalsun
 pbjs: true
 pbs: false
@@ -25,7 +25,7 @@ sidebarType: 1
 
 ### Note
 
-The Global Sun bidding adapter requires setup and approval before implementation. Please reach out to <info@globalsun.io> for more details.
+The GlobalSun bidding adapter requires setup and approval before implementation. Please reach out to <info@globalsun.io> for more details.
 
 ### Bid Params
 
