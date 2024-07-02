@@ -1,3 +1,10 @@
+---
+layout: userid
+title: CEE ID Module
+description: CEE ID User ID sub-module
+useridmodule: ceeIdSystem
+---
+
 # ceeIdSystem UserID Module
 
 ## Prebid Configuration
