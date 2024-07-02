@@ -15,7 +15,7 @@ safeframes_ok: false
 deals_supported: false
 floors_supported: true
 fpd_supported: false
-pbjs: false
+pbjs: true
 pbs: true
 pbs_app_supported: true
 prebid_member: false
