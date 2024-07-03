@@ -231,7 +231,6 @@ Notes:
 - The `sandbox` parameter to the amp-iframe must include both "allow-scripts" and "allow-same-origin".
 - If your PBS host company is using a version of `load-cookie.html` older than July of 2024 and if your AMP page is using a CMP, you should consider using 'load-cookie-with-consent.html` instead. It's the same functionality, but older versions of `load-cookie.html` cannot read from CMPs.
 
-
 If you're using AppNexus' managed service, you would enter something like this:
 
 ```html
