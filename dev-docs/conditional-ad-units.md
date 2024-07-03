@@ -14,7 +14,7 @@ sidebarType: 1
 
 {:.no_toc}
 
-The [global sizeConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads) and [Advanced Size Mapping](/dev-docs/modules/sizeMappingV2.html) features are useful for standard responsive ad designs, but a number of other scenarios are supported as well.
+The [Size Mapping](/dev-docs/modules/sizeMapping.html) and [Advanced Size Mapping](/dev-docs/modules/sizeMappingV2.html) features are useful for standard responsive ad designs, but a number of other scenarios are supported as well.
 
 * TOC
 {:toc}
@@ -31,7 +31,7 @@ See the [Publisher API reference](/dev-docs/publisher-api-reference/setConfig.ht
 ## Some Bidders Should Be Skipped for Some Devices
 
 {: .alert.alert-info :}
-See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) for another way to handle this scenario. Note that you must use Advanced Size Mapping for mediaTypes other than banner.
+The following example uses [Size Mapping](/dev-docs/modules/sizeMapping.html). See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) for another way to handle this scenario. Note that you must use Advanced Size Mapping for mediaTypes other than banner.
 
 Say a particular bidder is focused on mobile phone demand, so it's really not worthwhile
 to send them requests from display or tablets.
@@ -108,7 +108,7 @@ For instance, say that a given bidder wants to define different placements for d
 | Display | 1111 |
 | Phones and tablets | 2222 |
 
-### Using the Global sizeConfig Approach (Banner only)
+### Using the Size Mapping Approach (Banner only)
 
 Assuming the same `sizeConfig` as in the first use case above, the AdUnit would contain bids for both
 placements, but the conditional `labelAny` is added to them both. This will cause the bid to be fired only if one
@@ -191,7 +191,7 @@ var AdUnits = [{
 ## Some Ad Unit Auctions Should Be Skipped Entirely for Some Devices
 
 Say there's a responsive page where one of the ad units only supports larger sizes, so it doesn't make sense
-on phones. To suppress the ad unit for mobile users, we can apply conditional logic to the entire ad unit. Here's an example using the global sizeConfig approach (banner only):
+on phones. To suppress the ad unit for mobile users, we can apply conditional logic to the entire ad unit. Here's an example using the size mapping approach (banner only):
 
 ```javascript
 
@@ -218,10 +218,8 @@ var AdUnits = [{
        }
    ]
 }]
-
-See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) if you need to do something like this for video.
-
 ```
+See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) if you need to do something like this for video.
 
 ## Some Bid Requests Apply Only to Users Originating from Certain Countries
 
@@ -271,6 +269,6 @@ labels:
 
 ## Further Reading
 
-* [Responsive ad designs](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-Responsive-Ads)
+* [Size Mapping Module](/dev-docs/modules/sizeMapping.html)
 * [Advanced Size Mapping Module](/dev-docs/modules/sizeMappingV2.html)
 * [Using Media Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
