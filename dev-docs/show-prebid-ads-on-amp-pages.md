@@ -229,7 +229,7 @@ Notes:
 
 - The following examples include a transparent image as a placeholder which will allow you to place the example at the top within the HTML body. If this is not included the iFrame must be either 600px away from the top or not within the first 75% of the viewport when scrolled to the top – whichever is smaller. For more information on this, see [amp-iframe](https://amp.dev/documentation/components/amp-iframe/)
 - The `sandbox` parameter to the amp-iframe must include both "allow-scripts" and "allow-same-origin".
-- If your PBS host company is using a version of `load-cookie.html` older than July of 2024 and if your AMP page is using a CMP, you should consider using 'load-cookie-with-consent.html` instead. It's the same functionality, but older versions of `load-cookie.html` cannot read from CMPs.
+- If your PBS host company is using a version of `load-cookie.html` older than July of 2024 and if your AMP page is using a CMP, you should consider using `load-cookie-with-consent.html` instead. It's the same functionality, but older versions of `load-cookie.html` cannot read from CMPs.
 
 If you're using AppNexus' managed service, you would enter something like this:
 
