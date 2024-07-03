@@ -130,20 +130,6 @@
   isSectionHeader: 0
   subgroup: 2
 
-- sbSecId: 0
-  title: Prebid and MSPA
-  link: /features/mspa-usnat.html
-  isHeader: 0
-  isSectionHeader: 0
-  subgroup: 2
-
-- sbSecId: 0
-  title: Prebid and Quebec Privacy Support
-  link: /features/ac-quebec.html
-  isHeader: 0
-  isSectionHeader: 0
-  subgroup: 2
-
 #--------------Prebid.js--------------|
 
 - sbSecId: 1
@@ -193,6 +179,14 @@
 - sbSecId: 1
   title: Prebid.js Components
   link: /prebid/prebidjs-components-video.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 1
+  title: Analytics For Prebid
+  link: /overview/analytics.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -522,31 +516,6 @@
   subgroup: 6
 
 - sbSecId: 1
-  title: Analytics
-  link:
-  isHeader: 1
-  headerId: analytics
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 7
-
-- sbSecId: 1
-  title: Analytics For Prebid
-  link: /overview/analytics.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 7
-
-- sbSecId: 1
-  title: Prebid Analytics for GA
-  link: /overview/ga-analytics.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 7
-
-- sbSecId: 1
   title: Features
   link:
   isHeader: 1
@@ -758,6 +727,14 @@
   subgroup: 2
 
 - sbSecId: 2
+  title: Global Parameters
+  link: /prebid-mobile/pbm-api/ios/pbm-targeting-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 2
   title: GAM Original Integration
   link: /prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html
   isHeader: 0
@@ -798,16 +775,8 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: Targeting Parameters
-  link: /prebid-mobile/pbm-api/ios/pbm-targeting-ios.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-  
-- sbSecId: 2
   title: Ad Experience Controls
-  link: /prebid-mobile/modules/rendering/ios-sdk-customization-controls.html
+  link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -838,6 +807,14 @@
   sectionTitle:
   subgroup: 3
 
+- sbSecId: 2
+  title: Global Parameters
+  link: /prebid-mobile/pbm-api/android/pbm-targeting-params-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+  
 - sbSecId: 2
   title: GAM Original Integration
   link: /prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html
@@ -879,16 +856,8 @@
   subgroup: 3
 
 - sbSecId: 2
-  title: Targeting Parameters
-  link: /prebid-mobile/pbm-api/android/pbm-targeting-params-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-  
-- sbSecId: 2
   title: Ad Experience Controls
-  link: /prebid-mobile/modules/rendering/android-sdk-customization-controls.html
+  link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1053,6 +1022,14 @@
   isHeader: 0
   isSectionHeader: 0
   isCatHeader: 1
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 3
+  title: 'Header Bidding Trafficking Setup'
+  link: /adops/gam-hbt-step-by-step.html
+  isHeader: 0
+  isSectionHeader: 0
   sectionTitle:
   subgroup: 2
 
@@ -1260,13 +1237,6 @@
   sectionTitle:
   subgroup: 0
 
-- sbSecId: 4
-  title: Training Videos
-  link: /videos/prebid-video.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
 
 - sbSecId: 4
   title: Prebid.js Video Module
@@ -1511,14 +1481,6 @@
 - sbSecId: 5
   title: First Party Data
   link: /prebid-server/features/pbs-fpd.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 5
-  title: Programmatic Guaranteed
-  link: /prebid-server/features/pg/pbs-pg-idx.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1815,12 +1777,34 @@
   subgroup: 0
 
 - sbSecId: 7
-  title: Training Videos
-  link: /videos/
-  isHeader: 0
+  title: Privacy Resources
+  link:
+  isHeader: 1
+  headerId: privacy
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 1
+
+- sbSecId: 7
+  title: Prebid Privacy Overview
+  link: /support/privacy-resources.html
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 1
+
+- sbSecId: 7
+  title: Prebid US Compliance
+  link: /features/mspa-usnat.html
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 1
+
+- sbSecId: 7
+  title: Prebid and Quebec Privacy Support
+  link: /features/ac-quebec.html
+  isHeader: 0
+  isSectionHeader: 0
+  subgroup: 1
 
 - sbSecId: 7
   title: FAQs

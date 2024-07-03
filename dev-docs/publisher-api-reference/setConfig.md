@@ -48,7 +48,7 @@ Core config:
 Module config: other options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
 
 * [Currency module](/dev-docs/modules/currency.html)
-* [Consent Management](/dev-docs/modules/consentManagement.html#page-integration)
+* [Consent Management](/dev-docs/modules/consentManagementTcf.html#page-integration)
 * [User ID module](/dev-docs/modules/userId.html#configuration)
 * [Adpod](/dev-docs/modules/adpod.html)
 * [IAB Category Translation](/dev-docs/modules/categoryTranslation.html)
@@ -83,6 +83,8 @@ pbjs.setConfig({ deviceAccess: false });
 ```
 
 This can be useful in GDPR, CCPA, COPPA or other privacy scenarios where a publisher has determined that header bidding should not read from or write the user's device.
+
+Note that bid adapters are normally denied access to device storage even when `deviceAccess` is `true`; see the [`storageAllowed` bidder setting](/dev-docs/publisher-api-reference/bidderSettings.html#deviceAccess).
 
 <a name="setConfig-Bidder-Timeouts"></a>
 

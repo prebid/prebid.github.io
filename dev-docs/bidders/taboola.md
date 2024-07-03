@@ -10,6 +10,7 @@ usp_supported: true
 coppa_supported: true
 gpp_supported: true
 schain_supported: false
+dchain_supported: true
 media_types: banner
 gvl_id: 42
 prebid_member: true

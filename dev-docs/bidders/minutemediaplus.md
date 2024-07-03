@@ -21,6 +21,7 @@ ortb_blocking_supported: false
 multiformat_supported: will-bid-on-one
 gvl_id: 918
 pbjs: true
+pbjs_version_notes: removed in 9.0
 sidebarType: 1
 ---
 
