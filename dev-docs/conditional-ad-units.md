@@ -219,6 +219,7 @@ var AdUnits = [{
    ]
 }]
 ```
+
 See the [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) if you need to do something like this for video.
 
 ## Some Bid Requests Apply Only to Users Originating from Certain Countries
