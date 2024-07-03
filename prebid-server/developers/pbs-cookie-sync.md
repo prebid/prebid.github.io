@@ -81,7 +81,7 @@ This is how to control the coop syncing behavior from Prebid.js:
 Where Prebid.js isn't present, like on [AMP](/prebid-server/use-cases/pbs-amp.html) pages, the call to [/cookie_sync](/endpoints/pbs-endpoint-cookieSync.html) doesn't happen automatically.
 If there are scenarios where Prebid.js isn't around to initiate the /cookie_sync call, publishers can choose to put an iframe on their page.
 
-This approach works in a way quite similar to Prebid.js except that the [/cookie_sync endpoint](/endpoints/pbs-endpoint-cookieSync.html) is initiated by a separate script that's part of `load-cookie.html'. This file must be placed on a CDN by the publisher's Prebid Server host company. Up until April 2024, the script existed in the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative) repository, but has since been moved to the [user-sync](https://github.com/prebid/user-sync) repo.
+This approach works in a way quite similar to Prebid.js except that the [/cookie_sync endpoint](/endpoints/pbs-endpoint-cookieSync.html) is initiated by a separate script that's part of `load-cookie.html'. This file must be placed on a CDN by the publisher's Prebid Server host company. Up until July 2024, the script existed in the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative) repository, but has since been moved to the [user-sync](https://github.com/prebid/user-sync) repo.
 
 1. The Prebid Server hosting company places the [load-cookie.html](#manually-initiating-a-sync) file onto a CDN.
 
@@ -138,7 +138,7 @@ Here are all the arguments supported:
 Note that enabling or disabling [Cooperative Sync](#cooperative-syncing) is not currently supported in load-cookie. Please make sure the account default is set up appropriately in PBS config.
 
 {: .alert.alert-warning :}
-Note: if your PBS host company is using a version of `load-cookie.html` older than May of 2024 and if your AMP page is using a CMP, you should consider using 'load-cookie-with-consent.html` instead. It's the same functionality, but older versions of `load-cookie.html` cannot read from CMPs.
+Note: if your PBS host company is using a version of `load-cookie.html` older than July of 2024 and if your AMP page is using a CMP, you should consider using 'load-cookie-with-consent.html` instead. It's the same functionality, but older versions of `load-cookie.html` cannot read from CMPs.
 
 ## Bidder Instructions for Building a Sync Endpoint
 
