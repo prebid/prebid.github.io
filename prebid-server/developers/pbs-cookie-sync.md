@@ -138,7 +138,7 @@ Here are all the arguments supported:
 Note that enabling or disabling [Cooperative Sync](#cooperative-syncing) is not currently supported in load-cookie. Please make sure the account default is set up appropriately in PBS config.
 
 {: .alert.alert-warning :}
-Note: if your PBS host company is using a version of `load-cookie.html` older than July of 2024 and if your AMP page is using a CMP, you should consider using 'load-cookie-with-consent.html` instead. It's the same functionality, but older versions of `load-cookie.html` cannot read from CMPs.
+Note: if your PBS host company is using a version of `load-cookie.html` older than July of 2024 and if your AMP page is using a CMP, you should consider using `load-cookie-with-consent.html` instead. It's the same functionality, but older versions of `load-cookie.html` cannot read from CMPs.
 
 ## Bidder Instructions for Building a Sync Endpoint
 
