@@ -22,9 +22,8 @@ For queries, write to us at <prebid-support@inmobi.com>
 ### User Sync Disclosure
 
 Third-party cookie syncing helps publishers leverage their audience data, enhance targeting capabilities, and drive better ad performance. InMobi third party cookie syncing improves monetization for publishers by giving them a competitive positioning in the digital advertising ecosystem.
-Ids for third parties can be synced through our pixel:
-[pixel]
-The uuid Macro is [macro]
+Ids for third parties can be synced through our pixel:[pixel].
+The uuid Macro is [macro].
 
 To opt out of InMobi ads on web inventory the user needs to visit the Opt-out page on InMobi website (https://www.inmobi.com/page/opt-out/).
 
