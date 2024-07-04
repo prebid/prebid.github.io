@@ -26,7 +26,7 @@ RTB Stack bidder requires bidderURL to be set. Please note that rtbstack bids wi
 pbjs.setBidderConfig({
   bidders: ['rtbstack'],
   config: {
-    bidderURL: 'https://us-adx-example.rtb-stack.com/prebid?client=44e2d241-5051-4b58-8ac6-f17e13732339&ssp=3'
+    bidderURL: 'https://us-adx-example.rtb-stack.com/prebid?client=44e2d241-5051-4b58-8ac6-f17e13732339&ssp=3&endpoint=777'
   }
 });
 ```
@@ -36,7 +36,7 @@ pbjs.setBidderConfig({
 {: .table .table-bordered .table-striped }
 | Name                | Scope    | Description                                                                                | Example                      | Type     |
 |---------------------|----------|--------------------------------------------------------------------------------------------|------------------------------|----------|
-| `endpointId`        | required | Unique Entity ID. Could be obtained from your account manager.                             | 51772                        | `int`    |
+| `tagId`        | required |The unique identifier of the ad placement. Will be used for comparison of statistics.                             | 51772                        | `int`    |
 | `kvTargeting`       | optional | Key/Value - a pair of the unique values that will be used for the custom targeting option. | {key1: value2, key2: value2} | `object` |
 
 #### Bid Example
@@ -45,7 +45,7 @@ pbjs.setBidderConfig({
 {
   bidder: 'rtbstack',
   params: {
-    endpointId: '12345',
+    tagId: '12345',
     kvTargeting: {
       example: 'test'
     }
