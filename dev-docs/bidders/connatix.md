@@ -64,7 +64,7 @@ The following parameters are available for `mediaTypes.video`.
 | plcmt | recommended | Placement type for the impression. (See [OpenRTB v2.6](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md) Plcmt Subtypes - Video) | 1 | integer |
 | pos | optional | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen | 1 | integer |
 
-###### Example video
+**Example video**
 
 ```javascript
 var adUnits = [
@@ -110,7 +110,7 @@ The following parameters are available for `mediaTypes.banner`.
 | sizes| required | All the sizes of the banner this ad unit can accept. | [[300, 250], [300, 600]] | Array\<Array\<integer> > |
 | pos | optional | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen | 1 | integer |
 
-###### Example banner
+**Example banner**
 
 ```js
 var adUnits = [
