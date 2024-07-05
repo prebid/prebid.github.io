@@ -65,7 +65,7 @@ pbjs.setConfig({
 ```
 
 The Contxtful RTD Module uses browser session storage. The access to it must be explicitly set as such:
-```js
+```javascript
 // https://docs.prebid.org/dev-docs/publisher-api-reference/bidderSettings.html
 pbjs.bidderSettings = {
   contxtful: {
