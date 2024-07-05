@@ -27,11 +27,11 @@ privacy_sandbox: no
 
 ### Registration
 
-The BigoAd Bidding adapter requires setup before beginning. Please contact us at <BigoAds@bigo.sg>
+The BigoAd Bidding adapter requires setup before beginning. Please contact us at <bigoads-prebid@bigo.sg>
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description  | Example    | Type     |
-|---------------|----------|--------------|------------|----------|
-| `sspid`       | required | Ssp ID       | `"123"`    | `string` |
+| Name          | Scope    | Description                                            | Example    | Type     |
+|---------------|----------|--------------------------------------------------------|------------|----------|
+| `sspid`       | required | Ssp ID, This parameter expects all imps to be the same | `"123"`    | `string` |
