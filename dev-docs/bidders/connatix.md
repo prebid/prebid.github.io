@@ -103,7 +103,7 @@ The following parameters are available for `mediaTypes.banner`.
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
-| sizes| required | All the sizes of the banner this ad unit can accept. | [[300, 250], [300, 600]] | Array\<Array\<integer> > |
+| sizes| required | All the sizes of the banner this ad unit can accept. | [[300, 250], [300, 600]] | [number, number][] |
 | pos | optional | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen | 1 | integer |
 
 **Example banner**
