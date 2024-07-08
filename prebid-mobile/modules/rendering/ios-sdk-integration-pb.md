@@ -10,16 +10,76 @@ sidebarType: 2
 # Custom Bidding Integration
 {:.no_toc}
 
-## Mobile API
-
-The integration and usage of the Rendering API are similar to any other Ad SDK. It sends the bid requests to the Prebid Server and renders the winning bid. 
-
-![In-App Bidding with Prebid](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
+You can use Prebid SDK to monetize your app with a custom ad server or even without it. Use the `Transport API` to obtain the targeting keywords for following usage with the custom ad server. Use the `Rendering API` to display the winning bid without primary ad server and its SDK.
 
 * TOC
 {:toc}
 
-## Banner API
+## Transport API
+
+The default ad server for Prebid's Mobile SDK is GAM. The SDK can be expanded to include support for 3rd party ad servers through the fetchDemand function. This function returns additional bid information like Prebid Server bidder key/values (targeting keys), which can then be passed to the ad server of choice.
+
+In this mode, the publisher will be responsible for the following actions:
+
+* Call the `fetchDemand` method with specific callback
+* Retrieve targeting keys from the `BidInfo` callback parameter
+* Convert targeting keys into the format for your ad server
+* Pass converted keys to your ad server
+* Render ad with Prebid Universal Creative or custom renderer
+
+This approach is available for the following ad formats:
+
+* Display Banner via `BannerAdUnit`
+* Video Banner and Instream Video via `VideoAdUnit`
+* Display Interstitial via `InterstitialAdUnit`
+* Video Interstitial via `VideoInterstitialAdUnit`
+* Rewarded Video via `RewardedVideoAdUnit`
+* Native Styles via `NativeRequest`
+* Multiformat ad unit via `PrebidAdUnit`
+
+The basic integration steps for these ad units you can find at the page for integration using [Original API](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html). The diference is that you should use  the `fetchDemand` function with following signature:
+
+``` swift
+public func fetchDemand(adObject: AnyObject, request: PrebidRequest,
+                      completion: @escaping (BidInfo) -> Void)
+```
+
+Examples:
+
+``` swift
+adUnit.fetchDemand(adObject: gamRequest, request: prebidRequest) { [weak self] bidInfo in
+    guard let self = self else { return }
+
+        //Publisher should provide support for converting keys into format of 3rd party ad server and loading ads
+    let keywords = convertDictToAdServerKeywords(dict: bidInfo.targetingKeywords)
+    AdServerLoadAds.loadAd(withAdUnitID: "46d2ebb3ccd340b38580b5d3581c6434", keywords: keywords)
+}
+```
+
+The `BidInfo` provides the following properties:
+
+* `resultCode` - the object of type `ResultCode` describing the status of the bid request.
+* `targetingKeywords` - the targeting keywords of the winning bid
+* `exp` - the number of seconds that may elapse between the auction and the actual impression. In this case, it indicates the approximate TTL of the bid in the Prebid Cache. Note that the actual expiration time of the bid will be less than this number due to the network and operational overhead. The Prebid SDK doesn't make any adjustments to this value.
+* `nativeAdCacheId` - the local cache ID of the winning bid. Applied only to the `native` ad format.
+* `events` - the map of some publically available event URLs attached to the bid. These can be used to enable Prebid Server-based analytics when the Prebid Universal Creative (PUC) is not involved in the rendering process. If the PUC is used for rendering, it will take care of hitting these events. These are the available event URLs:
+  * **EVENT_WIN** - this bid was chosen by the ad server as the one to display. This is the main metric for banner and native. This returns the OpenRTB `seatbid.bid.ext.prebid.events.win` field. (requires SDK v2.1.6)
+  * **EVENT_IMP** - the ad creative for this bid was actually displayed. This is often the main metric for video ads. This returns the OpenRTB `seatbid.bid.ext.prebid.events.imp` field. (requires SDK v2.1.6)
+
+Code sample to extract the events:
+
+``` swift
+let win = bidInfo.events[BidInfo.EVENT_WIN]
+let imp = bidInfo.events[BidInfo.EVENT_IMP]
+```
+
+## Rendering API
+
+The Rendering API integration and usage are similar to any other Ad SDK. In this case, Prebid SDK sends the bid requests to the Prebid Server and renders the winning bid.
+
+![In-App Bidding with Prebid](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-Pure-Prebid.png)
+
+### Banner API
 
 Integration example:
 
@@ -28,9 +88,9 @@ Integration example:
 let banner = BannerView(frame: CGRect(origin: .zero, size: adSize),
                         configID: CONFIG_ID,
                         adSize: adSize)
-    
+
 banner.delegate = self
-    
+
 // 2. Load an Ad
 banner.loadAd()
 ```
@@ -40,17 +100,17 @@ banner.loadAd()
 
 Initialize the `BannerAdView` with properties:
 
-- `frame` - the frame rectangle for the view
-- `configID` - an ID of the Stored Impression on the Prebid Server
-- `size` - the size of the ad unit which will be used in the bid request.
+* `frame` - the frame rectangle for the view
+* `configID` - an ID of the Stored Impression on the Prebid Server
+* `size` - the size of the ad unit which will be used in the bid request.
 
 #### Step 2: Load the Ad
 {:.no_toc}
 
 Call the method `loadAd()` which will:
 
-- make a bid request to the Prebid Server.
-- render the winning bid on display.
+* make a bid request to the Prebid Server.
+* render the winning bid on display.
 
 #### Outstream Video
 {:.no_toc}
@@ -61,7 +121,7 @@ For **Banner Video** you also need to specify the ad format:
 banner.adFormat = .video
 ```
 
-## Interstitial API
+### Interstitial API
 
 Integration example:
 
@@ -69,9 +129,9 @@ Integration example:
 // 1. Create an Interstitial Ad Unit
 interstitial = InterstitialRenderingAdUnit(configID: CONFIG_ID,
                                   minSizePercentage: CGSize(width: 30, height: 30))
-    
+
 interstitial.delegate = self
-    
+
 // 2. Load an Ad
 interstitial.loadAd()
 
@@ -84,17 +144,17 @@ if interstitial.isReady {
 
 ```
 
-The **default** ad format for interstitial is **.display**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
+The **default** ad format for interstitial is **.banner**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
 
 ``` swift
-// Make bid request for video ad                                     
+// Make bid request for video ad
 adUnit?.adFormats = [.video]
 
-// Make bid request for both video amd disply ads                                     
-adUnit?.adFormats = [.video, .display]
+// Make bid request for both video and banner ads
+adUnit?.adFormats = [.video, .banner]
 
-// Make bid request for disply ad (default behaviour)                                     
-adUnit?.adFormats = [.display]
+// Make bid request for banner ad (default behaviour)
+adUnit?.adFormats = [.banner]
 
 ```
 
@@ -102,11 +162,11 @@ adUnit?.adFormats = [.display]
 {:.no_toc}
 
 Initialize the Interstitial Ad Unit with properties:
-    
-- `configID` - an ID of Stored Impression on the Prebid Server
-- `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
 
-> **NOTE:** minSizePercentage - plays an important role in a bidding process for display ads. If provided space is not enough demand partners won't respond with the bids.
+* `configID` - an ID of Stored Impression on the Prebid Server
+* `minSizePercentage` - specifies the minimum width and height percent an ad may occupy of a device’s real estate.
+
+> **NOTE:** minSizePercentage - plays an important role in a bidding process for banner ads. If provided space is not enough demand partners won't respond with the bids.
 
 #### Step 2: Load the Ad
 {:.no_toc}
@@ -120,13 +180,13 @@ Wait until the ad will be loaded and present it to the user in any suitable time
 
 ``` swift
 // MARK: InterstitialRenderingAdUnitDelegate
-    
+
 func interstitialDidReceiveAd(_ interstitial: InterstitialRenderingAdUnit) {
     // Now the ad is ready for display
 }
 ```
 
-## Rewarded API
+### Rewarded API
 
 Integration example:
 
@@ -134,7 +194,7 @@ Integration example:
 // 1. Create an Ad Unit
 rewardedAd = RewardedAdUnit(configID: CONFIG_ID)
 rewardedAd.delegate = self
-    
+
 // 2. Load an Ad
 rewardedAd.loadAd()
 
@@ -146,13 +206,12 @@ if rewardedAd.isReady {
 }
 ```
 
-
 #### Step 1: Create Rewarded Ad Unit
 {:.no_toc}
 
 Create the `RewardedAdUnit` object with parameter:
 
-- `configID` - an ID of Stored Impression on the Prebid Server
+* `configID` - an ID of Stored Impression on the Prebid Server
 
 #### Step 2: Load the Ad
 {:.no_toc}
@@ -166,8 +225,8 @@ Wait until the ad will be loaded and present it to the user in any suitable time
 
 ``` swift
 // MARK: RewardedAdUnitDelegate
-    
+
 func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
     // Now the ad is ready for display
-}   
+}
 ```

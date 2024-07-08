@@ -7,7 +7,7 @@ media_types: banner, video, native
 gvl_id: 498
 pbjs: true
 floors_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 schain_supported: true
 coppa_supported: true
 usp_supported: true
@@ -37,7 +37,7 @@ sidebarType: 1
 
 The Mediakeys Bidding adapter requires setup before beginning and will respond with bids for whitelisted domains only.
 
-Please contact us at prebidjs@mediakeys.com.
+Please contact us at <prebidjs@mediakeys.com>.
 
 <a name="bid-params"></a>
 
@@ -166,7 +166,7 @@ Mediakeys fully supports the following [Prebid.js Modules](https://docs.prebid.o
 {: .table .table-bordered .table-striped }
 | Module                                                                                                | Scope                       |
 |-------------------------------------------------------------------------------------------------------|-----------------------------|
-| [Consent Management - GDPR](https://docs.prebid.org/dev-docs/modules/consentManagement.html)          | Required in Europe          |
+| [Consent Management - GDPR](https://docs.prebid.org/dev-docs/modules/consentManagementTcf.html)          | Required in Europe          |
 | [Consent Management - US Privacy](https://docs.prebid.org/dev-docs/modules/consentManagementUsp.html) | Required in US - California |
 | [Supply Chain Object](https://docs.prebid.org/dev-docs/modules/schain.html)                           | Required for all traffic    |
 | [Instream Tracking](https://docs.prebid.org/dev-docs/modules/instreamTracking.html)                   | Required for Instream Video |
@@ -309,7 +309,7 @@ const adUnits = [{
 
 Required Prebid configuration:
 
-You must set up your preferred outstream renderer in the ad unit and use the following example code to fetch the 
+You must set up your preferred outstream renderer in the ad unit and use the following example code to fetch the
 `vast xml` document from mediakeys ad-server.
 
 Example Ad Unit:

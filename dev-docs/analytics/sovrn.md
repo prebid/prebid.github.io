@@ -4,9 +4,8 @@ title: Sovrn
 description: Sovrn Analytics Adapter
 modulecode: sovrn
 prebid_member: true
+pbjs_version_notes: removed in 9.0
+enable_download: false
 ---
 
-#### Registration
-
-Please visit [https://www.sovrn.com/](https://www.sovrn.com/) for more information.
-
+The Sovrn analytics adapter is no longer supported.

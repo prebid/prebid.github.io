@@ -4,7 +4,8 @@ title: StroeerCore
 description: Stroeer Bidder Adapter
 biddercode: stroeerCore
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
+dsa_supported: true
 schain_supported: true
 coppa_supported: false
 usp_supported: false
@@ -17,7 +18,7 @@ pbs_app_supported: true
 deals_supported: true
 userIds: criteo, id5Id, netId, pubCommonId, sharedId
 multiformat_supported: will-bid-on-one
-floors_supported: false
+floors_supported: true
 fpd_supported: false
 sidebarType: 1
 ---
@@ -28,7 +29,6 @@ sidebarType: 1
 | Name          | Scope    | Description        | Example                                 | Type     |
 |---------------|----------|--------------------|-----------------------------------------|----------|
 | `sid`         | required | Slot ID            | `'06b782cc-091b-4f53-9cd2-0291679aa1ac'`| `string` |
-
 
 ### Ad Unit Configuration
 

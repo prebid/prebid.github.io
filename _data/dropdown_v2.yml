@@ -61,16 +61,6 @@
   - subsectionId: 0
     sectionId: 1
     sectionName: Product
-    title: Analytics
-    link: /overview/analytics.html
-    needsDivider: 0
-    isHeader: 0
-    isSubHeader: 0
-    isSubSectionStart: 0
-
-  - subsectionId: 0
-    sectionId: 1
-    sectionName: Product
     title: Modules
     link: /dev-docs/modules/index.html
     needsDivider: 0
@@ -93,6 +83,16 @@
     sectionName: Product
     title: Bidder Params
     link: /dev-docs/bidders.html
+    needsDivider: 0
+    isHeader: 0
+    isSubHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 0
+    sectionId: 1
+    sectionName: Product
+    title: Analytics
+    link: /overview/analytics.html
     needsDivider: 0
     isHeader: 0
     isSubHeader: 0
@@ -247,15 +247,6 @@
   - subsectionId: 2
     sectionId: 2
     sectionName: Support
-    title: Training Videos
-    link: /videos/index.html
-    needsDivider: 0
-    isHeader: 0
-    isSubSectionStart: 0
-
-  - subsectionId: 2
-    sectionId: 2
-    sectionName: Support
     title: Debugging Extension
     link: /debugging/debugging.html
     needsDivider: 1
@@ -285,6 +276,15 @@
     sectionName: Support
     title: Prebid Server
     link: /faq/prebid-server-faq.html
+    needsDivider: 0
+    isHeader: 0
+    isSubSectionStart: 0
+
+  - subsectionId: 3
+    sectionId: 2
+    sectionName: Support
+    title: Prebid Mobile
+    link: /faq/prebid-mobile-faq.html
     needsDivider: 1
     isHeader: 0
     isSubSectionStart: 0
@@ -312,7 +312,7 @@
     sectionId: 3
     sectionName: Download
     title: Prebid Mobile
-    link:  /prebid-mobile/download.html
+    link:  /prebid-mobile/prebid-mobile-download.html
     needsDivider: 0
     isHeader: 0
     isSubSectionStart: 1

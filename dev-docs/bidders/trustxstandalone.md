@@ -3,16 +3,17 @@ layout: bidder
 title: TrustX (standalone)
 description: Prebid TrustX Bidder Adaptor
 pbjs: true
-pbs: true
 biddercode: trustx
 media_types: banner, video
 multiformat_supported: will-bid-on-any
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 fpd_supported: true
 pbjs_version_notes: 6.x and before
 sidebarType: 1
 ---
+
+#### Is relevant for versions 6.X and before
 
 ### Table of Contents
 
@@ -20,7 +21,7 @@ sidebarType: 1
 - [Bid Params](#bid-params)
 - [First Party Data](#first-party-data)
 
-<a name="trustx-bid-params" />
+<a name="trustx-bid-params"></a>
 
 ### Bid Params
 
@@ -32,7 +33,7 @@ sidebarType: 1
 | `keywords`     | optional (pbjs only) | A set of key-value pairs applied to all ad slots on the page. Values can be empty.                                                                                                                                  | `keywords: { topic: ['stress', 'fear'] }` | `object`  |
 | `useNewFormat` | optional (pbjs only) | Indicates to use the new ad request format.                                                                                                                                                                         | `true`                                    | `boolean` |
 
-<a name="trustx-first-party" />
+<a name="trustx-first-party"></a>
 
 ### First Party Data
 

@@ -12,18 +12,21 @@ sidebarType: 4
 
 Setting up Prebid ad units is almost the same whether you’re working with instream video ads or outstream. The primary difference is specifying the type of video ad (instream or outstream), which you do in the mediaTypes.video.context field:
 
-```
-    var adUnit1 = {
-        code: 'videoAdUnit',
-        mediaTypes: {
-            video: {
-                context: 'instream', //or 'outstream'
-                playerSize: [640, 480],
-                mimes: ['video/mp4'],    // required for Prebid Server
-                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-                playbackmethod: [2],
-                skip: 1
-            }
+```javascript
+var adUnit1 = {
+    code: 'videoAdUnit',
+    mediaTypes: {
+        video: {
+            context: 'instream', // or 'outstream'
+            plcmt: 2, // 1 = Instream Sound On, 2 = Accompanying Content, 3 = Interstitial 4 = No Content/Standalone
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],    // required for Prebid Server
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
+        }
+    }
+}
 ```
 
 The mediaTypes.video.playerSize field is where you define the player size that will be passed to demand partners.
@@ -37,15 +40,16 @@ For full details on video ad unit parameters, see [Ad Unit Reference for Video](
 
 In your ad unit you also need to define your list of bidders. For example, including AppNexus as a bidder would look something like this:
 
-```
-    var adUnit1 = {
-        ...
-        bids: [{
-            bidder: 'appnexus',
-            params: {
-                placementId: '123456789',
-            }
-        }]
+```javascript
+var adUnit1 = {
+    // ...
+    bids: [{
+        bidder: 'appnexus',
+        params: {
+            placementId: '123456789',
+        }
+    }]
+}
 ```
 
 The parameters differ depending on which bidder you’re including. For a list of parameters for each bidder, see [Bidders’ Params]({{site.github.url}}/dev-docs/bidders.html).
@@ -68,15 +72,14 @@ so Prebid.js will send bid VAST XML out to a cache so it can be displayed if it 
 
 Configuring the video cache is done with [`setConfig`](/dev-docs/publisher-api-reference/setConfig.html#setConfig-vast-cache):
 
+```javascript
+pbjs.setConfig({
+    cache: {
+        url: 'https://prebid.adnxs.com/pbc/v1/cache'
+        /* Or whatever your preferred video cache URL is */
+    }
+});
 ```
-    pbjs.setConfig({
-        cache: {
-            url: 'https://prebid.adnxs.com/pbc/v1/cache'
-            /* Or whatever your preferred video cache URL is */
-        }
-    });
-```
-
 
 And this is where setups for instream and outstream diverge. Please follow one of these links:
 
@@ -95,32 +98,17 @@ This section contains working examples of instream and outstream video ads for v
 ## Using client-side adapters
 
 ### Instream
-+ [Akamai AMP]({{site.github.url}}/examples/video/instream/akamai/pb-ve-amp.html)
-+ [Brid]({{site.github.url}}/examples/video/instream/brid/pb-ve-brid.html)
-+ [Brightcove]({{site.github.url}}/examples/video/instream/brightcove/pb-ve-brightcove.html)
-+ [Flowplayer]({{site.github.url}}/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
-+ [JWPlayer - Platform]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
-+ [JWPlayer - Hosted]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
-+ [Kaltura]({{site.github.url}}/examples/video/instream/kaltura/pb-ve-kaltura.html)
-+ [Ooyala]({{site.github.url}}/examples/video/instream/ooyala/pb-ve-ooyala.html)
-+ [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
+
+- [JWPlayer - Platform]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
+- [JWPlayer - Hosted]({{site.github.url}}/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
+- [VideoJS]({{site.github.url}}/examples/video/instream/videojs/pb-ve-videojs.html)
 
 ### Outstream
 
-+ [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html)
-+ [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-no-server.html)
-
-## Using Prebid Server
-
-+ [Brid]({{site.baseurl}}/examples/video/server/brid/pbs-ve-brid.html)
-+ [JW Player - Platform]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-platform.html)
-+ [JW Player - Hosted]({{site.baseurl}}/examples/video/server/jwplayer/pbs-ve-jwplayer-hosted.html)
-+ [Kaltura]({{site.baseurl}}/examples/video/server/kaltura/pbs-ve-kaltura.html)
-+ [Ooyala]({{site.baseurl}}/examples/video/server/ooyala/pbs-ve-ooyala.html)
-+ [VideoJS]({{site.baseurl}}/examples/video/server/videojs/pbs-ve-videojs.html)
-
+- [Outstream with Google Ad Manager]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-dfp.html)
+- [Outstream without an Ad Server]({{site.github.url}}/examples/video/outstream/pb-ve-outstream-no-server.html)
 
 # Further Reading
 
--   [Prebid.js for Video Overview]({{site.github.url}}/prebid-video/video-overview.html)
--   [What is Prebid?]({{site.github.url}}/overview/intro.html)
+- [Prebid.js for Video Overview]({{site.github.url}}/prebid-video/video-overview.html)
+- [What is Prebid?]({{site.github.url}}/overview/intro.html)

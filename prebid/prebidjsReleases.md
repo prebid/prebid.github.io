@@ -16,6 +16,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 {: .table .table-bordered .table-striped }
 | Release | Feature |
 | --- | --- |
+| 8.0 | Module removals, reliabe (opt-in) transaction identifier, size mapping module & acitivy control. See the [PBJS 8 release notes](/dev-docs/pb8-notes.html) |
 | 7.0 | Cleanup of deprecated 'publisherDomain' and 'fpd' config. See the [PBJS 7 release notes](/dev-docs/pb7-notes.html) |
 | 6.0 | Removed transpiling for the MSIE 11 browser. [Blog post](https://prebid.org/blog/prebid-6-0-release/) |
 | 5.9 | Support numeric ad targeting keys |
@@ -65,7 +66,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 3.17 | UserID module also exports IDs as eids |
 | 3.16 | isSafariBrowser fixed for Chrome and Firefox on iOS |
 | 3.15 | Advanced Size Mapping module support adunits of the same name |
-| 3.14 | New [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) supports enforcing Purpose 1 - DeviceAccess |
+| 3.14 | New [GDPR enforcement module](/dev-docs/modules/tcfControl.html) supports enforcing Purpose 1 - DeviceAccess |
 | 3.13 | GDPR module supports defaultGdprScope option |
 | 3.12 | Initial support for TCF2 - reading and passing consent strings, added [DeviceAccess](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) configuration setting |
 | 3.11 | [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) |
@@ -94,7 +95,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 2.10 | [User ID module](/dev-docs/modules/userId.html) released with support for PubCommon ID and Unified ID |
 | 2.10 | A bidder which responded in time is now considered a timely bidder, even if it responded with no bids. See [PR 3696](https://github.com/prebid/Prebid.js/pull/3696) |
 | 2.9 | Add 'hb_cache_host' targeting for video bids when cache is set to support upcoming video cache redirector |
-| 2.9 | remove removeRequestId logic. See [PR 3698](https://github.com/prebid/Prebid.js/pull/3698)
+| 2.9 | remove removeRequestId logic. See [PR 3698](https://github.com/prebid/Prebid.js/pull/3698) |
 | 2.8 | Added [s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) `syncUrlModifier` option to modify userSync URLs |
 | 2.8 | Add hb_uuid and hb_cache_id back to dfp module after having been removed in 2.7 |
 | 2.6 | Update auction algorithm logic for long-form. See [PR 3625](https://github.com/prebid/Prebid.js/pull/3625) |

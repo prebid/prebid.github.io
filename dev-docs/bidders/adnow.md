@@ -8,8 +8,9 @@ media_types: native, banner
 sidebarType: 1
 ---
 
-### Note:
-The Example Bidding adapter requires setup before beginning. Please contact us at support@adnow.com
+### Note
+
+The Example Bidding adapter requires setup before beginning. Please contact us at <support@adnow.com>
 
 ### Bid Params
 

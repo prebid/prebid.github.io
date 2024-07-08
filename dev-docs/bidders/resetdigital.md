@@ -5,7 +5,8 @@ description: Reset Digital Bidder Module
 pbjs: true
 pbs: true
 biddercode: resetdigital
-gdpr_supported: true
+gvl_id: 1162
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -36,8 +37,6 @@ sidebarType: 1
 | `visitor`      | optional           | This parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays of strings. | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
 | `keywords`     | optional           | This can be used to influence reports for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. | `["travel", "tourism"]`                                                             | `Array<string>`  |
 
-
-
 #### mediaTypes.video
 
 The following video parameters are supported here so publishers may fully declare their video inventory:
@@ -46,7 +45,7 @@ The following video parameters are supported here so publishers may fully declar
 
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
-| context | required | instream or outstream |"outstream" | string | 
+| context | required | instream or outstream |"outstream" | string |
 | playerSize| required | width, height of the player in pixels | [640,360] - will be translated to w and h in bid request | array<integers> |
 | mimes | required | List of content MIME types supported by the player (see openRTB v2.5 for options) | ["video/mp4"]| array<string>|
 | protocols | required | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | [2,3,5,6] | array<integers>|

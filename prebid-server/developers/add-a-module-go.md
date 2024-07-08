@@ -6,9 +6,9 @@ title: Prebid Server | Developers | Adding a Go Module
 ---
 
 # Prebid Server - Adding a Go Module
-{: .no_toc}
+{:.no_toc}
 
-* TOC
+- TOC
 {:toc }
 
 ## Overview
@@ -17,8 +17,8 @@ This document details how to make a module for PBS-Go.
 
 You will want to be familiar with the following background information:
 
-- the [module overview](/prebid-server/developers/add-a-module.html) 
-- the [PBS-Go Modularity Tech Spec](https://docs.google.com/document/d/1CmamniQpwcI3p0_rHe2F17zV4sEhzpOdrqU7zuZVZ_I/edit?usp=sharing)
+- the [module overview](/prebid-server/developers/add-a-module.html)
+- the [PBS-Go Modularity Tech Spec](https://docs.google.com/document/d/1cr1CJfkJqXVtNrlHulmg_R-9TJCDYjsb/edit#heading=h.gjdgxs)
 
 ### Contributing
 
@@ -28,7 +28,7 @@ Check out the [PBS-Go contribution guide](https://github.com/prebid/prebid-serve
 
 The Prebid Server repository contains a package `modules` located in the root project directory. It includes all available PBS modules. So, in order to add a new module, fork the repository and create a folder with the desired name inside the `modules` folder with the following structure:
 
-```
+```text
 +- prebid-server/
   +- modules/                <- package with modules that implement various hooks
     +- builder.go            <- contains a list of all available modules
@@ -36,6 +36,7 @@ The Prebid Server repository contains a package `modules` located in the root pr
       +- {YOUR_MODULE_NAME}/ <- package with source code of your module
         +- module.go         <- file with module initialization function
 ```
+
 Module directory names (`{YOUR_VENDOR_NAME}/YOUR_MODULE_NAME/}`) must consist of valid identifiers.
 A valid identifier is defined as a sequence of one or more letters, including an underscore character (`_`), and digits.
 All other symbols such as `-`, `.`, etc. are not permitted.
@@ -44,44 +45,46 @@ All other symbols such as `-`, `.`, etc. are not permitted.
 
 Here's a partial example of your module-specific `module.go` file:
 
-```
+```go
 package your_module_name
 
 import (
-	"context"
-	"encoding/json"
+    "context"
+    "encoding/json"
 
-	"github.com/prebid/prebid-server/hooks/hookstage"
-	"github.com/prebid/prebid-server/modules/moduledeps"
+    "github.com/prebid/prebid-server/hooks/hookstage"
+    "github.com/prebid/prebid-server/modules/moduledeps"
 )
 
 func Builder(config json.RawMessage, deps moduledeps.ModuleDeps) (interface{}, error) {
-	return Module{}, nil
+    return Module{}, nil
 }
 
 // Module must implement at least 1 hook interface.
 type Module struct{}
 
 func (m Module) HandleBidderRequestHook(
-	ctx context.Context,
-	invocationCtx hookstage.ModuleInvocationContext,
-	payload hookstage.BidderRequestPayload,
+    ctx context.Context,
+    invocationCtx hookstage.ModuleInvocationContext,
+    payload hookstage.BidderRequestPayload,
 ) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
-	result := hookstage.HookResult[hookstage.BidderRequestPayload]{}
+    result := hookstage.HookResult[hookstage.BidderRequestPayload]{}
 
-	// hook handling logic
-	
-	return result, nil
+    // hook handling logic
+    
+    return result, nil
 }
 ```
 
 In the example above, our module only implements the `bidder-request` hook interface.
 
 The module's `Builder` function receives 2 arguments:
+
 1. `config json.RawMessage` - represents a global config of your module, see [Configuration](#configuration).
 2. `deps moduledeps.ModuleDeps` - contains dependencies that your module might require.
 
 and returns 2 values:
+
 1. `interface{}` - must implement at least 1 hook interface, see [hooks](#hook-interfaces). PBS uses type assertion to find out which hook interfaces implemented by module.
 2. `error` - any error occurred during module initialization.
 
@@ -90,21 +93,23 @@ and returns 2 values:
 All available modules are exposed through the `modules/builder.go` file. This file is auto-generated, so you shouldn’t edit it manually.
 
 To register a new module, you just need to run one of the following commands from the PBS root directory:
- - `make build-modules`
- - or `go generate modules/modules.go`
+
+- `make build-modules`
+- or `go generate modules/modules.go`
 
 This command scans the `modules/` directory for files matching the pattern `modules/*/*/module.go` and adds all matching packages to the `modules/builder.go` file.
 
 ## Module Code
 
 The quick start is to take a look in two places:
+
 - the [prebid ortb2blocking module](https://github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking)
 - the [hook source code and tests](https://github.com/prebid/prebid-server/tree/master/hooks)
 
 ### Adding module documentation
 It is required to add a "README.md" file to the root of your module folder. It's recommended to specify the description of what the implemented module does, links to external documentation and include maintainer contact info (email, slack, etc).
 
-The documentation must also live on the docs.prebid.org site. Please add a markdown file to https://github.com/prebid/prebid.github.io/tree/master/prebid-server/pbs-modules
+The documentation must also live on the docs.prebid.org site. Please add a markdown file to <https://github.com/prebid/prebid.github.io/tree/master/prebid-server/pbs-modules>
 
 ### Hook Interfaces
 
@@ -128,114 +133,117 @@ In a module it is not necessary to implement all mentioned interfaces but at lea
 
 ### Examples
 
-1) To **update** the request in the `BidderRequest`, your implementation would return a hook result with a change set:
-```
-import (
-	"context"
+1. To **update** the request in the `BidderRequest`, your implementation would return a hook result with a change set:
 
-	"github.com/prebid/prebid-server/hooks/hookstage"
-)
+    ```go
+    import (
+        "context"
 
-type Module struct{}
+        "github.com/prebid/prebid-server/hooks/hookstage"
+    )
 
-func (m Module) HandleBidderRequestHook(
-	ctx context.Context,
-	invocationCtx hookstage.ModuleInvocationContext,
-	payload hookstage.BidderRequestPayload,
-) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
-    changeSet := hookstage.ChangeSet[hookstage.BidderRequestPayload]{}
-    changeSet.BidderRequest().BAdv().Update([]string{"a.com"})
-	
-    return hookstage.HookResult[hookstage.BidderRequestPayload]{ChangeSet: changeSet}, nil
-}
-```
+    type Module struct{}
 
-Please note, the `hookstage.ChangeSet` has a restricted set of methods, but methods can be easily extended when more use cases come up.
+    func (m Module) HandleBidderRequestHook(
+        ctx context.Context,
+        invocationCtx hookstage.ModuleInvocationContext,
+        payload hookstage.BidderRequestPayload,
+    ) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
+        changeSet := hookstage.ChangeSet[hookstage.BidderRequestPayload]{}
+        changeSet.BidderRequest().BAdv().Update([]string{"a.com"})
+        
+        return hookstage.HookResult[hookstage.BidderRequestPayload]{ChangeSet: changeSet}, nil
+    }
+    ```
 
-For more complex payload updates, you can choose another method:
-```
-func (m Module) HandleBidderRequestHook(
-	ctx context.Context,
-	invocationCtx hookstage.ModuleInvocationContext,
-	payload hookstage.BidderRequestPayload,
-) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
-    battrByImp := map[string][]adcom1.CreativeAttribute{"imp_ID1": []adcom1.CreativeAttribute{adcom1.AttrAudioAuto}}
-    changeSet := hookstage.ChangeSet[hookstage.BidderRequestPayload]{}
-    changeSet.AddMutation(func(payload hookstage.BidderRequestPayload) (hookstage.BidderRequestPayload, error) {
-        for i, imp := range payload.BidRequest.Imp {
-            if battr, ok := battrByImp[imp.ID]; ok {
-                imp.Banner.BAttr = battr
-                payload.BidRequest.Imp[i] = imp
+    Please note, the `hookstage.ChangeSet` has a restricted set of methods, but methods can be easily extended when more use cases come up.
+
+    For more complex payload updates, you can choose another method:
+
+    ```go
+    func (m Module) HandleBidderRequestHook(
+        ctx context.Context,
+        invocationCtx hookstage.ModuleInvocationContext,
+        payload hookstage.BidderRequestPayload,
+    ) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
+        battrByImp := map[string][]adcom1.CreativeAttribute{"imp_ID1": []adcom1.CreativeAttribute{adcom1.AttrAudioAuto}}
+        changeSet := hookstage.ChangeSet[hookstage.BidderRequestPayload]{}
+        changeSet.AddMutation(func(payload hookstage.BidderRequestPayload) (hookstage.BidderRequestPayload, error) {
+            for i, imp := range payload.BidRequest.Imp {
+                if battr, ok := battrByImp[imp.ID]; ok {
+                    imp.Banner.BAttr = battr
+                    payload.BidRequest.Imp[i] = imp
+                }
             }
-        }
-        return payload, nil
-    }, hookstage.MutationUpdate, "bidrequest", "imp", "banner", "battr")
-	
-    return hookstage.HookResult[hookstage.BidderRequestPayload]{ChangeSet: changeSet}, nil
-}
-```
+            return payload, nil
+        }, hookstage.MutationUpdate, "bidrequest", "imp", "banner", "battr")
+        
+        return hookstage.HookResult[hookstage.BidderRequestPayload]{ChangeSet: changeSet}, nil
+    }
+    ```
 
-2) To **reject** the bidder in the `BidderRequest`, your hook implementation would return a hook result with a reject flag and an NBR code:
-```
-func (m Module) HandleBidderRequestHook(
-	ctx context.Context,
-	invocationCtx hookstage.ModuleInvocationContext,
-	payload hookstage.BidderRequestPayload,
-) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
-	return hookstage.HookResult[hookstage.BidderRequestPayload]{Reject: true, NbrCode: 7}, nil
-}
-```
+2. To **reject** the bidder in the `BidderRequest`, your hook implementation would return a hook result with a reject flag and an NBR code:
 
-Refer [here](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/OpenRTB%20v3.0%20FINAL.md#list--no-bid-reason-codes-) for a list of available No Bid Response Codes.
+    ```go
+    func (m Module) HandleBidderRequestHook(
+        ctx context.Context,
+        invocationCtx hookstage.ModuleInvocationContext,
+        payload hookstage.BidderRequestPayload,
+    ) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
+        return hookstage.HookResult[hookstage.BidderRequestPayload]{Reject: true, NbrCode: 7}, nil
+    }
+    ```
 
-3) To supply [analytics tags](/prebid-server/developers/module-atags.html) in the `BidderRequest`, your hook implementation would return a hook result with analytics tags:
-```
-import (
-	"context"
+    Refer [here](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/OpenRTB%20v3.0%20FINAL.md#list--no-bid-reason-codes-) for a list of available No Bid Response Codes.
 
-	"github.com/prebid/prebid-server/hooks/hookstage"
-	"github.com/prebid/prebid-server/hooks/hookanalytics"
-)
+3. To supply [analytics tags](/prebid-server/developers/module-atags.html) in the `BidderRequest`, your hook implementation would return a hook result with analytics tags:
 
-func (m Module) HandleBidderRequestHook(
-	ctx context.Context,
-	invocationCtx hookstage.ModuleInvocationContext,
-	payload hookstage.BidderRequestPayload,
-) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
-    return hookstage.HookResult[hookstage.BidderRequestPayload]{
-        AnalyticsTags: hookanalytics.Analytics{
-            Activities: []hookanalytics.Activity{
-                {
-                    Name:   "enforce_blocking",
-                    Status: hookanalytics.ActivityStatusSuccess,
-                    Results: []hookanalytics.Result{
-                        {
-                            Status: hookanalytics.ResultStatusBlock,
-                            Values: map[string]interface{}{
-                                "attributes": []string{"bcat"},
-                                "bcat":       []string{"IAB-1"},
+    ```go
+    import (
+        "context"
+
+        "github.com/prebid/prebid-server/hooks/hookstage"
+        "github.com/prebid/prebid-server/hooks/hookanalytics"
+    )
+
+    func (m Module) HandleBidderRequestHook(
+        ctx context.Context,
+        invocationCtx hookstage.ModuleInvocationContext,
+        payload hookstage.BidderRequestPayload,
+    ) (hookstage.HookResult[hookstage.BidderRequestPayload], error) {
+        return hookstage.HookResult[hookstage.BidderRequestPayload]{
+            AnalyticsTags: hookanalytics.Analytics{
+                Activities: []hookanalytics.Activity{
+                    {
+                        Name:   "enforce_blocking",
+                        Status: hookanalytics.ActivityStatusSuccess,
+                        Results: []hookanalytics.Result{
+                            {
+                                Status: hookanalytics.ResultStatusBlock,
+                                Values: map[string]interface{}{
+                                    "attributes": []string{"bcat"},
+                                    "bcat":       []string{"IAB-1"},
+                                },
+                                AppliedTo: hookanalytics.AppliedTo{Bidder: "appnexus", ImpIds: []string{"imp_ID1"}},
                             },
-                            AppliedTo: hookanalytics.AppliedTo{Bidder: "appnexus", ImpIds: []string{"imp_ID1"}},
-                        },
-                        {
-                            Status:    hookanalytics.ResultStatusAllow,
-                            AppliedTo: hookanalytics.AppliedTo{Bidder: "appnexus", ImpIds: []string{"imp_ID2"}},
+                            {
+                                Status:    hookanalytics.ResultStatusAllow,
+                                AppliedTo: hookanalytics.AppliedTo{Bidder: "appnexus", ImpIds: []string{"imp_ID2"}},
+                            },
                         },
                     },
                 },
             },
-        },
-    }, nil
-}
-```
+        }, nil
+    }
+    ```
 
-More test implementations for each hook can be found in unit-tests at [https://github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking](https://github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking) folder.
+More test implementations for each hook can be found in unit-tests at [github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking](https://github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking) folder.
 
 ### Configuration
 
-It's possible to define default module configuration which can be read by the module at PBS startup. Please see the [Configuration](https://docs.google.com/document/d/1CmamniQpwcI3p0_rHe2F17zV4sEhzpOdrqU7zuZVZ_I/edit#heading=h.mh3urph3k1mk) section of the technical specification.
+It's possible to define default module configuration which can be read by the module at PBS startup. An example configuration for hooks might look like this:
 
-An example configuration for hooks might look like this:
 ```json
 {
   "hooks": {
@@ -278,7 +286,7 @@ Unit tests are required. Each implemented hook must be at least 90% covered by u
 
 ### How to build and install a module
 
-Read about the module building in the [building section](https://docs.google.com/document/d/1CmamniQpwcI3p0_rHe2F17zV4sEhzpOdrqU7zuZVZ_I/edit#heading=h.o8dv0neoq4xm) of the technical specification.
+Read about the module building in the [building section](https://docs.google.com/document/d/1cr1CJfkJqXVtNrlHulmg_R-9TJCDYjsb/edit#heading=h.gjdgxs) of the technical specification.
 
 ## Analytics Adapters and Modules
 
@@ -288,7 +296,7 @@ Analytics adapters receive these tags through the Auction/AMP analytic object.
 
 To get analytics tags you need to go into:
 
-```
+```text
 AuctionObject/AmpObject 
   -> HookExecutionOutcome (iterate through stages)
     -> Groups (iterate through groups)
@@ -296,7 +304,7 @@ AuctionObject/AmpObject
         -> AnalyticsTags
 ```
 
-The `AnalyticsTags` object has activities with collection of `github.com/prebid/prebid-server/hooks/hookanalytics.Result` objects inside. Each `Result` has the `Values` field which holds arbitrary values set by a module. 
+The `AnalyticsTags` object has activities with collection of `github.com/prebid/prebid-server/hooks/hookanalytics.Result` objects inside. Each `Result` has the `Values` field which holds arbitrary values set by a module.
 
 It depends on the particular module implementation how to parse their analytics tags, since the internal structure is custom and depends on the module. Therefore, analytics modules that want to report on specific behavior need to be coded to know about that module. See the prebid ortb2blocking module for an example of what analytics tags may be available.
 

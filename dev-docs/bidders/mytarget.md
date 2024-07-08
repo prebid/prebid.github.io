@@ -4,6 +4,7 @@ title: myTarget
 description: Prebid myTarget Bidder Adapter
 pbjs: true
 biddercode: mytarget
+pbjs_version_notes: removed in 9.0
 sidebarType: 1
 ---
 
@@ -17,7 +18,6 @@ sidebarType: 1
 | `bidfloor`    | optional  | Bid floor                                                | `10000`            | `number`         |
 | `position`    | optional  | Ad position on screen. See details below.                | `1`                | `number`         |
 | `response`    | optional  | Bid response type. 0 - ad url (default), 1 - ad markup.  | `1`                | `number`         |
-
 
 ### Position
 

@@ -4,6 +4,7 @@ title: iQM
 description: Prebid iQM Bidder Adaptor
 pbjs: true
 biddercode: iqm
+pbjs_version_notes: removed in 9.0
 sidebarType: 1
 ---
 
@@ -22,7 +23,8 @@ sidebarType: 1
 Module that connects to iQM demand sources
 
 ## Test Parameters
-```
+
+```javascript
 var adUnits = [{
         code: 'div-gpt-ad-1460505748561-0',
         mediaTypes: {
@@ -50,7 +52,7 @@ var adUnits = [{
 
 ## adUnit Video
 
-```
+```javascript
  var videoAdUnit = {
       code: 'video1',
       mediaTypes: {

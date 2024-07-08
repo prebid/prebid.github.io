@@ -54,7 +54,7 @@ implementation('org.prebid:prebid-mobile-sdk-max-adapters:x.x.x')
 
 Integration example:
 
-``` kotlin
+```kotlin
 // 1. Create MaxAdView
 adView = MaxAdView(adUnitId, requireContext())
 adView?.setListener(createListener())
@@ -109,7 +109,7 @@ Now you should make a regular MAX's ad request. Everything else will be handled 
 
 Integration example:
 
-``` kotlin
+```kotlin
 // 1. Create MaxInterstitialAd
 maxInterstitialAd = MaxInterstitialAd(adUnitId, activity)
 maxInterstitialAd?.setListener(createListener())
@@ -121,7 +121,7 @@ val mediationUtils = MaxMediationInterstitialUtils(maxInterstitialAd)
 adUnit = MediationInterstitialAdUnit(
             activity,
             configId,
-            EnumSet.of(AdUnitFormat.DISPLAY),
+            EnumSet.of(AdUnitFormat.BANNER),
             mediationUtils
         )
         
@@ -140,7 +140,7 @@ The **default** ad format for interstitial is **DISPLAY**. In order to make a `m
 adUnit = MediationInterstitialAdUnit(
             activity,
             configId,
-            EnumSet.of(AdUnitFormat.DISPLAY, AdUnitFormat.VIDEO),
+            EnumSet.of(AdUnitFormat.BANNER, AdUnitFormat.VIDEO),
             mediationUtils
         )
 ```
@@ -180,7 +180,7 @@ Once you receive the ad it will be ready for display. Folow the [MAX instruction
 
 Integration example:
 
-``` swift
+```swift
 // 1. Get an instance of MaxRewardedAd
 maxRewardedAd = MaxRewardedAd.getInstance(adUnitId, activity)
 maxRewardedAd?.setListener(createListener())

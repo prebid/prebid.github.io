@@ -5,11 +5,13 @@ description: Prebid Blue Billywig Bidder Adaptor
 biddercode: bluebillywig
 pbjs: true
 media_types: video
-gdpr_supported: true
+gvl_id: 684
+tcfeu_supported: true
 schain_supported: true
 coppa_supported: true
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
+pbjs_version_notes: removed in 9.0
 sidebarType: 1
 ---
 
