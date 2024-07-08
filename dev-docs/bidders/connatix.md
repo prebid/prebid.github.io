@@ -24,8 +24,6 @@ ortb_blocking_supported: true
 sidebarType: 1
 ---
 
-<div style="height: 2px; background-color: #333333; width: 100%" ></div>
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -33,8 +31,6 @@ sidebarType: 1
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId` | required | Placement id | `'ed8a9c16-88ea-4724-aa0d-013c3e595e49'` | `string` |
 | `bidfloor` | optional | Floor price | `2.5` | `float` |
-
-<div style="height: 2px; background-color: #333333; width: 100%" ></div>
 
 ### Media Types
 
@@ -138,8 +134,6 @@ var adUnits = [
   // Define more ad units here if necessary
 ];
 ```
-
-<div style="height: 2px; background-color: #333333; width: 100%" ></div>
 
 ### Configuration
 
