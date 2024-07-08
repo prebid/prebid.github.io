@@ -9,7 +9,7 @@ biddercode: concert
 media_types: banner, audio, video
 pbs_app_supported: true
 deals_supported: true
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 gpp_supported: true
 userIds: sharedId, unifiedId, uid2
