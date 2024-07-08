@@ -25,7 +25,7 @@ Third-party cookie syncing helps publishers leverage their audience data, enhanc
 Ids for third parties can be synced through our pixel: `https://sync.inmobi.com/prebid?gdpr={GDPR}&gdpr_consent={GDPR_CONSENT}&us_privacy={US_PRIVACY}&redirect={RedirectURL}` .
 The RedirectURL should contain uuid macro, which is {ID5UID}.
 
-To opt out of InMobi ads on web inventory the user needs to visit the Opt-out page on InMobi website (https://www.inmobi.com/page/opt-out/).
+To opt out of InMobi ads on web inventory the user needs to visit the Opt-out page on InMobi website `https://www.inmobi.com/page/opt-out/`.
 
 ### Bid Params
 
