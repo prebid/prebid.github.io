@@ -4,8 +4,11 @@ title: Concert
 description: Prebid Concert Bidder Adaptor
 hide: true
 pbjs: true
+pbs: true
 biddercode: concert
-media_types: banner
+media_types: banner, audio, video
+pbs_app_supported: true
+deals_supported: true
 tcfeu_supported: false
 usp_supported: true
 gpp_supported: true
