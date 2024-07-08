@@ -15,7 +15,7 @@ No registration for this module is required.
 
 #### Intent IQ Universal ID Configuration
 
-<b>IMPORTANT</b>: requires Intent IQ Universal ID module be installed and configured. [(How-To)](https://docs.prebid.org/dev-docs/modules/userid-submodules/intentiq.html)
+**IMPORTANT**: requires Intent IQ Universal ID module be installed and configured. [(How-To)](https://docs.prebid.org/dev-docs/modules/userid-submodules/intentiq.html)
 
 No additional configuration for this module is required. We will use the configuration provided for Intent IQ Universal IQ module.
 
