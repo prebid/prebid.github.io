@@ -38,7 +38,7 @@ Please reach out to your account manager to enable Prebid.js for your account.
 ### Configuration
 
 The YOC VIS.X adapter has the ability to work in different currencies. Currently, this adapter supports `EUR`, `USD`,
-`GBP`, `PLN`. Defaults to `EUR`. If your Ad Server uses `EUR`, you don't need any additional currency settings.
+`GBP`, `PLN`, `CHF`, `SEK`. Defaults to `EUR`. If your Ad Server uses `EUR`, you don't need any additional currency settings.
 If you would like to trade with VIS.X in a currency different from `EUR`, you should implement some additional settings.
 
 1. Download and configure the Prebid.js Currency module.
