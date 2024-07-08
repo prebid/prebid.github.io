@@ -46,7 +46,7 @@ If you would like to trade with VIS.X in a currency different from `EUR`, you sh
 
 `http://prebid.org/dev-docs/modules/currency.html`
 
-2. Setup the currency in Currency config
+1. Setup the currency in Currency config
 
 a) If your Ad Server uses the currency from the list of VIS.X supported currencies (e.g. `GBP`), use the following settings:
 
