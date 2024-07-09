@@ -4,14 +4,12 @@ title: Escalax
 description: Prebid Escalax Bidder Adaptor
 biddercode: escalax
 usp_supported: true
-tcfeu_supported: true
 ccpa_supported: true
 coppa_supported: true
 schain_supported: true
 media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
-pbjs: true
 pbs: true
 sidebarType: 1
 floors_supported: true
@@ -25,7 +23,7 @@ userIds: all
 
 ### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at <connect@escalax.io>
+The Escalax Bidding adapter requires setup before beginning. Please contact us at <connect@escalax.io>
 
 ### Bid Params
 
