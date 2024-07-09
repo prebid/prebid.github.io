@@ -5,7 +5,7 @@ description: Prebid MeloZen Bidder Adaptor
 biddercode: melozen
 schain_supported: true
 dchain_supported: false
-media_types: banner, native
+media_types: banner, video, native
 deals_supported: false
 floors_supported: true
 fpd_supported: false
