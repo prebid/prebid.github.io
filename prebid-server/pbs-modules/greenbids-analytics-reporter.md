@@ -21,7 +21,7 @@ Greenbids Analytics Reporter contains the static parameters defined in [applicat
 | exploratory-sampling-split | float | Exploration vs Exploitation ratio of analytics traffic |
 | timeout-ms | int | Timeout limit on sending POST request to Greenbids Analytics Server |
 
-Greenbids Analytics Reporter also includes the parameters specific for each publisher setup. These parameters should be included into the extension of the bid request json: `ext.analytics.greenbids`
+Greenbids Analytics Reporter also includes the parameters specific for each publisher setup. These parameters should be included into the extension of the bid request json: `ext.prebid.analytics.greenbids`
 
 | Parameter | Scope | Description | Example | Type |
 | --------- | ---- | ------------- | ------------- | ----------- |
@@ -32,10 +32,16 @@ The example of publisher config in the bid request extension is as follows:
 
 ```json
 "ext": {
-  "analytics": {
-    "greenbids": {
-      "pbuid": "PBUID_FROM_GREENBIDS",
-      "greenbidsSampling": 0.1
+  "prebid": {
+    "targeting": {
+      "includewinners": true,
+      "includebidderkeys": true
+    },
+    "analytics": {
+      "greenbids": {
+        "pbuid": "PBUID_FROM_GREENBIDS",
+        "greenbidsSampling": 1
+      }
     }
   }
 }
