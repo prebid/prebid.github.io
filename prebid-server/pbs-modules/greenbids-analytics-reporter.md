@@ -25,7 +25,7 @@ Greenbids Analytics Reporter also includes the parameters specific for each publ
 
 | Parameter | Scope | Description | Example | Type |
 | --------- | ---- | ------------- | ------------- | ----------- |
-| pbuid | required | The Greenbids Publisher ID | greenbids-publisher-1 | string | 	
+| pbuid | required | The Greenbids Publisher ID | greenbids-publisher-1 | string |
 | greenbidsSampling | optional  | sampling factor [0-1] (a value of 0.1 will filter 90% of the traffic) | 1.0  | float |
 
 The example of publisher config in the bid request extension is as follows:
