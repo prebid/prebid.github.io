@@ -8,6 +8,7 @@ module_type: rtd
 module_code : idWardRtdProvider
 enable_download : false
 vendor_specific: true
+pbjs_version_notes: removed in 9.0
 sidebarType : 1
 ---
 
