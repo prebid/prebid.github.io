@@ -261,7 +261,7 @@ perceived by DSPs as unauthorized sources of your inventory. The domain for any 
 
 That depends on how Prebid Server is set up. In general, no, PBS does not add an entry to the `schain`. But a PBS [managed service](https://prebid.org/managed-services/) could be configured to add to the schain. 
 
-The supply chain is meant to track the financial arrangements, and PBS is basically a simple proxy server that does not insert itself into the money flow by default. Most PBS managed services require the publisher to have a direct financial relationship with each bidder. But there may be managed services that handle the money.
+The supply chain is meant to track financial arrangements, and PBS is basically a simple proxy server that does not insert itself into the money flow by default. Most PBS managed services require the publisher to have a direct financial relationship with each bidder, but there may be managed services that handle the money.
 
 ## How can I help with Prebid Server?
 
