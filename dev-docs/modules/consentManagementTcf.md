@@ -176,7 +176,7 @@ Example 3: Static CMP using custom data passing.
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module, an additional option must be added to the **gulp build** command:
 
 ```bash
-gulp build --modules=consentManagement,bidAdapter1,bidAdapter2
+gulp build --modules=consentManagementTcf,tcfControl,bidAdapter1,bidAdapter2
 ```
 
 You can also use the [Prebid.js Download](/download.html) page.
