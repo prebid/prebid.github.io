@@ -468,18 +468,18 @@ Depending on the Prebid.js version that you are using, the steps to configure Pr
 2. In the `pbjs.setConfig().paapi` field, set the `defaultForSlots` parameter to `1`. 
 3. In the `paapi.gpt.configWithTargeting` field, set `configWithTargeting` to `true`. For more control over configuring GPT slots to use PAAPI, set the `configWithTargeting` to `false` and use the `setPAAPIConfigForGPT` API. For more information about the configurations, see Prebid’s Prebid's [Protected Audience API (PAAPI) for GPT Module(/dev-docs/modules/fledgeForGpt.html) documentation. <br />The following code is an example of the `defaultForSlots` and `configWithTargeting` configuration:
 
- ```javascript
-      pbjs.que.push(function() {
-	pbjs.setConfig({
-		paapi: {
-			enabled: true,
-			defaultForSlots: 1  
-			gpt: { 
-				configWithTargeting: true
-			}, 
-			bidders: ['ix', /* any other bidders */],  
-		});  
-	});
+  ```javascript
+  pbjs.que.push(function() {
+    pbjs.setConfig({
+       paapi: {
+         enabled: true,
+         defaultForSlots: 1  
+         gpt: { 
+           configWithTargeting: true
+          }, 
+         bidders: ['ix', /* any other bidders */],
+     });
+  });
   ```
 
 <a id="signal-inventory-using-external-ids"></a>
