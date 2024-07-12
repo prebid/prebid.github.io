@@ -6,13 +6,24 @@ display_name : Prebid Server Greenbids Analytics Reporter
 sidebarType : 5
 ---
 
-## Overview
+# Overview
 
-This analytics adapter communicates with Greenbids Analytics Server by sending to it the information about the SSP bids for the publisher inventory sold throguh PBS. For the publishers the incoming requests to the Greenbids Analytics Reporter require setup and approval from the Greenbids team. Please reach out to our team for more information [greenbids.ai](https://greenbids.ai).
+This analytics adapter communicates with the Greenbids Analytics Server by sending it the information about bids for the publisher inventory sold through PBS. The Greenbids Analytics module requires setup and approval from the Greenbids team for each publisher. Please reach out to our team for more information [greenbids.ai](https://greenbids.ai).
 
 ## Configuration
 
-Greenbids Analytics Reporter contains the static parameters defined in [application.yaml](https://github.com/EvgeniiMunin/prebid-server-java/blob/a2e376c14680108683483719d212d330f8f66742/src/main/resources/application.yaml#L296) 
+The Greenbids Analytics Reporter references global parameters defined in application.yaml. For example:
+
+```yaml
+analytics:
+  greenbids:
+    analytics-server-version: "2.2.0"
+    analytics-server: http://localhost:8090
+    exploratory-sampling-split: 0.9
+    timeout-ms: 10000
+```
+
+Here's a description of the global parameters:
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
@@ -21,26 +32,22 @@ Greenbids Analytics Reporter contains the static parameters defined in [applicat
 | exploratory-sampling-split | float | Exploration vs Exploitation ratio of analytics traffic |
 | timeout-ms | int | Timeout limit on sending POST request to Greenbids Analytics Server |
 
-Greenbids Analytics Reporter also includes the parameters specific for each publisher setup. These parameters should be included into the extension of the bid request json: `ext.prebid.analytics.greenbids`
+The Greenbids Analytics module also includes account-specific parameters for each publisher setup. These parameters should be included in the extension of the bid request json: `ext.prebid.analytics.greenbids`
 
 | Parameter | Scope | Description | Example | Type |
 | --------- | ---- | ------------- | ------------- | ----------- |
 | pbuid | required | The Greenbids Publisher ID | greenbids-publisher-1 | string |
 | greenbidsSampling | optional  | sampling factor [0-1] (a value of 0.1 will filter 90% of the traffic) | 1.0  | float |
 
-The example of publisher config in the bid request extension is as follows:
+An example of publisher config in the bid request extension is as follows:
 
 ```json
 "ext": {
   "prebid": {
-    "targeting": {
-      "includewinners": true,
-      "includebidderkeys": true
-    },
     "analytics": {
       "greenbids": {
-        "pbuid": "PBUID_FROM_GREENBIDS",
-        "greenbidsSampling": 1
+        "pbuid": "PUBID_FROM_GREENBIDS",
+        "greenbidsSampling": 1.0
       }
     }
   }
