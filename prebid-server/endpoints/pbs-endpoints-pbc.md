@@ -122,3 +122,17 @@ Content-Type: application/json
 
 - This application does *not* validate XML. If users `POST` malformed XML, they'll `GET` a bad response too.
 - The host company can set a max length on payload size limits in the application config. This limit will vary from host company to host company.
+
+## Module Storage
+
+### Configuration
+
+[//]: # (TODO: Add description and examples of configuration)
+
+### POST /module-storage
+
+[//]: # (TODO: Add description)
+
+### GET /module-storage
+
+[//]: # (TODO: Add description)
