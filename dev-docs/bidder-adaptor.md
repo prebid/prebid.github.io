@@ -462,6 +462,7 @@ The `interpretResponse` function will be called when the browser has received th
             brandName: BRAND_NAME,
             dchain: DEMAND_CHAIN_OBJECT,
             demandSource: DEMAND_SOURCE,
+            dsa: IAB_DSA_RESPONSE_OBJECT,
             mediaType: MEDIA_TYPE,
             networkId: NETWORK_ID,
             networkName: NETWORK_NAME,
@@ -510,6 +511,7 @@ The parameters of the `bidResponse` object are:
 | `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
 | `meta.demandSource`     | Optional                                    | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`
 | `meta.dchain`     | Optional                                    | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
+| `meta.dsa` | Optional | The [IAB DSA response object](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/dsa_transparency.md) for the Digital Services Act (DSA) | `{ 'behalf': 'sample text', 'paid': 'sample value', 'transparency': [{ 'domain': 'sample domain', 'params': [1, 2] }], 'adrender': 1 }` | 
 | `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
 | `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
 | `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
@@ -748,13 +750,13 @@ Look for other doc entries containing an `aliasCode` metadata entry.
 
 If your bid adapter is going to be used in Europe, you should support GDPR:
 
-* Get a [Global Vendor ID](https://iabeurope.eu/vendor-list-tcf-v2-0/) from the IAB-Europe
+* Get a [Global Vendor ID](https://iabeurope.eu/tcf-for-vendors/) from the IAB-Europe
 * Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
 * Read the gdprConsent string from the bid request object and pass it through to your endpoint
 
 If your bid adapter is going to be used in Canada, you should support GPP:
 
-* Get a [Global Vendor ID](https://vendor-list.consensu.org/v2/ca/vendor-list.json) from the IAB-Canada
+* Get a [Global Vendor ID](https://iabcanada.com/tcf-canada/for-vendors/) from IAB-Canada
 * Add your GVLID into the spec block as 'gvlid'. If you don't do this, Prebid.js may block requests to your adapter.
 * Read the gppConsent string from the bid request object and pass it through to your endpoint
 * If you are registered in Canada, but not in Europe, you put the gvlid in the same place. Prebid will check the CMP for consent to a specific vendor id and expect the correct processing in both Canada and Europe, as there are no collisions.
@@ -1291,6 +1293,7 @@ registerBidder(spec);
     * If you support first party data, you must document what exactly is supported and then you may set `fpd_supported: true`. No default value.
     * If you support any OpenRTB blocking parameters, you must document what exactly is supported and then you may set `ortb_blocking_supported` to 'true','partial', or 'false'. No default value. In order to set 'true', you must support: bcat, badv, battr, and bapp.
     * Let publishers know how you support multiformat requests -- those with more than one mediatype (e.g. both banner and video). Here are the options: will-bid-on-any, will-bid-on-one, will-not-bid
+    * If you support [privacy sandbox features](https://developers.google.com/privacy-sandbox) you can list them in the `privacy_sandbox` meta field. Allowed values are `paapi`, `topics`.
     * If you're a member of Prebid.org, add `prebid_member: true`. Default is false.
     * Always add `sidebarType: 1`. This is required for docs.prebid.org site navigation.
 * Submit both the code and docs pull requests
@@ -1322,6 +1325,7 @@ pbs: true/false
 prebid_member: true/false
 multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ortb_blocking_supported: true/partial/false
+privacy_sandbox: no or comma separated list of `paapi`, `topics`
 sidebarType: 1
 ---
 ### Note

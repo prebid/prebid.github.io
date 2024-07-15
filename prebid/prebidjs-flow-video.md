@@ -23,7 +23,7 @@ Related Videos
 
 - [Introduction to Prebid](/overview/intro-video.html)
 - [Introduction to Header Bidding](/overview/intro-to-header-bidding-video.html)
-- [Components of Prebid.js](/prebidjs/prebid-components-video.html))
+- [Components of Prebid.js](/prebid/prebidjs-components-video.html)
 - [Identity in Prebid.js](/identity/prebid-identity-video.html)
 
 ## Transcript

@@ -5,14 +5,11 @@ description: Prebid Video
 sidebarType: 6
 ---
 
-<script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
-
 # Prebid Video Ads
 
-{:.no_toc}
-
 Welcome to Prebid video ad support. This is a collection of resources covering
-how Prebid can help you monetize video.
+how Prebid can help you monetize video. If you're new to Prebid video, a
+good place to start would be the [Prebid.js-focused training video overview](/prebid-video/video-overview-video.html).
 
 ## Instream
 
