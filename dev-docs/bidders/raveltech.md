@@ -32,4 +32,4 @@ Ravel Bidder is a “Privacy Bus” allowing to anonymize bid requests before fo
 The RavelTech Prebid Adapter first version supports only Xandr/Appnexus SSP and should be configured with your current Xandr/Appnexus existing params.
 For more information about the Xandr/AppNexus params can be found at [https://github.com/prebid/prebid.github.io/blob/master/dev-docs/bidders/appnexus.md]
 
-Please contact support@raveltech.io to activate your adapter after installation or for more information.
+Please contact [support@raveltech.io] to activate your adapter after installation or for more information.
