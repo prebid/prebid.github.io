@@ -3,7 +3,7 @@ layout: page_v2
 page_type: module
 title: Module - fledgeForGpt
 description: how to use PAAPI with GPT
-module_code : fledgeForGpt
+module_code : paapiForGpt
 display_name : Fledge (PAAPI) for GPT
 enable_download : true
 sidebarType : 1
@@ -24,7 +24,7 @@ To use PAAPI with GPT:
 - include this module with your Prebid.js bundle; this also automatically includes the [PAAPI module](/dev-docs/modules/paapi.html)
 
     ```bash
-   gulp build --modules=fledgeForGpt,...     
+   gulp build --modules=paapiForGpt,...     
     ```
 
 - [configure PAAPI](/dev-docs/modules/paapi.html#config)

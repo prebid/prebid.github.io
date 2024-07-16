@@ -3,8 +3,8 @@ layout: page_v2
 page_type: module
 title: Module - anPspParamsConverter
 description: Formats bid params for AppNexus PSP requests made through Prebid.js.
-module_code : apPspParamsConverter
-display_name : apPspParamsConverter
+module_code : anPspParamsConverter
+display_name : anPspParamsConverter
 enable_download : true
 sidebarType : 1
 ---

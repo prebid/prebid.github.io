@@ -1,10 +1,10 @@
 ---
 layout: bidder
-title: MgidX
-description: Prebid MgidX Bidder Adapter
-biddercode: mgidX
+title: Copper6SSP
+description: Prebid Copper6SSP Bidder Adapter
+biddercode: copper6ssp
 gpp_sids: usstate_all
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -13,13 +13,12 @@ floors_supported: true
 fpd_supported: false
 ortb_blocking_supported: false
 media_types: banner, video, native
-multiformat_supported: will-not-bid
+multiformat_supported: will-bid-on-one
 userIds: all
 pbjs: true
-pbs: true
+pbs: false
 pbs_app_supported: true
 safeframes_ok: true
-gvl_id: 358
 sidebarType: 1
 ---
 
@@ -30,7 +29,6 @@ sidebarType: 1
 |---------------|----------|--------------|---------------------------------|------------|
 | `placementId` | optional | Placement Id | `'0'`                           | `'string'` |
 | `endpointId`  | optional | Endpoint Id  | `'0'`                           | `'string'` |
-| `region`      | optional | Region (for Prebid.js) | `'us-east'` (default) or `'eu'` | `'string'` |
 
 ### Note
 
