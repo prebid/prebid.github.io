@@ -133,9 +133,12 @@ Sample module enablement configuration in JSON and YAML formats:
 
 PBS-Go version of the same config:
 
+In JSON: 
+
 ```json
 {
   "hooks": {
+    "enabled": true,
     "modules": {
       "fiftyone_degrees": {
         "device_detection": {
@@ -164,7 +167,7 @@ PBS-Go version of the same config:
                     "timeout": 10,
                     "hook_sequence": [
                       {
-                        "module_code": "fiftyone-devicedetection",
+                        "module_code": "fiftyone_degrees.device_detection",
                         "hook_impl_code": "fiftyone-devicedetection-entrypoint-hook"
                       }
                     ]
@@ -177,7 +180,7 @@ PBS-Go version of the same config:
                     "timeout": 10,
                     "hook_sequence": [
                       {
-                        "module_code": "fiftyone-devicedetection",
+                        "module_code": "fiftyone_degrees.device_detection",
                         "hook_impl_code": "fiftyone-devicedetection-raw-auction-request-hook"
                       }
                     ]
@@ -191,6 +194,43 @@ PBS-Go version of the same config:
     }
   }
 }
+```
+
+and YAML format:
+
+```yaml
+hooks:
+  enabled: true
+  modules:
+    fiftyone_degrees:
+      device_detection:
+        enabled: true
+        make_temp_copy: true
+        data_file:
+          path: path/to/51Degrees-LiteV4.1.hash
+          update:
+            auto: true
+            url: "<optional custom URL>"
+            polling_interval: 1800
+            license_key: "<your_license_key>"
+            product: V4Enterprise
+            watch_file_system: 'true'
+    host_execution_plan:
+      endpoints:
+        "/openrtb2/auction":
+          stages:
+            entrypoint:
+              groups:
+                - timeout: 10
+                  hook_sequence:
+                    - module_code: fiftyone_degrees.device_detection
+                      hook_impl_code: fiftyone-devicedetection-entrypoint-hook
+            raw_auction_request:
+              groups:
+                - timeout: 10
+                  hook_sequence:
+                    - module_code: fiftyone_degrees.device_detection
+                      hook_impl_code: fiftyone-devicedetection-raw-auction-request-hook
 ```
 
 ## Module Configuration Parameters (for PBS-Java and PBS-Go)
