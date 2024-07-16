@@ -7,7 +7,7 @@ sidebarType: 3
 
 ---
 
-# Google Ad Manager Setup
+# GAM Prebid Mobile Rendering Ad Ops
 
 ## Step 1: Create New Order
 

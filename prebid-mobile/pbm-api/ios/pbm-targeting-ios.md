@@ -501,15 +501,23 @@ Prebid SDK Provides a way for app publishers to customize most ORTB fields in th
 
 There are certain protected fields such as regs, device, geo, ext.gdpr, ext.us_privacy, and ext.consent which cannot be changed.
 
+Here's how to specify cross-impression data:
+
 ```swift
 //global invocation
 adUnitConfig.setOrtbConfig("{\"ext\":{\"prebid\":{\"debug\":1,\"trace\":\"verbose\"}}}")
 ```
 
+To merge impression-level data, use the `adUnit` object:
+
 ```swift
 //ad unit / impression-level
 adUnit.setOrtbConfig("{\"ext\":{\"gpid\":\"abc123"}}\")
 ```
+
+Notes:
+- App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)
+- See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
 
 ## Further Reading
 

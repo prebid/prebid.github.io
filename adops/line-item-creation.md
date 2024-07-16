@@ -7,7 +7,6 @@ sbUUID: 3.2
 ---
 
 # Line Item Creation
-
 {: .no_toc }
 
 - TOC
@@ -18,6 +17,40 @@ The settings you apply when creating line items to capture bids coming in from t
 {: .alert.alert-success :}
 Manually configuring ad server elements for Prebid can be a fair amount of work. If you’re using Google Ad Manager (GAM), consider using our official command line tool, [Prebid Line Item Manager](/tools/line-item-manager.html#prebid-line-item-manager.html), to create the setup. Using this tool may save you time and help you avoid mistakes.
 
+## The Big Picture
+
+The ad server objects that support Prebid are critical. Header bidding is a way to gather bids from many sources and funnel them into your ad server, so the ad server needs to have a way to detect and prioritize these bids.
+
+The traditional Prebid.js setup is to have two sets of line items in your ad server: one set that covers the price granularity range for display, "non-instream" video, and native, and another set that covers the price granularity range for instream video.
+
+However, there may be reasons to set up more than 2 sets of line items. You can start by answering a few questions:
+
+- What Prebid scenarios do you need now and in the forseeable future? Is Prebid.js all you need? Or do you have an [AMP](/formats/formats.html#amp) version of your site? Do you have a mobile app?
+- How many line items can you afford to create? Very high price granularities can consume a large number of line items, and some ad servers have strict limits on the number of active and/or historic line items.
+
+Here's a set of basic recommendations to use as a starting point:
+
+1. **Do you run Prebid.js only?** Create 2 sets of line items: one set for instream-video and another set for everything else.
+1. **Do you run Prebid.js and AMP?**
+    1. For now, you'll need to have two sets of line items: one for instream video, and one that uses the PUC for everything else.
+    1. In the future, there will be an option to run three sets of line items to utilize the [dynamic creative](/adops/creative-considerations.html#prebidjs-dynamic-creatives) for Prebid.js.
+1. **Do you run Prebid.js and Prebid Mobile?**
+    1. If you're using multiformat banner and "non-instream" video, you will need to have a separate set of adunits and line items for mobile. This is because Prebid Mobile does not support javascript renderers like Prebid.js, instead replying the ad server SDK, which requires them to be treated the same as instream video. So in this scenario you'll have 4 sets of line items: Prebid.js instream, Prebid.js banner+native+noninstream, mobile video, and mobile banner+instream.
+    1. If you have chosen the Prebid-Rendered approach for your mobile apps in order to get SKAdNetork and advanced adunits, you'll want to have separate sets of line items for mobile and Prebid.js as described for the multiformat item just above.
+    1. If you're going to run Rewarded Video, you'll want to define which adunits run that format and have a separate set of video line items that target those units. This is because rewarded video has a special creative type.
+1. **Or just Prebid Mobile?**
+    1. As a base, you'll want one set of line items for video (instream and non-instream), and another set for banner.
+    1. If you run native, you'll want another set of line items for them.
+    1. And then if you run rewarded video, another set of line items for those ad units.
+
+Yes, setting up line items for Prebid Mobile is complicated. We recommend reading the "Ad Operations Guidance" section of the
+specific mobile integration method you're using:
+
+    - GAM Bidding-Only for [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#ad-operations-guidance)/[Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#ad-operations-guidance)
+    - GAM Prebid-Rendered for [iOS](TBD)/[Android](TBD)
+    - AdMob for [iOS](TBD)/[Android](TBD)
+    - MAX for [iOS](TBD)/[Android](TBD)
+
 ## Advertisers and Orders
 
 Line items (and creatives) must, at some level, be associated with advertisers. When you create line items to capture Prebid bids, you won’t know who the actual advertisers are. Instead you need to create generic advertisers in your ad server that are used for Prebid. For example, you can create an advertiser named “Prebid Advertiser.” Or if you’re using Send All Bids, you can create one advertiser per bidder, such as “Prebid BidderA,” “Prebid BidderB,” etc. You then associate your line items and creatives with those advertisers.
@@ -27,31 +60,6 @@ Depending on your ad server, line items are typically grouped within orders unde
 ## Line Item Details
 
 You have many options for the way in which you set up your line items. The following are Prebid requirements, and also some recommendations, to ensure bids are captured correctly and to make keeping track of your header bidding line items easier.
-
-### At a Glance
-
-These tables show the Prebid line item recommendations and requirements. The following sections provide more details on each.
-
-**Required**
-
-{: .table .table-bordered .table-striped }
-| Detail | Requirement |
-| ------ | ----------- |
-| Line Item Type | Price Priority (depending on your ad server) |
-| Key Value Pricing | Include the number of decimal places that are defined in the price granularity precision. Normally this is two decimal places, e.g. hb_pb=0.50 or hb_pb=1.00 |
-
-**Recommended**
-
-{: .table .table-bordered .table-striped }
-| Detail | Recommendation |
-| ------ | -------------- |
-| Line Item Groups | Determine the number of containers you'll need to store the line items based on price granularity, number of bidders, and ad server restrictions. Name your group in the format Prebid, format, bidder name (for [Send All Bids](/adops/send-all-vs-top-price.html)), and unique number; for example, `Prebid - banner - BidderA - 1`. |
-| Line Item Name | Name each line item for the header bidding price bucket. Use the naming pattern Prebid, mediatype, bidder (for Send All Bids), and price bucket; for example, `Prebid - banner - BidderA - 1.50`. |
-| Creative Name | In the creative name, include Prebid, the media type and the size (if applicable), and a unique identifying number (if more than one creative of a given size is attached to the line item). If using Send All Bids, also include the bidder name; for example, `Prebid - banner - BidderA - 1x1 - 1`. |
-| Start and End Dates | Start immediately, no end date |
-| Priority | Above house ads but below directly sold ads |
-| Impression Goal | None |
-| Media Types | Group media types by price granularity. This typically means you can group banner, outstream video, and native together but video will be a separate set of line items. |
 
 ### Line Item Type
 
@@ -106,7 +114,7 @@ Prebid supports many media types, and you can set up a single line item with mul
 
 Grouping media types within line items is typically dictated by the pricing structure:
 
-- Banner, outstream video, and native generally run together because they have similar pricing expectations and therefore can share [price granularities](/adops/price-granularity.html).
+- Banner, non-instream video, and native generally run together because they have similar pricing expectations and therefore can share [price granularities](/adops/price-granularity.html).
 - Instream video is normally created as a separate set of line items because they are usually priced higher than other formats, often requiring custom price granularity.
 
 You must set a key value for each format used by an ad unit using the hb_format (or hb_format_BIDDER) key and setting its value to the appropriate format. For example, if the ad unit is set up as a banner ad, you would target hb_format=banner (along with the price, such as hb_pb=1.00). If your ad unit supports multiple types, set the key value to include all types: `hb_format` in `banner`,`native`.

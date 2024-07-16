@@ -7,44 +7,146 @@ sbUUID: 3.2
 ---
 
 # Creative Considerations
-
 {: .no_toc }
 
 - TOC
 {: toc }
 
-Some of the major decisions you need to make as you’re setting up your campaigns have to do with creatives. This document will provide information to help you make those decisions.
-
-{: .alert.alert-info :}
-Throughout this discussion we’re assuming you’ve chosen to use the Prebid Universal Creative (PUC). See [Prebid Universal Creative](#prebid-universal-creative) below for advantages and disadvantages of this approach. For more information on the PUC as well as alternatives, see the [Prebid Universal Creative Overview](/overview/prebid-universal-creative.html).
+[Prebid Universal Creative Overview](/overview/prebid-universal-creative.html).
 
 ## Creatives Overview
 
-When you set up a line item for a campaign in your ad server, you have to add images or ad tags that will be displayed for that campaign. Header bidding line items have a particular kind of ad tag.
+This document will provide information to help you set up the ad server so ads of various media formats will be rendered properly. A couple of questions to answer:
 
-The Prebid ad tag is entered into creatives on the ad server in the form of a script that will enable Prebid to find the bid that goes with a winning line item. Depending on your ad server, you’ll have to declare your creative as a Third Party creative (Google Ad Manager), or set it to use HTML, or some other means of entering an ad tag (the Prebid script) rather than an image.
+- What Prebid scenarios do you need now and in the forseeable future? Is Prebid.js all you need? Or do you have an [AMP](/formats/formats.html#amp) version of your site? Do you have a mobile app?
+- Do you want to use the new [dynamic creative](#prebidjs-dynamic-creatives) approach or use the original [Prebid Universal Creative (PUC)](#prebid-universal-creative)?
 
-## Prebid Universal Creative
+Here's a set of basic creative recommendations to use as a starting point:
 
-The first decision you’ll need to make when it comes to creatives (with the exception of VAST video) is whether you want to use the Prebid Universal Creative (PUC). The PUC is a collection of rendering routines that can pull a particular ad ID from the Prebid cache and do the right thing to display it. You can find full details about the PUC in the [Prebid Universal Creative Overview](/overview/prebid-universal-creative.html). For now we’ll focus on the advantages and disadvantages to using the PUC.
+1. **Are you using Prebid.js only?**
+    1. Is one extra HTTP fetch a considerable cost for your revenue performance? If yes, then you'll want to consider using the 'dynamic creative' approach.
+    1. Is updating the creatives in the future going to be possible? If yes, then again, the dynamic creative approach would be fine.
+1. **Are you using both Prebid.js and AMP?**
+    1. For now, you'll need to have two sets of line items: one for instream video, and one that uses the PUC for everything else.
+    1. In the future, there will be an option to run three sets of line items to utilize the dynamic creative for Prebid.js.
+1. **Using Prebid Mobile?**
+    1. Choose your integration method and see the "AdOps Guidance" section for that integration method.
+        1. GAM Bidding-Only for [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#ad-operations-guidance)/[Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#ad-operations-guidance)
+        1. GAM Prebid-Rendered for [iOS](TBD)/[Android](TBD)
+        1. AdMob for [iOS](TBD)/[Android](TBD)
+        1. MAX for [iOS](TBD)/[Android](TBD)
 
-The big advantage to using the PUC is that it’s the simplest approach to configuring Prebid in your ad server. It provides a robust mechanism that can be used across several formats, platforms, devices, and ad servers.
+## Types of Creatives
 
-The primary disadvantage to using the PUC is that it takes an extra fetch to load the PUC file vs doing everything inline to the creative. Also, loading a “universal” creative means that more bytes are loaded than are actually necessary for the display of a single creative. This all leads to a slight performance penalty.
+Depending on the advertising scenarios you support and how they were implemented, these
+are the types of creatives that may be attached to your ad server line items.
 
-You’ll need to determine whether the ease of implementation is worth the small performance penalty.
+### Prebid Universal Creative (PUC)
 
-## Prebid.js dynamic creatives
+{: .table .table-bordered }
+| :memo: Use Cases          |
+|:---------------------------|
+| - AMP<br/>- Prebid Mobile Bidding-Only<br/>- Prebid.js when you use AMP or PBSDK and want to minimize line item count or your ad server can't target at the creative level, or you want to keep line item setup simple. |
 
-If you have line items that target only browsers running Prebid.js, you can use [dynamic creatives](/adops/js-dynamic-creative.html) to avoid the PUC performance penalty but keep the same ease of setup and maintenance. The disadvantage of this approach is that it does not support platforms that do not run Prebid.js, such as AMP or mobile apps.  
+The original idea behind the Prebid Universal Creative (which we fondly call 'the PUC') was that it would be one set of javascript that would render banners, non-instream, and native creatives.
 
-## Where to Host the PUC
+However, that orignal vision was eroded by several factors:
+
+- The PUC requres an extra HTTP fetch, slowing down ad rendering by some amount. 
+- The size of the PUC grew as use cases were added.
+- The Prebid SDK doesn't have to render javascript into a webview
+
+So now there are a number of different options for rendering Prebid ads that win the auction. The PUC is still available as a collection of rendering routines. You can find full details in the [Prebid Universal Creative Overview](/overview/prebid-universal-creative.html). 
+
+{: .alert.alert-success :}
+**Terminology tip:** the PUC is the script that's loaded from the CDN. The block of HTML and javascript
+in your ad server is sometimes called the "PUC agent" - it's what tells your browser/webview to load
+the actual PUC.
+
+#### Where to Host the PUC
 
 If you choose to use the Prebid Universal Creative, you'll need to decide where to load it from:
 
-1. Prebid hosts an always-up-to-date copy of the PUC at `https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/*`. The upside of this location is that it's automatically updated so it contains new features automatically.
+1. Prebid hosts an always-up-to-date copy of the PUC code at `https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/*`. The upside of this location is that it's automatically updated so it contains new features automatically.
 1. You can host the PUC at your own location. The upside of this option is that you can control when upgrades happen.
 1. You can copy the body of the PUC into your ad server creative directly. This eliminates a browser fetch, but could make upgrades more difficult.
+
+### Prebid.js 'dynamic creatives'
+
+{: .table .table-bordered }
+| :memo: Use Cases          |
+|:---------------------------|
+| - Prebid.js with no need to worry about AMP or Prebid Mobile<br/>- You're using a tool that can modify the creative if needed |
+
+If you have line items that target only browsers running Prebid.js, you can use [dynamic creatives](/adops/js-dynamic-creative.html) to avoid the PUC performance penalty but keep the same ease of setup and maintenance.
+
+### VastUrl
+
+{: .table .table-bordered }
+| :memo: Use Cases          |
+|:---------------------------|
+| - Instream video<br/>- Prebid Mobile non-instream video<br/>- Prebid Mobile rewarded video (GAM Bidding-only integration) |
+
+VAST video does not use the PUC. Instead, video bids provide VAST that Prebid caches to obtain a cache ID that can be retrieved with a URL. The cache ID is passed as a key value to the ad server. (See [Video Overview](/prebid-video/video-overview.html) for details.)
+
+When you’re running campaigns with video creatives, the primary decision you need to make is where to cache your video bids. You’ll enter this location in the creative you add to the line item. The cache location is typically independent of the bidders. The most common cache location is <https://prebid.adnxs.com>. See [Setting Up Video In GAM](/adops/setting-up-prebid-video-in-dfp.html) for detailed instructions on configuring a video creative in GAM.
+
+### Prebid SDK Rendering
+
+{: .table .table-bordered }
+| :memo: Use Cases          |
+|:---------------------------|
+| Prebid Mobile rendering scenarios:<br/>- Display Banner<br/>-Video Banner<br/>- Display Interstitial<br/>- Video Interstitial |
+
+When the mobile app is coded to use the Prebid-Rendered scenario ([iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html),[Android](/prebid-mobile/modules/rendering/android-sdk-integration-gam.html)), there's no PUC.
+Instead, a special ad server creative is used. See the [GAM Prebid Mobile Rendering Ad Ops](/adops/mobile-rendering-gam-line-item-setup.html) page for details.
+
+### Rewarded Video
+
+{: .table .table-bordered }
+| :memo: Use Cases          |
+|:---------------------------|
+| - Prebid Mobile rewarded video (Prebid rendered scenario) |
+
+When the mobile app is coded to use the Prebid-Rendered scenario ([iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html),[Android](/prebid-mobile/modules/rendering/android-sdk-integration-gam.html)), there's a special
+VAST URL required. See the [GAM Prebid Mobile Rendering Ad Ops](/adops/mobile-rendering-gam-line-item-setup.html) page for details.
+
+### Native (PUC)
+
+{: .table .table-bordered }
+| :memo: Use Cases          |
+|:---------------------------|
+| - Prbeid.js Native |
+
+Native ads require close collaboration between web designers, engineering, and ad ops. The primary decision to be made that affects ad ops is where to store the rendering template. The options are:
+
+- The ad server
+- The page's Prebid.js adunit
+- An external script
+
+If you already have templates stored in your ad server for some native ads, it might make sense to also store the templates for Prebid there and keep everything together and consistent. This also gives ad ops control over when templates change.
+
+The second two options require engineering to make any changes when template updates are required. Because native ad formatting is tied to the look of the site, these options could fit in with normal site maintenance.
+
+Each option requires a different PUC ad tag to be used in the associated creatives, so be sure to get the correct script (and CSS file) from the engineers.
+
+{: .alert.alert-info :}
+Engineering details outlining each template storage option can be found in the [Prebid.js Native Implementation Guide](/prebid/native-implementation.html).
+
+### Native (native-trk.js)
+
+{: .table .table-bordered }
+| :memo: Use Cases          |
+|:---------------------------|
+| - Prebid Mobile webview native |
+
+Like Prebid.js, Mobile native ads require close collaboration between web designers, engineering, and ad ops. However, mobile only supports hosting the template in the ad server.
+
+Prebid Mobile uses a special script called 'native-trk.js' to render native creatives implemented on a webview. See the [GAM Native Creatives page](/adops/gam-native.html) for details.
+
+### Mediation platforms
+
+Mobile apps that are integrated with mediation platforms [AdMob](/adops/mobile-rendering-admob-line-item-setup.html) or [MAX](/adops/mobile-rendering-max-line-item-setup.html) should follow those special instructions.
 
 ## Creative Naming
 
@@ -84,38 +186,6 @@ We recommend against using this mode, but are aware some publishers use it for r
 
 This scenario would require you to create 10,000 line items (10 x 200 x 5). If you were to use either 1x1 mode or creative-level sizing you would need only 2,000 line items.
 
-## Banner and Outstream Creatives
-
-As we mentioned, each creative requires an ad tag script that will call the [Prebid Universal Creative](/overview/prebid-universal-creative.html) to display the correct image.
-
-One decision you'll want to make is which version of the PUC you want to use. Prebid hosts a copy, which you're free to use. But some publishers might want to use their own copy of the PUC so as to have greater control over the upgrade windows.
-
-{: .alert.alert-info :}
-Engineers can find the PUC code in the [Prebid Github repository](https://github.com/prebid/prebid-universal-creative).
-
-## Native
-
-Native ads require close collaboration between web designers, engineering, and ad ops. The primary decision to be made that affects ad ops is where to store the rendering template. Your options are:
-
-- The ad server
-- The page's Prebid.js adunit
-- An external script
-
-If you already have templates stored in your ad server for some native ads, it might make sense to also store the templates for Prebid there and keep everything together and consistent. This also gives ad ops control over when templates change.
-
-The second two options require engineering to make any changes when template updates are required. Because native ad formatting is tied to the look of the site, these options could fit in with normal site maintenance.
-
-Each option requires a different PUC ad tag to be used in the associated creatives, so be sure to get the correct script (and CSS file) from the engineers.
-
-{: .alert.alert-info :}
-Engineering details outlining each template storage option can be found in the [Prebid.js Native Implementation Guide](/prebid/native-implementation.html).
-
-## VAST Video
-
-VAST video (instream and long-form video) does not use the PUC. Instead, video bids provide VAST that Prebid caches to obtain a cache ID that can be retrieved with a URL. The cache ID is passed as a key value to the ad server. (See [Video Overview](/prebid-video/video-overview.html) for details.)
-
-When you’re running campaigns with video creatives, the primary decision you need to make is where to cache your video bids. You’ll enter this location in the creative you add to the line item. The cache location is typically independent of the bidders. The most common cache location is <https://prebid.adnxs.com>. See [Setting Up Video In GAM](/adops/setting-up-prebid-video-in-dfp.html) for detailed instructions on configuring a video creative in GAM.
-
 ## SafeFrames
 
 Another decision you need to make with regards to banner and native creatives is whether to run them in SafeFrames. A SafeFrame is defined by the IAB as “a managed API-enabled iframe that opens a line of communication between the publisher page and the iframe-contained ad creative.” SafeFrames provide an added layer of security by separating the ad from your web page.
@@ -131,7 +201,7 @@ If you don't trust all your bidders to provide creatives that can safely run ins
 
 Be sure to check with bidders directly if you have questions about their SafeFrame support.
 
-## Related Reading
+## Further Reading
 
 - [Planning Guide](/adops/adops-planning-guide.html)
 - [Key Values for Ad Ops](/adops/key-values.html)
