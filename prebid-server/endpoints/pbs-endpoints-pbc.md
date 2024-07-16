@@ -127,12 +127,74 @@ Content-Type: application/json
 
 ### Configuration
 
-[//]: # (TODO: Add description and examples of configuration)
+`api.module-storage-path` - path of module storage POST/GET endpoints.
+`api.api-key` - api key to secure module storage POST endpoint.
+
+Module storage supports different `applications` and storage providers are configured per `application`.
+For now, only redis is supported. To configure redis storage for particular application, configure `module.storage.redis.{application-name}` property.
+If no `applications` are needed, set `module.storage.redis` to `{}` like so:
+
+```yaml
+module:
+  storage:
+    redis: {}
+```
+
+Utilizing all the properties above, sample module storage configuration:
+
+```yaml
+api.module-storage-path: /module-storage
+api.api-key: API_KEY
+module:
+  storage:
+    redis:
+      application:
+        port: 6379
+        host: localhost
+        password: password
+        timeout: 99999
+```
 
 ### POST /module-storage
 
-[//]: # (TODO: Add description)
+This endpoint is used to storage module data. 
+
+Endpoint usage is authorized only for usage with configured api key. Api key should be provided as `x-pbc-api-key` header.
+
+Endpoint uses json body as input.
+
+Here is an explanation of the fields in json body:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Description |
+| --- | --- |
+|	key | A name that will be used to reference the stored value. |
+|	value | String representation of the data you need to store. |
+|	type | Represents the format stored inside the value. Can be one of `JSON`, `XML`, `TEXT`. |
+|	ttlseconds | How long (in seconds) the data will be available in the module store. |
+|	application | Configured name of your module storage. Check the configuration section of [Module Storage endpoints](/prebid-server/endpoints/pbs-endpoints-pbc.html#configuration). |
+
+Sample json payload:
+
+```json
+{
+  "key": "test",
+  "type": "text",
+  "value": "test",
+  "application": "application",
+  "ttlseconds": 9999
+}
+```
 
 ### GET /module-storage
 
-[//]: # (TODO: Add description)
+Endpoint to retrieve previously stored module data.
+
+This endpoint utilizes query parameters to get desired stored data. Here are their explanations:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Description |
+| --- | --- |
+|	key | A name that will be used to reference the stored value. |
+|	application | Configured name of your module storage. Check the configuration section of [Module Storage endpoints](/prebid-server/endpoints/pbs-endpoints-pbc.html#configuration). |
+
