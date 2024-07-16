@@ -19,7 +19,6 @@ Core config:
 * [Enable sharing of transaction IDs](#setConfig-enableTIDs)
 * [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 * [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
-* [Set Timeout Buffer](#setConfig-timeoutBuffer)
 * [Set TTL Buffer](#setConfig-ttlBuffer)
 * [Turn on send all bids mode](#setConfig-Send-All-Bids)
 * [Configure send bids control](#setConfig-Send-Bids-Control)
@@ -138,16 +137,6 @@ Prebid core adds a timeout on XMLHttpRequest request to terminate the request on
 
 ```javascript
 pbjs.setConfig({ disableAjaxTimeout: true });
-```
-
-#### Set Timeout Buffer
-
-<a name="setConfig-timeoutBuffer"></a>
-
-Prebid core adds a timeout buffer to extend the time that bidders have to return a bid after the auction closes. This buffer is used to offset the "time slippage" of the setTimeout behavior in browsers. Prebid.js sets the default value to 400ms. You can change this value by setting `timeoutBuffer` to the amount of time you want to use. The following example sets the buffer to 300ms.
-
-```javascript
-pbjs.setConfig({ timeoutBuffer: 300 });
 ```
 
 #### Set TTL Buffer

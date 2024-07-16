@@ -45,10 +45,10 @@ Sample banner setup:
 <script>
   var adUnits = [
     {
-      code: "my-html-div-tag-id",
+      code: "div-123",
       ortb2Imp: {
         ext: {
-            gpid: "/1111/homepage-leftnav",
+            gpid: "/1111/homepage-leftnav#div-123",
         }
       },
       mediaTypes: {
