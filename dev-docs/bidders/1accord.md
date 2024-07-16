@@ -28,7 +28,6 @@ sidebarType: 1
 |---------------|----------|----------------------------|--------------------------------------     |-----------|
 | `tagId`       | required | tag ID                     | `"testnexx"`                              | `string`  |
 
-
 ### First Party Data
 
 Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
