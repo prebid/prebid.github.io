@@ -1,41 +1,43 @@
 ---
 layout: page_v2
-title: Prebid MSPA Support
-description: Prebid MSPA Support
-sidebarType: 0
+title: Prebid US Compliance Support
+description: Prebid US Compliance Support
+sidebarType: 7
 ---
 
-# Prebid Multi-State Privacy Agreement Support
+# Prebid US Compliance Support
 {: .no_toc}
 
 - TOC
 {:toc}
 
-{: .alert.alert-warning :}
-This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and/or US regulations, including the GDPR, the ePrivacy Directive, CCPA, other state privacy laws, etc, and how you implement the tools outlined in this document. Only your lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
+{% include legal-warning.html %}
 
 ## Overview
 
 Starting July 1st 2023, several US states started enforcing new privacy regulations.
 
-The IAB released the "Multi-State Privacy Agreement" (MSPA) as its proposal for how the advertising ecosystem can support these and future US State regulations. References:
+As a result, the IAB released the "Multi-State Privacy Agreement" (MSPA), the Global Privacy Protocol (GPP), and several "sections" of the GPP dedicated to these US states. References:
 
 - [IAB's MSPA](https://www.iab.com/news/multi-state-privacy-agreement-mspa/)
 - IAB Guidance on the [MSPA Decision Tree](https://www.iab.com/wp-content/uploads/2022/12/IAB_MSPA_Decision_Tree.pdf)
 - IAB's [US National technical protocols](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/tree/main/Sections)
 
+Prebid refers to GPP Sections 7-12 as "US Compliance", which is distinct from the original [US Privacy](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md) approach which has been deprecated.
+
 ### Glossary
 
 1. **Global Privacy Platform (GPP)** - A technical IAB framework that defines a container format for communicating multiple privacy protocols. e.g. GPP can contain existing Transparency and Consent Framework (TCF) strings, various US privacy string formats, and other future implementations.
 1. **GPP Section ID (SID)** - the GPP container may contain multiple encoded privacy protocol strings. Each protocol gets its own SID in the overall GPP container. e.g. TCF-EU is assigned SID 2.
-1. **Multi-State Privacy Agreement (MSPA)** - the IAB's contractual framework for publishers to manage various US state privacy laws.
+1. **Multi-State Privacy Agreement (MSPA)** - the IAB's contractual framework for publishers to manage various US state privacy laws. Note that there are high profile companies in the industry that have not signed the MSPA, but are still able to process the IAB's technical protocol to consider user preferences.
 1. **MSPA Covered Transaction** - Whether a given ad auction falls legally under the MSPA's privacy requirements. For MSPA-covered 'transactions' (ad auctions), publishers must declare themselves in one of two modes: "Service Provider Mode" or "Opt-Out Mode".
 1. **MSPA Service Provider Mode** - "Service Provider Mode is for First Parties who do not Sell or Share Personal Information, and do not Process Personal Information for Targeted Advertising". This means that personal information is never sent to downstream entities.
 1. **MSPA Opt-Out Mode** - For First Parties that may engage in targeted advertising activities or disclose personal information for such purposes. This means that user consent is gathered before privacy-sensitive data is sent to downstream entities.
 1. **US National Privacy Technical Specification (USNat)** -  the IAB's technical framework for encoding MSPA publisher policies and user consents. Stored in the GPP container as SID 7.
 1. **US State Privacy Technical Specifications** - the IAB has defined technical frameworks for 5 states based on their interpretation of state privacy laws. These protocols are similar to the US National protocol and are stored in the GPP container as SIDs 8 through 12.
+1. **US Compliance** - the term Prebid uses to encompass both US National Privacy Technical Specification and the US State Privacy Technical Specifications.
 1. **Global Privacy Control (GPC)** - a browser-level control for end users. Some US states have referred to a global control so that users don't have to state their preferences on each website they visit. The USNat protocol strings also contain the GPC flag.
-1. **US Privacy** - this is the IAB's original version of a US privacy protocol, meant to address CCPA only. It's active during a transition period until September 30, 2023.
+1. **US Privacy** - this is the IAB's original, now deprecated, version of a US privacy protocol, meant to address older California laws.
 1. **Prebid Activity Controls** - Prebid.js and Prebid Server have identified a set of behaviors for activities that may be in scope for privacy concerns such as transmitting user IDs. These activities may be allowed or suppressed with flexible conditions and exceptions as defined by the publisher.
     - [Prebid.js Activity Controls](/dev-docs/activity-controls.html) were released with PBJS 7.52
     - [Prebid Server Activity Controls](/prebid-server/features/pbs-activitycontrols.html) were released with PBS-Java 1.118
@@ -51,29 +53,29 @@ Prebid's assumptions about the MSPA and the US National Privacy specification:
 1. For requests that are in-scope for SIDs 7 through 12 that are not "covered" by MSPA, Prebid treats them as being in "Opt-Out Mode". This implies that CMPs have prompted users for consent and encoded the results in the relevant section of the GPP container.
 1. Prebid never changes the GPP string. This means that all downstream vendors will see whatever the CMP set.
 1. Prebid has implemented a default way to interpret the US National string (SID 7) in the context of each Prebid Activity.
-1. US state privacy rules do not mandate the cancellation of contextual advertising, but rather are focused on protecting user privacy. Therefore, Prebid's MSPA module may anonymize different aspects of a header bidding auction, but will never outright cancel an auction.
+1. US state privacy rules do not mandate the cancellation of contextual advertising, but rather are focused on protecting user privacy. Therefore, Prebid's US compliance  modules may anonymize different aspects of a header bidding auction, but will never outright cancel an auction.
 1. There are differences in the US state-level protocols and the US National protocol as defined by the IAB. (e.g. child consent for targeted advertising is somewhat different across SIDs 7 through 12.)
 1. Rather than implementing several very similar modules and forcing publishers to include separate modules for each US state, Prebid handles state differences through a normalization process. The differences for each state are mapped onto the US National (SID 7) string, and that string is interpreted for which activities are allowed or suppressed. As with the rest of Prebid’s approach, this is a default intended to ease publishers’ ability to comply with the state laws, but publishers should make their own determinations about state law obligations and consult legal counsel to ensure that they feel comfortable that this approach allows them to meet their legal obligations.
 1. Publishers that do not agree with Prebid's default behavior may override the behavior. This includes the interpretation of the USNat string as well as the normalization of state protocols.
 1. The Global Privacy Control (GPC) flag is interpreted as a strong user signal that ad requests should be anonymized.
 1. There's no need to support a data-deletion activity for MSPA.
-1. Prebid doesn't need to explicitly support mapping US National Privacy SID 6 (legacy US Privacy) for anonymization activities. This is covered by a feature on Prebid Server where SID 6 is pulled out into regs.us_privacy and is covered by documentation in Prebid.js.
+1. Prebid doesn't need to explicitly support mapping GPP SID 6 (legacy US Privacy) for anonymization activities. This is covered by a feature on Prebid Server where SID 6 is pulled out into regs.us_privacy and is covered by documentation in Prebid.js.
 
-## USNat Support in Prebid Products
+## US Compliance Support in Prebid Products
 
 ### Prebid.js
 
 Here's a summary of the privacy features in Prebid.js that publishers may use to align with the guidance of their legal counsel:
 
 {: .table .table-bordered .table-striped }
-| Prebid.js Version | USNat-Related Features | Notes |
+| Prebid.js Version | US Compliance-Related Features | Notes |
 | ----------------- | ---------------------- | ----- |
 | before 7.30 | None | If you operate in the US, you should consider upgrading. |
-| 7.30-7.51 | **GPP module** | The [GPP module](/dev-docs/modules/consentManagementGpp.html) reads the GPP string from a compliant CMP and passes to compliant bid adapters. Not many bid adapters supported GPP in earlier versions. |
-| 7.52-8.1 | GPP module <br/> **Activity&nbsp;Controls** | [Activity Controls](/dev-docs/activity-controls.html) provide the ability for publishers to allow or restrict certain privacy-sensitive activities for particular bidders and modules. See examples in that document for supporting CCPA directly.
-| 8.2-8.x | GPP module<br/>Activity Controls<br/>**USNat module** | The [USNat module](/dev-docs/modules/gppControl_usnat.html) processes SID 7. |
-| After 8.x | GPP module<br/>Activity Controls<br/>USNat module<br/>**US&nbsp;State&nbsp;module** | The US State module processes SIDs 8 through 12 after normalizing protocol differences. |
-| After 8.10 | **GPP Module**  | The [GPP module](/dev-docs/modules/consentManagementGpp.html) now understands GPP 1.1 which makes it incompatible with GPP 1.0. Publishers **<u>MUST</u>** upgrade for continued GPP support. |
+| 7.30-7.51 | **Consent&nbsp;Mgmt&nbsp;GPP&nbsp;module** | The [GPP module](/dev-docs/modules/consentManagementGpp.html) reads the GPP string from a compliant CMP and passes to compliant bid adapters. Not many bid adapters supported GPP in earlier versions. |
+| 7.52-8.1 | Consent&nbsp;Mgmt&nbsp;GPP&nbsp;module <br/> **Activity&nbsp;Controls** | [Activity Controls](/dev-docs/activity-controls.html) provide the ability for publishers to allow or restrict certain privacy-sensitive activities for particular bidders and modules. See examples in that document for supporting CCPA directly. |
+| 8.2-8.9 | Consent&nbsp;Mgmt&nbsp;GPP&nbsp;module<br/>Activity Controls<br/>**GPP&nbsp;USNat&nbsp;module** | The [GPP USNat module](/dev-docs/modules/gppControl_usnat.html) processes SID 7. |
+| 8.10+ | Consent&nbsp;Mgmt&nbsp;GPP&nbsp;module<br/>Activity Controls<br/>USNat module<br/>**GPP&nbsp;US&nbsp;State&nbsp;module** | The [GPP US State module](/dev-docs/modules/gppControl_usstates.html) processes SIDs 8 through 12 after normalizing protocol differences. |
+| 8.10+ | **Consent&nbsp;Mgmt&nbsp;GPP&nbsp;module**  | The [GPP module](/dev-docs/modules/consentManagementGpp.html) now understands GPP 1.1 which makes it incompatible with GPP 1.0. Publishers **<u>MUST</u>** upgrade for continued GPP support. |
 
 ### Prebid Server
 
@@ -85,10 +87,10 @@ Here's a summary of the privacy features in Prebid Server that publishers may us
 | PBS-Go before 0.236<br/>PBS-Java before 1.110 | None | If you operate in the US, you should consider upgrading. |
 | PBS-Go 0.236<br/>PBS-Java 1.110 | **GPP passthrough** | PBS reads the GPP string from the ORTB request and passes to compliant bid adapters. Not many bid adapters supported GPP in earlier versions. |
 | PBS&#8209;Go&nbsp;0.248&nbsp;and&nbsp;later<br/>PBS&#8209;Java&nbsp;1.113&nbsp;and&nbsp;later | GPP passthrough<br/>**GPP US Privacy** | PBS will read SID 6 out of the GPP string and process it as if regs.us_privacy were present on the request. |
-| PBS-Go TBD<br/>PBS-Java 1.118 | GPP passthrough<br/>GPP US Privacy<br/>**Activity Controls** | [Activity Controls](/prebid-server/features/pbs-activitycontrols.html) grant the ability for publishers to allow or restrict certain privacy-sensitive activities for particular bidders and modules. |
+| PBS-Go 2.2<br/>PBS-Java 1.118 | GPP passthrough<br/>GPP US Privacy<br/>**Activity Controls** | [Activity Controls](/prebid-server/features/pbs-activitycontrols.html) grant the ability for publishers to allow or restrict certain privacy-sensitive activities for particular bidders and modules. |
 | PBS-Go TBD<br/>PBS-Java 1.122 | GPP passthrough<br/>GPP US Privacy<br/>**Enhanced Activity Controls** | Activity controls support additional conditions for defining USNat-related rules: gppSid, geo, and gpc. |
 | PBS-Go TBD<br/>PBS-Java 1.126 | GPP passthrough<br/>GPP US Privacy<br/>Enhanced Activity Controls<br/>**USGen Module** | The [USGen module](/prebid-server/features/pbs-usgen.html) processes SIDs 7 through 12 after normalizing protocol differences. |
-| TBD | GPP passthrough<br/>GPP US Privacy<br/>Enhanced Activity Controls<br/>USNat Module<br/>**US&nbsp;Custom&nbsp;Logic&nbsp;module** | Allows publishers to provide alternate interpretations of the USNat string as it applies to Activity Controls. |
+| PBS-Go TBD<br/>PBS-Java 1.130 | GPP passthrough<br/>GPP US Privacy<br/>Enhanced Activity Controls<br/>USNat Module<br/>**US&nbsp;Custom&nbsp;Logic&nbsp;module** | Allows publishers to provide alternate interpretations of the USNat string as it applies to Activity Controls. |
 
 ### Prebid SDK
 

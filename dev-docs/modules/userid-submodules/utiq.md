@@ -1,6 +1,6 @@
 ---
 layout: userid
-title: Utiq
+title: Utiq ID
 description: Utiq User ID sub-module
 useridmodule: utiqIdSystem
 ---
@@ -9,14 +9,12 @@ Utiq generates unique tokens, enabling improved efficiency in programmatic adver
 
 Utiq is also the brand name of the service, which is provided by Utiq SA/NV.
 
-## Utiq configuration
+## Utiq ID configuration
 
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of the module | `"utiqId"`
-| params | Required | Object | Object with configuration parameters for utiq User Id submodule | - |
-| params.maxDelayTime | Required | Integer | Max amount of time (in seconds) before looking into storage for data | 2500 |
 
 Configuration example:
 
@@ -26,15 +24,12 @@ pbjs.setConfig({
     userIds: [
       {
         name: "utiqId",
-        params: {
-          maxDelayTime: 2500,
-        },
       },
     ],
   },
 })
 ```
 
-## Utiq onboarding
+## Utiq ID onboarding
 
 If you wish to find out more about Utiq, please contact <csm@utiq.com>

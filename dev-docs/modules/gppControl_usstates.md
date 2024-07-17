@@ -17,16 +17,12 @@ sidebarType : 1
 - TOC
 {: toc }
 
-{% capture legalNotice %}
-This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and/or US regulations, including the GDPR, the ePrivacy Directive, CCPA, other state privacy laws, etc, and how you implement the tools outlined in this document. Only your lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
-{% endcapture %}
-
-{% include /alerts/alert_important.html content=legalNotice %}
+{% include legal-warning.html %}
 
 ## Overview
 
 This consent management control module is designed to support the [Global Privacy Platform](https://iabtechlab.com/gpp/) US state strings, [GPP sections](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/Section%20Information.md) 8 through 12.
-It works by translating them into an equivalent US national string as detailed in [Interpreting USNat strings](/features/mspa-usnat.html#interpreting-usnat-strings), and using it to apply the same [activity restricitons](/features/mspa-usnat.html#usnat-activity-restrictions).
+It works by translating them into an equivalent US national string as detailed in [Interpreting USNat strings](/features/mspa-usnat.html#interpreting-usnat-strings), and using it to apply the same [activity restrictions](/features/mspa-usnat.html#usnat-activity-restrictions). Prebid.js encourages publishers to consider with their legal counsel use of the national string over state strings. New state strings are being released, yet national string support is mature and less error prone.
 
 {: .alert.alert-warning :}
 Prebid functionality created to address regulatory requirements does not replace each party's responsibility to determine its own legal obligations and comply with all applicable laws. **We recommend consulting with your legal counsel before determining how to utilize these features in support of your overall privacy approach. This module is not intended to replace other consent modules; it supplements them.**
@@ -122,7 +118,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 - [IAB Global Privacy Platform Full Specification Repository](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform)
 - [IAB Global Privacy Platform CMP API Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md)
 - [IAB Global Privacy Platform USNat string Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)
-- [Prebid MSPA Support](/features/mspa-usnat.html)
+- [Prebid US Compliance Support](/features/mspa-usnat.html)
 - [Prebid Activity Controls](/dev-docs/activity-controls.html)
 - [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)
 - [Prebid Consent Management - GPP Module](/dev-docs/modules/consentManagementGpp.html)
