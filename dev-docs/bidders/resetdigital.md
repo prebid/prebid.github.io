@@ -20,6 +20,11 @@ media_types: banner, video
 sidebarType: 1
 ---
 
+### Note
+
+Prebid adapter for Reset Digital. Requires approval and account setup. Video is supported but requires a publisher supplied renderer at this time.
+Please contact us at biddersupport@resetdigital.co
+
 ### bid params
 
 {: .table .table-bordered .table-striped }
@@ -98,8 +103,3 @@ var adUnits = [
         ]
     }
 ];
-
-### Note
-
-Prebid adapter for Reset Digital. Requires approval and account setup. Video is supported but requires a publisher supplied renderer at this time.
-Please contact us at biddersupport@resetdigital.co
