@@ -2,7 +2,7 @@
 layout: bidder
 title: Global Sun
 description: Global Sun Adaptor
-biddercode: globalsun
+biddercode: global_sun
 pbjs: true
 pbs: false
 media_types: banner, native, video
