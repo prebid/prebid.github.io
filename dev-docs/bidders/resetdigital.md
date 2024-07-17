@@ -37,12 +37,12 @@ Prebid adapter for Reset Digital requires approval and account setup. Video is s
 | `zoneId.deals` | optional | Deal IDs comma-separated | `"deal123,deal456"` | `string` |
 | `zoneId.test` | optional | Flag to force bidder response with a creative | `1` | `integer` |
 | `forceBid` | optional | Returns test bid | true | `boolean` |
-| `position`     | optional           | Set the page position. Valid values are "atf" and "btf".                                                                    | `'atf'`                                                                             | `string`         |
-| `bidFloor`       | optional           | Sets the global floor -- no bids will be made under this value.                                                             | `0.50`                                                                              | `float`          |
-| `latLong`     | optional           | Sets the latitude and longitude for the visitor                                                                            | `[40.7608, 111.8910]`                                                               | `Array<float>`   |
-| `inventory`   | optional           |  This parameter allows the definition of an object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays of strings. | `{"rating":["5-star"], "prodtype":["tech","mobile"]}`                               | `object`         |
-| `visitor`      | optional           | This parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays of strings. | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
-| `keywords`     | optional           | This can be used to influence reports for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. | `["travel", "tourism"]`                                                             | `Array<string>`  |
+| `position` | optional | Set the page position. Valid values are "atf" and "btf".| `'atf'`| `string`         |
+| `bidFloor` | optional | Sets the global floor -- no bids will be made under this value.| `0.50`| `float`          |
+| `latLong` | optional | Sets the latitude and longitude for the visitor| `[40.7608, 111.8910]`| `Array<float>`   |
+| `inventory` | optional |  This parameter allows the definition of an object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays of strings. | `{"rating":["5-star"], "prodtype":["tech","mobile"]}` | `object` |
+| `visitor` | optional | This parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays of strings. | `{"ucat":["new"], "search":["iphone"]}` | `object` |
+| `keywords` | optional | This can be used to influence reports for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. | `["travel", "tourism"]`                                                             | `Array<string>`  |
 
 #### mediaTypes.video
 
@@ -50,7 +50,7 @@ The following video parameters are supported here so publishers may fully declar
 
 {: .table .table-bordered .table-striped }
 
-| Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
+| Name           | Scope              | Description | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | context | required | instream or outstream |"outstream" | string |
 | playerSize| required | width, height of the player in pixels | [640,360] - will be translated to w and h in bid request | array<integers> |
@@ -67,7 +67,6 @@ The following video parameters are supported here so publishers may fully declar
 | maxbitrate | optional | Maximum bit rate in Kbps. | 9600 | integer |
 | startdelay | recommended | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.<br /> >0: Mid-Roll (value indicates start delay in second)<br /> 0: Pre-Roll<br />-1: Generic Mid-Roll<br />-2: Generic Post-Roll | 0 | integer |
 | placement | recommended | Placement type for the impression. (see openRTB v2.5 section 5.9 for options) | 1 | integer |
-
 
 ### Code Examples
 
