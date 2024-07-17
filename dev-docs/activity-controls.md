@@ -152,7 +152,7 @@ For example, this rule would allow bidderX to perform the activity if no higher 
 Activity control rules in Prebid.js can be created by two main sources:
 
 * Publisher `setConfig({allowActivities})` as in the examples shown here. When set this way, rules are considered the highest priority value of 1.
-* Modules can set activity control rules, e.g. [usersync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing), [bidderSettings](/dev-docs/publisher-api-reference/bidderSettings.html), the [GPP](/dev-docs/modules/consentManagementGpp.html) or [GDPR](/dev-docs/modules/gdprEnforcement.html) modules. Rules set by modules have a less urgent priority of 10.
+* Modules can set activity control rules, e.g. [usersync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing), [bidderSettings](/dev-docs/publisher-api-reference/bidderSettings.html), the [GPP](/dev-docs/modules/consentManagementGpp.html) or [GDPR](/dev-docs/modules/tcfControl.html) modules. Rules set by modules have a less urgent priority of 10.
 
 When rules are processed, they are sorted by priority, and all rules of the same priority are considered to happen at the same time. The details:
 
@@ -234,7 +234,7 @@ If `allow` is not defined, the rule is assumed to assert **true** (i.e. allow th
 
 #### Always include a particular bidder in auctions
 
-This is similiar to the 'vendor exception' feature of the [GDPR Enforcement Module](/dev-docs/modules/gdprEnforcement.html). This would always allow bidderA to participate in the auction, even without explicit consent in GDPR scenarios. It might indicate, for instance, that this is a 'first party bidder'.
+This is similiar to the 'vendor exception' feature of the [TCF Control Module](/dev-docs/modules/tcfControl.html). This would always allow bidderA to participate in the auction, even without explicit consent in GDPR scenarios. It might indicate, for instance, that this is a 'first party bidder'.
 
 ```javascript
 pbjs.setConfig({

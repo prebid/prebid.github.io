@@ -248,10 +248,20 @@ In the long run, if you'd prefer to change the filenames too, that's ok - but ou
 1. Submit a PR that changes the filenames and makes the old name a hard-coded alias.
 2. Keep both bidder documentation files.
 
+## May I build a server that calls Prebid Server?
+
+Sure. The main endpoint you're going to utilize is the [auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html). Basically, it's just OpenRTB 2.6, but with quite a few Prebid-specific extensions. See the [auction request example](/prebid-server/endpoints/openrtb2/auction-request-example.html).
+
 ## Should Prebid bidders be in ads.txt?
 
 Publishers should be careful to list all their bidding partners in their ads.txt file. Bidders without an entry in ads.txt may be
 perceived by DSPs as unauthorized sources of your inventory. The domain for any ads.txt [inventory partners](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/dc71586842e648e89c1bbe6c666ffac8ff010a96/2.6.md?plain=1#L1752), if one exists, should be specified with a `setConfig({ortb2.site.inventorypartnerdomain})` call. For details of the specification of ads.txt entries, see [ads.txt v1.1](https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf)
+
+## Does Prebid Server count as a hop in the supply chain?
+
+That depends on how Prebid Server is set up. In general, no, PBS does not add an entry to the `schain`. But a PBS [managed service](https://prebid.org/managed-services/) could be configured to add to the schain. 
+
+The supply chain is meant to track financial arrangements, and PBS is basically a simple proxy server that does not insert itself into the money flow by default. Most PBS managed services require the publisher to have a direct financial relationship with each bidder, but there may be managed services that handle the money.
 
 ## How can I help with Prebid Server?
 

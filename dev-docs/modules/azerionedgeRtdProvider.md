@@ -74,7 +74,7 @@ received from the user, this module does not require a TCF vendor configuration.
 provided to the module when the user gives the relevant permissions on the publisher website.
 
 As Prebid.js utilizes TCF vendor consent for the RTD module to load, the module needs to be labeled
-within the Vendor Exceptions. If the Prebid GDPR enforcement is enabled, the module should be configured
+within the Vendor Exceptions. If the Prebid TCF Controls are enabled, the module should be configured
 as exception, as shown below:
 
 ```js
