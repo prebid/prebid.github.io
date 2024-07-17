@@ -18,6 +18,7 @@ media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
 sidebarType: 1
+fpd_supported: true
 
 ---
 
@@ -31,6 +32,13 @@ sidebarType: 1
 ### First Party Data
 
 Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+The following fields are supported:
+
+* ortb2.site.ext.data.*
+* ortb2.site.content.data[]
+* ortb2.user.ext.data.*
+* ortb2.user.data[]
+
 
 ### Test Parameters
 
