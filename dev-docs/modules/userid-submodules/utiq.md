@@ -2,7 +2,7 @@
 layout: userid
 title: Utiq ID
 description: Utiq User ID sub-module
-useridmodule: utiqSystem
+useridmodule: utiqIdSystem
 ---
 
 Utiq generates unique tokens, enabling improved efficiency in programmatic advertising while safeguarding transparency and control for end customers via `consenthub.utiq.com`. A website visitor’s Utiq is generated based on network identifiers provided by network operators and requires explicit user consent.
@@ -14,7 +14,7 @@ Utiq is also the brand name of the service, which is provided by Utiq SA/NV.
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | The name of the module | `"utiq"` |
+| name | Required | String | The name of the module | `"utiqId"` |
 
 Configuration example:
 
@@ -23,7 +23,7 @@ pbjs.setConfig({
   userSync: {
     userIds: [
       {
-        name: "utiq",
+        name: "utiqId",
       },
     ],
   },
