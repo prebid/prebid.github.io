@@ -5,7 +5,7 @@ description: Prebid 1accord Bidder Adapter
 pbjs: true
 biddercode: 1accord
 aliasCode : nexx360
-gvl_id: 965
+gvl_id: 965 (nexx360)
 tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
