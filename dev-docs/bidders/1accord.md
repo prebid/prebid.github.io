@@ -39,7 +39,6 @@ The following fields are supported:
 * ortb2.user.ext.data.*
 * ortb2.user.data[]
 
-
 ### Test Parameters
 
 ```javascript
