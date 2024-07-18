@@ -98,9 +98,9 @@ Assuming the above POST calls have been made, here are some sample GET responses
 
 ---
 
-**GET** */cache?uuid=279971e4-70f0-4b18-bd65-5c6e7aa75d40*
+**GET** /cache?uuid=279971e4-70f0-4b18-bd65-5c6e7aa75d40
 
-```
+```text
 HTTP/1.1 200 OK
 Content-Type: application/xml
 
@@ -109,9 +109,9 @@ Content-Type: application/xml
 
 ---
 
-**GET** */cache?uuid=147c9934-894b-4c1f-9a32-e7bb9cd15376*
+**GET** /cache?uuid=147c9934-894b-4c1f-9a32-e7bb9cd15376
 
-```
+```text
 HTTP/1.1 200 OK
 Content-Type: application/json
 
@@ -125,14 +125,32 @@ Content-Type: application/json
 
 ## Module Storage
 
-### Configuration
+Host companies may want to set up Prebid Cache to be able to store [module](/prebid-server/pbs-modules/) data separately from the main bids/VAST data store. Having a separate data store for each module or a group of modules allows the host company to:
 
-`api.module-storage-path` - path of module storage POST/GET endpoints.
-`api.api-key` - api key to secure module storage POST endpoint.
+- limit how much data space a given module (or group of modules) can consume
+- establish different retention policies for different types of data
 
-Module storage supports different `applications` and storage providers are configured per `application`.
-For now, only redis is supported. To configure redis storage for particular application, configure `module.storage.redis.{application-name}` property.
-If no `applications` are needed, set `module.storage.redis` to `{}` like so:
+### Use Cases
+
+Prebid Server modules may want to utilize storage local to the host company:
+
+- to cache user-specific data
+- to cache the output of expensive calculations
+- to avoid wide area network calls that cost everyone money
+
+#### Not In-Scope
+
+This feature does not support thread-safe updates of data. The intended use is write-once, read-many. e.g. a module that counted user session depth should not use this feature because that would require many PBS threads to read and atomically update the stored data.
+
+### PBC Configuration
+
+These entries in the PBC application.yaml file define module-related params:
+
+- `api.module-storage-path` - path of module storage POST/GET endpoints. Defaults to '/module-storage'.
+- `api.api-key` - api key to secure module storage POST endpoint. Host companies may not want everyone on the internet to be able to store stuff in their cache. The value of this key is set by the PBS host company in the PBC config and in the PBS config. (See [???](TBD] for details about where to set this.)
+
+Module storage supports different `applications` and storage providers are configured per `application`. For now, only [Redis](https://redis.io/) is supported for module storage. To configure Redis storage for particular application, configure the `module.storage.redis.{application-name}` property.
+If no `applications` are needed, set `module.storage.redis` to `{}` in application.yaml like so:
 
 ```yaml
 module:
@@ -155,33 +173,33 @@ module:
         timeout: 99999
 ```
 
+A big difference between module data storage and regular bid/VAST storage is that for module storage, PBC expects the key to be provided in the POST body. This is because the module will need to generate the key from data in the request in order for it to use that same lookup key in future requests.
+
 ### POST /module-storage
 
 This endpoint is used to storage module data. 
 
-Endpoint usage is authorized only for usage with configured api key. Api key should be provided as `x-pbc-api-key` header.
+Endpoint usage is authorized only for the configured api key. PBS or another caller should provide a `x-pbc-api-key` header.
 
-Endpoint uses json body as input.
-
-Here is an explanation of the fields in json body:
+The POST body is JSON. Here is an explanation of the fields:
 
 {: .table .table-bordered .table-striped }
-| Parameter | Description |
-| --- | --- |
-|	key | A name that will be used to reference the stored value. |
-|	value | String representation of the data you need to store. |
-|	type | Represents the format stored inside the value. Can be one of `JSON`, `XML`, `TEXT`. |
-|	ttlseconds | How long (in seconds) the data will be available in the module store. |
-|	application | Configured name of your module storage. Check the configuration section of [Module Storage endpoints](/prebid-server/endpoints/pbs-endpoints-pbc.html#configuration). |
+| Parameter | Scope | Description |
+| --- | --- | --- |
+|	key | required | A name that will be used to reference the stored value. |
+|	value | required | String representation of the data you need to store. |
+|	type | required | Represents the format stored inside the value. Can be one of `JSON`, `XML`, `TEXT`. |
+|	application | required | Configured name of your module storage. Check the configuration section of [Module Storage endpoints](/prebid-server/endpoints/pbs-endpoints-pbc.html#configuration). |
+|	ttlseconds | optional? | How long (in seconds) the data will be available in the module store. Default TBD. |
 
 Sample json payload:
 
 ```json
 {
-  "key": "test",
+  "key": "hashedaddress",
   "type": "text",
-  "value": "test",
-  "application": "application",
+  "value": "lots of data to store",
+  "application": "moduleA",
   "ttlseconds": 9999
 }
 ```
@@ -190,11 +208,21 @@ Sample json payload:
 
 Endpoint to retrieve previously stored module data.
 
-This endpoint utilizes query parameters to get desired stored data. Here are their explanations:
+This endpoint utilizes query parameters to get desired stored data:
 
 {: .table .table-bordered .table-striped }
-| Parameter | Description |
-| --- | --- |
-|	key | A name that will be used to reference the stored value. |
-|	application | Configured name of your module storage. Check the configuration section of [Module Storage endpoints](/prebid-server/endpoints/pbs-endpoints-pbc.html#configuration). |
+| Parameter | Scope | Description |
+| --- | --- | --- |
+|	key | required | A name that will be used to reference the stored value. |
+|	application | required | Configured name of your module storage. Check the configuration section of [Module Storage endpoints](/prebid-server/endpoints/pbs-endpoints-pbc.html#configuration). |
 
+For example:
+
+```text
+GET /module-storage?application=moduleA&key=hashedaddress
+```
+
+## Further Reading
+
+- [PBS endpoint overview](/prebid-server/endpoints/pbs-endpoint-overview.html)
+- [PBS module storage](/prebid-server/features/pbs-module-storage.html)
