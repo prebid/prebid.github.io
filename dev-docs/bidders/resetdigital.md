@@ -20,30 +20,33 @@ media_types: banner, video
 sidebarType: 1
 ---
 
-### bid params
+### Note
 
-{: .table .table-bordered .table-striped }
+Prebid adapter for Reset Digital requires approval and account setup, please contact us at <biddersupport@resetdigital.co>. Video is supported but requires a publisher supplied renderer at this time. 
+
+### Bid Params
 
 | Name     | Scope    | Description | Example                            | Type     |
 |----------|----------|-------------|------------------------------------|----------|
-| `pubId` | required |    Publisher account id         | `'123pubId'` | `string` |
-| `siteID` | optional |    Publisher site id         | `'123siteId'` | `string` |
+| `pubId` | required |    Publisher Account ID provided by ResetDigital    | `'123pubId'` | `string` |
+| `siteID` | optional |    Publisher Site ID         | `'123siteId'` | `string` |
 | `zoneId` | optional |   Used for extra fields          | `{}` | `object` |
+| `zoneId.placementId` | optional | ID used for reporting purposes | `"<id>"`    | `string` |
+| `zoneId.deals` | optional | Deal IDs comma-separated | `"deal123,deal456"` | `string` |
+| `zoneId.test` | optional | Flag to force bidder response with a creative | `1` | `integer` |
 | `forceBid` | optional | Returns test bid | true | `boolean` |
-| `position`     | optional           | Set the page position. Valid values are "atf" and "btf".                                                                    | `'atf'`                                                                             | `string`         |
-| `bidFloor`       | optional           | Sets the global floor -- no bids will be made under this value.                                                             | `0.50`                                                                              | `float`          |
-| `latLong`     | optional           | Sets the latitude and longitude for the visitor                                                                            | `[40.7608, 111.8910]`                                                               | `Array<float>`   |
-| `inventory`   | optional           |  This parameter allows the definition of an object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays of strings. | `{"rating":["5-star"], "prodtype":["tech","mobile"]}`                               | `object`         |
-| `visitor`      | optional           | This parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays of strings. | `{"ucat":["new"], "search":["iphone"]}`                                             | `object`         |
-| `keywords`     | optional           | This can be used to influence reports for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. | `["travel", "tourism"]`                                                             | `Array<string>`  |
+| `position`     | optional | Override the Prebid.js page position. Valid values are "atf" and "btf". | `'atf'` | `string`         |
+| `inventory` | optional |  This parameter allows the definition of an object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays of strings. | `{"rating":["5-star"],"prodtype":["tech","mobile"]}` | `object` |
+| `visitor` | optional | This parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays of strings. | `{"ucat":["new"], "search":["iphone"]}` | `object` |
+| `keywords` | optional | This can be used to influence reports for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. | `["travel", "tourism"]` | `Array<string>`  |
+| `bidFloor`     | optional | Override the Prebid.js bid floor -- no bids will be made under this value. | `0.50` | `float`          |
+| `latLong`      | optional | Override the Prebid.js latitude and longitude for the visitor. | `[40.7608, 111.8910]` | `Array<float>`   | 
 
 #### mediaTypes.video
 
 The following video parameters are supported here so publishers may fully declare their video inventory:
 
-{: .table .table-bordered .table-striped }
-
-| Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
+| Name           | Scope              | Description | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | context | required | instream or outstream |"outstream" | string |
 | playerSize| required | width, height of the player in pixels | [640,360] - will be translated to w and h in bid request | array<integers> |
@@ -60,3 +63,70 @@ The following video parameters are supported here so publishers may fully declar
 | maxbitrate | optional | Maximum bit rate in Kbps. | 9600 | integer |
 | startdelay | recommended | Indicates the start delay in seconds for pre-roll, mid-roll, or post-roll ad placements.<br /> >0: Mid-Roll (value indicates start delay in second)<br /> 0: Pre-Roll<br />-1: Generic Mid-Roll<br />-2: Generic Post-Roll | 0 | integer |
 | placement | recommended | Placement type for the impression. (see openRTB v2.5 section 5.9 for options) | 1 | integer |
+
+### Code Examples
+
+#### Banner Ad Unit
+
+Define the ad units for banner ads:
+
+```javascript
+var adUnits = [
+    {
+        code: 'your-div', // Replace with the actual ad unit code``
+        mediaTypes: {
+            banner: {
+                sizes: [[300, 250]] // Define the sizes for banner ads
+            }
+        },
+        bids: [
+            {
+                bidder: "resetdigital",
+                params: {
+                    pubId: "your-pub-id", // Replace with your publisher ID
+                    siteID: "your-site-id", // Replace with your site ID
+                    endpoint: 'https://ads.resetsrv.com', // Optional: Endpoint URL for the ad server
+                    forceBid: true, // Optional parameter to force the bid
+                    zoneId: {
+                        placementId: "abc123", // Optional ID used for reports
+                        deals: "deal123,deal456", // Optional string of deal IDs, comma-separated
+                        test: 1 // Set to 1 to force the bidder to respond with a creative
+                    }
+                }
+            }
+        ]
+    }
+];
+```
+
+#### Video Ad Unit
+
+Define the ad units for video ads
+
+```javascript
+var videoAdUnits = [
+    {
+        code: 'your-div', // Replace with the actual video ad unit code
+        mediaTypes: {
+            video: {
+                playerSize: [640, 480] // Define the player size for video ads
+            }
+        },
+        bids: [
+            {
+                bidder: "resetdigital",
+                params: {
+                    pubId: "your-pub-id", // (required) Replace with your publisher ID
+                    site_id: "your-site-id", // Replace with your site ID
+                    forceBid: true, // Optional parameter to force the bid
+                    zoneId: { // (optional) Zone ID parameters
+                        placementId: "<id>", // Optional ID used for reports
+                        deals: "<deal ids>", // Optional string of deal IDs, comma-separated
+                        test: 1 // Set to 1 to force the bidder to respond with a creative
+                    }
+                }
+            }
+        ]
+    }
+];
+```
