@@ -1252,7 +1252,7 @@ than others.
 pbjs.setConfig({
     // ...,
     realTimeData: {
-      auctionDelay: 100,     // REQUIRED: applies to all RTD modules
+      auctionDelay: 100,     // OPTIONAL: applies to all RTD modules.
       dataProviders: [{
           name: "RTD-MODULE-1",
           waitForIt: true,   // OPTIONAL: flag this module as important
