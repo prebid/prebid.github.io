@@ -22,11 +22,9 @@ sidebarType: 1
 
 ### Note
 
-Prebid adapter for Reset Digital requires approval and account setup. Video is supported but requires a publisher supplied renderer at this time.
+Prebid adapter for Reset Digital requires approval and account setup, please contact us at <biddersupport@resetdigital.co>. Video is supported but requires a publisher supplied renderer at this time. 
 
 ### Bid Params
-
-{: .table .table-bordered .table-striped }
 
 | Name     | Scope    | Description | Example                            | Type     |
 |----------|----------|-------------|------------------------------------|----------|
@@ -37,18 +35,16 @@ Prebid adapter for Reset Digital requires approval and account setup. Video is s
 | `zoneId.deals` | optional | Deal IDs comma-separated | `"deal123,deal456"` | `string` |
 | `zoneId.test` | optional | Flag to force bidder response with a creative | `1` | `integer` |
 | `forceBid` | optional | Returns test bid | true | `boolean` |
-| `position` | optional | Set the page position. Valid values are "atf" and "btf".| `'atf'`| `string`         |
-| `bidFloor` | optional | Sets the global floor -- no bids will be made under this value.| `0.50`| `float`          |
-| `latLong` | optional | Sets the latitude and longitude for the visitor| `[40.7608, 111.8910]`| `Array<float>`   |
-| `inventory` | optional |  This parameter allows the definition of an object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays of strings. | `{"rating":["5-star"], "prodtype":["tech","mobile"]}` | `object` |
+| `position`     | optional | Override the Prebid.js page position. Valid values are "atf" and "btf". | `'atf'` | `string`         |
+| `inventory` | optional |  This parameter allows the definition of an object defining arbitrary key-value pairs concerning the page for use in targeting. The values must be arrays of strings. | `{"rating":["5-star"],"prodtype":["tech","mobile"]}` | `object` |
 | `visitor` | optional | This parameter allows the definition of an object defining arbitrary key-value pairs concerning the visitor for use in targeting. The values must be arrays of strings. | `{"ucat":["new"], "search":["iphone"]}` | `object` |
-| `keywords` | optional | This can be used to influence reports for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. | `["travel", "tourism"]`                                                             | `Array<string>`  |
+| `keywords` | optional | This can be used to influence reports for client-side display. To get video or server-side reporting, please use First Party data or the inventory/visitor parameters. | `["travel", "tourism"]` | `Array<string>`  |
+| `bidFloor`     | optional | Override the Prebid.js bid floor -- no bids will be made under this value. | `0.50` | `float`          |
+| `latLong`      | optional | Override the Prebid.js latitude and longitude for the visitor. | `[40.7608, 111.8910]` | `Array<float>`   | 
 
 #### mediaTypes.video
 
 The following video parameters are supported here so publishers may fully declare their video inventory:
-
-{: .table .table-bordered .table-striped }
 
 | Name           | Scope              | Description | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
