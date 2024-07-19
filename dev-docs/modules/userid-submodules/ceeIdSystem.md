@@ -1,6 +1,6 @@
 ---
 layout: userid
-title: CEEIdSystem UserID Module
+title: CEEIdSystem
 description: CEEID User ID sub-module
 useridmodule: ceeIdSystem
 ---
