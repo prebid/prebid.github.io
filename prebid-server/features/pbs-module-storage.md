@@ -42,7 +42,11 @@ Future<Void> storeModuleEntry(String key,
 
 Future<ModuleCacheResponse> retrieveModuleEntry(String key, String moduleCode, String application);
 ```
-Here is an explanation of the parameters for the `storeModuleEntry` function:
+### storeModuleEntry()
+
+This function writes data through the Prebid Server module caching service.
+
+Here is an explanation of the parameters:
 
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Description |
@@ -54,7 +58,11 @@ Here is an explanation of the parameters for the `storeModuleEntry` function:
 |	moduleCode | required | Use this constant from your module `{ModuleName}Module.CODE`. |
 |	ttlseconds | optional | How long (in seconds) the data will be available in the module store. |
 
-Here is an explanation of the parameters for the `retrieveModuleEntry` function:
+### retrieveModuleEntry()
+
+This function reads data from the Prebid Server module caching service.
+
+Here is an explanation of the parameters:
 
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Description |
