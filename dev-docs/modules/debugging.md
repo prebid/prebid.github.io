@@ -10,6 +10,10 @@ sidebarType : 1
 ---
 
 # Debugging module
+{: .no_toc}
+
+* TOC
+{:toc }
 
 This module allows to "intercept" bids and replace their contents with arbitrary data for the purposes of testing and development.
 
@@ -183,6 +187,60 @@ pbjs.setConfig({
           vastXml: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><VAST version=\"2.0\"><Ad id=\"TestAd\"><InLine><AdSystem>Prebid Test</AdSystem><AdTitle>VAST 2.0 Linear Ad</AdTitle><Error><![CDATA[http://myErrorURL/error]]></Error><Impression><![CDATA[]]></Impression><Creatives><Creative id=\"2014\" AdID=\"20150911\" sequence=\"1\"><Linear><Duration>00:00:15</Duration><TrackingEvents><Tracking event=\"creativeView\"><![CDATA[]]></Tracking><Tracking event=\"start\"><![CDATA[]]></Tracking><Tracking event=\"firstQuartile\"><![CDATA[]]></Tracking><Tracking event=\"midpoint\"><![CDATA[]]></Tracking><Tracking event=\"thirdQuartile\"><![CDATA[]]></Tracking><Tracking event=\"complete\"><![CDATA[]]></Tracking></TrackingEvents><VideoClicks><ClickThrough><![CDATA[http://prebid.org/]]></ClickThrough><ClickTracking><![CDATA[]]></ClickTracking></VideoClicks><MediaFiles><MediaFile delivery=\"progressive\" width=\"960\" height=\"540\" type=\"video/mp4\"><![CDATA[https://s3.amazonaws.com/files.prebid.org/creatives/PrebidLogo.mp4]]></MediaFile></MediaFiles></Linear></Creative></Creatives></InLine></Ad></VAST>"
         }
       },
+    ]
+  }
+});
+```
+
+### Force a Native Bid
+
+Note: the native response asset IDs and types must match the request.
+
+```javascript
+pbjs.setConfig({
+  debugging: {
+    enabled: true,
+    intercept: [
+      {
+        when: {
+          adUnitCode: "test-div",
+          bidder: "bidderA"
+        },
+        then: {
+          cpm: 10,
+          bidder: "bidderA",
+          mediaType: "native",
+          source: "client",
+          currency: "EUR",
+          cpm: 1.00,
+          creativeId: "222222",
+          native: { ortb: {
+            link: { url: "http://example.com" },
+            assets: [{
+              id: 1,
+              title: { text: "Test Native Creative" }
+            },{
+              id: 2,
+              data: {
+                type: 2,
+                value: "Test Description"
+              }
+            },{
+              id: 3,
+              img: {
+                type: 3,
+                url: "https://files.prebid.org/creatives/prebid300x250.png"
+              }
+            },{
+              id: 4,
+              data: {
+                type: 1,
+                value: "Prebid"
+              }
+            }]
+          }}
+        }
+      }
     ]
   }
 });
