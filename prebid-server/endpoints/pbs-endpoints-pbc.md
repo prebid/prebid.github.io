@@ -11,7 +11,7 @@ title: Prebid Cache Endpoints
 The Prebid Cache server has a fairly simple API structure: one endpoint to write
 to cache, and one endpoint to read from cache.
 
-* TOC
+- TOC
 {:toc}
 
 ## POST /cache
