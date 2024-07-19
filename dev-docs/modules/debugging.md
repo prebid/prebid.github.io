@@ -12,7 +12,7 @@ sidebarType : 1
 # Debugging module
 {: .no_toc}
 
-* TOC
+- TOC
 {:toc }
 
 This module allows to "intercept" bids and replace their contents with arbitrary data for the purposes of testing and development.
