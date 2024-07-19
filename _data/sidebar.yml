@@ -258,14 +258,6 @@
   subgroup: 1
 
 - sbSecId: 1
-  title: Legacy Browser Example
-  link: /dev-docs/examples/legacy-browser-example.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 1
   title: Using Prebid.js with Microsoft Monetize Ad Server
   link: /dev-docs/examples/use-prebid-with-appnexus-ad-server.html
   isHeader: 0
