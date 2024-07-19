@@ -10,8 +10,8 @@ This reference is describes how Prebid Server [module](/prebid-server/pbs-module
 
 The Prebid Server team recommends one of these solutions:
 
-1.	Use internal application data structures like `com.github.benmanes.caffeine.cache.Caffeine`: This provides the fastest approach but is not suitable if you have large amounts of data or need a centralized cache.
-2.	Using module cache via PBC: Check the [Module Storage endpoints](/prebid-server/endpoints/pbs-endpoints-pbc.html#module-storage). This approach provides a centralized caching solution that will be available from each PBS instance configured to connect to the PBC application.
+1. Use internal application data structures like `com.github.benmanes.caffeine.cache.Caffeine`: This provides the fastest approach but is not suitable if you have large amounts of data or need a centralized cache.
+2. Using module cache via PBC: Check the [Module Storage endpoints](/prebid-server/endpoints/pbs-endpoints-pbc.html#module-storage). This approach provides a centralized caching solution that will be available from each PBS instance configured to connect to the PBC application.
 
 ## Using Prebid Cache
 
@@ -42,6 +42,7 @@ Future<Void> storeModuleEntry(String key,
 
 Future<ModuleCacheResponse> retrieveModuleEntry(String key, String moduleCode, String application);
 ```
+
 ### storeModuleEntry()
 
 This function writes data through the Prebid Server module caching service.
@@ -51,12 +52,12 @@ Here is an explanation of the parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Description |
 | --- | --- | --- |
-|	key | required | A name that will be used to reference the stored value. |
-|	value | required | String representation of the data you need to store. |
-|	type | required | Represents the format stored inside the value. Can be one of `JSON`, `XML`, `TEXT`. |
-|	application | required | Configured name of your module storage. This should be configurable in your global or account module config. |
-|	moduleCode | required | Use this constant from your module `{ModuleName}Module.CODE`. |
-|	ttlseconds | optional | How long (in seconds) the data will be available in the module store. |
+| key | required | A name that will be used to reference the stored value. |
+| value | required | String representation of the data you need to store. |
+| type | required | Represents the format stored inside the value. Can be one of `JSON`, `XML`, `TEXT`. |
+| application | required | Configured name of your module storage. This should be configurable in your global or account module config. |
+| moduleCode | required | Use this constant from your module `{ModuleName}Module.CODE`. |
+| ttlseconds | optional | How long (in seconds) the data will be available in the module store. |
 
 ### retrieveModuleEntry()
 
@@ -67,9 +68,9 @@ Here is an explanation of the parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Description |
 | --- | --- | --- |
-|	key | required | A name that will be used to reference the stored value. |
-|	application | required | Configured name of your module storage. This should be configurable in your global or account module config. |
-|	moduleCode | required | Use this constant from your module `{ModuleName}Module.CODE`. |
+| key | required | A name that will be used to reference the stored value. |
+| application | required | Configured name of your module storage. This should be configurable in your global or account module config. |
+| moduleCode | required | Use this constant from your module `{ModuleName}Module.CODE`. |
 
 ## Related Reading
 
