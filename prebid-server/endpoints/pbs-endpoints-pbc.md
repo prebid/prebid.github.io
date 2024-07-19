@@ -189,7 +189,7 @@ The POST body is JSON. Here is an explanation of the fields:
 | key | required | A name that will be used to reference the stored value. |
 | value | required | String representation of the data you need to store. |
 | type | required | Represents the format stored inside the value. Can be one of `JSON`, `XML`, `TEXT`. |
-| application | required | Name of a group of one or more modules. |
+| application | required | Name of a grouping of one or more modules. e.g. "id-modules". |
 | ttlseconds | optional? | How long (in seconds) the data will be available in the module store. Default TBD. |
 
 Sample json payload:
@@ -213,8 +213,8 @@ This endpoint utilizes query parameters to get desired stored data:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Description |
 | --- | --- | --- |
-|	key | required | A name that will be used to reference the stored value. |
-|	application | required | Configured name of your module storage. Check the configuration section of [Module Storage endpoints](/prebid-server/endpoints/pbs-endpoints-pbc.html#configuration). |
+| key | required | A name that will be used to reference the stored value. |
+| application | required | Name of a grouping of one or more modules. e.g. "id-modules". |
 
 For example:
 
