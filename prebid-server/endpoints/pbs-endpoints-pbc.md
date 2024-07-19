@@ -120,7 +120,7 @@ Content-Type: application/json
 
 ### Limitations
 
-- This application does *not* validate XML. If users `POST` malformed XML, they'll `GET` a bad response too.
+- This application does _not_ validate XML. If users `POST` malformed XML, they'll `GET` a bad response too.
 - The host company can set a max length on payload size limits in the application config. This limit will vary from host company to host company.
 
 ## Module Storage
@@ -186,11 +186,11 @@ The POST body is JSON. Here is an explanation of the fields:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Description |
 | --- | --- | --- |
-|	key | required | A name that will be used to reference the stored value. |
-|	value | required | String representation of the data you need to store. |
-|	type | required | Represents the format stored inside the value. Can be one of `JSON`, `XML`, `TEXT`. |
-|	application | required | Configured name of your module storage. Check the configuration section of [Module Storage endpoints](/prebid-server/endpoints/pbs-endpoints-pbc.html#configuration). |
-|	ttlseconds | optional? | How long (in seconds) the data will be available in the module store. Default TBD. |
+| key | required | A name that will be used to reference the stored value. |
+| value | required | String representation of the data you need to store. |
+| type | required | Represents the format stored inside the value. Can be one of `JSON`, `XML`, `TEXT`. |
+| application | required | Name of a group of one or more modules. |
+| ttlseconds | optional? | How long (in seconds) the data will be available in the module store. Default TBD. |
 
 Sample json payload:
 
