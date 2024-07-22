@@ -7,6 +7,8 @@ gvl_id: 867
 pbjs: true
 safeframes_ok: false
 sidebarType: 1
+pbs_app_supported: true
+prebid_member: true
 ---
 
 ### Note
@@ -19,3 +21,4 @@ The Missena Bidding adapter requires setup before beginning. Please contact us a
 | Name       | Scope    | Description                | Example         | Type     |
 |------------|----------|----------------------------|-----------------|----------|
 | `apiKey`   | required | Missena's publisher token  | `'PA-34745704'` | `string` |
+| `placement`   | optional | Placement Type, default: 'sticky' | `'sticky'` | `string` |
