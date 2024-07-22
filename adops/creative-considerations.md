@@ -12,22 +12,21 @@ sbUUID: 3.2
 - TOC
 {: toc }
 
-[Prebid Universal Creative Overview](/overview/prebid-universal-creative.html).
-
 ## Creatives Overview
 
-This document will provide information to help you set up the ad server so ads of various media formats will be rendered properly. A couple of questions to answer:
+This document will provide information to help you set up the ad server so ads of various media formats will be rendered properly. A couple of questions to consider:
 
 - What Prebid scenarios do you need now and in the forseeable future? Is Prebid.js all you need? Or do you have an [AMP](/formats/formats.html#amp) version of your site? Do you have a mobile app?
-- Do you want to use the new [dynamic creative](#prebidjs-dynamic-creatives) approach or use the original [Prebid Universal Creative (PUC)](#prebid-universal-creative)?
+- Are you able to maintain the ad server creatives once they're established?
 
 Here's a set of basic creative recommendations to use as a starting point:
 
 1. **Are you using Prebid.js only?**
-    1. Is one extra HTTP fetch a considerable cost for your revenue performance? If yes, then you'll want to consider using the 'dynamic creative' approach.
+    1. Is one extra HTTP fetch a considerable drag on your revenue performance? If yes, then you'll want to consider using the 'dynamic creative' approach.
     1. Is updating the creatives in the future going to be possible? If yes, then again, the dynamic creative approach would be fine.
+    1. Otherwise, consider using the Prebid Universal Creative (PUC)
 1. **Are you using both Prebid.js and AMP?**
-    1. For now, you'll need to have two sets of line items: one for instream video, and one that uses the PUC for everything else.
+    1. For now, we recommend two sets of line items: one for instream video, and one that uses the PUC for everything else.
     1. In the future, there will be an option to run three sets of line items to utilize the dynamic creative for Prebid.js.
 1. **Using Prebid Mobile?**
     1. Choose your integration method and see the "AdOps Guidance" section for that integration method.
@@ -46,11 +45,11 @@ are the types of creatives that may be attached to your ad server line items.
 {: .table .table-bordered }
 | :memo: Use Cases          |
 |:---------------------------|
-| - AMP<br/>- Prebid Mobile Bidding-Only<br/>- Prebid.js when you use AMP or PBSDK and want to minimize line item count or your ad server can't target at the creative level, or you want to keep line item setup simple. |
+| - AMP<br/>- Prebid Mobile Bidding-Only<br/>- Prebid.js when you use AMP or PBSDK and want to keep line item setup simple. |
 
 The original idea behind the Prebid Universal Creative (which we fondly call 'the PUC') was that it would be one set of javascript that would render banners, non-instream, and native creatives.
 
-However, that orignal vision was eroded by several factors:
+However, having a lot of functionality (even if not quite "universal") comes with some drawbacks:
 
 - The PUC requres an extra HTTP fetch, slowing down ad rendering by some amount. 
 - The size of the PUC grew as use cases were added.
@@ -67,7 +66,7 @@ the actual PUC.
 
 If you choose to use the Prebid Universal Creative, you'll need to decide where to load it from:
 
-1. Prebid hosts an always-up-to-date copy of the PUC code at `https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/*`. The upside of this location is that it's automatically updated so it contains new features automatically.
+1. Prebid hosts an always-up-to-date copy of the PUC code at `https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/*`. The upside of this location is that it's automatically updated so it contains new features automatically. The potential downside is that Prebid controls when it's upgrades.
 1. You can host the PUC at your own location. The upside of this option is that you can control when upgrades happen.
 1. You can copy the body of the PUC into your ad server creative directly. This eliminates a browser fetch, but could make upgrades more difficult.
 
@@ -89,7 +88,7 @@ If you have line items that target only browsers running Prebid.js, you can use 
 
 VAST video does not use the PUC. Instead, video bids provide VAST that Prebid caches to obtain a cache ID that can be retrieved with a URL. The cache ID is passed as a key value to the ad server. (See [Video Overview](/prebid-video/video-overview.html) for details.)
 
-When you’re running campaigns with video creatives, the primary decision you need to make is where to cache your video bids. You’ll enter this location in the creative you add to the line item. The cache location is typically independent of the bidders. The most common cache location is <https://prebid.adnxs.com>. See [Setting Up Video In GAM](/adops/setting-up-prebid-video-in-dfp.html) for detailed instructions on configuring a video creative in GAM.
+When you’re running campaigns with video creatives, the primary decision you need to make is where to cache your video bids. You’ll enter this location in the VastUrl you add to the line item. The cache location is typically independent of the bidders. The most common cache location is <https://prebid.adnxs.com>, but this may vary with your setup. See [Setting Up Video In GAM](/adops/setting-up-prebid-video-in-dfp.html) for detailed instructions on configuring a video creative in GAM.
 
 ### Prebid SDK Rendering
 
@@ -144,6 +143,15 @@ Like Prebid.js, Mobile native ads require close collaboration between web design
 
 Prebid Mobile uses a special script called 'native-trk.js' to render native creatives implemented on a webview. See the [GAM Native Creatives page](/adops/gam-native.html) for details.
 
+### Native (In-App)
+
+{: .table .table-bordered }
+| :memo: Use Cases          |
+|:---------------------------|
+| - Prebid Mobile app-rendered native |
+
+The final native option is when the app itself does the rendering. See [Prebid In-App Native for GAM](/adops/gam-native.html#create-mobile-in-app-creative) for more information.
+
 ### Mediation platforms
 
 Mobile apps that are integrated with mediation platforms [AdMob](/adops/mobile-rendering-admob-line-item-setup.html) or [MAX](/adops/mobile-rendering-max-line-item-setup.html) should follow those special instructions.
@@ -152,13 +160,13 @@ Mobile apps that are integrated with mediation platforms [AdMob](/adops/mobile-r
 
 You can name your creatives whatever makes sense to your organization. We recommend names in the following format: Prebid - Type - Size - N. For example, a banner creative using the PUC would be `Prebid - banner - 1x1 - 1`.
 
-## Creative Modes
+## Display Ad Sizes
 
-No matter what type of media you’re working with, you need to decide how you’re going to represent the size options in the ad server. There are three creative size modes:
+For display ads, you need to decide how you’re going to represent the size options in the ad server. There are three creative size modes:
 
 - Creatives are all sized 1x1
 - Creatives are sized their actual size
-- Line items are targeted per size
+- Line items are targeted to the size
 
 ### All Creatives 1x1
 

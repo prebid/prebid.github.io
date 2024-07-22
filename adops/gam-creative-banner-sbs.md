@@ -1,19 +1,34 @@
 ---
 layout: page_v2
-title: GAM Step by Step - Banner/Outstream/AMP Creatives
-head_title: GAM Step by Step - Banner/Outstream/AMP Creatives
-description: Set up banner and outstream creatives for Prebid in Google Ad Manager.
+title: GAM Step by Step - Banner/In-Renderer/AMP/Native Creatives
+head_title: GAM Step by Step - Banner/In-Renderer/AMP/Native Creatives
+description: Set up Banner and In-Renderer creatives for Prebid in Google Ad Manager.
 pid: 2
 sidebarType: 3
 ---
 
+# GAM Step by Step - Banner/In-Renderer/AMP Creatives
+{: .no_toc}
 
-# GAM Step by Step - Banner/Outstream/AMP Creatives
+- TOC
+{:toc}
 
-This page walks you through the steps required to create banner and outstream creatives to attach to your Prebid line items in Google Ad Manager (GAM).
+This page walks you through the steps required to create banner and In-Renderer (formerly known as "outstream") creatives to attach to your Prebid line items in Google Ad Manager (GAM). This same process can cover native creatives if you've chosen the in-adunit or external native template options. If you're using GAM's native
+design tool, you'll need to follow the [GAM native](/adops/gam-native.html) page.
 
 {: .alert.alert-success :}
 For complete instructions on setting up Prebid line items in Google Ad Manager, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
+
+{: .alert.alert-info :}
+Note that for Prebid Mobile, the In-Renderer video scenario is covered by video line items. See the [video creative reference](adops/setting-up-prebid-video-in-dfp.html) for details.
+
+## Overview
+
+This document describes how to implement the 3rd Party HTML creatives in GAM for banner/etc. See the [creative considerations](/adops/creative-considerations.html) reference for an overview.
+
+## Prebid Universal Creative
+
+This procedure works for both Prebid.js and Prebid Mobile, with a few differences noted below.
 
 1. In GAM, select **Delivery** > **Creatives**.
 2. Under the **Display creatives** tab, click **New Creative**.
@@ -25,7 +40,7 @@ For complete instructions on setting up Prebid line items in Google Ad Manager, 
 These instructions assume you're using the Prebid Universal Creative (PUC) after v1.15 that supports the separate `banner.js` file. See the [Prebid Universal Creative](/overview/prebid-universal-creative.html) documentation for alternate approaches.
 
 {: .alert.alert-danger :}
-**AMP**: If you choose to bypass the PUC for AMP, Prebid Server analytics will not work.
+**AMP**: If you choose to bypass the PUC for AMP or Prebid Mobile, Prebid Server analytics will not work.
 
 {:start="6"}
 6. Select **Standard** as the **Code type**.
@@ -41,8 +56,13 @@ These instructions assume you're using the Prebid Universal Creative (PUC) after
 {: .alert.alert-warning :}
 Be sure to replace BIDDERCODE with the appropriate bidder. For example, if the bidder code is `PBbidder`, the `adid` would be `%%PATTERN:hb_adid_PBbidder%%`.
 
+Also, replace "PUCFILE" with:
+
+- Prebid.js: "%%PATTERN:hb_format%%.js"
+- Prebid Mobile: "creative.js"
+
 ```html
-<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/PUCFILE"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
@@ -57,6 +77,10 @@ Be sure to replace BIDDERCODE with the appropriate bidder. For example, if the b
   ucTagData.hbPb = "%%PATTERN:hb_pb_BIDDERCODE%%";
   // mobileResize needed for mobile GAM only
   ucTagData.mobileResize = "hb_size:%%PATTERN:hb_size_BIDDERCODE%%";
+  // these next two are only needed for native creatives but are ok for banner
+  ucTagData.requestAllAssets = true;
+  ucTagData.clickUrlUnesc = "%%CLICK_URL_UNESC%%";
+
   try {
     ucTag.renderAd(document, ucTagData);
   } catch (e) {
@@ -75,14 +99,22 @@ Warning: Be sure none of the attribute names are longer than 20 characters. See 
 
 In top-price mode, you can make use of the GAM `TARGETINGMAP` feature instead of listing out each attribute.
 
+Be sure to replace "PUCFILE" with:
+
+- Prebid.js: "%%PATTERN:hb_format%%.js"
+- Prebid Mobile: "creative.js"
+
 ```html
-<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>
+<script src = "https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/PUCFILE"></script>
 <script>
   var ucTagData = {};
   ucTagData.adServerDomain = "";
   ucTagData.pubUrl = "%%PATTERN:url%%";
   ucTagData.targetingMap = %%PATTERN:TARGETINGMAP%%;
   ucTagData.hbPb = "%%PATTERN:hb_pb%%";
+  // these next two are only needed for native creatives but are ok for banner
+  ucTagData.requestAllAssets = true;
+  ucTagData.clickUrlUnesc = "%%CLICK_URL_UNESC%%";
 
   try {
     ucTag.renderAd(document, ucTagData);
@@ -113,10 +145,20 @@ Note: You can ignore the “Sorry, we don’t recognize this tag” warning. GAM
 {:start="10"}
 10. Click **Save and preview**.
 
+## Prebid Dynamic Creative
+
+The process for the Prebid Dynamic Creative is exactly the same except
+that the body of the creative is different. In Step 7 above, instead of
+using the creative body that loads the PUC:
+
+For Send-Top-Bid setups, copy the [dynamic creative](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html) from github and paste it into GAM.
+
+For Send-All-Bids setups, copy the [dynamic creative](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html) from github and paste it into GAM. Then replace `%%PATTERN:hb_adid%%` with `%%PATTERN:hb_adid_BIDDERCODE%%`. For example, if the bidder code is `PBbidder`, the `adid` would be `%%PATTERN:hb_adid_PBbidder%%`. Remember to truncate the whole hb_adid_BIDDERCODE to 20 characters.
+
 ## Further Reading
 
 * [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
 * [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html)
-* [Prebid Universal Creatives](/overview/prebid-universal-creative.html)
+* [Prebid Universal Creative](/overview/prebid-universal-creative.html)
 * [Creative Considerations](/adops/creative-considerations.html)
 * [Ad Ops Planning Guide](/adops/adops-planning-guide.html)

@@ -16,16 +16,16 @@ As background, it should be noted that Prebid Mobile evolved separately from Pre
 
 These differences explain the special mobile procedures noted in other documents.
 
-1. Outstream video in mobile must be implemented in GAM with AdUnits that support video adsizes and the `VastUrl` creative. This contrasts with Prebid.js which utilizes 3rd party HTML creatives for outstream video.
+1. In-Renderer video (formerly known as "outstream") in mobile must be implemented in GAM with AdUnits that support video adsizes and the `VastUrl` creative. This contrasts with Prebid.js which utilizes 3rd party HTML creatives for in-renderer video.
 1. How ads are rendered is different in various scenarios. See the 'AdOps guidance' section in your ad server use case for details. This can be particular important when you are investigating discrepancies between reports from various sources.
 1. You will need to consider whether you want Prebid Server to cache creatives. This answer will inform the contents of the Prebid Server configuration.
 
 ## Publishers using both Prebid.js and Prebid mobile
 
-If your a company using both Prebid.js and Prebid mobile that employs "outstream" video (aka standalone, aka "accompanying content"), your line item setup will be more complicated.
+If your a company using both Prebid.js and Prebid mobile that employs In-Renderer video, your line item setup will be more complicated.
 
 Probably the easiest way to manage this scenario will be to create separate line items for placements running Prebid.js vs placements running Prebid mobile.
-The Prebid.js line items will set up outstream video as 3rd party HTML while the mobile line items will set them up as video.
+The Prebid.js line items will set up In-Renderer video as 3rd party HTML while the mobile line items will set them up as video.
 
 ## Further Reading
 

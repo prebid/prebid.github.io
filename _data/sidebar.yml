@@ -1050,7 +1050,7 @@
   subgroup: 2
 
 - sbSecId: 3
-  title: 'Creative Setup: Banner/Outstream/AMP'
+  title: 'Creative Setup: Banner/In-Renderer/AMP'
   link: /adops/gam-creative-banner-sbs.html
   isHeader: 0
   isSectionHeader: 0

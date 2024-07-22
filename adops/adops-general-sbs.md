@@ -8,7 +8,6 @@ sidebarType: 3
 ---
 
 # General Ad Server Prebid Setup
-
 {: .no_toc }
 
 * TOC
@@ -63,7 +62,7 @@ The exact order of the following steps will differ depending on your ad server.
 1. Enter a name for your line item. Suggested format: Prebid – format - bidder – price bucket. For example, `Prebid – banner - BidderA – 1.50`.
 2. Set the priority of your line item to whatever you think is appropriate. Typically Prebid line items are prioritized below direct-sold but above house/remnant.
 3. Enter the sizes of your creatives:
-    * Banner/Outstream/AMP/Video: Select the sizes of all ad slots included in the Prebid process.
+    * Banner/Non-InstreamVideo/AMP/Video: Select the sizes of all ad slots included in the Prebid process.
     * Native: Select a native template.
 4. Long-Form (OTT) Video only:
 If you’re using competitive exclusions, fill in the associated field with the appropriate value. You’ll need to include this value when you set your targeting for the `hb_pb_cat_dur` key. See [Targeting](#targeting) below for more information.
@@ -82,16 +81,16 @@ Target the price bucket key: `hb_pb_BIDDERCODE` (where BIDDERCODE is the actual 
 
 The following additional keys must be added for the corresponding formats:
 
-**Banner/Outstream/Native:**
+**Banner/Non-InstreamVideo/Native:**
 
-You can use the same line item for banner, outstream, and/or native creatives. If your ad slot could be filled by two or more of these formats, you should include the hb_format_BIDDERCODE key with values specifying all expected formats.
+You can use the same line item for banner, non-instream (formerly called "outstream"), and/or native creatives. If your ad slot could be filled by two or more of these formats, you should include the hb_format_BIDDERCODE key with values specifying all expected formats.
 
 {: .alert.alert-warning :}
 If you combine native with another format in a single line item, you’ll need to add creative-level targeting to designate which creatives target which format. If your ad server doesn't support creative-level targeting, you may need to break out a separate set of line items.
 
-**In-Player and Outstream Video:**
+**In-Player and In-Renderer Video:**
 
-Both in-player (instream) and outstream video ads receive the `hb_format_BIDDERCODE=video` key-value pair, so targeting on that key alone is not enough to choose the correct line items. If you're running both in-player and outstream video ads, they will most likely be separate line items, so you will need to target outstream line items to a “display” inventory type, or perhaps separate them by adunits.
+Both in-player (instream) and in-renderer (formatly "outstream") video ads receive the `hb_format_BIDDERCODE=video` key-value pair, so targeting on that key alone is not enough to choose the correct line items. If you're running both in-player and in-renderer video ads, they will most likely be separate line items, so you will need to target non-instream line items to a “display” inventory type, or perhaps separate them by adunits.
 
 **Long-Form (OTT) Video:**
 
@@ -123,13 +122,13 @@ The process of creating your creatives will differ based on the type of creative
 
 In general, you can interpret the instructions for setting up creatives in Google Ad Manager with some modifications; specifically, to the MACROs used in the ad tag. (See below for details.) Refer to the following for GAM documentation:
 
-* [GAM Creative Setup: Banner/Outstream/AMP](/adops/gam-creative-banner-sbs.html)
+* [GAM Creative Setup: Banner/In-Renderer/AMP](/adops/gam-creative-banner-sbs.html)
 * [GAM Creative Setup: Native](/adops/gam-native.html)
 * [GAM Creative Setup: Video](/adops/setting-up-prebid-video-in-dfp.html)
 
 We recommend using the [Prebid Universal Creative](/overview/prebid-universal-creative.html) and targeting an ad unit size of 1x1.
 
-If you’re working with banner or outstream creatives, the HTML you’ll enter in the creatives will be similar to the following (utilizing whatever macro format is supported by your ad server):
+If you’re working with banner or in-renderer creatives, the HTML you’ll enter in the creatives will be similar to the following (utilizing whatever macro format is supported by your ad server):
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/%%PATTERN:hb_format%%.js"></script>

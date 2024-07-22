@@ -24,7 +24,7 @@ To integrate the Prebid demand you have to create a Line Items with a specific p
 Create a Line Item depending on the type of expected creative kind:
 
 * **Display** - for the Banner, HTML Interstitial
-* **Video and Audio** - for the Video Interstitial, Rewarded Video, and Outstream Video ads.
+* **Video and Audio** - for the Video Interstitial, Rewarded Video, and In-Renderer Video ads.
 
 <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-li-create.png" alt="Pipeline Screenshot" align="center">
 

@@ -3,12 +3,10 @@ layout: page_v2
 title: Google Ad Manager with Prebid Step by Step
 head_title: Google Ad Manager with Prebid Step by Step
 description: Step-by-step instructions for setting up line items in GAM for Prebid.
-#note the sidebar type needs to reflect the section this file is displayed in. See _data/sidenav.yml for the side nav categories.
 sidebarType: 3
 ---
 
 # Google Ad Manager with Prebid Step by Step
-
 {: .no_toc }
 
 - TOC
@@ -30,15 +28,20 @@ Before you begin, we recommend you read through our [Planning Guide](/adops/adop
 GAM works as a hierarchical structure, where line items are children of orders, and orders are children of advertisers. You must have your advertisers and orders set up before you can start creating line items and creatives. The advertisers you create for Prebid will typically depend on whether you’re sending all bids or only the top price bid to the ad server.
 
 - Send Top Bid: Create one general Prebid advertiser
-- Send All Bids: Create one Prebid advertiser per bidder where Orders are organized by bidder, with one or more orders containing line items targeted towards a single bidder.
+- Send All Bids: Two choices:
+    - Create one Prebid advertiser per bidder where Orders are organized by bidder, with one or more orders containing line items targeted towards a single bidder. This approach lets you track bidders as advertisers in your ad server reports.
+    - Create one general Prebid advertiser. This approach simplifies campaign setup by allowing all line items to share one set of creatives.
 
 ![Google Ad Manager hierarchy](/assets/images/ad-ops/gam-sbs/gam-hierarchy.png)
+
+Note that GAM has a limit of 450 line items per order. It's quite likely that
+you'll need more than one order to contain all of the line items.
 
 ### Create Native Template
 
 If you’re working with native inventory, you must have your native template created and stored before you begin creating your line item. See [GAM Step by Step - Native Creatives](/adops/gam-native.html).
 
-### Create Keys
+### Create Inventory Keys and Values
 
 When you create your line item, you’ll be targeting key-value pairs that are being sent with the ad request to the ad server. Any keys you target need to be defined in GAM before you can use them in your line items.
 
@@ -47,28 +50,49 @@ To define new keys, in GAM go to **Inventory** > **Key-Values** and enter your P
 You can also define accepted values for the keys, but you don’t need to. If you create Dynamic keys, values can be added when you set up your line item.
 
 {: .alert.alert-danger :}
-Keys in GAM have a maximum length of 20 characters; any keys passed to GAM longer than that will be truncated. This means that if Prebid passes in the key `hb_format_BidderWithALongName`, GAM will truncate it to `hb_format_BidderWith`. When you create your keys, you must use the truncated name.
+Key names in GAM have a maximum length of 20 characters; any keys passed to GAM longer than that will be truncated. This means that if Prebid passes in the key `hb_format_BidderWithALongName`, GAM will truncate it to `hb_format_BidderWith`. When you create your keys, you must use the truncated name.
 
 See [Key Values](/adops/key-values.html) for information on the keys you'll need.
 
 ## Create a Line Item
 
-Open the order you want to associate the line item with and click **New line item**.
+Depending on your scenario, you will likely need several groups of line items.
+See the [line item essentials](/adops/line-item-creation.html) guide for details.
+How many line items are in each group depends on the [price granularity](/price-granularity.html).
+
+For instance, if you're running both Prebid.js and Prebid Mobile,
+you should consider having 2 sets of banner line items and 2 sets of video line items. If your banner line items are medium granularity (201 line items), and your
+video line items are custom granularity (300 line items), then you'll go
+through this line item creation process 1002 times. You'll need at least 3 orders
+to contain them, but it would be more convenient to have 4 orders in this scenario: one for each group.
+
+This is why automated tools are important when setting up your ad server for
+header bidding. If you don't have an automated tool, consider Prebid's
+[line item manager](/tools/line-item-manager.html) or utilize low price
+granularities.
+
+The rest of this document assumes you're going to create line items manually.
+For each line item, open the order you want to associate the line item with and click **New line item**.
 
 ### General Settings
 
 From the **Settings** tab, do the following:
 
 1. Select your **Ad type**:
-    - Banner/Outstream/Native/AMP: Click **Select display ad**.
-    - Video/Audio: Click **Select video or audio ad**.
+    - Prebid.js: Banner/In-Renderer Video/Native/AMP: Click **Select display ad**.
+    - Prebid.js: Instream Video/Audio: Click **Select video or audio ad**.
+    - Prebid Mobile: Banner/Native: Click **Select display ad**.
+    - Prebid Mobile: All forms of Video/Audio: Click **Select video or audio ad**.
+
+{: .alert.alert-info :}
+Note: "In-renderer video" is the term Prebid uses to cover everything that's not "instream video". i.e. Accompanying Content, Interstitial, Standalone.
 
 2. Enter the **Name** of your line item. Suggested format: Prebid – format - bidder – price bucket. For example, `Prebid – banner - BidderA - 1.50`.
 
 3. Set the **Line Item Type** to **Price priority (12)**. (This will most likely be higher for deals. See [Deals in Prebid](/adops/deals.html) for more information.)
 
 4. Enter your **Expected Creatives**:
-    - Banner/Outstream/AMP/Video: Select the sizes of all ad slots included in the Prebid process.
+    - Display and Video: Select the sizes of all ad slots included in the Prebid process.
     - Native: Select a native template. (See [GAM Step by Step - Native Creatives](/adops/gam-native.html) for instructions on creating native templates.)
 
 ![New line item settings](/assets/images/ad-ops/gam-sbs/line-item-settings.png)
@@ -88,6 +112,10 @@ From the **Settings** tab, do the following:
 
 ### Targeting
 
+#### Targeting the price bucket (hb_pb)
+
+The header bidding "price bucket" is the key piece of ad server targeting.
+
 Under **Add targeting**, expand **Custom targeting**.
 
 {: .alert.alert-info :}
@@ -99,22 +127,37 @@ Leave **is any of** and enter (or select) your price bucket.
 
 ![Custom targeting on price bucket](/assets/images/ad-ops/gam-sbs/custom-targeting-pb.png)
 
-The following additional keys must be added for the corresponding formats:
+#### Targeting the format (hb_format)
 
-**Banner/Outstream/Native**:
+If you're running just Prebid.js, there's no need for adding hb_format to the target. GAM knows which requests are coming from the video IMA SDK and
+will choose the right line item.
 
-You can use the same line item for banner, outstream, and/or native creatives. If your ad slot could be filled by two or more of these formats, you must include the hb_format key with values specifying all expected formats. Select **hb_format_BIDDERCODE > is any of > video, banner, native**.
+However, for Prebid Mobile, things are different. If you run Prebid Mobile
+with or without Prebid.js, it's recommended that you put hb_format targeting on all line items.
+
+1. Prebid.js display: hb_format is any of banner, video, native
+1. Prebid.js video: hb_format is any of video
+1. Prebid Mobile display: hb_format is any of banner, native
+1. Prebid Mobile video: hb_format is any of video
+
+{: .alert.alert-warning :}
+If running "Send All Bids" mode, use hb_format_BIDDER instead of hb_format.
 
 ![Custom targeting on format](/assets/images/ad-ops/gam-sbs/custom-targeting-format.png)
 
-{: .alert.alert-warning :}
-If you combine native with another format in a single line item, you’ll need to add creative-level targeting to designate which creatives target which format. See [Creative-level Targeting](#creative-level-targeting) below.
+## Targeting inventoryType
 
-**In-Player and Outstream Video**:
+GAM recognizes these "inventoryTypes": Display, Instream Video, and Mobile App.
 
-Both in-player (instream) and outstream video ads supply the `hb_format_BIDDERCODE=video` key-value pair, so targeting on that key alone is not enough to choose the correct line items. If you're running both instream and outstream video ads, they will most likely be separate line items, so you will need to target outstream line items to either "Inventory Type=display" or "Inventory in (list of GAM AdUnits)".
+The only time you'll need to update a line item's inventoryType is
+for Prebid Mobile video line items. In that scenario you'll need to
+add the "Mobile App" inventoryType.
 
 **Long-Form (OTT) Video**:
+
+{: .alert.alert-warning :}
+Targeting Long form video can create a lot of line items. It's recommended
+that you keep your price granularity low.
 
 For long-form video the custom key **hb_pb_cat_dur_BIDDERCODE** is required. The value of this key breaks down like this:
 
@@ -151,7 +194,7 @@ You’ve now added all fields necessary for targeting Prebid line items. You can
 
 The process you use to create your creatives differs based on the media type. Follow the instructions for the appropriate media type:
 
-- [Banner/Outstream/AMP](/adops/gam-creative-banner-sbs.html)
+- [Banner/In-Renderer/AMP](/adops/gam-creative-banner-sbs.html)
 - [Native](/adops/gam-native.html)
 - [Video](/adops/setting-up-prebid-video-in-dfp.html)
 
@@ -214,6 +257,6 @@ If you’re using a Send All Bids configuration, you need to repeat all the abov
 ## Further Reading
 
 - [Prebid Ad Ops Planning Guide](/adops/adops-planning-guide.html)
-- [GAM Step by Step Creatives: Banner/Outstream/AMP](/adops/gam-creative-banner-sbs.html)
+- [GAM Step by Step Creatives: Banner/In-Renderer/AMP](/adops/gam-creative-banner-sbs.html)
 - [GAM Step by Step Creatives: Native](/adops/gam-native.html)
 - [GAM Step by Step Creatives: Video](/adops/setting-up-prebid-video-in-dfp.html)
