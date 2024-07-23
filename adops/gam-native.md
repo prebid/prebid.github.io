@@ -90,9 +90,9 @@ There are three key aspects of the native template:
 1. Build the creative with special Prebid.js macros, e.g. `##hb_native_assetname##`. Note that macros can be placed in the body (HTML) and/or head (CSS) of the native creative.
 2. Load the Prebid.js native rendering code. You can utilize the jsdelivr version of native.js or host your own copy. If you use the version hosted on jsdelivr, make sure to declare jsdelivr as an ad technology provider in GAM. (Go to **Privacy & messaging** and click the Settings icon under **GDPR**. Under **Review your ad partners** click into **Commonly used ad partners**.) See Step 6 under [Create a New Native Creative](#create-a-new-native-creative) below.
 3. Invoke the Prebid.js native rendering function with an object containing the following attributes:
-  1. adid - Used to identify which Prebid.js creative holds the appropriate native assets.
-  2. pubUrl - The URL of the page, which is needed for the HTML postmessage call.
-  3. requestAllAssets - Tells the renderer to get all the native assets from Prebid.js.
+    1. adid - Used to identify which Prebid.js creative holds the appropriate native assets.
+    2. pubUrl - The URL of the page, which is needed for the HTML postmessage call.
+    3. requestAllAssets - Tells the renderer to get all the native assets from Prebid.js.
 
 Example creative HTML:
 
