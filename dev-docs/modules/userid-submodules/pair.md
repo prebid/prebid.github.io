@@ -45,7 +45,7 @@ Or if to use cleanrooms provided implementation, it can be specified by adding t
 
 ```javascript
 
-// value in 'pairid' local storage/cookie entry will be combined with ids provided by cleamroom liveramp
+// value in 'pairId' local storage/cookie entry will be combined with ids provided by cleamroom liveramp
 
 pbjs.setConfig({
     userSync: {
