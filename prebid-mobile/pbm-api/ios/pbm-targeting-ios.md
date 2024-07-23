@@ -516,6 +516,7 @@ adUnit.setOrtbConfig("{\"ext\":{\"gpid\":\"abc123"}}\")
 ```
 
 Notes:
+
 - App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)
 - See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
 

@@ -172,4 +172,3 @@ The final steps in configuring Prebid on your ad server are to do the following:
 
 * [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
 * [Ad Ops and Prebid Overview](/adops/before-you-start.html)
-  

@@ -157,8 +157,8 @@ For Send-All-Bids setups, copy the [dynamic creative](https://github.com/prebid/
 
 ## Further Reading
 
-* [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
-* [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html)
-* [Prebid Universal Creative](/overview/prebid-universal-creative.html)
-* [Creative Considerations](/adops/creative-considerations.html)
-* [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
+- [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
+- [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html)
+- [Prebid Universal Creative](/overview/prebid-universal-creative.html)
+- [Creative Considerations](/adops/creative-considerations.html)
+- [Ad Ops Planning Guide](/adops/adops-planning-guide.html)

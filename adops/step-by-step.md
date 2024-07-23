@@ -29,8 +29,8 @@ GAM works as a hierarchical structure, where line items are children of orders, 
 
 - Send Top Bid: Create one general Prebid advertiser
 - Send All Bids: Two choices:
-    - Create one Prebid advertiser per bidder where Orders are organized by bidder, with one or more orders containing line items targeted towards a single bidder. This approach lets you track bidders as advertisers in your ad server reports.
-    - Create one general Prebid advertiser. This approach simplifies campaign setup by allowing all line items to share one set of creatives.
+  - Create one Prebid advertiser per bidder where Orders are organized by bidder, with one or more orders containing line items targeted towards a single bidder. This approach lets you track bidders as advertisers in your ad server reports.
+  - Create one general Prebid advertiser. This approach simplifies campaign setup by allowing all line items to share one set of creatives.
 
 ![Google Ad Manager hierarchy](/assets/images/ad-ops/gam-sbs/gam-hierarchy.png)
 
@@ -87,10 +87,13 @@ From the **Settings** tab, do the following:
 {: .alert.alert-info :}
 Note: "In-renderer video" is the term Prebid uses to cover everything that's not "instream video". i.e. Accompanying Content, Interstitial, Standalone.
 
+{:start="2"}
 2. Enter the **Name** of your line item. Suggested format: Prebid – format - bidder – price bucket. For example, `Prebid – banner - BidderA - 1.50`.
 
+{:start="3"}
 3. Set the **Line Item Type** to **Price priority (12)**. (This will most likely be higher for deals. See [Deals in Prebid](/adops/deals.html) for more information.)
 
+{:start="4"}
 4. Enter your **Expected Creatives**:
     - Display and Video: Select the sizes of all ad slots included in the Prebid process.
     - Native: Select a native template. (See [GAM Step by Step - Native Creatives](/adops/gam-native.html) for instructions on creating native templates.)
@@ -99,6 +102,8 @@ Note: "In-renderer video" is the term Prebid uses to cover everything that's not
 
 {:start="5"}
 5. For Long-Form (OTT) Video: If you're using competitive exclusions, under **Additional settings** enter the value for competitive exclusions in the **Label** field. This value will be included in your targeting within the value for the `hb_pb_cat_dur` key. See [Targeting](#targeting) below for more information.
+
+{:start="6"}
 6. Under **Delivery settings**:
     - Set **Start time** to **Immediately**.
     - Set **End time** to **Unlimited**.
@@ -190,7 +195,7 @@ Repeat the preceding steps for each creative in the line item.
 
 You’ve now added all fields necessary for targeting Prebid line items. You can add any other line item options you would normally use, such as additional targeting for geography. When you’ve filled in all the above fields, click **Save** to save your line item.
 
-## Create Creatives
+## Add the Creatives
 
 The process you use to create your creatives differs based on the media type. Follow the instructions for the appropriate media type:
 
@@ -198,7 +203,10 @@ The process you use to create your creatives differs based on the media type. Fo
 - [Native](/adops/gam-native.html)
 - [Video](/adops/setting-up-prebid-video-in-dfp.html)
 
-## Duplicate Creative
+If you're implementing Prebid Mobile with the Prebid-Rendered integration
+type, see the [AdOps Guide to setting up GAM for Prebid-Rendered Mobile](/adops/mobile-rendering-gam-line-item-setup.html).
+
+## Duplicate the Creative
 
 After you've created your creatives, you’ll need to associate a creative with each size in your line item. Even if you’ve specified only one or two sizes, you might actually want more creatives than you have sizes. Because the creative body itself is identical no matter which size you’re associating it with, you can duplicate the creative so you have as many as you need.
 

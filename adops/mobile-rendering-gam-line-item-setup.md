@@ -1,54 +1,46 @@
 ---
 
 layout: page_v2
-title: Prebid Mobile Rendering GAM Line Item Setup
-description: Prebid Mobile Rendering Modules GAM line item setup
+title: Prebid-Rendered Mobile GAM Setup
+description: Prebid-Rendered Mobile GAM Setup
 sidebarType: 3
 
 ---
 
-# GAM Prebid Mobile Rendering Ad Ops
+# AdOps Guide to setting up GAM for Prebid-Rendered Mobile
+{: .no_toc}
 
-## Step 1: Create New Order
+- TOC
+{:toc}
 
- <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-create.png" alt="Pipeline Screenshot" align="center">
+## Overview
 
-## Step 2: Create Line Item
+This guide is for mobile app developers that have chosen to use the "Prebid-Rendered" integration approach for [iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html) or [Android](/prebid-mobile/modules/rendering/android-sdk-integration-gam.html).
 
-To integrate the Prebid demand you have to create a Line Items with a specific price and targeting keywords.
+The orders and line items are the same as for other types of integration, but the creative setup
+has a number of differences.
 
-> Even though a Line Item can be named in any way, we strongly recommend to use the price or targeting keyword in the name. It will help to navigate through hundreds of them.
+## Getting Started
 
-### Select Type
+See the [GAM with Prebid guide](/adops/step-by-step.html) for details on the Advertiser,
+Orders, and Line Items. When you get to the creatives, come back here.
 
-Create a Line Item depending on the type of expected creative kind:
+## Prepare the Prebid Creatives
 
-* **Display** - for the Banner, HTML Interstitial
-* **Video and Audio** - for the Video Interstitial, Rewarded Video, and In-Renderer Video ads.
+{: .table .table-bordered .table-striped }
+| Scenario | Type of Creative |
+| --- | --- |
+| Display Banner<br/>Video Banner<br/>Display Interstitial<br/>Video Interstitial | [3rd party HTML](#third-party-html) |
+| Rewarded Video | [Special VastUrl](#rewarded-video) |
 
-<img src="/assets/images/prebid-mobile/modules/rendering/order-gam-li-create.png" alt="Pipeline Screenshot" align="center">
+### Third Party HTML
 
-Set sizes respectively to expected creatives.
+For most ad formats, instead of using the Prebid Universal Creative, the Prebid SDK just needs to get a signal
+from the Google Mobile Ad SDK that there's an ad ready to render. The Prebid SDK will
+figure the rest of it out: rending the creative, handling the Open Measurement activities,
+and for iOS, the SKAdnetwork calls.
 
-### Select Price
-
-The Line Item price should be chosen according to the price granularity policy.
-
-<img src="/assets/images/prebid-mobile/modules/rendering/order-gam-li-price.png" alt="Pipeline Screenshot" align="center">
-
-### Set Targeting Keywords
-
-The **Custom targeting** property should contain a special keyword with the price of winning bid. The same as a Rate of the Line Item.
-
-<img src="/assets/images/prebid-mobile/modules/rendering/order-gam-li-targeting.png" alt="Pipeline Screenshot" align="center">
-
-## Step 3: Prepare Prebid Creative
-
-### Display Banner, Video Banner, Display Interstitial, Video Interstitial
-
-The Prebid SDK integrates with GAM basing on [App Events](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner#app_events) feature, almost for all ad formats. That means that creative should contain a special tag that will be processed by Prebid's GAM Event Handlers.
-
-If GAM Event Handler receives the `PrebidAppEvent` event it will render the winning bid. Otherwise the control will be passed to the GAM Ad View and it will render the received creative.
+Here's the body of the creative:
 
 ``` html
 <script type="text/javascript" src="https://media.admob.com/api/v1/google_mobile_app_ads.js">
@@ -56,15 +48,24 @@ If GAM Event Handler receives the `PrebidAppEvent` event it will render the winn
 <script type="text/javascript">admob.events.dispatchAppEvent("PrebidAppEvent","%%PATTERN:bidid%%");</script>
 ```
 
+TBD - what's `bidid`?
+
+It will look something like this in GAM interface:
+
 <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-creative-banner.png" alt="Pipeline Screenshot" align="center">
+
+{: .alert.alert-info :}
+Developer background: The Prebid SDK integrates with the Google Moble Ads (GMA) SDK using the [App Events](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner#app_events) feature for most ad formats. The creative above contains a special tag that will be processed by Prebid SDK's GAM Event Handlers. When the handler receives the `PrebidAppEvent` event it will render the winning bid. Otherwise control will be passed to the GAM Ad View and the GMA SDK will render the received creative.
 
 ### Rewarded Video
 
-Prebid rendering for Rewarded video ads is based on the [OnAdMetadataChangedListener](https://developers.google.com/android/reference/com/google/android/gms/ads/rewarded/OnAdMetadataChangedListener). So you need to set up a special VAST tag in the creative.
+Prebid rendering for Rewarded video ads is based on the [OnAdMetadataChangedListener](https://developers.google.com/android/reference/com/google/android/gms/ads/rewarded/OnAdMetadataChangedListener). So you need to set up a special VAST tag in the creative:
 
 ``` js
 https://cdn.jsdelivr.net/npm/prebid-universal-creative/dist/prebid-mobile-rewarded-vast.xml
 ```
+
+It will look something like this in the GAM interface:
 
 <img src="/assets/images/prebid-mobile/modules/rendering/order-gam-creative-rewarded.png" alt="Pipeline Screenshot" align="center">
 
@@ -202,3 +203,7 @@ p {
 }
 ```
 -->
+
+## Further Reading
+
+- [GAM with Prebid guide](/adops/step-by-step.html)

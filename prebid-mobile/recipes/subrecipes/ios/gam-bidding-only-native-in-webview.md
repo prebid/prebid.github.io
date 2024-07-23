@@ -61,8 +61,8 @@ nativeUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 
 Initialize the `NativeRequest` with properties:
 
-* `configId` - an ID of the Stored Impression on the Prebid Server
-* `assets` - the array of `NativeAsset` objects which describes your native ad.
+- `configId` - an ID of the Stored Impression on the Prebid Server
+- `assets` - the array of `NativeAsset` objects which describes your native ad.
 
 ### Asset Types
 {:.no_toc}

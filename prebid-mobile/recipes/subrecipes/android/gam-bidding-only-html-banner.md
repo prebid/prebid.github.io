@@ -100,7 +100,6 @@ Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobi
 
 The `fetchDemand` method makes a bid request to the Demand Manager. You should provide an `AdManagerAdRequest` object to this method. Prebid SDK will set the targeting keywords of the winning bid into provided object. Eventually you should use this object to make an ad request  to GAM.
 
-
 ## Step 5: Load an Ad
 {:.no_toc}
 

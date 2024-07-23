@@ -39,9 +39,9 @@ The GAM Bidding-Only Integration method assumes that you have the following comp
 - **Prebid SDK** - You will need the latest version of the Prebid Mobile SDK for either [Android](/prebid-mobile/pbm-api/android/code-integration-android.html) or [iOS](/prebid-mobile/pbm-api/ios/code-integration-ios.html). This page will help you integrate the Prebid SDK into your app.
 - **Prebid Universal Creative** - This needs to be hosted on a CDN and loaded from the creative in GAM as detailed in the [AdOps GAM Step-by-Step reference](/adops/gam-creative-banner-sbs.html).
 - **Prebid Server** - You will need a server running [Prebid Server](/prebid-server/use-cases/pbs-sdk.html). You can set up your own Prebid Server or work with a [Prebid Server managed service](https://prebid.org/managed-services/). Prebid Server provides you with the following:
-    - Configuration storage - rather than hardcoding all the details of your current business arrangements in the app, Prebid Server stores which bidders you're currently working with, their inventory details, and other settings that can be changed without updating your app.
-    - Server-side auction - the server will make the connections to multiple auction bidding partners so the app doesn't have to.
-    - Privacy regulation tools - the server can help your legal team meet different regulatory needs in different jurisdictions by configuring various protocols and anonyimization activities.
+  - Configuration storage - rather than hardcoding all the details of your current business arrangements in the app, Prebid Server stores which bidders you're currently working with, their inventory details, and other settings that can be changed without updating your app.
+  - Server-side auction - the server will make the connections to multiple auction bidding partners so the app doesn't have to.
+  - Privacy regulation tools - the server can help your legal team meet different regulatory needs in different jurisdictions by configuring various protocols and anonyimization activities.
 
 ## High-level overview
 
@@ -74,7 +74,6 @@ Assuming your app is already built with GMA AdUnits, the technical implementatio
 3. Work with your Prebid Server team to create the adunit configIds that will be used in the app.
 4. Set up GAM orders, line items, and creatives. See [AdOps guidance](#ad-operations-guidance)
 5. Link Prebid AdUnit code to your GMA AdUnits - for any adunits that your business team wants to connect to Prebid with the configIds generated in Step 3. See the [adunit-specific instructions](#adunit-specific-instructions) below.
-
 
 ## Ad Operations Guidance
 

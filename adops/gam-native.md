@@ -9,7 +9,7 @@ sidebarType: 3
 # GAM Step by Step - Native Creatives
 {: .no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 ## Overview
@@ -68,11 +68,12 @@ Any link that needs to fire a click tracker must include `class='pb-click'`.
 
 If this creative is served, it will fire impression trackers on load. Clicking the link will fire the click tracker and the link will work as normal, in this case going to the `hb_native_linkurl` destination.
 
-The creative template HTML will depend on which of the three scenarios you're implementing. You can choose to manage the native template:
+The creative template HTML will depend on which of the three scenarios you're implementing. You can choose to manage the native template in one of these ways:
 
-* in GAM ([Managing the Native Template in GAM](#managing-the-native-template-in-gam) below)
-* in the Prebid.js AdUnit ([Managing the Native Template Outside of GAM](#managing-the-native-template-outside-of-gam) below)
-* in a separate JavaScript file ([Managing the Native Template Outside of GAM](#managing-the-native-template-outside-of-gam) below)
+- in GAM ([Managing the Native Template in GAM](#managing-the-native-template-in-gam) below)
+- in the Prebid.js AdUnit - this is handled as a 3rd party HTML creative using the Prebud Universal Creative.
+- in a separate JavaScript file - this is handled as a 3rd party HTML creative using the Prebud Univer
+sal Creative.
 
 {: .alert.alert-info :}
 For engineering instructions, see [Native Implementation Guide](/prebid/native-implementation.html).
@@ -232,9 +233,9 @@ Follow the instructions in [Google Ad Manager with Prebid Step by Step](/adops/s
 
 ## Further Reading
 
-* [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
-* [Prebid Native Implementation Guide](/prebid/native-implementation.html)
-* [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html)
-* [Prebid Universal Creative](/overview/prebid-universal-creative.html)
-* [Creative Considerations](/adops/creative-considerations.html)
-* [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
+- [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
+- [Prebid Native Implementation Guide](/prebid/native-implementation.html)
+- [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html)
+- [Prebid Universal Creative](/overview/prebid-universal-creative.html)
+- [Creative Considerations](/adops/creative-considerations.html)
+- [Ad Ops Planning Guide](/adops/adops-planning-guide.html)
