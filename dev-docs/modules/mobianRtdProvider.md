@@ -1,8 +1,8 @@
 ---
 layout: page_v2
 title: Mobian Real-Time Data Provider
-display_name: Mobian Prebid Brand Safety Evaluation
-description: Mobian provides contextual brand safety evaluations of pages given a URL, which publishers can use for targeting as an alternative to keyword-based evaluation.
+display_name: Mobian Prebid Contextual Evaluation
+description: Mobian provides contextual evaluations of pages given a URL, which publishers can use for targeting as an alternative to keyword-based evaluation.
 page_type: module
 module_type: rtd
 module_code : mobianRtdProvider
@@ -10,10 +10,6 @@ enable_download : true
 vendor_specific: false
 sidebarType : 1
 ---
-# Mobian Brand Safety Module
-
-Mobian uses AI to determine the GARM risk level of articles from our publisher partners.
-This methodology is contextual, rather than keyword-based.
-Our evaluation of articles is openly available through our API. This prebid header
-exposes that API at prebid time so that advertisers can easily target articles with
-the desired mobianGarmRisk
+# Mobian Contextual Module
+Mobian leverages highly tuned AI to provide modern contextual measurement, inclusive of brand safety and suitability, as well as complex signals like emotion, sentiment, tonality and more. 
+This real-time module pings the Mobian Contextual API at pre-bid time so that advertisers can target and align with high-quality content across Mobian's network of partners.
