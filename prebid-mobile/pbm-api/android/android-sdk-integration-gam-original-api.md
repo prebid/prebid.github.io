@@ -70,7 +70,7 @@ The following is a high-level explanation of how the ad bidding-auction-renderin
 Assuming your app is already built with GMA AdUnits, the technical implementation of Prebid mobile into your app will involve these major steps:
 
 1. [Initialize the Prebid SDK](/prebid-mobile/pbm-api/android/code-integration-android.html) - create a connection to your Prebid Server.
-2. [Set Global Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html) - let bidders know important data about the page, privacy consent, and other settings.
+2. [Set Global Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-android.html) - let bidders know important data about the page, privacy consent, and other settings.
 3. Work with your Prebid Server team to create the adunit configIds that will be used in the app.
 4. Set up GAM orders, line items, and creatives. See [AdOps guidance](#ad-operations-guidance)
 5. Link Prebid AdUnit code to your GMA AdUnits - for any adunits that your business team wants to connect to Prebid with the configIds generated in Step 3. See the [adunit-specific instructions](#adunit-specific-instructions) below.

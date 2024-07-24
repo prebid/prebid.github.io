@@ -134,7 +134,7 @@ To set up your Prebid Server account for Prebid Mobile, refer to [Getting Starte
 Follow these steps to integrate the Prebid SDK:
 
 1. [Integrate Prebid SDK](pbm-api/android/code-integration-android.html) into your project.
-1. Define [global integration and targeting properties](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html).  
+1. Define [global integration and targeting properties](/prebid-mobile/pbm-api/android/pbm-targeting-android.html).  
 1. Add Prebid's ad units to your app respectively to the monetization scenario:
     - [GAM Bidding-Only Integration](pbm-api/android/android-sdk-integration-gam-original-api.html)
     - [Custom in-app bidding](modules/rendering/android-sdk-integration-pb.html) integration without primary ad server.

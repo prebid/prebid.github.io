@@ -93,7 +93,7 @@ Each mobile app may have its own "account settings ID". This is used to look up 
 
 By default the Account Settings ID is set to be the same as the Account ID. i.e. the setPrebidServerAccountId() function will set both values.
 If you want to define a different Account Settings ID as determined in conjunction with
-your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html#arbitrary-openrtb) method like this:
+your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#arbitrary-openrtb) method like this:
 
 ```kotlin
 adUnitConfiguration?.ortbConfig = "{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}"

@@ -7,37 +7,21 @@ sidebarType: 2
 
 ---
 
-# Google Ad Manager Integration
+# Prebid SDK Android with the GAM Prebid-Rendered Integration Method
 {:.no_toc}
-
-The integration of Prebid Rendering API with Google Ad Manager (GAM) assumes that the publisher has an account on GAM and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app project. 
-
-
-If you do not have the GAM SDK in the app yet, refer to the [Google Integration Documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start).
 
 * TOC
 {:toc}
 
-## GAM Integration Overview
+{% include mobile/adops-guidance-prebid-rendered.md platform="android" %}
 
-![Rendering with GAM as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/Prebid-In-App-Bidding-Overview-GAM.png)
+## Event Handlers
 
-**Steps 1-2** Prebid SDK makes a bid request. Prebid Server runs an auction and returns the winning bid.
+First, a little bit of setup is needed.
 
-**Step 3** The Prebid Rendering Module, through the GAM Event Handler, sets up the targeting keywords into the GAM's ad unit.
+### Integrate Event Handlers
 
-**Step 4** The GMA SDK makes an ad request. GAM returns the winning line item.
-
-**Step 5** Based on the ad response, Prebid GAM Event Handler defines which line item has won in GAM - Prebid's or another ad source.
-
-**Step 6** The winner is displayed in the app with the respective rendering engine.
-  
-
-## Integrate Event Handlers
-
-Prebid SDK provides rendering integration into GAM setup via [app events ](https://developers.google.com/ad-manager/mobile-ads-sdk/android/banner#app_events) mechanism. To integrate Prebid Event Handlers into your app, add the following line to your Podfile:
-
-GAM Event Handlers is a set of classes that wrap the GAM Ad Units and manage them respectively to the In-App Bidding flow. These classes are provided in the form of library that could be added to the app via Gradle:
+The Prebid SDK supples a set of classes called the 'GAM Event Handlers' that wrap the GAM Ad Units and manage them in the In-App Bidding flow. These classes are provided in the form of library that could be added to the app via Gradle:
 
 Root build.gradle
 
@@ -57,10 +41,15 @@ App module build.gradle:
 implementation('org.prebid:prebid-mobile-sdk-gam-event-handlers:x.x.x')
 ```
 
-## Banner API
+## AdUnit-Specific instructions
+
+This section covers integration details for different ad formats. In each scenario, you'll be asked for a `configId` - this is a key worked out with your Prebid Server provider. It's used at runtime to pull in the bidders and parameters specific to this adunit. Depending on your Prebid Server partner, it may be a UUID or constructed out of parts like an account number and adunit name.
+
+### Banners
+
+#### Display Banners
 
 To integrate the banner ad you need to implement three easy steps:
-
 
 ```kotlin
 // 1. Create a banner custom event handler for GAM ad server.
@@ -83,7 +72,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-#### Step 1: Create Event Handler
+##### Step 1: Create Event Handler
 {:.no_toc}
 
 GAM's event handlers are special containers that wrap GAM Ad Views and help to manage collaboration between GAM and Prebid views.
@@ -92,7 +81,7 @@ GAM's event handlers are special containers that wrap GAM Ad Views and help to m
 
 To create the event handler you should provide a GAM Ad Unit Id and the list of available sizes for this ad unit.
 
-#### Step 2: Create Ad View
+##### Step 2: Create Ad View
 {:.no_toc}
 
 **BannerView** - is the view that will display a particular ad. It should be added to the UI. To create it you should provide:
@@ -104,22 +93,21 @@ Also, you should add the instance of `BannerView` to the UI.
 
 And assign the listeners for processing ad events.
 
-#### Step 3: Load the Ad
+##### Step 3: Load the Ad
 {:.no_toc}
 
 Call the `loadAd()` method to make a bid request.
 
-### Outstream Video
+#### Non-Instream Video
 {:.no_toc}
 
-For **Outstream Video** you also need to specify video placement type of the expected ad:
+For **Non-Instream Video** you also need to specify video placement type of the expected ad:
 
 ```kotlin
 bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other available type
 ```
 
-### Migration from the original API
-{:.no_toc}
+#### Migrating banners from a Bidding-Only integration
 
 GAM setup:
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
@@ -133,11 +121,9 @@ Integration:
 5. Remove the original `BannerAdUnit`.
 6. Follow the instructions to integrate [Banner API](#banner-api).  
 
+### Interstitials
 
-## Interstitial API
-
-To integrate interstitial ad follow these steps:
-
+To integrate an interstitial ad follow these steps:
 
 ```kotlin
 // 1. Create an interstitial custom event handler for GAM ad server.
@@ -173,7 +159,6 @@ interstitialAdUnit = InterstitialAdUnit(
                         eventHandler)
 ```
 
-
 #### Step 1: Create Event Handler
 {:.no_toc}
 
@@ -201,7 +186,6 @@ Also, you can assign the listeners for processing ad events.
 
 Call the `loadAd()` method make a bid request. The ad unit will load an ad and will wait for explicit instructions to display the Interstitial Ad.
 
-
 #### Step 4: Show the Ad when it is ready
 {:.no_toc}
 
@@ -213,8 +197,7 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 }
 ```
 
-### Migration from the original API
-{:.no_toc}
+#### Migrating interstitials from a Bidding-Only integration
 
 GAM setup:
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
@@ -228,11 +211,9 @@ Integration:
 5. Remove the original `InterstitialAdUnit`.
 6. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
 
-
-## Rewarded API
+### Rewarded Video
 
 To display a Rewarded Ad follow these steps:
-
 
 ```kotlin
 // 1. Create a rewarded custom event handler for GAM ad server.
@@ -259,7 +240,6 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% include /alerts/alert_warning.html content=warning_note %}
 
 Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad. The type of ad can be customized to:
-
 
 Be notified when user earns a reward - implement `RewardedAdUnitListener` interface:
 
@@ -308,7 +288,7 @@ override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 }
 ```
 
-### Migration from the original API
+### Migrating rewarded video from a Bidding-Only integration
 {:.no_toc}
 
 GAM setup:
@@ -321,3 +301,13 @@ Integration:
 2. Implement the interface for `RewardedAdUnitListener`.
 3. Remove the original `RewardedVideoAdUnit`.
 4. Follow the instructions to integrate [Rewarded API](#rewarded-api).  
+
+## Additional Ad Unit Configuration
+
+{% include mobile/adunit-config-android.md %}
+
+## Further Reading
+
+- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
+- [Prebid SDK Android Integration](/prebid-mobile/pbm-api/android/code-integration-android.html)
+- [Prebid SDK Android Global Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-android.html)

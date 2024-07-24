@@ -1,12 +1,12 @@
 ---
 layout: page_v2
-title: Line Item Creation
-head_title: Line Item Creation
+title: Line Item Considerations
+head_title: Line Item Considerations
 sidebarType: 3
 sbUUID: 3.2
 ---
 
-# Line Item Creation
+# Line Item Considerations
 {: .no_toc }
 
 - TOC
@@ -17,7 +17,7 @@ The settings you apply when creating line items to capture bids coming in from t
 {: .alert.alert-success :}
 Manually configuring ad server elements for Prebid can be a fair amount of work. If you’re using Google Ad Manager (GAM), consider using our official command line tool, [Prebid Line Item Manager](/tools/line-item-manager.html#prebid-line-item-manager.html), to create the setup. Using this tool may save you time and help you avoid mistakes.
 
-## The Big Picture
+## Overview
 
 The ad server configuration that supports Prebid is important. Header bidding is a way to gather bids from many sources and funnel them into your ad server, so the ad server needs to have a way to detect and prioritize these bids against other sources.
 

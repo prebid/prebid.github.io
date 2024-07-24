@@ -47,7 +47,7 @@ Publishers are responsible for providing notice, transparency and choice and col
 All vendor SDKs (including mediation SDKs) are responsible for looking up approved vendor and consent information on their own.
 
 - [iOS - Targeting Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
-- [Android - Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html)
+- [Android - Targeting Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-android.html)
 
 ### Sending Device Information
 

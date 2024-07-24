@@ -809,7 +809,7 @@
 
 - sbSecId: 2
   title: Global Parameters
-  link: /prebid-mobile/pbm-api/android/pbm-targeting-params-android.html
+  link: /prebid-mobile/pbm-api/android/pbm-targeting-android.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -823,6 +823,14 @@
   sectionTitle:
   subgroup: 3
   
+- sbSecId: 2
+  title: GAM Prebid-Rendered Integration
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-gam.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
 - sbSecId: 2
   title: Custom or No mediation
   link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
@@ -847,14 +855,6 @@
   sectionTitle:
   subgroup: 3
   
-- sbSecId: 2
-  title: GAM Rendering Integration
-  link: /prebid-mobile/modules/rendering/android-sdk-integration-gam.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
 - sbSecId: 2
   title: Ad Experience Controls
   link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html
