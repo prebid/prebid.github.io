@@ -10,7 +10,7 @@ sidebarType: 2
 # Prebid SDK Android with the GAM Prebid-Rendered Integration Method
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 {% include mobile/adops-guidance-prebid-rendered.md platform="android" %}
@@ -25,7 +25,7 @@ The Prebid SDK supples a set of classes called the 'GAM Event Handlers' that wra
 
 Root build.gradle
 
-```
+```text
 allprojects {
     repositories {
       ...
@@ -37,7 +37,7 @@ allprojects {
 
 App module build.gradle:
 
-```
+```text
 implementation('org.prebid:prebid-mobile-sdk-gam-event-handlers:x.x.x')
 ```
 
@@ -110,16 +110,18 @@ bannerView.videoPlacementType = PlacementType.IN_BANNER // or any other availabl
 #### Migrating banners from a Bidding-Only integration
 
 GAM setup:
+
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
 2. Create new GAM ad unit.
 3. Setup new [GAM Order](/adops/mobile-rendering-gam-line-item-setup.html) for rendering approach.
 
 Integration:
+
 1. Replace the `AdManagerAdView` with `BannerView` in the UI. 
-3. Implement the interface `BannerViewListener`.
-4. Remove both `AdManagerAdView` and `AdManagerAdRequest` and implement an`AdListener`.
-5. Remove the original `BannerAdUnit`.
-6. Follow the instructions to integrate [Banner API](#banner-api).  
+2. Implement the interface `BannerViewListener`.
+3. Remove both `AdManagerAdView` and `AdManagerAdRequest` and implement an`AdListener`.
+4. Remove the original `BannerAdUnit`.
+5. Follow the instructions to integrate [Banner API](#banners).
 
 ### Interstitials
 
@@ -151,7 +153,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 
 The **default** ad format for an interstitial ad is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
-```
+```kotlin
 interstitialAdUnit = InterstitialAdUnit(
                         requireContext(), 
                         configId, 
@@ -200,16 +202,18 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 #### Migrating interstitials from a Bidding-Only integration
 
 GAM setup:
+
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
 2. Create a new GAM ad unit.
 3. Setup a new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach. 
 
 Integration:
+
 1. Replace the `AdManagerInterstitialAd` with `InterstitialRenderingAdUnit`. 
-3. Implement the interface for `InterstitialEventListener`.
-4. Remove both `AdManagerInterstitialAd` and `AdManagerAdRequest`.
-5. Remove the original `InterstitialAdUnit`.
-6. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
+2. Implement the interface for `InterstitialEventListener`.
+3. Remove both `AdManagerInterstitialAd` and `AdManagerAdRequest`.
+4. Remove the original `InterstitialAdUnit`.
+5. Follow the instructions to integrate [Interstitial API](#interstitials).  
 
 ### Rewarded Video
 
@@ -292,15 +296,17 @@ override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 {:.no_toc}
 
 GAM setup:
+
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
 2. Create a new GAM ad unit.
 3. Setup a new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach.
 
 Integration:
-1. Replace the `RewardedAd` with `RewardedAdUnit`. 
+
+1. Replace the `RewardedAd` with `RewardedAdUnit`.
 2. Implement the interface for `RewardedAdUnitListener`.
 3. Remove the original `RewardedVideoAdUnit`.
-4. Follow the instructions to integrate [Rewarded API](#rewarded-api).  
+4. Follow the instructions to integrate [Rewarded API](#rewarded-video).
 
 ## Additional Ad Unit Configuration
 

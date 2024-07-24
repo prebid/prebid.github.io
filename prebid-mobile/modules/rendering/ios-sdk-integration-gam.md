@@ -113,7 +113,7 @@ Integration:
 2. Implement the protocol `BannerViewDelegate` in the ViewController.
 3. Remove usage of `GAMBannerView`, `GAMRequest`, and implementation of the `GADBannerViewDelegate`.
 4. Remove original `BannerAdUnit`.
-5. Follow the instructions to integrate [Banner API](#banner-api).  
+5. Follow the instructions to integrate [Banner API](#banners).
 
 ### Interstitials
 
@@ -204,7 +204,7 @@ Integration:
 2. Implement the protocol `InterstitialAdUnitDelegate` in the View Controller.
 3. Remove usage of `GAMInterstitialAd`, `GAMRequest`.
 4. Remove original `InterstitialAdUnit`.
-5. Follow the instructions to integrate [Interstitial API](#interstitial-api).  
+5. Follow the instructions to integrate [Interstitial API](#interstitials).
 
 ### Rewarded Video
 
@@ -293,7 +293,7 @@ Integration:
 2. Implement the protocol `RewardedAdUnitDelegate` in the View Controller.
 3. Remove usage of `GAMRequest`.
 4. Remove original `RewardedVideoAdUnit`.
-5. Follow the instructions to integrate [Rewarded API](#rewarded-api).  
+5. Follow the instructions to integrate [Rewarded API](#rewarded-video).
 
 ## Additional Ad Unit Configuration
 
