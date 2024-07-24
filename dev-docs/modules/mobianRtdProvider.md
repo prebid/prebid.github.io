@@ -12,4 +12,4 @@ sidebarType : 1
 ---
 # Mobian Contextual Module
 Mobian leverages highly tuned AI to provide modern contextual measurement, inclusive of brand safety and suitability, as well as complex signals like emotion, sentiment, tonality and more. 
-This real-time module pings the Mobian Contextual API at pre-bid time so that advertisers can target and align with high-quality content across Mobian's network of partners.
+This real-time data module pings the Mobian Contextual API at pre-bid time so that advertisers can target and align with high-quality content across Mobian's network of partners.
