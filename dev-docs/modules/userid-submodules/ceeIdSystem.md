@@ -1,11 +1,9 @@
 ---
 layout: userid
-title: CEE ID Module
-description: CEE ID User ID sub-module
+title: CEEIdSystem
+description: CEEID User ID sub-module
 useridmodule: ceeIdSystem
 ---
-
-# ceeIdSystem UserID Module
 
 ## Prebid Configuration
 
@@ -15,11 +13,12 @@ First, make sure to add ceeIdSystem to your Prebid.js package with:
 gulp build --modules=ceeIdSystem
 ```
 
-## CEE ID Configuration
+## CEEID Configuration
 
+{: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | The name of CEE ID user ID module. | `"ceeId"` |
+| name | Required | String | The name of CEEID user ID module. | `"ceeId"` |
 | storage | Required | Object | Container of storage options. |  |
 | storage.type | Required | String | Type of storage to use  | `"cookie"` |
 | storage.name | Required | String | Name of storage to set  | `"ceeIdToken"` |
@@ -29,7 +28,7 @@ gulp build --modules=ceeIdSystem
 | params.tokenName | Required | String |  Your custom name of token to read | `'myExampleTokenName'` |
 | params.value | Optional | String | Optional param if you want to pass token value directly through setConfig  | `'someTokenValue'` |
 
-## CEE ID Examples
+## CEEID Examples
 
 You can configure this submodule in your `userSync.userIds[]` configuration. Publishers manage ceeIds themselves can store ceeIds in local storage or 1st party cookies. You can use your custom name of token to read
 
