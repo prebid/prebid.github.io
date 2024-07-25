@@ -13,7 +13,7 @@ sidebarType: 2
 - TOC
 {:toc}
 
-{% include mobile/adops-guidance-prebid-rendered.md platform="android" %}
+{% include mobile/intro-prebid-rendered.md platform="android" %}
 
 ## Event Handlers
 

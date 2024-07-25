@@ -751,7 +751,7 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: Custom or No mediation
+  title: Custom Integration
   link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
@@ -832,7 +832,7 @@
   subgroup: 3
 
 - sbSecId: 2
-  title: Custom or No mediation
+  title: Custom Integration
   link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
