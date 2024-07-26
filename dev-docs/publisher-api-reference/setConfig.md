@@ -142,7 +142,7 @@ There are several ways to address the issue of sending too much data to the ad s
 
 Note that targeting config must be set before either `pbjs.setTargetingForGPTAsync()` or `pbjs.getAdserverTargeting()` is called.
 
-##### Example results where enableSendAllBids is true
+#### Example results where enableSendAllBids is true
 {: .no_toc}
 
 ```bash
@@ -212,7 +212,7 @@ The `sendBidsControl` object passed to `pbjs.setConfig` provides the publisher w
 | `bidLimit` | integer | The maximum number of bids the system can add to ad server targeting. |
 | `dealPrioritization` | boolean | When `true`, bids with deals are prioritized before bids without deals. |
 
-##### Details on the bidLimit setting
+#### Details on the bidLimit setting
 {: .no_toc}
 
 Below is an example config containing `bidLimit`:

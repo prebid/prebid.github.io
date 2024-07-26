@@ -8,7 +8,7 @@ sidebarType: 1
 # Prebid Timeouts
 {: .no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 ## How it Works
@@ -40,7 +40,7 @@ ad server call, Prebid Server shaves off a safety buffer and responds to Prebid.
 
 ## Troubleshooting Timeouts
 
-In general, your [analytics reports]() will alert you to the existence of timeouts.
+In general, your [analytics reports](/overview/analytics.html) will alert you to the existence of timeouts.
 
 Engineers can get more insight into details by following [this process](/troubleshooting/troubleshooting-guide.html#configure-auction-options-with-logging)
 
