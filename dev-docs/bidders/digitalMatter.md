@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: digital_matter
+title: digitalmatter
 description: Digital Matter Bidder Adapter
-biddercode: digital_matter
+biddercode: digitalmatter
 media_types: banner, video
 coppa_supported: true
 tcfeu_supported: false
@@ -20,11 +20,11 @@ safeframes_ok: true
 ### Prebid.js Bid params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                 | Example         | Type      |
-|-------------|----------|-----------------------------|-----------------|-----------|
-| `pid`       | required | Placement ID                | `test-banner`   | `string`  |
-| `env`       | required | Environment name            | `digital_matter`| `string`  |
-| `ext`       | optional | Specific integration config | `{}`            | `object`  |
+| Name        | Scope    | Description                 | Example        | Type      |
+|-------------|----------|-----------------------------|----------------|-----------|
+| `pid`       | required | Placement ID                | `test-banner`  | `string`  |
+| `env`       | required | Environment name            | `digitalmatter`| `string`  |
+| `ext`       | optional | Specific integration config | `{}`           | `object`  |
 
 ### Prebid Server Bid params
 
@@ -32,4 +32,4 @@ safeframes_ok: true
 | Name        | Scope    | Description                 | Example       | Type      |
 |-------------|----------|-----------------------------|---------------|-----------|
 | `pid`       | required | Unique placement ID         | `pid1`        | `string`  |
-| `env`       | optional | digital_matter environment  | `test`        | `string`  |
+| `env`       | optional | digitalmatter environment   | `test`        | `string`  |
