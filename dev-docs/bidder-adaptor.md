@@ -235,7 +235,8 @@ export const spec = {
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
     onSetTargeting: function(bid) {},
-    onBidderError: function({ error, bidderRequest }),
+    onBidderError: function({ error, bidderRequest }) {},
+    onAddRenderSucceeded: function(bid) {},
     supportedMediaTypes: [BANNER, VIDEO, NATIVE]
 }
 registerBidder(spec);
@@ -1262,6 +1263,15 @@ export const spec = {
      * @param {error, bidderRequest} An object with the XMLHttpRequest error and the bid request object
      */
     onBidderError: function({ error, bidderRequest }) {
+        // Bidder specific code
+    }
+
+    /**
+     * Register bidder specific code, which will execute if the add
+     * has been rendered successfully
+     * @param {bid} bid request object
+     */
+    onAddRenderSucceeded: function(bid) {
         // Bidder specific code
     }
 }
