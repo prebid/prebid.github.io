@@ -6,6 +6,7 @@ biddercode: smartyads
 gvl_id: 534
 tcfeu_supported: true
 usp_supported: true
+gpp_supported: true
 coppa_supported: true
 schain_supported: true
 media_types: banner, video, native
