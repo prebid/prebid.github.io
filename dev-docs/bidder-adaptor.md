@@ -236,7 +236,7 @@ export const spec = {
     onBidWon: function(bid) {},
     onSetTargeting: function(bid) {},
     onBidderError: function({ error, bidderRequest }) {},
-    onAddRenderSucceeded: function(bid) {},
+    onAdRenderSucceeded: function(bid) {},
     supportedMediaTypes: [BANNER, VIDEO, NATIVE]
 }
 registerBidder(spec);
@@ -1267,11 +1267,11 @@ export const spec = {
     }
 
     /**
-     * Register bidder specific code, which will execute if the add
+     * Register bidder specific code, which will execute if the ad
      * has been rendered successfully
      * @param {bid} bid request object
      */
-    onAddRenderSucceeded: function(bid) {
+    onAdRenderSucceeded: function(bid) {
         // Bidder specific code
     }
 }
