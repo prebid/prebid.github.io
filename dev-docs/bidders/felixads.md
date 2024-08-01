@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: FeliksAds
-description: FeliksAds Bidder Adapter
+title: FelixAds
+description: FelixAds Bidder Adapter
 biddercode: felixads
 aliasCode : smarthub
 usp_supported: true
