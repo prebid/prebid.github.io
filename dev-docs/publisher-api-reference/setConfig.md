@@ -19,7 +19,6 @@ Core config:
 * [Enable sharing of transaction IDs](#setConfig-enableTIDs)
 * [Max Requests Per Origin](#setConfig-Max-Requests-Per-Origin)
 * [Disable Ajax Timeout](#setConfig-Disable-Ajax-Timeout)
-* [Set Timeout Buffer](#setConfig-timeoutBuffer)
 * [Set TTL Buffer](#setConfig-ttlBuffer)
 * [Turn on send all bids mode](#setConfig-Send-All-Bids)
 * [Configure send bids control](#setConfig-Send-Bids-Control)
@@ -48,7 +47,7 @@ Core config:
 Module config: other options to `setConfig()` are available if the relevant module is included in the Prebid.js build.
 
 * [Currency module](/dev-docs/modules/currency.html)
-* [Consent Management](/dev-docs/modules/consentManagement.html#page-integration)
+* [Consent Management](/dev-docs/modules/consentManagementTcf.html#page-integration)
 * [User ID module](/dev-docs/modules/userId.html#configuration)
 * [Adpod](/dev-docs/modules/adpod.html)
 * [IAB Category Translation](/dev-docs/modules/categoryTranslation.html)
@@ -138,16 +137,6 @@ Prebid core adds a timeout on XMLHttpRequest request to terminate the request on
 
 ```javascript
 pbjs.setConfig({ disableAjaxTimeout: true });
-```
-
-#### Set Timeout Buffer
-
-<a name="setConfig-timeoutBuffer"></a>
-
-Prebid core adds a timeout buffer to extend the time that bidders have to return a bid after the auction closes. This buffer is used to offset the "time slippage" of the setTimeout behavior in browsers. Prebid.js sets the default value to 400ms. You can change this value by setting `timeoutBuffer` to the amount of time you want to use. The following example sets the buffer to 300ms.
-
-```javascript
-pbjs.setConfig({ timeoutBuffer: 300 });
 ```
 
 #### Set TTL Buffer
@@ -1263,7 +1252,7 @@ than others.
 pbjs.setConfig({
     // ...,
     realTimeData: {
-      auctionDelay: 100,     // REQUIRED: applies to all RTD modules
+      auctionDelay: 100,     // OPTIONAL: applies to all RTD modules.
       dataProviders: [{
           name: "RTD-MODULE-1",
           waitForIt: true,   // OPTIONAL: flag this module as important

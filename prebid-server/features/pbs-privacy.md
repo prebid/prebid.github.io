@@ -127,14 +127,14 @@ Prebid Server support for this protocol:
 1. GPP as a TCF and USP wrapper - PBS parses the GPP container for TCF2 and USP strings, extracting them to the original ORTB location.
 1. (done for PBS-Java) GPP infrastructure - the ability to plug new regulations into PBS, and the first sub-module, the [US General Privacy Module](/prebid-server/features/pbs-usgen.html).
 
-## MSPA / US National Privacy
+## US Compliance
 
-See [Prebid MSPA Support](/features/mspa-usnat.html) for more info.
+See [Prebid US Compliance Support](/features/mspa-usnat.html) for more info.
 
 There are two modules offered by Prebid Server to process GPP string sections 7-12:
 
 1. The [USGen Privacy Module](/prebid-server/features/pbs-usgen.html) is a high
-performance option for interpreting the GPP strings as described in the [Prebid MSPA reference](/features/mspa-usnat.html). (PBS-Java only)
+performance option for interpreting the GPP strings as described in the [Prebid US Compliance reference](/features/mspa-usnat.html). (PBS-Java only)
 1. The [US Custom Logic Privacy Module](/prebid-server/features/pbs-uscustomlogic.html) is a flexible way for publishers to define their own interpretation of GPP string sections 7-12.
 
 Also note that publishers can consider utilizing [Activity Controls](/prebid-server/features/pbs-activitycontrols.html). For PBS-Java, the `gppSid`, `geo`, and `gpc` conditions may be useful tools within a compliance strategy.

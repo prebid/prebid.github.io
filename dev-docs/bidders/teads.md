@@ -20,14 +20,15 @@ multiformat_supported: will-not-bid
 ortb_blocking_supported: true
 floors_supported: true
 coppa_supported: true
-gpp_sids: false
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 fpd_supported: false
 sidebarType: 1
 ---
 
-### Note
+### Notes
 
-The Teads Bidding adapter requires setup before beginning. Please contact us on <https://teads.tv/teads-contact/>
+1. The Teads Bidding adapter requires setup before beginning. Please contact us on <https://teads.tv/teads-contact/>
+2. When this adapter is enabled and Prebid.js is used in an iOS WebView, the WebView should allow videos to play inline. This is required because the Teads adapter delivers video ads and starts by detecting the autoplay capability of the device. 
 
 ### Bid Params
 

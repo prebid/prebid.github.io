@@ -86,7 +86,7 @@ Analytics adapter for Example.com. Contact prebid@example.com for information.
 adapter needs to specify an enableAnalytics() function, but it should also call
 the base class function to set up the events.
 
-5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagement.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call.
+5. Doing analytics may require user permissions under [GDPR](/dev-docs/modules/consentManagementTcf.html), which means your adapter will need to be linked to your [IAB Global Vendor List](https://iabeurope.eu/vendor-list-tcf/) ID. If no GVL ID is found, and Purpose 7 (Measurement) is enforced, your analytics adapter will be blocked unless it is specifically listed under vendorExceptions. Your GVL ID can be added to the `registerAnalyticsAdapter()` call.
 
 #### Basic prototype analytics adapter
 
@@ -150,6 +150,7 @@ There are two error events analytics modules may wish to listen for: auctionDebu
 
 * listen only to the events required
 * batch up calls to the backend for post-auction logging rather than calling immediately after each event.
+* consider using the keepalive option on the ajax request to keep the priority low and the request queued after the pageview dies
 
 ### Step 3: Add unit tests
 
