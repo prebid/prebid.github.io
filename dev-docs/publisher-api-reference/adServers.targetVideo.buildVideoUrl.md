@@ -33,7 +33,6 @@ One or both of options.adUnit and options.bid is required. In other words, you m
 | `iu`              | string | *Required*. TargetVideo Ad Server ad unit ID or link.                                                                                                 | `/19968336/prebid_cache_video_adunit`           |
 | `cust_params`     | object | *Optional*. Key-value pairs merged with Prebid's targeting values and sent to TargetVideo Ad Server on the video ad tag URL.                  | `{section: "blog", anotherKey: "anotherValue"}` |
 
-
 #### Examples
 
 There are several different ways to build up your video URL, as shown in the examples below:
