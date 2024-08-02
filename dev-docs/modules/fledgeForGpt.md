@@ -58,7 +58,9 @@ pbjs.requestBids({
 })
 ```
 
-It's important to invoke the `pbjs.setPAAPIConfigForGPT()` function within the `bidsBackHandler` whenever new bids are requested, such as when refreshing ad slots. This ensures that the auctionConfig is configured with a GPT slot manually when autoconfig is disabled. Without this manual configuration, the GPT slots will not be correctly set up to handle the new bids and can result in duplicate impression calls.
+## Refreshing Ads
+
+It's important to invoke the `pbjs.setPAAPIConfigForGPT()` function within the `bidsBackHandler` whenever new bids are requested, such as when refreshing ad slots. This ensures that the auctionConfig is manually applied to a GPT slot when autoconfig is disabled. Without this manual configuration, GPT slots will not be properly set up to handle new bids, potentially resulting in duplicate impression calls.
 
 See the [API reference](/dev-docs/publisher-api-reference/setPAAPIConfigForGpt.html) for more options.
 
