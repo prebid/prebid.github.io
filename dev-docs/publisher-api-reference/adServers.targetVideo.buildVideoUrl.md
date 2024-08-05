@@ -76,5 +76,3 @@ pbjs.requestBids({
     }
 });
 ```
-
-<a name="module_pbjs.requestBids"></a>
