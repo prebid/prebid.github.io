@@ -8,6 +8,10 @@ media_types: native
 sidebarType: 1
 ---
 
+### Note
+
+The EClickAds adapter requires setup and approval from the EClick Team. Please contact us via <sales@eclick.vn> for detail.
+
 ### Bid params
 
 {: .table .table-bordered .table-striped }
