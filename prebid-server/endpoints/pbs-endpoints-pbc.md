@@ -187,7 +187,7 @@ The POST body is JSON. Here is an explanation of the fields:
 | value | required | String representation of the data you need to store. |
 | type | required | Represents the format stored inside the value. Can be one of `JSON`, `XML`, `TEXT`. |
 | application | required | Name of a grouping of functional data. e.g. "id-data". |
-| ttlseconds | optional? | How long (in seconds) the data will be available in the data store. Default 300s. |
+| ttlseconds | optional | How long (in seconds) the data will be available in the data store. Default 300s. |
 
 Sample json payload:
 
