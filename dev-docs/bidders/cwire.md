@@ -5,7 +5,8 @@ description: C-WIRE Prebid Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: cwire
-tcfeu_supported: false
+tcfeu_supported: true
+gvl_id: 1081
 usp_supported: false
 schain_supported: false
 userIds: none
@@ -18,10 +19,11 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          |  Scope   |     Description     | Example  |   Type    |
-|---------------|:--------:|:-------------------:|:--------:|:---------:|
-| `pageId`      | required |   C-WIRE page id    |  `2453`  | `integer` |
-| `placementId` | required | C-WIRE placement id | `113244` | `integer` |
+| Name          |  Scope   |                 Description                  | Example  |   Type    |
+|---------------|:--------:|:--------------------------------------------:|:--------:|:---------:|
+| `pageId`      | optional |    C-WIRE page id (compatibility purposes)   |  `2453`  | `integer` |
+| `placementId` | optional |             C-WIRE placement id              | `113244` | `integer` |
+| `domainId`    | required |               C-WIRE domain id               |  `2453`  | `integer` |
 
 ### URL parameters
 
