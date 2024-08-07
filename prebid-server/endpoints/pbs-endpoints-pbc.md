@@ -222,4 +222,4 @@ GET /storage?application=id-data&key=hashedaddress
 ## Further Reading
 
 - [PBS endpoint overview](/prebid-server/endpoints/pbs-endpoint-overview.html)
-- [PBS data storage](/prebid-server/features/pbs-module-storage.html)
+- [PBS data storage](/prebid-server/features/pbs-pbc-storage.html)
