@@ -1487,7 +1487,7 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Module Storage
+  title: Prebid Cache Storage
   link: /prebid-server/features/pbs-module-storage.html
   isHeader: 0
   isSectionHeader: 0
