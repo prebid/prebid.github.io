@@ -1,17 +1,17 @@
 ---
 layout: page_v2
 sidebarType: 5
-title: Prebid Server | Features | Module Storage
+title: Prebid Server | Features | Cache Storage
 ---
 
-# Prebid Server | Features | Module Storage
+# Prebid Server | Features | Cache Storage
 
 This reference is describes how Prebid Server [module](/prebid-server/pbs-modules/) authors can take advantage of storing data needed by their module.
 
 The Prebid Server team recommends one of these solutions:
 
 1. Use internal application data structures like `com.github.benmanes.caffeine.cache.Caffeine`: This provides the fastest approach but is not suitable if you have large amounts of data or need a centralized cache.
-2. Using module cache via PBC: Check the [Module Storage endpoints](/prebid-server/endpoints/pbs-endpoints-pbc.html#module-storage). This approach provides a centralized caching solution that will be available from each PBS instance configured to connect to the PBC application.
+2. Using data cache via PBC: Check the [Storage endpoints](/prebid-server/endpoints/pbs-endpoints-pbc.html#storage). This approach provides a centralized caching solution that will be available from each PBS instance configured to connect to the PBC application.
 
 ## Using Prebid Cache
 
@@ -61,7 +61,7 @@ Here is an explanation of the parameters:
 
 ### retrieveModuleEntry()
 
-This function reads data from the Prebid Server module caching service.
+This function reads data from the Prebid Server caching service.
 
 Here is an explanation of the parameters:
 
