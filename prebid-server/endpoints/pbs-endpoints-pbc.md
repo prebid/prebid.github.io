@@ -147,7 +147,7 @@ This feature does not support thread-safe updates of data. The intended use is w
 These entries in the PBC application.yaml file define storage-related params:
 
 - `api.storage-path` - path of the storage POST/GET endpoints. Defaults to '/storage'.
-- `api.api-key` - api key to secure storage POST endpoint. Host companies may not want everyone on the internet to be able to store stuff in their cache. The value of this key is set by the PBS host company in the PBC config and in the PBS config. (See [???](TBD] for details about where to set this.)
+- `api.api-key` - api key to secure storage POST endpoint. Host companies may not want everyone on the internet to be able to store stuff in their cache. The value of this key is set by the PBS host company in the PBC config and in the PBS config. (See [Storage PBC configuration](https://github.com/prebid/prebid-cache-java/blob/master/docs/config.md#storage) for details about where to set this.)
 
 The storage feature supports different `applications` and storage providers are configured per `application`. For now, only [Redis](https://redis.io/) is supported for storage. To configure Redis storage for particular application, configure the `storage.redis.{application-name}` property.
 If no `applications` are needed, set `storage.redis` to `{}` in application.yaml like so:
@@ -164,11 +164,10 @@ api.storage-path: /storage
 api.api-key: API_KEY
 storage:
   redis:
-    application:
+    application-name:
       port: 6379
       host: localhost
       password: password
-      timeout: 99999
 ```
 
 A big difference between data storage and regular bid/VAST storage is that for storage, PBC expects the key to be provided in the POST body. This is because modules will need to generate the key from data in the request in order for it to use that same lookup key in future requests.
@@ -188,7 +187,7 @@ The POST body is JSON. Here is an explanation of the fields:
 | value | required | String representation of the data you need to store. |
 | type | required | Represents the format stored inside the value. Can be one of `JSON`, `XML`, `TEXT`. |
 | application | required | Name of a grouping of functional data. e.g. "id-data". |
-| ttlseconds | optional? | How long (in seconds) the data will be available in the data store. Default TBD. |
+| ttlseconds | optional? | How long (in seconds) the data will be available in the data store. Default 300s. |
 
 Sample json payload:
 

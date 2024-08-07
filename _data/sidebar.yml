@@ -1488,7 +1488,7 @@
 
 - sbSecId: 5
   title: Prebid Cache Storage
-  link: /prebid-server/features/pbs-module-storage.html
+  link: /prebid-server/features/pbs-pbc-storage.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

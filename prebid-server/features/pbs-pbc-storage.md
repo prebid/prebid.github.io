@@ -15,7 +15,7 @@ The Prebid Server team recommends one of these solutions:
 
 ## Using Prebid Cache
 
-To use this approach, you need to inject `ModuleCacheService` into your module. You can do this in your module configuration class. For example:
+To use this approach, you need to inject `PbcStorageService` into your module. You can do this in your module configuration class. For example:
 
 ```java
 @ConditionalOnProperty(prefix = "hooks." + {ModuleName}Module.CODE, name = "enabled", havingValue = "true")
@@ -23,7 +23,7 @@ To use this approach, you need to inject `ModuleCacheService` into your module. 
 public class {ModuleName}ModuleConfiguration {
 
     @Bean
-    {ModuleName}Module {moduleName}Module(ModuleCacheService cacheService) {
+    {ModuleName}Module {moduleName}Module(PbcStorageService cacheService) {
     
         ...
     }
@@ -33,7 +33,7 @@ public class {ModuleName}ModuleConfiguration {
 Then you can use the functions below for storing and retrieving data.
 
 ```java
-Future<Void> storeModuleEntry(String key,
+Future<Void> storeEntry(String key,
                                   String value,
                                   ModuleCacheType type,
                                   Integer ttlseconds,
@@ -43,9 +43,9 @@ Future<Void> storeModuleEntry(String key,
 Future<ModuleCacheResponse> retrieveModuleEntry(String key, String moduleCode, String application);
 ```
 
-### storeModuleEntry()
+### storeEntry()
 
-This function writes data through the Prebid Server module caching service.
+This function writes data through the Prebid Server PBC caching service.
 
 Here is an explanation of the parameters:
 
@@ -56,7 +56,7 @@ Here is an explanation of the parameters:
 | value | required | String representation of the data you need to store. |
 | type | required | Represents the format stored inside the value. Can be one of `JSON`, `XML`, `TEXT`. |
 | application | required | Configured name of your module storage. This should be configurable in your global or account module config. |
-| moduleCode | required | Use this constant from your module `{ModuleName}Module.CODE`. |
+| moduleCode | required | Use this constant from your module `{ModuleName}Module.CODE` or any other service identifier you are using. |
 | ttlseconds | optional | How long (in seconds) the data will be available in the module store. |
 
 ### retrieveModuleEntry()
@@ -70,7 +70,7 @@ Here is an explanation of the parameters:
 | --- | --- | --- |
 | key | required | A name that will be used to reference the stored value. |
 | application | required | Configured name of your module storage. This should be configurable in your global or account module config. |
-| moduleCode | required | Use this constant from your module `{ModuleName}Module.CODE`. |
+| moduleCode | required | Use this constant from your module `{ModuleName}Module.CODE` or any other service identifier you are using. |
 
 ## Related Reading
 
