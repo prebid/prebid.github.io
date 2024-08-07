@@ -24,16 +24,16 @@ when a Prebid ad has won the auction. There are a number of use cases:
 {: .table .table-bordered .table-striped }
 | Use Case | PUC file | Alternate Approach |
 | --- | --- | --- |
-| web banner: iframe | banner.js (or creative.js) | [Dynamic creatives](#alt-dyn), [Banner and Outstream Video iframes](#alt-iframes) |
-| web banner: safeframe | banner.js (or creative.js) | [Dynamic creatives](#alt-dyn), [Banner Safeframes](#alt-safeframes) |
-| web outstream video: iframe | video.js (or creative.js) | [Dynamic creatives](#alt-dyn), [Banner and Outstream Video iframes](#alt-iframes) |
-| web outstream video: safeframe | n/a | Outstream renderers each choose where to render differently, but none writes to the safeframe. |
-| AMP banner: always safeframe | amp.js (or creative.js) | n/a |
+| Web Banner: iframe | banner.js (or creative.js) | [Dynamic creatives](#alt-dyn), [Banner and In-Renderer Video iframes](#alt-iframes) |
+| Web Banner: safeframe | banner.js (or creative.js) | [Dynamic creatives](#alt-dyn), [Banner Safeframes](#alt-safeframes) |
+| Web In-Renderer Video: iframe | video.js (or creative.js) | [Dynamic creatives](#alt-dyn), [Banner and In-Renderer Video iframes](#alt-iframes) |
+| Web In-Renderer Video: safeframe | n/a | Renderers each choose where to render differently, but none writes to the safeframe. |
+| AMP Banner: always safeframe | amp.js (or creative.js) | n/a |
 | native: iframe | native.js (or native-render.js) | [Dynamic creatives](#alt-dyn) |
 | native: safeframe | native.js (or native-render.js) | [Dynamic creatives](#alt-dyn) |
 
 Note that as of PUC v1.15, the recommended way of loading the creative
-in the ad server involves using the `hb_format` ad server key-value. Before 1.15, the ad server needed to load creative.js which covered banner and outstream video, or native-render.js for native. 1.15 simplifies this
+in the ad server involves using the `hb_format` ad server key-value. Before 1.15, the ad server needed to load creative.js which covered banner and in-renderer video, or native-render.js for native. 1.15 simplifies this
 by allowing the ad server creative to load banner.js, video.js, or native.js, which can be done programmatically using ad server macros. e.g.
 
 ```html
@@ -45,7 +45,7 @@ service provider may have a different location.
 
 ## Features of the PUC
 
-### What the PUC does for Web iframe Banners/Outstream
+### What the PUC does for Web iframe Banners/In-Renderer
 
 1. Simply calls the Prebid.js renderAd function
 
@@ -87,9 +87,9 @@ by using [Prebid.js dynamic creatives](/adops/js-dynamic-creative.html).
 
 <a name="alt-iframes"></a>
 
-### Alternate methods for Banner and Outstream Video iframes
+### Alternate methods for Banner and In-Renderer Video iframes
 
-If you only ever need to display non-safeframed banner and outstream-video creatives, there are several ways to replace the `jsdelivr` call in your ad server creative:
+If you only ever need to display non-safeframed banner and in-renderer-video creatives, there are several ways to replace the `jsdelivr` call in your ad server creative:
 
 1. Copy the contents of `https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js` into each creative.
 1. Directly call the Prebid.js `renderAd` function:

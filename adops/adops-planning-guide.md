@@ -63,6 +63,8 @@ Some additional resources that might be helpful as you work through your setup i
 
 [Deals in Prebid](/adops/deals.html): You can negotiate deals with header bidding demand partners and have them compete with ad server inventory. You’ll need to create additional line items to support these deals. This document explains how to set up Prebid to make that happen.
 
+[Prebid Mobile](/adops/mobile-adops.html): Read this if you have an app integration with Prebid Mobile.
+
 ## Terminology
 
 Throughout this planning guide, we use the following terms to describe elements within the ad server. These terms may vary among different ad servers.
