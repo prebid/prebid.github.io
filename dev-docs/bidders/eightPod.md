@@ -11,10 +11,11 @@ gpp_sids: none
 schain_supported: false
 dchain_supported: false
 userId: none
-media_types: banner
+media_types: banner, video
 deals_supported: false
+userIds: check with bidder
 floors_supported: false
-fpd_supported: false
+fpd_supported: true
 pbjs: true
 pbs: false
 prebid_member: false
