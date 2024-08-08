@@ -11,6 +11,7 @@ The AdvRed analytics adapter can be used by all clients after approval. For more
 please visit <https://ams.adv.red/>
 
 #### Analytics Options
+{: .table .table-bordered .table-striped }
 | Param enableAnalytics | Scope    | Type   | Description                                          | Example                          |
 |-----------------------|----------|--------|------------------------------------------------------|----------------------------------|
 | provider              | Required | String | The name of this Adapter.                            | `'advRed'`                       |
