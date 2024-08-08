@@ -4,7 +4,7 @@ title: Geniee SSP
 description: Geniee SSP Bidder Adapter
 biddercode: ssp_geniee
 userId: imuId
-media_types: banner, native
+media_types: banner
 safeframes_ok: false
 floors_supported: true
 multiformat_supported: will-bid-on-one
