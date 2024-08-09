@@ -15,5 +15,3 @@ sidebarType: 1
 | Name          | Scope                      | Description          | Example            | Type      |
 |---------------|----------------------------|----------------------|--------------------|-----------|
 | `publisherId` |        required            |    Publisher ID      |         `2`        | `integer` |
-
-```
