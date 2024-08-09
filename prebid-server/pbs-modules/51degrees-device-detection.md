@@ -6,6 +6,9 @@ display_name : 51Degrees Device Detection Module
 sidebarType : 5
 ---
 
+{: .alert.alert-warning :}
+51Degrees module operates using a data file. You can get started with a free Lite data file that can be downloaded [here](https://github.com/51Degrees/device-detection-data/blob/main/51Degrees-LiteV4.1.hash). The Lite file is updated monthly and detects limited device information. To access the daily updated full data file with comprehensive device information please [contact 51Degrees](https://51degrees.com/contact-us).
+
 # 51Degrees Device Detection Module
 {:.no_toc}
 
@@ -140,8 +143,8 @@ In JSON:
   "hooks": {
     "enabled": true,
     "modules": {
-      "fiftyone_degrees": {
-        "device_detection": {
+      "fiftyonedegrees": {
+        "devicedetection": {
           "enabled": true,
           "make_temp_copy": true,
           "data_file": {
@@ -167,7 +170,7 @@ In JSON:
                     "timeout": 10,
                     "hook_sequence": [
                       {
-                        "module_code": "fiftyone_degrees.device_detection",
+                        "module_code": "fiftyonedegrees.devicedetection",
                         "hook_impl_code": "fiftyone-devicedetection-entrypoint-hook"
                       }
                     ]
@@ -180,7 +183,7 @@ In JSON:
                     "timeout": 10,
                     "hook_sequence": [
                       {
-                        "module_code": "fiftyone_degrees.device_detection",
+                        "module_code": "fiftyonedegrees.devicedetection",
                         "hook_impl_code": "fiftyone-devicedetection-raw-auction-request-hook"
                       }
                     ]
@@ -202,8 +205,8 @@ and YAML format:
 hooks:
   enabled: true
   modules:
-    fiftyone_degrees:
-      device_detection:
+    fiftyonedegrees:
+      devicedetection:
         enabled: true
         make_temp_copy: true
         data_file:
@@ -223,13 +226,13 @@ hooks:
               groups:
                 - timeout: 10
                   hook_sequence:
-                    - module_code: fiftyone_degrees.device_detection
+                    - module_code: fiftyonedegrees.devicedetection
                       hook_impl_code: fiftyone-devicedetection-entrypoint-hook
             raw_auction_request:
               groups:
                 - timeout: 10
                   hook_sequence:
-                    - module_code: fiftyone_degrees.device_detection
+                    - module_code: fiftyonedegrees.devicedetection
                       hook_impl_code: fiftyone-devicedetection-raw-auction-request-hook
 ```
 
@@ -340,10 +343,10 @@ go mod download
 ```
 
 {:start="2"}
-2. Replace the original config file `pbs.json` (placed in the repository root or in `/etc/config`) with the sample [config file](https://github.com/51Degrees/prebid-server/blob/feature/51Degrees-device-detection-module/modules/fiftyone_degrees/device_detection/sample/pbs.json):
+2. Replace the original config file `pbs.json` (placed in the repository root or in `/etc/config`) with the sample config file:
 
 ```bash
-cp modules/fiftyone_degrees/device_detection/sample/pbs.json pbs.json
+cp modules/fiftyonedegrees/devicedetection/sample/pbs.json pbs.json
 ```
 
 {:start="3"}
@@ -374,7 +377,7 @@ go run main.go
 curl \
 --header "Content-Type: application/json" \
 http://localhost:8000/openrtb2/auction \
---data @modules/fiftyone_degrees/device_detection/sample/request_data.json
+--data @modules/fiftyonedegrees/devicedetection/sample/request_data.json
 ```
 
 ## Maintainer contacts
