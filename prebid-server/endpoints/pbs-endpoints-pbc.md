@@ -196,7 +196,7 @@ Sample json payload:
   "key": "hashedaddress",
   "type": "text",
   "value": "lots of data to store",
-  "application": "moduleA",
+  "application": "id-data",
   "ttlseconds": 9999
 }
 ```
