@@ -164,7 +164,7 @@ api.storage-path: /storage
 api.api-key: API_KEY
 storage:
   redis:
-    application-name:
+    id-data:
       port: 6379
       host: localhost
       password: password
