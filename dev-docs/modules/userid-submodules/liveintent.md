@@ -4,6 +4,10 @@ title: LiveIntent nonID
 description: LiveIntent nonID User ID sub-module
 useridmodule: liveIntentIdSystem
 ---
+After the recent development of LiveConnectHub, there is a new change in LiveIntent module.
+We added the liveIntentId3System to leave LiveConnect out of Prebid.
+To use LiveConnectHub with the new liveIntent module, please set the `$$LIVE_INTENT_MODULE_MODE$$` to `hub`. Otherwise, it continues to use the old liveIntentIdSystem with LiveConnect embedded to the Prebid.
+___
 
 LiveIntent offers audience resolution by leveraging its next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web.
 
