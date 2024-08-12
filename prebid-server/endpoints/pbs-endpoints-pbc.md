@@ -125,6 +125,9 @@ Content-Type: application/json
 
 ## Cache Storage
 
+{: .alert.alert-info :}
+This feature is currently available only in the Java version of Prebid Cache.
+
 Host companies may want to set up Prebid Cache to be able to store [module](/prebid-server/pbs-modules/) or other data separately from the main bids/VAST data store. Having a separate data store for each module or a group of modules allows the host company to:
 
 - limit how much data space a given module (or group of modules) can consume

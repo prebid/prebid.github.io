@@ -6,6 +6,9 @@ title: Prebid Server | Features | Cache Storage
 
 # Prebid Server | Features | Cache Storage
 
+{: .alert.alert-info :}
+This feature is currently available only in the Java version of Prebid Server.
+
 This reference is describes how Prebid Server [module](/prebid-server/pbs-modules/) authors can take advantage of storing data needed by their module.
 
 The Prebid Server team recommends one of these solutions:
