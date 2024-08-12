@@ -38,9 +38,9 @@ Future<Void> storeEntry(String key,
                                   ModuleCacheType type,
                                   Integer ttlseconds,
                                   String application,
-                                  String moduleCode);
+                                  String appCode);
 
-Future<ModuleCacheResponse> retrieveModuleEntry(String key, String moduleCode, String application);
+Future<ModuleCacheResponse> retrieveEntry(String key, String appCode, String application);
 ```
 
 ### storeEntry()
@@ -56,10 +56,10 @@ Here is an explanation of the parameters:
 | value | required | String representation of the data you need to store. |
 | type | required | Represents the format stored inside the value. Can be one of `JSON`, `XML`, `TEXT`. |
 | application | required | Configured name of your module storage. This should be configurable in your global or account module config. |
-| moduleCode | required | Use this constant from your module `{ModuleName}Module.CODE` or any other service identifier you are using. |
+| appCode | required | Use this constant from your module `{ModuleName}Module.CODE` or any other service identifier you are using. |
 | ttlseconds | optional | How long (in seconds) the data will be available in the module store. |
 
-### retrieveModuleEntry()
+### retrieveEntry()
 
 This function reads data from the Prebid Server caching service.
 
@@ -70,7 +70,7 @@ Here is an explanation of the parameters:
 | --- | --- | --- |
 | key | required | A name that will be used to reference the stored value. |
 | application | required | Configured name of your module storage. This should be configurable in your global or account module config. |
-| moduleCode | required | Use this constant from your module `{ModuleName}Module.CODE` or any other service identifier you are using. |
+| appCode | required | Use this constant from your module `{ModuleName}Module.CODE` or any other service identifier you are using. |
 
 ## Related Reading
 
