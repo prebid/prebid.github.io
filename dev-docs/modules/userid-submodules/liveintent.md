@@ -4,10 +4,6 @@ title: LiveIntent nonID
 description: LiveIntent nonID User ID sub-module
 useridmodule: liveIntentIdSystem
 ---
-After the recent development of LiveConnectHub, there is a new change in LiveIntent module.
-We added the liveIntentId3System to leave LiveConnect out of Prebid.
-To use LiveConnectHub with the new liveIntent module, please set the `$$LIVE_INTENT_MODULE_MODE$$` to `hub`. Otherwise, it continues to use the old liveIntentIdSystem with LiveConnect embedded to the Prebid.
-___
 
 LiveIntent offers audience resolution by leveraging its next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web.
 
@@ -29,6 +25,15 @@ There are two ways to add the functionality of LiveIntent Identity sub-module to
 
     ```bash
     LiveConnectMode=minimal gulp build --modules=liveIntentIdSystem
+    ```
+
+3. The hub version, which requires a live-connect tag (>=3.0.0) installed on your page in addition to prebid.
+This will significantly reduce the size of your prebid bundle and allow you to use the newest features of live-connect. All non-hub version might be deprecated in the future.
+
+    Add the **hub** LiveIntent Identity module to your Prebid.js package with:
+
+    ```bash
+    LiveConnectMode=hub gulp build --modules=liveIntentIdSystem
     ```
 
 This is an example of how the `request.userId.lipb` object, which contains the resolution result, would look like:
