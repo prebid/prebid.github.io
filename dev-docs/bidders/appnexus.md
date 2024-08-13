@@ -5,6 +5,7 @@ description: Prebid AppNexus Bidder Adaptor
 biddercode: appnexus
 media_types: banner, video, native
 tcfeu_supported: true
+dsa_supported: true
 prebid_member: true
 userIds: all (with commercial activation)
 schain_supported: true
@@ -45,6 +46,9 @@ All AppNexus (Xandr) placements included in a single call to `requestBids` must 
 #### Bid Params
 
 {: .alert.alert-danger :}
+Starting with Prebid.js version 9.0, an update was made to the `appnexusBidAdapter.js` file to remove the support for the `transformBidParams` function.  Previously this standard adapter function was used in conjunction of Prebid.js > PBS requests to modify any bid params for that bidder to the bid param format used by the PBS endpoint.  Part of the changes for 9.0 in general were to remove these functions from the client-side adapter files, in order to reduce the build size of Prebid.js for those publishers who wanted to make the PBS requests.  In the case of our adapter, we instead created a new module named `anPspParamsConverter` that would mimic behavior of the `transformBidParams` function.  There's no setup instructions needed on the Prebid.js configs, the module only needs to be included in the Prebid.js build file and it will perform the needed steps.  If you have any questions on this change, please reach out to your Microsoft representative and they can help.
+
+{: .alert.alert-danger :}
 Starting with Prebid.js version 7.36.0, an update was made to the `appnexusBidAdapter.js` file to support bid params in a lower-case underscore format (eg `invCode` to `inv_code`) similar to how the params are formatted for the Prebid Server AppNexus bidder.  This change was implemented to streamline publisher setups for both projects instead of maintaining separate versions of the same params depending on what setup is used.
 To avoid breaking changes, the old 'camelCase' format is still currently supported for all AppNexus bid params in the `appnexusBidAdapter.js` file. If you are using an older version of Prebid.js, you will need to continue to use the older 'camelCase' format as appropriate.
 The table below will reflect both formats, though it's recommended to use the lower-case underscore format where possible going forward (assuming you're using a compatible version of Prebid.js).
@@ -56,7 +60,7 @@ The table below will reflect both formats, though it's recommended to use the lo
 | `member`                                        | optional | The member ID  from AppNexus. Must be used with `invCode`.                                                                                                                    | `'12345'`                                             | `string`         |
 | `invCode` or `inv_code`                             | optional | The inventory code from AppNexus. Must be used with `member`.                                                                                                                 | `'abc123'`                                            | `string`         |
 | `publisherId` or `publisher_id`                    | optional | The publisher ID from AppNexus. It is used by the AppNexus end point to identify the publisher when placement id is not provided and `invCode` goes wrong. The `publisherId` parameter can be either a `string` or `integer` for Prebid.js, however `integer` is preferred.                                                                                                                    | `12345`                                             | `integer`         |
-| `frameworks`                                    | optional | Array of integers listing API frameworks for Banner supported by the publisher. | `integer` |
+| `frameworks`                                    | optional | Array of integers listing API frameworks for Banner supported by the publisher. | `[1,2]` | `array of integer` |
 | `user`                                          | optional | Object that specifies information about an external user. See [User Object](#appnexus-user-object) for details.                                                               | `user: { age: 25, gender: 0, dnt: true}`              | `object`         |
 | `allowSmallerSizes` or `allow_smaller_sizes`               | optional | If `true`, ads smaller than the values in your ad unit's `sizes` array will be allowed to serve. Defaults to `false`.                                                         | `true`                                                | `boolean`        |
 | `usePaymentRule` (PBJS) or `use_pmt_rule` (PBS+PBJS) | optional | If `true`, Appnexus will return net price to Prebid.js after publisher payment rules have been applied.                                                                       | `true`                                                | `boolean`        |

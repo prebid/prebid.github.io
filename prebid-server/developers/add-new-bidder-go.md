@@ -13,18 +13,27 @@ Thank you for your valuable contribution of a bid adapter to the open source Pre
 This document guides you through the process of developing a new bid adapter for your bidding server. We encourage you to look at [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance. You can ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server/issues/new).
 
 {: .alert.alert-info :}
-There are two implementations of Prebid Server, [PBS-Go](https://github.com/prebid/prebid-server) and [PBS-Java](https://github.com/prebid/prebid-server-java). We recommend you build new adapters for PBS-Go and allow us to port it to PBS-Java within a couple of months. If you'd like to build both yourself, please also follow these [instructions for building an adapter in PBS-Java](/prebid-server/developers/add-new-bidder-java.html).
+There are two implementations of Prebid Server: [PBS-Go](https://github.com/prebid/prebid-server) and [PBS-Java](https://github.com/prebid/prebid-server-java). We recommend you build new adapters for PBS-Go and allow us to port it to PBS-Java within a couple of months. If you'd like to build both yourself, please also follow these [instructions for building an adapter in PBS-Java](/prebid-server/developers/add-new-bidder-java.html).
 
 * TOC
 {:toc }
 
 ## Overview
 
-Bid adapters are responsible for translating an [OpenRTB 2.5 Bid Request](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=13) to your bidding server's protocol and mapping your server's response to an [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=32).
+Bid adapters are responsible for translating a 'Prebid-flavored' OpenRTB Bid Request to your bidding server's protocol and mapping your server's response to a Prebid-flavored response.
 
-An OpenRTB 2.5 Bid Request contains one or more Impressions, each representing a single ad placement. An Impression may define multiple sizes and/or multiple ad formats. If your bidding server limits requests to a single ad placement, size, or format, then your adapter will need to split the Impression into multiple calls and merge the responses.
+"Prebid-flavored OpenRTB" means:
+
+1. [OpenRTB 2.6](https://github.com/InteractiveAdvertisingBureau/openrtb2.x) as defined by the IAB.
+1. Certain Prebid extensions as defined in the [/auction endpoint documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html).
+
+OpenRTB Bid Requests contain one or more impression objects, each representing a single ad placement. An impression may define multiple sizes and/or multiple ad formats. If your bidding server limits requests to a single ad placement, size, or format, then your adapter will need to split the impression into multiple calls and merge the responses.
+
+See the [example auction request](/prebid-server/endpoints/openrtb2/auction-request-example.html) to get an idea for what your adapter will receive.
 
 ## Plan Your Bid Adapter
+
+The job of your bid adapter is to adapt. You'll need to think about currency, floors, mediatypes, and other details as noted below.
 
 ### Choose A Name
 
@@ -34,6 +43,28 @@ We ask that the first 6 letters of the name you choose be unique among the exist
 
 Throughout the rest of this document, substitute `{bidder}` with the name you've chosen.
 
+### Consider Your Geography
+
+Most bidders run their auction endpoints in multiple data centers because their
+business is continental or global.
+
+Prebid Server is open source software that is run by many host companies that may be calling
+your bid adapter from various places. It may be useful to consider how you want to
+communicate your geographic preferences to these companies.
+
+{: .alert.alert-info :}
+Please don't bother publishers by asking them to enter a geographic location 'host' parameter. Most publishers do not have the tech to choose which of your regional endpoints to hit.
+
+These are the recommended technical solutions:
+
+1. Use a "Global Services Load Balancing" vendor so there's just one smart hostname that figures out where to send each user. Just do an internet search for "gslb services".
+1. In your bidder yaml file, let the host companies know which regional endpoints you support. They can take care of mapping their regions to your regions. See the YAML file below for an example of how to communicate this.
+
+You should also consider entering geographic scoping information into your YAML file so
+host companies can disable your bidder in regions where you're not going to bid. e.g.
+bidders that are not GDPR-compliant probably won't bid much in Europe. It costs both you and the host company networking fees to send bid requests, so it's in
+your interest to declare your scope of business. See below for syntax details.
+
 ### Respect The Rules
 
 We are proud to run the Prebid Server project as a transparent and trustworthy header bidding solution. You are expected to follow our community's [code of conduct](https://prebid.org/code-of-conduct/) and [module rules](/dev-docs/module-rules.html) when creating your adapter and when interacting with others through issues, code reviews, and discussions.
@@ -41,7 +72,7 @@ We are proud to run the Prebid Server project as a transparent and trustworthy h
 **Please take the time to read the rules in full.** Below is a summary of some of the rules which apply to your Prebid Server bid adapter:
 
 * Adapters must include maintainer information with a group email address for Prebid.org to contact for ongoing support and maintenance.
-* Your bidder's endpoint domain name cannot be variable. If you want to have different endpoints in different geographical locations, Prebid Server host companies can do that for you. Publisher information can be in the query string, but not the domain.
+* Your bidder's endpoint domain name cannot be fully variable. We will accept endpoint domains that include account IDs, but we do not like them, and Prebid Server host companies may disable adapters using this approach if there are technical issues with it. We will not accept hostnames that have a required dynamic element for the purpose of sending traffic to different geographic regions.
 * If you have a client-side adapter, all parameters (including biddercodes and aliases) must be consistent between your client- and server-side adapters. This allows publishers to utilize the PBJS [s2sTesting module](/dev-docs/modules/s2sTesting.html).
 * Adapters must not modify bids from demand partners, except to either change the bid from gross to net or from one currency to another.
 * Adapters must use the functions provided by the core framework for all external communication. Initiation of any form of network connection outside of what is provided by the core framework is strictly prohibited. No exceptions will be made for this rule.
@@ -74,15 +105,20 @@ Our project is written in the [Go programming language](https://golang.org/). We
 
 ### Bidder Info
 
-Let's begin with your adapter's bidder information YAML file. This file is required and contains your bid adapter's maintainer email address, outgoing compression support, [GDPR Global Vendor List (GVL) ID](https://iabeurope.eu/vendor-list-tcf-v2-0/), supported ad formats, user sync endpoints, and allows you to opt-out of video impression tracking.
+Let's begin with your adapter's bidder information YAML file. This file is required and contains your bid adapter's maintainer email address, outgoing compression support, [GDPR Global Vendor List (GVL) ID](https://iabeurope.eu/tcf-for-vendors/), supported ad formats, user sync endpoints, and allows you to opt-out of video impression tracking.
 
 Create a file with the path `static/bidder-info/{bidder}.yaml` and begin with the following template:
 
 ```yaml
-endpoint: "http://foo.com/openrtb2"
+# We have the following regional endpoint domains: us-east and us-west
+# Please deploy this config in each of your datacenters with the appropriate regional subdomain
+endpoint: "http://REGION.example.com/openrtb2"
+endpointCompression: gzip
+geoscope:
+  - USA
+  - CAN
 maintainer:
   email: prebid-maintainer@example.com
-endpointCompression: gzip
 gvlVendorID: 42
 modifyingVastXmlAllowed: true
 capabilities:
@@ -98,6 +134,12 @@ capabilities:
       - video
       - audio
       - native
+  dooh:
+    mediaTypes:
+      - banner
+      - video
+      - audio
+      - native
 userSync:
   redirect:
     url: https://foo.com/sync?gdpr={%raw%}{{.GDPR}}{%endraw%}&consent={%raw%}{{.GDPRConsent}}{%endraw%}&us_privacy={%raw%}{{.USPrivacy}}{%endraw%}&redirect={%raw%}{{.RedirectURL}}{%endraw%}
@@ -106,23 +148,33 @@ userSync:
 
 Modify this template for your bid adapter:
 
-* Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
+* The endpoint can be static if you only have one data center or use a Global Load Balancer as described in 'Planning Your Adapter' above.
 * Remove the `endpointCompression` value if your bidding server does not accept gzip compressed bid requests. Setting this value to `gzip` will save on network bandwidth at the expense of slightly increased cpu and memory usage for the host.
-* Change the `gvlVendorID` from the sample value of `42` to the id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/vendor-list-tcf-v2-0/), or remove this line entirely if your bidding server is not registered with IAB Europe.
-* Change the `modifyingVastXmlAllowed` value to `false` if you'd like to opt-out of [video impression tracking](https://github.com/prebid/prebid-server/issues/1015), or remove this line entirely if your adapter doesn't support VAST video ads.
-* Remove the `capabilities` (app/site) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support.
-* Add the `extra_info` if you'd like to pass extra value adapter may need.
+* The `geoscope` parameter is not currently read programmatically. Instead, it's intended to be used by PBS host companies to disable your adapter in geographic regions where you don't do business. However, we may make a module for this someday, so we ask that you follow this syntax for `geoscope`:
+  * YAML array
+  * Values can be either a 3-letter country code, "EEA", or "global". (EEA means European Economic Area)
+  * Values can be negated. e.g. "!EEA"
+* Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
+* Change the `gvlVendorID` from the sample value of `42` to the id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/tcf-for-vendors/), or remove this line entirely if your bidding server is not registered with IAB Europe.
+* If absolutely necessary, change the `modifyingVastXmlAllowed` value to `false` to opt-out of [video impression tracking](https://github.com/prebid/prebid-server/issues/1015). However, please note that Prebid Server host companies depend on this feature being enabled to track video analytics. This feature has been live for many years with no known problems.
+* Remove the `capabilities` (app/site/dooh) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support. (Note: 'dooh' is [Digital Out Of Home](/prebid-server/use-cases/pbs-dooh.html))
+* Add an `extra_info` field if you'd like to pass additional values that your adapter may need. See below for an example.
 * Add the `disabled` flag and set it to true if you would like to unregister adapter from the core. It's enabled by default.
 * Follow the [User Sync Configuration](#user-sync-configuration) documentation below to configure the endpoints for your bid adapter, or remove the `userSync` section if not supported.
+
+#### Additional Bidder Info Examples
 
 <details markdown="1">
   <summary>Example: Website with banner ads only.</summary>
 
 ```yaml
-endpoint: "http://foo.com/openrtb2"
+# global endpoint
+endpoint: "http://auction.example.com/openrtb2"
+endpointCompression: gzip
+geoscope:
+  - global
 maintainer:
   email: prebid-maintainer@example.com
-endpointCompression: gzip
 gvlVendorID: 42
 capabilities:
   site:
@@ -143,7 +195,6 @@ userSync:
 endpoint: "http://foo.com/openrtb2"
 maintainer:
   email: prebid-maintainer@example.com
-endpointCompression: gzip
 capabilities:
   site:
     mediaTypes:
@@ -296,14 +347,14 @@ userSync:
 
 Your bid adapter might require extra information from the publisher to form a request to your bidding server. The bidder parameters JSON Schema codifies this information to allow Prebid Server to verify requests and to provide an API for configuration systems.
 
-Publishers will provide extra information using an OpenRTB 2.5 Bid Request Extension, preferably at `request.imp[].ext.prebid.bidder.{bidder}` but also supported at `request.imp[].ext.{bidder}`. Prebid Server will validate the publisher information based on your schema and relocate the data to `request.imp[].ext.bidder`, regardless of your bidder name or the publisher's chosen location.
+Publishers will provide extra information using an OpenRTB 2.x Bid Request Extension, preferably at `request.imp[].ext.prebid.bidder.{bidder}` but also supported at `request.imp[].ext.{bidder}`. Prebid Server will validate the publisher information based on your schema and relocate the data to `request.imp[].ext.bidder`, regardless of your bidder name or the publisher's chosen location.
 
-We request you do not duplicate information already present in the [OpenRTB 2.5 Bid Request specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=13) or already part of an established Prebid convention. For example, your bidder parameters should not include first party data, bid floors, schain, video parameters, referrer information, or privacy consent including COPPA, CCPA, and GDPR TCF. For video parameters in particular, you must prefer the OpenRTB 2.5 Bid Request standard of `request.imp[].video`.
+We request you do not duplicate information already present in the [OpenRTB 2.x Bid Request specification](https://github.com/InteractiveAdvertisingBureau/openrtb2.x) or already part of an established Prebid convention. For example, your bidder parameters should not include first party data, bid floors, schain, video parameters, referrer information, or privacy consent including COPPA, CCPA, and GDPR TCF. For video parameters in particular, you must prefer the OpenRTB 2.x Bid Request standard of `request.imp[].video`.
 
 {: .alert.alert-warning :}
-You may not use an endpoint domain as a bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a portion of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may choose to disable your adapter if it uses a dynamically configured domain.
+You may not try so set the full endpoint domain from a publisher-specified bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a *portion* of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may choose to disable your adapter if it uses a dynamically configured domain.
 
-Create a file with the path `static/bidder-params/{bidder}.json` and use [JSON Schema](https://spacetelescope.github.io/understanding-json-schema/) to define your bidder parameters. Prebid Server requires this file for every adapter, even if yours doesn't require bidder parameters (see the 'no parameters' example at the end of this section).
+Create a file with the path `static/bidder-params/{bidder}.json` and use [JSON Schema](https://json-schema.org/understanding-json-schema/) to define your bidder parameters. Prebid Server requires this file for every adapter, even if yours doesn't require bidder parameters (see the 'no parameters' example at the end of this section).
 
 Let's start with this example which defines one required `placementId` string parameter:
 
@@ -327,7 +378,7 @@ Let's start with this example which defines one required `placementId` string pa
 
 We encourage you to utilize the full features of [JSON Schema](https://spacetelescope.github.io/understanding-json-schema/) to narrowly define your bidder parameter data types. If you copy and paste these examples, please remember to change the  `title` and `description` to refer to your bidder name instead of our fictional Foo example.
 
-When choosing your parameter names, please consider aligning with the OpenRTB 2.5 standard by using lower case letters without camel casing or special characters.
+When choosing your parameter names, please consider aligning with the OpenRTB 2.x standard by using lower case letters without camel casing or special characters.
 
 Properties in [JSON Schema](https://spacetelescope.github.io/understanding-json-schema/) are case sensitive. If you choose to specify multiple properties differing only by case for compatibility, we ask that you include the word 'preferred' in one of the descriptions to give a hint to third party configuration systems.
 
@@ -485,9 +536,9 @@ Please follow [Go's standard naming convention](https://golang.org/doc/effective
 
 ### Adapter Code
 
-Now it's time to write the bulk of your bid adapter code.
+Now it's time to write your bid adapter code.
 
-Each adapter has its own directory (a 'package' in Go parlance) for all code and tests associated with translating an OpenRTB 2.5 Bid Request to your bidding server's protocol and mapping your server's response to an OpenRTB 2.5 Bid Response. The use of separate packages provide each adapter with its own naming scope to avoid conflicts and gives the freedom to organize files as you best see fit (although we make suggestions in this guide).
+Each adapter has its own directory (a 'package' in Go parlance) for all code and tests associated with translating an OpenRTB 2.x Bid Request to your bidding server's protocol and mapping your server's response to an OpenRTB 2.x Bid Response. The use of separate packages provide each adapter with its own naming scope to avoid conflicts and gives the freedom to organize files as you best see fit (although we make suggestions in this guide).
 
 Create a file with the path `adapters/{bidder}/{bidder}.go`. Your bid adapter code will need to implement and export:
 
@@ -497,7 +548,7 @@ Create a file with the path `adapters/{bidder}/{bidder}.go`. Your bid adapter co
 {: .alert.alert-info :}
 **ACCESS MODIFIERS:** Go has only two kinds of access modifiers, exported and private, which are scoped at the package level. The access modifier is encoded into the name of the type or method. Names starting with an upper case letter are exported whereas names starting with a lower case letter are private. Please only export the three required methods and keep everything else private.
 
-Here is a reference implementation for a bidding server which uses the OpenRTB 2.5 protocol:
+Here is a reference implementation for a bidding server which uses the OpenRTB 2.x protocol:
 
 ```go
 package foo
@@ -507,7 +558,7 @@ import (
   "fmt"
   "net/http"
 
-  "github.com/prebid/openrtb/v19/openrtb2"
+  "github.com/prebid/openrtb/v20/openrtb2"
   "github.com/prebid/prebid-server/adapters"
   "github.com/prebid/prebid-server/config"
   "github.com/prebid/prebid-server/errortypes"
@@ -518,7 +569,7 @@ type adapter struct {
   endpoint string
 }
 
-// Builder builds a new instance of the Foo adapter for the given bidder with the given config.
+// Builder builds a new instance of the {bidder} adapter for the given bidder with the given config.
 func Builder(bidderName openrtb_ext.BidderName, config config.Adapter, server config.Server) (adapters.Bidder, error) {
   bidder := &adapter{
     endpoint: config.Endpoint,
@@ -536,6 +587,7 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapte
     Method:  "POST",
     Uri:     a.endpoint,
     Body:    requestJSON,
+    ImpIDs:  openrtb_ext.GetImpIDs(request.Imp),
   }
 
   return []*adapters.RequestData{requestData}, nil
@@ -624,7 +676,7 @@ type adapter struct {
   endpointTemplate *template.Template
 }
 
-// Builder builds a new instance of the Foo adapter for the given bidder with the given config.
+// Builder builds a new instance of the {bidder} adapter for the given bidder with the given config.
 func Builder(bidderName openrtb_ext.BidderName, config config.Adapter, server config.Server) (adapters.Bidder, error) {
   template, err := template.New("endpointTemplate").Parse(config.Endpoint)
   if err != nil {
@@ -648,7 +700,7 @@ type extraInfo struct {
   token string
 }
 
-// Builder builds a new instance of the Foo adapter for the given bidder with the given config.
+// Builder builds a new instance of the {bidder} adapter for the given bidder with the given config.
 func Builder(bidderName openrtb_ext.BidderName, config config.Adapter, server config.Server) (adapters.Bidder, error) {
   info, err := parseExtraInfo(config.ExtraAdapterInfo)
   if err != nil {
@@ -687,11 +739,11 @@ func buildDefaultExtraInfo() extraInfo {
 
 #### MakeRequests
 
-The `MakeRequests` method is responsible for returning none, one, or many HTTP requests to be sent to your bidding server. Bid adapters are forbidden from directly initiating any form of network communication and must entirely rely upon the core framework. This allows the core framework to optimize outgoing connections using a managed pool and record networking metrics. The return type `adapters.RequestData` allows your adapter to specify the HTTP method, url, body, and headers.
+The `MakeRequests` method is responsible for returning none, one, or many HTTP requests to be sent to your bidding server. Bid adapters are forbidden from directly initiating any form of network communication and must entirely rely upon the core framework. This allows the core framework to optimize outgoing connections using a managed pool and record networking metrics. The return type `adapters.RequestData` allows your adapter to specify the HTTP method, url, body, headers, and ids of the impressions in the request.
 
 This method is called once by the core framework for bid requests which have at least one valid Impression for your adapter. Impressions not configured for your adapter are not accessible.
 
-The first argument, `request`, is the OpenRTB 2.5 Bid Request object. Extension information is stored as `json.RawMessage` byte arrays and must be unmarshalled and/or marshalled to be read and/or mutated. It is *critical* to understand that the `request` object contains pointers to shared memory. If your adapter needs to alter any data referenced by a pointer then you *must* first make a shallow copy. The only exception is for `request.Imp` and its elements, as these are already shallow copies. The exact same instance of the `request` object is also passed to the `MakeBids` method, so please be careful when mutating. It's safe to assume that `request.Imp[]` always contains at least one element and that the `request.Imp[].ext.bidder` was successfully validated per your bidder parameter JSON Schema.
+The first argument, `request`, is the OpenRTB 2.x Bid Request object. Extension information is stored as `json.RawMessage` byte arrays and must be unmarshalled and/or marshalled to be read and/or mutated. It is *critical* to understand that the `request` object contains pointers to shared memory. If your adapter needs to alter any data referenced by a pointer then you *must* first make a shallow copy. The only exception is for `request.Imp` and its elements, as these are already shallow copies. The exact same instance of the `request` object is also passed to the `MakeBids` method, so please be careful when mutating. It's safe to assume that `request.Imp[]` always contains at least one element and that the `request.Imp[].ext.bidder` was successfully validated per your bidder parameter JSON Schema.
 
 <details markdown="1">
   <summary>Example: Mutating banner shared memory (make a copy).</summary>
@@ -744,6 +796,7 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapte
       Method: "POST",
       Uri:    a.endpoint,
       Body:   requestJSON,
+      ImpIDs: []string{imp.ID},
     }
     requests = append(requests, requestData)
   }
@@ -793,6 +846,7 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapte
     Method:  "POST",
     Uri:     a.endpoint,
     Body:    requestJSON,
+    ImpIDs:  openrtb_ext.GetImpIDs(request.Imp),
   }
 
   return []*adapters.RequestData{requestData}, nil
@@ -804,7 +858,7 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapte
 
 ##### Common Data
 
-There are a several values of a bid that publishers expect to be populated. Some are defined by the OpenRTB 2.5 specification and some are defined by Prebid conventions.
+There are a several values of a bid that publishers expect to be populated. Some are defined by the OpenRTB 2.x specification and some are defined by Prebid conventions.
 
 {: .table .table-bordered .table-striped }
 | Parameter | Definer | Path & Description
@@ -826,24 +880,24 @@ For simplicity, adapters are expected to make net-price bids (e.g. "If this ad w
 
 #### Response
 
-The `MakeBids` method is responsible for parsing the bidding server's response and mapping it to the [OpenRTB 2.5 Bid Response object model](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=32).
+The `MakeBids` method is responsible for parsing the bidding server's response and mapping it to the [OpenRTB 2.x Bid Response object model](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#objectbidresponse).
 
 This method is called for each response received from your bidding server within the bidding time window (`request.tmax`). If there are no requests or if all requests time out, the `MakeBids` method will not be called.
 
 {: .alert.alert-warning :}
 It's *imperative* to include all required information in the response for your bid to be accepted. Please avoid common mistakes, such as not specifying the bid currency and not properly detecting the media type from the bidding server response.
 
-The first argument, `request`, is the exact same OpenRTB 2.5 Bid Request object provided to (and potentially mutated by) the `MakeRequests` method. The information in the `request` may be useful when detecting the media type.
+The first argument, `request`, is the exact same OpenRTB 2.x Bid Request object provided to (and potentially mutated by) the `MakeRequests` method. The information in the `request` may be useful when detecting the media type.
 
 The second argument, `requestData`, is the exact same `adapters.RequestData` object returned by the `MakeRequests` method. It's rare for adapters to make use of this information, but it's provided for potential edge cases.
 
 The third argument, `responseData`, is the HTTP response received from your bidding server and contains the status code, body, and headers. If your bidding server replies with a GZIP encoded body, it will be automatically decompressed.
 
-The `MakeBids` method is expected to return an `adapters.BidderResponse` object with one or more bids mapped from your bidding server's response. This may be as simple as decorating an OpenRTB 2.5 Bid Response with some Prebid Server metadata (such as the media type) or more complicated mapping logic depending on your server's response format.
+The `MakeBids` method is expected to return an `adapters.BidderResponse` object with one or more bids mapped from your bidding server's response. This may be as simple as decorating an OpenRTB 2.x Bid Response with some Prebid Server metadata (such as the media type) or more complicated mapping logic depending on your server's response format.
 
 ##### Object Model
 
-Please review the entire [OpenRTB 2.5 Bid Response](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=32) documentation to fully understand the response object model and expectations. We've summarized some common fields below. Data which is listed as required is enforced by the core framework and cannot be omitted.
+Please review the entire [OpenRTB 2.x Bid Response](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#objectbidresponse) documentation to fully understand the response object model and expectations. We've summarized some common fields below. Data which is listed as required is enforced by the core framework and cannot be omitted.
 
 {: .table .table-bordered .table-striped }
 | BidderResponse Path | Scope | Description
@@ -902,6 +956,7 @@ Bid metadata may be required in a future Prebid.js release. The AdvertiserDomain
 | `.RendererVersion` | Version of the desired renderer for the creative.
 | `.PrimaryCategoryID` | Primary IAB category id.
 | `.SecondaryCategoryIDs` | Secondary IAB category ids.
+| `.RendererUrl` | Dynamic renderer URL for use in outstream rendering
 
 <p></p>
 
@@ -941,6 +996,7 @@ func getBidMeta(bid *adapters.TypedBid) *openrtb_ext.ExtBidPrebidMeta {
     NetworkName:          "Some Network Name",
     PrimaryCategoryID:    "IAB-1",
     SecondaryCategoryIDs: []string{"IAB-2", "IAB-3"},
+    RendererUrl:          "https://example-renderer-url.com/path/render.js"
   }
 }
 ```
@@ -1006,10 +1062,11 @@ If your bidding endpoint can support more than one biddercode, you shouldn't rep
 the whole adapter codebase. Rather, follow these steps to create a 'hardcoded' alias:
 
 1. Create a config yaml file in static/bidder-info - e.g. static/bidder-info/myalias.yaml
-1. Copy the “source” bidder json schema and place it in the static/bidder-params directory - e.g. static/bidder-params/myalias.json
-1. Add the new alias to the openrtb_ext/bidders.go file -- e.g. BidderMyAlias BidderName = "myalias"
-1. Map the alias to the adapter in exchange/adapter_builders.go . e.g. openrtb_ext.BidderMyAlias: myMain.Builder
-1. Test: build the server locally and try sending a request with the alias as a bidder.
+1. Add "aliasOf" in the config.yaml file with its value set to the name of the adapter you are creating an alias for
+
+```yaml
+aliasOf: "appnexus"
+```
 
 Notes:
 
@@ -1073,7 +1130,7 @@ The format of a JSON test is as follows:
 ```json
 {
   "mockBidRequest": {
-    «OpenRTB 2.5 Bid Request»
+    «OpenRTB 2.x Bid Request»
   },
   "httpCalls": [{
     "expectedRequest": {
@@ -1223,7 +1280,7 @@ We'll verify your adapter works correctly on a technical level during the code r
    ./prebid-server
    ```
 
-1. POST an OpenRTB 2.5 Bid Request with at least one Impression defined for your bid adapter with a supported media type. This is an example template for a banner ad.
+1. POST an OpenRTB 2.x Bid Request with at least one Impression defined for your bid adapter with a supported media type. This is an example template for a banner ad.
 
    ```bash
    curl --request POST \
@@ -1287,7 +1344,7 @@ tcfeu_supported: true/false
 gvl_id: 111
 usp_supported: true/false
 coppa_supported: true/false
-gpp_supported: true/false
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true/false
 dchain_supported: true/false
 userId: <list of supported vendors>
@@ -1302,6 +1359,7 @@ pbs_app_supported: true/false
 prebid_member: true/false
 multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ortb_blocking_supported: true/partial/false
+privacy_sandbox: no or comma separated list of `paapi`, `topics`
 ---
 
 ### Registration
@@ -1325,7 +1383,7 @@ Notes on the metadata fields:
 * If you support one or more userId modules, add `userId: (list of supported vendors)`. Default is none.
 * If you support video, native, or audio mediaTypes add `media_types: video, native, audio`. Note that display is added by default. If you don't support display, add "no-display" as the first entry, e.g. `media_types: no-display, native`. No defaults.
 * If you support COPPA, add `coppa_supported: true`. Default is false.
-* If you support GPP, add `gpp_supported: true`. Default is false.
+* If you support sections within the IAB's GPP consent string, add `gpp_sids:' and then which sections you support: tcfeu, tcfca, usnat, usstate_all, usp
 * If you support the [supply chain](/dev-docs/modules/schain.html) feature, add `schain_supported: true`. Default is false.
 * If you support adding a demand chain on the bid response, add `dchain_supported: true`. Default is false.
 * If your bidder doesn't work well with safeframed creatives, add `safeframes_ok: false`. This will alert publishers to not use safeframed creatives when creating the ad server entries for your bidder. No default.

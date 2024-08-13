@@ -10,6 +10,8 @@ title: Prebid Server | Features | Privacy
 * TOC
 {:toc}
 
+{% include legal-warning.html %}
+
 ## Prebid Server Activity Control Infrastructure
 
 Prebid Server supports a mechanism for Publisher control for overriding privacy-sensitive activities. See the [Activity Controls](/prebid-server/features/pbs-activitycontrols.html) for more information.
@@ -37,7 +39,7 @@ more nuanced and stricter policy.
 If a Prebid Server host company wants to support GDPR, they must currently [register for the IAB Global Vendor List](https://register.consensu.org/).
 The user must provide legal basis for the host company to read/write cookies or `/cookie_sync` will return an empty response with no syncs and `/setuid` will fail.
 
-### TCF 2.0
+### TCF 2.0 and 2.2
 
 If Prebid server determines the user is in GDPR scope, then consent is independently tested
 for each 'Purpose' with different consequences for each:
@@ -48,11 +50,14 @@ for each 'Purpose' with different consequences for each:
 | Responding to /cookie-sync requests | Purpose 1 (Device Access) |
 | Setting a cookie on /setuid requests | Purpose 1 (Device Access) |
 | Conducting auctions | Purpose 2 (Basic Ads) |
-| Passing User IDs into an auction | Any Purpose 2-10. User IDs are important for more than personalizing ads - they can be used in frequency capping, building profiles, counting unique users, etc. So Prebid Server should pass User IDs through the auction if any of Purposes 2-10 pass the legal basis test. |
+| Passing User IDs into an auction | Any Purpose 2-10. User IDs are important for more than personalizing ads - they can be used in frequency capping, building profiles, counting unique users, etc. So Prebid Server should pass User IDs through the auction if any of Purposes 2-10 pass the legal basis test. In PBS-Java 2.12 and later, accounts can set configuration which requires user P4 consent before extended IDs can be passed. |
 | Invoke an analytics adapter | Purpose 7 |
 | Pass the user’s precise geographic information into auctions | Special Feature 1 |
 
 More details are available in the [Prebid Support for TCF2](https://docs.google.com/document/d/1fBRaodKifv1pYsWY3ia-9K96VHUjd8kKvxZlOsozm8E/edit#) reference and in the [Prebid Server GDPR Reference](https://docs.google.com/document/d/1g0zAYc_EfqyilKD8N2qQ47uz0hdahY-t8vfb-vxZL5w/edit#).
+
+Note: TCF 2.2 strings are processed exactly the same as TCF 2.0 strings. The only difference from a Prebid perspective is that the
+Global Vendor List is stored on a slightly different path. This new path is supported by PBS-Go 0.260 and PBS-Java 1.123.
 
 ### Host Company GDPR Configuration
 
@@ -68,6 +73,48 @@ consider:
 The specific details vary between [PBS-Go](https://github.com/prebid/prebid-server/blob/master/config/config.go) and [PBS-Java](https://github.com/prebid/prebid-server-java/blob/master/docs/config-app.md), so check the
 version-specific documentation for more information.
 
+## DSA
+
+The Digital Services Act (DSA) in the EU requires that end users of "very large online platforms" be able to understand whether any of their personal data was used in targeting a particular ad. At a high level, it's similar to the ancient "Ad Choices" program where users were supposed to be able to understand why they were seeing the particular ads.
+
+See the IAB's [DSA document](https://iabtechlab.com/blog/iab-tech-lab-releases-for-public-comment-specification-for-dsa-transparency/) for background.
+
+Basically, the OpenRTB request and response have new objects defined [in the ORTB extension](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/dsa_transparency.md).
+
+```text
+Request: $.regs.ext.dsa
+Response: $.seatbid.bid.ext.dsa
+```
+
+Prebid Server supports passing these fields through the bidstream and it does validations
+on the bid responses to make sure they contain publisher-required values.
+
+In general, publishers are responsible for creating the DSA object in Prebid.js, but in some use cases, they can't, including App and AMP. In addition, some Publishers might find it difficult to update their Prebid.js configuration across a broad network of sites in a short period.
+
+Prebid Server host companies can help resolve this by updating stored requests, but making a broad update across potentially thousands of DB entries can be difficult or undesirable. So PBS-Java also supports account-level
+configuration to have Prebid Server inject a default DSA object. e.g.
+
+```yaml
+privacy:
+  dsa:
+    default: >
+    {
+                    "required": 1,
+                    "pubrender": 1,
+                    "datatopub": 1,
+                    "transparency": [{
+                        "domain": "example.com",
+                        "params":[1]
+                    }]
+   }
+   gdpr-only: true
+```
+
+1. If regs.ext.dsa exists and is not null, use that.
+2. else, if privacy.dsa.default exists and is not null:
+    1. If privacy.dsa.gdpr-only is false (defaults to false) copy the default value into regs.ext.dsa. Done.
+    2. If privacy.dsa.gdpr-only is true (defaults to false) check the internal_gdpr flag, and if true, copy the default value into regs.ext.dsa. Done.
+
 ## GPP
 
 The IAB's [Global Privacy Platform](https://iabtechlab.com/gpp/) is container for
@@ -80,13 +127,17 @@ Prebid Server support for this protocol:
 1. GPP as a TCF and USP wrapper - PBS parses the GPP container for TCF2 and USP strings, extracting them to the original ORTB location.
 1. (done for PBS-Java) GPP infrastructure - the ability to plug new regulations into PBS, and the first sub-module, the [US General Privacy Module](/prebid-server/features/pbs-usgen.html).
 
-## MSPA / US National Privacy
+## US Compliance
 
-See [Prebid MSPA Support](/features/mspa-usnat.html) for more info.
+See [Prebid US Compliance Support](/features/mspa-usnat.html) for more info.
 
-The [Prebid Server USGen Privacy Module](/prebid-server/features/pbs-usgen.html) is available for PBS-Java.
+There are two modules offered by Prebid Server to process GPP string sections 7-12:
 
-Also note that publishers using PBS-Java can consider utilizing [Activity Controls](/prebid-server/features/pbs-activitycontrols.html). In particular, the `gppSid`, `geo`, and `gpc` conditions may be useful tools within a compliance strategy.
+1. The [USGen Privacy Module](/prebid-server/features/pbs-usgen.html) is a high
+performance option for interpreting the GPP strings as described in the [Prebid US Compliance reference](/features/mspa-usnat.html). (PBS-Java only)
+1. The [US Custom Logic Privacy Module](/prebid-server/features/pbs-uscustomlogic.html) is a flexible way for publishers to define their own interpretation of GPP string sections 7-12.
+
+Also note that publishers can consider utilizing [Activity Controls](/prebid-server/features/pbs-activitycontrols.html). For PBS-Java, the `gppSid`, `geo`, and `gpc` conditions may be useful tools within a compliance strategy.
 
 ## COPPA
 

@@ -7,7 +7,7 @@ tcfeu_supported: true
 gvl_id: 143
 usp_supported: true
 coppa_supported: false
-gpp_supported: false
+gpp_sids: tcfeu, usp
 schain_supported: false
 dchain_supported: false
 userId: none
@@ -56,4 +56,25 @@ var adUnits = [
   },
   // Define more ad units here if necessary
 ];
+```
+
+### Configuration
+
+To maximize revenue efficiency, please enable ```iframe``` user syncing.
+
+Connatix strongly recommends enabling user syncing through iFrames. This functionality improves DSP user match rates and increases the bid rate and bid price. Make sure to call `pbjs.setConfig()` only once. This configuration is optional in Prebid, but required by Connatix.
+
+#### Example configuration
+
+```js
+pbjs.setConfig({
+  userSync: {
+    filterSettings: {
+      iframe: {
+        bidders: ['connatix'],
+        filter: 'include'
+      }
+    }
+  }
+});
 ```

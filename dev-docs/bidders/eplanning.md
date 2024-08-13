@@ -9,6 +9,8 @@ biddercode: eplanning
 usp_supported: true
 tcfeu_supported: true
 pbs_app_supported: true
+floors_supported: true
+userIds: all
 gvl_id: 90
 sidebarType: 1
 ---

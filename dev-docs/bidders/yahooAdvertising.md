@@ -5,6 +5,7 @@ description: Yahoo Advertising Bid Adapter
 pbs: true
 pbjs: true
 media_types: banner, video
+filename: yahooAdsBidAdapter
 biddercode: yahooAds
 prebid_member: true
 tcfeu_supported: true
@@ -62,7 +63,7 @@ For new partners/publishers joining Yahoo Advertising and legacy "oneVideo" part
 
 ### Prebid.js Adapter Supported Features
 
-For further setup details & examples please see <https://github.com/prebid/Prebid.js/blob/master/modules/yahoosspBidAdapter.md>
+For further setup details & examples please see <https://github.com/prebid/Prebid.js/blob/master/modules/yahooAdsBidAdapter.md>
 
 * Media Types: Banner & Video
 * Outstream renderer
@@ -75,4 +76,3 @@ For further setup details & examples please see <https://github.com/prebid/Prebi
 * User ID Modules - ConnectId and others
 * First Party Data (ortb2 & ortb2Imp)
 * Custom TTL (time to live)
-

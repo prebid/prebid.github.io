@@ -2,14 +2,22 @@
 layout: bidder
 title: Smile Wanted
 description: SmileWanted Bidder Adapter
-media_types: banner, video
-pbjs: true
-pbs: true
 biddercode: smilewanted
 tcfeu_supported: false
-usp_supported: true
-userIds: all
 gvl_id: 639
+usp_supported: true
+coppa_supported: true
+schain_supported: true
+userIds: all
+media_types: banner, video, native
+safeframes_ok: true
+deals_supported: true
+floors_supported: true
+pbjs: true
+pbs: true
+prebid_member: false
+multiformat_supported: will-bid-on-one
+privacy_sandbox: no
 sidebarType: 1
 ---
 
@@ -37,7 +45,7 @@ You can add `#sw_test_campaign` to the end of any URL. This will have the effect
 
 Add the following code to enable user sync. Smile Wanted strongly recommends enabling user syncing through iFrames. This functionality improves partners' user match rates and increases the Smile Wanted bid rate and bid price. Be sure to call `pbjs.setConfig()` only once.
 
-```
+```javascript
 pbjs.setConfig({
     userSync: {
         iframeEnabled: true,

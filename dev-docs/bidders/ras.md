@@ -3,7 +3,7 @@ layout: bidder
 title: RingierAxelSpringer
 description: Prebid RingierAxelSpringer Bidder Adapter
 biddercode: ras
-media_types: banner
+media_types: banner, native
 pbjs: true
 gvl_id: 1021
 tcfeu_supported: true
@@ -12,6 +12,8 @@ deals_supported: false
 floors_supported: false
 fpd_supported: false
 sidebarType: 1
+multiformat_supported: will-bid-on-one
+pbjs_version_notes: removed in 9.0
 ---
 
 

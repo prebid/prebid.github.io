@@ -7,6 +7,7 @@ pbs: true
 biddercode: criteo
 media_types: display, video, native (pbjs only)
 tcfeu_supported: true
+dsa_supported: true
 usp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
 prebid_member: true
@@ -35,6 +36,7 @@ Prebid-Server support is on alpha test and is currently a non-finished product. 
 |-------------------|----------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|------------|
 | `zoneId`          | required | (deprecated) The zone ID from Criteo. Should be replaced by `networkId` when using zone matching.                                    | `234234`                                      | `integer`  |
 | `networkId`       | required | The network ID from Criteo. Please reach out your Criteo representative for more details.                             | `456456`                                      | `integer`  |
+| `pubid`           | required | publisher id | `'ABC123'` |  `string` |
 | `nativeCallback`  | optional | (Prebid.js only) Callback to perform render in native integrations. Please reach out your Criteo representative for more details.     | `function(payload) { console.log(payload); }` | `function` |
 | `integrationMode` | optional | (Prebid.js only) Integration mode to use for ad render (none or 'AMP'). Please reach out your Criteo representative for more details. | `'AMP'`                                       | `string`   |
 | `publisherSubId`  | optional | Custom identifier for reporting. Please reach out your Criteo representative for more details. | `'adunit-1'` |  `string` |
@@ -73,8 +75,8 @@ In addition, Criteo adapter relies on parameters specified in the mediaTypes.vid
 | `context`         | required | `outstream`, `instream` or `long-form`                                                                                                                                                                                                                                       | `instream`      | `string`         |
 | `mimes`           | required | List of the content MIME types supported by the player                                                                                                                                                                                                                       | `["video/mp4"]` | `Array<string>`  |
 | `playerSize`      | required | Width and height of the player                                                                                                                                                                                                                                               | `[640, 480]`    | `Array<integer>` |
-| `protocols`       | required | Supported video bid response protocols. VAST 1.0: `1`; VAST 2.0: `2`; VAST 3.0: `3`; VAST 1.0 Wrapper: `4`; VAST 2.0 Wrapper: `5`; VAST 3.0 Wrapper: `6`;                                                                                                                    | `|5, 6]`        | `Array<integer>` |
-| `maxduration`     | required | Maximum ad duration in seconds                                                                                                                                                                                                                                               | `20`            | `integer`        |
+| `protocols`       | required | Supported video bid response protocols. VAST 1.0: `1`; VAST 2.0: `2`; VAST 3.0: `3`; VAST 1.0 Wrapper: `4`; VAST 2.0 Wrapper: `5`; VAST 3.0 Wrapper: `6`;  | `[5, 6]` | `Array<integer>` |
+| `maxduration`     | required | Maximum ad duration in seconds               | `20`            | `integer`        |
 | `api`             | required | API frameworks supported. VPAID 1.0: `1`; VPAID 2.0: `2`; MRAID 1.0: `3`; ORMMA: `4`; MRAID 2.0: `5`; MRAID 3.0: `6`; OMID 1.0: `7`;                                                                                                                                                                            | `[1, 2]`        | `Array<integer>` |
 | `plcmt`           | optional | 1=in-stream, 2=accompanying content, 3=interstitial, 4=no content/standalone. Highly recommended to comply with new IAB video specifications.                                                                                                                                | `1`             | `integer`        |
 
@@ -108,6 +110,18 @@ var adUnits = [
 ```
 
 ### Additional Config (Optional)
+
+If you don't want to use the FastBid adapter feature, you can disable it via this configuration:
+
+```javascript
+pbjs.setConfig({
+  'criteo': {
+    fastBidVersion: 'none',
+  }
+});
+```
+
+Criteo teams are planning to completely remove this feature with Prebid 9.0
 
 Criteo Bid Adapter supports the collection of the user's hashed email, if available.
 

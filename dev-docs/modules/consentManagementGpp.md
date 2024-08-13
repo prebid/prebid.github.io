@@ -12,17 +12,12 @@ sidebarType : 1
 ---
 
 # GPP Consent Management Module
-
 {: .no_toc }
 
 - TOC
 {: toc }
 
-{% capture legalNotice %}
-  This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company's collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European, Canadian and /or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
-  {% endcapture %}
-
-{% include /alerts/alert_important.html content=legalNotice %}
+{% include legal-warning.html %}
 
 ## Overview
 
@@ -66,7 +61,7 @@ Here are the parameters supported in the `consentManagement` object specific for
 | gpp.timeout | `integer` | Length of time (in milliseconds) to allow the CMP to obtain the GPP consent information. Default is `10000`. | `10000` |
 | gpp.consentData | `Object` | An object representing the IAB GPP consent data being passed directly; only used when cmpApi is 'static'. Default is `undefined`. | |
 | gpp.consentData.sectionId | `integer` | Indicates the header section of the GPP consent string, recommended to be `3`. | |
-| gpp.consentData.gppVersion | `integer` | The version number parsed from the header of the GPP consent string. | |
+| gpp.consentData.gppVersion | `string` | The version number parsed from the header of the GPP consent string. | |
 | gpp.consentData.sectionList | `Array of integers` | The sections contained within the encoded GPP string as parsed from the header. | |
 | gpp.consentData.applicableSections | `Array of integers` | Section ID considered to be in force for this transaction.  In most cases, this field should have a single section ID. In rare occasions where such a single section ID can not be determined, the field may contain up to 2 values. The value can be 0 or a Section ID specified by the Publisher / Advertiser, during stub / load. When no section is applicable, the value will be -1. | |
 | gpp.consentData.gppString | `String` | The complete encoded GPP string. | |
@@ -134,7 +129,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 
 {: .alert.alert-info :}
 
-If you are submitting changes to an adapter to support GPP, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gpp_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GPP.**
+If you are submitting changes to an adapter to support GPP, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gpp_sids` meta data with a comma separated list of section names (`tcfeu`, `tcfca`, `usnat`, `usstate_all`, `usp`) to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GPP.**
 
 ### Bidder Adapter GPP Integration
 
@@ -177,7 +172,7 @@ Depending on your needs, you could include the consent information in a query of
 
 ## Adapters Supporting GPP
 
-Bidders on this list have self-declared their GPP support in their [github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gpp_supported: true".
+Bidders on this list have self-declared their GPP support in their [github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp".
 
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
@@ -186,9 +181,9 @@ var adaptersSupportingGpp=[];
 var idx_gdpr=0;
 {% assign bidder_pages = site.pages | where: "layout", "bidder" %}
 {% for item in bidder_pages %}
-    {% if item.gpp_supported == true %}
+    {% if item.gpp_supported == true or item.gpp_sids %}
     adaptersSupportingGpp[idx_gdpr]={};
-    adaptersSupportingGpp[idx_gdpr].href="/dev-docs/bidders.html#{{item.biddercode}}";
+    adaptersSupportingGpp[idx_gdpr].href="/dev-docs/bidders/{{item.biddercode}}";
     adaptersSupportingGpp[idx_gdpr].text="{{item.title}}";
     idx_gdpr++;
     {% endif %}
@@ -205,8 +200,8 @@ var idx_gdpr=0;
 
 - [IAB Global Privacy Platform Full Specification Repository](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform)
 - [IAB Global Privacy Platform CMP API Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md)
-- [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagement.html)
+- [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagementTcf.html)
 - [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)
-- [Prebid Activity Controls](/dev-docs/dev-docs/activity-controls.html)
+- [Prebid Activity Controls](/dev-docs/activity-controls.html)
 - [Prebid Activity Controls -- GPP control module - usnat](/dev-docs/modules/gppControl_usnat.html)
 - [CMP Best Practices](https://docs.prebid.org/dev-docs/cmp-best-practices.html)

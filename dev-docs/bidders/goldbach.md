@@ -13,7 +13,7 @@ coppa_supported: true
 usp_supported: true
 floors_supported: true
 pbjs: true
-pbs: true
+pbs: false
 sidebarType: 1
 ---
 
