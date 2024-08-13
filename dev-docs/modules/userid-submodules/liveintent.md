@@ -27,7 +27,7 @@ There are two ways to add the functionality of LiveIntent Identity sub-module to
     LiveConnectMode=minimal gulp build --modules=liveIntentIdSystem
     ```
 
-3. The hub version, which requires a live-connect tag (>=3.0.0) installed on your page in addition to prebid.
+3. The hub version, which requires a LiveConnect tag (>=3.0.0) or LiveConnect Hub installed on your page in addition to Prebid. Please contact LiveIntent for support in setting up LiveConnect and LiveConnect Hub. 
 This will significantly reduce the size of your Prebid.js bundle and allow you to use the newest features of LiveConnect. All non-hub versions will be deprecated in the future.
 
     Add the **hub** LiveIntent Identity module to your Prebid.js package with:
