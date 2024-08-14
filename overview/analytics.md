@@ -9,6 +9,16 @@ sidebarType: 1
 
 There are many analytics adapter plugins available to track header bidding performance for your site.
 
+## Video Overview
+
+{% include vimeo-iframe.html id="957374949" title="957374949" %}
+
+Further Content:
+
+- [Transcript of this video](/overview/analytics-video.html)
+- [Prebid.js Events](https://docs.prebid.org/dev-docs/publisher-api-reference/getEvents.html)
+- [All videos](/overview/all-videos.html)
+
 ## How to Integrate an Analytics Adapter
 
 Each analytics provider has specific instructions for using their system, but these are the general steps:

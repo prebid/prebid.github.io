@@ -5,10 +5,13 @@ display_name: Azerion Edge RTD Provider
 description: Client-side contextual cookieless audiences.
 page_type: module
 module_type: rtd
-module_code : azerionedgeRtdProvider
-enable_download : true
+module_code: azerionedgeRtdProvider
+enable_download: true
 vendor_specific: true
-sidebarType : 1
+usp_supported: true
+gdpr_supported: true
+gvl_id: 253
+sidebarType: 1
 ---
 
 # Azerion Edge RTD Provider
@@ -66,25 +69,3 @@ pbjs.setConfig(
 | params.key | `String` | Publisher partner specific key | Mandatory. The key is required for the module to work. If you haven't received one, please reach <support@improvedigital.com> |
 | params.bidders | `Array` | Bidders with which to share segment information | Optional. Defaults to "improvedigital". |
 | params.process | `Object` | Configuration for the Azerion Edge script. | Optional. Defaults to `{}`. |
-
-## Context
-
-As all data collection is on behalf of the publisher and based on the consent the publisher has
-received from the user, this module does not require a TCF vendor configuration. Consent is
-provided to the module when the user gives the relevant permissions on the publisher website.
-
-As Prebid.js utilizes TCF vendor consent for the RTD module to load, the module needs to be labeled
-within the Vendor Exceptions. If the Prebid GDPR enforcement is enabled, the module should be configured
-as exception, as shown below:
-
-```js
-[
-  {
-    purpose: 'storage',
-    enforcePurpose: true,
-    enforceVendor: true,
-    vendorExceptions: ["azerionedge"]
-  },
-  ...
-]
-```
