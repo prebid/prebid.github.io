@@ -28,9 +28,9 @@ The EClickAds adapter requires setup and approval from the EClick Team. Please c
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description    | Example | Type     |
-|-------|----------|----------------|---------|----------|
-| `zid` | required | ID of the zone | `7096`  | `string` |
+| Name  | Scope    | Description    | Example   | Type     |
+|-------|----------|----------------|-----------|----------|
+| `zid` | required | The Zone Id    | `'7096'`  | `string` |
 
 ### First Party Data
 
