@@ -28,4 +28,4 @@ The AdTonos Bidding adapter requires setup before beginning. Please contact us a
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example               | Type     |
 |---------------|----------|-----------------------|-----------------------|----------|
-| `supplierId`  | required | Supplier account id   | `1YZxxxyDMCXWv7SwY`   | `string` |
+| `supplierId`  | required | Supplier account id   | `'1YZxxxyDMCXWv7SwY'`   | `string` |
