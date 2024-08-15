@@ -1487,6 +1487,14 @@
   subgroup: 3
 
 - sbSecId: 5
+  title: Prebid Cache Storage
+  link: /prebid-server/features/pbs-pbc-storage.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
   title: Developers
   link:
   isHeader: 1

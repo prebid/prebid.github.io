@@ -660,7 +660,7 @@ It will become impossible to fetch bids from AppNexus within that Request.
 
 ##### Bidder Alias GVL IDs
 
-For environments that have turned on [GDPR enforcement](/prebid-server/features/pbs-privacy.html#gdpr), it can be important to define the Global Vendor List (GVL) ID with an alias.
+For publishers that use Prebid Server as part of their [GDPR/TCF](/prebid-server/features/pbs-privacy.html#gdpr) strategy, it can be important to define the Global Vendor List (GVL) ID with an alias.
 
 To do this, just set `ext.prebid.aliasgvlids` alongside ext.prebid.aliases:
 
@@ -1698,13 +1698,19 @@ The codes currently returned:
 | 0 | General No Bid | Java | The bidder had a chance to bid, and either declined to bid on this impression. |
 | 100 | General Error | Java | The bid adapter returned with an unspecified error for this impression. |
 | 101 | Timeout | Java | The bid adapter timed out. |
+| 102 | Invalid Bid Response | Java | The bidder returned HTTP < 200 or >= 400 |
+| 103 | Bidder Unreachable | Java | The bidder returned HTTP 503 |
 | 200 | Request Blocked - General | Java | This impression not sent to the bid adapter for an unspecified reason. |
+| 201 | Request Blocked - Unsupported Channel (app/site/dooh) | Java | The request was not sent to the bidder because they don’t support site, app, or dooh. |
 | 202 | Request Blocked due to mediatype | Java | This impression not sent to the bid adapter because it doesn't support the requested mediatype. |
+| 204 | Request Blocked - Privacy | Java | The bidder was not called due to TCF Purpose 2. |
 | 300 | Response Rejected - General | Go + Java | The bid response was rejected for an unspecified reason. See warnings in debug mode. (Mostly caused by DSA validation rules) |
 | 301 | Response Rejected - Below Floor | Java | The bid response did not meet the floor for this impression. |
 | 303 | Response Rejected - Category Mapping Invalid | Go | The bid response did not include a category to map. |
-| 351 | Response Rejected - Invalid Creative (Size Not Allowed) | Go | The bid response banner size exceeds the max size, when creative validation is enabled. |
-| 352 | Response Rejected - Invalid Creative (Not Secure) | Go | The bid response adm does not use https, when secure markup validation is enabled. |
+| 350 | Response Rejected - Invalid Creative (ORTB blocking) | Java | The ortbblocking module enforced a bid response for battr, bcat, bapp, btype. |
+| 351 | Response Rejected - Invalid Creative (Size Not Allowed) | Both | The bid response banner size exceeds the max size, when creative validation is enabled. |
+| 352 | Response Rejected - Invalid Creative (Not Secure) | Both | The bid response adm does not use https, when secure markup validation is enabled. |
+| 356 | Response Rejected - Invalid Creative (Advertiser Blocked) | Java | The ortbblocking module enforced a bid response due to badv. |
 
 See the [IAB's Seat Non-Bid OpenRTB Extension](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/seat-non-bid.md) for the full list of status codes that may be supported in the future.
 
