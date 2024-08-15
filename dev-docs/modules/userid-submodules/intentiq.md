@@ -46,36 +46,11 @@ Please find below list of parameters that could be used in configuring Intent IQ
 
 ```javascript
 pbjs.setConfig({
-  userSync: {
-    userIds: [
-      {
-        name: "intentIqId",
-        params: {
-          partner: 123456, // valid partner id
-          callback: (data, group) => window.pbjs.requestBids(),
-        },
-        storage: {
-          type: "html5",
-          name: "intentIqId", // set localstorage with this name
-          expires: 0,
-          refreshInSeconds: 0,
-        },
-      },
-    ],
-    syncDelay: 3000,
-  },
-});
-```
-
-```javascript
-pbjs.setConfig({
     userSync: {
         userIds: [{
             name: "intentIqId",
             params: {
-                partner: 123456     // valid partner id
-                pcid: PCID_VARIABLE,   // string value, dynamically loaded into a variable before setting the configuration
-                pai: PAI_VARIABLE ,  // string value, dynamically loaded into a variable before setting the configuration
+                partner: 123456,     // valid partner id
                 timeoutInMillis: 500,
                 browserBlackList: "chrome",
                 callback: (data, group) => window.pbjs.requestBids()
@@ -83,10 +58,10 @@ pbjs.setConfig({
             storage: {
                 type: "html5",
                 name: "intentIqId",    // set localstorage with this name
-                expires: 0
+                expires: 0,
+                refreshInSeconds: 0
             }
-        }],
-        syncDelay: 3000
+        }]
     }
 });
 ```

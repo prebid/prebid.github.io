@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: QT
-description: Prebid QT Bidder Adapter
-biddercode: qt
+title: Pubrise
+description: Prebid Pubrise Bidder Adapter
+biddercode: pubrise
 gpp_sids: usstate_all
 tcfeu_supported: false
 usp_supported: true
