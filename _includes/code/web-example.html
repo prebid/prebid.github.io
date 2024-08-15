@@ -14,6 +14,9 @@
     <li class="nav-item ui-tab" role="presentation">
       <button class="nav-link" id="{{ include.id }}-js-tab" data-toggle="tab" data-target="#{{ include.id }}-js" type="button" role="tab" aria-controls="js" aria-selected="false">js</button>
     </li>
+    <li class="nav-item ui-tab" role="presentation">
+      <button class="nav-link" id="{{ include.id }}-source-tab" data-toggle="tab" data-target="#{{ include.id }}-source" type="button" role="tab" aria-controls="js" aria-selected="false">source</button>
+    </li>
 </ul>
 <div class="tab-content" id="example-tab-content">
   <div class="tab-pane fade show active" id="{{ include.id }}-result" role="tabpanel" aria-labelledby="{{ include.id }}-result-tab">
@@ -27,6 +30,25 @@
   </div>
   <div class="tab-pane fade" id="{{ include.id }}-js" role="tabpanel" aria-labelledby="{{ include.id }}-js-tab">
     <pre><code class="language-javascript">{{ include.js }}</code></pre>
+  </div>
+  <div class="tab-pane fade" id="{{ include.id }}-source" role="tabpanel" aria-labelledby="{{ include.id }}-source-tab">
+    <pre><code class="language-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;{{ page.title }}&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  
+  &lt;!-- javascript --&gt;
+  &lt;script&gt;{{ include.js }}&lt;/script&gt;
+
+  &lt;!-- html --&gt;
+  {{ include.html | xml_escape}}
+  &lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
   </div>
 </div>
   
