@@ -584,6 +584,16 @@ Example:
 PrebidMobile.storeExternalUserId(externalUserIdArray);
 ```
 
+### IDs that Require Additional SDKs
+
+Certain identity vendors require an external dependency to generate user identity and then to pass it via Prebid SDK. Please note that these are references to a 3rd party code and Prebid has not inspected it. Links to the documentations of those references will be listed in this section.
+
+#### Unified ID (UID2)
+
+- [Github repo](https://github.com/IABTechLab/uid2-android-sdk)
+- [Documentation](https://unifiedid.com/docs/guides/integration-prebid-mobile-summary)
+- [UID2+Prebid helper lib](https://unifiedid.com/docs/guides/integration-mobile-client-side#optional-uid2-prebid-mobile-sdk-integration) -- for Android Prebid Mobile SDK integration.
+
 ---
 
 ## Targeting Class Methods

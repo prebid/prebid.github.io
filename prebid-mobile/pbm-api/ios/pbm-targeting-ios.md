@@ -456,6 +456,15 @@ Targeting.shared.removeStoredExternalUserId("sharedid.org")
 Targeting.shared.removeStoredExternalUserIds()
 ```
 
+### IDs that Require Additional SDKs
+
+Certain identity vendors require an external dependency to generate user identity and then to pass it via Prebid SDK. Please note that these are references to a 3rd party code and Prebid has not inspected it. Links to the documentations of those references will be listed in this section.
+
+#### Unified ID (UID2)
+
+- [Github repo](https://github.com/IABTechLab/uid2-ios-sdk)
+- The app developer must manually obtain the UID2 token using the UID2 SDK, specifically UID2Manager.shared.getAdvertisingToken(). Please refer to [their documentation](https://unifiedid.com/docs/guides/integration-mobile-client-side#pass-generated-token-for-bidstream-use). Pass this value to Prebid Mobile SDK via setExternalUserIds() manually
+
 ---
 
 ## Targeting Class Properties and Methods
