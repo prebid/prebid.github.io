@@ -13,9 +13,6 @@ about:
 
 ## Meta Bid Filtering
 
-{% include prebidjs-non-prod.html %}
-{% include gptjs.html %}
-
 {% capture htmlCodePrebid %}<h5>Div-1</h5>
 <div id='div-1'>
   <script type='text/javascript'>

@@ -18,9 +18,6 @@ about:
 
 ## Postbid Example
 
-{% include prebidjs-non-prod.html %}
-{% include gptjs.html %}
-
 {% capture htmlCodePrebid %}<h5>postbid iframe</h5>
 <iframe id='postbid_iframe' 
     FRAMEBORDER="0"

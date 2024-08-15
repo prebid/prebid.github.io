@@ -15,9 +15,6 @@ about:
 
 ## Basic Prebid.js Example
 
-{% include prebidjs-non-prod.html %}
-{% include gptjs.html %}
-
 {% capture htmlCodePrebid %}<h3>div-banner-native-1</h3>
 <div id='div-banner-native-1'>
 <p>No response</p>

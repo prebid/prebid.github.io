@@ -12,9 +12,6 @@ about:
 
 ## Sync Transaction Ids With Another Library
 
-{% include prebidjs-non-prod.html %}
-{% include gptjs.html %}
-
 ```javascript
 const AUCTION_TIMEOUT = 1500;
 const FAILSAFE_TIMEOUT = 3000;

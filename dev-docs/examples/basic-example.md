@@ -16,11 +16,8 @@ pid: 10
 
 ## Basic Prebid.js Example
 
-{% include prebidjs-non-prod.html %}
-{% include gptjs.html %}
-
 {% capture htmlCodePrebid %}<h5>Div-1</h5>
-<div id='div-1'>
+<div id='div-1' style="min-height:250px;">
   <script type='text/javascript'>
     googletag.cmd.push(function() {
       googletag.display('div-1');
@@ -87,4 +84,4 @@ googletag.cmd.push(function() {
 });
 {% endcapture %}
 
-{% include code/web-example.html id="basic-prebid-example" html=htmlCodePrebid js=jsCode %}
+{% include code/web-example.html id="basic-prebid-example" html=htmlCodePrebid js=jsCode scripts="pbjs,gpt" %}

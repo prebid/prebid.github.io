@@ -14,9 +14,6 @@ about:
 
 ## Native Ad Unit
 
-{% include prebidjs-non-prod.html %}
-{% include gptjs.html %}
-
 {% capture htmlCodePrebid %}<div id='div-1'>
 <p>No response</p>
 <script type='text/javascript'>

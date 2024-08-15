@@ -14,9 +14,6 @@ jsfiddle_link: jsfiddle.net/Prebid_Examples/svumodbe/embedded/html,result
 
 ## Basic Prebid.js Example
 
-{% include prebidjs-non-prod.html %}
-{% include gptjs.html %}
-
 {% capture htmlCodePrebid %}<h5>test-div</h5>
 <div id='test-div'></div>
 <h5>test-div2</h5>
@@ -124,4 +121,4 @@ pbjs.que.push(function() {
 });
 {% endcapture %}
 
-{% include code/web-example.html id="basic-prebid-example" html=htmlCodePrebid js=jsCode %}
+{% include code/web-example.html id="basic-prebid-example" html=htmlCodePrebid js=jsCode scripts="pbjs" %}

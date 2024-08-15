@@ -15,9 +15,6 @@ pid: 20
 
 ## Individual Ad Unit Refresh / Infinite Scroll
 
-{% include prebidjs-non-prod.html %}
-{% include gptjs.html %}
-
 {% capture htmlCodePrebid %}<h5>Div-1</h5>
 <button class="btn btn-primary mb-3" onclick="refreshBid()">Refresh Ad Unit</button>
 <div id='div-1'>

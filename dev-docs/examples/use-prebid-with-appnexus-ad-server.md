@@ -14,9 +14,6 @@ about:
 
 ## Using Prebid.js with Microsoft Monetize Ad Server
 
-{% include prebidjs-non-prod.html %}
-{% include astjs.html %}
-
 {% capture htmlCodePrebid %}<h5>Div-1</h5>
 <div id="div-1">
     <script type="text/javascript">
@@ -129,4 +126,4 @@ function initAdserver() {
 }
 {% endcapture %}
 
-{% include code/web-example.html id="basic-prebid-example" html=htmlCodePrebid js=jsCode %}
+{% include code/web-example.html id="basic-prebid-example" html=htmlCodePrebid js=jsCode scripts="pbjs,astjs" %}

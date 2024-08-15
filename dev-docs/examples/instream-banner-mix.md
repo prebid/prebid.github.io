@@ -12,9 +12,6 @@ about:
 
 ## Instream Video and Banner Ad Mixed Page
 
-{% include prebidjs-non-prod.html %}
-{% include gptjs.html %}
-
 {% capture htmlCodePrebid %}<h2>Prebid Video - JW Platform</h2>
 <div id="myElement1"></div>
 <!-- This line loads a player without loading any video content -->
