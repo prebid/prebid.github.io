@@ -11,7 +11,7 @@ sidebarType: 2
 - TOC
 {:toc}
 
-{% include mobile/intro-bidding-only.md %}
+{% include mobile/intro-bidding-only.md platform='android' %}
 
 ## AdUnit-Specific instructions
 

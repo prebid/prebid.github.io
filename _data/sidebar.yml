@@ -751,14 +751,6 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: Custom Integration
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-
-- sbSecId: 2
   title: AdMob
   link: /prebid-mobile/modules/rendering/ios-sdk-integration-admob.html
   isHeader: 0
@@ -774,6 +766,14 @@
   sectionTitle:
   subgroup: 2
   
+- sbSecId: 2
+  title: Custom Integration
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
 - sbSecId: 2
   title: Ad Experience Controls
   link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html
@@ -832,14 +832,6 @@
   subgroup: 3
 
 - sbSecId: 2
-  title: Custom Integration
-  link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-
-- sbSecId: 2
   title: AdMob
   link: /prebid-mobile/modules/rendering/android-sdk-integration-admob.html
   isHeader: 0
@@ -855,6 +847,14 @@
   sectionTitle:
   subgroup: 3
   
+- sbSecId: 2
+  title: Custom Integration
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
 - sbSecId: 2
   title: Ad Experience Controls
   link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html
