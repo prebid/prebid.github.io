@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # User ID Module
-
 {:.no_toc}
 
 * TOC
@@ -40,7 +39,7 @@ Not all bidder adapters support all forms of user ID. See the tables below for a
 
 ## User ID, GDPR, Permissions, and Opt-Out
 
-When paired with the [Consent Management](/dev-docs/modules/consentManagement.html) module, privacy rules are enforced:
+When paired with the [Consent Management](/dev-docs/modules/consentManagementTcf.html) module, privacy rules are enforced:
 
 * The module checks the GDPR consent string
 * If no consent string is available OR if the user has not consented to Purpose 1 (local storage):
@@ -86,14 +85,14 @@ The table below has the options that are common across ID systems. See the secti
 {: .table .table-bordered .table-striped }
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | May be any of the following values: {% for page in userid_pages -%}{% if count == 1 %}{{ name_string | append: ", " -}}{% endif %}{% assign count = 1 %}`"{{ name_string | append: name_string -}}{{ name_string | append: page.useridmodule -}}"`{% endfor %} | `"unifiedId"`
+| name | Required | String | May be any of the following values: {% for page in userid_pages -%}{% if count == 1 %}{{ name_string │ append: ", " -}}{% endif %}{% assign count = 1 %}`"{{ name_string │ append: name_string -}}{{ name_string │ append: page.useridmodule -}}"`{% endfor %} | `"unifiedId"` |
 | params | Based on User ID sub-module | Object | | |
 | bidders | Optional | Array of Strings | An array of bidder codes to which this user ID may be sent. | `['bidderA', 'bidderB']` |
-| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be either cookie or HTML5 storage. This is not needed when `value` is specified or the ID system is managing its own storage | |
-| storage.type | Required | String | Must be either `"cookie"` or `"html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
+| storage | Optional | Object | The publisher can specify some kind of local storage in which to store the results of the call to get the user ID. This can be a cookie, HTML5 storage or both.| |
+| storage.type | Required | String | Must be `"cookie"`, `"html5"` or `"cookie&html5"`. This is where the results of the user ID will be stored. | `"cookie"` |
 | storage.name | Required | String | The name of the cookie or html5 local storage where the user ID will be stored. | `"_unifiedId"` |
 | storage.expires | Strongly Recommended | Integer | How long (in days) the user ID information will be stored. If this parameter isn't specified, session cookies are used in cookie-mode, and local storage mode will create new IDs on every page. | `365` |
-| storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires.
+| storage.refreshInSeconds | Optional | Integer | The amount of time (in seconds) the user ID should be cached in storage before calling the provider again to retrieve a potentially updated value for their user ID. If set, this value should equate to a time period less than the number of days defined in `storage.expires`. By default the ID will not be refreshed until it expires. | `30` |
 | value | Optional | Object | Used only if the page has a separate mechanism for storing a User ID. The value is an object containing the values to be sent to the adapters. | `{"tdid": "1111", "IDP": "IDP-2233", "id5id": {"uid": "ID5-12345"}}` |
 
 ## Permissions
@@ -197,7 +196,6 @@ The corresponding user id object and the eids array will look like this:
   ],
   // ...
 }
-
 ```
 
 ## User ID Sub-Modules
@@ -220,17 +218,18 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 
 {: .table .table-bordered .table-striped }
 | ID System Name | ID System Host | Prebid.js Attr: bidRequest.userId. | EID Source | Example Value |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | 33Across ID | 33Across | 33acrossId | 33across.com | "1111" |
 | Admixer ID | Admixer | admixerId | admixer.net | "1111" |
 | adQuery QiD | adQuery | qid | adquery.io | "p9v2dpnuckkzhuc..." |
 | Adriver ID | Adriver | adriverId | adriver.ru | "1111" |
-| Adtelligent ID | Adtelligent | bidRequest.userId.adtelligentId | `"1111"` |
+| Adtelligent ID | Adtelligent | adtelligentId | adtelligent.com | `"1111"` |
 | AMX ID | AMX | amxId | amxdt.net | "3ca11058-..." |
 | BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
 | AudienceOne ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
 | DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
 | DMD ID | DMD | dmdId | hcn.health | "1111" |
+| ceeId | ceeId | ceeId | ceeid.eu | "111111" |
 | Czech Ad ID | czechAdId | czechAdId | czechadid.cz | "1111" |
 | CriteoID | Criteo | criteoId | criteo.com | "1111" |
 | Fabrick ID | Neustar | fabrickId | neustar.biz | "1111" |
@@ -260,6 +259,8 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 | Unified ID | Trade Desk | tdid | adserver.org | "1111" |
 | ConnectID | Yahoo | connectId | yahoo.com | {"connectId": "72d04af6..."} |
 | FreePass ID | FreePass | freepassId | | "1111" |
+| UtiqMtp ID | Utiq | utiqMtpId | utiq-mtp.com | "1111" |
+| Yandex ID | Yandex | yandexId | yandex.com | "11111111111111111" |
 
 For example, the adapter code might do something like:
 
@@ -345,7 +346,11 @@ If you're an ID provider that wants to get on this page:
 * Add your *IdSystem name into the modules/.submodules.json file
 * Follow all the guidelines in the [contribution page](https://github.com/prebid/Prebid.js/blob/master/CONTRIBUTING.md).
 * Submit a Pull Request against the [Prebid.js repository](https://github.com/prebid/Prebid.js).
-* Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io), modify /dev-docs/modules/userId.md, /download.md, and submit a documentation Pull Request.
+* Update the Prebid docs
+  * Fork the prebid.org [documentation repository](https://github.com/prebid/prebid.github.io)
+  * Add `/dev-docs/modules/userid-submodules/<userIdModuleName>.md`
+  * Add a new row to `/dev-docs/modules/userId.md#prebidjs-adapters`
+  * Submit a documentation Pull Request
 
 <a name="getUserIds"></a>
 
@@ -365,7 +370,7 @@ Alternatively, GAM can now pull IDs from Prebid for UserId submodules that [regi
 | encryptedSignalSources.sources.source | Required | Array | An array of sources for which signals needs to be registered  | `['sharedid.org','criteo.com']` |
 | encryptedSignalSources.sources.encrypt | Required | Boolean | Should be set to false by default. Please find below note | `true` or `false` |
 | encryptedSignalSources.sources.customFunc | Required | function | This function will be defined for custom sources only and called which will return the custom data set from the page  | Check below config as an example  |
-| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in milliseconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. |  `3000`
+| encryptedSignalSources.registerDelay | Optional | Integer | The amount of time (in milliseconds) after which registering of signals will happen. Default value 0 is considered if 'registerDelay' is not provided. | `3000` |
 
 {: .alert.alert-info :}
 **NOTE:**
@@ -412,4 +417,4 @@ This will have no effect until you call the `registerSignalSources` API. This me
 ## Further Reading
 
 * [Prebid.js Usersync](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing)
-* [GDPR ConsentManagement Module](/dev-docs/modules/consentManagement.html)
+* [TCF ConsentManagement Module](/dev-docs/modules/consentManagementTcf.html)

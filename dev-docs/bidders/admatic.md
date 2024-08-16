@@ -3,13 +3,15 @@ layout: bidder
 title: AdMatic
 description: Prebid AdMatic Bidder Adapter.
 pbjs: true
-pbs: false
+pbs: true
 biddercode: admatic
 media_types: banner,video,native
-tcfeu_supported: false
-usp_supported: false
-coppa_supported: false
-schain_supported: false
+gvl_id: 1281
+tcfeu_supported: true
+usp_supported: true
+coppa_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
+schain_supported: true
 dchain_supported: false
 userIds: criteo, id5Id, sharedId, unifiedId
 safeframes_ok: true

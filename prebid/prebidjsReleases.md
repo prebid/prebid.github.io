@@ -56,7 +56,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 4.4 | DFP Video Module supports VAST 4 |
 | 4.3 | DFP Video Module bug fixed |
 | 4.1.1 | Release of the [GPT Pre-Auction Module](https://docs.prebid.org/dev-docs/modules/gpt-pre-auction.html). Price Floors: new signals (location: noData + floorProvider) |
-| 4.0 | TCF Purpose 1 and Purpose 2 enforced by default when GDPR enforcement module turned on. Removed Digitrust userId module. Removed audienceNetworkBidAdapter. |
+| 4.0 | TCF Purpose 1 and Purpose 2 enforced by default when GDPR enforcement (now TCF Control) module turned on. Removed Digitrust userId module. Removed audienceNetworkBidAdapter. |
 | 3.27.1 | DFP Video Module bug fixed |
 | 3.27 | An important bug in the DFP Video Module was introduced with this release and fixed in 4.3 and 3.27.1. The dfpVideoModule only looked in adunit.sizes but adunit.sizes was stripped. Unfortunately there's not a workaround - if you use that video module, you shouldn't use Prebid.js 3.27 through 4.2 inclusive. |
 | 3.24 | PBS Bid Adapter allows setting site params |
@@ -66,7 +66,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 3.17 | UserID module also exports IDs as eids |
 | 3.16 | isSafariBrowser fixed for Chrome and Firefox on iOS |
 | 3.15 | Advanced Size Mapping module support adunits of the same name |
-| 3.14 | New [GDPR enforcement module](/dev-docs/modules/gdprEnforcement.html) supports enforcing Purpose 1 - DeviceAccess |
+| 3.14 | New [GDPR enforcement module](/dev-docs/modules/tcfControl.html) (now TCF Control) supports enforcing Purpose 1 - DeviceAccess |
 | 3.13 | GDPR module supports defaultGdprScope option |
 | 3.12 | Initial support for TCF2 - reading and passing consent strings, added [DeviceAccess](/dev-docs/publisher-api-reference/setConfig.html#setConfig-deviceAccess) configuration setting |
 | 3.11 | [Advanced Size Mapping module](/dev-docs/modules/sizeMappingV2.html) |
@@ -95,7 +95,7 @@ The table below is a summary of feature changes and important bug fixes in core 
 | 2.10 | [User ID module](/dev-docs/modules/userId.html) released with support for PubCommon ID and Unified ID |
 | 2.10 | A bidder which responded in time is now considered a timely bidder, even if it responded with no bids. See [PR 3696](https://github.com/prebid/Prebid.js/pull/3696) |
 | 2.9 | Add 'hb_cache_host' targeting for video bids when cache is set to support upcoming video cache redirector |
-| 2.9 | remove removeRequestId logic. See [PR 3698](https://github.com/prebid/Prebid.js/pull/3698)
+| 2.9 | remove removeRequestId logic. See [PR 3698](https://github.com/prebid/Prebid.js/pull/3698) |
 | 2.8 | Added [s2sConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Server-to-Server) `syncUrlModifier` option to modify userSync URLs |
 | 2.8 | Add hb_uuid and hb_cache_id back to dfp module after having been removed in 2.7 |
 | 2.6 | Update auction algorithm logic for long-form. See [PR 3625](https://github.com/prebid/Prebid.js/pull/3625) |

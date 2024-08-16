@@ -29,6 +29,10 @@ After the transition openxOrtbBidAdapter will replace openxBidAdapter.
 
 IMPORTANT: only include either openxBidAdapter or openxOrtbBidAdapter in your build.
 
+### Prebid Server Note
+
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
+
 ### Bid Parameters
 
 #### Banner
@@ -249,3 +253,8 @@ pbjs.setConfig({
    }
 });
 ```
+
+## Additional Details
+
+* [Banner Ads](https://docs.openx.com/publishers/prebid-adapter-web/) (Customer login required.)
+* [Video Ads](https://docs.openx.com/publishers/prebid-adapter-video/) (Customer login required.)

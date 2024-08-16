@@ -43,6 +43,18 @@ Specifically, modules don't support the feature where bid adapters need access t
 - **Floor schema**: defines which attributes are in the floor rules. e.g. "adslot and mediaType".
 - **Floor rule**: A mapping of floor schema dimensions to a floor values. e.g. "if adslot is /111/homepage and mediaType is banner, then the floor is 1.00".
 
+### Floors Video Overview
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/938434804?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Price Floors in Prebid.js and Prebid Server"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+<p/>
+Notes:
+
+- [Prebid.js Price Floors Module](/dev-docs/modules/floors.html#overview)
+- [Price Floors in Prebid Server](/prebid-server/features/pbs-floors.html#prebid-server--features--price-floors)
+- [Prebid Floor Service Providers](/dev-docs/modules/floors.html#floors-providers)
+- [Transcript of this video](/dev-docs/floors-video-overview.html)
+
 ## How Floors work in Prebid Server
 
 Here's the high level picture of what's happening in Prebid Server to support floors:
