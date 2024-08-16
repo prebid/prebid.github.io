@@ -4,12 +4,15 @@ title: Nativo
 description: Prebid Nativo Bidder Adapter
 pbjs: true
 pbs: true
+media_types: banner, native, video
+floors_supported: true
 gvl_id: 263
 tcfeu_supported: true
 usp_supported: true
 userIds: all 
 biddercode: nativo
 sidebarType: 1
+privacy_sandbox: topics
 ---
 
 ### Note
