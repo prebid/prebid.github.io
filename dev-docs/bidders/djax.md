@@ -24,7 +24,7 @@ sidebarType: 1
 
 ### Note
 
-Please reach out to support@djaxtech.com for more information.
+Please reach out to <support@djaxtech.com> for more information.
 
 ### Bid params
 
