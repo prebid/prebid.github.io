@@ -19,7 +19,6 @@ The AdGrid Bidding Adapter requires setup and approval before beginning. Please 
 |------------|----------|--------------|---------|-----------|
 | `domainId` | required | Publisher Id | `30164` | `integer` |
 
-
 ### Test Parameters
 
 ``` javascript
