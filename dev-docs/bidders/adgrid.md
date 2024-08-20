@@ -21,7 +21,7 @@ The AdGrid Bidding Adapter requires setup and approval before beginning. Please 
 
 ### Test Parameters
 
-``` javascript
+```
 var adUnits = [
   // Banner adUnit
   {
