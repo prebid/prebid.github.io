@@ -10,7 +10,7 @@ sidebarType: 1
 
 ### Note
 
-The AdGrid Bidding adaptor requires setup and approval before beginning. Please reach out to <support@adgrid.io> for more details
+The AdGrid Bidding Adapter requires setup and approval before beginning. Please reach out to <support@adgrid.io> for more details.
 
 ### Bid Params
 
