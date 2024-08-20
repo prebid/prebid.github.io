@@ -54,5 +54,4 @@ var adUnits = [
   }
 ];
 ```
-
 [EOF]
