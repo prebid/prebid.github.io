@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: EClickAds
-description: EClickAds Bidder Adaptor
-biddercode: eclickads
+title: eClick
+description: eClick Bidder Adaptor
+biddercode: eclick
 media_types: native
 sidebarType: 1
 pbjs: true
@@ -23,7 +23,7 @@ multiformat_supported: will-bid-on-one
 
 ### Note
 
-The EClickAds adapter requires setup and approval from the EClick Team. Please contact us via <sales@eclick.vn> for detail.
+The eClick adapter requires setup and approval from the eClick Team. Please contact us via <sales@eclick.vn> for detail.
 
 ### Bid params
 
