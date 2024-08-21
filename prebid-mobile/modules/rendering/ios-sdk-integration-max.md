@@ -126,7 +126,7 @@ This step is the same as for the original [MAX integration](https://dash.applovi
 #### Step 2: Create MAXMediationInterstitialUtils
 {:.no_toc}
 
-The `MAXMediationInterstitialUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit `, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MAXMediationInterstitialUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationInterstitialAdUnit
 {:.no_toc}
