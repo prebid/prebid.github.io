@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: FelixAds
-description: FelixAds Bidder Adapter
-biddercode: felixads
+title: VimayX
+description: VimayX Bidder Adapter
+biddercode: vimayX
 aliasCode : smarthub
 usp_supported: true
 coppa_supported: true

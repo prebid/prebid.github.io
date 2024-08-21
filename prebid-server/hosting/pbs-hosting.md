@@ -65,7 +65,7 @@ between Prebid protocols and the chosen No-SQL system that implements the storag
 
 ### No-SQL Clusters
 
-This is where Prebid Cache stores its data. You can choose Redis, Aerospike, or Cassandra. How many you need will
+This is where Prebid Cache stores its data. You can choose Redis, Aerospike, Cassandra, or Apache Ignite. How many instances you need will
 depend on the expected traffic, your traffic mix, and the average length of time that objects are cached.
 
 ### Replicated Database
