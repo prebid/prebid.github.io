@@ -19,7 +19,7 @@ Prebid SDK is integrated into AppLovin MAX setup via custom adapters. To integra
 
 Root build.gradle
 
-```
+```json
 allprojects {
     repositories {
       ...
@@ -31,7 +31,7 @@ allprojects {
 
 App module build.gradle:
 
-```
+```kotlin
 implementation('org.prebid:prebid-mobile-sdk-max-adapters:x.x.x')
 ```
 
@@ -70,7 +70,6 @@ adUnit?.fetchDemand {
 {:.no_toc}
 
 This step is totally the same as for original [MAX integration](https://dash.applovin.com/documentation/mediation/android/getting-started/banners#loading-and-showing-banners-programmatically). You don't have to make any modifications here.
-
 
 #### Step 2: Create MaxMediationBannerUtils
 {:.no_toc}
@@ -123,7 +122,7 @@ adUnit?.fetchDemand {
 
 The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
-```
+```kotlin
 adUnit = MediationInterstitialAdUnit(
             activity,
             configId,
@@ -136,7 +135,6 @@ adUnit = MediationInterstitialAdUnit(
 {:.no_toc}
 
 This step is totally the same as for original [MAX integration](https://dash.applovin.com/documentation/mediation/android/getting-started/interstitials). You don't have to make any modifications here.
-
 
 #### Step 2: Create MaxMediationInterstitialUtils
 {:.no_toc}
@@ -167,7 +165,7 @@ Once you receive the ad it will be ready for display. Folow the [MAX instruction
 
 Integration example:
 
-```swift
+```kotlin
 // 1. Get an instance of MaxRewardedAd
 maxRewardedAd = MaxRewardedAd.getInstance(adUnitId, activity)
 maxRewardedAd?.setListener(createListener())
@@ -227,7 +225,7 @@ Once the rewarded ad is received you can display it. Folow the [MAX instructions
 
 Integration example:
 
-```
+```kotlin
 // 1. Create MaxNativeAdLoader
 nativeAdLoader = MaxNativeAdLoader(adUnitId, requireActivity())
 nativeAdLoader.setNativeAdListener(createNativeAdListener(viewContainer))
@@ -270,7 +268,7 @@ The bid request for native ads should have the description of expected assets. T
 
 The example of creating the assets array:
 
-```
+```kotlin
 val title = NativeTitleAsset()
 title.setLength(90)
 title.isRequired = true
@@ -310,7 +308,7 @@ The bid request for mative ads may have a descrition of expected event trackers.
 
 The example of creating the event trackers array:
 
-```
+```kotlin
 val methods: ArrayList<NativeEventTracker.EVENT_TRACKING_METHOD> = ArrayList()
 methods.add(NativeEventTracker.EVENT_TRACKING_METHOD.IMAGE)
 methods.add(NativeEventTracker.EVENT_TRACKING_METHOD.JS)

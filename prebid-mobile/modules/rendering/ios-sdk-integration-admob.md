@@ -90,7 +90,7 @@ The `fetchDemand` method makes a bid request to a Prebid server and returns a re
 
 Make a regular AdMob's ad request. Everything else will be handled by Prebid adapters.
 
-## Interstitials
+### Interstitials
 
 Integration example:
 

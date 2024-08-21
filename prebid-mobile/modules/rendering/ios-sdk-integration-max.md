@@ -8,7 +8,7 @@ sidebarType: 2
 # Prebid SDK iOS with AppLovin MAX Integration Method
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 {% include mobile/intro-applovin.md platform="ios" %}
@@ -17,7 +17,7 @@ sidebarType: 2
 
 Prebid SDK is integrated into AppLovin MAX setup thru custom adapters. To integrate Prebid adapters into your app add the following line to your Podfile:
 
-```
+```swift
 pod 'PrebidMobileMAXAdapters'
 ```
 
@@ -53,11 +53,10 @@ adUnit?.fetchDemand { [weak self] result in
 
 This step is the same as for the original [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/banners#loading-a-banner). You don't have to make any modifications here.
 
-
 #### Step 2: Create MAXMediationBannerUtils
 {:.no_toc}
 
-The `MAXMediationBannerUtils ` is a helper class, which performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
+The `MAXMediationBannerUtils` is a helper class, which performs certain utilty work for the `MediationBannerAdUnit`, like passing the targeting keywords to the adapters and checking the visibility of the ad view.
 
 #### Step 3: Create MediationBannerAdUnit
 {:.no_toc}
@@ -124,7 +123,6 @@ adUnit?.adFormats = [.banner]
 
 This step is the same as for the original [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/interstitials). You don't have to make any modifications here.
 
-
 #### Step 2: Create MAXMediationInterstitialUtils
 {:.no_toc}
 
@@ -182,7 +180,6 @@ To be notified when a user earns a reward follow the [MAX intructions](https://d
 {:.no_toc}
 
 This step is the same as for the original [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/rewarded-ads). You don't have to make any modifications here.
-
 
 #### Step 2: Create MAXMediationRewardedUtils
 {:.no_toc}
@@ -265,7 +262,7 @@ The bid request for native ads should have the description of expected assets. T
 
 The example of creating the assets array:
 
-```
+```swift
 let image = NativeAssetImage(minimumWidth: 200, minimumHeight: 50, required: true)
 image.type = ImageAsset.Main
 
@@ -290,7 +287,7 @@ The bid request for mative ads may have a descrition of expected event trackers.
 
 The example of creating the event trackers array:
 
-```
+```swift
 let eventTrackers = [
     NativeEventTracker(event: EventType.Impression,
                        methods: [EventTracking.Image,EventTracking.js])
