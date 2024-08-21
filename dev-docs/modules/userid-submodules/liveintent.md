@@ -27,13 +27,13 @@ There are two ways to add the functionality of LiveIntent Identity sub-module to
     LiveConnectMode=minimal gulp build --modules=liveIntentIdSystem
     ```
 
-3. The hub version, which requires a LiveConnect tag (>=3.0.0) or LiveConnect Hub installed on your page in addition to Prebid. Please contact LiveIntent for support in setting up LiveConnect and LiveConnect Hub. 
+3. The external version, which requires a LiveConnect tag (>=3.0.0) or LiveConnect Hub installed on your page in addition to Prebid. Please contact LiveIntent for support in setting up LiveConnect and LiveConnect Hub.
 This will significantly reduce the size of your Prebid.js bundle and allow you to use the newest features of LiveConnect. All non-hub versions will be deprecated in the future.
 
-    Add the **hub** LiveIntent Identity module to your Prebid.js package with:
+    Add the **external** LiveIntent Identity module to your Prebid.js package with:
 
     ```bash
-    LiveConnectMode=hub gulp build --modules=liveIntentIdSystem
+    LiveConnectMode=external gulp build --modules=liveIntentIdSystem
     ```
 
 This is an example of how the `request.userId.lipb` object, which contains the resolution result, would look like:
@@ -45,6 +45,7 @@ This is an example of how the `request.userId.lipb` object, which contains the r
 }
 ```
 
+If you need a LiveConnect script on the page please connect your LiveIntent representative for it.
 If you're not already a LiveIntent customer, feel free to [reach out](https://www.liveintent.com/get-in-touch/) to us. You can also explore the [LiveIntent’s privacy policies](https://www.liveintent.com/services-privacy-policy/).
 
 ## How LiveIntent user ID sub-module works
