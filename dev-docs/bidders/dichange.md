@@ -3,7 +3,6 @@ layout: bidder
 title: dichange
 description: dichange Bidder Adapter
 biddercode: dichange
-aliasCode: digitalmatter
 media_types: banner, video
 coppa_supported: true
 tcfeu_supported: false
