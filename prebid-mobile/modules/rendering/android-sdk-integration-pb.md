@@ -7,7 +7,7 @@ sidebarType: 2
 
 ---
 
-# Prebid SDK Android with a Custom Bidding Integration
+# Prebid SDK Android with a Custom Bidding Integration Method
 {:.no_toc}
 
 - TOC

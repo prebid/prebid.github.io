@@ -9,6 +9,8 @@ sidebarType: 3
 
 # AdMob Setup
 
+This document outlines how to set up [AdMob](https://admob.google.com/home/) for Prebid Mobile. See the [integration method](/prebid-mobile/modules/rendering/ios-sdk-integration-admob.html#rendering-and-tracking) document for information about rendering and tracking.
+
 ## Mediation Group Setup
 
 ### Step 1: Create Mediation Group
@@ -84,3 +86,8 @@ Press `DONE` and repeat the adding of the custom events for all needed prices.
 <img src="/assets/images/prebid-mobile/modules/rendering/order-admob-create-list-custom-events.png" alt="Pipeline Screenshot" align="center">
 
 Once you add all needed custom events - press `DONE`. The Mediation Group is ready to serve the prebid demand to your app.
+
+## Further Reading
+
+- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile)
+- Prebid Mobile Admob Integration Method for [iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-admob.html), [Android](/prebid-mobile/modules/rendering/android-sdk-integration-admob.html)

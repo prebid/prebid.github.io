@@ -1,33 +1,19 @@
 ---
 layout: page_v2
-title: AppLovin MAX Integration
-description: Integration of Prebid Rendering module whith AppLovin MAX 
+title: Integrating Prebid SDK iOS with AppLovin MAX
+description: Integrating Prebid SDK iOS with AppLovin MAX
 sidebarType: 2
 ---
 
-# AppLovin MAX Integration
+# Prebid SDK iOS with AppLovin MAX Integration Method
 {:.no_toc}
-
-The integration of Prebid Mobile with AppLovin MAX assumes that publisher has a MAX account and has integrated the AppLovin MAX SDK into the app.
-
-See the [AppLovin MAX Documentation](https://dash.applovin.com/documentation/mediation/ios/getting-started/integration) for the MAX integration details.
 
 * TOC
 {:toc}
 
-## MAX Integration Overview
+{% include mobile/intro-applovin.md platform="ios" %}
 
-![Rendering with AppLovin MAX as the Primary Ad Server](/assets/images/prebid-mobile/modules/rendering/prebid-in-app-bidding-overview-max.png)
-
-**Steps 1-2** Prebid SDK makes a bid request. Prebid Server runs an auction and returns the winning bid.
-
-**Step 3** MAX SDK makes an ad request. MAX returns the waterfall with respective placements.
-
-**Step 4** For each Prebid placement, the MAX SDK sequentially instantiates an adapter. 
-
-**Step 5** The adapter verifies the targeting keywords of the winning bid and the custom properties of the given placement. If they match the adapter will render the winning bid. Otherwise, the adpater will immediately fail with a "no ad" error and the next placement will instantiate the same adapter but for another custom properties. 
-
-## Integrate Prebid Adapters
+## Setup
 
 Prebid SDK is integrated into AppLovin MAX setup thru custom adapters. To integrate Prebid adapters into your app add the following line to your Podfile:
 
@@ -35,7 +21,9 @@ Prebid SDK is integrated into AppLovin MAX setup thru custom adapters. To integr
 pod 'PrebidMobileMAXAdapters'
 ```
 
-## Banner API
+## Adunit Specific Instructions
+
+### Banners
 
 Integration example:
 
@@ -86,7 +74,7 @@ The `fetchDemand` method makes a bid request to Prebid Server and provides a res
 
 Make a regular MAX's ad request. Everything else will be handled by prebid adapters.
 
-## Interstitial API
+### Interstitials
 
 Integration example:
 
@@ -162,7 +150,7 @@ Now you should make a regular MAX's ad request. Everything else will be handled 
 
 Once you receive the ad it will be ready for display. Follow the [MAX instructions](https://dash.applovin.com/documentation/mediation/ios/getting-started/interstitials#showing-an-interstitial-ad) for displaying an ad. 
 
-## Rewarded API
+### Rewarded Video
 
 Integration example:
 
@@ -221,7 +209,7 @@ Make a regular MAX's ad request. Everything else will be handled by GMA SDK and 
 
 Once the rewarded ad is received you can display it. Follow the [MAX instructions](https://dash.applovin.com/documentation/mediation/ios/getting-started/rewarded-ads#showing-a-rewarded-ad) for the details. 
 
-## Native Ads
+### Native Ads
 
 Integration example:
 
@@ -318,3 +306,9 @@ The `fetchDemand` method makes a bid request to Prebid Server and provides a res
 {:.no_toc}
 
 Load a native ad from MAX according to the [MAX instructions](https://dash.applovin.com/documentation/mediation/ios/getting-started/native-manual#load-the-native-ad). 
+
+## Further Reading
+
+- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile)
+- [Prebid SDK iOS Integration](/prebid-mobile/pbm-api/ios/code-integration-ios)
+- [Prebid SDK iOS Global Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios)

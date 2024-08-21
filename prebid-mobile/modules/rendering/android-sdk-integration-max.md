@@ -1,34 +1,19 @@
 ---
 layout: page_v2
-title: AppLovin MAX Integration
-description: Integration of Prebid Rendering module whith AppLovin MAX  
+title: Integrating Prebid SDK Android with AppLovin MAX
+description: Integrating Prebid SDK Android with AppLovin MAX
 sidebarType: 2
 ---
 
-# AppLovin MAX Integration
+# Prebid SDK Android with AppLovin MAX Integration Method
 {:.no_toc} 
 
-The integration of Prebid Mobile with AppLovin MAX assumes that publisher has MAX account and has already integrated the AppLovin MAX SDK into the app.
-
-See the [AppLovin MAX Documentation](https://dash.applovin.com/documentation/mediation/android/getting-started/integration) for the MAX integration details.
-
-* TOC
+- TOC
 {:toc}
 
-## MAX Integration Overview
+{% include mobile/intro-applovin.md platform="android" %}
 
-![Rendering with MAX](/assets/images/prebid-mobile/modules/rendering/prebid-in-app-bidding-overview-max.png)
-
-**Steps 1-2** Prebid SDK makes a bid request. Prebid server runs an auction and returns the winning bid.
-
-**Step 3** MAX SDK makes an ad request. MAX returns the waterfall with respective placements.
-
-**Step 4** For each prebid's placement, the MAX SDK sequentially instantiates an adapter. 
-
-**Step 5** The adapter verifies the targeting keywords of the winning bid and the custom properties of the given placement. If they match the adapter will render the winning bid. Otherwise, adpater will fail with "no ad" immediately and the next placement will instantiate the same adapter but for another custom properties. 
-  
-
-## Integrate Prebid Adapters
+## Setup
 
 Prebid SDK is integrated into AppLovin MAX setup via custom adapters. To integrate Prebid Adapters into your app, add the following lines into your build.gradle files:
 
@@ -50,7 +35,9 @@ App module build.gradle:
 implementation('org.prebid:prebid-mobile-sdk-max-adapters:x.x.x')
 ```
 
-## Banner API
+## Adunit Specific Instructions
+
+### Banners
 
 Integration example:
 
@@ -105,7 +92,7 @@ The `fetchDemand` method makes a bid request to prebid server and provides a res
 
 Now you should make a regular MAX's ad request. Everything else will be handled by prebid adapters.
 
-## Interstitial API
+### Interstitials
 
 Integration example:
 
@@ -176,7 +163,7 @@ Now you should make a regular MAX's ad request. Everything else will be handled 
 
 Once you receive the ad it will be ready for display. Folow the [MAX instructions](https://dash.applovin.com/documentation/mediation/android/getting-started/interstitials#showing-an-interstitial-ad) about how to do it. 
 
-## Rewarded API
+### Rewarded Video
 
 Integration example:
 
@@ -236,8 +223,7 @@ Now you should make a regular MAX's ad request. Everything else will be handled 
 {:.no_toc}
 
 Once the rewarded ad is received you can display it. Folow the [MAX instructions](https://dash.applovin.com/documentation/mediation/android/getting-started/rewarded-ads#showing-a-rewarded-ad) for the details. 
-
-## Native Ads
+### Native Ads
 
 Integration example:
 
@@ -345,3 +331,9 @@ The `fetchDemand` method makes a bid request to prebid server and provides a res
 {:.no_toc}
 
 Now just load a native ad from MAX according to the [MAX instructions](https://dash.applovin.com/documentation/mediation/android/getting-started/native-manual#load-the-native-ad). 
+
+## Further Reading
+
+- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
+- [Prebid SDK Android Integration](/prebid-mobile/pbm-api/android/code-integration-android.html)
+- [Prebid SDK Android Global Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-android.html)

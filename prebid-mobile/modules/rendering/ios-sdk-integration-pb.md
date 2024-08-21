@@ -7,7 +7,7 @@ sidebarType: 2
 
 ---
 
-# Prebid SDK iOS with a Custom Bidding Integration
+# Prebid SDK iOS with a Custom Bidding Integration Method
 {:.no_toc}
 
 - TOC
