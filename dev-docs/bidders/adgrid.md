@@ -5,6 +5,22 @@ description: Prebid AdGrid Bidder Adaptor
 biddercode: adgrid
 media_types: banner
 pbjs: true
+tcfeu_supported: false
+dsa_supported: false
+gvl_id: none
+usp_supported: false
+coppa_supported: false
+gpp_sids: none
+schain_supported: false
+dchain_supported: false
+userId: no
+safeframes_ok: false
+deals_supported: false
+floors_supported: false
+fpd_supported: false
+prebid_member: false
+ortb_blocking_supported: false
+privacy_sandbox: no
 sidebarType: 1
 ---
 
