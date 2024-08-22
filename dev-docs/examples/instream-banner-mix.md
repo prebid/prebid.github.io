@@ -9,7 +9,7 @@ about:
 - This example shows how to display instream video and banner ads within the same configuration.
 
 ---
-
+<!-- markdownlint-disable-file MD034 -->
 ## Instream Video and Banner Ad Mixed Page
 
 {% capture htmlCodePrebid %}<h2>Prebid Video - JW Platform</h2>
