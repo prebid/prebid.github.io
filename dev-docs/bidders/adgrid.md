@@ -11,12 +11,12 @@ gvl_id: none
 usp_supported: false
 coppa_supported: false
 gpp_sids: none
-schain_supported: false
+schain_supported: true
 dchain_supported: false
 userId: no
 safeframes_ok: false
 deals_supported: false
-floors_supported: false
+floors_supported: true
 fpd_supported: false
 prebid_member: false
 ortb_blocking_supported: false
