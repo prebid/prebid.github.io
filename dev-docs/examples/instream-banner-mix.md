@@ -11,13 +11,14 @@ about:
 ---
 
 ## Instream Video and Banner Ad Mixed Page
-<!-- markdownlint-disable MD0034 -->
+
 {% capture htmlCodePrebid %}<h2>Prebid Video - JW Platform</h2>
 <div id="myElement1"></div>
 <!-- This line loads a player without loading any video content -->
 <!-- Replace this with the correct url for your player -->
 <script src="https://content.jwplatform.com/libraries/72xIKEe6.js"></script>
 <script>
+<!-- markdownlint-disable MD0034 -->
 // we initialize our player instance, specifying the div to load it into
 var playerInstance = jwplayer('myElement1');
 
