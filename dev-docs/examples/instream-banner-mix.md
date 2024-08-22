@@ -18,7 +18,7 @@ about:
 <!-- Replace this with the correct url for your player -->
 <script src="https://content.jwplatform.com/libraries/72xIKEe6.js"></script>
 <script>
-<!-- markdownlint-disable MD0034 -->
+
 // we initialize our player instance, specifying the div to load it into
 var playerInstance = jwplayer('myElement1');
 
