@@ -146,9 +146,9 @@ In JSON:
       "fiftyonedegrees": {
         "devicedetection": {
           "enabled": true,
-          "make_temp_copy": true,
           "data_file": {
             "path": "path/to/51Degrees-LiteV4.1.hash",
+            "make_temp_copy": true,
             "update": {
               "auto": true,
               "url": "<optional custom URL>",
@@ -208,9 +208,9 @@ hooks:
     fiftyonedegrees:
       devicedetection:
         enabled: true
-        make_temp_copy: true
         data_file:
           path: path/to/51Degrees-LiteV4.1.hash
+          make_temp_copy: true
           update:
             auto: true
             url: "<optional custom URL>"
