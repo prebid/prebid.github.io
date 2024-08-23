@@ -660,7 +660,7 @@ It will become impossible to fetch bids from AppNexus within that Request.
 
 ##### Bidder Alias GVL IDs
 
-For environments that have turned on [GDPR enforcement](/prebid-server/features/pbs-privacy.html#gdpr), it can be important to define the Global Vendor List (GVL) ID with an alias.
+For publishers that use Prebid Server as part of their [GDPR/TCF](/prebid-server/features/pbs-privacy.html#gdpr) strategy, it can be important to define the Global Vendor List (GVL) ID with an alias.
 
 To do this, just set `ext.prebid.aliasgvlids` alongside ext.prebid.aliases:
 
@@ -960,10 +960,10 @@ client can declare a given adunit as eligible for rewards by declaring `imp.ext.
 
 ##### Create Transaction ID
 
-The request can contain the global `createtid` flag to control the `transmitTid` [Activity Control](/prebid-server/features/pbs-activitycontrols.html).
+The request can contain the global `createtids` flag to control the `transmitTid` [Activity Control](/prebid-server/features/pbs-activitycontrols.html).
 
 ```text
-ext.request.createtid: false
+ext.request.createtids: false
 ```
 
 If the value is `false`, the `transmitTid` activity is overridden to "denied", which means bid adapters will not get unique transaction IDs. If not specified, then the value of the transmitTid activity for the account is used. The overall default value it `true`, which translates to "allow" the generation of TIDs.
@@ -1492,7 +1492,9 @@ PBS-core creates this block before sending to bid adapters. They receive additio
 }
 ```
 
-##### Analytics Extension
+##### Analytics Extensions
+
+###### Analytics adapter flags
 
 Some analytics adapters may support special flags that can be passed on ext.prebid.analytics. e.g.
 
@@ -1505,6 +1507,26 @@ ext.prebid: {
   }
 }
 ```
+
+###### Sending analytics tags to the client-side
+
+{: .alert.alert-info :}
+PBS-Java only
+
+[Analytics Tags](/prebid-server/developers/module-atags.html) (aka "aTags") are an advanced feature that some [modules](/prebid-server/pbs-modules/) and
+features utilize to communicate auction details to server-side analytics adapters.
+
+When there are Prebid.js-based analytics adapters in use, server-side details can be sent to them with aTags. This allows the client-side analytics systems
+to see what's happening within Prebid Server - all analytics tags created by all modules will be sent to the client.
+
+To allow the sharing of these details, there are two conditions:
+
+1. Server-side account configuration must allow sharing of these details by setting `analytics.allow-client-details: true`
+1. The ORTB request must contain `ext.prebid.analytics.options.enableclientdetails: true`
+
+If both are true, then any and all PBS analytics tags will be copied to the response field ext.prebid.analytics.tags.
+
+See the [Analytics Tags](/prebid-server/developers/module-atags.html) page for more information.
 
 ##### Preferred Media Type
 
@@ -1526,7 +1548,7 @@ ext.prebid.biddercontrols: {
 
 Here's how this works:
 
-1. If the bid adapter YAML declares support of multiformat, then `prefmtype` is ignored in the request. The default value of multiformat supported is `true` in PBS 2.0, but will be `false` in PBS 3.0.
+1. If the bid adapter YAML declares support of multiformat, then `prefmtype` is ignored in the request. The default value of multiformat supported is `true`.
 1. If the bidder declares that they don't support multiformat and the incoming request contains multiple formats, then one of the formats is chosen by either `$.ext.prebid.biddercontrols.BIDDER.prefmtype` or config `auction.preferredmediatype.BIDDER`
 
 #### OpenRTB Response Extensions
@@ -1676,13 +1698,19 @@ The codes currently returned:
 | 0 | General No Bid | Java | The bidder had a chance to bid, and either declined to bid on this impression. |
 | 100 | General Error | Java | The bid adapter returned with an unspecified error for this impression. |
 | 101 | Timeout | Java | The bid adapter timed out. |
+| 102 | Invalid Bid Response | Java | The bidder returned HTTP < 200 or >= 400 |
+| 103 | Bidder Unreachable | Java | The bidder returned HTTP 503 |
 | 200 | Request Blocked - General | Java | This impression not sent to the bid adapter for an unspecified reason. |
+| 201 | Request Blocked - Unsupported Channel (app/site/dooh) | Java | The request was not sent to the bidder because they don’t support site, app, or dooh. |
 | 202 | Request Blocked due to mediatype | Java | This impression not sent to the bid adapter because it doesn't support the requested mediatype. |
+| 204 | Request Blocked - Privacy | Java | The bidder was not called due to TCF Purpose 2. |
 | 300 | Response Rejected - General | Go + Java | The bid response was rejected for an unspecified reason. See warnings in debug mode. (Mostly caused by DSA validation rules) |
 | 301 | Response Rejected - Below Floor | Java | The bid response did not meet the floor for this impression. |
 | 303 | Response Rejected - Category Mapping Invalid | Go | The bid response did not include a category to map. |
-| 351 | Response Rejected - Invalid Creative (Size Not Allowed) | Go | The bid response banner size exceeds the max size, when creative validation is enabled. |
-| 352 | Response Rejected - Invalid Creative (Not Secure) | Go | The bid response adm does not use https, when secure markup validation is enabled. |
+| 350 | Response Rejected - Invalid Creative (ORTB blocking) | Java | The ortbblocking module enforced a bid response for battr, bcat, bapp, btype. |
+| 351 | Response Rejected - Invalid Creative (Size Not Allowed) | Both | The bid response banner size exceeds the max size, when creative validation is enabled. |
+| 352 | Response Rejected - Invalid Creative (Not Secure) | Both | The bid response adm does not use https, when secure markup validation is enabled. |
+| 356 | Response Rejected - Invalid Creative (Advertiser Blocked) | Java | The ortbblocking module enforced a bid response due to badv. |
 
 See the [IAB's Seat Non-Bid OpenRTB Extension](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/seat-non-bid.md) for the full list of status codes that may be supported in the future.
 
@@ -1769,7 +1797,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.aliases | defines alternate names for bidders, see [bidder aliases](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bidder-aliases). | object | no |
 | ext<wbr>.prebid<wbr>.aliasgvlids | defines the global vendor list IDs for aliases, see [bidder aliases](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bidder-aliases). | object | no |
 | ext<wbr>.prebid<wbr>.bidadjustmentfactors | Adjust the CPM value of bidrequests, see [bid adjustments](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bid-adjustments) | object | no |
-| ext<wbr>.prebid<wbr>.bidderconfig | bidder-specific first party data, see [first party data](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#first-party-data-support). | object | no |
+| ext<wbr>.prebid<wbr>.bidderconfig | bidder-specific first party data, see [first party data](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#first-party-data-support). | array of obj | no |
 | ext<wbr>.prebid<wbr>.bidderparams | Publishers can specify any adapter-specific cross-impression attributes, see [global bid parameters](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#global-bid-adapter-parameters) | object | no |
 | ext<wbr>.prebid<wbr>.cache | defines whether to put bid results in Prebid Cache, see [cache bids](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#cache-bids). | object | no |
 | ext<wbr>.prebid<wbr>.channel | Generally "pbjs", "amp", or "app". Passed through to events and analytics.<br>ex: `{name: "pbjs", version: "4.39"}` | object | yes |
@@ -1789,9 +1817,9 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.nosale | turns off CCPA processing for the named bidder(s).<br>ex: `["bidderA"]`. A value of ["*"] is allowed. | array of strings | no |
 | ext<wbr>.prebid<wbr>.server | additional Prebid Server metadata | object | yes |
 | ext<wbr>.prebid<wbr>.floors | PBS floors data | object | no |
-| ext<wbr>.prebid<wbr>.createtid | Ties to the transmitTid activity. If false, transmitTid is denied. | boolean | no |
 | ext<wbr>.prebid<wbr>.returnallbidstatus | If true, PBS returns [ext.seatnonbid](#seat-non-bid) with details about bidders that didn't bid. | boolean | no |
 | ext<wbr>.prebid<wbr>.analytics | Arguments that can be passed through to individual analytics adapters | object | no |
+| ext<wbr>.prebid<wbr>.analytics<wbr>.options.<wbr>enableclientdetails | Requests that [aTags](/prebid-server/developers/module-atags.html) be sent to the client-side for analytics. | boolean | no |
 | imp<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. (ae stands for auction environment) | integer | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
@@ -1825,6 +1853,7 @@ The Prebid SDK version comes from:
 
 ### Further Reading
 
+- [Example auction request](/prebid-server/endpoints/openrtb2/auction-request-example.html)
 - [OpenRTB 2.4 Specification](https://iabtechlab.com/wp-content/uploads/2016/04/OpenRTB-API-Specification-Version-2-4-FINAL.pdf)
 - [OpenRTB 2.5 Specification](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)
 - [OpenRTB 2.6 Specification](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md)
