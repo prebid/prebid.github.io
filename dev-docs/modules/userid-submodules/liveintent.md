@@ -28,7 +28,7 @@ There are two ways to add the functionality of LiveIntent Identity sub-module to
     ```
 
 3. The external version, which requires a LiveConnect tag (>=3.0.0) installed on your page in addition to Prebid. Please contact LiveIntent for support in setting up LiveConnect.
-This will significantly reduce the size of your Prebid.js bundle and allow you to use the newest features of LiveConnect. All non-hub versions will be deprecated in the future.
+This will significantly reduce the size of your Prebid.js bundle and allow you to use the newest features of LiveConnect. All other version will be deprecated in the future.
 
     Add the **external** LiveIntent Identity module to your Prebid.js package with:
 
