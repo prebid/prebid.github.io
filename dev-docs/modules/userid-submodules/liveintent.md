@@ -27,7 +27,7 @@ There are two ways to add the functionality of LiveIntent Identity sub-module to
     LiveConnectMode=minimal gulp build --modules=liveIntentIdSystem
     ```
 
-3. The external version, which requires a LiveConnect tag (>=3.0.0) or LiveConnect Hub installed on your page in addition to Prebid. Please contact LiveIntent for support in setting up LiveConnect and LiveConnect Hub.
+3. The external version, which requires a LiveConnect tag (>=3.0.0) installed on your page in addition to Prebid. Please contact LiveIntent for support in setting up LiveConnect.
 This will significantly reduce the size of your Prebid.js bundle and allow you to use the newest features of LiveConnect. All non-hub versions will be deprecated in the future.
 
     Add the **external** LiveIntent Identity module to your Prebid.js package with:
@@ -92,7 +92,7 @@ pbjs.setConfig({
 
 ### Multiple user IDs
 
-The attributes `uid2`, `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, `sovrn`, `index`, `thetradedesk` and `fpid` are treated specially by LiveIntent's user ID sub-module. Each of these attributes will result in a separate ID returned by the sub-module. Note: `thetradedesk` will be exposed as `tdid` because of historical reasons. 
+The attributes `uid2`, `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, `sovrn`, `index`, `thetradedesk` and `fpid` are treated specially by LiveIntent's user ID sub-module. Each of these attributes will result in a separate ID returned by the sub-module. Note: `thetradedesk` will be exposed as `tdid` because of historical reasons.
 
 For example, in case `uid2` is configured to be requested in addition to the `nonID`, the `request.userId` object would look like the following:
 
