@@ -18,7 +18,6 @@ sidebarType: 1
 tcfeu_supported: false
 dsa_supported: false
 usp_supported: false
-gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: false
 dchain_supported: false
 pbs: false
