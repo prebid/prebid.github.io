@@ -7,13 +7,23 @@ aliasCode: fan
 gvl_id: none
 coppa_supported: true
 media_types: banner, native
+multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 safeframes_ok: false
 deals_supported: false
 floors_supported: false
-fpd_supported: true/false
+fpd_supported: false
 pbjs: true
 prebid_member: false
 sidebarType: 1
+tcfeu_supported: false
+dsa_supported: false
+usp_supported: false
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
+schain_supported: false
+dchain_supported: false
+pbs: false
+ortb_blocking_supported: false
+privacy_sandbox: no
 ---
 
 ### Note
