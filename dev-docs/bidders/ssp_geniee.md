@@ -12,17 +12,17 @@ tcfeu_supported: false
 dsa_supported: false
 gvl_id: none
 usp_supported: false
-coppa_supported: true
+coppa_supported: false
 gpp_sids: none
-schain_supported: true
+schain_supported: false
 dchain_supported: false
-deals_supported: true
+deals_supported: false
 floors_supported: false
-fpd_supported: true
-pbs: true
+fpd_supported: false
+pbs: false
 prebid_member: false
 multiformat_supported: will-bid-on-one
-ortb_blocking_supported: partial
+ortb_blocking_supported: false
 privacy_sandbox: no
 ---
 ### Note
