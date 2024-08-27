@@ -28,7 +28,7 @@ sidebarType: 1
 
 ### Registration
 
-For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account team or <globalsupport@magnite.com> for more information.
+For both Prebid.js and Prebid Server, the Rubicon Project adapter requires setup and approval from the Magnite team, even for existing accounts. Please reach out to your account manager for more information.
 
 ### Bid Params
 
@@ -305,7 +305,7 @@ var nativeAdUnit = {
 
 ### Setting up the Prebid Server Adapter
   
-If you're a Prebid Server host company looking to enable the Rubicon server-side adapter, you'll need to contact <globalsupport@magnite.com>. They will provide:
+If you're a Prebid Server host company looking to enable the Rubicon server-side adapter, you'll need to contact your Magnite account team. They will provide:
 
 * a Magnite DV+ XAPI login and password that you'll place in the PBS config
 * a partner code you can use for cookie-syncing with Magnite's service

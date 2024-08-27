@@ -12,7 +12,7 @@ sidebarType: 2
 
 Prebid Mobile is an open-source library that provides an end-to-end header bidding solution for mobile app publishers.
 
-* TOC
+- TOC
 {:toc}
 
 ## Overview
@@ -78,8 +78,8 @@ func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
 
 Initialize the `BannerAdUnit` with the following properties:
 
-* `configId` - an ID of the Stored Impression on the Prebid Server
-* `adSize` - the size of the ad unit which will be used in the bid request.
+- `configId` - an ID of the Stored Impression on the Prebid Server
+- `adSize` - the size of the ad unit which will be used in the bid request.
 
 #### Step 2: Configure banner parameters
 {:.no_toc}
@@ -88,10 +88,10 @@ Using the `BannerParameters` you can customize the bid request for the BannerAdU
 
 The `api` property is dedicated to adding values for API Frameworks to bid response according to the OpenRTB [2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
 
-* `3` or `Signals.Api.MRAID_1` : MRAID-1 support signal
-* `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
-* `6` or `Signals.Api.MRAID_3` : MRAID-3 support signal
-* `7` or `Signals.Api.OMID_1` :  signals OMSDK support
+- `3` or `Signals.Api.MRAID_1` : MRAID-1 support signal
+- `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
+- `6` or `Signals.Api.MRAID_3` : MRAID-3 support signal
+- `7` or `Signals.Api.OMID_1` :  signals OMSDK support
 
 {: .alert.alert-warning :}
 Starting from PrebidMobile `2.1.0` the `parameters` property is deprecated. Use `bannerParameters` instead.
@@ -164,8 +164,8 @@ Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `B
 
 Initialize the `BannerAdUnit` with the following properties:
 
-* `configId` - an ID of the Stored Impression on the Prebid Server
-* `adSize` - the size of the ad unit which will be used in the bid request.
+- `configId` - an ID of the Stored Impression on the Prebid Server
+- `adSize` - the size of the ad unit which will be used in the bid request.
 
 #### Step 2: Set ad format
 {:.no_toc}
@@ -184,22 +184,22 @@ Using the `VideoParameters` you can customize the bid request for video ads.
 
 In the context of a VideoInterstitialAdUnit, rewarded video ads are typically labeled as interstitial. As such, Prebid SDK will default to value 5 if no placement value is supplied.
 
-* `2` or `InBanner` : In-Banner placement exists within a web banner that leverages the banner space to deliver a video experience as opposed to another static or rich media format. The format relies on the existence of display ad inventory on the page for its delivery.
-* `3` or `InArticle` : In-Article placement loads and plays dynamically between paragraphs of editorial content; existing as a standalone branded message.
-* `4` or `InFeed` : In-Feed placement is found in content, social, or product feeds.
-* `5` or `Slider`, `Floating` or `Interstitial` : Open RTB supports one of three values for option 5 as either Slider, Floating or Interstitial. If an enum value is supplied in placement, bidders will receive value 5 for placement type and assume to be interstitial with the instl flag set to 1.
+- `2` or `InBanner` : In-Banner placement exists within a web banner that leverages the banner space to deliver a video experience as opposed to another static or rich media format. The format relies on the existence of display ad inventory on the page for its delivery.
+- `3` or `InArticle` : In-Article placement loads and plays dynamically between paragraphs of editorial content; existing as a standalone branded message.
+- `4` or `InFeed` : In-Feed placement is found in content, social, or product feeds.
+- `5` or `Slider`, `Floating` or `Interstitial` : Open RTB supports one of three values for option 5 as either Slider, Floating or Interstitial. If an enum value is supplied in placement, bidders will receive value 5 for placement type and assume to be interstitial with the instl flag set to 1.
 
 #### api
 {:.no_toc}
 
 The `api` property is dedicated to adding values for API Frameworks to bid response according to the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) spec. The supported values for GMA SDK integration are:
 
-* `1` or `Signals.Api.VPAID_1` : VPAID 1.0
-* `2` or `Signals.Api.VPAID_2` : VPAID 2.0
-* `3` or `Signals.Api.MRAID_1` : MRAID-1 support signal
-* `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
-* `6` or `Signals.Api.MRAID_3` : MRAID-3 support signal
-* `7` or `Signals.Api.OMID_1`  : signals OMSDK support
+- `1` or `Signals.Api.VPAID_1` : VPAID 1.0
+- `2` or `Signals.Api.VPAID_2` : VPAID 2.0
+- `3` or `Signals.Api.MRAID_1` : MRAID-1 support signal
+- `5` or `Signals.Api.MRAID_2` : MRAID-2 support signal
+- `6` or `Signals.Api.MRAID_3` : MRAID-3 support signal
+- `7` or `Signals.Api.OMID_1`  : signals OMSDK support
 
 #### maxBitrate
 {:.no_toc}
@@ -232,26 +232,26 @@ Required property.
 
 Array of OpenRTB 2.5 playback methods. If none are specified, any method may be used. Only one method is typically used in practice. It is strongly advised to use only the first element of the array.
 
-* `1` or `Signals.PlaybackMethod.AutoPlaySoundOn` : Initiates on Page Load with Sound On
-* `2` or `Signals.PlaybackMethod.AutoPlaySoundOff` : Initiates on Page Load with Sound Off by Default
-* `3` or `Signals.PlaybackMethod.ClickToPlay` : Initiates on Click with Sound On
-* `4` or `Signals.PlaybackMethod.MouseOver` : Initiates on Mouse-Over with Sound On
-* `5` or `Signals.PlaybackMethod.EnterSoundOn` : Initiates on Entering Viewport with Sound On
-* `6` or `Signals.PlaybackMethod.EnterSoundOff`: Initiates on Entering Viewport with Sound Off by Default
+- `1` or `Signals.PlaybackMethod.AutoPlaySoundOn` : Initiates on Page Load with Sound On
+- `2` or `Signals.PlaybackMethod.AutoPlaySoundOff` : Initiates on Page Load with Sound Off by Default
+- `3` or `Signals.PlaybackMethod.ClickToPlay` : Initiates on Click with Sound On
+- `4` or `Signals.PlaybackMethod.MouseOver` : Initiates on Mouse-Over with Sound On
+- `5` or `Signals.PlaybackMethod.EnterSoundOn` : Initiates on Entering Viewport with Sound On
+- `6` or `Signals.PlaybackMethod.EnterSoundOff`: Initiates on Entering Viewport with Sound Off by Default
 
 #### protocols
 {:.no_toc}
 
   Array or enum of OpenRTB 2.5 supported Protocols. Values can be one of:
 
-* `1` or `Signals.Protocols.VAST_1_0` : VAST 1.0
-* `2` or `Signals.Protocols.VAST_2_0` : VAST 2.0
-* `3` or `Signals.Protocols.VAST_3_0` : VAST 3.0
-* `4` or `Signals.Protocols.VAST_1_0_Wrapper` : VAST 1.0 Wrapper
-* `5` or `Signals.Protocols.VAST_2_0_Wrapper` : VAST 2.0 Wrapper
-* `6` or `Signals.Protocols.VAST_3_0_Wrapper` : VAST 3.0 Wrapper
-* `7` or `Signals.Protocols.VAST_4_0` : VAST 4.0
-* `8` or `Signals.Protocols.VAST_4_0_Wrapper` : VAST 4.0 Wrapper
+- `1` or `Signals.Protocols.VAST_1_0` : VAST 1.0
+- `2` or `Signals.Protocols.VAST_2_0` : VAST 2.0
+- `3` or `Signals.Protocols.VAST_3_0` : VAST 3.0
+- `4` or `Signals.Protocols.VAST_1_0_Wrapper` : VAST 1.0 Wrapper
+- `5` or `Signals.Protocols.VAST_2_0_Wrapper` : VAST 2.0 Wrapper
+- `6` or `Signals.Protocols.VAST_3_0_Wrapper` : VAST 3.0 Wrapper
+- `7` or `Signals.Protocols.VAST_4_0` : VAST 4.0
+- `8` or `Signals.Protocols.VAST_4_0_Wrapper` : VAST 4.0 Wrapper
 
 #### Step 4: Create a GAMBannerView
 {:.no_toc}
@@ -333,8 +333,8 @@ func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
 
 Initialize the `BannerAdUnit` with the following properties:
 
-* `configId` - an ID of the Stored Impression on the Prebid Server
-* `adSize` - the size of the ad unit which will be used in the bid request.
+- `configId` - an ID of the Stored Impression on the Prebid Server
+- `adSize` - the size of the ad unit which will be used in the bid request.
 
 #### Step 2: Set ad formats
 {:.no_toc}
@@ -410,9 +410,9 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 
 Initialize the InterstitialAdUnit with the following properties:
 
-* `configId` - an ID of Stored Impression on the Prebid Server
-* `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
-* `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
+- `configId` - an ID of Stored Impression on the Prebid Server
+- `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
+- `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
 
 > **NOTE:** As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process to monetize sizes smaller than full screen ads. App developers can specify a minimum width and minimum height percentage an ad can occupy of a devices real state, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction.
 >
@@ -485,7 +485,7 @@ Starting from PrebidMobile `2.1.0` the `VideoInterstitialAdUnit` class is deprec
 
 Initialize the Interstitial Video Ad Unit with properties:
 
-* `configId` - an ID of Stored Impression on the Prebid Server
+- `configId` - an ID of Stored Impression on the Prebid Server
 
 #### Step 2: Set ad format
 {:.no_toc}
@@ -556,9 +556,9 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 
 Initialize the InterstitialAdUnit with the following properties:
 
-* `configId` - an ID of Stored Impression on the Prebid Server
-* `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
-* `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
+- `configId` - an ID of Stored Impression on the Prebid Server
+- `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
+- `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
 
 > **NOTE:** As of version 1.2+, Prebid SDK has extended the functionality of Interstitial ad monetization by using a smart ad size selection process to monetize sizes smaller than full screen ads. App developers can specify a minimum width and minimum height percentage an ad can occupy of a devices real state, with Prebid Server (PBS) deriving a limited set of ad sizes (max 10) as eligible for the auction.
 >
@@ -634,7 +634,7 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 
 Initialize the Rewarded Video Ad Unit with properties:
 
-* `configId` - an ID of Stored Impression on the Prebid Server
+- `configId` - an ID of Stored Impression on the Prebid Server
 
 ### Step 2: Configure video parameters
 {:.no_toc}
@@ -755,8 +755,8 @@ Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `I
 
 Initialize the Instream Video Ad Unit with properties:
 
-* `configId` - an ID of Stored Impression on the Prebid Server
-* `size` - Width and height of the video ad unit.
+- `configId` - an ID of Stored Impression on the Prebid Server
+- `size` - Width and height of the video ad unit.
 
 ### Step 2: Configure video parameters
 {:.no_toc}
@@ -849,8 +849,8 @@ nativeUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 
 Initialize the `NativeRequest` with properties:
 
-* `configId` - an ID of the Stored Impression on the Prebid Server
-* `assets` - the array of `NativeAsset` objects which describes your native ad.
+- `configId` - an ID of the Stored Impression on the Prebid Server
+- `assets` - the array of `NativeAsset` objects which describes your native ad.
 
 ##### NativeAssetImage
 {:.no_toc}
@@ -1017,8 +1017,8 @@ func nativeAdNotValid() {
 
 Initialize the `NativeRequest` with properties:
 
-* `configId` - an ID of the Stored Impression on the Prebid Server
-* `assets` - the array of `NativeAsset` objects which describes your native ad.
+- `configId` - an ID of the Stored Impression on the Prebid Server
+- `assets` - the array of `NativeAsset` objects which describes your native ad.
 
 ##### Step 2: Make a bid request
 {:.no_toc}
@@ -1037,7 +1037,7 @@ Be sure that you make the ad request with the same `GAMRequest` object that you 
 ##### Step 4: Implement GADCustomNativeAdLoaderDelegate protocol
 {:.no_toc}
 
-In order to capture the native ad response you need to implement [GADCustomNativeAdLoaderDelegate](GADCustomNativeAdLoaderDelegate) protocol.
+In order to capture the native ad response you need to implement the GADCustomNativeAdLoaderDelegate protocol.
 
 In the method `-adLoader:didReceiveCustomNativeAd:` you should pass the following Prebid functions:
 
@@ -1165,16 +1165,16 @@ func nativeAdLoaded(ad: NativeAd) {
 
 Initialize the `PrebidAdUnit` with the following properties:
 
-* `configId` - an ID of the Stored Impression on the Prebid Server
+- `configId` - an ID of the Stored Impression on the Prebid Server
 
 ### Step 2: Setup the parameters
 {:.no_toc}
 
-For each intersted ad format you should creatae a respective configuration parameter:
+For each interested ad format you should creatae a respective configuration parameter:
 
-* [BannerParameters](#step-2-configure-banner-parameters) object.
-* [VideoParameters](#step-3-configure-the-video-parameters) object.
-* [NativeParameters](#nativeparameters) object
+- [BannerParameters](#step-2-configure-banner-parameters) object.
+- [VideoParameters](#step-3-configure-the-video-parameters) object.
+- [NativeParameters](#nativeparameters) object
 
 #### NativeParameters
 {:.no_toc}
@@ -1299,67 +1299,12 @@ Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-re
 
 Allows to resume the stopped autorefresh for the ad unit with predefined autorefresh value.
 
-### Context Keyword
-
-#### addContextKeyword
-{:.no_toc}
-
-Ad Unit context keywords object is a free form list of comma separated keywords about the app as defined in app.keyword in OpenRTB 2.5. The `addContextKeyword` function adds a single keyword to the ad unit.
-
-``` swift
-func addContextKeyword(_ newElement: String)
-```
-
-#### addContextKeywords
-{:.no_toc}
-
-Ad Unit context keywords object is a free form list of comma separated keywords about the app as defined in app.keyword in OpenRTB 2.5. The `addContextKeywords` function adds a multiple keyword to the ad unit.
-
-``` swift
-func addContextKeywords(_ newElements: Set<String>)
-```
-
-#### removeContextKeyword
-{:.no_toc}
-
-``` swift
-func removeContextKeyword(_ element: String)
-```
-
-### clearContextKeywords
-{:.no_toc}
-
-``` swift
-func clearContextKeywords()
-```
-
-### App Content
-
-The `ContentObject` allows you to provide more details about content within the app. All properties provided to the `ContentObject` will be sent in the `app.content` field of the bid request.
-
-``` swift
-func setAppContent(_ appContent: ContentObject)
-
-func getAppContent() -> ContentObject?
-
-func clearAppContent()
-```
-
-### App Content Data
-
-Using the following methods you can add `app.content.data` objects to the bid requests.
-
-``` swift
-func addAppContentData(_ dataObjects: [ContentDataObject])
-
-func removeAppContentData(_ dataObject: ContentDataObject)
-
-func clearAppContentData()
-```
-
 ### GPID
 
 (requires SDK v2.1.6)
+
+The Global Placement ID (GPID) is a key that uniquely identifies a specific instance of an adunit. Some bidders require this value. An important scenario is "infinite scroll" -- if your app creates instances
+of an adunit dynamically as the user scrolls through content, the the GPID must be different for each by appending some kind of sequence or ID. e.g. "/newsfeed#7"
 
 Using the following method, you can set the impression-level [GPID](https://docs.prebid.org/features/pbAdSlot.html#the-gpid) value to the bid request:
 
@@ -1367,70 +1312,8 @@ Using the following method, you can set the impression-level [GPID](https://docs
 adUnit.setGPID("/36117602/hnp-sfgate.com/Homepage/AP300")
 ```
 
-### User Data
+## Further Reading
 
-Using the following methods you can add `user.data` objects to the bid requests.
-
-``` swift
-func getUserData() -> [PBMORTBContentData]?
-
-func addUserData(_ userDataObjects: [PBMORTBContentData])
-
-func removeUserData(_ userDataObject: PBMORTBContentData)
-
-func clearUserData()
-```
-
-### Data Object
-
-The Data object is free form data (also known as First Party Data) supplied by the publisher to provide additional targeting of the user or inventory context, used primarily for striking PMP (Private MarketPlace) deals with Advertisers. Data supplied in the data parameters are typically not sent to DSPs whereas information sent in non-data objects (i.e. `setYearOfBirth`, `setGender`, etc.) will be. Access to FPD can be limited to a supplied set of Prebid bidders via an access control list.
-
-Data is broken up into two different data types:
-
-* User
-  * Global in scope only
-* Inventory (context)
-  * Global scope
-  * Ad Unit grain
-
-The first party inventory context below will apply to the specic ad unit the data object is applied to. For global user or inventory context level first party data, refer to [first party data section of the Targeting](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data) page.
-
-#### addContextData
-{:.no_toc}
-
-``` swift
-func addContextData(key: String, value: String)
-```
-
-**Parameters**
-`key`: string containing the key for the specific data object
-`value`: String containing the value for the supplied key
-
-#### updateContextData
-{:.no_toc}
-
-``` swift
-func updateContextData(key: String, value: Set<String>)
-```
-
-**Parameters**
-`key`: string containing the key for the specific data object
-`value`: String containing the value for the supplied key
-
-#### removeContextData
-{:.no_toc}
-
-``` swift
-func removeContextData(forKey: String)
-```
-
-**Parameters**
-`key`: string containing the key for the specific data object
-`value`: String containing the value for the supplied key
-
-#### clearContextData
-{:.no_toc}
-
-``` swift
-func clearContextData()
-```
+- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
+- [Prebid SDK iOS integration](/prebid-mobile/pbm-api/ios/code-integration-ios.html)
+- [Prebid SDK Global Parameters - iOS](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)

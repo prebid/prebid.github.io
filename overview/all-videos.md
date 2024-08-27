@@ -19,4 +19,8 @@ Multimedia overviews covering various aspect of Header Bidding and Prebid.
 1. [Prebid.js Impression Flow](/prebid/prebidjs-flow-video.html) - A step-by-step walkthrough of a typical Prebid.js auction.
 1. [Components of Prebid.js](/prebid/prebidjs-components-video.html) - An explanation of Prebid.js’ components and a guide to using Prebid.js reference documentation.
 1. [Prebid.js and The Video Ad Format](/prebid-video/video-overview-video.html) - An introduction to how video works with Prebid.js.
+1. [Analytics in Prebid.js](/overview/analytics-video.html) - An introduction for how to utilize reporting with Prebid.js.
 1. [Prebid and Ad Operations](/adops/adops-overview-video.html) - An overview of the process of planning a Prebid integration for ad operations.
+1. [Floors in Prebid.js and Prebid Server](/dev-docs/floors-video-overview.html) - An overview of the Prebid.js and Prebid Server price floor features.
+1. [Prebid Mobile Impression Flow](/prebid-mobile/prebid-mobile-video-flow.html) - A step-by-step walkthrough of a typical Prebid Mobile auction.
+1. [Prebid Mobile Planning Guide](/prebid-mobile/prebid-mobile-video-planning.html) - A video guide to planning your first Prebid Mobile integration.

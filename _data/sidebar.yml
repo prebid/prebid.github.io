@@ -185,6 +185,14 @@
   subgroup: 0
 
 - sbSecId: 1
+  title: Analytics For Prebid
+  link: /overview/analytics.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 1
   title: Consent Management Best Practices
   link: /dev-docs/cmp-best-practices.html
   isHeader: 0
@@ -244,14 +252,6 @@
 - sbSecId: 1
   title: Running without an ad server
   link: /dev-docs/examples/no-adserver.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 1
-  title: Legacy Browser Example
-  link: /dev-docs/examples/legacy-browser-example.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -508,31 +508,6 @@
   subgroup: 6
 
 - sbSecId: 1
-  title: Analytics
-  link:
-  isHeader: 1
-  headerId: analytics
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 7
-
-- sbSecId: 1
-  title: Analytics For Prebid
-  link: /overview/analytics.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 7
-
-- sbSecId: 1
-  title: Prebid Analytics for GA
-  link: /overview/ga-analytics.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 7
-
-- sbSecId: 1
   title: Features
   link:
   isHeader: 1
@@ -744,6 +719,14 @@
   subgroup: 2
 
 - sbSecId: 2
+  title: Global Parameters
+  link: /prebid-mobile/pbm-api/ios/pbm-targeting-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+  
+- sbSecId: 2
   title: GAM Original Integration
   link: /prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html
   isHeader: 0
@@ -784,14 +767,6 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: Targeting Parameters
-  link: /prebid-mobile/pbm-api/ios/pbm-targeting-ios.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 2
-  
-- sbSecId: 2
   title: Ad Experience Controls
   link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html
   isHeader: 0
@@ -824,6 +799,14 @@
   sectionTitle:
   subgroup: 3
 
+- sbSecId: 2
+  title: Global Parameters
+  link: /prebid-mobile/pbm-api/android/pbm-targeting-params-android.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+  
 - sbSecId: 2
   title: GAM Original Integration
   link: /prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html
@@ -864,14 +847,6 @@
   sectionTitle:
   subgroup: 3
 
-- sbSecId: 2
-  title: Targeting Parameters
-  link: /prebid-mobile/pbm-api/android/pbm-targeting-params-android.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 3
-  
 - sbSecId: 2
   title: Ad Experience Controls
   link: /prebid-mobile/modules/rendering/combined-ad-experience-controls.html
@@ -1039,6 +1014,14 @@
   isHeader: 0
   isSectionHeader: 0
   isCatHeader: 1
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 3
+  title: 'Header Bidding Trafficking Setup'
+  link: /adops/gam-hbt-step-by-step.html
+  isHeader: 0
+  isSectionHeader: 0
   sectionTitle:
   subgroup: 2
 
@@ -1246,13 +1229,6 @@
   sectionTitle:
   subgroup: 0
 
-- sbSecId: 4
-  title: Training Videos
-  link: /videos/prebid-video.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 0
 
 - sbSecId: 4
   title: Prebid.js Video Module
@@ -1503,16 +1479,16 @@
   subgroup: 3
 
 - sbSecId: 5
-  title: Programmatic Guaranteed
-  link: /prebid-server/features/pg/pbs-pg-idx.html
+  title: Modules
+  link: /prebid-server/pbs-modules/
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
 
 - sbSecId: 5
-  title: Modules
-  link: /prebid-server/pbs-modules/
+  title: Prebid Cache Storage
+  link: /prebid-server/features/pbs-pbc-storage.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1817,7 +1793,7 @@
   subgroup: 1
 
 - sbSecId: 7
-  title: Prebid and MSPA
+  title: Prebid US Compliance
   link: /features/mspa-usnat.html
   isHeader: 0
   isSectionHeader: 0
