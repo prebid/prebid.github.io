@@ -22,7 +22,7 @@ fpd_supported: false
 pbs: false
 prebid_member: false
 multiformat_supported: will-bid-on-one
-ortb_blocking_supported: false
+ortb_blocking_supported: partial
 privacy_sandbox: no
 ---
 ### Note
