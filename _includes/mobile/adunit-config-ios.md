@@ -1,11 +1,11 @@
-Each ad unit in the original API is a subclass of the `AdUnit` class, which provides the following properties and methods for the additional configuration.
+Each ad unit in the original integration method is a subclass of the `AdUnit` class, which provides the following properties and methods for the additional configuration.
 
 ### Autorefresh
 
 #### setAutoRefreshMillis
 {:.no_toc}
 
-If set on a given banner the Prebid Mobile ad unit the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServes refresh be turned off.
+If set on a given banner adunit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServes refresh be turned off.
 
 #### stopAutoRefresh
 {:.no_toc}
