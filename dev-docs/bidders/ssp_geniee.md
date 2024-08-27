@@ -8,11 +8,29 @@ media_types: banner
 safeframes_ok: false
 sidebarType: 1
 pbjs: true
+tcfeu_supported: false
+dsa_supported: false
+gvl_id: none
+usp_supported: false
+coppa_supported: false
+gpp_sids: none
+schain_supported: false
+dchain_supported: false
+deals_supported: false
+floors_supported: false
+fpd_supported: false
+pbs: false
+prebid_member: false
+multiformat_supported: will-bid-on-one
+ortb_blocking_supported: partial
+privacy_sandbox: no
 ---
 ### Note
 
 This is [Geniee](https://geniee.co.jp) Bidder Adapter for Prebid.js.
-(This is Geniee *SSP* Bidder Adapter. The another adapter named "Geniee Bid Adapter" is Geniee *DSP* Bidder Adapter.)
+
+{: .alert.alert-info :}
+This is Geniee *SSP* Bidder Adapter. The another adapter named "Geniee Bid Adapter" is Geniee *DSP* Bidder Adapter.
 
 Please contact us before using the adapter.
 
