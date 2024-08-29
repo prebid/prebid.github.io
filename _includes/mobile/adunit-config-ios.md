@@ -15,7 +15,7 @@ Halts the auto-refresh behavior for a given Prebid Mobile ad unit. If no auto-re
 #### resumeAutoRefresh
 {:.no_toc}
 
-Allows to resume the stopped autorefresh for the ad unit with predefined autorefresh value.
+Resumes a stopped autorefresh for the ad unit with the previously-defined autorefresh value.
 
 ### GPID
 
@@ -28,12 +28,4 @@ Using the following method, you can set the impression-level [GPID](https://docs
 
 ``` swift
 adUnit.setGPID("/36117602/hnp-sfgate.com/Homepage/AP300")
-```
-
-### Ad Slot
-
-PB Ad Slot is an identifier tied to the placement the ad will be delivered in. The use case for PB Ad Slot is to pass to exchange an ID they can use to tie to reporting systems or use for data science driven model building to match with impressions sourced from alternate integrations. A common ID to pass is the ad server slot name.
-
-``` swift
-adUnit.ortb2Imp.ext.data.pbadslot = "/1111111/homepage/med-rect-2"`
 ```

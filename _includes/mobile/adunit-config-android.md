@@ -1,11 +1,5 @@
 Each ad unit in the Original API is a subclass of the `AdUnit` class, which provides the following properties and methods for additional configuration.
 
-### Ad Slot
-
-PB Ad Slot is an identifier tied to the placement the ad will be delivered in. The use case for PB Ad Slot is to pass to exchange an ID they can use to tie to reporting systems or use for data science driven model building to match with impressions sourced from alternate integrations. A common ID to pass is the ad server slot name.
-
-`adUnit.ortb2Imp.ext.data.pbadslot = "/1111111/homepage/med-rect-2"`
-
 ### Auto Refresh
 
 #### setAutoRefreshPeriodMillis

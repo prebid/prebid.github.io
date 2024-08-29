@@ -65,7 +65,7 @@ Initialize the Interstitial Ad Unit with properties:
 - `minHeightPrec`: Optional parameter to specify the minimum height percent an ad may occupy of a device's screen. Support in SDK version 1.2+
 
 {: .alert.alert-info :}
-Here's how min size percentages work. If the adunit size is 1x1, Prebid Server takes the screen width/height and the minWidthPerc/minHeightPerc as a size range, generating a list of ad sizes from a [predefined list](https://github.com/prebid/prebid-server/blob/master/config/interstitial.go). It selects the first 10 sizes that fall within the max size and minimum percentage size. All the interstitial parameters will still be passed to the bidders, allowing them to use their own size matching algorithms if they prefer. If you'd prefer to just define the size list, that's ok too - just set the sizes a
+Here's how min size percentages work. If the adunit size is 1x1, Prebid Server uses the screen width/height and the minWidthPerc/minHeightPerc to generate a list of ad sizes from a [predefined list](https://github.com/prebid/prebid-server/blob/master/config/interstitial.go). It selects the first 10 sizes that fall within the max size and minimum percentage size. All the interstitial parameters will still be passed to the bidders, allowing them to use their own size matching algorithms if they prefer. If you'd prefer to just define the size list, that's ok too - just set the sizes a
 nd don't define minWidthPerc/minHeightPerc.
 
 ## Step 2: Make a bid request

@@ -9,6 +9,8 @@ sidebarType: 2
 
 Back to [Bidding-Only Integration](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#adunit-specific-instructions)
 
+Ads within video content are often called 'in-stream' video ads. See the [IAB's format guidelines](https://iabtechlab.com/standards/iab-digital-video-in-stream-ad-format-guidelines/) for more information and the precise definition.
+
 Integration example:
 
 ```kotlin

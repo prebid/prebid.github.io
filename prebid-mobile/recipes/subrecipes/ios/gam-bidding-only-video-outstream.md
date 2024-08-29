@@ -10,7 +10,7 @@ sidebarType: 2
 Back to [Bidding-Only Integration](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#adunit-specific-instructions)
 
 {: .alert.alert-info :}
-"Non-Instream" refers to the IAB video categories "Accompanying Content" and "Standalone".
+"Non-Instream" refers to the IAB video categories "Accompanying Content" and "Standalone". See [the IAB document](https://iabtechlab.com/industry-adoption-of-amended-iab-tech-lab-guidelines-is-vital-to-drive-change/) for more information.
 
 Integration example:
 
