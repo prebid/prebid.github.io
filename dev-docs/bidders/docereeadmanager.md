@@ -3,7 +3,7 @@ layout: bidder
 title: Doceree AdManager
 description: Doceree AdManager Prebid Bidder Adapter
 pbjs: true
-biddercode: docereeAdManager
+biddercode: docereeadmanager
 media_types: banner
 gvl_id: 1063
 tcfeu_supported: true
