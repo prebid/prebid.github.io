@@ -15,6 +15,10 @@ floors_supported: true
 multiformat_supported: will-bid-on-any
 sidebarType: 1
 safeframes_ok: true
+deals_supported: true
+fpd_supported: false
+pbs_app_supported: false
+ortb_blocking_supported: false
 ---
 
 ### Prebid.js Bid params
