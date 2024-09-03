@@ -3,8 +3,8 @@ layout: bidder
 title: OperaAds
 description: Prebid OperaAds Bidder Adapter
 biddercode: operaads
-tcfeu_supported: false
-gvl_id: none
+tcfeu_supported: true
+gvl_id: 1135
 usp_supported: false
 coppa_supported: true
 schain_supported: true

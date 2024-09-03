@@ -24,13 +24,13 @@ when a Prebid ad has won the auction. There are a number of use cases:
 {: .table .table-bordered .table-striped }
 | Use Case | PUC file | Alternate Approach |
 | --- | --- | --- |
-| web banner: iframe | banner.js (or creative.js) | [Banner and Outstream Video iframes](#alt-iframes) |
-| web banner: safeframe | banner.js (or creative.js) | [Banner Safeframes](#alt-safeframes) |
-| web outstream video: iframe | video.js (or creative.js) | [Banner and Outstream Video iframes](#alt-iframes) |
+| web banner: iframe | banner.js (or creative.js) | [Dynamic creatives](#alt-dyn), [Banner and Outstream Video iframes](#alt-iframes) |
+| web banner: safeframe | banner.js (or creative.js) | [Dynamic creatives](#alt-dyn), [Banner Safeframes](#alt-safeframes) |
+| web outstream video: iframe | video.js (or creative.js) | [Dynamic creatives](#alt-dyn), [Banner and Outstream Video iframes](#alt-iframes) |
 | web outstream video: safeframe | n/a | Outstream renderers each choose where to render differently, but none writes to the safeframe. |
 | AMP banner: always safeframe | amp.js (or creative.js) | n/a |
-| native: iframe | native.js (or native-render.js) | n/a |
-| native: safeframe | native.js (or native-render.js) | n/a |
+| native: iframe | native.js (or native-render.js) | [Dynamic creatives](#alt-dyn) |
+| native: safeframe | native.js (or native-render.js) | [Dynamic creatives](#alt-dyn) |
 
 Note that as of PUC v1.15, the recommended way of loading the creative
 in the ad server involves using the `hb_format` ad server key-value. Before 1.15, the ad server needed to load creative.js which covered banner and outstream video, or native-render.js for native. 1.15 simplifies this
@@ -60,7 +60,7 @@ service provider may have a different location.
 1. Retrieves the body of the creative from Prebid Cache based on the UUID
 1. If the 'burl' parameter is present, creates a tracking pixel. Includes special support for triggering the viewable billing url for mobile MRAID creatives.
 1. If the 'nurl' parameter is present, creates the appropriate HTML to fire the notice URL.
-1. If the 'wurl' parameter is present, creates a tracking pixel. This is needed for [Programmatic Guaranteed](/prebid-server/features/pg/pbs-pg-idx.html) support.
+1. If the Prebid Server 'wurl' (win URL) parameter is present, creates a tracking pixel.
 1. Resolves any `${AUCTION_PRICE}` macro in the creative body.
 
 ### What the PUC does for Native
@@ -76,6 +76,14 @@ due to a tiny but measurable impact on measurement discrepancies.
 While Prebid recommends the use of creative.js because we regularly add
 features and fix bugs, publishers may choose to hardcode the functionality
 into their ad server creatives.
+
+<a name="alt-dyn"></a>
+
+### Prebid.js dynamic creatives
+
+If you only need to display creatives rendered by Prebid.js (as opposed platforms like AMP or mobile SDKs), 
+you can avoid loading the PUC script - and the performance cost that entails - but still keep some of its advantages, such as regular updates,
+by using [Prebid.js dynamic creatives](/adops/js-dynamic-creative.html). 
 
 <a name="alt-iframes"></a>
 
@@ -97,9 +105,10 @@ If you only ever need to display non-safeframed banner and outstream-video creat
 If safeframe support is required, some options are:
 
 1. Copy the contents of `https://cdn.jsdelivr.net/npm/prebid-universal-creative@latest/dist/creative.js` into each ad server creative.
-1. Copy the example at [github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html](https://github.com/prebid/Prebid.js/blob/master/integrationExamples/gpt/x-domain/creative.html) into each ad server creative. This is basically just part of the PUC that's been isolated to be standalone.
+2. [Prebid.js dynamic creatives](/adops/js-dynamic-creative.html)
 
 ## Further Reading
 
 - [Step by Step Guide to Google Ad Manager Setup](/adops/step-by-step.html)
 - [Setting up Prebid with the Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-appnexus-ad-server.html)
+- [Prebid.js dynamic creatives](/adops/js-dynamic-creative.html)

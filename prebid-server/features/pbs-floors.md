@@ -12,9 +12,6 @@ title: Prebid Server | Features | Price Floors
 
 ## Overview
 
-{: .alert.alert-warning :}
-The Floors feature is currently only available in PBS-Java.
-
 The Price Floors feature provides an open framework for Publishers to configure Prebid price floors on their own or to work with advanced vendors who can provide optimized floors.
 
 A ‘floor’ is defined as the lowest price a bid that will be accepted for each Prebid auction. It’s a way for publishers to signal to bidders the price to beat, thereby protecting the value of their inventory. Proper floors are dynamic and determined based on detailed factors like mediaType, adSlot, size, and other factors.
@@ -45,6 +42,18 @@ Specifically, modules don't support the feature where bid adapters need access t
 - **Floor model**: a set of floor rules. optimization algorithms can define multiple sets of floor rules with different weights to experiment with different scenarios. i.e. A/B/C testing of floor values.
 - **Floor schema**: defines which attributes are in the floor rules. e.g. "adslot and mediaType".
 - **Floor rule**: A mapping of floor schema dimensions to a floor values. e.g. "if adslot is /111/homepage and mediaType is banner, then the floor is 1.00".
+
+### Floors Video Overview
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/938434804?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Price Floors in Prebid.js and Prebid Server"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+<p/>
+Notes:
+
+- [Prebid.js Price Floors Module](/dev-docs/modules/floors.html#overview)
+- [Price Floors in Prebid Server](/prebid-server/features/pbs-floors.html#prebid-server--features--price-floors)
+- [Prebid Floor Service Providers](/dev-docs/modules/floors.html#floors-providers)
+- [Transcript of this video](/dev-docs/floors-video-overview.html)
 
 ## How Floors work in Prebid Server
 
@@ -339,7 +348,10 @@ It would be easier to meet the 0.50 floor for banners.
 To address this, a special floor function enables adapters to retrieve more granular
 floor values for each impression in the auction. Due to the complexity of the rule system, deriving the correct floor would be a difficult task without this function.
 
-See the [developer bid adapter documentation](/prebid-server/developers/add-new-bidder-java.html) for details.
+See the developer bid adapter documentation for details:
+
+- [PBS-Go](/prebid-server/developers/add-new-bidder-go.html)
+- [PBS-Java](/prebid-server/developers/add-new-bidder-java.html)
 
 ## Analytics Adapters
 
