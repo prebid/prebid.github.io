@@ -109,14 +109,14 @@ An optional dedicated generic ad event listener is offered in case of the existi
 
 ### Setup
 
-* Create your implementation from the interface `PluginEventListener`
+* Create your implementation from the interface `PluginEventDelegate`
 * Handle your plugin event listener on your Plugin Renderer
 * Implement the interface on the class you want to listen the events
 * Set your listener on your `BannerView` instance or `InterstitialAdUnit` instance
 
 ___
 
-#### Create your implementation from the interface PluginEventListener
+#### Create your implementation from the interface PluginEventDelegate
 
 ```swift
 @objc class SampleCustomRendererEventDelegate: NSObject, PluginEventDelegate {
@@ -131,13 +131,13 @@ ___
 
 ```
 
-#### Handle your plugin event listener on your Plugin Renderer
+#### Handle your plugin event delegate on your Plugin Renderer
 
 ```swift
 public class SampleCustomRenderer: NSObject, PrebidMobilePluginRenderer {
     
     // Store your listeners
-    private var pluginEventListenerMap = [String: SampleCustomRendererEventListener]()
+    private var pluginEventDelegateMap = [String: SampleCustomRendererEventDelegate]()
 
     public let name = "SampleCustomRenderer"
     
@@ -150,11 +150,11 @@ public class SampleCustomRenderer: NSObject, PrebidMobilePluginRenderer {
     public func isSupportRendering(for format: AdFormat?) -> Bool {}
    
     public func registerEventDelegate(pluginEventDelegate: any PluginEventDelegate, adUnitConfigFingerprint: String) {
-        //TODO register event from list
+        pluginEventDelegateMap[adUnitConfigFingerprint] = pluginEventDelegate as? SampleCustomRendererEventDelegate
     }
     
     public func unregisterEventDelegate(pluginEventDelegate: any PluginEventDelegate, adUnitConfigFingerprint: String) {
-        //TODO unregister from list
+        pluginEventDelegateMap.removeValue(forKey: adUnitConfigFingerprint)
     }
 
     public func setupBid(_ bid: Bid, adConfiguration: AdUnitConfig, connection: PrebidServerConnectionProtocol) {}
@@ -174,7 +174,7 @@ public class SampleCustomRenderer: NSObject, PrebidMobilePluginRenderer {
 In addition to this documentation you have samples on hand which can be get from the Prebid Mobile SDK repository:
 
 * [PrebidMobilePluginRenderer](https://github.com/prebid/prebid-mobile-ios/blob/master/PrebidMobile/PrebidMobileRendering/PluginRenderer/PrebidMobilePluginRenderer.swift)
-* [PluginEventDelegate](https://github.com/prebid/prebid-mobile-ios/blob/master/PrebidMobile/PrebidMobileRendering/PluginRenderer/PluginEventListener.swift)
+* [PluginEventDelegate](https://github.com/prebid/prebid-mobile-ios/blob/master/PrebidMobile/PrebidMobileRendering/PluginRenderer/PluginEventDelegate.swift)
 
 ___
 
