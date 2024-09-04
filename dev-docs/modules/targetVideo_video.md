@@ -3,7 +3,7 @@ layout: page_v2
 page_type: module
 title: Module - TargetVideo Video
 description: Required for serving instream video through TargetVideo.
-module_code : dfpAdServerVideo
+module_code : targetVideoAdServerVideo
 display_name : TargetVideo Video Support
 enable_download : true
 vendor_specific: true
