@@ -660,7 +660,7 @@ It will become impossible to fetch bids from AppNexus within that Request.
 
 ##### Bidder Alias GVL IDs
 
-For environments that have turned on [GDPR enforcement](/prebid-server/features/pbs-privacy.html#gdpr), it can be important to define the Global Vendor List (GVL) ID with an alias.
+For publishers that use Prebid Server as part of their [GDPR/TCF](/prebid-server/features/pbs-privacy.html#gdpr) strategy, it can be important to define the Global Vendor List (GVL) ID with an alias.
 
 To do this, just set `ext.prebid.aliasgvlids` alongside ext.prebid.aliases:
 
@@ -1183,15 +1183,43 @@ See Prebid.org [troubleshooting pages](/troubleshooting/pbs-troubleshooting.html
 
 ##### First Party Data Support
 
-This is a standard way for the page (or app) to supply first party data and control which bidders have access to it.
+This is a standard way for the page (or app) to supply First Party Data and control which bidders have access to it.
 
-It specifies where in the OpenRTB request non-standard attributes should be passed. For example:
+Prebid defines several types of First Party Data (FPD):
+
+1. Cross-impression contextual information. e.g. the content category of the page. This data goes in the `site.ext.data` object or the `app.ext.data` object.
+1. User-level information. e.g. whether the user is a registered user. This data goes in `user.ext.data`.
+1. Impression-level information. e.g. the Global Placement ID. This data goes in the `imp.ext.data` object.
+1. Seller-Defined Audience (SDA) contextual data. This goes in `site.data[]` or `app.data[]` in accordance with the [IAB segment taxonomy conventions](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/segtax.md).
+1. SDA user data goes in `user.data[]` with the same [conventions](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/segtax.md) as the contextual data.
+
+See below for how to specify these different types of data and how to define which bidders are
+allowed to receive which.
+
+###### Data Permissions
+
+This approach specifies whether the given bidder(s) are allowed to receive the global (contextual or user)
+FPD.
+
+If a `ext.prebid.data.bidders[]` is specified, it means that {site,app}.ext.data and user.ext.data fields will only be passed to the named bidders. For example:
 
 ```json
 {
   "ext": {
     "prebid": {
-      "data": { "bidders": [ "rubicon", "appnexus" ] }  // these are the bidders allowed to see protected data
+      "data": { "bidders": [ "bidderA", "bidderB" ] }  // these are the bidders allowed to see the globsl FPD
+    }
+  }
+}
+```
+
+For example:
+
+```json
+{
+  "ext": {
+    "prebid": {
+      "data": { "bidders": [ "bidderA", "bidderB" ] }  // these are the bidders allowed to see protected data
     }
   },
   "site": {
@@ -1203,8 +1231,6 @@ It specifies where in the OpenRTB request non-standard attributes should be pass
   },
   "user": {
     "keywords": "",
-    "gender": "",
-    "yob": 1999,
     "geo": {},
     "ext": {
       "data": { GLOBAL USER DATA }  // only seen by bidders named in ext.prebid.data.bidders[]
@@ -1223,7 +1249,9 @@ It specifies where in the OpenRTB request non-standard attributes should be pass
 }
 ```
 
-Bidder-specific data can be defined with ext.prebid.bidderconfig:
+###### Bidder-Specific global FPD
+
+Bidder-specific global (i.e. cross-impression) data can be defined with ext.prebid.bidderconfig:
 
 ```json
 "ext": {
@@ -1261,6 +1289,51 @@ Prebid Server enforces data permissioning. So before passing values to the bidde
     1. copy other objects as normal
 
 Each adapter must be coded to read the values from the ortb and pass it to their endpoints appropriately.
+
+###### Bidder-Specific Impression-Level FPD
+
+When Prebid Server sees `imp[].ext.prebid.imp.BIDDER`, the behavior is to:
+
+1. When passing this imp to that bidder, merge the contents of BIDDER into the imp
+1. Remove the imp[].ext.prebid.imp object
+1. Leave any imp[].ext.prebid.storedrequest object
+1. The imp.ext.prebid.imp.BIDDER object name is case insensitive and supports aliases
+1. If imp.ext.prebid.imp.BIDDER does not resolve to an actual bidder or alias in a case-insensitive way, it is ignored with a warning when in debug mode.
+1. No validation is done on imp.ext.prebid.imp.BIDDER.ext except that imp.ext.prebid.imp.BIDDER.ext.prebid.BIDDER is removed.
+1. The contents of imp.ext.prebid.imp.BIDDER takes precedence in the merge if the field already exists in the request.
+1. The resulting imp object must be valid OpenRTB per the system schema.
+
+Here's an example showing a scenario showing a storedrequest-based scenario:
+
+```json
+{
+  imp: [{
+    ext: {
+      prebid: {
+        storedrequest: { id: "sr1" },  // for the first imp, pull bidders out of a storedrequest
+        imp: {
+          bidderA: {
+            pmp: {
+              deals: [{ id:"dealA" }]      // apply this deal to bidderA
+            }
+          }
+        }
+      }
+  },{
+    ext: {
+      prebid: {
+        storedrequest: { id: "sr2" }, // for the second imp, pull bidders out of a different storedrequest
+        imp: {
+          bidderB: {
+            pmp: {
+              deals: [{ id:"dealB" }]     // apply this deal to bidderB
+            }
+          }
+        }
+      }
+  }]
+}
+```
 
 ##### Custom Targeting
 
@@ -1698,13 +1771,19 @@ The codes currently returned:
 | 0 | General No Bid | Java | The bidder had a chance to bid, and either declined to bid on this impression. |
 | 100 | General Error | Java | The bid adapter returned with an unspecified error for this impression. |
 | 101 | Timeout | Java | The bid adapter timed out. |
+| 102 | Invalid Bid Response | Java | The bidder returned HTTP < 200 or >= 400 |
+| 103 | Bidder Unreachable | Java | The bidder returned HTTP 503 |
 | 200 | Request Blocked - General | Java | This impression not sent to the bid adapter for an unspecified reason. |
+| 201 | Request Blocked - Unsupported Channel (app/site/dooh) | Java | The request was not sent to the bidder because they don’t support site, app, or dooh. |
 | 202 | Request Blocked due to mediatype | Java | This impression not sent to the bid adapter because it doesn't support the requested mediatype. |
+| 204 | Request Blocked - Privacy | Java | The bidder was not called due to TCF Purpose 2. |
 | 300 | Response Rejected - General | Go + Java | The bid response was rejected for an unspecified reason. See warnings in debug mode. (Mostly caused by DSA validation rules) |
 | 301 | Response Rejected - Below Floor | Java | The bid response did not meet the floor for this impression. |
 | 303 | Response Rejected - Category Mapping Invalid | Go | The bid response did not include a category to map. |
-| 351 | Response Rejected - Invalid Creative (Size Not Allowed) | Go | The bid response banner size exceeds the max size, when creative validation is enabled. |
-| 352 | Response Rejected - Invalid Creative (Not Secure) | Go | The bid response adm does not use https, when secure markup validation is enabled. |
+| 350 | Response Rejected - Invalid Creative (ORTB blocking) | Java | The ortbblocking module enforced a bid response for battr, bcat, bapp, btype. |
+| 351 | Response Rejected - Invalid Creative (Size Not Allowed) | Both | The bid response banner size exceeds the max size, when creative validation is enabled. |
+| 352 | Response Rejected - Invalid Creative (Not Secure) | Both | The bid response adm does not use https, when secure markup validation is enabled. |
+| 356 | Response Rejected - Invalid Creative (Advertiser Blocked) | Java | The ortbblocking module enforced a bid response due to badv. |
 
 See the [IAB's Seat Non-Bid OpenRTB Extension](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/seat-non-bid.md) for the full list of status codes that may be supported in the future.
 

@@ -13,7 +13,7 @@ dchain_supported: false
 userId: UID 2.0
 media_types: banner, video
 safeframes_ok: false
-deals_supported: false
+deals_supported: check with bidder
 floors_supported: false
 fpd_supported: true
 pbjs: true
@@ -30,7 +30,7 @@ sidebarType: 1
 | Name | Scope | Description | Example | Type |
 |---------------|----------|-----------------------|-----------|-----------|
 | `pubid` | required | UUID of the publisher | `'7ccf149e-06e4-4fdc-80a8-426374010b4a'` | `string (UUID)` |
-| `floorPrice` | required | Minimum price for the impression expressed in CPM in USD currency. | `1.15` | `float` |
+| `adtagid` | required | UUID of the ad tag | `'aae1aabb-6699-4b5a-9c3f-9ed034b1932c'` | `string (UUID)` |
 | `bcat` | optional | Blocked advertiser categories using the IAB content categories | `['IAB1-1', 'IAB1-3']` | `Array<string>` |
 | `bapp` | optional | Block list of applications by their platform-specific exchange-independent application identifiers | `['com.foo.mygame']` | `Array<string>` |
 | `badv` | optional | Block list of advertisers by their domains | `['ford.com']` | `Array<string>` |
