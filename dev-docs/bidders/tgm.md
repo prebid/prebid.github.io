@@ -24,17 +24,17 @@ sidebarType: 1
 
 {: .table .table-bordered .table-striped }
 
-| Name          | Scope    | Description                                       | Example              | Type      |
-|:--------------|:---------|:--------------------------------------------------|:---------------------|:----------|
-| `host`        | required | Ad network's RTB host                             | `'ads-gmd.ortb.net'` | `string`  |
-| `adUnitId`    | required | Ad Unit Id will be generated on iionads Platform. | `42`                 | `integer` |
-| `adUnitType`  | required | Type of Ad Unit (`'video'`, `'banner'`)           | `'banner'`           | `string`  |
-| `publisherId` | required | Publisher ID                                      | `'12345'`            | `string`  |
-| `custom1`     | optional | Custom targeting field 1                          | `'custom1'`          | `string`  |
-| `custom2`     | optional | Custom targeting field 2                          | `'custom2'`          | `string`  |
-| `custom3`     | optional | Custom targeting field 3                          | `'custom3'`          | `string`  |
-| `custom4`     | optional | Custom targeting field 4                          | `'custom4'`          | `string`  |
-| `custom5`     | optional | Custom targeting field 5                          | `'custom5'`          | `string`  |
+| Name          | Scope    | Description                                   | Example              | Type      |
+|:--------------|:---------|:----------------------------------------------|:---------------------|:----------|
+| `host`        | required | Ad network's RTB host                         | `'ads-gmd.ortb.net'` | `string`  |
+| `adUnitId`    | required | Ad Unit Id will be generated on TGM Platform. | `42`                 | `integer` |
+| `adUnitType`  | required | Type of Ad Unit (`'video'`, `'banner'`)       | `'banner'`           | `string`  |
+| `publisherId` | required | Publisher ID                                  | `'12345'`            | `string`  |
+| `custom1`     | optional | Custom targeting field 1                      | `'custom1'`          | `string`  |
+| `custom2`     | optional | Custom targeting field 2                      | `'custom2'`          | `string`  |
+| `custom3`     | optional | Custom targeting field 3                      | `'custom3'`          | `string`  |
+| `custom4`     | optional | Custom targeting field 4                      | `'custom4'`          | `string`  |
+| `custom5`     | optional | Custom targeting field 5                      | `'custom5'`          | `string`  |
 
 TGM server-side Prebid Server adapter requires only `publisherId` and `host` parameters. But TGM client-side Prebid.js adapter requires only `host`, `adUnitId`, `adUnitType`.
 
