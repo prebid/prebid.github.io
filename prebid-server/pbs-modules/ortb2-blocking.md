@@ -9,7 +9,7 @@ sidebarType : 5
 # ORTB2 Blocking Module
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc }
 
 ## Overview
@@ -44,11 +44,11 @@ Here's a summary of the features the module supports:
 {: .table .table-bordered .table-striped }
 | Scenario | Configure Blocks | Enforce Blocks | Enforce Unknown Values | Deal Overrides |
 |---+---+---+---+---|
-| Advertiser Domains | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
-| Advertiser Categories | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
-| Apps | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
-| Banner Types | <img src="/assets/images/icons/icon-check-green.png" width="30"> | | | |
-| Banner Attributes | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
+| Advertiser Domains | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> |
+| Advertiser Categories | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> |
+| Apps | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> |
+| Banner Types | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | | | |
+| Banner Attributes | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> |
 
 ## Configuration
 
@@ -69,7 +69,8 @@ There is no host-company level config for this module except the execution plan 
 ### Account-Level Config
 
 Here's a general template for the account config used in PBS-Java:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -80,7 +81,7 @@ Here's a general template for the account config used in PBS-Java:
               "action-overrides": {
                 OVERRIDE_SETTING: [{
                   "conditions": { ... },
-          // the value below will be the datatype of the SETTING
+                  // the value below will be the datatype of the SETTING
                   "override": VALUE
                 }]
               }
@@ -96,7 +97,8 @@ Here's a general template for the account config used in PBS-Java:
 ```
 
 PBS-Go uses underscores instead of dashes, so this is the Go version of the same config:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -128,7 +130,8 @@ The 'ATTRIBUTE' above is one of the 5 blockable entities defined in OpenRTB. A '
 The following sections detail each of the 5 blockable entities.
 
 Here's a detailed example for PBS-Java:
-```
+
+```json
 {
     "hooks": {
         "modules": {
@@ -224,7 +227,8 @@ Here's a detailed example for PBS-Java:
 ```
 
 For PBS-Go:
-```
+
+```json
 {
     "hooks": {
         "modules": {
@@ -336,7 +340,8 @@ This attribute is related to the 'badv' of the request, and the 'adomain' of the
 | allowed-adomain-for-deals | List of adomains allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global. |
 
 Here's an example account config for PBS-Java with several scenarios:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -396,7 +401,8 @@ Here's an example account config for PBS-Java with several scenarios:
 ```
 
 For PBS-Go:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -470,7 +476,8 @@ This attribute is related to the 'bcat' of the request and 'cat' of the response
 | allowed-adv-cat-for-deals | List of adomains allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global.|
 
 Here's an example account config for PBS-Java with several scenarios:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -530,7 +537,8 @@ Here's an example account config for PBS-Java with several scenarios:
 ```
 
 For PBS-Go
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -603,7 +611,8 @@ This attribute is related to the 'bapp' of the request and 'bundle' of the respo
 | allowed-bapp-for-deals | List of bundles allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global. |
 
 Here's an example account config for PBS-Java:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -634,7 +643,8 @@ Here's an example account config for PBS-Java:
 ```
 
 For PBS-Go
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -682,7 +692,8 @@ part of the response and Prebid Server does not currently contain logic to
 parse creatives to derive the type.
 
 Here's an example account config for PBS-Java:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -711,7 +722,8 @@ Here's an example account config for PBS-Java:
 ```
 
 For PBS-Go
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -755,7 +767,8 @@ This attribute is related to the 'battr' of the request and 'attr' of the respon
 See Table 5.3 in the [OpenRTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for the possible values.
 
 Here's an example account config for PBS-Java:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -786,7 +799,8 @@ Here's an example account config for PBS-Java:
 ```
 
 For PBS-Go
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -823,6 +837,7 @@ For PBS-Go
 In order to allow the module to be picked up by PBS-Java, a Spring Boot configuration property `hooks.ortb2-blocking.enabled` must be set to `true`.
 
 Here's an example of how your PBS configuration YAML should look like:
+
 ```YAML
 hooks:
   ortb2-blocking:
@@ -852,7 +867,8 @@ It's only applied to attributes where `enforce-blocks` is true, which means 'bty
         1. **bidder**: the biddercode of the blocked response
 
 Here's an example analytics tag that might be produced for use in an analytics adapter:
-```
+
+```json
 [{
    activities: [{
     name: "enforce-blocking",
