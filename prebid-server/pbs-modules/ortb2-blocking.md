@@ -925,4 +925,4 @@ Here's an example analytics tag that might be produced for use in an analytics a
 ## Further Reading
 
 - [Prebid Server Module List](/prebid-server/pbs-modules/index.html)
-- [Building a Prebid Server Module ](/prebid-server/developers/add-a-module.html)
+- [Building a Prebid Server Module](/prebid-server/developers/add-a-module.html)
