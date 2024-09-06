@@ -1715,6 +1715,14 @@
   subgroup: 0
 
 - sbSecId: 6
+  title: Connected TV
+  link: /formats/ctv.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 6
   title: Native
   link: /prebid/native-implementation.html
   isHeader: 0
