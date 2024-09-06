@@ -35,7 +35,7 @@ For each of the supported attributes, there are a range of behaviors that
 can be configured:
 
 - **Configure Blocks**: allows host companies to define blocks globally, per-account, or per-account/bidder combination. This blocking config is sent in the OpenRTB requests to all or specific bidders for consideration in bid determination.
-- **Enforce Blocks**: PBS can reject bids from bidders that don't conform to the blocking lists sent in the request.
+- **Enforce Blocks**: PBS can reject bids from bidders that don't conform to the blocking lists sent in the request. The default is to **not** block.
 - **Enforce Unknown Values**: for some attributes it may makes sense to reject requests that don't contain a required value. For instance, the publisher may want to drop any bid that doesn't report the advertiser domain.
 - **Deal Overrides**: Private Marketplace deals may have exceptions to standard blocked attributes.
 
@@ -64,7 +64,7 @@ so the module is only invoked for specific accounts. See below for an example.
 
 ### Global Config
 
-There is no host-company level config for this module.
+There is no host-company level config for this module except the execution plan may optionally be at the host level.
 
 ### Account-Level Config
 
@@ -95,7 +95,7 @@ Here's a general template for the account config used in PBS-Java:
 }
 ```
 
-PBS-Go version of the same config:
+PBS-Go uses underscores instead of dashes, so this is the Go version of the same config:
 ```
 {
     "hooks": {
@@ -135,10 +135,10 @@ Here's a detailed example for PBS-Java:
             "ortb2-blocking": {
                 "attributes": {
                     "badv": {
-                        "enforce-blocks": false,
-                        "blocked-adomain": [],
+                        "enforce-blocks": false,   // default is false
+                        "blocked-adomain": [],     // these are unconditionally blocked domains
                         "action-overrides": {
-                            "blocked-adomain": [
+                            "blocked-adomain": [   // these are conditionally blocked domains
                                 {
                                     "override": [ "example.com" ],
                                     "conditions": {
@@ -149,10 +149,10 @@ Here's a detailed example for PBS-Java:
                         }
                     },
                     "bcat": {
-                        "enforce-blocks": false,
-                        "blocked-adv-cat": [],
+                        "enforce-blocks": false,  // default is false
+                        "blocked-adv-cat": [],    // these are unconditionally blocked categories
                         "action-overrides": {
-                            "blocked-adv-cat": [
+                            "blocked-adv-cat": [  // these are conditionally blocked categories
                                 {
                                     "override": [ "IAB7" ],
                                     "conditions": {
@@ -163,9 +163,9 @@ Here's a detailed example for PBS-Java:
                         }
                     },
                     "battr": {
-                        "enforce-blocks": false,
+                        "enforce-blocks": false,  // default is false
                         "action-overrides": {
-                            "blocked-banner-attr": [
+                            "blocked-banner-attr": [  // these are conditionally blocked categories
                                 {
                                     "override": [1,3,8,9,10,13,14,17],
                                     "conditions": {
@@ -176,7 +176,7 @@ Here's a detailed example for PBS-Java:
                                 }
                             ]
                         },
-                        "blocked-banner-attr": []
+                        "blocked-banner-attr": []   // these are unconditionally blocked categories
                     }
                 }
             }
@@ -331,7 +331,7 @@ This attribute is related to the 'badv' of the request, and the 'adomain' of the
 | Setting | Description | Data Type | Override Conditions Supported |
 |---+---+---+---|
 | blocked-adomain | List of adomains not allowed to display on this inventory | array of strings | bidders (array of strings), media-types (array of strings). |
-| enforce-blocks | Whether to enforce adomains in responses | boolean | bidders (array of strings), media-types (array of strings) |
+| enforce-blocks | Whether to enforce adomains in responses. Default is false. | boolean | bidders (array of strings), media-types (array of strings) |
 | block-unknown-adomain | Whether to block responses not specifying adomain. Only active if enforce-blocks is true. | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-adomain-for-deals | List of adomains allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global. |
 
@@ -465,7 +465,7 @@ This attribute is related to the 'bcat' of the request and 'cat' of the response
 | Setting | Description | Data Type | Override Conditions Supported |
 |---+---+---+---|
 | blocked-adv-cat | List of IAB categories not allowed to display on this inventory | array of strings | bidders (array of strings), media-types (array of strings) |
-| enforce-blocks | Whether to enforce cat in responses | boolean | bidders (array of strings), media-types (array of strings) |
+| enforce-blocks | Whether to enforce cat in responses.  Default is false. | boolean | bidders (array of strings), media-types (array of strings) |
 | block-unknown-adv-cat | Whether to block responses not specifying cat. Only active if enforce-blocks is true. | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-adv-cat-for-deals | List of adomains allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global.|
 
@@ -599,7 +599,7 @@ This attribute is related to the 'bapp' of the request and 'bundle' of the respo
 | Setting | Description | Data Type | Override Conditions Supported |
 |---+---+---+---|
 | blocked-app | List of bundles not allowed to display on this inventory | array of strings | bidders (array of strings), media-types (array of strings) |
-| enforce-blocks | Whether to enforce bundles in responses | boolean | bidders (array of strings), media-types (array of strings) |
+| enforce-blocks | Whether to enforce bundles in responses.  Default is false. | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-bapp-for-deals | List of bundles allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global. |
 
 Here's an example account config for PBS-Java:
@@ -677,7 +677,7 @@ This attribute is related to the 'btype' of the request.
 
 See Table 5.2 in the [OpenRTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for the possible values.
 
-Note: no enforcement is possible because the creative type is not explictly
+**Note:** no enforcement is possible because the creative type is not explictly
 part of the response and Prebid Server does not currently contain logic to
 parse creatives to derive the type.
 
@@ -749,7 +749,7 @@ This attribute is related to the 'battr' of the request and 'attr' of the respon
 | Setting | Description | Data Type | Override Conditions Supported |
 |---+---+---+---|
 | blocked-banner-attr | List of IAB banner attributes not allowed to display on this inventory | array of int | bidders (array of strings), media-types (array of strings) |
-| enforce-blocks | Whether to enforce attr in responses | boolean | bidders (array of strings), media-types (array of strings) |
+| enforce-blocks | Whether to enforce attr in responses.   Default is false. | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-banner-attr-for-deals | List of IAB attributes allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global. |
 
 See Table 5.3 in the [OpenRTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for the possible values.
@@ -819,7 +819,8 @@ For PBS-Go
 ```
 
 ### Enable for Spring Boot
-In order to allow the module to be picked up by Prebid Server, a Spring Boot configuration property `hooks.ortb2-blocking.enabled` must be set to `true`.
+
+In order to allow the module to be picked up by PBS-Java, a Spring Boot configuration property `hooks.ortb2-blocking.enabled` must be set to `true`.
 
 Here's an example of how your PBS configuration YAML should look like:
 ```YAML
