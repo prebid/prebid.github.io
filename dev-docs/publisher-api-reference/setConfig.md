@@ -1347,6 +1347,18 @@ Inversely, if you wish for the alias registry to be private you can do so by usi
 pbjs.setConfig({aliasRegistry: 'private'})
 ```
 
+### Set Max Bid
+
+<a id="setConfig-maxBid"></a>
+
+Prebid ensures that the bid response price doesn't exceed the maximum bid. If the CPM (after currency conversion) is higher than the maxBid, the bid is rejected. The default maxBid value is 5000. You can adjust maxBid with:
+
+```javascript
+pbjs.setConfig({ 
+  maxBid: 10  
+});
+```
+
 <a name="setConfig-Generic-Configuration"></a>
 
 ### General adapter Configuration
