@@ -38,14 +38,16 @@ pbjs.setConfig({
     auctionDelay: 2000,
     dataProviders: [
       {
-        name: "dap",
+        name: "symitriDap",
         waitForIt: true,
         params: {
           apiHostname: '<see your Symitri account rep>',
           apiVersion: "x1",
+          apiAuthToken: '<see your Symitri account rep>',
           domain: 'your-domain.com',
-          identityType: 'email' | 'mobile' | ... | 'dap-signature:1.3.0',
-          segtax: 504,
+          identityType: 'hid'| ... | 'dap-signature:1.0.0',
+          identityValue: '<user hid>',
+          segtax: 501,
           dapEntropyUrl: 'https://sym-dist.symitri.net/dapentropy.js',
           dapEntropyTimeout: 1500
         }
@@ -62,13 +64,15 @@ Please reach out to your Symitri account representative(<Prebid@symitri.com>) to
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
-| name | String | Symitri Dap Rtd module name | 'dap' always|
+| name | String | Symitri Dap Rtd module name | 'symitriDap' always|
 | waitForIt | Boolean | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
 | apiHostname | String | Hostname provided by Symitri | Please reach out to your Symitri account representative(<Prebid@symitri.com>) for this value|
 | apiVersion | String | This holds the API version | It should be "x1" always |
+| apiAuthToken | String | Symitri API AuthToken | Please reach out to your Symitri account representative(<Prebid@symitri.com>) for this value |
 | domain | String | The domain name of your webpage | |
-| identityType | String | Something like this 'email', 'mobile',  ... 'dap-signature:1.3.0' | |
-| segtax | Integer | The taxonomy for Symitri | The value should be 504 |
+| identityType | String | Something like this 'hid',  ... 'dap-signature:1.0.0' | |
+| identityValue | String | This is optional field to pass user hid. Will be used only if identityType is hid | |
+| segtax | Integer | The taxonomy for Symitri | The value should be 501 |
 | dapEntropyUrl | String | URL to dap entropy script | Optional if the script is directly included on the webpage. Contact your Symitri account rep for more details |
 | dapEntropyTimeout | Integer | Maximum time allotted for the entropy calculation to happen | |
 
