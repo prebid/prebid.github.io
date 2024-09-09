@@ -84,6 +84,7 @@ Use 'simpleid' to pass email or other plain text ids and SymitriRTD Module will 
 Use 'hashedid' to pass in single already hashed id. 
 
 Use 'compositeid' to pass in multiple identifiers as key-value pairs as shown below:
+
 ```bash
 {
   "identityType1": "identityValue1",
