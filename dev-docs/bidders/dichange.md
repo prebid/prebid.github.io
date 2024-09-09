@@ -1,3 +1,4 @@
+---
 layout: bidder
 title: dichange
 description: dichange Bidder Adapter
