@@ -71,18 +71,26 @@ Please reach out to your Symitri account representative(<Prebid@symitri.com>) to
 | apiVersion | String | This holds the API version | It should be "x1" always |
 | apiAuthToken | String | Symitri API AuthToken | Please reach out to your Symitri account representative(<Prebid@symitri.com>) for this value |
 | domain | String | The domain name of your webpage | |
-| identityType | String | 'simpleid' or 'compositeid' or 'hashedid' or 'dap-signature:1.0.0' |Use 'simpleid' to pass email or other plain text ids and SymitriRTD Module will hash it.
-Use 'hashedid' to pass in single already hashed id. Use 'compositeid' to pass in multiple identifiers as key-value pairs as shown below:
-{
-  "identityType1": "identityValue1",
-  "identityType2": "identityValue2",
-  ...
-} |
+| identityType | String | 'simpleid' or 'compositeid' or 'hashedid' or 'dap-signature:1.0.0' | See the section below labelled "identityType" for more details. |
 | identityValue | String | This is optional field to pass user hid. Will be used only if identityType is hid | |
 | segtax | Integer | The taxonomy for Symitri | The value should be 501 |
 | dapEntropyUrl | String | URL to dap entropy script | Optional if the script is directly included on the webpage. Contact your Symitri account rep for more details |
 | dapEntropyTimeout | Integer | Maximum time allotted for the entropy calculation to happen | |
 | pixelUrl | String | Pixel URL provided by Symitri which will be triggered when bid matching with Symitri dealid wins and creative gets rendered | |
+
+### identityType
+Use 'simpleid' to pass email or other plain text ids and SymitriRTD Module will hash it.
+
+Use 'hashedid' to pass in single already hashed id. 
+
+Use 'compositeid' to pass in multiple identifiers as key-value pairs as shown below:
+```bash
+{
+  "identityType1": "identityValue1",
+  "identityType2": "identityValue2",
+  ...
+} 
+```
 
 ### Testing
 
