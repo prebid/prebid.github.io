@@ -463,7 +463,7 @@ Certain identity vendors require an external dependency to generate user identit
 #### Unified ID (UID2)
 
 - [Github repo](https://github.com/IABTechLab/uid2-ios-sdk)
-- The app developer must manually obtain the UID2 token using the UID2 SDK, specifically UID2Manager.shared.getAdvertisingToken(). Please refer to [their documentation](https://unifiedid.com/docs/guides/integration-mobile-client-side#pass-generated-token-for-bidstream-use). Pass this value to Prebid Mobile SDK via setExternalUserIds() manually
+- The app developer must manually obtain the UID2 token using the UID2 SDK, specifically UID2Manager.shared.getAdvertisingToken(). Please refer to [their documentation](https://unifiedid.com/docs/guides/integration-mobile-client-side#pass-generated-token-for-bidstream-use). Pass this value to Prebid Mobile SDK via `setExternalUserIds()` manually
 
 ---
 
