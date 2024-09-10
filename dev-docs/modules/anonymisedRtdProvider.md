@@ -21,10 +21,10 @@ Anonymised’s Real-time Data Provider automatically obtains segment IDs from th
 - Build the anonymisedRtd module into the Prebid.js package with:
 
 ```bash
-gulp build --modules=anonymisedRtdProvider,...
+gulp build --modules=rtdModule,anonymisedRtdProvider,...
 ```
 
-- Use `setConfig` to instruct Prebid.js to initilaize the anonymisedRtdProvider module, as specified below.
+- Use `setConfig` to instruct Prebid.js to initialize the anonymisedRtdProvider module, as specified below.
 
 ### Configuration
 

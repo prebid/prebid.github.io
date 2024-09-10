@@ -227,7 +227,7 @@
 
 - sbSecId: 1
   title: Native Ads
-  link: /formats/native.html
+  link: /dev-docs/examples/native-ad-example.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -252,14 +252,6 @@
 - sbSecId: 1
   title: Running without an ad server
   link: /dev-docs/examples/no-adserver.html
-  isHeader: 0
-  isSectionHeader: 0
-  sectionTitle:
-  subgroup: 1
-
-- sbSecId: 1
-  title: Legacy Browser Example
-  link: /dev-docs/examples/legacy-browser-example.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1489,6 +1481,14 @@
 - sbSecId: 5
   title: Modules
   link: /prebid-server/pbs-modules/
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
+  title: Prebid Cache Storage
+  link: /prebid-server/features/pbs-pbc-storage.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
