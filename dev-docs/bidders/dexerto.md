@@ -25,7 +25,6 @@ sidebarType: 1
 | `placement_id`| mandatory | Placement Id          | `110003`       | `number` |
 | `height`      | optional  | Height of the creative| `250`          | `number` |
 | `width`       | optional  | Width of the creative | `300`          | `number` |
-| `domain`      | optional  | Domain                | `'domain.com'` | `string` |
 | `bid_floor`   | optional  | Bid Floor Price       | `0.5`          | `decimal`|
 
 ### AdUnit Format for Banner
@@ -45,7 +44,6 @@ var adUnits = [
                         placement_id: 110003,
                         height: 250,
                         width: 300,
-                        domain: '',
                         bid_floor: 0.5
                     }
                 }]
