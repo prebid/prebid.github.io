@@ -5,7 +5,8 @@ description: Prebid TheAdx Bidder Adapter
 pbs: true
 pbs_app_supported: true
 pbjs: true
-biddercode: theAdx
+biddercode: theadx
+filename: theAdxBidAdapter
 tcfeu_supported: true
 usp_supported: true
 schain_supported: true
