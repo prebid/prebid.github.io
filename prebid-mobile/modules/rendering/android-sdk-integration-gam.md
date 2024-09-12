@@ -75,7 +75,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 ##### Step 1: Create Event Handler
 {:.no_toc}
 
-GAM's event handlers are special containers that wrap GAM Ad Views and help to manage collaboration between GAM and Prebid views.
+Prebid SDK's GAM event handlers are special containers that wrap GAM Ad Views and help to manage collaboration between GAM and Prebid views.
 
 **Important:** you should create and use a unique event handler for each ad view.
 
