@@ -1,11 +1,12 @@
 ---
 layout: bidder
-title: theadx
+title: TheAdx
 description: Prebid TheAdx Bidder Adapter
 pbs: true
 pbs_app_supported: true
 pbjs: true
 biddercode: theadx
+filename: theAdxBidAdapter
 tcfeu_supported: true
 usp_supported: true
 schain_supported: true
