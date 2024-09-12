@@ -154,7 +154,7 @@ To enable PAAPI auctions follow the instructions below:
 ```javascript
 pbjs.que.push(function() {
   pbjs.setConfig({
-    paapiForGpt: {
+    paapi: {
       enabled: true,
       bidders: ['medianet'],
       defaultForSlots: 1

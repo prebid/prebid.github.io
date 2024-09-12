@@ -93,7 +93,7 @@ If you want to gather interest group bids only when InterestGroup (IG) auctions 
 ```javascript
 Promise.resolve(navigator.cookieDeprecationLabel?.getValue?.()).then(label => {
     pbjs.setConfig({
-        paapiForGpt: {
+        paapi: {
             enabled: !label || label.startsWith("treatment_") || label === 'label_only_5'
         }
     });
@@ -105,7 +105,7 @@ If you want to gather interest group bids whenever when IG auctions _might_ run,
 ```javascript
 Promise.resolve(navigator.cookieDeprecationLabel?.getValue?.()).then(label => {
     pbjs.setConfig({
-        paapiForGpt: {
+        paapi: {
             enabled: !label || label.startsWith("treatment_") || label != 'label_only_1'
         }
     });
