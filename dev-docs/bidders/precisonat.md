@@ -2,14 +2,13 @@
 layout: bidder
 title: Precisonat
 description: Prebid Precisonat Bid Adapter
-gdpr_supported: true
+biddercode: precisonat
 gvl_id: 874
 media_types: native
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 pbjs: true
 pbs: false
-biddercode: precisonat
 prebid_member: true
 floors_supported: true
 safeframes_ok: true
@@ -30,11 +29,27 @@ SharedID: We need you to include the [SharedID module](/dev-docs/modules/userid-
 
 The precisonat Bidding adapter requires setup before beginning. Please contact us at [tech@preciso.net]
 
+### Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description         | Example       | Type     |
+|---------------|----------|---------------------|---------------|----------|
+| `publisherId` | required | Numeric Publisher ID <br>(as provided by Preciso)  | `'123AB123'`    | `string` |
+| `region`      | optional,recommended | 3 letter country code     | `'USA'` | `string` |
+| `bidFloor`    | optional,recommended | Minimum bid for this impression expressed in CPM (USD)  | `0.01`        | `float`  |
+| `pageType`    | optional,recommended | Kind of content present in the page   | `'homepage'`          | `String`     |
+| `currency`    | optional,recommended | type of currencies   |  `['USD']`   |  `string array`  |
+| `bcat`        | optional | List of blocked advertiser categories (IAB)   | `['IAB1-1']`          | `string array`    |
+| `badv`        | optional | Blocked Advertiser Domains| `'example.com'`   | `string array`| 
+
+Notes:
+
+- It is best to provide the global `bcat` and `badv` within the OpenRTB fields (below). When both methods are provided, ORTB values will be prioritized.
+
 #### OpenRTB Parameters
 The following table contains currently supported parameters we parse.
 
 {: .table .table-bordered .table-striped }
-
 | Name               | Scope    | Description                                                   | Example           | Type           |
 |--------------------|----------|---------------------------------------------------------------|-------------------|----------------|
 | `bcat`             | optional | List of blocked advertiser categories (IAB)                   | `['IAB1-1']`      | `string array` |
@@ -53,23 +68,6 @@ pbjs.setConfig({
     }
 });
 ```
-
-### Bid Params
-
-{: .table .table-bordered .table-striped }
-| Name          | Scope    | Description         | Example       | Type     |
-|---------------|----------|---------------------|---------------|----------|
-| `publisherId` | required | Numeric Publisher ID <br>(as provided by Preciso)  | `'123AB123'`    | `string` |
-| `region`      | optional,recommended | 3 letter country code     | `'USA'` | `string` |
-| `bidFloor`    | optional,recommended | Minimum bid for this impression expressed in CPM (USD)  | `0.01`        | `float`  |
-| `pageType`    | optional, recommended  | Kind of content present in the page   | `'homepage'`          | `String`     |
-| `currency`    | optional, recommended  | type of currencies   |  `['USD']`   |  `string array`  |
-| `bcat`        | optional | List of blocked advertiser categories (IAB)   | `['IAB1-1']`          | `string array`    |
-| `badv`        | optional | Blocked Advertiser Domains| `'example.com'`   | `string array`| 
-
-Notes:
-
-- Preferred to provide the `bcat` and `badv` within the first party data (above). When both methods are provided, first party data values will be prioritized.
 
 ### Example Ad Unit
 
