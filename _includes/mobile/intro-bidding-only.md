@@ -5,7 +5,8 @@ This how-to guide covers the original approach for integrating the Prebid SDK in
 - **Prebid SDK** and **Prebid server** to handle the bidding and auction process.
 - **GAM** and the **Google Mobile Ads (GMA) SDK** manage the ad inventory and select the winning ad to display.
 - **Prebid Universal Creative** renders display ads when a Prebid bid wins.
-- **GMA SDK** renders video ads when a Prebid bid wins.
+- **GMA SDK** renders banner and non-instream ads when a Prebid bid wins.
+- **GMA IMA SDK** renders instream ads when a Prebid bid wins.
 
 If you do not have GMA SDK in the app, refer to the [Google Integration Documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/{{include.platform}}/quick-start).
 
@@ -42,6 +43,7 @@ The GAM Bidding-Only Integration method assumes that you have the following comp
 - **Prebid Server** - You will need a cluster of servers running [Prebid Server](/prebid-server/use-cases/pbs-sdk.html). You can set up your own Prebid Server or work with a [Prebid Server managed service](https://prebid.org/managed-services/). Prebid Server provides you with the following:
   - Configuration storage - rather than hardcoding all the details of your current business arrangements in the app, Prebid Server stores which bidders you're currently working with, their inventory details, and other settings that can be changed without updating your app.
   - Server-side auction - the server will make the connections to multiple auction bidding partners so the app doesn't have to.
+  - Creative caching - Prebid Cache stores the creatives until the app needs to render them, reducing the auction response bandwidth.
   - Privacy regulation tools - the server can help your legal team meet different regulatory needs in different jurisdictions by configuring various protocols and anonyimization activities.
 
 ## How it Works
