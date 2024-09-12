@@ -11,7 +11,7 @@ If you do not have GMA SDK in the app, refer to the [Google Integration Document
 
 ### Alternative Approaches
 
-Another way to integrate GAM into your app is with the [Prebid-Rendered Integration integration](/prebid-mobile/modules/rendering/{{include.platform}}-sdk-integration-gam.html).
+Another way to integrate GAM into your app is with the [Prebid-Rendered Integration](/prebid-mobile/modules/rendering/{{include.platform}}-sdk-integration-gam.html).
 
 Tradeoffs between these integration approaches:
 
