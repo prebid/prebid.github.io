@@ -34,7 +34,7 @@ You can find more information at [docs.utiq.com/docs/programmatic-integration](h
 
 ### TCF Activity Integration
 
-If you use the Prebid GDPR Enforcement Module, which prevents access to local storage for non consented vendors, you may need to add a vendor exception for the Utiq user id module to work, as Utiq is not a TCF vendor and will be automatically blocked by Prebid when GDPR Enforcement is enabled. Utiq performs its own consent check, outside TCF, to ensure that there is no device storage access in the absence of consent.
+If you use the Prebid.js [TCF Control Module](/dev-docs/modules/tcfControl.html), which prevents access to local storage for non consented vendors, you may need to add a vendor exception for the Utiq user id module to work, as Utiq is not a TCF vendor and will be automatically blocked by Prebid when TCF Control is enabled. Utiq performs its own consent check, outside TCF, to ensure that there is no device storage access in the absence of consent.
 
 To do that, you can use below configuration:
 
@@ -42,7 +42,7 @@ To do that, you can use below configuration:
 pbjs.setConfig({
   consentManagement: {
     gdpr: {
-      cmpApi: 'iab',   // activates the enforcement module
+      cmpApi: 'iab',
       rules: [{        // these are the default values
         purpose: "storage",
         enforcePurpose: true, // block localStorage based on purpose 1 of TCF
