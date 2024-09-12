@@ -1,11 +1,10 @@
 ---
 layout: bidder
-title: QT
-description: Prebid QT Bidder Adapter
-biddercode: qt
+title: Oraki
+description: Prebid Oraki Bidder Adapter
+biddercode: oraki
 gpp_sids: usstate_all
-gvl_id: 1331
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
