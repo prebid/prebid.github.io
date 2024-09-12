@@ -62,9 +62,6 @@ func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
 ```
 
 {: .alert.alert-info :}
-in case you use a single-size banner (as opposed to multi-size), i.e. 300x250 - you don’t need to make a call to the `AdViewUtils.findPrebidCreativeSize` routine - because you already know the size of the creative, however you still need to make a call to `bannerView.resize` because the creative in GAM has the 1x1 size by default and without this call it will be rendered as a 1x1 pixel. 
-
-{: .alert.alert-info :}
 Make sure you process all possible cases in the  `AdViewUtils.findPrebidCreativeSize` callbacks (both success and failure).  Sometimes you might not get the size of the creative (or a failure callback) - it simply means that this is not a Prebid creative.  It means that you still need to render the creative, but you most likely don’t need to resize it.
 
 ## Step 1: Create a `BannerAdUnit`
