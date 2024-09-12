@@ -36,7 +36,7 @@ gulp bundle --modules=gptPreAuction,sharethroughBidAdapter,sharethroughAnalytics
 Please note that the above snippet is a "bare bones" example - you will likely want to include other modules as well. A more realistic example might look something like the example below (with other bid adapters also included in the list as needed):
 
 ```sh
-gulp bundle --modules=gptPreAuction,consentManagement,consentManagementGpp,consentManagementUsp,enrichmentFpdModule,gdprEnforcement,sharethroughBidAdapter,sharethroughAnalyticsAdapter
+gulp bundle --modules=gptPreAuction,consentManagementTcf,consentManagementGpp,consentManagementUsp,enrichmentFpdModule,tcfControl,sharethroughBidAdapter,sharethroughAnalyticsAdapter
 ```
 
 Enable the Sharethrough Analytics Adapter in Prebid.js using the analytics provider `sharethrough` as seen in the **Example Configuration** section.

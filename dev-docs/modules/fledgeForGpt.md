@@ -3,7 +3,7 @@ layout: page_v2
 page_type: module
 title: Module - fledgeForGpt
 description: how to use PAAPI with GPT
-module_code : fledgeForGpt
+module_code : paapiForGpt
 display_name : Fledge (PAAPI) for GPT
 enable_download : true
 sidebarType : 1
@@ -24,7 +24,7 @@ To use PAAPI with GPT:
 - include this module with your Prebid.js bundle; this also automatically includes the [PAAPI module](/dev-docs/modules/paapi.html)
 
     ```bash
-   gulp build --modules=fledgeForGpt,...     
+   gulp build --modules=paapiForGpt,...     
     ```
 
 - [configure PAAPI](/dev-docs/modules/paapi.html#config)
@@ -57,6 +57,10 @@ pbjs.requestBids({
   }
 })
 ```
+
+## Refreshing Ads
+
+It's important to invoke the `pbjs.setPAAPIConfigForGPT()` function within the `bidsBackHandler` whenever new bids are requested, such as when refreshing ad slots. This ensures that the auctionConfig is manually applied to a GPT slot when autoconfig is disabled. Without this manual configuration, GPT slots will not be properly set up to handle new bids, potentially resulting in duplicate impression calls.
 
 See the [API reference](/dev-docs/publisher-api-reference/setPAAPIConfigForGpt.html) for more options.
 

@@ -27,7 +27,7 @@ sidebarType: 1
 | Name | Scope | Description | Example | Type |
 |----------------+-------+-----------------------------------+-----------+---------|
 | `placement_id` | required | Placement ID, provided by setupad | `'12345'` | String |
-| `account_id` | optional | Account ID, provided by setupad | `'12345'` | String |
+| `account_id` | required | Account ID, provided by setupad | `'12345'` | String |
 
 ### Additional options
 

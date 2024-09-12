@@ -9,7 +9,7 @@ sidebarType : 5
 # ORTB2 Blocking Module
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc }
 
 ## Overview
@@ -35,7 +35,7 @@ For each of the supported attributes, there are a range of behaviors that
 can be configured:
 
 - **Configure Blocks**: allows host companies to define blocks globally, per-account, or per-account/bidder combination. This blocking config is sent in the OpenRTB requests to all or specific bidders for consideration in bid determination.
-- **Enforce Blocks**: PBS can reject bids from bidders that don't conform to the blocking lists sent in the request.
+- **Enforce Blocks**: PBS can reject bids from bidders that don't conform to the blocking lists sent in the request. The default is to **not** block.
 - **Enforce Unknown Values**: for some attributes it may makes sense to reject requests that don't contain a required value. For instance, the publisher may want to drop any bid that doesn't report the advertiser domain.
 - **Deal Overrides**: Private Marketplace deals may have exceptions to standard blocked attributes.
 
@@ -44,11 +44,11 @@ Here's a summary of the features the module supports:
 {: .table .table-bordered .table-striped }
 | Scenario | Configure Blocks | Enforce Blocks | Enforce Unknown Values | Deal Overrides |
 |---+---+---+---+---|
-| Advertiser Domains | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
-| Advertiser Categories | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
-| Apps | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
-| Banner Types | <img src="/assets/images/icons/icon-check-green.png" width="30"> | | | |
-| Banner Attributes | <img src="/assets/images/icons/icon-check-green.png" width="30"> | <img src="/assets/images/icons/icon-check-green.png" width="30"> | | <img src="/assets/images/icons/icon-check-green.png" width="30"> |
+| Advertiser Domains | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> |
+| Advertiser Categories | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> |
+| Apps | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> |
+| Banner Types | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | | | |
+| Banner Attributes | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> | | <img src="/assets/images/icons/icon-check-green.png" width="30" alt="check"> |
 
 ## Configuration
 
@@ -64,12 +64,13 @@ so the module is only invoked for specific accounts. See below for an example.
 
 ### Global Config
 
-There is no host-company level config for this module.
+There is no host-company level config for this module except the execution plan may optionally be at the host level.
 
 ### Account-Level Config
 
 Here's a general template for the account config used in PBS-Java:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -80,7 +81,7 @@ Here's a general template for the account config used in PBS-Java:
               "action-overrides": {
                 OVERRIDE_SETTING: [{
                   "conditions": { ... },
-          // the value below will be the datatype of the SETTING
+                  // the value below will be the datatype of the SETTING
                   "override": VALUE
                 }]
               }
@@ -95,8 +96,9 @@ Here's a general template for the account config used in PBS-Java:
 }
 ```
 
-PBS-Go version of the same config:
-```
+PBS-Go uses underscores instead of dashes, so this is the Go version of the same config:
+
+```json
 {
     "hooks": {
       "modules": {
@@ -128,17 +130,18 @@ The 'ATTRIBUTE' above is one of the 5 blockable entities defined in OpenRTB. A '
 The following sections detail each of the 5 blockable entities.
 
 Here's a detailed example for PBS-Java:
-```
+
+```json
 {
     "hooks": {
         "modules": {
             "ortb2-blocking": {
                 "attributes": {
                     "badv": {
-                        "enforce-blocks": false,
-                        "blocked-adomain": [],
+                        "enforce-blocks": false,   // default is false
+                        "blocked-adomain": [],     // these are unconditionally blocked domains
                         "action-overrides": {
-                            "blocked-adomain": [
+                            "blocked-adomain": [   // these are conditionally blocked domains
                                 {
                                     "override": [ "example.com" ],
                                     "conditions": {
@@ -149,10 +152,10 @@ Here's a detailed example for PBS-Java:
                         }
                     },
                     "bcat": {
-                        "enforce-blocks": false,
-                        "blocked-adv-cat": [],
+                        "enforce-blocks": false,  // default is false
+                        "blocked-adv-cat": [],    // these are unconditionally blocked categories
                         "action-overrides": {
-                            "blocked-adv-cat": [
+                            "blocked-adv-cat": [  // these are conditionally blocked categories
                                 {
                                     "override": [ "IAB7" ],
                                     "conditions": {
@@ -163,9 +166,9 @@ Here's a detailed example for PBS-Java:
                         }
                     },
                     "battr": {
-                        "enforce-blocks": false,
+                        "enforce-blocks": false,  // default is false
                         "action-overrides": {
-                            "blocked-banner-attr": [
+                            "blocked-banner-attr": [  // these are conditionally blocked categories
                                 {
                                     "override": [1,3,8,9,10,13,14,17],
                                     "conditions": {
@@ -176,7 +179,7 @@ Here's a detailed example for PBS-Java:
                                 }
                             ]
                         },
-                        "blocked-banner-attr": []
+                        "blocked-banner-attr": []   // these are unconditionally blocked categories
                     }
                 }
             }
@@ -224,7 +227,8 @@ Here's a detailed example for PBS-Java:
 ```
 
 For PBS-Go:
-```
+
+```json
 {
     "hooks": {
         "modules": {
@@ -331,12 +335,13 @@ This attribute is related to the 'badv' of the request, and the 'adomain' of the
 | Setting | Description | Data Type | Override Conditions Supported |
 |---+---+---+---|
 | blocked-adomain | List of adomains not allowed to display on this inventory | array of strings | bidders (array of strings), media-types (array of strings). |
-| enforce-blocks | Whether to enforce adomains in responses | boolean | bidders (array of strings), media-types (array of strings) |
+| enforce-blocks | Whether to enforce adomains in responses. Default is false. | boolean | bidders (array of strings), media-types (array of strings) |
 | block-unknown-adomain | Whether to block responses not specifying adomain. Only active if enforce-blocks is true. | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-adomain-for-deals | List of adomains allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global. |
 
 Here's an example account config for PBS-Java with several scenarios:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -396,7 +401,8 @@ Here's an example account config for PBS-Java with several scenarios:
 ```
 
 For PBS-Go:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -465,12 +471,13 @@ This attribute is related to the 'bcat' of the request and 'cat' of the response
 | Setting | Description | Data Type | Override Conditions Supported |
 |---+---+---+---|
 | blocked-adv-cat | List of IAB categories not allowed to display on this inventory | array of strings | bidders (array of strings), media-types (array of strings) |
-| enforce-blocks | Whether to enforce cat in responses | boolean | bidders (array of strings), media-types (array of strings) |
+| enforce-blocks | Whether to enforce cat in responses.  Default is false. | boolean | bidders (array of strings), media-types (array of strings) |
 | block-unknown-adv-cat | Whether to block responses not specifying cat. Only active if enforce-blocks is true. | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-adv-cat-for-deals | List of adomains allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global.|
 
 Here's an example account config for PBS-Java with several scenarios:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -530,7 +537,8 @@ Here's an example account config for PBS-Java with several scenarios:
 ```
 
 For PBS-Go
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -599,11 +607,12 @@ This attribute is related to the 'bapp' of the request and 'bundle' of the respo
 | Setting | Description | Data Type | Override Conditions Supported |
 |---+---+---+---|
 | blocked-app | List of bundles not allowed to display on this inventory | array of strings | bidders (array of strings), media-types (array of strings) |
-| enforce-blocks | Whether to enforce bundles in responses | boolean | bidders (array of strings), media-types (array of strings) |
+| enforce-blocks | Whether to enforce bundles in responses.  Default is false. | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-bapp-for-deals | List of bundles allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global. |
 
 Here's an example account config for PBS-Java:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -634,7 +643,8 @@ Here's an example account config for PBS-Java:
 ```
 
 For PBS-Go
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -677,12 +687,13 @@ This attribute is related to the 'btype' of the request.
 
 See Table 5.2 in the [OpenRTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for the possible values.
 
-Note: no enforcement is possible because the creative type is not explictly
+**Note:** no enforcement is possible because the creative type is not explictly
 part of the response and Prebid Server does not currently contain logic to
 parse creatives to derive the type.
 
 Here's an example account config for PBS-Java:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -711,7 +722,8 @@ Here's an example account config for PBS-Java:
 ```
 
 For PBS-Go
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -749,13 +761,14 @@ This attribute is related to the 'battr' of the request and 'attr' of the respon
 | Setting | Description | Data Type | Override Conditions Supported |
 |---+---+---+---|
 | blocked-banner-attr | List of IAB banner attributes not allowed to display on this inventory | array of int | bidders (array of strings), media-types (array of strings) |
-| enforce-blocks | Whether to enforce attr in responses | boolean | bidders (array of strings), media-types (array of strings) |
+| enforce-blocks | Whether to enforce attr in responses.   Default is false. | boolean | bidders (array of strings), media-types (array of strings) |
 | allowed-banner-attr-for-deals | List of IAB attributes allowed for deals in general or a specific dealid. | array of strings | deal-ids (array of strings). This isn't a true override - values are added to the global. |
 
 See Table 5.3 in the [OpenRTB 2.5 spec](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) for the possible values.
 
 Here's an example account config for PBS-Java:
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -786,7 +799,8 @@ Here's an example account config for PBS-Java:
 ```
 
 For PBS-Go
-```
+
+```json
 {
     "hooks": {
       "modules": {
@@ -819,9 +833,11 @@ For PBS-Go
 ```
 
 ### Enable for Spring Boot
-In order to allow the module to be picked up by Prebid Server, a Spring Boot configuration property `hooks.ortb2-blocking.enabled` must be set to `true`.
+
+In order to allow the module to be picked up by PBS-Java, a Spring Boot configuration property `hooks.ortb2-blocking.enabled` must be set to `true`.
 
 Here's an example of how your PBS configuration YAML should look like:
+
 ```YAML
 hooks:
   ortb2-blocking:
@@ -851,7 +867,8 @@ It's only applied to attributes where `enforce-blocks` is true, which means 'bty
         1. **bidder**: the biddercode of the blocked response
 
 Here's an example analytics tag that might be produced for use in an analytics adapter:
-```
+
+```json
 [{
    activities: [{
     name: "enforce-blocking",
@@ -908,4 +925,4 @@ Here's an example analytics tag that might be produced for use in an analytics a
 ## Further Reading
 
 - [Prebid Server Module List](/prebid-server/pbs-modules/index.html)
-- [Building a Prebid Server Module ](/prebid-server/developers/add-a-module.html)
+- [Building a Prebid Server Module](/prebid-server/developers/add-a-module.html)

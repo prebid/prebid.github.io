@@ -129,7 +129,7 @@ You can also use the [Prebid.js Download](/download.html) page.
 
 {: .alert.alert-info :}
 
-If you are submitting changes to an adapter to support GPP, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gpp_supported: true` variable to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GPP.**
+If you are submitting changes to an adapter to support GPP, please also submit a PR to the [docs repo](https://github.com/prebid/prebid.github.io) to add the `gpp_sids` meta data with a comma separated list of section names (`tcfeu`, `tcfca`, `usnat`, `usstate_all`, `usp`) to your respective page in the [bidders directory](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders).  **This will ensure that your adapter's name will automatically appear on the list of adapters supporting GPP.**
 
 ### Bidder Adapter GPP Integration
 
@@ -172,7 +172,7 @@ Depending on your needs, you could include the consent information in a query of
 
 ## Adapters Supporting GPP
 
-Bidders on this list have self-declared their GPP support in their [github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gpp_supported: true".
+Bidders on this list have self-declared their GPP support in their [github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders] md file by adding "gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp".
 
 <script src="/assets/js/dynamicTable.js" type="text/javascript"></script>
 
@@ -200,7 +200,7 @@ var idx_gdpr=0;
 
 - [IAB Global Privacy Platform Full Specification Repository](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform)
 - [IAB Global Privacy Platform CMP API Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Core/CMP%20API%20Specification.md)
-- [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagement.html)
+- [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagementTcf.html)
 - [Prebid Consent Management - US Privacy Module](/dev-docs/modules/consentManagementUsp.html)
 - [Prebid Activity Controls](/dev-docs/activity-controls.html)
 - [Prebid Activity Controls -- GPP control module - usnat](/dev-docs/modules/gppControl_usnat.html)
