@@ -33,7 +33,7 @@ Tradeoffs between these integration approaches:
 
 ### Prerequisites
 
-The GAM Prebid-Rendered Integration method assumes that you have the following components:
+The GAM Bidding-Only Integration method assumes that you have the following components:
 
 - **Google Ad Manager Account** - A GAM account allows you to manage and serve ads within your mobile app. Within this account you'll need to configure your inventory and create orders for serving ads within your app. This involves defining ad units (spaces within your app where ads will be displayed) and setting up orders and line items to deliver ads to those units. See [Prebid's AdOps Guide](/adops/before-you-start.html) for more information.
 - **Google Mobile Ads (GMA) SDK** - This refers to the software development kit provided by Google. You need to ensure that you have the latest version of the GMA SDK supported by Prebid SDK. This SDK integration is necessary to communicate with the ad server and display ads in your app.
