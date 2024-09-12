@@ -264,6 +264,7 @@ In the `BidderRequest` or `RawBidderResponse` stage:
     miCtx.ModuleContext[dealsContextKey].(*sync.Map)
     ...
 ```
+
 {:start="5"}
 5. More test implementations for each hook can be found in unit-tests at [github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking](https://github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking) folder.
 
