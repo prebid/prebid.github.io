@@ -68,7 +68,7 @@ var adUnits = [
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
       protocols: [ 2, 3 ],                  // required, set at least 1 value in array
-      placement: 2,                         // optional, defaults to 2 when context = outstream
+      plcmt: 2,                             // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
       skip: 0,                              // optional
       minduration: 5,                       // optional
@@ -104,7 +104,7 @@ var adUnits = [
       context: 'instream',                  // required
       mimes: ['video/mp4','video/x-flv'],   // required
       protocols: [ 2, 3 ],                  // required, set at least 1 value in array
-      placement: 1,                         // optional, defaults to 1 when context = instream
+      plcmt: 1,                             // optional, defaults to 1 when context = instream
       startdelay: 0,                        // optional, defaults to 0 when context = instream
       api: [ 1, 2 ],                        // optional
       skip: 0,                              // optional
@@ -147,7 +147,7 @@ var adUnits = [
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
       protocols: [ 2, 3 ],                  // required, set at least 1 value in array
-      placement: 2,                         // optional, defaults to 2 when context = outstream
+      plcmt: 2,                             // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
       skip: 0,                              // optional
       minduration: 5,                       // optional

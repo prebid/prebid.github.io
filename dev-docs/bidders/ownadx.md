@@ -15,7 +15,7 @@ safeframes_ok: false
 deals_supported: false
 floors_supported: true
 fpd_supported: false
-pbjs: false
+pbjs: true
 pbs: true
 pbs_app_supported: true
 prebid_member: false
@@ -23,9 +23,9 @@ multiformat_supported: will-bid-on-one
 ortb_blocking_supported: false
 ---
 
-### Note:
+### Note
 
-The OwnAdX Bidding adapter requires setup before beginning. Please contact us at support@techbravo.com
+The OwnAdX Bidding adapter requires setup before beginning. Please contact us at [support@techbravo.com](support@techbravo.com)
 
 ### Bid Params
 

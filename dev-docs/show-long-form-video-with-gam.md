@@ -175,7 +175,7 @@ For instructions on setting custom price buckets, view the [Custom Price Granula
 
 ### 5. Send request for bids and build video URL
 
-The `dfpAdServerVideo` module provides a method, `buildAdpodVideoUrl`, that combines publisher-provided parameters with Prebid.js targeting key values to build a GAM video ad tag URL that can be used by a video player.
+The `dfpAdpod` module provides a method, `buildAdpodVideoUrl`, that combines publisher-provided parameters with Prebid.js targeting key values to build a GAM video ad tag URL that can be used by a video player.
 
 In the example below the callback in the `bidsBackHandler` returns the video ad tag needed by the video player.
 
@@ -196,7 +196,7 @@ pbjs.que.push(function(){
 
     pbjs.requestBids({
         bidsBackHandler: function(bids) {
-            pbjs.adServers.dfp. buildAdpodVideoUrl({
+            pbjs.adServers.dfp.buildAdpodVideoUrl({
                 codes: ['sample-code'],
                 params: {
                     iu: '/123456/testing/prebid.org/adunit1',
