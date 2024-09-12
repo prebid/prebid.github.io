@@ -5,7 +5,7 @@ This how-to guide covers the 'Prebid-Rendered' approach for integrating the Preb
 - **Prebid SDK** and **Prebid server** to handle the bidding and auction process.
 - **GAM** and the **Google Mobile Ads (GMA) SDK** manage the ad inventory and select the winning ad to display.
 - **Prebid SDK** renders display ads when a Prebid bid wins.
-- **GMA SDK** renders video ads when a Prebid bid wins.
+- **GMA SDK** renders ads when a Prebid bid wins.
 
 If you do not have GMA SDK in the app yet, refer to the [Google Integration Documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/{{include.platform}}/quick-start).
 
@@ -58,7 +58,7 @@ Here's how the ad bidding-auction-rendering process works in this integration sc
     1. Which in turn triggers PBSDK to handle the rendering of the creative:
         1. PBSDK fires the Prebid Server win event.
         1. If a 3rd party rendering SDK is in use, PBSDK calls it for rendering.
-        1. Otherwise, it writes the creative into an iframe and:
+        1. Otherwise, it writes the creative into an iframe into an internal WebView, replaceing the GAMSDK's WebView.
             1. Injects mraid.js into the webview to listen for events from MRAID: change size, etc.
             1. Sends data to the creative (e.g. 'viewable') which may trigger impression tracking within the creative.
             1. It does not currently hit the billing or notive urls (burl or nurl).
