@@ -16,6 +16,7 @@ multiformat_supported: will-bid-on-any
 pbjs: true
 gvl_id: 910
 sidebarType: 1
+userIds: all
 ---
 
 ### Bid Params
@@ -24,6 +25,7 @@ sidebarType: 1
 | Name                        | Scope    | Description                                                                             | Example                            | Type     |
 |-----------------------------|----------|-----------------------------------------------------------------------------------------|------------------------------------|----------|
 | `adUnitId`                  | Required | The ad unit ID provided by Insticator                                                   | `'test'`                           | `string` |
+| `publisherId`               | optional | The publisher ID provided by Insticator                                                 | `'test'`                           | `string` |
 | `yob`                       | optional | Year of Birth                                                                           | `'1982'`                           | `string` |
 | `gender`                    | optional | Gender                                                                                  | `'M'`                              | `string` |
 | `instl`                     | optional | 1 = the ad is interstitial or full screen, 0 = not interstitial.                        | `1`                                | `number` |
@@ -58,7 +60,8 @@ var adUnitsBannerOnly = [
       {
         bidder: 'insticator',
         params: {
-          adUnitId: 'example_adunit_id',
+            adUnitId: 'example_adunit_id',
+            publisherId: 'example_publisher_id',
         },
       },
     ],
@@ -170,7 +173,8 @@ var adUnits = [
         bids: [{
             bidder: 'insticator',
             params: {
-                adUnitId: 'example_adunit_id'
+                adUnitId: 'example_adunit_id',
+                publisherId: 'example_publisher_id',
             }
         }],
         ...

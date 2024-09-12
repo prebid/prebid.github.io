@@ -66,7 +66,7 @@ Analytics adapters offer the ability to learn more about latency, revenues, bid 
 Prebid.js Modules also plug into the Prebid.js Core. They add functionality not present
 in the Core that not every publisher needs. Example modules:
 
-- GDPR support (the [consentManagement]({{site.baseurl}}/dev-docs/modules/consentManagement.html) module)
+- GDPR support (the [consentManagementTcf]({{site.baseurl}}/dev-docs/modules/consentManagementTcf.html) module)
 - Currency conversion (the [currency]({{site.baseurl}}/dev-docs/modules/currency.html) module)
 - Server-to-server testing (the [s2sTest]({{site.baseurl}}/dev-docs/modules/s2sTesting.html) module)
 - and [many others](/dev-docs/modules/index.html)
