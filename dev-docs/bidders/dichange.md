@@ -21,6 +21,10 @@ pbs_app_supported: false
 ortb_blocking_supported: false
 ---
 
+### Note
+
+The dichange Bidding adapter requires setup before beginning. Please contact us at <di-change@digitalmatter.ai>
+
 ### Prebid.js Bid params
 
 {: .table .table-bordered .table-striped }
