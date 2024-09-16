@@ -29,6 +29,8 @@ Bid adapters are responsible for translating a 'Prebid-flavored' OpenRTB Bid Req
 
 OpenRTB Bid Requests contain one or more impression objects, each representing a single ad placement. An impression may define multiple sizes and/or multiple ad formats. If your bidding server limits requests to a single ad placement, size, or format, then your adapter will need to split the impression into multiple calls and merge the responses.
 
+See the [example auction request](/prebid-server/endpoints/openrtb2/auction-request-example.html) to get an idea for what your adapter will receive.
+
 ## Plan Your Bid Adapter
 
 ### Choose A Name

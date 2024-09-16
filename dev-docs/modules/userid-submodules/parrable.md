@@ -2,6 +2,7 @@
 layout: userid
 title: Parrable ID
 description: Parrable ID User ID sub-module
+pbjs_version_notes: removed in 9.0
 useridmodule: parrableIdSystem
 ---
 
