@@ -39,5 +39,5 @@ Please contact us before using the adapter.
 {: .table .table-bordered .table-striped }
 |     Name     |  Scope   |      Description                                |  Example  |   Type    |
 |--------------|----------|-------------------------------------------------|-----------|-----------|
-|  `zoneId`    | required |    Zone ID                                      |  `123456` | `integer` |
+|  `zoneId`    | required |    Zone ID                                      | `1573195` | `integer` |
 |  `currency`  | Optional | Currency setting (`'JPY'`(Default) or `'USD'`)  | `'JPY'`   | `string`  |
