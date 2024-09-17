@@ -227,7 +227,7 @@
 
 - sbSecId: 1
   title: Native Ads
-  link: /formats/native.html
+  link: /dev-docs/examples/native-ad-example.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1487,6 +1487,14 @@
   subgroup: 3
 
 - sbSecId: 5
+  title: Prebid Cache Storage
+  link: /prebid-server/features/pbs-pbc-storage.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
   title: Developers
   link:
   isHeader: 1
@@ -1701,6 +1709,14 @@
 - sbSecId: 6
   title: Video
   link: /formats/video.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 6
+  title: Connected TV
+  link: /formats/ctv.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
