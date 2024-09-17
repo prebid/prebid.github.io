@@ -9,7 +9,7 @@ To define an alias for a bidder adapter, call this method at runtime:
 
 ```javascript
 
-pbjs.aliasBidder('appnexus', 'newAlias', optionsObject );
+pbjs.aliasBidder('appnexus', 'newAlias', optionsObject);
 
 ```
 
@@ -28,6 +28,7 @@ The options object supports these parameters:
 | Option Parameter    | Type    | Description             |
 |------------|---------|---------------------------------|
 | gvlid | integer | IAB Global Vendor List ID for this alias for use with the [TCF control module](/dev-docs/modules/tcfControl.html). |
+| useBaseGvlid | boolean | Flag determining if the GVL ID of the original adapter should be re-used |
 
 {: .alert.alert-info :}
 Creating an alias for a Prebid Server adapter is done differently. See 'extPrebid'
