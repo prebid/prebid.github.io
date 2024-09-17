@@ -21,16 +21,14 @@ Updated Feb 9, 2023
 The easiest way to setup an environment to contribute to the docs or review pull requests is [Github Codespaces](https://github.com/features/codespaces).
 
 1. Open [github.com/prebid/prebid.github.io](https://github.com/prebid/prebid.github.io)
-2. Click on the `Code` drop down menu and select "create new codespace from master". If you have no access to prebid.github.io, then you should do this on your fork of the repository
-3. Install the [markdownlint extension](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
-    1. go to _Extensions_
-    2. search for _markdownlint_ and hit install
-    3. now you get direct feedback on linting errors
-4. Start the jekyll build as described in the `TERMINAL` of your codespace
-    1. `bundle install`
-    2. `JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental`
-    3. Codespaces will display a notification to open the running instance in the browser.
-5. In the `PORTS` tab you find the running instance
+2. Click on the `Code` drop down menu and select "create new codespace from master" by clicking on the + icon. 
+   If you have no access to prebid.github.io, then you should do this on your fork of the repository
+3. Start the jekyll build as described in the `TERMINAL` of your codespace
+    1. `JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental`
+    2. Codespaces will display a notification to open the running instance in the browser.
+4. In the `PORTS` tab you find the running instance
+
+This repository contains a [devcontainer.json](.devcontainer/devcontainer.json) that setups the codespace or your favourite IDE. It includes the [markdownlint extension](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint), ruby and installs all dependency on setup through `bundle install`.
 
 ## Reviewing Pull Requests and Issues
 
@@ -185,7 +183,7 @@ Each menu item is represented in the YML map as a collection of key value pairs 
 The collection with the title property "What Is Prebid?" is a child of the collection directly above it with the sectionName "Overview"
 
 **Top Nav Menu Collection Properties**  
-*Note: A collection does not have to contain all properties. For Bools 1 = true, 0 = false*
+_Note: A collection does not have to contain all properties. For Bools 1 = true, 0 = false_
 
 | Key | Type | Example | Use |
 | ------ | ------ | ------ | ------ |
@@ -243,7 +241,7 @@ Each menu item is represented in the YML map as a collection of key value pairs 
   ```
 
 **Side Nav Menu Collection Properties**  
-*Note: A collection does not have to contain all properties. For bools 1 = true, 0 = false**
+_Note: A collection does not have to contain all properties. For bools 1 = true, 0 = false_*
 
 | Key | Type | Example | Use |
 | ----- | ----- | ----- | ----- |
