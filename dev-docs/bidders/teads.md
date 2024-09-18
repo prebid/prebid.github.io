@@ -25,6 +25,10 @@ fpd_supported: false
 sidebarType: 1
 ---
 
+### Disclosure
+
+This adapter uses JavaScript APIs commonly used in fingerprinting and may get your Prebid build flagged as a fingerprinting script.
+
 ### Notes
 
 1. The Teads Bidding adapter requires setup before beginning. Please contact us on <https://teads.tv/teads-contact/>
