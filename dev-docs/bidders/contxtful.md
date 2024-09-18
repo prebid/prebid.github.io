@@ -33,7 +33,7 @@ pbjs.setConfig({
   userSync: {
     filterSettings: {
       iframe: {
-        bidders: '*',
+        bidders: ['contxtful'],
         filter: 'include'
       }
     }
