@@ -195,7 +195,6 @@ See the [/openrtb2/auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpo
 |  Adding debug information. | 999  | Test set on request but debug not present in response.  | Error is logged.  |
 |  Encoding the response. | 999  | `/openrtb2/amp` failed to send response.  | Error is logged.  |
 
-
 The following errors can occur when loading a stored OpenRTB request for an incoming AMP request.
 
 {: .table .table-bordered .table-striped }
