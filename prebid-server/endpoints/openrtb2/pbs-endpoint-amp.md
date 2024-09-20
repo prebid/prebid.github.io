@@ -103,7 +103,7 @@ The nature of AMP is that user-level FPD is difficult or impossible. All of the 
 
 Contextual First Party Data must be defined in the stored request entries.
 
-The only field that PBS supports in the AMP call that can be considered FPD is the 'targeting' block. These are key-value pairs that are sent to the ad server. They are also copied to the ORTB JSON in imp[].ext.data.
+The only field that PBS supports in the AMP call that can be considered FPD is the 'targeting' block. These are key-value pairs that are sent to the ad server, and they are copied to the OpenRTB JSON in imp[].ext.data.
 
 For example, if the AMP JSON targeting provided is:
 ```
@@ -149,7 +149,8 @@ A sample response payload looks like this:
         "hb_pb": "0.50",
         "hb_pb_appnexus": "0.50",
         "hb_size": "300x250",
-        "hb_size_appnexus": "300x250"
+        "hb_size_appnexus": "300x250",
+        "hb_env": "amp"                      // PBS-Java only
     }
     "errors": {
         "openx":[
