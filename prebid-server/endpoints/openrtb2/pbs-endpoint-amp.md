@@ -8,7 +8,7 @@ title: Prebid Server | Endpoints | OpenRTB2 | AMP
 # Prebid Server | Endpoints | /openrtb2/amp
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc}
 
 This document describes the behavior of the Prebid Server AMP endpoint in detail.
@@ -92,6 +92,7 @@ An example Stored Request is given below:
 ```
 
 Note that other ext.prebid extensions can be specified in the stored request such as:
+
 - [ext.prebid.currency](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#currency-support)
 - [ext.prebid.aliases](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#bidder-aliases)
 - [ext.prebid.multibid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#multibid)
@@ -106,7 +107,8 @@ Contextual First Party Data must be defined in the stored request entries.
 The only field that PBS supports in the AMP call that can be considered FPD is the 'targeting' block. These are key-value pairs that are sent to the ad server, and they are copied to the OpenRTB JSON in imp[].ext.data.
 
 For example, if the AMP JSON targeting provided is:
-```
+
+```html
   <amp-ad width="300" height="50"
     type="doubleclick"
     data-slot="/1111/amp_test"
@@ -114,12 +116,16 @@ For example, if the AMP JSON targeting provided is:
     json='{ "targeting": {"attr1": "val1", "attr2": "val2"}}' >
   </amp-ad>
 ```
+
 The AMP URL would be something like this:
-```
+
+```text
 GET /openrtb2/amp?tag_id=1001-my-test&w=300&h=250&ow=&oh=&ms=&slot=%2F1111%2Famp_test&targeting=%7B%22attr1%22%3A%22val1%22%2C%22attr2%22%3A%22val2%22%7D&...
 ```
+
 And the resulting OpenRTB would merge these targeting values as FPD on imp.ext.data:
-```
+
+```json
 {
   "imp": [{
     ...
@@ -170,7 +176,7 @@ these targeting params will be sent to Google Ad Manager.
 
 If any errors were generated they will appear  within `response.ext.errors.{bidderName}`. There are five error codes that could be returned:
 
-```
+```text
 0   NoErrorCode
 1   TimeoutCode
 2   BadInputCode
@@ -224,6 +230,7 @@ Specifically:
 - amp.max-timeout-ms: maximum operation timeout for AMP requests
 
 ## Further Reading
+
 - [Prebid and AMP](/formats/amp.html)
 - [Prebid Server AMP Use Case Overview](/prebid-server/use-cases/pbs-amp.html)
 - [Prebid Server First Party Data](/prebid-server/features/pbs-fpd.html)
