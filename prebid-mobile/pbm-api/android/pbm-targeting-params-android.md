@@ -588,13 +588,18 @@ PrebidMobile.storeExternalUserId(externalUserIdArray);
 
 Certain identity vendors require an external dependency to generate user identity and then to pass it via Prebid SDK. Please note that these are references to a 3rd party code and Prebid has not inspected it. Links to the documentations of those references will be listed in this section.
 
-#### Unified ID (UID2)
+#### Unified ID 2.0 (UID2)
 
+UID2 provides a [native library](https://unifiedid.com/docs/guides/integration-mobile-client-side#optional-uid2-prebid-mobile-sdk-integration) for automatically updating latest UID2 
+token stored inside [UID2 SDK for Android](https://unifiedid.com/docs/sdks/sdk-ref-android) into Prebid's external user's ID list. 
+
+App developers are not required to manually call ```PrebidMobile.setExternalUserId``` method as the native library will do so automatically.
+
+Note: 
+ 
 - [Github repo](https://github.com/IABTechLab/uid2-android-sdk)
-- [Documentation](https://unifiedid.com/docs/guides/integration-prebid-mobile-summary)
-- [UID2+Prebid helper lib](https://unifiedid.com/docs/guides/integration-mobile-client-side#optional-uid2-prebid-mobile-sdk-integration) -- for Android Prebid Mobile SDK integration.
-
----
+- [UID2 Android Integration Documentation](https://unifiedid.com/docs/guides/integration-mobile-overview)
+- [UID2+Prebid Integration Instruction](https://unifiedid.com/docs/guides/integration-mobile-client-side#optional-uid2-prebid-mobile-sdk-integration)
 
 ## Targeting Class Methods
 
