@@ -51,7 +51,6 @@ Configuring the LiveConnect tag is a critical step in setting up effective ident
 For detailed configuration instructions, refer to the following resources:
 [LiveConnect for HIRO Clients Configuration Guide](https://support.liveintent.com/hc/en-us/articles/30245171256724-LiveConnect-Configuration-Guide-for-HIRO-Clients)
 
-
 If you need a publisher id or distributor id for the LiveConnect script on the page, please connect your LiveIntent representative for it.
 If you're not already a LiveIntent customer, feel free to [reach out](https://www.liveintent.com/get-in-touch/) to us. You can also explore the [LiveIntent’s privacy policies](https://www.liveintent.com/services-privacy-policy/).
 
