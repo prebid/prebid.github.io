@@ -460,12 +460,19 @@ Targeting.shared.removeStoredExternalUserIds()
 
 Certain identity vendors require an external dependency to generate user identity and then to pass it via Prebid SDK. Please note that these are references to a 3rd party code and Prebid has not inspected it. Links to the documentations of those references will be listed in this section.
 
-#### Unified ID (UID2)
+#### Unified ID 2.0 (UID2)
+
+UID2 provides a [native library](https://unifiedid.com/docs/guides/integration-mobile-client-side#optional-uid2-prebid-mobile-sdk-integration) for automatically updating latest UID2
+token stored inside [UID2 SDK for iOS](https://unifiedid.com/docs/sdks/sdk-ref-ios) into Prebid's external user's ID list.
+
+App developers are not required to manually call ```Prebid.shared.externalUserIdArray = latestExternalUserIdArray``` 
+as the native library will do so automatically
+
+Note:
 
 - [Github repo](https://github.com/IABTechLab/uid2-ios-sdk)
-- The app developer must manually obtain the UID2 token using the UID2 SDK, specifically UID2Manager.shared.getAdvertisingToken(). Please refer to [their documentation](https://unifiedid.com/docs/guides/integration-mobile-client-side#pass-generated-token-for-bidstream-use). Pass this value to Prebid Mobile SDK via `setExternalUserIds()` manually
-
----
+- [UID2 iOS Integration Documentation](https://unifiedid.com/docs/guides/integration-mobile-overview)
+- [UID2+Prebid Integration Instruction](https://unifiedid.com/docs/guides/integration-mobile-client-side#optional-uid2-prebid-mobile-sdk-integration)
 
 ## Targeting Class Properties and Methods
 
