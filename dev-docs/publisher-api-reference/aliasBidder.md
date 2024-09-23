@@ -25,10 +25,10 @@ If you define an alias and are using `pbjs.sendAllBids`, you must also set up ad
 The options object supports these parameters:
 
 {: .table .table-bordered .table-striped }
-| Option Parameter    | Type    | Description             |
-|------------|---------|---------------------------------|
-| gvlid | integer | IAB Global Vendor List ID for this alias for use with the [TCF control module](/dev-docs/modules/tcfControl.html). |
-| useBaseGvlid | boolean | Flag determining if the GVL ID of the original adapter should be re-used |
+| Option Parameter    | Scope    | Type    | Description             |
+|------------|---------|---------|---------------------------------|
+| gvlid | optional | integer | IAB Global Vendor List ID for this alias for use with the [TCF control module](/dev-docs/modules/tcfControl.html). |
+| useBaseGvlid | optional | boolean | Flag determining if the GVL ID of the original adapter should be re-used |
 
 {: .alert.alert-info :}
 Creating an alias for a Prebid Server adapter is done differently. See 'extPrebid'
