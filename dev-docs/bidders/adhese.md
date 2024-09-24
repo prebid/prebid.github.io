@@ -19,6 +19,10 @@ The Adhese bid adapter may require an additional setup from the Adhese team, eve
 
 Prebid Server host companies need to work with Adhese for each additional publisher.
 
+### Note
+
+Adhese will only respond to the first impression. Multiple ad formats in single request are not supported.
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
