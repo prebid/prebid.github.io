@@ -46,10 +46,10 @@ Here's a set of basic recommendations to use as a starting point:
 Yes, setting up line items for Prebid Mobile is complicated. We recommend reading the "Ad Operations Guidance" section of the
 specific mobile integration method you're using:
 
-    - GAM Bidding-Only for [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#ad-operations-guidance)/[Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#ad-operations-guidance)
-    - GAM Prebid-Rendered for [iOS](TBD)/[Android](TBD)
-    - AdMob for [iOS](TBD)/[Android](TBD)
-    - MAX for [iOS](TBD)/[Android](TBD)
+- GAM Bidding-Only for [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#ad-operations-guidance)/[Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#ad-operations-guidance)
+- GAM Prebid-Rendered for [iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-gam#ad-operations-guidance)/[Android](/prebid-mobile/modules/rendering/android-sdk-integration-gam#ad-operations-guidance)
+- AdMob for [iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-admob#ad-operations-guidance)/[Android](/prebid-mobile/modules/rendering/android-sdk-integration-admob#ad-operations-guidance)
+- MAX for [iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-max#ad-operations-guidance)/[Android](/prebid-mobile/modules/rendering/android-sdk-integration-max#ad-operations-guidance)
 
 ## Advertisers and Orders
 
