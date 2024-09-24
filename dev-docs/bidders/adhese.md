@@ -22,12 +22,12 @@ Prebid Server host companies need to work with Adhese for each additional publis
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description        | Example                      | Type     |
-|---------------|----------|--------------------|------------------------------|----------|
-| `account`     | required | Adhese account name   | `'demo'`                  | `string` |
-| `location`    | required | Adhese location name  | `'_adhese_prebid_demo_'`  | `string` |
-| `format`      | required | Adhese format name    | `'leaderboard'`           | `string` |
-| `data`        | optional | Custom target data    | `{ 'ci': [9000, 9050] }`  | `object` |
+| Pbjs param name | Pbs ext field name | Scope    | Description           | Example                   | Type     |
+|-----------------|--------------------|----------|-----------------------|---------------------------|----------|
+| `account`       | `account`          | required | Adhese account name   | `'demo'`                  | `string` |
+| `location`      | `location`         | required | Adhese location name  | `'_adhese_prebid_demo_'`  | `string` |
+| `format`        | `format`           | required | Adhese format name    | `'leaderboard'`           | `string` |
+| `data`          | `targets`          | optional | Custom target data    | `{ 'ci': [9000, 9050] }`  | `object` |
 
 ### Configuration
 
