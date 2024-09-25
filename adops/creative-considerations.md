@@ -51,7 +51,7 @@ The original idea behind the Prebid Universal Creative (which we fondly call 'th
 
 However, having a lot of functionality (even if not quite "universal") comes with some drawbacks:
 
-- The PUC requres an extra HTTP fetch, slowing down ad rendering by some amount. 
+- The PUC requires an extra HTTP fetch, slowing down ad rendering by some amount. 
 - The size of the PUC grew as use cases were added.
 - The Prebid SDK doesn't have to render javascript into a webview
 
