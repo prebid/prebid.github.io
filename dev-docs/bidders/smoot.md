@@ -22,6 +22,10 @@ safeframes_ok: true
 sidebarType: 1
 ---
 
+### Note
+
+The Smoot Bidding adapter requires setup before beginning. Please contact us at <info@smoot.ai>
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
