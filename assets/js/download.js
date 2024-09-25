@@ -8,7 +8,7 @@
         // show all adapters
         $(".adapters .col-md-4").show();
         setPrepickedModules();
-        
+
         document.getElementById('download-button').addEventListener('click', function (event) {
             event.preventDefault();
             submit_download();
@@ -112,6 +112,23 @@
         });
     }
 
+    const renameModules = (function() {
+        const RENAMES = [
+            [
+                /^8\./,
+                {
+                    tcfControl: 'gdprEnforcement',
+                    consentManagementTcf: 'consentManagement',
+                    paapiForGpt: 'fledgeForGpt'
+                }
+            ]
+        ];
+        return function(version, modules) {
+            const renames = RENAMES.find(([pat]) => pat.test(version))?.[1] || {};
+            return modules.map(mod => renames.hasOwnProperty(mod) ? renames[mod] : mod)
+        }
+    })();
+
     function get_form_data() {
         var modules = [];
         var version = $(".selectpicker").val();
@@ -138,7 +155,7 @@
             });
 
         return {
-            modules,
+            modules: renameModules(version, modules),
             version,
             removedModules,
         };

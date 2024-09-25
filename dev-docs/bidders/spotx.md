@@ -13,6 +13,7 @@ safeframes_ok: false
 pbjs: true
 gvl_id: 165
 floors_supported: true
+pbjs_version_notes: removed in 9.0
 sidebarType: 1
 ---
 

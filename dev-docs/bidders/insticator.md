@@ -10,11 +10,13 @@ usp_supported: true
 coppa_supported: true
 gdpr_supported: true
 schain_supported: true
+floors_supported: true
 media_types: banner, video
 multiformat_supported: will-bid-on-any
 pbjs: true
 gvl_id: 910
 sidebarType: 1
+userIds: all
 ---
 
 ### Bid Params
@@ -23,11 +25,14 @@ sidebarType: 1
 | Name                        | Scope    | Description                                                                             | Example                            | Type     |
 |-----------------------------|----------|-----------------------------------------------------------------------------------------|------------------------------------|----------|
 | `adUnitId`                  | Required | The ad unit ID provided by Insticator                                                   | `'test'`                           | `string` |
+| `publisherId`               | optional | The publisher ID provided by Insticator                                                 | `'test'`                           | `string` |
 | `yob`                       | optional | Year of Birth                                                                           | `'1982'`                           | `string` |
 | `gender`                    | optional | Gender                                                                                  | `'M'`                              | `string` |
 | `instl`                     | optional | 1 = the ad is interstitial or full screen, 0 = not interstitial.                        | `1`                                | `number` |
 | `pos`                       | optional | ad position as per IAB standards                                                        | `1`                                | `number` |
-| `bid_endpoint_request_url`  | optional | Url string representing the endpoint Insticator adaptor should make the request bids to. | `https://ex.ingage.com/v1/openrtb` | `string` |
+| `bid_endpoint_request_url`  | optional | Url string representing the endpoint Insticator adaptor should make the request bids to.| `https://ex.ingage.com/v1/openrtb` | `string` |
+| `floor`                     | optional | Sets a floor for bidder.                                                                | `0.50`                             | `float`  |
+| `bidfloorcur`               | optional | Currency of the floor. (Insticator only supports USD floors)                            | `USD`                              | `string` |
 
 ### Banner Params
 
@@ -55,7 +60,8 @@ var adUnitsBannerOnly = [
       {
         bidder: 'insticator',
         params: {
-          adUnitId: 'example_adunit_id',
+            adUnitId: 'example_adunit_id',
+            publisherId: 'example_publisher_id',
         },
       },
     ],
@@ -167,7 +173,8 @@ var adUnits = [
         bids: [{
             bidder: 'insticator',
             params: {
-                adUnitId: 'example_adunit_id'
+                adUnitId: 'example_adunit_id',
+                publisherId: 'example_publisher_id',
             }
         }],
         ...
