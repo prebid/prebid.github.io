@@ -158,7 +158,7 @@ The only time you'll need to update a line item's inventoryType is
 for Prebid Mobile video line items. In that scenario you'll need to
 add the "Mobile App" inventoryType.
 
-**Long-Form (OTT) Video**:
+## Long-Form (OTT) Video
 
 {: .alert.alert-warning :}
 Targeting Long form video can create a lot of line items. It's recommended
