@@ -46,4 +46,3 @@ The Zeta Global SSP adapter requires setup and approval from the Zeta Global SSP
 | Name                 | Scope    | Description                                                                                                         | Example      | Type      |
 |----------------------|----------|---------------------------------------------------------------------------------------------------------------------|--------------|-----------|
 | `sid`                | optional | Seller ID. The identifier associated with the seller or reseller account within the advertising system              | `123`        | `integer` |
-
