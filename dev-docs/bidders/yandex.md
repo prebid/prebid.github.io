@@ -15,7 +15,10 @@ privacy_sandbox: topics
 This Adapter integrates with Yandex's ad services.
 
 {: .alert.alert-info :}
-Note: For detailed auction analytics, check out our [Analytics Adapter](https://docs.prebid.org/dev-docs/analytics/yandex.html).
+For detailed auction analytics, check out our [Analytics Adapter](/dev-docs/analytics/yandex.html).
+
+{: .alert.alert-info :}
+To improve the personalization of ads for publishers’ users, check out our [User ID Module](/dev-docs/modules/userid-submodules/yandex.html).
 
 #### Client Bid Params
 
