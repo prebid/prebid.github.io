@@ -22,7 +22,7 @@ General components:
 
 We recommend that you study the flows documented in these different rendering approaches:
 
-- [Bidding-Only](/prebid-mobile/pbm-api/{{include.platform}}/{{include.platform}}-sdk-integration-gam-original-api.html#how-it-works) - generally this approach utilizes webviews and the Prebid Universal Creative to render most types of ads.
+- [Bidding-Only](/prebid-mobile/pbm-api/{{include.platform}}/{{include.platform}}-sdk-integration-gam-original-api.html#how-it-works) - generally this approach utilizes webviews and the Prebid Universal Creative (PUC) to render most types of ads. A custom renderer can be used instead of the PUC if desired.
 - [Prebid-Rendered](/prebid-mobile/modules/rendering/{{include.platform}}-sdk-integration-gam.html) - with this approach the Prebid SDK will render any bids that are chosen for display.
 
 In both cases:
