@@ -27,6 +27,15 @@ There are two ways to add the functionality of LiveIntent Identity sub-module to
     LiveConnectMode=minimal gulp build --modules=liveIntentIdSystem
     ```
 
+3. The external version, which requires a LiveConnect tag (>=3.0.0) installed on your page in addition to Prebid. Please contact LiveIntent for support in setting up LiveConnect.
+This will significantly reduce the size of your Prebid.js bundle and allow you to use the newest features of LiveConnect. All other versions will be deprecated in the future.
+
+    Add the **external** LiveIntent Identity module to your Prebid.js package with:
+
+    ```bash
+    LiveConnectMode=external gulp build --modules=liveIntentIdSystem
+    ```
+
 This is an example of how the `request.userId.lipb` object, which contains the resolution result, would look like:
 
 ```json
@@ -36,6 +45,13 @@ This is an example of how the `request.userId.lipb` object, which contains the r
 }
 ```
 
+## Configure the LiveConnect Tag
+Configuring the LiveConnect tag is a critical step in setting up effective identity resolution on your website. This tag helps capture user interactions, generate first-party cookies, and link these interactions to stable identifiers. By doing so, the LiveConnect tag transforms anonymous site traffic into actionable data, enabling you to better understand and engage with your audience.
+
+For detailed configuration instructions, refer to the following resources:
+[LiveConnect for HIRO Clients Configuration Guide](https://support.liveintent.com/hc/en-us/articles/30245171256724-LiveConnect-Configuration-Guide-for-HIRO-Clients)
+
+If you need a publisher id or distributor id for the LiveConnect script on the page, please connect your LiveIntent representative for it.
 If you're not already a LiveIntent customer, feel free to [reach out](https://www.liveintent.com/get-in-touch/) to us. You can also explore the [LiveIntent’s privacy policies](https://www.liveintent.com/services-privacy-policy/).
 
 ## How LiveIntent user ID sub-module works
@@ -82,7 +98,7 @@ pbjs.setConfig({
 
 ### Multiple user IDs
 
-The attributes `uid2`, `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, `sovrn`, `index`, `thetradedesk` and `fpid` are treated specially by LiveIntent's user ID sub-module. Each of these attributes will result in a separate ID returned by the sub-module. Note: `thetradedesk` will be exposed as `tdid` because of historical reasons. 
+The attributes `uid2`, `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, `sovrn`, `index`, `thetradedesk` and `fpid` are treated specially by LiveIntent's user ID sub-module. Each of these attributes will result in a separate ID returned by the sub-module. Note: `thetradedesk` will be exposed as `tdid` because of historical reasons.
 
 For example, in case `uid2` is configured to be requested in addition to the `nonID`, the `request.userId` object would look like the following:
 
