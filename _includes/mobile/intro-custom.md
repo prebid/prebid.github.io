@@ -18,17 +18,40 @@ General components:
     - Or delegate the rendering to Prebid SDK
     - The tradeoffs are discussed below
 
-### Render the Winning Ad
+### General Approaches
 
-We recommend that you study the flows documented in these different rendering approaches:
+Custom integrations will need to determine whether they want to utilize Prebid SDK's full rendering capacity, or just obtain bids to do their own rendering.
 
-- [Bidding-Only](/prebid-mobile/pbm-api/{{include.platform}}/{{include.platform}}-sdk-integration-gam-original-api.html#how-it-works) - generally this approach utilizes webviews and the Prebid Universal Creative (PUC) to render most types of ads. A custom renderer can be used instead of the PUC if desired.
-- [Prebid-Rendered](/prebid-mobile/modules/rendering/{{include.platform}}-sdk-integration-gam.html) - with this approach the Prebid SDK will render any bids that are chosen for display.
+#### Custom Bidding Only
 
-In both cases:
+![Custom Bidding Only Integration Details](/assets/images/prebid-mobile/mobile-details-custom-bidding-only.png)
 
-- replace "GAM" with your ad server (or even just a function in your app code that makes the final desiscion about which ad to serve)
-- replace "GAM SDK" with either your ad server's SDK or your app code's translation of Prebid SDK data to the ad decisioning layer.
+1. Prebid SDK calls Prebid Server which supplies one or more bids.
+1. The app inspects the targeting values.
+1. Something makes an ad decision - either your ad server or your app.
+1. If a 3rd party HTML creative is chosen (banner or interstitial):
+    1. The HTML should be written to a webview, optionally using the Prebid Universal Creative (PUC).
+    1. The PUC or your custom rendering code loads the winning creative from Prebid Cache.
+    1. The PUC or your custom rendering code  writes this creative into an iframe and hits all the tracking strings: Prebid win URL, billing url (burl), and notice url (nurl).
+        1. If MRAID is available, the PUC uses it to consider the view state before hitting the burl.
+1. If a video VastUrl creative is chosen:
+    1. The platform video player loads the VAST from Prebid Cache.
+    1. It then starts playing the VAST, hitting the embedded Impression tags when appropriate.
+1. Your app code will need to handle Open Measurement SDK interactions.
+
+#### Custom Prebid Rendered
+
+![Custom Prebid-Rendered Integration Details](/assets/images/prebid-mobile/mobile-details-custom-prebid-rendered.png)
+
+1. Prebid SDK calls Prebid Server which supplies one or more bids.
+1. The app inspects the targeting values.
+1. Something makes an ad decision - either your ad server or your app.
+1. If a 3rd party HTML creative is chosen (banner, native, interstitial, non-instream video):
+    1. The app calls Prebid SDK rendering functions.
+1. If a video VastUrl creative is chosen (rewarded video only):
+    1. The app calls Prebid SDK rendering functions.
+
+#### Tradeoffs
 
 Here are the tradeoffs between two integration approaches:
 
