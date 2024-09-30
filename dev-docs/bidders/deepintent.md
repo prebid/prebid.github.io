@@ -6,6 +6,7 @@ pbjs: true
 pbs: true
 biddercode: deepintent
 media_types: banner, video
+floors_supported: true
 tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
