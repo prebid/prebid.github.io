@@ -11,7 +11,7 @@ Welcome to Prebid video ad support. This is a collection of resources covering
 how Prebid can help you monetize video. If you're new to Prebid video, a
 good place to start would be the [Prebid.js-focused training video overview](/prebid-video/video-overview-video.html).
 
-## Mapping Out Prebid Integration with IAB's Use Cases/Video Placement Types
+## Mapping Out Prebid Integration with the IAB Use Cases/Video Placement Types
 
 The IAB has identified the [four types of video placements](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#list_plcmtsubtypesvideo) for the introduced **plcmt** attribute in **Object:Video**, in accordance with the IAB Digital Video Guidelines: 
 
@@ -36,7 +36,7 @@ The player calls the ad server, and the latter matches Prebid.js key-value pairs
 
 **Here’s how Prebid implementation types are mapped out with the IAB use cases:**
 
-| IAB Use Case/Placement Type  | Prebid Implementation |
+| IAB Use Case  | Prebid Implementation |
 | ------------- | ------------- |
 | Instream | In-player  |
 | Accompanying Content | In-player  |
