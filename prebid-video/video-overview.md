@@ -14,7 +14,9 @@ sidebarType: 4
 - TOC
 {:toc}
 
-Prebid.js provides tools that allow header bidding video demand to compete with your ad server video demand. Prebid video demand can be incorporated for both instream, outstream, and long-form video slots.
+Prebid.js provides tools that allow header bidding video demand to compete with your ad server video demand. Prebid.js provides tools that allow header bidding video demand to compete with your ad server video demand. Prebid video demand can be incorporated through the in-player and in-renderer integration.
+
+**Note!** Learn more about mapping out IAB use cases with the Prebid implementation specs on the Prebid Video Ads page.
 
 Prebid.js supports all the latest [OpenRTB Video types and subtypes](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/develop/AdCOM%20v1.0%20FINAL.md#list--placement-subtypes---video-).
 
