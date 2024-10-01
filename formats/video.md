@@ -34,10 +34,15 @@ The player calls the ad server, and the latter matches Prebid.js key-value pairs
 (b) If it wins the auction and needs to render the ad, there is special rendering activity required. 
 (c) Prebid needs to create an **iframe** and do the appropriate thing to load and invoke the renderer.
 
+**Here’s how Prebid implementation types are mapped out with the IAB use cases:**
 
-1. [Prebid.js outstream video overview](/prebid-video/video-overview.html#outstream-video)
-1. [Prebid.js: Getting started with Prebid video](/prebid-video/video-getting-started.html)
-1. [Prebid Server video ad support](/prebid-server/use-cases/pbs-pbjs.html)
+| IAB Use Case/Placement Type | Prebid Implementation |
+| ------------- | ------------- |
+| Instream | In-player  |
+| Accompanying Content | In-player  |
+| Interstitial | In-player or in-renderer depending on implementation  |
+| No Content/Standalone | In-player or in-renderer depending on implementation  |
+
 
 ## CTV-OTT
 
