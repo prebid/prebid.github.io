@@ -30,15 +30,15 @@ Start by reading [Ad Ops Getting Started](/adops/before-you-start.html). This wi
 
 One thing to keep in mind as you set up your line items is price granularity. Be sure to communicate your price granularity requirements to your developers, as they might need to define custom configuration settings, depending on your granularity.
 
-#### Instream
+#### In-player Integration
 
-If you already have a Prebid integration for banner, you must create a separate set of ad server line items to enable Prebid to monetize instream video.
+If you already have a Prebid integration for banner, you must create a separate set of ad server line items to enable the Prebid [in-player integration of video ads](https://docs.prebid.org/prebid-video/in-player-integration.html).
 
 If you’re using Google Ad Manager as your ad server:
 Once you understand the general setup requirements, follow the instructions for video-specific line item setup in [Setting Up Prebid Video in Google Ad Manager](/adops/setting-up-prebid-video-in-dfp.html).
 
 If you’re using another ad server:
-Follow the instructions for your ad server to create line items for instream video content.  The primary points to keep in mind as you set up your line items include:
+Follow the instructions for your ad server to create line items for the in-player integration. The primary points to keep in mind as you set up your line items include:
 
 - Line items must target Prebid key-values.
 - The VAST creative URL must be in the format `https://prebid.adnxs.com/pbc/v1/cache?uuid={hb_cache_id}`, where `{hb_cache_id}` is the value passed to the ad server from Prebid.js.
