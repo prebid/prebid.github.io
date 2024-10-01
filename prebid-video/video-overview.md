@@ -40,11 +40,11 @@ An introduction to how the video ad format works with Prebid.js.
 
 ## How It Works
 
-### Instream Video
+### In-player Integration
 
-Here’s a high-level diagram showing how video header bidding works for instream video (with more details outlined in the steps below):
+Here’s a high-level diagram showing how video header bidding works for the in-player integration (formerly known as “instream”), with more details outlined in the steps below:
 
-![Instream Video Diagram]({{site.baseurl}}/assets/images/prebid-video/instream-video.png){: .pb-img.pb-lg-img :}
+![In-player Integration Diagram]({{site.baseurl}}/assets/images/prebid-video/instream-video.png){: .pb-img.pb-lg-img :}
 
 1. **Prebid sends bid requests.**  
 Prebid.js code loads within the page header and sends a bid request to each video demand partner included on a given Prebid video ad unit.
