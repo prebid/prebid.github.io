@@ -36,7 +36,7 @@ The player calls the ad server, and the latter matches Prebid.js key-value pairs
 
 **Here’s how Prebid implementation types are mapped out with the IAB use cases:**
 
-| IAB Use Case/Placement Type | Prebid Implementation |
+| IAB Use Case/Placement Type  | Prebid Implementation |
 | ------------- | ------------- |
 | Instream | In-player  |
 | Accompanying Content | In-player  |
