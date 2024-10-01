@@ -32,7 +32,7 @@ One thing to keep in mind as you set up your line items is price granularity. Be
 
 #### In-player Integration
 
-If you already have a Prebid integration for banner, you must create a separate set of ad server line items to enable the Prebid [in-player integration of video ads](https://docs.prebid.org/prebid-video/in-player-integration.html).
+If you already have a Prebid integration for banner, you must create a separate set of ad server line items to enable the Prebid [in-player integration of video ads](https://docs.prebid.org/prebid-video/video-overview#in-player-integration).
 
 If you’re using Google Ad Manager as your ad server:
 Once you understand the general setup requirements, follow the instructions for video-specific line item setup in [Setting Up Prebid Video in Google Ad Manager](/adops/setting-up-prebid-video-in-dfp.html).
@@ -45,7 +45,7 @@ Follow the instructions for your ad server to create line items for the in-playe
 
 #### In-renderer Integration
 
-If you already have a Prebid integration for banner, you don’t need to do anything differently to integrate ads through the in-renderer integration. [No-content/standalone ad units](https://docs.prebid.org/formats/video.html) use the same creative and line item targeting setup as banner creatives.See the [Step by Step Guide to Google Ad Manager Setup](/adops/step-by-step.html) for instructions. (If you’re not using Google Ad Manager as your ad server, follow your ad server’s guidelines for setting up your line items.)
+If you already have a Prebid integration for banner, you don’t need to do anything differently to integrate ads through the [in-renderer integration](https://docs.prebid.org/prebid-video/video-overview#in-renderer-integration). [No-content/standalone ad units](https://docs.prebid.org/formats/video.html) use the same creative and line item targeting setup as banner creatives.See the [Step by Step Guide to Google Ad Manager Setup](/adops/step-by-step.html) for instructions. (If you’re not using Google Ad Manager as your ad server, follow your ad server’s guidelines for setting up your line items.)
 
 {: .alert.alert-info :}
 **Prebid Server** If you’ve decided to conduct your header bidding auctions server-side rather than on the client, you need to have a Prebid Server account or set up your own. See the [Prebid Server Overview](/prebid-server/overview/prebid-server-overview.html) to begin your integration.
