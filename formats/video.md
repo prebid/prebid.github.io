@@ -27,12 +27,13 @@ However, for the described four use cases/placement types, there are only two ty
 
 1. [**In-player.**](https://docs.prebid.org/prebid-video/video-overview#in-player-integration) There's already a video player on the page. The publisher has to use the [Video Module](https://docs.prebid.org/prebid-video/video-module.html) or implement a javascript function that passes bid responses to the player. In this scenario, Prebid handles video bid caching server-side, then maps it to a unique cache ID, which will be passed to the ad server via key-value targeting. 
 
-The player calls the ad server, and the latter matches Prebid.js key-value pairs to a pre-configured line item, followed by the player’s rendering of the video ad from the winning bidder. 
+   The player calls the ad server, and the latter matches Prebid.js key-value pairs to a pre-configured line item, followed by the player’s rendering of the video ad from the winning bidder. 
 
- 2. [**In-renderer.**](https://docs.prebid.org/prebid-video/video-overview#in-renderer-integration) In this scenario, the Demand partner’s response to bid requests includes a [renderer](https://docs.prebid.org/overview/glossary.html#renderer) script, followed by Prebid’s handling of the following: 
-(a) Prebid communicates with the ad server as normal. 
-(b) If it wins the auction and needs to render the ad, there is special rendering activity required. 
-(c) Prebid needs to create an **iframe** and do the appropriate thing to load and invoke the renderer.
+2. [**In-renderer.**](https://docs.prebid.org/prebid-video/video-overview#in-renderer-integration) In this scenario, the Demand partner’s response to bid requests includes a [renderer](https://docs.prebid.org/overview/glossary.html#renderer) script, followed by Prebid’s handling of the following: 
+
+  -(a) Prebid communicates with the ad server as normal.   
+  -(b) If it wins the auction and needs to render the ad, there is special rendering activity required.  
+  -(c) Prebid needs to create an `iframe` and do the appropriate thing to load and invoke the renderer. 
 
 **Here’s how Prebid implementation types are mapped out with the IAB use cases:**
 
