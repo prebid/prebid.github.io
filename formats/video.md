@@ -31,9 +31,9 @@ However, for the described four use cases/placement types, there are only two ty
 
 2. [**In-renderer.**](https://docs.prebid.org/prebid-video/video-overview#in-renderer-integration) In this scenario, the Demand partner’s response to bid requests includes a [renderer](https://docs.prebid.org/overview/glossary.html#renderer) script, followed by Prebid’s handling of the following: 
 
-  -(a) Prebid communicates with the ad server as normal.   
-  -(b) If it wins the auction and needs to render the ad, there is special rendering activity required.  
-  -(c) Prebid needs to create an `iframe` and do the appropriate thing to load and invoke the renderer. 
+   (a) Prebid communicates with the ad server as normal.   
+   (b) If it wins the auction and needs to render the ad, there is special rendering activity required.  
+   (c) Prebid needs to create an `iframe` and do the appropriate thing to load and invoke the renderer. 
 
 **Here’s how Prebid implementation types are mapped out with the IAB use cases:**
 
