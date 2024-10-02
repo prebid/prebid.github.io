@@ -13,7 +13,7 @@ good place to start would be the [Prebid.js-focused training video overview](/pr
 
 ## Mapping Out Prebid Integration with the IAB Use Cases/Video Placement Types
 
-The IAB has identified the [four types of video placements](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#list_plcmtsubtypesvideo) for the introduced **plcmt** attribute in **Object:Video**, in accordance with the IAB Digital Video Guidelines: 
+The IAB has identified the [four types of video placements](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#list_plcmtsubtypesvideo) for the introduced `plcmt` attribute in `Object:Video`, in accordance with the IAB Digital Video Guidelines: 
 
 1. **Instream:** pre-roll, mid-roll and post-roll ads that are played before, during or after the streaming video content, which the viewer has requested. Instream video must be set to “sound on” by default at player start, or have explicitly clear user intent to watch the video content. While there may be other content surrounding the player, the video content must be the focus of the user’s visit.
 
