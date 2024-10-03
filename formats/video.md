@@ -44,7 +44,6 @@ However, for the described four use cases/placement types, there are only two ty
 | Interstitial | In-player or in-renderer depending on implementation  |
 | No Content/Standalone | In-player or in-renderer depending on implementation  |
 
-
 ## CTV-OTT
 
 See the [Connected TV landing page](/formats/ctv.html).
