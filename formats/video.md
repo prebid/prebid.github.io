@@ -29,7 +29,7 @@ However, for the described four use cases/placement types, there are only two ty
 
    The player calls the ad server, and the latter matches Prebid.js key-value pairs to a pre-configured line item, followed by the player’s rendering of the video ad from the winning bidder. 
 
-2. [**In-renderer.**](https://docs.prebid.org/prebid-video/video-overview#in-renderer-integration) In this scenario, the Demand partner’s response to bid requests includes a [renderer](https://docs.prebid.org/overview/glossary.html#renderer) script, followed by Prebid’s handling of the following: 
+2. [**In-renderer.**](https://docs.prebid.org/prebid-video/video-overview#in-renderer-integration) In this scenario, the Demand partner’s response to bid requests includes a [renderer](/overview/glossary.html#renderer) script, followed by Prebid’s handling of the following: 
 
    (a) Prebid communicates with the ad server as normal.   
    (b) If it wins the auction and needs to render the ad, there is special rendering activity required.  
