@@ -50,13 +50,13 @@ Here’s a high-level diagram showing how video header bidding works for the in-
 Prebid.js code loads within the page header and sends a bid request to each video demand partner included on a given Prebid video ad unit.
 
 2. **Demand partners respond.**  
-Each response includes the bid price and the video creative in the form of a VAST tag URL which returns a VAST XML wrapper.  This video creative will be rendered by the video player if the bid is selected in the ad server.
+Each response includes the bid price and the video creative in the form of a VAST tag URL which returns a VAST XML wrapper. This video creative will be rendered by the video player if the bid is selected in the ad server.
 
 3. **Prebid.js caches video bids.**  
 Each video bid is cached server-side and mapped to a unique cache ID which will be passed to the ad server via key-value targeting.  The [Prebid.js video creative]({{site.github.url}}/adops/setting-up-prebid-video-in-dfp.html#creative-setup) configured in the ad server contains a macro that references this cache ID. (Note: Some bidders will cache before responding to Prebid.js. In those cases, the bidder will provide a `bidResponse.videoCacheKey` and this step will be skipped. See [Notes on Prebid Cache]({{site.github.url}}/dev-docs/show-video-with-a-dfp-video-tag.html#notes-on-prebid-cache) for details.)
 
 4. **Prebid creates new master video ad server tag URL.**  
-Prebid combines an existing video ad server tag with Prebid key-value targeting pairs to create a new master video ad server tag URL.  This URL will be passed into the video player.
+Prebid combines an existing video ad server tag with Prebid key-value targeting pairs to create a new master video ad server tag URL. This URL will be passed into the video player.
 
 5. **Video player calls ad server.**  
 The video player loads the master video ad server tag URL, which makes a call to the ad server.
