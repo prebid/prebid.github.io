@@ -17,6 +17,7 @@ pbjs: true
 pbs: false
 prebid_member: false
 sidebarType: 1
+gpp_sids: tcfeu, usnat, usstate_all
 ---
 ### Registration
 
