@@ -32,7 +32,7 @@ One thing to keep in mind as you set up your line items is price granularity. Be
 
 #### In-player Integration
 
-If you already have a Prebid integration for banner, you must create a separate set of ad server line items to enable the Prebid [in-player integration of video ads](https://docs.prebid.org/prebid-video/video-overview#in-player-integration).
+If you already have a Prebid integration for banner, you must create a separate set of ad server line items to enable the Prebid [in-player integration of video ads](/prebid-video/video-overview#in-player-integration).
 
 If you’re using Google Ad Manager as your ad server:
 Once you understand the general setup requirements, follow the instructions for video-specific line item setup in [Setting Up Prebid Video in Google Ad Manager](/adops/setting-up-prebid-video-in-dfp.html).
