@@ -5,7 +5,7 @@ description: Prebid Livewrapped Bidder Adaptor
 biddercode: livewrapped
 pbjs: true
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 prebid_member: true
 userIds: all
 schain_supported: true

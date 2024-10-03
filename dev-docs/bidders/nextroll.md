@@ -5,7 +5,7 @@ description: Prebid NextRoll Bidder Adapter
 pbjs: true
 biddercode: nextroll
 media_types: display, native
-gdpr_supported: false
+tcfeu_supported: false
 floors_supported: true
 usp_supported: true
 prebid_member: true

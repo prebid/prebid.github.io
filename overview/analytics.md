@@ -9,6 +9,16 @@ sidebarType: 1
 
 There are many analytics adapter plugins available to track header bidding performance for your site.
 
+## Video Overview
+
+{% include vimeo-iframe.html id="957374949" title="957374949" %}
+
+Further Content:
+
+- [Transcript of this video](/overview/analytics-video.html)
+- [Prebid.js Events](https://docs.prebid.org/dev-docs/publisher-api-reference/getEvents.html)
+- [All videos](/overview/all-videos.html)
+
 ## How to Integrate an Analytics Adapter
 
 Each analytics provider has specific instructions for using their system, but these are the general steps:
@@ -58,7 +68,7 @@ pbjs.que.push(function() {
 
 {: .table .table-bordered .table-striped }
 | **Module Code** | {{ page.modulecode }} | **Prebid.org Member** | {% if page.prebid_member == true %}yes{% else %}no{% endif %} |
-| **GDPR Support** | {% if page.gdpr_supported == true %}yes{% elsif page.gdpr_supported == false %}no{% else %}Check with vendor{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% elsif page.usp_supported == false %}no{% else %}Check with vendor{% endif %} |
+| **GDPR Support** | {% if page.tcfeu_supported == true %}yes{% elsif page.tcfeu_supported == false %}no{% else %}Check with vendor{% endif %} | **USP/CCPA Support** | {% if page.usp_supported == true %}yes{% elsif page.usp_supported == false %}no{% else %}Check with vendor{% endif %} |
 | **IAB GVL ID** | {% if page.gvl_id %}{{page.gvl_id}}{% else %}Check with vendor{% endif %} | **COPPA Support** | {% if page.coppa_supported == true %}yes{% elsif page.coppa_supported == false %}no{% else %}Check with vendor{% endif %} |
 
 {{ page.content }}

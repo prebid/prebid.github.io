@@ -3,7 +3,7 @@ layout: bidder
 title: Bidmachine
 description: Prebid Bidmachine Bidder Adapter
 biddercode: bidmachine
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 736
 usp_supported: true
 coppa_supported: true

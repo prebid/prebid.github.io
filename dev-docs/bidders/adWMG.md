@@ -5,7 +5,8 @@ description: Prebid adWMG Bidder Adapter
 pbjs: true
 biddercode: adWMG
 media_types: banner
-gdpr_supported: true
+gvl_id: 959
+tcfeu_supported: true
 sidebarType: 1
 ---
 

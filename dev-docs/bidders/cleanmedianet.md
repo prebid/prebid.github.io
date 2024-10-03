@@ -5,7 +5,7 @@ description: Clean Media Bidder Adapter
 biddercode: cleanmedianet
 pbjs: true
 media_types: banner, video
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: false
 schain_supported: true

@@ -4,7 +4,7 @@ title: RevContent
 description: RevContent Bidder Adaptor
 biddercode: revcontent
 media_types: native
-gdpr_supported: false
+tcfeu_supported: false
 coppa_supported: false
 usp_supported: false
 pbjs: true

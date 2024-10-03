@@ -84,7 +84,7 @@ From the **Settings** tab, do the following:
 ![Line item delivery settings](/assets/images/ad-ops/gam-sbs/delivery-settings.png)
 
 {:start="7"}
-7. Under **Adjust delivery**, set **Rotate creatives** to **Evenly**. You can leave the defaults for everything else.
+7. Under **Adjust delivery**, set **Display creatives** to **One or more** and **Rotate creatives** to **Evenly**. You can leave the defaults for everything else.
 
 ### Targeting
 

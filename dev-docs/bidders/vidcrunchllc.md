@@ -5,7 +5,9 @@ description: VidCrunch Bidder Adapter
 biddercode: vidcrunchllc
 aliasCode: adtelligent
 media_types: video,banner
-gdpr_supported: true
+gvl_id: 410 (adtelligent)
+tcfeu_supported: true
+gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
 coppa_supported: true
@@ -16,6 +18,8 @@ pbjs: true
 pbs: false
 deals_supported: false
 sidebarType: 1
+enable_download: false
+pbjs_version_notes: removed in 8.13.0
 ---
 
 ### Bid params
@@ -32,7 +36,7 @@ This adapter provides a solution for accessing Video demand and display demand.
 
 ### Test Parameters
 
-```
+``` javascript
     var adUnits = [
 
       // Video instream adUnit

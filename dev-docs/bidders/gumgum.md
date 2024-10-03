@@ -10,7 +10,8 @@ media_types: banner, video
 schain_supported: true
 floors_supported: true
 userIds: unifiedId, identityLink
-gdpr_supported: true
+gvl_id: 61
+tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
 sidebarType: 1

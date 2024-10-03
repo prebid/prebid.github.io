@@ -6,7 +6,7 @@ biddercode: logan
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-gdpr_supported: false
+tcfeu_supported: false
 pbjs: true
 pbs: true
 sidebarType: 1

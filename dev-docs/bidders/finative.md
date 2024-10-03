@@ -5,7 +5,7 @@ description: Prebid Finative Bidder Adaptor
 pbjs: true
 biddercode: finative
 media_types: native
-gdpr_supported: true
+tcfeu_supported: false
 sidebarType: 1
 ---
 

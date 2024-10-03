@@ -45,7 +45,7 @@ The following modules have been removed from Prebid.js as part of the 8.0 releas
 | OpenX ORTB Bid Adapter | OpenX Bid Adapter
 | Synacor Bid Adapter | IMDS Bid Adapter
 | AdGeneration Bid Adapter
-| EMX Bid Adapter | Cadent Bid Adapter
+| EMX Bid Adapter | Cadent Aperture MX Bid Adapter
 | Rubicon Analytics Adapter | Magnite Analytics Adapter
 
 ## Transaction identifiers are now reliable and opt in
@@ -69,9 +69,11 @@ RTD Modules were also updated to require that they do not have bidder specific h
 
 Several activity control translation modules will be released in the near future, translating consent strings into suppressed behaviors and restricted information in the library. Your contributions on these modules and feedback are very welcome.
 
+Additionally, bidder aliases should now have their own gvl id if a user has the consent management module.
+
 ## Size Mapping
 
-Users of the [label](/dev-docs/conditional-ad-units.html) feature should be careful to examine the new size mapping module. We moved it out of core to improve the build size. See [github.com/prebid/Prebid.js/issue/9597](https://github.com/prebid/Prebid.js/issue/9597)
+Users of the [label](/dev-docs/conditional-ad-units.html) feature should be careful to examine the new size mapping module. We moved it out of core to improve the build size. See [github.com/prebid/Prebid.js/issue/9597](https://github.com/prebid/Prebid.js/issues/9597)
 
 ## Misc changes
 

@@ -5,7 +5,7 @@ description: Prebid Vidoomy Bidder Adaptor
 pbjs: true
 biddercode: vidoomy
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 380
 usp_supported: true
 coppa_supported: true

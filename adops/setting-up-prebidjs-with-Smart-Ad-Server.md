@@ -69,5 +69,4 @@ For more details, read [here](https://support.smartadserver.com/s/article/Holist
 
 Read these articles to learn more about the available header bidding reporting:
 
-- [Holistic Dashboard](https://support.smartadserver.com/s/article/Holistic-dashboard) - provides a fast and easy overview of basic metrics by delivery channel and RTB product.
 - [Big Data Reports](https://support.smartadserver.com/s/article/Holistic-Setup#bdr) - provides full, in-depth reporting with header bidding related dimensions and metrics.

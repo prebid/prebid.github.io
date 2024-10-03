@@ -6,7 +6,8 @@ pbjs: true
 biddercode: didnavideo
 aliasCode: aniview
 media_types: banner, video
-gdpr_supported: true
+gvl_id: 780 (aniview)
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: true
@@ -27,7 +28,7 @@ For more information about [diDNA](http://didna.io/).
 
 ### Test Parameters
 
-```
+```javascript
 videoAdUnit = [
 {
   code: 'video1',

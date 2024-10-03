@@ -6,7 +6,7 @@ biddercode: projectagora
 pbjs: true
 pbs: false
 aliasCode: appnexus
-gdpr_supported: true
+tcfeu_supported: true
 media_types: banner, video, native
 gvl_id: 1032
 schain_supported: true

@@ -5,7 +5,7 @@ description: Prebid BEdigitech Bidder Adapter
 pbjs: true
 pbs: false
 biddercode: bedigitech
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 media_types: banner, native
 ---

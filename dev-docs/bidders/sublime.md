@@ -4,7 +4,7 @@ title: Sublime
 description: Prebid Sublime Bidder Adapter
 pbjs: true
 biddercode: sublime
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 114
 sidebarType: 1
 ---

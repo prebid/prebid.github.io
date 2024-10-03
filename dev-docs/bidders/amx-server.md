@@ -4,7 +4,7 @@ title: AMX RTB
 description: AMX RTB Bid Adapter
 hide: true
 schain_supported: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 userIds: all
@@ -16,6 +16,7 @@ pbs: true
 pbs_app_supported: true
 fpd_supported: true
 multiformat_supported: true
+ortb_blocking_supported: true
 gpp_supported: true
 gvl_id: 737
 sidebarType: 1
@@ -24,11 +25,11 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name        | Scope    | Description                                                     | Example                         | Type     |
+| Name | Scope | Description | Example | Type |
 |-------------|----------|-----------------------------------------------------------------|---------------------------------|----------|
-| `tagId`     | required | Tag ID                                                          | `'cHJlYmlkLm9yZw'`              | `string` |
-| `testMode`  | optional | Activate 100% fill ads                                          | `true`                          | `boolean`|
-| `adUnitId`  | optional | Ad Unit ID used in reporting. Will default to `bid.adUnitCode`  | `'sticky_banner'`               | `string` |
+| `tagId` | required | Tag ID | `'cHJlYmlkLm9yZw'` | `string` |
+| `testMode` | optional | Activate 100% fill ads | `true` | `boolean`|
+| `adUnitId` | optional | Ad Unit ID used in reporting. Will default to `bid.adUnitCode` | `'sticky_banner'` | `string` |
 
 ### Test Parameters
 
@@ -67,14 +68,14 @@ pbjs.setBidderConfig({
         sectioncat: ["IAB2-1"],
         pagecat: ["IAB2-22"],
         content: {
-          context: 5
-        }
+          context: 5,
+        },
       },
       user: {
         yob: 1981,
         keywords: "kw3",
-      }
-    }
-  }
-})
+      },
+    },
+  },
+});
 ```

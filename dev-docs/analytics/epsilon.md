@@ -3,7 +3,7 @@ layout: analytics
 title: Epsilon
 description: Epsilon Prebid Analytics Adapter (formerly Conversant)
 modulecode: conversant
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: false
 prebid_member: true

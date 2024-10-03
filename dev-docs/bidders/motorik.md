@@ -3,7 +3,7 @@ layout: bidder
 title: Motorik
 description: Prebid Motorik Bidder Adaptor
 biddercode: motorik
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true

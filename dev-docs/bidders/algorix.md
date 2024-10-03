@@ -2,9 +2,9 @@
 layout: bidder
 title: AlgoriX
 description: Prebid AlgoriX Bidder Adapter
+gvl_id: 1176
 biddercode: algorix
-gdpr_supported: true
-gvl_id:
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -14,6 +14,7 @@ pbs: true
 pbs_app_supported: true
 prebid_member: true
 sidebarType: 1
+userIds: all
 ---
 
 ### Note

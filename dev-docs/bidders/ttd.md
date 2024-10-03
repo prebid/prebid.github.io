@@ -3,20 +3,27 @@ layout: bidder
 title: The Trade Desk
 description: The Trade Desk Prebid Bidder Adapter
 biddercode: ttd
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 21
 usp_supported: true
 coppa_supported: true
 gpp_supported: true
 schain_supported: true
 dchain_supported: false
-userIds: unifiedId, uid2
+userIds: unifiedId, uid2, liveramp
 media_types: banner, video
 floors_supported: true
 pbjs: true
-pbs: false
+pbs: true
 prebid_member: true
 sidebarType: 1
+pbs_app_supported: true
+userIds: all
+deals_supported: true
+multiformat_supported: will-not-bid
+ortb_blocking_supported: true
+gpp_sids: false
+fpd_supported: false
 ---
 
 ### Disclosure

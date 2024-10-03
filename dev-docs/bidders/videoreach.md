@@ -5,7 +5,7 @@ description: Video Reach Bidder Adapter for Prebid.js
 pbjs: true
 biddercode: videoreach
 media_types: banner, video
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

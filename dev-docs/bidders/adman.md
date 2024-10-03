@@ -5,7 +5,8 @@ description: Prebid Adman Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: adman
-gdpr_supported: true
+gvl_id: 149
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native

@@ -6,7 +6,6 @@ sidebarType: 5
 ---
 
 # Prebid Server FAQ
-
 {:.no_toc}
 
 This page has answers to some frequently asked questions about Prebid Server. If you don't find what you're looking for here, there are other ways to [get help](/support/index.html).
@@ -220,14 +219,49 @@ other fields in imp[].ext that aren't bidders, like `skadn`, `data`, etc.
 Bidders are copied from imp[].ext to imp[].ext.prebid.bidder, and they will be copied for years to come, but we would ask that new implementations of stored requests
 utilize the new location.
 
+## Does PBS do a geo-lookup?
+
+PBS-Go does not currently support integration with a geo-lookup service.
+
+PBS-Java supports MaxMind and Netacuity. It performs the geo-lookup on every request **unless**:
+
+1. The config `gdpr.consent-string-means-in-scope` is true and provided `user.consent` string is valid
+2. `regs.gdpr` is specified in the request
+3. `device.geo.country` is specified in the request
+4. It is unable to determine the IP address from the header or `device.ip`
+5. There's no geo-location service configured
+
 ## Does PBS support SSL?
 
 No, Prebid Server is intended to run behind a load balancer or proxy, so it does not currently support defining a security certificate.
+
+## How can we rename our bid adapter?
+
+If you have a company name change and need to add a new bidder code for the updated branding, here's the recommended approach:
+
+1. Keep the existing filenames and make the new name a hard-coded alias. There are separate instructions for this for [PBS-Go](/prebid-server/developers/add-new-bidder-go.html#aliasing-an-adapter) and [PBS-Java](/prebid-server/developers/add-new-bidder-java.html#create-bidder-alias).
+2. Update the contact email in your YAML file as needed ([PBS-Go](https://github.com/prebid/prebid-server/tree/master/static/bidder-info), [PBS-Java](https://github.com/prebid/prebid-server-java/tree/master/src/main/resources/bidder-config))
+3. **Copy** your bidder documentation file in [https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders](https://github.com/prebid/prebid.github.io/tree/master/dev-docs/bidders) so both names are available.
+
+In the long run, if you'd prefer to change the filenames too, that's ok - but our rule is that the old name needs to be available until the next major release to give time for publishers to transition. In that case:
+
+1. Submit a PR that changes the filenames and makes the old name a hard-coded alias.
+2. Keep both bidder documentation files.
+
+## May I build a server that calls Prebid Server?
+
+Sure. The main endpoint you're going to utilize is the [auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html). Basically, it's just OpenRTB 2.6, but with quite a few Prebid-specific extensions. See the [auction request example](/prebid-server/endpoints/openrtb2/auction-request-example.html).
 
 ## Should Prebid bidders be in ads.txt?
 
 Publishers should be careful to list all their bidding partners in their ads.txt file. Bidders without an entry in ads.txt may be
 perceived by DSPs as unauthorized sources of your inventory. The domain for any ads.txt [inventory partners](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/dc71586842e648e89c1bbe6c666ffac8ff010a96/2.6.md?plain=1#L1752), if one exists, should be specified with a `setConfig({ortb2.site.inventorypartnerdomain})` call. For details of the specification of ads.txt entries, see [ads.txt v1.1](https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf)
+
+## Does Prebid Server count as a hop in the supply chain?
+
+That depends on how Prebid Server is set up. In general, no, PBS does not add an entry to the `schain`. But a PBS [managed service](https://prebid.org/managed-services/) could be configured to add to the schain. 
+
+The supply chain is meant to track financial arrangements, and PBS is basically a simple proxy server that does not insert itself into the money flow by default. Most PBS managed services require the publisher to have a direct financial relationship with each bidder, but there may be managed services that handle the money.
 
 ## How can I help with Prebid Server?
 

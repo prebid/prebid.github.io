@@ -9,14 +9,9 @@ sidebarType: 2
 ---
 
 # Prebid Mobile Guide to Privacy Regulation
-
 {:.no_toc}
 
-{% capture legalNotice %}
-  This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
-  {% endcapture %}
-
-{% include /alerts/alert_important.html content=legalNotice %}
+{% include legal-warning.html %}
 
 - TOC
 {:toc}
@@ -77,27 +72,8 @@ To ensure proper monetization and relevant targeting, the SDK should be enabled 
 
 ### Code Samples
 
-#### iOS
-
-```swift
-Targeting.shared.subjectToGDPR = false;
-
-Targeting.shared.gdprConsentString = "BOMyQRvOMyQRvABABBAAABAAAAAAEA";
-
-Targeting.shared.purposeConsents = "100000000000000000000000";
-
-let deviceAccessConsent = Targeting.shared.getDeviceAccessConsent();
-```
-
-#### Android
-
-```swift
-TargetingParams.setSubjectToGDPR(context, true);
-
-TargetingParams.setGDPRConsentString("BOMyQRvOMyQRvABABBAAABAAAAAAEA");
-    
-TargetingParams.setPurposeConsents("101010001");
-```
+- See [iOS Global Parameters](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html)
+- See [Android Global Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-android.html)
 
 ## California Consumer Privacy Act (CCPA)
 
@@ -119,7 +95,7 @@ Prebid mobile supports the [IAB US Privacy signal](https://iabtechlab.com/standa
 - Translate notice and opt-out signals into [IAB US Privacy String format](https://iabtechlab.com/standards/ccpa/)
 - Store IAB US Privacy signal in `UserDefaults` for iOS or `SharedPreferences` for Android for persistent storage allowing access for vendors per IAB recommendations
 
-The job of the Prebid SDK will:
+Prebid SDK will:
 
 - Read from `UserDefaults` (iOS) or `SharedPreferences` (Android) for US Privacy signal
   - Prebid SDK will look for the key `IABUSPrivacy_String`, all other key names or spellings will be ignored
@@ -129,3 +105,7 @@ The job of the Prebid SDK will:
 
 It is worth noting Prebid Server will be a passthrough as well and will not validate format or correctness of US Privacy signal nor strip any user data from the request either, even if the presence of an opt out.
 
+## Further Reading
+
+- [Prebid Privacy Resources](/support/privacy-resources.html)
+- Global parameters [iOS](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html), [Android](/prebid-mobile/pbm-api/android/pbm-targeting-android.html)

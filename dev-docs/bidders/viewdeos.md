@@ -6,7 +6,7 @@ pbjs: false
 pbs: true
 biddercode: viewdeos
 media_types: banner,video
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 924
 sidebarType: 1
 ---

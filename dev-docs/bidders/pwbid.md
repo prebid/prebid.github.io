@@ -7,7 +7,7 @@ pbs: true
 biddercode: pwbid
 aliasCode: pubwise
 media_types: banner, native, video
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 prebid_member: true

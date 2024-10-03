@@ -5,7 +5,7 @@ description: AdDefend Prebid Adapter
 biddercode: addefend
 pbjs: true
 media_types: banner
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 539
 sidebarType: 1
 ---

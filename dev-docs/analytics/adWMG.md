@@ -3,7 +3,7 @@ layout: analytics
 title: adWMG
 description: adWMG Analytics Adapter
 modulecode: adWMG
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: false
 coppa_supported: false
 prebid_member: false

@@ -6,7 +6,6 @@ sidebarType: 1
 ---
 
 # Prebid.js Module Overview
-
 {:.no_toc}
 
 The core of Prebid.js contains only the foundational code needed for header bidding. Any functionality that could be considered an add-on is part of a module. These are the major categories:
@@ -16,7 +15,6 @@ The core of Prebid.js contains only the foundational code needed for header bidd
 * Any other extensible functionality - documented on this page
 
 * TOC
-
 {:toc}
 
 {% assign module_pages = site.pages | where: "page_type", "module" %}

@@ -3,7 +3,7 @@ layout: bidder
 title: Conceptx
 description: Conceptx bidder adapter
 biddercode: conceptx
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 schain_supported: false
@@ -23,7 +23,7 @@ safeframes_ok: true
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |-------------|----------|----------------------------------------------------------------------|----------|----------|
-| `siteId` | required | The site ID `'your-page-name'`. | `'your-page-name'` | `string` |
+| `site` | required | The site `'your-page-name'`. | `'your-page-name'` | `string` |
 | `adunit` | required | The specific adunit | `'some-id-3'` | `string`|
 
 #### Banner example

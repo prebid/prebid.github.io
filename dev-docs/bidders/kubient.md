@@ -7,7 +7,7 @@ pbs: true
 schain_supported: true
 biddercode: kubient
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 tcf2_supported: true

@@ -3,7 +3,7 @@ layout: bidder
 title: Delta Projects
 description: Prebid Delta Projects Bidder Adapter
 biddercode: deltaprojects
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 209
 media_types: banner
 safeframes_ok: false

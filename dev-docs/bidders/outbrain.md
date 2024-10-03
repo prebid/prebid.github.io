@@ -3,7 +3,7 @@ layout: bidder
 title: Outbrain
 description: Outbrain Prebid Bidder Adapter
 biddercode: outbrain
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 164
 usp_supported: true
 coppa_supported: true

@@ -3,7 +3,7 @@ layout: analytics
 title: Audigent
 description: Audigent Analytics Adapter
 modulecode: hadronAnalytics
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 prebid_member: true
 gvl_id: 561

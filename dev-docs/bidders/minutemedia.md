@@ -7,8 +7,11 @@ biddercode: minutemedia
 media_types: banner, video
 multiformat_supported: will-bid-on-any
 schain_supported: true
-gdpr_supported: true
+tcfeu_supported: true
+gpp_supported: true
+gpp_sids: tcfeu, usstate_all, usp
 usp_supported: true
+pbs: true
 floors_supported: true
 userIds: all
 fpd_supported: true

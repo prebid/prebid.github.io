@@ -5,7 +5,7 @@ description: Prebid Ozone Project Bidder Adaptor
 biddercode: ozone 
 pbjs: true
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 userIds: criteo, id5Id, tdid, identityLink, liveIntentId, parrableId, pubCommonId, lotamePanoramaId, sharedId, fabrickId
 gvl_id: 524
 deals_supported: true

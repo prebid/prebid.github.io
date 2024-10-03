@@ -4,7 +4,7 @@ title: VisibleMeasures
 description: Prebid VisibleMeasures Bidder Adapter
 biddercode: visiblemeasures
 usp_supported: true
-gdpr_supported: true
+tcfeu_supported: false
 coppa_supported: true
 schain_supported: true
 floors_supported: true

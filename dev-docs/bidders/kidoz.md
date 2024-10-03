@@ -4,7 +4,7 @@ title: Kidoz
 pbs: true
 media_types: banner
 biddercode: kidoz
-gdpr_supported: true
+tcfeu_supported: false
 coppa_supported: true
 pbs_app_supported: true
 sidebarType: 1

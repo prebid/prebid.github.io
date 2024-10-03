@@ -6,7 +6,7 @@ biddercode: distroscale
 media_types: banner
 pbjs: true
 pbs: false
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true

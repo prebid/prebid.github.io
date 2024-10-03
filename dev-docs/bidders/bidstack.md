@@ -3,7 +3,7 @@ layout: bidder
 title: Bidstack
 description: Prebid Bidstack Bidder Adapter
 biddercode: bidstack
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 462
 usp_supported: false
 coppa_supported: false

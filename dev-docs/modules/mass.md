@@ -160,10 +160,6 @@ To view the integration example:
     http://hostname/integrationExamples/mass/index.html
     ```
 
-### Option 2 - Hosted online
-
-Mass Platform Limited hosts an official integration and demo page that can be accessed using the following link: <https://demo.massplatform.net/ix/prebid/>
-
 ## Testing MASS
 
 Testing requires valid bids to be returned to Prebid. To assist with this process, we recommend you use the MASS Bid Simulation tool found at <https://github.com/massplatform/bidsim>. Your Exchange partner might be able to assist you with other specialist tools and browser plugins to achieve similar resuls.

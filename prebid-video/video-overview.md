@@ -8,10 +8,7 @@ nav_section: pbjs-video-get-started
 sidebarType: 4
 ---
 
-
-
 # Prebid.js for Video Overview
-
 {:.no_toc}
 
 - TOC
@@ -25,11 +22,19 @@ Prebid.js supports all the latest [OpenRTB Video types and subtypes](https://git
 
 Here’s a high-level overview of the steps required to start using Prebid.js for video demand.
 
-![Video Overview]({{site.baseurl}}/assets/images/prebid-video/video-overview.png){:class="pb-lg-img"}
+![Video Overview](/assets/images/prebid-video/video-overview.png){:class="pb-lg-img"}
 
-For implementation details, see [Getting Started with Video for Prebid.js]({{site.github.url}}/prebid-video/video-getting-started.html).
+For implementation details, see [Getting Started with Video for Prebid.js](/prebid-video/video-getting-started.html).
 
-The [Prebid Video Module]({{site.github.url}}/prebid-video/video-getting-started.html#prebid-video-module) is the recommended way to implement video.
+The [Prebid Video Module](/prebid-video/video-getting-started.html#prebid-video-module) is the recommended way to implement video.
+
+## Video Introduction
+
+An introduction to how the video ad format works with Prebid.js.
+
+{% include vimeo-iframe.html id="871606980" title="3.2 Video in Prebid 2023-12-20" %}
+
+- [Transcript of this video overview](/prebid-video/video-overview-video.html)
 
 ## How It Works
 

@@ -5,11 +5,12 @@ description: Prebid Taboola Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: taboola
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 gpp_supported: true
 schain_supported: false
+dchain_supported: true
 media_types: banner
 gvl_id: 42
 prebid_member: true
@@ -18,7 +19,7 @@ safeframes_ok: true
 fpd_supported: true
 ortb_blocking_supported: partial
 deals_supported: false
-pbs_app_supported: false
+pbs_app_supported: true
 multiformat_supported: will-not-bid
 sidebarType: 1
 ---

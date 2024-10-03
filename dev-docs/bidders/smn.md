@@ -6,7 +6,7 @@ pbjs: true
 biddercode: smn
 aliasCode: admixer
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 gvl_id: 511
 fpd_supported: false

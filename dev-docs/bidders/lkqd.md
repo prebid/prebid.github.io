@@ -5,7 +5,7 @@ description: Prebid LKQD Bidder Adaptor
 pbjs: true
 biddercode: lkqd 
 media_types: video
-gdpr_supported: true
+tcfeu_supported: false
 schain_supported: true
 enable_download : false
 sidebarType: 1
@@ -26,14 +26,13 @@ For more information about [LKQD Ad Serving and Management](https://www.nexstard
 ### Ad Unit Setup for Instream Video
 
 ```javascript
-var adUnits = [
-{
+const adUnits = [{
   code: 'video1', // ad slot HTML element ID  
   mediaTypes: {
-    video: {                                // We recommend setting the following video params
-                                            // in Ad Unit rather than bidder params as per Prebid 4.0 recommendation. 
-      playerSize: [640, 480],               // required
-      context: 'instream'                  // required
+    video: {                  // We recommend setting the following video params
+                              // in Ad Unit rather than bidder params as per Prebid 4.0 recommendation. 
+      playerSize: [640, 480], // required
+      context: 'instream'     // required
     }   
   }, 
   bids: [{
@@ -43,6 +42,6 @@ var adUnits = [
         placementId: '263'       // required     
     }
   }],
-  ...
-}
+  // ...
+}];
 ```

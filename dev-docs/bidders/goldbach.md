@@ -4,15 +4,16 @@ title: Goldbach
 description: Prebid Goldbach Bidder Adaptor
 biddercode: goldbach
 media_types: banner, video, native
-gdpr_supported: true
+gvl_id: 580
+tcfeu_supported: true
 prebid_member: true
 userIds: criteo, unifiedId, netId, identityLink, uid2
 schain_supported: true
 coppa_supported: true
 usp_supported: true
-getFloor: true
+floors_supported: true
 pbjs: true
-pbs: true
+pbs: false
 sidebarType: 1
 ---
 

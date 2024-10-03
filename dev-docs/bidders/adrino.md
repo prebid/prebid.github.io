@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: adrino
 media_types: banner, native
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 1072
 sidebarType: 1
 ---

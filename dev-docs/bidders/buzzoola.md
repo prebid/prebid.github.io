@@ -5,7 +5,7 @@ description: Prebid Buzzoola Bidder Adaptor
 pbjs: true
 biddercode: buzzoola
 media_types: banner, video, native
-gdpr_supported: false
+tcfeu_supported: false
 sidebarType: 1
 ---
 

@@ -3,10 +3,10 @@ layout: bidder
 title: AIDEM
 description: AIDEM Bidder Adapter
 biddercode: aidem
-gdpr_supported: true
-gvl_id: none
+tcfeu_supported: true
+gvl_id: 1218
 usp_supported: true
-coppa_supported: false
+coppa_supported: true
 schain_supported: false
 dchain_supported: false
 userId: none
@@ -14,10 +14,10 @@ media_types: banner, video
 safeframes_ok: true
 deals_supported: true
 floors_supported: true
-fpd_supported: false
+fpd_supported: true
 pbjs: true
-pbs: false
-prebid_member: false
+pbs: true
+prebid_member: true
 ortb_blocking_supported: false
 sidebarType: 1
 ---
@@ -70,7 +70,7 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 {: .table .table-bordered .table-striped }
 | Name   | Scope    | Description                                                                                      | Example | Type     |
 |--------|----------|--------------------------------------------------------------------------------------------------|---------|----------|
-| `gdpr` | optional | GDPR Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagement.html) | `{}`    | `Object` |
+| `gdpr` | optional | GDPR Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagementTcf.html) | `{}`    | `Object` |
 | `usp`  | optional | USP Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagementUsp.html)                                                                     | `{}`    | `Object` |
 
 #### Example Banner ad unit
@@ -212,7 +212,7 @@ For video: gulp serve --modules=aidemBidAdapter,dfpAdServerVideo
 
 ## FAQs
 
-#### How do I view AIDEM bid request?
+### How do I view AIDEM bid request?
 
 Navigate to a page where AIDEM is setup to bid. In the network tab,
 search for requests to `zero.aidemsrv.com/bid/request`.

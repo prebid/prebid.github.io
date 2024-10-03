@@ -6,9 +6,10 @@ pbjs: true
 pbs: true
 biddercode: adkernel
 media_types: banner, native, video
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 pbs_app_supported: true
 gvl_id: 14
 schain_supported: true

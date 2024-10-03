@@ -4,7 +4,8 @@ title: Inskin
 description: Inskin Media Bidder Adaptor
 pbjs: true
 biddercode: inskin
-gdpr_supported: true
+gvl_id: 150
+tcfeu_supported: true
 sidebarType: 1
 ---
 

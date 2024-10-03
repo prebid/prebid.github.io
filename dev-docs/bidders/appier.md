@@ -5,7 +5,8 @@ description: Prebid Appier Bidder Adapter
 biddercode: appier
 pbjs: true
 media_types: banner
-gdpr_supported: true
+gvl_id: 728
+tcfeu_supported: true
 sidebarType: 1
 ---
 
