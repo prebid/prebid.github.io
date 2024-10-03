@@ -135,9 +135,6 @@ Prebid only supports the most recent major version. Within a month or so after a
 {: .lead :}
 Alternatively, you can build Prebid.js from the source code. For instructions, see the [Prebid.js README on GitHub](https://github.com/prebid/Prebid.js/blob/master/README.md).
 
-
----
-
 ## Embedded Popularity Application
 
 {: .lead :}
