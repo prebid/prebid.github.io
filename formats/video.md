@@ -37,6 +37,7 @@ However, for the described four use cases/placement types, there are only two ty
 
 **Here’s how Prebid implementation types are mapped out with the IAB use cases:**
 
+{: .table .table-bordered .table-striped }
 | IAB Use Case  | Prebid Implementation |
 | ------------- | ------------- |
 | Instream | In-player  |
