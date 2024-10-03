@@ -4,7 +4,7 @@ title: Smoot
 description: Prebid Smoot Bidder Adapter
 biddercode: smoot
 gpp_sids: usstate_all
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -29,6 +29,7 @@ The Smoot Bidding adapter requires setup before beginning. Please contact us at 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description  | Example                         | Type       |
 |---------------|----------|--------------|---------------------------------|------------|
 | `placementId` | optional | Placement Id | `'0'`                           | `'string'` |
