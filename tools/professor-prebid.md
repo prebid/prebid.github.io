@@ -130,7 +130,7 @@ Note: It is advised when testing User Sync URL's that you clear cookies relative
 - Enable the feature by sliding the toggle below.
 - Enter a User Sync root URL to listen for as the page loads to generate a request chain from, then click the "Set URL" button. For example, `https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=159096&us_privacy=1YNY`
 - Close the developer tools window, re-open the Chrome Dev Tools again (for changes to reflect, a new instance of the developer tools is required) and navigate back to `Professor Prebid --> Network Inspector`
-- Lastly, click the <img width="20" src="/assets/images/tools/professor-prebid-13.png" /> icon (top-right). This will refresh the page and generate a new initiator request chain below (If one is present for the provided User Sync Root URL).
+- Lastly, click the <img width="20" src="/assets/images/tools/professor-prebid-13.png" alt="screenshot"/> icon (top-right). This will refresh the page and generate a new initiator request chain below (If one is present for the provided User Sync Root URL).
 
 The UI of the User Sync Network Inspector:
 

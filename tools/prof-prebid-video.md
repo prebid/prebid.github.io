@@ -68,7 +68,7 @@ Next, we’ll look at the timeline section, which allows you to investigate auct
 
 The bid timeout setting in the Prebid.js configuration sets the maximum possible auction time, but auction times may be shorter in cases where all bidders respond within the bid timeout window. For more information about bid timeouts, check out our Guide to Timeouts in Prebid video.
 
-The next section, Config, displays your Prebid.js configuration in an easy-to-read format.	It includes the most important parameters of Prebid.js, including price granularity, auction settings, bidder settings, Prebid Server configuration and user ID settings, The cards on this view can be clicked to show an expanded detail view. The contents of this view will depend on the modules you’ve installed. For example, if you have installed Consent Management modules, you’ll see configurations relevant to them here.
+The next section, Config, displays your Prebid.js configuration in an easy-to-read format. It includes the most important parameters of Prebid.js, including price granularity, auction settings, bidder settings, Prebid Server configuration and user ID settings, The cards on this view can be clicked to show an expanded detail view. The contents of this view will depend on the modules you’ve installed. For example, if you have installed Consent Management modules, you’ll see configurations relevant to them here.
 
 Please note that this tab is a summary of the Prebid.js configuration. For a more detailed look, use the pbjs.getConfig(); method in the browser console. A link to the documentation on the Prebid.js configuration can be found in the notes below.
 
