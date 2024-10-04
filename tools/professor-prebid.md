@@ -16,6 +16,13 @@ sidebarType: 8
 
 Professor Prebid is an open source Chrome extension to allow easy debugging and troubleshooting on publisher websites using Prebid.js.
 
+{% include vimeo-iframe.html id="1003776317" title="1003776317" %}
+
+Further Content:
+
+- [Transcript of this video](/tools/prof-prebid-video.html)
+- [Prebid.js Config Documentation](/dev-docs/publisher-api-reference/setConfig.html)
+
 ## Installation
 
 Simply visit the dedicated [Chrome Store link](https://chrome.google.com/webstore/detail/professor-prebid-v02/kdnllijdimhbledmfdbljampcdphcbdc) and click on `Add to Chrome`. Don't forget to pin it so you can have one-click access.
