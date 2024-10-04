@@ -30,14 +30,14 @@ This correction addresses an [awkward situation](https://github.com/prebid/prebi
 The first task is app-video-html, which should support a list of excluded bidders.
 
 1. If the app-video-html task is enabled and the request is for app, it sniffs all bid responses:
-  1. Confirm that we're allowed to modify this bidder. If not, next response.
-  1. If the response indicates mediaType=video, it looks at the ad markup. If the string "<\w*VAST\w+" (case insensitive) appears anywhere in the adm, the bid is ok.
-  1. Else, if there's no adm, next response.
-  1. Else, if adm is a stringified JSON object containing the word 'assets', then this native and unexpected. Log a warning at N% sampling but do nothing.
-  1. Else, take action:
-    1. Change the PBS mediaType to banner.
-    1. Add/overwrite the meta.mediaType to video
-    1. Log a warning at N% sampling
+    1. Confirm that we're allowed to modify this bidder. If not, next response.
+    1. If the response indicates mediaType=video, it looks at the ad markup. If the string "<\w*VAST\w+" (case insensitive) appears anywhere in the adm, the bid is ok.
+    1. Else, if there's no adm, next response.
+    1. Else, if adm is a stringified JSON object containing the word 'assets', then this native and unexpected. Log a warning at N% sampling but do nothing.
+    1. Else, take action:
+        1. Change the PBS mediaType to banner.
+        1. Add/overwrite the meta.mediaType to video
+        1. Log a warning at N% sampling
 1. Host companies and accounts will need to be careful about when this correction is enabled because if the matching ad server line items don't match, renders will fail. e.g. You need to time bidder-related line item changes to the enabling of this module.
 
 ## Configuration
@@ -48,7 +48,7 @@ The parameters to the module are:
 | Parameter | Type | Scope | Description | Notes |
 | --------- | ---- | ----- | ----------- | ----- |
 | enabled | boolean | optional | Enable the module for this account | Defaults to false |
-| app-video-html | object | optional | See the [App Video HTML Correction](#App-Video-HTML) above. | |
+| app-video-html | object | optional | See the [App Video HTML Correction](#app-video-html) above. | |
 | app-video-html.enabled | boolean | optional | Enable this correction. | Defaults to false |
 | app-video-html.excludedbidders | string array | optional | Bidders who are exempt from the correction. | |
 
