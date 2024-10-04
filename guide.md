@@ -3,7 +3,6 @@ layout: page_v2
 title: prebid.org website guide
 description: details about how the site works
 isNew: false
-
 sidebarType: 0
 ---
 
@@ -50,7 +49,7 @@ Being a reviewer means you're in weekly rotation where you keep an eye on pull r
     5. As for the `media_types` metadata, if they don't support display, then the need to define "no-display". This is because the default metadata table in pbs-bidders.md assumes everyone supports display.
     6. If they claim `tcfeu_support: true`, they must also supply a `gvl_id`. You should check on the [TCF vendor list](https://vendor-list.consensu.org/v3/vendor-list.json) that the GVL ID supplied makes sense. If it's an alias they may define the GVL ID like this: `gvl_id: 14 (adkernel)`
     7. Don't let them claim both pbjs and pbs if they don't have both a Prebid.js and Prebid Server adapter. It's ok to have either a PBS-Go or PBS-Java adapter.
-    8. They cannot claim `fpd_supported` unless the body of their documentation has a section describing how exactly they support First Party Data. You can reject this with a note like "Sorry - you can't claim FPD support unless the document has a description of what kind of First Party data. See [http://docs.prebid.org/dev-docs/bidder-adaptor.html#submitting-your-adapter](http://docs.prebid.org/dev-docs/bidder-adaptor.html#submitting-your-adapter). We recommend looking at how other adapters have done this. e.g. you can declare that you support site first party data, user first party data, impression-level data, seller-define audience, etc."
+    8. They cannot claim `fpd_supported` unless the body of their documentation has a section describing how exactly they support First Party Data. You can reject this with a note like "Sorry - you can't claim FPD support unless the document has a description of what kind of First Party data. See the [bid adapter documentation](http://docs.prebid.org/dev-docs/bidder-adaptor.html#submitting-your-adapter). We recommend looking at how other adapters have done this. e.g. you can declare that you support site first party data, user first party data, impression-level data, seller-define audience, etc."
     9. If they claim to be a `prebid_member`, you can check that on the [prebid.org membership page](https://prebid.org/member-directory/)
 
 ## Core Technologies
