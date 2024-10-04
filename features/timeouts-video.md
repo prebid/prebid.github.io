@@ -82,4 +82,3 @@ A timeout occurs when a bidder fails to respond before the end of the timer.
 When bidders are set up server side, Prebid.js will make a request to Prebid Server, which in turn makes server-side requests to bidders. Prebid.js and Prebid Server have independent bidder timeout settings, and it’s important to make sure that these are closely coordinated. If they aren’t, you can inadvertently cause your Prebid Server’s response to Prebid.js to time out and lose valuable server-side bids.
 
 Thanks for watching this video on timeouts in Prebid.js. Check out the link in the description below for more resources. 
-
