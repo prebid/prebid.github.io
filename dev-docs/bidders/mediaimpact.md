@@ -36,3 +36,4 @@ The MEDIAIMPACT Bidding adapter requires setup before beginning. Please contact 
 | Name        | Scope    | Description | Example              | Type      |
 |-------------|----------|-------------|----------------------|-----------|
 | `partnerId` | required | Partner ID. | `6698`               | `integer` |
+| `sizes`     | optional | Custom size | `[[300,600]]`        | `array`   |

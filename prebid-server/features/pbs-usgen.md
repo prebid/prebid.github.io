@@ -19,8 +19,8 @@ This feature is currently only available in PBS-Java.
 
 This document covers how to configure the `US General Privacy Module` for Prebid Server.
 
-See the [Prebid Multi-State Privacy Agreement Support](/features/mspa-usnat.html) page for
-details on how specifically GPP strings are processed. This module interprets the strings
+See the [Prebid US Compliance Support](/features/mspa-usnat.html) page for
+details on how specifically US National and State GPP strings are processed. This module interprets the strings
 as defined in that document. If a publisher wishes to override the interpretation coded into
 this module, there are two options:
 
@@ -112,8 +112,8 @@ Here's how the module works when called by an Activity Control:
     1. If the SID is < 7 or > 12, go on to the next SID
     1. Else if the SID is on the skipSids list, go on to the next SID
     1. Else pull that section of out the GPP string and process it
-        1. If the SID is 8-12, "normalize" the flags to the SID 7 form as described in the Prebid [MSPA/USNat reference](/features/mspa-usnat.html).
-        1. Depending on the Activity, compare the string's flags as described in the Prebid MSPA/USNat reference.
+        1. If the SID is 8-12, "normalize" the flags to the SID 7 form as described in the Prebid [US Compliance reference](/features/mspa-usnat.html).
+        1. Depending on the Activity, compare the string's flags as described in the Prebid US Compliance reference.
     1. On first "allow: false" immediately return `allow: false` to the Activity Control system.
     1. Continue until all SIDs are processed or skipped.
 1. If any SID returns "allow: true", return `allow: true` to the Activity Control system
@@ -154,7 +154,7 @@ Additional information about the outcoming of privacy module processing can be o
 
 ## Related Topics
 
-* [Prebid Multi-State Privacy Agreement Support](/features/mspa-usnat.html)
+* [Prebid US Compliance Support](/features/mspa-usnat.html)
 * [US Custom Logic Privacy Module](/prebid-server/features/pbs-uscustomlogic.html)
 * [Activity Control system](/prebid-server/features/pbs-activitycontrols.html)
 * [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)

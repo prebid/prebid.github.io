@@ -6,7 +6,7 @@ title: Prebid Server | Developers | Adding a Go Module
 ---
 
 # Prebid Server - Adding a Go Module
-{: .no_toc}
+{:.no_toc}
 
 - TOC
 {:toc }
@@ -18,7 +18,7 @@ This document details how to make a module for PBS-Go.
 You will want to be familiar with the following background information:
 
 - the [module overview](/prebid-server/developers/add-a-module.html)
-- the [PBS-Go Modularity Tech Spec](https://docs.google.com/document/d/1CmamniQpwcI3p0_rHe2F17zV4sEhzpOdrqU7zuZVZ_I/edit?usp=sharing)
+- the [PBS-Go Modularity Tech Spec](https://docs.google.com/document/d/1cr1CJfkJqXVtNrlHulmg_R-9TJCDYjsb/edit#heading=h.gjdgxs)
 
 ### Contributing
 
@@ -286,7 +286,7 @@ Unit tests are required. Each implemented hook must be at least 90% covered by u
 
 ### How to build and install a module
 
-Read about the module building in the [building section](https://docs.google.com/document/d/1CmamniQpwcI3p0_rHe2F17zV4sEhzpOdrqU7zuZVZ_I/edit#heading=h.o8dv0neoq4xm) of the technical specification.
+Read about the module building in the [building section](https://docs.google.com/document/d/1cr1CJfkJqXVtNrlHulmg_R-9TJCDYjsb/edit#heading=h.gjdgxs) of the technical specification.
 
 ## Analytics Adapters and Modules
 

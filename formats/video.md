@@ -29,7 +29,4 @@ Instream ads are for short-form video content within a player generally has simp
 
 ## CTV-OTT
 
-Connected TV and 'Over-The-Top' video ads are for long-form video content. They have stronger requirements for ad-podding and category exclusion.
-
-1. [Prebid CTV+OTT white paper](https://files.prebid.org/docs/Prebid_for_CTV-OTT.pdf)
-1. [Prebid Server long-form video ad support](/prebid-server/use-cases/pbs-lfv.html)
+See the [Connected TV landing page](/formats/ctv.html).

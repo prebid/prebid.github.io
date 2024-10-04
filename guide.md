@@ -21,16 +21,14 @@ Updated Feb 9, 2023
 The easiest way to setup an environment to contribute to the docs or review pull requests is [Github Codespaces](https://github.com/features/codespaces).
 
 1. Open [github.com/prebid/prebid.github.io](https://github.com/prebid/prebid.github.io)
-2. Click on the `Code` drop down menu and select "create new codespace from master". If you have no access to prebid.github.io, then you should do this on your fork of the repository
-3. Install the [markdownlint extension](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
-    1. go to _Extensions_
-    2. search for _markdownlint_ and hit install
-    3. now you get direct feedback on linting errors
-4. Start the jekyll build as described in the `TERMINAL` of your codespace
-    1. `bundle install`
-    2. `JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental`
-    3. Codespaces will display a notification to open the running instance in the browser.
-5. In the `PORTS` tab you find the running instance
+2. Click on the `Code` drop down menu and select "create new codespace from master" by clicking on the + icon. 
+   If you have no access to prebid.github.io, then you should do this on your fork of the repository
+3. Start the jekyll build as described in the `TERMINAL` of your codespace
+    1. `JEKYLL_ENV=production bundle exec jekyll serve --watch --incremental`
+    2. Codespaces will display a notification to open the running instance in the browser.
+4. In the `PORTS` tab you find the running instance
+
+This repository contains a [devcontainer.json](.devcontainer/devcontainer.json) that setups the codespace or your favourite IDE. It includes the [markdownlint extension](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint), ruby and installs all dependency on setup through `bundle install`.
 
 ## Reviewing Pull Requests and Issues
 
@@ -185,7 +183,7 @@ Each menu item is represented in the YML map as a collection of key value pairs 
 The collection with the title property "What Is Prebid?" is a child of the collection directly above it with the sectionName "Overview"
 
 **Top Nav Menu Collection Properties**  
-*Note: A collection does not have to contain all properties. For Bools 1 = true, 0 = false*
+_Note: A collection does not have to contain all properties. For Bools 1 = true, 0 = false_
 
 | Key | Type | Example | Use |
 | ------ | ------ | ------ | ------ |
@@ -243,7 +241,7 @@ Each menu item is represented in the YML map as a collection of key value pairs 
   ```
 
 **Side Nav Menu Collection Properties**  
-*Note: A collection does not have to contain all properties. For bools 1 = true, 0 = false**
+_Note: A collection does not have to contain all properties. For bools 1 = true, 0 = false_*
 
 | Key | Type | Example | Use |
 | ----- | ----- | ----- | ----- |
@@ -297,7 +295,7 @@ The attributes in the Jekyll 'front matter' drive various behaviors and dynamic 
 | filename | no | bid adapter that actually implements this adapter | Used when a bid adapter is created with a filename that is not the bidder code. This completely overrides what is passed into the gulp build command, so needs to be fully specified. e.g. bidderaBidAdapter |
 | prevBiddercode | no | secondary bidder code | Adds a note about an alternate code that may have been used. |
 | pbjs_version_notes | no | string | Displays on the download page |
-| sidebarType | yes | `1` | Used for navigation. This opens the Prebid.js portion of the menu so the sidebar can display the Reference/Prebid Params menu option when a bidder page is open.
+| sidebarType | yes | `1` | Used for navigation. This opens the Prebid.js portion of the menu so the sidebar can display the Reference/Prebid Params menu option when a bidder page is open. |
 | ANYTHING ELSE | no | string | There are many pieces of metadata (e.g. GDPR support, user IDs supported) that bid adapters can disclose. They're displayed on the bidder's parameter page. |
 
 The bidderCode, aliasCode, and prevBiddercode parameters bear some description.
@@ -322,18 +320,9 @@ We use Algolia for site search.
 
 ## Cookie Privacy
 
-Prebid websites don't set their own cookies, but vendor products we use do. So we use the OneTrust CookiePro library to pop up a cookie banner. If the user hasn't consented to setting cookies, they will find reduced functionality on the site -- they won't be able to view JSFiddle examples or example videos.
+Prebid websites don't set their own cookies, but vendor products we use do. So we use the consentmanager.net to pop up a cookie banner. If the user hasn't consented to setting cookies, they will find reduced functionality on the site -- they won't be able to view JSFiddle examples or example videos.
 
-This is implemented with the [OneTrust](https://community.cookiepro.com/s/article/UUID-730ad441-6c4d-7877-7f85-36f1e801e8ca?language=en_US) library. See layout/example.md for how the OneTrust.InsertHtml function is used.
-The last argument to that function is the "group id", which declares what kind of cookies this vendor script is
-going to set. Here's how OneTrust defines the groups:
-
-1. Strictly Necessary cookies
-2. Performance cookies
-3. Function cookies
-4. Targeting cookies
-
-OneTrust categorizes cookies on their own, and it seems pretty random to us. Our guideline is to define tools as group 3 for small trusted vendors, or group 4 for large vendors that probably have a database of users.
+This is implemented with the [consentmanager third party blocking feature](https://help.consentmanager.net/books/cmp/page/how-to-block-third-party-codes-cookies-if-no-consent-is-given). See layout/example.md for an example implementation.
 
 The test case for vendor code that drops cookies is simple:
 

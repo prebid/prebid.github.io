@@ -28,8 +28,8 @@ Given this context, Prebid has identified publisher concern that many will not b
 
 References:
 
-- [TCF Canada Infographic on Quebec Privacy Law](https://iabcanada.com/content/uploads/2022/04/IAB-Canada_Quebec-Privacy-Law-Inforgraphic.pdf)
 - [IAB Canada TCF Canada policies](https://iabcanada.com/tcf-canada/for-publishers/)
+- [IAB Canada Quebec Privacy Legislation (Law 25) Resource Centre](https://iabcanada.com/iab-standards-and-guidelines/law25-resource-centre/)
 - [IABTL's GPP Canada section spec](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/Canada/GPPExtension%3A%20IAB%20Canada%20TCF.md)
 
 ## TCF Canada and GPP Support in Prebid.js
@@ -100,9 +100,6 @@ will interpret the string in alignment with Quebec law. Prebid cannot provide gu
 bidders are in such alignment.
 
 An alternate solution would utilize the Prebid Server version of the [Activity Control system](/prebid-server/features/pbs-activitycontrols.html).
-
-{: .alert.alert-info :}
-Only the Java version of Prebid Server currently supports targeting Activity Controls to geographic regions.
 
 Here's an example account configuration that utilizes the user's geographic region to determine
 whether to allow or deny the named activities. Publishers will need to confirm the details with

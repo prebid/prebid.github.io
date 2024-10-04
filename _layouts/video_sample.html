@@ -1,40 +1,5 @@
-{% if page.videoType == "pb-is-jw01" %}
-	{% include /video/pb-is-jw01.html %}
-{% elsif page.videoType == "pb-is-jw02" %}
-	{% include /video/pb-is-jw02.html %}
-{% elsif page.videoType == "pb-is-sb" %}
-	{% include /video/pb-is-sb.html %}
-{% elsif page.videoType == "pb-is-vjs" %}
-	{% include /video/pb-is-vjs.html %}
-{% elsif page.videoType == "pb-vm-vjs" %}
-	{% include /video/pb-vm-vjs.html %}
-{% elsif page.videoType == "pbs-br" %}
-	{% include /video/pbs-br.html %}
-{% elsif page.videoType == "pbs-jw01" %}
-	{% include /video/pbs-jw01.html %}
-{% elsif page.videoType == "pbs-jw02" %}
-	{% include /video/pbs-jw02.html %}
-{% elsif page.videoType == "pbs-kl" %}
-	{% include /video/pbs-kl.html %}
-{% elsif page.videoType == "pbs-rd" %}
-	{% include /video/pbs-rd.html %}
-{% elsif page.videoType == "pbs-vjs" %}
-	{% include /video/pbs-vjs.html %}
-{% elsif page.videoType == "pb-os-dfp" %}
-	{% include /video/pb-os-dfp.html %}
-{% elsif page.videoType == "pb-os-rd" %}
-	{% include /video/pb-os-rd.html %}
-{% elsif page.videoType == "pb-os-app" %}
-	{% include /video/pb-os-app.html %}
-{% elsif page.videoType == "pb-os-nas" %}
-	{% include /video/pb-os-nas.html %}
-{% elsif page.videoType == "pb-os-nas-renderer" %}
-	{% include /video/pb-os-nas-renderer.html %}
-{% elsif page.videoType == "pb-os-basic-ima" %}
-	{% include /video/pb-os-basic-ima.html %}
-{% elsif page.videoType == "pb-lf-fw" %}
-	{% include /video/pb-lf-fw.html %}
-{% endif %}
+{% assign videoInclude = "/video/" | append: page.videoType | append: ".html" %}
+{% include {{ videoInclude }} %}
 
 
 {% include nav.html %}

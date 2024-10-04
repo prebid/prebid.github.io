@@ -6,7 +6,6 @@ sidebarType: 2
 ---
 
 # GAM with Prebid Rendering
-
 {:.no_toc}
 
 The integration of Prebid Rendering API with Google Ad Manager (GAM) assumes that the publisher has an account on GAM and has already integrated the Google Mobile Ads SDK (GMA SDK) into the app project.
@@ -35,7 +34,7 @@ If you do not have GMA SDK in the app yet, refer to the [Google Integration Docu
 Prebid SDK provides rendering integration into GAM setup thru [app events](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner#app_events) mechanism. To integrate Prebid Event Handlers into your app, add the following line to your Podfile:
 
 ```pod
-pod 'PrebidMobileAdMobAdapters'
+pod 'PrebidMobileGAMEventHandlers'
 ```
 
 ## Event Handlers Initialization
@@ -200,7 +199,6 @@ Call the method `loadAd()` which will make a bid request to Prebid Server.
 
 Wait for the Prebid Server to return an ad and show it to the user in any suitable time.
 
-
 ```swift
 // MARK: InterstitialRenderingAdUnitDelegate
     
@@ -217,7 +215,7 @@ GAM setup:
 
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
 2. Create a new GAM ad unit.
-3. Setup the new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach.
+3. Setup the new [GAM Order](prebid-mobile/modules/rendering/ios-sdk-integration-gam.html) for rendering approach.
 
 Integration:
 
@@ -312,7 +310,7 @@ GAM setup:
 
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
 2. Create a new GAM ad unit.
-3. Setup the new [GAM Order](rendering-gam-line-item-setup.html) for rendering approach.
+3. Setup the new [GAM Order](prebid-mobile/modules/rendering/ios-sdk-integration-gam.html) for rendering approach.
 
 Integration:
 
