@@ -73,7 +73,44 @@ public class SampleCustomRenderer: NSObject, PrebidMobilePluginRenderer {
 
 ```
 
-#### Initialise your Plugin Renderer before starting to request ads and unregister your plugin once it is done
+#### Global Initialization of Plugin Renderer
+
+It is recommended to register your Plugin Renderer globally during the app launch, right after the Prebid SDK initialization. This way, you avoid registering the plugin in each part of the app where it is needed.
+
+For example, in your `AppDelegate`:
+
+```swift
+import PrebidMobile
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow?
+    let sampleCustomRenderer = SampleCustomRenderer()
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Initialize the Prebid SDK
+        Prebid.shared.initializeSDK()
+
+        // Register the Plugin Renderer globally
+        Prebid.registerPluginRenderer(sampleCustomRenderer)
+        
+        return true
+    }
+}
+```
+
+Don't forget to unregister the plugin when it's no longer needed:
+
+```swift
+func applicationWillTerminate(_ application: UIApplication) {
+    Prebid.unregisterPluginRenderer(sampleCustomRenderer)
+}
+```
+
+#### Controller-Level Registration (for specific use cases)
+
+If you need to handle plugin registration in a specific view or controller for more granular control, you can still register the Plugin Renderer at that level:
 
 ```swift
 class CustomRendererBannerController: NSObject, AdaptedController, PrebidConfigurableBannerController, BannerViewDelegate {
@@ -182,8 +219,4 @@ ___
 
 The following list contains documentation for known supported Plugin Renderer providers.
 
-{: .table .table-bordered .table-striped }
 
-| Company | Documentation                                                                                 |
-|-------|-----------------------------------------------------------------------------------------------|
-<!-- | Teads | [Teads Plugin Renderer Docs](https://support.teads.tv/support/solutions/articles/36000459747) | -->
