@@ -10,31 +10,29 @@ about:
 - stored impression in ortb2Imp object on the ad unit
 - stored impression on a bids object with module configured
 - client-side adapters that are configured as PBS adapters
-
-pid: 20
 ---
 
-Prebid.js has two main ways to select configuration for an ad unit.
+Prebid.js has two main ways to select configuration for an ad unit:
 
-1. re-using the client-side configuration, but mark a bidder as server-side in the `s2sConfig`
-2. set a stored impression id in the `ortb2Imp.ext.prebid.storedrequest.id` property
+1. Reuse the client-side configuration, but mark a bidder as server-side in the `s2sConfig`
+2. Set a stored impression id in the `ortb2Imp.ext.prebid.storedrequest.id` property
 
-Using prebid server offers a few benefits, such as
+Using Prebid Server offers a few benefits, such as:
 
-1. reduced latency due to less requests
-2. reduced javascript bundle size as most bidder adapters are not required
-3. more control over configuration and faster reaction times, because no client-side configuration must be rolled-out
+1. Reduced latency due to less requests
+2. Reduced javascript bundle size as most bidder adapters are not required
+3. More control over configuration and faster reaction times, because no client-side configuration must be rolled-out
 
-There are however a few drawbacks, like
+There are however a few drawbacks:
 
-1. reduced client-side analytics, because a lot of information is left on the server and prebid.js can't connect the dots
-2. bidders lacking features on server-side, that are already available client-side
+1. Reduced client-side analytics, because some information is left on the server and not available to client-side analytics adapters. (Note, this problem is getting better with time.)
+2. Some bidders may lack features in their server-side adapters that are available client-side
 
 ## Integration variants
 
 Every option has a certain use case. Choose the one that fits best.
 
-You can learn more about the general configuration here.
+You can learn more about the general configuration here:
 
 - [adunit reference on stored impressions](/dev-docs/adunit-reference.html#stored-imp)
 - [prebidServer module for prebid.js](/dev-docs/modules/prebidServer.html)
@@ -90,7 +88,7 @@ pbjs.addAdUnits({
 ### adUnit.ortb2Imp configuration
 
 {% capture tipNoteOrtb2Imp %}
-When using [PBS stored impressions](/dev-docs/modules/prebidServer.html#stored-imp), bids is not required.
+When using [PBS stored impressions](/dev-docs/modules/prebidServer.html#stored-imp), the `AdUnit.bids` array is not required.
 Use this if you want to configure everything server side and have a **single** prebid server endpoint.
 {% endcapture %}
 
