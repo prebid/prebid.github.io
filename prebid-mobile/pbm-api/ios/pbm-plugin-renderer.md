@@ -212,11 +212,3 @@ In addition to this documentation you have samples on hand which can be get from
 
 * [PrebidMobilePluginRenderer](https://github.com/prebid/prebid-mobile-ios/blob/master/PrebidMobile/PrebidMobileRendering/PluginRenderer/PrebidMobilePluginRenderer.swift)
 * [PluginEventDelegate](https://github.com/prebid/prebid-mobile-ios/blob/master/PrebidMobile/PrebidMobileRendering/PluginRenderer/PluginEventDelegate.swift)
-
-___
-
-## Plugin Renderer providers
-
-The following list contains documentation for known supported Plugin Renderer providers.
-
-
