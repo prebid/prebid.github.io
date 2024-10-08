@@ -120,7 +120,7 @@ Prebid Server's support for Fledge is a passthrough:
 1. If the request contains `imp.ext.ae: 1`
 2. Bid adapters may respond with 'auction config' that's placed in `ext.prebid.fledge.auctionconfigs[]`.
 
-The auction config must then be used by the client. See the Prebid.js [Fledge for GPT](/dev-docs/modules/fledgeForGpt.html) module for more information.
+The auction config must then be used by the client. See the Prebid.js [PAAPI for GPT](/dev-docs/modules/paapiForGpt.html) module for more information.
 
 ### OpenRTB Fields
 
@@ -1678,6 +1678,8 @@ Prebid Server will generate ad server targeting variables as defined by request 
 1. If ext.prebid.cache.bids is specified, any targeting objects will also contain hb_cache_id, hb_cache_id_BIDDER, hb_cache_host, and hb_cache_path.
 1. If ext.prebid.cache.vastxml is specified, any targeting objects will also contain hb_uuid, hb_uuid_BIDDER, hb_cache_host, and hb_cache_path.
 1. If the bid response defines a deal, any targeting objects will also contain hb_deal or hb_deal_BIDDER
+1. If the request contains an `app` object, targeting objects will contain hb_env:mobile-app.
+1. If the request is for the /amp endpoint, targeting objects will contain hb_env:amp. (PBS-Java 3.12+)
 1. If ext.prebid.adservertargeting is defined, arbitrary targeting values may be specified.
 
 ```json
