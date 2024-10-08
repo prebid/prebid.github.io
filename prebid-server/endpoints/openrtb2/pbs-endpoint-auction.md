@@ -986,20 +986,31 @@ This provides additional information for certain scenarios:
 
 ##### Stored Responses
 
-While testing SDK and video integrations, it's important, but often difficult, to get consistent responses back from bidders that cover a range of scenarios like different CPM values, deals, etc. Prebid Server supports a debugging workflow in two ways:
+While testing SDK and video integrations, it's often difficult, to get consistent responses back from bidders that cover a range of scenarios like different CPM values, deals, etc. Prebid Server supports a debugging workflow in several ways:
 
-- a stored-auction-response that covers multiple bidder responses
-- multiple stored-bid-responses at the bidder adapter level
+1. A impression-level `stored auction response` that covers multiple bidder responses for this impression. The contents of the stored auction response can be either:
+    1. An id that retrieves an object is assumed to be a full OpenRTB response, causing the system to completely bypass bid adapters.
+    1. A JSON object that's simply used as the contents of the ORTB response.
+1. Multiple `stored bid responses` at the bidder adapter level. The contents of this object are bidder-specific and passed through the code of the bid adapter, representing a true end-to-end flow within Prebid Server.
+1. A global `stored auction response` that lets the caller override the entire response for multiple impressions.
 
-**Single Stored Auction Response ID**
+###### Impression Stored Auction Response ID
+
+Provides a way to override multiple bidder responses for this impression, retrieving the contents from a local data store. For example:
+
+```json
+  "imp": [{ "ext": { "prebid": {
+          "storedauctionresponse": { "id": "1111111111" }
+  }}}]
+```
 
 When a storedauctionresponse ID is specified:
 
 - the rest of the imp.ext.prebid block is irrelevant and ignored
 - nothing is sent to any bidder adapter for that imp
-- the response retrieved from the stored-response-id is assumed to be the entire contents of the seatbid object corresponding to that impression.
+- the response retrieved is assumed to be the entire contents of the seatbid object corresponding to that impression.
 
-This request:
+For example, this request:
 
 ```json
 {
@@ -1036,7 +1047,7 @@ This request:
 }
 ```
 
-will result in this response, assuming that the ids exist in the appropriate DB table read by Prebid Server:
+might result in this response, assuming that the ids exist in the appropriate DB table read by Prebid Server:
 
 ```json
 {
@@ -1062,7 +1073,7 @@ will result in this response, assuming that the ids exist in the appropriate DB 
 }
 ```
 
-In this scenario, the contents of the storedauctionresponse entry is
+In the above example, the contents of the storedauctionresponse entry is
 an array of ortb2 seatbid objects. e.g.
 
 ```json
@@ -1089,9 +1100,154 @@ an array of ortb2 seatbid objects. e.g.
 ]
 ```
 
-**Multiple Stored Bid Response IDs**
+###### Impression Stored Auction Response JSON
 
-In contrast to the feature above, using `storedbidresponse` (instead of stored**auction**response) lets real auctions take place while the actual bidder response is overridden in such a way that it still exercises adapter code.
+(PBS-Java 3.13+)
+
+Provides a way to override multiple bidder responses for this impression, with the contents supplied on the request itself. This can be useful for dynamically debugging apps where creating stored response database entries with different creatives or prices could be time consuming. For example:
+
+```json
+  "imp": [{ "ext": { "prebid": {
+          "storedauctionresponse": { "seatbidobj": { ... contents of this object are appended to the response.seatbid array ... } }
+  }}}]
+```
+
+When storedauctionresponse JSON is specified:
+
+- the rest of the imp.ext.prebid block is irrelevant and ignored
+- nothing is sent to any bidder adapter for that imp
+- the JSON in the request is assumed to be the entire contents of the seatbid object corresponding to that impression.
+
+For example, this request:
+
+```json
+{
+  "test": 1,
+  "tmax": 500,
+  "id": "test-auction-id",
+  "app": { ... },
+  "ext": {
+    "prebid": {
+      "targeting": {},
+      "cache": {
+        "bids": {}
+      }
+    }
+  },
+  "imp": [
+    {
+      "id": "a",
+      "ext": {
+        "prebid": {
+          "storedauctionresponse": { "seatbidobj": {"bid": [{"h": 250,"w": 300,"id": "f227a07f-1579-4465-bc5e-5c5b02a0c180","adm": "<img src=\"https://files.prebid.org/creatives/prebid300x250.png\" border=\"0\" alt=\"\" />\n","ext": {"prebid": {"type": "banner"}},"crid": "11111","impid": "##PBSIMPID##","price": 1.0}],"seat": "bidderA","group": 0}}
+        }
+      }
+    },
+    {
+      "id": "b",
+      "ext": {
+        "prebid": {
+          "storedauctionresponse": { "seatbidobj": {"bid": [{"h": 50,"w": 300,"id": "f227a07f-1579-4465-bc5e-5c5b02a0c180","adm": "<img src=\"https://files.prebid.org/creatives/prebid300x50.png\" border=\"0\" alt=\"\" />\n","ext": {"prebid": {"type": "banner"}},"crid": "22222","impid": "##PBSIMPID##","price": 2.0}],"seat": "bidderA","group": 0}}
+        }
+      }
+    }
+  ]
+}
+```
+
+might result in this response:
+
+```json
+{
+  "id": "test-auction-id",
+  "seatbid": [
+    {
+      "bid": [{
+        // BidderA bid from storedauctionresponse seatbidobj on impid:'a'
+      },{
+        // BidderA bid from storedauctionresponse seatbidobj on impid:'b'
+      }],
+      "seat": "bidderA"
+    }
+  ]
+}
+```
+
+Note: the `##PBSIMPID##` macro is only supported in PBS-Java. Please use `"replaceimpid":true` for PBS-Go.
+
+###### Global Stored Auction Response JSON
+
+(PBS-Java 3.13+)
+
+Provides a way to override the entire bid response, with the contents supplied on the request itself. This can be useful for dynamically debugging apps where creating stored response database entries with different creatives or prices could be time consuming. For example:
+
+```json
+  { "ext": { "prebid": {
+          "storedauctionresponse": { "seatbidarr": { ... contents of this object become the response.seatbid array ... } }
+  }}}
+```
+
+When storedauctionresponse JSON is specified at the global level:
+
+- all imp.ext.prebid.storedauctionresponse blocks are irrelevant and ignored
+- nothing is sent to any bidder adapter
+- the JSON in the request is assumed to be the entire contents of the seatbid response
+
+For example, this request:
+
+```json
+{
+  "test": 1,
+  "tmax": 500,
+  "id": "test-auction-id",
+  "app": { ... },
+  "ext": {
+    "prebid": {
+          "storedauctionresponse": { "seatbidarr": [{"bid": [{"h": 250,"w": 300,"id": "f227a07f-1579-4465-bc5e-5c5b02a0c180","adm": "<img src=\"https://files.prebid.org/creatives/prebid300x250.png\" border=\"0\" alt=\"\" />\n","ext": {"prebid": {"type": "banner"}},"crid": "11111","impid": "##PBSIMPID##","price": 1.0}],"seat": "bidderA","group": 0},{"bid": [{"h": 50,"w": 300,"id": "f227a07f-1579-4465-bc5e-5c5b02a0c180","adm": "<img src=\"https://files.prebid.org/creatives/prebid300x50.png\" border=\"0\" alt=\"\" />\n","ext": {"prebid": {"type": "banner"}},"crid": "22222","impid": "##PBSIMPID##","price": 2.0}],"seat": "bidderA","group": 0}]},
+      "targeting": {},
+      "cache": {
+        "bids": {}
+      }
+    }
+  },
+  "imp": [
+    { "id": "a" },
+    { "id": "b" }
+  ]
+}
+```
+
+might result in this response:
+
+```json
+{
+  "id": "test-auction-id",
+  "seatbid": [
+    {
+      "bid": [{
+        // BidderA bid from storedauctionresponse seatbidarr on impid:'a'
+      },{
+        // BidderA bid from storedauctionresponse seatbidarr on impid:'b'
+      }],
+      "seat": "bidderA"
+    }
+  ],
+  "ext": {
+    "warnings": {
+      "prebid": [{
+          "code": 999,
+          "message": "no auction. response defined by storedauctionresponse"
+        }
+    ]}
+  }
+}
+```
+
+Note: the `##PBSIMPID##` macro is only supported in PBS-Java. Please use `"replaceimpid":true` for PBS-Go.
+
+###### Stored Bid Response IDs
+
+In contrast to the stored**auction**responses above, using a stored**bid**response lets real auctions take place while the actual bidder response is overridden in such a way that it still exercises adapter code.
 
 PBS removes imp.ext.prebid.bidder parameters for those
 bidders specified in storedbidresponse but if there's a bidder present

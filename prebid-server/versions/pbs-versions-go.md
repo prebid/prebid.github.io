@@ -12,9 +12,8 @@ title: Prebid Server | Versions | Go
 
 The Go version of Prebid Server is for those who:
 <ul>
-<li>Need long-form video</li>
-<li>Need the most recent bidder adapters</li>
 <li>Prefer the Go language</li>
+<li>Are satisified with the <a href="/prebid-server/features/pbs-feature-idx.html">feature set</a> and available <a href="https://github.com/prebid/prebid-server/tree/master/adapters">bid adapters</a>.</li>
 </ul>
 
 </div>
@@ -24,11 +23,6 @@ The Go version of Prebid Server is for those who:
 
 </div>
 </div>
-
-
-## Features
-
-We recommend you review the [feature comparison list](/prebid-server/features/pbs-feature-idx.html) to familiarize yourself with the differences between this and PBS-Java in deciding which version is right for you.
 
 ## Code Repositories
 
