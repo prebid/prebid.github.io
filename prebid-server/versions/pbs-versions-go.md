@@ -40,5 +40,6 @@ important architectural considerations, then follow the instructions for [Instal
 - [Building an Analytics Adapter](/prebid-server/developers/pbs-build-an-analytics-adapter.html#adding-an-analytics-adapter-in-pbs-go)
 
 ## See Also
+
 - [Prebid Server - Java](/prebid-server/versions/pbs-versions-java.html)
 - [Endpoint reference](/prebid-server/endpoints/pbs-endpoint-overview.html)
