@@ -11,6 +11,7 @@ title: Prebid Server | Versions | Go
 <div class="col-md-6">
 
 The Go version of Prebid Server is for those who:
+
 <ul>
 <li>Prefer the Go language</li>
 <li>Are satisified with the <a href="/prebid-server/features/pbs-feature-idx.html">feature set</a> and available <a href="https://github.com/prebid/prebid-server/tree/master/adapters">bid adapters</a>.</li>
