@@ -2057,6 +2057,7 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.biddercontrols<wbr>.BIDDERCODE<wbr>.prefmtype | Override the mediatype sent to the named bidder if they don't support multiformat. | string | no |
 | ext<wbr>.prebid<wbr>.bidders | Publishers can specify an adapter-specific flag, see [global bid parameters](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#global-bid-adapter-parameters) | object | seen on ext<wbr>.prebid<wbr>.bidderparams<wbr>.bidder |
 | ext<wbr>.prebid<wbr>.createtids | (PBS-Java only) Override the `transmitTids` activity to influence [which IDs PBS will generate](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#ids). | boolean | yes |
+| ext<wbr>.prebid<wbr>.storedauctionresponse | PBS-Core skips the auction and uses the response in the JSON instead, see [stored responses](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-responses). | object | no |
 
 #### Response
 {:.no_toc}
