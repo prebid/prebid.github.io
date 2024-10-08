@@ -22,13 +22,13 @@ schain_supported: false
 dchain_supported: false
 coppa_supported: false
 dsa_supported: false
-privacy_sandbox: false
-gpp_sids: false
+privacy_sandbox: none
+gpp_sids: none
 ---
 
 ### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at <prebid@digitalmatter.ai>
+The Digital Matter bid adapter requires setup before beginning. Please contact us at <prebid@digitalmatter.ai>
 
 ### Bid Params
 
