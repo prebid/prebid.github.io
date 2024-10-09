@@ -2,7 +2,7 @@
 layout: bidder
 title: RxNetwork
 description: Prebid RxNetwork Bidder Adaptor
-pbjs: false
+pbjs: true
 pbs: true
 biddercode: rxnetwork
 aliasCode: adkernel
