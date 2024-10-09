@@ -125,7 +125,7 @@ Information are:
 }
 ```
 
-## /logging/httpinteraction
+## GET /logging/httpinteraction
 
 (PBS-Java only)
  
@@ -140,7 +140,7 @@ Query Params
 - limit - number of interactions to log; there is an upper threshold for this value set in configuration
 - bidder - name of the bidder whose adapter request will be logged
 
-## /logging/changelevel
+## GET /logging/changelevel
 
 (PBS-Java only)
 
