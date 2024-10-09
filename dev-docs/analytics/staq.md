@@ -2,6 +2,7 @@
 layout: analytics
 title: STAQ
 description: STAQ Analytics Adapter
+pbjs_version_notes: removed in 9.0
 modulecode: staq
 ---
 

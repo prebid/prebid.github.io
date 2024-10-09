@@ -27,7 +27,7 @@ The options object supports these parameters:
 {: .table .table-bordered .table-striped }
 | Option Parameter    | Type    | Description             |
 |------------|---------|---------------------------------|
-| gvlid | integer | IAB Global Vendor List ID for this alias for use with the [GDPR Enforcement module](/dev-docs/modules/gdprEnforcement.html). |
+| gvlid | integer | IAB Global Vendor List ID for this alias for use with the [TCF control module](/dev-docs/modules/tcfControl.html). |
 
 {: .alert.alert-info :}
 Creating an alias for a Prebid Server adapter is done differently. See 'extPrebid'

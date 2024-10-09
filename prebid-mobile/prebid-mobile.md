@@ -101,7 +101,7 @@ Supported Ad Servers: GAM.
 1. Prebid Server constructs an OpenRTB bid request and passes it to the demand partners. Each demand partner returns a bid response to Prebid Server. The bid response includes the bid price and the creative content.
 1. Prebid Server sends the bid responses to Prebid Mobile.
 1. Prebid Mobile sets key/value targeting for each ad slot through the primary ad server mobile SDK.
-1. The primary ad server SDK sends the ad request enriched with targeting keywords of the wiining bid.
+1. The primary ad server SDK sends the ad request enriched with targeting keywords of the wining bid.
 1. The primary ad server responds with an ad. If the line item associated with the Prebid Mobile bid wins, the primary ad server returns the Prebid Universal Creative (PUC) to the ad server's SDK.
 1. The primary ad server SDK starts the rendering recived ad markup.
 1. The PUC fetches creative content of the winning bid from the Previd Cache and renders it.
@@ -137,7 +137,7 @@ Supported Ad Servers: AdMob, MAX.
 1. The primary ad server responds with a mediation chain.
 1. The Primary Ad Server SDK runs the Waterfall.
 1. If the mediation item contains the name Prebid Adatper it instantiates the respoctive class.
-1. [OPTIONAL] adaters checks the wheather the Line Item's targeting keywors match the bid targeting keywords
+1. [OPTIONAL] adaters checks the wheather the Line Item's targeting keywords match the bid targeting keywords.
 1. Adapter renders a wiining bid cached in the SDK.
 
 Note: passing the targeting keywords to the ad server depends on the server's ability to target line items. If the server doesn't provide such a feature, Prebid SDK doesn't enrich an ad request with targeting info. But activation of a line item with the proper price still works. The implementation details of such selection you can find in the respective integration guide.
@@ -146,46 +146,45 @@ Note: passing the targeting keywords to the ad server depends on the server's ab
 
 ### Prebid Server
 
-You must have a Prebid Server account in order to use Prebid Mobile. Prebid Server is a server-based host that communicates bid requests and responses between Prebid Mobile and demand partners.  
+You must have a Prebid Server available in order to use Prebid Mobile. Prebid Server is a server-based host that communicates bid requests and responses between Prebid Mobile and demand partners.  
 
-To set up your Prebid Server account for Prebid Mobile, refer to [Getting Started with Prebid Mobile]({{site.github.url}}/prebid-mobile/prebid-mobile-getting-started.html).
+To set up your Prebid Server account for Prebid Mobile, refer to [Getting Started with Prebid Mobile](/prebid-mobile/prebid-mobile-getting-started.html).
 
 ### Android
 
 Follow these steps to integrate the Prebid SDK:
 
-1. If integrating into an ad server, create line items specific for rendering (line items for rendering API are unique and do not coincide with the standard Prebid SDK line items):
-    - [GAM Original API](../adops/step-by-step.html)
-    - [GAM Rendering API](../adops/mobile-rendering-gam-line-item-setup.html)
-    - [AdMob](../adops/mobile-rendering-admob-line-item-setup.html)
-    - [MAX](../adops/mobile-rendering-max-line-item-setup.html)
 1. [Integrate Prebid SDK](pbm-api/android/code-integration-android.html) into your project.
-1. Add prebid's ad units to your app respectively to the monetization scenario:
+1. Define [global integration and targeting properties](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html).  
+1. Add Prebid's ad units to your app respectively to the monetization scenario:
     - [GAM Original API](pbm-api/android/android-sdk-integration-gam-original-api.html)
     - [Custom in-app bidding](modules/rendering/android-sdk-integration-pb.html) integration without primary ad server.
     - [GAM Rendering API](modules/rendering/android-sdk-integration-gam.html) as a primary ad server
     - [AdMob](modules/rendering/android-sdk-integration-admob) as a primary ad server.
     - [AppLovin MAX](modules/rendering/android-sdk-integration-max.html) as a primary ad server.
-
-1. Actualize the [integration and targeting](pbm-api/android/pbm-targeting-params-android.html) properties.  
+1. If integrating into an ad server, create line items specific for rendering (line items for rendering API are unique and do not coincide with the standard Prebid SDK line items):
+    - [GAM Original API](../adops/step-by-step.html)
+    - [GAM Rendering API](../adops/mobile-rendering-gam-line-item-setup.html)
+    - [AdMob](../adops/mobile-rendering-admob-line-item-setup.html)
+    - [MAX](../adops/mobile-rendering-max-line-item-setup.html)
 
 ### iOS
 
 Follow these steps to integrate the rendering API:
 
-1. If integrating into an ad server, create line items specific for rendering (line items are uniqe for the Rendering Module and do not cooicide with the standard Prebid SDK line items):
-    - [GAM Original API](../adops/step-by-step.html)
-    - [GAM](../adops/mobile-rendering-gam-line-item-setup.html)
-    - [AdMob](../adops/mobile-rendering-admob-line-item-setup.html)
-    - [MAX](../adops/mobile-rendering-max-line-item-setup.html)
 1. [Integrate Prebid SDK](pbm-api/ios/code-integration-ios.html).
+1. Define [global integration and targeting properties](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html).
 1. Add prebid's ad units to your app respectively to the monetization scenario:
     - [GAM Original API](pbm-api/ios/code-integration-ios.html)
     - [Custom in-app bidding](modules/rendering/ios-sdk-integration-pb.html) integration without a primary ad server.
     - [GAM Rendering API](modules/rendering/ios-sdk-integration-gam.html) as a primary ad server.
     - [AdMob](modules/rendering/ios-sdk-integration-gam.html) as a primary ad server.
     - [AppLovin MAX](modules/rendering/ios-sdk-integration-max.html) as a primary ad server.
-1. Actualize the [integration and targeting](pbm-api/ios/pbm-targeting-params-ios.html) properties.
+1. If integrating into an ad server, create line items specific for rendering (line items are uniqe for the Rendering Module and do not cooicide with the standard Prebid SDK line items):
+    - [GAM Original API](../adops/step-by-step.html)
+    - [GAM](../adops/mobile-rendering-gam-line-item-setup.html)
+    - [AdMob](../adops/mobile-rendering-admob-line-item-setup.html)
+    - [MAX](../adops/mobile-rendering-max-line-item-setup.html)
 
 ## Additional References
 
@@ -198,3 +197,8 @@ Currently Prebid Mobile SDK doesn't offer direct analytics capabilities. While w
 
 - Generate analytics from the ad server, as key metrics are available there if the line items are broken out by bidder.
 - Integrate an analytics package directly into the app. You may have one already that can accomodate header bidding metrics.
+- Utilize a server-side [analytics module for Prebid Server](/prebid-server/developers/pbs-build-an-analytics-adapter.html).
+
+## Further Reading
+
+- [Getting started with Prebid Mobile](/prebid-mobile/prebid-mobile-getting-started.html)
