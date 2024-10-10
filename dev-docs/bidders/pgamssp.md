@@ -8,6 +8,7 @@ tcfeu_supported: false
 coppa_supported: true
 schain_supported: true
 floors_supported: true
+gpp_supported: true
 media_types: banner, video, native
 pbjs: true
 pbs: true

@@ -52,20 +52,22 @@ If not specified through any of the methods above, Prebid.js attempts to automat
 {: .table .table-bordered .table-striped }
 | Field | Value | Notes |
 |-----------+--------------|
-| `site.page` | Site URL, from `pageUrl` falling back to `location.href` | [`pageUrl` config](/dev-docs/publisher-api-reference/setConfig.md#setConfig-Page-URL) |
+| `site.page` | Site URL, from `pageUrl` falling back to `location.href` | [`pageUrl` config](/dev-docs/publisher-api-reference/setConfig.html#setConfig-Page-URL) |
 | `site.ref` | `document.referrer` | |
 | `site.domain` | Domain portion of `site.page` | |
 | `site.keywords` | Contents of `<meta name="keywords">`, if such a tag is present on the page | |
 | `site.publisher.domain` | Second level domain portion of `site.domain` | The second-level domain portion of `sub.example.publisher.com` is `publisher.com`|
-| `device.w` | Viewport width |
-| `device.h` | Viewport height |
+| `device.w` | Width of the screen in pixels |
+| `device.h` | Height of the screen in pixels |
 | `device.dnt` | Do Not Track setting | [Navigator.doNotTrack](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/doNotTrack) |
 | `device.language` | User's language | [Navigator.language](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/language) |
 | `device.ua` | User agent | [Navigator.userAgent](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent) |
 | `device.sua` | User agent client hints | [uaHints config](#uaHints) |  
+| `device.ext.vpw` | Viewport width in pixels |
+| `device.ext.vph` | Viewport height in pixels |
 | `device.ext.webdriver`| `true` if the browser declares to be an automation tool | [Navigator.webdriver](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/webdriver) |
 | `device.ext.cdep`| Google Chrome cookie deprecation label | [Chrome-facilitated testing](https://developers.google.com/privacy-sandbox/setup/web/chrome-facilitated-testing) |
-| `regs.coppa` | COPPA Regulation flag | [COPPA config](/dev-docs/publisher-api-reference/setConfig.md#setConfig-coppa)
+| `regs.coppa` | COPPA Regulation flag | [COPPA config](/dev-docs/publisher-api-reference/setConfig.html#setConfig-coppa)
 | `regs.ext.gpc` | Global Privacy Control setting | [Navigator.globalPrivacyControl](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/globalPrivacyControl) |
 
 Publisher-provided first party data always takes precedence for all fields; you can also set `null` to disable them. For example, the following discards the automatically collected `device.keywords`:  
@@ -188,7 +190,7 @@ pbjs.setConfig({
 
 {: .alert.alert-warning :}
 Note that supplying first party **user** data may require special
-consent in certain regions. By default, Prebid's [gdprEnforcement](/dev-docs/modules/gdprEnforcement.html) module does **not** police the passing
+consent in certain regions. By default, Prebid's [tcfControl](/dev-docs/modules/tcfControl.html) module does **not** police the passing
 of user data, but can optionally do so if the `personalizedAds` rule is enabled.
 
 {: .alert.alert-warning :}

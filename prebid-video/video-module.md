@@ -41,6 +41,7 @@ The following Video Players are currently supported:
 |--------------|----------------|-------------|
 | [JW Player](https://info.jwplayer.com/sign-up/?utm_source=developer&utm_medium=CTA)  | jwplayerVideoProvider | 1 |
 | [video.js](https://videojs.com/)   | videojsVideoProvider | 2 |
+| [AdPlayer.Pro](https://adplayer.pro/)   | adplayerproVideoProvider | 3 |
 
 Not seeing your desired video player ? Learn how to add support by reading our [contribution guide](#Video-Module-Contributing)
 
@@ -68,6 +69,8 @@ For the list of properties in the `video` object of the ad unit please visit the
 [Video.js]({{site.baseurl}}/prebid-video/video-module/integration-examples/videojs.html)
 
 [JW Player]({{site.baseurl}}/prebid-video/video-module/integration-examples/jwplayer.html)
+
+[AdPlayer.Pro]({{site.baseurl}}/prebid-video/video-module/integration-examples/adplayerpro.html)
 
 ### Features for Publishers
 

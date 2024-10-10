@@ -30,30 +30,30 @@ sidebarType: 1
 | `siteid`           | deprecated     | The site ID from Unruly. This will be provided to you by your Unruly account manager, this is backward compability.          | `123456`                                         | `integer` |
 | `featureOverrides` | optional       | This param is a generic object for configuring Unruly outstream demand. To run UNmissable, set ‘canRunUnmissable’ to true.   | `"featureOverrides": {"canRunUnmissable": true}` | `object`  |
 
-### Protected Audience API (FLEDGE) support
+### Protected Audience API (PAAPI) support
 
 There’s an option to receive demand for Protected Audience API (FLEDGE/PAAPI)
 ads using Unruly's (Nexxen) bid adapter.
-Prebid’s [fledgeForGpt](https://docs.prebid.org/dev-docs/modules/fledgeForGpt.html)
+Prebid’s [paapiForGpt](https://docs.prebid.org/dev-docs/modules/paapiForGpt.html)
 module and Google Ad Manager is currently required.
 
 The following steps should be taken to setup Protected Audience for Unruly(Nexxen):
 
 1. Reach out to your account manager to coordinate set up:
 
-2. Build and enable FLEDGE module as described in
-[fledgeForGpt](https://docs.prebid.org/dev-docs/modules/fledgeForGpt.html)
+2. Build and enable PAAPI module as described in
+[paapiForGpt](https://docs.prebid.org/dev-docs/modules/paapiForGpt.html)
 module documentation.
 
-    Make sure to enable Unruly bidder to participate in FLEDGE. If there are any other bidders to be allowed for that, add them to the **bidders** array:
+    Make sure to enable Unruly bidder to participate in PAAPI. If there are any other bidders to be allowed for that, add them to the **bidders** array:
 
     ```javascript
-    pbjs.setBidderConfig({
-      bidders: ["unruly"],
-      config: {
-        fledgeEnabled: true
-      }
-    });
+    pbjs.setConfig({
+       paapi: {
+         bidders: ["unruly"],
+         enabled: true
+       }    
+    })
     ```
 
 ### First Party Data

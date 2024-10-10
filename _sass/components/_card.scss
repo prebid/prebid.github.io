@@ -88,6 +88,13 @@
           }
         }
       }
+
+      /** this is required for the CTV icon the path segment is not painted, but filled */
+      + .card-media-ctv {
+        path {
+          fill: $t-text-color--reverse;
+        }
+      }
     }
 
     + .card-media {
