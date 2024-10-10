@@ -60,7 +60,7 @@ service provider may have a different location.
 1. Retrieves the body of the creative from Prebid Cache based on the UUID
 1. If the 'burl' parameter is present, creates a tracking pixel. Includes special support for triggering the viewable billing url for mobile MRAID creatives.
 1. If the 'nurl' parameter is present, creates the appropriate HTML to fire the notice URL.
-1. If the 'wurl' parameter is present, creates a tracking pixel. This is needed for [Programmatic Guaranteed](/prebid-server/features/pg/pbs-pg-idx.html) support.
+1. If the Prebid Server 'wurl' (win URL) parameter is present, creates a tracking pixel.
 1. Resolves any `${AUCTION_PRICE}` macro in the creative body.
 
 ### What the PUC does for Native

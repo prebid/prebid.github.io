@@ -34,6 +34,7 @@ pbjs.setConfig({
       params: {
         organizationId: '1000', // Required. Provided by Adagio
         site: "my-site" // Required. Provided by Adagio
+        placementSource: 'ortb' // Optional. Possible values: 'ortb'<default> | 'code' | 'gpid'
       }
     }]
   }
@@ -43,12 +44,13 @@ pbjs.setConfig({
 Syntax details:
 
 {: .table .table-bordered .table-striped }
-| Name                    | Scope    | Description                                   | Example     | Type     |
-|-------------------------|----------|-----------------------------------------------|-------------|----------|
-| `name`                  | required | Real time data module name: Always `'adagio'` | `'adagio'`  | `string` |
-| `params`                | required |                                               |             | `Object` |
-| `params.organizationId` | required | Account id provided by Adagio.                | `'1000'`    | `string` |
-| `params.site`           | required | Account site name provided by Adagio.         | `'my-site'` | `string` |
+| Name                     | Scope    | Description                                   | Example     | Type     |
+|--------------------------|----------|-----------------------------------------------|-------------|----------|
+| `name`                   | required | Real time data module name: Always `'adagio'` | `'adagio'`  | `string` |
+| `params`                 | required |                                               |             | `Object` |
+| `params.organizationId`  | required | Account id provided by Adagio.                | `'1000'`    | `string` |
+| `params.site`            | required | Account site name provided by Adagio.         | `'my-site'` | `string` |
+| `params.placementSource` | optional | Programmatically set the `ortb2Imp.ext.data.placement` signal based on location. Possible values: `ortb` (default), `code`, `gpid`. | `'ortb'` | `string` |
 
 ## Installation
 

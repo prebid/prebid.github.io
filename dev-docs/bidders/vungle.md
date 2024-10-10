@@ -1,8 +1,8 @@
 ---
 layout: bidder
-title: liftoff
-description: Prebid liftoff Bidder Adapter
-biddercode: liftoff
+title: vungle
+description: Prebid vungle Bidder Adapter
+biddercode: vungle
 tcfeu_supported: false
 usp_supported: true
 gpp_supported: false
@@ -25,7 +25,7 @@ sidebarType: 1
 
 ### Note
 
-The Liftoff Bidding adapter requires setup before beginning. Please contact us at <platform-ssp@liftoff.io>.
+The Vungle Bidding adapter requires setup before beginning. Please contact us at <vxssp@liftoff.io>.
 
 ### Bid Params
 

@@ -196,7 +196,7 @@ There are several types of parameters app developers should consider providing t
 - First Party Data to help bidders understand the context and/or u
 ser better.
 
-See the [global parameters page](/prebid-mobile/pbm-api/android/pbm-targeting-android.html) for details.
+See the [global parameters page](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html) for details.
 
 ## Supported Android versions
 

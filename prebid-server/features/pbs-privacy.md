@@ -36,8 +36,8 @@ The enforcement strategy changed significantly between TCF 1.1 and TCF 2.0. [TCF
 more nuanced and stricter policy.
 
 {: .alert.alert-info :}
-If a Prebid Server host company wants to support GDPR, they must currently [register for the IAB Global Vendor List](https://register.consensu.org/).
-The user must provide legal basis for the host company to read/write cookies or `/cookie_sync` will return an empty response with no syncs and `/setuid` will fail.
+If a Prebid Server host company wants to support GDPR, they should [register for the IAB Global Vendor List](https://register.consensu.org/). This is because
+end users must provide legal basis for the host company to read/write cookies or `/cookie_sync` will return an empty response with no syncs and `/setuid` will fail.
 
 ### TCF 2.0 and 2.2
 
