@@ -727,7 +727,7 @@
   subgroup: 2
   
 - sbSecId: 2
-  title: GAM Original Integration
+  title: GAM Bidding-Only Integration
   link: /prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html
   isHeader: 0
   isSectionHeader: 0
@@ -735,8 +735,8 @@
   subgroup: 2
   
 - sbSecId: 2
-  title: Custom or No mediation
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
+  title: GAM Prebid-Rendered Integration
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-gam.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -759,8 +759,8 @@
   subgroup: 2
   
 - sbSecId: 2
-  title: GAM Rendering Integration
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-gam.html
+  title: Custom Integration
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -809,14 +809,14 @@
 
 - sbSecId: 2
   title: Global Parameters
-  link: /prebid-mobile/pbm-api/android/pbm-targeting-params-android.html
+  link: /prebid-mobile/pbm-api/android/pbm-targeting-android.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
   
 - sbSecId: 2
-  title: GAM Original Integration
+  title: GAM Bidding-Only Integration
   link: /prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html
   isHeader: 0
   isSectionHeader: 0
@@ -824,8 +824,8 @@
   subgroup: 3
   
 - sbSecId: 2
-  title: Custom or No mediation
-  link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
+  title: GAM Prebid-Rendered Integration
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-gam.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -848,8 +848,8 @@
   subgroup: 3
   
 - sbSecId: 2
-  title: GAM Rendering Integration
-  link: /prebid-mobile/modules/rendering/android-sdk-integration-gam.html
+  title: Custom Integration
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -975,6 +975,14 @@
   subgroup: 1
 
 - sbSecId: 3
+  title: 'Prebid Mobile AdOps'
+  link: /adops/mobile-adops.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
   title: "Ad Ops Information"
   link:
   isHeader: 0
@@ -1042,7 +1050,7 @@
   subgroup: 2
 
 - sbSecId: 3
-  title: 'Creative Setup: Banner/Outstream/AMP'
+  title: 'Creative Setup: Banner/In-Renderer/AMP'
   link: /adops/gam-creative-banner-sbs.html
   isHeader: 0
   isSectionHeader: 0
@@ -1066,7 +1074,7 @@
   subgroup: 2
 
 - sbSecId: 3
-  title: "Setting up Order for Mobile Rendering API"
+  title: "Mobile: Setting up GAM for Prebid-Rendered"
   link: /adops/mobile-rendering-gam-line-item-setup.html
   isHeader: 0
   isSectionHeader: 0

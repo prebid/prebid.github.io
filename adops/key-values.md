@@ -36,13 +36,13 @@ You can work with your engineers to modify the default list. See [Restricting Da
 | hb_pb | targeting | All | The bid price bucket (adjusted for price granularity). | 2.10 |
 | hb_adid | rendering | All | The ad ID. Used by the Prebid Universal Creative (PUC) ad server creative to render the winning Prebid ad. | 123456 |
 | hb_bidder | targeting and reporting | Could be used for creative-level targeting in video scenarios; reporting for all scenarios | The bidder code. Used for logging and reporting to learn which bidder has higher fill rate/CPM. | BidderA |
-| hb_size | rendering | Banner, native, outstream. Not used for video. | The size used for resizing the iframe for the winning creative. | 300x250 |
+| hb_size | rendering | Banner, native, in-renderer. Not used for instream video. | The size used for resizing the iframe for the winning creative. | 300x250 |
 | hb_format | targeting and reporting | Needed only if there's a different set of line items for different media types | Used when creating a separate set of line items for banner vs video | video |
 | hb_deal | targeting | All | Target private marketplace deals | 7777777 |
 | hb_uuid | rendering | Video only | Carries the cache retrieval ID for VAST video creatives | 1111-2222-3333-4444 |
-| hb_cache_id | rendering | Banner, native, outstream; mobile app only | Carries the cache retrieval ID for mobile bids | 2222-3333-4444-5555 |
-| hb_cache_host | rendering | Banner, native, outstream; mobile app only | The host where the cached creative lives | `"https://mycachehost.example.com"` |
-| hb_cache_path | rendering | Banner, native, outstream; mobile app only | The web path where the cached creative lives | /cache |
+| hb_cache_id | rendering | Banner, native, in-renderer; mobile app only | Carries the cache retrieval ID for mobile bids | 2222-3333-4444-5555 |
+| hb_cache_host | rendering | Banner, native, in-renderer; mobile app only | The host where the cached creative lives | `"https://mycachehost.example.com"` |
+| hb_cache_path | rendering | Banner, native, in-renderer; mobile app only | The web path where the cached creative lives | /cache |
 | hb_source | reporting | Server-to-server testing | Used to report the A/B test results for client- vs server-side performance. | s2s |
 | hb_adomain | reporting and special | All | Used to report on VAST errors, set floors on certain buyers, monitor volume from a buyer, or track down bad creatives | example.com |
 

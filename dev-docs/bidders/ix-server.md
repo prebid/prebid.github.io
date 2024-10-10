@@ -24,8 +24,6 @@ sidebarType: 1
 privacy_sandbox: paapi
 ---
 
-
-
 ## Table of contents
 
 * [Table of contents](#table-of-contents)
@@ -86,6 +84,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
      ```
 
   * Edit the below existing entry and include your publisher ID in the `s` parameter:
+{% raw %}
 
     ```javascript
      userSync:  
@@ -130,6 +129,8 @@ If you are hosting your own Prebid Server instance, depending on whether you are
         iframe: 
          url: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
     ```
+
+{% endraw %}
 
 <a id="call-index"></a>
 
