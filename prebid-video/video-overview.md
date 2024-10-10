@@ -14,7 +14,7 @@ sidebarType: 4
 - TOC
 {:toc}
 
-Prebid.js provides tools that allow header bidding video demand to compete with your ad server video demand. Prebid.js provides tools that allow header bidding video demand to compete with your ad server video demand. Prebid video demand can be incorporated through the in-player and [in-renderer](/overview/glossary.html#renderer) integration.
+Prebid.js provides tools that allow header bidding video demand to compete with your ad server video demand. Prebid.js provides tools that allow header bidding video demand to compete with your ad server video demand. Prebid video demand can be incorporated through the in-player and [in-renderer](/overview/glossary#renderer) integration.
 
 **Note!** Learn more about mapping out IAB use cases with the Prebid implementation specs on the [Prebid Video Ads](/formats/video) page.
 
