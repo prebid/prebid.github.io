@@ -26,7 +26,7 @@ Fields that can be configured:
 
 {: .table .table-bordered .table-striped }
 | Field          | Scope    | Type    | Description                                                                                             | Default |
-| -------------- | -------- |---------| ------------------------------------------------------------------------------------------------------- | ------- |
+| -------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------- | ------- |
 | `enforce`      | optional | boolean | Specifies whether to enforce validation for the field                                                   | `true`  |
 | `blockUnknown` | optional | boolean | Specifies whether it should reject the bid if the corresponding value in the bid metadata is undefined  | `true`  |
 
