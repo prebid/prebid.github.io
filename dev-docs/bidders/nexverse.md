@@ -1,61 +1,72 @@
 
 ---
-layout: bidder
-title: Nexverse
-description: Prebid Nexverse Bidder Adapter
 biddercode: nexverse
 gdpr_supported: true
 usp_supported: true
 coppa_supported: true
-tcf2_supported: true
-prebid_1_0_supported: true
-media_types: banner, video, native
-schain_supported: true
-userId: pubCommonId, unifiedId, id5Id, identityLink, britepoolId, dmdId, criteo, netId, sharedId, intentIqId, zeotapIdPlus
-pbs_supported: true
+maintainer: support@nexverse.ai
+media_types:
+  - banner
+  - video
+  - native
+test_parameters:
+  {
+    bidder: "nexverse",
+    params: {
+      uid: "12345",        # Replace with actual publisher ID
+      pub_id: "54321",     # Replace with actual publisher ID
+      epid: "epid123"      # Replace with actual publisher unique epid
+    }
+  }
 ---
 
-### Nexverse Bidder Adapter
+# Nexverse Adapter
 
-#### Bidder Parameters
+The Nexverse adapter requires some initial setup. For assistance or setup instructions, please contact us at [support@nexverse.ai](mailto:support@nexverse.ai).
 
-{: .table .table-bordered .table-striped }
-| Name         | Scope    | Description                     | Example     | Type     |
-|--------------|----------|---------------------------------|-------------|----------|
-| `uid`        | required | Unique user ID                  | `"12345"`   | `string` |
-| `pub_id`     | required | Publisher ID                    | `"67890"`   | `string` |
-| `pub_epid`   | required | Publisher endpoint ID           | `"epid123"` | `string` |
+## Supported Media Types
 
-#### Example Ad Unit
+The Nexverse adapter supports the following media types:
+
+- Banner
+- Video
+- Native
+
+## Configuration
+
+To configure the Nexverse adapter, you will need the following parameters:
+
+- **uid**: The publisher's unique ID.
+- **pub_id**: Publisher ID.
+- **epid**: Publisher's unique EPID.
+
+## Test Parameters
+
+You can test the Nexverse adapter with the following test parameters:
 
 ```javascript
-var adUnits = [{
-  code: 'ad-slot-1',
-  mediaTypes: {
-    banner: {
-      sizes: [[300, 250]]
-    }
+var adUnits = [
+  {
+    code: 'div-ad-1',
+    mediaTypes: {
+      banner: {
+        sizes: [[300, 250], [320, 50]],
+      },
+    },
+    bids: [
+      {
+        bidder: 'nexverse',
+        params: {
+          uid: '12345',
+          pub_id: '54321',
+          epid: 'epid123',
+        },
+      },
+    ],
   },
-  bids: [{
-    bidder: 'nexverse',
-    params: {
-      uid: '12345',
-      pub_id: '67890',
-      pub_epid: 'epid123'
-    }
-  }]
-}];
+];
 ```
 
-#### Test Parameters
+## GDPR, CCPA, COPPA Support
 
-```javascript
-{
-  bidder: 'nexverse',
-  params: {
-    uid: '12345',
-    pub_id: '67890',
-    pub_epid: 'epid123'
-  }
-}
-```
+Nexverse complies with GDPR, CCPA, and COPPA regulations. If you have further questions regarding compliance, feel free to reach out to us.
