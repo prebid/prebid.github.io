@@ -16,8 +16,8 @@ media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
 pbjs: true
-pbs: true
-pbs_app_supported: true
+pbs: false
+pbs_app_supported: false
 safeframes_ok: true
 sidebarType: 1
 ---
@@ -37,4 +37,4 @@ The Smoot Bidding adapter requires setup before beginning. Please contact us at 
 
 ### Note
 
-For the prebid server and prebid.js you only need to use one parameter: either placementId or endpointId
+For prebid.js you only need to use one parameter: either placementId or endpointId
