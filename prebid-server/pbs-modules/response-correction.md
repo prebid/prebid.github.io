@@ -31,7 +31,7 @@ The first task is app-video-html, which should support a list of excluded bidder
 
 1. If the app-video-html task is enabled and the request is for app, it sniffs all bid responses:
     1. Confirm that we're allowed to modify this bidder. If not, next response.
-    1. If the response indicates mediaType=video, it looks at the ad markup. If the string "<\w*VAST\w+" (case insensitive) appears anywhere in the adm, the bid is ok.
+    1. If the response indicates mediaType=video, it looks at the ad markup. If the string "<\s*VAST\s+" (case insensitive) appears anywhere in the adm, the bid is ok.
     1. Else, if there's no adm, next response.
     1. Else, if adm is a stringified JSON object containing the word 'assets', then this native and unexpected. Log a warning at N% sampling but do nothing.
     1. Else, take action:
