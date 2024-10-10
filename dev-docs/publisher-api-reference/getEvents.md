@@ -31,7 +31,8 @@ The available events are:
 | beforeBidderHttp | bidder network request is about be triggered | Array of Bid request objects |
 | bidRequested  | A bid was requested from a specific bidder | Bid request object |
 | bidResponse   | A bid response has arrived              | Bid response object |
-| seatNonBid    | Prebid Server has returned nonbid information. Must be enabled in s2sConfig.extPrebid | None |
+| pbsAnalytics    | Prebid Server has returned extra information for analytics adapters. | { [seatnonbid](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#seat-non-bid), auctionId, [atag](/prebid-server/developers/module-atags.html) } |
+| seatNonBid    | DEPRECATED - use pbsAnalytics instead. Prebid Server has returned nonbid information. Must be enabled in s2sConfig.extPrebid | None |
 | bidRejected   | A bid was rejected                      | Bid response object |
 | bidAdjustment | A bid was adjusted                      | Bid response object |
 | bidWon        | A bid has won                           | Bid response object |
