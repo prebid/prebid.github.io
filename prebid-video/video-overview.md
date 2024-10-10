@@ -70,7 +70,7 @@ The video player loads the master video ad server tag URL, which makes a call to
 
 ### In-renderer Integration
 
-In-renderer integration (formerly known as “outstream”) implies that a video ad is displayed using video renderers that are provided either by the demand partner with the bid response or by a [renderer](https://docs.prebid.org/overview/glossary.html#renderer) that the publisher has associated with the ad unit. This is a high-level diagram showing how header bidding works with this type of integration:
+In-renderer integration (formerly known as “outstream”) implies that a video ad is displayed using video renderers that are provided either by the demand partner with the bid response or by a [renderer](/overview/glossary#renderer) that the publisher has associated with the ad unit. This is a high-level diagram showing how header bidding works with this type of integration:
 
 ![In-renderer Integration Diagram]({{site.baseurl}}/assets/images/prebid-video/outstream-video.png){: .pb-img.pb-lg-img :}
 
