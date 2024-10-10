@@ -84,7 +84,7 @@ Demand partners respond with their respective bids, which may contain a video re
 If the configuration is set up, video bids are cached server-side and mapped to a unique cache ID. This may be used at render time. See [Notes on Prebid Cache](/dev-docs/show-video-with-a-dfp-video-tag.html#notes-on-prebid-cache) for details.
 
 4. **Prebid passes key-value targeting to ad server.**  
-Prebid assigns a unique hb_adid to each video bid/renderer combination, and passes this ID to the ad server via key-value targeting (along with other standard Prebid key-value pairs). This ad ID serves the same role for [standalone/no-content video ad units](https://docs.prebid.org/formats/video.html) as it does for banner ad units.
+Prebid assigns a unique hb_adid to each video bid/renderer combination, and passes this ID to the ad server via key-value targeting (along with other standard Prebid key-value pairs). This ad ID serves the same role for [standalone/no-content video ad units](/formats/video) as it does for banner ad units.
 
 5. **Ad server chooses winning line item.**  
 The ad server chooses the winning line item. If a Prebid line item is selected, the Prebid creative is returned. The creative can be the standard call to `renderAd` or the Universal Creative.
