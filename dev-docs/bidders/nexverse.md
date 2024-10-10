@@ -1,11 +1,29 @@
-
 ---
+layout: bidder
+title: Nexverse
+description: Prebid Nexverse Bidder Adapter
 biddercode: nexverse
-gdpr_supported: true
+aliasCode: nexverse
+tcfeu_supported: true
+dsa_supported: true
+gvl_id: none
 usp_supported: true
 coppa_supported: true
-maintainer: support@nexverse.ai
-media_types: banner, native, video
+schain_supported: true
+dchain_supported: false
+userId: all
+media_types: banner, video, native
+safeframes_ok: true
+deals_supported: true
+floors_supported: true
+fpd_supported: true
+pbjs: true
+pbs: true
+prebid_member: false
+multiformat_supported: will-bid-on-one
+ortb_blocking_supported: false 
+privacy_sandbox: no
+sidebarType: 1
 ---
 
 # Nexverse Adapter
