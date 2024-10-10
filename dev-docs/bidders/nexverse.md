@@ -3,8 +3,7 @@ layout: bidder
 title: Nexverse
 description: Prebid Nexverse Bidder Adapter
 biddercode: nexverse
-aliasCode: nexverse
-tcfeu_supported: true
+tcfeu_supported: false
 dsa_supported: true
 gvl_id: none
 usp_supported: true
@@ -18,13 +17,14 @@ deals_supported: true
 floors_supported: true
 fpd_supported: true
 pbjs: true
-pbs: true
+pbs: false
 prebid_member: false
 multiformat_supported: will-bid-on-one
-ortb_blocking_supported: false 
+ortb_blocking_supported: false
 privacy_sandbox: no
 sidebarType: 1
 ---
+
 
 # Nexverse Adapter
 
