@@ -22,9 +22,9 @@ This document will provide information to help you set up the ad server so ads o
 Here's a set of basic creative recommendations to use as a starting point:
 
 1. **Are you using Prebid.js only?**
-    1. Is one extra HTTP fetch a considerable drag on your revenue performance? If yes, then you'll want to consider using the 'dynamic creative' approach.
+    1. Is one extra HTTP fetch a considerable drag on your revenue performance? If yes, then you'll want to consider using the [dynamic creative](/adops/creative-considerations#prebidjs-dynamic-creatives) approach.
     1. Is updating the creatives in the future going to be possible? If yes, then again, the dynamic creative approach would be fine.
-    1. Otherwise, consider using the Prebid Universal Creative (PUC)
+    1. Otherwise, consider using the [Prebid Universal Creative (PUC)](/adops/creative-considerations#prebid-universal-creative-puc)
 1. **Are you using both Prebid.js and AMP?**
     1. For now, we recommend two sets of line items: one for instream video, and one that uses the PUC for everything else.
     1. In the future, there will be an option to run three sets of line items to utilize the dynamic creative for Prebid.js.

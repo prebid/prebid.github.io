@@ -9,7 +9,7 @@ sidebarType: 3
 
 # AppLovin MAX Setup
 
-This document outlines how to set up [Applovin MAX](https://developers.applovin.com/en) for Prebid Mobile. See the [integration method](/prebid-mobile/modules/rendering/ios-sdk-integration-max.html#rendering-and-tracking) document for information about rendering and tracking.
+This document outlines how to set up [Applovin MAX](https://developers.applovin.com/en) for Prebid Mobile. See the appropriate integration method ([iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-max.html#rendering-and-tracking)/[Android](/prebid-mobile/modules/rendering/android-sdk-integration-max.html#rendering-and-tracking)) document for information about rendering and tracking.
 
 ## Custom Network Setup
 

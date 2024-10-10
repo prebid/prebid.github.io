@@ -9,7 +9,7 @@ sidebarType: 3
 
 # AdMob Setup
 
-This document outlines how to set up [AdMob](https://admob.google.com/home/) for Prebid Mobile. See the [integration method](/prebid-mobile/modules/rendering/ios-sdk-integration-admob.html#rendering-and-tracking) document for information about rendering and tracking.
+This document outlines how to set up [AdMob](https://admob.google.com/home/) for Prebid Mobile. See the appropriate integration method [iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-admob.html#rendering-and-tracking)/[Android](/prebid-mobile/modules/rendering/android-sdk-integration-admob.html#rendering-and-tracking)) document for information about rendering and tracking.
 
 ## Mediation Group Setup
 
