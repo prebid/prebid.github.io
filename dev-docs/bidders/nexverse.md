@@ -5,19 +5,7 @@ gdpr_supported: true
 usp_supported: true
 coppa_supported: true
 maintainer: support@nexverse.ai
-media_types:
-  - banner
-  - video
-  - native
-test_parameters:
-  {
-    bidder: "nexverse",
-    params: {
-      uid: "12345",        # Replace with actual publisher ID
-      pub_id: "54321",     # Replace with actual publisher ID
-      epid: "epid123"      # Replace with actual publisher unique epid
-    }
-  }
+media_types: banner, native, video
 ---
 
 # Nexverse Adapter
@@ -36,9 +24,11 @@ The Nexverse adapter supports the following media types:
 
 To configure the Nexverse adapter, you will need the following parameters:
 
-- **uid**: The publisher's unique ID.
-- **pub_id**: Publisher ID.
-- **epid**: Publisher's unique EPID.
+| Name   | Scope    | Description              | Example    | Type   |
+|--------|----------|--------------------------|------------|--------|
+| uid    | required | Publisher's unique ID     | "12345"    | string |
+| pub_id | required | Publisher ID              | "54321"    | string |
+| epid   | optional | Publisher's unique EPID   | "epid123"  | string |
 
 ## Test Parameters
 
