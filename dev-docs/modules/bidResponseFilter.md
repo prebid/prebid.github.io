@@ -36,7 +36,7 @@ Fields that can be configured:
     pbjs.setConfig({
         bidResponseFilter: {
             cat: { 
-               blockUnknown: false 
+               blockUnknown: false // setting only one of parameters will keep the other one as default
             },
             adv: { 
                enforce: false 
