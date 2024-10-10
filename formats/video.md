@@ -25,7 +25,7 @@ The IAB has identified the [four types of video placements](https://github.com/I
 
 However, for the described four use cases/placement types, there are only two types of integration from the Prebid perspective:
 
-1. [**In-player.**](/prebid-video/video-overview#in-player-integration) There's already a video player on the page. The publisher has to use the [Video Module](https://docs.prebid.org/prebid-video/video-module.html) or implement a javascript function that passes bid responses to the player. In this scenario, Prebid handles video bid caching server-side, then maps it to a unique cache ID, which will be passed to the ad server via key-value targeting. 
+1. [**In-player.**](/prebid-video/video-overview#in-player-integration) There's already a video player on the page. The publisher has to use the [Video Module](/prebid-video/video-module) or implement a javascript function that passes bid responses to the player. In this scenario, Prebid handles video bid caching server-side, then maps it to a unique cache ID, which will be passed to the ad server via key-value targeting. 
 
    The player calls the ad server, and the latter matches Prebid.js key-value pairs to a pre-configured line item, followed by the player’s rendering of the video ad from the winning bidder. 
 
