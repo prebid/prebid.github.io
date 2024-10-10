@@ -36,10 +36,10 @@ Fields that can be configured:
     pbjs.setConfig({
         bidResponseFilter: {
             cat: { 
-               blockUnknown: true 
+               blockUnknown: false 
             },
             adv: { 
-               enforce: true 
+               enforce: false 
             },
             attr: { 
                enforce: false, 
