@@ -4,7 +4,7 @@ title: Preciso
 description: Prebid Preciso Bid Adapter
 gdpr_supported: true
 gvl_id: 874
-media_types: display
+media_types: display,native
 gdpr_supported: true
 usp_supported: true
 pbjs: true
@@ -61,12 +61,14 @@ pbjs.setConfig({
 |---------------|----------|---------------------|---------------|----------|
 | `publisherId` | required | Numeric Publisher ID <br>(as provided by Preciso)  | `'123AB123'`    | `string` |
 | `region`      | optional,recommended | 3 letter country code     | `'IND'` | `string` |
-| `bidFloor`    | optional,recommended | Minimum bid for this impression expressed in CPM (USD)  | `0.01`        | `float`  |
+| `bidFloor`    | optional,recommended | Minimum bid for this impression expressed in CPM (USD). It is used if the Floor Module is not available  | `0.01`        | `float`  |
 | `pageType`    | optional, recommended  | Kind of content present in the page   | `'homepage'`          | `String`     |
 | `bcat`        | optional | List of blocked advertiser categories (IAB)   | `['IAB1-1']`          | `string array`    |
 | `badv`        | optional | Blocked Advertiser Domains| `'example.com'`   | `string array`| 
 
 Notes:
+
+- It is best to provide the `bidfloor` in priceFloor module.
 
 - Preferred to provide the `bcat` and `badv` within the first party data (above). When both methods are provided, first party data values will be prioritized.
 
