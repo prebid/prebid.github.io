@@ -2,7 +2,7 @@
 layout: page_v2
 page_type: module
 title: Module - Bid response filter
-description: Converts bid currency into ad server currency based on data in a supplied exchange rate file.
+description: Validates bid's ortb2 data against its meta data
 module_code : bidResponseFilter
 display_name : Bid Response Filter
 enable_download : true
