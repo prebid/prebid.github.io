@@ -28,7 +28,7 @@ The options object supports these parameters:
 | Option Parameter    | Scope    | Type    | Description             |
 |------------|---------|---------|---------------------------------|
 | gvlid | optional | integer | IAB Global Vendor List ID for this alias for use with the [TCF control module](/dev-docs/modules/tcfControl.html). |
-| useBaseGvlid | optional | boolean | Flag determining if the GVL ID of the original adapter should be re-used |
+| useBaseGvlid | optional | boolean | Flag determining if the GVL ID of the original adapter should be re-used. (PBJS 9.14+) |
 
 {: .alert.alert-info :}
 Creating an alias for a Prebid Server adapter is done differently. See 'extPrebid'
