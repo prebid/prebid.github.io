@@ -1,7 +1,7 @@
 ---
 layout: page_v2
 page_type: module
-title: Module - fledgeForGpt
+title: Module - paapiForGpt
 description: how to use PAAPI with GPT
 module_code : paapiForGpt
 display_name : Fledge (PAAPI) for GPT
@@ -30,33 +30,34 @@ To use PAAPI with GPT:
 - [configure PAAPI](/dev-docs/modules/paapi.html#config)
 - (optional) invoke [setPAAPIConfigForGPT](/dev-docs/publisher-api-reference/setPAAPIConfigForGPT.html) at end of auction.
 
-By default, Prebid.js attempts to configure GPT slots for PAAPI at the end of each auction. This requires GPT to be loaded before the first Prebid auction is started; to avoid this requirement, or for more control in general over GPT slot configuration, you can use [`setPAAPIConfigForGPT`](/dev-docs/publisher-api-reference/setPAAPIConfigForGPT.html).
-
 ## Explicit configuration
 
-First, disable automatic configuration of GPT slots:
+By default, Prebid.js attempts to configure GPT slots for PAAPI together with their targeting (that is, when [setTargetingForGPTAsync](/dev-docs/publisher-api-reference/setTargetingForGPTAsync.html) is called).
+
+For more control how GPT slots are configured, you can set `configWithTargeting: false` and explicitly call [setPAAPIConfigForGPT](/dev-docs/publisher-api-reference/setPAAPIConfigForGPT.html). For example:  
 
 ```js
 pbjs.setConfig({
     paapi: {
+        enabled: true,
+        defaultForSlots: 1,
         gpt: {
-            autoconfig: false
+            configWithTargeting: false
         }
     }
 })
-```
-
-You may then use `setPAAPIConfigForGPT`, typically from a `bidsBackHandler`:
-
-```js
 pbjs.requestBids({
   // ...
-  bidsBackHandler: function(bids, timedOut, auctionId) {  
-     pbjs.setPAAPIConfigForGPT();
-     // ...
+  bidsBackHandler: function(bids, timedOut, auctionId) {
+    pbjs.setPAAPIConfigForGPT();
+    // ...
   }
 })
 ```
+
+## Refreshing Ads
+
+It's important to invoke the `pbjs.setPAAPIConfigForGPT()` function within the `bidsBackHandler` whenever new bids are requested, such as when refreshing ad slots. This ensures that the auctionConfig is manually applied to a GPT slot when autoconfig is disabled. Without this manual configuration, GPT slots will not be properly set up to handle new bids, potentially resulting in duplicate impression calls.
 
 See the [API reference](/dev-docs/publisher-api-reference/setPAAPIConfigForGpt.html) for more options.
 

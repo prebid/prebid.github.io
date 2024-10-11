@@ -12,7 +12,10 @@ sidebarType : 1
 ---
 
 {: .alert.alert-warning :}
-This module loads a dynamically generated JavaScript from cloud.51degrees.com (or your self-hosted domain) based on the evidence (HTTP headers and API results) available. The external resource is used to handle constant platform and browser evolution without requiring frequent changes to the Prebid source code.
+This module loads a dynamically generated JavaScript from Cloud API hosted at cloud.51degrees.com (or your self-hosted domain) based on the evidence (HTTP headers and API results) available. The external resource is used to handle constant platform and browser evolution without requiring frequent changes to the Prebid source code.
+
+{: .alert.alert-warning :}
+The Cloud API is **free** to integrate and use. To increase limits please check [51Degrees pricing](https://51degrees.com/pricing).
 
 # 51Degrees RTD Submodule
 
@@ -29,7 +32,7 @@ This module loads a dynamically generated JavaScript from cloud.51degrees.com (o
 
 The module supports on premise and cloud device detection services with free options for both. 
 
-A free resource key for use with 51Degrees cloud service can be obtained from [51Degrees cloud configuration](https://configure.51degrees.com/tWrhNfY6).  This is the simplest approach to trial the module.
+A free resource key for use with 51Degrees cloud service can be obtained from [51Degrees cloud configuration](https://configure.51degrees.com/HNZ75HT1).  This is the simplest approach to trial the module.
 
 An interface compatible self hosted service can be used with .NET, Java, Node, PHP, and Python.  See [51Degrees examples](https://51degrees.com/documentation/_examples__device_detection__getting_started__web__on_premise.html).
 
@@ -51,7 +54,7 @@ gulp build --modules="rtdModule,51DegreesRtdProvider,appnexusBidAdapter,..."
 
 #### Resource Key
 
-In order to use the module please first obtain a Resource Key using the [Configurator tool](https://configure.51degrees.com/tWrhNfY6) - choose the following properties:
+In order to use the module please first obtain a Resource Key using the [Configurator tool](https://configure.51degrees.com/HNZ75HT1) - choose the following properties:
 
 * DeviceId
 * DeviceType
@@ -62,11 +65,13 @@ In order to use the module please first obtain a Resource Key using the [Configu
 * PlatformVersion
 * ScreenPixelsHeight
 * ScreenPixelsWidth
+* ScreenPixelsPhysicalHeight
+* ScreenPixelsPhysicalWidth
 * ScreenInchesHeight
 * ScreenInchesWidth
-* PixelRatio (optional)
+* PixelRatio
 
-PixelRatio is desirable, but it's a paid property requiring a paid license. Free API service is limited. Please check [51Degrees pricing](https://51degrees.com/pricing) to choose a plan that suits your needs.
+The Cloud API is **free** to integrate and use. To increase limits please check [51Degrees pricing](https://51degrees.com/pricing).
 
 #### User Agent Client Hint (UA-CH) Permissions
 
@@ -106,20 +111,20 @@ In summary we recommend using `Delegate-CH` http-equiv as the preferred method o
 
 ### Configuration
 
-This module is configured as part of the `realTimeData.dataProviders`
+This module is configured as part of the `realTimeData.dataProviders`.  We recommend setting `auctionDelay` to at least 250 ms and make sure `waitForIt` is set to `true` for the `51Degrees` RTD provider.
 
 ```javascript
 pbjs.setConfig({
     debug: true, // we recommend turning this on for testing as it adds more logging
     realTimeData: {
-        auctionDelay: 1000, // should be set lower in production use
+        auctionDelay: 250,
         dataProviders: [
             {
                 name: '51Degrees',
                 waitForIt: true, // should be true, otherwise the auctionDelay will be ignored
                 params: {
-                    // Get your resource key from https://configure.51degrees.com/tWrhNfY6 to connect to cloud.51degrees.com
                     resourceKey: '<YOUR_RESOURCE_KEY>',
+                    // Get your resource key from https://configure.51degrees.com/HNZ75HT1
                     // alternatively, you can use the on-premise version of the 51Degrees service and connect to your chosen end point
                     // onPremiseJSUrl: 'https://localhost/51Degrees.core.js'
                 },

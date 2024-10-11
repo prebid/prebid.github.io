@@ -1,8 +1,8 @@
 ---
 layout: analytics
-title: IntentIQ
+title: Intent IQ
 description: IntentIQ Analytics Adapter
-modulecode: intentiq
+modulecode: intentIq
 ---
 
 ### Description
