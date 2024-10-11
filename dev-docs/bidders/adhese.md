@@ -26,12 +26,13 @@ Adhese will only respond to the first impression. Multiple ad formats in single 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Pbjs param name | Pbs ext field name | Scope    | Description           | Example                   | Type     |
-|-----------------|--------------------|----------|-----------------------|---------------------------|----------|
-| `account`       | `account`          | required | Adhese account name   | `'demo'`                  | `string` |
-| `location`      | `location`         | required | Adhese location name  | `'_adhese_prebid_demo_'`  | `string` |
-| `format`        | `format`           | required | Adhese format name    | `'leaderboard'`           | `string` |
-| `data`          | `targets`          | optional | Custom target data    | `{ 'ci': [9000, 9050] }`  | `object` |
+| Pbjs param name | Scope    | Description           | Example                   | Type     |
+|-----------------|--------------------|----------|-----------------------|---------------------------|
+| `account`       | required | Adhese account name   | `'demo'`                  | `string` |
+| `location`      | required | Adhese location name  | `'_adhese_prebid_demo_'`  | `string` |
+| `format`        | required | Adhese format name    | `'leaderboard'`           | `string` |
+| `data`          | optional | (PBJS only) Custom target data    | `{ 'ci': [9000, 9050] }`  | `object` |
+| `targets`       | optional | (PBS only) Custom target data    | `{ 'ci': [9000, 9050] }`  | `object` |
 
 ### Configuration
 
