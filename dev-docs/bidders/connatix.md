@@ -17,7 +17,7 @@ deals_supported: true
 floors_supported: true
 fpd_supported: false
 pbjs: true
-pbs: false
+pbs: true
 prebid_member: false
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
