@@ -26,11 +26,11 @@ sidebarType: 1
 ---
 
 
-# Nexverse Adapter
+### Nexverse Adapter
 
 The Nexverse adapter requires some initial setup. For assistance or setup instructions, please contact us at [support@nexverse.ai](mailto:support@nexverse.ai).
 
-## Supported Media Types
+### Supported Media Types
 
 The Nexverse adapter supports the following media types:
 
@@ -38,7 +38,7 @@ The Nexverse adapter supports the following media types:
 - Video
 - Native
 
-## Configuration
+### Configuration
 
 To configure the Nexverse adapter, you will need the following parameters:
 
@@ -48,7 +48,7 @@ To configure the Nexverse adapter, you will need the following parameters:
 | pub_id | required | Publisher ID              | "54321"    | string |
 | epid   | optional | Publisher's unique EPID   | "epid123"  | string |
 
-## Test Parameters
+### Test Parameters
 
 You can test the Nexverse adapter with the following test parameters:
 
@@ -75,6 +75,6 @@ var adUnits = [
 ];
 ```
 
-## GDPR, CCPA, COPPA Support
+### GDPR, CCPA, COPPA Support
 
 Nexverse complies with GDPR, CCPA, and COPPA regulations. If you have further questions regarding compliance, feel free to reach out to us.
