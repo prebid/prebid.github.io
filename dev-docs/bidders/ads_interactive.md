@@ -1,10 +1,11 @@
 ---
 layout: bidder
-title: Ads Ineractive
+title: Ads Interactive
 description: Prebid Ads Interactive Bidder Adapter
 biddercode: ads_interactive
 gpp_sids: usstate_all
-tcfeu_supported: false
+gvl_id: 1212
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -19,6 +20,7 @@ pbjs: true
 pbs: true
 pbs_app_supported: true
 safeframes_ok: true
+prebid_member: true
 sidebarType: 1
 ---
 
