@@ -783,6 +783,14 @@
   subgroup: 2
 
 - sbSecId: 2
+  title: Prebid Plugin Renderer
+  link: /prebid-mobile/pbm-api/ios/pbm-plugin-renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
   title: "For Android"
   link:
   isHeader: 1
