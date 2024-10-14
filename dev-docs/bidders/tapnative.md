@@ -19,7 +19,7 @@ sidebarType: 1
 ---
 ### Registration
 
-For assistance or setup instructions, please contact us at support@tapnative.com
+For assistance or setup instructions, please contact us at <support@tapnative.com>.
 
 ### Banner Params
 
