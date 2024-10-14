@@ -17,9 +17,13 @@ deals_supported: true
 floors_supported: true
 sidebarType: 1
 ---
+### Registration
+
+For assistance or setup instructions, please contact us at support@tapnative.com
 
 ### Banner Params
 
+{: .table .table-bordered .table-striped }
 | Name           | Scope     | Description           | Example        | Type     |
 |----------------|-----------|-----------------------|----------------|----------|
 | `placement_id` | mandatory | Placement Id          | `111520`       | `number` |
@@ -53,6 +57,7 @@ var adUnits = [
 
 ### Native Params
 
+{: .table .table-bordered .table-striped }
 | Name           | Scope     | Description           | Example        | Type     |
 |----------------|-----------|-----------------------|----------------|----------|
 | `placement_id` | mandatory | Placement Id          | `111519`       | `number` |
