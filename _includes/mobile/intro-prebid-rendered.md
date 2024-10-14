@@ -61,7 +61,7 @@ Here's how the ad bidding-auction-rendering process works in this integration sc
         1. Otherwise, it writes the creative into an iframe into an internal WebView, replaceing the GAMSDK's WebView.
             1. Injects mraid.js into the webview to listen for events from MRAID: change size, etc.
             1. Sends data to the creative (e.g. 'viewable') which may trigger impression tracking within the creative.
-            1. It does not currently hit the billing or notive urls (burl or nurl).
+            1. It does not currently hit the billing or notice urls (burl or nurl).
 1. If a video VastUrl creative is chosen (rewarded video only):
     1. The GMA SDK uses the platform video player which loads the special VAST file from the Prebid CDN.
     1. Prebid SDK watches VAST events for "<AdTitle>PrebidAppEvent</AdTitle>". When it sees this, it takes over the rendering:
