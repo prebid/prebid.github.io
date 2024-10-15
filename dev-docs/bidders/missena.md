@@ -5,6 +5,7 @@ description: Prebid Missena Bidder Adapter
 biddercode: missena
 gvl_id: 867
 pbjs: true
+pbs: true
 safeframes_ok: false
 sidebarType: 1
 pbs_app_supported: true
