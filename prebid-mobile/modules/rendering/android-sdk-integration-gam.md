@@ -279,10 +279,10 @@ override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 }
 ```
 
-#### Step 5: Handle reward
+#### Step 5: Handle a reward
 {:.no_toc}
 
-Handle earning the reward in the appropriate method. Important: the reward can be null.
+Handle earning the reward in the appropriate method. Important: a reward can be null.
 
 ```kotlin
 override fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit?, reward: Reward?) {
