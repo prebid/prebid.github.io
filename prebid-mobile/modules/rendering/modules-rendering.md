@@ -26,7 +26,8 @@ Prebid Mobile rendering supports the following ad formats:
 * Video Banner 
 * Display Interstitial
 * Video Interstitial
-* Rewarded Video
+* Display Rewarded
+* Video Rewarded
 
 
 

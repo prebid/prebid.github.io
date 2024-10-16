@@ -208,6 +208,8 @@ Integration:
 
 ### Rewarded
 
+{% include mobile/rewarded-server-side-configuration.md %}
+
 Integration example:
 
 ```swift
