@@ -292,6 +292,22 @@ override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 }
 ```
 
+#### Step 5: Handle reward
+{:.no_toc}
+
+Handle earning the reward in the appropriate method. Important: the reward can be null.
+
+```kotlin
+override fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit?, reward: Reward?) {
+    if (reward != null) {
+        val rewardType = reward.type
+        val rewardCount = reward.count
+        val rewardExt = reward.ext
+        // Process the reward
+    }
+}
+```
+
 ### Migrating rewarded video from a Bidding-Only integration
 {:.no_toc}
 
