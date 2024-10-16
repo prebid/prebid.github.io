@@ -186,7 +186,9 @@ Now you should just make a regular AdMob's ad request. Evetything else will be h
 
 Once you receive the ad it will be ready for display. You can show interstitial right in the listener or later according to the app logic.
 
-### Rewarded Video
+### Rewarded 
+
+{% include mobile/rewarded-server-side-configuration.md %}
 
 Integration example:
 

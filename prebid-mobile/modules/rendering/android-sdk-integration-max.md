@@ -161,7 +161,9 @@ Now you should make a regular MAX's ad request. Everything else will be handled 
 
 Once you receive the ad it will be ready for display. Folow the [MAX instructions](https://dash.applovin.com/documentation/mediation/android/getting-started/interstitials#showing-an-interstitial-ad) about how to do it. 
 
-### Rewarded Video
+### Rewarded 
+
+{% include mobile/rewarded-server-side-configuration.md %}
 
 Integration example:
 

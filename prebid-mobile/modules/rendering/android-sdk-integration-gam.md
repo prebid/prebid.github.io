@@ -215,7 +215,9 @@ Integration:
 4. Remove the original `InterstitialAdUnit`.
 5. Follow the instructions to integrate [Interstitial API](#interstitials).  
 
-### Rewarded Video
+### Rewarded
+
+{% include mobile/rewarded-server-side-configuration.md %}
 
 Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad, but it adds ability to handle reward. To display a Rewarded Ad follow these steps:
 

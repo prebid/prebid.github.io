@@ -192,7 +192,9 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 }
 ```
 
-#### Rewarded Video
+#### Rewarded
+
+{% include mobile/rewarded-server-side-configuration.md %}
 
 Integration example:
 
