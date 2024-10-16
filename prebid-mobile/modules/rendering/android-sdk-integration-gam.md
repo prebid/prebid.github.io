@@ -217,7 +217,7 @@ Integration:
 
 ### Rewarded Video
 
-To display a Rewarded Ad follow these steps:
+Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad, but it adds ability to handle reward. To display a Rewarded Ad follow these steps:
 
 ```kotlin
 // 1. Create a rewarded custom event handler for GAM ad server.
@@ -243,19 +243,6 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad. The type of ad can be customized to:
-
-Be notified when user earns a reward - implement `RewardedAdUnitListener` interface:
-
-```kotlin
- fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit)
-```
-
-When the actual reward object is stored in the `RewardedAdUnit`:
-
-```kotlin
-val reward = rewardedAdUnit.getUserReward()
-```
 
 #### Step 1: Create Event Handler
 {:.no_toc}
