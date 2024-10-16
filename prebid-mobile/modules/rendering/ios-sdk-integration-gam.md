@@ -183,7 +183,7 @@ Call the method `loadAd()` which will make a bid request to Prebid Server.
 Wait for the Prebid Server to return an ad and show it to the user in any suitable time.
 
 ```swift
-// MARK: InterstitialRenderingAdUnitDelegate
+// MARK: InterstitialAdUnitDelegate
     
 func interstitialDidReceiveAd(_ interstitial: InterstitialAdUnit) {
     // Now the ad is ready for display
@@ -206,7 +206,7 @@ Integration:
 4. Remove original `InterstitialAdUnit`.
 5. Follow the instructions to integrate [Interstitial API](#interstitials).
 
-### Rewarded Video
+### Rewarded
 
 Integration example:
 
@@ -215,8 +215,7 @@ Integration example:
 let eventHandler = GAMRewardedEventHandler(adUnitID: GAM_AD_UNIT_ID)
     
 // 2. Create an Ad Unit
-rewardedAd = RewardedAdUnit(configID: CONFIG_ID,
-                               eventHandler: eventHandler)
+rewardedAd = RewardedAdUnit(configID: CONFIG_ID, eventHandler: eventHandler)
     
 rewardedAd.delegate = self
     
@@ -237,15 +236,7 @@ The proccess for displaying the Rewarded Ad is the same as for the Interstitial 
 To be notified when a user earns a reward - implement the method of `RewardedAdUnitDelegate`:
 
 ```swift
-- (void)rewardedAdUserDidEarnReward:(RewardedAdUnit *)rewardedAd;
-```
-
-The reward object is stored in the `RewardedAdUnit`:
-
-```swift
-if let reward = rewardedAd.reward as? GADAdReward {
-    // ...
-}
+func rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidReward) {}
 ```
 
 #### Step 1: Create Event Handler
@@ -279,6 +270,23 @@ func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
 }
 ```
 
+##### Step 4: Handle the reward
+{:.no_toc}
+
+Handle the reward in the appropriate method. 
+
+``` swift
+// MARK: RewardedAdUnitDelegate
+
+func rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidReward) {
+    let type = reward.type
+    let count = reward.count
+    let ext = reward.ext
+        
+    // Process the reward
+}
+```
+
 #### Migrating Rewarded Video from a Bidding-Only integration
 
 GAM setup:
@@ -293,7 +301,7 @@ Integration:
 2. Implement the protocol `RewardedAdUnitDelegate` in the View Controller.
 3. Remove usage of `GAMRequest`.
 4. Remove original `RewardedVideoAdUnit`.
-5. Follow the instructions to integrate [Rewarded API](#rewarded-video).
+5. Follow the instructions to integrate [Rewarded API](#rewarded).
 
 ## Additional Ad Unit Configuration
 

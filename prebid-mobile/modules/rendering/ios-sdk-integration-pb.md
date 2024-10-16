@@ -150,16 +150,16 @@ if interstitial.isReady {
 
 ```
 
-The **default** ad format for interstitial is **.banner**. In order to make a `multiformat bid request`, set the respective values into the `adFormats` property.
+The **default** ad formats for interstitial are **.banner** and **video**. In order to make a banner-only or video-only request, set the respective values into the `adFormats` property.
 
 ``` swift
 // Make bid request for video ad
 adUnit?.adFormats = [.video]
 
-// Make bid request for both video and banner ads
+// Make bid request for both video and banner ads (default behaviour)
 adUnit?.adFormats = [.video, .banner]
 
-// Make bid request for banner ad (default behaviour)
+// Make bid request for banner ad 
 adUnit?.adFormats = [.banner]
 
 ```
@@ -192,7 +192,7 @@ func interstitialDidReceiveAd(_ interstitial: InterstitialRenderingAdUnit) {
 }
 ```
 
-#### Rewarded Video
+#### Rewarded
 
 Integration example:
 
@@ -219,6 +219,12 @@ Create the `RewardedAdUnit` object with parameter:
 
 - `configID` - an ID of Stored Impression on the Prebid Server
 
+You can also customize ad unit by setting additional properties: 
+
+- `adFormats` - the set of ad formats supported by the ad unit(the default value is `[.banner, .video]` formats);
+- `bannerParameters` - the banner parameters used for configuring ad unit;
+- `videoParameters` - the video parameters used for configuring ad unit.
+
 ##### Step 2: Load the Ad
 {:.no_toc}
 
@@ -233,7 +239,27 @@ Wait until the ad will be loaded and present it to the user in any suitable time
 // MARK: RewardedAdUnitDelegate
 
 func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
-    // Now the ad is ready for display
+    // Now the ad is ready for display - call `show` method.
+    if rewardedAd.isReady {
+        rewardedAd.show(from: self)
+    }
+}
+```
+
+##### Step 4: Handle the reward
+{:.no_toc}
+
+Handle the reward in the appropriate method. 
+
+``` swift
+// MARK: RewardedAdUnitDelegate
+
+func rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidReward) {
+    let type = reward.type
+    let count = reward.count
+    let ext = reward.ext
+        
+    // Process the reward
 }
 ```
 
