@@ -20,7 +20,7 @@ design tool, you'll need to follow the [GAM native](/adops/gam-native.html) page
 For complete instructions on setting up Prebid line items in Google Ad Manager, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
 
 {: .alert.alert-info :}
-Note that for Prebid Mobile, the In-Renderer video scenario is covered by video line items. See the [video creative reference](adops/setting-up-prebid-video-in-dfp.html) for details.
+Note that for Prebid Mobile, the In-Renderer video scenario is covered by video line items. See the [video creative reference](/adops/mobile-rendering-gam-line-item-setup.html) for details.
 
 ## Overview
 

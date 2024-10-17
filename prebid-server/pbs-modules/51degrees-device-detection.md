@@ -25,7 +25,7 @@ The module sets the following fields of the device object: `make`, `model`, `os`
 
 ### Evidence
 
-The module uses `device.ua` (User Agent) and `device.sua` (Structured User Agent) provided in the oRTB request payload as input (or 'evidence' in 51Degrees terminology).  There is a fallback to the corresponding HTTP request headers if any of these are not present in the oRTB payload - in particular: `User-Agent` and `Sec-CH-UA-*` (aka User-Agent Client Hints).  To make sure Prebid.js sends Structured User Agent in the oRTB payload - we strongly advice publishers to enable [First Party Data Enrichment module](dev-docs/modules/enrichmentFpdModule.html) for their wrappers and specify 
+The module uses `device.ua` (User Agent) and `device.sua` (Structured User Agent) provided in the oRTB request payload as input (or 'evidence' in 51Degrees terminology).  There is a fallback to the corresponding HTTP request headers if any of these are not present in the oRTB payload - in particular: `User-Agent` and `Sec-CH-UA-*` (aka User-Agent Client Hints).  To make sure Prebid.js sends Structured User Agent in the oRTB payload - we strongly advise publishers to enable userAgentHints for their wrappers:
 
 ```js
 pbjs.setConfig({
@@ -291,7 +291,7 @@ java -jar target/prebid-server-bundle.jar --spring.config.additional-location=sa
 ```
 
 {:start="4"}
-4. Run sample request against the server as described in [requests/README](https://github.com/prebid/prebid-server-java/blob/master/sample/requests/README.txt), e.g.
+4. Run sample request against the server as described in [the sample directory](https://github.com/prebid/prebid-server-java/tree/master/sample), e.g.
 
 ```bash
 curl http://localhost:8080/openrtb2/auction --data @extra/modules/fiftyone-devicedetection/sample-requests/data.json

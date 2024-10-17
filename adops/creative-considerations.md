@@ -31,9 +31,9 @@ Here's a set of basic creative recommendations to use as a starting point:
 1. **Using Prebid Mobile?**
     1. Choose your integration method and see the "AdOps Guidance" section for that integration method.
         1. GAM Bidding-Only for [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#ad-operations-guidance)/[Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#ad-operations-guidance)
-        1. GAM Prebid-Rendered for [iOS](TBD)/[Android](TBD)
-        1. AdMob for [iOS](TBD)/[Android](TBD)
-        1. MAX for [iOS](TBD)/[Android](TBD)
+        1. GAM Prebid-Rendered for [iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html)/[Android](/prebid-mobile/modules/rendering/android-sdk-integration-gam.html)
+        1. AdMob for [iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-admob.html)/[Android](/prebid-mobile/modules/rendering/android-sdk-integration-admob.html)
+        1. MAX for [iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-max.html)/[Android](/prebid-mobile/modules/rendering/android-sdk-integration-max.html)
 
 ## Types of Creatives
 

@@ -104,7 +104,7 @@ If this flag is true AND the app collects the user’s geographical location dat
 
 #### setIncludeWinnersFlag()
 
-If `true`, Prebid sdk will add the `includewinners` flag inside the targeting object described in [PBS Documentation](prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . This is needed if you've set up line items in an ad server in "Send Top Bid" mode, as it's what creates the key value pairs like `hb_pb`. 
+If `true`, Prebid sdk will add the `includewinners` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . This is needed if you've set up line items in an ad server in "Send Top Bid" mode, as it's what creates the key value pairs like `hb_pb`. 
 
 Signature:
 
@@ -117,11 +117,11 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| includeWinners | required | boolean | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
+| includeWinners | required | boolean | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 
 #### setIncludeBidderKeysFlag()
 
-If `true`, Prebid sdk will add the `includebidderkeys` flag inside the targeting object described in [PBS Documentation](prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . This is needed if you've set up line items in an ad server in "Send All Bids" mode, as it's what creates the key value pairs like `hb_pb_bidderA`. 
+If `true`, Prebid sdk will add the `includebidderkeys` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . This is needed if you've set up line items in an ad server in "Send All Bids" mode, as it's what creates the key value pairs like `hb_pb_bidderA`. 
 
 Signature:
 
@@ -134,7 +134,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| includeBidderKeys | required | boolean | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
+| includeBidderKeys | required | boolean | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 
 #### setStoredAuctionResponse()
 

@@ -179,7 +179,7 @@ Be sure that you make the ad request with the same `GAMRequest` object that you 
 ## Step 4: Implement GADCustomNativeAdLoaderDelegate protocol
 {:.no_toc}
 
-In order to capture the native ad response you need to implement [GADCustomNativeAdLoaderDelegate](GADCustomNativeAdLoaderDelegate) protocol.
+In order to capture the native ad response you need to implement the GADCustomNativeAdLoaderDelegate protocol.
 
 In the method `-adLoader:didReceiveCustomNativeAd:` you should pass the following Prebid functions:
 
