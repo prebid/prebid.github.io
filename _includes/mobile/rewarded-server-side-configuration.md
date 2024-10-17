@@ -4,6 +4,7 @@ You can pass some rewarded configuration properties from PBS to the SDK using th
 
 Here is the details about rewarded configuration object `rwdd`:
 
+{: .table .table-bordered .table-striped }
 | Attribute            | Required?      | Description                                                                                                           | Example                                                  | Type     |
 |----------------------|----------------|-----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|----------|
 | `reward`             | Yes            | Metadata provided by the publisher to describe the reward                                                             | `{"type": "SuperDollars", "count": 10}`                  | object   |
