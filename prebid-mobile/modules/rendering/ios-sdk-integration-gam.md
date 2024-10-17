@@ -196,7 +196,7 @@ GAM setup:
 
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
 2. Create a new GAM ad unit.
-3. Setup the new [GAM Order](prebid-mobile/modules/rendering/ios-sdk-integration-gam.html) for rendering approach.
+3. Setup the new [GAM Order](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html) for rendering approach.
 
 Integration:
 
@@ -285,7 +285,7 @@ GAM setup:
 
 1. Leave the original order and ad units as is. They are not relevant for the rendering approach but they will serve ads for released applications.
 2. Create a new GAM ad unit.
-3. Setup the new [GAM Order](prebid-mobile/modules/rendering/ios-sdk-integration-gam.html) for rendering approach.
+3. Setup the new [GAM Order](/prebid-mobile/modules/rendering/ios-sdk-integration-gam.html) for rendering approach.
 
 Integration:
 

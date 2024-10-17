@@ -58,7 +58,7 @@ See [Key Values](/adops/key-values.html) for information on the keys you'll need
 
 Depending on your scenario, you will likely need several groups of line items.
 See the [line item essentials](/adops/line-item-creation.html) guide for details.
-How many line items are in each group depends on the [price granularity](/price-granularity.html).
+How many line items are in each group depends on the [price granularity](/adops/price-granularity.html).
 
 For instance, if you're running both Prebid.js and Prebid Mobile,
 you should consider having 2 sets of banner line items and 2 sets of video line items. If your banner line items are medium granularity (201 line items), and your
