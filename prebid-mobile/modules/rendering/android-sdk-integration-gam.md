@@ -215,9 +215,11 @@ Integration:
 4. Remove the original `InterstitialAdUnit`.
 5. Follow the instructions to integrate [Interstitial API](#interstitials).  
 
-### Rewarded Video
+### Rewarded
 
-To display a Rewarded Ad follow these steps:
+{% include mobile/rewarded-server-side-configuration.md %}
+
+Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad, but it adds ability to handle reward. To display a Rewarded Ad follow these steps:
 
 ```kotlin
 // 1. Create a rewarded custom event handler for GAM ad server.
@@ -243,19 +245,6 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad. The type of ad can be customized to:
-
-Be notified when user earns a reward - implement `RewardedAdUnitListener` interface:
-
-```kotlin
- fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit)
-```
-
-When the actual reward object is stored in the `RewardedAdUnit`:
-
-```kotlin
-val reward = rewardedAdUnit.getUserReward()
-```
 
 #### Step 1: Create Event Handler
 {:.no_toc}
@@ -289,6 +278,22 @@ The most convenient way to determine if the ad is ready for displaying is to lis
 ```kotlin
 override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 //Ad is ready for display
+}
+```
+
+#### Step 5: Handle a reward
+{:.no_toc}
+
+Handle earning the reward in the appropriate method. Important: a reward can be null.
+
+```kotlin
+override fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit?, reward: Reward?) {
+    if (reward != null) {
+        val rewardType = reward.type
+        val rewardCount = reward.count
+        val rewardExt = reward.ext
+        // Process the reward
+    }
 }
 ```
 
