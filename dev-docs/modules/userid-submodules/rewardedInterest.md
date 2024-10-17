@@ -18,12 +18,10 @@ gulp build --modules=userId,rewardedInterestIdSystem
 
 ## Rewarded Interest ID Configuration
 
-<div class="table-responsive" markdown="1">
-| Param under userSync.userIds[] | Scope | Type | Description | Example |
-| --- | --- | --- | --- | --- |
-| name | Required | String | The name of the Rewarded Interest user ID submodule. | `"rewardedInterestId"` |
 {: .table .table-bordered .table-striped }
-</div>
+| Param under usersync.userIds[] | Scope    | Type   | Description              | Example                |
+|--------------------------------|----------|--------|--------------------------|------------------------|
+| name                           | Required | String | The name of this module. | `"rewardedInterestId"` |
 
 ## Rewarded Interest ID Example
 
