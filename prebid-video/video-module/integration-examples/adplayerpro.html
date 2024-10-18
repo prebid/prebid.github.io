@@ -13,7 +13,7 @@
     var adUnits = [{
       code: 'div-gpt-ad-51545-0',
       mediaTypes: {
-        video: {"context": "outstream"}
+        video: {context: 'outstream', playerSize: [640, 360], plcmt: 4}
       },
       video: {
         divId: 'player', // required to indicate which player is being used to render this ad unit.
@@ -40,20 +40,20 @@
             playerConfig: {
               placementId: 'c9gebfehcqjE', // required, this placementId is only for demo purposes
               params: {
-                'type': 'inView',
-                'muted': true,
-                'autoStart': true,
-                'advertising': {
-                  'controls': true,
-                  'closeButton': true,
+                type: 'inView',
+                muted: true,
+                autoStart: true,
+                width: 640,
+                height: 360,
+                advertising: {
+                  closeButton: true,
                   // 'tag': {'client': 'googima'},
-                },
-                'width': '600',
-                'height': '300'
+                }
               }
             },
-          },]
+          }]
         },
+        //settings for demo only
         debugging: {
           enabled: true,
           intercept: [
@@ -70,7 +70,9 @@
               }
             },
           ]
-        }
+        },
+        consentManagement: {cmpApi: 'static', consentData: {getTCData: {gdprApplies: false}}},
+        bidResponseFilter: {cat: {blockUnknown: false}, adv: {blockUnknown: false}, attr: {blockUnknown: false}}
       });
       pbjs.addAdUnits(adUnits);
 
