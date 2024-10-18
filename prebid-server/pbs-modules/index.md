@@ -33,6 +33,7 @@ The full list of modules:
 | [**US Custom Logic Privacy**](/prebid-server/features/pbs-uscustomlogic.html) | Similar to the `US Gen Privacy` module, but publishers define their own interpretation of the GPP string. | privacy | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 | [**Richmedia Filter**](/prebid-server/pbs-modules/richmedia.html) | Can filter MRAID creatives from the bid stream. | validation | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 | [**51Degrees Device Detection**](/prebid-server/pbs-modules/51degrees-device-detection.html) | Enriches an incoming OpenRTB request with [51Degrees Device Data](https://51degrees.com/documentation/_device_detection__overview.html) | general | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
+| [**Response Correction**](/prebid-server/pbs-modules/response-correction.html) | Modifies bid responses for specific conditions. | general | | <img alt="check" src="/assets/images/icons/icon-check-green.png" width="30"> |
 
 ## Installing a PBS General Module
 
