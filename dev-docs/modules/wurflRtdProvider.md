@@ -81,10 +81,10 @@ pbjs.setConfig({
 | Name                      | Type          | Description                                                      | Default               |
 | :------------------------ | :------------ | :--------------------------------------------------------------- |:----------------------|
 | name                      | String        | Real time data module name                                       | Always set to 'wurfl' |
-| waitForIt                 | Boolean       | Should be `true` if there's an `auctionDelay` defined (optional) | `false`               |
-| params                    | Object        |                                                                  |                       |
-| params.altHost            | String        | Alternate host to connect to WURFL.js                            |                       |
-| params.debug              | Boolean       | Enable debug                                                     | `false`               |
+| waitForIt                 | Boolean       | Set to `true` if an `auctionDelay` is defined (optional)         | `false`               |
+| params                    | Object        | Configuration parameters for the WURFL RTD module.               |                       |
+| params.altHost            | String        | Alternate host for connecting to WURFL.js                        |                       |
+| params.debug              | Boolean       | Enable debug mode.                                               | `false`               |
 
 ## Testing 
 
