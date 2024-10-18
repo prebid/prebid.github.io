@@ -192,7 +192,9 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 }
 ```
 
-#### Rewarded Video
+#### Rewarded
+
+{% include mobile/rewarded-server-side-configuration.md %}
 
 Integration example:
 
@@ -235,6 +237,22 @@ Wait until the ad is loaded and present it to the user in any suitable time.
 ``` kotlin
 override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 //Ad is ready for display
+}
+```
+
+#### Step 4: Handle a reward
+{:.no_toc}
+
+Handle earning a reward in the appropriate method. Important: a reward can be null.
+
+```kotlin
+override fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit?, reward: Reward?) {
+    if (reward != null) {
+        val rewardType = reward.type
+        val rewardCount = reward.count
+        val rewardExt = reward.ext
+        // Process the reward
+    }
 }
 ```
 
