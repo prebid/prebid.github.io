@@ -14,6 +14,8 @@ sidebarType: 5
 
 ## Overview
 
+(PBS-Java 3.14+)
+
 Part of Prebid Server's job in curating a clean bid stream is in dealing with problems created by bid responses.
 For the most part, if a bid adapter is returning something incorrectly, we work with them to correct the issue.
 However, that's not always possible in a clean way. This module is a place to collect response corrections that
