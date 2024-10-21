@@ -210,7 +210,7 @@ Integration:
 
 {% include mobile/rewarded-server-side-configuration.md %}
 
-Integration example:
+##### Integration example
 
 ```swift
  // 1. Create an Event Handler
@@ -241,12 +241,12 @@ To be notified when a user earns a reward - implement the method of `RewardedAdU
 func rewardedAdUserDidEarnReward(_ rewardedAd: RewardedAdUnit, reward: PrebidReward) {}
 ```
 
-#### Step 1: Create Event Handler
+##### Step 1: Create Event Handler
 {:.no_toc}
 
 To create an event handler you should provide a **GAM Ad Unit ID**.
 
-#### Step 2: Create Rewarded Ad Unit
+##### Step 2: Create Rewarded Ad Unit
 {:.no_toc}
 
 Create the `RewardedAdUnit` object with parameters:
@@ -254,12 +254,12 @@ Create the `RewardedAdUnit` object with parameters:
 - `configID` - an ID of Stored Impression on the Prebid server
 - `eventHandler` - the instance of rewarded event handler
 
-#### Step 3: Load the Ad
+##### Step 3: Load the Ad
 {:.no_toc}
 
 Call the `loadAd()` method which will make a bid request to Prebid server.
 
-#### Step 4: Show the Ad when it is ready
+##### Step 4: Show the Ad when it is ready
 {:.no_toc}
 
 Wait for the ad to load and display it to the user in any suitable time.
@@ -272,7 +272,7 @@ func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
 }
 ```
 
-##### Step 4: Handle the reward
+###### Step 4: Handle the reward
 {:.no_toc}
 
 Handle the reward in the appropriate method. 

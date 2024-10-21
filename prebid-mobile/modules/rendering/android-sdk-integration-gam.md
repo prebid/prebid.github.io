@@ -219,6 +219,8 @@ Integration:
 
 {% include mobile/rewarded-server-side-configuration.md %}
 
+##### Integration example
+
 Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad, but it adds ability to handle reward. To display a Rewarded Ad follow these steps:
 
 ```kotlin
@@ -246,7 +248,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% include /alerts/alert_warning.html content=warning_note %}
 
 
-#### Step 1: Create Event Handler
+##### Step 1: Create Event Handler
 {:.no_toc}
 
 GAM's event handlers are special containers that wrap the GAM Ad Views and help to manage collaboration between GAM and Prebid views.
@@ -255,7 +257,7 @@ GAM's event handlers are special containers that wrap the GAM Ad Views and help 
 
 To create an event handler you should provide a GAM Ad Unit.
 
-#### Step 2: Create Rewarded Ad Unit
+##### Step 2: Create Rewarded Ad Unit
 {:.no_toc}
 
 **RewardedAdUnit** - is an object that will load and display the particular ad. To create it you should provide
@@ -265,12 +267,12 @@ To create an event handler you should provide a GAM Ad Unit.
 
 You can also assign the listener for processing ad events.
 
-#### Step 3: Load the Ad
+##### Step 3: Load the Ad
 {:.no_toc}
 
 Call the `loadAd()` method to make a bid request. The ad unit will load an ad and will wait for explicit instructions to display the Rewarded Ad.
 
-#### Step 4: Display the Ad when it is ready
+##### Step 4: Display the Ad when it is ready
 {:.no_toc}
 
 The most convenient way to determine if the ad is ready for displaying is to listen for the listener method:
@@ -281,7 +283,7 @@ override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 }
 ```
 
-#### Step 5: Handle a reward
+##### Step 5: Handle a reward
 {:.no_toc}
 
 Handle earning the reward in the appropriate method. Important: a reward can be null.
@@ -297,7 +299,7 @@ override fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit?, reward: Reward?
 }
 ```
 
-### Migrating rewarded video from a Bidding-Only integration
+#### Migrating rewarded video from a Bidding-Only integration
 {:.no_toc}
 
 GAM setup:

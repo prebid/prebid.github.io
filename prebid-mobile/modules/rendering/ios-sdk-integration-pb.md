@@ -196,7 +196,7 @@ func interstitialDidReceiveAd(_ interstitial: InterstitialRenderingAdUnit) {
 
 {% include mobile/rewarded-server-side-configuration.md %}
 
-Integration example:
+##### Integration example:
 
 ``` swift
 // 1. Create an Ad Unit
@@ -214,10 +214,10 @@ if rewardedAd.isReady {
 }
 ```
 
-##### Step 1: Create Rewarded Ad Unit
+###### Step 1: Create Rewarded Ad Unit
 {:.no_toc}
 
-Create the `RewardedAdUnit` object with parameter:
+Create the `RewardedAdUnit` object with the parameter:
 
 - `configID` - an ID of Stored Impression on the Prebid Server
 
@@ -227,15 +227,15 @@ You can also customize ad unit by setting additional properties:
 - `bannerParameters` - the banner parameters used for configuring ad unit;
 - `videoParameters` - the video parameters used for configuring ad unit.
 
-##### Step 2: Load the Ad
+###### Step 2: Load the Ad
 {:.no_toc}
 
 Call the `loadAd()` method which will make a bid request to Prebid server.
 
-##### Step 3: Show the Ad when it is ready
+###### Step 3: Show the Ad when it is ready
 {:.no_toc}
 
-Wait until the ad will be loaded and present it to the user in any suitable time.
+Wait until the ad is loaded and present it to the user at any suitable time.
 
 ``` swift
 // MARK: RewardedAdUnitDelegate
@@ -248,7 +248,7 @@ func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
 }
 ```
 
-##### Step 4: Handle the reward
+###### Step 4: Handle the reward
 {:.no_toc}
 
 Handle the reward in the appropriate method. 
