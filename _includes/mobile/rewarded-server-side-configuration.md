@@ -1,11 +1,14 @@
-#### Prebid Server-side Rewarded Configuration
+#### Server-side Rewarded Ad Unit Configuration
 
-You can pass some rewarded configuration properties from PBS to the SDK using the `ext.prebid.passthrough` object, [supported](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#request-passthrough) by Prebid Server, in the stored impression-level request. The rewarded configuration could be placed in `ext.prebid.passthrough[].rwdd` object.
+The Rewarded Ad Unit assumes special behavior that should be configurable by the platform or publisher according to the application or ad experience guides.  
 
-Here is the details about rewarded configuration object `rwdd`:
+Configuration of rewarded ad unit can be done using stored impression-level stored request and the [passthrough](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#request-passthrough) feature of Prebid Server. 
+
+Prebid SDK will search for a particular `rwdd` object in `ext.prebid.passthrough` of bid response to configure the behavior of the Rewarded Ad Unit. The following table describes the structure and usage purpose of `rwdd` configuration parameters.
 
 
 {: .table .table-bordered .table-striped }
+
 | Attribute            | Description                                                                                                           | Example                                                  | Type     |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|----------|
 | `reward`             | Metadata provided by the publisher to describe the reward                                                             | `{"type": "SuperDollars", "count": 10}`                  | object   |
