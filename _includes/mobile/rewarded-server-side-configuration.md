@@ -4,13 +4,13 @@ The Rewarded Ad Unit assumes special behavior that should be configurable by the
 
 Configuration of rewarded ad unit can be done using stored impression-level stored request and the [passthrough](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#request-passthrough) feature of Prebid Server. 
 
-Prebid SDK will search for a particular `rwdd` object in `ext.prebid.passthrough` of bid response to configure the behavior of the Rewarded Ad Unit. The following table describes the structure and usage purpose of `rwdd` configuration parameters.
+Prebid SDK will search for a particular `rwdd` object in `ext.prebid.passthrough` of bid response to configure the behavior of the Rewarded Ad Unit. The following table describes the structure and usage purpose of `rwdd` configuration parameters.  
 
 {: .table .table-bordered .table-striped }
 
 | Attribute | Type | Description | Example |  
 |-----------|------|-------------|---------|
-| `reward`             | object <br> (optional)   | Metadata provided by the publisher to describe the reward.                                                             |<pre>{<br>&nbsp;"type": "SuperDollars", <br>&nbsp;"count": 10<br>}</pre> | 
+| `reward`             | object <br> (optional)   | Metadata provided by the publisher to describe the reward.                                                             |<code>{<br>&nbsp;"type": "SuperDollars", <br>&nbsp;"count": 10<br>}</code> | 
 | `reward.type`        | string   | Type of the reward in the app's coins. | `"SuperDollars"` | 
 | `reward.count`       | integer  | Amount of coins. | `10` | 
 | `reward.ext`         | object   | For future extensions. | `{"ext":{}}` | 
