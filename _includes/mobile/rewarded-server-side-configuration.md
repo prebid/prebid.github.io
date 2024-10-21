@@ -6,7 +6,6 @@ Configuration of rewarded ad unit can be done using stored impression-level stor
 
 Prebid SDK will search for a particular `rwdd` object in `ext.prebid.passthrough` of bid response to configure the behavior of the Rewarded Ad Unit. The following table describes the structure and usage purpose of `rwdd` configuration parameters.
 
-
 {: .table .table-bordered .table-striped }
 
 | Attribute | Type | Description | Example |  
