@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: 1accord
-description: Prebid 1accord Bidder Adapter
+title: 1Accord
+description: Prebid 1Accord Bidder Adapter
 pbjs: true
 biddercode: 1accord
 aliasCode : nexx360

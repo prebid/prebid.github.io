@@ -131,6 +131,11 @@ These are the available hooks that can be implemented in a module:
 
 In a module it is not necessary to implement all mentioned interfaces but at least one is required by your functionality.
 
+Notes:
+
+- Modules at the `BidderRequest` and `RawBidderResponse` stages are called in parallel for each bidder.
+- Modules that want to change the request context in the `BidderRequest` or `RawBidderResponse` stages should also supply an `Entrypoint` hook that returns a module context with a [sync.Map](https://pkg.go.dev/sync#Map) entry. See the example below.
+
 ### Examples
 
 1. To **update** the request in the `BidderRequest`, your implementation would return a hook result with a change set:
@@ -238,7 +243,30 @@ In a module it is not necessary to implement all mentioned interfaces but at lea
     }
     ```
 
-More test implementations for each hook can be found in unit-tests at [github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking](https://github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking) folder.
+4. Writing to the module context from the `BidderRequest` or `RawBidderResponse` stages requires synchronization between parallel instances of a module. The recommended approach is for the module to supply an `Entrypoint` hook that returns a module context with a [sync.Map](https://pkg.go.dev/sync#Map) entry.
+
+In the `Entrypoint` stage:
+
+```go
+return hookstage.HookResult[hookstage.EntrypointPayload]{
+  ModuleContext: hookstage.ModuleContext{
+    dealsContextKey:      &sync.Map{},
+    blockingDataParamKey: &sync.Map{},
+    impsContextKey:       &sync.Map{},
+  },
+}
+```
+
+In the `BidderRequest` or `RawBidderResponse` stage:
+
+```go
+    ...
+    miCtx.ModuleContext[dealsContextKey].(*sync.Map)
+    ...
+```
+
+{:start="5"}
+5. More test implementations for each hook can be found in unit-tests at [github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking](https://github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking) folder.
 
 ### Configuration
 

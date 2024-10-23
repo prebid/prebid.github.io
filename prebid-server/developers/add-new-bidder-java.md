@@ -127,11 +127,16 @@ adapters:
     # Please deploy this config in each of your datacenters with the appropriate regional subdomain
     endpoint: http://REGION.example.com/openrtb2
     endpoint-compression: gzip (or none)
+    ortb-version: "2.6"
     geoscope:
       - USA
       - CAN
+    ortb:
+      multiformat-supported: true
     meta-info:
       maintainer-email: maintainer@email.com
+      currency-accepted:
+        - USD
       app-media-types:
         - banner
         - video
@@ -175,6 +180,7 @@ Modify this template for your bid adapter:
 - Choose the `supported-vendors` constants: These constants should be unique. The list of existing vendor constants can be found [here](https://github.com/prebid/prebid-server-java/blob/master/src/main/java/org/prebid/server/bidder/ViewabilityVendors.java).
 - Remove the `capabilities` (app/site/dooh) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support. (Note: 'dooh' is [Digital Out Of Home](/prebid-server/use-cases/pbs-dooh.html))
 - If your auction endpoint supports gzip compression, setting 'endpoint-compression' to 'gzip' will save on network fees.
+- If your auction endpoint or finance systems have limited currency support, you can declare the `meta-info.currency-accepted` array. If you do, your bid adapter will not be called for auctions being conducted outside your set of allowable currencies.
 
 If you does not support user syncing, you can remove `usersync` section of configuration.
 

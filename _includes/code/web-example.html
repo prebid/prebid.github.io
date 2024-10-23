@@ -1,0 +1,82 @@
+<!-- markdownlint-disable MD034 -->
+<!-- 
+  provide the following variables:
+  - id: unique id for the example
+  - html: html code snippet
+  - js: js code snippet
+  - scripts: a commad separate list of required scripts. Allowed values are pbjs,gpt,astjs . default is pbjs,ast
+--->
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item ui-tab" role="presentation">
+      <button class="nav-link active" id="{{ include.id }}-result-tab" data-toggle="tab" data-target="#{{ include.id }}-result" type="button" role="tab" aria-controls="result" aria-selected="true">result</button>
+    </li>
+    <li class="nav-item ui-tab" role="presentation">
+      <button class="nav-link" id="{{ include.id }}-html-tab" data-toggle="tab" data-target="#{{ include.id }}-html" type="button" role="tab" aria-controls="html" aria-selected="false">html</button>
+    </li>
+    <li class="nav-item ui-tab" role="presentation">
+      <button class="nav-link" id="{{ include.id }}-js-tab" data-toggle="tab" data-target="#{{ include.id }}-js" type="button" role="tab" aria-controls="js" aria-selected="false">js</button>
+    </li>
+    <li class="nav-item ui-tab" role="presentation">
+      <button class="nav-link" id="{{ include.id }}-source-tab" data-toggle="tab" data-target="#{{ include.id }}-source" type="button" role="tab" aria-controls="js" aria-selected="false">source</button>
+    </li>
+</ul>
+<div class="tab-content mb-3" id="example-tab-content">
+  <div class="tab-pane fade show active" id="{{ include.id }}-result" role="tabpanel" aria-labelledby="{{ include.id }}-result-tab">
+    <div class="bg-light p-3 shadow-sm">
+      <!-- external required scripts -->
+      {% assign scripts = include.scripts | split: "," %}
+      {% for script in scripts %}
+        {% if script == "pbjs" %}
+          {% include prebidjs-non-prod.html %}
+        {% elsif script == "gpt" %}
+          {% include gptjs.html %}
+        {% elsif script == "astjs" %}
+          {% include astjs.html %}
+        {% else %}
+          script tag '{{ script }}' unknown
+        {% endif %}
+      {% else %}
+        <!-- no required scripts defined, pbjs will be included by default -->
+        {% include prebidjs-non-prod.html %}
+        {% include gptjs.html %}
+      {% endfor %}
+
+      <!-- example code -->
+      <script>{{ include.js }}</script>
+      <!-- example html -->
+      {{ include.html }}
+    </div>
+  </div>
+  <div class="tab-pane fade" id="{{ include.id }}-html" role="tabpanel" aria-labelledby="{{ include.id }}-html-tab">
+    <pre class="mt-0 shadow-sm"><code class="language-html">{{ include.html | xml_escape}}</code></pre>
+  </div>
+  <div class="tab-pane fade" id="{{ include.id }}-js" role="tabpanel" aria-labelledby="{{ include.id }}-js-tab">
+    <pre class="mt-0 shadow-sm"><code class="language-javascript">{{ include.js }}</code></pre>
+  </div>
+  <div class="tab-pane fade" id="{{ include.id }}-source" role="tabpanel" aria-labelledby="{{ include.id }}-source-tab">
+    <pre class="mt-0 shadow-sm"><code class="language-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;{{ page.title }}&lt;/title&gt;
+
+    &lt;!-- required scripts --&gt;
+    {% assign scripts = include.scripts | split: "," %}{% for script in scripts %}{% if script == "pbjs" %}&lt;script async src=&quot;https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js&quot;&gt;&lt;/script&gt;
+    {% elsif script == "gpt" %}&lt;script async src=&quot;https://securepubads.g.doubleclick.net/tag/js/gpt.js&quot;&gt;&lt;/script&gt;
+    {% elsif script == "astjs" %}&lt;script async src=&quot;https://acdn.adnxs.com/ast/ast.js&quot;&gt;&lt;/script&gt;{% else %}&lt;!-- unknown script tag '{{ script }}' required --&gt;{% endif %}{% else %}&lt;script async src=&quot;//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js&quot;&gt;&lt;/script&gt;
+    &lt;script async src=&quot;https://securepubads.g.doubleclick.net/tag/js/gpt.js&quot;&gt;&lt;/script&gt;{% endfor %}
+  &lt;/head&gt;
+  &lt;body&gt;
+  
+  &lt;!-- javascript --&gt;
+  &lt;script&gt;{{ include.js }}&lt;/script&gt;
+
+  &lt;!-- html --&gt;
+  {{ include.html | xml_escape}}
+  &lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+  </div>
+</div>
+  
