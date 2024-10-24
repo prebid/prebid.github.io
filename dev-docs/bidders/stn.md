@@ -9,6 +9,8 @@ multiformat_supported: will-bid-on-any
 schain_supported: true
 tcfeu_supported: false
 usp_supported: true
+gpp_supported: true
+gpp_sids: tcfeu, usstate_all, usp
 pbs: false
 floors_supported: true
 userIds: all
@@ -31,7 +33,6 @@ The STN adapter requires setup and approval. Please reach out to <hb@stnvideo.co
 | `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
-| `currency` | optional | String | 3 letters currency | "EUR"
 
 ## Example
 

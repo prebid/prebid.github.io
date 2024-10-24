@@ -7,6 +7,7 @@ pbs: true
 biddercode: onetag
 media_types: banner, video
 tcfeu_supported: true
+dsa_supported: true
 gpp_supported: true
 gvl_id: 241
 usp_supported: true

@@ -6,6 +6,7 @@ biddercode: adf
 media_types: banner, native, video
 coppa_supported: true
 tcfeu_supported: true
+dsa_supported: true
 usp_supported: true
 prebid_member: true
 pbjs: true

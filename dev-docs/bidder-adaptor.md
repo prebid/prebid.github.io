@@ -235,7 +235,8 @@ export const spec = {
     onTimeout: function(timeoutData) {},
     onBidWon: function(bid) {},
     onSetTargeting: function(bid) {},
-    onBidderError: function({ error, bidderRequest }),
+    onBidderError: function({ error, bidderRequest }) {},
+    onAdRenderSucceeded: function(bid) {},
     supportedMediaTypes: [BANNER, VIDEO, NATIVE]
 }
 registerBidder(spec);
@@ -325,7 +326,7 @@ Here is a sample bidderRequest object:
     canonicalUrl: null,
     page: "http://mypage.org?pbjs_debug=true",
     domain: "mypage.org",
-    ref: null,
+    referer: null,
     numIframes: 0,
     reachedTop: true,
     isAmp: false,
@@ -352,7 +353,7 @@ Notes on parameters in the bidderRequest object:
 Some of the data in `ortb2` is also made available through other `bidderRequest` fields:
 
 * **refererInfo** is provided so you don't have to call any utils functions. See below for more information.
-* **gdprConsent** is the object containing data from the [GDPR ConsentManagement](/dev-docs/modules/consentManagement.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
+* **gdprConsent** is the object containing data from the [TCF ConsentManagement](/dev-docs/modules/consentManagementTcf.html) module. For TCF2+, it will contain both the tcfString and the addtlConsent string if the CMP sets the latter as part of the TCData object.
 * **uspConsent** is the object containing data from the [US Privacy ConsentManagement](/dev-docs/modules/consentManagementUsp.html) module.
 
 <a id="tid-warning"></a>
@@ -1264,6 +1265,15 @@ export const spec = {
     onBidderError: function({ error, bidderRequest }) {
         // Bidder specific code
     }
+
+    /**
+     * Register bidder specific code, which will execute if the ad
+     * has been rendered successfully
+     * @param {bid} bid request object
+     */
+    onAdRenderSucceeded: function(bid) {
+        // Bidder specific code
+    }
 }
 registerBidder(spec);
 
@@ -1308,6 +1318,7 @@ description: Prebid example Bidder Adapter
 biddercode: example
 aliasCode: fileContainingPBJSAdapterCodeIfDifferentThenBidderCode
 tcfeu_supported: true/false
+dsa_supported: true/false
 gvl_id: none
 usp_supported: true/false
 coppa_supported: true/false

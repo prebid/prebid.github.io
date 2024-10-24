@@ -13,7 +13,8 @@ Configure your server to read stored requests from the filesystem:
 
 ```yaml
 stored_requests:
-  filesystem: true
+  filesystem:
+    enabled: true
 ```
 
 Choose an ID to reference your stored request data. Throughout this doc, replace {id} with the ID you've chosen.
