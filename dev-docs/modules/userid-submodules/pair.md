@@ -22,7 +22,7 @@ gulp build --modules=pairIdSystem
 | name | Required | String | The name of PAIR ID user ID module. | `"pairId"` |
 | params | Optional | Object | Container of all module params. |  |
 | params.liveramp | Optional | Object | Container of all liveramp cleanroom specified params. |  |
-| params.liveramp.storageKey | Optional | String | storage key to fetch liveramp provided PAIR Id, the default value is `"_lr_pairId"` | `"_lr_pairId_custom"` |
+| params.liveramp.storageKey | Optional | String | storage key to fetch liveramp provided PAIR Id, the default value is `"_lr_pairId"` | `"_lr_pairId"` |
 
 ## PAIR ID Examples
 
@@ -45,15 +45,14 @@ Or if to use cleanrooms provided implementation, it can be specified by adding t
 
 ```javascript
 
-// value in 'pairid' local storage/cookie entry will be combined with ids provided by cleamroom liveramp
-
+// value in 'pairId' local storage/cookie entry will be combined with ids provided by cleamroom liveramp
 pbjs.setConfig({
     userSync: {
         userIds: [{
         name: 'pairId',
         params: {
                 liveramp: {
-                    storageKey: '_lr_pairId_custom'
+                    storageKey: '_lr_pairId'
                 }
             },
       }]

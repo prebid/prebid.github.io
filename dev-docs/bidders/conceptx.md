@@ -23,7 +23,7 @@ safeframes_ok: true
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |-------------|----------|----------------------------------------------------------------------|----------|----------|
-| `siteId` | required | The site ID `'your-page-name'`. | `'your-page-name'` | `string` |
+| `site` | required | The site `'your-page-name'`. | `'your-page-name'` | `string` |
 | `adunit` | required | The specific adunit | `'some-id-3'` | `string`|
 
 #### Banner example

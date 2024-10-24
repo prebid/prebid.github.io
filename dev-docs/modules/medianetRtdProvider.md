@@ -26,8 +26,7 @@ The module currently provisions Media.net's Intelligent Refresh configured by th
 
 Intelligent Refresh (IR) module lets publisher refresh their ad inventory without affecting page experience of visitors through configured criteria. The module optionally provides tracking of refresh inventory and appropriate targeting in GAM. Publisher configured criteria is fetched via an external JS payload.
 
-{: .alert.alert-warning :}
-Disclosure: This module loads external code that is not open source and has not been reviewed by Prebid.org.
+{% include dev-docs/loads-external-javascript.md %}
 
 ## Configuration
 

@@ -12,36 +12,49 @@ schain_supported: true
 usp_supported: true
 safeframes_ok: false
 pbjs: true
-floors_supported: true
+pbs: true
+floors_supported: false
 sidebarType: 1
 ---
 
 ### Registration
 
-Please reach out to your smartclip business contact for any questions and assistance in configuration.
+This adapter requires setup and approval from the smartclip team. Please contact us at --- <bidding@smartclip.tv>
 
-### Bid Params
+### Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name                 | Scope    | Description                                                                                             | Example                 | Type        |
 | -------------------- | -------- | ------------------------------------------------------------------------------------------------------- | ----------------------- | ----------- |
 | `tagId`              | required | A unique ID.                                                                                            | `'Nu68JuOWAvrbzoyrOR9a7A'` | `string` |
-| `publisherId`        | required | A unique PublisherID.                                                                                   | `'publisher_Id'`        | `string`    |
-| `siteId`             | required | A unique SiteID.                                                                                        | `'site_id'`             | `string`    |
+| `publisherId`        | required | A unique PublisherID. Is provided by smartclip                                                          | `'publisher_Id'`        | `string`    |
+| `siteId`             | required | A unique SiteID or AppID. Is provided by smartclip                                                      | `'site_id'`             | `string`    |
+| `secure`             | optional | Boolean identifying whether the requests should be https or not (used to override the protocol if the page isn't secure). | `true`| `boolean`   |
+| `mimes`              | optional | List of MIME types to allow in ad.                                                                      | `['application/javascript', 'video/mp4', 'video/webm']` | `array` |
+| `price_floor`        | optional | Set the current channel price floor in real time.                                                       | `10`                    | `integer`   |
+| `min_duration`       | optional | Minimum video ad duration in seconds                                                                    | `15`                    | `integer`   |
+| `max_duration`       | optional | Maximum video ad duration in seconds                                                                    | `60`                    | `integer`   |
+
+### Prebid.js Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name                 | Scope    | Description                                                                                             | Example                 | Type        |
+| -------------------- | -------- | ------------------------------------------------------------------------------------------------------- | ----------------------- | ----------- |
+| `tagId`              | required | A unique ID.                                                                                            | `'Nu68JuOWAvrbzoyrOR9a7A'` | `string` |
+| `publisherId`        | required | A unique PublisherID. Is provided by smartclip                                                          | `'publisher_Id'`        | `string`    |
+| `siteId`             | required | A unique SiteID or AppID. Is provided by smartclip                                                      | `'site_id'`             | `string`    |
 | `bidfloor`           | required | Value of Bidfloor.                                                                                      | `0.3`                   | `float`     |
 | `bidfloorcur`        | required | Used Currency. (e.g. EUR, USD etc.)                                                                     | `'EUR'`                 | `string`    |
 | `context`            | optional | Token that describes which context to play: 'instream' or 'outstream'                                   | `'outstream'`           | `string`    |
-| `outstream_options`  | required | Object to set options on the smartx renderer. (Only required when setting mediaType.video.context = 'outstream') | `{}`           | `object`    |
 | `secure`             | optional | Boolean identifying whether the requests should be https or not (used to override the protocol if the page isn't secure). | `true`| `boolean`   |
 | `mimes`              | optional | List of MIME types to allow in ad.                                                                      | `['application/javascript', 'video/mp4', 'video/webm']` | `array` |
 | `price_floor`        | optional | Set the current channel price floor in real time.                                                       | `10`                    | `integer`   |
 | `min_duration`       | optional | Minimum video ad duration in seconds                                                                    | `15`                    | `integer`   |
 | `max_duration`       | optional | Maximum video ad duration in seconds                                                                    | `60`                    | `integer`   |
 | `sitekey`            | optional | Sitekey provided by smartclip.                                                                          | `'foo.bar.baz'`           | `string`    |
+| `outstream_options`  | required | Object to set options on the smartx renderer, see below. Only required when setting mediaType.video.context = 'outstream'. | `{}`           | `object`    |
 
-<a name="smartx-outstream-options-object"></a>
-
-#### outstream_options Object
+#### outstream_options
 
 {: .table .table-bordered .table-striped }
 | Name            | Scope    | Description                                                                                  | Example          | Type        |

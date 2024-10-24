@@ -19,7 +19,6 @@ gulp build --modules=criteoIdSystem
 ## Criteo ID Configuration
 
 The Criteo ID module does not require any configuration parameters. It should work as-is provided that bidders use it in their adapters.
-When calling Criteo RTB, partners should forward this id in the field `user.ext.prebid_criteoid`.
 
 {: .alert.alert-info :}
 NOTE: For optimal performance, the Criteo Id module should be called at every opportunity. It embeds its own optimal caching mechanism. It's best not to use `params.storage` with this module as it may only lower the performances. If you are using multiple id systems, however, you may use it for the other id systems that supports it.

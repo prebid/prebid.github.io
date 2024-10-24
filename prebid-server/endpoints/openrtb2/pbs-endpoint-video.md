@@ -47,7 +47,7 @@ These key-values are returned to the SSAI server as part of the video response.
 10. The stitched stream is returned to the application.
 
 <br>
-<img src="/assets/images/flowcharts/pb-lfv-serverside.png">
+<img src="/assets/images/flowcharts/pb-lfv-serverside.png" alt="architecture diagram">
 <br>
 
  **Parameters**<a name="parameters"></a>
@@ -201,12 +201,7 @@ The `pricegranularity` sub-object `range` describes the maximum price point for 
 
 ### Regulations
 
-{% capture legalNotice %}
-
-  This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation.  Please note that because every company and its collection, use, and storage of personal data is different, you should also seek independent legal advice relating to obligations under European and /or US regulations, including the General Data Protection Regulations (GDPR), the existing ePrivacy Directive and California Consumer Protection Act (CCPA). Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
-  {% endcapture %}
-
-{% include /alerts/alert_important.html content=legalNotice %}
+{% include legal-warning.html %}
 
 In order for publishers to meet their transparency, notice and choice/consent requirements under the GDPR and CCPA, Prebid Server supports the [IAB Europe Transparency & Consent Framework](https://www.iab.com/topics/consumer-privacy/gdpr/) and the [CCPA Compliance Framework](https://www.iab.com/guidelines/ccpa-framework/).
 

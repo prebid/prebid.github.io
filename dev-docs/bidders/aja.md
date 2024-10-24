@@ -2,11 +2,22 @@
 layout: bidder
 title: AJA
 description: Prebid AJA Bidder Adaptor
-userIds: criteo, unifiedId, imuid
 pbjs: true
 pbs: true
 biddercode: aja
-media_types: video, native
+media_types: banner
+tcfeu_supported: false
+floors_supported: false
+schain_supported: true
+dchain_supported: false
+usp_supported: false
+gpp_supported: false
+coppa_supported: false
+fpd_supported: false
+multiformat_supported: false
+safeframes_ok: true
+deals_supported: false
+userIds: criteo, unifiedId, imuid
 sidebarType: 1
 ---
 

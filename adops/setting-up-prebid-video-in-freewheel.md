@@ -11,6 +11,11 @@ sidebarType: 3
 {: .alert.alert-warning :}
 This guide is not written, maintained, or endorsed by Freewheel. Freewheel recommends speaking to your account team before implementing any header-bidding setup to ensure full implications for direct-sold ad delivery, forecasting, and reporting is understood.
 
+{: .alert.alert-warning :}
+The approach described here could create too many line items in the ad server
+if the price buckets are too granular. We recommend that you consider how many
+line items can be supported and plan out the price granularity/category/duration combinations.
+
 This page describes how to set up Campaigns for long form video using FreeWheel's ad server.
 
 As with Google Ad Manager for digital ads, ad ops will need to configure their FreeWheel server account so that the server can provide the correct creatives for the video player. If you do not have an account visit [FreeWheel](https://www.freewheel.com/) to create one.  

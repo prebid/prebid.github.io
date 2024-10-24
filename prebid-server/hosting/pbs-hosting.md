@@ -54,8 +54,7 @@ and many versions of the GDPR vendors list.
 
 Other services you may want to run alongside Prebid Server are:
 
-* Geographic lookup (for GDPR scope determination)
-* Device lookup service (future: for Programmatic Guaranteed targeting)
+* Geographic lookup (e.g. GDPR scope determination)
 
 Note that neither Prebid Server nor Prebid Cache supports configuring an SSL certificate. It's intended that they run behind a load balancer or proxy server (e.g. nginx) that provides SSL.
 
@@ -66,7 +65,7 @@ between Prebid protocols and the chosen No-SQL system that implements the storag
 
 ### No-SQL Clusters
 
-This is where Prebid Cache stores its data. You can choose Redis, Aerospike, or Cassandra. How many you need will
+This is where Prebid Cache stores its data. You can choose Redis, Aerospike, Cassandra, or Apache Ignite. How many instances you need will
 depend on the expected traffic, your traffic mix, and the average length of time that objects are cached.
 
 ### Replicated Database

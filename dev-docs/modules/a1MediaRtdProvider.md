@@ -13,8 +13,7 @@ sidebarType : 1
 
 # A1Media RTD Module
 
-{: .alert.alert-warning :}
-Disclosure: This module loads external code that is not open source and has not been reviewed by Prebid.org.
+{% include dev-docs/loads-external-javascript.md %}
 
 The A1Media RTD module loads a script for obtaining A1Media user segments, providing the user segment data to bid-requests.
 

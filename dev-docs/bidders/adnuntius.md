@@ -24,6 +24,7 @@ sidebarType: 1
 |-------------|----------|----------------------------------------------------------------------|----------|----------|
 | `auId` | required | The ad unit ID `'0000000000072345'` leading zeros can be omitted. | `'0000000000072345'` | `string` |
 | `network` | optional | Used if you want to make requests to multiple networks in adnuntius. | `'adnuntius'` | `string`|
+| `userId` | optional | Allows you to set a specific user id in the request. | `'userId'` | `string`|
 | `targeting` | optional | Targeting to be sent through to adnuntius with the request. | `{ c: ['prebids'] }` | `string`|
 | `maxDeals` | optional | The maximum number of deal bids to include. Default 0. | `1` | `Integer` |
 | `bidType` | optional | Whether to use `grossBid` or `netBid` from the server response as the cpm bid. Default is `grossBid`. | `grossBid` | `string` |
@@ -52,6 +53,7 @@ Here's an example of sending targeting information about categories to adnuntius
             "params": {
                 "auId": "8b6bc",
                 "network": "adnuntius",
+                "userId": "<USERID>",
                 "targeting": {
                     "c": ["prebids"]
                 }
@@ -84,9 +86,9 @@ pbjs.setBidderConfig({
 });
 ```
 
-### Disable cookies for adnuntius
+### Disable cookies for Adnuntius
 
-You have the option to tell adnuntius not to set cookies in your browser. This does not mean that third party ads being served through the ad server will not set cookies. Just that Adnuintius will not set it for internal ads.
+You have the option to tell adnuntius not to set cookies in your browser. This does not mean that third party ads being served through the ad server will not set cookies. Just that Adnuntius will not set it for internal ads.
 
 ```js
 pbjs.setBidderConfig({
@@ -98,6 +100,21 @@ pbjs.setBidderConfig({
 ```
 
 Use cookie will always be set to true by default. Changing it to false will disable cookies.
+
+### Trigger Advertiser Transparency Mode in Adnuntius
+
+You have the option to tell Adnuntius to only serve ads that have their Advertiser's legal name specified. 
+
+```js
+pbjs.setBidderConfig({
+    bidders: ['adnuntius'],
+    config: {
+        advertiserTransparency: true
+    }
+});
+```
+
+By default, `advertiserTransparency` is set to `false`, meaning there is no restriction on which ads can deliver. By setting `advertiserTransparency` to `true`, ad delivery is restricted to those that have their Advertiser's legal name specified.
 
 ### Prebid Server Test Request
 

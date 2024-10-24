@@ -2,16 +2,16 @@
 layout: bidder
 title: Viant
 description: Prebid Viant Bidder Adapter
-biddercode: viant
+biddercode: viantOrtb
 media_types: banner, video, native
 tcfeu_supported: false
 coppa_supported: true
 usp_supported: true
 gpp_supported: false
-schain_supported: false
+schain_supported: true
 userId: uid2, unifiedId
 pbjs: true
-prebid_member: false
+prebid_member: true
 dchain_supported: false
 safeframes_ok: false
 deals_supported: true
@@ -26,7 +26,7 @@ sidebarType: 1
 
 ### Registration
 
-If you have any questions regarding set up, please reach out to <dist-runtime@viantinc.com>.
+If you have any questions regarding set up, please reach out to <Marketplace@adelphic.com>.
 
 #### Bid Params
 

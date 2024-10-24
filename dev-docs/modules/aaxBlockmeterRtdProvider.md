@@ -24,8 +24,7 @@ The module enables publishers with an AAX relationship to measure traffic coming
 
 AAX can also help publishers monetize this traffic by allowing them to serve [acceptable ads](https://acceptableads.com/about/) to these adblock visitors and recover their lost revenue. [Reach out to us](https://www.aax.media/try-blockmeter/) to know more.
 
-{: .alert.alert-warning :}
-Disclosure: This module loads external code that is not open source and has not been reviewed by Prebid.org.
+{% include dev-docs/loads-external-javascript.md %}
 
 ## Configuration
 

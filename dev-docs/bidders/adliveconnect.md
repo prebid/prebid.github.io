@@ -21,6 +21,8 @@ multiformat_supported: will-bid-on-one
 floors_supported: true
 aliasCode: adkernel
 sidebarType: 1
+enable_download: false
+pbjs_version_notes: removed in 8.14
 ---
 
 ### Note
