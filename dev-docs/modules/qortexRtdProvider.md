@@ -22,7 +22,7 @@ sidebarType : 1
 
 The Qortex RTD module appends contextual segments to the bidding object based on the content of a page using the Qortex API.
 
-If the `Qortex Group Id` and module parameters provided during configuration is active, the Qortex context API will attempt to generate and return a [Content object](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=26) using indexed data from provided page content. The module will then merge that object into the appropriate bidders' `ortb2.site.content`, which can be used by prebid adapters that use `site.content` data.
+Upon load, if the `Qortex Group Id` and module parameters provided during configuration is active, the Qortex context API will attempt to generate and return a [Content object](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf#page=26) using indexed data from provided page content. The module will then merge that object into the appropriate bidders' `ortb2.site.content`, which can be used by prebid adapters that use `site.content` data.
 
 ## Build
 
