@@ -58,7 +58,7 @@ pbjs.setConfig({
 });
 ```
 
-### Paramter Details
+### Parameter Details
 
 {: .table .table-bordered .table-striped }
 | Name             |Type           | Description                                                         |Required | Notes  |
