@@ -27,14 +27,11 @@ pbjs.enableAnalytics({
 });
 ```
 
-
-
 ### Manual Report Trigger with reportExternalWin
 
 The reportExternalWin function allows for manual reporting, meaning that reports will not be sent automatically but only when triggered manually.
 
 To enable this manual reporting functionality, you must set the manualWinReportEnabled parameter in Intent IQ Unified ID module configuration is true. Once enabled, reports can be manually triggered using the reportExternalWin function.
-
 
 ### Calling the reportExternalWin Function
 
@@ -43,6 +40,7 @@ To call the reportExternalWin function, you need to pass the partner_id paramete
 ```js
 window.intentIqAnalyticsAdapter_[partner_id].reportExternalWin()
 ```
+
 Example use with Partner ID = 123455
 
 ```js
@@ -80,7 +78,6 @@ placementId: 'div-1' // ID of the ad placement.
 | originalCurrency    | String    | Currency of the original auction                                                                                                                 | USD                           | No        |
 | status              | String    | Status of the impression. Leave empty or undefined if Prebid is not the bidding platform                                                          | rendered                      | No        |
 | placementId         | String    | Unique identifier of the ad unit on the webpage that showed this ad                                                                               | div-1                         | No        |
-
 
 To report the auction win, call the function as follows:
 
