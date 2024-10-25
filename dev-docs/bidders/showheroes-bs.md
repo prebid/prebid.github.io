@@ -30,7 +30,7 @@ All other parameters should be sent inside openRTB request.
 ### openRTB2 support
 
 {: .alert.alert-danger :}
-Starting with Prebid.js version 9.16 ShowHeores bidder adapter is requesting bids via openRTB protocol.  
+Starting with Prebid.js version 9.18 ShowHeores bidder adapter is requesting bids via openRTB protocol.  
 Publishers can use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html). Bidder supports all first-party data fields: site, user, segments, and imp-level first-party data.
 
 ### testing
