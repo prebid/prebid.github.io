@@ -1,5 +1,4 @@
 {
-
   "name": "prebid.github.io",
   "version": "1.0.0",
   "description": "This repository contains the source files for the Prebid.js documentation site at [Prebid.org](https://prebid.org).",
@@ -30,8 +29,8 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@docusaurus/core": "3.0.1",
-    "@docusaurus/preset-classic": "3.0.1",
+    "@docusaurus/core": "^3.5.2",
+    "@docusaurus/preset-classic": "^3.5.2",
     "@mdx-js/react": "3.0.0",
     "clsx": "^1.2.1",
     "prism-react-renderer": "2.1.0",
@@ -39,7 +38,10 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.0.1"
+    "@docusaurus/module-type-aliases": "^3.5.2",
+    "@docusaurus/tsconfig": "^3.5.2",
+    "@docusaurus/types": "^3.5.2",
+    "typescript": "^5.6.3"
   },
   "browserslist": {
     "production": [

@@ -1,13 +1,13 @@
-// @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
+import type { Config } from '@docusaurus/types';
+import type * as Preset from '@docusaurus/preset-classic';
 
-const {themes} = require('prism-react-renderer');
+const { themes } = require('prism-react-renderer');
 
 const lightCodeTheme = themes.github;
 const darkCodeTheme = themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
-const config = {
+const config: Config = {
   title: "Prebid",
   tagline: "Prebid Documentation",
   favicon: "img/favicon.ico",
@@ -37,8 +37,7 @@ const config = {
   presets: [
     [
       "classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         docs: {
           routeBasePath: "/",
           path: "docs",
@@ -51,13 +50,12 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-      }),
+      } satisfies Preset.Options,
     ],
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    {
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {
@@ -126,7 +124,30 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-    }),
+    } satisfies Preset.ThemeConfig,
+
+  plugins: [
+    async function frontMatterFiles(context, options) {
+      return {
+        name: 'frontmatter-files',
+        async loadContent() {
+          // The loadContent hook is executed after siteConfig and env has been loaded.
+          // You can return a JavaScript object that will be passed to contentLoaded hook.
+          return {
+            files: []
+          }
+        },
+
+        async contentLoaded({ content, actions }) {
+          console.log('frontMatterFiles contentLoaded')
+          console.log(content)
+          // The contentLoaded hook is done after loadContent hook is done.
+          // `actions` are set of functional API provided by Docusaurus (e.g. addRoute)
+        },
+
+      };
+    }
+  ]
 };
 
-module.exports = config;
+export default config;
