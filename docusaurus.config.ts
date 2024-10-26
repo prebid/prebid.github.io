@@ -127,26 +127,7 @@ const config: Config = {
     } satisfies Preset.ThemeConfig,
 
   plugins: [
-    async function frontMatterFiles(context, options) {
-      return {
-        name: 'frontmatter-files',
-        async loadContent() {
-          // The loadContent hook is executed after siteConfig and env has been loaded.
-          // You can return a JavaScript object that will be passed to contentLoaded hook.
-          return {
-            files: []
-          }
-        },
 
-        async contentLoaded({ content, actions }) {
-          console.log('frontMatterFiles contentLoaded')
-          console.log(content)
-          // The contentLoaded hook is done after loadContent hook is done.
-          // `actions` are set of functional API provided by Docusaurus (e.g. addRoute)
-        },
-
-      };
-    }
   ]
 };
 
