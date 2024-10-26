@@ -3,6 +3,9 @@ layout: userid
 title: AdmixerID
 description: AdmixerID User ID sub-module
 useridmodule: admixerIdSystem
+bidRequestUserId: admixerId
+eidsource: admixer.net
+example: '"1111"'
 ---
 
 
@@ -18,6 +21,7 @@ gulp build --modules=admixerIdSystem
 ## AdmixerID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"admixerId"` | `"admixerId"` |

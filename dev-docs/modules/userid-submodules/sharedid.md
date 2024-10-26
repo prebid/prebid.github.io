@@ -3,6 +3,9 @@ layout: userid
 title: SharedID
 description: SharedID User ID sub-module
 useridmodule: sharedIdSystem
+bidRequestUserId: sharedid
+eidsource: sharedid.org
+example: '{"id":"01EAJWWN...", "third":"01EAJ..."}'
 ---
 
 
@@ -21,6 +24,7 @@ gulp build --modules=sharedIdSystem
 In addition to the parameters documented above in the Basic Configuration section the following SharedID specific configuration is available:
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `'sharedId'` |
