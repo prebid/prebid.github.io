@@ -84,7 +84,6 @@ const config: Config = {
           {
             type: 'docsVersionDropdown',
             docsPluginId: 'prebidjs',
-            label: 'Prebid.js',
           },
           {
             type: 'docsVersionDropdown',
