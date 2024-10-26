@@ -1,12 +1,11 @@
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-const { themes } = require('prism-react-renderer');
+import { themes } from 'prism-react-renderer';
 
 const lightCodeTheme = themes.github;
 const darkCodeTheme = themes.dracula;
 
-/** @type {import('@docusaurus/types').Config} */
 const config: Config = {
   title: "Prebid",
   tagline: "Prebid Documentation",
@@ -39,20 +38,25 @@ const config: Config = {
       "classic",
       {
         docs: {
+          sidebarPath: "./sidebars.ts",
           routeBasePath: "/",
-          path: "docs",
-          sidebarPath: require.resolve("./sidebars.js"),
+          path: "docs/overview",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: "https://github.com/prebid/prebid.github.io/tree/master",
         },
         blog: false,
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: "./src/css/custom.css",
         },
       } satisfies Preset.Options,
-    ],
+    ]
   ],
+
+  // themes: [
+  //   ["@docusaurus/theme-classic", { customCss: require.resolve("./src/css/custom.css") }],
+  //   // "@docusaurus/theme-search-algolia" - not yet
+  // ],
 
   themeConfig:
     {
@@ -68,14 +72,24 @@ const config: Config = {
           // { to: "/dev-docs", label: "Dev", position: "left" },
           {
             type: "docSidebar",
-            sidebarId: "tutorialSidebar",
+            sidebarId: "prebid",
             position: "left",
-            label: "Tutorial",
+            label: "Prebid",
           },
           {
             href: "https://github.com/prebid/prebid.github.io",
             label: "GitHub",
             position: "right",
+          },
+          {
+            type: 'docsVersionDropdown',
+            docsPluginId: 'prebidjs',
+            label: 'Prebid.js',
+          },
+          {
+            type: 'docsVersionDropdown',
+            docsPluginId: 'prebidServer',
+            label: 'Prebid Server',
           },
         ],
       },
@@ -127,7 +141,28 @@ const config: Config = {
     } satisfies Preset.ThemeConfig,
 
   plugins: [
-
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'prebidjs',
+        path: 'docs/prebid',
+        routeBasePath: 'docs/prebid',
+        sidebarPath: './sidebars.pbjs.ts',
+        showLastUpdateTime: true,
+        // ... other options
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'prebidServer',
+        path: 'docs/prebid-server',
+        routeBasePath: 'docs/prebid-server',
+        sidebarPath: './sidebars.pbs.ts',
+        showLastUpdateTime: true
+        // ... other options
+      },
+    ],
   ]
 };
 
