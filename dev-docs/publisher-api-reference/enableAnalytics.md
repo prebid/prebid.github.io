@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.enableAnalytics(config)
-description: 
+description: enableAnalytics API
 sidebarType: 1
 ---
 
@@ -10,7 +10,7 @@ Enables sending event data to the analytics provider of your choice. For a list 
 
 ### Example
 
-```
+```javascript
 pbjs.enableAnalytics([{
     provider: "analyticsA",    
     options: {
@@ -31,16 +31,13 @@ pbjs.enableAnalytics([{
 | `includeEvents` | Optional | Array of strings | Event whitelist; if provided, only these events will be forwarded to the adapter |
 | `excludeEvents` | Optional | Array of strings | Event blacklist; if provided, these events will not be forwarded to the adapter |
 
-
 Note each analytics adapter has its own invocation parameters. Analytics adapters that are built in the standard way should
 support a `option.sampling` parameter. You'll need to check with your analytics provider to confirm
 whether their system recommends the use of this parameter. They may have alternate methods of sampling.
 
-
 ### See also
 
-- [Prebid.js events](/dev-docs/publisher-api-reference/getEvents.html)
-- [How to Add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html).
-
+* [Prebid.js events](/dev-docs/publisher-api-reference/getEvents.html)
+* [How to Add an Analytics Adapter](/dev-docs/integrate-with-the-prebid-analytics-api.html).
 
 <hr class="full-rule" />

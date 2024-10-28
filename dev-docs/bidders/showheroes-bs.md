@@ -5,7 +5,10 @@ description: Prebid ShowHeroes Bidder Adapter
 pbjs: true
 biddercode: showheroes-bs
 media_types: video, banner
-gdpr_supported: true
+gvl_id: 111
+tcfeu_supported: true
+usp_supported: true
+schain_supported: true
 sidebarType: 1
 ---
 

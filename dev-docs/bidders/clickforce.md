@@ -21,4 +21,3 @@ sidebarType: 1
 | Name   | Scope    | Description            | Example  | Type     |
 |--------|----------|------------------------|----------|----------|
 | `zone` | required | The CLICKFORCE zone ID | `'6878'` | `string` |
-

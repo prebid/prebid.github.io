@@ -10,11 +10,7 @@ title: Prebid Server | Versions | Java
 <div class="row">
     <div class="col-md-6">
 
-The Java version of Prebid Server is for those who:
-<ul>
-<li> Want to host Programmatic Guaranteed</li>
-<li> Or just prefer the Java language</li>
-</ul>
+The Java version of Prebid Server is for those who prefer the Java language.
 
 </div>
 <div class="col-md-6 centered">
@@ -23,7 +19,6 @@ The Java version of Prebid Server is for those who:
 
 </div>
 </div>
-
 
 ## Features
 
@@ -43,26 +38,26 @@ important architectural considerations, then follow the instructions for [Instal
 
 There are a few test requests in sample/requests that work with prebid-config-file-bidders.yaml and the files in the samples/stored directory.
 
-1) Follow the instructions in the root-level README.txt file to build the server
+1. Follow the instructions in the root-level README.txt file to build the server
 
-2) Start the server pointing to a config in the sample directory. e.g.
+2. Start the server pointing to a config in the sample directory. e.g.
 
-```
-java -jar target/prebid-server.jar --spring.config.additional-location=sample/prebid-config.yaml
-```
+    ```bash
+    java -jar target/prebid-server.jar --spring.config.additional-location=sample/prebid-config.yaml
+    ```
 
-3) Use one of the stored requests in the sample directory with curl:
+3. Use one of the stored requests in the sample directory with curl:
 
-```bash
-cd sample
-curl --header "X-Forwarded-For: 151.101.194.216" -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36' -H 'Referer: https://example.com/demo/' -H "Content-Type: application/json" http://localhost:8080/openrtb2/auction --data @FILENAME
-```
+    ```bash
+    cd sample
+    curl --header "X-Forwarded-For: 151.101.194.216" -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36' -H 'Referer: https://example.com/demo/' -H "Content-Type: application/json" http://localhost:8080/openrtb2/auction --data @FILENAME
+    ```
 
-Where FILENAME is one of:
+    Where FILENAME is one of:
 
-- rubicon-storedresponse.json - this is a request that calls for a stored-auction-response.
-- appnexus-disabled-gdpr.json - this is a request that actually calls the appnexus endpoint after disabling GDPR by setting regs.ext.gdpr:0
-- pbs-stored-req-test-video.json - this is a stored-request/response chain returning a VAST document
+    - rubicon-storedresponse.json - this is a request that calls for a stored-auction-response.
+    - appnexus-disabled-gdpr.json - this is a request that actually calls the appnexus endpoint after disabling GDPR by setting regs.ext.gdpr:0
+    - pbs-stored-req-test-video.json - this is a stored-request/response chain returning a VAST document
 
 ## References
 

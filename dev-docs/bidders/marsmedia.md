@@ -6,7 +6,7 @@ pbjs: true
 pbs: true
 biddercode: marsmedia
 media_types: video, banner
-gdpr_supported: true
+tcfeu_supported: true
 floors_supported: true
 schain_supported: true
 usp_supported: true
@@ -22,8 +22,8 @@ sidebarType: 1
 |---------------|----------|-------------|---------|----------|
 | zoneId | required | The zone ID from Mars Media Group. | 9999 | integer |
 
-
 ### Banner - Ad Unit Setup
+
 ```javascript
 var adUnits = [
 {
@@ -42,9 +42,10 @@ var adUnits = [
     }
   }]
 }
-``` 
+```
 
 ### Instream Video - Ad Unit Setup
+
 ```javascript
 var adUnits = [
 {

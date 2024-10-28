@@ -11,7 +11,7 @@ Tapad's ID module is free to use and promotes collaboration across the industry 
 
 To register as an authorized user of the Tapad ID module, or for more information, documentation and access to Tapad’s Terms and Conditions please contact  [prebid@tapad.com](mailto:prebid@tapad.com).
 
-Tapad’s Privacy landing page containing links to region-specific Privacy Notices may be found here: [https://tapad.com/privacy](https://www.tapad.com/privacy).
+Tapad’s Privacy landing page containing links to region-specific Privacy Notices may be found here: [tapad.com/privacy](https://www.tapad.com/privacy).
 
 Add it to your Prebid.js package with:
 
@@ -29,7 +29,7 @@ gulp build --modules=userId,tapadIdSystem
 
 ## Tapad ID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
       userIds: [
@@ -47,4 +47,4 @@ pbjs.setConfig({
       ]
     }
 });
-{% endhighlight %}
+```

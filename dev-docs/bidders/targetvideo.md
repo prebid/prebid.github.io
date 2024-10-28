@@ -3,8 +3,9 @@ layout: bidder
 title: TargetVideo
 description: Prebid TargetVideo Bidder Adaptor
 biddercode: targetVideo
-media_types: banner
-gdpr_supported: true
+media_types: banner, video
+gvl_id: 786
+tcfeu_supported: true
 schain_supported: true
 pbjs: true
 sidebarType: 1

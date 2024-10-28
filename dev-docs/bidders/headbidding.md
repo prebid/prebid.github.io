@@ -10,9 +10,11 @@ pbjs: true
 pbs: false
 biddercode: headbidding
 media_types: banner, native, video
-gdpr_supported: true
+gvl_id: 14
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
+gpp_supported: true
 pbs_app_supported: true
 schain_supported: true
 userIds: all
@@ -24,8 +26,6 @@ floors_supported: true
 aliasCode : adkernel
 sidebarType: 1
 
-
-
 ---
 
 ### Bid Params
@@ -33,7 +33,7 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description | Example | Type     |
 |----------|----------|-------------|---------|----------|
-| `zoneId` | required |             |         | `string` |
+| `zoneId` | required |             |         | `integer` |
 | `host`   | required |             |         | `string` |
 
 Head Bidding is an aliased bidder for AdKernel

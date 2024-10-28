@@ -3,7 +3,7 @@ layout: bidder
 title: IDX bidder adapter
 description: Prebid IDX Bidder Adapter
 biddercode: idx
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 schain_supported: false

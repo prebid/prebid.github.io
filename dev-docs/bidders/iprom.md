@@ -9,8 +9,9 @@ enable_download: true
 sidebarType: 1
 ---
 
-### Prebid Server Note:
-For registration with our bidder please see our website at [www.iprom.eu](https://www.iprom.eu) or contact us at support@iprom.si.
+### Prebid Server Note
+
+For registration with our bidder please see our website at [www.iprom.eu](https://www.iprom.eu) or contact us at <support@iprom.si>.
 
 ### Bid Params
 

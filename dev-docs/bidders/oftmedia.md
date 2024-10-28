@@ -5,7 +5,7 @@ description: Prebid One Fifty Two Media Bidder Adaptor
 pbjs: true
 biddercode: oftmedia
 aliasCode : appnexus
-gdpr_supported: true
+tcfeu_supported: true
 coppa_supported: true
 usp_supported: true
 pbs: false

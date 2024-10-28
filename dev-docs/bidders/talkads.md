@@ -3,7 +3,7 @@ layout: bidder
 title: Talkads
 description: Talkads Prebid Bidder Adapter
 biddercode: talkads
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 1074
 usp_supported: false
 coppa_supported: false
@@ -17,7 +17,7 @@ sidebarType: 1
 
 ### Registration
 
-The Talkads Adapter requires setup before beginning. Please contact us at www.natexo.com and register to the publisher side.
+The Talkads Adapter requires setup before beginning. Please contact us at <www.natexo.com> and register to the publisher side.
 
 ### Configuration
 
@@ -55,6 +55,7 @@ var adUnits = [
 ```
 
 #### Banner example
+
 ```
 var adUnits = [
     code: '/19968336/prebid_display_example_1',

@@ -24,10 +24,9 @@ Using this module requires prior agreement with [clean.io](https://clean.io) to 
 
 clean.io Realtime module can be built just like any other prebid module:
 
-```
+```bash
 gulp build --modules=cleanioRtdProvider,...
 ```
-
 
 ## Configuration
 
@@ -47,7 +46,6 @@ pbjs.setConfig({
 });
 ```
 
-
 ### Configuration parameters
 
 {: .table .table-bordered .table-striped }
@@ -56,12 +54,11 @@ pbjs.setConfig({
 | ``cdnUrl`` | ``string`` | Required | CDN URL of the script, which is to be used for protection. |
 | ``protectionMode`` | ``'full' or 'bids' or 'bids-nowait'`` | Required | Integration mode. Please refer to the "Integration modes" section for details. |
 
-
 ## Integration modes
 
 {: .table .table-bordered .table-striped }
 | Integration Mode | Parameter Value | Description |
 | :------------ | :------------ | :------------ |
-| Full page protection | ``'full'`` | Preferred mode. The module will add the protector agent script directly to the page, and it will protect all placements. This mode will make the most out of various behavioral detection mechanisms, and will also prevent typical malicious behaviors. Please note that in this mode, depending on Prebid library naming, Chrome may mistakenly tag non-ad-related content as ads: https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/ad_tagging.md. |
+| Full page protection | ``'full'`` | Preferred mode. The module will add the protector agent script directly to the page, and it will protect all placements. This mode will make the most out of various behavioral detection mechanisms, and will also prevent typical malicious behaviors. Please note that in this mode, depending on Prebid library naming, Chrome may mistakenly tag non-ad-related content as ads: <https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/ad_tagging.md>. |
 | Bids-only protection | ``'bids'`` | The module will protect specific bid responses, more specifically, the HTML representing ad payload, by wrapping it into the agent script. Please note that in this mode, ads delivered directly, outside of Prebid integration, will not be protected, since the module can only access the ads coming through Prebid. |
 | Bids-only protection with no delay on bid rendering | ``'bids-nowait'`` | Same as above, but in this mode, the script will also *not* wrap those bid responses, which arrived prior to successful preloading of agent script. |

@@ -6,7 +6,8 @@ biddercode: orbidder
 pbjs: true
 pbs: true
 media_types: banner
-gdpr_supported: true
+gvl_id: 559
+tcfeu_supported: true
 floors_supported: true
 sidebarType: 1
 ---

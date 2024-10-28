@@ -3,7 +3,7 @@ layout: bidder
 title: Aceex
 description: Prebid Aceex Bidder Adaptor
 biddercode: aceex
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -16,9 +16,9 @@ pbs: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at tech@aceex.com
+The Example Bidding adapter requires setup before beginning. Please contact us at <tech@aceex.com>
 
 ### Bid Params
 

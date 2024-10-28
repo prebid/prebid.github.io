@@ -6,7 +6,8 @@ biddercode: converge
 pbjs: true
 pbs: false
 media_types: banner, native, video
-gdpr_supported: true
+tcfeu_supported: true
+gpp_supported: true
 gvl_id: 248
 usp_supported: true
 coppa_supported: true
@@ -22,7 +23,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Converge-Digital Bidding adapter requires setup and approval before implementation. Please reach out to <info@converge-digital.com> for more details.
 

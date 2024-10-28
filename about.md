@@ -12,7 +12,7 @@ sidebarType: 0
 <style>
 
 p {
-	font-size: 18px;
+    font-size: 18px;
 }
 
 </style>

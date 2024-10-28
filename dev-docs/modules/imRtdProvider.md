@@ -11,6 +11,7 @@ sidebarType : 1
 ---
 
 # Intimate Merger Real time Data Provider
+
 {:.no_toc}
 
 * TOC
@@ -19,7 +20,6 @@ sidebarType : 1
 This module reads segments from [Intimate Merger](https://corp.intimatemerger.com/) audience data platform and attaches them as targeting keys to bid requests.
 
 The audience data platform performs segmentation even in environments where 3rd party cookies are not available, but curretly only available in Japan.
-
 
 ## Usage
 
@@ -31,9 +31,9 @@ Add it to your Prebid.js package with:
 
 The following configuration parameters are available:
 
-```
-pbjs.setConfig(
-    ...
+```javascript
+pbjs.setConfig({
+    // ...
     realTimeData: {
         auctionDelay: 5000,
         dataProviders: [
@@ -47,8 +47,8 @@ pbjs.setConfig(
             }
         ]
     }
-    ...
-}
+    // ...
+}):
 ```
 
 ## Parameters

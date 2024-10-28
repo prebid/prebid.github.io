@@ -21,11 +21,10 @@ When the ad request arrives at the ad server, the ad server reads the targeting 
 
 After you’ve completed your planning, move on to the appropriate setup documentation for your ad server.
 
--  [Google Ad Manager](/adops/step-by-step.html)
--  [Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-appnexus-ad-server.html)
--  [Smart Ad Server](/adops/setting-up-prebidjs-with-Smart-Ad-Server.html)
--  [FreeWheel](/adops/setting-up-prebid-video-in-freewheel.html)
-
+- [Google Ad Manager](/adops/step-by-step.html)
+- [Xandr Monetize Ad Server](/adops/setting-up-prebid-with-the-appnexus-ad-server.html)
+- [Smart Ad Server](/adops/setting-up-prebidjs-with-Smart-Ad-Server.html)
+- [FreeWheel](/adops/setting-up-prebid-video-in-freewheel.html)
 
 ## Next Step
 

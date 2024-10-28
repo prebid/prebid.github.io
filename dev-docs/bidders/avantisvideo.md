@@ -6,15 +6,17 @@ pbjs: true
 biddercode: avantisvideo
 aliasCode: aniview
 media_types: banner, video
-gdpr_supported: true
+gvl_id: 780 (aniview)
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: true
 sidebarType: 1
 ---
 
-### Note:
-For more information about [Avantis Video](https://www.avantisvideo.com/), please contact contact@avantisvideo.com.
+### Note
+
+For more information about [Avantis Video](https://www.avantisvideo.com/), please contact <contact@avantisvideo.com>.
 
 ### Bid Params
 
@@ -25,9 +27,9 @@ For more information about [Avantis Video](https://www.avantisvideo.com/), pleas
 | `AV_CHANNELID`   | required | Channel id       | `'5a5f17a728a06102d14c2718'` | `string` |
 
 ### Test Parameters
-```
-videoAdUnit = [
-{
+
+```javascript
+const videoAdUnit = [{
   code: 'video1',
   mediaTypes: {
     video: {

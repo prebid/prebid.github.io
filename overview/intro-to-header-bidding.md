@@ -8,6 +8,7 @@ sidebarType: 0
 
 
 # Introduction to Header Bidding
+
 {:.no_toc}
 
 {: .alert.alert-success :}
@@ -15,8 +16,19 @@ This is a general overview of header bidding. If you’re interested in an overv
 
 Let’s start by saying that the term “header bidding” is a bit of a misnomer. At its inception it was somewhat accurate, but those days are long gone. We’ll explain that in just a bit, but let’s start at the beginning. What exactly is header bidding?
 
-* TOC
+- TOC
 {:toc}
+
+## Overview
+
+A video overview of header bidding.
+
+{% include vimeo-iframe.html id="820684821" title="Introduction to Header Bidding" %}
+
+Further Reading:
+
+- [Transcript of this video overview](/overview/intro-to-header-bidding-video.html)
+- [Header Bidding with Prebid](/overview/intro.html#header-bidding-with-prebid)
 
 ## Brief Description
 
@@ -44,17 +56,16 @@ The code for bidding on web display ads still resides in the header, but with th
 
 Today header bidding might more appropriately be referred to as pre-ad server bidding. But in the same way that people in the U.S. insist on calling a game played mostly with your hands “football,” people in the ad industry are going to continue to call this header bidding.
 
-
 ## How It Works
 
 This is a very simplified version of how header bidding works with display ads on a website:
 
-1. 	The page starts to load.
-2. 	The header bidding code calls out to a set of demand partners asking for bids.
-3. 	The demand partners reply with their bids.
-4. 	The ad server is called, with some or all bids attached to the call.
-5. 	The ad server considers all available ads that could be displayed, including the header bid(s).
-6. 	The ad server displays the winner for each ad unit (which may or may not be one of the bids that resulted from the header bidding).
+1. The page starts to load.
+2. The header bidding code calls out to a set of demand partners asking for bids.
+3. The demand partners reply with their bids.
+4. The ad server is called, with some or all bids attached to the call.
+5. The ad server considers all available ads that could be displayed, including the header bid(s).
+6. The ad server displays the winner for each ad unit (which may or may not be one of the bids that resulted from the header bidding).
 
 ![Header Bidding](/assets/images/intros/header-bidding-intro.png){: .center-image :}
 
@@ -90,7 +101,6 @@ Engineers will have to work closely with ad ops to ensure the key value pairs th
 
 Header bidding does not compete with direct bidding; it enhances it. Bids that come in through the header bidding process work alongside all other inventory in a campaign. You get market intelligence, the ability to set CPMs and priorities, and you’re able to ensure bids coming from header bidding don’t interfere with higher priority inventory such as direct sold ads. Header bidding fits into the overall process without interfering with any contracted deals and obligations.
 
-
 ## Managed Services vs In House
 
 To fully maximize your revenue and performance, header bidding can be a complicated and time-consuming task. Because of that, many companies choose to hire managed services companies to take on the work. Depending on the company you choose, they’ll implement and monitor your header bidding and make adjustments for you.
@@ -98,7 +108,6 @@ To fully maximize your revenue and performance, header bidding can be a complica
 If you choose to keep everything in house, be prepared for your engineering and ad ops teams to spend time not only getting set up but also making adjustments and updates.
 
 Both options require an investment, but it’s an investment that has been repeatedly proven to pay off for most publishers.
-
 
 ## Bidding Partners
 

@@ -8,10 +8,9 @@ media_types: banner, video
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The RtbSape Header Bidding adaptor requires setup and approval before beginning. Please reach out to <sergey@sape.ru> for more details.
-
 
 ### Bid Params
 

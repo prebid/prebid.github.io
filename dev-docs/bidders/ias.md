@@ -7,7 +7,7 @@ biddercode: ias
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 This module is an integration with prebid.js with an IAS product, pet.js. It is not a bidder per se but works in a similar way: retrieve data that publishers might be interested in setting keyword targeting, like predicted viewability and brand safety words. Please reach out to your account manager or check out [our publisher solutions](https://integralads.com/who-we-help/publishers/) for more
 information.

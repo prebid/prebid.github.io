@@ -3,7 +3,7 @@ layout: bidder
 title: YOC VIS.X
 description: Prebid YOC VIS.X Bidder Adapter
 biddercode: visx
-gdpr_supported: true
+tcfeu_supported: true
 tcf2_supported: true
 gvl_id: 154
 schain_supported: true
@@ -18,6 +18,7 @@ sidebarType: 1
 ### Note
 
 To be able to use the full bandwidth of VIS.X high impact ad products, we strongly recommend disabling SafeFrames:
+
 - If you are using Google Ad Manager (GAM), make sure the "Serve in Safeframe" box in creative settings is unchecked,
 - If you are using AppNexus Seller Tag, make sure the enableSafeFrame parameter is set to False.
 
@@ -38,14 +39,14 @@ Please reach out to your account manager to enable Prebid.js for your account.
 ### Configuration
 
 The YOC VIS.X adapter has the ability to work in different currencies. Currently, this adapter supports `EUR`, `USD`,
-`GBP`, `PLN`. Defaults to `EUR`. If your Ad Server uses `EUR`, you don't need any additional currency settings.
+`GBP`, `PLN`, `CHF`, `SEK`. Defaults to `EUR`. If your Ad Server uses `EUR`, you don't need any additional currency settings.
 If you would like to trade with VIS.X in a currency different from `EUR`, you should implement some additional settings.
 
-1. Download and configure the Prebid.js Currency module.
+1. Download and configure the Prebid.js Currency module
 
 `http://prebid.org/dev-docs/modules/currency.html`
 
-2. Setup the currency in Currency config.
+1. Setup the currency in Currency config
 
 a) If your Ad Server uses the currency from the list of VIS.X supported currencies (e.g. `GBP`), use the following settings:
 
@@ -74,6 +75,7 @@ pbjs.setConfig({
 ```
 
 Best practices:
+
 - Please make sure that the currency module is set up and configured in order to trade with YOC in a currency that is not supported by the YOC VIS.X bidder.
 - You should set `EUR` in `bidderCurrencyDefault` parameter if you use unsupported currencies for VIS.X.
 - Feel free to reach out to your contact at YOC if you need additional support setting up Prebid.js and the currency config.
@@ -89,6 +91,18 @@ pbjs.setConfig({
         }
 });
 ```
+
+### Requirements
+
+- In Prebid's `bidderSettings`, the `storageAllowed` parameter must be set to **true**. In Prebid v7.0 and later, `storageAllowed` defaults to false, so you will need to explicitly set this value to true.
+
+    ```javascript
+        pbjs.bidderSettings = {
+            visx: {
+                storageAllowed: true
+            }
+        }
+    ```
 
 ### Bid params
 

@@ -11,12 +11,11 @@ sidebarType: 1
 
 ### Note
 
-All references to the OpenRTB spec refer to OpenRtb v2.5 (https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf)
+All references to the OpenRTB spec refer to OpenRtb v2.5 (<https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf>)
 
 The Viqeo Bidder Adapter requires setup and approval from Viqeo.
 
 Please reach out to <info@viqeo.tv> for more information.
-
 
 ### Bid params
 

@@ -10,17 +10,24 @@ sidebarType: 3
 # GAM Step by Step - Video Creatives
 {: .no_toc }
 
-* TOC
+- TOC
 {:toc}
 
+## Overview
+
 This page walks you through the steps required to create in-player and long-form video creatives to attach to your Prebid line items in Google Ad Manager (GAM).
+
+It applies to these scenarios:
+
+- Instream video (also called "in-player")
+- For Prebid Mobile only, it also applies to In-Renderer video (formerly known as "outstream")
+- Long form video
 
 {: .alert.alert-success :}
 For complete instructions on setting up Prebid line items in Google Ad Manager, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
 
 {: .alert.alert-info :}
 For engineering setup instructions, see [Show Video Ads with a Google Ad Manager Video Tag](/dev-docs/show-video-with-a-dfp-video-tag.html).
-
 
 Each VAST creative contains a URL that points to the cached VAST XML. (This is because most video players can only work with a URL that returns VAST XML.) When setting up video creatives, it's important to understand where the VAST XML is stored for each of your bidders. The most common place to store VAST XML is the AppNexus cache, but some bidders (such as RubiconProject and SpotX) use their own cache services. To support such bidders, see [Multiple Cache Locations](#multiple-cache-locations) below.
 
@@ -62,7 +69,6 @@ or
 
 `[other bidder cache location]`
 
-
 **Long-Form Video Cache Location**
 
 If your creative is for long-form (OTT) video, you must include a prefix in your VAST URL. For example (Send Top Price Bid):
@@ -102,6 +108,6 @@ If you're utilizing any bidders that cache their own VAST, you have two options:
 - [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
 - [Show Video Ads with Google Ad Manager](/dev-docs/show-video-with-a-dfp-video-tag.html)
 - [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html)
-- [Prebid Universal Creatives](/overview/prebid-universal-creative.html)
+- [Prebid Universal Creative](/overview/prebid-universal-creative.html)
 - [Creative Considerations](/adops/creative-considerations.html)
 - [Ad Ops Planning Guide](/adops/adops-planning-guide.html)

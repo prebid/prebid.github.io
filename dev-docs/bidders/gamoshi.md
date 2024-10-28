@@ -6,7 +6,7 @@ biddercode: gamoshi
 pbjs: true
 pbs: true
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 tcf2_supported: true
 schain_supported: true
 usp_supported: true

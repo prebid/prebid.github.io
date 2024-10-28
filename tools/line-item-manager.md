@@ -12,41 +12,45 @@ sidebarType: 8
 The Prebid Line Item Manager is a command line tool built in Python to aid in creation of line items for Prebid header bidding integrations.
 The goal of this tool is to allow publishers to save time, and prevent issues when creating the required Prebid line-item set up manually.
 
-
 ## Installation
 
 **Note:** This tool requires Python 3 to be installed on your machine, and support is for Python>=3.6.
 
 From your command line run:
 
-```
-$ pip install line-item-manager
+```bash
+pip install line-item-manager
 ```
 
 If you already have it installed you can upgrade it using
-```
-$ pip install --upgrade line-item-manager
-```
 
+```bash
+pip install --upgrade line-item-manager
+```
 
 ## Usage
 
 ### Configuration file
 
 This tool uses a base (default) configuration as a starting point to create line items. You can create your own version of this and modify the parameters in it to suit your line item requirement. To see what the config file contains, run the command below:
-```
-$ line_item_manager show config
-```
-You can look at the full config [here](https://github.com/prebid/line-item-manager/blob/master/line_item_manager/conf.d/line_item_manager.yml). To save time and build on the default config, create a new config file of your own using the following command:
-```
-$ line_item_manager show config > my_config.yml
+
+```bash
+line_item_manager show config
 ```
 
-Once you have your own file you can follow the comments in the file itself to manage the line item creation settings. You can do things like `creative`, `line item`, `order` setups, as well as options like `granularity` and `targeting`, etc. can all be input there. Please ensure you are using __YAML__ syntax to make your updates.
+You can look at the full config [here](https://github.com/prebid/line-item-manager/blob/master/line_item_manager/conf.d/line_item_manager.yml). To save time and build on the default config, create a new config file of your own using the following command:
+
+```bash
+line_item_manager show config > my_config.yml
+```
+
+Once you have your own file you can follow the comments in the file itself to manage the line item creation settings. You can do things like `creative`, `line item`, `order` setups, as well as options like `granularity` and `targeting`, etc. can all be input there. Please ensure you are using **YAML** syntax to make your updates.
 
 ### Examples (the \# indicates comments in the YAML syntax)
+
 #### Creative setup
-```
+
+```yaml
 creative: # at least one of the following types is required {video, banner}
     banner:
         # safe_frame: False # optional: defaults to True
@@ -65,14 +69,17 @@ creative: # at least one of the following types is required {video, banner}
             width: 640
         vast_xml_url: "https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:{{ hb_cache_id }}%%"
 ```
+
 #### Order setup
-```
+
+```yaml
 order:
     name: "Prebid-{{ bidder_name }}-{{ media_type }}-{{ time }} {{ cpm_min }}-{{ cpm_max }}"
 ```
 
 #### Line Item setup
-```
+
+```yaml
 line_item:
     name: "Prebid-{{ bidder_name }}-{{ media_type }}-{{ time }} @ {{ cpm }}"
     item_type: "price_priority"
@@ -82,8 +89,10 @@ line_item:
     # end_datetime: "12/17/20 21:28"
     # timezone: "UTC"
 ```
+
 #### Custom Granularity setup
-```
+
+```yaml
 rate: 
     currency: "USD" # required
     granularity:
@@ -98,36 +107,39 @@ rate:
     # optional properties
     # vcpm: 100000 # viewable impressions will be enabled
 ```
-__Note:__ The GAM Network ID, can also be input at runtime and will override the default Network ID in the config file.
 
+**Note:** The GAM Network ID, can also be input at runtime and will override the default Network ID in the config file.
 
 ## Line Item creation
 
 When you are ready with the config file you can now use the create command to run the tool to create line items.
 
 **Note: You will require at least one modifier (choosing bidder specific set of orders or single set of orders for all bidders)**
-```
-$ line_item_manager create my_config.yml --[bidder-code|--single-order]
+
+```bash
+line_item_manager create my_config.yml --[bidder-code|--single-order]
 ```
 
-### Examples:
+### Examples
+
+```bash
+line_item_manager create my_config.yml -b rubicon
 ```
-$ line_item_manager create my_config.yml -b rubicon
-```
+
 This would create a set of orders for bidder Rubicon
 
 ![Line Item Results 1](/assets/images/tools/line-item-mgmt-img1.png){:class="pb-xlg-img"}
 
-```
-$ line_item_manager create my_config.yml -b rubicon -b appnexus -b openx
+```bash
+line_item_manager create my_config.yml -b rubicon -b appnexus -b openx
 ```
 
 This would create a set of orders for bidders Rubicon, Appnexus and OpenX
 
 ![Line Item Results 2](/assets/images/tools/line-item-mgmt-img2.png){:class="pb-xlg-img"}
 
-```
-$ line_item_manager create my_config.yml --single-order
+```bash
+line_item_manager create my_config.yml --single-order
 ```
 
 This would create a single set of orders with bidder agnostic key value targeting
@@ -135,6 +147,7 @@ This would create a single set of orders with bidder agnostic key value targetin
 ![Line Item Results 3](/assets/images/tools/line-item-mgmt-img3.png){:class="pb-xlg-img"}
 
 ### Modifiers for _create_
+
 The create function has certain modifiers that can be used to do dry runs and test runs for line item creation. Here are all the modifiers that can be used:
 
 {: .table .table-bordered .table-striped }
@@ -163,14 +176,12 @@ The create function has certain modifiers that can be used to do dry runs and te
 
 All commands can use the `--help` modifier to see various options for the command
 
-
 ## Troubleshooting (Coming soon!)
-
 
 ## Git Repository
 
-[https://github.com/prebid/line-item-manager](https://github.com/prebid/line-item-manager)
+[github.com/prebid/line-item-manager](https://github.com/prebid/line-item-manager)
 
-Contributing code? Found a bug? If you wish to push changes, please create a [Pull Request](https://github.com/prebid/line-item-manager/pulls) so we can review the change and approve. 
+Contributing code? Found a bug? If you wish to push changes, please create a [Pull Request](https://github.com/prebid/line-item-manager/pulls) so we can review the change and approve.
 
 Also, if you have a question or want to notify us about something, please create a github [issue](https://github.com/prebid/line-item-manager/issues).

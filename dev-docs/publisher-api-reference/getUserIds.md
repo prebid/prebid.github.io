@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getUserIds()
-description: 
+description: getUserIds API
 sidebarType: 1
 ---
 
@@ -11,6 +11,6 @@ To use this function, include the [UserId module](/dev-docs/modules/userId.html)
 
 If you need to export the user IDs stored by Prebid User ID module, the `getUserIds()` function will return an object formatted the same as bidRequest.userId.
 
-```
+```javascript
 pbjs.getUserIds() // returns object like bidRequest.userId. e.g. {"pubcid":"1111", "tdid":"2222"}
 ```

@@ -6,7 +6,9 @@ biddercode: motionspots
 pbjs: true
 pbs: false
 media_types: banner, native, video
-gdpr_supported: true
+gvl_id: 14 (adkernel)
+tcfeu_supported: true
+gpp_supported: true
 usp_supported: true
 coppa_supported: true
 pbs_app_supported: true
@@ -21,7 +23,7 @@ aliasCode: adkernel
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
 The Motionspots bidding adapter requires setup and approval before implementation. Please reach out to <kiran@collectcent.com> for more details.
 

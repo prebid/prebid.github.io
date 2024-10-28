@@ -30,66 +30,66 @@ The Unified ID privacy is covered under the [TradeDesk Services Privacy Policy](
 | name | Required | String | `"unifiedId"` | `"unifiedId"` |
 | params | Required for UnifiedId | Object | Details for UnifiedId initialization. | |
 | params.partner | Either this or url required for UnifiedId | String | This is the partner ID value obtained from registering with The Trade Desk or working with a Prebid.js managed services provider. | `"myTtdPid"` |
-| params.url | Required for UnifiedId if not using TradeDesk | String | If specified for UnifiedId, overrides the default Trade Desk URL. | "https://unifiedid.org/somepath?args" |
+| params.url | Required for UnifiedId if not using TradeDesk | String | If specified for UnifiedId, overrides the default Trade Desk URL. | "<https://unifiedid.org/somepath?args>" |
 | value | Optional | Object | Used only if the page has a separate mechanism for storing the Unified ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage | `{"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}` |
 
 ## Unified ID Examples
 
-1) Publisher has a partner ID with The Trade Desk, and is using the default endpoint for Unified ID.
+1. Publisher has a partner ID with The Trade Desk, and is using the default endpoint for Unified ID.
 
-{: .alert.alert-warning :}
-Bug: The default URL did not support HTTPS in Prebid.js 2.10-2.14. So instead of using
-the 'partner' parameter, it's best to supply the Trade Desk URL as shown in this example.
+    {: .alert.alert-warning :}
+    Bug: The default URL did not support HTTPS in Prebid.js 2.10-2.14. So instead of using
+    the 'partner' parameter, it's best to supply the Trade Desk URL as shown in this example.
 
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "unifiedId",
-            params: {
-                url: "//match.adsrvr.org/track/rid?ttd_pid=MyTtidPid&fmt=json"
-            },
-            storage: {
-                type: "cookie",
-                name: "pbjs-unifiedid",       // create a cookie with this name
-                expires: 60                   // cookie can last for 60 days
-            }
-        }],
-        syncDelay: 3000              // 3 seconds after the first auction
-    }
-});
-{% endhighlight %}
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: "unifiedId",
+                params: {
+                    url: "//match.adsrvr.org/track/rid?ttd_pid=MyTtidPid&fmt=json"
+                },
+                storage: {
+                    type: "cookie",
+                    name: "pbjs-unifiedid",       // create a cookie with this name
+                    expires: 60                   // cookie can last for 60 days
+                }
+            }],
+            syncDelay: 3000              // 3 seconds after the first auction
+        }
+    });
+    ```
 
-2) Publisher supports UnifiedID with a vendor other than Trade Desk and HTML5 local storage.
+2. Publisher supports UnifiedID with a vendor other than Trade Desk and HTML5 local storage.
 
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "unifiedId",
-            params: {
-                url: "URL_TO_UNIFIED_ID_SERVER"
-            },
-            storage: {
-                type: "html5",
-                name: "pbjs-unifiedid",    // set localstorage with this name
-                expires: 60
-            }
-        }],
-        syncDelay: 3000
-    }
-});
-{% endhighlight %}
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: "unifiedId",
+                params: {
+                    url: "URL_TO_UNIFIED_ID_SERVER"
+                },
+                storage: {
+                    type: "html5",
+                    name: "pbjs-unifiedid",    // set localstorage with this name
+                    expires: 60
+                }
+            }],
+            syncDelay: 3000
+        }
+    });
+    ```
 
-3) Publisher has integrated with UnifiedID on their own and wants to pass the UnifiedID directly through to Prebid.js.
+3. Publisher has integrated with UnifiedID on their own and wants to pass the UnifiedID directly through to Prebid.js.
 
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: "unifiedId",
-            value: {"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}
-        }]
-    }
-});
-{% endhighlight %}
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: "unifiedId",
+                value: {"tdid": "D6885E90-2A7A-4E0F-87CB-7734ED1B99A3"}
+            }]
+        }
+    });
+    ```

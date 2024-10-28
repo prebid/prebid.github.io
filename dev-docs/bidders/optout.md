@@ -5,7 +5,7 @@ description: Prebid Opt Out Advertising Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: optout
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 227
 sidebarType: 1
 ---

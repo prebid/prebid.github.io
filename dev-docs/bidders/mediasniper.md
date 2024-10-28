@@ -9,9 +9,9 @@ floors_supported: true
 safeframes_ok: true
 sidebarType: 1
 ---
-### Note:
+### Note
 
-The Mediasniper Bidding adapter requires setup before beginning. Please contact us at oleg@rtbtech.org
+The Mediasniper Bidding adapter requires setup before beginning. Please contact us at <oleg@rtbtech.org>
 
 ### Bid Params
 

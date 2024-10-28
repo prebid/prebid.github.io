@@ -3,7 +3,7 @@ layout: bidder
 title: VideoHeroes
 description: Prebid VideoHeroes Bidder Adapter
 biddercode: videoheroes
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -17,12 +17,13 @@ pbs_app_supported: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The VideoHeroes Header Bidding adapter requires setup and approval from the VideoHeroes team. Please reach out to your account manager or support@videoheroes.tv for more information
+The VideoHeroes Header Bidding adapter requires setup and approval from the VideoHeroes team. Please reach out to your account manager or <support@videoheroes.tv> for more information
 
 ### Bid Params
 
-| Name          | Scope    | Description                       | Example                             | Type      |
-|---------------|----------|-----------------------------------|-------------------------------------|-----------|
-| `placementId` | required | VideoHeroes platform placement id | `1a8d9c22db19906cb8a5fd4518d05f62`  | `string`  |
+{: .table .table-bordered .table-striped }
+| Name | Scope    | Description         | Example                                  | Type     |
+|------|----------|---------------------|------------------------------------------|----------|
+| placementId  | required | VideoHeroes platform placement id | `'1a8d9c22db19906cb8a5fd4518d05f62'` | `string` |

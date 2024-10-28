@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.getHighestUnusedBidResponseForAdUnitCode(adUnitCode)
-description:
+description: getHighestUnusedBidResponseForAdUnitCode API
 sidebarType: 1
 ---
 

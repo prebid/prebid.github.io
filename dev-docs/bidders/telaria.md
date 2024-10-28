@@ -6,7 +6,7 @@ pbjs: true
 pbs: false
 biddercode: telaria
 media_types: video, no-display
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: false
 coppa_supported: false
 schain_supported: true
@@ -36,6 +36,7 @@ The Telaria adapter requires setup and approval from your Magnite account manage
 For other parameters, please refer to the **Tag Parameters** section in the  [Telaria Console](https://console.telaria.com)
 
 ### Example Ad Unit
+
 ```javascript
 var adUnit = {
     "code": "video1",
@@ -55,7 +56,9 @@ var adUnit = {
     }]
 }
 ```
-### Supply Chain Object:
+
+### Supply Chain Object
+
 ```javascript
 // There are two ways of passing the SupplyChain Object to our adapter:
 // 1) set it in the config
@@ -92,6 +95,7 @@ var adUnit = {
     }]
 }
 ```
+
 [Telaria Prebid Example](https://console.telaria.com/examples/hb/headerbidding.jsp)
 
 ### Delivery
@@ -109,4 +113,5 @@ var adUnit = {
 + `3` : Download
 
 ### Supply Chain Object
+
 The adapter has been enhanced to accept the supply chain object (schain) if provided. Please refer to [SupplyChain for Non RTB Requests](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/master/supplychainobject.md#supplychain-for-non-openrtb-requests) for more information

@@ -3,7 +3,7 @@ layout: bidder
 title: SUNT Content
 description: Prebid SUNT Content Bidder Adapter
 biddercode: suntContent
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 1097
 usp_supported: false
 coppa_supported: false

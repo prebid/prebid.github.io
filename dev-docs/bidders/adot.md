@@ -5,7 +5,7 @@ description: Prebid Adot Bidder Adapter
 biddercode: adot
 media_types: banner, video, native
 userIds: pubProvidedId
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 272
 pbjs: true
 pbs: true
@@ -32,6 +32,7 @@ sidebarType: 1
 | `container`       | optional                                  | Selector used for finding the element in which the video player will be displayed, e.g., `#div-1`. The `ad unit code` will be used if no `container` is provided.                                                                            | `string`         |
 
 #### Bid Config
+
 #### PublisherId
 
 You can set a publisherId using `pbjs.setBidderConfig` for the bidder `adot`
@@ -67,7 +68,6 @@ pbjs.setBidderConfig({
 });
 ```
 
-
 ### Prebid server
 
 #### Bid Params
@@ -81,7 +81,7 @@ pbjs.setBidderConfig({
 
 #### Testing Bid Request
 
-The following test parameters can be used to verify that Prebid Server is working properly with the 
+The following test parameters can be used to verify that Prebid Server is working properly with the
 server-side adot adapter. This is a mobile Bid-request example.
 
 ```

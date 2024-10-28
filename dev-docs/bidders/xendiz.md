@@ -10,7 +10,8 @@ sidebarType: 1
 ### Bid params
 
 ### Note
-To enable XENDIZ bid adaptor we kindly ask you to sign up as a Publisher: hello@xendiz.com
+
+To enable XENDIZ bid adaptor we kindly ask you to sign up as a Publisher: <hello@xendiz.com>
 
 {: .table .table-bordered .table-striped }
 | Name | Scope    | Description         | Example                                  | Type     |

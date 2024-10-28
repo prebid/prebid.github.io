@@ -10,15 +10,16 @@ sidebarType: 1
 ---
 
 # Show Multi-Format Ads with Prebid.js
+
 {: .no_toc }
 
 This page has instructions for showing multi-format ads using Prebid.js.
 
 An ad unit is said to be multi-format if it supports at least two of the following media types:
 
-+ Banner
-+ Native
-+ Video
+* Banner
+* Native
+* Video
 
 Once declared, any bidder that supports at least one of the media types can participate in the auction for that ad unit.
 
@@ -26,6 +27,7 @@ Once declared, any bidder that supports at least one of the media types can part
 For ad ops setup instructions, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
 
 * TOC
+
 {:toc}
 
 ## How Multi-Format Ads Work
@@ -40,7 +42,7 @@ At a high level, Prebid.js supports multi-format ads as follows:
 
 The following key is added to your ad server targeting, and set to the value of the bid response's `mediaType` property.
 
-+ `hb_format`
+* `hb_format`
 
 The ad ops team will reference this key in the ad server to set targeting.  For ad ops setup instructions, see [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html).
 
@@ -48,7 +50,7 @@ The ad ops team will reference this key in the ad server to set targeting.  For 
 
 Keep the following prerequisites in mind during the implementation:
 
-+ Make sure to work with bidders that support demand for the media types you want, particularly native and video.  To see which bidders have native and/or video demand, see [Bidders with Video and Native Demand]({{site.baseurl}}/dev-docs/bidders.html#bidders-with-video-and-native-demand).
+* Make sure to work with bidders that support demand for the media types you want, particularly native and video.  To see which bidders have native and/or video demand, see [Bidders with Video and Native Demand]({{site.baseurl}}/dev-docs/bidders.html#bidders-with-video-and-native-demand).
 
 ## Implementation
 
@@ -59,55 +61,54 @@ This section describes the implementation using code samples, but ignores some o
 The ad unit below supports the banner, native, and video media types.
 
 ```javascript
-
-    pbjs.addAdUnits({
-        code: 'div-banner-outstream-native',
-        mediaTypes: {
-            banner: {
-                sizes: [
-                    [300, 250],
-                    [300, 50]
-                ]
-            },
-            native: {
-                image: {
-                    sizes: [300, 250]
-                }
-            },
-            video: {
-                context: 'outstream',
-                playerSize: [640, 480],
-                mimes: ['video/mp4'],
-                protocols: [1, 2, 3, 4, 5, 6, 7, 8],
-                playbackmethod: [2],
-                skip: 1
-            },
+pbjs.addAdUnits({
+    code: 'div-banner-outstream-native',
+    mediaTypes: {
+        banner: {
+            sizes: [
+                [300, 250],
+                [300, 50]
+            ]
         },
-        bids: [
+        native: {
+            image: {
+                sizes: [300, 250]
+            }
+        },
+        video: {
+            context: 'outstream',
+            playerSize: [640, 480],
+            mimes: ['video/mp4'],
+            protocols: [1, 2, 3, 4, 5, 6, 7, 8],
+            playbackmethod: [2],
+            skip: 1
+        },
+    },
+    bids: [
 
-            {
-                bidder: 'bannerBidder',
-                params: {
-                    placementId: '481'
-                }
-            },
+        {
+            bidder: 'bannerBidder',
+            params: {
+                placementId: '481'
+            }
+        },
 
-            {
-                bidder: 'nativeBidder',
-                params: {
-                    titleAsset: '516'
-                }
-            },
+        {
+            bidder: 'nativeBidder',
+            params: {
+                titleAsset: '516'
+            }
+        },
 
-            {
-                bidder: 'videoBidder',
-                params: {
-                    vidId: '234'
-                }
-            },
+        {
+            bidder: 'videoBidder',
+            params: {
+                vidId: '234'
+            }
+        },
 
-        ]
-    });
+    ]
+});
 ```
 
 ### 2. Add your tag to the page body
@@ -115,20 +116,20 @@ The ad unit below supports the banner, native, and video media types.
 Add a tag like the following to your page.  Depending on who wins the auction, a banner, outstream, or native ad should serve.
 
 ```html
-    <div id='div-banner-outstream-native'>
-        <p>No response</p>
-        <script type='text/javascript'>
-            googletag.cmd.push(function () {
-                googletag.display('div-banner-outstream-native');
-            });
-        </script>
-    </div>
+<div id='div-banner-outstream-native'>
+    <p>No response</p>
+    <script type='text/javascript'>
+        googletag.cmd.push(function () {
+            googletag.display('div-banner-outstream-native');
+        });
+    </script>
+</div>
 ```
 
 ## Working Examples
 
-+ [Multi-Format Example](/dev-docs/examples/multi-format-example.html)
+* [Multi-Format Example](/dev-docs/examples/multi-format-example.html)
 
 ## Further Reading
 
-- [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)
+* [Google Ad Manager with Prebid Step by Step](/adops/step-by-step.html)

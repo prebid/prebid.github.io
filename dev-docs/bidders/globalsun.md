@@ -11,7 +11,7 @@ fpd_supported: false
 multiformat_supported: will-not-bid
 ortb_blocking_supported: partial
 usp_supported: true
-gdpr_supported: true
+tcfeu_supported: false
 coppa_supported: true
 schain_supported: true
 floors_supported: true
@@ -23,5 +23,3 @@ floors_supported: true
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId`      | optional | Placement Id         | `'0'`    | `'string'` |
-
-

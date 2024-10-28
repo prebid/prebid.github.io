@@ -7,7 +7,7 @@ useridmodule: dacIdSystem
 
 
 AudienceOne ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
-Please visit [https://solutions.dac.co.jp/audienceone](https://solutions.dac.co.jp/audienceone) and request your Owner ID to get started.
+Please visit [solutions.dac.co.jp/audienceone](https://solutions.dac.co.jp/audienceone) and request your Owner ID to get started.
 
 Add the AudienceOne ID to your Prebid.js Package with:
 
@@ -25,7 +25,7 @@ gulp build --modules=dacIdSystem
 
 ## AudienceOne ID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -36,4 +36,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

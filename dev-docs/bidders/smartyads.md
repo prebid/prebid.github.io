@@ -1,10 +1,10 @@
 ---
 layout: bidder
 title: SmartyAds
-description: Prebid SmartyAds Bidder Adaptor
+description: Prebid SmartyAds Bidder Adapter
 biddercode: smartyads
 gvl_id: 534
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -18,17 +18,25 @@ multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at sales@smartyads.com 
+The Example Bidding adapter requires setup before beginning. Please contact us at <sales@smartyads.com>
 
-### Bid Params
+### Prebid.JS Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placementId` | required (for prebid.js) | placement Id | `'0'` | `string` |
-| `host`      | required (for prebid-server) | Region id               | `'ns1'`    | `string` |
-| `sourceid`      | required  (for prebid-server) | Partner id | `'smartyads'`    | `string` |
-| `accountid`      | required  (for prebid-server) | Endpoint id | `'hash'`    | `string` |
-| `traffic`     | optional (for prebid.js) | Configures the mediaType that should be used. Values can be `banner`, `native` or `video` | `native` | `string` 
+| `sourceid`  | required | placement ID                 | `'0'`      | `string` |
+| `host`      | required | const value, set to "prebid" | `'prebid'` | `string` |
+| `accountid` | optional | publisher ID                 | `'1901'`   | `string` |
+| `traffic`   | optional | Configures the mediaType that should be used. Values can be `'banner'`, `'native'` or `'video'` | `'banner'` | `string`|
+
+### Prebid Server Bid Params
+
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description           | Example   | Type      |
+|---------------|----------|-----------------------|-----------|-----------|
+| `host`      | required | Region id   | `'ns1'`       | `string` |
+| `sourceid`  | required | Partner id  | `'smartyads'` | `string` |
+| `accountid` | required | Endpoint id | `'hash'`      | `string` |

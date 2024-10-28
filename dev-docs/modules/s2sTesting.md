@@ -9,8 +9,6 @@ enable_download : true
 sidebarType : 1
 ---
 
-
-
 # Prebid JS Module: Server-to-Server Testing
 
 This module allows publishers the chance to ramp-up on [Prebid Server](/prebid-server/overview/prebid-server-overview.html),
@@ -24,8 +22,8 @@ additional options for controlling how requests are sent:
 
 The package is built by specifying the `s2sTesting` module on the build command. For example:
 
-```
-gulp build --modules=rubiconBidAdapter,appnexusAstBidAdapter,prebidServerBidAdapter,s2sTesting
+```bash
+gulp build --modules= ... , prebidServerBidAdapter,s2sTesting
 ```
 
 The expectation is the Server-to-Server Testing module will used for a limited period.
@@ -35,27 +33,34 @@ period is complete, regardless of outcome, A/B testing would be turned off
 and this module no longer included in the PrebidJS build.
 
 ## Features
+
 With the Server-to-Server Testing module, the following enhancements are provided:
 
 New 'bidderControl' options in s2sConfig. E.g.
 
-```
-pbjs.setConfig(
+```javascript
+pbjs.setConfig({
   s2sConfig: {
-     bidders: [ "rubicon", "appnexus" ],
+     bidders: [ "bidderA", "bidderB" ],
      enabled: true,
+     defaultVendor: 'vendor1',
      testing: true,
      testServerOnly: false,
      bidderControl: {
-         "rubicon": {
+         "bidderA": {
              bidSource: {server:10, client:90},
              includeSourceKvp: true
          },
-         "appnexus": {
+         "bidderB": {
              bidSource: {server: 25, client:75},
              includeSourceKvp: true
          }
      }
+  },
+  // needed since PBJS 5.0 to generate the hb_source key
+  targetingControls: {
+    addTargetingKeys: ['SOURCE']
+  }
 });
 ```
 
@@ -66,27 +71,28 @@ The `testing: true` attribute is required to enable the bidderControl and
 bidSource features. This shouldn't be confused with the `enabled: true` flag
 which enables the entire server-to-server feature.
 
-When 'includeSourceKvp' is specified in s2sConfig, the system will log an
+When 'includeSourceKvp' is specified in s2sConfig and the appropriate [addTargetingKeys targetingControl](/dev-docs/publisher-api-reference/setConfig.html#setConfig-targetingControls) is added, the system will log an
 additional Key Value Pair (KVP) to the ad server. This will allow reporting
 to confirm the ratio of client-vs-server administered requests, as well as
 more advanced reporting.
 
-```
+```javascript
 hb_source_BIDDER=client
 ```
+
 OR
 
-```
+```javascript
 hb_source_BIDDER=s2s
 ```
 
 There's also a new `bidSource` option in AdUnits that overrides the global bidSource. E.g.
 
-```
+```javascript
 AdUnit={
     [...]
     bids=[{
-        bidder: "rubicon",
+        bidder: "bidderA",
         bidSource: {client:50, server:50} // precedence over s2sConfig.bidderControl
         [...]
     }]
@@ -95,13 +101,12 @@ AdUnit={
 
 ## Analysis
 
-Determining the success of the test is up to each publisher, but 
+Determining the success of the test is up to each publisher, but
 keep in mind the various data sources you may have access to:
 
 * Ad Server reports - the additional `hb_source` key value pair can be used to confirm some elements on the performance.
 * Prebid Analytics Adapter - if you're already monitoring header bidding, those reports should be monitored for impacts in key metrics from the A/B test.
 * Bidder data - SSPs should be able to provide data about cookie match rates and general performance during the test period.
-
 
 ## Usage Examples
 
@@ -113,22 +118,28 @@ I don't want to modify AdUnits because that's time consuming in the CMS.*
 
 Example S2S Config defining that 10% of Rubicon requests and 100% of AppNexus requests go through the server:
 
-```
-pbjs.setConfig(
+```javascript
+pbjs.setConfig({
   s2sConfig: {
      account: "PREBID-SERVER-ACCOUNT",
-     bidders: [ "rubicon", "appnexus" ],
+     bidders: [ "bidderA", "bidderB" ],
+     defaultVendor: 'vendor1',
      enabled: true,
      testing: true,
      bidderControl: {
-         "rubicon": {
+         "bidderA": {
             bidSource: {client:90, server:10},
             includeSourceKvp: true
          }
      }
+  },
+  targetingControls: {
+     addTargetingKeys: ['SOURCE']
+  }
 });
 ```
-The additional hb_source_rubicon KVP will be sent to the ad server for additional reporting.
+
+The additional hb_source_bidderA KVP will be sent to the ad server for additional reporting.
 
 ### 2. A/B Test for one AdUnit
 
@@ -136,40 +147,47 @@ The additional hb_source_rubicon KVP will be sent to the ad server for additiona
 approach and the client approach so we can gauge the impact of Prebid Server,
 but we want to do this on a small number of AdUnits.*
 
-Example S2S Config defining that the client route is the default path for the rubicon adapter:
+Example S2S Config defining that the client route is the default path for bidderA:
 
-```
-pbjs.setConfig(
+```javascript
+pbjs.setConfig({
   s2sConfig: {
      account: "PREBID-SERVER-ACCOUNT",
-     bidders: [ "rubicon", "appnexus" ],
+     bidders: [ "bidderA", "bidderB" ],
+     defaultVendor: 'vendor1',
      enabled: true,
      testing: true,
      bidderControl: {
-         rubicon: {
+         bidderA: {
             bidSource: {client:100},
             includeSourceKvp: true
          }
      }
+  },
+  targetingControls: {
+    addTargetingKeys: ['SOURCE']
+  }
 });
 ```
+
 And then changes to override one particular AdUnit for server testing:
 
-```
+```javascript
 AdUnit={
     [...]
     bids=[{
-        bidder: "rubicon",
+        bidder: "bidderA",
         bidSource: {server:25, client:75}
         [...]
     }]
 }
 ```
-Requests will go to the Rubicon Exchange on the server path 25% of the time
-and the client path the rest of the time.  The additional hb_source_rubicon
+
+Requests will go to bidderA on the server path 25% of the time
+and the client path the rest of the time.  The additional hb_source_bidderA
 KVP will be sent to the ad server for additional reporting.
 
-### 3. A/B Test isolating the server 
+### 3. A/B Test isolating the server
 
 *As a Publisher, I want to get metrics on the difference between a 'pure server'
 approach and a mixed client-server approach so we can gauge the impact of Prebid Server running alone, without any client requests. I'll use the `testServerOnly: true` flag to suppress all client requests whenever the 'A/B test group' results in a server request.*
@@ -180,44 +198,51 @@ For best results, all bidders/bids in the 'A/B test group' should be configured 
 
 Example S2S Config defining that 5% of the time all bid requests will go 'server' and 95% of the time a mix of 'server' and 'client':
 
-```
-pbjs.setConfig(
+```javascript
+pbjs.setConfig({
   s2sConfig: {
      account: "PREBID-SERVER-ACCOUNT",
-     bidders: [ "rubicon", "criteo" ],
+     bidders: [ "bidderA", "bidderB" ],
+     defaultVendor: 'vendor1',
      enabled: true,
      testing: true,
      testServerOnly: true,
      bidderControl: {
-         rubicon: {
+         bidderA: {
             bidSource: {client:95, server 5},
             includeSourceKvp: true
          },
-         criteo: {
+         bidderB: {
             bidSource: {client:95, server 5},
             includeSourceKvp: true
          }
      }
+  },
+  targetingControls: {
+    addTargetingKeys: ['SOURCE']
+  }
 });
 
 AdUnit={
     [...]
     bids=[{
-        bidder: "index",
+        bidder: "bidderA",
         [...]
     },{
-        bidder: "rubicon",
+        bidder: "bidderB",
         [...]
     },{
-        bidder: "criteo",
+        bidder: "bidderC",
         [...]
     }]
 }
 ```
-5% of the time rubicon, and criteo will use s2s bid requests while index does not bid, and the other 95% of the time rubicon, criteo, and index use client bid requests.
+
+5% of the time bidderA and bidderB will use s2s bid requests while bidderC does not bid, and the other 95% of the time all bidders use client bid requests.
 
 Addtional details:
-- If a bidder is always 100% server-side -- i.e. doesn't have either `s2sConfig.bidderControl` or `AdUnit.bids[].bidSource`, then it will not affect `testServerOnly`. i.e. It's going on the server path will not exclude client side adapters.
+
+* If a bidder is always 100% server-side -- i.e. doesn't have either `s2sConfig.bidderControl` or `AdUnit.bids[].bidSource`, then it will not affect `testServerOnly`. i.e. It's going on the server path will not exclude client side adapters.
 
 ### 4. Turn on Test KVP, but no server requests
 
@@ -226,26 +251,29 @@ other use cases above. I'll use the test KVP to confirm relative responses,
 so would like to have the `hb_source` test KVP coming in even on pages where
 the server test isn't running.*
 
-Example S2S Config defining that client is the default path for the rubicon adapter:
+Example S2S Config defining that client is the default path for bidderA:
 
-```
-pbjs.setConfig(
+```javascript
+pbjs.setConfig({
   s2sConfig: {
      ...
      enabled: false,
      testing: true,
      bidderControl: {
-         "rubicon": {
-            "bidSource": {client:100},
+         bidderA: {
+            bidSource: {client:100},
             includeSourceKvp: true
          }
      }
+  },
+  targetingControls: {
+    addTargetingKeys: ['SOURCE']
+  }
 });
 ```
-The test KVP hb_source_rubicon on this page will always sent with the value "client".
+
+The test KVP hb_source_bidderA on this page will always sent with the value "client".
 
 ## Further Reading
 
-+ [Prebid Server](/prebid-server/overview/prebid-server-overview.html)
-
-
+* [Prebid Server](/prebid-server/overview/prebid-server-overview.html)

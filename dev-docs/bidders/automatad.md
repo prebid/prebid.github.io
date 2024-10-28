@@ -26,5 +26,3 @@ sidebarType: 1
 |---------------|----------|-------------|---------|----------|
 | `position` | optional | Position field from automatad | `22390678` | `string` |
 | `placementId`    | optional | The placement ID from automatad.  | `"a34gh6d"` | `string` |
-
-

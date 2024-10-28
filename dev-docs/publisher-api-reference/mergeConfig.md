@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.mergeConfig(options)
-description:
+description: mergeConfig API
 sidebarType: 1
 ---
 
