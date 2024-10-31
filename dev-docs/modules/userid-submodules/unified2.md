@@ -62,7 +62,6 @@ For a server-side integration, you can create a smaller Prebid.js build by disab
     gulp build --modules=uid2IdSystem --disable UID2_CSTG
 ```
 
-
 ## Unified ID 2.0 Client Side Integration for Prebid.js
 
 Prebid.js supports fully client side integration for UID2.  See the [official UID2 documentation](https://unifiedid.com/docs/guides/integration-prebid-client-side) for the most up-to-date integration instructions.
