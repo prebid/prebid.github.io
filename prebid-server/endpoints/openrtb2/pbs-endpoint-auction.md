@@ -1106,7 +1106,7 @@ an array of ortb2 seatbid objects. e.g.
 
 Provides a way to override multiple bidder responses for this impression, with the contents supplied on the request itself. This can be useful for dynamically debugging apps where creating stored response database entries with different creatives or prices could be time consuming. For example:
 
-```json
+```json5
   "imp": [{ "ext": { "prebid": {
           "storedauctionresponse": { "seatbidobj": { ... contents of this object are appended to the response.seatbid array ... } }
   }}}]
@@ -1120,7 +1120,7 @@ When storedauctionresponse JSON is specified:
 
 For example, this request:
 
-```json
+```json5
 {
   "test": 1,
   "tmax": 500,
@@ -1157,7 +1157,7 @@ For example, this request:
 
 might result in this response:
 
-```json
+```json5
 {
   "id": "test-auction-id",
   "seatbid": [
@@ -1195,7 +1195,7 @@ When storedauctionresponse JSON is specified at the global level:
 
 For example, this request:
 
-```json
+```json5
 {
   "test": 1,
   "tmax": 500,
@@ -1219,7 +1219,7 @@ For example, this request:
 
 might result in this response:
 
-```json
+```json5
 {
   "id": "test-auction-id",
   "seatbid": [
