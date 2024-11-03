@@ -48,7 +48,7 @@ The Taboola Adapter requires setup before beginning. Please contact us at <prebi
 
 ### Prebid Server
 
-Please provide us (Taboola representative) the prebid server host domain so we whitelist it before the integration starts.
+Please provide to your relevant Taboola contact person the prebid server host domain, so we whitelist it before the integration starts.
 
 ### First Party Data
 
