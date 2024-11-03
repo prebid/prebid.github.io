@@ -95,9 +95,9 @@ var adUnits = [
 
 ### Additional Information
 
-- **Maintainer Contact**: [info@roundhouseads.com](mailto:info@roundhouseads.com)
+- **Maintainer Contact**: [info@roundhouseads.com](mailto:info@roundhouseads.com).
 
-- **Supported Media Types**: Banner, Video, Native
+- **Supported Media Types**: Banner, Video, Native.
 
 - **GDPR**: The adapter does not currently support TCFv2 (`tcfeu_supported: false`).
 
