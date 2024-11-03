@@ -93,7 +93,7 @@ var adUnits = [
   }
 ];
 
-### Additional Information
+### Additional Information.
 
 - **Maintainer Contact**: [info@roundhouseads.com](mailto:info@roundhouseads.com).
 
