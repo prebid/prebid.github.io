@@ -15,7 +15,7 @@ sidebarType: 1
 
 ### Overview
 
-The RoundhouseAds Bidder Adapter connects to RoundhouseAds' advertising platform, enabling bids for display, video, and native ad formats. Please contact [info@roundhouseads.com](mailto:info@roundhouseads.com) to get started.
+The RoundhouseAds Bidder Adapter connects to RoundhouseAds' advertising platform, enabling bids for display, video, and native ad formats. Please contact: [info@roundhouseads.com](mailto:info@roundhouseads.com) to get started.
 
 ### Bid Parameters
 
