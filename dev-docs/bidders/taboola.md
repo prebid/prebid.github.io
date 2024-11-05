@@ -27,7 +27,7 @@ sidebarType: 1
 ### Note
 
 - Prebid.js Supports `display` format only.
-- Prebid Sever Supports `native+display` formats.
+- Prebid Server Supports `native+display` formats.
 - Uses `OpenRTB` standard.
 
 ### Bidder Config
@@ -48,7 +48,7 @@ The Taboola Adapter requires setup before beginning. Please contact us at <prebi
 
 ### Prebid Server
 
-Please provide to your relevant Taboola contact person the prebid server host domain, so we whitelist it before the integration starts.
+Please provide to your relevant Taboola contact person the prebid server host domain, so we enable it before the integration starts.
 
 ### First Party Data
 
