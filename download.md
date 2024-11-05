@@ -140,4 +140,4 @@ Alternatively, you can build Prebid.js from the source code. For instructions, s
 {: .lead :}
 Check out this application that can take output of our integration monitoring tool and display the popularity of various modules:
 
-<iframe src="https://blank-app-z0b67gk9kqo.streamlit.app/" width="90%" height="600" style="border:none;"></iframe>
+<iframe src="https://prebid.streamlit.app/" width="90%" height="600" style="border:none;"></iframe>
