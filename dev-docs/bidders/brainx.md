@@ -13,7 +13,7 @@ gpp_sids: None
 schain_supported: true
 dchain_supported: false
 userId: (list of supported vendors)
-media_types: banner, video, native
+media_types: banner
 safeframes_ok: false
 deals_supported: true
 floors_supported: true
