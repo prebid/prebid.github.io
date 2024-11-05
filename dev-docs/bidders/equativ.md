@@ -50,28 +50,68 @@ The Equativ bidder adapter requires setup and approval from the Equativ (former 
 | `video` | Not currently supported |
 | `native` | Not currently supported |
 
-### Example
+### User Syncing
 
-With site/page/format:
+To enable cookie syncing, publishers should make sure their configuration setup is properly invoked.
 
-```json
-  "imp": [{
-    "id": "some-impression-id",
-    "banner": {
-      "format": [{
-        "w": 600,
-        "h": 500
-      }, {
-        "w": 300,
-        "h": 600
-      }]
+This involves adding an entry for `setConfig()` that allows user syncing for iframes with `'equativ'` included as a bidder:
+
+```js
+pbjs.setConfig({
+  userSync: {
+    filterSettings: {
+      iframe: {
+        bidders: ['equativ'],
+      },
     },
-    "ext": {
-      "smartadserver": {
-                            "siteId": 1,
-                            "pageId": 2,
-                            "formatId": 3
-      }
-    }
-  }]
+  },
+});
+```
+
+And also making sure that storage is enabled for `equativ`:
+
+```js
+pbjs.bidderSettings = {
+  equativ: {
+    storageAllowed: true,
+  },
+};
+```
+
+### Configuration Example
+
+#### Sample Banner Setup
+
+When including `'equativ'` as one of your available bidders your adunit setup, be sure to include `siteId`, `pageId` and `formatId` as bid parameters, as shown in the example below.
+
+```html
+<script>
+  var adUnits = [
+    {
+      code: 'div-123',
+      mediaTypes: {
+        banner: {
+          sizes: [
+            [600, 500],
+            [300, 600],
+          ],
+        },
+      },
+      bids: [
+        {
+          bidder: 'equativ',
+          params: {
+            siteId: 1,
+            pageId: 2,
+            formatId: 3,
+          },
+        },
+      ],
+    },
+  ];
+
+  pbjs.que.push(function () {
+    pbjs.addAdUnits(adUnits);
+  });
+</script>
 ```
