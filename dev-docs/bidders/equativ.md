@@ -121,8 +121,6 @@ As mentioned in the **Bid Parameter Usage** section, when including `'equativ'` 
 </script>
 ```
 
-
-
 #### Option 2 - Using siteId, pageId and formatId as bid params
 
 ```html
