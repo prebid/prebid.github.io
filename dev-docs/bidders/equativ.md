@@ -24,6 +24,7 @@ The Equativ bidder adapter requires setup and approval from the Equativ service 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example | Type |
 |------|-------|-------------|---------|------|
 | `networkId` | required | The network identifier you have been provided with. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
@@ -35,6 +36,7 @@ The Equativ bidder adapter requires setup and approval from the Equativ service 
 Different combinations of parameters are required depending upon which ones you choose to use.
 
 There are three options for passing bidder parameters:
+
 - **Option 1**.  Specify `networkId` by itself (_without_ `siteId`, `pageId` and `formatId`), or
 - **Option 2**.  Specify `siteId` _and_ `pageId` _and_ `formatId` (all together) _without_ `networkId`, or
 - **Option 3**.  Specify _none_ of the above parameters, and instead use either  `ortb2.site.publisher.id` or `ortb2.site.app.id`
@@ -44,6 +46,7 @@ See **Sample Banner Setup** for examples of these parameter options.
 ### Supported Media Types
 
 {: .table .table-bordered .table-striped }
+
 | Type | Support |
 |---|---|
 | `banner` | Supported |
@@ -85,6 +88,7 @@ pbjs.bidderSettings = {
 As mentioned in the **Bid Parameter Usage** section, when including `'equativ'` as one of your available bidders your adunit setup, there are three general approaches to how you can specify parameters.  Below are examples that illustrate them.
 
 #### Option 1 -- Using networkId as the only bid param
+
 ```html
 <script>
   var adUnits = [
@@ -120,6 +124,7 @@ As mentioned in the **Bid Parameter Usage** section, when including `'equativ'` 
 
 
 #### Option 2 - Using siteId, pageId and formatId as bid params
+
 ```html
 <script>
   var adUnits = [
@@ -155,6 +160,7 @@ As mentioned in the **Bid Parameter Usage** section, when including `'equativ'` 
 ```
 
 #### Option 3 - Using ortb2 for parameter info
+
 ```html
 <script>
   var adUnits = [
