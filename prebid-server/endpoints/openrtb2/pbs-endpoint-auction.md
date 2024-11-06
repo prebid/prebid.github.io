@@ -979,10 +979,7 @@ You can turn on the extra Prebid Server debug log without the formal `test` beha
 ##### Trace Flag
 
 You can turn on additional Prebid Server tracing by setting `ext.prebid.trace` to either "verbose" or "basic".
-This provides additional information for certain scenarios:
-
-- for [modules](/prebid-server/pbs-modules/), look in response ext.prebid.modules.trace
-- for [PG](/prebid-server/features/pg/pbs-pg-idx.html), look in response ext.debug.trace
+This provides additional information for [modules](/prebid-server/pbs-modules/).
 
 ##### Stored Responses
 

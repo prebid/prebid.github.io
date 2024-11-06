@@ -35,7 +35,7 @@ Contact us at [advertising@bidmatic.io](mailto:advertising@bidmatic.io).
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `source`      | required | Traffic source origin id      | `'11111'`    | `int` |
+| `source`      | required | Traffic source origin id      | `11111`    | `int` |
 
 ### Test Parameters
 
