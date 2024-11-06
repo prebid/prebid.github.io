@@ -3,45 +3,45 @@ layout: bidder
 title: Equativ
 description: Prebid Equativ Bidder Adapter
 biddercode: equativ
-media_types: display
+media_types: banner
 tcfeu_supported: true
+coppa_supported: true
 gvl_id: 45
-tcfeu_supported: true
 gpp_supported: true
 schain_supported: true
 usp_supported: true
 userIds: all
 pbjs: true
-pbs: false
+pbs: true
 floors_supported: true
 sidebarType: 1
 ---
 
 ### Registration
 
-The Equativ bidder adapter requires setup and approval from the Equativ (former Smart AdServer) service team. Please reach out to your account manager for more information and start using it.
+The Equativ bidder adapter requires setup and approval from the Equativ service team. Please reach out to your account manager for more information to start using it.
 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |------|-------|-------------|---------|------|
-| `networkId` | required for Prebid Server | The network identifier you have been provided with. **Note**: the `Equativ` bid adapter currently only supports client-side implementations. | `1234` | `integer` |
-| `siteId` | required for Prebid.js | The placement site ID |`1234` | `integer` |
-| `pageId` | required for Prebid.js | The placement page ID | `1234` | `integer` |
-| `formatId` | required for Prebid.js | The placement format ID | `1234` | `integer` |
-| `domain` | optional | The network domain (default see example) | `'http://prg.smartadserver.com', 'https://prg.smartadserver.com'` | `string` |
-| `target` | optional | The keyword targeting | `'sport=tennis'` | `string` |
-| `bidfloor` | optional | Bid floor for this placement in USD or in the currency specified by the `currency` parameter. (Default: `0.0`) | `0.42` | `float` |
-| `appName` | optional | Mobile application name | `'Smart AdServer Preview'` | `string` |
-| `buId` | optional | Mobile application bundle ID | `'com.smartadserver.android.dashboard'` | `string` |
-| `ckId` | optional | Unique Smart AdServer user ID | `1234567890123456789` | `integer` |
-| `video` | optional | Parameter object for instream video. See [video Object](#smartadserver-video-object) | `{}` | `object` |
-| `schain` | optional | Supply Chain | `'1.0,1!exchange1.com,1234,1,bid-request-1,publisher,publisher.com'` | `string` |
+| `networkId` | required | The network identifier you have been provided with. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
+| `siteId` | required | The placement site ID. _See **Bid Parameter Usage** notes below for more information_. |`1234` | `integer` |
+| `pageId` | required | The placement page ID. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
+| `formatId` | required | The placement format ID. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
 
-**Note:** The site, page and format identifiers have to all be provided (for Prebid.js).
+#### Bid Parameter Usage 
+Different combinations of parameters are required depending upon which ones you choose to use.
 
-### Supported Media Types (Prebid.js)
+There are three options for passing bidder parameters:
+- **Option 1**.  Specify `networkId` by itself (_without_ `siteId`, `pageId` and `formatId`), or
+- **Option 2**.  Specify `siteId` _and_ `pageId` _and_ `formatId` (all together) _without_ `networkId`, or
+- **Option 3**.  Specify _none_ of the above parameters, and instead use either  `ortb2.site.publisher.id` or `ortb2.site.app.id`
+
+See **Sample Banner Setup** for examples of these parameter options.
+
+### Supported Media Types
 
 {: .table .table-bordered .table-striped }
 | Type | Support |
@@ -52,7 +52,7 @@ The Equativ bidder adapter requires setup and approval from the Equativ (former 
 
 ### User Syncing
 
-To enable cookie syncing, publishers should make sure their configuration setup is properly invoked.
+To enable cookie syncing, make sure their configuration setup is properly invoked.
 
 This involves adding an entry for `setConfig()` that allows user syncing for iframes with `'equativ'` included as a bidder:
 
@@ -82,8 +82,9 @@ pbjs.bidderSettings = {
 
 #### Sample Banner Setup
 
-When including `'equativ'` as one of your available bidders your adunit setup, be sure to include `siteId`, `pageId` and `formatId` as bid parameters, as shown in the example below.
+As mentioned in the **Bid Parameter Usage** section, when including `'equativ'` as one of your available bidders your adunit setup, there are three general approaches to how you can specify parameters.  Below are examples that illustrate them.
 
+#### Option 1 -- Using networkId as the only bid param
 ```html
 <script>
   var adUnits = [
@@ -100,7 +101,44 @@ When including `'equativ'` as one of your available bidders your adunit setup, b
       bids: [
         {
           bidder: 'equativ',
+          // siteId, pageId and formatId are NOT
+          // required if networkId is provided instead
           params: {
+            networkId: 42,
+          },
+        },
+      ],
+    },
+  ];
+
+  pbjs.que.push(function () {
+    pbjs.addAdUnits(adUnits);
+  });
+</script>
+```
+
+
+
+#### Option 2 - Using siteId, pageId and formatId as bid params
+```html
+<script>
+  var adUnits = [
+    {
+      code: 'div-123',
+      mediaTypes: {
+        banner: {
+          sizes: [
+            [600, 500],
+            [300, 600],
+          ],
+        },
+      },
+      bids: [
+        {
+          bidder: 'equativ',
+          // all 3 of the below params are required 
+          // when used together in place of networkId
+          params: { 
             siteId: 1,
             pageId: 2,
             formatId: 3,
@@ -109,6 +147,58 @@ When including `'equativ'` as one of your available bidders your adunit setup, b
       ],
     },
   ];
+
+  pbjs.que.push(function () {
+    pbjs.addAdUnits(adUnits);
+  });
+</script>
+```
+
+#### Option 3 - Using ortb2 for parameter info
+```html
+<script>
+  var adUnits = [
+    {
+      code: 'div-123',
+      mediaTypes: {
+        banner: {
+          sizes: [
+            [600, 500],
+            [300, 600],
+          ],
+        },
+      },
+      bids: [
+        {
+          bidder: 'equativ'
+        },
+      ],
+    },
+  ];
+ 
+  // specify ortb2.site.publisher.id in 
+  // place of networkId
+  pbjs.setConfig({
+    ortb2: {
+      site: {
+        publisher: {
+          id: 42
+        }
+      }
+  });
+  /*
+  // APP ALTERNATIVE: you can use, if needed, 
+  // "app" instead of "publisher", like this:
+  // ------------------  
+  pbjs.setConfig({
+    ortb2: {
+      app: {
+        publisher: {
+          id: 42
+        }
+      }
+  });
+  */
 
   pbjs.que.push(function () {
     pbjs.addAdUnits(adUnits);
