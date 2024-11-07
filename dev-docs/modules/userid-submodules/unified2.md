@@ -18,7 +18,7 @@ gulp build --modules=uid2IdSystem
 
 You can set up Unified ID 2.0 in one of these ways:
 
-- Include the module to your pb.js wrapper. You will need to apply for publisher access [on the UID2 website](https://unifiedid.com/request-access). Using this option, you must generate UID2 tokens server-side.  You provide these tokens to Prebid.js either by using a cookie or directly in the configuration.
+- Include the module to your Prebid.js wrapper. You will need to apply for publisher access [on the UID2 website](https://unifiedid.com/request-access). Using this option, you must generate UID2 tokens server-side.  You provide these tokens to Prebid.js either by using a cookie or directly in the configuration.
 - Use a [managed services](https://prebid.org/product-suite/managed-services/) company that can do this for you.
 - Use UID2 Client Side Integration with Prebid.js
 
