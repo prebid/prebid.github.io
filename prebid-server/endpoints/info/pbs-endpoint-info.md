@@ -24,7 +24,7 @@ For detailed info about a specific Bidder, use [`/info/bidders/{bidderName}`](#g
 
 This endpoint returns JSON like:
 
-```
+```json
 [
   "appnexus",
   "audienceNetwork",
@@ -44,7 +44,7 @@ Legal values for `{bidderName}` can be retrieved from the [`/info/bidders`](#get
 
 This endpoint returns JSON like:
 
-```
+```json
 {
   "maintainer": {
     "email": "info@prebid.org"
@@ -62,6 +62,13 @@ This endpoint returns JSON like:
         "video",
         "native"
       ]
+    },
+    "dooh": {
+      "mediaTypes": [
+        "banner",
+        "video",
+        "native"
+      ]
     }
   }
 }
@@ -69,13 +76,10 @@ This endpoint returns JSON like:
 
 The fields hold the following information:
 
-- `maintainer.email`: A contact email for the Bidder's maintainer. In general, Bidder bugs should be logged as [issues](https://github.com/prebid/prebid-server/issues)... but this contact email may be useful in case of emergency.
-- `capabilities.app.mediaTypes`: A list of media types this Bidder supports from Mobile Apps.
-- `capabilities.site.mediaTypes`: A list of media types this Bidder supports from Web pages.
-
-If `capabilities.app` or `capabilities.site` do not exist, then this Bidder does not support that platform.
-OpenRTB Requests which define a `request.app` or `request.site` property will fail if a
-`request.
+* `maintainer.email`: A contact email for the Bidder's maintainer. In general, Bidder bugs should be logged as [issues](https://github.com/prebid/prebid-server/issues)... but this contact email may be useful in case of emergency.
+* `capabilities.app.mediaTypes`: A list of media types this Bidder supports from Mobile Apps.
+* `capabilities.site.mediaTypes`: A list of media types this Bidder supports from Web pages.
+* `capabilities.dooh.mediaTypes`: A list of media types this Bidder supports from Digital Out Of Home (DOOH)experiences.
 
 ## GET /bidders/params
 
@@ -88,11 +92,11 @@ A JSON object whose keys are bidder codes, and values are Draft 4 JSON schemas w
 
 For example:
 
-```
+```json
 {
   "appnexus": { /* A json-schema describing AppNexus' bidder params */ },
-  "rubicon": { /* A json-schema describing Rubicon's bidder params */ }
-  ... all other bidders will have similar keys & values here ...
+  "magnite": { /* A json-schema describing Rubicon's bidder params */ },
+  "otherBidder": { /* A json-schema describing Rubicon's bidder params */ }
 }
 ```
 
