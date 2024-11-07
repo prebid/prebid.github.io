@@ -209,3 +209,6 @@ As mentioned in the **Bid Parameter Usage** section, when including `'equativ'` 
   });
 </script>
 ```
+
+### Additional Resources
+Information about how Equativ supports the oRTB specification, along with additional examples, can be found [on our OpenRTB API support site](https://help.smartadserver.com/s/article/OpenRTB-API-for-suppliers-Bid-request-specification-Part-1).
