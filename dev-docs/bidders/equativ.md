@@ -39,7 +39,7 @@ There are three options for passing bidder parameters:
 
 - **Option 1**.  Specify `networkId` by itself (_without_ `siteId`, `pageId` and `formatId`), or
 - **Option 2**.  Specify `siteId` _and_ `pageId` _and_ `formatId` (all together) _without_ `networkId`, or
-- **Option 3**.  Specify _none_ of the above parameters, and instead use either  `ortb2.site.publisher.id` or `ortb2.site.app.id`
+- **Option 3**.  Specify _none_ of the above parameters, and instead use either  `ortb2.site.publisher.id` or `ortb2.app.publisher.id`
 
 See **Sample Banner Setup** for examples of these parameter options.
 
