@@ -15,7 +15,7 @@ sidebarType : 1
 
 ## Overview
 
-RTD provider for Gamera.ai that enriches bid requests with real-time data, by populating the [First Party Data](https://docs.prebid.org/features/firstPartyData.html) attributes.
+RTD provider for Gamera.ai that enriches bid requests with real-time data, by populating the [First Party Data](/features/firstPartyData.html) attributes.
 The module integrates with Gamera's AI-powered contextual targeting system to provide enhanced bidding capabilities.
 
 The Gamera RTD Provider works in conjunction with the Gamera script, which must be available on the page for the module to enrich bid requests. To learn more about the Gamera script, please visit the [Gamera website](https://gamera.ai/), or contact [Gamera](mailto:gareth@gamera.ai).
