@@ -18,14 +18,14 @@ sidebarType : 1
 RTD provider for Gamera.ai that enriches bid requests with real-time data, by populating the [First Party Data](https://docs.prebid.org/features/firstPartyData.html) attributes.
 The module integrates with Gamera's AI-powered contextual targeting system to provide enhanced bidding capabilities.
 
-The Gamera RTD Provider works in conjunction with the Gamera script, which must be available on the page for the module to enrich bid requests. To learn more about the Gamera script, please visit the [Gamera website](https://gamera.ai/), or contact [Gamera support](mailto:support@gamera.ai).
+The Gamera RTD Provider works in conjunction with the Gamera script, which must be available on the page for the module to enrich bid requests. To learn more about the Gamera script, please visit the [Gamera website](https://gamera.ai/), or contact [Gamera](mailto:gareth@gamera.ai).
 
 ## Build
 
 Include the Gamera RTD module in your Prebid.js build:
 
 ```bash
-gulp build --modules=rtdModule,gameraRtdProvider
+gulp build --modules=rtdModule,gameraRtdProvider,...
 ```
 
 ## Configuration
@@ -51,5 +51,5 @@ Syntax details:
 | Name                     | Scope    | Description                                   | Example     | Type     |
 |--------------------------|----------|-----------------------------------------------|-------------|----------|
 | `name`                   | required | Real time data module name: Always `'gamera'` | `'gamera'`  | `string` |
-| `params`                 | optional |                                               | `{}`        | `Object` |
+| `params`                 | optional | Submodule configuration parameters (none at the moment) | `{}`        | `Object` |
 | `waitForIt`              | optional | Should be `true` if there's an `auctionDelay` defined (defaults to `false`) | `false` | `Boolean` |
