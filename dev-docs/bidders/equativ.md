@@ -3,17 +3,26 @@ layout: bidder
 title: Equativ
 description: Prebid Equativ Bidder Adapter
 biddercode: equativ
-media_types: banner
 tcfeu_supported: true
-coppa_supported: true
+dsa_supported: false // TODO: SADR-6590: is this supported?
 gvl_id: 45
-gpp_supported: true
-schain_supported: true
 usp_supported: true
+coppa_supported: true
+gpp_sids: tcfeu, usp
+schain_supported: true
+dchain_support: false // TODO: SADR-6590: saw no evidence that we support this
 userIds: all
+media_types: banner
+safeframes_ok: false // TODO: SADR-6590: is this supported?
+deals_supported: false // TODO: SADR-6590: is this supported?
+floors_supported: true
+fpd_supported: true
 pbjs: true
 pbs: true
-floors_supported: true
+prebid_member: false
+multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid // TODO: SADR-6590: will-bid-on-one?
+ortb_blocking_supported: false // TODO: SADR-6590: is this supported?
+privacy_sandbox: no 
 sidebarType: 1
 ---
 
@@ -24,7 +33,6 @@ The Equativ bidder adapter requires setup and approval from the Equativ service 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-
 | Name | Scope | Description | Example | Type |
 |------|-------|-------------|---------|------|
 | `networkId` | required | The network identifier you have been provided with. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
@@ -46,12 +54,44 @@ See **Sample Banner Setup** for examples of these parameter options.
 ### Supported Media Types
 
 {: .table .table-bordered .table-striped }
-
 | Type | Support |
 |---|---|
 | `banner` | Supported |
 | `video` | Not currently supported |
 | `native` | Not currently supported |
+
+### First Party Data
+
+You can use the `ortb2` property for setting first-party data.  The following use cases are supported:
+
+- `ortb2.site.publisher.id`
+- `ortb2.app.publisher.id`
+
+The `app` or `site` object properties can be used as a way to specify an ID for Equativ to use to identify your requests (through `publisher.id`), as shown with the two examples below:
+
+```js
+  pbjs.setConfig({
+    ortb2: {
+      site: {
+        publisher: {
+          id: 42
+        }
+      }
+  });
+```
+
+or 
+
+```js
+  pbjs.setConfig({
+    ortb2: {
+      app: {
+        publisher: {
+          id: 42
+        }
+      }
+  });
+```
 
 ### User Syncing
 
