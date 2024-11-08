@@ -43,7 +43,8 @@ pbjs.setConfig({
 
 ## Parameters for the Novatiq Module
 
-<div class="table-responsive" markdown="1">
+{: .table .table-bordered .table-striped }
+
 | Param  | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | Module identification: `"novatiq"` | `"novatiq"` |
@@ -57,8 +58,6 @@ pbjs.setConfig({
 | params.urlParams.useStandardUuid | Optional | Boolean | Use a standard UUID format, or the Novatiq UUID format | `false` |
 | params.urlParams.useSspId | Optional | Boolean | Send the sspid (sourceid) along with the sync request <br > Makes the params.sourceid optional if set | `false` |
 | params.urlParams.useSspHost | Optional | Boolean | Send the ssphost along with the sync request | `false` |
-{: .table .table-bordered .table-striped }
-</div>
 
 ## Novatiq Hyper ID with Prebid SharedID Support
 
