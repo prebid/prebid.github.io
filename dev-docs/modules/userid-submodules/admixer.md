@@ -15,8 +15,9 @@ The Admixer privacy policy is at <https://admixer.com/privacy/>
 
 Add Admixer ID module to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=admixerIdSystem
+```
 
 ## AdmixerID Configuration
 

@@ -3,6 +3,9 @@ layout: userid
 title: DMD ID by DMD Marketing Corp
 description: DMD ID by DMD Marketing Corp User ID sub-module
 useridmodule: dmdIdSystem
+bidRequestUserId: dmdId
+eidsource: hcn.health
+example: '"1111"'
 ---
 
 
@@ -12,8 +15,9 @@ For assistance setting up your module, please contact us at <prebid@dmdconnects.
 
 Add the DMD ID to your Prebid.js Package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=userId,dmdIdSystem
+```
 
 ## DMD ID Registration
 
@@ -22,6 +26,7 @@ Please reach out to [prebid@dmdconnects.com](mailto:prebid@dmdconnects.com) to r
 ## DMD ID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of Module | `"dmdId"` |

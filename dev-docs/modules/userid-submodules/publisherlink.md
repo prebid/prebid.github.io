@@ -3,6 +3,9 @@ layout: userid
 title: Publisher Link
 description: Publisher Link User ID sub-module
 useridmodule: publinkIdSystem
+bidRequestUserId: publinkId
+eidsource: epsilon.com
+example:
 ---
 
 
@@ -24,6 +27,7 @@ The Publisher Link opt-out is included [here](https://www.epsilon.com/privacy/dm
 In addition to the parameters documented above in the Basic Configuration section the following Publisher Link specific configuration is available:
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `'publinkId'` |

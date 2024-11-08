@@ -204,20 +204,6 @@ The corresponding user id object and the eids array will look like this:
 
 {% assign userid_pages = site.pages | where: "layout", "userid" | sort_natural: "title" %}
 
-{% for page in userid_pages %}
-<li><a href="/{{ page.path | replace: '.md', '.html'}}">{{page.title}}</a></li>
-{% endfor %}
-
-## Bidder Adapter Implementation
-
-If your ID structure is complicated, it is helpful to add tests for `pbjs.getUserIds()`, `pbjs.getUserIdsAsEids()` and `pbjs.getUserIdsAsync()`.
-
-To add a custom data type for the response of `pbjs.getUserIdsAsEids()`, see other examples within the `createEidsArray` method in [/modules/userId/eid.js](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.js).
-
-### Prebid.js Adapters
-
-Bidders that want to support the User ID module in Prebid.js need to update their bidder adapter to read the indicated bidRequest attributes and pass them to their endpoint.
-
 <table class="table table-bordered table-striped">
   <tr>
     <th>ID System Name</th>
@@ -235,48 +221,15 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 {% endfor %}
 </table>
 
-{: .table .table-bordered .table-striped }
-| ID System Name | ID System Host | Prebid.js Attr: bidRequest.userId. | EID Source | Example Value |
-| --- | --- | --- | --- | --- | --- |
-| Adriver ID | Adriver | adriverId | adriver.ru | "1111" |
-| Adtelligent ID | Adtelligent | adtelligentId | adtelligent.com | `"1111"` |
-| AMX ID | AMX | amxId | amxdt.net | "3ca11058-..." |
-| BritePool ID | BritePool | britepoolid | britepool.com | "1111" |
-| AudienceOne ID | DAC | dacId | dac.co.jp | {"id": "1111"} |
-| DeepIntent ID | Deep Intent | deepintentId | deepintent.com | "1111" |
-| DMD ID | DMD | dmdId | hcn.health | "1111" |
-| ceeId | ceeId | ceeId | ceeid.eu | "111111" |
-| Czech Ad ID | czechAdId | czechAdId | czechadid.cz | "1111" |
-| CriteoID | Criteo | criteoId | criteo.com | "1111" |
-| Fabrick ID | Neustar | fabrickId | neustar.biz | "1111" |
-| FLoC ID | n/a | flocId | | |
-| GrowthCode ID | GrowthCode | growthCodeId | growthcode.io | "1111" |
-| Hadron ID | Audigent | hadronId | audigent.com | {"hadronId":"user-hadron-id", "auSeg":["segment1", "segment2"]} |
-| ID+ | Zeotap | IDP | zeotap.com | "1111" |
-| ID5 ID | ID5 | id5id | id5-sync.com | {uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } } |
-| IdentityLink | LiveRamp | idl_env | liveramp.com | "1111" |
-| Intent IQ ID | Intent IQ | intentiqid | intentiq.com | "1111" |
-| Kinesso ID | Kinesso | kpuid | kpuid.com | "1111" |
-| LiveIntent ID | Live Intent | lipb.lipbid | liveintent.com | "1111" |
-| Lotame Panorama ID | Lotame | lotamePanoramaId | crwdcntrl.net | "e4b9..." |
-| MediaWallah OpenLink ID | MediaWallah | mwOpenLinkId | mediawallahscript.com | "1111" |
-| merkleID | Merkle | merkleId | merkleinc.com | "1111" |
-| naveggId | Navegg | naveggId | navegg.com | "1111" |
-| netID | netID | netId | netid.de | "fH5A..." |
-| Novatiq ID | Novatiq | novatiqId | novatiq.com | "1111" |
-| Parrable ID | Parrable | parrableId | parrable.com | {"eid":"01.15946..."} |
-| Publisher Link ID | n/a | publinkId | epsilon.com | |
-| PubProvided ID | n/a | pubProvidedId | publisher domain | "1111" |
-| Quantcast ID | n/a | quantcastId | quantcast.com | "1111" |
-| Tapad ID | Tapad | tapadId | tapad.com | "1111" |
-| Teads ID | Teads | teadsId | teads.com | "1111" |
-| SharedID (PBJS 5.x) | n/a | pubcid | pubcid.org | "1111" |
-| SharedID (PBJS 4.x)| Prebid | sharedid | sharedid.org | {"id":"01EAJWWN...", "third":"01EAJ..."} |
-| Unified ID | Trade Desk | tdid | adserver.org | "1111" |
-| ConnectID | Yahoo | connectId | yahoo.com | {"connectId": "72d04af6..."} |
-| FreePass ID | FreePass | freepassId | | "1111" |
-| UtiqMtp ID | Utiq | utiqMtpId | utiq-mtp.com | "1111" |
-| Yandex ID | Yandex | yandexId | yandex.com | "11111111111111111" |
+## Bidder Adapter Implementation
+
+If your ID structure is complicated, it is helpful to add tests for `pbjs.getUserIds()`, `pbjs.getUserIdsAsEids()` and `pbjs.getUserIdsAsync()`.
+
+To add a custom data type for the response of `pbjs.getUserIdsAsEids()`, see other examples within the `createEidsArray` method in [/modules/userId/eid.js](https://github.com/prebid/Prebid.js/blob/master/modules/userId/eids.js).
+
+### Prebid.js Adapters
+
+Bidders that want to support the User ID module in Prebid.js need to update their bidder adapter to read the indicated bidRequest attributes and pass them to their endpoint.
 
 For example, the adapter code might do something like:
 
@@ -367,8 +320,6 @@ If you're an ID provider that wants to get on this page:
   * Add `/dev-docs/modules/userid-submodules/<userIdModuleName>.md`
   * Add a new row to `/dev-docs/modules/userId.md#prebidjs-adapters`
   * Submit a documentation Pull Request
-
-<a name="getUserIds"></a>
 
 ## ESP Configurations
 

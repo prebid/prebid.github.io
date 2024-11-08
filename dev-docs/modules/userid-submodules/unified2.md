@@ -11,8 +11,9 @@ UID2 relies on user consent before an ID can be added to the bid stream. Consent
 
 To add UID2 to your Prebid.js package, run the following:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=uid2IdSystem
+```
 
 ## Unified ID 2.0 Registration
 
@@ -66,6 +67,7 @@ For a server-side integration, you can create a smaller Prebid.js build by disab
 The following parameters apply only to the Unified ID 2.0 module integration.
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the Unified ID 2.0 module - `"uid2"` | `"uid2"` |

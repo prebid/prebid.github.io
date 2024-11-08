@@ -3,14 +3,18 @@ layout: userid
 title: Yahoo ConnectID
 description: Yahoo ConnectID User ID sub-module
 useridmodule: connectIdSystem
+bidRequestUserId: connectId
+eidsource: yahoo.com
+example: {"connectId": "72d04af6..."}
 ---
 
 Yahoo ConnectID is a person based ID and does not depend on 3rd party cookies. It enables ad tech platforms to recognize and match users consistently across the open web. Built on top of Yahoo's robust and proprietary ID Graph it delivers higher monetization while respecting user privacy via multiple controls.
 
 Add support for Yahoo ConnectID to your Prebid.js package using:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=userId,connectIdSystem
+```
 
 ## Yahoo ConnectID Registration
 

@@ -3,6 +3,9 @@ layout: userid
 title: MediaWallah OpenLinkID
 description: MediaWallah OpenLinkID User ID sub-module
 useridmodule: mwOpenLinkIdSystem
+bidRequestUserId: mwOpenLinkId
+eidsource: mediawallahscript.com
+example: '"1111"'
 ---
 
 
@@ -10,8 +13,9 @@ MediaWallah's openLink is an anonymous person based ID that enables buyers and s
 
 Add support for MediaWallah OpenLinkID to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=userId,mwOpenLinkIdSystem
+```
 
 ## MediaWallah OpenLinkID Registration
 

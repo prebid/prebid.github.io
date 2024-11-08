@@ -3,6 +3,9 @@ layout: userid
 title: Hadron ID from Audigent
 description: Hadron ID from Audigent User ID sub-module
 useridmodule: hadronIdSystem
+bidRequestUserId: hadronId
+eidsource: audigent.com
+example: {"hadronId":"user-hadron-id", "auSeg":["segment1", "segment2"]}
 ---
 
 
@@ -12,8 +15,9 @@ Audigent is a next-generation data management platform and a first-of-a-kind "da
 
 Add the Hadron ID system to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=userId,hadronIdSystem
+```
 
 Add HadronId to the userSync configuration.
 
@@ -45,6 +49,7 @@ The `request.userId.hadronId` will contain the Audigent HadronId:
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
+
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the HadronID module - `"hadronId"` | `"hadronId"` |

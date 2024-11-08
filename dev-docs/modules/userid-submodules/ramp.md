@@ -3,6 +3,9 @@ layout: userid
 title: LiveRamp RampID
 description: LiveRamp RampID User ID sub-module
 useridmodule: identityLinkIdSystem
+bidRequestUserId: idl_env
+eidsource: liveramp.com
+example: '"1111"'
 ---
 
 
@@ -10,8 +13,9 @@ RampID, formerly known as IdentityLink, provided by [LiveRamp](https://liveramp.
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=identityLinkIdSystem
+```
 
 ## RampID Registration
 
@@ -22,6 +26,7 @@ The RampID privacy policy is at [liveramp.com/privacy/service-privacy-policy/](h
 ## RampID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of LiveRamp's user ID module. | `"identityLink"` |

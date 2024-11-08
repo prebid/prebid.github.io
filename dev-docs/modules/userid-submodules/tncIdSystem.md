@@ -1,3 +1,13 @@
+---
+layout: userid
+title: TNCID
+description: TNCID UserID sub-module
+useridmodule: tncIdSystem
+bidRequestUserId: 
+eidsource: 
+example:
+---
+
 # TNCID UserID Module
 
 ## Prebid Configuration
@@ -10,7 +20,7 @@ gulp build --modules=tncIdSystem,userId
 
 ## TNCIDIdSystem module Configuration
 
-Disclosure: This module loads external script unreviewed by the prebid.js community
+{% include dev-docs/loads-external-javascript.md %}
 
 You can configure this submodule in your `userSync.userIds[]` configuration:
 
@@ -29,6 +39,8 @@ pbjs.setConfig({
 ```
 
 ## Configuration Params
+
+{: .table .table-bordered .table-striped }
 
 | Param Name | Required | Type | Description |
 | --- | --- | --- | --- |

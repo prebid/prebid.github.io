@@ -16,8 +16,9 @@ SharedID into account.  Prebid  recommends implementing a method where users can
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=sharedIdSystem
+```
 
 ## SharedID ID Configuration
 

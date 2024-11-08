@@ -4,6 +4,9 @@ title: Trustpid
 description: Trustpid User ID sub-module
 pbjs_version_notes: not in 8.x
 useridmodule: trustpidSystem
+bidRequestUserId:
+eidsource: 
+example:
 ---
 
 {: .alert.alert-info :}
@@ -16,6 +19,7 @@ Trustpid is also the brand name of the service, which is provided by Vodafone Sa
 ## Trustpid configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of the module | `"trustpid"`
