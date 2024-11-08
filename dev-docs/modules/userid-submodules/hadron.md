@@ -53,7 +53,7 @@ The following configuration parameters are available:
 | Param under usersync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the HadronID module - `"hadronId"` | `"hadronId"` |
-| params | Optional | Object | Used to store params for the HadronId system |
-| params.url | Optional | String | Set an alternate GET url for HadronId with this parameter |
-| params.urlArg | Optional | Object | Optional url parameter for params.url |
-| params.partnerId | Required | Number | This is the Audigent Partner ID obtained from Audigent. |
+| params | Optional | Object | Used to store params for the HadronId system | |
+| params.url | Optional | String | Set an alternate GET url for HadronId with this parameter | | 
+| params.urlArg | Optional | Object | Optional url parameter for params.url | |
+| params.partnerId | Required | Number | This is the Audigent Partner ID obtained from Audigent. | |
