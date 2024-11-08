@@ -4,25 +4,25 @@ title: Equativ
 description: Prebid Equativ Bidder Adapter
 biddercode: equativ
 tcfeu_supported: true
-dsa_supported: false // TODO: SADR-6590: is this supported?
+dsa_supported: true
 gvl_id: 45
 usp_supported: true
 coppa_supported: true
 gpp_sids: tcfeu, usp
 schain_supported: true
-dchain_support: false // TODO: SADR-6590: saw no evidence that we support this
+dchain_support: false
 userIds: all
 media_types: banner
-safeframes_ok: false // TODO: SADR-6590: is this supported?
-deals_supported: false // TODO: SADR-6590: is this supported?
+safeframes_ok: true
+deals_supported: false
 floors_supported: true
 fpd_supported: true
 pbjs: true
 pbs: true
 prebid_member: false
-multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid // TODO: SADR-6590: will-bid-on-one?
-ortb_blocking_supported: false // TODO: SADR-6590: is this supported?
-privacy_sandbox: no 
+multiformat_supported: will-bid-on-one
+ortb_blocking_supported: true
+privacy_sandbox: no
 sidebarType: 1
 ---
 
@@ -40,14 +40,15 @@ The Equativ bidder adapter requires setup and approval from the Equativ service 
 | `pageId` | required | The placement page ID. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
 | `formatId` | required | The placement format ID. _See **Bid Parameter Usage** notes below for more information_. | `1234` | `integer` |
 
-#### Bid Parameter Usage 
+#### Bid Parameter Usage
+
 Different combinations of parameters are required depending upon which ones you choose to use.
 
 There are three options for passing bidder parameters:
 
-- **Option 1**.  Specify `networkId` by itself (_without_ `siteId`, `pageId` and `formatId`), or
-- **Option 2**.  Specify `siteId` _and_ `pageId` _and_ `formatId` (all together) _without_ `networkId`, or
-- **Option 3**.  Specify _none_ of the above parameters, and instead use either  `ortb2.site.publisher.id` or `ortb2.app.publisher.id`
+- **Option 1**. Specify `networkId` by itself (_without_ `siteId`, `pageId` and `formatId`), or
+- **Option 2**. Specify `siteId` _and_ `pageId` _and_ `formatId` (all together) _without_ `networkId`, or
+- **Option 3**. Specify _none_ of the above parameters, and instead use either `ortb2.site.publisher.id` or `ortb2.app.publisher.id`
 
 See **Sample Banner Setup** for examples of these parameter options.
 
@@ -62,7 +63,7 @@ See **Sample Banner Setup** for examples of these parameter options.
 
 ### First Party Data
 
-You can use the `ortb2` property for setting first-party data.  The following use cases are supported:
+You can use the `ortb2` property for setting first-party data. The following use cases are supported:
 
 - `ortb2.site.publisher.id`
 - `ortb2.app.publisher.id`
@@ -80,7 +81,7 @@ The `app` or `site` object properties can be used as a way to specify an ID for 
   });
 ```
 
-or 
+or
 
 ```js
   pbjs.setConfig({
@@ -125,7 +126,7 @@ pbjs.bidderSettings = {
 
 #### Sample Banner Setup
 
-As mentioned in the **Bid Parameter Usage** section, when including `'equativ'` as one of your available bidders your adunit setup, there are three general approaches to how you can specify parameters.  Below are examples that illustrate them.
+As mentioned in the **Bid Parameter Usage** section, when including `'equativ'` as one of your available bidders your adunit setup, there are three general approaches to how you can specify parameters. Below are examples that illustrate them.
 
 #### Option 1 -- Using networkId as the only bid param
 
@@ -179,9 +180,9 @@ As mentioned in the **Bid Parameter Usage** section, when including `'equativ'` 
       bids: [
         {
           bidder: 'equativ',
-          // all 3 of the below params are required 
+          // all 3 of the below params are required
           // when used together in place of networkId
-          params: { 
+          params: {
             siteId: 1,
             pageId: 2,
             formatId: 3,
@@ -219,8 +220,8 @@ As mentioned in the **Bid Parameter Usage** section, when including `'equativ'` 
       ],
     },
   ];
- 
-  // specify ortb2.site.publisher.id in 
+
+  // specify ortb2.site.publisher.id in
   // place of networkId
   pbjs.setConfig({
     ortb2: {
@@ -231,9 +232,9 @@ As mentioned in the **Bid Parameter Usage** section, when including `'equativ'` 
       }
   });
   /*
-  // APP ALTERNATIVE: you can use, if needed, 
+  // APP ALTERNATIVE: you can use, if needed,
   // "app" instead of "publisher", like this:
-  // ------------------  
+  // ------------------
   pbjs.setConfig({
     ortb2: {
       app: {
@@ -251,4 +252,5 @@ As mentioned in the **Bid Parameter Usage** section, when including `'equativ'` 
 ```
 
 ### Additional Resources
+
 Information about how Equativ supports the oRTB specification, along with additional examples, can be found [on our OpenRTB API support site](https://help.smartadserver.com/s/article/OpenRTB-API-for-suppliers-Bid-request-specification-Part-1).
