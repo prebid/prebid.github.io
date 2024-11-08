@@ -22,7 +22,7 @@ Trustpid is also the brand name of the service, which is provided by Vodafone Sa
 
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| name | Required | String | The name of the module | `"trustpid"`
+| name | Required | String | The name of the module | `"trustpid"` |
 | params | Required | Object | Object with configuration parameters for trustpid User Id submodule | - |
 | params.maxDelayTime | Required | Integer | Max amount of time (in seconds) before looking into storage for data | 2500 |
 | bidders | Required | Array of Strings | An array of bidder codes to which this user ID may be sent. Currently required and supporting AdformOpenRTB | `['adf']` |
