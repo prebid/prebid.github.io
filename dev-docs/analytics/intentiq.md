@@ -33,6 +33,23 @@ The reportExternalWin function allows for manual reporting, meaning that reports
 
 To enable this manual reporting functionality, you must set the manualWinReportEnabled parameter in Intent IQ Unified ID module configuration is true. Once enabled, reports can be manually triggered using the reportExternalWin function.
 
+```js
+pbjs.setConfig({
+    userSync: {
+        userIds: [{
+            name: "intentIqId",
+            params: {
+                partner: 123456,     // valid partner id
+                browserBlackList: "chrome",
+                manualWinReportEnabled: true
+            }
+        }]
+    }
+});
+```
+
+You can find more information and configuration examples in the [Intent IQ Universal ID module](https://docs.prebid.org/dev-docs/modules/userid-submodules/intentiq.html#configuration)
+
 ### Calling the reportExternalWin Function
 
 To call the reportExternalWin function, you need to pass the partner_id parameter as shown in the example below:
