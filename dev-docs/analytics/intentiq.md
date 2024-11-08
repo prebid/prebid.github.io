@@ -38,13 +38,13 @@ To enable this manual reporting functionality, you must set the manualWinReportE
 To call the reportExternalWin function, you need to pass the partner_id parameter as shown in the example below:
 
 ```js
-window.intentIqAnalyticsAdapter_[partner_id].reportExternalWin()
+window.intentIqAnalyticsAdapter_[partner_id].reportExternalWin(reportData)
 ```
 
 Example use with Partner ID = 123455
 
 ```js
-window.intentIqAnalyticsAdapter_123455.reportExternalWin()
+window.intentIqAnalyticsAdapter_123455.reportExternalWin(reportData)
 ```
 
 ### Function Parameters
