@@ -16,7 +16,7 @@ media_types: banner
 safeframes_ok: true
 deals_supported: false
 floors_supported: true
-fpd_supported: true
+fpd_supported: false
 pbjs: true
 pbs: true
 prebid_member: false
@@ -48,7 +48,7 @@ There are three options for passing bidder parameters:
 
 - **Option 1**. Specify `networkId` by itself (_without_ `siteId`, `pageId` and `formatId`), or
 - **Option 2**. Specify `siteId` _and_ `pageId` _and_ `formatId` (all together) _without_ `networkId`, or
-- **Option 3**. Specify _none_ of the above parameters, and instead use either `ortb2.site.publisher.id` or `ortb2.app.publisher.id`
+- **Option 3**. Specify _none_ of the above parameters, and instead use either `ortb2.site.publisher.id`, `ortb2.app.publisher.id` or `ortb2.dooh.publisher.id`
 
 See **Sample Banner Setup** for examples of these parameter options.
 
@@ -60,39 +60,6 @@ See **Sample Banner Setup** for examples of these parameter options.
 | `banner` | Supported |
 | `video` | Not currently supported |
 | `native` | Not currently supported |
-
-### First Party Data
-
-You can use the `ortb2` property for setting first-party data. The following use cases are supported:
-
-- `ortb2.site.publisher.id`
-- `ortb2.app.publisher.id`
-
-The `app` or `site` object properties can be used as a way to specify an ID for Equativ to use to identify your requests (through `publisher.id`), as shown with the two examples below:
-
-```js
-  pbjs.setConfig({
-    ortb2: {
-      site: {
-        publisher: {
-          id: 42
-        }
-      }
-  });
-```
-
-or
-
-```js
-  pbjs.setConfig({
-    ortb2: {
-      app: {
-        publisher: {
-          id: 42
-        }
-      }
-  });
-```
 
 ### User Syncing
 
@@ -200,56 +167,11 @@ As mentioned in the **Bid Parameter Usage** section, when including `'equativ'` 
 
 #### Option 3 - Using ortb2 for parameter info
 
-```html
-<script>
-  var adUnits = [
-    {
-      code: 'div-123',
-      mediaTypes: {
-        banner: {
-          sizes: [
-            [600, 500],
-            [300, 600],
-          ],
-        },
-      },
-      bids: [
-        {
-          bidder: 'equativ'
-        },
-      ],
-    },
-  ];
+You can also, as an alternative to using bidder params, specify a value for `publisher.id` that may be nested under an `app`, `site` or `dooh` object. The Equativ adapter will, in turn, look for these property paths under the `ortb2` property of the request:
 
-  // specify ortb2.site.publisher.id in
-  // place of networkId
-  pbjs.setConfig({
-    ortb2: {
-      site: {
-        publisher: {
-          id: 42
-        }
-      }
-  });
-  /*
-  // APP ALTERNATIVE: you can use, if needed,
-  // "app" instead of "publisher", like this:
-  // ------------------
-  pbjs.setConfig({
-    ortb2: {
-      app: {
-        publisher: {
-          id: 42
-        }
-      }
-  });
-  */
-
-  pbjs.que.push(function () {
-    pbjs.addAdUnits(adUnits);
-  });
-</script>
-```
+- `ortb2.app.publisher.id`
+- `ortb2.site.publisher.id`
+- `ortb2.dooh.publisher.id`
 
 ### Additional Resources
 
