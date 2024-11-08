@@ -24,17 +24,15 @@ A Yahoo-supplied publisher-specific pixel ID is required. Reach out to [connecti
 
 Note: Parameters are case-sensitive. ConnectID is the proper name of our product, however, when used in code it is spelled as connect**I**d. Follow the example in the table below.
 
-<div class="table-responsive" markdown="1">
+{: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `"connectId"` |
 | params | Required | Object | Container of all module params. ||
-| params.pixelId | Required | Number |
-The Yahoo-supplied publisher-specific pixel ID. | `"0000"` |
+| params.pixelId | Required | Number | The Yahoo-supplied publisher-specific pixel ID. | `"0000"` |
 | params.he | Optional | String | The SHA-256 hashed user email address which has been lowercased prior to hashing.  |`"ed8ddbf5a171981db8ef938596ca297d5e3f84bcc280041c5880dba3baf9c1d4"`|
 | params.puid | Optional | String | A domain-specific user identifier such as a first-party cookie. If not passed, a puid value will be auto-generated and stored in local and / or cookie storage.  | `"ab9iibf5a231ii1db8ef911596ca297d5e3f84biii00041c5880dba3baf9c1da"` |
-{: .table .table-bordered .table-striped }
-</div>
 
 ## Yahoo ConnectID Examples
 
