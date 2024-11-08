@@ -40,8 +40,7 @@ more details.
 |----------|----------|-----------------------|---------------------------|----------|
 | `host`   | optional | Ad network host | `'js.pbsadverxo.com'` | `string` |
 | `adUnitId`   | required | Unique identifier for the ad unit in Adverxo platform. | `1` | `integer` |
-| `auth`       | required | Authentication token provided by Adverxo platform for the AdUnit. |
-`'61336e75e414c77c367eq5c47c2599ce80a8032b'` | `string` |
+| `auth`       | required | Authentication token provided by Adverxo platform for the AdUnit. | `'61336e75e414c77c367eq5c47c2599ce80a8032b'` | `string` |
 
 ### Setting First Party Data (FPD)
 

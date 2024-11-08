@@ -40,8 +40,7 @@ more details.
 | Name | Scope | Description | Example | Type |
 |----------|----------|-----------------------|---------------------------|----------|
 | `adUnitId`   | required | Unique identifier for the ad unit in AdPort platform. | `1` | `integer` |
-| `auth`       | required | Authentication token provided by AdPort platform for the AdUnit. |
-`'61336e75e414c77c367eq5c47c2599ce80a8032b'` | `string` |
+| `auth`       | required | Authentication token provided by AdPort platform for the AdUnit. |`'61336e75e414c77c367eq5c47c2599ce80a8032b'` | `string` |
 
 ### Setting First Party Data (FPD)
 
