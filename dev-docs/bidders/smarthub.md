@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: SmartHub
-description: SmartHub Bidder Adapter
+title: Attekmi
+description: Attekmi Bidder Adapter
 biddercode: smarthub
 usp_supported: true
 schain_supported: true
