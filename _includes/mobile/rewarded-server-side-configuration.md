@@ -4,7 +4,7 @@ The Rewarded Ad Unit assumes special behavior that should be configurable by the
 
 Configuration of rewarded ad unit can be done using stored impression-level stored request and the [passthrough](https://docs.prebid.org/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#request-passthrough) feature of Prebid Server. 
 
-Prebid SDK will search for a particular `rwdd` object in `ext.prebid.passthrough` of bid response to configure the behavior of the Rewarded Ad Unit. The following table describes the structure and usage purpose of `rwdd` configuration parameters.  
+Prebid SDK will search for a particular `rwdd` object in `$.seatbid.bid.ext.prebid.passthrough` of bid response to configure the behavior of the Rewarded Ad Unit. The following table describes the structure and usage purpose of `rwdd` configuration parameters.  
 
 {: .table .table-bordered .table-striped }
 
@@ -33,11 +33,16 @@ An example of an impression-level stored request:
 
 ```json
 {
+  "video": {
+    "h": 480,
+    "w": 320,
+    "mimes": ["video/mp4"],
+    "linearity": 1,
+    "placement": 2,
+    "playbackmethod": [2]
+  },
   "ext": {
     "prebid": {
-      "storedauctionresponse": {
-        "id": "prebid-response-video-rewarded-endcard"
-      },
       "passthrough": [
         {
           "type": "prebidmobilesdk",
