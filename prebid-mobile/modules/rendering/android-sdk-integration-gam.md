@@ -219,7 +219,7 @@ Integration:
 
 {% include mobile/rewarded-server-side-configuration.md %}
 
-##### Integration example
+#### Integration example
 
 Displaying the **Rewarded Ad** is the same as displaying an Interstitial Ad, but it adds ability to handle reward. To display a Rewarded Ad follow these steps:
 
@@ -246,7 +246,6 @@ rewardedAdUnit?.show()
 Pay attention that the `loadAd()` should be called on the main thread. 
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
-
 
 ##### Step 1: Create Event Handler
 {:.no_toc}
@@ -313,7 +312,7 @@ Integration:
 1. Replace the `RewardedAd` with `RewardedAdUnit`.
 2. Implement the interface for `RewardedAdUnitListener`.
 3. Remove the original `RewardedVideoAdUnit`.
-4. Follow the instructions to integrate [Rewarded API](#rewarded-video).
+4. Follow the instructions to integrate [Rewarded API](#rewarded).
 
 ## Additional Ad Unit Configuration
 

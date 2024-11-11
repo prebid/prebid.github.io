@@ -152,7 +152,7 @@ Once you receive the ad it will be ready for display. Follow the [MAX instructio
 
 {% include mobile/rewarded-server-side-configuration.md %}
 
-##### Integration example
+#### Integration example
 
 ```swift
 // 1. Get an instance of MARewardedAd

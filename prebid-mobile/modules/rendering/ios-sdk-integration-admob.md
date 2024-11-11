@@ -172,7 +172,7 @@ Once you receive the ad it will be ready for display. Follow the [AdMob instruct
 
 {% include mobile/rewarded-server-side-configuration.md %}
 
-##### Integration example
+#### Integration example
 
 ```swift
 // 1. Create GADRequest

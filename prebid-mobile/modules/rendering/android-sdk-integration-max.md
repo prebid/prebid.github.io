@@ -165,7 +165,7 @@ Once you receive the ad it will be ready for display. Folow the [MAX instruction
 
 {% include mobile/rewarded-server-side-configuration.md %}
 
-##### Integration example:
+#### Integration example
 
 ```kotlin
 // 1. Get an instance of MaxRewardedAd

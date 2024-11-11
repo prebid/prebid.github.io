@@ -210,7 +210,7 @@ Integration:
 
 {% include mobile/rewarded-server-side-configuration.md %}
 
-##### Integration example
+#### Integration example
 
 ```swift
  // 1. Create an Event Handler

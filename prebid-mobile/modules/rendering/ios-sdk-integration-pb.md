@@ -196,7 +196,7 @@ func interstitialDidReceiveAd(_ interstitial: InterstitialRenderingAdUnit) {
 
 {% include mobile/rewarded-server-side-configuration.md %}
 
-##### Integration example:
+##### Integration example
 
 ``` swift
 // 1. Create an Ad Unit
