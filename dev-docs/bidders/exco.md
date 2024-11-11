@@ -6,6 +6,7 @@ biddercode: exco
 filename: excoBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 tcfeu_supported: true
+gvl_id: 444
 usp_supported: true
 coppa_supported: false
 schain_supported: true
@@ -33,7 +34,6 @@ sidebarType: 1
 | `bidFloor` | optional | The minimum bid value desired. Exco will not respond with bids lower than this value. | `0.90`                       | `float`  |
 
 ## Example
-
   ```javascript
 var adUnits = [{
         code: 'banner-div',
