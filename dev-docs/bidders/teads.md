@@ -27,7 +27,7 @@ sidebarType: 1
 
 ### Disclosure
 
-This adapter uses JavaScript APIs commonly used in fingerprinting and may get your Prebid build flagged as a fingerprinting script.
+{% include dev-docs/fingerprinting.md %}
 
 ### Notes
 
