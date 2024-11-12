@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Bidmatic Bid Adapter
+title: Bidmatic
 description: Prebid example Bidder Adapter
 biddercode: bidmatic
 tcfeu_supported: true
@@ -11,7 +11,7 @@ coppa_supported: true
 gpp_sids: tcfeu, usp
 schain_supported: true
 dchain_supported: false
-userId: all
+userId: all (with commercial activation)
 media_types: banner, video
 safeframes_ok: true
 deals_supported: false
