@@ -103,6 +103,12 @@ pbjs.setConfig({
 
 There is a server-only mode where the value of the advertising token can be provided either directly (see the `value` parameter in the [European Unified ID Configuration](#european-unified-id-configuration) section) or via a cookie. In this mode, no attempt is made to automatically refresh the token.
 
+For a server-side integration, you can create a smaller Prebid.js build by disabling client-side integration functionality. To do this, pass the `--disable UID2_CSTG` flag:
+
+```bash
+    gulp build --modules=euidIdSystem --disable UID2_CSTG
+```
+
 ### Cookie-based server-only mode
 
 To use the cookie-based server-only mode, set a cookie named `__euid_advertising_token` to the value of the advertising token only, as shown in this fictitious example:
@@ -139,6 +145,10 @@ pbjs.setConfig({
     }
 });
 ```
+
+## European Unified ID Client Side Integration for Prebid.js
+
+Prebid.js supports fully client side integration for EUID.  See the [official EUID documentation](https://euid.eu/docs/guides/integration-prebid) for the most up-to-date integration instructions.
 
 ## European Unified ID Configuration
 

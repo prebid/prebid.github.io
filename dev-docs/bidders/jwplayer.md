@@ -47,8 +47,8 @@ Instream and outstream video ads are supported.
 ## Modules to include in your build process
 
 You will need to include the `jwplayerBidAdapter` in your build. If you are building the JS binary on your own from source code, follow the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). 
-We recommend including the [jwplayerVideoProvider](dev-docs/modules/jwplayerVideoProvider.md) to connect Prebid.js to your JW Player instance via the [Prebid Video Module](prebid-video/video-module.md). 
-If you are not using the JW Player Video Provider, we suggest including the JW Player Real Time Data Provider [jwplayerRtdProvider](dev-docs/modules/jwplayerRtdProvider.md) in order to include JW Player's contextual ad targeting segments in your bid requests. 
+We recommend including the [jwplayerVideoProvider](/dev-docs/modules/jwplayerVideoProvider.html) to connect Prebid.js to your JW Player instance via the [Prebid Video Module](/dev-docs/modules/video.html). 
+If you are not using the JW Player Video Provider, we suggest including the JW Player Real Time Data Provider [jwplayerRtdProvider](/dev-docs/modules/jwplayerRtdProvider.html) in order to include JW Player's contextual ad targeting segments in your bid requests. 
 
 The following is an example build command that include these modules: <br />
 `gulp build --modules=jwplayerBidAdapter,jwplayerVideoProvider`<br />
@@ -96,7 +96,7 @@ You must include the following parameters at the bidder level, in `adUnit.bids[i
 
 ### mediaTypes.video
 
-We recommend populating as many params as possible in `adUnit.mediaTypes.video`. When using the [jwplayerVideoProvider](dev-docs/modules/jwplayerVideoProvider.md), these fields are populated automatically. 
+We recommend populating as many params as possible in `adUnit.mediaTypes.video`. When using the [jwplayerVideoProvider](/dev-docs/modules/jwplayerVideoProvider.html), these fields are populated automatically. 
 
 {: .table .table-bordered .table-striped }
 | Name               | Scope       | Type    | Description                                                                                                                                                                                                                                                                                                             |
@@ -109,7 +109,7 @@ We recommend populating as many params as possible in `adUnit.mediaTypes.video`.
 
 ### First Party Data (FPD)
 
-In release 4.30 and later, publishers who are not using the [jwplayerVideoProvider](dev-docs/modules/jwplayerVideoProvider.md) or [jwplayerRtdProvider](dev-docs/modules/jwplayerRtdProvider.md) can use the ortb2 method of setting First Party Data. 
+In release 4.30 and later, publishers who are not using the [jwplayerVideoProvider](/dev-docs/modules/jwplayerVideoProvider.html) or [jwplayerRtdProvider](/dev-docs/modules/jwplayerRtdProvider.html) can use the ortb2 method of setting First Party Data. 
 The following fields are required:
 
 {: .table .table-bordered .table-striped }

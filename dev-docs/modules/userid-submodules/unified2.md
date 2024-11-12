@@ -18,8 +18,9 @@ gulp build --modules=uid2IdSystem
 
 You can set up Unified ID 2.0 in one of these ways:
 
-- Include the module to your pb.js wrapper. You will need to apply for publisher access [on the UID2 website](https://unifiedid.com/request-access). Using this option, you must generate UID2 tokens server-side. There is currently no flow for client-side only, unless you use an SSO provider. You provide these tokens to Prebid.js either by using a cookie or directly in the configuration.
+- Include the module to your Prebid.js wrapper. You will need to apply for publisher access [on the UID2 website](https://unifiedid.com/request-access). Using this option, you must generate UID2 tokens server-side.  You provide these tokens to Prebid.js either by using a cookie or directly in the configuration.
 - Use a [managed services](https://prebid.org/product-suite/managed-services/) company that can do this for you.
+- Use UID2 Client Side Integration with Prebid.js
 
 Each publisher’s privacy policy should take UnifiedID 2.0 into account.
 
@@ -54,6 +55,16 @@ There is a server-only mode where the value of the advertising token can be prov
 To use the cookie-based server-only mode, set a cookie named `__uid2_advertising_token` to the value of the advertising token only, as shown in this fictitious example:
 
 `__uid2_advertising_token=eb33b0cb-8d35-4722-b9c0-1a31d4064888`
+
+For a server-side integration, you can create a smaller Prebid.js build by disabling client-side integration functionality. To do this, pass the `--disable UID2_CSTG` flag:
+
+```bash
+    gulp build --modules=uid2IdSystem --disable UID2_CSTG
+```
+
+## Unified ID 2.0 Client Side Integration for Prebid.js
+
+Prebid.js supports fully client side integration for UID2.  See the [official UID2 documentation](https://unifiedid.com/docs/guides/integration-prebid-client-side) for the most up-to-date integration instructions.
 
 ## Unified ID 2.0 Configuration
 
