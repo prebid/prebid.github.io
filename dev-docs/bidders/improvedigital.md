@@ -39,11 +39,11 @@ sidebarType: 1
 
 #### Sizes
 
-By default, the adapter doesn't send Prebid ad unit sizes to Improve Digital's ad server and the sizes defined for each placement in the Polaris platform will be used. If the ad server should only respond with creative sizes as defined in Prebid ad unit configuration, turn on `usePrebidSizes` adapter parameter like this:
+By default, the adapter sends Prebid ad unit sizes to Improve Digital's ad server. If the ad server should only respond with creative sizes as defined for each placement in the Origin platform, turn off `usePrebidSizes` adapter parameter like this:
 
 ```javascript
 pbjs.setConfig({
-    improvedigital: { usePrebidSizes: true }
+    improvedigital: { usePrebidSizes: false }
 });
 ```
 

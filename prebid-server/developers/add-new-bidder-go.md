@@ -29,6 +29,8 @@ Bid adapters are responsible for translating a 'Prebid-flavored' OpenRTB Bid Req
 
 OpenRTB Bid Requests contain one or more impression objects, each representing a single ad placement. An impression may define multiple sizes and/or multiple ad formats. If your bidding server limits requests to a single ad placement, size, or format, then your adapter will need to split the impression into multiple calls and merge the responses.
 
+See the [example auction request](/prebid-server/endpoints/openrtb2/auction-request-example.html) to get an idea for what your adapter will receive.
+
 ## Plan Your Bid Adapter
 
 The job of your bid adapter is to adapt. You'll need to think about currency, floors, mediatypes, and other details as noted below.
@@ -99,7 +101,7 @@ Please refer to [existing bid adapters](https://github.com/prebid/prebid-server/
 Our project is written in the [Go programming language](https://golang.org/). We understand not everyone has prior experience writing Go code. Please try your best and we'll respectfully steer you in the right direction during the review process.
 
 {: .alert.alert-info :}
-**Please do not ignore errors from method calls made in your bid adapter code.** Even if it's seemingly impossible for an error to occur, such as from `json.Marshal`, it's still possible under the high throughput multi-threaded nature of Prebid Server.
+**Please do not ignore errors from method calls made in your bid adapter code.** Even if it's seemingly impossible for an error to occur, such as from `jsonutil.Marshal`, it's still possible under the high throughput multi-threaded nature of Prebid Server.
 
 ### Bidder Info
 
@@ -119,6 +121,8 @@ maintainer:
   email: prebid-maintainer@example.com
 gvlVendorID: 42
 modifyingVastXmlAllowed: true
+openrtb:
+  version: 2.6
 capabilities:
   app:
     mediaTypes:
@@ -154,6 +158,7 @@ Modify this template for your bid adapter:
   * Values can be negated. e.g. "!EEA"
 * Change the maintainer email address to a group distribution list on your ad server's domain. A distribution list is preferred over an individual mailbox to allow for robustness, as roles and team members naturally change.
 * Change the `gvlVendorID` from the sample value of `42` to the id of your bidding server as registered with the [GDPR Global Vendor List (GVL)](https://iabeurope.eu/tcf-for-vendors/), or remove this line entirely if your bidding server is not registered with IAB Europe.
+* Remove the `openrtb.version` parameter if your adapter cannot receive the OpenRTB 2.6 data model. In this case, Prebid Server will downgrade values back to their 2.5 ext locations. New OpenRTB 2.6 fields are still passed to adapters.
 * If absolutely necessary, change the `modifyingVastXmlAllowed` value to `false` to opt-out of [video impression tracking](https://github.com/prebid/prebid-server/issues/1015). However, please note that Prebid Server host companies depend on this feature being enabled to track video analytics. This feature has been live for many years with no known problems.
 * Remove the `capabilities` (app/site/dooh) and `mediaTypes` (banner/video/audio/native) combinations which your adapter does not support. (Note: 'dooh' is [Digital Out Of Home](/prebid-server/use-cases/pbs-dooh.html))
 * Add an `extra_info` field if you'd like to pass additional values that your adapter may need. See below for an example.
@@ -552,15 +557,15 @@ Here is a reference implementation for a bidding server which uses the OpenRTB 2
 package foo
 
 import (
-  "encoding/json"
   "fmt"
   "net/http"
 
   "github.com/prebid/openrtb/v20/openrtb2"
-  "github.com/prebid/prebid-server/adapters"
-  "github.com/prebid/prebid-server/config"
-  "github.com/prebid/prebid-server/errortypes"
-  "github.com/prebid/prebid-server/openrtb_ext"
+  "github.com/prebid/prebid-server/v3/adapters"
+  "github.com/prebid/prebid-server/v3/config"
+  "github.com/prebid/prebid-server/v3/errortypes"
+  "github.com/prebid/prebid-server/v3/util/jsonutil"
+  "github.com/prebid/prebid-server/v3/openrtb_ext"
 )
 
 type adapter struct {
@@ -576,7 +581,7 @@ func Builder(bidderName openrtb_ext.BidderName, config config.Adapter, server co
 }
 
 func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapters.ExtraRequestInfo) ([]*adapters.RequestData, []error) {
-  requestJSON, err := json.Marshal(request)
+  requestJSON, err := jsonutil.Marshal(request)
   if err != nil {
     return nil, []error{err}
   }
@@ -594,7 +599,7 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapte
 func getMediaTypeForBid(bid openrtb2.Bid) (openrtb_ext.BidType, error) {
   if bid.Ext != nil {
     var bidExt openrtb_ext.ExtBid
-    err := json.Unmarshal(bid.Ext, &bidExt)
+    err := jsonutil.Unmarshal(bid.Ext, &bidExt)
     if err == nil && bidExt.Prebid != nil {
       return openrtb_ext.ParseBidType(string(bidExt.Prebid.Type))
     }
@@ -625,7 +630,7 @@ func (a *adapter) MakeBids(request *openrtb2.BidRequest, requestData *adapters.R
   }
 
   var response openrtb2.BidResponse
-  if err := json.Unmarshal(responseData.Body, &response); err != nil {
+  if err := jsonutil.Unmarshal(responseData.Body, &response); err != nil {
     return nil, []error{err}
   }
 
@@ -648,6 +653,9 @@ func (a *adapter) MakeBids(request *openrtb2.BidRequest, requestData *adapters.R
   return bidResponse, nil
 }
 ```
+
+{: .alert.alert-info :}
+Adapters must use `jsonutil.Marshal` and `jsonutil.Unmarshal` instead of the Go standard package functions, as those are not optimized for Prebid Server's high perfomance needs.
 
 #### Builder
 
@@ -718,7 +726,7 @@ func parseExtraInfo(v string) (extraInfo, error) {
   }
 
   var info extraInfo
-  if err := json.Unmarshal([]byte(v), &info); err != nil {
+  if err := jsonutil.Unmarshal([]byte(v), &info); err != nil {
     return nil, fmt.Errorf("invalid extra info: %v", err)
   }
 
@@ -784,7 +792,7 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapte
   for _, imp := range request.Imp {
     requestCopy.Imp = []openrtb2.Imp{imp}
 
-    requestJSON, err := json.Marshal(request)
+    requestJSON, err := jsonutil.Marshal(request)
     if err != nil {
       errors = append(errors, err)
       continue
@@ -835,7 +843,7 @@ func (a *adapter) MakeRequests(request *openrtb2.BidRequest, requestInfo *adapte
     }
   }
 
-  requestJSON, err := json.Marshal(request)
+  requestJSON, err := jsonutil.Marshal(request)
   if err != nil {
     return nil, []error{err}
   }
@@ -1088,7 +1096,7 @@ This section will guide you through the creation of automated unit tests to cove
 
 Bid requests and server responses can be quite verbose. To avoid large blobs of text embedded within test code, we've created a framework for bid adapters which use a JSON body and/or a url to send a bid request. We require the use of our test framework as it includes checks to ensure no changes are made to shared memory.
 
-We strive for as much test coverage as possible, but recognize that some code paths are impractical to simulate and rarely occur. You do not need to test the error conditions for `json.Marshal` calls, for template parse errors within `MakeRequests` or `MakeBids`, or for `url.Parse` calls. Following this guidance usually results in a coverage rate of around 90% - 95%, although we don't enforce a specific threshold.
+We strive for as much test coverage as possible, but recognize that some code paths are impractical to simulate and rarely occur. You do not need to test the error conditions for `jsonutil.Marshal` calls, for template parse errors within `MakeRequests` or `MakeBids`, or for `url.Parse` calls. Following this guidance usually results in a coverage rate of around 90% - 95%, although we don't enforce a specific threshold.
 
 To use the test framework, create a file with the path `adapters/{bidder}/{bidder}_test.go` with the following template:
 
@@ -1098,14 +1106,14 @@ package {bidder}
 import (
   "testing"
 
-  "github.com/prebid/prebid-server/adapters/adapterstest"
-  "github.com/prebid/prebid-server/config"
-  "github.com/prebid/prebid-server/openrtb_ext"
+  "github.com/prebid/prebid-server/v3/adapters/adapterstest"
+  "github.com/prebid/prebid-server/v3/config"
+  "github.com/prebid/prebid-server/v3/openrtb_ext"
 )
 
 func TestJsonSamples(t *testing.T) {
   bidder, buildErr := Builder(openrtb_ext.Bidder{Bidder}, config.Adapter{
-    Endpoint: "http://whatever.url"},
+    Endpoint: "http://any.url"},
     config.Server{ExternalUrl: "http://hosturl.com", GvlID: 1, DataCenter: "2"})
 
   if buildErr != nil {
@@ -1224,7 +1232,7 @@ import (
   "encoding/json"
   "testing"
 
-  "github.com/prebid/prebid-server/openrtb_ext"
+  "github.com/prebid/prebid-server/v3/openrtb_ext"
 )
 
 func TestValidParams(t *testing.T) {
