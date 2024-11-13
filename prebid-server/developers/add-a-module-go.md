@@ -52,8 +52,8 @@ import (
     "context"
     "encoding/json"
 
-    "github.com/prebid/prebid-server/hooks/hookstage"
-    "github.com/prebid/prebid-server/modules/moduledeps"
+    "github.com/prebid/prebid-server/v3/hooks/hookstage"
+    "github.com/prebid/prebid-server/v3/modules/moduledeps"
 )
 
 func Builder(config json.RawMessage, deps moduledeps.ModuleDeps) (interface{}, error) {
@@ -121,13 +121,13 @@ The supported stages are described in the [general module overview](/prebid-serv
 
 These are the available hooks that can be implemented in a module:
 
-- github.com/prebid/prebid-server/hooks/hookstage.Entrypoint
-- github.com/prebid/prebid-server/hooks/hookstage.RawAuctionRequest
-- github.com/prebid/prebid-server/hooks/hookstage.ProcessedAuctionRequest
-- github.com/prebid/prebid-server/hooks/hookstage.BidderRequest
-- github.com/prebid/prebid-server/hooks/hookstage.RawBidderResponse
-- github.com/prebid/prebid-server/hooks/hookstage.AllProcessedBidResponses
-- github.com/prebid/prebid-server/hooks/hookstage.AuctionResponse
+- github.com/prebid/prebid-server/v3/hooks/hookstage.Entrypoint
+- github.com/prebid/prebid-server/v3/hooks/hookstage.RawAuctionRequest
+- github.com/prebid/prebid-server/v3/hooks/hookstage.ProcessedAuctionRequest
+- github.com/prebid/prebid-server/v3/hooks/hookstage.BidderRequest
+- github.com/prebid/prebid-server/v3/hooks/hookstage.RawBidderResponse
+- github.com/prebid/prebid-server/v3/hooks/hookstage.AllProcessedBidResponses
+- github.com/prebid/prebid-server/v3/hooks/hookstage.AuctionResponse
 
 In a module it is not necessary to implement all mentioned interfaces but at least one is required by your functionality.
 
@@ -144,7 +144,7 @@ Notes:
     import (
         "context"
 
-        "github.com/prebid/prebid-server/hooks/hookstage"
+        "github.com/prebid/prebid-server/v3/hooks/hookstage"
     )
 
     type Module struct{}
@@ -207,8 +207,8 @@ Notes:
     import (
         "context"
 
-        "github.com/prebid/prebid-server/hooks/hookstage"
-        "github.com/prebid/prebid-server/hooks/hookanalytics"
+        "github.com/prebid/prebid-server/v3/hooks/hookstage"
+        "github.com/prebid/prebid-server/v3/hooks/hookanalytics"
     )
 
     func (m Module) HandleBidderRequestHook(
