@@ -28,7 +28,7 @@ pbjs.setConfig({
         userIds: [{
             name: 'tncId',
             params: {
-              url: 'https://js.tncid.app/remote.min.js?publisherId=[PUBLISHER_ID]' //Please contact The Newco for your own [PUBLISHER_ID]
+              url: 'TNC-fallback-script-url' // Fallback url, not required if onpage tag is present (ask TNC for it)
             },
             storage: {
               type: "cookie",
@@ -50,5 +50,4 @@ The following configuration parameters are available:
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this sub-module | `"tncId"` |
 | params ||| Details for the sub-module initialization ||
-| params.url | Required | String | TNC script fallback URL - This script is loaded if there is no TNC script on page | 'https://js.tncid.app/remote.min.js' |
-
+| params.url | Required | String | TNC script fallback URL - This script is loaded if there is no TNC script on page | `"https://js.tncid.app/remote.min.js"` |
