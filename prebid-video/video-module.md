@@ -8,7 +8,7 @@ sidebarType: 4
 
 # The Video Module
 
-The Prebid Video Module allows Prebid to directly integrate with a Video Player. 
+The Prebid Video Module allows Prebid to directly integrate with a Video Player.
 
 The Video Module will allow Prebid.js to automatically:
 
