@@ -30,7 +30,7 @@ fpd_supported: true
 
 ### First Party Data
 
-Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+Publishers should use the `ortb2` method of setting [First Party Data](/features/firstPartyData.html).
 The following fields are supported:
 
 * ortb2.site.ext.data.*
