@@ -32,7 +32,7 @@ The Cloud API is **free** to integrate and use. To increase limits please check 
 
 The module supports on premise and cloud device detection services with free options for both. 
 
-A free resource key for use with 51Degrees cloud service can be obtained from [51Degrees cloud configuration](https://configure.51degrees.com/tWrhNfY6).  This is the simplest approach to trial the module.
+A free resource key for use with 51Degrees cloud service can be obtained from [51Degrees cloud configuration](https://configure.51degrees.com/HNZ75HT1).  This is the simplest approach to trial the module.
 
 An interface compatible self hosted service can be used with .NET, Java, Node, PHP, and Python.  See [51Degrees examples](https://51degrees.com/documentation/_examples__device_detection__getting_started__web__on_premise.html).
 

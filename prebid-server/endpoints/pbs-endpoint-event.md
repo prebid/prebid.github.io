@@ -34,7 +34,7 @@ This endpoint alerts Prebid Server to process the event and informing the analyt
 GET https://prebid.site.com/event?t=win&b=1234567890&bidder=rubicon&f=i
 ```
 
-## `POST /vtrack`
+## POST /vtrack
 
 ### Intended Usage
 
