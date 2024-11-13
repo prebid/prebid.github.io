@@ -33,5 +33,5 @@ If you have any questions regarding set up, please reach out to your account man
 {: .table .table-bordered .table-striped }
 | Name       | Scope        | Description                          | Example                                | Type     |
 | ---------- | ------------ | ------------------------------------ | -------------------------------------- | -------- |
-| `pubId`    | required     | Placement Id                         | `F7B53DBC-85C1-4685-9A06-9CF4B6261FA3` | `string` |
-| `endpoint` | Not required | The endpoint provided by Brainx Url. | `http://adx-engine-gray.tec-do.cn/bid` | `string` |
+| `pubId`    | required     | Placement Id                         | `'F7B53DBC-85C1-4685-9A06-9CF4B6261FA3'` | `string` |
+| `endpoint` | Not required | The endpoint provided by Brainx Url. | `'http://adx-engine-gray.tec-do.cn/bid'` | `string` |
