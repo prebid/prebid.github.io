@@ -3,7 +3,6 @@ layout: bidder
 title: brainx
 description: Prebid brainx Bidder Adapter
 biddercode: brainx
-aliasCode: fileContainingPBJSAdapterCodeIfDifferentThenBidderCode
 tcfeu_supported: false
 dsa_supported: false
 gvl_id: none
