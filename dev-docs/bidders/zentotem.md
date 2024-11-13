@@ -5,6 +5,10 @@ description: Prebid Zentotem Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: zentotem
+tcfeu_supported: false
+dsa_supported: false
+schain_supported: false
+dchain_supported: false
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: false
 prebid_member: false
@@ -14,6 +18,7 @@ deals_supported: true
 floors_supported: true
 gvl_id: none
 media_types: banner, video, native
+
 sidebarType: 1
 ---
 
