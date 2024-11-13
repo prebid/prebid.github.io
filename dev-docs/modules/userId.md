@@ -254,6 +254,7 @@ Bidders that want to support the User ID module in Prebid.js need to update thei
 | Quantcast ID | n/a | quantcastId | quantcast.com | "1111" |
 | Tapad ID | Tapad | tapadId | tapad.com | "1111" |
 | Teads ID | Teads | teadsId | teads.com | "1111" |
+| TNC ID | The Newco | tncId | thenewco.it | "1111" |
 | SharedID (PBJS 5.x) | n/a | pubcid | pubcid.org | "1111" |
 | SharedID (PBJS 4.x)| Prebid | sharedid | sharedid.org | {"id":"01EAJWWN...", "third":"01EAJ..."} |
 | Unified ID | Trade Desk | tdid | adserver.org | "1111" |
