@@ -24,7 +24,7 @@ sidebarType: 1
 privacy_sandbox: paapi
 ---
 
-## Table of contents
+### Table of contents
 
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
@@ -40,9 +40,7 @@ privacy_sandbox: paapi
   * [Video](#video)
 * [Examples](#examples)
 
-<a id="introduction"></a>
-
-## Introduction
+### Introduction
 
 Publishers can use Prebid Server in any of the following ways with Index Exchange (Index). Index's adapter supports all of the following methods:
 
@@ -55,11 +53,12 @@ Publishers can use Prebid Server in any of the following ways with Index Exchang
 
 <a id="supported-media-types"></a>
 
-## Supported media types
+### Supported media types
 
 The following table lists the media types that Index supports. For information about the the Time-To-Live (TTL) for each media type, see [How Index counts impressions](https://kb.indexexchange.com/publishers/billing/how_Index_counts_impressions.htm) in our Knowledge Base.
 
 {: .table .table-bordered .table-striped }
+
 | Type      | Prebid Server support |
 | ----------- | ----------- |
 | banner      | Supported       |
@@ -68,7 +67,7 @@ The following table lists the media types that Index supports. For information a
 
 <a id="hosting-instance"></a>
 
-## Configure the Index adapter in your Prebid Server instance 
+### Configure the Index adapter in your Prebid Server instance 
 
 **Before you begin:** Contact your Index Exchange Representative to get an endpoint and setup instructions.
 
@@ -134,7 +133,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
 
 <a id="call-index"></a>
 
-## Publisher instructions to call Index through Prebid Server
+### Publisher instructions to call Index through Prebid Server
 
 If you are using an existing Prebid Server instance that is already configured to call Index, depending on whether you want to call Index from the browser, mobile app, CTV, or long-form video, follow any of the below sections to complete the Index-specific configuration.
 
@@ -241,7 +240,7 @@ To request bids from Index:
 
 <a id="bid-request-parameters"></a>
 
-## Bid request parameters
+### Bid request parameters
 
 For a list of the OpenRTB fields that Index supports in bid requests, see [List of supported OpenRTB bid request fields for sellers](https://kb.indexexchange.com/publishers/openrtb_integration/list_of_supported_openrtb_bid_request_fields_for_sellers.htm#List_of_supported_OpenRTB_bid_request_fields_for_sellers). The following are the required fields for the various supported media types.
 
@@ -250,6 +249,7 @@ For a list of the OpenRTB fields that Index supports in bid requests, see [List 
 You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
+
 | Key | Scope | Type | Description |
 |---|---|---|---|
 | `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`|
@@ -259,6 +259,7 @@ You must include these parameters at the bidder level.
 You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
+
 | Key | Scope | Type | Description |
 |---|---|---|---|
 | `siteId` | Required | String | An Index-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'9999990'`, `'9999991'`, `'9999992'`<br /> **Note:** You can re-use the existing `siteId` within the same flex position or video size, if the video adapts to the containing `<div>` element.|
@@ -266,6 +267,7 @@ You must include these parameters at the bidder level.
 If you are using Index's outstream ad unit and have placed the video object at the bidder level, you must include the Index required parameters at the bidder level. You can include the optional parameters to specify the outstream ad unit configurations.
 
 {: .table .table-bordered .table-striped }
+
 | Key | Scope | Type | Description |
 |---|---|---|---|
 | `video.w` | Required | Integer | The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters. We strongly recommend video sizes to be `256 x 256` or greater, `300 x 250`, or `320 x 180`. |
@@ -278,7 +280,7 @@ If you are using Index's outstream ad unit and have placed the video object at t
 
 <a id="examples"></a>
 
-## Examples
+### Examples
 
 **Banner**
 
