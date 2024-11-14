@@ -8,10 +8,9 @@ dsa_supported: false
 gvl_id: none
 usp_supported: false
 coppa_supported: false
-gpp_sids: None
+gpp_sids: none
 schain_supported: true
 dchain_supported: false
-userId: (list of supported vendors)
 media_types: banner
 safeframes_ok: false
 deals_supported: true
