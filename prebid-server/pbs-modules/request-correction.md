@@ -36,7 +36,7 @@ If the "pbsdkUaCleanup" correction is enabled, this is what happens:
 
 1. if app.ext.prebid.source!=“prebid-mobile” exit
 1. if app.ext.prebid.version >= 2.1.6 exit
-1. scan device.ua for the pattern "PrebidMobile/[0-9][^\S]*" (PrebidMobile/, followed by a number, then any number of non-whitespace characters)
+1. scan device.ua for the pattern "PrebidMobile/", followed by a number, then any number of non-whitespace characters.
 1. If found, remove this pattern from device.ua
 
 ### Prebid SDK Interstitial Flag
@@ -59,8 +59,8 @@ The parameters to the module are:
 | Parameter | Type | Scope | Description | Notes |
 | --------- | ---- | ----- | ----------- | ----- |
 | enabled | boolean | optional | Enable the module for this account | Defaults to false |
-| pbsdkUaCleanup | boolean | optional | See [Prebid SDK User Agent Cleanup](#Prebid-SDK-User-Agent-Cleanup) above. | Defaults to false |
-| pbsdkAndroidInstlRemove | boolean | optional | See the [Prebid SDK Interstitial Flag](#Prebid-SDK-Interstitial-Flag) correction above. | Defaults to false |
+| pbsdkUaCleanup | boolean | optional | See [Prebid SDK User Agent Cleanup](#prebid-sdk-user-agent-cleanup) above. | Defaults to false |
+| pbsdkAndroidInstlRemove | boolean | optional | See the [Prebid SDK Interstitial Flag](#prebid-sdk-interstitial-flag) correction above. | Defaults to false |
 
 Here's an example of the account config used in PBS-Java:
 
