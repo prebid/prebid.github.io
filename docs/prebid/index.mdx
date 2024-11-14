@@ -1,0 +1,25 @@
+import bidders from './bidders.json';
+
+# Prebid.js
+
+Overview
+
+<table>
+    <tr>
+        <th>Bidder</th>
+        <th>Client</th>
+        <th>Server</th>
+    </tr>
+    
+{bidders.map(bidder => (
+  <tr
+    key={bidder.title}
+  >
+    <td>
+        <a href={bidder.permalink}>{bidder.title}</a>
+    </td>
+    <td>{bidder.meta.pbjs ? 'true' : 'false'}</td>
+    <td>{bidder.meta.pbs ? 'true' : 'false'}</td>
+  </tr>
+))}
+</table>

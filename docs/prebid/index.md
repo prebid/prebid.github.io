@@ -1,3 +1,0 @@
-# Prebid.js
-
-Overview

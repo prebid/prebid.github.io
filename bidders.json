@@ -1,0 +1,17 @@
+[
+  {
+    "source": "@site/docs/prebid/bidders/addefend.mdx",
+    "title": "AdDefend",
+    "frontMatter": {
+      "layout": "bidder",
+      "title": "AdDefend",
+      "description": "AdDefend Prebid Adapter",
+      "biddercode": "addefend",
+      "pbjs": true,
+      "media_types": "banner",
+      "tcfeu_supported": true,
+      "gvl_id": 539,
+      "sidebarType": 1
+    }
+  }
+]

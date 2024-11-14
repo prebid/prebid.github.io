@@ -2,6 +2,7 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 import { themes } from 'prism-react-renderer';
+import { tocPlugin } from './_plugins/toc-plugin';
 
 const lightCodeTheme = themes.github;
 const darkCodeTheme = themes.dracula;
@@ -162,6 +163,11 @@ const config: Config = {
         // ... other options
       },
     ],
+    [tocPlugin, {
+      filter: (doc) => doc.frontMatter.layout === 'bidder',
+      contentDocsId: 'prebidjs',
+      output: 'docs/prebid/bidders.json'
+    }],
   ]
 };
 
