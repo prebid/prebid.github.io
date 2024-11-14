@@ -30,6 +30,7 @@ The OpenWeb adapter requires setup and approval. Please reach out to <monetizati
 #### Banner, Video
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  OpenWeb publisher Id provided by your OpenWeb representative  | "1234567890abcdef12345678"
@@ -37,7 +38,7 @@ The OpenWeb adapter requires setup and approval. Please reach out to <monetizati
 | `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 
-## Example
+### Example
 
 ```javascript
 var adUnits = [{
