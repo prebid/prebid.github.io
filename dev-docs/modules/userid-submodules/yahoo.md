@@ -109,12 +109,11 @@ Finally, ConnectID follows all global privacy laws (such as the CCPA) and indust
 
 Please note that the storage related parameters are optional. We recommend that you omit them, since ConnectID module is pre-configured with the most optimal storage parameters already.
 
-<div class="table-responsive" markdown="1">
+{: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | storage | Optional | Object | Defines where and for how long the results of the call to get a user ID will be stored. | |
 | storage.type | Optional | String | Defines where the resolved user ID will be stored (either 'cookie' or 'html5' local storage). | `'cookie'` |
 | storage.name | Optional | String | The name of the cookie or html5 local storage where the resolved user ID will be stored. | `'connectId'` |
 | storage.expires | Optional | Integer | How long (in days) the user ID information will be stored. | `15` |
-{: .table .table-bordered .table-striped }
-</div>
