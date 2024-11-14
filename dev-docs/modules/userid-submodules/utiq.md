@@ -12,6 +12,7 @@ Utiq is also the brand name of the service, which is provided by Utiq SA/NV.
 ## Utiq ID configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of the module | `"utiqId"` |

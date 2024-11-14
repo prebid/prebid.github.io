@@ -71,6 +71,7 @@ Publishers using Google AdManager may want to sync one of the identifiers as the
 The PPID in GAM (which is unrelated to the PPID UserId Submodule) has strict rules; refer to [Google AdManager documentation](https://support.google.com/admanager/answer/2880055?hl=en) for them. Please note, Prebid uses a [GPT command](https://developers.google.com/publisher-tag/reference#googletag.PubAdsService) to sync identifiers for publisher convenience. It doesn't currently work for instream video requests, as Prebid typically interacts with the player, which in turn may interact with IMA. IMA does has a [similar method](https://developers.google.com/interactive-media-ads/docs/sdks/html5/client-side/reference/js/google.ima.ImaSdkSettings#setPpid) as GPT, but IMA does not gather this ID from GPT.
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | ppid | Optional | String | Must be a source from the [pbjs.getUserIdsAsEids()](#getUserIdsAsEids) array | `"pubcid.org"` |
@@ -83,6 +84,7 @@ The table below has the options that are common across ID systems. See the secti
 {% assign count = 0 %}
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | May be any of the following values: {% for page in userid_pages -%}{% if count == 1 %}{{ name_string │ append: ", " -}}{% endif %}{% assign count = 1 %}`"{{ name_string │ append: name_string -}}{{ name_string │ append: page.useridmodule -}}"`{% endfor %} | `"unifiedId"` |
@@ -363,6 +365,7 @@ Please find more details [Share encrypted signals with bidders (Beta)](https://s
 Alternatively, GAM can now pull IDs from Prebid for UserId submodules that [register with GAM](https://services.google.com/fb/forms/encryptedsignalsforpublishers-signalcollectorform/) For those registered submodules, publishers can [select Prebid UserID module (Beta)  under "Signal collection deployment."](https://support.google.com/admanager/answer/10488752?hl=en). Publishers selecting this option should not also select those identifiers in the `encryptedSignalSources.sources.source` array.
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | encryptedSignalSources | Optional | Object | Publisher can specify the ESP config by adding encryptedSignal Object under userSync Object |  |
