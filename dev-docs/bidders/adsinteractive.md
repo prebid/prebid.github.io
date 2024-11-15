@@ -19,7 +19,7 @@ safeframes_ok: false
 floors_supported: false
 fpd_supported: false
 pbs_app_supported: false
-prebid_member: false
+prebid_member: true
 multiformat_supported: will-not-bid
 ortb_blocking_supported: false
 ---

@@ -29,6 +29,7 @@ The Rise adapter requires setup and approval. Please reach out to [prebid-rise-e
 #### Banner, Video
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  Rise publisher Id provided by your Rise representative  | "1234567890abcdef12345678"
@@ -38,7 +39,7 @@ The Rise adapter requires setup and approval. Please reach out to [prebid-rise-e
 | `rtbDomain` | optional | String |  Sets the seller end point    | "www.test.com"
 | `is_wrapper` | private | Boolean |  Please don't use unless your account manager asked you to    | false
 
-## Example
+### Example
 
 ```javascript
 var adUnits = [{
