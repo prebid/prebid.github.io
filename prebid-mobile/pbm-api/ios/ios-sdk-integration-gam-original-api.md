@@ -41,6 +41,25 @@ This section describes the integration details for different ad formats. In each
 
 {% include mobile/adunit-config-ios.md %}
 
+### Impression tracking
+
+The SDK supports the native impression tracking. It triggers the `burl` impression URL. It tracks the visibility of view and trigger the event when the view is on the screen and at least 1x1 px in size.
+
+For activation for the banner ad units you should use `fetchDemand()` with the ad view parameter (f.e. GAMBannerView):
+
+```swift
+adUnit.fetchDemand(adObject: gamRequest, adView: gamBanner) { [weak self] resultCode in
+    // ...
+}
+```
+
+For activation for the interstitial ad unit you should set `activatePrebidImpressionTracker` flag:
+
+```swift
+let adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: WIDTH_PERC, minHeightPerc: HEIGTH_PERC)
+adUnit.activatePrebidImpressionTracker = true
+```
+
 ## Further Reading
 
 - [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
