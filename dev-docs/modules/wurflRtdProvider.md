@@ -22,7 +22,7 @@ This module loads a dynamically generated JavaScript from prebid.wurflcloud.com
 
 ## Description
 
-The WURFL RTD module enriches the Prebid.js bid request's OpenRTB 2.0 device data with [WURFL device data](https://www.scientiamobile.com/wurfl-js-business-edition-at-the-intersection-of-javascript-and-enterprise/). The module populates the `device.ext.wurfl` with WURFL device capabilities, ensuring that all bidder adapters have access to enriched device data. At a minimum, three WURFL capabilities are made available to all adapters: `is_mobile`, `complete_device_name` and `form_factor`.
+The WURFL RTD module enriches the Prebid.js bid request's OpenRTB 2.0 device data with [WURFL device data](https://www.scientiamobile.com/wurfl-js-business-edition-at-the-intersection-of-javascript-and-enterprise/). The module populates the `device` and `device.ext.wurfl` with WURFL device capabilities, ensuring that all bidder adapters have access to enriched device data. At a minimum, three WURFL capabilities are made available to all adapters: `is_mobile`, `complete_device_name` and `form_factor`.
 
 SSPs and other demand partners subscribed to this service with ScientiaMobile will also receive an expanded set of device properties, including more detailed detection for iOS devices (e.g., specific iPhone and iPad model information). For a comprehensive list of available device capabilities, please refer to the [WURFL device capabilities](https://www.scientiamobile.com/capabilities/?products%5B%5D=wurfl-js) documentation.
 
@@ -42,8 +42,8 @@ The following scenarios are possible:
 |                           | SSP Adapter   | SSP Server Side End-Point                                        |
 | :------------------------ | :------------ | :--------------------------------------------------------------- |
 | SSP adapter is already passing the ORTB2 device to the server (auction endpoint). | No changes required. | Update backend logic to utilize the device data. |
-| SSP adapter is not currently passing the data to server. | Update adapter to read `device.ext.wurfl` data and pass it to the endpoint. | Update backend logic to utilize the device data. |
-| SSP doesn't have a Bidder Adapter. | Implement PreBid.js adapter and read `device.ext.wurfl` data and pass it to the endpoint. | Update end-point to read and utilize the data. |
+| SSP adapter is not currently passing the data to server. | Update adapter to read `device` and/or `device.ext.wurfl` data and pass it to the endpoint. | Update backend logic to utilize the device data. |
+| SSP doesn't have a Bidder Adapter. | Implement PreBid.js adapter and read `device` and/or `device.ext.wurfl` data and pass it to the endpoint. | Update end-point to read and utilize the data. |
 
 ## Usage
 
