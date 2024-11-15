@@ -52,6 +52,7 @@ adUnit.fetchDemand(builder, adView, resultCode -> { ... })
 ```
 
 For activation for the interstitial ad unit you should set `activatePrebidImpressionTracker()` flag:
+
 ```java
 Interstitial adUnit = InterstitialAdUnit(CONFIG_ID, WIDTH, HEIGTH);
 adUnit.activatePrebidImpressionTracker(true);
