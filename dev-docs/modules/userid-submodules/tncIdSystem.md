@@ -3,6 +3,9 @@ layout: userid
 title: TNCID by The Newco
 description: TNCID UserID sub-module
 useridmodule: tncIdSystem
+bidRequestUserId: tncId
+eidsource: thenewco.it
+example: '"1111"'
 ---
 
 TNCID is a shared persistent identifier that improves user recognition compared to both third-party and first-party cookies. This enhanced identification capability enables publishers and advertisers to consistently recognize their audiences, leading to improved monetization and more precise targeting.  The Newco User ID sub-module adds powerful TNCID user identification technology to your Prebid.js bidstream. 
