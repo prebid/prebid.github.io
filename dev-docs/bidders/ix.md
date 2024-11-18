@@ -26,7 +26,7 @@ sidebarType: 1
 privacy_sandbox: paapi, topics
 ---
 
-## Table of contents
+### Table of contents
 
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
@@ -52,7 +52,7 @@ privacy_sandbox: paapi, topics
 
 <a id="introduction"></a>
 
-## Introduction
+### Introduction
 
 Publishers can use Prebid.js to call Index Exchange (Index) in any of the following ways:
 
@@ -79,9 +79,7 @@ pbjs.bidderSettings = {
 };
 ```
 
-<a id="supported-media-types"></a>
-
-## Supported media types
+### Supported media types
 
 The following table lists the media types that Index supports. For information about the the Time-To-Live (TTL) for each media type, see [How Index counts impressions](https://kb.indexexchange.com/publishers/billing/how_Index_counts_impressions.htm) in our Knowledge Base.
 
@@ -95,13 +93,13 @@ The following table lists the media types that Index supports. For information a
 
 <a id="client-side-adapter"></a>
 
-## Set up Prebid.js to call Index directly from the browser (client-side adapter)
+### Set up Prebid.js to call Index directly from the browser (client-side adapter)
 
 To call Index from a web browser environment using a Prebid Server integration, see the Index-specific configuration steps in [Setup instructions to call Index through Prebid Server](/dev-docs/bidders/ix-server.html#setup-instructions-to-call-index-through-prebid-server) in our Prebid Server documentation on the Prebid site.
 
 <a id="server-side-adapter"></a>
 
-## Set up Prebid.js to call Index through Prebid Server (server-side adapter)
+### Set up Prebid.js to call Index through Prebid Server (server-side adapter)
 
 In this configuration, Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Index. Complete the following steps to configure Index as a demand source:
 
@@ -134,7 +132,7 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
 
 <a id="modules-to-include-in-your-build-process"></a>
 
-## Modules to include in your build process
+### Modules to include in your build process
 
 If you are building the JS binary on your own from source code, follow the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). You will need to include the `ixBidAdapter`. If you want to show video ads with Google Ad Manager, also include the `dfpAdServerVideo` module. We highly recommend adding the `gptPreAuction` module as well, which improves a DSP's ability to bid accurately on your supply. The following is an example build command that include these modules: <br />
 `gulp build --modules=ixBidAdapter,dfpAdServerVideo,gptPreAuction,fooBidAdapter,bazBidAdapter`
@@ -153,7 +151,7 @@ If you are using a JSON file to specify modules, add `ixBidAdapter` and `dfpAdSe
 
 <a id="set-up-first-party-data-fpd"></a>
 
-## Set up First Party Data (FPD)
+### Set up First Party Data (FPD)
 
 You can set up the Prebid.js FPD module using Global data, Index bidder-specific site data, or ad unit-specific data. Index supports deal targeting in all the three FPD types.
 
@@ -215,7 +213,7 @@ ortb2Imp: {
 }
 ```
 
-## Monetize instream video 
+### Monetize instream video 
 
 Unlike Outstream Video, instream video does not use the Prebid Universal Creative. Instead, video bids provide VAST that Prebid caches to obtain a cache ID that can be retrieved with a URL. The cache ID is passed as a key value to the ad server.  
 
@@ -233,7 +231,7 @@ To monetize instream video, complete the following steps:
 
 2. Set up your line items in Google Ad manger by following the instructions in Prebid's [Setting Up Video In GAM](/adops/setting-up-prebid-video-in-dfp.html) documentation. 
 
-## Index's outstream ad unit
+### Index's outstream ad unit
 
 Publishers who are using Index as a bidding adapter in Prebid.js can show outstream video ads on their site using Index's outstream ad unit. This allows a video ad to be placed anywhere on a publisher’s site, such as in-article, in-feed, and more. To use Index's outstream ad unit, you must be on Prebid.js version 5.13 or higher. However, if you are using your own outstream video player, Index's adapter can accept video signals from version 2.41.0 or higher. <br />
 **Note:** When you use the Index ad unit for outstream video, all impressions are considered viewable, which is similar to how Google's ActiveView counts impressions for outstream. This is because Index plays the outstream video as soon as it is in view and concurrently fires any impression pixels in the VAST.
@@ -309,7 +307,7 @@ pbjs.addAdUnit({
 
 <a id="prebid-native-configuration"></a>
 
-## Prebid Native configuration
+### Prebid Native configuration
 
 Prebid Native is available from Prebid.js version 7.4.0 or higher. We support the three native template rendering options that are provided in [Setting up Prebid Native in Google Ad Manager](/adops/gam-native.html). The following code is an example of a Prebid native setup using Google Ad Manager, but the concept and implementation should be similar for other ad servers.<br />
 
@@ -372,7 +370,7 @@ pbjs.addAdUnits({
 
 <a id="protected-audience-api-support"></a>
 
-## Protected Audience API support
+### Protected Audience API support
 
 **Before you begin:**
 
@@ -484,7 +482,7 @@ Depending on the Prebid.js version that you are using, the steps to configure Pr
 
 <a id="signal-inventory-using-external-ids"></a>
 
-## Signal inventory using  external IDs
+### Signal inventory using  external IDs
 
 1. In the `pbjs.setBidderConfig` object at the `ix` bidder level, you must configure an `exchangeId` that applies to all your placements as follows. Note that the `exchangeId` is provided by Index.
 
@@ -525,7 +523,7 @@ Depending on the Prebid.js version that you are using, the steps to configure Pr
 
 <a id="bid-request-parameters"></a>
 
-## Bid request parameters
+### Bid request parameters
 
 For a list of the OpenRTB fields that Index supports in bid requests, see [List of supported OpenRTB bid request fields for sellers](https://kb.indexexchange.com/publishers/openrtb_integration/list_of_supported_openrtb_bid_request_fields_for_sellers.htm#List_of_supported_OpenRTB_bid_request_fields_for_sellers). The following are the required fields for the various supported media types.
 
@@ -569,7 +567,7 @@ Index supports the same set of native assets that Prebid.js recognizes. For the 
 
 <a id="multi-format-ad-units"></a>
 
-## Multi-format ad units
+### Multi-format ad units
 
 Index supports multi-format ad units, see [Show Multi-Format Ads with Prebid.js](https://docs.prebid.org/dev-docs/show-multi-format-ads.html). For multi-format ad units, you can optionally specify a different siteId for each multi-format type at the bidder  level. This is useful  if you have deals set up with Index at the siteId level. See multi-format examples [here](#examples).
 
@@ -586,7 +584,7 @@ The following are the parameters that you can specify for each multi-format type
 
 <a id="examples"></a>
 
-## Examples
+### Examples
 
 **Banner**
 

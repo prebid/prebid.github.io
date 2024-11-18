@@ -28,6 +28,7 @@ NetAddiction header bidding adapter connects with NetAddiction demand sources to
 ### Bid params
 
 {: .table .table-bordered .table-striped }
+
 | Name        | Scope    | Description                         | Example  | Type     |
 |-------------|----------|-------------------------------------|----------|----------|
 | `networkId` | required | The network ID from NetAddiction | `12345` | `number` |
@@ -77,7 +78,7 @@ var adUnits = [{
 }];
 ```
 
-## UserSync example
+### UserSync example
 
 ```javascript
 pbjs.setConfig({

@@ -27,6 +27,7 @@ The STN adapter requires setup and approval. Please reach out to <hb@stnvideo.co
 #### Banner ,Video
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  STN publisher Id provided by your STN representative  | "0987654321abcdef87654321"
@@ -34,7 +35,7 @@ The STN adapter requires setup and approval. Please reach out to <hb@stnvideo.co
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 
-## Example
+### Example
 
 ```javascript
 var adUnits = [{
