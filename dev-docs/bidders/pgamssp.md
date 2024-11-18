@@ -9,7 +9,7 @@ tcfeu_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
-gpp_supported: true
+gpp_sids: tcfeu, usstate_all, usp
 media_types: banner, video, native
 pbjs: true
 pbs: true
