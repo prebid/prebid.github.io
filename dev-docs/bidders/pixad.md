@@ -3,7 +3,7 @@ layout: bidder
 title: Pixad
 description: Prebid Pixad Bidder Adapter.
 pbjs: true
-pbs: false
+pbs: true
 biddercode: pixad
 media_types: banner,video,native
 gvl_id: 1281 (admatic)
@@ -28,6 +28,7 @@ Pixad header bidding adapter connects with Pixad demand sources to fetch bids fo
 ### Bid params
 
 {: .table .table-bordered .table-striped }
+
 | Name        | Scope    | Description                         | Example  | Type     |
 |-------------|----------|-------------------------------------|----------|----------|
 | `networkId` | required | The network ID from Pixad | `12345` | `number` |
@@ -77,7 +78,7 @@ var adUnits = [{
 }];
 ```
 
-## UserSync example
+### UserSync example
 
 ```javascript
 pbjs.setConfig({

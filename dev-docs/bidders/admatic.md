@@ -3,7 +3,7 @@ layout: bidder
 title: AdMatic
 description: Prebid AdMatic Bidder Adapter.
 pbjs: true
-pbs: false
+pbs: true
 biddercode: admatic
 media_types: banner,video,native
 gvl_id: 1281
@@ -27,6 +27,7 @@ AdMatic header bidding adapter connects with AdMatic demand sources to fetch bid
 ### Bid params
 
 {: .table .table-bordered .table-striped }
+
 | Name         | Scope    | Description                        | Example    | Type     |
 |--------------|----------|------------------------------------|------------|----------|
 | `networkId` | required | The network ID from AdMatic | `12345` | `number` |
@@ -76,7 +77,7 @@ var adUnits = [{
 }];
 ```
 
-## UserSync example
+### UserSync example
 
 ```javascript
 pbjs.setConfig({

@@ -27,15 +27,15 @@ The STN adapter requires setup and approval. Please reach out to <hb@stnvideo.co
 #### Banner ,Video
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  STN publisher Id provided by your STN representative  | "0987654321abcdef87654321"
 | `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
-| `currency` | optional | String | 3 letters currency | "EUR"
 
-## Example
+### Example
 
 ```javascript
 var adUnits = [{

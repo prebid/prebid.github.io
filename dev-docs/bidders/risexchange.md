@@ -28,6 +28,7 @@ The RiseXChange adapter requires setup and approval. Please reach out to [prebid
 #### Banner, Video
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  RiseXChange publisher Id  | "1234567890abcdef12345678"
@@ -36,9 +37,8 @@ The RiseXChange adapter requires setup and approval. Please reach out to [prebid
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 | `rtbDomain` | optional | String |  Sets the seller end point    | "www.test.com"
 | `is_wrapper` | private | Boolean |  Please don't use unless your account manager asked you to    | false
-| `currency` | optional | String | 3 letters currency | "EUR"
 
-## Example
+### Example
 
 ```javascript
 var adUnits = [{
