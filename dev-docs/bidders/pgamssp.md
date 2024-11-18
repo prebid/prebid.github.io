@@ -4,7 +4,8 @@ title: PGAMSSP
 description: Prebid PGAMSSP Bidder Adapter
 biddercode: pgamssp
 usp_supported: true
-tcfeu_supported: false
+gvl_id: 1353
+tcfeu_supported: true
 coppa_supported: true
 schain_supported: true
 floors_supported: true
