@@ -512,6 +512,12 @@ Note that the specific adjustments are after the deal level and are an array of 
 | cpm | subtract the value from the bid price after adjusting for currency | float between 0 and MAXINT | currency must be specified |
 | static | ignore the actual bid value and override it with the specified value and currency | float between 0 and MAXINT | currency must be specified |
 
+**Notes**
+
+- Any validation failure will skip the whole bid adjustment operation
+- The system will attempt to merge request-level and account-level bid adjustments. If this fails it will try to use only the account bid adjustments.
+- If there's a validation error, a debug message will be added and a sample will be logged to the PBS log file.
+
 **Example**
 
 Here's an example showing a couple of use cases:
