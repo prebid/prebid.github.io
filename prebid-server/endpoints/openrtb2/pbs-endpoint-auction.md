@@ -480,6 +480,7 @@ A more powerful approach to adjusting bid values can be specifed on the request 
   }
 }
 ```
+
 Where:
 
 - MEDIATYPE can be 'banner', 'video-instream', 'video-oustream', 'native', 'audio', or a wildcard (*)
