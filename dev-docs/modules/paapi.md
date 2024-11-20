@@ -186,7 +186,7 @@ An example of this can be seen in the OpenX bid adapter [here](https://github.co
 PAAPI auctions can be started in parallel with Prebid auctions for a significant improvement in end-to-end latency, 
 as long as the adapters involved provide at least part of the auction config(s) in advance, before any request is sent to their backend.
 
-To support parallel execution, adapters can provide a `buildPAAPIConfigs` method, taking [the same arguments as buildRequests](#paapi-input) and returning an array of PAAPI configuration objects in [the same format as `interpretResponse`'s `paapi` parameter](#paapi-output).
+To support parallel execution, adapters can provide a `buildPAAPIConfigs` method, taking [the same arguments as buildRequests](#paapi-input) and returning an array of PAAPI configuration objects in the same format as `interpretResponse`'s [`paapi` parameter](#paapi-output).
 
 ```javascript
 registerBidder({
@@ -198,7 +198,8 @@ registerBidder({
 ```
 
 When provided, `buildPAAPIConfigs` is invoked just before `buildRequests`, and the configuration it returns is eligible to be immediately used to start PAAPI auctions (whether it will depends on the `parallel` config flag and the top level seller's support for it).
-When /not/ provided, the adapter cannot participate in parallel auctions, and PAAPI configuration returned by `interpretResponse` are liable to be discarded when parallel auctions are enabled. For this reason we recommend implementing `buildPAAPIConfigs`.
+
+When _not_ provided, the adapter cannot participate in parallel auctions, and PAAPI configuration returned by `interpretResponse` are liable to be discarded when parallel auctions are enabled. For this reason we recommend implementing `buildPAAPIConfigs`.
 
 [Some signals](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#211-providing-signals-asynchronously) can be provided asynchronously; Prebid supports this by merging them from the return value of `interpretResponse`, using `bidId` as key. 
 Notably, however, at least `seller`, `interestGroupBuyers`, and `decisionLogicUrl` must be provided synchronously (i.e., they must be hard-coded).
@@ -224,13 +225,15 @@ For example:
   },
 ])
         
-// and `interpretResponse` returns:
+// and `interpretResponse` later returns:
 ({
     paapi: [
       {
           bidId: 'bid1', // matches the bidId from `buildPAAPIConfigs`
           config: {
-              perBuyerCurrencies: { // will be ignored; `perBuyerCurrencies` must be synchronous 
+              // `perBuyerCurrencies` must be provided synchronously;
+              // this will be ignored 
+              perBuyerCurrencies: {  
                   'example.buyer': 'USD' 
               },
               // `auctionSignals` and `sellerSignals` can be provided asynchronously
@@ -245,8 +248,8 @@ For example:
       },
       {
           bidId: 'bid2', // does not match. 
-          // `config` will be used as-is, but only if no auction was already started in parallel for this slot; 
-          // it will be discarded otherwise. 
+          // `config` will be used as-is, but only if no auction was already 
+          // started in parallel for this slot; it will be discarded otherwise. 
           config: {
              /* ... */  
           }
