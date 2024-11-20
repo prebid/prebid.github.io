@@ -471,7 +471,7 @@ A more powerful approach to adjusting bid values can be specifed on the request 
         "mediatype": {
            MEDIATYPE: {
              BIDDER: {
-               DEAL: [ {"adjtype": ADJTYPE, "value": ADJVALUE} ]
+               DEAL: [ {"adjtype": ADJTYPE, "value": ADJVALUE, "cur": CURRENCY} ]
              }
            }
          }
@@ -488,6 +488,7 @@ Where:
 - DEAL can be a dealID or a wildcard (*)
 - ADJTYPE can be 'multiplier', 'cpm' or 'static'
 - ADJVALUE is a float value. See the table below for more details.
+- CURRENCY is a 3 character currency code, e.g. "EUR". This is required for some ADJTYPEs.
 
 Note that the specific adjustments are after the deal level and are an array of adjustments. Most commonly there will be only one entry in the array, but allowing it to have multiple entries can meet some advanced adjustment use cases. The next couple of sections provide detail on the input values.
 
@@ -514,7 +515,8 @@ Note that the specific adjustments are after the deal level and are an array of 
 
 **Notes**
 
-- Any validation failure will skip the whole bid adjustment operation
+- In all cases, the 'value' is required.
+-  Any validation failure will skip the whole bid adjustment operation
 - The system will attempt to merge request-level and account-level bid adjustments. If this fails it will try to use only the account bid adjustments.
 - If there's a validation error, a debug message will be added and a sample will be logged to the PBS log file.
 
@@ -550,7 +552,7 @@ Here's an example showing a couple of use cases:
                      "*": [{ // all deals
                          "adjtype": "multiplier", "value": 0.80
                      }, {
-                         "adjtype": "cpm", "value": 0.18
+                         "adjtype": "cpm", "value": 0.18, "currency": "USD"
                      }]
                   }
               }
