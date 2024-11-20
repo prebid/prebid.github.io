@@ -471,7 +471,7 @@ A more powerful approach to adjusting bid values can be specifed on the request 
         "mediatype": {
            MEDIATYPE: {
              BIDDER: {
-               DEAL: [ {"adjtype": ADJTYPE, "value": ADJVALUE, "cur": CURRENCY} ]
+               DEAL: [ {"adjtype": ADJTYPE, "value": ADJVALUE, "currency": CURRENCY} ]
              }
            }
          }
