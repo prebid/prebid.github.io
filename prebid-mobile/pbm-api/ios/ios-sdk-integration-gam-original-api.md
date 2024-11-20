@@ -51,7 +51,7 @@ To activate impression tracking for the banner ad unit - use the `activatePrebid
 
 ```swift
 adUnit.activatePrebidImpressionTracker(adView: gamBanner)
-adUnit.fetchDemand(adObject: gamRequest, adView: gamBanner) { [weak self] resultCode in
+adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     // ...
 }
 ```
