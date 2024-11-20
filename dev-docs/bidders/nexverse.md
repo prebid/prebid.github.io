@@ -45,8 +45,8 @@ To configure the Nexverse adapter, you will need the following parameters:
 | Name   | Scope    | Description              | Example    | Type   |
 |--------|----------|--------------------------|------------|--------|
 | uid    | required | Publisher's unique ID     | "12345"    | string |
-| pub_id | required | Publisher ID              | "54321"    | string |
-| epid   | optional | Publisher's unique EPID   | "epid123"  | string |
+| pubId | required | Publisher ID              | "54321"    | string |
+| pubEpid   | optional | Publisher's unique EPID   | "epid123"  | string |
 
 ### Test Parameters
 
@@ -66,8 +66,8 @@ var adUnits = [
         bidder: 'nexverse',
         params: {
           uid: '12345',
-          pub_id: '54321',
-          epid: 'epid123',
+          pubId: '54321',
+          pubEpid: 'epid123',
         },
       },
     ],
