@@ -516,7 +516,7 @@ Note that the specific adjustments are after the deal level and are an array of 
 **Notes**
 
 - In all cases, the 'value' is required.
--  Any validation failure will skip the whole bid adjustment operation
+- Any validation failure will skip the whole bid adjustment operation
 - The system will attempt to merge request-level and account-level bid adjustments. If this fails it will try to use only the account bid adjustments.
 - If there's a validation error, a debug message will be added and a sample will be logged to the PBS log file.
 
