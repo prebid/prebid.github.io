@@ -11,7 +11,7 @@ sidebarType: 1
 
 Further Content:
 
-- [Prebid.js Timeouts](/features/timeout.html)
+- [Prebid.js Timeouts](/features/timeouts.html)
 - [All videos](/overview/all-videos.html)
 
 Related Videos
