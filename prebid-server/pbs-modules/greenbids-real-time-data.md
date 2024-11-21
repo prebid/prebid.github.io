@@ -17,6 +17,7 @@ of bid per SSP for each `imp` for the given bid request.
 Then this probability of bid is compared with the threshold to ensure the necessary level of filtering for a partner publisher.
 
 The RTD module uses 2 artefacts that are fetched from the Greenbids Google Cloud Storage bucket
+
 - ML predictor in `.onnx` format
 - Probability thresholds in `.json` format with the list of thresholds and their corresponding target metrics
 
