@@ -29,7 +29,6 @@ This module supports running at:
 - processed-auction-request: this is where PBS bid request enrichments
 are done before customizing it to a particular bidder in the auction.
 
-
 ### Account-Level Config
 
 Here's an example of the account config used in PBS-Java:
@@ -81,7 +80,6 @@ greenbids-real-time-data:
   thresholds-cache-key-prefix: "throttlingThresholds_"
 ```
 
-
 ### Publisher bid request settings
 
 The activated partner publishers add their configs direclty into `bid-request.json` 
@@ -98,7 +96,6 @@ The list of the parameters necessary for RTD module activation is as follows:
 | targetTpr       | required          | Ratio of passing the valid bids [0-1]                                                               | 0.9                   | float        |
 | explorationRate | required          | Ratio of traffic without filtering used for training ML model [0-1] (a value of 0.1 will filter 90% of the traffic) | 0.1                   | float        |
 
-
 Here's an example of how a PBS partner publisher setup using both Greenbids RTD Module and Greenbids AnalyticsReporter shoudl look like:
 
 ```json
@@ -112,17 +109,14 @@ Here's an example of how a PBS partner publisher setup using both Greenbids RTD 
         },
         // extension for Greenbids Real Time Data Module
         "greenbids-rtd": {
-	        "pbuid": "PBUID_FROM_GREENBIDS",
-	        "targetTpr": 0.95,
-	        "explorationRate": 0.001
+          "pbuid": "PBUID_FROM_GREENBIDS", 
+          "targetTpr": 0.95,
+          "explorationRate": 0.001
         }
       }
     }
   }
 ```
-
-
-
 
 ### Enable for Spring Boot
 
@@ -135,7 +129,6 @@ hooks:
   greenbids-real-time-data:
     enabled: true
 ```
-
 
 ## Analytics Tags
 
@@ -181,4 +174,3 @@ Or just open new [issue](https://github.com/prebid/prebid-server-java/issues/new
 
 - [Prebid Server Module List](/prebid-server/pbs-modules/index.html)
 - [Building a Prebid Server Module](/prebid-server/developers/add-a-module.html)
-
