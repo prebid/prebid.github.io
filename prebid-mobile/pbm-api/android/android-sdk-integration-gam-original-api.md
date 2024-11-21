@@ -58,7 +58,7 @@ For activation for the interstitial ad unit, you should set `activatePrebidImpre
 
 ```java
 Interstitial adUnit = InterstitialAdUnit(CONFIG_ID, WIDTH, HEIGTH);
-adUnit.activatePrebidImpressionTracker(true);
+adUnit.activatePrebidImpressionTracker();
 ```
 
 After the invocation of `activatePrebidImpressionTracker(),` the Prebid SDK will start analyzing the View Hierarchy and track the viewability of the ad view. Once the ad view is viewable for the user for at least 1 pixel for 1 second, the SDK will track an impression event for the presented ad. The SDK will stop analyzing the View Hierarchy once the caller object of `activatePrebidImpressionTracker()` is destroyed. 
