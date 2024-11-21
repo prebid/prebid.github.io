@@ -44,6 +44,7 @@ This module exposes the following settings:
 |bidders | Array[String] |Optional list of bidders |Defaults to all bidders |
 |defaultForSlots | Number |Default value for `imp.ext.ae` in requests for specified bidders |Should be 1 |
 |componentSeller | Object |Configuration for publishers acting as component sellers | See [note](#componentSeller) |
+|parallel | Boolean | If true, start PAAPI auctions in parallel with Prebid auctions when possible | See [parallel auctions](#parallel) |
 
 As noted above, PAAPI support is disabled by default. To enable it, set the `enabled` value to `true` for this module and configure `defaultForSlots` to be `1` (meaning _Client-side auction_).
 using the `setConfig` method of Prebid.js:
@@ -132,9 +133,11 @@ Modifying a bid adapter to support PAAPI is a straightforward process and consis
 
 1. Detecting when a bid request is PAAPI eligible
 2. Responding with AuctionConfig or InterestGroupBuyer in addition to (or instead of) bids
+3. (Optional, but recommended) implementing a `buildPAAPIConfigs` method to support [parallel auctions](#parallel) 
 
 ### Input parameters
 
+<a id="paapi-input"></a>
 When PAAPI is configured, the following fields are made available to adapters' [`buildRequests`](/dev-docs/bidder-adaptor.html#building-the-request):
 
 {: .table .table-bordered .table-striped }
@@ -163,6 +166,7 @@ function interpretResponse(resp, req) {
 }
 ```
 
+<a id="paapi-output"></a>
 `paapi` must be an array of objects containing:
 
 {: .table .table-bordered .table-striped }
@@ -175,6 +179,102 @@ function interpretResponse(resp, req) {
 Each object must specify exactly one of `igb` or `config`.
 
 An example of this can be seen in the OpenX bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/openxBidAdapter.js) or RTB House bid adapter [here](https://github.com/prebid/Prebid.js/blob/master/modules/rtbhouseBidAdapter.js).
+
+<a id="parallel"></a>
+## Parallel auctions
+
+PAAPI auctions can be started in parallel with Prebid auctions for a significant improvement in end-to-end latency, 
+as long as the adapters involved provide at least part of the auction config(s) in advance, before any request is sent to their backend.
+
+To support parallel execution, adapters can provide a `buildPAAPIConfigs` method, taking [the same arguments as buildRequests](#paapi-input) and returning an array of PAAPI configuration objects in the same format as `interpretResponse`'s [`paapi` parameter](#paapi-output).
+
+```javascript
+registerBidder({
+  // ...
+  buildPAAPIConfigs(validBidRequests, bidderRequest) {
+      // should return an array of {bidId, config, igb} 
+  }
+})
+```
+
+When provided, `buildPAAPIConfigs` is invoked just before `buildRequests`, and the configuration it returns is eligible to be immediately used to start PAAPI auctions (whether it will depends on the `parallel` config flag and the top level seller's support for it).
+
+When _not_ provided, the adapter cannot participate in parallel auctions, and PAAPI configuration returned by `interpretResponse` are liable to be discarded when parallel auctions are enabled. For this reason we recommend implementing `buildPAAPIConfigs`.
+
+[Some signals](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#211-providing-signals-asynchronously) can be provided asynchronously; Prebid supports this by merging them from the return value of `interpretResponse`, using `bidId` as key. 
+Notably, however, at least `seller`, `interestGroupBuyers`, and `decisionLogicUrl` must be provided synchronously (i.e., they must be hard-coded).
+
+For example:
+
+```javascript
+// suppose that `buildPAAPIConfigs` returns the following:
+([
+  {
+      bidId: 'bid1',
+      config: {
+        seller: 'example.seller',
+        decisionLogicUrl: 'example.seller/logic.js',
+        interestGroupBuyers: ['example.buyer'],
+        auctionSignals: {
+          foo: 'bar'  
+        },
+        perBuyerTimeouts: {
+            'example.buyer': 200
+        }
+      }
+  },
+])
+        
+// and `interpretResponse` later returns:
+({
+    paapi: [
+      {
+          bidId: 'bid1', // matches the bidId from `buildPAAPIConfigs`
+          config: {
+              // `perBuyerCurrencies` must be provided synchronously;
+              // this will be ignored 
+              perBuyerCurrencies: {  
+                  'example.buyer': 'USD' 
+              },
+              // `auctionSignals` and `sellerSignals` can be provided asynchronously
+              // and will be merged with those returned by `buildPAAPIConfigs` 
+              auctionSignals: {
+                  bar: 'baz'
+              },
+              sellerSignals: {
+                  foo: 'bar'
+              }
+          }
+      },
+      {
+          bidId: 'bid2', // does not match. 
+          // `config` will be used as-is, but only if no auction was already 
+          // started in parallel for this slot; it will be discarded otherwise. 
+          config: {
+             /* ... */  
+          }
+      }
+    ]
+})
+
+// the result as seen in the sandboxed auction for `bid1` will then be:
+        
+({
+  seller: 'example.seller',
+  decisionLogicUrl: 'example.seller/logic.js',
+  interestGroupBuyers: ['example.buyer'],
+  auctionSignals: {
+    foo: 'bar',
+    bar: 'baz'
+  },
+  perBuyerTimeouts: {
+    'example.buyer': 200
+  },
+  sellerSignals: {
+    foo: 'bar'
+  }
+})
+```
 
 ## Related Reading
 
