@@ -4,7 +4,7 @@ title: InMobi
 description: InMobi Bidder Adapter
 biddercode: inmobi
 tcfeu_supported: true
-usp_supported: false
+usp_supported: true
 gvl_id: 333
 coppa_supported: true
 schain_supported: true
