@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: AdTarget Medya
-description: Prebid AdTarget Medya Bidder Adapter.
+title: AdTarget Teknoloji
+description: Prebid AdTarget Teknoloji Bidder Adapter.
 pbjs: true
 pbs: true
 biddercode: adt
@@ -23,14 +23,14 @@ sidebarType: 1
 
 ### Description
 
-AdTarget Medya header bidding adapter connects with AdTarget Medya demand sources to fetch bids for network ID. Please reach out to your account manager or <kamil@adtarget.com.tr> for more information.
+AdTarget Teknoloji header bidding adapter connects with AdTarget Teknoloji demand sources to fetch bids for network ID. Please reach out to your account manager or <kamil@adtarget.com.tr> for more information.
 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                         | Example  | Type     |
 |-------------|----------|-------------------------------------|----------|----------|
-| `networkId` | required | The network ID from AdTarget Medya | `12345` | `number` |
+| `networkId` | required | The network ID from AdTarget Teknoloji | `12345` | `number` |
 | `host` | required | RTB Host | `adt.rtb.adtarget.biz` | `string` |
 
 ### Test Parameters
