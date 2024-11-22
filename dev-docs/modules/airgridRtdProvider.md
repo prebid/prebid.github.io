@@ -62,7 +62,7 @@ pbjs.setConfig(
 | :------------ | :------------ | :------------ |:------------ |
 | name | `String` | RTD sub module name | Always 'airgrid' |
 | waitForIt | `Boolean` | Wether to delay auction for module response | Optional. Defaults to false |
-| params.apiKey | `Boolean` | Publisher partner specific API key | Required |
+| params.apiKey | `String` | Publisher partner specific API key | Required |
 | params.accountId | `String` | Publisher partner specific account ID | Required |
 | params.publisherId | `String` | Publisher partner specific publisher ID | Required |
 | params.bidders | `Array` | Bidders with which to share segment information | Optional |

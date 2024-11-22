@@ -21,6 +21,7 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name       | Scope    | Description                            | Example       | Type     |
 |------------|----------|----------------------------------------|---------------|----------|
 | `cid`      | required | The customer id provided by Media.net. | `'8CUX0H51C'` | `string` |
@@ -33,6 +34,7 @@ sidebarType: 1
 #### Video Object
 
 {: .table .table-bordered .table-striped }
+
 | Name       | Type    | Description   | Example|
 |------------|----------|--------------|--------|
 |mimes|array of strings|(Recommended) Specifies the video content MIME types supported; for example, video/x-ms-wmv and video/x-flv.|["video/x-ms-wmv","video/x-flv"]|
@@ -144,7 +146,7 @@ var adUnits = [{
 }];
 ```
 
-# Protected Audience API (FLEDGE)
+### Protected Audience API (FLEDGE)
 
 To enable PAAPI auctions follow the instructions below:
 

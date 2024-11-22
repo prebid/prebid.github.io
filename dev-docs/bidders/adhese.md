@@ -19,15 +19,20 @@ The Adhese bid adapter may require an additional setup from the Adhese team, eve
 
 Prebid Server host companies need to work with Adhese for each additional publisher.
 
+### Note
+
+Adhese will only respond to the first impression. Multiple ad formats in single request are not supported.
+
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description        | Example                      | Type     |
-|---------------|----------|--------------------|------------------------------|----------|
-| `account`     | required | Adhese account name   | `'demo'`                  | `string` |
-| `location`    | required | Adhese location name  | `'_adhese_prebid_demo_'`  | `string` |
-| `format`      | required | Adhese format name    | `'leaderboard'`           | `string` |
-| `data`        | optional | Custom target data    | `{ 'ci': [9000, 9050] }`  | `object` |
+| Pbjs param name | Scope    | Description           | Example                   | Type     |
+|-----------------|--------------------|----------|-----------------------|---------------------------|
+| `account`       | required | Adhese account name   | `'demo'`                  | `string` |
+| `location`      | required | Adhese location name  | `'_adhese_prebid_demo_'`  | `string` |
+| `format`        | required | Adhese format name    | `'leaderboard'`           | `string` |
+| `data`          | optional | (PBJS only) Custom target data    | `{ 'ci': [9000, 9050] }`  | `object` |
+| `targets`       | optional | (PBS only) Custom target data    | `{ 'ci': [9000, 9050] }`  | `object` |
 
 ### Configuration
 
