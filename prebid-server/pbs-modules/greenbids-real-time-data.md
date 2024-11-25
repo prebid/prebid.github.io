@@ -10,16 +10,14 @@ sidebarType : 5
 
 ## Overview
 
-Greenbids Real Time Data module filters bidders 
-SSPs listed in the `imp[].ext.prebid.bidder`
-of the bid request. To perform the filtering the module uses the ML pipeline that outputs the probability 
-of bid per SSP for each `imp` for the given bid request. 
-Then this probability of bid is compared with the threshold to ensure the necessary level of filtering for a partner publisher.
+Greenbids Real Time Data module filters bidders SSPs listed in the `imp[].ext.prebid.bidder` of the bid request. 
+To perform the filtering the module uses AI to predict the bidding probability of bid per SSP for each `imp` for the given bid request.
+This bidding probability is used to choose to send the bid request or not, according to the performance constraints applied by the partner publisher.
 
 The RTD module uses 2 artefacts that are fetched from the Greenbids Google Cloud Storage bucket
 
-- ML predictor in `.onnx` format
-- Probability thresholds in `.json` format with the list of thresholds and their corresponding target metrics
+- ML predictor in `.onnx` format: used to predict the bidding probability
+- Probability thresholds in `.json` format: used to convert the bidding probability to a binary choice
 
 ## Configuration
 
@@ -67,7 +65,7 @@ hooks:
 - `google-cloud-greenbids-project`: Google Cloud project associated with Greenbids
 - `gcs-bucket-name`: Google Cloud Storage (GCS) bucket used to fetch the artefacts ([ONNX](https://onnx.ai/) model and thresholds `.json`) necessary for prediction
 - `cache-expiration-minutes`: The duration (in minutes) after which cached model and thresholds should be considered expired and refreshed
-- `geo-lite-country-path`: Geolocation capabilities to determine the country from an IP address
+- `geo-lite-country-path`: URL to the geo-ip database
 - `onnx-model-cache-key-prefix`: prefix necessary for getting cached ONNX model
 - `thresholds-cache-key-prefix`: prefix necessary for getting cached throttling thresholds
 
@@ -94,10 +92,10 @@ The list of the parameters necessary for RTD module activation is as follows:
 | Parameter       | Scope             | Description                                                                                         | Example               | Type         |
 |-----------------|-------------------|-----------------------------------------------------------------------------------------------------|-----------------------|--------------|
 | pbuid           | required          | The Greenbids Publisher ID                                                                          | greenbids-publisher-1 | string       |
-| targetTpr       | required          | Ratio of passing the valid bids [0-1]                                                               | 0.9                   | float        |
+| targetTpr       | required          | Expected retained opportunities ratio [0-1]                                                         | 0.9                   | float        |
 | explorationRate | required          | Ratio of traffic without filtering used for training ML model [0-1] (a value of 0.1 will filter 90% of the traffic) | 0.1                   | float        |
 
-Here's an example of how a PBS partner publisher setup using both Greenbids RTD Module and Greenbids AnalyticsReporter shoudl look like:
+Here's an example of how a PBS partner publisher setup using both Greenbids RTD Module and Greenbids AnalyticsReporter should look like:
 
 ```json
 "ext": {
@@ -106,7 +104,7 @@ Here's an example of how a PBS partner publisher setup using both Greenbids RTD 
         // extension for Greenbids Analytics Reporter
         "greenbids": {
           "pbuid": "PBUID_FROM_GREENBIDS",
-          "greenbidsSampling": 1
+          "greenbidsSampling": 0.01
         },
         // extension for Greenbids Real Time Data Module
         "greenbids-rtd": {
@@ -134,11 +132,11 @@ hooks:
 ## Analytics Tags
 
 The RTD module also communicates the filtering results with the `GreenbidsAnalyticsReporter` via [AnalyticsTags](https://docs.prebid.org/prebid-server/developers/module-atags.html). 
-Here we populate analytics result of analytics tags for each `imp` the with
+Here we populate analytics result of analytics tags for each `imp` the with:
 
 - `fingerprint`: greenbidsId
-- `isKeptInAuction` map of booleans for each bidder whether we keep them in auction or not for the given imp
-- `isExploration`flag that is necessary to isolate the training data
+- `isKeptInAuction`: map of booleans for each bidder whether we keep them in auction or not for the given imp
+- `isExploration`: flag that is necessary to isolate the training data
 
 The analytics tag is then parsed by the AnalyticsReporter from `HookExecutionContext` 
 and its content added to the analytics payload sent to Greenbids server. The exploration part of traffic is split randomly with the ratio defined for each partner publisher 
