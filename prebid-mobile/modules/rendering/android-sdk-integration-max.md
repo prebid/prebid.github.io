@@ -1,40 +1,25 @@
 ---
 layout: page_v2
-title: AppLovin MAX Integration
-description: Integration of Prebid Rendering module whith AppLovin MAX  
+title: Integrating Prebid SDK Android with AppLovin MAX
+description: Integrating Prebid SDK Android with AppLovin MAX
 sidebarType: 2
 ---
 
-# AppLovin MAX Integration
+# Prebid SDK Android with AppLovin MAX Integration Method
 {:.no_toc} 
 
-The integration of Prebid Mobile with AppLovin MAX assumes that publisher has MAX account and has already integrated the AppLovin MAX SDK into the app.
-
-See the [AppLovin MAX Documentation](https://dash.applovin.com/documentation/mediation/android/getting-started/integration) for the MAX integration details.
-
-* TOC
+- TOC
 {:toc}
 
-## MAX Integration Overview
+{% include mobile/intro-applovin.md platform="android" %}
 
-![Rendering with MAX](/assets/images/prebid-mobile/modules/rendering/prebid-in-app-bidding-overview-max.png)
-
-**Steps 1-2** Prebid SDK makes a bid request. Prebid server runs an auction and returns the winning bid.
-
-**Step 3** MAX SDK makes an ad request. MAX returns the waterfall with respective placements.
-
-**Step 4** For each prebid's placement, the MAX SDK sequentially instantiates an adapter. 
-
-**Step 5** The adapter verifies the targeting keywords of the winning bid and the custom properties of the given placement. If they match the adapter will render the winning bid. Otherwise, adpater will fail with "no ad" immediately and the next placement will instantiate the same adapter but for another custom properties. 
-  
-
-## Integrate Prebid Adapters
+## Setup
 
 Prebid SDK is integrated into AppLovin MAX setup via custom adapters. To integrate Prebid Adapters into your app, add the following lines into your build.gradle files:
 
 Root build.gradle
 
-```
+```json
 allprojects {
     repositories {
       ...
@@ -46,11 +31,13 @@ allprojects {
 
 App module build.gradle:
 
-```
+```kotlin
 implementation('org.prebid:prebid-mobile-sdk-max-adapters:x.x.x')
 ```
 
-## Banner API
+## Adunit Specific Instructions
+
+### Banners
 
 Integration example:
 
@@ -84,7 +71,6 @@ adUnit?.fetchDemand {
 
 This step is totally the same as for original [MAX integration](https://dash.applovin.com/documentation/mediation/android/getting-started/banners#loading-and-showing-banners-programmatically). You don't have to make any modifications here.
 
-
 #### Step 2: Create MaxMediationBannerUtils
 {:.no_toc}
 
@@ -105,7 +91,7 @@ The `fetchDemand` method makes a bid request to prebid server and provides a res
 
 Now you should make a regular MAX's ad request. Everything else will be handled by prebid adapters.
 
-## Interstitial API
+### Interstitials
 
 Integration example:
 
@@ -136,7 +122,7 @@ adUnit?.fetchDemand {
 
 The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
-```
+```kotlin
 adUnit = MediationInterstitialAdUnit(
             activity,
             configId,
@@ -149,7 +135,6 @@ adUnit = MediationInterstitialAdUnit(
 {:.no_toc}
 
 This step is totally the same as for original [MAX integration](https://dash.applovin.com/documentation/mediation/android/getting-started/interstitials). You don't have to make any modifications here.
-
 
 #### Step 2: Create MaxMediationInterstitialUtils
 {:.no_toc}
@@ -176,11 +161,11 @@ Now you should make a regular MAX's ad request. Everything else will be handled 
 
 Once you receive the ad it will be ready for display. Folow the [MAX instructions](https://dash.applovin.com/documentation/mediation/android/getting-started/interstitials#showing-an-interstitial-ad) about how to do it. 
 
-## Rewarded API
+### Rewarded Video
 
 Integration example:
 
-```swift
+```kotlin
 // 1. Get an instance of MaxRewardedAd
 maxRewardedAd = MaxRewardedAd.getInstance(adUnitId, activity)
 maxRewardedAd?.setListener(createListener())
@@ -236,12 +221,11 @@ Now you should make a regular MAX's ad request. Everything else will be handled 
 {:.no_toc}
 
 Once the rewarded ad is received you can display it. Folow the [MAX instructions](https://dash.applovin.com/documentation/mediation/android/getting-started/rewarded-ads#showing-a-rewarded-ad) for the details. 
-
-## Native Ads
+### Native Ads
 
 Integration example:
 
-```
+```kotlin
 // 1. Create MaxNativeAdLoader
 nativeAdLoader = MaxNativeAdLoader(adUnitId, requireActivity())
 nativeAdLoader.setNativeAdListener(createNativeAdListener(viewContainer))
@@ -284,7 +268,7 @@ The bid request for native ads should have the description of expected assets. T
 
 The example of creating the assets array:
 
-```
+```kotlin
 val title = NativeTitleAsset()
 title.setLength(90)
 title.isRequired = true
@@ -324,7 +308,7 @@ The bid request for mative ads may have a descrition of expected event trackers.
 
 The example of creating the event trackers array:
 
-```
+```kotlin
 val methods: ArrayList<NativeEventTracker.EVENT_TRACKING_METHOD> = ArrayList()
 methods.add(NativeEventTracker.EVENT_TRACKING_METHOD.IMAGE)
 methods.add(NativeEventTracker.EVENT_TRACKING_METHOD.JS)
@@ -345,3 +329,9 @@ The `fetchDemand` method makes a bid request to prebid server and provides a res
 {:.no_toc}
 
 Now just load a native ad from MAX according to the [MAX instructions](https://dash.applovin.com/documentation/mediation/android/getting-started/native-manual#load-the-native-ad). 
+
+## Further Reading
+
+- [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
+- [Prebid SDK Android Integration](/prebid-mobile/pbm-api/android/code-integration-android.html)
+- [Prebid SDK Android Global Parameters](/prebid-mobile/pbm-api/android/pbm-targeting-android.html)

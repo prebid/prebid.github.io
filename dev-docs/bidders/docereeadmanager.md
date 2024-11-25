@@ -15,7 +15,7 @@ deals_supported: true
 floors_supported: true
 fpd_supported: false
 privacy_sandbox: no
-
+filename: docereeAdManagerBidAdapter
 ---
 
 ### Bid Params

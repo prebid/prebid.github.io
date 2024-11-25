@@ -22,17 +22,17 @@ If you want to include information about a particular ad server not documented h
 
 ## Google Ad Manager
 
-Google Ad Manager (GAM) is currently the most-used ad server. Google is beta testing header bidding support in yield groups, a technology to help publishers manage external integrations. Because header bidding often involved the creation of hundreds or even thousands of line items, yield groups could be a useful option. Here are some things to consider when deciding whether to use GAM yield groups with Prebid:
+Google Ad Manager (GAM) is currently the most-used ad server. Google has header bidding support in a feature called [Header Bidding Trafficking](https://support.google.com/admanager/answer/12273163?hl=en), a technology to help publishers manage external integrations. Because header bidding often involved the creation of hundreds or even thousands of line items, this feature could be a useful option. Here are some things to consider when deciding whether to use it with Prebid:
 
-- As of this writing, the feature was still in beta testing.
 - You must have a GAM premium GAM account to use yield groups.
 - The following use cases currently don’t work with yield groups: Native, video, AMP, Post-Bid. Google is open to feedback from the community about these scenarios.
 - The Prebid Universal Creative is not utilized. Google has ported some portions of the PUC to an internal creative.
 - Not all Prebid bid adapters are supported.
 - Aliases are not currently supported, but Google may eventually support aliases that are commonly used. There may also be future updates to support custom aliases.
 - Google Publisher Toolkit (GPT) determines bid values using Prebid.js events.
-- The yield group should win when the adjusted bid price is higher than the header bidding price bucket, which should typically occur if the publisher is rounding bids down, as is the Prebid default.
+- The trafficking group should win when the adjusted bid price is higher than the header bidding price bucket, which should typically occur if the publisher is rounding bids down, as is the Prebid default.
 - While we haven’t seen any detailed performance testing, we hope that the improved auction dynamics from no longer using price bucketing will have beneficial effects on auction outcomes.
+- Most Prebid Mobile scenarios are not supported.
 
 For step-by-step instructions on using GAM, see the [Google Ad Manager Step by Step](/adops/step-by-step.html).
 
@@ -57,7 +57,7 @@ For step-by-step instructions on using some of the other ad servers, see the fol
 
 [Send All Bids vs Top Price](/adops/send-all-vs-top-price.html)
 
-## Further Reader
+## Further Reading
 
 - [Planning Guide](/adops/adops-planning-guide.html)
 - [Key Values for Ad Ops](/adops/key-values.html)

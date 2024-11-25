@@ -25,11 +25,8 @@ The following examples are available:
 
 ## Instream
 
-- [Brightcove](/examples/video/instream/brightcove/pb-ve-brightcove.html)
-- [Flowplayer](/examples/video/instream/flowplayer/pb-ve-flowplayer.html)
 - [JW Player](/examples/video/instream/jwplayer/pb-ve-jwplayer-platform.html)
 - [JW Player (Self-Hosted)](/examples/video/instream/jwplayer/pb-ve-jwplayer-hosted.html)
-- [Kaltura](/examples/video/instream/kaltura/pb-ve-kaltura.html)
 - [VideoJS](/examples/video/instream/videojs/pb-ve-videojs.html)
 
 ## Instream and Banner Mixed Page
