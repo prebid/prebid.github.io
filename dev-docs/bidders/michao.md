@@ -32,6 +32,7 @@ The Michao Bidding adapter requires setup before beginning.
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example | Type |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placement` | required | Placement id | `12345` | `string` |
@@ -68,6 +69,7 @@ mediaTypes.video
 The following video parameters are supported here so publishers may fully declare their video inventory. These apply to both instream and outstream.
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example | Type |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | context | required | instream or outstream |"outstream" | string |
@@ -115,5 +117,3 @@ var videoAdUnit = {
 ##### Out-stream Video
 
 Michao's adapter supports outstream video renderer in two ways: using your own renderer or using ours on Prebid.org.
-
-
