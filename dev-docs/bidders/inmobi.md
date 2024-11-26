@@ -31,10 +31,10 @@ To opt out of InMobi ads on web inventory the user needs to visit the Opt-out pa
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `plc`         | required | Placement ID          | `'1234'`  | `string`  |
-
 
 ### First Party Data
 
@@ -43,6 +43,7 @@ Inmobi supports both `ortb2` and `ortb2Imp` methods to set [First Party Data](ht
 The standard Open RTB properties supported from `ortb2` / `ortb2Imp` are described in the following table.
 
 {: .table .table-bordered .table-striped }
+
 | Name              | Scope    | Description                                                                                                                                                                                                                                                                  | Example  | Type      |
 |-------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | `ortb2Imp.instl`      | optional | Details on interstitial/full-screen, 1 indicates that the ad is interstitial or full-screen, while 0 means it is not.                                                                                                                                                                                                   | `1`      | `integer`  |
@@ -59,6 +60,7 @@ Besides these standard properties, `ext` field can be used to send any publisher
 ### Example Ad-Units
 
 ## Banner
+
 ```javascript
     var adUnits = [{
             code: 'div-gpt-ad-1460505748561-0',
@@ -77,6 +79,7 @@ Besides these standard properties, `ext` field can be used to send any publisher
 ```
 
 ## Video
+
 ```javaScript
     var adUnits = [{
             code: 'div-gpt-ad-1460505748561-0',
@@ -104,6 +107,7 @@ Besides these standard properties, `ext` field can be used to send any publisher
 ```
 
 ## Native
+
 ```javascript
     var adUnits = [{
             code: 'div-gpt-ad-1460505748561-0',
@@ -121,6 +125,3 @@ Besides these standard properties, `ext` field can be used to send any publisher
             }]
     }];
 ```
-
-
-
