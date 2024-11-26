@@ -3,6 +3,7 @@ layout: userid
 title: BritePool
 description: BritePool User ID sub-module
 useridmodule: britepoolIdSystem
+enable_download: false
 ---
 
 {: .alert.alert-warning :}
