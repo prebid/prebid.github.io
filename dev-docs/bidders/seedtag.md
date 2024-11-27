@@ -24,6 +24,7 @@ The publisher id 0000-0000-01 returns demo responses.
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name              | Scope               | Description                                                                    | Example               | Type     |
 |-------------------|---------------------|--------------------------------------------------------------------------------|-----------------------|----------|
 | `publisherId`     | required            | The publisher id.                                                              | 0000-0000-01          | `string` |
@@ -84,7 +85,7 @@ const adUnits = [
 ]
 ```
 
-## InBanner example
+### InBanner example
 
 ```js
 const adUnits = [
@@ -109,7 +110,7 @@ const adUnits = [
 ]
 ```
 
-## inStream example
+### inStream example
 
 ```js
 var adUnits = [{

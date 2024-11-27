@@ -15,10 +15,10 @@ sidebarType : 1
 
 ## Overview
 
-This module can be used in combination with [Adagio Bid Adapter](/dev-docs/bidders/adagioBidAdapter.md) (SSP) and/or with Adagio prebid server endpoint.
+This module can be used in combination with [Adagio Bid Adapter](/dev-docs/bidders/adagio.html) (SSP) and/or with Adagio prebid server endpoint.
 It computes and collects data required to leverage Adagio viewability and attention prediction engine.
 
-Please contact [contact@adagio.io](contact@adagio.io) for more information.
+Please contact <contact@adagio.io> for more information.
 
 {% include dev-docs/loads-external-javascript.md %}
 
