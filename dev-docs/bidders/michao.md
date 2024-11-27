@@ -37,6 +37,7 @@ The Michao Bidding adapter requires setup before beginning.
 |---------------|----------|-----------------------|-----------|-----------|
 | `placement` | required | Placement id | `12345` | `string` |
 | `site` | required | Site id | `6789` | `string` |
+| `reward` | optional | Reward advertising | true | `boolean` |
 
 ### First Party Data
 
