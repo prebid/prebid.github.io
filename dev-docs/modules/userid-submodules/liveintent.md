@@ -3,6 +3,9 @@ layout: userid
 title: LiveIntent nonID
 description: LiveIntent nonID User ID sub-module
 useridmodule: liveIntentIdSystem
+bidRequestUserId: lipb.lipbid
+eidsource: liveintent.com
+example: '"1111"'
 ---
 
 LiveIntent offers audience resolution by leveraging its next-generation identity solutions. The LiveIntent identity graph is built around a people-based set of data that is authenticated daily through active engagements with email newsletters and media across the web.
@@ -191,6 +194,7 @@ pbjs.setConfig({
 NOTE: For optimal performance, the LiveIntent ID sub-module should be called at every opportunity. It is best not to use `params.storage` with this sub-module as it has its own optimal caching mechanism.
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this sub-module. | `liveIntentId` |

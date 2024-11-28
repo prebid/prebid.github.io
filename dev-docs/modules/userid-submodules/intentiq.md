@@ -3,6 +3,9 @@ layout: userid
 title: Intent IQ ID
 description: Intent IQ ID User ID sub-module
 useridmodule: intentIqIdSystem
+bidRequestUserId: intentiqid
+eidsource: intentiq.com
+example: '"1111"'
 ---
 
 # Intent IQ Universal ID module
@@ -18,8 +21,9 @@ check our [documentation](https://pbmodule.documents.intentiq.com/) to get more 
 
 ## Integration
 
-{: .alert.alert-info :}
+```bash
 gulp build –modules=intentIqIdSystem
+```
 
 We recommend including the Intent IQ Analytics adapter module for improved visibility
 

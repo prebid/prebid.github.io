@@ -3,6 +3,9 @@ layout: userid
 title: 33Across ID
 description: 33Across ID User ID sub-module
 useridmodule: 33acrossIdSystem
+bidRequestUserId: 33acrossId
+eidsource: 33across.com
+example: '"1111"'
 ---
 
 
@@ -21,6 +24,7 @@ gulp build --modules=33acrossIdSystem,userId
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this sub-module | `"33acrossId"` |

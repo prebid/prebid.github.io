@@ -12,8 +12,9 @@ The IDx platform is designed with privacy at its core and allows for nearly ever
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=idxIdSystem
+```
 
 ## IDx Registration
 
@@ -24,6 +25,7 @@ We may ask for some basic information from you before approving your request. Fo
 ## IDx Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"idx"` | `"idx"` |
