@@ -559,7 +559,7 @@ e.g.
       
       let deviceType = getDeviceTypeFromUserAgent(navigator.userAgent);
 
-      if(deviceType == 'mobile')
+      if(deviceType === 'mobile')
           return 'mobile'
       else if (deviceType == 'tablet')
           return 'tablet'
