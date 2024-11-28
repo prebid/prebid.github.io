@@ -563,7 +563,7 @@ e.g.
           return 'mobile'
       else if (deviceType === 'tablet')
           return 'tablet'
-      else if (deviceType == 'desktop')
+      else if (deviceType === 'desktop')
           return 'desktop'
   }
 
