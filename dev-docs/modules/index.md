@@ -92,7 +92,7 @@ These modules may require accounts with a service provider.
 ## User ID Modules
 
 UserID modules conform to a consistent set of publisher controls. The publisher can choose to run multiple user id modules, define an overall amount of time they're willing to wait for
-results. See [the userSync setConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-UserSyncProperties) reference and the [User ID Module](/dev-docs/modules/userId.md) for more details.
+results. See [the userSync setConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-UserSyncProperties) reference and the [User ID Module](/dev-docs/modules/userId) for more details.
 
 {% assign userid_module_pages = site.pages | where: "layout", "userid" %}
 
