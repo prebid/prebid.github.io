@@ -561,7 +561,7 @@ e.g.
 
       if(deviceType === 'mobile')
           return 'mobile'
-      else if (deviceType == 'tablet')
+      else if (deviceType === 'tablet')
           return 'tablet'
       else if (deviceType == 'desktop')
           return 'desktop'
