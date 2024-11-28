@@ -23,4 +23,4 @@ The MadSense Header Bidding adapter needs approval from the MadSense team. For m
 {: .table .table-bordered .table-striped }
 | Name | Scope    | Description        | Example     | Type      |
 |------|----------|--------------------|-------------|-----------|
-| `company_id` | required | Company Id | `'123456'` | `string`  |
+| `company_id` | required | Company Id | `'1234567'` | `string`  |
