@@ -148,9 +148,11 @@ Now you should make a regular MAX's ad request. Everything else will be handled 
 
 Once you receive the ad it will be ready for display. Follow the [MAX instructions](https://dash.applovin.com/documentation/mediation/ios/getting-started/interstitials#showing-an-interstitial-ad) for displaying an ad. 
 
-### Rewarded Video
+### Rewarded
 
-Integration example:
+{% include mobile/rewarded-server-side-configuration.md %}
+
+#### Integration example
 
 ```swift
 // 1. Get an instance of MARewardedAd
@@ -176,32 +178,32 @@ The process for displaying the rewarded ad is the same as for displaying the Int
 
 To be notified when a user earns a reward follow the [MAX intructions](https://dash.applovin.com/documentation/mediation/ios/getting-started/rewarded-ads#loading-a-rewarded-ad).
 
-#### Step 1: Get an instance of MARewardedAd
+##### Step 1: Get an instance of MARewardedAd
 {:.no_toc}
 
 This step is the same as for the original [MAX integration](https://dash.applovin.com/documentation/mediation/ios/getting-started/rewarded-ads). You don't have to make any modifications here.
 
-#### Step 2: Create MAXMediationRewardedUtils
+##### Step 2: Create MAXMediationRewardedUtils
 {:.no_toc}
 
 The `MAXMediationRewardedUtils` is a helper class, which performs certain utilty work for the `MediationRewardedAdUnit`, like passing the targeting keywords to the adapters.
 
-#### Step 3: Create MediationRewardedAdUnit
+##### Step 3: Create MediationRewardedAdUnit
 {:.no_toc}
 
 The `MediationRewardedAdUnit` is a part of the Prebid Mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters.  
 
-#### Step 4: Make bid request
+##### Step 4: Make bid request
 {:.no_toc}
 
 The `fetchDemand` method makes a bid request to the Prebid Server and provides a result in a completion handler.
 
-#### Step 5: Make an Ad Reuest
+##### Step 5: Make an Ad Reuest
 {:.no_toc}
 
 Make a regular MAX's ad request. Everything else will be handled by GMA SDK and prebid adapters.
 
-#### Steps 6: Display an ad
+##### Steps 6: Display an ad
 {:.no_toc}
 
 Once the rewarded ad is received you can display it. Follow the [MAX instructions](https://dash.applovin.com/documentation/mediation/ios/getting-started/rewarded-ads#showing-a-rewarded-ad) for the details. 
