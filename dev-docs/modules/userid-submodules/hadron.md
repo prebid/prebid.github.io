@@ -8,7 +8,6 @@ eidsource: audigent.com
 example: {"hadronId":"user-hadron-id", "auSeg":["segment1", "segment2"]}
 ---
 
-
 Audigent is a next-generation data management platform and a first-of-a-kind "data agency" containing some of the most exclusive content-consuming audiences across desktop, mobile and social platforms. Our HadronId module allows for user id resolution and Audigent user data segmentation to be retrieved for users across the web.  For assistance setting up your module please contact us at [prebid@audigent.com](mailto:prebid@audigent.com).
 
 ## HadronId Configuration
