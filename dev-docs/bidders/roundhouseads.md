@@ -97,14 +97,3 @@ var adUnits = [
 
 - **Maintainer Contact**: [info@roundhouseads.com](mailto:info@roundhouseads.com).
 
-- **Supported Media Types**: Banner, Video, Native.
-
-- **GDPR**: The adapter does not currently support TCFv2 (`tcfeu_supported: false`).
-
-- **USP**: The adapter supports US Privacy (`usp_supported: true`).
-
-- **COPPA**: This adapter respects the COPPA flag if enabled (`coppa_supported: true`).
-
-- **Schain**: The adapter supports supply chain object (`schain_supported: true`).
-
-- **Floor Module**: Supports the Prebid Floors Module (`floors_supported: true`).
