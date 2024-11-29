@@ -89,6 +89,32 @@ These modules may require accounts with a service provider.
 </tbody>
 </table>
 
+## User ID Modules
+
+UserID modules conform to a consistent set of publisher controls. The publisher can choose to run multiple user id modules, define an overall amount of time they're willing to wait for
+results. See [the userSync setConfig](/dev-docs/publisher-api-reference/setConfig.html#setConfig-ConfigureUserSyncing-UserSyncProperties) reference and the [User ID Module](/dev-docs/modules/userId) for more details.
+
+{% assign userid_module_pages = site.pages | where: "layout", "userid" %}
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Module</th>
+      <th>Description</th>
+      <th>EID Source</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for page in userid_module_pages %}
+    <tr>
+      <td><a href="{{page.url}}"><strong>{{page.title}}</strong></a></td>
+      <td>{{page.description}}</td>
+      <td>{{page.eidsource}}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+
 ## Further Reading
 
 - [Source code of all modules](https://github.com/prebid/Prebid.js/tree/master/modules)

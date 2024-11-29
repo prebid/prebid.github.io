@@ -25,6 +25,10 @@ fpd_supported: false
 sidebarType: 1
 ---
 
+### Disclosure
+
+{% include dev-docs/fingerprinting.md %}
+
 ### Notes
 
 1. The Teads Bidding adapter requires setup before beginning. Please contact us on <https://teads.tv/teads-contact/>
