@@ -3,12 +3,12 @@ layout: bidder
 title: Greenbids
 description: Prebid Greenbids Bidder Adapter
 biddercode: greenbids
-tcfeu_supported: true
+tcfeu_supported: false
 dsa_supported: true
 gvl_id: none
 usp_supported: true
 coppa_supported: false
-gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
+gpp_sids: tcfca, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: true
 media_types: banner, video
@@ -32,4 +32,4 @@ The Greenbids Bidding adapter requires setup before beginning. Please contact us
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placementId`   | required | Placement id        | `'11111'` | `string`  |
+| `placementId` | required | Placement id          | `'11111'` | `string`  |
