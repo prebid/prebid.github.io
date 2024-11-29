@@ -4,8 +4,8 @@ title: AdPort
 description: Prebid AdPort Bidder Adapter
 aliasCode: adverxo
 pbjs: true
-pbs: true
-pbs_app_supported: true
+pbs: false
+pbs_app_supported: false
 biddercode: adport
 userIds:
 media_types: banner, native, video
