@@ -137,7 +137,46 @@ Modules may require configuration at startup or during the request:
 
 * If the module requires config at initialization, its documentation will
 describe where the config file lives and what format it should take.
-* If the module requires runtime config, it should be passed via the account-conig mechanism.
+* If the module requires runtime config, it should be passed via the account-config mechanism.
+
+### 3.1 Admin Module Execution Configuration
+
+`hooks.admin.module-execution` is a key-value map, where a key is a module name and a value is a boolean. It defines whether module's hooks should be always executed or not if it's present in the execution plan. 
+This property can be configured on the host level at initialization as well as via account-config mechanism (a runtime config).
+The host level config has precedence over the account config.
+
+`settings.modules.require-config-to-invoke` is a host-level boolean property. When enabled it requires a runtime config to exist for a module.
+
+Both properties work together:
+
+- `hooks.admin.module-execution` is able to make the modules that doesn't require the runtime config to be always executed even if the `settings.modules.require-config-to-invoke` set to `true`
+- `hooks.admin.module-execution` allows to disable a module execution even if the module is present in the execution plan
+- if a module is not specified in the `hooks.admin.module-execution`, but present in the execution plan, it will be executed by default, except for the case when it requires a runtime config, the `settings.modules.require-config-to-invoke` set to `true`, but it doesn't have it
+- since the `settings.modules.require-config-to-invoke` does not have any impact on Entrypoint hooks, the only way to disable them altogether with other hooks of the module is disabling it configuring `hooks.admin.module-execution` on the host level
+
+Example:
+```yaml
+# host-level config
+hooks:
+  admin:
+    module-execution:
+      moduleCode1: true
+      moduleCode2: false
+```
+
+```json
+// account-level config
+{
+  "hooks": {
+    "admin": {
+      "module-execution": {
+        "moduleCode1": true,
+        "moduleCode2": false
+      }
+    }
+  }
+}
+```
 
 ## Installing a PBS Privacy Module
 
