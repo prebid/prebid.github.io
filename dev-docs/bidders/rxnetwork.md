@@ -3,7 +3,7 @@ layout: bidder
 title: RxNetwork
 description: Prebid RxNetwork Bidder Adaptor
 pbjs: true
-pbs: true
+pbs: false
 biddercode: rxnetwork
 aliasCode: adkernel
 media_types: banner, native, video
@@ -11,7 +11,7 @@ tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 gpp_supported: true
-pbs_app_supported: true
+pbs_app_supported: false
 gvl_id: 14 (adkernel)
 schain_supported: true
 userIds: all
