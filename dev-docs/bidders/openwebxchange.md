@@ -26,6 +26,7 @@ The OpenWebXChange adapter requires setup and approval.
 #### Banner, Video
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  OpenWebXChange publisher Id  | "1234567890abcdef12345678"
@@ -36,7 +37,7 @@ The OpenWebXChange adapter requires setup and approval.
 | `is_wrapper` | private | Boolean |  Please don't use unless your account manager asked you to    | false
 | `currency` | optional | String | 3 letters currency | "EUR"
 
-## Example
+### Example
 
 ```javascript
 var adUnits = [{

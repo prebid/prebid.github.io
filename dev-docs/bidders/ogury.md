@@ -32,6 +32,7 @@ A detailed overview about the integration process can be found in [this document
 The minimal list of bid params is:
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `assetKey`    | required | The asset key provided by Ogury   | `'OGY-CA41D116484F'` | `string`  |
@@ -41,6 +42,6 @@ The minimal list of bid params is:
 
 Depending on your advertising format needs, other optional parameters can be used. Supported parameters are detailed [here](https://ogury-ltd.gitbook.io/mobile-web/header-bidding/ogury-prebid.js-adapter-integration#optional-configuration).
 
-## How to contact us
+### How to contact us
 
 If you have any technical concerns or questions about the adapter, please contact <web.inventory@ogury.co>.
