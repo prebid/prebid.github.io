@@ -12,7 +12,7 @@ gpp_sids: none
 schain_supported: true
 dchain_supported: false
 userId: all
-media_types: banner, video
+media_types: banner, video, native
 safeframes_ok: true
 floors_supported: true
 fpd_supported: true
@@ -20,7 +20,7 @@ pbjs: true
 pbs: false
 prebid_member: false
 multiformat_supported: will-bid-on-one
-ortb_blocking_supported: false
+ortb_blocking_supported: partial
 privacy_sandbox: topics
 sidebarType: 1
 ---
@@ -38,6 +38,8 @@ The Michao Bidding adapter requires setup before beginning.
 | `placement` | required | Placement id | `12345` | `string` |
 | `site` | required | Site id | `6789` | `string` |
 | `reward` | optional | Reward advertising | true | `boolean` |
+| `bcat` | optional | Block categories | ["IAB2"] | `string[]` |
+| `badv` | optional | Block advertisers | ["adomain.com"] | `string[]` |
 
 ### First Party Data
 
@@ -59,6 +61,23 @@ pbjs.setBidderConfig({
     },
   },
 });
+```
+
+### ORTB Blocking
+
+Support: badv, bcat
+
+example: 
+```js
+{
+  bidder: "michao",
+  params: {
+    site: 123,
+    placement: 456,
+    bcat: ['IAB2'],
+    badv: ['adomain.com']
+  }
+}
 ```
 
 ### Media Types
@@ -118,3 +137,47 @@ var videoAdUnit = {
 ##### Out-stream Video
 
 Michao's adapter supports outstream video renderer in two ways: using your own renderer or using ours on Prebid.org.
+
+
+#### Native 
+
+This adapter supports video assets.
+
+Example:
+
+```js
+var nativeAdUnit = {
+    code: 'myNativeAdUnit',
+    mediaTypes: {
+        native: {
+            ortb: {
+                assets: [{
+                    id: 1,
+                    required: 1,
+                    img: {
+                        type: 3,
+                        w: 150,
+                        h: 50,
+                    }
+                },{
+                  id: 2,
+                  required: 1,
+                  video: {
+                    minduration: 0,
+                    maxduration: 120,
+                    mimes: ["video/mp4"],
+                    protocols: [8],
+                  },
+                }],
+            }
+        }
+    },
+    bids: [{
+        bidder: 'michao',                        
+        params: {
+            site: 123,
+            placement: 456
+        }
+    }]
+};
+```
