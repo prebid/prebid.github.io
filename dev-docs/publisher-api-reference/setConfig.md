@@ -1175,7 +1175,8 @@ The `auctionOptions` object controls aspects related to auctions.
 | Field    | Scope   | Type   | Description                                                                           |
 |----------+---------+--------+---------------------------------------------------------------------------------------|
 | `secondaryBidders` | Optional | Array of Strings | Specifies bidders that the Prebid auction will no longer wait for before determining the auction has completed. This may be helpful if you find there are a number of low performing and/or high timeout bidders in your page's rotation. |
-| `suppressStaleRender` | Optional | Boolean | When true, prevents `banner` bids from being rendered more than once. It should only be enabled after auto-refreshing is implemented correctly.  Default is false.
+| `suppressStaleRender` | Optional | Boolean | When true, prevents `banner` bids from being rendered more than once. It should only be enabled after auto-refreshing is implemented correctly.  Default is false. |
+| `suppressExpiredRender` | Optional | Boolean | When true, prevent bids from being rendered if TTL is reached. Default is false.
 
 #### Examples
 {: .no_toc}
@@ -1211,6 +1212,28 @@ PBJS performs following actions when stale rendering is detected.
 * Emit a `STALE_RENDER` event before `BID_WON` event.
 
 Stale winning bids will continue to be rendered unless `suppressStaleRender` is set to true.  Events including `STALE_RENDER` and `BID_WON` are unaffected by this option.
+
+Render only non-expired bids.
+
+```javascript
+pbjs.setConfig({
+    'auctionOptions': {
+        'suppressExpiredRender': true
+    }
+});
+```
+
+#### More on Expired Rendering
+{: .no_toc}
+
+We are validating the `ttl` property before rendering an ad. If the ad has exceeded its ttl value and the `suppressExpiredRender` property is enabled, the system will suppress the rendering of the expired ad.
+
+PBJS performs following actions when expired rendering is detected.
+
+* Log a warning in the browser console if pbjs_debug=true.
+* Emit a `EXPIRED_RENDER` event before `BID_WON` event.
+
+Expired winning bids will continue to be rendered unless `suppressExpiredRender` is set to true.  Events including `STALE_RENDER` and `BID_WON` are unaffected by this option.
 
 <a name="setConfig-maxNestedIframes"></a>
 
