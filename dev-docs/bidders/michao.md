@@ -40,6 +40,7 @@ The Michao Bidding adapter requires setup before beginning.
 | `reward`    | optional | Reward advertising | true            | `boolean`  |
 | `bcat`      | optional | Block categories   | ["IAB2"]        | `string[]` |
 | `badv`      | optional | Block advertisers  | ["adomain.com"] | `string[]` |
+| `bidFloor`  | optional | Bid floor price    | `0.2`           | `number`   |
 
 ### First Party Data
 
