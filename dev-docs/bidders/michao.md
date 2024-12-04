@@ -35,8 +35,8 @@ The Michao Bidding adapter requires setup before beginning.
 
 | Name        | Scope    | Description        | Example         | Type       |
 | ----------- | -------- | ------------------ | --------------- | ---------- |
-| `placement` | required | Placement id       | `12345`         | `string`   |
-| `site`      | required | Site id            | `6789`          | `string`   |
+| `placement` | required | Placement id       | `"12345"`       | `string`   |
+| `site`      | required | Site id            | `6789`          | `number`   |
 | `reward`    | optional | Reward advertising | true            | `boolean`  |
 | `bcat`      | optional | Block categories   | ["IAB2"]        | `string[]` |
 | `badv`      | optional | Block advertisers  | ["adomain.com"] | `string[]` |
@@ -74,7 +74,7 @@ example:
   bidder: "michao",
   params: {
     site: 123,
-    placement: 456,
+    placement: "456",
     bcat: ['IAB2'],
     badv: ['adomain.com']
   }
@@ -129,7 +129,7 @@ var videoAdUnit = {
         bidder: 'michao',
         params: {
             site: 123,
-            placement: 456,
+            placement: "456",
         }
     }]
 };
@@ -180,7 +180,7 @@ var nativeAdUnit = {
       bidder: "michao",
       params: {
         site: 123,
-        placement: 456,
+        placement: "456",
       },
     },
   ],
