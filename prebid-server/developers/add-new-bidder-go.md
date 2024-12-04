@@ -8,7 +8,10 @@ title: Prebid Server | Developers | Building a Bid Adapter (Go)
 # Prebid Server - New Bid Adapter (Go)
 {: .no_toc}
 
-Thank you for your valuable contribution of a bid adapter to the open source Prebid Server project. Each new adapter expands the monetization possibilities for publishers and provides greater options to maximize their inventory's potential. We truly appreciate your support in making this ecosystem thrive!
+- TOC
+{:toc }
+
+Thank you for your contribution of a bid adapter to the open source Prebid Server project. Each new adapter expands the monetization possibilities for publishers and provides greater options to maximize their inventory's potential. We appreciate your support in making this ecosystem thrive!
 
 This document guides you through the process of developing a new bid adapter for your bidding server. We encourage you to look at [existing bid adapters](https://github.com/prebid/prebid-server/tree/master/adapters) for working examples and practical guidance. You can ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server/issues/new).
 
@@ -355,7 +358,7 @@ Publishers will provide extra information using an OpenRTB 2.x Bid Request Exten
 We request you do not duplicate information already present in the [OpenRTB 2.x Bid Request specification](https://github.com/InteractiveAdvertisingBureau/openrtb2.x) or already part of an established Prebid convention. For example, your bidder parameters should not include first party data, bid floors, schain, video parameters, referrer information, or privacy consent including COPPA, CCPA, and GDPR TCF. For video parameters in particular, you must prefer the OpenRTB 2.x Bid Request standard of `request.imp[].video`.
 
 {: .alert.alert-warning :}
-You may not try so set the full endpoint domain from a publisher-specified bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a *portion* of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may choose to disable your adapter if it uses a dynamically configured domain.
+You may not try to set the full endpoint domain from a publisher-specified bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a *portion* of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may choose to disable your adapter if it uses a dynamically configured domain.
 
 Create a file with the path `static/bidder-params/{bidder}.json` and use [JSON Schema](https://json-schema.org/understanding-json-schema/) to define your bidder parameters. Prebid Server requires this file for every adapter, even if yours doesn't require bidder parameters (see the 'no parameters' example at the end of this section).
 
