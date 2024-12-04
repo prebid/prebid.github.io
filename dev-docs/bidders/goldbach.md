@@ -20,7 +20,7 @@ fpd_supported: true
 pbjs: true
 pbs: false
 prebid_member: false
-multiformat_supported: will-bid-on-one
+multiformat_supported: will-bid-on-any
 ortb_blocking_supported: false
 privacy_sandbox: no
 sidebarType: 1
@@ -35,4 +35,5 @@ The Goldbach bidding adapter requires an individualized `'publisherId'` and appr
 
 | Name          | Scope    | Description              | Example                   | Type      |
 |---------------|----------|--------------------------|---------------------------|-----------|
-| `publisherId` | required | Publisher Environment ID | `example.com_de_ios`      |  `string` |
+| `publisherId` | required | Publisher Environment ID | `example.com_de_ios`      | `string`  |
+| `slotId`      | required | Slot Id                  | `1234/slot/id/news`       | `string`  |
