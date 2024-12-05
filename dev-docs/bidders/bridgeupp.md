@@ -9,16 +9,16 @@ gvl_id: 1300
 coppa_supported: true
 schain_supported: true
 media_types: banner
-pbs: true
+pbjs: true
 pbs_app_supported: true
 sidebarType: 1
-pbjs: false
 
 multiformat_supported: will-bid-on-any
 safeframes_ok: false
 deals_supported: false
 floors_supported: true
 fpd_supported: false
+pbs: false
 ---
 
 ### Note
