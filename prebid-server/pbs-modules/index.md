@@ -141,18 +141,32 @@ describe where the config file lives and what format it should take.
 
 ### 3.1 Admin Module Execution Configuration
 
-`hooks.admin.module-execution` is a key-value map, a part of a runtime config, where a key is a module name and a value is a boolean. It defines whether module's hooks should/should not be always executed.
+`hooks.admin.module-execution` is a key-value map, where a key is a module name and a value is a boolean. It defines whether module's hooks should/should not be always/never executed. 
+This property can be configured on the host level at initialization as well as via account-config mechanism (a runtime config).
+
 `settings.modules.require-config-to-invoke` is a host-level boolean property. When enabled it requires a runtime config to exist for a module.
 
-Both properties work together:
+Important Notes:
 
-* `hooks.admin.module-execution` is able to make the modules that doesn't require the runtime config to be always executed even if the `settings.modules.require-config-to-invoke` set to `true`
-* `hooks.admin.module-execution` allows to disable a module execution even if the module is present in the execution plan
-* if a module is not specified in the `hooks.admin.module-execution`, but present in the execution plan, it will be executed by default, except for the case when it requires a runtime config, but the config is absent
+* if `hooks.admin.module-execution` is defined at the host-level, it takes precedence over all account configs.
+* no account can turn off a module flagged as `true`, and likewise they can’t turn on a module flagged as `false`.
+* essentially, setting `false` at the host level has the same effect as removing the module from the execution plan.
+* if `hooks.admin.module-execution` is not defined at the host level, then normal precedence rules are in effect: any value in account config overrides what’s in default account config.
+* if nothing is found for the module in the merged `hooks.admin.module-execution` and `settings.modules.require-config-to-invoke` is true, then account-level (runtime) config is required.
 
 Example:
 
+```yaml
+# host-level config
+hooks:
+  admin:
+    module-execution:
+      moduleCode1: true
+      moduleCode2: false
+```
+
 ```json
+// account-level config
 {
   "hooks": {
     "admin": {
