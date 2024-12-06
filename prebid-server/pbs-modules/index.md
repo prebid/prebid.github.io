@@ -12,7 +12,7 @@ The core of Prebid Server contains the foundational code needed for header biddi
 
 If you're looking for bidder adapter parameters, see [Bidders' Params](/dev-docs/pbs-bidders.html).
 
-* TOC
+- TOC
 {:toc}
 
 ## The Modules
@@ -53,10 +53,10 @@ mvn clean package --file extra/pom.xml
 
 The execution plan details:
 
-* which modules are used in your server
-* what order they're invoked in
-* how long modules have to run before timeout
-* whether any modules depend on each other
+- which modules are used in your server
+- what order they're invoked in
+- how long modules have to run before timeout
+- whether any modules depend on each other
 
 If you want the module to run on every request regardless of account, this is a
 host-level config you should place in `application.yaml`. If the module should
@@ -64,9 +64,9 @@ be active only for certain accounts, you'll need to place the plan in the accoun
 
 To define a plan, you'll need to know the following module details, which should be available in the module documentation:
 
-* urls: which PBS 'entry points' are relevant. e.g. /openrtb2/auction, /openrtb2/amp
-* stages: one or more of the 7 workflow stages where the module should be called: entrypoint, raw-auction-request, processed-auction-request, bidder-request, raw-bidder-response, processed-bidder-response, and/or auction-response.
-* hooks: for each stage where a module runs, its documentation will provide the hook function name.
+- urls: which PBS 'entry points' are relevant. e.g. /openrtb2/auction, /openrtb2/amp
+- stages: one or more of the 7 workflow stages where the module should be called: entrypoint, raw-auction-request, processed-auction-request, bidder-request, raw-bidder-response, processed-bidder-response, and/or auction-response.
+- hooks: for each stage where a module runs, its documentation will provide the hook function name.
 
 Here's an example application.yaml entry:
 
@@ -139,9 +139,9 @@ chosen to keep all execution plans in host-level config, then enabling the `requ
 
 Modules may require configuration at startup or during the request:
 
-* If the module requires config at initialization, its documentation will
+- If the module requires config at initialization, its documentation will
 describe where the config file lives and what format it should take.
-* If the module requires runtime config, it should be passed via the account-config mechanism.
+- If the module requires runtime config, it should be passed via the account-config mechanism.
 
 ### 3.1 Module Execution Configuration
 
@@ -205,6 +205,6 @@ relevant 'Activity' using the `privacyreg` directive as described in the [Activi
 
 ## Further Reading
 
-* [Developing a Prebid Server General Module](/prebid-server/developers/add-a-module.html)
-* [Developing a Prebid Server Privacy Module](/prebid-server/developers/add-a-privacy-module.html)
-* [Prebid Server Features](/prebid-server/features/pbs-feature-idx.html)
+- [Developing a Prebid Server General Module](/prebid-server/developers/add-a-module.html)
+- [Developing a Prebid Server Privacy Module](/prebid-server/developers/add-a-privacy-module.html)
+- [Prebid Server Features](/prebid-server/features/pbs-feature-idx.html)
