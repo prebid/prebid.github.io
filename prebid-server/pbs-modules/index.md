@@ -198,6 +198,65 @@ hooks:
 }
 ```
 
+### 3.2 A/B Testing Modules
+
+Host companies and accounts might want to try enabling a module on a small percentage of traffic before turning it on all the way.
+
+PBS-Java 3.16 introduced a new A/B testing framework that applies to any module. 
+
+```json5
+{
+    "hooks": {
+        "execution-plan": {
+           "abtests": [{
+              "accounts": [ 123, 456 ],                 // these are ignored if in account-level config
+              "module-code": "module1",
+              "enabled": true,                          // defaults to false
+              "percent-active": 5,                      // defaults to 100
+              "log-analytics-tag": true                 // defaults to true
+            },{
+               ... abtest config for other modules ...
+            }],
+            "endpoints": {
+                "/openrtb2/auction": {
+                    ...
+                 }
+            }
+        ]
+     ]
+]
+```
+
+These are the parameters accepted within the `abtests` object:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Description | Type | Default |
+|-----------+-------+-------------+------+---------|
+| module-code | required | Which module is being tested. | string | none |
+| percent-active | required | What percent of the time the module will run. | integer | none |
+| accounts | optional | Defines which accounts this abtest block applies to. This is useful when the execution plan is defined at the host level and is ignored when the plan is at the account level. | array of int | none |
+| enabled | optional | Allows the abtest to be disabled without removing it. | boolean | true |
+| log-analytics-tag | optional | Directs PBS-core to log an analytics tag for reporting. | boolean | false |
+
+To get reporting on the test results, analytics adapters will need to read the [analytics tag]() created by the A/B test, which looks like this:
+
+```json5
+{
+   activities: [{
+     name: "core-module-abtests",
+     status: "success",
+     results: [{                      // one results object for each module in the abtests object
+         "status": STATUS,            // "run" or "skipped"
+         "values": {
+             "module": "module1"
+         }
+     }]
+  },
+          ... the status of other abtest decisions ...
+  }]
+}
+```
+
 ## Installing a PBS Privacy Module
 
 Privacy modules are already built into the code base. They just need to be linked to the
