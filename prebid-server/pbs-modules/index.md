@@ -131,6 +131,10 @@ hooks:
   }
 ```
 
+{: .alert.alert-info :
+Execution plans can be placed in account configuration, but depending on how modules are enabled in your environment, it can be inconvenient to provide instructions to place the highly technical execution plan into the account config. Some organizations have
+chosen to keep all execution plans in host-level config, then enabling the `require-config-to-invoke` option as described in the next section.
+
 ### 3. Supply the module with configuration
 
 Modules may require configuration at startup or during the request:
@@ -139,41 +143,56 @@ Modules may require configuration at startup or during the request:
 describe where the config file lives and what format it should take.
 * If the module requires runtime config, it should be passed via the account-config mechanism.
 
-### 3.1 Admin Module Execution Configuration
+### 3.1 Module Execution Configuration
 
-`hooks.admin.module-execution` is a key-value map, where a key is a module name and a value is a boolean. It defines whether a module's hooks should/should not be always/never executed. 
+PBS-Java 3.16 introduced new configurations that give the host company flexible control over which modules run for which accounts
+while still allowing all execution plans to be defined at the host-level.
+
+- `hooks.admin.module-execution` is a key-value map, where a key is a module name and a value is a boolean. It defines whether a module's hooks should be executed.
 This property can be configured on the host level at initialization as well as via account-config mechanism (a runtime config).
+- `settings.modules.require-config-to-invoke` is a host-level boolean property. When set to `true`, it requires a runtime config to exist for a module in order to actually run the execution plan.
 
-`settings.modules.require-config-to-invoke` is a host-level boolean property. When enabled it requires a runtime config to exist for a module.
+Here's how these work together:
 
-Important Notes:
-
-* if `hooks.admin.module-execution` is defined at the host-level, it takes precedence over all account configs.
-* no account can turn off a module flagged as `true`, and likewise they can’t turn on a module flagged as `false`.
-* essentially, setting `false` at the host level has the same effect as removing the module from the execution plan.
-* if `hooks.admin.module-execution` is not defined at the host level, then normal precedence rules are in effect: any value in account config overrides what’s in default account config.
-* if nothing is found for the module in the merged `hooks.admin.module-execution` and `settings.modules.require-config-to-invoke` is true, then account-level (runtime) config is required.
+1. If `hooks.admin.module-execution` is defined at the host-level (application.yaml), it overrides all account config. No account can turn off a module flagged as true, and likewise they can’t turn on a module flagged as false.
+1. Essentially, setting false at the host level has the same effect as removing the module’s execution plan.
+1. If `hooks.admin.module-execution` is not defined at the host level, then normal precedence rules are in effect: any value in account config overrides what’s in default account config.
+1. If nothing is found for the module in the merged `hooks.admin.module-execution` and `require-config-to-invoke` is true, then account-level config is required.
 
 Example:
 
 ```yaml
 # host-level config
+settings:
+  modules:
+    require-config-to-invoke: true
 hooks:
   admin:
+    host-execution-plan: >
+      {"endpoints":{... define execution plans for module1, module3, and module4 here ...}}
     module-execution:
-      moduleCode1: true
-      moduleCode2: false
+      module1: true         // don't allow accounts to turn off this module. Also don't worry about requiring config. Always run this one.
+      module2: false        // don't allow accounts to utilize this module at all, even if they define a plan in account config.
 ```
 
 ```json
 // account-level config
+// the end result is that module1, module3, and module5 are run.
+// module2 is not run even though a plan is defined in this account config because the host company has forbidden it above
+// module4 is not run because there's no config and require-config-to-invoke is true
 {
   "hooks": {
     "admin": {
       "module-execution": {
-        "moduleCode1": true,
-        "moduleCode2": false
+        "module1": false    // does nothing, since module1 is always on at the host level
       }
+    },
+    "modules": {
+      "module3": { ... module 3 config ... },
+      "module5": { ... module 5 config ... },
+    },
+    "execution-plan": {
+       ... define an execution plan for module2 and module5 here ...
     }
   }
 }
