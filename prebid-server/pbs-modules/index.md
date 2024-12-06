@@ -141,7 +141,7 @@ describe where the config file lives and what format it should take.
 
 ### 3.1 Admin Module Execution Configuration
 
-`hooks.admin.module-execution` is a key-value map, where a key is a module name and a value is a boolean. It defines whether module's hooks should/should not be always/never executed. 
+`hooks.admin.module-execution` is a key-value map, where a key is a module name and a value is a boolean. It defines whether a module's hooks should/should not be always/never executed. 
 This property can be configured on the host level at initialization as well as via account-config mechanism (a runtime config).
 
 `settings.modules.require-config-to-invoke` is a host-level boolean property. When enabled it requires a runtime config to exist for a module.
