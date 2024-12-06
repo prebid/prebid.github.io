@@ -1,11 +1,29 @@
 Each ad unit in the original integration method is a subclass of the `AdUnit` class, which provides the following properties and methods for the additional configuration.
 
+### Arbitrary OpenRTB
+
+(requires SDK v2.4.0)
+
+Prebid SDK allows the customization of the OpenRTB request on the global level using `setImpORTBConfig()` function: 
+
+``` swift
+adUnit.setImpORTBConfig("{\"bidfloor\":0.01,\"banner\":{\"battr\":[1,2,3,4]}}")
+```
+ 
+The parameter passed to `setImpORTBConfig()` will be merged into the respective `imp` object for this Ad Unit. For instance, the above example will add the `$.imp[0].bidfloor` and `$.imp[0].banner.battr` parameters to the bid request.  
+
+To invalidate the impression config, just set it to the empty string: 
+
+``` swift
+adUnit.setImpORTBConfig("")
+```
+
 ### Autorefresh
 
 #### setAutoRefreshMillis
 {:.no_toc}
 
-If set on a given banner adunit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServes refresh be turned off.
+If set on a given banner ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServes refresh be turned off.
 
 #### stopAutoRefresh
 {:.no_toc}
