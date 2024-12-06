@@ -533,7 +533,7 @@ The parameter passed to `Targeting.shared.setGlobalORTBConfig()` will be merged 
 
 To invalidate the global config, just set the empty string: 
 
-```
+``` swift
 Targeting.shared.setGlobalORTBConfig("")
 ```
 

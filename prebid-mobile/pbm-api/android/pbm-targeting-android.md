@@ -767,7 +767,7 @@ The parameter passed to `TargetingParams.setGlobalOrtbConfig()` will be merged i
 
 To invalidate the global config, just set the empty string: 
 
-```
+``` kotlin
 TargetingParams.setGlobalOrtbConfig("")
 ```
 
@@ -777,7 +777,6 @@ Pay attention that there are certain protected fields such as `regs`, `device`, 
 
 - App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)
 - See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
-
 
 ## Further Reading
 
