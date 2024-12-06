@@ -517,9 +517,9 @@ Prebid SDK allows the customization of the OpenRTB request on the global level u
 let globalORTB = """
 {
     "ext": {
-    "myext": {
-        "test": 1
-    }
+        "myext": {
+            "test": 1
+        }
     },
     "displaymanager": "Google",
     "displaymanagerver": "\(GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber))"
