@@ -123,6 +123,7 @@ These are the available hooks that can be implemented in a module:
 - org.prebid.server.hooks.v1.bidder.RawBidderResponseHook
 - org.prebid.server.hooks.v1.bidder.AllProcessedBidResponsesHook
 - org.prebid.server.hooks.v1.auction.AuctionResponseHook
+- org.prebid.server.hooks.v1.exitpoint.ExitpointHook
 
 In a module it is not necessary to implement all mentioned interfaces but only one (or several) required by your functionality.
 
@@ -130,6 +131,17 @@ Each hook interface internally extends org.prebid.server.hooks.v1.Hook basic int
 
 - `code()` - returns module code.
 - `call(...)` - returns result of hook invocation.
+
+### Difference between AuctionResponseHook and ExitpointHook
+In a nutshell, both hooks allow the modification of the OpenRTB Bid Response but in different ways. 
+The `AuctionResponseHook` provides a last chance to work with the Java objects that modify the auction response.
+The `ExitpointHook` allows you to build a completely different response based on the received auction context. i.e. something that's not OpenRTB JSON - something like VAST. These hooks could modify the auction/amp/video response that PBS has built, or it could build another one and modify response headers accordingly.
+
+Important Notes:
+
+- The ExitpointHook is a powerful tool that allows rewriting the auction results, so make sure important data won't be lost for the client.
+- Since the response body is not modified after calling the ExitpointHook, debug and traces won't be added by PBS-core. The exitpoint hook is responsible for adding its own tracing to the generated output.
+- Analytics adapters doesn't have access to the response built by the ExitpointHook, but they receive the up-to-date auction context with the ExitpointHook execution status and analytics tags. 
 
 ### Examples
 
