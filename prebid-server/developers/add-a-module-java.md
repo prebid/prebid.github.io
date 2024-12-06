@@ -133,16 +133,15 @@ Each hook interface internally extends org.prebid.server.hooks.v1.Hook basic int
 - `call(...)` - returns result of hook invocation.
 
 ### Difference between AuctionResponseHook and ExitpointHook
-In the nutshell both hooks allow to modify the OpenRTB Bid Response but in the different formats. 
-The AuctionResponseHook provides the last chance to work with the Java objects that allow to modify the auction response with ease.
-The ExitpointHook allows to build a completely different response based on the received auction context. It's possible but not recommended to modify the auction/amp/video response on that stage, rather build another one and modify response headers accordingly.
+In a nutshell, both hooks allow the modification of the OpenRTB Bid Response but in different ways. 
+The `AuctionResponseHook` provides a last chance to work with the Java objects that modify the auction response.
+The `ExitpointHook` allows you to build a completely different response based on the received auction context. i.e. something that's not OpenRTB JSON - something like VAST. These hooks could modify the auction/amp/video response that PBS has built, or it could build another one and modify response headers accordingly.
 
 Important Notes:
 
-- the ExitpointHook is a powerful tool that allows to re-write the auction results, so make sure the important data won't be lost for the client.
-- since the response body is already prepared before and is not modified after calling the ExitpointHook
-the results of its execution, i.e. debug info, traces, won't be added automatically, but can be added manually inside the hook. 
-- analytics adapters doesn't have access to the response built by the ExitpointHook, but they receive the up-to-date auction context with the ExitpointHook execution status and analytics tags. 
+- The ExitpointHook is a powerful tool that allows rewriting the auction results, so make sure important data won't be lost for the client.
+- Since the response body is not modified after calling the ExitpointHook, debug and traces won't be added by PBS-core. The exitpoint hook is responsible for adding its own tracing to the generated output.
+- Analytics adapters doesn't have access to the response built by the ExitpointHook, but they receive the up-to-date auction context with the ExitpointHook execution status and analytics tags. 
 
 ### Examples
 
