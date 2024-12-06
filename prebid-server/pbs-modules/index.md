@@ -238,7 +238,7 @@ These are the parameters accepted within the `abtests` object:
 | enabled | optional | Allows the abtest to be disabled without removing it. | boolean | true |
 | log-analytics-tag | optional | Directs PBS-core to log an analytics tag for reporting. | boolean | false |
 
-To get reporting on the test results, analytics adapters will need to read the [analytics tag]() created by the A/B test, which looks like this:
+To get reporting on the test results, analytics adapters will need to read the [analytics tag](/prebid-server/developers/module-atags.html) created by the A/B test, which looks like this:
 
 ```json5
 {
