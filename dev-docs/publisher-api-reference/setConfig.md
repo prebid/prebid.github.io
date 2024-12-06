@@ -1228,7 +1228,7 @@ pbjs.setConfig({
 
 We are validating the `ttl` property before rendering an ad. If the ad has exceeded its ttl value and the `suppressExpiredRender` property is enabled, the system will suppress the rendering of the expired ad.
 
-PBJS performs following actions when expired rendering is detected.
+PBJS performs the following actions when expired rendering is detected.
 
 * Log a warning in the browser console if pbjs_debug=true.
 * Emit a `EXPIRED_RENDER` event before `BID_WON` event.
