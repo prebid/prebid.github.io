@@ -3,7 +3,7 @@ layout: bidder
 title: Smile Wanted
 description: SmileWanted Bidder Adapter
 biddercode: smilewanted
-tcfeu_supported: false
+tcfeu_supported: true
 gvl_id: 639
 usp_supported: true
 coppa_supported: true
