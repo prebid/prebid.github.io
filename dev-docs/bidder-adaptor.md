@@ -284,6 +284,7 @@ Here is a sample array entry for `validBidRequests[]`:
   bidderRequestId: "15246a574e859f",
   bidRequestsCount: 1,
   bidderRequestsCount: 1,
+  auctionsCount: 1,
   bidderWinsCount: 0,
   userId: {...},
   userIdAsEid: {...},
@@ -304,6 +305,7 @@ Other notes:
 * **Transaction ID** (see [note](#tid-warning)) is unique for each ad unit within a call to `requestBids()`, but same across bidders. This is the ID that enables DSPs to recognize the same impression coming in from different supply sources.
 * **Bid Request Count** is the number of times `requestBids()` has been called for this ad unit.
 * **Bidder Request Count** is the number of times `requestBids()` has been called for this ad unit and bidder.
+* **Auctions Count** is the number of times `requestBids()` has been called for the this ad unit, without being counted multiple times within a single auction.
 * **userId** is where bidders can look for IDs offered by the various [User ID modules](/dev-docs/modules/userId.html#prebidjs-adapters).
 * **userIdAsEid** is the EID-formatted version of `userId`.
 * **ortb2** a copy of `bidderRequest.ortb2` (see below), provided here for convenience.
