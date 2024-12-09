@@ -7,6 +7,7 @@ media_types: display, video, native
 tcfeu_supported: true
 gvl_id: 45
 tcfeu_supported: true
+multiformat_supported: will-bid-on-any
 gpp_supported: true
 schain_supported: true
 usp_supported: true
