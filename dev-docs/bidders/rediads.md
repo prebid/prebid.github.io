@@ -38,6 +38,7 @@ The Rediads bidding adapter requires setup and approval before implementation. P
 | `slot`       | optional | Unique identifier for the ad slot generated on the platform.| `'54321'`      | `string`  |
 
 ### Supported Features
+
 - **Media Types:** `banner`, `video`, `native`
 - **Floors Supported:** Yes
 - **Deals Supported:** No
