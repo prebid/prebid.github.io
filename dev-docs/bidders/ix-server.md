@@ -243,8 +243,10 @@ To request bids from Index:
 Publishers who want to use the Protected Audience API with Prebid Server, must first set up their inventory to be eligible for Protected Audience API in Prebid.js. Prebid Server will automatically pass through the on-device auction signals received from Prebid.js to Index. To receive Protected Audience API auction demand from Index, contact your Index Representative.
 
 **Before you begin:** Depending on whether you are using the Prebid Server Go or Java code base and the Prebid.js version, you must make sure that you are using the appropriate Prebid Server version:
- * **For Prebid Server Go:** If you are using a Prebid.js version that is between 7.44.0 and 8.51.0, you must be using Prebid Server version 2.1.0 or later. For a Prebid.js version that is 8.52.0 or later, you must be using Prebid Server version 3.3.0 or later.
- * **For Prebid Server Java:** If you are using a Prebid.js version that is 7.44.0 or later, you must be using Prebid Server Java version 3.16.0 or later.
+
+* **For Prebid Server Go:** If you are using a Prebid.js version that is between 7.44.0 and 8.51.0, you must be using Prebid Server version 2.1.0 or later. For a Prebid.js version that is 8.52.0 or later, you must be using Prebid Server version 3.3.0 or later.
+* **For Prebid Server Java:** If you are using a Prebid.js version that is 7.44.0 or later, you must be using Prebid Server Java version 3.16.0 or later.
+
 1. Configure Prebid.js to send the `ae` field with a value of `1`. For more information on how to set up the Protected Audience API in Prebid.js, see the [Protected Audience API support](/dev-docs/bidders/ix.html#protected-audience-api-support) section in our Prebid.js documentation on the Prebid site.
 2. Prebid Server will now automatically pass through the `ae=1` field received from Prebid.js to Index. No other specific Prebid Server configuration is required.
 
