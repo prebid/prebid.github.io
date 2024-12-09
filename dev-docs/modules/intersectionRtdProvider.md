@@ -11,6 +11,7 @@ sidebarType : 1
 ---
 
 # Intersection Module
+
 {:.no_toc}
 
 * TOC
@@ -23,35 +24,36 @@ The Intersection module provides intersection for ad slots on the page using
 
 Implementation works like this:
 
- 1) Build the Intersection module into the Prebid.js package with:
+1. Build the Intersection module into the Prebid.js package with:
 
-```
-gulp build --modules=intersectionRtdProvider&...
-```
+    ```bash
+    gulp build --modules=intersectionRtdProvider&...
+    ```
 
-2) Use `setConfig` to instruct the browser to obtain the intersection data
+2. Use `setConfig` to instruct the browser to obtain the intersection data
 
 ## Configuration
 
 This module is configured as part of the `realTimeData.dataProviders` object:
 
-```
-    pbjs.setConfig({
-        "realTimeData": {
-            auctionDelay: 100,
-            dataProviders:[{          
-                "name": "intersection",
-                "waitForIt": true
-            }]
-        }
-    });
+```javascript
+pbjs.setConfig({
+    "realTimeData": {
+        auctionDelay: 100,
+        dataProviders:[{          
+            "name": "intersection",
+            "waitForIt": true
+        }]
+    }
+});
 ```
 
 ## Output
 
 For each bidder, the module adds intersection in a JSON format.
 Example:
-```
+
+```javascript
 {
   "intersection":{
     'boundingClientRect': {
@@ -72,4 +74,3 @@ Example:
   }
 }
 ```
-

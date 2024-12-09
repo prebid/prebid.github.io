@@ -3,25 +3,32 @@ layout: bidder
 title: Adserver.Online
 description: Prebid Adserver.Online Bidder Adapter
 biddercode: aso
-gdpr_supported: true
+tcfeu_supported: false
 usp_supported: true
-media_types: video
+media_types: video, native
 safeframes_ok: true
-deals_supported: false
 pbjs: true
-pbs: false
+pbs: true
+pbs_app_supported: true
 floors_supported: true
+schain_supported: true
+fpd_supported: true
+ortb_blocking_supported: true
+multiformat_supported: will-bid-on-one
+userIds: all
+sidebarType: 1
 ---
-### Note:
+### Note
 
-For more information about [Adserver.Online](https://adserver.online), please contact support@adsrv.org.
+For more information about [Adserver.Online](https://adserver.online), please contact <support@adsrv.org>.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description           | Example   | Type      |
-|---------------|----------|-----------------------|-----------|-----------|
-| `zone`        | required | Zone ID               | `73815`   | `integer` |
+| Name          | Scope    | Description             | Example                  | Type      |
+|---------------|----------|-------------------------|--------------------------|-----------|
+| `zone`        | required | Zone ID                 | `73815`                  | `Integer` |
+| `server`      | optional | Custom bidder endpoint  | `https://endpoint.url`   | `String`  |
 
 ### Test Parameters
 
@@ -50,7 +57,6 @@ Note that the Adserver.Online adapter expects a client-side Prebid Cache to be e
 
 ```js
 pbjs.setConfig({
-    usePrebidCache: true,
     cache: {
         url: 'https://prebid.adnxs.com/pbc/v1/cache'
     }

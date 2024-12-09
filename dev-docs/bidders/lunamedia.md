@@ -1,24 +1,25 @@
 ---
 layout: bidder
-title: Luna Media
-description: Prebid Luna Media Bidder Adapter
-pbjs: true
-pbs: true
+title: Lunamedia
+description: Lunamedia Bidder Adapter
 biddercode: lunamedia
-pbjs_version_notes: not in 5.x
+media_types: banner, video
+coppa_supported: true
+tcfeu_supported: false
+usp_supported: true
+prebid_member: false
+pbjs: false
+pbs: true
+schain_supported: true
+floors_supported: true
+multiformat_supported: will-bid-on-any
+sidebarType: 1
 ---
 
-### Note:
-For more information about Luna Media, please contact info@lunamedia.io
-
-### Bid Params
+### Prebid Server Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name             | Scope    | Description      | Example                                  | Type              |
-|------------------|----------|------------------|------------------------------------------|-------------------|
-| `placement  `    | required |                  | `'263'`                                  | `string`          |
-| `pubid`          | required |                  | `'0cf8d6d643e13d86a5b6374148a4afac'`     | `string`          |
-| `mimes`          | optional |  video only      | `['video/mp4', 'application/javascript']`| `array of strings`|
-| `playbackmethod` | optional |  video only      | `[2,6]`                                  | `array of numbers`|
-| `maxduration`    | optional |  video only      | `30`                                     | `number`          |
-| `skip`           | optional |  video only      | `0 or 1`                                 | `number`          |
+| Name        | Scope    | Description                                 | Example                            | Type      |
+|-------------|----------|---------------------------------------------|------------------------------------|-----------|
+| `pubid`     | required | An id used to identify LunaMedia publisher. | `'d2b5502f83b65719d29ed4fa86e411ea'` | `string`  |
+| `placement` | optional | A placement created on adserver.            | `'cs230510321b516f0eb9a10e5913d3b1'` | `string`  |

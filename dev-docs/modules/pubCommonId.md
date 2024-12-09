@@ -12,9 +12,10 @@ sidebarType : 1
 
 
 # Publisher Common ID Module
+
 {:.no_toc}
 
-This module stores an unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It's lightweight and self contained.  Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
+This module stores a unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It's lightweight and self contained.  Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
 
 ## Page integration
 
@@ -33,33 +34,32 @@ Add a pubcid object in the setConfig() call.
 
 Example: Changing ID expiration to 1 year
 
-{% highlight js %}
+```javascript
      var pbjs = pbjs || {};
      pbjs.que = pbjs.que || [];
      pbjs.que.push(function() {
         pbjs.setConfig({pubcid: {expInterval: 525600}});
         pbjs.addAdUnits(adUnits);
      });
-{% endhighlight %}
+```
 
 ### User Opt-Out
 
-Users must be allowed to opt out of targeted advertising. When implementing this module, you are required to place a link in your privacy policy or elsewhere on your website which allows the user to implement this opt-out. User opt-out is supported by setting the `_pubcid_optout` as a cookie in the publisher’s domain, or in local storage. When this flag is set, then Publisher Common ID is neither read nor updated, and it will not be made available to any adapters. The opt-out must also delete the Publisher Common ID value (shown in [example](../../examples/modules/pub_common_id_optout.html)).
+Users must be allowed to opt out of targeted advertising. When implementing this module, you are required to place a link in your privacy policy or elsewhere on your website which allows the user to implement this opt-out. User opt-out is supported by setting the `_pubcid_optout` as a cookie in the publisher’s domain, or in local storage. When this flag is set, then Publisher Common ID is neither read nor updated, and it will not be made available to any adapters. The opt-out must also delete the Publisher Common ID value.
 
 * Opt-In - `_pubcid_optout` flag is not present or set to 0
 * Opt-Out - `_pubcid_optout` flag is set to 1
 
-
 ### Build the package
- 
+
 #### Step 1: Bundle the module code
 
 Follow the basic build instructions on the GitHub repo's main README. To include the module, an additional option must be added to the the gulp build command:
- 
-{% highlight bash %}
+
+```bash
 gulp build --modules=pubCommonId,bidAdapter1,bidAdapter2
-{% endhighlight %}
- 
+```
+
 #### Step 2: Publish the package(s) to the CDN
 
 After testing, get your javascript file(s) out to your Content Delivery Network (CDN) as normal.
@@ -68,9 +68,9 @@ Note that there are more dynamic ways of combining these components for publishe
 
 ## Adapter integration
 
-Adapters should look for `bid.crumbs.pubcid` in buildRequests() method. 
+Adapters should look for `bid.crumbs.pubcid` in buildRequests() method.
 
-{% highlight js %}
+```javascript
 [
    {
       "bidder":"appnexus",
@@ -88,14 +88,11 @@ Adapters should look for `bid.crumbs.pubcid` in buildRequests() method.
       "auctionId":"a1a98ab2-97c9-4f42-970e-6e03040559f2"
    }
 ]
-{% endhighlight %}
-
+```
 
 ## Technical Details
 
-- The ID is UUID v4 and stored as a cookie and a local storage item called `_pubcid` in the page's domain.
-- This module hooks into the pbjs.requestBids() method.  When invoked, it retrieves the id from cookie and local storage, updates the expiration time, and decorates the adUnits objects.  A new id will be created if one doesn't exist already.  
-- The id stored as cookie takes precedence over local storage.
-- Beware that if prebid.js is included in an ad server frame, then the ID would have ad server domain instead.
-
-
+* The ID is UUID v4 and stored as a cookie and a local storage item called `_pubcid` in the page's domain.
+* This module hooks into the pbjs.requestBids() method.  When invoked, it retrieves the id from cookie and local storage, updates the expiration time, and decorates the adUnits objects.  A new id will be created if one doesn't exist already.  
+* The id stored as cookie takes precedence over local storage.
+* Beware that if prebid.js is included in an ad server frame, then the ID would have ad server domain instead.

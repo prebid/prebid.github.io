@@ -12,9 +12,10 @@ sidebarType : 1
 ---
 
 # Media.net Realtime Module
+
 {:.no_toc}
 
-* TOC 
+* TOC
 {:toc}
 
 ## Overview
@@ -25,8 +26,7 @@ The module currently provisions Media.net's Intelligent Refresh configured by th
 
 Intelligent Refresh (IR) module lets publisher refresh their ad inventory without affecting page experience of visitors through configured criteria. The module optionally provides tracking of refresh inventory and appropriate targeting in GAM. Publisher configured criteria is fetched via an external JS payload.
 
-{: .alert.alert-warning :}
-Disclosure: This module loads external code that is not open source and has not been reviewed by Prebid.org.
+{% include dev-docs/loads-external-javascript.md %}
 
 ## Configuration
 
@@ -35,11 +35,11 @@ This module is configured as part of the `realTimeData.dataProviders` object.
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                            | Example       | Type     |
 |------------|----------|----------------------------------------|---------------|----------|
-| `name `     | required | Real time data module name | `'medianet'`   | `string` |
+| `name`     | required | Real time data module name | `'medianet'`   | `string` |
 | `params`      | required |  | | `Object` |
 | `params.cid`      | required | The customer id is provided by Media.net. | `'8CUX0H51C'` | `string` |
 
-#### Basic Example
+### Basic Example
 
 ```javascript
 pbjs.setConfig({
@@ -89,15 +89,16 @@ var targeting = {
 ```
 
 ## Integration
+
 To install the module, follow these instructions:
 
-#### Step 1: Prepare the base Prebid file
+### Step 1: Prepare the base Prebid file
 
-- Option 1: Use Prebid [Download](/download.html) page to build the prebid package. Ensure that you do check *Media.net Realtime Module* module
+* Option 1: Use Prebid [Download](/download.html) page to build the prebid package. Ensure that you do check *Media.net Realtime Module* module
 
-- Option 2: From the command line, run `gulp build --modules=medianetRtdProvider,...`
+* Option 2: From the command line, run `gulp build --modules=medianetRtdProvider,...`
 
-#### Step 2: Set configuration
+### Step 2: Set configuration
 
 Enable Media.net Real Time Module using `pbjs.setConfig`
 
@@ -113,4 +114,3 @@ pbjs.setConfig({
     }
 });
 ```
-
