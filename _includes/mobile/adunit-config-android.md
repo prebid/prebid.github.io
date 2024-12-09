@@ -4,7 +4,7 @@ Each ad unit in the Original API is a subclass of the `AdUnit` class, which prov
 
 (requires SDK v2.4.0)
 
-Prebid SDK allows the customization of the OpenRTB request on the global level using `setImpORTBConfig()` function: 
+Prebid SDK allows the customization of the OpenRTB request on the impression level using the `setImpORTBConfig()` function: 
 
 ``` kotlin
 adUnit.setImpOrtbConfig(
@@ -19,7 +19,7 @@ adUnit.setImpOrtbConfig(
  
 The parameter passed to `setImpOrtbConfig()` will be merged into the respective `imp` object for this Ad Unit. For instance, the above example will add the `$.imp[0].bidfloor` and `$.imp[0].banner.battr` parameters to the bid request.  
 
-To invalidate the impression config, just set it to the empty string: 
+To empty out a previously provided impression config, just set it to the empty string: 
 
 ``` swift
 adUnit.setImpOrtbConfig("")
