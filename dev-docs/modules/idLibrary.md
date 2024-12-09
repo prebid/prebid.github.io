@@ -26,8 +26,9 @@ The module attempts to extract a persistant identifier in the following ways:
 
 To get started, add the module to your Prebid.js wrapper. From the command line:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=idImportLibrary
+```
 
 ## Application Flow
 
@@ -45,6 +46,7 @@ In the idLibrary module, the persistant id is fetched from the page and synced w
 ## Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param  | Required | Description |
 | --- | --- | --- |
 | url | yes | The url endpoint is used to post the MD5 hasheds|

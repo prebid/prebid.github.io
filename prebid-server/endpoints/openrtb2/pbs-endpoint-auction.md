@@ -404,6 +404,15 @@ Bid adapters do not need to read this data from ext.prebid. PBS will merge the a
 
 ##### Bid Adjustments
 
+There are two ways PBS can be instructed to adjust bids:
+
+1. The original `bidadjustmentfactors` approach is simpler and allows for percentage-based adjustments based on bidder and mediatype.
+2. The more powerful `bidadjustments` feature allows for percentage, absolute, and static adjustments based on bidder, mediatype and deal IDs.
+
+If both `bidadjustments` and `bidadjustmentfactors` are specified, the bidadjustments (newer approach) takes precedence.
+
+###### Original Bid Adjustment Factors
+
 Bidders are encouraged to make Net bids. However, there's no way for Prebid to enforce this.
 If you find that some bidders use Gross bids, publishers can adjust for it with `request.ext.prebid.bidadjustmentfactors`:
 
@@ -449,6 +458,113 @@ It's also possible to define different bid adjustment factors by mediatype, whic
 ```
 
 Note that video-outstream is defined to be imp[].video requests where imp[].video.placement is greater than 1.
+
+###### Flexible Bid Adjustments
+
+A more powerful approach to adjusting bid values can be specifed on the request or in account config. Here's the general format:
+
+```json5
+{
+  "ext": {
+    "prebid": {
+      "bidadjustments": {
+        "mediatype": {
+           MEDIATYPE: {
+             BIDDER: {
+               DEAL: [ {"adjtype": ADJTYPE, "value": ADJVALUE, "currency": CURRENCY} ]
+             }
+           }
+         }
+       }
+    }
+  }
+}
+```
+
+Where:
+
+- MEDIATYPE can be 'banner', 'video-instream', 'video-oustream', 'native', 'audio', or a wildcard (*)
+- BIDDER can be a biddercode or a wildcard (*)
+- DEAL can be a dealID or a wildcard (*)
+- ADJTYPE can be 'multiplier', 'cpm' or 'static'
+- ADJVALUE is a float value. See the table below for more details.
+- CURRENCY is a 3 character currency code, e.g. "EUR". This is required for some ADJTYPEs.
+
+Note that the specific adjustments are after the deal level and are an array of adjustments. Most commonly there will be only one entry in the array, but allowing it to have multiple entries can meet some advanced adjustment use cases. The next couple of sections provide detail on the input values.
+
+**MediaType**
+
+{: .table .table-bordered .table-striped }
+| MediaType | Definition | Notes |
+| --- | --- | --- |
+| banner | The response type is format=banner | |
+| video-instream | The response type is format=video the request imp.video.placement=1 or imp.video.plcmt=1 | |
+| video-outstream | The response type is format=video the request imp.video.placement>1 or imp.video.plcmt>1 | |
+| native | The response type is format=native | |
+| audio | The response type is format=audio | |
+| * | The remaining mediatypes | The wildcard is always used as a default value. i.e. if adjustments are defined for an explicit mediatype, that will take precedence. |
+
+**Adjustment Types and Values**
+
+{: .table .table-bordered .table-striped }
+| Adjustment Type | Definition | Values | Notes |
+| --- | --- | --- | --- |
+| multiplier | multiply the bid price by the value | float between 0 and MAXINT | currency doesn't matter in this scenario |
+| cpm | subtract the value from the bid price after adjusting for currency | float between 0 and MAXINT | currency must be specified |
+| static | ignore the actual bid value and override it with the specified value and currency | float between 0 and MAXINT | currency must be specified |
+
+**Notes**
+
+- In all cases, the 'value' is required.
+- Any validation failure will skip the whole bid adjustment operation
+- The system will attempt to merge request-level and account-level bid adjustments. If this fails it will try to use only the account bid adjustments.
+- If there's a validation error, a debug message will be added and a sample will be logged to the PBS log file.
+
+**Example**
+
+Here's an example showing a couple of use cases:
+
+```json5
+{
+  "ext": {
+    "prebid": {
+      "bidadjustments": {
+          "mediatype": {
+              "banner": {
+                  // decrement banner bids from bidderA by 10%
+                  "bidderA": {
+                      "*" : [ {"adjtype": "multiplier", "value": 0.9} ]
+                  },
+                  "*": {  // wildcard bidder only matches if there isn't a more direct match
+                      // bids on deal 111111 are always exactly $3.00
+                      "111111": [{
+                          "adjtype": "static", "value": 3.00, "currency": "USD"
+                      }],
+                      // otherwise, always decrement banner bids by $0.10
+                      "*": [{
+                            "adjtype": "cpm", "value": 0.1, "currency": "USD"
+                      }]
+                  }
+              },
+              "video-instream": {
+                  // for video bids, take 80% of the bid value and add $0.18.
+                  "*": { // all bidders
+                     "*": [{ // all deals
+                         "adjtype": "multiplier", "value": 0.80
+                     }, {
+                         "adjtype": "cpm", "value": 0.18, "currency": "USD"
+                     }]
+                  }
+              }
+          }
+       }
+    }
+  }
+}
+```
+
+{: .alert.alert-info :}
+Note that these bidadjustments can also be specified in the PBS account config in `auction.bidadjustments`
 
 ##### Targeting
 

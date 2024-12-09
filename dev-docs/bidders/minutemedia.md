@@ -28,6 +28,7 @@ The MinuteMedia adapter requires setup and approval. Please reach out to <hb@min
 #### Banner ,Video
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  MinuteMedia publisher Id provided by your MinuteMedia representative  | "1234567890abcdef12345678"
@@ -35,7 +36,7 @@ The MinuteMedia adapter requires setup and approval. Please reach out to <hb@min
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 
-## Example
+### Example
 
 ```javascript
 var adUnits = [{
