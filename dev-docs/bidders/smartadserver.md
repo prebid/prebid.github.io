@@ -17,8 +17,11 @@ safeframes_ok: true
 userIds: all
 pbjs: true
 pbs: true
+pbs_app_supported: true
+prebid_member: false
 floors_supported: true
-ortb_blocking_supported: partial
+ortb_blocking_supported: true
+aliasCode: equativ
 sidebarType: 1
 ---
 
