@@ -10,9 +10,13 @@ tcfeu_supported: true
 multiformat_supported: will-bid-on-any
 coppa_supported: true
 gpp_supported: true
+gpp_sids: tcfca, tcfeu, usnat, usstate_all, usp
 schain_supported: true
+dchain_supported: false
 usp_supported: true
 fpd_supported: true
+dsa_supported: true
+deals_supported: true
 safeframes_ok: true
 userIds: all
 pbjs: true
@@ -22,6 +26,7 @@ prebid_member: false
 floors_supported: true
 ortb_blocking_supported: true
 aliasCode: equativ
+privacy_sandbox: no
 sidebarType: 1
 ---
 
@@ -66,6 +71,7 @@ The Smart AdServer bidder adapter requires setup and approval from the Equativ (
 |---|---|
 | `banner` | Supported |
 | `video`  | Supported |
+| `audio`  | Supported |
 | `native` | Not currently supported |
 
 ### Supported Media Types (Prebid Server)
@@ -75,7 +81,11 @@ The Smart AdServer bidder adapter requires setup and approval from the Equativ (
 |------|-------|
 | `banner` | Supported |
 | `video`  | Supported |
+| `audio`  | Supported |
 | `native` | Supported |
+
+### Coppa support
+Coppa is supported by our prebid server adapter but not by our prebid.js adapter.
 
 ### Examples
 
@@ -117,10 +127,10 @@ With site/page/format:
     },
     "ext": {
       "smartadserver": {
-                            "networkId": 73
-                            "siteId": 1,
-                            "pageId": 2,
-                            "formatId": 3
+        "networkId": 73,
+        "siteId": 1,
+        "pageId": 2,
+        "formatId": 3
       }
     }
   }]
