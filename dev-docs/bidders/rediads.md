@@ -36,12 +36,12 @@ sidebarType: 1
 
 ### Enabling Test Bids
 
-To enable test bids for the Rediads Bidder Adapter, append rediads-test-bid to the hash of the page URL.
+To enable test bids for the Rediads Bidder Adapter, append rediads-test-bids to the hash of the page URL.
 
 For example:
 
-- *Localhost:* [http://localhost:8000/xyz#rediads-test-bid](http://localhost:8000/xyz#rediads-test-bid)
-- *Production URL:* [https://domain.com/page#rediads-test-bid](https://domain.com/page#rediads-test-bid)
+- *Localhost:* [http://localhost:8000/xyz#rediads-test-bid](http://localhost:8000/xyz#rediads-test-bids)
+- *Production URL:* [https://domain.com/page#rediads-test-bid](https://domain.com/page#rediads-test-bids)
 
 This will activate test bids for debugging and validation purposes.
 
