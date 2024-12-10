@@ -68,8 +68,8 @@ To enable test bids for the Rediads Bidder Adapter, append rediads-test-bid to t
 
 For example:
 
-- *Localhost:* http://localhost:8000/xyz#rediads-test-bid
-- *Production URL:* https://domain.com/page#rediads-test-bid
+- *Localhost:* [http://localhost:8000/xyz#rediads-test-bid](http://localhost:8000/xyz#rediads-test-bid)
+- *Production URL:* [https://domain.com/page#rediads-test-bid](https://domain.com/page#rediads-test-bid)
 
 This will activate test bids for debugging and validation purposes.
 
