@@ -28,7 +28,6 @@ AdTarget Teknoloji header bidding adapter connects with AdTarget Teknoloji deman
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-
 | Name        | Scope    | Description                         | Example  | Type     |
 |-------------|----------|-------------------------------------|----------|----------|
 | `networkId` | required | The network ID from AdTarget Teknoloji | `12345` | `number` |
