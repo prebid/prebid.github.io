@@ -237,6 +237,10 @@ func rewardedAdDidReceiveAd(_ rewardedAd: RewardedAdUnit) {
 }
 ```
 
+## Additional Ad Unit Configuration
+
+{% include mobile/rendering-adunit-config-ios.md %}
+
 ## Further Reading
 
 - [Prebid Mobile Overview](/prebid-mobile/prebid-mobile)
