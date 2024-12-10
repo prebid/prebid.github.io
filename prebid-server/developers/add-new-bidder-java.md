@@ -11,7 +11,7 @@ title: Prebid Server | Developers | Adding a New Bidder
 - TOC
 {:toc }
 
-Thank you for your valuable contribution of a bid adapter to the open source Prebid Server project. Each new adapter expands the monetization possibilities for publishers and provides greater options to maximize their inventory's potential. We truly appreciate your support in making this ecosystem thrive!
+Thank you for your contribution of a bid adapter to the open source Prebid Server project. Each new adapter expands the monetization possibilities for publishers and provides greater options to maximize their inventory's potential. We appreciate your support in making this ecosystem thrive!
 
 This document guides you through the process of developing a new bid adapter for your bidding server. We encourage you to look at [existing bid adapters](https://github.com/prebid/prebid-server-java/tree/master/src/main/java/org/prebid/server/bidder) for working examples and practical guidance. You can ask us questions by [submitting a GitHub issue](https://github.com/prebid/prebid-server-java/issues/new).
 
@@ -267,7 +267,7 @@ Publishers will provide extra information using an OpenRTB 2.x Bid Request Exten
 We request that you do not duplicate information that is already present in the [OpenRTB 2.x request](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md)  or is already part of an established Prebid convention. For example, your bidder parameters should not include first party data, bid floors, schain, video parameters, referrer information, or privacy consent including COPPA, CCPA, and GDPR TCF. For video parameters in particular, you must prefer the OpenRTB 2.x Bid Request standard of `request.imp[].video`.
 
 {: .alert.alert-warning :}
-**ENDPOINT NOTE:** You may not try so set the full endpoint domain from a publisher-specified bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a *portion* of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may choose to disable your adapter if it uses a dynamically configured domain.
+You may not try to set the full endpoint domain from a publisher-specified bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a *portion* of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may choose to disable your adapter if it uses a dynamically configured domain.
 
 Create a file with the path `static/bidder-params/{bidder}.json` using [JSON Schema](https://json-schema.org/understanding-json-schema/) to define your bidder parameters. Prebid Server requires this file for every adapter, even if yours doesn't require bidder parameters (see the 'no parameters' example at the end of this section).
 
@@ -428,11 +428,11 @@ Please follow [Java standard naming convention](https://www.oracle.com/java/tech
 
 Now it's time to write your bid adapter code.
 
-Each adapter has its own directory (a 'package' in java parlance) for all code and tests associated with translating an OpenRTB 2.x Bid Request to your bidding server's protocol and mapping your server's response to an OpenRTB 2.x Bid Response. The use of separate packages provide each adapter with its own naming scope to avoid conflicts and gives the freedom to organize files as you best see fit (although we make suggestions in this guide).
+Each adapter has its own directory (a 'package' in java parlance) for all code and tests associated with translating an OpenRTB 2.x Bid Request to your bidding server's protocol and mapping your server's response to an OpenRTB 2.x Bid Response. The use of separate packages provides each adapter with its own naming scope to avoid conflicts and gives the freedom to organize files as you best see fit (although we make suggestions in this guide).
 
 Create a file with the path `org.prebid.server.bidder.{bidder}/{bidder}Bidder.java`. Your bid adapter code will need to implement Bidder<T> interface where `T` is a model which will represent HttpRequest body.
 
-- The `Bidder<T>` interface consisting of the `MakeHttpRequests` method to create outgoing requests to your bidding server and the `MakeBids` method to create bid responses.
+- The `Bidder<T>` interface consists of the `MakeHttpRequests` method to create outgoing requests to your bidding server and the `MakeBids` method to create bid responses.
 
 Here is a reference implementation for a bidding server which uses the OpenRTB 2.x protocol:
 
