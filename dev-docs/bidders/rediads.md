@@ -23,34 +23,6 @@ multiformat_supported: will-bid-on-one
 sidebarType: 1
 ---
 
-## Features
-
-| Attribute                  | Value                     |
-|----------------------------|---------------------------|
-| *Bidder Code*            | rediads                  |
-| *Prebid.org Member*      | no                        |
-| *Prebid.js Adapter*      | yes                       |
-| *Prebid Server Adapter*  | no                        |
-| *Media Types*            | banner, video, native     |
-| *Multi Format Support*   | will-bid-on-one           |
-| *TCF-EU Support*         | yes                       |
-| *IAB GVL ID*             | none                      |
-| *GPP Support*            | no                        |
-| *USP/CCPA Support*       | yes                       |
-| *COPPA Support*          | no                        |
-| *Supply Chain Support*   | yes                       |
-| *Demand Chain Support*   | no                        |
-| *Safeframes OK*          | no                        |
-| *Supports Deals*         | no                        |
-| *Floors Module Support*  | yes                       |
-| *First Party Data Support* | yes                     |
-| *User IDs*               | none                      |
-| *ORTB Blocking Support*  | partial (bcat only)       |
-| *Privacy Sandbox*        | no                        |
-| *Prebid Server App Support* | no                     |
-
----
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -100,3 +72,14 @@ var adUnits = [
     ]
   }
 ];
+```
+
+### First Party Data Support
+The following fields are supported for First Party Data (FPD):
+
+- `ortb2.site.*`
+- `ortb2.publisher.*`
+- `ortb2.content.*`
+- `ortb2.devices.locations parameters`
+
+For additional implementation or support, contact us at <support@rediads.com>.
