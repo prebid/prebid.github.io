@@ -10,6 +10,15 @@ enable_download: true
 gvl_id: 1189
 sidebarType: 1
 safeframes_ok: false
+multiformat_supported: will-bid-on-one
+deals_supported: false
+floors_supported: false
+fpd_supported: false
+ortb_blocking_supported: false
+privacy_sandbox: no
+prebid_member: false
+schain_supported: false
+dchain_supported: false
 ---
 
 ### Note
