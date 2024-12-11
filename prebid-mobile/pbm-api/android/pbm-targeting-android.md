@@ -773,10 +773,22 @@ TargetingParams.setGlobalOrtbConfig("")
 
 The `TargetingParams.setGlobalOrtbConfig()` also allows to **add** impression objects to the request. All objects in the `$.imp[]` array will be added to the request. Note that Ad Unit's `imp` object won't be changed using Global Config. To change the `imp` config, use the `setImpORTBConfig()` method of a particular Ad Unit. See the Ad Unit documentation for the details. 
 
-Pay attention that there are certain protected fields such as `regs`, `device`, `geo`, `ext.gdpr`, `ext.us_privacy`, and `ext.consent` which cannot be changed using the `setImpORTBConfig()` method.
+Pay attention that there are certain protected fields such as `regs`, `device`, `geo`, `ext.gdpr`, `ext.us_privacy`, and `ext.consent` which cannot be changed using the `setGlobalOrtbConfig()` method.
 
 - App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)
 - See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
+
+### Deprecated 
+{:.no_toc}
+
+The Prebid Mobile SDK v2.2.1 contains the deprecated method to set the impression level RTB config: 
+
+``` swift
+//ad unit / impression-level
+adUnit.setOrtbConfig("{\"ext\":{\"gpid\":\"abc123"}}\")
+```
+
+This method has implementation issues and was deprecated in v2.4.0. If you use this method, we strongly recommend migrating to the new `setImpORTBConfig()` method since this one will be removed entirely in SDK version 3.0.
 
 ## Further Reading
 
