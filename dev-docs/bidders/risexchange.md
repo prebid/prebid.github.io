@@ -5,7 +5,7 @@ description: Prebid RiseXChange Bidder Adapter
 multiformat_supported: will-bid-on-any
 pbjs: true
 biddercode: risexchange
-media_types: banner, video
+media_types: banner, video, native
 schain_supported: true
 coppa_supported: true
 pbs: false
@@ -25,7 +25,7 @@ The RiseXChange adapter requires setup and approval. Please reach out to [prebid
 
 ### Bid Parameters
 
-#### Banner, Video
+#### Banner, Video, Native
 
 {: .table .table-bordered .table-striped }
 
@@ -95,5 +95,10 @@ We recommend setting UserSync by iframe for monetization.
 
 ### Versions
 
-Prebid versions 5.0-5.3 are not supported
-Banner >= 6.14.0
+Prebid versions 5.0-5.3 are not supported.
+
+Banner >= 6.14.0.
+
+Native >= 9.23.0.
+
+Multi-format requests >= 9.23.0

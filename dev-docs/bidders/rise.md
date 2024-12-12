@@ -5,7 +5,7 @@ description: Prebid Rise Bidder Adapter
 multiformat_supported: will-bid-on-any
 pbjs: true
 biddercode: rise
-media_types: banner, video
+media_types: banner, video, native
 schain_supported: true
 coppa_supported: true
 pbs: true
@@ -26,7 +26,7 @@ The Rise adapter requires setup and approval. Please reach out to [prebid-rise-e
 
 ### Bid Parameters
 
-#### Banner, Video
+#### Banner, Video, Native
 
 {: .table .table-bordered .table-striped }
 
@@ -96,5 +96,10 @@ Rise recommends setting UserSync by iframe for monetization.
 
 ### Versions
 
-Prebid versions 5.0-5.3 are not supported
-Banner >= 6.14.0
+Prebid versions 5.0-5.3 are not supported.
+
+Banner >= 6.14.0.
+
+Native >= 9.23.0.
+
+Multi-format requests >= 9.23.0

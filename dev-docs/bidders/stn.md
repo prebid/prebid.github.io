@@ -4,7 +4,7 @@ title: STN
 description: Prebid STN Bidder Adapter
 pbjs: true
 biddercode: stn
-media_types: banner, video
+media_types: banner, video, native
 multiformat_supported: will-bid-on-any
 schain_supported: true
 tcfeu_supported: false
@@ -24,7 +24,7 @@ The STN adapter requires setup and approval. Please reach out to <hb@stnvideo.co
 
 ### Bid Parameters
 
-#### Banner ,Video
+#### Banner, Video, Native
 
 {: .table .table-bordered .table-striped }
 
@@ -87,3 +87,13 @@ var adUnits = [{
 ### Configuration
 
 STN recommends setting UserSync by iframe for monetization.
+
+### Versions
+
+Prebid versions 5.0-5.3 are not supported.
+
+Banner >= 6.14.0.
+
+Native >= 9.23.0.
+
+Multi-format requests >= 9.23.0
