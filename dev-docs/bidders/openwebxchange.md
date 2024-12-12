@@ -33,9 +33,6 @@ The OpenWebXChange adapter requires setup and approval.
 | `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
-| `rtbDomain` | optional | String |  Sets the seller end point    | "www.test.com"
-| `is_wrapper` | private | Boolean |  Please don't use unless your account manager asked you to    | false
-| `currency` | optional | String | 3 letters currency | "EUR"
 
 ### Example
 
