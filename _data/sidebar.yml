@@ -491,6 +491,14 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: User ID Modules
+  link: /dev-docs/modules/index.html#user-id-modules
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: External Interfaces
   link:
   isHeader: 1
