@@ -12,7 +12,6 @@ media_types: banner
 pbjs: true
 pbs_app_supported: true
 sidebarType: 1
-
 multiformat_supported: will-bid-on-any
 safeframes_ok: false
 deals_supported: false
@@ -50,7 +49,7 @@ Propertis like :
 
 ### Example Ad-Units
 
-## Banner
+#### Banner
 
 ```javascript
     var adUnits = [{
