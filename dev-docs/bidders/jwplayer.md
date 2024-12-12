@@ -23,7 +23,7 @@ sidebarType: 1
 
 <a id="table-of-contents"></a>
 
-## Table of contents
+### Table of contents
 
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
@@ -36,7 +36,7 @@ sidebarType: 1
 
 <a id="introduction"></a>
 
-## Introduction
+### Introduction
 
 The JW Player Bid Adapter allows publishers to tap into JW Player's Video Advertising Demand.
 Publishers are not required to use JW Player as a video player.
@@ -44,11 +44,11 @@ Instream and outstream video ads are supported.
 
 <a id="modules-to-include-in-your-build-process"></a>
 
-## Modules to include in your build process
+### Modules to include in your build process
 
 You will need to include the `jwplayerBidAdapter` in your build. If you are building the JS binary on your own from source code, follow the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). 
-We recommend including the [jwplayerVideoProvider](dev-docs/modules/jwplayerVideoProvider.md) to connect Prebid.js to your JW Player instance via the [Prebid Video Module](prebid-video/video-module.md). 
-If you are not using the JW Player Video Provider, we suggest including the JW Player Real Time Data Provider [jwplayerRtdProvider](dev-docs/modules/jwplayerRtdProvider.md) in order to include JW Player's contextual ad targeting segments in your bid requests. 
+We recommend including the [jwplayerVideoProvider](/dev-docs/modules/jwplayerVideoProvider.html) to connect Prebid.js to your JW Player instance via the [Prebid Video Module](/dev-docs/modules/video.html). 
+If you are not using the JW Player Video Provider, we suggest including the JW Player Real Time Data Provider [jwplayerRtdProvider](/dev-docs/modules/jwplayerRtdProvider.html) in order to include JW Player's contextual ad targeting segments in your bid requests. 
 
 The following is an example build command that include these modules: <br />
 `gulp build --modules=jwplayerBidAdapter,jwplayerVideoProvider`<br />
@@ -75,7 +75,7 @@ or
 
 <a id="bid-request-parameters"></a>
 
-## Bid Params
+### Bid Params
 
 We support all oRTB params and encourage populating as many as possible.
 
@@ -86,6 +86,7 @@ We support all oRTB params and encourage populating as many as possible.
 You must include the following parameters at the bidder level, in `adUnit.bids[index].params`.
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description                                          |
 |---|---|---|------------------------------------------------------|
 | `siteId` | Required | String | Site-specific id that is provided by JW Player.      |
@@ -96,9 +97,10 @@ You must include the following parameters at the bidder level, in `adUnit.bids[i
 
 ### mediaTypes.video
 
-We recommend populating as many params as possible in `adUnit.mediaTypes.video`. When using the [jwplayerVideoProvider](dev-docs/modules/jwplayerVideoProvider.md), these fields are populated automatically. 
+We recommend populating as many params as possible in `adUnit.mediaTypes.video`. When using the [jwplayerVideoProvider](/dev-docs/modules/jwplayerVideoProvider.html), these fields are populated automatically. 
 
 {: .table .table-bordered .table-striped }
+
 | Name               | Scope       | Type    | Description                                                                                                                                                                                                                                                                                                             |
 |--------------------|-------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `video.w`          | Recommended | Integer | Populated automatically when using the `jwplayerVideoProvider`. The width of the video player in pixels that will be passed to demand partners. You must define the size of the video player using the `video.w` and `video.h` parameters.                                                                              |
@@ -109,10 +111,11 @@ We recommend populating as many params as possible in `adUnit.mediaTypes.video`.
 
 ### First Party Data (FPD)
 
-In release 4.30 and later, publishers who are not using the [jwplayerVideoProvider](dev-docs/modules/jwplayerVideoProvider.md) or [jwplayerRtdProvider](dev-docs/modules/jwplayerRtdProvider.md) can use the ortb2 method of setting First Party Data. 
+In release 4.30 and later, publishers who are not using the [jwplayerVideoProvider](/dev-docs/modules/jwplayerVideoProvider.html) or [jwplayerRtdProvider](/dev-docs/modules/jwplayerRtdProvider.html) can use the ortb2 method of setting First Party Data. 
 The following fields are required:
 
 {: .table .table-bordered .table-striped }
+
 | Name               | Scope       | Type    | Description                                                                                                                                                                                                                                                                                                             |
 |--------------------|-------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `site.content.url` | Required    | string  | Populated automatically when the `jwplayerVideoProvider` or `jwplayerRtdProvider` are included. This is the URL of the media being rendered in the video player, for buy-side contextualization or review. This needs to be accessible (w/o DRM, Geo-blocking etc.) and without parameters (Such as size, quality etc.) |
@@ -135,7 +138,7 @@ pbjs.setConfig({
 
 <a id="examples"></a>
 
-## Examples
+### Examples
 
 ### With the JW Player Video Provider
 

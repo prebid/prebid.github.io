@@ -3,6 +3,9 @@ layout: userid
 title: Lotame Panorama ID
 description: Lotame Panorama ID User ID sub-module
 useridmodule: lotamePanoramaIdSystem
+bidRequestUserId: lotamePanoramaId
+eidsource: crwdcntrl.net
+example: '"e4b9..."'
 ---
 
 
@@ -16,8 +19,9 @@ If you have any questions about Panorama ID, please reach out by emailing [prebi
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=lotamePanoramaIdSystem
+```
 
 ## Lotame Panorama ID Registration & Implementation
 
@@ -28,6 +32,7 @@ Once you sign up, you will receive an email with your client ID and instructions
 ## Lotame Panorama ID Example
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of the module | "lotamePanoramaId" |

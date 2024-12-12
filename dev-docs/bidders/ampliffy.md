@@ -12,7 +12,7 @@ multiformat_supported: will-bid-on-one
 safeframes_ok: true
 ---
 
-## Table of contents
+### Table of contents
 
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
@@ -23,13 +23,13 @@ safeframes_ok: true
   * [Video](#video)
 * [Examples](#examples)
 
-## Introduction
+### Introduction
 
 Publishers can use Prebid.js to call Ampliffy through our client-side adapter: Prebid.js calls ampliffy directly from the browser using our client-side adapter. For configuration instructions, see the below on this page.
 
 ### Example
 
-## Supported media types
+### Supported media types
 
 The following table lists the media types that Ampliffy supports.
 
@@ -41,7 +41,7 @@ The following table lists the media types that Ampliffy supports.
 | video  |
 | native |
 
-## Modules to include in your build process
+### Modules to include in your build process
 
 If you are building the JS binary on your own from source code, follow the instructions in [Prebid.js project README](https://github.com/prebid/Prebid.js/blob/master/README.md#build-optimization). You will need to include the `ampliffyBidAdapter`. To show video ads with Google Ad Manager, you need to include the `dfpAdServerVideo` module. We highly recommend adding the `gptPreAuction` module as well, which improves a DSP's ability to bid accurately on your supply. The following is an example build command that include these modules: <br />
 `gulp build --modules=ampliffyBidAdapter,dfpAdServerVideo,gptPreAuction`
@@ -56,7 +56,7 @@ If you are using a JSON file to specify modules, add `ampliffyBidAdapter` and `d
 ]
 ```
 
-## Bid request parameters
+### Bid request parameters
 
 ### Banner
 
@@ -82,7 +82,7 @@ You must include these parameters at the bidder level.
 | `format` | Required | String | specify 'video' for this kind of inventory`                                                                                                                                                                                                                                                                                                                                                                                    |
 | `server` | Optional | String | An Ampliffy-specific identifier that is associated with this ad unit`                                                                                                                                                                                                                                                                                                                                                          |
 
-## Examples
+### Examples
 
 **Video (instream):** <br />
 

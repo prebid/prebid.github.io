@@ -3,6 +3,9 @@ layout: userid
 title: UtiqMtp ID
 description: UtiqMtp User ID sub-module
 useridmodule: utiqMtpIdSystem
+bidRequestUserId: utiqMtpId
+eidsource: utiq-mtp.com
+example: '"1111"'
 ---
 
 Utiq generates unique tokens, enabling improved efficiency in programmatic advertising while safeguarding transparency and control for end customers via `consenthub.utiq.com`. A website visitor’s Utiq ID is generated based on network identifiers provided by network operators and requires explicit user consent.
@@ -21,6 +24,7 @@ If you are interested in using Utiq on your website, please contact Utiq on <htt
 ## UtiqMtp ID configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of the module | `"utiqMtpId"` |

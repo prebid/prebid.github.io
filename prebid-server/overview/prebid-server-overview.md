@@ -42,7 +42,7 @@ Further Reading:
 
 ## Where to Run Prebid Server
 
-Unlike Prebid.js, Prebid Server is a server. It needs somewhere to run, and that somewhere ought to be scaleable, distributed, and fast.
+Unlike Prebid.js, Prebid Server is a server. It needs somewhere to run, and that somewhere ought to be scalable, distributed, and fast.
 
 ### Hosted
 

@@ -227,7 +227,7 @@
 
 - sbSecId: 1
   title: Native Ads
-  link: /formats/native.html
+  link: /dev-docs/examples/native-ad-example.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -491,6 +491,14 @@
   subgroup: 5
 
 - sbSecId: 1
+  title: User ID Modules
+  link: /dev-docs/modules/index.html#user-id-modules
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
   title: External Interfaces
   link:
   isHeader: 1
@@ -727,7 +735,7 @@
   subgroup: 2
   
 - sbSecId: 2
-  title: GAM Original Integration
+  title: GAM Bidding-Only Integration
   link: /prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html
   isHeader: 0
   isSectionHeader: 0
@@ -735,8 +743,8 @@
   subgroup: 2
   
 - sbSecId: 2
-  title: Custom or No mediation
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
+  title: GAM Prebid-Rendered Integration
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-gam.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -759,8 +767,8 @@
   subgroup: 2
   
 - sbSecId: 2
-  title: GAM Rendering Integration
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-gam.html
+  title: Custom Integration
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -777,6 +785,14 @@
 - sbSecId: 2
   title: Prebid Utility Functions
   link: /prebid-mobile/pbm-api/ios/pbm-util-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: Prebid Plugin Renderer
+  link: /prebid-mobile/pbm-api/ios/pbm-plugin-renderer.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -801,14 +817,14 @@
 
 - sbSecId: 2
   title: Global Parameters
-  link: /prebid-mobile/pbm-api/android/pbm-targeting-params-android.html
+  link: /prebid-mobile/pbm-api/android/pbm-targeting-android.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
   
 - sbSecId: 2
-  title: GAM Original Integration
+  title: GAM Bidding-Only Integration
   link: /prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html
   isHeader: 0
   isSectionHeader: 0
@@ -816,8 +832,8 @@
   subgroup: 3
   
 - sbSecId: 2
-  title: Custom or No mediation
-  link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
+  title: GAM Prebid-Rendered Integration
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-gam.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -840,8 +856,8 @@
   subgroup: 3
   
 - sbSecId: 2
-  title: GAM Rendering Integration
-  link: /prebid-mobile/modules/rendering/android-sdk-integration-gam.html
+  title: Custom Integration
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -967,6 +983,14 @@
   subgroup: 1
 
 - sbSecId: 3
+  title: 'Prebid Mobile AdOps'
+  link: /adops/mobile-adops.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
   title: "Ad Ops Information"
   link:
   isHeader: 0
@@ -1034,7 +1058,7 @@
   subgroup: 2
 
 - sbSecId: 3
-  title: 'Creative Setup: Banner/Outstream/AMP'
+  title: 'Creative Setup: Banner/In-Renderer/AMP'
   link: /adops/gam-creative-banner-sbs.html
   isHeader: 0
   isSectionHeader: 0
@@ -1058,7 +1082,7 @@
   subgroup: 2
 
 - sbSecId: 3
-  title: "Setting up Order for Mobile Rendering API"
+  title: "Mobile: Setting up GAM for Prebid-Rendered"
   link: /adops/mobile-rendering-gam-line-item-setup.html
   isHeader: 0
   isSectionHeader: 0
@@ -1487,6 +1511,14 @@
   subgroup: 3
 
 - sbSecId: 5
+  title: Prebid Cache Storage
+  link: /prebid-server/features/pbs-pbc-storage.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 5
   title: Developers
   link:
   isHeader: 1
@@ -1701,6 +1733,14 @@
 - sbSecId: 6
   title: Video
   link: /formats/video.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 6
+  title: Connected TV
+  link: /formats/ctv.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
