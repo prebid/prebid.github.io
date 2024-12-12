@@ -22,9 +22,9 @@ sidebarType: 1
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-| Name  | Scope    | Description                     | Example  | Type      |
+| Name | Scope | Description | Example | Type |
 |-------|----------|---------------------------------|----------|-----------|
-| `aid` | required | The source ID from Stellor Media.   | `12412` | `integer` |
+| `aid` | required | The source ID from Stellor Media. | `12412` | `integer` |
 
 ### Description
 
@@ -33,7 +33,7 @@ This adapter provides a solution for accessing Video demand and display demand.
 
 ### Test Parameters
 
-``` javascript
+```javascript
     var adUnits = [
 
       // Video instream adUnit
