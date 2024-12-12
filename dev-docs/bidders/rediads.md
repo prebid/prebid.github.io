@@ -7,8 +7,7 @@ prebid_member: false
 media_types: banner, video, native
 pbjs: true
 pbs: false
-gvl_id: none
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: false
 schain_supported: true
