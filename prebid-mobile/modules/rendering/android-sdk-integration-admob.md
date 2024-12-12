@@ -389,6 +389,10 @@ The `fetchDemand` method makes a bid request to the prebid server and provides a
 
 Now load an native ad from AdMob according to the [AdMob instructions](https://developers.google.com/admob/android/native/start). Everything else will be handled by GMA SDK and prebid adapters.
 
+## Additional Ad Unit Configuration
+
+{% include mobile/rendering-adunit-config-android.md %}
+
 ## Further Reading
 
 - [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
