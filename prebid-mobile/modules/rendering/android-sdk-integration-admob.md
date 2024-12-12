@@ -186,9 +186,11 @@ Now you should just make a regular AdMob's ad request. Evetything else will be h
 
 Once you receive the ad it will be ready for display. You can show interstitial right in the listener or later according to the app logic.
 
-### Rewarded Video
+### Rewarded 
 
-Integration example:
+{% include mobile/rewarded-server-side-configuration.md %}
+
+#### Integration example
 
 ```kotlin
 // 1. Create AsRequest
@@ -230,32 +232,32 @@ adUnit?.fetchDemand { result ->
 }
 ```
 
-#### Step 1: Create AdRequest
+##### Step 1: Create AdRequest
 {:.no_toc}
 
 This step is the same as for the original [AdMob integration](https://developers.google.com/admob/android/rewarded). You don't have to make any modifications here.
 
-#### Step 2: Create AdMobRewardedMediationUtils
+##### Step 2: Create AdMobRewardedMediationUtils
 {:.no_toc}
 
 The `AdMobRewardedMediationUtils` is a helper class, which performs certain utilty work for the `MediationInterstitialAdUnit`, like passing the targeting keywords to adapters.
 
-#### Step 3: Create MediationRewardedVideoAdUnit
+##### Step 3: Create MediationRewardedVideoAdUnit
 {:.no_toc}
 
 The `MediationRewardedVideoAdUnit` is part of the prebid mediation API. This class is responsible for making bid request and managing the winning bid.
 
-#### Step 4: Make a bid request
+##### Step 4: Make a bid request
 {:.no_toc}
 
 The `fetchDemand` method makes a bid request to the prebid server and provides a result in a completion handler.
 
-#### Step 5: Make an ad request
+##### Step 5: Make an ad request
 {:.no_toc}
 
 Now you should just make a regular AdMob's ad request. Evetything else will be handled by GMA SDK and prebid adapters.
 
-#### Step 6: Display an ad
+##### Step 6: Display an ad
 {:.no_toc}
 
 Once you receive the ad it will be ready for display. You can show interstitial right in the listener or later according to the app logic.
