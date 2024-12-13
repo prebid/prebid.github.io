@@ -5,8 +5,8 @@ description: Stellor Media Bidder Adapter
 biddercode: stellormedia
 aliasCode: adtelligent
 media_types: video,banner
-tcfeu_supported: true
-gpp_supported: true
+tcfeu_supported: false
+gpp_sids: usp
 userId: all (with commercial activation)
 schain_supported: true
 coppa_supported: true
