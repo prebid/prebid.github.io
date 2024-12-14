@@ -1079,7 +1079,7 @@ client can declare a given adunit as eligible for rewards by declaring `imp.ext.
 The request can contain the global `createtids` flag to control the `transmitTid` [Activity Control](/prebid-server/features/pbs-activitycontrols.html).
 
 ```text
-ext.request.createtids: false
+ext.prebid.createtids: false
 ```
 
 If the value is `false`, the `transmitTid` activity is overridden to "denied", which means bid adapters will not get unique transaction IDs. If not specified, then the value of the transmitTid activity for the account is used. The overall default value it `true`, which translates to "allow" the generation of TIDs.
