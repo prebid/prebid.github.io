@@ -42,8 +42,9 @@ Please reach out to your account manager or <publisher@akcelo.io> for more infor
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                                                              | Example | Type      |
 |------------|----------|--------------------------------------------------------------------------|---------|-----------|
-| `siteId`   | required | The identifier of the site. Will be provided by your account manager.    | `1234`  | `integer` |
-| `adUnitId` | required | The identifier of the ad unit. Will be provided by your account manager. | `1234`  | `integer` |
+| `siteId`   | required | The identifier of the site. Will be provided by your account manager.    | `763`   | `integer` |
+| `adUnitId` | required | The identifier of the ad unit. Will be provided by your account manager. | `7965`  | `integer` |
+| `test`     | optional | Whether to display test creatives or not.                                | `1`     | `integer` |
 
 ### Configuration Example
 
@@ -81,8 +82,9 @@ Please reach out to your account manager or <publisher@akcelo.io> for more infor
         {
           bidder: 'akcelo',
           params: {
-            siteId: 42, // required
-            adUnitId: 142, // required
+            siteId: 763, // required
+            adUnitId: 7965, // required
+            test: 1, // optional
           },
         },
       ],
