@@ -138,7 +138,6 @@ Execution plans may be placed in account configuration, but depending on how mod
 {: .alert.alert-warning :}
 Note that if there is more than one execution plan (e.g. one the host level and one the account level) all of them will be triggered and the module invoked processed several times. 
 
-
 ### 3. Supply the module with configuration
 
 Modules may require configuration at startup or during the request:
