@@ -133,9 +133,11 @@ hooks:
 ```
 
 {: .alert.alert-info :}
-Execution plans can be placed in account configuration, but depending on how modules are enabled in your environment, it can be inconvenient to provide instructions to place the highly technical execution plan into the account config.
-Besides if there is more than one execution plan (e.g. on the host level and on the account level) all of them will be triggered and the module mentioned in the plans might be processed several times because of that. 
-Some organizations have chosen to keep all execution plans in host-level config, **and we encourage everyone to do the same**, then enabling the `require-config-to-invoke` option as described in the next section.
+Execution plans may be placed in account configuration, but depending on how modules are enabled in your environment, it can be inconvenient to provide instructions to place the highly technical execution plan into the account config. Some organizations have chosen to keep all execution plans in host-level config, then enabling the `require-config-to-invoke` option as described in the next section.
+
+{: .alert.alert-warning :}
+Note that if there is more than one execution plan (e.g. one the host level and one the account level) all of them will be triggered and the module invoked processed several times. 
+
 
 ### 3. Supply the module with configuration
 
