@@ -44,7 +44,7 @@ Please reach out to your account manager or <publisher@akcelo.io> for more infor
 |------------|----------|--------------------------------------------------------------------------|---------|-----------|
 | `siteId`   | required | The identifier of the site. Will be provided by your account manager.    | `763`   | `integer` |
 | `adUnitId` | required | The identifier of the ad unit. Will be provided by your account manager. | `7965`  | `integer` |
-| `test`     | optional | Whether to display test creatives or not.                                | `1`     | `integer` |
+| `test`     | optional | Whether to display test creatives or not. Default is 0.                  | `1`     | `integer` |
 
 ### Configuration Example
 
