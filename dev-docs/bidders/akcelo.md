@@ -118,6 +118,7 @@ pbjs.setConfig({
 
 Akcelo supports both `ortb2` and `ortb2Imp` methods to set [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
 
+{: .table .table-bordered .table-striped }
 | Name              | Scope    | Description                                                                                     | Example           | Type           |
 |-------------------|----------|-------------------------------------------------------------------------------------------------|-------------------|----------------|
 | `ortb2.site`      | optional | Information about the publisher's website provided through an OpenRTB Site object.              | N/A               | `object`       |
