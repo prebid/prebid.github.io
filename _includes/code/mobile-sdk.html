@@ -9,9 +9,17 @@
 </ul>
 <div class="tab-content" id="code-tab-content">
   <div class="tab-pane fade show active" id="{{ include.id }}-kotlin" role="tabpanel" aria-labelledby="{{ include.id }}-kotlin-tab">
-    {{ include.kotlin | markdownify }}
+    <div class="highlight">
+      <pre class="highlight language-kotlin">
+        <code class="language-kotlin">{{ include.kotlin | xml_escape }}</code>
+      </pre>
+    </div>
   </div>
   <div class="tab-pane fade" id="{{ include.id }}-swift" role="tabpanel" aria-labelledby="{{ include.id }}-swift-tab">
-    {{ include.swift | markdownify }}
+    <div class="highlight">
+      <pre class="highlight language-swift">
+        <code class="language-swift">{{ include.swift | xml_escape }}</code>
+      </pre>
+    </div>
   </div>
 </div>
