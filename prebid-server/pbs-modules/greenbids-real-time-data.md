@@ -145,22 +145,39 @@ per bid requests and is not filtered by the RTD module.
 Here's an example analytics tag that might be produced for use in an analytics adapter:
 
 ```json
-[{
-    "pub_banniere_haute": {
-      "greenbids": {
-        "fingerprint": "ad63524e-b13f-4359-a975-dba9b5dc08f4",
-        "keptInAuction": {
-          "improvedigital": false,
-          "appnexus": true,
-          "pubmatic": false,
-          "rubicon": true,
-          "teads": false
-        },
-        "isExploration": false
-      },
-      "tid": "2c445309-06b2-47b2-a724-4aeef15faeb8"
+{
+  "activities": [
+    {
+      "name": "greenbids-filter",
+      "status": "success",
+      "results": [
+        {
+          "status": "success",
+          "values": {
+            "pub_banniere_haute": {
+              "greenbids": {
+                "fingerprint": "ad63524e-b13f-4359-a975-dba9b5dc08f4",
+                "keptInAuction": {
+                  "improvedigital": false,
+                  "appnexus": true,
+                  "pubmatic": false,
+                  "rubicon": true,
+                  "teads": false
+                },
+                "isExploration": false
+              },
+              "tid": "2c445309-06b2-47b2-a724-4aeef15faeb8"
+            }
+          },
+          "appliedTo": {
+            "bidders": "bidderA",
+            "impIds": "impId1"
+          }
+        }
+      ]
     }
-}]
+  ]
+}
 ```
 
 ## Maintainer contacts
