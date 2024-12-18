@@ -3,6 +3,9 @@ layout: userid
 title: ID5 ID
 description: ID5 ID User ID sub-module
 useridmodule: id5IdSystem
+bidRequestUserId: id5id
+eidsource: id5-sync.com
+example: {uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } }
 ---
 
 
@@ -18,12 +21,14 @@ The ID5 privacy policy is at [id5.io/platform-privacy-policy](https://id5.io/pla
 
 First, make sure to add the ID5 submodule to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=id5IdSystem,userId
+```
 
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module: `"id5Id"` | `"id5Id"` |
