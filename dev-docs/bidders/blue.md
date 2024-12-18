@@ -27,4 +27,6 @@ The bidder requires setup before usage. Please get in touch with our publisher t
 | Name | Scope | Description | Example | Type |
 |---------------|----------|---------------------|---------------|----------|
 | `publisherId` | required | Unique publisher ID | `'ABCDEF'` | `string` |
-| `placementId` | optional | Unique placement ID | `'ABCDEF'` | `string` |
+| `placementId` | required | Unique placement ID | `'ABCDEF'` | `string` |
+| `bidFloor` | required | Bid Floor Price | `1.0` | `float` |
+| `currency` | required | Currency | `'USD'` | `string` |
