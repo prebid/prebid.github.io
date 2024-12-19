@@ -29,7 +29,7 @@ gulp build --modules=openPairIdSystem
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of PAIR ID user ID module. | `"openPairId"` |
-| params | Optional | Object | Container of all module params. |  |
+| params | Optional | Object | Container of all module params. Each entry can be used to configured a specific clean room. |  |
 | params.liveramp | Optional | Object | Container of all liveramp cleanroom specified params. |  |
 | params.liveramp.storageKey | Optional | String | storage key to fetch liveramp provided PAIR Id, the default value is `"_lr_pairId"` | `"_lr_pairId"` |
 
@@ -50,7 +50,7 @@ pbjs.setConfig({
 });
 ```
 
-Or if to use cleanrooms provided implementation, it can be specified by adding the provider and their configs to the config, take liveramp as an example.
+Clean rooms may use specific storage keys, this version supports specifying the storage key for any clean room such as the following example.
 
 ```javascript
 
@@ -62,7 +62,10 @@ pbjs.setConfig({
         params: {
                 liveramp: {
                     storageKey: '_lr_pairId'
-                }
+                },
+                habu: {
+                    storageKey: '_habu_pairId'
+                },
             },
       }]
     }
