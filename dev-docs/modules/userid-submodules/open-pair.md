@@ -1,11 +1,11 @@
 ---
 layout: userid
-title: TechLab PAIR ID
-description: pair TechLab PairId User ID sub-module
+title: Open PAIR ID
+description: Open PairId User ID sub-module
 useridmodule: openPairIdSystem
 ---
 
-Originally developed by Google and subsequently donated to the IAB TechLab.
+Originally developed by Google and subsequently donated to the industry.
 This version supports single and two Data Clean Room setups, in which the advertiser and publisher use different clean rooms.
 
 (Publisher Advertiser Identity Reconciliation) is a secure and privacy-forward way for enabling advertisers and publishers to reconcile their
@@ -30,8 +30,6 @@ gulp build --modules=openPairIdSystem
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of PAIR ID user ID module. | `"openPairId"` |
 | params | Optional | Object | Container of all module params. Each entry can be used to configured a specific clean room. |  |
-| params.liveramp | Optional | Object | Container of all liveramp cleanroom specified params. |  |
-| params.liveramp.storageKey | Optional | String | storage key to fetch liveramp provided PAIR Id, the default value is `"_lr_pairId"` | `"_lr_pairId"` |
 
 ## PAIR ID Examples
 
@@ -60,12 +58,9 @@ pbjs.setConfig({
         userIds: [{
         name: 'openPairId',
         params: {
-                liveramp: {
-                    storageKey: '_lr_pairId'
-                },
-                habu: {
-                    storageKey: '_habu_pairId'
-                },
+                cleanRoomVendor: {
+                    storageKey: '_storage_key'
+                }
             },
       }]
     }
