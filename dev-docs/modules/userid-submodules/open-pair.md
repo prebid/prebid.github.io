@@ -14,7 +14,7 @@ reliance on third-party cookies.
 
 PAIR can help advertisers and publishers maintain control of first-party data while ensuring there is no pooling of data, no leakage of data, no leakage of insights, durablility for the future using secure encryption methods, and no user tracking across publishers.
 
-See this [page](https://iabtechlab.com/pair/) for more information about PAIR.
+See this [page](https://iabtechlab.com/pair/) for more information about the PAIR protocol.
 
 Add it to your Prebid.js package with:
 
