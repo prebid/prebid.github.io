@@ -23,7 +23,7 @@ sidebarType: 1
 
 ### Description
 
-Yobee header bidding adapter connects with Yobee demand sources to fetch bids for network ID. Please reach out to your account manager or <operations@keyformat.com> for more information.
+Yobee header bidding adapter connects with Yobee demand sources to fetch bids for network ID. Please reach out to your account manager or <adops@yobee.it> for more information.
 
 ### Bid params
 
