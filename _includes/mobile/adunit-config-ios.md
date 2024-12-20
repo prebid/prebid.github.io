@@ -2,7 +2,7 @@ Each ad unit in the original integration method is a subclass of the `AdUnit` cl
 
 ### Arbitrary OpenRTB
 
-(requires SDK v2.4.0)
+(requires SDK v2.3.1)
 
 Prebid SDK allows the customization of the OpenRTB request on the ad unit level using the `setImpORTBConfig()` function: 
 

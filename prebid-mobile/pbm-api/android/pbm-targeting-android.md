@@ -745,7 +745,7 @@ Parameters:
 
 ## Arbitrary OpenRTB
 
-(requires SDK v2.4.0)
+(requires SDK v2.3.1)
 
 Prebid SDK allows the customization of the OpenRTB request on the global level using `setGlobalOrtbConfig()` function: 
 
