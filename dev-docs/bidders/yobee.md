@@ -1,12 +1,12 @@
 ---
 layout: bidder
-title: AdTarget Teknoloji
-description: Prebid AdTarget Teknoloji Bidder Adapter.
+title: Yobee
+description: Prebid Yobee Bidder Adapter.
 pbjs: true
 pbs: true
-biddercode: adt
+biddercode: yobee
 media_types: banner,video,native
-gvl_id: 779
+gvl_id: 1281 (admatic)
 tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
@@ -23,15 +23,16 @@ sidebarType: 1
 
 ### Description
 
-AdTarget Teknoloji header bidding adapter connects with AdTarget Teknoloji demand sources to fetch bids for network ID. Please reach out to your account manager or <kamil@adtarget.com.tr> for more information.
+Yobee header bidding adapter connects with Yobee demand sources to fetch bids for network ID. Please reach out to your account manager or <adops@yobee.it> for more information.
 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
+
 | Name        | Scope    | Description                         | Example  | Type     |
 |-------------|----------|-------------------------------------|----------|----------|
-| `networkId` | required | The network ID from AdTarget Teknoloji | `12345` | `number` |
-| `host` | required | RTB Host | `adt.rtb.adtarget.biz` | `string` |
+| `networkId` | required | The network ID from Yobee | `12345` | `number` |
+| `host` | required | RTB Host | `*.rtb.yobee.it` | `string` |
 
 ### Test Parameters
 
@@ -44,10 +45,10 @@ var adUnits = [{
     banner: { sizes: [[300, 250]] },
   },
   bids: [{
-      bidder: 'adt',
+      bidder: 'yobee',
       params: { 
           networkId: 12345,
-          host: 'adt.rtb.adtarget.biz'
+          host: '*.rtb.yobee.it'
       }
   }]
 },{
@@ -56,10 +57,10 @@ var adUnits = [{
     native: { ... },
   },
   bids: [{
-      bidder: 'adt',
+      bidder: 'yobee',
       params: { 
           networkId: 12345,
-          host: 'adt.rtb.adtarget.biz'
+          host: '*.rtb.yobee.it'
       }
   }]
 },{
@@ -68,10 +69,10 @@ var adUnits = [{
     video: { ... },
   },
   bids: [{
-      bidder: 'adt',
+      bidder: 'yobee',
       params: { 
           networkId: 12345,
-          host: 'adt.rtb.adtarget.biz'
+          host: '*.rtb.yobee.it'
       }
   }]
 }];
