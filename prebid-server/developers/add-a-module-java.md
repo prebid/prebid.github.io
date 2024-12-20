@@ -93,6 +93,18 @@ The structure of your module source code inside the modules directory must have 
 +- README.md <- documentation
 ```
 
+## Module Configuration
+There are several places to configure a module:
+
+- **Host/Bean config** is stored in one of the YAML files (generally application.yaml), primarily used for enabling the module at the server level with `hooks.<MODULE_CODE>.enabled`. It should only contain static config which applies to initial startup independent from any account. Most modules have no host-level config at all, apart from enabled flag.
+- **Default account config** is stored in a YAML file, but only used when account config is available (i.e. it's not seen at the entrypoint stage). It is used to define defaults for all accounts.
+- **Account/Runtime config** is stored in the database, YAML file, or whatever other account backend used. It is used to define individual account configuration.
+
+Important Notes:
+
+- Host config will be provided to module once on application start.
+- Account config will be provided to module on each request.
+
 ## Module Code
 
 The quick start is to take a look in two places:
