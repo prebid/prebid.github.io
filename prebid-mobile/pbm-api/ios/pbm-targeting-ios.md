@@ -509,7 +509,7 @@ All of the targeting class methods have been mentioned above in the context of F
 
 ## Arbitrary OpenRTB
 
-(requires SDK v2.4.0)
+(requires SDK v2.3.1)
 
 Prebid SDK allows the customization of the OpenRTB request on the global level using `setGlobalORTBConfig()` function: 
 
