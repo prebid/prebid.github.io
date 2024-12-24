@@ -297,7 +297,7 @@ Integration:
 
 ## Additional Ad Unit Configuration
 
-{% include mobile/adunit-config-ios.md %}
+{% include mobile/rendering-adunit-config-ios.md %}
 
 ## Further Reading
 

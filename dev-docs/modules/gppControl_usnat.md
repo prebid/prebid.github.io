@@ -37,7 +37,7 @@ This module activates if the `gpp` object in the consent management configuratio
 Follow the basic build instructions in the GitHub Prebid.js repo's main [README](https://github.com/prebid/Prebid.js/blob/master/README.md). To include the consent management module and the GPP Control - USNat module, an additional option must be added to the **gulp build** command:
 
 ```bash
-gulp build --modules=consentManagementGpp,gppContol_usnat,bidAdapter1,bidAdapter2
+gulp build --modules=consentManagementGpp,gppControl_usnat,bidAdapter1,bidAdapter2
 ```
 
 You can also use the [Prebid.js Download](/download.html) page.
