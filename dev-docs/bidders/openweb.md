@@ -97,6 +97,6 @@ Prebid versions 5.0-5.3 are not supported.
 
 Banner >= 6.14.0.
 
-Native >= 9.23.0.
+Native >= 9.25.0.
 
-Multi-format requests >= 9.23.0
+Multi-format requests >= 9.25.0.
