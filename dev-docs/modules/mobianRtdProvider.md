@@ -187,4 +187,3 @@ window.googletag.cmd.push(() => {
 For more details on how to set up key-value pairs in GAM, please see this documentation from Google: <https://support.google.com/admanager/answer/9796369>
 
 For example, if you wanted to target articles where mobianRisk is "low", the key to set in GAM would be "mobian_risk" and the value would be "low". Once these keys and values are set within the Inventory section in GAM as listed by their documentation, you can then reference the key value pair in Custom Targeting for any line item you create.
-
