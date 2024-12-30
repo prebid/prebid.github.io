@@ -310,7 +310,7 @@ Integration:
 
 ## Additional Ad Unit Configuration
 
-{% include mobile/adunit-config-android.md %}
+{% include mobile/rendering-adunit-config-android.md %}
 
 ## Further Reading
 

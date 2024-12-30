@@ -304,6 +304,10 @@ The `fetchDemand` method makes a bid request to Prebid Server and provides a res
 
 Load a native ad from MAX according to the [MAX instructions](https://dash.applovin.com/documentation/mediation/ios/getting-started/native-manual#load-the-native-ad). 
 
+## Additional Ad Unit Configuration
+
+{% include mobile/rendering-adunit-config-ios.md %}
+
 ## Further Reading
 
 - [Prebid Mobile Overview](/prebid-mobile/prebid-mobile)

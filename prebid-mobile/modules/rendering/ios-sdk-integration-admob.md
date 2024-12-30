@@ -350,6 +350,10 @@ The `fetchDemand` method makes a bid request to Prebid server and provides a res
 
 Now just load a native ad from AdMob according to the [AdMob instructions](https://developers.google.com/admob/ios/native/start).
 
+## Additional Ad Unit Configuration
+
+{% include mobile/rendering-adunit-config-ios.md %}
+
 ## Further Reading
 
 - [Prebid Mobile Overview](/prebid-mobile/prebid-mobile)
