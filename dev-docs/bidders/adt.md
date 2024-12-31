@@ -1,12 +1,12 @@
 ---
 layout: bidder
-title: NetAddiction
-description: Prebid NetAddiction Bidder Adapter.
+title: AdTarget Teknoloji
+description: Prebid AdTarget Teknoloji Bidder Adapter.
 pbjs: true
 pbs: true
-biddercode: netaddiction
+biddercode: adt
 media_types: banner,video,native
-gvl_id: 1281 (admatic)
+gvl_id: 779
 tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
@@ -23,16 +23,15 @@ sidebarType: 1
 
 ### Description
 
-NetAddiction header bidding adapter connects with NetAddiction demand sources to fetch bids for network ID. Please reach out to your account manager or <publishers-support@netaddiction.it> for more information.
+AdTarget Teknoloji header bidding adapter connects with AdTarget Teknoloji demand sources to fetch bids for network ID. Please reach out to your account manager or <kamil@adtarget.com.tr> for more information.
 
 ### Bid params
 
 {: .table .table-bordered .table-striped }
-
 | Name        | Scope    | Description                         | Example  | Type     |
 |-------------|----------|-------------------------------------|----------|----------|
-| `networkId` | required | The network ID from NetAddiction | `12345` | `number` |
-| `host` | required | RTB Host | `netaddiction.rtb.netaddiction.tech` | `string` |
+| `networkId` | required | The network ID from AdTarget Teknoloji | `12345` | `number` |
+| `host` | required | RTB Host | `adt.rtb.adtarget.biz` | `string` |
 
 ### Test Parameters
 
@@ -45,10 +44,10 @@ var adUnits = [{
     banner: { sizes: [[300, 250]] },
   },
   bids: [{
-      bidder: 'netaddiction',
+      bidder: 'adt',
       params: { 
           networkId: 12345,
-          host: 'rtb.network.netaddiction.tech'
+          host: 'adt.rtb.adtarget.biz'
       }
   }]
 },{
@@ -57,10 +56,10 @@ var adUnits = [{
     native: { ... },
   },
   bids: [{
-      bidder: 'netaddiction',
+      bidder: 'adt',
       params: { 
           networkId: 12345,
-          host: 'rtb.network.netaddiction.tech'
+          host: 'adt.rtb.adtarget.biz'
       }
   }]
 },{
@@ -69,10 +68,10 @@ var adUnits = [{
     video: { ... },
   },
   bids: [{
-      bidder: 'netaddiction',
+      bidder: 'adt',
       params: { 
           networkId: 12345,
-          host: 'rtb.network.netaddiction.tech'
+          host: 'adt.rtb.adtarget.biz'
       }
   }]
 }];

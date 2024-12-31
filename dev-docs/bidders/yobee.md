@@ -1,10 +1,10 @@
 ---
 layout: bidder
-title: NetAddiction
-description: Prebid NetAddiction Bidder Adapter.
+title: Yobee
+description: Prebid Yobee Bidder Adapter.
 pbjs: true
 pbs: true
-biddercode: netaddiction
+biddercode: yobee
 media_types: banner,video,native
 gvl_id: 1281 (admatic)
 tcfeu_supported: true
@@ -23,7 +23,7 @@ sidebarType: 1
 
 ### Description
 
-NetAddiction header bidding adapter connects with NetAddiction demand sources to fetch bids for network ID. Please reach out to your account manager or <publishers-support@netaddiction.it> for more information.
+Yobee header bidding adapter connects with Yobee demand sources to fetch bids for network ID. Please reach out to your account manager or <adops@yobee.it> for more information.
 
 ### Bid params
 
@@ -31,8 +31,8 @@ NetAddiction header bidding adapter connects with NetAddiction demand sources to
 
 | Name        | Scope    | Description                         | Example  | Type     |
 |-------------|----------|-------------------------------------|----------|----------|
-| `networkId` | required | The network ID from NetAddiction | `12345` | `number` |
-| `host` | required | RTB Host | `netaddiction.rtb.netaddiction.tech` | `string` |
+| `networkId` | required | The network ID from Yobee | `12345` | `number` |
+| `host` | required | RTB Host | `*.rtb.yobee.it` | `string` |
 
 ### Test Parameters
 
@@ -45,10 +45,10 @@ var adUnits = [{
     banner: { sizes: [[300, 250]] },
   },
   bids: [{
-      bidder: 'netaddiction',
+      bidder: 'yobee',
       params: { 
           networkId: 12345,
-          host: 'rtb.network.netaddiction.tech'
+          host: '*.rtb.yobee.it'
       }
   }]
 },{
@@ -57,10 +57,10 @@ var adUnits = [{
     native: { ... },
   },
   bids: [{
-      bidder: 'netaddiction',
+      bidder: 'yobee',
       params: { 
           networkId: 12345,
-          host: 'rtb.network.netaddiction.tech'
+          host: '*.rtb.yobee.it'
       }
   }]
 },{
@@ -69,10 +69,10 @@ var adUnits = [{
     video: { ... },
   },
   bids: [{
-      bidder: 'netaddiction',
+      bidder: 'yobee',
       params: { 
           networkId: 12345,
-          host: 'rtb.network.netaddiction.tech'
+          host: '*.rtb.yobee.it'
       }
   }]
 }];
