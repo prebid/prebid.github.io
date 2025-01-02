@@ -222,8 +222,8 @@ Do not send unnecessarily verbose responses. An empty 204 response is all that i
 
 The following vendors focus on sustainability.
 
-* Klever  
-* Scope3
+- Klever  
+- Scope3
 
 ## Further Reading
 
