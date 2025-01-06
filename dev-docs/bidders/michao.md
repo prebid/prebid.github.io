@@ -20,7 +20,7 @@ pbjs: true
 pbs: false
 prebid_member: false
 multiformat_supported: will-bid-on-one
-ortb_blocking_supported: partial
+ortb_blocking_supported: true
 privacy_sandbox: topics
 sidebarType: 1
 ---
@@ -31,17 +31,12 @@ The Michao Bidding adapter requires setup before beginning.
 
 ### Bid Params
 
-{: .table .table-bordered .table-striped }
-
-| Name        | Scope    | Description        | Example         | Type       |
-| ----------- | -------- | ------------------ | --------------- | ---------- |
-| `placement` | required | Placement id       | `"12345"`       | `string`   |
-| `site`      | required | Site id            | `6789`          | `number`   |
-| `partner`   | optional | Partner id         | `6789`          | `number`   |
-| `reward`    | optional | Reward advertising | true            | `boolean`  |
-| `bcat`      | optional | Block categories   | ["IAB2"]        | `string[]` |
-| `badv`      | optional | Block advertisers  | ["adomain.com"] | `string[]` |
-| `bidFloor`  | optional | Bid floor price    | `0.2`           | `number`   |
+| Name        | Scope    | Description  | Example   | Type      |
+| ----------- | -------- | ------------ | --------- | --------- |
+| `placement` | required | Placement id | `"12345"` | `string`  |
+| `site`      | required | Site id      | `6789`    | `number`  |
+| `partner`   | optional | Partner id   | `6789`    | `number`  |
+| `test`      | optional | Test Mode    | `true`    | `boolean` |
 
 ### First Party Data
 
@@ -49,6 +44,7 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 
 - `ortb2.site.*`
 - `ortb2.user.*`
+- `ortb2.device.*`
 
 Example:
 
@@ -67,20 +63,24 @@ pbjs.setBidderConfig({
 
 ### ORTB Blocking
 
-Support: badv, bcat
+Support: badv, bcat, bseat, bapp
 
 example:
 
-```js
-{
-  bidder: "michao",
-  params: {
-    site: 123,
-    placement: "456",
-    bcat: ['IAB2'],
-    badv: ['adomain.com']
-  }
-}
+Example:
+
+```javascript
+pbjs.setBidderConfig({
+  bidders: ["michao"],
+  config: {
+    ortb2: {
+      badv: ["adomain.com"],
+      bcat: ["IAB2"],
+      bapp: ["com.app"],
+      bseat: ["seat"],
+    },
+  },
+});
 ```
 
 ### Media Types
@@ -91,16 +91,14 @@ mediaTypes.video
 
 The following video parameters are supported here so publishers may fully declare their video inventory. These apply to both instream and outstream.
 
-{: .table .table-bordered .table-striped }
-
 | Name           | Scope       | Description                                                                                                                                                                                                                  | Example                                                  | Type            |
 | -------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | --------------- |
 | context        | required    | instream or outstream                                                                                                                                                                                                        | "outstream"                                              | string          |
 | playerSize     | required    | width, height of the player in pixels                                                                                                                                                                                        | [640,360] - will be translated to w and h in bid request | array<integers> |
 | mimes          | required    | List of content MIME types supported by the player (see openRTB v2.5 for options)                                                                                                                                            | ["video/mp4"]                                            | array<string>   |
 | protocols      | required    | Supported video bid response protocol values <br />1: VAST 1.0 <br />2: VAST 2.0 <br />3: VAST 3.0 <br />4: VAST 1.0 Wrapper <br />5: VAST 2.0 Wrapper <br />6: VAST 3.0 Wrapper <br />7: VAST 4.0 <br />8: VAST 4.0 Wrapper | [2,3,5,6]                                                | array<integers> |
-| maxduration    | required    | Maximum video ad duration in seconds.                                                                                                                                                                                        | 30                                                       | integer         |
-| minduration    | required    | Minimum video ad duration in seconds                                                                                                                                                                                         | 6                                                        | integer         |
+| maxduration    | recommended | Maximum video ad duration in seconds.                                                                                                                                                                                        | 30                                                       | integer         |
+| minduration    | recommended | Minimum video ad duration in seconds                                                                                                                                                                                         | 6                                                        | integer         |
 | linearity      | recommended | OpenRTB2 linearity. 1: linear (in-stream ad), 2: non-linear (overlay ad)                                                                                                                                                     | 1                                                        | integer         |
 | playbackmethod | recommended | Playback methods that may be in use. Only one method is typically used in practice. (see openRTB v2.5 section 5.10 for options)                                                                                              | [2]                                                      | array<integers> |
 | api            | optional    | Supported API framework values: <br />1: VPAID 1.0 <br />2: VPAID 2.0 <br />3: MRAID-1 <br />4: ORMMA <br />5: MRAID-2                                                                                                       | [2]                                                      | array<integers> |
