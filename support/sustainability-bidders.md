@@ -1,11 +1,11 @@
 ---
 layout: page_v2
-title: Supply Chain and Sustainability Bidder Best Practices
-description: Supply Chain and Sustainability Bidder Best Practices
+title: Bidder Sustainability Best Practices
+description: Bidder Sustainability Best Practices
 sidebarType: 7
 ---
 
-# Supply Chain and Sustainability Bidder Best Practices
+# Bidder Sustainability Best Practices
 {:.no_toc}
 
 - TOC

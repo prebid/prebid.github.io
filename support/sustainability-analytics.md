@@ -1,11 +1,11 @@
 ---
 layout: page_v2
-title: Supply Chain and Sustainability Analytics Best Practices
-description: Supply Chain and Sustainability Analytics Best Practices
+title: Analytics Sustainability Best Practices
+description: Analytics Sustainability Best Practices
 sidebarType: 7
 ---
 
-# Supply Chain and Sustainability Analytics Best Practices
+# Analytics Sustainability Best Practices
 {:.no_toc}
 
 - TOC

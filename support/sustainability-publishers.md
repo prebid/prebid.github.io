@@ -1,11 +1,11 @@
 ---
 layout: page_v2
-title: Supply Chain and Sustainability Publisher Best Practices
-description: Supply Chain and Sustainability Publisher Best Practices
+title: Publisher Sustainability Best Practices
+description: Publisher Sustainability Best Practices
 sidebarType: 7
 ---
 
-# Supply Chain and Sustainability Publisher Best Practices
+# Publisher Sustainability Best Practices
 {:.no_toc}
 
 - TOC
