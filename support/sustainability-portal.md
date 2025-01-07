@@ -31,9 +31,9 @@ A fair amount of value can be obtained from:
 
 ## Best Practices
 
-- [Publishers](/support/sustainability-publishers.html)
-- [Bid Adapters](/support/sustainability-bidders.html)
-- [Analytics Adapters](/support/sustainability-analytics.html)
+- [Publisher Sustainability Best Practices](/support/sustainability-publishers.html)
+- [Bid Adapter Sustainability Best Practices](/support/sustainability-bidders.html)
+- [Analytics Adapter Sustainability Best Practices](/support/sustainability-analytics.html)
 
 ## Further Reading
 
