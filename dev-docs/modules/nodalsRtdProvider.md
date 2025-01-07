@@ -53,7 +53,15 @@ Configuration parameters:
 
 | Name                     | Scope    | Description                                   | Example     | Type     |
 |--------------------------|----------|-----------------------------------------------|-------------|----------|
-| `name`                   | required | Real time data module name: Always `'nodals'` | `'nodals'`  | `string` |
+| `name`                   | required | Real time data module name: Always `'nodals'` | `'nodals'`  | `String` |
 | `waitForIt`              | optional | Set to `true` if there's an `auctionDelay` defined (defaults to `false`) | `false` | `Boolean` |
 | `params`                 | required | Submodule configuration parameters            | `{}`        | `Object` |
-| `params.propertyId`      | required | Publisher specific identifier, provided by Nodals            | `76346cf3`        | `string` |
+| `params.propertyId`      | required | Publisher specific identifier, provided by Nodals            | `'76346cf3'`        | `String` |
+| `params.storage`         | optional | Optional storage configiration            | `{}`        | `Object` |
+| `params.storage.key`     | optional | Storage key used to store Nodals data in local storage             | `'yourKey'`        | `String` |
+| `params.storage.ttl`     | optional | Time in seconds to retain Nodals data in storage until a refresh is required             | `900`        | `Integer` |
+| `params.pts`    | optional | Optional configiration pertaining to integration partners             | `{}`        | `Object` |
+| `params.pts.permutive`    | optional | Optional configiration for Permutive Audience Platform      | `{}`        | `Object` |
+| `params.pts.permutive.enabled`    | optional | Flag to disable automatic fetching of detected Permutive cohort IDs      | `false`        | `Boolean` |
+| `params.pts.permutive.cohorts`  | optional | A method for the publisher to explicitly supply Permutive Cohort IDs, disabling automatic fetching by this RTD module    | `['66711', '39032', '311']`     | `Array<String>` |
+| `params.pts.permutive.storageKey`  | optional | Publisher specific Permutive storage key where cohort data is held.  | `'permitive-data'`     | `String` |
