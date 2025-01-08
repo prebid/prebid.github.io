@@ -17,9 +17,9 @@ In the absence of standardized sustainability metrics and protocols, conducting 
 
 This lack of standards means each participant in the supply chain - from publishers to SSPs, DSPs, and advertisers - defines and measures sustainability differently. This fragmentation creates obstacles when attempting to make informed decisions about sustainable advertising practices. For instance, one platform might focus on reducing server calls, while another prioritizes energy-efficient data centers, making it challenging to compare and evaluate partners effectively.
 
-The current OpenRTB specification, while robust for traditional trading parameters, lacks standardized fields or mechanisms for communicating sustainability-related information between parties. This absence of common sustainability signals means that even environmentally conscious organizations struggle to automate and scale their green advertising initiatives within existing programmatic frameworks.
-
 ## The Industry Will Evolve
+
+The current OpenRTB specification, while robust for traditional trading parameters, lacks standardized fields or mechanisms for communicating sustainability-related information between parties. This absence of common sustainability signals means that even environmentally conscious organizations struggle to automate and scale their green advertising initiatives within existing programmatic frameworks.
 
 As the digital advertising industry evolves toward more transparent and eco-friendly practices, we expect buying platforms to adopt various methodologies that will continue to evolve. In this context, Prebid.org is positioned to play an essential role in supporting the ecosystem's transition to more sustainable practices. Initially, our focus is on providing comprehensive documentation and guidance to help organizations navigate and implement emerging sustainability approaches.
 
