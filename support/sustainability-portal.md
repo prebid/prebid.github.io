@@ -1,11 +1,11 @@
 ---
 layout: page_v2
-title: Supply Chain and Sustainability Portal
-description: Supply Chain and Sustainability Portal
+title: Sustainability Portal
+description: Sustainability Portal
 sidebarType: 7
 ---
 
-# Supply Chain and Sustainability Portal
+# Sustainability Portal
 {:.no_toc}
 
 - TOC
