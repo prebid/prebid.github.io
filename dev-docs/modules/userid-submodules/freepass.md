@@ -3,6 +3,9 @@ layout: userid
 title: FreePass ID
 description: FreePass User ID sub-module
 useridmodule: freepassIdSystem
+bidRequestUserId: freepassId
+eidsource:
+example: '"1111"'
 ---
 
 [FreePass](https://freepass-login.com/introduction.html) is a common authentication service operated by Freebit Co., Ltd. Users with a FreePass account do not need to create a new account to use partner services.
@@ -20,6 +23,7 @@ gulp build --modules=freepassIdSystem,userId
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope    | Type   | Description                                          | Example        |
 |--------------------------------|----------|--------|------------------------------------------------------|----------------|
 | name                           | Required | String | The name of this module                              | `"freepassId"` |

@@ -12,7 +12,7 @@ usp_supported: true
 coppa_supported: true
 userIds: all
 prebid_member: true
-gvl_id: 833
+gvl_id: 469
 sidebarType: 1
 ---
 

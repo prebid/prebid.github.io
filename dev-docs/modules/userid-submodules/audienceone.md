@@ -3,6 +3,9 @@ layout: userid
 title: AudienceOne ID by DAC
 description: AudienceOne ID by DAC User ID sub-module
 useridmodule: dacIdSystem
+bidRequestUserId: dacId
+eidsource: dac.co.jp
+example: {"id": "1111"}
 ---
 
 
@@ -11,12 +14,14 @@ Please visit [solutions.dac.co.jp/audienceone](https://solutions.dac.co.jp/audie
 
 Add the AudienceOne ID to your Prebid.js Package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=dacIdSystem
+```
 
 ## AudienceOne ID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module | `"dacId"` |

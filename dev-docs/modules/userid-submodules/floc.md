@@ -4,6 +4,9 @@ title: FLoC ID
 description: FLoC ID User ID sub-module
 useridmodule: flocIdSystem
 enable_download: false
+bidRequestUserId: flocId
+eidsource:
+example:
 ---
 
 {: .alert.alert-warning :}

@@ -5,14 +5,19 @@ description: Prebid Eskimi Bidder Adapter
 pbjs: true
 pbs: false
 biddercode: eskimi
-deals_supported: false
 media_types: banner, video
-gvl_id: 814
 schain_supported: true
+tcfeu_supported: true
+usp_supported: true
+coppa_supported: true
+gpp_supported: true
+deals_supported: false
 floors_supported: true
 safeframes_ok: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
+fpd_supported: true
+gvl_id: 814
 sidebarType: 1
 ---
 

@@ -3,6 +3,9 @@ layout: userid
 title: 33Across ID
 description: 33Across ID User ID sub-module
 useridmodule: 33acrossIdSystem
+bidRequestUserId: 33acrossId
+eidsource: 33across.com
+example: '"1111"'
 ---
 
 
@@ -21,15 +24,17 @@ gulp build --modules=33acrossIdSystem,userId
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this sub-module | `"33acrossId"` |
 | params ||| Details for the sub-module initialization ||
 | params.pid | Required | String | Partner ID (PID) | Please reach out to [PrebidUIM@33across.com](mailto:PrebidUIM@33across.com) and request your PID |
-| params.storeFpid | Optional | Boolean | Indicates whether a supplemental first-party ID may be stored to improve addressability | `false` (default) or `true` |
+| params.storeFpid | Optional | Boolean | Indicates whether a supplemental first-party ID may be stored to improve addressability | `true` (default) or `false` |
+| params.storeTpid | Optional | Boolean | Indicates whether a supplemental third-party ID may be stored to improve addressability | `true` (default) or `false` |
 | storage |||||
 | storage.name | Required | String | The name of the cookie or html5 local storage key | `"33acrossId"` (recommended) |
-| storage.type | Required | String | This is where the 33across user ID will be stored | `"html5"` (recommended) or `"cookie"` |
+| storage.type | Required | String | This is where the 33across user ID will be stored | `"cookie&html5"` (recommended) or `"html5"` or `"cookie"` |
 | storage.expires | Strongly Recommended | Number | How long (in days) the user ID information will be stored | `30` (recommended) |
 | storage.refreshInSeconds | Strongly Recommended | Number | How many seconds until the ID is refreshed | `8 * 3600` (recommended) |
 
@@ -46,7 +51,7 @@ pbjs.setConfig({
       },
       storage: {
         name: "33acrossId",
-        type: "html5",
+        type: "cookie&html5",
         expires: 30,
         refreshInSeconds: 8 * 3600
       }

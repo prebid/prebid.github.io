@@ -24,6 +24,7 @@ The Shinez adapter requires setup and approval. Please reach out to <tech-team@s
 #### Banner, Video
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  Shinez publisher Id provided by your Shinez representative  | "56f91cd4d3e3660002000033"
@@ -31,7 +32,7 @@ The Shinez adapter requires setup and approval. Please reach out to <tech-team@s
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 
-## Example
+### Example
 
 ```javascript
 var adUnits = [{

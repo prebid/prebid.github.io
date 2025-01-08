@@ -515,5 +515,4 @@ function auctionOptionsLogging() {
 
 {:.no_toc}
 
-- [Prebid.js Troubleshooting Video](/videos/)
 - [Common Setup Issues](/dev-docs/common-issues.html)

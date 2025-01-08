@@ -5,13 +5,14 @@ description: Prebid Rise Bidder Adapter
 multiformat_supported: will-bid-on-any
 pbjs: true
 biddercode: rise
-media_types: banner, video
+media_types: banner, video, native
 schain_supported: true
 coppa_supported: true
 pbs: true
 pbs_app_supported: true
 tcfeu_supported: true
 gpp_supported: true
+gpp_sids: tcfeu, usstate_all, usp
 usp_supported: true
 floors_supported: true
 userIds: all
@@ -28,6 +29,7 @@ The Rise adapter requires setup and approval. Please reach out to [prebid-rise-e
 #### Banner, Video
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  Rise publisher Id provided by your Rise representative  | "1234567890abcdef12345678"
@@ -35,10 +37,8 @@ The Rise adapter requires setup and approval. Please reach out to [prebid-rise-e
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 | `rtbDomain` | optional | String |  Sets the seller end point    | "www.test.com"
-| `is_wrapper` | private | Boolean |  Please don't use unless your account manager asked you to    | false
-| `currency` | optional | String | 3 letters currency | "EUR"
 
-## Example
+### Example
 
 ```javascript
 var adUnits = [{

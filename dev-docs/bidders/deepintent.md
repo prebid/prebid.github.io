@@ -6,8 +6,11 @@ pbjs: true
 pbs: true
 biddercode: deepintent
 media_types: banner, video
+floors_supported: true
 tcfeu_supported: true
 usp_supported: true
+coppa_supported: true
+gpp_sids: usp, usnat, usstate_all
 gvl_id: 541
 sidebarType: 1
 ---
@@ -17,6 +20,7 @@ sidebarType: 1
 | Name          | Scope    | Description        | Example                      | Type     |
 |---------------|----------|--------------------|------------------------------|----------|
 | `tagId`       | mandatory| Ad Tag Id             | `'1399'`                  | `string` |
+| `bidfloor`    | optional | bid floor price in USD| `1.5`                     | `number` |
 | `height`      | optional | height of the creative| `350`                     | `number` |
 | `width`       | optional | width of the creative | `250`                     | `number` |
 | `custom`      | optional | custom key value params| `'{"position":"right-box"}''`| `object` |
@@ -44,36 +48,39 @@ pbjs.setConfig({
 
 ```javascript
 var adUnits = [
-            {
-                code: 'div-22',
-                mediaTypes: {
-                    banner: {
-                        sizes: [
-                            [300, 250],
-                            [300, 600]
-                         ]
-                    }
-                },
-                bids: [{
-                    bidder: 'deepintent',
-                    params: {
-                        tagId: "1399",
-                        height: 300,
-                        width: 250,
-                        pos: 1,
-                        user: {
-                            gender: "F",
-                            uid: "publisher_uid",
-                            buyeruid: "test_buyeruid",
-                            yob: 2000  
-                        },
-                        custom: {
-                            "position": "right-box"
-                        }
-                    }
-                }]
-            }
-        ];
+  {
+    code: "div-22",
+    mediaTypes: {
+      banner: {
+        sizes: [
+          [300, 250],
+          [300, 600],
+        ],
+      },
+    },
+    bids: [
+      {
+        bidder: "deepintent",
+        params: {
+          tagId: "1399",
+          bidfloor: 1.5,
+          height: 300,
+          width: 250,
+          pos: 1,
+          user: {
+            gender: "F",
+            uid: "publisher_uid",
+            buyeruid: "test_buyeruid",
+            yob: 2000,
+          },
+          custom: {
+            position: "right-box",
+          },
+        },
+      },
+    ],
+  },
+];
 ```
 
 ### video parameters
@@ -101,36 +108,40 @@ Deepintent supports video as of Prebid v1.16.0
 
 ```javascript
 var videoAdUnits = [
-{
-    code: 'test-div-video',
+  {
+    code: "test-div-video",
     mediaTypes: {
-        video: {
-            playerSize: [640, 480],
-            context: 'instream'
-          }
+      video: {
+        playerSize: [640, 480],
+        context: "instream",
+      },
     },
-    bids: [{
-      bidder: 'deepintent',
-      params: {
-        tagId: "1399",                            // required
-        publisherId: '32572',                     // required
-        adSlot: '38519891@300x250'                // required
-        video: {
-            mimes: ['video/mp4','video/x-flv'],   // required
-            skip: 1,                              // optional
-            minduration: 5,                       // optional
-            maxduration: 30,                      // optional
-            startdelay: 5,                        // optional
-            playbackmethod: [1,3],                // optional
-            api: [ 1, 2 ],                        // optional
-            protocols: [ 2, 3 ],                  // optional
-            battr: [ 13, 14 ],                    // optional
-            linearity: 1,                         // optional
-            placement: 2,                         // optional
-            minbitrate: 10,                       // optional
-            maxbitrate: 10                        // optional
-        }
-      }
-    }]
-}]
+    bids: [
+      {
+        bidder: "deepintent",
+        params: {
+          tagId: "1399", // required
+          publisherId: "32572", // required
+          adSlot: "38519891@300x250", // required
+          bidfloor: 1.5, // optional
+          video: {
+            mimes: ["video/mp4", "video/x-flv"], // required
+            skip: 1, // optional
+            minduration: 5, // optional
+            maxduration: 30, // optional
+            startdelay: 5, // optional
+            playbackmethod: [1, 3], // optional
+            api: [1, 2], // optional
+            protocols: [2, 3], // optional
+            battr: [13, 14], // optional
+            linearity: 1, // optional
+            placement: 2, // optional
+            minbitrate: 10, // optional
+            maxbitrate: 10, // optional
+          },
+        },
+      },
+    ],
+  },
+];
 ```

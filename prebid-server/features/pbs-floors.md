@@ -43,6 +43,18 @@ Specifically, modules don't support the feature where bid adapters need access t
 - **Floor schema**: defines which attributes are in the floor rules. e.g. "adslot and mediaType".
 - **Floor rule**: A mapping of floor schema dimensions to a floor values. e.g. "if adslot is /111/homepage and mediaType is banner, then the floor is 1.00".
 
+### Floors Video Overview
+
+<div style="padding:56.25% 0 0 0;margin: 1rem 0;position:relative;"><iframe src="https://player.vimeo.com/video/938434804?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Price Floors in Prebid.js and Prebid Server"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+<p/>
+Notes:
+
+- [Prebid.js Price Floors Module](/dev-docs/modules/floors.html#overview)
+- [Price Floors in Prebid Server](/prebid-server/features/pbs-floors.html#prebid-server--features--price-floors)
+- [Prebid Floor Service Providers](/dev-docs/modules/floors.html#floors-providers)
+- [Transcript of this video](/dev-docs/floors-video-overview.html)
+
 ## How Floors work in Prebid Server
 
 Here's the high level picture of what's happening in Prebid Server to support floors:
@@ -212,7 +224,9 @@ supported only in Prebid Server, not in Prebid.js.
 | mediaType | string | "video" | If more than one of the following ORTB objects exists, only the "*" rule value will match: imp.banner, imp.video, imp.native, imp.audio. Otherwise: {::nomarkdown}<ul><li>the "banner" rule value will match if imp.banner exists.</li><li> the "video-outstream" rule value will match if imp.video exists and imp.video.placement is not 1</li><li>the "video-instream" rule value will match if imp.video exists and imp.video placement exists and is 1</li><li>the "video" rule value is treated as "video-instream" above.</li><li>the "native" rule value will match if imp.native exists</li><li>the "audio" rule value will match if imp.audio exists</li></ul>{:/} |
 | size | string | "300x250" | {::nomarkdown}<ul><li>if ORTB imp.banner exists and only one size exists in imp.banner.format, then the rule value is matched against imp.banner.format[0].w and imp.banner.format[0].h</li><li>else if ORTB imp.banner exists and there's no imp.banner.format, then match the rule value against imp.banner.w and imp.banner.h</li><li>else if ORTB imp.video exists, match the rule value against imp.video.w and imp.video.h</li><li>Otherwise the size rule value only matches the "*" condition</li></ul>{:/} |
 | gptSlot | string | "/111/homepage" | if imp.ext.data.adserver.name=="gam" then compare the rule value against imp.ext.data.adserver.adslot. Otherwise compare the rule value against imp.ext.data.pbadslot |
-| **pbAdSlot** | string | "/111/homepage#div1" | Compare the rule value against imp.ext.data.pbadslot |
+| bidder | string | "bidderA" | Compare the rule value against imp.ext.prebid.bidder.BIDDER (Requires PBS-Java 3.5+)  |
+| **adUnitCode** | string | "/111/homepage" | (PBS-Java 1.101+) Compares the rule value against ORTB fields in this order: {::nomarkdown}<ul><li>imp.ext.gpid</li><li>imp.tagid</li><li>imp.ext.data.pbadslot</li><li>imp.ext.prebid.storedrequest.id</li></ul>{:/} |
+| **pbAdSlot** | string | "/111/homepage#div1" | Deprecated - we suggest using adUnitCode instead. Compare the rule value against imp.ext.data.pbadslot |
 | **country** | string | "USA" | Compare the rule value against device.geo.country (ISO-3166-1-alpha-3) |
 | **deviceType** | string | "desktop", "phone", "tablet" | This is a very simple device-type algorithm: {::nomarkdown}<ul><li>if ORTB device.ua is not present, only rules specifying a wildcard deviceType will match. In other words, there's no default value unless device.ua exists.</li><li>otherwise, match a rule value of "phone" if UA matches one of these patterns: "Phone", "iPhone", "Android.*Mobile", "Mobile.*Android"</li><li>otherwise, match a rule value of "tablet" if UA matches one of these: "tablet", "iPad", "Windows NT.*touch", "touch.*Windows NT", "Android"</li><li>otherwise assume the rule value "desktop" matches all other user agent strings.</li></ul>{:/} |
 
