@@ -33,4 +33,4 @@ The Sustainability Portal represents our commitment to supporting the ecosystem'
 
 ## Related Reading
 
-- [Prebid Supply Chain Sustainability Portal](/support/sustainability-portal.html)
+- [Prebid Sustainability Portal](/support/sustainability-portal.html)
