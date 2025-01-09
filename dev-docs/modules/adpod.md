@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # Adpod Module
-
 {:.no_toc}
 
 * TOC

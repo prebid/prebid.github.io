@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Permutive RTD Provider
-
 {:.no_toc}
 
 * TOC

@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # IAB Category Translation
-
 {:.no_toc}
 
 This module converts the IAB sub category to Ad server industry group identifiers. The identifiers ensure competitive separation of industries and products.
