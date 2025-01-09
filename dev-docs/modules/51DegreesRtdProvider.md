@@ -18,7 +18,6 @@ This module loads a dynamically generated JavaScript from Cloud API hosted at cl
 The Cloud API is **free** to integrate and use. To increase limits please check [51Degrees pricing](https://51degrees.com/pricing).
 
 # 51Degrees RTD Submodule
-
 {:.no_toc}
 
 * TOC

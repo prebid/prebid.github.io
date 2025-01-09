@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Captify RTD Module
-
 {:.no_toc}
 
 * TOC
