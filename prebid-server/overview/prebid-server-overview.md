@@ -18,7 +18,7 @@ Prebid Server is a header bidding server with a growing list of features. At a h
     1. Resolves dynamic 'stored requests', enriching data server-side
     1. Enforces privacy regulations
 2. Next, it calls server-side bid adapters
-    1. There are 180+ server-side bid adapters available
+    1. There are 230+ server-side bid adapters available
 3. After everyone's responded (or the timeout period has expired), it formulates an appropriate response
     1. Currency conversion
     1. Quantizes bids as needed for header bidding targeting
