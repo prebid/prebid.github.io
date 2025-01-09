@@ -101,7 +101,12 @@ pbjs.setConfig({
 
 ### Multiple user IDs
 
-The attributes `uid2`, `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, `sovrn`, `index`, `thetradedesk`, `vidazoo`  and `fpid` are treated specially by LiveIntent's user ID sub-module. Each of these attributes will result in a separate ID returned by the sub-module. Note: `thetradedesk` will be exposed as `tdid` because of historical reasons.
+The attributes `uid2`, `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, `sovrn`, `index`, `thetradedesk`, `vidazoo` and `fpid` are treated specially by LiveIntent's user ID sub-module. Each of these attributes will result in a separate ID returned by the sub-module.
+
+#### Note
+
+* `thetradedesk` will be exposed as `tdid` because of historical reasons.
+* In order for `segments` to be present in `ortb2.user.data` of the bid requests, you need to configure the [liveIntentRTDProvider](/dev-docs/modules/liveIntentRtdProvider.html) module. 
 
 For example, in case `uid2` is configured to be requested in addition to the `nonID`, the `request.userId` object would look like the following:
 
@@ -204,7 +209,7 @@ NOTE: For optimal performance, the LiveIntent ID sub-module should be called at 
 | params.ajaxTimeout |Optional| Number |This configuration parameter defines the maximum duration of a call to the `IdentityResolution` endpoint. By default, 5000 milliseconds.|`5000`|
 | params.partner | Optional| String |The name of the partner whose data will be returned in the response.|`prebid`|
 | params.identifiersToResolve |Optional| Array[String] |Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID and additional attributes.|`['my-id']`|
-| params.requestedAttributesOverrides | Optional | Object | Object containing booleans used to override the default resolution. Attributes set to `true` will be added to the resolved list, while attributes set to `false` will be removed. Valid attributes are `nonId`, `uid2`, `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, `sovrn`, `index`, `thetradedesk` (`tdid`), `vidazoo` and `fpid`. | `{'uid2': true}` |
+| params.requestedAttributesOverrides | Optional | Object | Object containing booleans used to override the default resolution. Attributes set to `true` will be added to the resolved list, while attributes set to `false` will be removed. Valid attributes are `nonId`, `uid2`, `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, `sovrn`, `index`, `thetradedesk` (`tdid`), `vidazoo`, `segments`, `fpid`. | `{'uid2': true}` |
 | params.emailHash |Optional| String |The hashed email address of a user. We can accept the hashes, which use the following hashing algorithms: md5, sha1, sha2.|`1a79a4d60de6718e8e5b326e338ae533`|
 | params.url | Optional| String |Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`https://idx.my-domain.com`|
 | params.liCollectConfig |Optional| Object |Container of all collector params.||
