@@ -23,15 +23,6 @@ privacy_sandbox: no
 sidebarType: 1
 ---
 
-### Table of Contents
-
-- [Table of Contents](#table-of-contents)
-- [Registration](#registration)
-- [Bid Params](#bid-params)
-- [Configuration example](#configuration-example)
-- [User Sync](#user-sync)
-- [First Party Data](#first-party-data)
-
 ### Registration
 
 The Akcelo bidder adapter requires setup and approval from the Akcelo service team.
@@ -118,7 +109,7 @@ pbjs.setConfig({
 
 ### First Party Data
 
-Akcelo supports both `ortb2` and `ortb2Imp` methods to set [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+Akcelo supports both `ortb2` and `ortb2Imp` methods to set [First Party Data](/features/firstPartyData.html).
 
 {: .table .table-bordered .table-striped }
 | Name              | Scope    | Description                                                                                     | Example           | Type           |
