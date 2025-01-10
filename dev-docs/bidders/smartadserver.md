@@ -25,7 +25,6 @@ pbs_app_supported: true
 prebid_member: false
 floors_supported: true
 ortb_blocking_supported: true
-aliasCode: equativ
 privacy_sandbox: no
 sidebarType: 1
 ---
