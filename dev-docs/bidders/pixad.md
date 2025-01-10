@@ -13,7 +13,7 @@ coppa_supported: true
 gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
-userIds: criteo, id5Id, sharedId, unifiedId
+userIds: all
 safeframes_ok: true
 floors_supported: true
 aliasCode: admatic

@@ -32,5 +32,5 @@ The SpinX bidding adapter requires setup and approval before implementation. Ple
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
-| `host`   | required | RTB host | `'cpm.arteabee.com'` | `string` |
+| `host`   | required | RTB host | `'cpm.rtads.bid'` | `string` |
 | `zoneId` | required | Zone Id           | 30164                 | `integer` |

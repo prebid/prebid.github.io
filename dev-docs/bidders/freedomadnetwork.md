@@ -3,6 +3,7 @@ layout: bidder
 title: Freedom Ad Network
 description: Freedom Ad Network Bidder Adapter
 biddercode: freedomadnetwork
+filename: fanAdapter
 gvl_id: none
 coppa_supported: true
 media_types: banner, native
