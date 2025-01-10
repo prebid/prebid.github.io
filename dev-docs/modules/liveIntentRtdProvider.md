@@ -15,8 +15,8 @@ sidebarType : 1
 
 {% include dev-docs/loads-external-javascript.md %}
 
-This module extracts segments from `bidRequest.userId.lipb.segments` enriched by the userID module and
-injects them in `ortb2.user.data` array entry.
+The LiveIntent RTD module loads a script to extract segment information from bid requests.
+These segments are resolved using the LiveIntent user ID module and are then supplied as user data segments in OpenRTB.
 
 Please visit [LiveIntent](https://www.liveIntent.com/) for more information.
 
