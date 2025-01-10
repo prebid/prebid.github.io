@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # HUMAN Security Real-time Data Submodule
-
 {:.no_toc}
 
 * TOC

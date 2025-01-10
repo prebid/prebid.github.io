@@ -12,8 +12,6 @@ sidebarType : 1
 
 # Konduit Accelerate Module
 
-{:.no_toc}
-
 The Konduit Accelerate module applies the [Konduit](https://konduitvideo.com/) video acceleration optimization to a publisher’s existing Prebid setup. This optimization provides publishers with tools to monetize previously lost revenue and drive higher fill rates on their video inventory.
 
 To install the module, follow these instructions:
