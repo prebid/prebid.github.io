@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # Bid Viewability - Ad Server Independent
-
 {:.no_toc}
 
 - TOC

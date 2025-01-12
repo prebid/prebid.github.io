@@ -3,6 +3,9 @@ layout: userid
 title: Unified ID
 description: Unified ID User ID sub-module
 useridmodule: unifiedIdSystem
+bidRequestUserId: tdid
+eidsource: adserver.org
+example: '"1111"'
 ---
 
 
@@ -10,8 +13,9 @@ The Unified ID solution is provided by adsrvr.org and the Trade Desk.
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=unifiedIdSystem
+```
 
 ## Unified ID Registration
 
@@ -25,6 +29,7 @@ The Unified ID privacy is covered under the [TradeDesk Services Privacy Policy](
 ## Unified ID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"unifiedId"` | `"unifiedId"` |

@@ -72,7 +72,7 @@ More details available at:
 
 - [IAB OM SDK](https://iabtechlab.com/standards/open-measurement-sdk/)
 - [Prebid iOS OM SDK](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#open-measurement-sdk-omsdk-api)
-- [Prebid Android OM SDK](/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html#open-measurement-sdk-omsdk-api)
+- [Prebid Android OM SDK](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#open-measurement-sdk-omsdk-api)
 
 ### Does it have external dependencies?  
 
@@ -132,7 +132,7 @@ Yes.
 ### Does the SDK store any data locally on the device?  If so, what is it?
 
 If the developer calls certain functions, the SDK will store the results for future auctions. See the "Local Storage" section of
-<https://docs.prebid.org/prebid-mobile/pbm-api/android/pbm-targeting-params-android.html>
+<https://docs.prebid.org/prebid-mobile/pbm-api/android/pbm-targeting-android.html>
 
 In all other cases SDK plays a transport role. It collects information from API (if it’s allowed by privacy settings) and sends it in the bid requests to the server. SDK uses the following datasources:
 

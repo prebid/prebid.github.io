@@ -2,7 +2,10 @@
 layout: userid
 title: Deepintent
 description: Deepintent User ID sub-module
-useridmodule: deepintentIdSystem
+useridmodule: deepintentDpesIdSystem
+bidRequestUserId: deepintentId
+eidsource: deepintent.com
+example: '"1111"'
 ---
 
 
@@ -17,6 +20,7 @@ DPES ID is free to use and requires a simple registration with DeepIntent. Pleas
 ## Deepintent DPES ID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module: `"deepintentId"` | `"deepintentId"` |
