@@ -36,7 +36,7 @@ It serves 2 purposes:
                 "prebid": {                    // bid adapters don't see this object
                     "bidder": {
                         "bidderAlias": {       // bid adapters don't see this object
-                            "placement": 1001  // The contents of this object are seen by adapters at imp[].ext.bidder
+                            "placementId": 1001  // The contents of this object are seen by adapters at imp[].ext.bidder
                         }
                     },
                     "passthrough": {           // bid adapters don't see this object
