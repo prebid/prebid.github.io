@@ -6,13 +6,16 @@ description: Captify Real Time Data Module
 page_type: module
 module_type: rtd
 module_code : captifyRtdProvider
-enable_download : true
+enable_download : false
 vendor_specific: true
 sidebarType : 1
 ---
 
 # Captify RTD Module
 {:.no_toc}
+
+{: .alert.alert-warning :}
+Captify RTD was removed in Prebid.js 8.0
 
 * TOC
 {:toc}
