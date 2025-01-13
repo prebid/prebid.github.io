@@ -14,7 +14,7 @@ sidebarType : 1
 # Nodals Real-Time Data Module
 
 ## Overview
-Nodals provides a real-time data prebid module that will analyse the first-party signals present on page load and determine the value of them to Nodals’ advertisers. When the signals present on the page match the advertiser’s targeting and/or outcome desires, Nodals will add a key-value to the ad server call to indicate that this is a valuable opportunity for the advertiser.
+Nodals provides a real-time data prebid module that will analyse first-party signals present on page load, determine the value of them to Nodals’ advertisers and add a key-value to the ad server call to indicate that value.
 
 In order to be able to utilise this module, please contact [support@nodals.ai](mailto:support@nodals.ai) for account setup and detailed GAM setup instructions.
 
@@ -39,7 +39,7 @@ pbjs.setConfig({
       name: 'nodals',
       waitForIt: true, // should be true only if there's an `auctionDelay`
       params: {
-        propertyId: '76346cf3'
+        propertyId: '76346cf3' // obtain your property id from Nodals support
       }
     }]
   },
