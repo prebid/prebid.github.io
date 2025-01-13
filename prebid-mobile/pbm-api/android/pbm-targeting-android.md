@@ -303,7 +303,7 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | logger | required | object | The PrebidLogger interface enables the app developer to define where the Prebid SDK should send log-level details about the header bidding transaction. | |
 
-### setEventDelegate()
+#### setEventDelegate()
 
 Sets event delegate to handle all auction requests and responses. It allows to collect some statistical data. 
 Note that SDK stores this callback as a weak reference so you need to store reference to it. 
