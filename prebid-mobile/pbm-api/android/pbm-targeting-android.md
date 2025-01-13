@@ -319,7 +319,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| eventDelegate | required | PrebidEventDelegate | The callback for handling all requests and responses. This interface takes request and response as the JSONObject types. | |s
+| eventDelegate | required | PrebidEventDelegate | The callback for handling all requests and responses. This interface takes request and response as the JSONObject types. | `{ request, response -> ... }` |
 
 ---
 
