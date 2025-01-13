@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Blue Media Service
+title: Blue Media Services LTDA
 description: Prebid BMS Bidder Adapter
 tcfeu_supported: true
 pbjs: true
