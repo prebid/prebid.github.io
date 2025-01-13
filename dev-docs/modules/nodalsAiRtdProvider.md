@@ -56,11 +56,11 @@ Configuration parameters:
 | `name`                   | required | Real time data module name: Always `'nodalsAi'` | `'nodalsAi'`  | `String` |
 | `waitForIt`              | optional | Set to `true` if there's an `auctionDelay` defined (defaults to `false`) | `false` | `Boolean` |
 | `params`                 | required | Submodule configuration parameters            | `{}`        | `Object` |
-| `params.propertyId`      | required | Publisher specific identifier, provided by Nodals            | `'76346cf3'`        | `String` |
+| `params.propertyId`      | required | Publisher specific identifier, provided by Nodals AI           | `'76346cf3'`        | `String` |
 | `params.storage`         | optional | Optional storage configiration            | `{}`        | `Object` |
 | `params.storage.key`     | optional | Storage key used to store Nodals AI data in local storage             | `'yourKey'`        | `String` |
 | `params.storage.ttl`     | optional | Time in seconds to retain Nodals AI data in storage until a refresh is required             | `900`        | `Integer` |
 | `params.ptr`         | optional | Optional partner configiration            | `{}`        | `Object` |
 | `params.ptr.permutive`    | optional | Optional configiration for Permutive Audience Platform      | `{}`        | `Object` |
 | `params.ptr.permutive.cohorts`  | optional | A method for the publisher to explicitly supply Permutive Cohort IDs, disabling automatic fetching by this RTD module    | `['66711', '39032', '311']`     | `Array<String>` |
-| `params.ptr.permutive.storageKey`  | optional | Publisher specific Permutive storage key where cohort data is held.  | `'permitive-data'`     | `String` |
+| `params.ptr.permutive.storageKey`  | optional | Publisher specific Permutive storage key where cohort data is held.  | `'_psegs'`     | `String` |
