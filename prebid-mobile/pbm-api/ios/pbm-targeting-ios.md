@@ -63,6 +63,7 @@ Prebid.shared.customStatusEndpoint="https://pbs.example.com/v2/status"
 | impClickbrowserType | optional | enum | ORTB | Indicates the type of browser opened upon clicking the creative in an app. This corresponds to the OpenRTB imp.clickbrowser field. Values are "embedded" and "native". Default is "native". | "native". |
 | includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 | includeBidderKeys | optional | boolean | ORTB | If `true`, Prebid sdk will add `includebidderkeys` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
+| eventDelegate | optional | PrebidEventDelegate | init | Sets event delegate to handle all auction requests and responses. It allows to collect some statistical data. Note that SDK stores this callback as a weak reference so you need to store reference to it. | `class PrebidEventDelegateTestsMockDelegate: PrebidEventDelegate { func prebidBidRequestDidFinish(requestData: Data?, responseData: Data?) { ... } }` |
 
 ### Prebid Class Global Methods
 
