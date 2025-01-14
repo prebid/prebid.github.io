@@ -2,26 +2,24 @@
 layout: bidder
 title: CondorX
 description: Prebid CondorX Bidder Adapter
-media_type: native, banner 
+media_type: native, banner
 biddercode: condorx
 pbjs: true
 tcfeu_supported: false
 sidebarType: 1
 ---
+
 ### Note
 
-The Example CondorX Bidding adapter requires setup before beginning. Please contact us at https://condorx.io.
-
+The Example CondorX Bidding adapter requires setup before beginning. Please contact us at [CondorX](https://condorx.io).
 
 ### Bid params
 
-
 | Name     | Scope    | Description                                                 | Example              |
 |----------|----------|-------------------------------------------------------------|----------------------|
-| `widget` | required | The widget ID, by CondorX                  | `12345`              |
-| `website`   | required | The website ID, by Condorx                                  | `12345`              |
-| `url`  | optional | current url | `https://condorx.io` |
-
+| `widget` | required | The widget ID, by CondorX                                  | `12345`              |
+| `website`| required | The website ID, by Condorx                                  | `12345`              |
+| `url`    | optional | Current url                                                 | `https://condorx.io` |
 
 ### Example Ad Unit
 
@@ -42,4 +40,3 @@ var adUnits = [{
         }
     }]
 }];
-```
