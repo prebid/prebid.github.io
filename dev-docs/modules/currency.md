@@ -10,11 +10,11 @@ sidebarType : 1
 
 ---
 
-
-
 # Currency Module
-
 {:.no_toc}
+
+* TOC
+{:toc}
 
 This module supports the conversion of multiple bidder currencies into a single currency
 used by the publisher's ad server. In previous versions of Prebid, this was accomplished
