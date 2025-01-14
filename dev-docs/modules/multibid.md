@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # MultiBid Module
-
 {:.no_toc}
 
 * TOC
