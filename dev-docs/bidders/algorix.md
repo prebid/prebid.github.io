@@ -68,6 +68,4 @@ var adUnits = [
 
 Note:
 
-* AlgoriX server-side Prebid Server adapter supports only `banner`, `video`,`native` media types. But AlgoriX
-[EOF]client-side Prebid.js adapter supports only `banner`, doesn't support `video` and `native`.
-[EOF]
+* AlgoriX server-side Prebid Server adapter supports only `banner`, `video`,`native` media types. But AlgoriX client-side Prebid.js adapter supports only `banner`, doesn't support `video` and `native`.
