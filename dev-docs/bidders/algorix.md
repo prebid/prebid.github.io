@@ -38,7 +38,6 @@ Note:
 * placementId and appId will be generated on AlgoriX Platform.
 * region is optional param, which determine the AlgoriX server. APAC for SG endpoint, USE for US endpoint, EUC for EU endpoint, Other for Global endpoint.
 
-
 ### Prebid.js Adapter Params
 
 {: .table .table-bordered .table-striped }
