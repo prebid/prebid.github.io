@@ -59,8 +59,8 @@ var adUnits = [
       bidder: 'algorix',
       params: {
         region: 'APAC', // required
-        token: '89b6d58567e3913e507f2be61fe8823e', // optional
         sid: '260785', // required
+        token: '89b6d58567e3913e507f2be61fe8823e', // optional
       }
     }]
 }];
