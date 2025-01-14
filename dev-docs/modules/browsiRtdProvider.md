@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Browsi Viewability Module
-
 {:.no_toc}
 
 * TOC
