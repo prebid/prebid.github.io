@@ -15,9 +15,31 @@ The Example CondorX Bidding adapter requires setup before beginning. Please cont
 
 ### Bid params
 
-{: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                                            | Example                     | Type |
-| :---          | :----    | :----------------------------------------------------  | :-------------------------  | --- |
-| widget           | required | The widget ID, by CondorX.                   | `12345`    | integer |
-| website           | required | The website ID, by Condorx.                   | `12345`    | integer |
-| url       |  optional        | current url.                      |  `'https://condorx.io'`       | String |
+
+| Name     | Scope    | Description                                                 | Example              |
+|----------|----------|-------------------------------------------------------------|----------------------|
+| `widget` | required | The widget ID, by CondorX                  | `12345`              |
+| `website`   | required | The website ID, by Condorx                                  | `12345`              |
+| `url`  | optional | current url | `https://condorx.io` |
+
+
+### Example Ad Unit
+
+```javascript
+var adUnits = [{
+    code: 'condorx-container-id',
+    mediaTypes: {
+        banner: {
+            sizes: [[300, 250]],  
+        }
+    },
+    bids: [{
+        bidder: "condorx",
+        params: {
+            widget: 'widget id by CondorX',
+            website: 'website id by CondorX',
+            url:'current url'
+        }
+    }]
+}];
+```
