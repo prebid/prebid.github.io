@@ -40,7 +40,8 @@ sidebarType: 1
 
 The Bitmedia Bid Adapter allows publishers to integrate with BitmediaIO for banner advertising.
 
-#### Key Points:
+#### Key Points
+
 - Supported Media Type: **Banner**
 - Bids are only provided in **USD**.
 - Access to **local storage** is optional.
