@@ -3,7 +3,6 @@ layout: bidder
 title: Bitmedia
 description: Prebid Bitmedia Bidder Adapter
 biddercode: bitmedia
-aliasCode: none
 pbjs: true
 pbs: false
 gvl_id: none
@@ -18,7 +17,7 @@ media_types: banner
 safeframes_ok: true
 deals_supported: false
 floors_supported: true
-fpd_supported: true //
+fpd_supported: false
 ortb_blocking_supported: false
 multiformat_supported: will-not-bid
 privacy_sandbox: no
@@ -58,7 +57,7 @@ More about us: [https://bitmedia.io](https://bitmedia.io)
 | Name         | Scope    | Description                        | Example           | Type     |
 |--------------|----------|------------------------------------|-------------------|----------|
 | `adUnitID`   | required | The ad unit ID from Bitmedia       | `'exampleAdUnitID'` | `string` |
-| `currency`   | required | Currency of the bid (default: USD) | `'USD'`           | `string` |
+| `currency`   | optional | Currency of the bid (default: USD) | `'USD'`           | `string` |
 
 <a name="test-parameters"></a>
 
