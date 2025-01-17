@@ -70,7 +70,7 @@ as well as enabling settings for specific use cases mentioned above (e.g. acbidd
 
 ### Context
 
-While Permutive is listed as a TCF vendor (ID: 361), Permutive does not obtain consent directly from the TCF. As we act as a processor on behalf of our publishers consent is given to the Permutive SDK by the publisher, not by the [GDPR Consent Management Module](https://prebid-docs.atre.net/dev-docs/modules/consentManagement.html).
+While Permutive is listed as a TCF vendor (ID: 361), Permutive does not obtain consent directly from the TCF. As we act as a processor on behalf of our publishers consent is given to the Permutive SDK by the publisher, not by the [GDPR Consent Management Module](/dev-docs/modules/consentManagement.html).
 
 This means that if GDPR enforcement is configured within the Permutive SDK _and_ the user consent isn’t given for Permutive to fire, no cohorts will populate.
 
