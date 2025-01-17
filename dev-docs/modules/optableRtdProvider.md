@@ -61,8 +61,8 @@ pbjs.setConfig({
                 waitForIt: true, // should be true, otherwise the auctionDelay will be ignored
                 params: {
                     bundleUrl: '<optional your bundle url>',
-                    propagateTargeting: '<optional, false by default, set to true to also set GAM targeting keywords to ad slots>',
-                    ppid_mapping: { 
+                    gamTargeting: '<optional, false by default, set to true to also set GAM targeting keywords to ad slots>',
+                    ppidMapping: { 
                         // optional mapping between eids sources and optable custom identifier names
                         "example.com": "c0",
                         "source-id.com": "c1", //...
@@ -118,8 +118,8 @@ async function sha256(input) {
 | waitForIt             | Boolean | Should be set `true` together with auctionDelay: 1000                   | `false` |
 | params                | Object  |                                                                                                  |                    |
 | params.bundleUrl    | String  | Optable bundle URL                                                        | '' |
-| params.propagateTargeting | boolean  | If set to `true` targeting keywords will be passed to GAM ad units | false |
-| params.ppid_mapping | map  | Optional mapping between PPID sources and custom identifier names  | null |
+| params.gamTargeting | boolean  | If set to `true` targeting keywords will be passed to GAM ad units | false |
+| params.ppidMapping | map  | Optional mapping between PPID sources and custom identifier names  | null |
 
 ## Example 
 
