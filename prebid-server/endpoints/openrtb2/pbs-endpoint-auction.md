@@ -309,20 +309,21 @@ To summarize the process:
 
 ##### PBS-Java
 
-Core concepts:
+Definitions:
 
 - request_tmax: what the incoming ORTB request defines as tmax (as milliseconds)
-- biddertmax_max: controls that upstream doesn't tell us ridiculous values. In milliseconds. (configuration auction.biddertmax.max)
-- biddertmax_min: it's not worth calling bidders and give them less time than this number of milliseconds (configuration (auction.biddertmax.min). Note: we recommend this value be at least 150 ms)
-- biddertmax_percent: a lower number means more buffer for network delay. Host companies should set this to a lower value in regions where the network connections are slower. (configuration auction.biddertmax.percent)
-- tmax_upstream_response_time: the amount of time (in ms) that PBS needs to respond to the original caller (configuration auction.tmax-upstream-response-time)
+- biddertmax_max: configuration that controls that upstream doesn't tell us ridiculous values. In milliseconds. Actual config value is configuration auction.biddertmax.max. The default is 5000 ms.
+- biddertmax_min: configuration declaring that it's not worth calling bidders with a tmax of less than this number of milliseconds. Actual config value is auction.biddertmax.min. Note: we recommend this value be at least 150 ms, but the default is 50 ms.
+- biddertmax_percent: configuration defining what percent of the tmax should be given to bidders. A lower number provides a larger buffer for network delay, meaning that host companies should set this to a lower value in regions where the network connections are slower. Actual config value is auction.biddertmax.percent.
+- tmax_upstream_response_time: configuration estimating the amount of time (in ms) that PBS needs to respond to the original caller. Actual config value is auction.tmax-upstream-response-time.
+- bidder_tmax_deduction: (PBS-Java 3.18+) configuration adjusting the tmax sent to the bidder to give them a higher sense of urgency for the expected network delays. It doesn't affect the actual timeout enforced by PBS. Actual config value is adapter.ADAPTER.tmax-deduction-ms.
 - processing_time: PBS calculation for how long it's been since the start of the request up to the point where the bidders are called
-- bidder_tmax: this is what PBS-core tells the bidders they have to respond. The conceptual formula is: capped(request_tmax)*biddertmax_percent - processing_time - tmax_upstream_response_time ==> must be at least the configured min
-- enforced_tmax: this is long PBS-core actually gives the bidders: capped(request_tmax)- processing_time - tmax_upstream_response_time ==> cannot be lower than bidder_tmax
+- bidder_tmax: calculated value that PBS-core tells bidders indicating how long they have to respond. The conceptual formula is: capped(request_tmax)*biddertmax_percent - processing_time - tmax_upstream_response_time ==> must be at least the configured min
+- enforced_tmax: calculated value for the actually enforced bidder timeout. The conceptual formula is: capped(request_tmax)- processing_time - tmax_upstream_response_time ==> cannot be lower than bidder_tmax
 
 The full formulas:
 
-bidder_tmax=max(calculated_tmax, biddertmax_min)=max((min(request_tmax,biddertmax_max)*biddertmax_percent)-processing_time - tmax_upstream_response_time, biddertmax_min)
+bidder_tmax=max(calculated_tmax, biddertmax_min)=max((min(request_tmax,biddertmax_max)*biddertmax_percent)-processing_time - tmax_upstream_response_time - bidder_tmax_deduction, biddertmax_min)
 
 enforced_tmax=max(calculated_enforcement,bidder_tmax)=max(min(request_tmax,biddertmax_max)-processing_time - tmax_upstream_response_time , bidder_tmax)
 
