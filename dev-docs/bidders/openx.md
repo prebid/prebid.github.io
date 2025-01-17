@@ -38,6 +38,7 @@ IMPORTANT: only include either openxBidAdapter or openxOrtbBidAdapter in your bu
 #### Banner
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `delDomain` ~~or `platform`~~** | required | OpenX delivery domain provided by your OpenX representative. | "PUBLISHER-d.openx.net" | String |
@@ -87,6 +88,7 @@ var adUnits = [
 #### Video
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String |
@@ -99,6 +101,7 @@ var adUnits = [
 The following video parameters are supported here so publishers may fully declare their video inventory:
 
 {: .table .table-bordered .table-striped }
+
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | context | required | instream or outstream |"outstream" | string |
@@ -151,7 +154,7 @@ var videoAdUnits = [
 }]
 ```
 
-## Example
+### Example
 
 ```javascript
 var adUnits = [
@@ -254,7 +257,7 @@ pbjs.setConfig({
 });
 ```
 
-## Additional Details
+### Additional Details
 
 * [Banner Ads](https://docs.openx.com/publishers/prebid-adapter-web/) (Customer login required.)
 * [Video Ads](https://docs.openx.com/publishers/prebid-adapter-video/) (Customer login required.)

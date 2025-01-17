@@ -5,8 +5,8 @@ description: NextMillennium bid adapter
 gvl_id: dev-docs/bidders/nextMillennium.md
 tcfeu_supported: true
 usp_supported: true
-coppa_supported: false
-schain_supported: false
+coppa_supported: true
+schain_supported: true
 dchain_supported: false
 safeframes_ok: false
 deals_supported: false

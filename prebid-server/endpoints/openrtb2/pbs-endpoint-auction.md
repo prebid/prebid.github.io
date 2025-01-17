@@ -117,7 +117,7 @@ This is a corresponding sample response to a sample bid request:
 
 Prebid Server's support for Fledge is a passthrough:
 
-1. If the request contains `imp.ext.ae: 1`
+1. If the request contains `imp[].ext.ae: 1`
 2. Bid adapters may respond with 'auction config' that's placed in `ext.prebid.fledge.auctionconfigs[]`.
 
 The auction config must then be used by the client. See the Prebid.js [PAAPI for GPT](/dev-docs/modules/paapiForGpt.html) module for more information.
@@ -140,7 +140,7 @@ Prebid Server accepts all OpenRTB 2.x fields and passes them in the request to a
 | regs.gdpr | 2.6 | Bidders supporting 2.5 only: downgraded to regs.ext.gdpr |
 | regs.us_privacy | 2.6 | Bidders supporting 2.5 only: downgraded to regs.ext.us_privacy |
 | user.consent | 2.6 | Bidders supporting 2.5 only: downgraded to user.ext.consent |
-| imp.rwdd | 2.6 | Bidders supporting 2.5 only: downgraded to imp.ext.prebid.is_rewarded_inventory |
+| imp.rwdd | 2.6 | Bidders supporting 2.5 only: downgraded to imp[].ext.prebid.is_rewarded_inventory |
 | user.eids | 2.6 | Bidders supporting 2.5 only: downgraded to user.ext.eids |
 | source.schain | 2.6 | Bidders supporting 2.5 only: downgraded to source.ext.schain |
 | wlangb, {content, device}.langb, cattax, {site, app, publisher, content, producer}.cattax, ssai, {app, site}.content.{network, channel}, {app, content, site, user}.kwarray, device.sua | 2.6 | Bidders supporting 2.5 only: these fields are removed |
@@ -309,20 +309,21 @@ To summarize the process:
 
 ##### PBS-Java
 
-Core concepts:
+Definitions:
 
 - request_tmax: what the incoming ORTB request defines as tmax (as milliseconds)
-- biddertmax_max: controls that upstream doesn't tell us ridiculous values. In milliseconds. (configuration auction.biddertmax.max)
-- biddertmax_min: it's not worth calling bidders and give them less time than this number of milliseconds (configuration (auction.biddertmax.min). Note: we recommend this value be at least 150 ms)
-- biddertmax_percent: a lower number means more buffer for network delay. Host companies should set this to a lower value in regions where the network connections are slower. (configuration auction.biddertmax.percent)
-- tmax_upstream_response_time: the amount of time (in ms) that PBS needs to respond to the original caller (configuration auction.tmax-upstream-response-time)
+- biddertmax_max: configuration that controls that upstream doesn't tell us ridiculous values. In milliseconds. Actual config value is configuration auction.biddertmax.max. The default is 5000 ms.
+- biddertmax_min: configuration declaring that it's not worth calling bidders with a tmax of less than this number of milliseconds. Actual config value is auction.biddertmax.min. Note: we recommend this value be at least 150 ms, but the default is 50 ms.
+- biddertmax_percent: configuration defining what percent of the tmax should be given to bidders. A lower number provides a larger buffer for network delay, meaning that host companies should set this to a lower value in regions where the network connections are slower. Actual config value is auction.biddertmax.percent.
+- tmax_upstream_response_time: configuration estimating the amount of time (in ms) that PBS needs to respond to the original caller. Actual config value is auction.tmax-upstream-response-time.
+- bidder_tmax_deduction: (PBS-Java 3.18+) configuration adjusting the tmax sent to the bidder to give them a higher sense of urgency for the expected network delays. It doesn't affect the actual timeout enforced by PBS. Actual config value is adapter.ADAPTER.tmax-deduction-ms.
 - processing_time: PBS calculation for how long it's been since the start of the request up to the point where the bidders are called
-- bidder_tmax: this is what PBS-core tells the bidders they have to respond. The conceptual formula is: capped(request_tmax)*biddertmax_percent - processing_time - tmax_upstream_response_time ==> must be at least the configured min
-- enforced_tmax: this is long PBS-core actually gives the bidders: capped(request_tmax)- processing_time - tmax_upstream_response_time ==> cannot be lower than bidder_tmax
+- bidder_tmax: calculated value that PBS-core tells bidders indicating how long they have to respond. The conceptual formula is: capped(request_tmax)*biddertmax_percent - processing_time - tmax_upstream_response_time ==> must be at least the configured min
+- enforced_tmax: calculated value for the actually enforced bidder timeout. The conceptual formula is: capped(request_tmax)- processing_time - tmax_upstream_response_time ==> cannot be lower than bidder_tmax
 
 The full formulas:
 
-bidder_tmax=max(calculated_tmax, biddertmax_min)=max((min(request_tmax,biddertmax_max)*biddertmax_percent)-processing_time - tmax_upstream_response_time, biddertmax_min)
+bidder_tmax=max(calculated_tmax, biddertmax_min)=max((min(request_tmax,biddertmax_max)*biddertmax_percent)-processing_time - tmax_upstream_response_time - bidder_tmax_deduction, biddertmax_min)
 
 enforced_tmax=max(calculated_enforcement,bidder_tmax)=max(min(request_tmax,biddertmax_max)-processing_time - tmax_upstream_response_time , bidder_tmax)
 
@@ -404,6 +405,15 @@ Bid adapters do not need to read this data from ext.prebid. PBS will merge the a
 
 ##### Bid Adjustments
 
+There are two ways PBS can be instructed to adjust bids:
+
+1. The original `bidadjustmentfactors` approach is simpler and allows for percentage-based adjustments based on bidder and mediatype.
+2. The more powerful `bidadjustments` feature allows for percentage, absolute, and static adjustments based on bidder, mediatype and deal IDs.
+
+If both `bidadjustments` and `bidadjustmentfactors` are specified, the bidadjustments (newer approach) takes precedence.
+
+###### Original Bid Adjustment Factors
+
 Bidders are encouraged to make Net bids. However, there's no way for Prebid to enforce this.
 If you find that some bidders use Gross bids, publishers can adjust for it with `request.ext.prebid.bidadjustmentfactors`:
 
@@ -449,6 +459,113 @@ It's also possible to define different bid adjustment factors by mediatype, whic
 ```
 
 Note that video-outstream is defined to be imp[].video requests where imp[].video.placement is greater than 1.
+
+###### Flexible Bid Adjustments
+
+A more powerful approach to adjusting bid values can be specifed on the request or in account config. Here's the general format:
+
+```json5
+{
+  "ext": {
+    "prebid": {
+      "bidadjustments": {
+        "mediatype": {
+           MEDIATYPE: {
+             BIDDER: {
+               DEAL: [ {"adjtype": ADJTYPE, "value": ADJVALUE, "currency": CURRENCY} ]
+             }
+           }
+         }
+       }
+    }
+  }
+}
+```
+
+Where:
+
+- MEDIATYPE can be 'banner', 'video-instream', 'video-oustream', 'native', 'audio', or a wildcard (*)
+- BIDDER can be a biddercode or a wildcard (*)
+- DEAL can be a dealID or a wildcard (*)
+- ADJTYPE can be 'multiplier', 'cpm' or 'static'
+- ADJVALUE is a float value. See the table below for more details.
+- CURRENCY is a 3 character currency code, e.g. "EUR". This is required for some ADJTYPEs.
+
+Note that the specific adjustments are after the deal level and are an array of adjustments. Most commonly there will be only one entry in the array, but allowing it to have multiple entries can meet some advanced adjustment use cases. The next couple of sections provide detail on the input values.
+
+**MediaType**
+
+{: .table .table-bordered .table-striped }
+| MediaType | Definition | Notes |
+| --- | --- | --- |
+| banner | The response type is format=banner | |
+| video-instream | The response type is format=video the request imp.video.placement=1 or imp.video.plcmt=1 | |
+| video-outstream | The response type is format=video the request imp.video.placement>1 or imp.video.plcmt>1 | |
+| native | The response type is format=native | |
+| audio | The response type is format=audio | |
+| * | The remaining mediatypes | The wildcard is always used as a default value. i.e. if adjustments are defined for an explicit mediatype, that will take precedence. |
+
+**Adjustment Types and Values**
+
+{: .table .table-bordered .table-striped }
+| Adjustment Type | Definition | Values | Notes |
+| --- | --- | --- | --- |
+| multiplier | multiply the bid price by the value | float between 0 and MAXINT | currency doesn't matter in this scenario |
+| cpm | subtract the value from the bid price after adjusting for currency | float between 0 and MAXINT | currency must be specified |
+| static | ignore the actual bid value and override it with the specified value and currency | float between 0 and MAXINT | currency must be specified |
+
+**Notes**
+
+- In all cases, the 'value' is required.
+- Any validation failure will skip the whole bid adjustment operation
+- The system will attempt to merge request-level and account-level bid adjustments. If this fails it will try to use only the account bid adjustments.
+- If there's a validation error, a debug message will be added and a sample will be logged to the PBS log file.
+
+**Example**
+
+Here's an example showing a couple of use cases:
+
+```json5
+{
+  "ext": {
+    "prebid": {
+      "bidadjustments": {
+          "mediatype": {
+              "banner": {
+                  // decrement banner bids from bidderA by 10%
+                  "bidderA": {
+                      "*" : [ {"adjtype": "multiplier", "value": 0.9} ]
+                  },
+                  "*": {  // wildcard bidder only matches if there isn't a more direct match
+                      // bids on deal 111111 are always exactly $3.00
+                      "111111": [{
+                          "adjtype": "static", "value": 3.00, "currency": "USD"
+                      }],
+                      // otherwise, always decrement banner bids by $0.10
+                      "*": [{
+                            "adjtype": "cpm", "value": 0.1, "currency": "USD"
+                      }]
+                  }
+              },
+              "video-instream": {
+                  // for video bids, take 80% of the bid value and add $0.18.
+                  "*": { // all bidders
+                     "*": [{ // all deals
+                         "adjtype": "multiplier", "value": 0.80
+                     }, {
+                         "adjtype": "cpm", "value": 0.18, "currency": "USD"
+                     }]
+                  }
+              }
+          }
+       }
+    }
+  }
+}
+```
+
+{: .alert.alert-info :}
+Note that these bidadjustments can also be specified in the PBS account config in `auction.bidadjustments`
 
 ##### Targeting
 
@@ -655,7 +772,7 @@ For example, if the Request defines an alias like this:
 }
 ```
 
-then any `imp.ext.appnexus` params will actually go to the **rubicon** adapter.
+then any `imp[].ext.appnexus` params will actually go to the **rubicon** adapter.
 It will become impossible to fetch bids from AppNexus within that Request.
 
 ##### Bidder Alias GVL IDs
@@ -956,14 +1073,14 @@ ext.prebid.data.eidpermissions is an array of objects that can contain these att
 To be deprecated for `request.imp[].rwdd` introduced in OpenRTB 2.6.
 
 Rewarded video is a way to incentivize users to watch ads by giving them 'points' for viewing an ad. A Prebid Server
-client can declare a given adunit as eligible for rewards by declaring `imp.ext.prebid.is_rewarded_inventory:1`.
+client can declare a given adunit as eligible for rewards by declaring `imp[].ext.prebid.is_rewarded_inventory:1`.
 
 ##### Create Transaction ID
 
 The request can contain the global `createtids` flag to control the `transmitTid` [Activity Control](/prebid-server/features/pbs-activitycontrols.html).
 
 ```text
-ext.request.createtids: false
+ext.prebid.createtids: false
 ```
 
 If the value is `false`, the `transmitTid` activity is overridden to "denied", which means bid adapters will not get unique transaction IDs. If not specified, then the value of the transmitTid activity for the account is used. The overall default value it `true`, which translates to "allow" the generation of TIDs.
@@ -1003,7 +1120,7 @@ Provides a way to override multiple bidder responses for this impression, retrie
 
 When a storedauctionresponse ID is specified:
 
-- the rest of the imp.ext.prebid block is irrelevant and ignored
+- the rest of the imp[].ext.prebid block is irrelevant and ignored
 - nothing is sent to any bidder adapter for that imp
 - the response retrieved is assumed to be the entire contents of the seatbid object corresponding to that impression.
 
@@ -1111,7 +1228,7 @@ Provides a way to override multiple bidder responses for this impression, with t
 
 When storedauctionresponse JSON is specified:
 
-- the rest of the imp.ext.prebid block is irrelevant and ignored
+- the rest of the imp[].ext.prebid block is irrelevant and ignored
 - nothing is sent to any bidder adapter for that imp
 - the JSON in the request is assumed to be the entire contents of the seatbid object corresponding to that impression.
 
@@ -1186,7 +1303,7 @@ Provides a way to override the entire bid response, with the contents supplied o
 
 When storedauctionresponse JSON is specified at the global level:
 
-- all imp.ext.prebid.storedauctionresponse blocks are irrelevant and ignored
+- all imp[].ext.prebid.storedauctionresponse blocks are irrelevant and ignored
 - nothing is sent to any bidder adapter
 - the JSON in the request is assumed to be the entire contents of the seatbid response
 
@@ -1246,9 +1363,9 @@ Note: the `##PBSIMPID##` macro is only supported in PBS-Java. Please use `"repla
 
 In contrast to the stored**auction**responses above, using a stored**bid**response lets real auctions take place while the actual bidder response is overridden in such a way that it still exercises adapter code.
 
-PBS removes imp.ext.prebid.bidder parameters for those
+PBS removes imp[].ext.prebid.bidder parameters for those
 bidders specified in storedbidresponse but if there's a bidder present
-in imp.ext.prebid.bidder that's doesn't have a storedbidresponse specified,
+in imp[].ext.prebid.bidder that's doesn't have a storedbidresponse specified,
 the adapter will be called as usual.
 
 For example, this request:
@@ -1342,7 +1459,7 @@ Prebid defines several types of First Party Data (FPD):
 
 1. Cross-impression contextual information. e.g. the content category of the page. This data goes in the `site.ext.data` object or the `app.ext.data` object.
 1. User-level information. e.g. whether the user is a registered user. This data goes in `user.ext.data`.
-1. Impression-level information. e.g. the Global Placement ID. This data goes in the `imp.ext.data` object.
+1. Impression-level information. e.g. the Global Placement ID. This data goes in the `imp[].ext.data` object.
 1. Seller-Defined Audience (SDA) contextual data. This goes in `site.data[]` or `app.data[]` in accordance with the [IAB segment taxonomy conventions](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/segtax.md).
 1. SDA user data goes in `user.data[]` with the same [conventions](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/segtax.md) as the contextual data.
 
@@ -1450,10 +1567,10 @@ When Prebid Server sees `imp[].ext.prebid.imp.BIDDER`, the behavior is to:
 1. When passing this imp to that bidder, merge the contents of BIDDER into the imp
 1. Remove the imp[].ext.prebid.imp object
 1. Leave any imp[].ext.prebid.storedrequest object
-1. The imp.ext.prebid.imp.BIDDER object name is case insensitive and supports aliases
-1. If imp.ext.prebid.imp.BIDDER does not resolve to an actual bidder or alias in a case-insensitive way, it is ignored with a warning when in debug mode.
-1. No validation is done on imp.ext.prebid.imp.BIDDER.ext except that imp.ext.prebid.imp.BIDDER.ext.prebid.BIDDER is removed.
-1. The contents of imp.ext.prebid.imp.BIDDER takes precedence in the merge if the field already exists in the request.
+1. The imp[].ext.prebid.imp.BIDDER object name is case insensitive and supports aliases
+1. If imp[].ext.prebid.imp.BIDDER does not resolve to an actual bidder or alias in a case-insensitive way, it is ignored with a warning when in debug mode.
+1. No validation is done on imp[].ext.prebid.imp.BIDDER.ext except that imp[].ext.prebid.imp.BIDDER.ext.prebid.BIDDER is removed.
+1. The contents of imp[].ext.prebid.imp.BIDDER takes precedence in the merge if the field already exists in the request.
 1. The resulting imp object must be valid OpenRTB per the system schema.
 
 Here's an example showing a scenario showing a storedrequest-based scenario:
@@ -2017,7 +2134,9 @@ The Prebid SDK version comes from:
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.storedrequest<wbr>.id | Look up the defined stored request and merge the DB contents with this imp, see [stored requests](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#stored-requests). | object | no (yes with [issue 2292](https://github.com/prebid/prebid-server/issues/2292) |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.is_rewarded_inventory | (deprecated) Passed through to bid adapters, see [rewarded video](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#rewarded-video). (use imp.rwdd in ORTB 2.6) | integer | yes |
 | imp[]<wbr>.ext<wbr>.prebid<wbr>.passthrough | Copied to the response in seatbid.bid.ext.prebid.passthrough. Allows an application to pass a value through to the response, see [request passthrough](#request-passthrough). | object | no |
-| imp<wbr>.ext<wbr>.prebid<wbr>.adunitcode | Prebid.js adunit code | string | yes |
+| imp[]<wbr>.ext<wbr>.prebid<wbr>.adunitcode | Prebid.js adunit code | string | yes |
+| imp[]<wbr>.ext<wbr>.igs<wbr>.ae | If 1, signals bid adapters that Protected Audience config is accepted on the response. Note: 'ae' stands for 'auction environment'. | integer | yes |
+| imp[]<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. Note: this parameter has been replaced with imp[].ext.igs.ae | integer | yes |
 | device<wbr>.ext<wbr>.prebid<wbr>.interstitial | PBS-core will adjust the sizes on a request for interstitials,see [interstitial support](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#interstitial-support). | object | yes |
 | user<wbr>.ext<wbr>.prebid<wbr>.buyeruids | An alternate to [/cookie_sync](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), the request can supply bidder ID values, see [buyer uid](#buyer-uid). | object | no |
 | ext<wbr>.prebid<wbr>.adservertargeting | advanced targeting value rules, see [custom targeting](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#custom-targeting). | object | no |
@@ -2048,7 +2167,6 @@ The Prebid SDK version comes from:
 | ext<wbr>.prebid<wbr>.returnallbidstatus | If true, PBS returns [ext.seatnonbid](#seat-non-bid) with details about bidders that didn't bid. | boolean | no |
 | ext<wbr>.prebid<wbr>.analytics | Arguments that can be passed through to individual analytics adapters | object | no |
 | ext<wbr>.prebid<wbr>.analytics<wbr>.options.<wbr>enableclientdetails | Requests that [aTags](/prebid-server/developers/module-atags.html) be sent to the client-side for analytics. | boolean | no |
-| imp<wbr>.ext<wbr>.ae | If 1, signals bid adapters that Fledge auction config is accepted on the response. (ae stands for auction environment) | integer | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.source | The client that created this ORTB. Normally "prebid-mobile" | string | yes |
 | app<wbr>.ext<wbr>.prebid<wbr>.version | The version of the client that created this ORTB. e.g. "1.1" | string | yes |
 | ext<wbr>.prebid<wbr>.biddercontrols<wbr>.BIDDERCODE<wbr>.prefmtype | Override the mediatype sent to the named bidder if they don't support multiformat. | string | no |
