@@ -11,7 +11,7 @@ sidebarType: 1
 
 ### Note
 
-The Example CondorX Bidding adapter requires setup before beginning. Please contact us at [CondorX](https://condorx.io).
+The CondorX Bidding adapter requires setup before beginning. Please contact us at [CondorX](https://condorx.io).
 
 ### Bid params
 
