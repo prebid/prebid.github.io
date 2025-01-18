@@ -2,10 +2,25 @@
 layout: bidder
 title: CondorX
 description: Prebid CondorX Bidder Adapter
-media_type: native, banner
 biddercode: condorx
+tcfeu_supported: true
+dsa_supported: false
+gvl_id: 1375
+usp_supported: false
+coppa_supported: false
+schain_supported: false
+dchain_supported: false
+media_types: banner, native
+safeframes_ok: false
+deals_supported: false
+floors_supported: true
+fpd_supported: false
 pbjs: true
-tcfeu_supported: false
+pbs: false
+prebid_member: false
+multiformat_supported: will-bid-on-any
+ortb_blocking_supported: false
+privacy_sandbox: no
 sidebarType: 1
 ---
 
