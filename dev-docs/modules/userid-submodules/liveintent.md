@@ -101,7 +101,7 @@ pbjs.setConfig({
 
 ### Multiple user IDs
 
-The attributes `uid2`, `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, , `sharethrough`, `sovrn`, `index`, `thetradedesk`, `vidazoo` and `fpid` are treated specially by LiveIntent's user ID sub-module. Each of these attributes will result in a separate ID returned by the sub-module.
+The attributes `uid2`, `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, `sovrn`, `index`, `thetradedesk`, `sharethrough`, `sonobi`, `vidazoo` and `fpid` are treated specially by LiveIntent's user ID sub-module. Each of these attributes will result in a separate ID returned by the sub-module. Note: `thetradedesk` will be exposed as `tdid` because of historical reasons.
 
 #### Note
 
@@ -211,6 +211,9 @@ NOTE: For optimal performance, the LiveIntent ID sub-module should be called at 
 | params.identifiersToResolve |Optional| Array[String] |Used to send additional identifiers in the request for LiveIntent to resolve against the LiveIntent ID and additional attributes.|`['my-id']`|
 | params.requestedAttributesOverrides | Optional | Object | Object containing booleans used to override the default resolution. Attributes set to `true` will be added to the resolved list, while attributes set to `false` will be removed. Valid attributes are `nonId`, `uid2`, `medianet`, `magnite`, `bidswitch`, `pubmatic`, `openx`, `sovrn`, `index`, `thetradedesk` (`tdid`), `sharethrough`, `vidazoo`, `segments` and `fpid`. | `{'uid2': true}` |
 | params.emailHash |Optional| String |The hashed email address of a user. We can accept the hashes, which use the following hashing algorithms: md5, sha1, sha2.|`1a79a4d60de6718e8e5b326e338ae533`|
+| params.ipv4 |Optional| String |The IPv4 address of a user. |`1.2.3.4`|
+| params.ipv6 |Optional| String |The IPv6 address of a user. |`2001:db8:3333:4444:5555:6666:7777:8888`|
+| params.userAgent |Optional| String |The user agent of a user. Example of a Safari string: |`Mozilla/5.0 (iPhone; CPU iPhone OS 13_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1`|
 | params.url | Optional| String |Use this to change the default endpoint URL if you can call the LiveIntent Identity Exchange within your own domain.|`https://idx.my-domain.com`|
 | params.liCollectConfig |Optional| Object |Container of all collector params.||
 | params.liCollectConfig.fpiStorageStrategy |Optional| String |This parameter defines whether the first-party identifiers that LiveConnect creates and updates are stored in a cookie jar, or in local storage. If nothing is set, default behaviour would be `cookie`. Allowed values: [`cookie`, `ls`, `none`]|`cookie`|
