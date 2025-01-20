@@ -11,7 +11,7 @@ biddercode: oms
 prebid_member: false
 floors_supported: true
 safeframes_ok: true
-media_types: banner
+media_types: banner, video
 schain_supported: true
 userIds: id5Id, identityLink, pubProvidedId
 pbs_app_supported: true
