@@ -26,7 +26,7 @@ The Rise adapter requires setup and approval. Please reach out to [prebid-rise-e
 
 ### Bid Parameters
 
-#### Banner, Video
+#### Banner, Video, Native
 
 {: .table .table-bordered .table-striped }
 
@@ -36,7 +36,6 @@ The Rise adapter requires setup and approval. Please reach out to [prebid-rise-e
 | `floorPrice` | optional | Number |  Minimum price in USD. <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue | 2.00
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
-| `rtbDomain` | optional | String |  Sets the seller end point    | "www.test.com"
 
 ### Example
 
@@ -95,5 +94,10 @@ Rise recommends setting UserSync by iframe for monetization.
 
 ### Versions
 
-Prebid versions 5.0-5.3 are not supported
-Banner >= 6.14.0
+Prebid versions 5.0-5.3 are not supported.
+
+Banner >= 6.14.0.
+
+Native >= 9.27.0.
+
+Multi-format requests >= 9.27.0.

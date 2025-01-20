@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Qortex Real-time Data Submodule
-
 {:.no_toc}
 
 * TOC
