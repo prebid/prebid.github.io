@@ -44,6 +44,14 @@
   subgroup: 0
 
 - sbSecId: 0
+  title: Statement on Sustainability
+  link: /overview/statement-on-sustainability.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 0
   title: Developers
   link: /developers.html
   isHeader: 0
@@ -485,6 +493,14 @@
 - sbSecId: 1
   title: Vendor-Specific Modules
   link: /dev-docs/modules/index.html#vendor-specific-modules
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
+  title: User ID Modules
+  link: /dev-docs/modules/index.html#user-id-modules
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1801,6 +1817,22 @@
   subgroup: 0
 
 - sbSecId: 7
+  title: FAQs
+  link: /faq/faq.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 7
+  title: Blog
+  link: https://prebid.org/blog/
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 7
   title: Privacy Resources
   link:
   isHeader: 1
@@ -1831,20 +1863,22 @@
   subgroup: 1
 
 - sbSecId: 7
-  title: FAQs
-  link: /faq/faq.html
-  isHeader: 0
+  title: Sustainability Resources
+  link:
+  isHeader: 1
+  headerId: sustainability
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 7
-  title: Blog
-  link: https://prebid.org/blog/
+  title: Sustainability Portal
+  link: /support/sustainability-portal.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
+
 
  #-------------- Tools --------------|
 
