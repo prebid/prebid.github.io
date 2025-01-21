@@ -43,11 +43,11 @@ Publishers manage PAIR Ids themselves can store pairIds as a byte64 encoded arra
 // should have byte64 value ready in 'pairId' local storage/cookie entry
 
 pbjs.setConfig({
-    userSync: {
-        userIds: [{
-        name: 'openPairId'
-      }]
-    }
+  userSync: {
+    userIds: [{
+      name: 'openPairId'
+    }]
+  }
 });
 ```
 
@@ -57,15 +57,35 @@ Clean rooms may use specific storage keys, this version supports specifying the 
 
 // value in 'pairId' local storage/cookie entry will be combined with ids provided by cleanroom liveramp
 pbjs.setConfig({
-    userSync: {
-        userIds: [{
+  userSync: {
+    userIds: [
+      {
         name: 'openPairId',
         params: {
-                cleanRoomVendor: {
-                    storageKey: '_storage_key'
-                }
-            },
-      }]
-    }
+          cleanRoomVendor: {
+            storageKey: '_storage_key'
+          }
+        }
+      }
+    ]
+  }
+});
+```
+
+As per the PAIR specification, you can define the inserter and matcher.
+
+```javascript
+pbjs.setConfig({
+  userSync: {
+    userIds: [
+      {
+        name: 'openPairId',
+        params: {
+          inserter: 'some-domain.com',
+          matcher: 'another-domain.com'
+        }
+      }
+    ]
+  }
 });
 ```
