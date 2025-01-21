@@ -1281,10 +1281,10 @@ pbjs.addAdUnits({
     ortb2Imp: {
         ext: {
         prebid: {
-                data: {
-            floorMin: 0.25,
-            floorMinCur: "USD"
-        }
+                floors: {
+                    floorMin: 0.25,
+                    floorMinCur: "USD"
+                }
             }
         }
     },
