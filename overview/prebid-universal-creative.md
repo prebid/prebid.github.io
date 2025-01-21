@@ -43,6 +43,8 @@ by allowing the ad server creative to load banner.js, video.js, or native.js, wh
 This loads the PUC from the Prebid-maintained location. Your managed
 service provider may have a different location.
 
+To see specific examples of how to use the PUC within your ad server, see the guides for [GAM](/adops/gam-creative-banner-sbs.html), [Microsoft](/adops/setting-up-prebid-with-the-appnexus-ad-server.html), or [other ad servers](/adops/adops-general-sbs.html).
+
 ## Features of the PUC
 
 ### What the PUC does for Web iframe Banners/In-Renderer
