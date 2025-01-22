@@ -10,7 +10,7 @@ coppa_supported: true
 schain_supported: false
 dchain_supported: false
 userId: none
-media_types: banner, video
+media_types: banner, video, native
 safeframes_ok: true
 deals_supported: true
 floors_supported: true
