@@ -3,6 +3,9 @@ layout: userid
 title: Fabrick ID by Neustar
 description: Fabrick ID by Neustar User ID sub-module
 useridmodule: fabrickIdSystem
+bidRequestUserId: fabrickId
+eidsource: neustar.biz
+example: '"1111"'
 ---
 
 
@@ -10,8 +13,9 @@ useridmodule: fabrickIdSystem
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=fabrickIdSystem
+```
 
 ## Fabrick Registration
 
@@ -20,6 +24,7 @@ Please reach out to [FabrickIntegrations@team.neustar](mailto:FabrickIntegration
 ## Fabrick Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `"fabrickId"` |
@@ -45,44 +50,44 @@ Please reach out to [FabrickIntegrations@team.neustar](mailto:FabrickIntegration
 
 ## Fabrick Examples
 
-1) Publisher passes an apiKey and hashed email address and elects to store the Fabrick ID envelope in a cookie.
+1. Publisher passes an apiKey and hashed email address and elects to store the Fabrick ID envelope in a cookie.
 
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: 'fabrickId',
-            params: {
-                apiKey: '123456789', // provided to you by Neustar
-                e: '31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66' // example hashed email address (sha256)
-            },
-            storage: {
-                name: 'pbjs_fabrickId',
-                type: 'cookie',
-                expires: 7
-            }
-        }]
-    }
-});
-{% endhighlight %}
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: 'fabrickId',
+                params: {
+                    apiKey: '123456789', // provided to you by Neustar
+                    e: '31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66' // example hashed email address (sha256)
+                },
+                storage: {
+                    name: 'pbjs_fabrickId',
+                    type: 'cookie',
+                    expires: 7
+                }
+            }]
+        }
+    });
+    ```
 
-2) Publisher passes an apiKey and hashed email address and elects to store the fabrickId envelope in HTML5 localStorage.
+2. Publisher passes an apiKey and hashed email address and elects to store the fabrickId envelope in HTML5 localStorage.
 
-{% highlight javascript %}
-pbjs.setConfig({
-    userSync: {
-        userIds: [{
-            name: 'fabrickId',
-            params: {
-                apiKey: '123456789', // provided to you by Neustar
-                e: '31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66' // example hashed email address (sha256)
-            },
-            storage: {
-                type: "html5",
-                name: "pbjs_fabrickId",
-                expires: 7
-            }
-        }]
-    }
-});
-{% endhighlight %}
+    ```javascript
+    pbjs.setConfig({
+        userSync: {
+            userIds: [{
+                name: 'fabrickId',
+                params: {
+                    apiKey: '123456789', // provided to you by Neustar
+                    e: '31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66' // example hashed email address (sha256)
+                },
+                storage: {
+                    type: "html5",
+                    name: "pbjs_fabrickId",
+                    expires: 7
+                }
+            }]
+        }
+    });
+    ```

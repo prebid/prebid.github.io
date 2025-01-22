@@ -18,7 +18,7 @@ sidebarType : 1
 * TOC
 {:toc}
 
-BlueConic's Real-time Data Provider automatically obtains segmentation data and other user level data from the BlueConic script (via `localStorage`) and passes them to the bid-stream. Please reach out to BlueConic team(info@blueconic.com) or visit our [website](https://support.blueconic.com/hc/en-us) if you have any questions or need further help to integrate Prebid or blueconicRtdProvider.
+BlueConic's Real-time Data Provider automatically obtains segmentation data and other user level data from the BlueConic script (via `localStorage`) and passes them to the bid-stream. Please reach out to BlueConic team(<info@blueconic.com>) or visit our [website](https://support.blueconic.com/hc/en-us) if you have any questions or need further help to integrate Prebid or blueconicRtdProvider.
 
 ## Publisher Usage
 
@@ -30,12 +30,12 @@ Add the BlueConic RTD provider to your Prebid config. In this example we will co
 publisher 1234 to retrieve segments, profile data from BlueConic. See the
 "Parameter Descriptions" below for more detailed information of the
 configuration parameters. Please work with your BlueConic Prebid support team
-(info@blueconic.com) on which version of Prebid.js supports different bidder
+(<info@blueconic.com>) on which version of Prebid.js supports different bidder
 and segment configurations.
 
-```
+```javascript
 pbjs.setConfig(
-    ...
+    // ...
     realTimeData: {
         auctionDelay: 1000,
         dataProviders: [
@@ -50,7 +50,7 @@ pbjs.setConfig(
             }
         ]
     }
-    ...
+    //...
 }
 ```
 
@@ -64,11 +64,10 @@ pbjs.setConfig(
 | params | Object | | |
 | params.requestParams | Object | Publisher partner specific configuration options, such as optional publisher id and other segment query related metadata | Optional |
 
-
 Please see the examples available in the blueconicRtdProvider_spec.js
 tests.
 
-## Testing 
+## Testing
 
 To run test suite for blueconic:
 

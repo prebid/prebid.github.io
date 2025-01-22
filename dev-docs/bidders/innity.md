@@ -7,7 +7,8 @@ biddercode: innity
 sidebarType: 1
 ---
 
-### Note:
+### Note
+
 The Innity bidder adapter requires setup and approval from the Innity Media team, even for existing Innity Network publishers. Please reach out to your account manager for more information and to enable using this adapter.
 
 ### Bid Params

@@ -6,9 +6,10 @@ sidebarType: 0
 ---
 
 # Prebid.org Header Bidding Code of Conduct
+
 {:.no_toc}
 
-This page has moved to [https://prebid.org/code-of-conduct/](https://prebid.org/code-of-conduct/)!
+This page has moved to [prebid.org/code-of-conduct/](https://prebid.org/code-of-conduct/)!
 
 ## Related Reading
 

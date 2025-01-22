@@ -3,7 +3,7 @@ layout: bidder
 title: FRVR Ad Network
 description: FRVR Ad Network Prebid Bidder Adapter
 biddercode: frvradn
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -21,7 +21,7 @@ sidebarType: 1
 
 ### Registration
 
-FRVR Ad Network Bidding adapter requires setup before beginning. Please contact us at info@frvr.com
+FRVR Ad Network Bidding adapter requires setup before beginning. Please contact us at <info@frvr.com>
 
 ### Bid Params
 

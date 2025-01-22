@@ -20,7 +20,6 @@ This module reads segments from [Intimate Merger](https://corp.intimatemerger.co
 
 The audience data platform performs segmentation even in environments where 3rd party cookies are not available, but curretly only available in Japan.
 
-
 ## Usage
 
 Add it to your Prebid.js package with:
@@ -31,9 +30,9 @@ Add it to your Prebid.js package with:
 
 The following configuration parameters are available:
 
-```
-pbjs.setConfig(
-    ...
+```javascript
+pbjs.setConfig({
+    // ...
     realTimeData: {
         auctionDelay: 5000,
         dataProviders: [
@@ -47,8 +46,8 @@ pbjs.setConfig(
             }
         ]
     }
-    ...
-}
+    // ...
+}):
 ```
 
 ## Parameters

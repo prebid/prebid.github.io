@@ -3,6 +3,9 @@ layout: userid
 title: netID
 description: netID User ID sub-module
 useridmodule: netIdSystem
+bidRequestUserId: netId
+eidsource: netid.de
+example: '"fH5A..."'
 ---
 
 
@@ -12,9 +15,9 @@ The EnID is a non-profit organization which is open to any contributing party on
 
 ## netID Examples
 
-1) Publisher stores netID via his own logic
+1. Publisher stores netID via his own logic
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -25,4 +28,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

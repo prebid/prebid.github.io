@@ -6,7 +6,7 @@ pbjs: false
 pbs: true
 biddercode: viewdeos
 media_types: banner,video
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 924
 sidebarType: 1
 ---
@@ -19,6 +19,7 @@ sidebarType: 1
 | `aid` | required | The source ID from member zone | `350975` | `integer` |
 
 ### Test Parameters
+
 ```
     var adUnits = [
       // Banner adUnit

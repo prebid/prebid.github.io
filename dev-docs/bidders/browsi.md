@@ -5,27 +5,29 @@ description: Prebid Browsi Bidder Adapter
 biddercode: browsi
 pbjs: true
 gvl_id: 329
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 media_types: no-display, video
 schain_supported: true
 safeframes_ok: true
-gvl_id: 329
 sidebarType: 1
 ---
 
-### Note:
-For more information about [Browsi](https://www.browsi.com), please contact [support@browsi.com](support@browsi.com).
+### Note
+
+For more information about [Browsi](https://www.browsi.com), please contact [support@browsi.com](mailto:support@browsi.com).
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name             | Scope    | Description      | Example                      | Type     |
 |------------------|----------|------------------|------------------------------|----------|
 | `pubId` | required | Publisher ID  | `'117a476f-9791-4a82-80db-4c01c1683db0'` | `string` |
 | `tagId`   | required | Tag ID       | `'1'` | `string` |
 
-# Sample Ad Unit: For Publishers
+### Sample Ad Unit: For Publishers
+
 ```javascript
 let videoAdUnit = [
     {

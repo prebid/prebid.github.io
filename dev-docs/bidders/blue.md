@@ -2,7 +2,7 @@
 layout: bidder
 title: Blue
 description: Prebid Blue Bidder Adapter
-gdpr_supported: true
+tcfeu_supported: true
 pbjs: true
 pbs: true
 biddercode: blue
@@ -17,9 +17,9 @@ gvl_id: 620
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The bidder requires setup before usage. Please get in touch with our publisher team at celsooliveira@getblue.io to get started.
+The bidder requires setup before usage. Please get in touch with our publisher team at <celsooliveira@getblue.io> to get started.
 
 ### Bid Params
 
@@ -27,3 +27,4 @@ The bidder requires setup before usage. Please get in touch with our publisher t
 | Name | Scope | Description | Example | Type |
 |---------------|----------|---------------------|---------------|----------|
 | `publisherId` | required | Unique publisher ID | `'ABCDEF'` | `string` |
+| `placementId` | optional | Unique placement ID | `'ABCDEF'` | `string` |

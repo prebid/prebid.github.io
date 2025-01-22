@@ -3,7 +3,7 @@ layout: bidder
 title: Epom
 description: Prebid Epom Bidder Adapter
 biddercode: epom
-gdpr_supported: false
+tcfeu_supported: false
 gvl_id: 849
 usp_supported: false
 coppa_supported: true
@@ -18,9 +18,9 @@ prebid_member: false
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The Epom Bidding adapter requires setup before beginning. Please contact us at support@epom.com
+The Epom Bidding adapter requires setup before beginning. Please contact us at <support@epom.com>
 
 ### Bid Params
 

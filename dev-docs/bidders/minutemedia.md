@@ -4,11 +4,14 @@ title: MinuteMedia
 description: Prebid MinuteMedia Bidder Adapter
 pbjs: true
 biddercode: minutemedia
-media_types: banner, video
+media_types: banner, video, native
 multiformat_supported: will-bid-on-any
 schain_supported: true
-gdpr_supported: true
+tcfeu_supported: true
+gpp_supported: true
+gpp_sids: tcfeu, usstate_all, usp
 usp_supported: true
+pbs: true
 floors_supported: true
 userIds: all
 fpd_supported: true
@@ -18,13 +21,14 @@ sidebarType: 1
 
 ### Note
 
-The MinuteMedia adapter requires setup and approval. Please reach out to hb@minutemedia.com to setup an MinuteMedia account.
+The MinuteMedia adapter requires setup and approval. Please reach out to <hb@minutemedia.com> to setup an MinuteMedia account.
 
 ### Bid Parameters
 
-#### Banner ,Video
+#### Banner, Video, Native
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  MinuteMedia publisher Id provided by your MinuteMedia representative  | "1234567890abcdef12345678"
@@ -32,7 +36,8 @@ The MinuteMedia adapter requires setup and approval. Please reach out to hb@minu
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 
-## Example
+### Example
+
 ```javascript
 var adUnits = [{
       code: 'banner-div',
@@ -81,4 +86,15 @@ var adUnits = [{
 ```
 
 ### Configuration
+
 MinuteMedia recommends setting UserSync by iframe for monetization.
+
+### Versions
+
+Prebid versions 5.0-5.3 are not supported.
+
+Banner >= 6.14.0.
+
+Native >= 9.27.0.
+
+Multi-format requests >= 9.27.0.

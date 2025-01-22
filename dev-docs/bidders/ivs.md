@@ -9,9 +9,9 @@ pbjs: true
 sidebarType: 1
 ---
 
-### Note:
+### Note
 
-The IVS Bidding adapter requires setup before beginning. Please contact us at prebid@ivs.tv
+The IVS Bidding adapter requires setup before beginning. Please contact us at <prebid@ivs.tv>
 
 ### Bid Params
 

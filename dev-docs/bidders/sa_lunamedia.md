@@ -6,7 +6,7 @@ biddercode: sa_lunamedia
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: true
 pbjs: false
 pbs: true
 pbs_app_supported: true
@@ -21,4 +21,4 @@ sidebarType: 1
 | Name           | Scope    | Description                                              | Example    | Type      |
 |----------------|----------|----------------------------------------------------------|------------|-----------|
 | `key` | required | Placement integration key | `'1234'`        | `string` |
-| `type` | optional | Supported values are `publisher` and `network`.  | `'publisher'`        | `string` |
+| `type` | required | Supported values are `publisher` and `network`.  | `'publisher'`        | `string` |

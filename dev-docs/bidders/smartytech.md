@@ -14,10 +14,10 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name         | Scope    | Description  | Example | Type      |
 |--------------|----------|--------------|---------|-----------|
-| `endpointId` | required | Endpoint ID. | `14`    | `integer` | 
-
+| `endpointId` | required | Endpoint ID. | `14`    | `integer` |
 
 ### Sample Banner Ad Unit Example
+
 ```
 var adUnits = [{
     code: '/123123123/prebidjs-banner',
@@ -39,6 +39,7 @@ var adUnits = [{
 ```
 
 ### Sample Video Ad Unit Example
+
 ```
 var videoAdUnit = {
     code: '/123123123/video-vast-banner',

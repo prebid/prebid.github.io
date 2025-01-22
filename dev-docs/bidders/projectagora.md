@@ -6,7 +6,7 @@ biddercode: projectagora
 pbjs: true
 pbs: false
 aliasCode: appnexus
-gdpr_supported: true
+tcfeu_supported: true
 media_types: banner, video, native
 gvl_id: 1032
 schain_supported: true
@@ -18,10 +18,10 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `placementID` | required | Placement id          | `'11111'` | `string`  |
+| `placementId` | required | Placement id          | `'11111'` | `integer` |
 
 Project Agora is an aliased bidder for AppNexus.
 
 ### Note:
 
-The Project Agora bidder adapter requires setup before beginning. Please contact us at pub_support@projectagora.com.
+The Project Agora bidder adapter requires setup before beginning. Please contact us at pub_growth@projectagora.com.

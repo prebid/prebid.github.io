@@ -19,7 +19,6 @@ This is currently a private adapter
 | options.propertyId | Required | String | This is the property id of the website where this adapter is being used. | `123456` |
 | options.server | Optional | String | Overrides the server used for sending analytics | `https://central.mall.tv/analytics` |
 
-
 ### Example Configuration
 
 ```javascript

@@ -3,7 +3,7 @@ layout: analytics
 title: BidWatch
 description: BidWatch Prebid Analytics Adapter
 modulecode: bidwatch
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: false
 coppa_supported: false
 prebid_member: false
@@ -14,7 +14,7 @@ enable_download: true
 #### Registration
 
 The BidWatch Analytics Adapter requires setup and approval from the
-BidWatch team. Please reach out to contact@bidwatch.io for more information.
+BidWatch team. Please reach out to <contact@bidwatch.io> for more information.
 
 #### Analytics Options
 

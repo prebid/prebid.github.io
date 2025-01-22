@@ -10,8 +10,6 @@ sidebarType: 0
 ---
 
 
-
-
 # INTELLECTUAL PROPERTY POLICY
 
 *Version 1.0*
@@ -41,4 +39,3 @@ of the Organization.
 patent ownership. Contributors and members will not be required as a condition of membership to grant
 any patent rights, except as required by the Apache 2.0 license or contribution agreements described in
 Section 3 above.
-

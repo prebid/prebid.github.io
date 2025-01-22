@@ -7,7 +7,8 @@ pbs: true
 biddercode: grid
 media_types: banner, video, native (s2s only)
 multiformat_supported: will-bid-on-any
-gdpr_supported: true
+gvl_id: 686
+tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
 schain_supported: true
@@ -27,7 +28,7 @@ sidebarType: 1
 - [First Party Data](#first-party-data)
 - [Native setup example (s2s only)](#native-setup-example-s2s-only)
 
-<a name="grid-bid-params" />
+<a name="grid-bid-params"></a>
 
 ### Bid Params
 
@@ -37,12 +38,13 @@ sidebarType: 1
 | `uid`          | required | Represents the MediaGrid bidder system Ad Slot ID associated with the respective div id from the site page. | `1`                                       | `integer` |
 | `bidFloor`     | optional | Floor of the impression opportunity. If present in the request overrides XML info.                          | `0.8`                                     | `float`   |
 
-<a name="grid-bidder-config" />
+<a name="grid-bidder-config"></a>
 
 ### Bidder Config
 
 You can allow writing in localStorage `pbjs.setBidderConfig` for the bidder `grid`
-```
+
+```javascript
 pbjs.setBidderConfig({
     bidders: ["grid"],
     config: {
@@ -50,9 +52,10 @@ pbjs.setBidderConfig({
     }
 })
 ```
+
 If it will be "true" this allow TheMediaGrid Bid Adapter to write userId in first party localStorage
 
-<a name="grid-first-party" />
+<a name="grid-first-party"></a>
 
 ### First Party Data
 
@@ -73,12 +76,13 @@ AdUnit-specific data using `AdUnit.ortb2Imp` supports following fields:
 - `ortb2.imp[].ext.data.*`
 - `ortb2.imp[].instl`
 
-<a name="grid-native-example" />
+<a name="grid-native-example"></a>
 
 ### Native setup example (s2s only)
 
 Setup native in adUnit mediaTypes, for example:
-```
+
+```javascript
 ...
 mediaTypes: {
   native: {

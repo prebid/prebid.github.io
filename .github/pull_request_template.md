@@ -1,6 +1,11 @@
 <!--
 Thanks for improving the documentation 😃
 Please give a short description and check the matching checkboxes to help us review this as quick as possible.
+
+Please make the PR writeable. This allows us to fix typos, grammar and linting errors ourselves, which makes
+merging and reviewing a lot faster for everybody.
+
+⚠️ The documentation is merged after the related code changes are merged and release ⚠️
 -->
 
 ## 🏷 Type of documentation

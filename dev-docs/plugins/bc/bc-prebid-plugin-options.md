@@ -39,4 +39,3 @@ Sample implementations are provided at:
 - **[Specifying Multiple Ad Breaks for a Video]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-multiad-options.html)**
 
 </div>
-

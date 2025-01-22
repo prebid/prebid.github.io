@@ -6,9 +6,9 @@ biddercode: uol
 pbjs: true
 pbs: false
 aliasCode: appnexus
-gdpr_supported: true
+tcfeu_supported: true
 media_types: banner, video, native
-gvl_id: 32
+gvl_id: 32 (appnexus)
 schain_supported: true
 userId: all
 sidebarType: 1
@@ -22,6 +22,6 @@ sidebarType: 1
 
 Uol is an aliased bidder for AppNexus.
 
-### Note:
+### Note
 
-The UOL bidder adapter requires setup before beginning. Please contact us at l-dev-techops@uolinc.com.
+The UOL bidder adapter requires setup before beginning. Please contact us at <l-dev-techops@uolinc.com>.

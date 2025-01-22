@@ -3,14 +3,14 @@ layout: bidder
 title: AIDEM
 description: AIDEM Bidder Adapter
 biddercode: aidem
-gdpr_supported: true
+tcfeu_supported: true
 gvl_id: 1218
 usp_supported: true
 coppa_supported: true
 schain_supported: false
 dchain_supported: false
 userId: none
-media_types: banner, video, native
+media_types: banner, video
 safeframes_ok: true
 deals_supported: true
 floors_supported: true
@@ -22,15 +22,16 @@ ortb_blocking_supported: false
 sidebarType: 1
 ---
 
-## Description
+### Description
+
 This module connects publishers to AIDEM demand.
 
 This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 
-
 ### Global Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description         | Example    | Type     |
 |---------------|----------|---------------------|------------|----------|
 | `siteId`      | required | Unique site ID      | `'ABCDEF'` | `String` |
@@ -41,14 +42,15 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 #### Banner Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name       | Scope    | Description              | Example                   | Type    |
 |------------|----------|--------------------------|---------------------------|---------|
 | `sizes`    | required | List of the sizes wanted | `[[300, 250], [300,600]]` | `Array` |
 
-
 #### Video Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description                             | Example         | Type      |
 |---------------|----------|-----------------------------------------|-----------------|-----------|
 | `context`     | required | One of instream, outstream, adpod       | `'instream'`    | `String`  |
@@ -58,26 +60,26 @@ This module is GDPR and CCPA compliant, and no 3rd party userIds are allowed.
 | `mimes`       | required | List of the content MIME types supported by the player    | `["video/mp4"]` | `Array`   |
 | `protocols`   | required | An array of supported video protocols. At least one supported protocol must be specified, where: `2` = VAST 2.0 `3` = VAST 3.0 `5` = VAST 2.0 wrapper `6` = VAST 3.0 wrapper | `2`             | `Array`   |
 
-
 #### Additional Config
 
 {: .table .table-bordered .table-striped }
+
 | Name                | Scope    | Description                                             | Example | Type      |
 |---------------------|----------|---------------------------------------------------------|---------|-----------|
 | `coppa`             | optional | Child Online Privacy Protection Act                     | `true`  | `Boolean` |
 | `consentManagement` | optional | [Consent Management Object](#consent-management-object) | `{}`    | `Object`  |
 
-
 #### Consent Management Object
 
 {: .table .table-bordered .table-striped }
+
 | Name   | Scope    | Description                                                                                      | Example | Type     |
 |--------|----------|--------------------------------------------------------------------------------------------------|---------|----------|
-| `gdpr` | optional | GDPR Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagement.html) | `{}`    | `Object` |
+| `gdpr` | optional | GDPR Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagementTcf.html) | `{}`    | `Object` |
 | `usp`  | optional | USP Object see [Prebid.js doc](https://docs.prebid.org/dev-docs/modules/consentManagementUsp.html)                                                                     | `{}`    | `Object` |
 
-
 #### Example Banner ad unit
+
 ```javascript
 var adUnits = [{
     code: 'banner-prebid-test-site',
@@ -100,6 +102,7 @@ var adUnits = [{
 ```
 
 #### Example Video ad unit
+
 ```javascript
 var adUnits = [{
     code: 'video-prebid-test-site',
@@ -124,6 +127,7 @@ var adUnits = [{
 ```
 
 #### Example GDPR Consent Management
+
 ```javascript
 var pbjs = pbjs || {};
 pbjs.que = pbjs.que || [];
@@ -139,8 +143,8 @@ pbjs.que.push(function (){
 })
 ```
 
-
 #### Example USP Consent Management
+
 ```javascript
 var pbjs = pbjs || {};
 pbjs.que = pbjs.que || [];
@@ -161,8 +165,8 @@ pbjs.que.push(function (){
 })
 ```
 
-
 #### Setting First Party Data (FPD)
+
 ```javascript
 var pbjs = pbjs || {};
 pbjs.que = pbjs.que || [];
@@ -183,13 +187,14 @@ pbjs.que.push(function (){
 ### Supported Media Types
 
 {: .table .table-bordered .table-striped }
+
 | Type   | Support                                                            |
 |--------|--------------------------------------------------------------------|
-| Banner | Support all [AIDEM Sizes](https://kb.aidem.com/ssp/lists/adsizes/) | 
-| Video  | Support all [AIDEM Sizes](https://kb.aidem.com/ssp/lists/adsizes/) | 
+| Banner | Support all [AIDEM Sizes](https://kb.aidem.com/ssp/lists/adsizes/) |
+| Video  | Support all [AIDEM Sizes](https://kb.aidem.com/ssp/lists/adsizes/) |
 
+### Setup / Dev Guide
 
-## Setup / Dev Guide
 ```shell
 nvm use
 
@@ -204,14 +209,16 @@ http://localhost:9999/integrationExamples/gpt/hello_world.html?pbjs_debug=true
 ```
 
 If you need to run the tests suite but do *not* want to have to build the full adapter and serve it, simply run:
+
 ```shell
 gulp test --file "test/spec/modules/aidemBidAdapter_spec.js"
 ```
 
-
 For video: gulp serve --modules=aidemBidAdapter,dfpAdServerVideo
 
-## FAQs
+### FAQs
+
 #### How do I view AIDEM bid request?
+
 Navigate to a page where AIDEM is setup to bid. In the network tab,
 search for requests to `zero.aidemsrv.com/bid/request`.

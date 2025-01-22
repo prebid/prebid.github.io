@@ -13,4 +13,4 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description | Example              | Type      |
 |-------------|----------|-------------|----------------------|-----------|
-| `partnerId` | required | Partner ID. | `5809`               | `integer` | 
+| `partnerId` | required | Partner ID. | `5809`               | `integer` |

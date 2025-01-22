@@ -11,21 +11,24 @@ UID2 relies on user consent before an ID can be added to the bid stream. Consent
 
 To add UID2 to your Prebid.js package, run the following:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=uid2IdSystem
+```
 
 ## Unified ID 2.0 Registration
 
 You can set up Unified ID 2.0 in one of these ways:
 
-- Include the module to your pb.js wrapper. You will need to apply for publisher access [on the UID2 website](https://unifiedid.com/request-access). Using this option, you must generate UID2 tokens server-side. There is currently no flow for client-side only, unless you use an SSO provider. You provide these tokens to Prebid.js either by using a cookie or directly in the configuration.
+- Include the module to your Prebid.js wrapper. You will need to apply for publisher access [on the UID2 website](https://unifiedid.com/request-access). Using this option, you must generate UID2 tokens server-side.  You provide these tokens to Prebid.js either by using a cookie or directly in the configuration.
 - Use a [managed services](https://prebid.org/product-suite/managed-services/) company that can do this for you.
+- Use UID2 Client Side Integration with Prebid.js
 
 Each publisher’s privacy policy should take UnifiedID 2.0 into account.
 
 ## Unified ID 2.0 Tokens
 
 UID2 tokens are generated on the server side by making an API call to a UID2 operator using details provided when you receive UID2 publisher access. This API returns a JSON data structure with multiple values, including an advertising token and a refresh token. For full functionality, provide the entire object in one of these ways:
+
 - JSON-encoded as a cookie.
 - Included in the configuration object.
 
@@ -54,24 +57,36 @@ To use the cookie-based server-only mode, set a cookie named `__uid2_advertising
 
 `__uid2_advertising_token=eb33b0cb-8d35-4722-b9c0-1a31d4064888`
 
+For a server-side integration, you can create a smaller Prebid.js build by disabling client-side integration functionality. To do this, pass the `--disable UID2_CSTG` flag:
+
+```bash
+    gulp build --modules=uid2IdSystem --disable UID2_CSTG
+```
+
+## Unified ID 2.0 Client Side Integration for Prebid.js
+
+Prebid.js supports fully client side integration for UID2.  See the [official UID2 documentation](https://unifiedid.com/docs/guides/integration-prebid-client-side) for the most up-to-date integration instructions.
+
 ## Unified ID 2.0 Configuration
 
 The following parameters apply only to the Unified ID 2.0 module integration.
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the Unified ID 2.0 module - `"uid2"` | `"uid2"` |
 | params.uid2Token | Optional | Object | The initial UID2 token. This should be the `body` element of the decrypted response from a call to the `/token/generate` or `/token/refresh` endpoint. | See the sample token above. |
 | params.uid2ServerCookie | Optional | String | The name of a cookie that holds the initial UID2 token, set by the server. The cookie should contain JSON in the same format as the alternative uid2Token param. **If uid2Token is supplied, this param is ignored.** | See the sample token above. |
 | params.uid2ApiBase | Optional | String | Overrides the default UID2 API endpoint. | `https://prod.uidapi.com` _(default)_ |
-| value | Not recommended | Object | Used only if the page has a separate mechanism for storing the UID 2.0 ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage, and the tokens are **not** automatically refreshed. | `{"uid2": { "id": "eb33b0cb-8d35-4722-b9c0-1a31d4064888"}}` |
+| value | Optional | Object | Used only if the page has a separate mechanism for storing the UID 2.0 ID. The value is an object containing the values to be sent to the adapters. In this scenario, no URL is called and nothing is added to local storage, and the tokens are **not** automatically refreshed. | `{"uid2": { "id": "eb33b0cb-8d35-4722-b9c0-1a31d4064888"}}` |
+| params.storage | Optional, Client refresh | String | Specify whether to use `cookie` or `localStorage` for module-internal storage. It is recommended to not provide this and allow the module to use the default. | `localStorage` _(default)_ |
 
 ## Unified ID 2.0 Examples
 
 In the following example, the publisher has set a cookie called `uid2_identity` containing the UID2 token generation response object:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{
@@ -82,11 +97,11 @@ pbjs.setConfig({
     }]
   }
 });
-{% endhighlight %}
+```
 
 In the following example, the publisher has retrieved a server-generated UID2 response, and it is currently stored in the JavaScript variable `uid2Identity`:
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
   userSync: {
     userIds: [{
@@ -97,4 +112,4 @@ pbjs.setConfig({
     }]
   }
 });
-{% endhighlight %}
+```

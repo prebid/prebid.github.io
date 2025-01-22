@@ -7,11 +7,11 @@ sbUUID: 3.2
 ---
 
 # Deals in Prebid
+
 {: .no_toc }
 
 * TOC
 {: toc }
-
 
 In the same way that you can negotiate deals with advertisers in your ad server, you can also set up deals with your header bidding partners. When you do that, there are just a few things to keep in mind to ensure those deals get sent to the ad server and your line items are prepared to receive them.
 
@@ -51,10 +51,11 @@ The actual value of the deal ID (BDA_123 in this example) will be obtained from 
 Prebid line items normally start immediately with no end date; the line item exists to receive a bid at any time, whenever it gets sent to the ad server. Because deals are negotiated with the demand partner, deals will have date ranges in accordance with the agreement.
 
 ### Priority
+
 Bids from header bidding typically have a priority lower than directly sold ads but higher than any competing house ads. Deals should have a priority higher than the line items that cover the regular open market bids.
 
 ## Further Reader
 
--  [Planning Guide](/adops/adops-planning-guide.html)
--  [Key Values for Ad Ops](/adops/key-values.html)
--  [Prebid Universal Creative](/overview/prebid-universal-creative.html)
+* [Planning Guide](/adops/adops-planning-guide.html)
+* [Key Values for Ad Ops](/adops/key-values.html)
+* [Prebid Universal Creative](/overview/prebid-universal-creative.html)

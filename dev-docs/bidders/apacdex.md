@@ -5,7 +5,7 @@ description: Prebid APAC Digital Exchange Bidder Adapter
 pbjs: true
 biddercode: apacdex
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: false
 schain_supported: true
 usp_supported: true
 userIds: all
@@ -25,7 +25,7 @@ sidebarType: 1
 - [Sample Video Ad Unit: Instream](#sample-video-ad-unit-instream)
 - [Sample Video Ad Unit: Outstream](#sample-video-ad-unit-outstream)
 
-<a name="apacdex-bid-params" />
+<a name="apacdex-bid-params"></a>
 
 ### Bid Params
 
@@ -39,7 +39,7 @@ sidebarType: 1
 
 (*) Please do not use `placementId` and `siteId` at the same time.
 
-<a name="apacdex-geo-object" />
+<a name="apacdex-geo-object"></a>
 
 ### Geo Object
 
@@ -54,7 +54,7 @@ If the publisher has GEO data of the user's device. Make it available through th
 | `lastfix`    | optional | Number of seconds since this geolocation fix was established. Note that devices may cache location data across multiple fetches. Ideally, this value should be from the time the actual fix was taken.                                                                                     | `30`            | `integer` |
 | `utcoffset`  | optional | Local time as the number +/- of minutes from UTC.                                                                                                                                                                                                                                          | `-420`          | `integer` |
 
-<a name="apacdex-video-ad-unit" />
+<a name="apacdex-video-ad-unit"></a>
 
 ### Video Ad Unit
 
@@ -80,10 +80,11 @@ Publishers declare video inventory by passing the following parameters via media
 
 Lists of values are in the [OpenRTB 2.5](https://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-5-FINAL.pdf) documentation as referenced above.
 
-<a name="apacdex-sample-banner-ad-unit" />
+<a name="apacdex-sample-banner-ad-unit"></a>
 
 ### Sample Banner Ad Unit
-```
+
+```javascript
 var adUnits = [
   {
     code: 'test-div',
@@ -105,10 +106,11 @@ var adUnits = [
 ];
 ```
 
-<a name="apacdex-sample-instream-ad-unit" />
+<a name="apacdex-sample-instream-ad-unit"></a>
 
 ### Sample Video Ad Unit: Instream
-```
+
+```javascript
 var instreamAdUnit = {
   code: 'test-div',
   sizes: [[640, 480]],
@@ -139,13 +141,15 @@ var instreamAdUnit = {
   ]
 };
 ```
-mediaTypes.video object reference to section 3.2.7 Object: Video in the OpenRTB 2.5 document
+
+`mediaTypes.video` object reference to section 3.2.7 Object: Video in the OpenRTB 2.5 document
 You must review all video parameters to ensure validity for your player and DSPs
 
-<a name="apacdex-sample-outstream-ad-unit" />
+<a name="apacdex-sample-outstream-ad-unit"></a>
 
 ### Sample Video Ad Unit: Outstream
-```
+
+```javascript
 var outstreamAdUnit = {
   code: 'test-div',
   sizes: [[410, 231]],
@@ -175,5 +179,6 @@ var outstreamAdUnit = {
   ]
 };
 ```
-mediaTypes.video object reference to section 3.2.7 Object: Video in the OpenRTB 2.5 document
+
+`mediaTypes.video` object reference to section 3.2.7 Object: Video in the OpenRTB 2.5 document
 You must review all video parameters to ensure validity for your player and DSPs

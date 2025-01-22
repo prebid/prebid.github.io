@@ -6,7 +6,7 @@ biddercode: logan
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-gdpr_supported: false
+tcfeu_supported: false
 pbjs: true
 pbs: true
 sidebarType: 1
@@ -14,7 +14,7 @@ sidebarType: 1
 
 ### Disclosure
 
-Note: This bidder appears to only consider gdprApplies if a consent string is available. This may result in some incorrect GDPR processing, such as when the consent string is not yet available but the publisher has decided GDPR always applies. See https://github.com/prebid/Prebid.js/issues/7775
+Note: This bidder appears to only consider gdprApplies if a consent string is available. This may result in some incorrect GDPR processing, such as when the consent string is not yet available but the publisher has decided GDPR always applies. See <https://github.com/prebid/Prebid.js/issues/7775>
 
 ### Bid Params
 

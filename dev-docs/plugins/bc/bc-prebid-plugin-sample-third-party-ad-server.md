@@ -27,7 +27,7 @@ The following is a sample Brightcove Prebid Plugin integration that invokes preb
 
 #### Sample Prebid Plugin Integration, Using Results From a Preferred Ad Server, Prebid Run in Header
 
-```
+```html
 <!doctype html>
 <html>
 <head>
@@ -116,7 +116,7 @@ The following is a sample Brightcove Prebid Plugin integration that invokes preb
 
 #### Sample Prebid Plugin Integration, Using Results From a Preferred Ad Server; Prebid Runs After Player Has Loaded
 
-```
+```html
 <!doctype html>
 <html>
 <head>
@@ -193,5 +193,3 @@ The following is a sample Brightcove Prebid Plugin integration that invokes preb
 </body>
 </html>
 ```
-
-

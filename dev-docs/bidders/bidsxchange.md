@@ -5,7 +5,9 @@ description: Prebid Bidsxchange Bidder Adapter
 biddercode: bidsxchange
 aliasCode: adtelligent
 media_types: video,banner
-gdpr_supported: true
+gvl_id: 410 (adtelligent)
+tcfeu_supported: true
+gpp_supported: true
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
 schain_supported: true
 coppa_supported: true
@@ -15,6 +17,8 @@ prebid_member: true
 pbjs: true
 pbs: false
 sidebarType: 1
+enable_download: false
+pbjs_version_notes: removed in 8.13.0
 ---
 
 ### Bid params
@@ -25,15 +29,17 @@ sidebarType: 1
 | `aid` | required | The source ID from bidsxchange.   | `529814` | `integer` |
 
 ### Description
+
 Get access to multiple demand partners across Bidsxchange AdExchange and maximize your yield with Bidsxchange header bidding adapter.
 
 Bidsxchange header bidding adapter connects with Bidsxchange demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 
-Bidsxchange now supports adpod. 
+Bidsxchange now supports adpod.
 
 ### Test Parameters
-```
+
+``` javascript
     var adUnits = [
 
       // Video instream adUnit
@@ -108,15 +114,15 @@ Bidsxchange now supports adpod.
 
 ### Additional Configuration
 
-It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request 
+It is possible to configure requests to be split into chunks so as to have fewer bid requests in a single http request
 (default value is 10).
 
-```
-    pbjs.setBidderConfig({
-        config: {              
-            bidsxchange: {
-                chunkSize: 1   // makes 1 http request per 1 adunit configured
-            }
+``` javascript
+pbjs.setBidderConfig({
+    config: {              
+        bidsxchange: {
+            chunkSize: 1   // makes 1 http request per 1 adunit configured
         }
-    });
+    }
+});
 ```

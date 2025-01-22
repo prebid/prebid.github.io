@@ -8,7 +8,7 @@ pbjs: true
 enable_download: true
 sidebarType: 1
 ---
-### Note:
+### Note
 
 The DiscoveryDSP Bidding adapter requires setup before beginning. Please contact us at <media-support@popin.cc>
 
@@ -25,6 +25,7 @@ The DiscoveryDSP Bidding adapter requires setup before beginning. Please contact
 #### Prebid Server Test Request
 
 banner
+
 ```
 var adUnits = [
       {
@@ -49,6 +50,7 @@ var adUnits = [
 ```
 
 native
+
 ```
 var adUnits = [
       {

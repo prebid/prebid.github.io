@@ -11,7 +11,7 @@ useridmodule: naveggIdSystem
 
 Publisher stores NaveggId in local storage and/or 1st party cookies
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -19,4 +19,4 @@ pbjs.setConfig({
       }]
     }
 });
-{% endhighlight %}
+```

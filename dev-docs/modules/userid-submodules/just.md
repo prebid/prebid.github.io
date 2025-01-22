@@ -32,7 +32,7 @@ If you have any questions about Just ID, please reach out by emailing [prebid@ju
 
 ex. 1. Mode `COMBINED`
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -44,11 +44,11 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```
 
 ex. 2. Mode `BASIC`
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -56,7 +56,7 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```
 
 ## Just ID  Disclosure
 

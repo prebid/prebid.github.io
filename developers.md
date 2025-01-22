@@ -6,8 +6,7 @@ description: Developers Landing Page
 sidebarType: 0
 ---
 
-<a name="publisher_developers"/>
-
+<a name="publisher_developers"></a>
 
 # Developers
 

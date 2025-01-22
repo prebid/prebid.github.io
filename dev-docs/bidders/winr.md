@@ -15,8 +15,9 @@ safeframes_ok: false
 sidebarType: 1
 ---
 
-### Note:
-The WINR adapter requires setup and approval from the WINR team, even for partners that already work with us. Please reach out to our team at tech@winr.com.au
+### Note
+
+The WINR adapter requires setup and approval from the WINR team, even for partners that already work with us. Please reach out to our team at <tech@winr.com.au>
 
 *`domParent` and `child` position settings are usually determined and remotely controlled for each publisher site by the WINR team. If you would prefer to have control over these settings, please get in touch.
 

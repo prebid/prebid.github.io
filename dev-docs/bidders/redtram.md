@@ -7,7 +7,7 @@ pbs: false
 gvl_id: none
 biddercode: redtram
 media_types: banner
-gdpr_supported: false
+tcfeu_supported: false
 usp_supported: false
 coppa_supported: false
 schain_supported: false
@@ -29,13 +29,13 @@ sidebarType: 1
 - [Bid params](#bid-params)
 - [Test Parameters](#test-parameters)
 
-<a name="redtram-bid-desc" />
+<a name="redtram-bid-desc"></a>
 
 ### Description
 
 Redtram header bidding adapter connects with redtram demand sources to fetch bids for display placements. Please reach out to your account manager or <support@redtram.com> for more information.
 
-<a name="redtram-bid-params" />
+<a name="redtram-bid-params"></a>
 
 ### Bid params
 
@@ -45,13 +45,13 @@ Redtram header bidding adapter connects with redtram demand sources to fetch bid
 | `placementId`| optional | The placement ID from Redtram      | `'23611'`  | `string` |
 | `bidFloor`   | optional | Lowest value of expected bid price | `1.1`      | `float`  |
 
-
-<a name="redtram-test-params" />
+<a name="redtram-test-params"></a>
 
 ### Test Parameters
 
 300x250 banner test
-```
+
+```javascript
 var adUnits = [{
   code: 'prebid-place',
   mediaTypes: {

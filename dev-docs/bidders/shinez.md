@@ -5,7 +5,7 @@ description: Prebid Shinez Bidder Adapter
 multiformat_supported: will-bid-on-any
 pbjs: true
 biddercode: shinez
-media_types: banner, video
+media_types: banner, video, native
 schain_supported: true
 usp_supported: true
 floors_supported: true
@@ -17,13 +17,14 @@ sidebarType: 1
 
 ### Note
 
-The Shinez adapter requires setup and approval. Please reach out to tech-team@shinez.io to setup an Shinez account.
+The Shinez adapter requires setup and approval. Please reach out to <tech-team@shinez.io> to setup an Shinez account.
 
 ### Bid Parameters
 
-#### Banner, Video
+#### Banner, Video, Native
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Type | Description | Example
 | ---- | ----- | ---- | ----------- | -------
 | `org` | required | String |  Shinez publisher Id provided by your Shinez representative  | "56f91cd4d3e3660002000033"
@@ -31,7 +32,8 @@ The Shinez adapter requires setup and approval. Please reach out to tech-team@sh
 | `placementId` | optional | String |  A unique placement identifier  | "12345678"
 | `testMode` | optional | Boolean |  This activates the test mode  | false
 
-## Example
+### Example
+
 ```javascript
 var adUnits = [{
         code: 'banner-div',
@@ -80,4 +82,15 @@ var adUnits = [{
 ```
 
 ### Configuration
+
 Shinez recommends setting UserSync by iframe for monetization.
+
+### Versions
+
+Prebid versions 5.0-5.3 are not supported.
+
+Banner >= 6.14.0.
+
+Native >= 9.27.0.
+
+Multi-format requests >= 9.27.0.

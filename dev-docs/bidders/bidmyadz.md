@@ -6,7 +6,7 @@ biddercode: bidmyadz
 usp_supported: true
 schain_supported: true
 media_types: banner, video, native
-gdpr_supported: true
+tcfeu_supported: false
 pbjs: false
 pbs: true
 pbs_app_supported: true
@@ -15,6 +15,7 @@ sidebarType: 1
 ---
 
 ### Prebid Server Bid Params
+
 Currently adapter doesn't support multiimpression, so only the first impression will be delivered
 
 {: .table .table-bordered .table-striped }

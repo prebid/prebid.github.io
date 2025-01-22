@@ -2,7 +2,11 @@
 layout: userid
 title: Parrable ID
 description: Parrable ID User ID sub-module
+pbjs_version_notes: removed in 9.0
 useridmodule: parrableIdSystem
+bidRequestUserId: parrableId
+eidsource: parrable.com
+example: '{"eid":"01.15946..."}'
 ---
 
 
@@ -10,20 +14,22 @@ The Parrable ID is a Full Device Identifier that can be used to identify a devic
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=parrableIdSystem
+```
 
 ## Parrable ID Registration
 
 Please contact Parrable to obtain a Parrable Partner Client ID and/or use the Parrable Partner Client ID provided by the vendor for each Parrable-aware bid adapter you will be using.  Note that if you are working with multiple Parrable-aware bid adapters you may use multiple Parrable Partner Client IDs.
 
-The Parrable privacy policy as at [https://www.parrable.com/privacy-policy/](https://www.parrable.com/privacy-policy/).
+The Parrable privacy policy as at [www.parrable.com/privacy-policy/](https://www.parrable.com/privacy-policy/).
 
 ## Parrable ID Configuration
 
 In addition to the parameters documented above in the Basic Configuration section the following Parrable specific configuration is required:
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | params | Required | Object | Details for the Parrable ID. | |
@@ -33,7 +39,6 @@ In addition to the parameters documented above in the Basic Configuration sectio
 | params.timezoneFilter.allowedOffsets | Optional | Array[Number] | description | `[ -4 ]` |
 | params.timezoneFilter.blockedZones | Optional | Array[String] | description | `[ 'America/New_York' ]` |
 | params.timezoneFilter.blockedOffsets | Optional | Array[Number] | description | `[ -5 ]` |
-
 
 {: .alert.alert-info :}
 NOTE: The Parrable ID that is delivered to Prebid is encrypted by Parrable with a time-based key and updated frequently in the browser to enforce consumer privacy requirements and thus will be different on every page view, even for the same user.
@@ -56,7 +61,7 @@ All configured timezones should follow the `TZ database name` column from the [I
 
 ## Parrable ID Examples
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -74,4 +79,4 @@ pbjs.setConfig({
         syncDelay: 1000
     }
 });
-{% endhighlight %}
+```

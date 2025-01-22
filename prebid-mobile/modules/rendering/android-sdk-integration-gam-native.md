@@ -23,7 +23,7 @@ The general integration scenario requires these steps from publishers:
 6. After receiving response from GAM  - check if prebid has won and find native ad using `GamUtils`
 7. Bind the winner data from the native ad response with the layout.
 
-``` kotlin
+```kotlin
 val builder = AdManagerAdRequest.Builder()
 val publisherAdRequest = builder.build()
 nativeAdUnit?.fetchDemand { result ->
@@ -40,10 +40,9 @@ nativeAdUnit?.fetchDemand { result ->
 
 **NOTE:** `loadGam` method is creating GAM adLoader and executing `loadAd(publisherAdRequest)`.
 
-
 Example of handling NativeAd response (the same applies to Custom):
 
-``` kotlin
+```kotlin
 private fun handleNativeAd(nativeAd: NativeAd) {
     if (GamUtils.didPrebidWin(nativeAd)) {
         GamUtils.findNativeAd(nativeAd) {
@@ -56,13 +55,13 @@ private fun handleNativeAd(nativeAd: NativeAd) {
 }
 ```
 
-## Native Styles 
+## Native Styles
 
 [See Native Ads Guideline page](rendering-native-guidelines.html) for more details about SDK integration and supported ad types.
 
 Integration Example:
 
-``` kotlin
+```kotlin
 // 1. Create banner custom event handler for GAM ad server.
 val eventHandler = GamBannerEventHandler(requireContext(), GAM_AD_UNIT, GAM_AD_SIZE)
 
@@ -82,7 +81,7 @@ viewContainer?.addView(bannerView)
 bannerView?.loadAd()
 ```
 
-#### Step 1: Create Event Handler
+### Step 1: Create Event Handler
 
 GAM's event handlers are special containers that wrap GAM Ad Views and help to manage collaboration between GAM and Prebid views.
 
@@ -92,21 +91,20 @@ To create the event handler you should provide a GAM Ad Unit Id and the list of 
 
 **Note:** There is a helper function `convertGamAdSize` in GamBannerEventHandler to help you convert GAM AdSize into Prebid AdSize.
 
-
-#### Step 2: Create Ad View
+### Step 2: Create Ad View
 
 **BannerView** - is a view that will display the particular ad. It should be added to the UI. To create it you should provide:
 
-- **configId** - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
-- **eventHandler** - the instance of the banner event handler
+* **configId** - an ID of a [Stored Impression](/prebid-server/features/pbs-storedreqs.html) on the Prebid server
+* **eventHandler** - the instance of the banner event handler
 
 Also, you should add the instance of `BannerView` to the UI.
 
-#### Step 3: Create and provide NativeAdConfiguration
+### Step 3: Create and provide NativeAdConfiguration
 
 NativeAdConfiguration creation example:
 
-``` kotlin
+```kotlin
 private fun createNativeAdConfiguration(): NativeAdConfiguration {
     val nativeAdConfiguration = NativeAdConfiguration()
     nativeAdConfiguration.contextType = NativeAdConfiguration.ContextType.SOCIAL_CENTRIC
@@ -161,6 +159,6 @@ private fun createNativeAdConfiguration(): NativeAdConfiguration {
 
 See more NativeAdConfiguration options [here](rendering-native-ad-configuration.html).
 
-#### Step 4: Load the Ad
+### Step 4: Load the Ad
 
 Call the `loadAd()` method to start an In-App Bidding flow.

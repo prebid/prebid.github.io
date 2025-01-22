@@ -3,20 +3,25 @@ layout: userid
 title: AudienceOne ID by DAC
 description: AudienceOne ID by DAC User ID sub-module
 useridmodule: dacIdSystem
+bidRequestUserId: dacId
+eidsource: dac.co.jp
+example: {"id": "1111"}
 ---
 
 
 AudienceOne ID, provided by [D.A.Consortium Inc.](https://www.dac.co.jp/), is ID for ad targeting by using 1st party cookie.
-Please visit [https://solutions.dac.co.jp/audienceone](https://solutions.dac.co.jp/audienceone) and request your Owner ID to get started.
+Please visit [solutions.dac.co.jp/audienceone](https://solutions.dac.co.jp/audienceone) and request your Owner ID to get started.
 
 Add the AudienceOne ID to your Prebid.js Package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=dacIdSystem
+```
 
 ## AudienceOne ID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module | `"dacId"` |
@@ -25,7 +30,7 @@ gulp build --modules=dacIdSystem
 
 ## AudienceOne ID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -36,4 +41,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

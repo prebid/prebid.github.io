@@ -4,7 +4,7 @@ title: Relevant Digital
 description: Relevant Digital Bid Adapter
 biddercode: relevantdigital
 pbjs: true
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: false
 schain_supported: true
@@ -14,8 +14,8 @@ userIds: all
 prebid_member: true
 safeframes_ok: true
 deals_supported: true
-pbs: false
-pbs_app_supported: false
+pbs: true
+pbs_app_supported: true
 fpd_supported: true
 ortb_blocking_supported: no
 gvl_id: 1100
@@ -26,6 +26,7 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description                                             | Example                    | Type         |
 |---------------|----------|---------------------------------------------------------|----------------------------|--------------|
 | `placementId`       | required | The placement id.  | `'6204e83a077_620f9e8e4fe'`      | `String`     |
@@ -36,6 +37,7 @@ sidebarType: 1
 ### Config Parameters
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description                                             | Example                    | Type         |
 |---------------|----------|---------------------------------------------------------|----------------------------|--------------|
 | `pbsHost` | required if not set in bid parameters | Host name of the server. | `'pbs-example.relevant-digital.com'`                | `String`     |
@@ -44,7 +46,9 @@ sidebarType: 1
 | `useSourceBidderCode`        | optional | Set to `true` in order to use the bidder code of the actual server-side bidder in bid responses. You **MUST** also use `allowAlternateBidderCodes: true` in `bidderSettings` if you enabled this - as otherwise the bids will be rejected.| `true`               | `Boolean`      |
 
 ### Example setup using pbjs.setConfig()
+
 This is the recommended method to set the global configuration parameters.
+
 ```javascript
 pbjs.setConfig({
   relevantdigital: {
@@ -68,10 +72,13 @@ var adUnits = [
   }
 ];
 ```
-# Example setup using only bid params
+
+### Example setup using only bid params
+
 This method to set the global configuration parameters (like **pbsHost**) in **params** could simplify integration of a provider for some publishers. Setting different global config-parameters on different bids is not supported in general*, as the first settings found will be used and any subsequent global settings will be ignored.
 
- * _The exception is `useSourceBidderCode` which can be overriden individually per ad unit._
+ * The exception is `useSourceBidderCode` which can be overriden individually per ad unit.
+
 ```javascript
 var adUnits = [
   {
@@ -92,7 +99,9 @@ var adUnits = [
 ```
 
 ### Example setup with multiple providers
-**Notice:** Placements below are _not_ live test placements
+
+**Notice:** Placements below are *not* live test placements
+
 ```javascript
 
 pbjs.aliasBidder('relevantdigital', 'providerA');
@@ -130,4 +139,3 @@ var adUnits = [
   }
 ];
 ```
-

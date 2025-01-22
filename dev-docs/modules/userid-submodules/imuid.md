@@ -9,18 +9,20 @@ IM-UID, provided by [Intimate Merger](https://corp.intimatemerger.com/), is a un
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=imuIdSystem
+```
 
 ## IM-UID Registration
 
-Please visit [https://lp.intimatemerger.com/im-uid](https://lp.intimatemerger.com/im-uid) and request your Customer ID to get started.
+Please visit [lp.intimatemerger.com/im-uid](https://lp.intimatemerger.com/im-uid) and request your Customer ID to get started.
 
-The Intimate Merger privacy policy is at https://corp.intimatemerger.com/privacypolicy/
+The Intimate Merger privacy policy is at <https://corp.intimatemerger.com/privacypolicy/>
 
 ## IM-UID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module. | `"imuid"` |
@@ -30,7 +32,7 @@ The Intimate Merger privacy policy is at https://corp.intimatemerger.com/privacy
 
 ## IM-UID Example
 
-{% highlight javascript %}
+```javascript
 pbjs.setConfig({
     userSync: {
         userIds: [{
@@ -41,4 +43,4 @@ pbjs.setConfig({
         }]
     }
 });
-{% endhighlight %}
+```

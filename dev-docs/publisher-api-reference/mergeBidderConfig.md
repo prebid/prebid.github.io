@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.mergeBidderConfig(options)
-description:
+description: mergeBidderConfig API
 sidebarType: 1
 ---
 
@@ -9,13 +9,13 @@ This is the same as [`setBidderConfig(options, true)`](/dev-docs/publisher-api-r
 
 The page usage is:
 
-{% highlight js %}
+```javascript
 pbjs.mergeBidderConfig({
    bidders: ['bidderA'],
    config: {
       customArg: "customVal"
    }
 });
-{% endhighlight %}
+```
 
 Intrepration: When 'bidderA' calls `getConfig('customArg')`, it will receive the object that contains 'customArg'. If any other bidder calls `getConfig('customArg')`, it will receive nothing.

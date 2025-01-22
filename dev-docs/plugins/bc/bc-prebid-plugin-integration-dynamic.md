@@ -17,15 +17,15 @@ The Prebid Plugin for the Brightcove Player can be either integrated dynamically
 
 When you integrate the plugin directly on the page, you have greater flexibility in handling the plugin and the prebid process. Using this method allows you to run prebid at different times depending on your preferences.
 
-- You can run prebid in the header, before the Brightcove Player is loaded. Note that you cannot run prebid in the header if you are integrating the plugin via Brightcove Studio.
-- You can run prebid "just-in-time", after the Brightcove Player is loaded.
-- You can run prebid externally to the plugin and then simply use the plugin to render the selected ad.
+* You can run prebid in the header, before the Brightcove Player is loaded. Note that you cannot run prebid in the header if you are integrating the plugin via Brightcove Studio.
+* You can run prebid "just-in-time", after the Brightcove Player is loaded.
+* You can run prebid externally to the plugin and then simply use the plugin to render the selected ad.
 
 ## Integrating the Plugin on the Page
 
 Here is sample code for loading in the plugin and its constituents directly on the page.
 
-```
+```html
 <!-- Load in the plugin css stylesheets -->
 <!-- This is usually done in the header -->
 <!-- You may need to modify these paths if you are using your own build -->
@@ -51,14 +51,14 @@ Once the Brightcove Player has loaded, then publisher needs to call `renderAd()`
 
 ### Code to be Added to the Header
 
-- Define the prebid options in the header of the document where the Brightcove Player will be located.
-    - The specified options MUST be saved in a variable named `bc_plugin_pbjs` in a property named `plugin_prebid_options`.
-    - These options can include any of the options supported in **[Prebid Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options.html)**
-- AFTER the prebid options have been defined, load the Plugin script. Once the script is loaded, it will look to see if `bc_plugin_pbjs.plugin_prebid_options` is defined.  If so, then the Plugin script will invoke the prebid process.
+* Define the prebid options in the header of the document where the Brightcove Player will be located.
+  * The specified options MUST be saved in a variable named `bc_plugin_pbjs` in a property named `plugin_prebid_options`.
+  * These options can include any of the options supported in **[Prebid Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options.html)**
+* AFTER the prebid options have been defined, load the Plugin script. Once the script is loaded, it will look to see if `bc_plugin_pbjs.plugin_prebid_options` is defined.  If so, then the Plugin script will invoke the prebid process.
 
 #### How To Invoke Header Prebid by the Plugin
 
-```
+```html
 <head>
 ...
 <script>
@@ -104,14 +104,14 @@ Once the Brightcove Player has loaded, then publisher needs to call `renderAd()`
 
 ### Code To Be Added In the Body After the Brightcove Player Has Been Loaded
 
-- Register the plugin by calling `init()`
-- Call `renderAd()`  to tell the plugin to render the selected ad
-    - Pass in desired rendering options as listed in **[Render Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-render-options.html)**
-    - Pass a null value or no value to the `creative` parameter. Doing so will instruct the plugin to find the prebid results that it has saved in an internal variable.
+* Register the plugin by calling `init()`
+* Call `renderAd()`  to tell the plugin to render the selected ad
+  * Pass in desired rendering options as listed in **[Render Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-render-options.html)**
+  * Pass a null value or no value to the `creative` parameter. Doing so will instruct the plugin to find the prebid results that it has saved in an internal variable.
 
 #### How To Render the Results of Plugin-Invoked Header Prebid
 
-```
+```html
 <body>
     ...
 <script>
@@ -147,18 +147,18 @@ To do this, the publisher must add code in the body of the document where the Br
 
 ### Code To Be Added To The Body of the Page or iFrame
 
-- Define the options that are being passed into the plugin in the body of the document where the Brightcove Player will be located.
-    - These options can include any of the options supported in **[Prebid Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options.html)** as well as the options supported in the **[Render Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-render-options.html)**.
-    - These options can be defined either before you load the Brightcove Player or afterwards.
-- After you have loaded the Brightcove Player, load the prebid plugin script.
-- Register the plugin by calling `init()`.
-- Call `renderAd()`  to tell the plugin to execute prebid and then render the selected ad
-    - Pass in the desired prebid options and rendering options that you defined above.
-    - Pass a null value or no value to the `creative` parameter.
+* Define the options that are being passed into the plugin in the body of the document where the Brightcove Player will be located.
+  * These options can include any of the options supported in **[Prebid Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-prebid-options.html)** as well as the options supported in the **[Render Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-render-options.html)**.
+  * These options can be defined either before you load the Brightcove Player or afterwards.
+* After you have loaded the Brightcove Player, load the prebid plugin script.
+* Register the plugin by calling `init()`.
+* Call `renderAd()`  to tell the plugin to execute prebid and then render the selected ad
+  * Pass in the desired prebid options and rendering options that you defined above.
+  * Pass a null value or no value to the `creative` parameter.
 
 #### How To Run Prebid and Render the Selected Ad After the Brightcove Player Has Been Loaded
 
-```
+```html
 <body>
 ...
 ... code to load the Brightcove Player ...
@@ -231,26 +231,26 @@ You can choose to run your custom version of the prebid process outside of the p
 
 ### Running Prebid Externally to the Plugin
 
-- Run your custom prebid code either in the header or the body of the page.
-- Save the winning creative in a variable that can be passed to the plugin; the winning creative can be
-    - creative XML
-    - URL to the creative XML
+* Run your custom prebid code either in the header or the body of the page.
+* Save the winning creative in a variable that can be passed to the plugin; the winning creative can be
+  * creative XML
+  * URL to the creative XML
 
 ### Code to Be Added to the Body of the Page or iFrame
 
-- Load the prebid plugin script.
-- Define the render options that are being passed into the plugin in the body of the document where the Brightcove Player will be located.
-    - These options are described in the **[Render Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-render-options.html)**.
-- Register the plugin by calling `init()`.
-- Call `renderAd()`  to tell the plugin to render the selected ad.
-    - Pass in the desired rendering options as listed in Render Options.
-    - Pass in the `creative` parameter, which contains the results of the external prebid process. This can be:
-        - URL to the creative XML
-        - creative XML
+* Load the prebid plugin script.
+* Define the render options that are being passed into the plugin in the body of the document where the Brightcove Player will be located.
+  * These options are described in the **[Render Options]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-render-options.html)**.
+* Register the plugin by calling `init()`.
+* Call `renderAd()`  to tell the plugin to render the selected ad.
+  * Pass in the desired rendering options as listed in Render Options.
+  * Pass in the `creative` parameter, which contains the results of the external prebid process. This can be:
+    * URL to the creative XML
+    * creative XML
 
 #### How to Render the Selected Ad After Prebid Has Been Run Externally
 
-```
+```html
 <head>
 ...
 <script>
@@ -304,12 +304,7 @@ Details about the options supported by the Brightcove Prebid Plugin can be found
 
 ### Sample Implementations
 
-- **[Sample Brightcove Player Prebid Plugin Integration - Prebid in Header]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-header.html)**
-
-- **[Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-body.html)**
-
-- **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)**
-
-- **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)**
-
-
+* **[Sample Brightcove Player Prebid Plugin Integration - Prebid in Header]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-header.html)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Prebid After Player is Loaded]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-prebid-body.html)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Using Publisher Preferred Ad Server]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-third-party-ad-server.html)**
+* **[Sample Brightcove Player Prebid Plugin Integration - Publisher Uses Custom Header Bidding, Plugin Renders the Ad]({{site.baseurl}}/dev-docs/plugins/bc/bc-prebid-plugin-sample-custom-header-bidding.html)**

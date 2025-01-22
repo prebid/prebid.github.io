@@ -1,7 +1,7 @@
 ---
 layout: api_prebidjs
 title: pbjs.adServers.dfp.buildVideoUrl(options)
-description: 
+description: adServers.dfp.buildVideoUrl API
 sidebarType: 1
 ---
 

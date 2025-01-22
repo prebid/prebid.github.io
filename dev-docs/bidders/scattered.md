@@ -5,7 +5,7 @@ description: Scattered Prebid Bidder Adaptor
 biddercode: scattered
 media_types: banner
 coppa_supported: false
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: false
 prebid_member: false
 pbjs: true
@@ -29,7 +29,6 @@ sidebarType: 1
 | -------------- | -------- | ------------- | --------------- | --------- |
 | `bidderDomain` | required | Bidder domain | `"Leaderboard"` | `string`  |
 | `test`         | optional | Is test bid   | 0               | `integer` |
-
 
 ### OpenRTB request config
 
