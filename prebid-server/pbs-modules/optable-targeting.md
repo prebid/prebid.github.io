@@ -44,7 +44,7 @@ Here's a general template for the account config used in PBS-Java:
 hooks:
   optable-targeting:
     enabled: true
-  host_execution_plan: >
+  host-execution-plan: >
     {
       "endpoints": {
         "/openrtb2/auction": {
@@ -141,7 +141,7 @@ mvn clean package --file extra/pom.xml
 2. Start server bundle JAR as described in [Running project](https://github.com/prebid/prebid-server-java/blob/master/docs/run.md#running-project), e.g.
 
 ```bash
-java -jar target/prebid-server-bundle.jar --spring.config.additional-location=sample/prebid-config-optable.yaml
+java -jar target/prebid-server-bundle.jar --spring.config.additional-location=sample/configs/prebid-config-optable.yaml
 ```
 
 {:start="4"}
