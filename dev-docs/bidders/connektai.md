@@ -14,6 +14,12 @@ schain_supported: true
 floors_supported: true
 multiformat_supported: will-bid-on-any
 sidebarType: 1
+dchain_supported: false
+deals_supported: true
+fpd_supported: false
+ortb_blocking_supported: true
+safeframes_ok: true
+privacy_sandbox: no
 ---
 
 ### Note
