@@ -36,6 +36,7 @@ sidebarType: 1
 | `placement` | optional | Placement name provided by your account manager - set to `test-placement300x250` for test mode | `mysite300x250` | `string`|
 | `testMode` | optional | Activate test mode - 100% test bids - placement needs be set to `test-placement300x250` for this option to work | `true` | `boolean` |
 | `useSourceBidderCode` | optional | Use seat bidder code as hb_bidder, instead of teal (or configured alias) | `true` | `boolean` |
+| `subAccount` | optional | subAccount name, if provided by your account manager | `my-sub-account` | `string` |
 
 ### Bidder Settings
 
