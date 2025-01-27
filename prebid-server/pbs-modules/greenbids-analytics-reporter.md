@@ -33,6 +33,7 @@ Here's a description of the global parameters:
 | timeout-ms | int | Timeout limit on sending POST request to Greenbids Analytics Server |
 
 The Greenbids Analytics module includes account-specific parameters for the publisher setup. The logic of the config is as follows:
+
 - `BidRequest` extension in `ext.prebid.analytics.greenbids` if defined takes precedence over account configs.
 - If the `BidRequest` extension is not defined, the account config is used and defined one per individual publisher.
   The config is stored in `yaml` file under path `settings.filesystem.settings-filename` of the Prebid config.
