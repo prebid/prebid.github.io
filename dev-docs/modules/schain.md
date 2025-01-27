@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # Supply Chain Object Module
-
 {:.no_toc}
 
 * TOC

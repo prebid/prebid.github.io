@@ -10,11 +10,11 @@ sidebarType : 1
 
 ---
 
-
-
 # Currency Module
-
 {:.no_toc}
+
+* TOC
+{:toc}
 
 This module supports the conversion of multiple bidder currencies into a single currency
 used by the publisher's ad server. In previous versions of Prebid, this was accomplished
@@ -30,6 +30,7 @@ currency conversion file while the bids are taking place. Alternately, the conve
 be provided in the page.
 1. At runtime, bids are converted to the ad server currency as needed.
 1. Default rates can be provided in case the file cannot be loaded.
+1. When `requestBids` is called, the Currency Module will delay the auction up to the supplied amount of time in `currency.auctionDelay` or as soon as the dynamic endpoint returns data, whichever is first.
 
 ## Currency Architecture
 
@@ -195,6 +196,8 @@ pbjs.setConfig({
       "conversionRateFile": "URL_TO_RATE_FILE",
       // optionally provide a default rate in case the file can't be read
       "defaultRates": { "USD": { "GPB": 0.75 }}
+      // optionally sets the auction defer time if the file has not been loaded yet
+      "auctionDelay": 1000
    }
 });
 ```

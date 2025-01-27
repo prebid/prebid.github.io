@@ -745,32 +745,50 @@ Parameters:
 
 ## Arbitrary OpenRTB
 
-(requires SDK v2.2.1)
+(requires SDK v2.3.1)
 
-While there are many specific methods for adding data to the request detailed in
-this document, OpenRTB is big and it moves quickly. To cover scenarios not already covered by an existing method,
-Prebid SDK Provides a way for app publishers to customize most ORTB fields in the partial bid request that Prebid Mobile sends to the Prebid Server. The customization comes in the form of the ortbConfig parameter that takes a JSON String as input. The JSON string must follow the [OpenRTB structure](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md) -- it will be merged with the current JSON of the bid request. If you choose to input extra data using the ortbConfig parameter, please extensively test your requests sent to Prebid Server.
+Prebid SDK allows the customization of the OpenRTB request on the global level using `setGlobalOrtbConfig()` function: 
 
-There are certain protected fields such as regs, device, geo, ext.gdpr, ext.us_privacy, and ext.consent which cannot be changed.
+``` kotlin
+TargetingParams.setGlobalOrtbConfig(
+        "{" +
+                " \"displaymanager\": \"Google\"," +
+                " \"displaymanagerver\": \"" + MobileAds.getVersion() + "\"," +
+                " \"ext\": {" +
+                "   \"myext\": {" +
+                "    \"test\": 1" +
+                "   }" +
+                " }" +
+        "}"
+);
+```
+ 
+The parameter passed to `TargetingParams.setGlobalOrtbConfig()` will be merged into all SDK's bid requests on the global level. For instance, the above example will add the `$.ext.myext.test` parameter and change the `displaymanager` and `displaymanagerver` parameters in each request. 
 
-Here's how to specify cross-impression data:
+To invalidate the global config, just set the empty string: 
 
-```kotlin
-//global invocation
-adUnitConfiguration?.ortbConfig = "{\"ext\":{\"prebid\":{\"debug\":1,\"trace\":\"verbose\"}}}"
+``` kotlin
+TargetingParams.setGlobalOrtbConfig("")
 ```
 
-To merge impression-level data, use the `adUnit` object:
+The `TargetingParams.setGlobalOrtbConfig()` also allows to **add** impression objects to the request. All objects in the `$.imp[]` array will be added to the request. Note that Ad Unit's `imp` object won't be changed using Global Config. To change the `imp` config, use the `setImpORTBConfig()` method of a particular Ad Unit. See the Ad Unit documentation for the details. 
 
-```kotlin
-//ad unit / impression-level
-adUnit?.ortbConfig = "{\"ext\":{\"gpid\":\"abc123\"}}"
-```
+Pay attention that there are certain protected fields such as `regs`, `device`, `geo`, `ext.gdpr`, `ext.us_privacy`, and `ext.consent` which cannot be changed using the `setGlobalOrtbConfig()` method.
 
-Notes:
-
-- App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#first-party-data)
+- App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)
 - See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
+
+### Deprecated 
+{:.no_toc}
+
+The Prebid Mobile SDK v2.2.1 contains the deprecated method to set the impression level RTB config: 
+
+``` swift
+//ad unit / impression-level
+adUnit.setOrtbConfig("{\"ext\":{\"gpid\":\"abc123"}}\")
+```
+
+This method has implementation issues and was deprecated in v2.4.0. If you use this method, we strongly recommend migrating to the new `setImpORTBConfig()` method since this one will be removed entirely in SDK version 3.0.
 
 ## Further Reading
 
