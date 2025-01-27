@@ -31,7 +31,7 @@ are done before customizing it to a particular bidder in the auction.
 ### Account-Level Config
 
 The module is invoked based on account config. The logic of the config is as follows:
-- `BidRequest` extension if defined takes precedence over account configs.
+- `BidRequest` extension in `ext.prebid.analytics.greenbids-rtd` if defined takes precedence over account configs.
 - If the `BidRequest` extension is not defined, the account config is used and defined one per individual publisher.
   The config is stored in `yaml` file under path `settings.filesystem.settings-filename` of the Prebid config.
 - If the account config is not defined, the default account config is used. It is defined in `settings.default-account-config` field of the Prebid config.
