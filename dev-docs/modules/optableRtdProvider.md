@@ -119,16 +119,23 @@ async function sha256(input) {
 | params                | Object  |                                                                                                  |                    |
 | params.bundleUrl    | String  | Optable bundle URL                                                        | '' |
 | params.adserverTargeting | boolean  | If set to `true` targeting keywords will be passed to the ad server upon auction completion | false |
-| params.ppidMapping | map  | Optional mapping between PPID sources and custom identifier names  | null |
 
 ## Example 
 
 If you want to see an example of how the optable RTD module works, run the following command:
 
-`gulp serve --modules=rtdModule,optableRtdProvider,appnexusBidAdapter`
+`gulp serve --modules=rtdModule,optableRtdProvider,consentManagementTcf,tcfControl, consentManagementGpp,appnexusBidAdapter`
 
 and then open the following URL in your browser:
 
 `http://localhost:9999/integrationExamples/gpt/optableRtdProvider_example.html`
 
 Open the browser console to see the logs.
+
+## Maintainer contacts
+
+Any suggestions or questions can be directed to [prebid@optable.co](mailto:prebid@optable.co).
+
+Alternatively please open a new [issue](https://github.com/prebid/prebid-server-java/issues/new) or [pull request](https://github.com/prebid/prebid-server-java/pulls) in this repository.
+
+
