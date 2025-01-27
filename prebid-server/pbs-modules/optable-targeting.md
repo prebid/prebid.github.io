@@ -157,10 +157,6 @@ curl http://localhost:8080/openrtb2/auction --data @extra/modules/optable-target
 
 ## Maintainer contacts
 
-Any suggestions or questions can be directed to [](mailto:) e-mail.
+Any suggestions or questions can be directed to [prebid@optable.co](mailto:prebid@optable.co).
 
-Or just open new [issue](https://github.com/prebid/prebid-server-java/issues/new) or [pull request](https://github.com/prebid/prebid-server-java/pulls) in this repository.
-
-## Further Reading
-
-* [Prebid Server Module List](/prebid-server/pbs-modules/index.html)
+Alternatively please open a new [issue](https://github.com/prebid/prebid-server-java/issues/new) or [pull request](https://github.com/prebid/prebid-server-java/pulls) in this repository.
