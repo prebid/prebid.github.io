@@ -41,6 +41,7 @@ The Greenbids Analytics module includes account-specific parameters for the publ
 Here are examples of the config:
 
 BidRequest extension:
+
 ```json
 "ext": {
     "analytics": {
@@ -58,6 +59,7 @@ BidRequest extension:
 ```
 
 Account config:
+
 ```yaml
 hooks:
   modules:
@@ -73,6 +75,7 @@ analytics:
 ```
 
 Default account config:
+
 ```yaml
 settings:
     default-account-config: >

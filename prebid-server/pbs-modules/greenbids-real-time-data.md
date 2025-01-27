@@ -39,6 +39,7 @@ The module is invoked based on account config. The logic of the config is as fol
 Here are examples of the config used in PBS-Java:
 
 BidRequest extension:
+
 ```json
 "ext": {
     "analytics": {
@@ -56,6 +57,7 @@ BidRequest extension:
 ```
 
 Account config:
+
 ```yaml
 hooks:
   modules:
@@ -71,6 +73,7 @@ analytics:
 ```
 
 Default account config:
+
 ```yaml
 settings:
     default-account-config: >
@@ -98,6 +101,7 @@ settings:
 ```
 
 Execution plan setup:
+
 ```yaml
 hooks:
   greenbids-real-time-data:
