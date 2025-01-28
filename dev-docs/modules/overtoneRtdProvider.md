@@ -46,7 +46,6 @@ pbjs.setConfig({
 | Name                      | Type          | Description                                                      | Default           |
 | :------------------------ | :------------ | :--------------------------------------------------------------- |:----------------- |
 | name                      | String        | Real time data module name                                       | Always 'overtone'   |
-        |
 | params                    | Object        |                                                                  |                   |
 | params.apiKey         | String        | Your unique API key provided by Overtone                                          | YOUR_API_KEY                    |
 | params.domains            | Array<string> | Array of whitelisted domains for contextual analysis           |                   |
