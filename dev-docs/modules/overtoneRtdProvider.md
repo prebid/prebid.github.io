@@ -1,4 +1,4 @@
-# 1plusX Real-time Data Submodule
+# Overtone Real-time Data Submodule
 
 ## Overview
 
