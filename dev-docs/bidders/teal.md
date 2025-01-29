@@ -38,6 +38,11 @@ sidebarType: 1
 | `useSourceBidderCode` | optional | Use seat bidder code as hb_bidder, instead of teal (or configured alias) | `true` | `boolean` |
 | `subAccount` | optional | subAccount name, if provided by your account manager | `my-sub-account` | `string` |
 
+### Notes
+
+- Specific ads.txt entries are required for the Teal bid adapter - please contact your account manager or <prebid@teal.works> for more details.
+- For full functionality in GDPR territories, please ensure Teal Digital Group Ltd is configured in your CMP.
+
 ### Bidder Settings
 
 The Teal bid adapter uses an iframe for user sync. This can be enabled like this:
