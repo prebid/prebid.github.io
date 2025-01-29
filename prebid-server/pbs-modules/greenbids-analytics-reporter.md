@@ -45,15 +45,17 @@ BidRequest extension:
 
 ```json
 "ext": {
-    "analytics": {
-      "greenbids": {
-        "pbuid": "PBUID_FROM_GREENBIDS",
-        "greenbids-sampling": 1
-      },
-      "greenbids-rtd": {
-        "pbuid": "PBUID_FROM_GREENBIDS",
-        "target-tpr": 0.55,
-        "exploration-rate": 0.0005
+    "prebid": {
+      "analytics": {
+        "greenbids": {
+          "pbuid": "PBUID_FROM_GREENBIDS",
+          "greenbids-sampling": 1
+        },
+        "greenbids-rtd": {
+          "pbuid": "PBUID_FROM_GREENBIDS",
+          "target-tpr": 0.55,
+          "exploration-rate": 0.0005
+        }
       }
     }
   }
@@ -73,32 +75,4 @@ analytics:
     greenbids:
       pbuid: "PBUID_FROM_GREENBIDS"
       greenbids-sampling: 0.002
-```
-
-Default account config:
-
-```yaml
-settings:
-    default-account-config: >
-        {
-          "hooks": {
-              "modules": {
-                  "greenbids-real-time-data": {
-                      "enabled": true,
-                      "pbuid": "PBUID_FROM_GREENBIDS",
-                      "target-tpr": 0.95,
-                      "exploration-rate": 0.001
-                  }
-              }
-          },
-          "analytics": {
-              "modules": {
-                  "greenbids": {
-                      "enabled": true,
-                      "pbuid": "PBUID_FROM_GREENBIDS",
-                      "greenbids-sampling": 0.001
-                    }
-                }
-            }
-    }
 ```
