@@ -214,10 +214,7 @@ Here's an example analytics tag that might be produced for use in an analytics a
               "tid": "2c445309-06b2-47b2-a724-4aeef15faeb8"
             }
           },
-          "appliedTo": {
-            "bidders": "bidderA",
-            "impIds": "impId1"
-          }
+          "appliedTo": {}
         }
       ]
     }
