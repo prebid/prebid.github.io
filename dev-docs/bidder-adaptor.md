@@ -518,7 +518,7 @@ The parameters of the `bidResponse` object are:
 | `meta.primaryCatId`      | Optional     | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
 | `meta.secondaryCatIds`   | Optional     | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
 | `meta.mediaType`         | Optional     | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
-| `eventtrackers`          | Optional     | Array of objects in the same format as [ORTB native "Event Tracker Response Object"](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) |  `[{event: 500, method: 1, url: "https://www.example.com/track"]}]` |
+| `eventtrackers`          | Optional     | Array of objects in the same format as [ORTB native section 5.8, "Event Tracker Response Object"](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) |  `[{event: 500, method: 1, url: "https://www.example.com/track"]}]` |
 | `eventtrackers[].event`   | Required     | Event type. Prebid.js will fire tracking pixels for `500` (bid won) and `1` (bid was rendered). |    `500`      |
 | `eventtrackers[].method` | Required     | Tracking method. Prebid.js only fires image pixels (`1`)                                        |    `1`        |
 | `eventtrackers[].url`    | Required     | Tracker URL                                                                                      | `https//www.example.com/track` |
