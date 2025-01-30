@@ -76,4 +76,3 @@ To enable 100% fill test ads, you can use the following `params`:
 This will produce a bid at $0.20 with a test creative.
 
 Note that the parameters are case-sensitive. Please do not use these test parameters in production environments.
-
