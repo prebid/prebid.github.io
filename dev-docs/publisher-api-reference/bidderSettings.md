@@ -213,7 +213,10 @@ In the above example, the AOL bidder will inherit from "standard" adserverTarget
 When using [price floors](/dev-docs/modules/floors.html), Prebid attempts to calculate the inverse of `bidCpmAdjustment`, so that the floor values it requests from SSPs take into account how the bid will be adjusted.
 For example, if the adjustment is `bidCpm * .85` as above, floors are adjusted by `bidFloor * 1 / .85`.
 
-The automatically derived inverse function is correct only when `bidCpmAdjustment` is a simple multiplication. If it isn't, the inverse should also be provided through `inverseBidAdjustment`. For example:
+The automatically derived inverse function is correct only when `bidCpmAdjustment` is a simple multiplication. 
+If it isn't, the inverse should also be provided, as a function taking 3 arguments: `inverseBidAdjustment(cpm, bidRequest, floorRequest)`, where `floorRequest` is an object containing `{mediaType, size}`, both of which can be null if calculating non-specific floors.    
+
+For example:
 
 ```javascript
 pbjs.bidderSettings = {
