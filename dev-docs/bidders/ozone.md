@@ -11,6 +11,7 @@ gvl_id: 524
 deals_supported: true
 schain_supported: true
 coppa_supported: true
+gpp_supported: true
 usp_supported: true
 floors_supported: true
 prebid_member: true
