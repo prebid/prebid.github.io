@@ -338,9 +338,6 @@ a {
     text-decoration: none;
 }
 
-{: .alert.alert-info :}
-See [Managing the Native Template in GAM](/adops/gam-native.html#managing-the-native-template-in-gam) for ad server instructions.
-
 .attribution {
     color: #fff;
     font-size: 9px;
@@ -352,6 +349,9 @@ See [Managing the Native Template in GAM](/adops/gam-native.html#managing-the-na
     padding: 4px;
 }
 ```
+
+{: .alert.alert-info :}
+See [Managing the Native Template in GAM](/adops/gam-native.html#managing-the-native-template-in-gam) for ad server instructions.
 
 ### 4.2. Implementing an AdUnit-Defined Template
 
@@ -633,8 +633,8 @@ How impression tracking works step by step:
 - When the `window.pbNativeTag.renderNativeAd()` is called, the Prebid Universal Creative will request OpenRTB response from Prebid.js (via postmessage).
 - Prebid.js responds with OpenRTB response that contains `eventtrackers`
 - When the Prebid Universal Creative renders the native ad, it will gather all impression trackers from the response and for each tracker it will:
-   - if tracker is `img` method, Prebid Universal Creative will fire pixel provided in the `url` property
-   - if tracker is `js` method, Prebid Universal Creative will load the script in the same iframe where native ad is rendered
+  - if tracker is `img` method, Prebid Universal Creative will fire pixel provided in the `url` property
+  - if tracker is `js` method, Prebid Universal Creative will load the script in the same iframe where native ad is rendered
 
 The publisher doesn't need to implement anything for impression tracking to work, all that is needed is proper configuration of OpenRTB request on adUnit level. Prebid.js + Prebid Universal Creative will automatically take care of the impression tracking.
 
