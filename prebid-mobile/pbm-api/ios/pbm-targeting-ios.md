@@ -392,68 +392,22 @@ Any identity vendor's details in local storage will be sent to Prebid Server una
 {: .alert.alert-info :}
 Note that the phrase "EID" stands for "Extended IDs" in [OpenRTB 2.6](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md), but for historic reasons, Prebid SDK methods use the word "external" rather than "extended". Please consider the phrase "external ID" a synonym for "extended ID".
 
-### Storing IDs in a Property
+### Storing IDs 
 
-Prebid SDK supports passing an array of EIDs at auction time in the Prebid global field `externalUserIdArray`. Setting the `externalUserIdArray` object once per user session is sufficient unless one of the values changes.
+Prebid SDK supports passing an array of EIDs at auction time in the Prebid global field `externalUserIds`. Setting the `externalUserIds` object once per user session is sufficient unless one of the values changes.
 
 ```swift
-public var externalUserIdArray = [ExternalUserId]()
+Targeting.shared.setExternalUserIds()
 ```
 
 **Examples**
 
 ```swift
-// User Id from External Third Party Sources
-var externalUserIdArray = [ExternalUserId]()
-
-externalUserIdArray.append(ExternalUserId(source: "adserver.org", identifier: "111111111111", ext: ["rtiPartner" : "TDID"]))
-externalUserIdArray.append(ExternalUserId(source: "netid.de", identifier: "999888777"))
-externalUserIdArray.append(ExternalUserId(source: "criteo.com", identifier: "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N"))
-externalUserIdArray.append(ExternalUserId(source: "liveramp.com", identifier: "AjfowMv4ZHZQJFM8TpiUnYEyA81Vdgg"))
-externalUserIdArray.append(ExternalUserId(source: "sharedid.org", identifier: "111111111111", atype: 1))
-
-Prebid.shared.externalUserIdArray = externalUserIdArray
-```
-
-```kotlin
-setExternalUserIds(List<ExternalUserId> externalUserIds)
-```
-
-### Storing IDs in Local Storage
-
-Prebid SDK provides a local storage interface to set, retrieve, or update an array of user IDs with associated identity vendor details. It will then retrieve and pass these User IDs to Prebid Server on each auction, even on the next user session.
-
-Prebid SDK Provides several functions to handle User ID details within the local storage:
-
-```swift
-public func storeExternalUserId(_ externalUserId: ExternalUserId)
-
-public func fetchStoredExternalUserIds() -> [ExternalUserId]?
-
-public func fetchStoredExternalUserId(_ source : String) -> ExternalUserId?
-
-public func removeStoredExternalUserId(_ source : String)
-
-public func removeStoredExternalUserIds()
-```
-
-**Examples**
-
-```swift
-//Set External User ID
-Targeting.shared.storeExternalUserId(ExternalUserId(source: "sharedid.org", identifier: "111111111111", atype: 1))
-
-//Get External User ID
-let externalUserIdSharedId = Targeting.shared.fetchStoredExternalUserId("sharedid.org")
-
-//Get All External User IDs
-let externalUserIdsArray = Targeting.shared.fetchStoredExternalUserIds()
-
-//Remove External UserID
-Targeting.shared.removeStoredExternalUserId("sharedid.org")
-
-//Remove All External UserID
-Targeting.shared.removeStoredExternalUserIds()
+let uniqueId1 = UserUniqueID(id: "111111111111", aType: 20, ext: ["rtiPartner": "TDID"])
+let uniqueId2 = UserUniqueID(id: "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", aType: 777)
+let fullUserId = ExternalUserId(source: "adserver.org", uids: [uniqueId1, uniqueId2])
+        
+Targeting.shared.setExternalUserIds([fullUserId])
 ```
 
 ### IDs that Require Additional SDKs
