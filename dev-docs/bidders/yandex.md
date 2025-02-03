@@ -57,7 +57,6 @@ const adUnits = [{
   code: 'native-1',
   mediaTypes: {
     native: {
-      sendTargetingKeys: false,
       ortb: {
         assets: [{
             id: 1,
