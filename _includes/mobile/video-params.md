@@ -5,7 +5,7 @@ Using the `VideoParameters` object you can customize the bid request for video a
 
 **Note:** Deprecated as of [OpenRTB v2.6-202303](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#list--placement-subtypes---video-) release.
 
-Not needed for Instream video integration, which uses placement=1.
+Not needed for Instream video integration, which uses placement=1 and plcmt=1.
 
 The [OpenRTB 2.6](https://iabtechlab.com/wp-content/uploads/2022/04/OpenRTB-2-6_FINAL.pdf) Placement Type for the auction can be expressed as an integer or you can use an enum for easier readability.
 
