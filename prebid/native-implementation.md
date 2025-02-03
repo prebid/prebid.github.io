@@ -24,7 +24,7 @@ This document replaces the [previous native documentation](/prebid/native-implem
 {% include alerts/alert_tip.html content=version2 %}
 
 - TOC
-{:toc}
+  {:toc}
 
 ## Overview
 
@@ -274,9 +274,9 @@ There are three key aspects of the native template:
 1. Build the creative with special Prebid.js macros, e.g. `##hb_native_asset_id_{id}##.` Note that macros can be placed in the body (HTML) and/or head (CSS) of the native creative.
 2. Load the Prebid.js native rendering code. You may utilize the jsdelivr version of native.js or host your own copy. If you use the version hosted on jsdelivr, make sure any necessary ad server permissions are established.
 3. Invoke the Prebid.js native rendering function with an object containing the following attributes:
-    1. adid - used to identify which Prebid.js creative holds the appropriate native assets
-    2. pubUrl - the URL of the page, which is needed for the HTML postmessage call
-    3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js rather than having to scan the template to find which specific assets are needed.
+   1. adid - used to identify which Prebid.js creative holds the appropriate native assets
+   2. pubUrl - the URL of the page, which is needed for the HTML postmessage call
+   3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js rather than having to scan the template to find which specific assets are needed.
 
 Example creative HTML:
 
@@ -427,9 +427,9 @@ Even though the body of the native creative is defined in the AdUnit, an AdServe
 
 1. Load the Prebid.js native rendering code. You may utilize the jsdelivr version of native.js or host your own copy. If you use the version hosted on jsdelivr, make sure any necessary ad server permissions are established.
 2. Invoke the Prebid.js native rendering function with an object containing the following attributes:
-    1. adid - used to identify which Prebid.js creative holds the appropriate native assets
-    2. pubUrl - the URL of the page, which is needed for the HTML postmessage call
-    3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js. The rendering function cannot currently scan a template defined in the AdUnit.
+   1. adid - used to identify which Prebid.js creative holds the appropriate native assets
+   2. pubUrl - the URL of the page, which is needed for the HTML postmessage call
+   3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js. The rendering function cannot currently scan a template defined in the AdUnit.
 
 Example Creative HTML
 
@@ -517,9 +517,9 @@ Even though the body of the native creative is defined in the external JavaScrip
 
 1. Load the Prebid.js native rendering code. You may utilize the jsdelivr version of native.js or host your own copy. If you use the version hosted on jsdelivr, make sure any necessary ad server permissions are established.
 2. Invoke the Prebid.js native rendering function with an object containing the following attributes:
-    1. adid - used to identify which Prebid.js creative holds the appropriate native assets
-    2. pubUrl - the URL of the page, which is needed for the HTML postmessage call
-    3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js so they can be passed to the render function.
+   1. adid - used to identify which Prebid.js creative holds the appropriate native assets
+   2. pubUrl - the URL of the page, which is needed for the HTML postmessage call
+   3. requestAllAssets - tells the renderer to get all the native assets from Prebid.js so they can be passed to the render function.
 
 Example creative HTML:
 
@@ -634,8 +634,8 @@ How impression tracking works step by step:
 - When the `window.pbNativeTag.renderNativeAd()` is called, the Prebid Universal Creative will request OpenRTB response from Prebid.js (via postmessage).
 - Prebid.js responds with OpenRTB response that contains `eventtrackers`
 - When the Prebid Universal Creative renders the native ad, it will gather all impression trackers from the response and for each tracker it will:
-  - if tracker is `img` method, Prebid Universal Creative will fire pixel provided in the `url` property
-  - if tracker is `js` method, Prebid Universal Creative will load the script in the same iframe where native ad is rendered
+   - if tracker is `img` method, Prebid Universal Creative will fire pixel provided in the `url` property
+   - if tracker is `js` method, Prebid Universal Creative will load the script in the same iframe where native ad is rendered
 
 The publisher doesn't need to implement anything for impression tracking to work, all that is needed is proper configuration of OpenRTB request on adUnit level. Prebid.js + Prebid Universal Creative will automatically take care of the impression tracking.
 
@@ -672,9 +672,9 @@ There are detailed [instructions for setting up native in GAM](/adops/gam-native
 
 1. Put the creative in an iframe and load native.js
 1. Invoke the renderNativeAd() function with a hash that includes the following values:
-    1. pbNativeTagData.pubUrl = "PAGE URL";
-    1. pbNativeTagData.adId = "PREBID ADID";
-    1. pbNativeTagData.requestAllAssets = true;
+   1. pbNativeTagData.pubUrl = "PAGE URL";
+   1. pbNativeTagData.adId = "PREBID ADID";
+   1. pbNativeTagData.requestAllAssets = true;
 1. renderNativeAd() will look for the existence of an "adTemplate" value in the AdUnit. If it finds one, it will resolve macros and append it to the iframe's body.
 1. Otherwise, renderNativeAd() will look for the existence of a "rendererUrl" value in the AdUnit. If it finds one, it loads the script then calls window.renderAd() and appends the results to the iframe's body.
 1. Otherwise renderNativeAd() scans the iframe body and resolves macros.
