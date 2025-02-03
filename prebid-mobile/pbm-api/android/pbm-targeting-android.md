@@ -549,39 +549,26 @@ Note that the phrase "EID" stands for "Extended IDs" in [OpenRTB 2.6](https://gi
 
 ### Prebid SDK API Access
 
-Prebid SDK supports passing an array of EIDs at auction time with the function storeExternalUserId, which is globably scoped. It is sufficient to set the externalUserIdArray object once per user session, as these values would be used in all consecutive ad auctions in the same session.
+Prebid SDK supports passing an array of EIDs at auction time with the function `TargetingParams.setExternalUserIds()`, which is globally scoped. It is sufficient to set the `userIds` object once per user session, as these values would be used in all consecutive ad auctions in the same session.
 
-```kotlin
-void storeExternalUserId(<ExternalUserId> externalUserIds)
-
-List<ExternalUserId> fetchStoredExternalUserIds()
-
-ExternalUserId fetchStoredExternalUserId(@NonNull String source) 
-
-void removeStoredExternalUserId(@NonNull String source) {
-
-void clearStoredExternalUserIds() {
+```java
+public static void setExternalUserIds(@Nullable List<ExternalUserId> userIds)
 ```
 
 Example:
 
-```kotlin
-  // User Id from External Third Party Sources
-  ArrayList<ExternalUserId> externalUserIdArray = new ArrayList<>();
-  externalUserIdArray.add(new ExternalUserId("adserver.org", "111111111111", null, new HashMap() {
-    {
-        put ("rtiPartner", "TDID");
-    }
-}));
+```java
+ArrayList<ExternalUserId> userIds = new ArrayList<>();
 
-  externalUserIdArray.add(new ExternalUserId("netid.de", "999888777", null, null));
-  externalUserIdArray.add(new ExternalUserId("criteo.com", "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", null, null));
-  externalUserIdArray.add(new ExternalUserId("liveramp.com", "AjfowMv4ZHZQJFM8TpiUnYEyA81Vdgg", null, null));
-  externalUserIdArray.add(new ExternalUserId("sharedid.org", "111111111111", 1, null));
-}));
+ExternalUserId.UniqueId uniqueId1 = new ExternalUserId.UniqueId("111111111111", 20);
+uniqueId1.setExt(new HashMap<String, Object>() {{
+    put("rtiPartner", "TDID");
+}});
+ExternalUserId.UniqueId uniqueId2 = new ExternalUserId.UniqueId("_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", 777);
+ExternalUserId fullUserId = new ExternalUserId("adserver.org", List.of(uniqueId1, uniqueId2));
+userIds.add(fullUserId);
 
-//Set External User IDs
-PrebidMobile.storeExternalUserId(externalUserIdArray);
+TargetingParams.setExternalUserIds(userIds);
 ```
 
 ### IDs that Require Additional SDKs
