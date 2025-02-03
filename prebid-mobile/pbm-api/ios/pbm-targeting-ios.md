@@ -202,7 +202,6 @@ The `PrebidLogger` protocol defines the required methods for logging messages at
 - **`whereAmI(_:)`**
   Logs the current location in the code, useful for debugging.
   - **Parameters**: Same as `error(_:)`.
-  
 
 ## Consent Management Parameters
 
