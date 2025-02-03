@@ -15,12 +15,10 @@ The [OpenRTB 2.6](https://iabtechlab.com/wp-content/uploads/2022/04/OpenRTB-2-6_
 - `5` or `Slider`, `Floating` or `Interstitial` : Open RTB supports one of three values for option 5 as either Slider, Floating or Interstitial. If an enum value is supplied in placement, bidders will receive value 5 for placement type and assume to be interstitial with the instl flag set to 1.
 
 Notes:
-- VideoInterstitialAdUnit and rewarded video ads will default to placement= 5 if no placement value is supplied.
+- `PrebidAdUnit`, `VideoInterstitialAdUnit` and `RewardedVideoAdUnit`  ads will default to placement= 5 if no placement value is supplied.
 
 #### plcmnt
 {:.no_toc}
-
-Not needed for Instream video integration, which uses plcmnt=1.
 
 The [OpenRTB v2.6-202303](https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/main/AdCOM%20v1.0%20FINAL.md#list--plcmt-subtypes---video-) Placement Type for the auction can be expressed as an integer or you can use an enum for easier readability.
 
@@ -30,7 +28,7 @@ The [OpenRTB v2.6-202303](https://github.com/InteractiveAdvertisingBureau/AdCOM/
 - `4` or `NoContent` or `Standalone` : Video ads that are played without streaming video content. This can be in placements like slideshows, native feeds, in-content or sticky/floating.
 
 Notes:
-- `PrebidAdUnit`, `VideoInterstitialAdUnit` and `RewardedVideo` will default to plcmnt=3 if no placement value is supplied.
+- `PrebidAdUnit`, `VideoInterstitialAdUnit` and `RewardedVideoAdUnit` will default to plcmnt=3 if no placement value is supplied.
 
 #### api
 {:.no_toc}
