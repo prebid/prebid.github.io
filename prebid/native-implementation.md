@@ -64,7 +64,7 @@ This table summarizes how the 3 approaches work:
 {: .table .table-bordered .table-striped }
 | Component | AdServer-Defined Creative Scenario | AdUnit-Defined Creative Scenario | Custom Renderer Scenario |
 | --- | --- |--- | --- |
-| Prebid.js | mediaTypes. native.sendTargetingKeys: false | sendTargetingKeys:false and mediaTypes.native.adTemplate contains ##macros## | sendTargetingKeys:false and mediaTypes.native.rendererUrl |
+| Prebid.js | mediaTypes. native.ortb | mediaTypes. native.ortb and mediaTypes.native.adTemplate contains ##macros## | mediaTypes. native.ortb and mediaTypes.native.rendererUrl |
 | Ad Server Key Value Pairs | hb_adid | hb_adid | hb_adid |
 | Ad Server | Native template loads native.js and calls renderNativeAd(). Uses Prebid ##macro## format. | Native creative loads native.js and calls renderNativeAd() with requestAllAssets: true | Native creative loads native.js and calls renderNativeAd(), with requestAllAssets:true |
 | Prebid Universal Creative | renderNativeAd resolves macros in the creative body and CSS. | renderNativeAd resolves ##macros## in adTemplate and CSS, appending the adTemplate to the creative body | renderNativeAd loads javascript from renderUrl, calls the renderAd function, appending the results to the creative body. |
@@ -82,7 +82,7 @@ The Prebid.js AdUnit needs to define a native mediatype object to tell bidders w
 | adTemplate | optional | Used in the ‘AdUnit-Defined Creative Scenario’, this value will contain the Native template right in the page. | See [example](#42-implementing-an-adunit-defined-template) below. | escaped ES5 string |
 | rendererUrl | optional | Used in the ‘Custom Renderer Scenario’, this points to javascript code that will produce the Native template. | `'https://host/path.js'` | string |
 | ortb | recommended | OpenRTB configuration of the Native assets. The Native 1.2 specification can be found [here](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) | { assets: [], eventtrackers: [] } | object |
-| sendTargetingKeys | deprecated | Defines whether or not to send the hb_native_ASSET targeting keys to the ad server. Defaults to `false`. | `false` | boolean |
+| sendTargetingKeys | deprecated | (**NOTE**: not supported in 9.0 and later). Defines whether or not to send the hb_native_ASSET targeting keys to the ad server. Defaults to `false`. | `false` | boolean |
 
 ### 3.1. Prebid.js and the ORTB asset fields
 
@@ -206,9 +206,7 @@ For instructions on implementing the native template within Google Ad Manager, s
 
 In this scenario, the body of the native creative template is managed within the ad server and includes special Prebid.js macros.
 
-#### 4.1.1. Turn Targeting Keys off in Prebid.js
-
-When the native AdUnit is defined in the page, declare `sendTargetingKeys: false` in the native Object. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
+#### 4.1.1. Define the Native Assets in Prebid.js
 
 Example Native AdUnit:
 
@@ -217,7 +215,6 @@ pbjs.addAdUnits({
     code: slot.code,
     mediaTypes: {
         native: {
-            sendTargetingKeys: false,
             ortb: {
                 assets: [{
                     id: 1,
@@ -266,6 +263,9 @@ pbjs.addAdUnits({
     }]
 });
 ```
+
+{: .alert.alert-warning :}
+In versions of Prebid.js before 9.0, you'll need to declare `mediatypes.native.sendTargetingKeys: false` in the AdUnit. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
 
 #### 4.1.2. Create the Native Template in the Ad Server
 
@@ -361,8 +361,8 @@ In this scenario, the body of the native creative template is managed within the
 
 When the Native AdUnit is defined in the page:
 
-- Declare `sendTargetingKeys: false` in the native Object. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
 - Define the adTemplate as an escaped ES5 string using Prebid.js ##macros##. (See the appendix for an exhaustive list of assets and macros.) Note that this approach only affects the HTML body. Any CSS definitions need to be defined in the body of the template or in the AdServer.
+- In versions of Prebid.js before 9.0, declare `mediaTypes.native.sendTargetingKeys: false` in the AdUnit. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
 
 Example AdUnit:
 
@@ -371,7 +371,6 @@ var adUnits = [{
       code: 'native-div',
       mediaTypes: {
           native: {
-        sendTargetingKeys: false,
             adTemplate: `<div class="sponsored-post">
                 <div class="thumbnail" style="background-image: url(##hb_native_asset_id_1##);"></div>
                 <div class="content">
@@ -462,8 +461,8 @@ In this scenario, the body of the native creative is managed from an external Ja
 
 When the Native AdUnit is defined in the page:
 
-- Declare`sendTargetingKeys: false` in the Native Object. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
 - Define the `rendererUrl` as a URL that defines a `window.renderAd` function in the creative iframe. The html returned by the `window.renderAd` function will be attached to the creative's DOM.
+- In versions of Prebid.js before 9.0, declare `mediaTypes.native.sendTargetingKeys: false` in the AdUnit. This will prevent Prebid.js from sending all the native-related ad server targeting variables.
 
 Example AdUnit setup:
 
@@ -472,7 +471,6 @@ var adUnits = [{
       code: 'native-div',
       mediaTypes: {
           native: {
-        sendTargetingKeys: false,
             rendererUrl: "https://files.prebid.org/creatives/nativeRenderFunction.js",
             ortb: {
                 assets: [{
