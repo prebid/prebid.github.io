@@ -14,7 +14,7 @@ sidebarType : 1
 # Nodals AI Real-Time Data Module
 
 ## Overview
-Nodals AI provides a real-time data prebid module that will analyse first-party signals present on page load, determine the value of them to Nodals’ advertisers and add a key-value to the ad server call to indicate that value.
+Nodals AI provides a real-time data prebid module that will analyse first-party signals present on page load, determine the value of them to Nodals’ advertisers and add a key-value to the ad server call to indicate that value. The Nodals AI RTD module loads external code as part of this process.
 
 In order to be able to utilise this module, please contact [info@nodals.ai](mailto:info@nodals.ai) for account setup and detailed GAM setup instructions.
 
