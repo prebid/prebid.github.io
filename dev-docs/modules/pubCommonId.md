@@ -13,8 +13,6 @@ sidebarType : 1
 
 # Publisher Common ID Module
 
-{:.no_toc}
-
 This module stores a unique user id in the first party domain and makes it accessible to all adapters. Similar to IDFA and AAID, this is a simple UUID that can be utilized to improve user matching, especially for iOS and MacOS browsers, and is compatible with ITP (Intelligent Tracking Prevention). It's lightweight and self contained.  Adapters that support Publisher Common ID will be able to pick up the user ID and return it for additional server-side cross device tracking.
 
 ## Page integration

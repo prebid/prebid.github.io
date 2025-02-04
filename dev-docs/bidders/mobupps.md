@@ -4,8 +4,8 @@ title: Mobupps
 description: Prebid Mobupps Bidder Adapter
 aliasCode: adverxo
 pbjs: true
-pbs: false
-pbs_app_supported: false
+pbs: true
+pbs_app_supported: true
 biddercode: mobupps
 userIds:
 media_types: banner, native, video
