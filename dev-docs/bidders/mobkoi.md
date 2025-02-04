@@ -9,10 +9,10 @@ dsa_supported: false
 gvl_id: 898
 usp_supported: false
 coppa_supported: false
-# gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
+gpp_sids: tcfeu
 schain_supported: false
 dchain_supported: /false
-# userId: (list of supported vendors)
+userId: mobkoiId
 media_types: banner
 safeframes_ok: false
 deals_supported: false
@@ -23,6 +23,7 @@ pbs: false
 prebid_member: false
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: partial
+privacy_sandbox: no
 sidebarType: 1
 ---
 
