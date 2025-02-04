@@ -23,7 +23,6 @@ pbs: false
 prebid_member: false
 # multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 ortb_blocking_supported: partial
-privacy_sandbox: no or comma separated list of `paapi`, `topics`
 sidebarType: 1
 ---
 
