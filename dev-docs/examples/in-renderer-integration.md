@@ -8,7 +8,7 @@ sidebarType: 1
 about:
   - in-renderer Integration is one of the integration methods for Prebid Video
   - In this example, to keep it simple, ad rendering is performed using `pbjs.renderAd`
-  - InRenderer.js, an open-source renderer optimized for in-renderer integration, is used as the renderer for in-renderer integration. For more information, please check <a href="https://github.com/hogekai/in-renderer-js" target="_blank">here</a>
+  - InRenderer.js, an open-source renderer optimized for in-renderer integration, is used as the renderer for in-renderer integration. For more information, see [InRenderer.js documentation](https://github.com/hogekai/in-renderer-js)
 ---
 
 ## Example
