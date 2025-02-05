@@ -1,4 +1,3 @@
-<!-- markdownlint-disable MD034 -->
 ---
 layout: example
 title: in-renderer Integration Example
