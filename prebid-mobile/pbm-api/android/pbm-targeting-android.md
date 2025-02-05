@@ -305,8 +305,8 @@ Parameters:
 
 #### setEventDelegate()
 
-Sets event delegate to handle all auction requests and responses. It allows to collect some statistical data. 
-Note that SDK stores this callback as a weak reference so you need to store reference to it. 
+Sets an event delegate to handle all auction requests and responses. It allows to collect some statistical data. 
+Note that the SDK stores this callback as a weak reference so you need to store a reference to it. 
 
 Signature:
 
