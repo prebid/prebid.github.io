@@ -19,7 +19,7 @@ about:
 
 {% capture htmlCodePrebid %}
 <script src="https://cdn.michao-ssp.com/original/prebid.js"></script>
-<h1>in-renderer Integration Example</h1>
+<h1>Multi-format Example</h1>
 
 <div id="ad-unit-1"></div>
 {% endcapture %}
