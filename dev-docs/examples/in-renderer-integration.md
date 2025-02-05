@@ -45,7 +45,7 @@ var adUnit = {
     },
   ],
   renderer: {
-    url: "https://cdn.jsdelivr.net/npm/in-renderer-js@1/dist/in-renderer.umd.min.js",
+    url: `https://cdn.jsdelivr.net/npm/in-renderer-js@1/dist/in-renderer.umd.min.js`,
     render: (bid) => {
       var inRenderer = new window.InRenderer();
       inRenderer.render("ad-unit-1", bid);
