@@ -11,12 +11,12 @@ deals_supported: true
 floors_supported: true
 fpd_supported: true
 ortb_blocking_supported: partial
-multiformat_supported: will-bid-on-any
+multiformat_supported: will-bid-on-one
 privacy_sandbox: topics
 pbjs: true
 sidebarType: 1
-pbs: false
-pbs_app_supported: false
+pbs: true
+pbs_app_supported: true
 ---
 
 ### Registration
