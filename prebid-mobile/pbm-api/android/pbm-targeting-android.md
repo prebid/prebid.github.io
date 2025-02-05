@@ -547,6 +547,12 @@ Any identity vendor's details in local storage will be sent to Prebid Server una
 {: .alert.alert-info :}
 Note that the phrase "EID" stands for "Extended IDs" in [OpenRTB 2.6](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md), but for historic reasons, Prebid SDK methods use the word "external" rather than "extended". Please consider the phrase "external ID" a synonym for "extended ID".
 
+{% capture warning_note %}  
+Note that starting from `2.4.0`, the Prebid SDK no longer saves EIDs to permanent storage. As a result, all EIDs will be cleared after the application restarts.
+
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 ### Prebid SDK API Access
 
 Prebid SDK supports passing an array of EIDs at auction time with the function `TargetingParams.setExternalUserIds()`, which is globally scoped. It is sufficient to set the `userIds` object once per user session, as these values would be used in all consecutive ad auctions in the same session.
