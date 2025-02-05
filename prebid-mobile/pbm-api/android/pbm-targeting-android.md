@@ -303,6 +303,24 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | logger | required | object | The PrebidLogger interface enables the app developer to define where the Prebid SDK should send log-level details about the header bidding transaction. | |
 
+#### setEventDelegate()
+
+Sets an event delegate to handle all auction requests and responses. It allows to collect some statistical data. 
+Note that the SDK stores this callback as a weak reference so you need to store a reference to it. 
+
+Signature:
+
+```java
+public static void setEventDelegate(@Nullable PrebidEventDelegate eventDelegate)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| eventDelegate | required | PrebidEventDelegate | The callback for handling all requests and responses. This interface takes request and response as the JSONObject types. | `{ request, response -> ... }` |
+
 ---
 
 ## Consent Management Parameters
