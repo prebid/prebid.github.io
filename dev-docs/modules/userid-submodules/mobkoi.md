@@ -48,4 +48,4 @@ pbjs.setConfig({
 });
 ```
 
-For integration support or questions, contact platformteam@mobkoi.com.
+For integration support or questions, contact <platformteam@mobkoi.com>.
