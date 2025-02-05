@@ -23,7 +23,7 @@ sidebarType: 1
 
 ### Registration
 
-The Allox bidding adapter requires setup and approval before use. Please contact mi-allox-devbot@ml.nttdocomo.com for more details.
+The Allox bidding adapter requires setup and approval before use. Please contact <mi-allox-devbot@ml.nttdocomo.com> for more details.
 
 ### Modules to include in your build process
 
@@ -44,6 +44,7 @@ to the top-level array in that file.
 ### Configuration
 
 Access to local storage is required for Allox's Prebid adapter. Ensure that local storage access is enabled; otherwise, the adapter may not function properly.
+
 ```js
 pbjs.bidderSettings = {
     allox: {
