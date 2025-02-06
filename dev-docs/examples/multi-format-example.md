@@ -11,7 +11,7 @@ about:
 - Any bidder that supports at least one of the listed media types can participate in the auction for that ad unit
 - For engineering setup instructions, see <a href="/dev-docs/show-multi-format-ads.html">Show Multi-Format Ads</a>
 - In this example, to keep it simple, ad rendering is performed using `pbjs.renderAd`
-- InRenderer.js, an open-source renderer optimized for in-renderer integration, is used as the renderer for in-renderer integration. For more information, see <a href="https://github.com/hogekai/in-renderer-js" target="_blank">InRenderer.js documentation</a>
+- InRenderer.js, an open-source renderer optimized for in-renderer integration, is used as the renderer for in-renderer integration. For more information, see [InRenderer.js documentation on Github](https://github.com/hogekai/in-renderer-js)
 
 ---
 
