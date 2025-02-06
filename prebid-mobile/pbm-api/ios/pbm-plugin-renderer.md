@@ -213,7 +213,7 @@ class CustomRendererBannerController: UIViewController {
 
 ### Supported Ad Formats
 
-Currently the interface `PrebidMobilePluginRenderer` provide the ability to render `BANNER` and `INTERSTITIAL` only. The compability with more ad formats can be supported in future releases.
+Currently the interface `PrebidMobilePluginRenderer` provides the ability to render `BANNER` and `INTERSTITIAL` only. The compability with more ad formats can be supported in future releases.
 
 ### Original API
 
