@@ -417,6 +417,24 @@ let fullUserId = ExternalUserId(source: "adserver.org", uids: [uniqueId1, unique
 Targeting.shared.setExternalUserIds([fullUserId])
 ```
 
+### Shared ID
+
+The Shared ID is a randomly generated first-party identifier managed by Prebid. It remains the same throughout the current app session unless reset. If local storage access is permitted, the same ID may persist across multiple app sessions indefinitely. However, Shared ID values do not remain consistent across different apps on the same device.
+
+The SDK will include it in the `user.ext.eids` array during auction request if the publisher explicitly permits it:
+
+```swift
+Targeting.shared.sendSharedId = true
+```
+
+To remove the existing Shared ID value from local storage, the SDK offers the following method: 
+
+```swift
+Targeting.shared.resetSharedId()
+```
+
+Once cleared, the next time `Targeting.shared.sharedId` is accessed, a new, randomly generated Shared ID value will be created and returned.
+
 ### IDs that Require Additional SDKs
 
 Certain identity vendors require an external dependency to generate user identity and then to pass it via Prebid SDK. Please note that these are references to a 3rd party code and Prebid has not inspected it. Links to the documentations of those references will be listed in this section.
