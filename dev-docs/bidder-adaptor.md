@@ -502,22 +502,26 @@ The parameters of the `bidResponse` object are:
 | `vastXml`    | Either this or `vastUrl` required for video | XML for VAST document to be cached for later retrieval.                                                                                       | `<VAST version="3.0">...`            |
 | `bidderCode` | Optional                                    | Bidder code to use for the response - for adapters that wish to reply on behalf of other bidders. Defaults to the code registered with [`registerBidder`](#bidder-adaptor-Overview); note that any other code will need to be [explicitly allowed by the publisher](/dev-docs/publisher-api-reference/bidderSettings.html#allowAlternateBidderCodes). | 'exampleBidder' |  
 | `dealId`     | Optional                                    | Deal ID                                                                                                                                       | `"123abc"`                           |
-| `meta`     | Optional                                    | Object containing metadata about the bid                                                                                                                                       |                           |
-| `meta.networkId`     | Optional                                    | Bidder-specific Network/DSP Id               | `"1111"`             |
-| `meta.networkName`     | Optional                                    | Network/DSP Name               | `"NetworkN"`                |
-| `meta.agencyId`     | Optional                                    | Bidder-specific Agency ID               | `"2222"`                          |
-| `meta.agencyName`     | Optional                                    | Agency Name     | `"Agency, Inc."`           |
-| `meta.advertiserId`     | Optional                                    | Bidder-specific Advertiser ID     | `"3333"`                         |
-| `meta.advertiserName`     | Optional                                    | Advertiser Name               | `"AdvertiserA"`                          |
-| `meta.advertiserDomains`     | Required(*)                                    | Array of Advertiser Domains for the landing page(s). This is an array that aligns with the OpenRTB 'adomain' field. See note below this table. | `["advertisera.com"]`     |
-| `meta.brandId`     | Optional                                    | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | `"4444"`                    |
-| `meta.brandName`     | Optional                                    | Brand Name                                   | `"BrandB"`                          |
-| `meta.demandSource`     | Optional                                    | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`
-| `meta.dchain`     | Optional                                    | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
-| `meta.dsa` | Optional | The [IAB DSA response object](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/dsa_transparency.md) for the Digital Services Act (DSA) | `{ 'behalf': 'sample text', 'paid': 'sample value', 'transparency': [{ 'domain': 'sample domain', 'params': [1, 2] }], 'adrender': 1 }` | 
-| `meta.primaryCatId`     | Optional                                    | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
-| `meta.secondaryCatIds`     | Optional                                    | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
-| `meta.mediaType`     | Optional                                  | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
+| `meta`                   | Optional     | Object containing metadata about the bid                                                                                                                         |                                      |
+| `meta.networkId`         | Optional     | Bidder-specific Network/DSP Id               | `"1111"`             |
+| `meta.networkName`       | Optional     | Network/DSP Name               | `"NetworkN"`                |
+| `meta.agencyId`          | Optional     | Bidder-specific Agency ID               | `"2222"`                          |
+| `meta.agencyName`        | Optional     | Agency Name     | `"Agency, Inc."`           |
+| `meta.advertiserId`      | Optional     | Bidder-specific Advertiser ID     | `"3333"`                         |
+| `meta.advertiserName`    | Optional     | Advertiser Name               | `"AdvertiserA"`                          |
+| `meta.advertiserDomains` | Required(*)  | Array of Advertiser Domains for the landing page(s). This is an array that aligns with the OpenRTB 'adomain' field. See note below this table. | `["advertisera.com"]`     |
+| `meta.brandId`           | Optional     | Bidder-specific Brand ID (some advertisers may have many brands)                                                                                                   | `"4444"`                    |
+| `meta.brandName`         | Optional     | Brand Name                                   | `"BrandB"`                          |
+| `meta.demandSource`      | Optional     | Demand Source (Some adapters may functionally serve multiple SSPs or exchanges, and this would specify which)                                  | `"SourceB"`
+| `meta.dchain`            | Optional     | Demand Chain Object                                   | `{ 'ver': '1.0', 'complete': 0, 'nodes': [ { 'asi': 'magnite.com', 'bsid': '123456789', } ] }`                          |
+| `meta.dsa`               | Optional     | The [IAB DSA response object](https://github.com/InteractiveAdvertisingBureau/openrtb/blob/main/extensions/community_extensions/dsa_transparency.md) for the Digital Services Act (DSA) | `{ 'behalf': 'sample text', 'paid': 'sample value', 'transparency': [{ 'domain': 'sample domain', 'params': [1, 2] }], 'adrender': 1 }` | 
+| `meta.primaryCatId`      | Optional     | Primary [IAB category ID](https://www.iab.com/guidelines/iab-quality-assurance-guidelines-qag-taxonomy/)               |  `"IAB-111"`                         |
+| `meta.secondaryCatIds`   | Optional     | Array of secondary IAB category IDs      | `["IAB-222","IAB-333"]`       |
+| `meta.mediaType`         | Optional     | "banner", "native", or "video" - this should be set in scenarios where a bidder responds to a "banner" mediaType with a creative that's actually a video (e.g. outstream) or native. | `"native"`  |
+| `eventtrackers`          | Optional     | Array of objects in the same format as [ORTB native section 5.8, "Event Tracker Response Object"](https://www.iab.com/wp-content/uploads/2018/03/OpenRTB-Native-Ads-Specification-Final-1.2.pdf) |  `[{event: 500, method: 1, url: "https://www.example.com/track"]}]` |
+| `eventtrackers[].event`   | Required     | Event type. Prebid.js will fire tracking pixels for `500` (bid won) and `1` (bid was rendered). |    `500`      |
+| `eventtrackers[].method` | Required     | Tracking method. Prebid.js only fires image pixels (`1`)                                        |    `1`        |
+| `eventtrackers[].url`    | Required     | Tracker URL                                                                                      | `https//www.example.com/track` |
 
 {: .alert.alert-info :}
 **Note:** bid adapters must be coded to accept the 'advertiserDomains' parameter from their endpoint even if that endpoint doesn't currently respond with that value.
