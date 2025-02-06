@@ -23,60 +23,62 @@ sidebarType: 4
         necessary bidder adapters are included.
       </p>
     </div>
-
-{% capture htmlCodePrebid %}
-<script src="https://cdn.michao-ssp.com/original/prebid.js"></script>
-<h1>Out-stream Example</h1>
-
-<div id="ad-unit-1"></div>
-{% endcapture %}
-
-{% capture jsCode %}var pbjs = pbjs || {};
-pbjs.que = pbjs.que || [];
-
-var adUnit = {
-  code: "ad-unit-1",
-  mediaTypes: {
-    video: {
-      context: "outstream",
-      playerSize: [640, 360],
-      mimes: ["video/mp4", "video/webm", "video/ogg"],
-      protocols: [2, 3, 5, 6, 7, 8],
-      api: [2],
-    }
-  },
-  bids: [
-    {
-      bidder: "michao",
-      params: {
-        placement: "inbanner",
-        site: 1,
-        test: true
+   
+<div>
+  {% capture htmlCodePrebid %}
+  <script src="https://cdn.michao-ssp.com/original/prebid.js"></script>
+  <h3>Out-stream Example</h3>
+  
+  <div id="ad-unit-1"></div>
+  {% endcapture %}
+  
+  {% capture jsCode %}var pbjs = pbjs || {};
+  pbjs.que = pbjs.que || [];
+  
+  var adUnit = {
+    code: "ad-unit-1",
+    mediaTypes: {
+      video: {
+        context: "outstream",
+        playerSize: [640, 360],
+        mimes: ["video/mp4", "video/webm", "video/ogg"],
+        protocols: [2, 3, 5, 6, 7, 8],
+        api: [2],
+      }
+    },
+    bids: [
+      {
+        bidder: "michao",
+        params: {
+          placement: "inbanner",
+          site: 1,
+          test: true
+        },
+      },
+    ],
+    renderer: {
+      url: `https://cdn.jsdelivr.net/npm/in-renderer-js@1/dist/in-renderer.umd.min.js`,
+      render: (bid) => {
+        var inRenderer = new window.InRenderer();
+        inRenderer.render("ad-unit-1", bid);
       },
     },
-  ],
-  renderer: {
-    url: `https://cdn.jsdelivr.net/npm/in-renderer-js@1/dist/in-renderer.umd.min.js`,
-    render: (bid) => {
-      var inRenderer = new window.InRenderer();
-      inRenderer.render("ad-unit-1", bid);
-    },
-  },
-};
-
-pbjs.que.push(function() {
-  pbjs.addAdUnits(adUnit);
-  pbjs.requestBids({
-    timeout: 5000,
-    bidsBackHandler: function () {
-      const highestCpmBids = pbjs.getHighestCpmBids("ad-unit-1");
-      pbjs.renderAd('ad-unit-1', highestCpmBids[0].adId);
-    },
-  });
-})
-{% endcapture %}
-
-{% include code/web-example.html id="basic-prebid-example" html=htmlCodePrebid js=jsCode %}
+  };
+  
+  pbjs.que.push(function() {
+    pbjs.addAdUnits(adUnit);
+    pbjs.requestBids({
+      timeout: 5000,
+      bidsBackHandler: function () {
+        const highestCpmBids = pbjs.getHighestCpmBids("ad-unit-1");
+        pbjs.renderAd('ad-unit-1', highestCpmBids[0].adId);
+      },
+    });
+  })
+  {% endcapture %}
+  
+  {% include code/web-example.html id="basic-prebid-example" html=htmlCodePrebid js=jsCode %}
+</div>
 
   </div>
 </div>
