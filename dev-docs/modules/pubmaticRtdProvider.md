@@ -44,21 +44,23 @@ To utilize the PubMatic RTD module, add `realTimeData` with the parameters menti
 ```js
 const AUCTION_DELAY = 500;
 pbjs.setConfig({
-	// rest of the config
-	...,
-	realTimeData: {
-		auctionDelay: AUCTION_DELAY,
-		dataProviders: [{
-			name: "pubmatic",
-			waitForIt: true,
-			params: {
-				publisherId: `<publisher_id>`, // please contact PubMatic to get a publisherId for yourself
-				profileId: `<profile_id>`,     // please contact PubMatic to get a profileId for yourself
-			}
-		}]
-	}
-	// rest of the config
-	...,
+    // rest of the config
+    ...,
+    realTimeData: {
+        auctionDelay: AUCTION_DELAY,
+        dataProviders: [
+            {
+                name: "pubmatic",
+                waitForIt: true,
+                params: {
+                    publisherId: `<publisher_id>`, // please contact PubMatic to get a publisherId for yourself
+                    profileId: `<profile_id>`, // please contact PubMatic to get a profileId for yourself
+                },
+            },
+        ],
+    },
+    // rest of the config
+    ...,
 });
 ```
 
@@ -72,4 +74,3 @@ pbjs.setConfig({
 | params             | Object  |                                                                |                            |
 | params.publisherId | String  | Publisher ID                                                   |                            |
 | params.profileId   | String  | Profile ID                                                     |                            |
-
