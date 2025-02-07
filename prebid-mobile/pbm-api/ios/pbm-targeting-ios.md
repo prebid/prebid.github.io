@@ -133,6 +133,77 @@ Parameters: none
 
 ---
 
+## SDK Console Logging
+
+The `Log` class is designed to handle logging functionality for the SDK. It allows for categorized logging based on severity levels (e.g., error, warning, debug) and offers options for both console and file-based logging. It also provides the ability to set third-party logger.
+
+### `Log` Class Properties
+
+| Property     | Type      | Description                                                                                               |
+|--------------|-----------|-----------------------------------------------------------------------------------------------------------|
+| `logLevel`   | `LogLevel`| The current logging level. Only messages at this level or higher will be logged. Default: `.debug`         |
+| `logToFile`  | `Bool`    | Indicates whether logs should also be saved to a file. Default: `false`                                   |
+
+### `Log` Class Methods
+
+#### `setCustomLogger(_:)`
+Sets a custom logger to handle log messages.
+
+- **Parameters**: 
+  - `logger`: A custom object conforming to the `PrebidLogger` protocol.
+
+#### `serialWriteToLog(_:)`
+Writes a log message asynchronously to the log file.
+
+- **Parameters**: 
+  - `message`: The log message to be written to the file.
+
+#### `getLogFileAsString()`
+Reads the contents of the log file as a single string.
+
+- **Returns**: The contents of the log file, or `nil` if an error occurs.
+
+#### `clearLogFile()`
+Clears the contents of the log file.
+
+### `PrebidLogger` Protocol
+
+The `PrebidLogger` protocol defines the required methods for logging messages at various levels, such as error, info, debug, etc. This protocol allows for custom logging implementations.
+
+#### Methods
+
+- **`error(_:)`**
+  Logs an error message.
+  - **Parameters**: 
+    - `object`: The object or message to log.
+    - `filename`: The name of the file where the log was generated.
+    - `line`: The line number where the log was generated.
+    - `function`: The function name where the log was generated.
+
+- **`info(_:)`**
+  Logs an informational message.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`debug(_:)`**
+  Logs a debug message.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`verbose(_:)`**
+  Logs a verbose message for detailed or low-level information.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`warn(_:)`**
+  Logs a warning message.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`severe(_:)`**
+  Logs a severe error message, indicating a critical issue.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`whereAmI(_:)`**
+  Logs the current location in the code, useful for debugging.
+  - **Parameters**: Same as `error(_:)`.
+
 ## Consent Management Parameters
 
 This section describes how app developers can provide info on user consent to the Prebid SDK and how SDK behaves under different kinds of restrictions.
