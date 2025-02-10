@@ -8,7 +8,7 @@
 
 ## Description
 
-The Overtone RTD module appends Contextual segments to the bidding object based on the Overtone taxonomy and custom metrics added by the publisher. Please contact tech@overtone.ai in order to be whitelisted for use of our API and to explore dozens of contextual signals.
+The Overtone RTD module appends Contextual segments to the bidding object based on the Overtone taxonomy and custom metrics added by the publisher. Please contact <tech@overtone.ai> in order to be whitelisted for use of our API and to explore dozens of contextual signals.
 
 ## Usage
 
