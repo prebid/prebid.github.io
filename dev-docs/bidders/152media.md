@@ -1,12 +1,11 @@
 ---
 layout: bidder
-title: OppaMedia
-description: OppaMedia Bidder Adaptor
-biddercode: oppamedia
+title: 152Media
+description: Prebid 152Media Bidder Adaptor
 aliasCode: adkernel
 tcfeu_supported: true
 dsa_supported: false
-gvl_id: 14 (adkernel)
+gvl_id: 1111
 usp_supported: true
 coppa_supported: true
 gpp_sids: tcfeu, usp
@@ -18,24 +17,24 @@ safeframes_ok: true
 deals_supported: false
 floors_supported: true
 fpd_supported: true
-pbjs: true
-pbs: false
-pbs_app_supported: false
+pbjs: false
+pbs: true
+pbs_app_supported: true
 prebid_member: false
 multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
 privacy_sandbox: no
 sidebarType: 1
+
 ---
 
 ### Note
 
-The OppaMedia bidding adapter requires setup and approval before implementation. Please reach out to <b.li@oppa.media> for more details.
+The 162Media Bidding adaptor requires setup and approval before beginning. Please reach out to <alejo@152media.com> for more details
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name     | Scope    | Description           | Example                   | Type     |
 |----------|----------|-----------------------|---------------------------|----------|
-| `host`   | required | Host | `'cpm.oppa.media'` | `string` |
-| `zoneId` | required | Zone Id           | `30164`                 | `integer` |
+| `zoneId` | required | RTB zone id           | `30164`                 | `integer` |
