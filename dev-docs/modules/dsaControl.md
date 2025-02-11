@@ -13,7 +13,7 @@ sidebarType : 1
 {:.no_toc}
 
 * TOC
-  {:toc}
+{:toc}
 
 ## Overview
 
