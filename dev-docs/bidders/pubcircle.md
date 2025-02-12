@@ -19,7 +19,7 @@ sidebarType: 1
 
 ### Note
 
-The Example Bidding adapter requires setup before beginning. Please contact us at <system@smartyads.com>
+The Example Bidding adapter requires setup before beginning. Please contact us at <sales@axis-marketplace.com>
 
 ### Prebid.JS Bid Params
 

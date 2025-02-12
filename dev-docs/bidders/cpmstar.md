@@ -6,9 +6,11 @@ pbjs: true
 pbs: true
 biddercode: cpmstar
 media_types: banner, video
-tcfeu_supported: false
+tcfeu_supported: true
+gvl_id: 1317
 usp_supported: true
 coppa_supported: true
+schain_supported: true
 sidebarType: 1
 ---
 

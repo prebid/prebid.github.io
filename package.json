@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm run development",
     "watch": "bundle exec jekyll serve",
-    "postinstall": "cd node_modules && cp --parents -Rf `find . -name '*.scss'` ../_sass/node_modules"
+    "postinstall": "./npm-postinstall.sh"
   },
   "repository": {
     "type": "git",

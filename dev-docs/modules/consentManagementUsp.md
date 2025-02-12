@@ -6,32 +6,26 @@ description: If you have users in California, this module works with your Consen
 module_code : consentManagementUsp
 display_name : Consent Management - US Privacy
 enable_download : true
-recommended: true
+recommended: false
 sidebarType : 1
 ---
 
 # US Privacy Consent Management Module
-
 {: .no_toc }
 
 * TOC
 {: toc }
 
-{% capture legalNotice %}
-
-  This resource should not be construed as legal advice and Prebid.org makes no guarantees about compliance with any law or regulation. Please note that because every company and its collection, use, and storage of personal data is different, you should seek independent legal advice relating to obligations under European and /or US regulations, including the GDPR, the ePrivacy Directive and CCPA. Only a lawyer can provide you with legal advice specifically tailored to your situation. Nothing in this guide is intended to provide you with, or should be used as a substitute for, legal advice tailored to your business.
-  {% endcapture %}
-
-{% include /alerts/alert_important.html content=legalNotice %}
+{% include legal-warning.html %}
 
 ## Overview
 
 This consent management module is designed to support the California Consumer Privacy Act ([CCPA](https://www.iab.com/guidelines/ccpa-framework/)). The IAB has generalized these guidelines to cover future regulations, referring to the feature as "US Privacy."
 
-This module works with an IAB-compatible US Privacy API (USP-API) to fetch an encoded string representing the user's notice and opt-out choices and make it available for adapters to consume and process. In Prebid 7+; the module defaults to working with an IAB-compatible US Privacy API; in prior versions, the module had to be configured to be in effect.
+This module works with an IAB-compatible US Privacy API (USP-API) to fetch an encoded string representing the user's notice and opt-out choices and make it available for adapters to consume and process. In Prebid 7+; the module defaults to working with an IAB-compatible US Privacy API; in prior versions, the module had to be configured to be in effect. This module is no longer recommended, as the signal is no longer supported by a contractual framework as of January 31, 2024.
 
 {: .alert.alert-info :}
-See also the [Prebid Consent Management - GDPR Module](/dev-docs/modules/consentManagement.html) for supporting the EU General Data Protection Regulation (GDPR)
+See also the [Prebid Consent Management - TCF Module](/dev-docs/modules/consentManagementTcf.html) for supporting the IABTL Transparency and Consent Framework.
 
 Here's a summary of the interaction process:
 
