@@ -29,3 +29,5 @@ The MediaGo Bidding adapter requires setup before beginning. Please contact us a
 | `test` | recommend | 0(default): production env mode. <br> 1: dev env mode and no charge.we will bid Higher frequency to make debug easier.  | `1/0` | `Number` |
 | `bidfloor` | recommend | Sets a floor price for the bid | `0.05` | `float` |
 | `placementId` | recommend | The AD placement ID | `12341234` | `string` |
+| `publisher`      | required | publisher id         | `'abcdefg'`    | `string` |
+
