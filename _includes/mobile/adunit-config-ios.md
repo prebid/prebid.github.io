@@ -83,11 +83,11 @@ adUnit.activatePrebidImpressionTracker()
 let adUnit = PrebidAdUnit(configId: CONFIG_ID)
 
 // Use this method for intersitials
-adUnit.activatePrebidImpressionTracker()
+adUnit.activatePrebidInterstitialImpressionTracker()
 
 // Use this method for banners
 let gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(AD_SIZE))
-adUnit.activatePrebidImpressionTracker(adView: gamBanner)
+adUnit.activatePrebidAdViewImpressionTracker(adView: gamBanner)
 ```
 
 **NOTE**: The SDK support only `seatbid[].bid[].burl` as impression tracking URL for now.
