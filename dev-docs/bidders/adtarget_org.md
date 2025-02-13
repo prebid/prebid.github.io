@@ -2,7 +2,7 @@
 layout: bidder
 title: AdTarget.org
 description: AdTarget.org bidder adapter
-biddercode: adtarget_org
+biddercode: adtg_org
 pbjs: true
 pbs: true
 media_types: video, banner
