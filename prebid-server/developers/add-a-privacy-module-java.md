@@ -288,7 +288,7 @@ and want to check whether there was a skipRate config present, you can read the 
 
 For example:
 
-```
+```json
          {
             "description": "Invocation of Activity Infrastructure.",
             "activity": "transmitUfpd",
@@ -318,4 +318,4 @@ For example:
 
 ## Further Reading
 
-- [Building a privacy module](/prebid-server/developers/add-a-privacy-module.html)
+* [Building a privacy module](/prebid-server/developers/add-a-privacy-module.html)
