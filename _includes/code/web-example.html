@@ -64,7 +64,7 @@
     &lt;!-- required scripts --&gt;
     {% assign scripts = include.scripts | split: "," %}{% for script in scripts %}{% if script == "pbjs" %}&lt;script async src=&quot;https://cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js&quot;&gt;&lt;/script&gt;
     {% elsif script == "gpt" %}&lt;script async src=&quot;https://securepubads.g.doubleclick.net/tag/js/gpt.js&quot;&gt;&lt;/script&gt;
-    {% elsif script == "astjs" %}&lt;script async src=&quot;https://acdn.adnxs.com/ast/ast.js&quot;&gt;&lt;/script&gt;{% else %}&lt;!-- unknown script tag '{{ script }}' required --&gt;{% endif %}{% else %}&lt;script async src=&quot;//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js&quot;&gt;&lt;/script&gt;
+    {% elsif script == "astjs" %}&lt;script async src=&quot;https://adsdk.microsoft.com/ast/ast.js&quot;&gt;&lt;/script&gt;{% else %}&lt;!-- unknown script tag '{{ script }}' required --&gt;{% endif %}{% else %}&lt;script async src=&quot;//cdn.jsdelivr.net/npm/prebid.js@latest/dist/not-for-prod/prebid.js&quot;&gt;&lt;/script&gt;
     &lt;script async src=&quot;https://securepubads.g.doubleclick.net/tag/js/gpt.js&quot;&gt;&lt;/script&gt;{% endfor %}
   &lt;/head&gt;
   &lt;body&gt;
