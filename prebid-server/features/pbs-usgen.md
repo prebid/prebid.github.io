@@ -152,7 +152,7 @@ Prebid approach, but they want to process SID 8 with this custom module.
 
 Before turning on the USGen module 100%, some host companies may want to partially enable it in order to gague impact. This can be done using the privacy module `skipRate` parameter. Here's an example account config:
 
-```json
+```json5
 {
     "privacy": {
         "modules": [{
