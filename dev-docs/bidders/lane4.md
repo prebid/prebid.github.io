@@ -8,7 +8,7 @@ media_types: banner, native
 tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
-gpp_sids: usstate_all
+gpp_sids: usstate_all, usnat
 schain_supported: false
 safeframes_ok: false
 ortb_blocking_supported: false
