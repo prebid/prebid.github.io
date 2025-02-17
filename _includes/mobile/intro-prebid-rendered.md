@@ -61,7 +61,7 @@ Here's how the ad bidding-auction-rendering process works in this integration sc
         1. Otherwise, it writes the creative into an iframe into an internal WebView, replaceing the GAMSDK's WebView.
             1. Injects mraid.js into the webview to listen for events from MRAID: change size, etc.
             1. Sends data to the creative (e.g. 'viewable') which may trigger impression tracking within the creative.
-            1. It does not currently hit the billing or notice urls (burl or nurl).
+            1. Starting from v3.0.0, the SDK hit the billing or notice urls (burl or nurl).
 1. If a video VastUrl creative is chosen (rewarded video only):
     1. The GMA SDK uses the platform video player which loads the special VAST file from the Prebid CDN.
     1. Prebid SDK watches VAST events for "<AdTitle>PrebidAppEvent</AdTitle>". When it sees this, it takes over the rendering:
@@ -118,11 +118,11 @@ This information may be useful when comparing data across various reporting syst
 | --- | --- | --- | --- |
 | Rendering Method | js in iframe fires an event | GMA SDK player | App code with data from PBSDK |
 | Fires Prebid win event | always | never | always |
-| Fires Prebid imp event | never | VAST impression tag | never |
-| Fires OpenRTB burl | never | n/a | never |
-| Fires OpenRTB nurl | never |  n/a | never |
+| Fires Prebid imp event | always | VAST impression tag | never |
+| Fires OpenRTB burl | always (1) | n/a | never |
+| Fires OpenRTB nurl | always (1) |  n/a | never |
 | Fires OpenMeasurement events | PBSDK |  n/a | PBSDK |
 
 Notes:
 
-- OpenRTB burl and nurl will be utilized in a future release.
+1. OpenRTB `burl` and `nurl` are utilized in a PrebidMobile SDK v3.0.0.
