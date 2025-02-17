@@ -38,16 +38,16 @@ pbjs.setConfig({
     auctionDelay: 2000,
     dataProviders: [
       {
-        name: "dap",
+        name: "symitriDap",
         waitForIt: true,
         params: {
           apiHostname: '<see your Symitri account rep>',
-          apiVersion: "x1",
+          apiVersion: 'x1'|'x2',
           domain: 'your-domain.com',
-          identityType: 'email' | 'mobile' | ... | 'dap-signature:1.3.0',
-          segtax: 504,
-          dapEntropyUrl: 'https://sym-dist.symitri.net/dapentropy.js',
-          dapEntropyTimeout: 1500
+          identityType: 'simpleid'|'compositeid'|'hashedid',
+          identityValue: '<user identifier>',
+          segtax: 708,
+          pixelUrl: '<see your Symitri account rep>',
         }
       }
     ]
@@ -62,15 +62,32 @@ Please reach out to your Symitri account representative(<Prebid@symitri.com>) to
 {: .table .table-bordered .table-striped }
 | Name  |Type | Description   | Notes  |
 | :------------ | :------------ | :------------ |:------------ |
-| name | String | Symitri Dap Rtd module name | 'dap' always|
+| name | String | Symitri Dap Rtd module name | 'symitriDap' always|
 | waitForIt | Boolean | Required to ensure that the auction is delayed until prefetch is complete | Optional. Defaults to false |
 | apiHostname | String | Hostname provided by Symitri | Please reach out to your Symitri account representative(<Prebid@symitri.com>) for this value|
-| apiVersion | String | This holds the API version | It should be "x1" always |
+| apiVersion | String | This holds the API version | Please reach out to your Symitri account representative(<Prebid@symitri.com>) for this value |
 | domain | String | The domain name of your webpage | |
-| identityType | String | Something like this 'email', 'mobile',  ... 'dap-signature:1.3.0' | |
-| segtax | Integer | The taxonomy for Symitri | The value should be 504 |
-| dapEntropyUrl | String | URL to dap entropy script | Optional if the script is directly included on the webpage. Contact your Symitri account rep for more details |
-| dapEntropyTimeout | Integer | Maximum time allotted for the entropy calculation to happen | |
+| identityType | String | 'simpleid' or 'compositeid' or 'hashedid' | See the section below labelled "identityType" for more details. |
+| identityValue | String | This is optional field to pass user hid. Will be used only if identityType is hid | |
+| segtax | Integer | The taxonomy for Symitri | The value should be 708 |
+| pixelUrl | String | Pixel URL provided by Symitri which will be triggered when bid matching with Symitri dealid wins and creative gets rendered | |
+
+### identityType
+Use 'simpleid' to pass email or other plain text ids and SymitriRTD Module will hash it.
+
+Use 'hashedid' to pass in single already hashed id. 
+
+Use 'compositeid' to pass in multiple identifiers as key-value pairs as shown below, can also be used for single already hashed identifiers:
+
+```bash
+{
+  "identityType": "compositeid",
+  "identityValue": "HEM:<hem>,ID5:<id5>,RampId:<RampId>",
+  ...
+} 
+  "identityType": "hashedid",
+  "identityValue": "<hem>",
+```
 
 ### Testing
 

@@ -101,7 +101,7 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 {: .table .table-bordered .table-striped }
 | Name             | Scope       | Type                   | Description                                                                                                                                                         |
 |------------------+-------------+------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `pos`  | Optional | Integer                                | OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen   |
+| `pos`  | Optional | Integer                                | Ad position on screen, see [OpenRTB 2.5 spec][openRTB]. OpenRTB page position value: 0=unknown, 1=above-the-fold, 3=below-the-fold, 4=header, 5=footer, 6=sidebar, 7=full-screen   |
 | `context`        | Recommended    | String                 | The video context, either `'instream'`, `'outstream'`, or `'adpod'` (for long-form videos).  Example: `context: 'outstream'`. Defaults to 'instream'. |
 | `useCacheKey`        | Optional    | Boolean                 | Defaults to `false`. While context `'instream'` always will return an vastUrl in bidResponse, `'outstream'` will not. Setting this `true` will use cache url defined in global options also for outstream responses. |
 | `placement`        | Recommended    | Integer                 | 1=in-stream, 2=in-banner, 3=in-article, 4=in-feed, 5=interstitial/floating. **Highly recommended** because some bidders require more than context=outstream. |
@@ -123,7 +123,6 @@ See [Prebid Native Implementation](/prebid/native-implementation.html) for detai
 | `minbitrate`      | Optional    | Integer         | Minimum bit rate in Kbps., see [OpenRTB 2.5 spec][openRTB].           |
 | `maxbitrate`      | Optional    | Integer         | Maximum bit rate in Kbps., see [OpenRTB 2.5 spec][openRTB].           |
 | `delivery`      | Optional    | Array[Integer]         | Supported delivery methods (e.g., streaming, progressive), see [OpenRTB 2.5 spec][openRTB].           |
-| `pos`      | Optional    | Integer         | Ad position on screen, see [OpenRTB 2.5 spec][openRTB].           |
 | `playbackend`      | Optional    | Integer         | The event that causes playback to end, see [OpenRTB 2.5 spec][openRTB].           |
 
 If `'video.context'` is set to `'adpod'` then the following parameters are also available.  

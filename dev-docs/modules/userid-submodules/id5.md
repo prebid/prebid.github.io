@@ -3,6 +3,9 @@ layout: userid
 title: ID5 ID
 description: ID5 ID User ID sub-module
 useridmodule: id5IdSystem
+bidRequestUserId: id5id
+eidsource: id5-sync.com
+example: {uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } }
 ---
 
 
@@ -18,12 +21,14 @@ The ID5 privacy policy is at [id5.io/platform-privacy-policy](https://id5.io/pla
 
 First, make sure to add the ID5 submodule to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=id5IdSystem,userId
+```
 
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module: `"id5Id"` | `"id5Id"` |
@@ -68,8 +73,8 @@ pbjs.setConfig({
         }
       },
       storage: {
-        type: 'html5',           // "html5" is the required storage type
-        name: 'id5id',           // "id5id" is the required storage name
+        type: 'html5',           // "html5" is the recommended storage type
+        name: 'id5id',           // "id5id" is the recommended storage name
         expires: 90,             // storage lasts for 90 days
         refreshInSeconds: 7200   // refresh ID every 2 hours to ensure it's fresh
       }
@@ -80,7 +85,7 @@ pbjs.setConfig({
 ```
 
 {: .alert.alert-warning :}
-**ATTENTION:** As of Prebid.js v4.14.0, ID5 requires `storage.type` to be `"html5"` and `storage.name` to be `"id5id"`. Using other values will display a warning today, but in an upcoming release, it will prevent the ID5 module from loading. This change is to ensure the ID5 module in Prebid.js interoperates properly with the [ID5 API](https://github.com/id5io/id5-api.js) and to reduce the size of publishers' first-party cookies that are sent to their web servers. For the same reasons it is very important as of Prebid.js v8.33.0 to provide the `externalModuleUrl` parameter and set it to the latest available module version at `https://cdn.id5-sync.com/api/1.0/id5PrebidModule.js`. If you have any questions, please reach out to us at [prebid@id5.io](mailto:prebid@id5.io).
+**ATTENTION:** As of Prebid.js v8.33.0, to ensure the ID5 module in Prebid.js interoperates properly with the [ID5 API](https://github.com/id5io/id5-api.js), it's possible to provide the `externalModuleUrl` parameter and set it to the latest available module version at `https://cdn.id5-sync.com/api/1.0/id5PrebidModule.js`. If you have any questions, please reach out to us at [prebid@id5.io](mailto:prebid@id5.io).
 
 ### Provided eids
 The module provides following eids:

@@ -61,8 +61,9 @@ Prebid.shared.customStatusEndpoint="https://pbs.example.com/v2/status"
 | useCacheForReporting<wbr>WithRenderingAPI | optional | boolean | ORTB | Indicates whether PBS should cache the bid on the server side. If the value is `true` the Prebid SDK will make the cache request to retrieve the cached asset. Default is `false`. | true |
 | useExternal<wbr>ClickthroughBrowser | optional | boolean | SDK control | Controls whether to use PrebidMobile's in-app browser or the Safari App for displaying ad clickthrough content. Default is false. | true |
 | impClickbrowserType | optional | enum | ORTB | Indicates the type of browser opened upon clicking the creative in an app. This corresponds to the OpenRTB imp.clickbrowser field. Values are "embedded" and "native". Default is "native". | "native". |
-| includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
+| includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 | includeBidderKeys | optional | boolean | ORTB | If `true`, Prebid sdk will add `includebidderkeys` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
+| eventDelegate | optional | PrebidEventDelegate | init | Sets an event delegate to handle all auction requests and responses. It allows to collect some statistical data. Note that the SDK stores this callback as a weak reference so you need to store a reference to it. | `class PrebidEventDelegateTestsMockDelegate: PrebidEventDelegate { func prebidBidRequestDidFinish(requestData: Data?, responseData: Data?) { ... } }` |
 
 ### Prebid Class Global Methods
 
@@ -392,71 +393,65 @@ Any identity vendor's details in local storage will be sent to Prebid Server una
 {: .alert.alert-info :}
 Note that the phrase "EID" stands for "Extended IDs" in [OpenRTB 2.6](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md), but for historic reasons, Prebid SDK methods use the word "external" rather than "extended". Please consider the phrase "external ID" a synonym for "extended ID".
 
-### Storing IDs in a Property
+{% capture warning_note %}  
+Note that starting from `2.4.0`, the Prebid SDK no longer saves EIDs to permanent storage. As a result, all EIDs will be cleared after the application restarts.
 
-Prebid SDK supports passing an array of EIDs at auction time in the Prebid global field `externalUserIdArray`. Setting the `externalUserIdArray` object once per user session is sufficient unless one of the values changes.
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
+### Storing IDs 
+
+Prebid SDK supports passing an array of EIDs at auction time in the Prebid global field `externalUserIds`. Setting the `externalUserIds` object once per user session is sufficient unless one of the values changes.
 
 ```swift
-public var externalUserIdArray = [ExternalUserId]()
+Targeting.shared.setExternalUserIds()
 ```
 
 **Examples**
 
 ```swift
-// User Id from External Third Party Sources
-var externalUserIdArray = [ExternalUserId]()
-
-externalUserIdArray.append(ExternalUserId(source: "adserver.org", identifier: "111111111111", ext: ["rtiPartner" : "TDID"]))
-externalUserIdArray.append(ExternalUserId(source: "netid.de", identifier: "999888777"))
-externalUserIdArray.append(ExternalUserId(source: "criteo.com", identifier: "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N"))
-externalUserIdArray.append(ExternalUserId(source: "liveramp.com", identifier: "AjfowMv4ZHZQJFM8TpiUnYEyA81Vdgg"))
-externalUserIdArray.append(ExternalUserId(source: "sharedid.org", identifier: "111111111111", atype: 1))
-
-Prebid.shared.externalUserIdArray = externalUserIdArray
+let uniqueId1 = UserUniqueID(id: "111111111111", aType: 20, ext: ["rtiPartner": "TDID"])
+let uniqueId2 = UserUniqueID(id: "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", aType: 777)
+let fullUserId = ExternalUserId(source: "adserver.org", uids: [uniqueId1, uniqueId2])
+        
+Targeting.shared.setExternalUserIds([fullUserId])
 ```
 
-```kotlin
-setExternalUserIds(List<ExternalUserId> externalUserIds)
-```
+### Shared ID
 
-### Storing IDs in Local Storage
+The Shared ID is a randomly generated first-party identifier managed by Prebid. It remains the same throughout the current app session unless reset. If local storage access is permitted, the same ID may persist across multiple app sessions indefinitely. However, Shared ID values do not remain consistent across different apps on the same device.
 
-Prebid SDK provides a local storage interface to set, retrieve, or update an array of user IDs with associated identity vendor details. It will then retrieve and pass these User IDs to Prebid Server on each auction, even on the next user session.
-
-Prebid SDK Provides several functions to handle User ID details within the local storage:
+The SDK will include it in the `user.ext.eids` array during auction request if the publisher explicitly permits it:
 
 ```swift
-public func storeExternalUserId(_ externalUserId: ExternalUserId)
-
-public func fetchStoredExternalUserIds() -> [ExternalUserId]?
-
-public func fetchStoredExternalUserId(_ source : String) -> ExternalUserId?
-
-public func removeStoredExternalUserId(_ source : String)
-
-public func removeStoredExternalUserIds()
+Targeting.shared.sendSharedId = true
 ```
 
-**Examples**
+To remove the existing Shared ID value from local storage, the SDK offers the following method: 
 
 ```swift
-//Set External User ID
-Targeting.shared.storeExternalUserId(ExternalUserId(source: "sharedid.org", identifier: "111111111111", atype: 1))
-
-//Get External User ID
-let externalUserIdSharedId = Targeting.shared.fetchStoredExternalUserId("sharedid.org")
-
-//Get All External User IDs
-let externalUserIdsArray = Targeting.shared.fetchStoredExternalUserIds()
-
-//Remove External UserID
-Targeting.shared.removeStoredExternalUserId("sharedid.org")
-
-//Remove All External UserID
-Targeting.shared.removeStoredExternalUserIds()
+Targeting.shared.resetSharedId()
 ```
 
----
+Once cleared, the next time `Targeting.shared.sharedId` is accessed, a new, randomly generated Shared ID value will be created and returned.
+
+### IDs that Require Additional SDKs
+
+Certain identity vendors require an external dependency to generate user identity and then to pass it via Prebid SDK. Please note that these are references to a 3rd party code and Prebid has not inspected it. Links to the documentations of those references will be listed in this section.
+
+#### Unified ID 2.0 (UID2)
+
+UID2 provides a [native library](https://unifiedid.com/docs/guides/integration-mobile-client-side#optional-uid2-prebid-mobile-sdk-integration) for automatically updating latest UID2
+token stored inside [UID2 SDK for iOS](https://unifiedid.com/docs/sdks/sdk-ref-ios) into Prebid's external user's ID list.
+
+App developers are not required to manually call ```Prebid.shared.externalUserIdArray = latestExternalUserIdArray``` 
+as the native library will do so automatically
+
+Note:
+
+- [Github repo](https://github.com/IABTechLab/uid2-ios-sdk)
+- [UID2 iOS Integration Documentation](https://unifiedid.com/docs/guides/integration-mobile-overview)
+- [UID2+Prebid Integration Instruction](https://unifiedid.com/docs/guides/integration-mobile-client-side#optional-uid2-prebid-mobile-sdk-integration)
 
 ## Targeting Class Properties and Methods
 
@@ -493,23 +488,52 @@ All of the targeting class methods have been mentioned above in the context of F
 
 ## Arbitrary OpenRTB
 
-(requires SDK v2.2.1)
+(requires SDK v2.3.1)
 
-While there are many specific methods for adding data to the request detailed in
-this document, OpenRTB is big and it moves quickly. To cover scenarios not already covered by an existing method,
-Prebid SDK Provides a way for app publishers to customize most ORTB fields in the partial bid request that Prebid Mobile sends to the Prebid Server. The customization comes in the form of the ortbConfig parameter that takes a JSON String as input. The JSON string must follow the [OpenRTB structure](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md) -- it will be merged with the current JSON of the bid request. If you choose to input extra data using the ortbConfig parameter, please extensively test your requests sent to Prebid Server.
+Prebid SDK allows the customization of the OpenRTB request on the global level using `setGlobalORTBConfig()` function: 
 
-There are certain protected fields such as regs, device, geo, ext.gdpr, ext.us_privacy, and ext.consent which cannot be changed.
+``` swift
+let globalORTB = """
+{
+    "ext": {
+        "myext": {
+            "test": 1
+        }
+    },
+    "displaymanager": "Google",
+    "displaymanagerver": "\(GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber))"
+}
+"""
 
-```swift
-//global invocation
-adUnitConfig.setOrtbConfig("{\"ext\":{\"prebid\":{\"debug\":1,\"trace\":\"verbose\"}}}")
+Targeting.shared.setGlobalORTBConfig(globalORTB)
+```
+ 
+The parameter passed to `Targeting.shared.setGlobalORTBConfig()` will be merged into all SDK's bid requests on the global level. For instance, the above example will add the `$.ext.myext.test` parameter and change the `displaymanager` and `displaymanagerver` parameters in each request. 
+
+To invalidate the global config, just set the empty string: 
+
+``` swift
+Targeting.shared.setGlobalORTBConfig("")
 ```
 
-```swift
+The `Targeting.shared.setGlobalORTBConfig()` also allows to **add** impression objects to the request. All objects in the `$.imp[]` array will be added to the request. Note that Ad Unit's `imp` object won't be changed using Global Config. To change the `imp` config, use the `setImpORTBConfig()` method of a particular Ad Unit. See the Ad Unit documentation for the details. 
+
+Pay attention that there are certain protected fields such as `regs`, `device`, `geo`, `ext.gdpr`, `ext.us_privacy`, and `ext.consent` which cannot be changed using the `setGlobalORTBConfig()` method.
+
+- App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)
+- See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
+
+### Deprecated 
+{:.no_toc}
+
+The Prebid Mobile SDK v2.2.1 contains the deprecated method to set the impression level RTB config: 
+
+``` swift
 //ad unit / impression-level
 adUnit.setOrtbConfig("{\"ext\":{\"gpid\":\"abc123"}}\")
 ```
+
+This method has implementation issues and was deprecated in v2.4.0. If you use this method, we strongly recommend migrating to the new `setImpORTBConfig()` method since this one will be removed entirely in SDK version 3.0.
 
 ## Further Reading
 

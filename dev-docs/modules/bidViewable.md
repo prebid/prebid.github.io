@@ -11,7 +11,6 @@ sidebarType : 1
 ---
 
 # Bid Viewability - GAM
-
 {:.no_toc}
 
 - TOC
