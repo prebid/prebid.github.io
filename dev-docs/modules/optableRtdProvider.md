@@ -114,13 +114,14 @@ async function sha256(input) {
 
 {: .table .table-bordered .table-striped }
 
-| Name                     | Type    | Description                                                                                  | Default          |
-|--------------------------|---------|----------------------------------------------------------------------------------------------|------------------|
-| name                     | String  | Real time data module name                                                                   | Always `optable` |
-| waitForIt                | Boolean | Should be set `true` together with auctionDelay: 1000                                        | `false`          |
-| params                   | Object  |                                                                                              |                  |
-| params.bundleUrl         | String  | Optable bundle URL                                                                           | `null`           |
-| params.adserverTargeting | Boolean | If set to `true`, targeting keywords will be passed to the ad server upon auction completion | `true`           |
+| Name                     | Type     | Description                                                                                                                                                                                            | Default          | Notes    |
+|--------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|----------|
+| name                     | String   | Real time data module name                                                                                                                                                                             | Always `optable` |          |
+| waitForIt                | Boolean  | Should be set `true` together with `auctionDelay: 1000`                                                                                                                                                | `false`          |          |
+| params                   | Object   |                                                                                                                                                                                                        |                  |          |
+| params.bundleUrl         | String   | Optable bundle URL                                                                                                                                                                                     | `null`           | Optional |
+| params.adserverTargeting | Boolean  | If set to `true`, targeting keywords will be passed to the ad server upon auction completion                                                                                                           | `true`           | Optional |
+| params.handleRtd         | Function | A function to handle RTD data. If not provided, the module will use the default handler. The function signature is `[async] (optableBundle, reqBidsConfigObj, userConsent, mergeFn, optableLog) => {}` | `null`           | Optional |
 
 ## Example
 
