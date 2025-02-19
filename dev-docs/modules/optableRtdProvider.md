@@ -121,7 +121,21 @@ async function sha256(input) {
 | params                   | Object   |                                                                                                                                                                                                        |                  |          |
 | params.bundleUrl         | String   | Optable bundle URL                                                                                                                                                                                     | `null`           | Optional |
 | params.adserverTargeting | Boolean  | If set to `true`, targeting keywords will be passed to the ad server upon auction completion                                                                                                           | `true`           | Optional |
-| params.handleRtd         | Function | A function to handle RTD data. If not provided, the module will use the default handler. The function signature is `[async] (optableBundle, reqBidsConfigObj, userConsent, mergeFn, optableLog) => {}` | `null`           | Optional |
+| params.handleRtd         | Function | An optional function that uses Optable data to enrich `reqBidsConfigObj` with the real-time data. If not provided, the module will do a default call to Optable bundle. The function signature is `[async] (reqBidsConfigObj, mergeFn) => {}` | `null`           | Optional |
+
+## Publisher Customized RTD Handler Function
+
+When there is more pre-processing or post-processing needed prior/post calling Optable bundle - a custom `handleRtd` function can be supplied to do that. This function will also be responsible for the `reqBidsConfigObj` enrichment.  `mergeFn` parameter taken by `handleRtd` is a standard Prebid.js utility function that take an object to be enriched and an object to enrich with: the second object's fields will be merged into the first one (also see the code of an example mentioned below):
+
+```
+mergeFn(
+  reqBidsConfigObj.ortb2Fragments.global, // or other nested object as needed
+  rtdData,
+);
+
+```
+
+A `handleRtd` function implementation has access to its surrounding context including capturing a `pbjs` object, calling `pbjs.getConfig()` and f.e. reading off the `consentManagement` config to make the appropriate decision based on it.
 
 ## Example
 
