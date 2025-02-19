@@ -14,7 +14,6 @@ about:
 ## Example
 
 {% capture htmlCodePrebid %}
-<script src="https://cdn.michao-ssp.com/original/prebid.js"></script>
 <h1>in-renderer Integration Example</h1>
 
 <div id="ad-unit-1"></div>
