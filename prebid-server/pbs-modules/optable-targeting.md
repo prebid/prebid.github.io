@@ -89,9 +89,12 @@ Sample module enablement configuration in JSON and YAML formats:
   {
     "optable-targeting":
     {
-      "api-endpoint": "",
-      "api-key": "",
-      "ppid-mapping": {},
+      "api-endpoint": "endpoint",
+      "api-key": "key",
+      "timeout": 50,
+      "ppid-mapping": {
+        "pubcid.org": "c"
+      },
       "adserver-targeting": false,
     }
   }
@@ -101,11 +104,20 @@ Sample module enablement configuration in JSON and YAML formats:
 ```yaml
   modules:
     optable-targeting:
-      api-endpoint: 
-      api-key: 
-      ppid-mapping: 
+      api-endpoint: endpoint
+      api-key: key
+      timeout: 50
+      ppid-mapping: {
+        "pubcid.org": "c"
+      }
       adserver-targeting: false
 ```
+
+### Timeout considerations
+
+The timeout value specified in the execution plan for the `processed-auction-request` hook is very important to be picked such that the hook has enough time to make a roundtrip to Optable Targeting Edge API over HTTP.  **Note:** Do not confuse hook timeout value with the module timeout parameter which is optional. The hook timeout value would depend on the cloud/region where the PBS instance is hosted and the latency to reach the Optable's servers. This will need to be verified experimentally upon deployment.
+
+The timeout value for the `auction-response` can be set to 10 ms - usually it will be sub-millisecond time as there are no HTTP calls made in this hook - Optable-specific keywords are cached on the `processed-auction-request` stage and retrieved from the module invocation context later.
 
 ## Module Configuration Parameters for PBS-Java
 
@@ -124,10 +136,12 @@ The parameter names are specified with full path using dot-notation.  F.e. `sect
 {: .table .table-bordered .table-striped }
 | Param Name | Required| Type | Default  value | Description |
 |:-------|:------|:------|:------|:---------------------------------------|
-| api-endpoint | yes | string | none | Targeting Edge API endpoint URL, required |
+| api-endpoint | yes | string | none | Optable Targeting Edge API endpoint URL, required |
 | api-key | no | string | none | If the API is protected with a key - this param needs to be specified to be sent in the auth header |
-| ppid-mapping | no | map | none | This specifies PPID source to custom identifier name mapping, f.e. {"example-id.com" : "c_0" } |
-| adserver-targeting | no | boolean | false | If set to true - will add the adserver targeting keywords into the response |
+| ppid-mapping | no | map | none | This specifies PPID source to custom identifier name mapping, f.e. `{"example-id.com" : "c_0"}` |
+| adserver-targeting | no | boolean | false | If set to true - will add the Optable-specific adserver targeting keywords into the PBS response for every `seatbid[].bid[].ext.prebid.targeting` |
+| timeout | no | integer | false | A soft timeout (in ms) sent as a hint to the Targeting API endpoint to  limit the request times to Optable's external tokenizer services |
+| id-prefix-order | no | list | [] | An optional list of id prefixes that prioritizes and specifies the order in which ids are provided to Targeting API in a query string. F.e. ["c","c1","id5"] will guarantee that Targeting API will see id=c:...,c1:...,id5:... if these ids are provided.  id-prefixes not mentioned in this list will be added in arbitrary order after the priority prefix ids. This affects Targeting API processing logic |
 
 ## Running the demo (PBS-Java)
 
