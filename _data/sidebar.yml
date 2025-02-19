@@ -317,6 +317,15 @@
   subgroup: 1
 
 - sbSecId: 1
+  title: In-renderer Integration
+  link: /dev-docs/examples/in-renderer-integration.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
   title: Troubleshooting
   link:
   isHeader: 1
