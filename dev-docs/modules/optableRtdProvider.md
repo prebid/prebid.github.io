@@ -22,7 +22,7 @@ This module may load a publisher-specific JavaScript bundle. The external resour
 
 ## Description
 
-Optable module enriches an OpenRTB request by setting `user.ext.eids` and `user.ext.data` using an identity graph and audience segments service hosted by Optable on behalf of the publisher. As input the module may consume user's sha256-hashed email, phone, post_code or (non-hashed) publisher provided identifiers (PPIDs).
+The Optable module enhances an OpenRTB request by populating `user.ext.eids` and `user.ext.data` using an identity graph and audience segmentation service hosted by Optable on behalf of the publisher. This RTD submodule primarily relies on the Optable bundle loaded on the page, which leverages the Optable-specific Visitor ID and other PPIDs to interact with the identity graph, enriching the bid request with additional user IDs and audience data.
 
 ## Usage
 
@@ -62,11 +62,6 @@ pbjs.setConfig({
         params: {
           bundleUrl: '<optional, your bundle url>',
           adserverTargeting: '<optional, true by default, set to true to also set GAM targeting keywords to ad slots>',
-          ppidMapping: {
-            // optional mapping between eids sources and optable custom identifier names
-            "example.com": "c0",
-            "source-id.com": "c1", //...
-          }
         },
       },
     ],
@@ -76,7 +71,8 @@ pbjs.setConfig({
 
 ### Additional input to the module
 
-Besides PPID (publisher provided IDs) in the `user.ext.eids` the module will pick up the following keys:
+Optable bundle may use PPIDs (publisher provided IDs) from the `user.ext.eids` as input.
+In addition other arbitrary keys can be used as input, f.e. the following:
 
 - `user.ext.optable.email` - a SHA256-hashed user email
 - `user.ext.optable.phone` - a SHA256-hashed [E.164 normalized phone]() (meaning a phone number consisting of digits only without spaces or any additional characters, f.e. a US number would be: `12345678999`)
@@ -109,6 +105,8 @@ async function sha256(input) {
   )].map(b => b.toString(16).padStart(2, "0")).join("");
 }
 ```
+
+To handle PPIDs and the above input - a custom `handleRtd` function may need to be provided.
 
 ### Parameters
 
