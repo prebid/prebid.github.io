@@ -7,10 +7,13 @@ nav_section: adapters
 sidebarType: 1
 ---
 
-* TOC
-  {:toc}
+# How to Add a New Prebid.js User ID Module
+{: .no_toc }
 
-# Overview
+* TOC
+{:toc}
+
+## Overview
 
 A user ID module is responsible for providing user ID data to Prebid.js. The flow is as follows:
 
@@ -20,7 +23,7 @@ A user ID module is responsible for providing user ID data to Prebid.js. The flo
 4. Prebid.js then stores your ID (optionally and depending on the publisher's [storage configuration](/dev-docs/modules/userId.html#basic-configuration)) and injects it into the bid stream;
 5. On subsequent sessions, Prebid.js retrieves your ID from storage (if applicable) and repeats this flow using `extendId` instead of `getId`.
 
-# Module interface
+## Module interface
 
 A user ID module is a javascript file in the [modules](https://github.com/prebid/Prebid.js/tree/master/modules) folder that:
 
@@ -43,7 +46,7 @@ See [SharedIdSystem](https://github.com/prebid/Prebid.js/blob/master/modules/sha
 
 <a id="getId"></a>
 
-## `getId(config, consentData, storedId)`
+### `getId(config, consentData, storedId)`
 
 Invoked when:
 
@@ -52,7 +55,7 @@ Invoked when:
 * consent data has changed since the last time it was stored, or
 * the publisher explicitly asked for a refresh using [`refreshUserIds`](/dev-docs/publisher-api-reference/refreshUserIds.html).
  
-### Arguments
+#### Arguments
 
  | Name                | Type   | Description                                                                                                                   | 
  |---------------------|--------|-------------------------------------------------------------------------------------------------------------------------------|
@@ -64,7 +67,7 @@ Invoked when:
  | `consentData.coppa` | Boolean | COPPA flag as set by [publisher configuration](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#coppa) |
  | `storedId`          | String or Object | Your previously stored ID data, if any, as was returned by `getId` or `extendId`                                    |
 
-### Return value
+#### Return value
 
 `getId` should return an object containing one or both of:
 
@@ -78,7 +81,7 @@ otherwise it should provide a `callback` that calls its first argument `setId` p
 
 In both cases ID data should be a string or a plain, serializable JS object; this data is what may then get stored, passed to [`decode`](#decode) and, on later sessions, to `getId` or `extendId` as the `storedId` argument.    
 
-### Example: synchronous ID generation
+#### Example: synchronous ID generation
 
 ```javascript
 function getId(config, consentData, storedId) {
@@ -86,7 +89,7 @@ function getId(config, consentData, storedId) {
 }
 ```
 
-### Example: aynschronous ID retrieval
+#### Example: aynschronous ID retrieval
 
 ```javascript
 function getId(config, consentData, storedId) {
@@ -109,7 +112,7 @@ function getId(config, consentData, storedId) {
 
 <a id="extendId"></a>
 
-## `extendId(config, consentData, storedId)`
+### `extendId(config, consentData, storedId)`
 
 If provided, it's invoked when `getId` is not; namely:
 
@@ -122,7 +125,7 @@ Takes the same arguments and should return an object in the same format as [getI
 
 <a id="decode"></a>
 
-## `decode(data, config)`
+### `decode(data, config)`
 
 Decode ID data. Invoked every time data from your module is available, either from storage or `getId` / `extendId`. 
 
@@ -149,7 +152,7 @@ would populate `bidRequest.userId.exampleId` and `pbjs.getUserIds().exampleId` w
 
 <a id="eidConfig"></a>
 
-## EID configuration
+### EID configuration
 
 For each `key` and `idValue` entry in the object returned by `decode`, Prebid.js will:
  
@@ -158,7 +161,7 @@ For each `key` and `idValue` entry in the object returned by `decode`, Prebid.js
 
 `eidConfig` can be either a function or an object. 
 
-### EID translation functions
+#### EID translation functions
 
 If a function, `eidConfig` is invoked with:
 
@@ -185,7 +188,7 @@ exampleIdSpec.eids = {
 }
 ```
 
-### EID configuration objects
+#### EID configuration objects
 
 If an object, `eidConfig` should contain:
 
