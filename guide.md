@@ -318,6 +318,14 @@ The docs offer a set of predefined disclosures that should be used where appropr
 {%raw%}{% include dev-docs/not-for-production-warning.md %}{%endraw%}
 ```
 
+#### Legal disclosure
+
+{% include legal-warning.html %}
+
+```liquid
+{%raw%}{% include legal-warning.html %}{%endraw%}
+```
+
 ## Partners
 
 TBD
