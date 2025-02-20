@@ -98,13 +98,13 @@ pbjs.setConfig({
 
 {% include disclaimers/storageAllowed.md %}
 
-    ```javascript
+```javascript
         pbjs.bidderSettings = {
             visx: {
                 storageAllowed: true
             }
         }
-    ```
+```
 
 ### Bid params
 
