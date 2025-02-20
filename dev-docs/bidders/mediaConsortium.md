@@ -16,7 +16,7 @@ MediaConsortium doesn't require inventory parameters - we'll match your inventor
 
 To get access to the full feature set of the adapter you'll need to allow localstorage usage in the `bidderSettings`.
 
-{% include disclaimers/storageAllowed.md %}
+{% include dev-docs/storageAllowed.md %}
 
 ```javascript
     pbjs.bidderSettings = {

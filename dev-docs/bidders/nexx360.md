@@ -34,7 +34,7 @@ sidebarType: 1
 
 You can allow writing in localStorage `pbjs.bidderSettings` for the bidder `nexx360`
 
-{% include disclaimers/storageAllowed.md %}
+{% include dev-docs/storageAllowed.md %}
 
 ```javascript
 pbjs.bidderSettings = {
