@@ -166,13 +166,13 @@ Triplelift provides audience and contextual targeting via the integration of a P
 
 {% include disclaimers/storageAllowed.md %}
 
-    ```javascript
+```javascript
         pbjs.bidderSettings = {
             triplelift: {
                 storageAllowed: true
             }
         }
-    ```
+```
 
 - The Programmatic DMP **tag** must be included at the top of every webpage in order to collect audience and contextual information on the respective page.
 - The Programmatic DMP **tag** should be as high up in `<head>` as possible.
