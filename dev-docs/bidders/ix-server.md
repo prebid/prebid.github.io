@@ -88,7 +88,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
     ```javascript
      userSync:  
       redirect:  
-       url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+       url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={% raw %}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}{% endraw %}"
      ```
 
   * Edit the below existing entry and include your publisher ID in the `s` parameter:
@@ -96,7 +96,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
      ```javascript
      userSync:  
       redirect:  
-       iframe: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+       iframe: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={% raw %}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}{% endraw %}"
       ```         
 
 * If you are using [Prebid Server Java](https://github.com/prebid/prebid-server-java) version, edit the `prebid-server-java` entry in the `src/main/resources/bidder-config/ix.yaml` file as follows:
@@ -116,7 +116,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
        ix: 
         usersync: 
          redirect: 
-          url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}" 
+          url: "https://ssum.casalemedia.com/usermatchredir?s=<PUBLISHER ID>&gdpr={% raw %}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}{% endraw %}" 
     ```
 
   * Add the below entry and include your publisher ID in the `s` parameter:
@@ -126,7 +126,7 @@ If you are hosting your own Prebid Server instance, depending on whether you are
       ix: 
        usersync: 
         iframe: 
-         url: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}"
+         url: "https://ssum.casalemedia.com/usermatch?s=<PUBLISHER ID>&gdpr={% raw %}{{.GDPR}}&gdpr_consent={{.GDPRConsent}}&us_privacy={{.USPrivacy}}&cb={{.RedirectURL}}{% endraw %}"
     ```
 
 <a id="call-index"></a>

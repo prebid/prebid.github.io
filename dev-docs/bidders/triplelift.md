@@ -164,6 +164,8 @@ Triplelift provides audience and contextual targeting via the integration of a P
 - Prebid v7.1.0 or later
 - In Prebid's `bidderSettings`, the `storageAllowed` parameter must be set to **true**. In Prebid v7.0 and later, `storageAllowed` defaults to false, so you will need to explicitly set this value to true.
 
+{% include disclaimers/storageAllowed.md %}
+
     ```javascript
         pbjs.bidderSettings = {
             triplelift: {
