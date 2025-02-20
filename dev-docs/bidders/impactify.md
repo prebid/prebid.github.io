@@ -35,7 +35,7 @@ Impactify recommends the UserSync configuration below. Without it, the Impactify
 
 Note : Impactify adapter needs storage access to work properly (Do not forget to set storageAllowed to true).
 
-{% include disclaimers/storageAllowed.md %}
+{% include dev-docs/storageAllowed.md %}
 
 For Prebid.js v1.15.0 and later:
 

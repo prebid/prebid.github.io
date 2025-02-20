@@ -119,7 +119,7 @@ pbjs.setConfig({
 
 And also making sure that storage is enabled for `equativ`.
 
-{% include disclaimers/storageAllowed.md %}
+{% include dev-docs/storageAllowed.md %}
 
 ```js
 pbjs.bidderSettings = {

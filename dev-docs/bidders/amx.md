@@ -35,7 +35,7 @@ sidebarType: 1
 
 The AMX RTB bid adapter uses local storage. Please add `storageAllowed` in your bidder settings.
 
-{% include disclaimers/storageAllowed.md %}
+{% include dev-docs/storageAllowed.md %}
 
 ```js
 // https://docs.prebid.org/dev-docs/publisher-api-reference/bidderSettings.html

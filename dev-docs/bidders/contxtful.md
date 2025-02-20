@@ -27,7 +27,7 @@ The Contxtful bidder adapter requires some setup. Contact us at [contact@contxtf
 ### User Sync
 Contxtful recommends enabling [User Syncing](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#setConfig-Configure-User-Syncing) to optimize match rate and monetization.
 
-{% include disclaimers/storageAllowed.md %}
+{% include dev-docs/storageAllowed.md %}
 
 ```javascript
 // Enable iframe usersync 
