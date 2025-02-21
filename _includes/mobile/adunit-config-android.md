@@ -68,3 +68,37 @@ You can set `adPosition` by using the following method:
 ```kotlin
 adUnit.setAdPosition(AdPosition.FOOTER);
 ```
+
+
+### Native Impression Tracking
+
+The SDK offers an API that enables impression tracking for the following ad unit types: `BannerAdUnit`, `InterstitialAdUnit`, and `PrebidAdUnit`. An example implementation is provided below:
+
+`BannerAdUnit`:
+
+```kotlin
+val adView = AdManagerAdView(this)
+val adUnit = BannerAdUnit(CONFIG_ID, WIDTH, HEIGHT)
+adUnit.activatePrebidImpressionTracker(adView)
+```
+
+`InterstitialAdUnit`:
+
+```kotlin
+val adUnit = InterstitialAdUnit(CONFIG_ID, 80, 60)
+adUnit.activateInterstitialPrebidImpressionTracker()
+```
+
+`PrebidAdUnit`:
+
+```kotlin
+val prebidAdUnit = PrebidAdUnit(configId)
+
+// Use this method for banners
+prebidAdUnit.activatePrebidImpressionTracker(adView)
+
+// Use this method for interstitials
+prebidAdUnit.activateInterstitialPrebidImpressionTracker()
+```
+
+**NOTE**: The SDK support only `seatbid[].bid[].burl` as impression tracking URL for now.
