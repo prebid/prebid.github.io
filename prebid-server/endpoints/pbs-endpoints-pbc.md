@@ -151,8 +151,8 @@ These entries in the PBC application.yaml file define storage-related params:
 - `api.storage-path` - path of the storage POST/GET endpoints. Defaults to '/storage'.
 - `api.api-key` - api key to secure storage POST endpoint. Host companies may not want everyone on the internet to be able to store stuff in their cache. The value of this key is set by the PBS host company in the PBC config and in the PBS config. (See [Storage PBC configuration](https://github.com/prebid/prebid-cache-java/blob/master/docs/config.md#storage) for details about where to set this.)
 - `cache.allow-external-UUID` - if 'false' then incoming writes cannot contain UUID key even if there's an API header. This is a master switch for accepting externally-defined keys. Default is 'false'.
-- `api.external-UUID-secured` - if 'true', adds an additional security API check on top of the `cache.allow-external-UUID` property. It means that writes that contain a key can be only enabled for requests that carry a special header. Default is 'false'.
-- `api.cache-write-secured` - when 'true' will only allow cache writes for requests that carry a special header. Default is 'false'.
+- `api.external-UUID-secured` - (PBC-Java 2.4+) if 'true', adds an additional security API check on top of the `cache.allow-external-UUID` property. It means that writes that contain a key can be only enabled for requests that carry a special header. Default is 'false'.
+- `api.cache-write-secured` - (PBC-Java 2.4+) when 'true' will only allow cache writes for requests that carry a special header. Default is 'false'.
 
 Prebid Server can be configured to pass the `x-pbc-api-key` special header containing the value of `api.api-key`. Both servers are configured with the same key. PBS sends the key on this header and PBC expects it to be there.
 
