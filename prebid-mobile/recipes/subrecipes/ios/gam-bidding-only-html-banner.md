@@ -13,10 +13,7 @@ To integrate HTML banner ads into the app you should use the `BannerAdUnit` clas
 
 Integration example:
 
-{% capture gma12 %}
-
-```swift
-func createAd() {
+{% capture gma12 %}func createAd() {
     // 1. Create a BannerAdUnit using Prebid Mobile SDK
     adUnit = BannerAdUnit(configId: CONFIG_ID, size: AD_SIZE)
     adUnit.setAutoRefreshMillis(time: 30000)
@@ -45,8 +42,6 @@ func createAd() {
         self?.gamBanner.load(gamRequest)
     }
 }
-```
-
 {% endcapture %}
 {% capture gma11 %}
 
