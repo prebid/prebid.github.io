@@ -1408,20 +1408,20 @@ pbjs.setConfig({
 
 The Previous Auction Info module enables functionality to collect prior auction data for participating bidders and publishers (This feature is `opt-in`, by default it is disabled).  The following requirements must be in place for the module to work:
 
-- Publisher's who would like to participate must explicitly configure PBJS to do so:
+* Publisher's who would like to participate must explicitly configure PBJS to do so:
 
 ```javascript
 pbjs.setConfig({previousAuctionInfo: true})
 ```
 
-- Only bid adapters who have enabled this feature will be able to utilize it.  To do this, a bid adapter must add the following to their bidAdapter.js file:
+* Only bid adapters who have enabled this feature will be able to utilize it.  To do this, a bid adapter must add the following to their bidAdapter.js file:
 
 ```javascript
 import { enablePreviousAuctionInfo } from '../libraries/previousAuctionInfo/previousAuctionInfo.js';
 enablePreviousAuctionInfo({ bidderCode: 'some bidder code' });
 ```
 
-- Only valid bid requests submitted by bidders who have enabled the Previous Auction Info module will be permitted.
+* Only valid bid requests submitted by bidders who have enabled the Previous Auction Info module will be permitted.
 
 If the requirements above are met, the flow for how the module works is as follows:
 
