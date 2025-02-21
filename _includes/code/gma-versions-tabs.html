@@ -2,7 +2,7 @@
   <!-- GMA SDK v12 Tab -->
   <li class="nav-item ui-tab" role="presentation">
     <button
-      class="nav-link"
+      class="nav-link active"
       id="{{ include.id }}-gma12-tab"
       data-toggle="tab"
       data-target="#{{ include.id }}-gma12"
@@ -17,7 +17,7 @@
   <!-- GMA SDK v11 Tab -->
   <li class="nav-item ui-tab" role="presentation">
     <button
-      class="nav-link active"
+      class="nav-link"
       id="{{ include.id }}-gma11-tab"
       data-toggle="tab"
       data-target="#{{ include.id }}-gma11"
@@ -34,7 +34,7 @@
 <div class="tab-content" id="gma-sdk-tab-content">
   <!-- GMA SDK v12 Content -->
   <div
-    class="tab-pane fade"
+    class="tab-pane fade show active"
     id="{{ include.id }}-gma12"
     role="tabpanel"
     aria-labelledby="{{ include.id }}-gma12-tab"
@@ -47,7 +47,7 @@
   </div>
   <!-- GMA SDK v11 Content -->
   <div
-    class="tab-pane fade show active"
+    class="tab-pane fade"
     id="{{ include.id }}-gma11"
     role="tabpanel"
     aria-labelledby="{{ include.id }}-gma11-tab"
