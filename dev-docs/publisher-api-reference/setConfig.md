@@ -1414,14 +1414,14 @@ The Previous Auction Info module enables functionality to collect prior auction 
 pbjs.setConfig({previousAuctionInfo: true})
 ```
 
-2. Only bid adapters who have enabled this feature will be able to utilize it.  To do this, a bid adapter must add the following to their bidAdapter.js file:
+1. Only bid adapters who have enabled this feature will be able to utilize it.  To do this, a bid adapter must add the following to their bidAdapter.js file:
 
 ```javascript
 import { enablePreviousAuctionInfo } from '../libraries/previousAuctionInfo/previousAuctionInfo.js';
 enablePreviousAuctionInfo({ bidderCode: 'some bidder code' });
 ```
 
-3. Only valid bid requests submitted by bidders who have enabled the Previous Auction Info module will be permitted.
+1. Only valid bid requests submitted by bidders who have enabled the Previous Auction Info module will be permitted.
 
 If the requirements above are met, the flow for how the module works is as follows:
 
