@@ -1426,9 +1426,9 @@ enablePreviousAuctionInfo({ bidderCode: 'some bidder code' });
 If the requirements above are met, the flow for how the module works is as follows:
 
 1. A Prebid.js auction runs and completes
-2. At the end of an auction, details about the auction are collected from each bidder using the module
-3. If a Prebid bid wins, then the `rendered` field is updated to `1` to indicate this in the collected auction data for all bidders who bid on the same adunit
-4. During the next Prebid.js auction, if a bidder has this module enabled AND submits a valid bid request, then previous auction info data will be injected into the bid request of the new auction within the following path: `ortb2.ext.prebid.previousAuctionInfo`
+1. At the end of an auction, details about the auction are collected from each bidder using the module
+1. If a Prebid bid wins, then the `rendered` field is updated to `1` to indicate this in the collected auction data for all bidders who bid on the same adunit
+1. During the next Prebid.js auction, if a bidder has this module enabled AND submits a valid bid request, then previous auction info data will be injected into the bid request of the new auction within the following path: `ortb2.ext.prebid.previousAuctionInfo`
 
 `previousAuctionInfo` is an array of prior auction data catered to a specific bidder (if present, it will be added to a bidder's bid request), the structure of the data looks like this (Note: Once collected previous auction data has been injected into the bid stream, then it is removed from storage):
 
