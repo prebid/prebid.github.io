@@ -15,7 +15,7 @@ Integration example:
 
 {% capture gma12 %}
 
-```
+```swift
 func createAd() {
     // 1. Create a BannerAdUnit using Prebid Mobile SDK
     adUnit = BannerAdUnit(configId: CONFIG_ID, size: AD_SIZE)
@@ -50,7 +50,7 @@ func createAd() {
 {% endcapture %}
 {% capture gma11 %}
 
-```
+```swift
 func createAd() {
     // 1. Create a BannerAdUnit using Prebid Mobile SDK
     adUnit = BannerAdUnit(configId: CONFIG_ID, size: AD_SIZE)
