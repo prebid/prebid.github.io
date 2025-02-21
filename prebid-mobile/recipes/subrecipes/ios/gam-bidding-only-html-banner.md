@@ -15,6 +15,7 @@ Integration example:
 
 {% capture gma12 %}
 
+```
 func createAd() {
     // 1. Create a BannerAdUnit using Prebid Mobile SDK
     adUnit = BannerAdUnit(configId: CONFIG_ID, size: AD_SIZE)
@@ -44,10 +45,12 @@ func createAd() {
         self?.gamBanner.load(gamRequest)
     }
 }
+```
 
 {% endcapture %}
 {% capture gma11 %}
 
+```
 func createAd() {
     // 1. Create a BannerAdUnit using Prebid Mobile SDK
     adUnit = BannerAdUnit(configId: CONFIG_ID, size: AD_SIZE)
@@ -77,10 +80,11 @@ func createAd() {
         self?.gamBanner.load(gamRequest)
     }
 }
+```
 
 {% endcapture %}
 
-{% include code/gma-versions-tabs.html id="integration-example" gma11=gma11 gma12=gma12 %}
+{% include code/gma-versions-tabs.html gma11=gma11 gma12=gma12 %}
 
 If you want to support several ad sizes, you also need to implement `GADBannerViewDelegate` to adjust banner view size according to the creative size.
 
