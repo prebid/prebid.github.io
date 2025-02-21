@@ -15,6 +15,7 @@ Integration example:
 
 {% capture gma11 %}
 {: .table .table-bordered .table-striped }
+
 ```swift
 func createAd() {
     // 1. Create a BannerAdUnit using Prebid Mobile SDK
@@ -46,8 +47,10 @@ func createAd() {
     }
 }
 ```
+
 {% endcapture %}
 {% capture gma12 %}
+
 ```swift
 func createAd() {
     // 1. Create a BannerAdUnit using Prebid Mobile SDK
@@ -79,6 +82,7 @@ func createAd() {
     }
 }
 ```
+
 {% endcapture %}
 
 {% include code/gma-versions-tabs.html id="integration-example" gma11=gma11 gma12=gma12 %}
