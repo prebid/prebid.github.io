@@ -4,7 +4,7 @@ title: iOS GAM Bidding-Only Integration - HTML Banner
 description: iOS GAM Bidding-Only Integration - HTML Banner
 sidebarType: 2
 ---
-
+<!-- markdownlint-disable-file MD037 -->
 # iOS GAM Bidding-Only Integration - HTML Banner
 
 Back to [Bidding-Only Integration](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#adunit-specific-instructions)
