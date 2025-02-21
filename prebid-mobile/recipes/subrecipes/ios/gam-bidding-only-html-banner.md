@@ -13,12 +13,14 @@ To integrate HTML banner ads into the app you should use the `BannerAdUnit` clas
 
 Integration example:
 
+{% capture gma11 %}
+{: .table .table-bordered .table-striped }
 ```swift
 func createAd() {
     // 1. Create a BannerAdUnit using Prebid Mobile SDK
-    adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
+    adUnit = BannerAdUnit(configId: CONFIG_ID, size: AD_SIZE)
     adUnit.setAutoRefreshMillis(time: 30000)
-    adUnit.addAdditionalSize(adSize2)
+    adUnit.addAdditionalSize(AD_SIZE_2)
     
     // 2. Configure banner parameters using Prebid Mobile SDK
     let parameters = BannerParameters()
@@ -26,7 +28,7 @@ func createAd() {
     adUnit.parameters = parameters
     
     // 3. Create a GAMBannerView using Google Mobile Ads SDK
-    gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(adSize))
+    gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(AD_SIZE))
     gamBanner.adUnitID = AD_UNIT_ID
     gamBanner.rootViewController = self
     gamBanner.delegate = self
@@ -44,6 +46,42 @@ func createAd() {
     }
 }
 ```
+{% endcapture %}
+{% capture gma12 %}
+```swift
+func createAd() {
+    // 1. Create a BannerAdUnit using Prebid Mobile SDK
+    adUnit = BannerAdUnit(configId: CONFIG_ID, size: AD_SIZE)
+    adUnit.setAutoRefreshMillis(time: 30000)
+    adUnit.addAdditionalSize(AD_SIZE_2)
+    
+    // 2. Configure banner parameters using Prebid Mobile SDK
+    let parameters = BannerParameters()
+    parameters.api = [Signals.Api.MRAID_2, Signals.Api.OMID_1]
+    adUnit.parameters = parameters
+    
+    // 3. Create a AdManagerBannerView using Google Mobile Ads SDK
+    gamBanner = AdManagerBannerView(adSize: adSizeFor(cgSize: AD_SIZE))
+    gamBanner.adUnitID = AD_UNIT_ID
+    gamBanner.rootViewController = self
+    gamBanner.delegate = self
+    
+    // Add GMA SDK banner view to the app UI
+    bannerView?.addSubview(gamBanner)
+    
+    // 4. Make a bid request to Prebid Server using Prebid Mobile SDK
+    let gamRequest = AdManagerRequest()
+    adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
+        DemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
+        
+        // 5. Load GAM Ad using Google Mobile Ads SDK
+        self?.gamBanner.load(gamRequest)
+    }
+}
+```
+{% endcapture %}
+
+{% include code/gma-versions-tabs.html id="integration-example" gma11=gma11 gma12=gma12 %}
 
 If you want to support several ad sizes, you also need to implement `GADBannerViewDelegate` to adjust banner view size according to the creative size.
 
