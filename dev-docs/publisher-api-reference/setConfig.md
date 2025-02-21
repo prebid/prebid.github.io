@@ -1407,24 +1407,31 @@ pbjs.setConfig({
 ### Enable Previous Auction Info
 
 The Previous Auction Info module enables functionality to collect prior auction data for participating bidders and publishers (This feature is `opt-in`, by default it is disabled).  The following requirements must be in place for the module to work:
+
 1. Publisher's who would like to participate must explicitly configure PBJS to do so:
+
 ```javascript
 pbjs.setConfig({previousAuctionInfo: true})
 ```
+
 2. Only bid adapters who have enabled this feature will be able to utilize it.  To do this, a bid adapter must add the following to their bidAdapter.js file:
+
 ```javascript
 import { enablePreviousAuctionInfo } from '../libraries/previousAuctionInfo/previousAuctionInfo.js';
 enablePreviousAuctionInfo({ bidderCode: 'some bidder code' });
 ```
+
 3. Only valid bid requests submitted by bidders who have enabled the Previous Auction Info module will be permitted.
 
 If the requirements above are met, the flow for how the module works is as follows:
+
 1. A Prebid.js auction runs and completes
 2. At the end of an auction, details about the auction are collected from each bidder using the module
 3. If a Prebid bid wins, then the `rendered` field is updated to `1` to indicate this in the collected auction data for all bidders who bid on the same adunit
 4. During the next Prebid.js auction, if a bidder has this module enabled AND submits a valid bid request, then previous auction info data will be injected into the bid request of the new auction within the following path: `ortb2.ext.prebid.previousAuctionInfo`
 
 `previousAuctionInfo` is an array of prior auction data catered to a specific bidder (if present, it will be added to a bidder's bid request), the structure of the data looks like this (Note: Once collected previous auction data has been injected into the bid stream, then it is removed from storage):
+
 ```javascript
 ortb2: {
   ext: {
