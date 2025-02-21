@@ -154,7 +154,7 @@ These entries in the PBC application.yaml file define storage-related params:
 - `api.external-UUID-secured` - (PBC-Java 2.4+) if 'true', adds an additional security API check on top of the `cache.allow-external-UUID` property. It means that writes that contain a key can be only enabled for requests that carry a special header. Default is 'false'.
 - `api.cache-write-secured` - (PBC-Java 2.4+) when 'true' will only allow cache writes for requests that carry a special header. Default is 'false'.
 
-Prebid Server can be configured to pass the `x-pbc-api-key` special header containing the value of `api.api-key`. Both servers are configured with the same key. PBS sends the key on this header and PBC expects it to be there.
+Prebid Server can be configured to pass the `x-pbc-api-key` special header containing the value of `pbc.api.key`. Both servers are configured with the same key. PBS sends the key on this header when the property `cache.api-key-secured` is set to `true` and PBC expects it to be there.
 
 The storage feature supports different `applications` and storage providers are configured per `application`. For now, only [Redis](https://redis.io/) is supported for storage. To configure Redis storage for particular application, configure the `storage.redis.{application-name}` property.
 If no `applications` are needed, set `storage.redis` to `{}` in application.yaml like so:
