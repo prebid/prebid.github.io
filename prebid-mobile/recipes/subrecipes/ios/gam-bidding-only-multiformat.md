@@ -4,7 +4,7 @@ title: iOS GAM Bidding-Only Integration - Multiformat Banner+Video+InAppNative
 description: iOS GAM Bidding-Only Integration - Multiformat Banner+Video+InAppNative
 sidebarType: 2
 ---
-<!-- markdownlint-disable-file MD037 -->
+<!-- markdownlint-disable-file MD046 -->
 
 # iOS GAM Bidding-Only Integration - Multiformat Banner+Video+InAppNative
 

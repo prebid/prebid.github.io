@@ -4,7 +4,7 @@ title: iOS GAM Bidding-Only Integration - Native In-App
 description: iOS GAM Bidding-Only Integration - Native In-App
 sidebarType: 2
 ---
-<!-- markdownlint-disable-file MD037 -->
+<!-- markdownlint-disable-file MD046 -->
 
 # iOS GAM Bidding-Only Integration - Native In-App
 
