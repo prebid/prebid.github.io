@@ -72,7 +72,6 @@ To integrate HTML banner ads into the app you should use the `BannerAdUnit` clas
         self?.gamBanner.load(gamRequest)
     }
 }
-
 {% endcapture %}
 
 {% include code/gma-versions-tabs.html id="html-banner" gma11=gma11 gma12=gma12 %}

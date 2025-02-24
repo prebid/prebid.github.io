@@ -416,21 +416,21 @@ nativeAdUnit.addEventTracker(eventTrackers)
 
 // 6. Make a bid request
 nativeAdUnit.fetchDemand { [weak self] result in
-guard let self = self else { return }
+    guard let self = self else { return }
 
-// 7. Load AdMob Native ad
-self.adLoader = GADAdLoader(adUnitID: AD_UNIT_ID,
-                            rootViewController: self.rootController,
-                            adTypes: [ .native ],
-                            options: nil)
+    // 7. Load AdMob Native ad
+    self.adLoader = GADAdLoader(adUnitID: AD_UNIT_ID,
+                                rootViewController: self.rootController,
+                                adTypes: [ .native ],
+                                options: nil)
 
-self.adLoader?.delegate = self
+    self.adLoader?.delegate = self
 
-self.adLoader?.load(self.gadRequest)
+    self.adLoader?.load(self.gadRequest)
 }
 {% endcapture %}
 
-{% include code/gma-versions-tabs.html id="admob-rewarded" gma11=gma11 gma12=gma12 %}
+{% include code/gma-versions-tabs.html id="admob-native" gma11=gma11 gma12=gma12 %}
 
 #### Step 1: Create a Request
 {:.no_toc}
