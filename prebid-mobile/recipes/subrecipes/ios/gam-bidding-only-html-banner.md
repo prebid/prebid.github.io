@@ -77,7 +77,7 @@ To integrate HTML banner ads into the app you should use the `BannerAdUnit` clas
 
 {% include code/gma-versions-tabs.html id="html-banner" gma11=gma11 gma12=gma12 %}
 
-If you want to support several ad sizes, you also need to implement `GADBannerViewDelegate` to adjust banner view size according to the creative size.
+If you want to support several ad sizes, you also need to implement `GoogleMobileAds.BannerViewDelegate` to adjust banner view size according to the creative size.
 
 In case you use a single-size banner (e.g., 300x250), you don't need to make a call to the `AdViewUtils.findPrebidCreativeSize` routine because you already know the size of the creative. However, you still need to call `bannerView.resize` because the creative in GMA has a default size of 1x1, and without this call, it will be rendered as a pixel.
 

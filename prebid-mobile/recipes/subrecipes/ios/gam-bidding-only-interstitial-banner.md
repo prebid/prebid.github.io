@@ -16,7 +16,7 @@ To integrate an interstitial banner ad into the app you use the Prebid SDK `Inte
 {% capture gma12 %}func createAd() {
     // 1. Create an InterstitialAdUnit
     adUnit = InterstitialAdUnit(
-        configId: storedImpDisplayInterstitial,
+        configId: CONFIG_ID,
         minWidthPerc: 60,
         minHeightPerc: 70
     )
@@ -28,7 +28,7 @@ To integrate an interstitial banner ad into the app you use the Prebid SDK `Inte
         
         // 3. Load a GAM interstitial ad
         AdManagerInterstitialAd.load(
-            with: gamAdUnitDisplayInterstitialOriginal,
+            with: AD_UNIT_ID,
             request: gamRequest
         ) { ad, error in
             guard let self = self else { return }
@@ -44,8 +44,7 @@ To integrate an interstitial banner ad into the app you use the Prebid SDK `Inte
     }
 }
 {% endcapture %}
-{% capture gma11 %}
-func createAd() {
+{% capture gma11 %}func createAd() {
     // 1. Create an InterstitialAdUnit using Prebid Mobile SDK
     adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: 75, minHeightPerc: 75)
     adUnit.adUnitConfig.adSize = CGSize(width: 1, height: 1)
@@ -86,13 +85,13 @@ Here's how min size percentages work. If the adunit size is 1x1, Prebid Server u
 
 ## Step 2: Make the bid request
 
-The _fetchDemand_ method makes a bid request to the Prebid Server. The `GAMRequest` object provided to this method must be the one used in the next step to make the GAM ad request.
+The _fetchDemand_ method makes a bid request to the Prebid Server. The `AdManagerRequest` object provided to this method must be the one used in the next step to make the GAM ad request.
 
 When Prebid Server responds, Prebid SDK will set the targeting keywords of the winning bid into provided object.
 
 ## Step 3: Load a GAM interstitial ad
 
-After receiving a bid it's time to load the ad from GAM. If the `GAMRequest` contains targeting keywords, the respective Prebid line item may be returned from GAM, and GMA SDK will render its creative. 
+After receiving a bid it's time to load the ad from GAM. If the `AdManagerRequest` contains targeting keywords, the respective Prebid line item may be returned from GAM, and GMA SDK will render its creative. 
 
 ## Step 4: Render the interstitial ad
 

@@ -11,10 +11,44 @@ Back to [Bidding-Only Integration](/prebid-mobile/pbm-api/ios/ios-sdk-integratio
 
 To integrate Video Interstitial ads into the app you should use the Prebid SDK `VideoInterstitialAdUnit` class. It makes bid requests to Prebid Server and provides targeting keywords of the winning bid to the GMA SDK.
 
-**Integration Example:**
+**Integration example(Swift):**
 
-```swift
-func createAd() {
+{% capture gma12 %}func createAd() {
+    // 1. Create an InterstitialAdUnit
+    adUnit = InterstitialAdUnit(configId: CONFIG_ID)
+    
+    // 2. Set ad format
+    adUnit.adFormats = [.video]
+    
+    // 3. Configure video parameters
+    let parameters = VideoParameters(mimes: ["video/mp4"])        
+    parameters.protocols = [Signals.Protocols.VAST_2_0]
+    parameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOff]
+    adUnit.videoParameters = parameters
+    
+    // 4. Make a bid request to Prebid Server
+    let gamRequest = AdManagerRequest()
+    adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
+        PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
+        
+        // 5. Load a GAM interstitial ad
+        AdManagerInterstitialAd.load(
+            with: AD_UNIT_ID,
+            request: gamRequest
+        ) { ad, error in
+            guard let self = self else { return }
+            if let error = error {
+                PrebidDemoLogger.shared.error("Failed to load interstitial ad with error: \(error.localizedDescription)")
+            } else if let ad = ad {
+                // 6. Present the interstitial ad
+                ad.present(from: self)
+                ad.fullScreenContentDelegate = self
+            }
+        }
+    }
+}
+{% endcapture %}
+{% capture gma11 %}func createAd() {
     // 1. Create a VideoInterstitialAdUnit using Prebid Mobile SDK
     adUnit = VideoInterstitialAdUnit(configId: CONFIG_ID)
     
@@ -43,7 +77,9 @@ func createAd() {
         }
     }
 }
-```
+{% endcapture %}
+
+{% include code/gma-versions-tabs.html id="html-banner" gma11=gma11 gma12=gma12 %}
 
 ## Step 1: Create an Ad Unit
 
@@ -57,13 +93,13 @@ Initialize the `VideoInterstitialAdUnit` with properties:
 
 ## Step 3: Make the bid request
 
-The _fetchDemand_ method makes a bid request to the Prebid Server. The `GAMRequest` object provided to this method must be the one used in the next step to make the GAM ad request.
+The _fetchDemand_ method makes a bid request to the Prebid Server. The `AdManagerRequest` object provided to this method must be the one used in the next step to make the GAM ad request.
 
 When Prebid Server responds, Prebid SDK will set the targeting keywords of the winning bid into provided object.
 
 ## Step 4: Load a GAM interstitial ad
 
-After receiving a bid it's time to load the ad from GAM. If the `GAMRequest` contains targeting keywords, the respective Prebid line item may be returned from GAM, and GMA SDK will render its creative. 
+After receiving a bid it's time to load the ad from GAM. If the `AdManagerRequest` contains targeting keywords, the respective Prebid line item may be returned from GAM, and GMA SDK will render its creative. 
 
 ## Step 5: Render the interstitial ad
 

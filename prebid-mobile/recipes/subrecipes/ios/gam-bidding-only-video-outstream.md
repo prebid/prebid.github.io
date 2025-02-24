@@ -12,10 +12,40 @@ Back to [Bidding-Only Integration](/prebid-mobile/pbm-api/ios/ios-sdk-integratio
 {: .alert.alert-info :}
 "Non-Instream" refers to the IAB video categories "Accompanying Content" and "Standalone". See [the IAB document](https://iabtechlab.com/industry-adoption-of-amended-iab-tech-lab-guidelines-is-vital-to-drive-change/) for more information.
 
-Integration example:
+**Integration example(Swift):**
 
-``` swift
-// 1. Create a BannerAdUnit
+{% capture gma12 %}// 1. Create a BannerAdUnit
+adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
+
+// 2. Set ad format
+adUnit.adFormats = [.video]
+
+// 3. Configure video parameters
+let parameters = VideoParameters(mimes: ["video/mp4"])
+parameters.protocols = [Signals.Protocols.VAST_2_0]
+parameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOff]
+parameters.placement = Signals.Placement.InBanner
+adUnit.videoParameters = parameters
+
+// 4. Create a GAMBannerView
+gamBanner = AdManagerBannerView(adSize: adSizeFor(cgSize: adSize))
+gamBanner.adUnitID = AD_UNIT_ID
+gamBanner.rootViewController = self
+gamBanner.delegate = self
+
+// Add GMA SDK banner view to the app UI
+bannerView.addSubview(gamBanner)
+
+// 5. Make a bid request to Prebid Server
+let gamRequest = AdManagerRequest()
+adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
+    PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
+    
+    // 6. Load GAM Ad
+    self?.gamBanner.load(gamRequest)
+}
+{% endcapture %}
+{% capture gma11 %}// 1. Create a BannerAdUnit
 adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
 
 // 2. Set ad format
@@ -30,13 +60,12 @@ adUnit.videoParameters = parameters
 
 // 4. Create a GAMBannerView
 gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(adSize))
-gamBanner.adUnitID = gamAdUnitVideoBannerOriginal
+gamBanner.adUnitID = AD_UNIT_ID
 gamBanner.rootViewController = self
 gamBanner.delegate = self
 
 // Add GMA SDK banner view to the app UI
 bannerView.addSubview(gamBanner)
-bannerView.backgroundColor = .clear
 
 // 5. Make a bid request to Prebid Server
 let gamRequest = GAMRequest()
@@ -46,7 +75,9 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     // 6. Load GAM Ad
     self?.gamBanner.load(gamRequest)
 }
-```
+{% endcapture %}
+
+{% include code/gma-versions-tabs.html id="html-banner" gma11=gma11 gma12=gma12 %}
 
 {: .alert.alert-warning :}
 Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `BannerAdUnit` class with video ad format instead.
@@ -69,7 +100,7 @@ For video ad unit, you must set video ad format. Default value for `adFormats` p
 
 {% include mobile/video-params.md %}
 
-## Step 4: Create a GAMBannerView
+## Step 4: Create a BannerView
 {:.no_toc}
 
 Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner) to integrate a banner ad unit.
@@ -77,14 +108,14 @@ Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobi
 ## Step 5: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `GAMRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
+The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `AdManagerRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
 
 ## Step 6: Load an Ad
 {:.no_toc}
 
-You should now request the ad from GAM. If the `GAMRequest` contains targeting keywords. The respective Prebid line item will be returned from GAM and GMA SDK will render its creative.
+You should now request the ad from GAM. If the `AdManagerRequest` contains targeting keywords. The respective Prebid line item will be returned from GAM and GMA SDK will render its creative.
 
-Be sure that you make the ad request with the same `GAMRequest` object that you passed to the `fetchDemand` method. Otherwise the ad request won't contain targeting keywords and Prebid's ad won't ever be displayed.
+Be sure that you make the ad request with the same `AdManagerRequest` object that you passed to the `fetchDemand` method. Otherwise the ad request won't contain targeting keywords and Prebid's ad won't ever be displayed.
 
 ## Further Reading
 
