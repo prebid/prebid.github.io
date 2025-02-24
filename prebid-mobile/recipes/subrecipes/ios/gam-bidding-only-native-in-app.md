@@ -200,7 +200,7 @@ func nativeAdNotValid() {
 }
 {% endcapture %}
 
-{% include code/gma-versions-tabs.html id="html-banner" gma11=gma11 gma12=gma12 %}
+{% include code/gma-versions-tabs.html id="native-in-app" gma11=gma11 gma12=gma12 %}
 
 ## Step 1: Create a NativeRequest
 {:.no_toc}

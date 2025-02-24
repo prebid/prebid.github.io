@@ -102,7 +102,7 @@ The following code demonstrates the integration of multiformat ad unit.
 }
 {% endcapture %}
 
-{% include code/gma-versions-tabs.html id="html-banner" gma11=gma11 gma12=gma12 %}
+{% include code/gma-versions-tabs.html id="multiformat-2" gma11=gma11 gma12=gma12 %}
 
 To handle the banner, video and in-banner native (Native Styles) ads:
 
@@ -139,7 +139,7 @@ To handle the banner, video and in-banner native (Native Styles) ads:
 }
 {% endcapture %}
 
-{% include code/gma-versions-tabs.html id="html-banner" gma11=gma11 gma12=gma12 %}
+{% include code/gma-versions-tabs.html id="multiformat" gma11=gma11 gma12=gma12 %}
 
 If you use Custom Native Ads follow the [guide](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/native-banner) on how to implement processing of the ad response of the respective type. To handle the wining native ad:
 

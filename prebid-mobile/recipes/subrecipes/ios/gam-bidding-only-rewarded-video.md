@@ -76,7 +76,7 @@ To integrate Rewarded Video ads into the app you should use the Prebid SDK `Rewa
 }
 {% endcapture %}
 
-{% include code/gma-versions-tabs.html id="html-banner" gma11=gma11 gma12=gma12 %}
+{% include code/gma-versions-tabs.html id="rewarded-video" gma11=gma11 gma12=gma12 %}
 
 ## Step 1: Create an Ad Unit
 
