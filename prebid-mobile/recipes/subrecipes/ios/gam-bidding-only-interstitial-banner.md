@@ -13,7 +13,38 @@ To integrate an interstitial banner ad into the app you use the Prebid SDK `Inte
 
 **Integration example(Swift):**
 
-```swift
+{% capture gma12 %}func createAd() {
+    // 1. Create an InterstitialAdUnit
+    adUnit = InterstitialAdUnit(
+        configId: storedImpDisplayInterstitial,
+        minWidthPerc: 60,
+        minHeightPerc: 70
+    )
+    
+    // 2. Make a bid request to Prebid Server
+    let gamRequest = AdManagerRequest()
+    adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
+        PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
+        
+        // 3. Load a GAM interstitial ad
+        AdManagerInterstitialAd.load(
+            with: gamAdUnitDisplayInterstitialOriginal,
+            request: gamRequest
+        ) { ad, error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                PrebidDemoLogger.shared.error("Failed to load interstitial ad with error: \(error.localizedDescription)")
+            } else if let ad = ad {
+                // 4. Present the interstitial ad
+                ad.fullScreenContentDelegate = self
+                ad.present(from: self)
+            }
+        }
+    }
+}
+{% endcapture %}
+{% capture gma11 %}
 func createAd() {
     // 1. Create an InterstitialAdUnit using Prebid Mobile SDK
     adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: 75, minHeightPerc: 75)
@@ -39,6 +70,9 @@ func createAd() {
     }
 }
 ```
+{% endcapture %}
+
+{% include code/gma-versions-tabs.html id="html-banner" gma11=gma11 gma12=gma12 %}
 
 ## Step 1: Create an Ad Unit
 

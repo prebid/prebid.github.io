@@ -11,7 +11,7 @@ Back to [Bidding-Only Integration](/prebid-mobile/pbm-api/ios/ios-sdk-integratio
 
 To integrate HTML banner ads into the app you should use the `BannerAdUnit` class. It makes bid requests to Prebid Server and provides targeting keywords for the winning bid(s) to the GMA SDK.
 
-Integration example:
+**Integration example(Swift):**
 
 {% capture gma12 %}func createAd() {
     // 1. Create a BannerAdUnit using Prebid Mobile SDK
