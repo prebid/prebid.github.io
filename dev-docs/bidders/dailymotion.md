@@ -71,6 +71,116 @@ pbjs.setConfig({
 });
 ```
 
+#### Price floor
+
+The price floor can be set at the ad unit level, for example : 
+
+```javascript
+const adUnits = [{
+  floors: {
+    currency: 'USD',
+    schema: {
+      fields: [ 'mediaType', 'size' ]
+    },
+    values: {
+      'video|300x250': 2.22,
+      'video|*': 1
+    }
+  },
+  bids: [{
+    bidder: 'dailymotion',
+    params: {
+      apiKey: 'dailymotion-testing',
+    }
+  }],
+  code: 'test-ad-unit',
+  mediaTypes: {
+    video: {
+      playerSize: [300, 250],
+      context: 'instream',
+    },
+  }
+}];
+
+// Do not forget to set an empty object for "floors" to active the price floor module
+pbjs.setConfig({floors: {}});
+```
+
+The following request will be sent to Dailymotion Prebid Service : 
+
+```javascript
+{
+  "pbv": "9.23.0-pre",
+  "ortb": {
+    "imp": [
+      {
+        ...
+        "bidfloor": 2.22,
+        "bidfloorcur": "USD"
+      }
+    ],
+  }
+  ...
+}
+```
+
+Or the price floor can be set at the package level, for example : 
+
+```javascript
+const adUnits = [
+  {
+    bids: [{
+      bidder: 'dailymotion',
+      params: {
+        apiKey: 'dailymotion-testing',
+      }
+    }],
+    code: 'test-ad-unit',
+    mediaTypes: {
+      video: {
+        playerSize: [1280,720],
+        context: 'instream',
+      },
+    }
+  }
+];
+
+pbjs.setConfig({
+  floors: {
+      data: { 
+          currency: 'USD',
+          schema: {
+              fields: [ 'mediaType', 'size' ]
+          },
+          values: {
+              'video|300x250': 2.22,
+              'video|*': 1
+          }
+      }
+  }
+})
+```
+
+This will send the following bid floor in the request to Daiymotion Prebid Service : 
+
+```javascript
+{
+  "pbv": "9.23.0-pre",
+  "ortb": {
+    "imp": [
+      {
+        ...
+        "bidfloor": 1,
+        "bidfloorcur": "USD"
+      }
+    ],
+    ...
+  }
+}
+```
+
+You can also [set dynamic floors](https://docs.prebid.org/dev-docs/modules/floors.html#bid-adapter-interface).
+
 ### Test Parameters
 
 By setting the following bid parameters, you'll get a constant response to any request, to validate your adapter integration:
@@ -175,7 +285,7 @@ const adUnits = [
         maxduration: 30,
         playbackmethod: [3],
         plcmt: 1,
-        protocols: [7, 8, 11, 12, 13, 14]
+        protocols: [7, 8, 11, 12, 13, 14],
         startdelay: 0,
         w: 1280,
         h: 720,
@@ -220,8 +330,4 @@ If you already specify [First-Party data](https://docs.prebid.org/features/first
 | `ortb2.site.content.keywords`                                                   | `tags`          |
 | `ortb2.site.content.title`                                                      | `title`         |
 | `ortb2.site.content.url`                                                        | `url`           |
-| `ortb2.app.bundle`                                                              | N/A             |
-| `ortb2.app.storeurl`                                                            | N/A             |
-| `ortb2.device.lmt`                                                              | N/A             |
-| `ortb2.device.ifa`                                                              | N/A             |
-| `ortb2.device.ext.atts`                                                         | N/A             |
+| `ortb2.*`                                                                       | N/A             |
