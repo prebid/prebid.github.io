@@ -13,3 +13,4 @@
 /dev-docs/bidders/ix : pdu-supply-prebid@indexexchange.com
 /dev-docs/bidders/appnexus|/dev-docs/bidders/msft : prebid@microsoft.com
 /dev-docs/bidders/pubmatic : header-bidding@pubmatic.com
+/dev-docs/bidders/openx : prebid@openx.com
