@@ -148,6 +148,26 @@ Prebid approach, but they want to process SID 8 with this custom module.
 }
 ```
 
+### Testing
+
+Before turning on the USGen module 100%, some host companies may want to partially enable it in order to gague impact. This can be done using the privacy module `skipRate` parameter. Here's an example account config:
+
+```json5
+{
+    "privacy": {
+        "modules": [{
+                "code": "iab.usgeneral",
+                "skipRate": 95,         // only run on 5% of requests. Default is to run on 100%, i.e. skipRate 0 
+                "config": {
+                    "skipSids": [9]
+                }
+        }]
+    }
+}
+```
+
+In order to utilize this test though, you will need an analytics adapter that can read the Activity Infrastructure log. See [privacy module analytics](/prebid-server/developers/add-a-privacy-module-java.html#privacy-trace-log-and-analytics) for more detail.
+
 ### Troubleshooting
 
 Additional information about the outcoming of privacy module processing can be obtained by setting `ext.prebid.trace: "basic"`.

@@ -585,9 +585,9 @@ Example:
 ArrayList<ExternalUserId> userIds = new ArrayList<>();
 
 ExternalUserId.UniqueId uniqueId1 = new ExternalUserId.UniqueId("111111111111", 20);
-uniqueId1.setExt(new HashMap<String, Object>() {{
+uniqueId1.setExt(new HashMap<String, Object>() {% raw %}{{
     put("rtiPartner", "TDID");
-}});
+}});{% endraw %}
 ExternalUserId.UniqueId uniqueId2 = new ExternalUserId.UniqueId("_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", 777);
 ExternalUserId fullUserId = new ExternalUserId("adserver.org", List.of(uniqueId1, uniqueId2));
 userIds.add(fullUserId);
