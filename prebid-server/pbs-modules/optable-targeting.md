@@ -143,30 +143,84 @@ The parameter names are specified with full path using dot-notation.  F.e. `sect
 | timeout | no | integer | false | A soft timeout (in ms) sent as a hint to the Targeting API endpoint to  limit the request times to Optable's external tokenizer services |
 | id-prefix-order | no | list | [] | An optional list of id prefixes that prioritizes and specifies the order in which ids are provided to Targeting API in a query string. F.e. ["c","c1","id5"] will guarantee that Targeting API will see id=c:...,c1:...,id5:... if these ids are provided.  id-prefixes not mentioned in this list will be added in arbitrary order after the priority prefix ids. This affects Targeting API processing logic |
 
+## Analytics Tags
+The following 2 analytics tags are written by the module: 
+- `optable-enrich-request`
+- `optable-enrich-response`
+
+The `status` is either `success` or `failure`.  Where it is `failure` a `results[0].value.reason` is provided.  
+For the `optable-enrich-request` activity the `execution-time` value is logged. 
+Example:
+```json
+"analytics": {
+    "tags": [
+        {
+            "stage": "auction-response",
+            "module": "optable-targeting",
+            "analyticstags": {
+                "activities": [
+                    {
+                        "name": "optable-enrich-request",
+                        "status": "success",
+                        "results": [
+                            {
+                                "values": {
+                                    "execution-time": 33
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "optable-enrich-response",
+                        "status": "success",
+                        "results": [
+                            {
+                                "values": {
+                                    "reason": "none"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+If `adserver-targeing` was set to `false` in the config `optable-enrich-response` analytics tag is not written.
+
 ## Running the demo (PBS-Java)
 
+{:start="1"}
 1. Build the server bundle JAR as described in [Build Project](https://github.com/prebid/prebid-server-java/blob/master/docs/build.md#build-project), e.g.
 
 ```bash
 mvn clean package --file extra/pom.xml
 ```
 
+{:start="2"}
+2. In the `sample/configs/prebid-config-optable.yaml` file specify the `api-endpoint` URL of your DCN, f.e.: 
+```yaml
+api-endpoint: https://example.com/v2/targeting
+```
+
 {:start="3"}
-2. Start server bundle JAR as described in [Running project](https://github.com/prebid/prebid-server-java/blob/master/docs/run.md#running-project), e.g.
+3. Start server bundle JAR as described in [Running project](https://github.com/prebid/prebid-server-java/blob/master/docs/run.md#running-project), e.g.
 
 ```bash
 java -jar target/prebid-server-bundle.jar --spring.config.additional-location=sample/configs/prebid-config-optable.yaml
 ```
 
 {:start="4"}
-3. Run sample request against the server as described in [the sample directory](https://github.com/prebid/prebid-server-java/tree/master/sample), e.g.
+4. Run sample request against the server as described in [the sample directory](https://github.com/prebid/prebid-server-java/tree/master/sample), e.g.
 
 ```bash
 curl http://localhost:8080/openrtb2/auction --data @extra/modules/optable-targeting/sample-requests/data.json
 ```
 
 {:start="5"}
-4. Observe the `user.ext.eids` and `user.ext.data` objects enriched.
+5. Observe the `user.ext.eids` and `user.ext.data` objects enriched.
 
 
 ## Maintainer contacts
