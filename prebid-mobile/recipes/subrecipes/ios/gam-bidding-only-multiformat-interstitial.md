@@ -14,8 +14,8 @@ Back to [Bidding-Only Integration](/prebid-mobile/pbm-api/ios/ios-sdk-integratio
 {% capture gma12 %}// 1. Create an InterstitialAdUnit
 adUnit = InterstitialAdUnit(
     configId: CONFIG_ID,
-    minWidthPerc: 60,
-    minHeightPerc: 70
+    minWidthPerc: MIN_WIDTH_PERC,
+    minHeightPerc: MIN_HEIGHT_PERC
 )
 
 // 2. Set adFormats
@@ -47,8 +47,7 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 }
 {% endcapture %}
 {% capture gma11 %} // 1. Create an InterstitialAdUnit
-adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: 60, minHeightPerc: 70)
-adUnit.adUnitConfig.adSize = CGSize(width: 1, height: 1)
+adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: MIN_WIDTH_PERC, minHeightPerc: MIN_HEIGHT_PERC)
 
 // 2. Set adFormats
 adUnit.adFormats = [.banner, .video]

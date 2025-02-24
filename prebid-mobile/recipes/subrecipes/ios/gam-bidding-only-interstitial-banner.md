@@ -17,8 +17,8 @@ To integrate an interstitial banner ad into the app you use the Prebid SDK `Inte
     // 1. Create an InterstitialAdUnit
     adUnit = InterstitialAdUnit(
         configId: CONFIG_ID,
-        minWidthPerc: 60,
-        minHeightPerc: 70
+        minWidthPerc: MIN_WIDTH_PERC,
+        minHeightPerc: MIN_HEIGHT_PERC
     )
     
     // 2. Make a bid request to Prebid Server
@@ -46,8 +46,7 @@ To integrate an interstitial banner ad into the app you use the Prebid SDK `Inte
 {% endcapture %}
 {% capture gma11 %}func createAd() {
     // 1. Create an InterstitialAdUnit using Prebid Mobile SDK
-    adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: 75, minHeightPerc: 75)
-    adUnit.adUnitConfig.adSize = CGSize(width: 1, height: 1)
+    adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: MIN_WIDTH_PERC, minHeightPerc: MIN_WIDTH_PERC)
     
     // 2. Make a bid request to Prebid Server using Prebid Mobile SDK
     let gamRequest = GAMRequest()

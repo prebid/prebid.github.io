@@ -15,7 +15,7 @@ Back to [Bidding-Only Integration](/prebid-mobile/pbm-api/ios/ios-sdk-integratio
 **Integration example(Swift):**
 
 {% capture gma12 %}// 1. Create a BannerAdUnit
-adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
+adUnit = BannerAdUnit(configId: CONFIG_ID, size: AD_SIZE)
 
 // 2. Set ad format
 adUnit.adFormats = [.video]
@@ -28,7 +28,7 @@ parameters.placement = Signals.Placement.InBanner
 adUnit.videoParameters = parameters
 
 // 4. Create a GAMBannerView
-gamBanner = AdManagerBannerView(adSize: adSizeFor(cgSize: adSize))
+gamBanner = AdManagerBannerView(adSize: adSizeFor(cgSize: AD_SIZE))
 gamBanner.adUnitID = AD_UNIT_ID
 gamBanner.rootViewController = self
 gamBanner.delegate = self
@@ -46,7 +46,7 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 }
 {% endcapture %}
 {% capture gma11 %}// 1. Create a BannerAdUnit
-adUnit = BannerAdUnit(configId: CONFIG_ID, size: adSize)
+adUnit = BannerAdUnit(configId: CONFIG_ID, size: AD_SIZE)
 
 // 2. Set ad format
 adUnit.adFormats = [.video]
@@ -59,7 +59,7 @@ parameters.placement = Signals.Placement.InBanner
 adUnit.videoParameters = parameters
 
 // 4. Create a GAMBannerView
-gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(adSize))
+gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(AD_SIZE))
 gamBanner.adUnitID = AD_UNIT_ID
 gamBanner.rootViewController = self
 gamBanner.delegate = self

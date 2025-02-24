@@ -57,13 +57,13 @@ To integrate Rewarded Video ads into the app you should use the Prebid SDK `Rewa
     // 3. Make a bid request to Prebid Server using Prebid Mobile SDK
     let gamRequest = GAMRequest()
     adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
-        DemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
+        PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
         
         // 4. Load the GAM rewarded ad using Google Mobile Ads SDK
         GADRewardedAd.load(withAdUnitID: AD_UNIT_ID, request: gamRequest) { [weak self] ad, error in
             guard let self = self else { return }
             if let error = error {
-                DemoLogger.shared.error("Failed to load rewarded ad with error: \(error.localizedDescription)")
+                PrebidDemoLogger.shared.error("Failed to load rewarded ad with error: \(error.localizedDescription)")
             } else if let ad = ad {
                 // 5. Present the rewarded ad
                 ad.fullScreenContentDelegate = self
