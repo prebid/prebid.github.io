@@ -69,7 +69,6 @@ func createAd() {
         }
     }
 }
-```
 {% endcapture %}
 
 {% include code/gma-versions-tabs.html id="html-banner" gma11=gma11 gma12=gma12 %}
