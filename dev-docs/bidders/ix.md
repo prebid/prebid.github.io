@@ -385,7 +385,7 @@ Depending on the Prebid.js version that you are using, the steps to configure Pr
 
 1. Build the [PAAPI module](/dev-docs/modules/paapi.html) and the Fledge for GPT module in your Prebid.js configuration by adding `paapi` and `fledgeForGpt` to the list of modules that you are already using. <br />
 **Note:** The `fledgeForGpt` module documentation no longer exists on Prebid's site. You can however refer to Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/modules/paapiForGpt.html) documentation for information on adding module configurations.
-2. Configure your ad units to make them eligible for Protected Audience API demand. You can do this in the global-level configuration, bidder level, or ad-unit level. For more information about the configurations, see Prebid's [Protected Audience API (PAAPI) for GPT Module](/dev-docs/modules/paapiForGpt.html) documentation. Index recommends that you do this in the global-level configuration by using the `defaultForSlots` parameter with a value of `1`. The following code is an example of the configuration done at the global level:
+2. Configure your ad units to make them eligible for Protected Audience API demand. You can do this in the global-level configuration, bidder level, or ad-unit level. Index recommends that you do this in the global-level configuration by using the `defaultForSlots` parameter with a value of `1`. The following code is an example of the configuration done at the global level:
 
     ```javascript
      pbjs.que.push(function() {
