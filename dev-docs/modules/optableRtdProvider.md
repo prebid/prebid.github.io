@@ -75,7 +75,7 @@ Optable bundle may use PPIDs (publisher provided IDs) from the `user.ext.eids` a
 In addition other arbitrary keys can be used as input, f.e. the following:
 
 - `user.ext.optable.email` - a SHA256-hashed user email
-- `user.ext.optable.phone` - a SHA256-hashed [E.164 normalized phone]() (meaning a phone number consisting of digits only without spaces or any additional characters, f.e. a US number would be: `12345678999`)
+- `user.ext.optable.phone` - a SHA256-hashed [E.164 normalized phone](https://unifiedid.com/docs/getting-started/gs-normalization-encoding#phone-number-normalization) (meaning a phone number consisting of digits and leading plus sign without spaces or any additional characters, f.e. a US number would be: `+12345678999`)
 - `user.ext.optable.postal_code` - a ZIP postal code string
 
 Each of these identifiers is completely optional and can be provided through `pbjs.mergeConfig` like so:
