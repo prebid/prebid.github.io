@@ -5,6 +5,9 @@ description: Prebid Aniview Bidder Adapter
 pbjs: true
 biddercode: aniview
 media_types: banner, video
+gpp_supported: true
+ortb_blocking_supported: true
+multiformat_supported: true
 tcfeu_supported: true
 floors_supported: true
 usp_supported: true
@@ -12,6 +15,7 @@ schain_supported: true
 safeframes_ok: true
 gvl_id: 780
 sidebarType: 1
+userIds: true
 ---
 
 ### Note
@@ -21,12 +25,10 @@ For more information about [Aniview Ad Server](https://www.aniview.com/), please
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name             | Scope    | Description      | Example                      | Type     |
-|------------------|----------|------------------|------------------------------|----------|
-| `AV_PUBLISHERID` | required | Publisher/Netid  | `'55b88d4a181f465b3e8b4567'` | `string` |
-| `AV_CHANNELID`   | required | Channel id       | `'5a5f17a728a06102d14c2718'` | `string` |
-| `playerDomain`   | optional | Player domain    | `'www.example.com'`          | `string` |
-| `replacements`   | optional | Replacements     | `{ AV_CDIM1: "123" }`        | `object` |
+| Name             | Scope    | Description           | Example              | Type     |
+|------------------|----------|-----------------------|----------------------|----------|
+| `AV_PUBLISHERID` | required | Publisher/Network ID  | `'Get from Aniview'` | `string` |
+| `AV_CHANNELID`   | required | Channel ID            | `'Get from Aniview'` | `string` |
 
 ### Setup for Video
 
@@ -38,31 +40,24 @@ const adUnit = [{
       // Required
       playerSize: [[640, 480]],
       context: 'outstream',
-      mimes: ['video/mp4', 'video/mpeg'],
+      mimes: ['video/mp4', 'video/mpeg', 'application/javascript'],
       
       // Optional
       playbackmethod: [1, 2],
       protocols: [1, 2, 3, 5, 6, 7, 8],
       api: [1, 2],
       maxduration: 60,
-      plcmt: 2,
+      plcmt: 4,
     },
   },
   bids: [{
     bidder: 'aniview',
     params: {
       // Required
-      AV_PUBLISHERID: '55b78633181f4603178b4568',
-      AV_CHANNELID: '5d19dfca4b6236688c0a2fc4',
-        
-      // Optional
-      playerDomain: 'www.example.com',
-      replacements: { 
-        AV_CDIM1: "123",
-        AV_CDIM2: "321",
-      }
-    }
-  }]
+      AV_PUBLISHERID: 'Get from Aniview',
+      AV_CHANNELID: 'Get from Aniview',
+    },
+  }],
 }];
 ```
 
@@ -81,10 +76,10 @@ const adUnit = [{
     bidder: 'aniview',
     params: {
       // Required
-      AV_PUBLISHERID: '55b78633181f4603178b4568',
-      AV_CHANNELID: '5d19dfca4b6236688c0a2fc4'
-    }
-  }]
+      AV_PUBLISHERID: 'Get from Aniview',
+      AV_CHANNELID: 'Get from Aniview',
+    },
+  }],
 }];
 ```
 
@@ -95,21 +90,24 @@ const adUnit = [{
   code: 'multiformatAdUnit',
   mediaTypes: {
     banner: {
+      // Required
       sizes: [[300, 250], [300, 600]],
     },
     video: {
+      // Required
       playerSize: [[640, 480]],
-      context: 'outstream',
-      mimes: ['video/mp4', 'video/mpeg'],
+      context: 'outstream', 
+      mimes: ['video/mp4', 'video/mpeg', 'application/javascript'],
     },
   },
   bids: [{
     bidder: 'aniview',
     params: {
-      AV_PUBLISHERID: '55b78633181f4603178b4568',
-      AV_CHANNELID: '5d19dfca4b6236688c0a2fc4'
-    }
-  }]
+      // Required
+      AV_PUBLISHERID: 'Get from Aniview',
+      AV_CHANNELID: 'Get from Aniview',
+    },
+  }],
 }];
 ```
 
@@ -136,27 +134,12 @@ const adUnit = [{
 }];
 ```
 
-### Configs
+### Cookie sync
 
 ```javascript
 pbjs.setConfig({
-  currency: { adServerCurrency: 'USD' },
-  
-  // User ID module
+  // Cookie sync (Image & Iframe)
   userSync: {
-    userIds: [
-      {
-        name: 'id5Id',
-        storage: {
-          type: 'html5',
-          name: 'id5id',
-          expires: 90,
-          refreshInSeconds: 8 * 3600,
-        },
-      },
-    ],
-      
-    // Cookie sync (Image & Iframe)
     filterSettings: {
       all: {
         bidders: '*',
@@ -164,25 +147,10 @@ pbjs.setConfig({
       },
     },
   },
-    
-  // See: https://docs.prebid.org/dev-docs/modules/floors.html#in-page-interface
-  floors: {},
-    
-  // See: https://docs.prebid.org/features/firstPartyData.html#supplying-global-data
-  ortb2: {
-    badv: ["test1.com", "test2.com"],
-    bcat: ["IAB23-1", "IAB23-5", "IAB25-3", "IAB25-2"],
-    bapp: ["com.foo.mygame"],
-
-    // At most, only one of wseat and bseat should be used in the same request.
-    // Omission of both implies no seat restrictions.
-    wseat: ["Agency1"],
-    bseat: ["Agency2", "Agency3"],
-  },
 });
 ```
 
-### Bidder configs
+### Bidder specific configs
 
 ```javascript
 pbjs.setBidderConfig({
@@ -191,13 +159,10 @@ pbjs.setBidderConfig({
     ortb2: {
       ext: {
         aniview: {
-          // Set replacements for the `aniview` bidder
-          replacements: {
-            AV_CDIM1: "dimension1",
-          },
-        }
-      }
-    }
-  }
+          // Additional data to send to the Ad Server
+        },
+      },
+    },
+  },
 }, true);
 ```
