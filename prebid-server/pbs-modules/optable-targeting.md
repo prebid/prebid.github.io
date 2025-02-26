@@ -138,10 +138,46 @@ The parameter names are specified with full path using dot-notation.  F.e. `sect
 |:-------|:------|:------|:------|:---------------------------------------|
 | api-endpoint | yes | string | none | Optable Targeting Edge API endpoint URL, required |
 | api-key | no | string | none | If the API is protected with a key - this param needs to be specified to be sent in the auth header |
-| ppid-mapping | no | map | none | This specifies PPID source to custom identifier name mapping, f.e. `{"example-id.com" : "c_0"}` |
+| ppid-mapping | no | map | none | This specifies PPID source (`user.ext.eids[].source`) to a custom identifier prefix mapping, f.e. `{"example.com" : "c"}`. See the section on ID Mapping below for more detail. |
 | adserver-targeting | no | boolean | false | If set to true - will add the Optable-specific adserver targeting keywords into the PBS response for every `seatbid[].bid[].ext.prebid.targeting` |
 | timeout | no | integer | false | A soft timeout (in ms) sent as a hint to the Targeting API endpoint to  limit the request times to Optable's external tokenizer services |
 | id-prefix-order | no | list | [] | An optional list of id prefixes that prioritizes and specifies the order in which ids are provided to Targeting API in a query string. F.e. ["c","c1","id5"] will guarantee that Targeting API will see id=c:...,c1:...,id5:... if these ids are provided.  id-prefixes not mentioned in this list will be added in arbitrary order after the priority prefix ids. This affects Targeting API processing logic |
+
+## ID Mapping
+
+Internally the module sends requests to Optable Targeting API. The output of Targeting API is used to enrich the request and response. The below table describes the parameters that the module automatically fetches from OpenRTB request and then sends to the Targeting API.  The module will use a prefix as specified in the table to prepend the corresponding ID value when sending it to the Targeting API in the form `id=prefix:value`. See [Optable documentation](https://docs.optable.co/optable-documentation/dmp/reference/identifier-types#type-prefixes) on identifier types.  Targeting API accepts multiple id parameters - and their order may affect the results, thus `id-prefix-order` specifies the order of the ids. 
+
+{: .table .table-bordered .table-striped }
+| Type                                                                           | ortb2 path                                                           | Targeting API id param prefix    |
+| ------------------------------------------------------------------------------ | -------------------------------------------------------------------- | -------------------------------- |
+| Email Address                                                                  | `user.ext.optable.email`                                             | `e:`                             |
+| Phone Number                                                                   | `user.ext.optable.phone`                                             | `p:`                             |
+| Postal Code                                                                    | `user.ext.optable.zip`                                               | `z:`                             |
+| IPv4 Address                                                                   | `device.ip`                                                          | ~~i4:~~ `x-forwarded-for` header |
+| IPv6 Address                                                                   | `device.ipv6`                                                        | ~~i6:~~ `x-forwarded-for` header |
+| Apple IDFA                                                                     | `device.ifa if lcase(device.os) contains 'ios' and device.lmt=0`     | `a:`                             |
+| Google GAID                                                                    | `device.ifa if lcase(device.os) contains 'android' and device.lmt=0` | `g:`                             |
+| Roku RIDA                                                                      | `device.ifa if lcase(device.os) contains 'roku' and device.lmt=0`    | `r:`                             |
+| Samsung TV TIFA                                                                | `device.ifa if lcase(device.os) contains 'tizen' and device.lmt=0`   | `s:`                             |
+| Amazon Fire AFAI                                                               | `device.ifa if lcase(device.os) contains 'fire' and device.lmt=0`    | `f:`                             |
+| [NetID](https://docs.prebid.org/dev-docs/modules/userid-submodules/netid.html) | `user.ext.eids[].uids[0] when user.ext.eids[].source="netid.de"`     | `n:`                             |
+| ID5                                                                            | `user.ext.eids[].uids[0] when user.ext.eids[].source="id5-sync.com"` | `id5:`                           |
+| Utiq                                                                           | `user.ext.eids[].uids[0] when user.ext.eids[].source="utiq.com"`     | `utiq:`                          |
+| Optable VID                                                                    | `user.ext.optable.vid`                                               | `v:`                             |
+
+**Note**: user.ext.optable.email, .phone, .zip, .vid fields will be removed by the module from the original OpenRTB request before being sent to bidders.
+
+### Publisher Provided IDs (PPID) Mapping
+Custom user IDs are sent in the OpenRTB request in the [`user.ext.eids[]`](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md#3227---object-eid-). The `ppid-mapping` allows to specify the mapping of a source to one of the custom identifier type prefixes `c`-`c19` - see [documentation](https://docs.optable.co/optable-documentation/dmp/reference/identifier-types#type-prefixes), f.e.:
+```
+ppid-mapping: {"example.com": "c2", "test.com": "c3"}
+```
+
+It is also possible to override any of the automatically retrieved `user.ext.eids[]` mentioned in the table above (s.a. id5, utiq) so they are mapped to a different prefix.  f.e. `id5-sync.com` can be mapped to a prefix other than `id5:`, like: 
+```
+ppid-mapping: {"id5-sync.com": "c1"}
+```
+This will lead to id5 ID supplied as `id=c1:...` to the Targeting API.
 
 ## Analytics Tags
 The following 2 analytics tags are written by the module: 
@@ -188,7 +224,7 @@ Example:
 }
 ```
 
-If `adserver-targeing` was set to `false` in the config `optable-enrich-response` analytics tag is not written.
+If `adserver-targeting` was set to `false` in the config `optable-enrich-response` analytics tag is not written.
 
 ## Running the demo (PBS-Java)
 
