@@ -33,6 +33,7 @@ A user ID module is a javascript file in the [modules](https://github.com/prebid
 
 `userIdSpec` has the following properties:
 
+{: .table .table-bordered .table-striped }
 | Property   | Scope                              | Type   | Description                                                                                                   | 
 |------------|------------------------------------|--------|---------------------------------------------------------------------------------------------------------------|
 | `name`     | Required                           | String | Name of your ID provider, used to match your module with the publisher's [userIds configuration](/dev-docs/modules/userId.html#basic-configuration)            |
@@ -57,6 +58,7 @@ Invoked when:
  
 #### Arguments
 
+{: .table .table-bordered .table-striped }
  | Name                | Type   | Description                                                                                                                   | 
  |---------------------|--------|-------------------------------------------------------------------------------------------------------------------------------|
  | `config`            | Object | Configuration for your module as provided by the publisher                                                                    |
@@ -71,6 +73,7 @@ Invoked when:
 
 `getId` should return an object containing one or both of:
 
+{: .table .table-bordered .table-striped }
 | Property    | Type | Description                                                                       |
 |-------------|------|-----------------------------------------------------------------------------------|
 | `id`        | String or Object | Serializable ID data. Objects will be passed through `JSON.stringify`             | 
@@ -131,6 +134,7 @@ Decode ID data. Invoked every time data from your module is available, either fr
 
 Arguments are:
 
+{: .table .table-bordered .table-striped }
 | Name     | Type               | Description                                    |
 |----------|--------------------|------------------------------------------------|
 | `data`   | String or Object  | ID data as provided by `getId` / `extendId`     |
@@ -165,6 +169,7 @@ For each `key` and `idValue` entry in the object returned by `decode`, Prebid.js
 
 If a function, `eidConfig` is invoked with:
 
+{: .table .table-bordered .table-striped }
 | Name       | Type | Description                                                        |
 |------------|------|--------------------------------------------------------------------|
 | `idValues` | Array | ID values from `decode`, normalized to an array as described above |
@@ -192,6 +197,7 @@ exampleIdSpec.eids = {
 
 If an object, `eidConfig` should contain:
 
+{: .table .table-bordered .table-striped }
 | Property    | Scope                                   | Type     | Description                                                                                                              | 
 |-------------|-----------------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------|
 | `source`    | Required if `getSource` is not provided | String   | Value for `eid.source`                                                                                                   |
