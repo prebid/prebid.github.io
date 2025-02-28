@@ -17,7 +17,7 @@ Optable module operates using a DCN backend API. Please contact your account man
 
 ## Overview
 
-The optable-targeting module enriches an incoming OpenRTB request by adding to the `user.ext.eids` and `user.ext.data` objects. Under the hood the module extracts PPIDs (publisher provided IDs) from the incoming request's `user.ext.eids`, and also if provided sha256-hashed email, sha256-hashed phone, zip or Optable Visitor ID provided correspondingly in the `user.ext.optable.email`, `.phone`, `.zip`, `.vid` fields (see the full list of extracted IDs in the section on ID mapping below). These IDs are sent as input to the Targeting API.  The received response data is used to enrich the OpenRTB request and response. Targeting API endpoint is configurable per publisher. 
+The optable-targeting module enriches an incoming OpenRTB request by adding to the `user.ext.eids` and `user.ext.data` objects. Under the hood the module extracts PPIDs (publisher provided IDs) from the incoming request's `user.ext.eids`, and also if present sha256-hashed email, sha256-hashed phone, zip or Optable Visitor ID provided correspondingly in the `user.ext.optable.email`, `.phone`, `.zip`, `.vid` fields (a full list of IDs is given in a table below). These IDs are sent as input to the Targeting API.  The received response data is used to enrich the OpenRTB request and response. Targeting API endpoint is configurable per publisher. 
 
 ## Setup
 
@@ -154,11 +154,11 @@ Internally the module sends requests to Optable Targeting API. The output of Tar
 | Postal Code                                                                    | `user.ext.optable.zip`                                               | `z:`                             |
 | IPv4 Address                                                                   | `device.ip`                                                          | ~~i4:~~ Sent as `X-Forwarded-For` header |
 | IPv6 Address                                                                   | `device.ipv6`                                                        | ~~i6:~~ Sent as `X-Forwarded-For` header |
-| Apple IDFA                                                                     | `device.ifa if lcase(device.os) contains 'ios' and device.lmt=0`     | `a:`                             |
-| Google GAID                                                                    | `device.ifa if lcase(device.os) contains 'android' and device.lmt=0` | `g:`                             |
-| Roku RIDA                                                                      | `device.ifa if lcase(device.os) contains 'roku' and device.lmt=0`    | `r:`                             |
-| Samsung TV TIFA                                                                | `device.ifa if lcase(device.os) contains 'tizen' and device.lmt=0`   | `s:`                             |
-| Amazon Fire AFAI                                                               | `device.ifa if lcase(device.os) contains 'fire' and device.lmt=0`    | `f:`                             |
+| Apple IDFA                                                                     | `device.ifa if lcase(device.os) contains 'ios' and device.lmt!=1`     | `a:`                             |
+| Google GAID                                                                    | `device.ifa if lcase(device.os) contains 'android' and device.lmt!=1` | `g:`                             |
+| Roku RIDA                                                                      | `device.ifa if lcase(device.os) contains 'roku' and device.lmt!=1`    | `r:`                             |
+| Samsung TV TIFA                                                                | `device.ifa if lcase(device.os) contains 'tizen' and device.lmt!=1`   | `s:`                             |
+| Amazon Fire AFAI                                                               | `device.ifa if lcase(device.os) contains 'fire' and device.lmt!=1`    | `f:`                             |
 | [NetID](https://docs.prebid.org/dev-docs/modules/userid-submodules/netid.html) | `user.ext.eids[].uids[0] when user.ext.eids[].source="netid.de"`     | `n:`                             |
 | [ID5](https://docs.prebid.org/dev-docs/modules/userid-submodules/id5.html)                                                                            | `user.ext.eids[].uids[0] when user.ext.eids[].source="id5-sync.com"` | `id5:`                           |
 | [Utiq](https://docs.prebid.org/dev-docs/modules/userid-submodules/utiq.html)                                                                           | `user.ext.eids[].uids[0] when user.ext.eids[].source="utiq.com"`     | `utiq:`                          |
