@@ -17,8 +17,7 @@ Optable module operates using a DCN backend API. Please contact your account man
 
 ## Overview
 
-Optable module enriches an incoming OpenRTB request by adding to the `user.ext.eids` and `user.ext.data` objects.
-As input module may use PPIDs (publisher provided IDs) as part of the `user.ext.eids` and/or sha256-hashed email, sha256-hashed phone or postal_code provided at `user.ext.optable.email`, `.phone`, `.postal_code` fields. 
+The optable-targeting module enriches an incoming OpenRTB request by adding to the `user.ext.eids` and `user.ext.data` objects. Under the hood the module extracts PPIDs (publisher provided IDs) from the incoming request's `user.ext.eids`, and also if provided sha256-hashed email, sha256-hashed phone, zip or Optable Visitor ID provided correspondingly in the `user.ext.optable.email`, `.phone`, `.zip`, `.vid` fields (see the full list of extracted IDs in the section on ID mapping below). These IDs are sent as input to the Targeting API.  The received response data is used to enrich the OpenRTB request and response. Targeting API endpoint is configurable per publisher. 
 
 ## Setup
 
