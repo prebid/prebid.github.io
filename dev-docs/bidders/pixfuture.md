@@ -11,7 +11,7 @@ coppa_supported: true
 usp_supported: true
 userIds: criteoId, unifiedId, id5Id, sharedId, identityLink, liveIntentId, fabrickId
 pbs: true
-pbjs: false
+pbjs: true
 sidebarType: 1
 ---
 
@@ -32,6 +32,8 @@ To download the PixFuture adapter for Prebid.js, visit [https://docs.prebid.org/
 | Name       | Scope    | Description                                                        | Example       | Type     |
 |------------|----------|--------------------------------------------------------------------|---------------|----------|
 | `pix_id`   | required | A unique ID for your site’s ad placement. Corresponds to each ad size. | `"12312345"`    | `string` |
+
+These bid parameters are supported by both the Prebid.js and Prebid Server pixfuture adapter.
 
 The `pix_id` is a unique identifier provided by PixFuture and must be specified for each ad placement/size combination. This parameter is consistent across both Prebid.js and Prebid Server.
 
