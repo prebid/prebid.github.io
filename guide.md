@@ -274,6 +274,58 @@ In certain cases, it is helpful to the user to highlight a page in the left navi
 
 This has been done for both bidders pages (pages with `layout: bidder`) and the Publisher API Reference (`layout: api_prebidjs` and highlighting Prebid.js > Reference > Publish API Reference in the left nav), but can be extended to other pages as needed.
 
+### Disclosure Includes
+
+The docs offer a set of predefined disclosures that should be used where appropriate.
+
+#### Module does fingerprinting
+
+{% include dev-docs/fingerprinting.md %}
+
+```liquid
+{%raw%}{% include dev-docs/fingerprinting.md %}{%endraw%}
+```
+
+### Module loads external javascript
+
+{% include dev-docs/loads-external-javascript.md %}
+
+```liquid
+{%raw%}{% include dev-docs/loads-external-javascript.md %}{%endraw%}
+```
+
+#### Prebid Server works only with client-side adapter available
+
+{% include dev-docs/pbjs-adapter-required-for-pbs.md %}
+
+```liquid
+{%raw%}{% include dev-docs/pbjs-adapter-required-for-pbs.md %}{%endraw%}
+```
+
+#### Example uses build from source
+
+{% include dev-docs/build-from-source-warning.md %}
+
+```liquid
+{%raw%}{% include dev-docs/build-from-source-warning.md %}{%endraw%}
+```
+
+#### Example uses not for production assets
+
+{% include dev-docs/not-for-production-warning.md %}
+
+```liquid
+{%raw%}{% include dev-docs/not-for-production-warning.md %}{%endraw%}
+```
+
+#### Legal disclosure
+
+{% include legal-warning.html %}
+
+```liquid
+{%raw%}{% include legal-warning.html %}{%endraw%}
+```
+
 ## Partners
 
 TBD
@@ -286,6 +338,8 @@ There are 200+ bidder files in the /dev-docs/bidders directory describing the pa
 - /dev-docs/bidders.md - this is used to generate the (large) combined page at <https://prebid.org/dev-docs/bidders.html>
 
 The attributes in the Jekyll 'front matter' drive various behaviors and dynamic tables elsewhere on the site.
+
+{: .table .table-bordered .table-striped }
 
 | Key | Required? | Values | Use |
 | ----- | ------ | ------ | ------ |

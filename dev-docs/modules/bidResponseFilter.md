@@ -10,6 +10,8 @@ sidebarType : 1
 
 ---
 
+# Bid Response Filter
+
 ## Overview
 
 This optional module will trigger validation of each bid on the bid response. Validation of a particular bid is based on its `ortb2` values compared to the values in the `bid.meta`. The module configuration allows you to specify whether to enforce validation of particular fields or not. It also lets to specify if the bid should be rejected if selected field metadata value is not present. 

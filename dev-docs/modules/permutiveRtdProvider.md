@@ -78,6 +78,9 @@ If you are also using the [TCF Control Module](/dev-docs/modules/tcfControl.html
 
 ### Instructions
 
+{: .alert.alert-warning :}
+Prebid.org recommends working with a privacy lawyer before making enforcement exceptions for any vendor. Specifically for Permutive, we recommend publishers let Prebid.js make use of their registered GVL ID 361 instead of a vendor exception.
+
 1. Publisher enables rules within Prebid.js configuration. 
 2. Label Permutive as an exception, as shown below.
 

@@ -125,6 +125,26 @@ pbjs.setConfig({
 });
 ```
 
+### Change prerendering behavior
+
+When a page is [prerendered](https://developer.chrome.com/docs/web-platform/prerender-pages), by default Prebid will delay auctions until it is activated.
+
+You can disable this behavior and allow auctions to run during prerendering with `allowPrerendering`:
+
+```javascript
+pbjs.setConfig({
+  allowPrerendering: true
+})
+```
+
+Alternatively you may delay execution of the entire command queue (not just auctions) until the page is activated, using `delayPrerendering`:
+
+```javascript
+pbjs.delayPrerendering = true;
+```
+
+Note that `delayPrerendering` is a property of the `pbjs` global and not a normal setting; this is because it takes effect before (and delays) any call to `setConfig`.  
+
 ### Send All Bids
 
 <a name="setConfig-Send-All-Bids"></a>
