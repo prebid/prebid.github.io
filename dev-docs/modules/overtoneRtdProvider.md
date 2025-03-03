@@ -26,7 +26,7 @@ Use `setConfig` to instruct Prebid.js to initilize the Overtone RTD module, as s
 
 This module is configured as part of the `realTimeData.dataProviders`
 
-```javascript
+javascript
 pbjs.setConfig({
   realTimeData: {
     dataProviders: [{
@@ -39,7 +39,6 @@ pbjs.setConfig({
     }]
   }
 });
-```
 
 | Name                      | Type          | Description                                                      | Default           |
 | :------------------------ | :------------ | :--------------------------------------------------------------- |:----------------- |
@@ -48,9 +47,6 @@ pbjs.setConfig({
 | params.apiKey         | String        | Your unique API key provided by Overtone                                          | YOUR_API_KEY                    |
 | params.domains            | Array<string> | Array of whitelisted domains for contextual analysis           |                   |
 | params.timeout            | Integer       | timeout (ms)                                                     | 500ms            |
-
-
-
 
 ## Validation and Testing
 
@@ -82,4 +78,4 @@ File: `test/spec/modules/overtoneRtdProvider_spec.mjs`
 
 ## Support and Contact
 
-For questions, issues, or support, contact the Overtone technical team at **tech@overtone.ai**.
+For questions, issues, or support, contact the Overtone technical team at <tech@overtone.ai>.
