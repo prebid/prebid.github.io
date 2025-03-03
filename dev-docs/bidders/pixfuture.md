@@ -11,7 +11,7 @@ coppa_supported: true
 usp_supported: true
 userIds: criteoId, unifiedId, id5Id, sharedId, identityLink, liveIntentId, fabrickId
 pbs: true
-pbjs: true
+pbjs: false
 sidebarType: 1
 ---
 
