@@ -19,4 +19,4 @@ If you know the adId, then be specific, otherwise Prebid will retrieve the winni
 | --- | --- | --- |
 | adUnitCode | `string` | (Optional) The ad unit code |
 | adId | `string` | (Optional) The id representing the ad we want to mark |
-| analytics | `boolean` | (Optional) if true, triggers the 'bidWon' event for the marked bid |
+| events | `boolean` | (Optional) if true, triggers the 'bidWon' event and tracking pixels for the marked bid |
