@@ -1411,15 +1411,15 @@ The Previous Auction Info module enables functionality to collect prior auction 
 * Publisher's who would like to participate must explicitly configure PBJS to do so:
 
 ```javascript
-pbjs.setConfig({previousAuctionInfo: true})
+pbjs.setConfig({previousAuctionInfo: { enabled: true, bidders: [], maxQueueLength: 10 }})
 ```
 
-* Only bid adapters who have enabled this feature will be able to utilize it.  To do this, a bid adapter must add the following to their bidAdapter.js file:
-
-```javascript
-import { enablePreviousAuctionInfo } from '../libraries/previousAuctionInfo/previousAuctionInfo.js';
-enablePreviousAuctionInfo({ bidderCode: 'some bidder code' });
-```
+{: .table .table-bordered .table-striped }
+| Field | Required? | Type | Description |
+|---|---|---|---|
+| previousAuctionInfo.enabled | yes | boolean | Enables/disables the module. |
+| previousAuctionInfo.bidders | no | array of strings  | Array of bidder codes to determine which bidders are allowed to receive collected previous auction info. Leaving the array empty will enable all bidders. By default, all bidders will be allowed to collect previous auction info. |
+| previousAuctionInfo.maxQueueLength | no | integer  | The number of previous auction info payloads to store per bidder before injecting these payloads into the bidstream. Any payloads collected for a bidder during one auction will be injected into the bidstream during the next auction that the same bidder participates in with valid bids. By default, the value of this field is 10. |
 
 * Only valid bid requests submitted by bidders who have enabled the Previous Auction Info module will be permitted.
 
@@ -1428,7 +1428,7 @@ If the requirements above are met, the flow for how the module works is as follo
 1. A Prebid.js auction runs and completes
 1. At the end of an auction, details about the auction are collected from each bidder using the module
 1. If a Prebid bid wins, then the `rendered` field is updated to `1` to indicate this in the collected auction data for all bidders who bid on the same adunit
-1. During the next Prebid.js auction, if a bidder has this module enabled AND submits a valid bid request, then previous auction info data will be injected into the bid request of the new auction within the following path: `ortb2.ext.prebid.previousAuctionInfo`
+1. During the next Prebid.js auction, if a bidder has this module enabled AND submits a valid bid request, then previous auction info data will be injected into the bid request of the new auction within the following path: `ortb2.ext.prebid.previousauctioninfo`
 
 `previousAuctionInfo` is an array of prior auction data catered to a specific bidder (if present, it will be added to a bidder's bid request), the structure of the data looks like this (Note: Once collected previous auction data has been injected into the bid stream, then it is removed from storage):
 
@@ -1440,17 +1440,17 @@ ortb2: {
         {
           bidderRequestId: "123abc",
           bidId: "456def",
-          rendered: 1,
+          rendered: 1, // default is 0
           source: "pbjs",
           adUnitCode: "div-gpt-ad-123-0",
-          highestTargetedBidCpm: "0.05",
-          targetedBidCpm: "0.04",
-          highestBidCpm: 0.052275935,
-          bidderCpm: 0.04,
-          bidderOriginalCpm: 0.04,
-          bidderCurrency: "USD",
-          bidderOriginalCurrency: "USD",
-          bidderErrorCode: -1,
+          highestTargetedBidCpm: "0.05", // default is null
+          targetedBidCpm: "0.04", // default is null
+          highestBidCpm: 0.052275935, // default is 0
+          bidderCpm: 0.04, // default is null
+          bidderOriginalCpm: 0.04, // default is null
+          bidderCurrency: "USD", // default is null
+          bidderOriginalCurrency: "USD", // default is null
+          bidderErrorCode: -1, // default is -1
           timestamp: 1739400860310
         }
       ]
