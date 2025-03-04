@@ -1418,6 +1418,12 @@ Notes on the metadata fields:
   - `openrtb_ext/bidders.go`
   - `exchange/adapter_builders.go`
 
+### Optional Code Update Notification
+
+The core Prebid engineering team sometimes makes changes to bid adapter files for various reasons: general refactoring, internal API changes, bug fixes, etc. If you want to receive an email alert about any changes made to your codebase, you can update the [codepath notification file](https://github.com/prebid/prebid-server/blob/master/.github/workflows/scripts/codepath-notification). Please read the instructions in the file. In many cases, the regex will just be your biddercode, but if you have a short biddercode, you might need to be more precise or you'll get false notifications.
+
+Likewise, your bidder documentation can receive alerts by updating the [docs codepath notification file](https://github.com/prebid/prebid.github.io/blob/master/.github/workflows/scripts/codepath-notification).
+
 ## Contribute
 
 Thank you for taking the time to develop a Prebid Server bid adapter. When you're ready, [contribute](https://github.com/prebid/prebid-server/blob/master/docs/developers/contributing.md) your new bid adapter by opening a PR to the [PBS-Go GitHub repository](https://github.com/prebid/prebid-server) with the name "New Adapter: {Bidder}".
