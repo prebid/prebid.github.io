@@ -140,7 +140,7 @@ The parameter names are specified with full path using dot-notation.  F.e. `sect
 | ppid-mapping | no | map | none | This specifies PPID source (`user.ext.eids[].source`) to a custom identifier prefix mapping, f.e. `{"example.com" : "c"}`. See the section on ID Mapping below for more detail. |
 | adserver-targeting | no | boolean | false | If set to true - will add the Optable-specific adserver targeting keywords into the PBS response for every `seatbid[].bid[].ext.prebid.targeting` |
 | timeout | no | integer | false | A soft timeout (in ms) sent as a hint to the Targeting API endpoint to  limit the request times to Optable's external tokenizer services |
-| id-prefix-order | no | list | [] | An optional list of id prefixes that prioritizes and specifies the order in which ids are provided to Targeting API in a query string. F.e. ["c","c1","id5"] will guarantee that Targeting API will see id=c:...,c1:...,id5:... if these ids are provided.  id-prefixes not mentioned in this list will be added in arbitrary order after the priority prefix ids. This affects Targeting API processing logic |
+| id-prefix-order | no | string | none | An optional string of comma separated id prefixes that prioritizes and specifies the order in which ids are provided to Targeting API in a query string. F.e. "c,c1,id5" will guarantee that Targeting API will see id=c:...,c1:...,id5:... if these ids are provided.  id-prefixes not mentioned in this list will be added in arbitrary order after the priority prefix ids. This affects Targeting API processing logic |
 
 ## ID Mapping
 
