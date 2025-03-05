@@ -1,9 +1,9 @@
 ---
 layout: bidder
 title: AdGrid
-description: Prebid AdGrid Bidder Adaptor
+description: Prebid AdGrid Bidder Adapter
 biddercode: adgrid
-media_types: banner
+media_types: banner, video
 pbjs: true
 tcfeu_supported: false
 dsa_supported: false
@@ -65,6 +65,24 @@ var adUnits = [
       bidder: 'adgrid',
       params: {
         domainId: 67890
+      }
+    }]
+  },
+  // Video adUnit
+  {
+    code: 'test-video-div',
+    mediaTypes: {
+      video: {
+        playerSize: [
+          [640, 480]
+        ],
+        context: 'instream'
+      }
+    },
+    bids: [{
+      bidder: 'adgrid',
+      params: {
+        domainId: 12345
       }
     }]
   }

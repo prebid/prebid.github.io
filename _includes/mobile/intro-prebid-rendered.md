@@ -101,7 +101,7 @@ The AdOps team will need to create line items in GAM. The creatives used depend 
 | HTML banner, interstitial banner or video, non-instream video | hb_pb<br/>hb_format=banner | 3rd party HTML that loads google_mobile_app_ads.js | no | [link](/adops/mobile-rendering-gam-line-item-setup.html#third-party-html) |
 | Instream Video | hb_pb<br/>hb_format=video<br/>inventoryType in (instream, mobile app) | VastUrl pointing to Prebid Cache | yes | [link](/adops/setting-up-prebid-video-in-dfp.html) |
 | Rewarded Video | hb_pb<br/>hb_format=video<br/>inventoryType in (instream, mobile app)<br/>rewarded adunits | VastUrl pointing to prebid-mobile-rewarded-vast.xml | no | [link](/adops/mobile-rendering-gam-line-item-setup.html#rewarded-video) |
-| In-app native | hb_pb<br/>hb_format=native | GAM native | no | [link](adops/gam-native.html#create-a-new-native-creative) |
+| In-app native | hb_pb<br/>hb_format=native | GAM native | no | [link](/adops/gam-native.html#create-a-new-native-creative) |
 
 Notes:
 

@@ -90,7 +90,7 @@ The Ad Operations team will need to create line items in GAM. The creatives used
 | HTML banner, interstitial banner | hb_pb<br/>hb_format=banner | 3rd party HTML that loads the [PUC](/overview/prebid-universal-creative.html) | yes | [link](/adops/gam-creative-banner-sbs.html) |
 | Video (instream, non-instream, interstitial) | hb_pb<br/>hb_format=video<br/>inventoryType in (instream, mobile app) | VastUrl pointing to Prebid Cache | yes | [link](/adops/setting-up-prebid-video-in-dfp.html) |
 | Rewarded Video | hb_pb<br/>hb_format=video<br/>inventoryType in (instream, mobile app)<br/>rewarded adunits | VastUrl pointing to Prebid Cache | yes | [link](/adops/setting-up-prebid-video-in-dfp.html) |
-| In-app native | hb_pb<br/>hb_format=native | GAM native | no | [link](adops/gam-native.html#create-a-new-native-creative) |
+| In-app native | hb_pb<br/>hb_format=native | GAM native | no | [link](/adops/gam-native.html#create-a-new-native-creative) |
 | In-Webview native | hb_pb<br/>hb_format=native | 3rd party HTML that loads the native-trk script. | yes | [link](/adops/gam-native.html) |
 
 Notes:

@@ -3,6 +3,9 @@ layout: userid
 title: CEEIdSystem
 description: CEEID User ID sub-module
 useridmodule: ceeIdSystem
+bidRequestUserId: ceeId
+eidsource: ceeid.eu
+example: '"1111"'
 ---
 
 ## Prebid Configuration
@@ -16,6 +19,7 @@ gulp build --modules=ceeIdSystem
 ## CEEID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of CEEID user ID module. | `"ceeId"` |

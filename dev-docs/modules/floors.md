@@ -559,11 +559,11 @@ e.g.
       
       let deviceType = getDeviceTypeFromUserAgent(navigator.userAgent);
 
-      if(deviceType = 'mobile')
+      if(deviceType === 'mobile')
           return 'mobile'
-      else if (deviceType = 'tablet')
+      else if (deviceType === 'tablet')
           return 'tablet'
-      else if (deviceType = 'desktop')
+      else if (deviceType === 'desktop')
           return 'desktop'
   }
 
@@ -1282,10 +1282,10 @@ pbjs.addAdUnits({
     ortb2Imp: {
         ext: {
         prebid: {
-                data: {
-            floorMin: 0.25,
-            floorMinCur: "USD"
-        }
+                floors: {
+                    floorMin: 0.25,
+                    floorMinCur: "USD"
+                }
             }
         }
     },
