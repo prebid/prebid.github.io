@@ -27,7 +27,7 @@ sidebarType: 1
 ### Registration
 
 Flatads header bidding adapter connects with Flatads demand sources to fetch bids for banner publisher ID. Please reach
-out to your account manager or <business@flat-ads.com> for more information.
+out to your account manager or <adxbusiness@flat-ads.com> for more information.
 
 ### Bid Params
 
