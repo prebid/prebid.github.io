@@ -5,7 +5,6 @@ description: Prebid Flatads Bidder Adapter
 biddercode: flatads
 tcfeu_supported: true
 usp_supported: true
-gpp_supported: true
 coppa_supported: true
 gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 userIds: all
@@ -34,5 +33,5 @@ out to your account manager or <adxbusiness@flat-ads.com> for more information.
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |---------------|----------|--------------|-----------|----------|
-| `publisherId` | required | The publisher ID from Flatads | "1111" | `string` |
-| `token` | required | Token of the publisher | "66668888" | `string` |
+| `publisherId` | required | The publisher ID from Flatads | "1111" | string |
+| `token` | required | Token of the publisher | "66668888" | string |
