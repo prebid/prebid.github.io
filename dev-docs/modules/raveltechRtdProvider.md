@@ -1,0 +1,73 @@
+---
+layout: page_v2
+title: Raveltech RTD Module
+display_name: Raveltech RTD Module
+description: Raveltech Real Time Data Module
+page_type: module
+module_type: rtd
+module_code : raveltechRtdProvider
+enable_download : true
+vendor_specific: true
+sidebarType : 1
+---
+
+# Raveltech RTD Module for Prebid.js
+
+## Overview
+
+```
+Module Name:  Raveltech RTD Provider
+Module Type:  RTD Provider
+Maintainer: maintainers@raveltech.io
+```
+
+The Raveltech RTD (Real-Time Data) module for Prebid.js integrates with Ravel Technologies' privacy-focused solution to anonymize bidder requests before they are sent to SSPs and DSPs. Using the Ravel Privacy Bus, this module ensures that personally identifiable information (PII) is never transmitted in bid requests, enhancing privacy compliance and security.
+
+## How It Works
+
+The module operates in two modes:
+1. **Bid URL Replacement:** The module modifies the bid request URL of the configured bidders to pass through the Ravel proxy, ensuring that all IDs are anonymized.
+2. **Bid Duplication (if `preserveOriginalBid` is enabled):** The module duplicates the original bid request, sending one request as-is and another through the Ravel proxy with anonymized IDs.
+
+## Configuration
+
+To enable the Raveltech RTD module, you need to configure it with a list of bidders and specify whether to preserve the original bid request.
+Please contact support@raveltech.io to activate your adapter after installation or for more information.
+
+### Build
+```
+gulp build --modules="rtdModule,raveltechRtdProvider,appnexusBidAdapter,..."  
+```
+
+> Note that the global RTD module, `rtdModule`, is a prerequisite of the raveltech RTD module.
+
+### Parameters
+
+| Parameter           | Type    | Description |
+|--------------------|--------|-------------|
+| `bidders`         | Array  | A list of bidder codes (or their alias if an alias is used) that should have their bid requests anonymized via Ravel. |
+| `preserveOriginalBid` | Boolean | If `true`, the original bid request is preserved, and an additional bid request is sent through the Ravel proxy. If `false`, the original bid request is replaced with the Ravel-protected request. |
+
+### Example Configuration
+
+```javascript
+pbjs.setConfig({
+    realTimeData: {
+        dataProviders: [{
+            name: 'raveltech',
+            params: {
+                bidders: ['appnexus', 'rubicon'],
+                preserveOriginalBid: true
+            }
+        }]
+    }
+});
+```
+
+## Privacy Features
+
+The RavelTech RTD module ensures the following privacy protections:
+- PII is removed or transformed into RIDs (Ravelized IDs).
+- The User-Agent is truncated.
+- Location data is generalized with a significant radius.
+- IP addresses are not stored or included in bid requests.
