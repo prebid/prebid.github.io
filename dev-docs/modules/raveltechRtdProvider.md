@@ -32,13 +32,13 @@ The module operates in two modes:
 2. Bid Duplication (if `preserveOriginalBid` is enabled):
 ** The module duplicates the original bid request, sending one request as-is and another through the Ravel proxy with anonymized IDs.
 
-
 ## Configuration
 
 To enable the Raveltech RTD module, you need to configure it with a list of bidders and specify whether to preserve the original bid request.
 Please contact <support@raveltech.io> to activate your adapter after installation or for more information.
 
 ### Build
+
 ```bash
 gulp build --modules="rtdModule,raveltechRtdProvider,appnexusBidAdapter,..."  
 ```
