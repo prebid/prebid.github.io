@@ -5,9 +5,9 @@ description: Prebid Aniview Bidder Adapter
 pbjs: true
 biddercode: aniview
 media_types: banner, video
-gpp_supported: true
+gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 ortb_blocking_supported: true
-multiformat_supported: true
+multiformat_supported: will-bid-on-any
 tcfeu_supported: true
 floors_supported: true
 usp_supported: true
@@ -15,7 +15,7 @@ schain_supported: true
 safeframes_ok: true
 gvl_id: 780
 sidebarType: 1
-userIds: true
+userIds: all
 ---
 
 ### Note
@@ -109,45 +109,6 @@ const adUnit = [{
     },
   }],
 }];
-```
-
-### Floors
-
-```javascript
-const adUnit = [{
-  code: 'floorsAdUnit',
-  mediaTypes: {/*...*/},
-  bids: [/*...*/],
-  floors: {
-    currency: 'USD',
-    schema: {
-      delimiter: '|',
-      fields: ['mediaType', 'size'],
-    }, 
-    values: {
-      'banner|300x250': 0.1,
-      'banner|*': 0.05,
-      'video|640x360': 0.5,
-      'video|*': 0.25,
-    },
-  },
-}];
-```
-
-### Cookie sync
-
-```javascript
-pbjs.setConfig({
-  // Cookie sync (Image & Iframe)
-  userSync: {
-    filterSettings: {
-      all: {
-        bidders: '*',
-        filter: 'include',
-      },
-    },
-  },
-});
 ```
 
 ### Bidder specific configs
