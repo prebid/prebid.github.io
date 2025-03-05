@@ -21,7 +21,7 @@ Module Type:  RTD Provider
 Maintainer: maintainers@raveltech.io
 ```
 
-The Raveltech RTD (Real-Time Data) module for Prebid.js integrates with Ravel Technologies' privacy-focused solution to anonymize bidder requests before they are sent to SSPs and DSPs. Using the Ravel Privacy Bus, this module ensures that personally identifiable information (PII) is never transmitted in bid requests, enhancing privacy compliance and security.
+The RavelTech RTD (Real-Time Data) module for Prebid.js enables publishers to integrate seamlessly with Ravel Technologies' privacy-focused solution, ensuring bidder requests are anonymized before reaching SSPs and DSPs. By leveraging the Ravel Privacy Bus, this module prevents the transmission of personally identifiable information (PII) in bid requests, strengthening privacy compliance and security.
 
 ## How It Works
 
@@ -66,8 +66,6 @@ pbjs.setConfig({
 
 ## Privacy Features
 
-The RavelTech RTD module ensures the following privacy protections:
-- PII is removed or transformed into RIDs (Ravelized IDs).
-- The User-Agent is truncated.
-- Location data is generalized with a significant radius.
-- IP addresses are not stored or included in bid requests.
+The RavelTech RTD module allows publishers to implement the following privacy protections:
+- Personally Identifiable Information (PII) is either removed or converted into Anonymized IDs (RIDs).
+- Bid requests are routed through an anonymized proxy before reaching the SSP, ensuring IP address anonymization.
