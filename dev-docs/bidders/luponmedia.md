@@ -22,4 +22,4 @@ The LuponMedia bidder adapter requires setup and approval from the LuponMedia su
 {: .table .table-bordered .table-striped }
 | Name   | Scope    | Description              | Example         | Type      |
 |--------|----------|--------------------------|-----------------|-----------|
-| `keyId` | required | The key ID              | `uid_test_1234` | `string` |
+| `keyId`| required | The key ID               | `uid_test_1234` | `string`  |
