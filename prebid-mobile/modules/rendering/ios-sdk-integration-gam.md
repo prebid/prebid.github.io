@@ -5,6 +5,8 @@ description: Integration of Prebid Rendering module whith Google Ad Manager
 sidebarType: 2
 ---
 
+<!-- markdownlint-disable-file MD046 -->
+
 # Prebid SDK iOS with the GAM Prebid-Rendered Integration Method
 {:.no_toc}
 
@@ -109,9 +111,9 @@ GAM setup:
 
 Integration:
 
-1. Replace the `GAMBannerView` with `BannerView` in the UI. 
+1. Replace the `AdManagerBannerView` with `BannerView` in the UI. 
 2. Implement the protocol `BannerViewDelegate` in the ViewController.
-3. Remove usage of `GAMBannerView`, `GAMRequest`, and implementation of the `GADBannerViewDelegate`.
+3. Remove usage of `AdManagerBannerView`, `AdManagerRequest`, and implementation of the `GoogleMobileAds.BannerViewDelegate`.
 4. Remove original `BannerAdUnit`.
 5. Follow the instructions to integrate [Banner API](#banners).
 
@@ -124,9 +126,9 @@ Integration example:
 let eventHandler = GAMInterstitialEventHandler(adUnitID: GAM_AD_UNIT_ID)
     
 // 2. Create Interstitial Ad Unit
-interstitial = InterstitialRenderingAdUnit  (configID: CONFIG_ID,
-                                  minSizePercentage: CGSize(width: 30, height: 30),
-                                  eventHandler: eventHandler)
+interstitial = InterstitialRenderingAdUnit(configID: CONFIG_ID,
+                                           minSizePercentage: MIN_SIZE_PERC,
+                                           eventHandler: eventHandler)
     
 interstitial.delegate = self
     
@@ -200,9 +202,9 @@ GAM setup:
 
 Integration:
 
-1. Replace the `GAMInterstitialAd` with `InterstitialRenderingAdUnit` in the View Controller. 
+1. Replace the `AdManagerInterstitialAd` with `InterstitialRenderingAdUnit` in the View Controller. 
 2. Implement the protocol `InterstitialAdUnitDelegate` in the View Controller.
-3. Remove usage of `GAMInterstitialAd`, `GAMRequest`.
+3. Remove usage of `AdManagerInterstitialAd`, `AdManagerRequest`.
 4. Remove original `InterstitialAdUnit`.
 5. Follow the instructions to integrate [Interstitial API](#interstitials).
 
@@ -215,8 +217,7 @@ Integration example:
 let eventHandler = GAMRewardedEventHandler(adUnitID: GAM_AD_UNIT_ID)
     
 // 2. Create an Ad Unit
-rewardedAd = RewardedAdUnit(configID: CONFIG_ID,
-                               eventHandler: eventHandler)
+rewardedAd = RewardedAdUnit(configID: CONFIG_ID, eventHandler: eventHandler)
     
 rewardedAd.delegate = self
     
@@ -242,11 +243,16 @@ To be notified when a user earns a reward - implement the method of `RewardedAdU
 
 The reward object is stored in the `RewardedAdUnit`:
 
-```swift
-if let reward = rewardedAd.reward as? GADAdReward {
+{% capture gma12 %}if let reward = rewardedAd.reward as? GoogleMobileAds.AdReward {
     // ...
 }
-```
+{% endcapture %}
+{% capture gma11 %}if let reward = rewardedAd.reward as? GADAdReward {
+    // ...
+}
+{% endcapture %}
+
+{% include code/gma-versions-tabs.html id="gam-reward" gma11=gma11 gma12=gma12 %}
 
 #### Step 1: Create Event Handler
 {:.no_toc}
@@ -289,9 +295,9 @@ GAM setup:
 
 Integration:
 
-1. Replace the `GADRewardedAd` with `RewardedAdUnit` in the View Controller. 
+1. Replace the `RewardedAd` with `RewardedAdUnit` in the View Controller. 
 2. Implement the protocol `RewardedAdUnitDelegate` in the View Controller.
-3. Remove usage of `GAMRequest`.
+3. Remove usage of `AdManagerRequest`.
 4. Remove original `RewardedVideoAdUnit`.
 5. Follow the instructions to integrate [Rewarded API](#rewarded-video).
 
