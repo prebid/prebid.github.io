@@ -23,7 +23,7 @@ sidebarType: 1
 
 To use the DistroScale bidder you will need a pubid (Publisher ID) from an account on DistroScale.
 
-For further information, please contact support@distroscale.com.
+For further information, please contact <support@distroscale.com>.
 
 ### Bid Params
 
