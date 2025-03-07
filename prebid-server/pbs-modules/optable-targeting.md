@@ -278,7 +278,6 @@ mvn clean package --file extra/pom.xml
 ```
 
 {:start="2"}
-
 2. In the `sample/configs/prebid-config-optable.yaml` file specify the `api-endpoint` URL of your DCN, f.e.: 
 
 ```yaml
@@ -286,7 +285,6 @@ api-endpoint: https://example.com/v2/targeting
 ```
 
 {:start="3"}
-
 3. Start server bundle JAR as described in [Running project](https://github.com/prebid/prebid-server-java/blob/master/docs/run.md#running-project), e.g.
 
 ```bash
@@ -294,7 +292,6 @@ java -jar target/prebid-server-bundle.jar --spring.config.additional-location=sa
 ```
 
 {:start="4"}
-
 4. Run sample request against the server as described in [the sample directory](https://github.com/prebid/prebid-server-java/tree/master/sample), e.g.
 
 ```bash
@@ -302,7 +299,6 @@ curl http://localhost:8080/openrtb2/auction --data @extra/modules/optable-target
 ```
 
 {:start="5"}
-
 5. Observe the `user.ext.eids` and `user.ext.data` objects enriched.
 
 ## Maintainer contacts
