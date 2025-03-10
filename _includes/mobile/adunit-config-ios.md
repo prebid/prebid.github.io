@@ -57,3 +57,37 @@ You can set `adPosition` by using the following property:
 ```swift
 adUnit.adPosition = .footer
 ```
+
+### Native Impression Tracking
+
+The SDK offers an API that enables impression tracking for the following ad unit types: `BannerAdUnit`, `InterstitialAdUnit`, and `PrebidAdUnit`. An example implementation is provided below:
+
+`BannerAdUnit`:
+
+```swift
+let adUnit = BannerAdUnit(configId: CONFIG_ID, size: AD_SIZE)
+let gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(AD_SIZE))
+adUnit.activatePrebidImpressionTracker(adView: gamBanner)
+```
+
+`InterstitialAdUnit`:
+
+```swift
+let adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: 50, minHeightPerc: 70)
+adUnit.activatePrebidImpressionTracker()
+```
+
+`PrebidAdUnit`:
+
+```swift
+let adUnit = PrebidAdUnit(configId: CONFIG_ID)
+
+// Use this method for intersitials
+adUnit.activatePrebidInterstitialImpressionTracker()
+
+// Use this method for banners
+let gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(AD_SIZE))
+adUnit.activatePrebidAdViewImpressionTracker(adView: gamBanner)
+```
+
+**NOTE**: The SDK support only `seatbid[].bid[].burl` as impression tracking URL for now.
