@@ -572,7 +572,7 @@ let globalORTB = """
         }
     },
     "displaymanager": "Google",
-    "displaymanagerver": "\(GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber))"
+    "displaymanagerver": "\(string(for: MobileAds.shared.versionNumber))"
 }
 """
 
