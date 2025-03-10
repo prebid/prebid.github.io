@@ -74,6 +74,7 @@ Here's an example:
 | Parameter | Type | Scope | Description |
 |------|------|-------------|
 | skipSids | array of integer | Optional | Do not process the named section IDs. |
+| allowPersonalDataConsent2 | boolean | Optional | Defaults to 'false'. [Prebid's logic](/features/mspa-usnat.html) for personal data consents considers a value of 2 as non-sensical. But it turns out that several CMPs didn't get that message and are reporting this value. We will deprecate this option once the CMPs are all on the same page. |
 
 By default the module will process GPP SIDs 7-12. The `skipSids`
 parameter allows the publisher to define a different processing flow for different GPP SIDs.

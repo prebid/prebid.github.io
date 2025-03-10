@@ -28,11 +28,14 @@ sidebarType: 1
 
 {: .table .table-bordered .table-striped }
 
-| Name       | Scope    | Description                                                                               | Example                      | Type     |
-|------------|----------|-------------------------------------------------------------------------------------------|------------------------------|----------|
-| `cId`      | required | The connection ID from Exco.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
-| `pId`      | required | The publisher ID from Exco.                                                           | `'59ac17c192832d0011283fe3'` | `string` |
-| `bidFloor` | optional | The minimum bid value desired. Exco will not respond with bids lower than this value. | `0.90`                       | `float`  |
+| Name          | Scope      | Description                                                                           | Example                      | Type     |
+|---------------|------------|---------------------------------------------------------------------------------------|------------------------------|----------|
+| `cId`         | deprecated | The connection ID from Exco.                                                          | `'562524b21b1c1f08117fc7f9'` | `string` |
+| `pId`         | deprecated | The publisher ID from Exco.                                                           | `'59ac17c192832d0011283fe3'` | `string` |
+| `bidFloor`    | deprecated | The minimum bid value desired. Exco will not respond with bids lower than this value. | `0.90`                       | `float`  |
+| `accountID`   | required   | A unique account identifier provided by EX.CO.                                        | `'1234567890'`               | `string` |
+| `publisherId` | required   | Publisher ID provided by EX.CO.                                                       | `'1234567890'`               | `string` |
+| `tagId`       | required   | A unique Tag ID (supply id) identifier provided by EX.CO.                             | `'1234567890'`               | `string` |
 
 ### Example
 
@@ -50,9 +53,9 @@ var adUnits = [{
         bids: [{
             bidder: 'exco',
             params: {
-                cId: '562524b21b1c1f08117fc7f9', // Required - PROVIDED DURING SETUP...
-                pId: '59ac17c192832d0011283fe3', // Required - PROVIDED DURING SETUP...
-                bidFloor: 1.23                   // Optional
+                accountID: '1234567890',   // Required - PROVIDED DURING SETUP...
+                publisherId: '1234567890', // Required - PROVIDED DURING SETUP...
+                tagId: '1234567890'        // Required - PROVIDED DURING SETUP...
             }
         }]
     }
