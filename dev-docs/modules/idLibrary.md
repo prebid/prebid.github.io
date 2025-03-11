@@ -14,8 +14,6 @@ Maintainer: eng-dmp@magnite.com
 
 # ID Import Library
 
-{:.no_toc}
-
 The ID Import Library module gathers and generates a map of identities present on the page.  The primary usecase for this adapter is for Publishers who have included multiple UserId subadapters in their prebid.js implementation, and want to store the resulting user ids serverside for modeling or graphing purposes.  The ID Library module, anchors the response of `refreshUserIds()` to a persistant identifier (md5 encrypted) and returns an map of uids.  This map of uids comes in the form of a POST message in JSON format and must be output to a publisher configured endpoint.
 
 The module attempts to extract a persistant identifier in the following ways:
@@ -26,8 +24,9 @@ The module attempts to extract a persistant identifier in the following ways:
 
 To get started, add the module to your Prebid.js wrapper. From the command line:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=idImportLibrary
+```
 
 ## Application Flow
 
@@ -45,6 +44,7 @@ In the idLibrary module, the persistant id is fetched from the page and synced w
 ## Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param  | Required | Description |
 | --- | --- | --- |
 | url | yes | The url endpoint is used to post the MD5 hasheds|

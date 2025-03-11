@@ -3,14 +3,13 @@ layout: page_v2
 page_type: module
 title: Module - anPspParamsConverter
 description: Formats bid params for AppNexus PSP requests made through Prebid.js.
-module_code : apPspParamsConverter
-display_name : apPspParamsConverter
+module_code : anPspParamsConverter
+display_name : anPspParamsConverter
 enable_download : true
 sidebarType : 1
 ---
 
 # anPspParamsConverter Module
-
 {:.no_toc}
 
 This module is a temporary measure for publishers running Prebid.js 9.0+ and using the AppNexus PSP endpoint through their Prebid.js setup. Please ensure to include this module in your builds of Prebid.js 9.0+, otherwise requests to PSP may not complete successfully.

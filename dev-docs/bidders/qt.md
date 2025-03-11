@@ -4,7 +4,8 @@ title: QT
 description: Prebid QT Bidder Adapter
 biddercode: qt
 gpp_sids: usstate_all
-tcfeu_supported: false
+gvl_id: 1331
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -16,7 +17,7 @@ media_types: banner, video, native
 multiformat_supported: will-bid-on-one
 userIds: all
 pbjs: true
-pbs: false
+pbs: true
 pbs_app_supported: true
 safeframes_ok: true
 sidebarType: 1
