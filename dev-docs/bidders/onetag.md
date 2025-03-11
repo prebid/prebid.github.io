@@ -5,7 +5,7 @@ description: Prebid OneTag Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: onetag
-media_types: banner, video
+media_types: banner, video, native
 tcfeu_supported: true
 dsa_supported: true
 gpp_supported: true
