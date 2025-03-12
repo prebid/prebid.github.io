@@ -17,7 +17,6 @@ sidebarType: 1
 
 ---
 
-
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
@@ -34,6 +33,8 @@ sidebarType: 1
 ### Bidder Config
 
 You can allow writing in localStorage `pbjs.bidderSettings` for the bidder `nexx360`
+
+{% include dev-docs/storageAllowed.md %}
 
 ```javascript
 pbjs.bidderSettings = {

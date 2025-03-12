@@ -238,6 +238,10 @@ override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 }
 ```
 
+## Additional Ad Unit Configuration
+
+{% include mobile/rendering-adunit-config-android.md %}
+
 ## Further Reading
 
 - [Prebid Mobile Overview](/prebid-mobile/prebid-mobile)

@@ -44,6 +44,14 @@
   subgroup: 0
 
 - sbSecId: 0
+  title: Statement on Sustainability
+  link: /overview/statement-on-sustainability.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 0
   title: Developers
   link: /developers.html
   isHeader: 0
@@ -302,6 +310,15 @@
 - sbSecId: 1
   title: Synchronize Transaction Ids With Another Library
   link: /dev-docs/examples/sync-tid.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
+  title: In-renderer Integration
+  link: /dev-docs/examples/in-renderer-integration.html
   Item: 1
   isHeader: 0
   isSectionHeader: 0
@@ -799,6 +816,14 @@
   subgroup: 2
 
 - sbSecId: 2
+  title: API Reference
+  link: /prebid-mobile-ios/index.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
   title: "For Android"
   link:
   isHeader: 1
@@ -882,6 +907,14 @@
 - sbSecId: 2
   title: Prebid Plugin Renderer
   link: /prebid-mobile/pbm-api/android/pbm-plugin-renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
+  title: API Reference
+  link: /prebid-mobile-android/index.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -1809,6 +1842,22 @@
   subgroup: 0
 
 - sbSecId: 7
+  title: FAQs
+  link: /faq/faq.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 7
+  title: Blog
+  link: https://prebid.org/blog/
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 7
   title: Privacy Resources
   link:
   isHeader: 1
@@ -1839,20 +1888,22 @@
   subgroup: 1
 
 - sbSecId: 7
-  title: FAQs
-  link: /faq/faq.html
-  isHeader: 0
+  title: Sustainability Resources
+  link:
+  isHeader: 1
+  headerId: sustainability
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 7
-  title: Blog
-  link: https://prebid.org/blog/
+  title: Sustainability Portal
+  link: /support/sustainability-portal.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
+
 
  #-------------- Tools --------------|
 

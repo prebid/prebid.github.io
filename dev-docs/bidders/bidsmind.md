@@ -4,8 +4,8 @@ title: Bidsmind
 description: Prebid Bidsmind Bidder Adapter
 aliasCode: adverxo
 pbjs: true
-pbs: false
-pbs_app_supported: false
+pbs: true
+pbs_app_supported: true
 biddercode: bidsmind
 userIds:
 media_types: banner, native, video

@@ -73,8 +73,8 @@ The following fields related to anonymizing aspects of the auction are supported
 | gdpr.rules[].purpose | `String` | Supported values: "storage" (Purpose 1), "basicAds" (Purpose 2), "personalizedAds" (purpose 4), "measurement" (Purpose 7), "transmitPreciseGeo" (Special Feature 1) | "storage" |
 | gdpr.rules[].enforcePurpose | `Boolean` | Determines whether to enforce the purpose consent. The default in Prebid.js 3.x was not to enforce any purposes. Prebid.js 4.0 and later require legal basis for Purposes 1 and 2 by default. | true |
 | gdpr.rules[].enforceVendor | `Boolean` | Determines whether to check vendor signals for this purpose. The default in Prebid.js 3.x is not to check vendor signals. Prebid.js 4.0 and later require legal basis for Purposes 1 and 2 by default. | true |
-| gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from determining legal basis for this Purpose. | ["bidderA", "userID-module-B"] |
-| gdpr.rules[].softVendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the checking vendor signals for this purpose. Unlike with `vendorExceptions`, Purpose consent is still checked. | ["bidderA", "userID-module-B"] |
+| gdpr.rules[].vendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from determining legal basis for this Purpose. **Note:** Prebid.org recommends working with a privacy lawyer before making enforcement exceptions for any vendor. | ["bidderA", "userID-module-B"] |
+| gdpr.rules[].softVendorExceptions | `Array of Strings` | Defines a list of biddercodes or module names that are exempt from the checking vendor signals for this purpose. Unlike with `vendorExceptions`, Purpose consent is still checked. **Note:** Prebid.org recommends working with a privacy lawyer before making enforcement exceptions for any vendor. | ["bidderA", "userID-module-B"] |
 | gdpr.rules[].eidsRequireP4Consent | `Boolean` | Only relevant on the personalizedAds `purpose`. If true, user IDs and EIDs will not be shared without evidence of consent for TCF Purpose 4. If false, evidence of consent for any of Purposes 2-10 is sufficient for sharing user IDs and EIDs. Defaults to false. See [note](#note-transmitEids) | true |
 | strictStorageEnforcement | `Boolean` | If false (the default), allows some use of storage regardless of purpose 1 consent - see [note](#strictStorageEnforcement) below | true |
 
@@ -87,7 +87,7 @@ Notes:
 ```javascript
 pbjs.setConfig({
     gvlMapping: {
-    bidderA: 12345,
+        bidderA: 12345,
         bidderB: 67890
     }
 });
@@ -97,6 +97,9 @@ pbjs.setConfig({
 
 The following examples cover a range of use cases and show how Prebid.js supports
 configuration of different business rules.
+
+{: .alert.alert-warning :}
+Prebid.org recommends working with a privacy lawyer before making enforcement exceptions for any vendor.
 
 1. Restrict device access activity and basic ads. These are the default values (in Prebid.js 4.0) if the module is included in the build.
 
@@ -152,9 +155,9 @@ configuration of different business rules.
         enforcePurpose: true,
         enforceVendor: true
       },{
-    purpose: "basicAds",
-    enforcePurpose: true,
-    enforceVendor: true,
+        purpose: "basicAds",
+        enforcePurpose: true,
+        enforceVendor: true,
         vendorExceptions: ["firstPartyBidder"]
       }]
     ```
@@ -178,7 +181,7 @@ configuration of different business rules.
         purpose: "measurement",
         enforcePurpose: true,
         enforceVendor: true,
-    vendorExceptions: ["analyticsB"]
+        vendorExceptions: ["analyticsB"]
       }]
     ```
 
@@ -191,7 +194,7 @@ A goal of 'basic legal basis' is to confirm that there's enough evidence of cons
 
 Evidence of consent for a particular purpose or vendor means that:
 
-* Prebid.js has the the user's purpose or vendor consent, or
+* Prebid.js has the the user's vendor purpose or vendor consent, or
 * (for Purpose 2 only) we've confirmed the user's Legitimate Intereset (LI) Transparency is established for this purpose or vendor.
 
 Before allowing an activity tied to a TCF-protected Purpose for a given vendor, one of these scenarios must be true:
@@ -209,6 +212,8 @@ Before allowing an activity tied to a TCF-protected Purpose for a given vendor, 
 * Configuration rules check neither purpose consent nor vendor signal.
 
 See the [IAB TCF Consent String Format](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20Consent%20string%20and%20vendor%20list%20formats%20v2.md) for details.
+
+Before allowing an activity tied to a TCF-protected Purpose for a publisher module, such as Generic Analytics, SharedId, Pub-provided-id, configuration rules check for the relevant publisher purpose consent instead of vendor consent. IAB Europe officials have written to Prebid that "When one is seeking a signal indicating whether the Publisher has had their consent (or legitimate interest) legal basis established to the data subject by the CMP, one should examine the Publisher Purposes Transparency and Consent string segment signals, if present. The core string PurposesConsent bit sequence is intended solely to represent disclosures made by the CMP in the context of Vendors."
 
 <a id="note-transmitEids"></a>
 

@@ -7,7 +7,6 @@ filename: fanAdapter
 gvl_id: none
 coppa_supported: true
 media_types: banner, native
-multiformat_supported: will-bid-on-any, will-bid-on-one, will-not-bid
 safeframes_ok: false
 deals_supported: false
 floors_supported: false
@@ -32,6 +31,7 @@ The Freedom Ad Network Adapter requires setup before beginning. Please contact u
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placementId`      | required | Placement ID         | `'e6203f1e-bd6d-4f42-9895-d1a19cdb83c8'`    | `string` |
