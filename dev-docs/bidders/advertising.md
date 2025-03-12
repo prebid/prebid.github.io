@@ -1,10 +1,10 @@
 ---
 layout: bidder
-title: iMedia Digital Services (iMDS)
-description: Prebid iMedia Digital Services Bidder (iMDS) Adapter (replaced by "Advertising.com")
+title: Advertising.com
+description: Prebid Advertising.com Bidder Adapter
 pbjs: true
 pbs: true
-biddercode: imds
+biddercode: advertising
 tcfeu_supported: false
 usp_supported: true
 userIds: all
@@ -27,11 +27,11 @@ sidebarType: 1
 
 ### Note
 
-The iMedia Digital Services (iMDS) bidder adapter has been renamed to the [Advertising.com](/dev-docs/bidders/advertising.html) adapter, using a bidder code of `advertising`. Please update your implementation accordingly. This bidder adapter requires setup and approval from Advertising.com. Please reach out to your account manager for more information and to start using it.
+The Advertising.com bidder adapter requires setup and approval from Advertising.com. Please reach out to your account manager for more information and to start using it.
 
 ### Configuration
 
-iMedia Digital Services requires that `iframe` is used for user syncing.
+Advertising.com requires that `iframe` is used for user syncing.
 
 Example configuration:
 
@@ -74,8 +74,8 @@ https://track.technoratimedia.com/openrtb/tags?ID=%%PATTERN:hb_uuid_synacormedia
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
-| `seatId` | required | The seat ID from iMedia Digital Services. This will be the same for all ad units. | `'prebid'` | `string` |
-| `tagId` | required | The placement ID or tag ID from iMedia Digital Services. | `'demo1'` | `string` |
+| `seatId` | required | The seat ID from Advertising.com. This will be the same for all ad units. | `'prebid'` | `string` |
+| `tagId` | required | The placement ID or tag ID from Advertising.com. | `'demo1'` | `string` |
 | `placementId` | optional | Legacy parameter replaced by `tagId` | `'demo1'` | `string` |
 | `bidfloor` | optional | Legacy parameter for floor price for the request. Replaced by [Price Floors Module](/dev-docs/modules/floors.html) | `0.1` | `float` |
 
@@ -100,7 +100,7 @@ var adUnits = [{
         }
     },
     "bids": [{
-        "bidder": "imds",
+        "bidder": "advertising",
         "params": {
             "seatId": "prebid",
             "tagId": "demo1",
