@@ -43,8 +43,9 @@ pbjs.setConfig({
                         segtax: 546
                     },
                     segment: [
-                        {name: "news_category", value: "sports"},// name and value must be string types
-                        {name: "tabaco", value: "ok"}
+                        { name: "news_category", value: "Sports_Sumo" },// name and value must be string types
+                        { name: "local_gourmet", value: "sushi" },
+                        { name: "location", value: "tokyo" }
                     ]
                 }]
             }
