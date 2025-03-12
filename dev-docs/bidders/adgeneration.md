@@ -4,7 +4,7 @@ title: Ad Generation
 description: Prebid Ad Generation Bidder Adaptor
 schain_supported: true
 pbjs: true
-pbs: true
+pbs: no
 pbs_app_supported: no
 fpd_supported: true
 biddercode: adgeneration
