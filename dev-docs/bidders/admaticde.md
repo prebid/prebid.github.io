@@ -26,7 +26,7 @@ sidebarType: 1
 
 ### Description
 
-AdMatic GMBH header bidding adapter connects with AdMatic GMBH demand sources to fetch bids for network ID. Please reach out to your account manager or <fatih.kaya@admatic.de> for more information.
+AdMatic GMBH header bidding adapter connects with AdMatic GMBH demand sources to fetch bids for network ID. Please reach out to your account manager or <info@admatic.de> for more information.
 
 ### Bid params
 
