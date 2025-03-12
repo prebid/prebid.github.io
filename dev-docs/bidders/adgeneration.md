@@ -5,7 +5,7 @@ description: Prebid Ad Generation Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: adgeneration
-userIds: criteo, id5Id
+userIds: criteo, id5Id, imuid
 media_types: native
 sidebarType: 1
 ---
