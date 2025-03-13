@@ -41,7 +41,7 @@ For the anonymization feature to work, you also need to load a javascript in the
 <script src="https://cdn.rvlproxy.net/latest/zkad.js" async></script>
 ```
 
-** NB: the URL to load zkad.js may change depending your setup. Please reach out to your contact at Ravel Technologies to ensure you have the correct URL. **
+**NB: the URL to load zkad.js may change depending your setup. Please reach out to your contact at Ravel Technologies to ensure you have the correct URL.**
 
 Please contact <support@raveltech.io> to activate your adapter after installation or for more information.
 
