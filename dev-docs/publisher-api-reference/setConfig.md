@@ -1404,18 +1404,6 @@ pbjs.setConfig({
 
 <a name="setConfig-Generic-Configuration"></a>
 
-### Enable Previous Auction Info
-
-The Previous Auction Info module enables functionality to collect prior auction data for participating bidders and publishers (This feature is `opt-in`, by default it is disabled).
-
-```javascript
-pbjs.setConfig({previousAuctionInfo: { enabled: true, bidders: ['bidderCode1', 'bidderCode2'], maxQueueLength: 10 }})
-```
-
-Note: The `enabled` field is required, the `bidders` and `maxQueueLength` fields are not. For more information about this module, see: [Previous Auction Info](https://docs.prebid.org/dev-docs/modules/previousAuctionInfo.html).
-
-<a id="setConfig-previousAuctionInfo"></a>
-
 ### General adapter Configuration
 
 Some adapters may support other options, as defined in their documentation. To set arbitrary configuration values:

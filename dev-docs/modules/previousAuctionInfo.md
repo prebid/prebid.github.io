@@ -35,7 +35,7 @@ If the requirements above are met, the flow for how the module works is as follo
 1. A Prebid.js auction runs and completes.
 1. At the end of an auction, details about the auction are collected from each bidder using the module.
 1. If a Prebid bid wins, then the `rendered` field is updated to `1` to indicate this in the collected auction data for all bidders who bid on the same adunit within the same Prebid auction.
-1. During the next Prebid.js auction, if a bidder has this module enabled AND submits a valid bid request, then previous auction info data will be injected into the bidder's bid request of the new auction within the following path: `ortb2.ext.prebid.previousauctioninfo`.
+1. During the next Prebid.js auction, if a bidder is included in previousAuctionInfo.bidders AND is included in the auction, then previous auction info data will be injected into the bidder's bid request of the new auction within the following path: `ortb2.ext.prebid.previousauctioninfo`.
 
 ## Configuration Options
 
