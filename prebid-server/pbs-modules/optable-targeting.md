@@ -17,7 +17,7 @@ Optable module operates using a DCN backend API. Please contact your account man
 
 ## Overview
 
-The optable-targeting module enriches an incoming OpenRTB request by adding to the `user.ext.eids` and `user.ext.data`
+The optable-targeting module enriches an incoming OpenRTB request by adding to the `user.eids` and `user.data`
 objects. Under the hood the module extracts PPIDs (publisher provided IDs) from the incoming request's `user.ext.eids`,
 and also if present sha256-hashed email, sha256-hashed phone, zip or Optable Visitor ID provided correspondingly in the
 `user.ext.optable.email`, `.phone`, `.zip`, `.vid` fields (a full list of IDs is given in a table below). These IDs are
@@ -30,7 +30,7 @@ Targeting API endpoint is configurable per publisher.
 
 This module runs at two stages:
 
-* Processed Auction Request: to enrich `user.ext.eids` and `user.ext.data`.
+* Processed Auction Request: to enrich `user.eids` and `user.data`.
 * Auction Response: to inject ad server targeting.
 
 We recommend defining the execution plan in the account config so the module is only invoked for specific accounts. See
@@ -299,7 +299,7 @@ curl http://localhost:8080/openrtb2/auction --data @extra/modules/optable-target
 ```
 
 {:start="5"}
-5. Observe the `user.ext.eids` and `user.ext.data` objects enriched.
+5. Observe the `user.eids` and `user.data` objects enriched.
 
 ## Maintainer contacts
 
