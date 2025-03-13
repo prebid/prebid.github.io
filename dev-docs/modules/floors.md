@@ -62,7 +62,7 @@ Notes:
 
 Some publishers just want to set a simple static floor. Please don't use this module for that. This module should only be used when you need to vary the floor by mediatype, size, etc. Here's how you can set static floors on each Prebid adunit:
 
-```json
+```javascript
 pbjs.addAdUnits({
     code: "test-div",
     mediaTypes: {
