@@ -40,6 +40,7 @@ The TCF Control Module adds the following:
 The following table details the Prebid.js activities that fall under the [Transparency and Consent Framework (TCF)](https://iabeurope.eu/iab-europe-transparency-consent-framework-policies/) scope:
 
 {: .table .table-bordered .table-striped }
+
 | In-Scope Activity | TCF Legal Basis Required | Activity | Prebid.js Version |
 | --- | --- | --- | --- |
 | Invoke usersync pixels | Purpose 1 - Store and/or access information on a device | May prevent one or more vendor usersyncs. | 3.14+ |
@@ -67,6 +68,7 @@ and (2) setConfig `consentManagement.gdpr.cmpApi` to either 'iab' or 'static'
 The following fields related to anonymizing aspects of the auction are supported in the [`consentManagement`](/dev-docs/modules/consentManagementTcf.html) object:
 
 {: .table .table-bordered .table-striped }
+
 | Param | Type | Description | Example |
 | --- | --- | --- | --- |
 | gdpr.rules | `Array of Objects` | Lets the publisher override the default behavior. | |
@@ -98,8 +100,7 @@ pbjs.setConfig({
 The following examples cover a range of use cases and show how Prebid.js supports
 configuration of different business rules.
 
-{: .alert.alert-warning :}
-Prebid.org recommends working with a privacy lawyer before making enforcement exceptions for any vendor.
+{% include dev-docs/vendor-exception.md %}
 
 1. Restrict device access activity and basic ads. These are the default values (in Prebid.js 4.0) if the module is included in the build.
 
