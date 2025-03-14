@@ -1152,9 +1152,9 @@ pbjs.setConfig({
 
 When `useLocal` is set to true, the remote cache URL endpoint is never called. However, existing GAM creatives configured with a VAST ad tag URL, such as:
 
-```
+``
 https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%
-```
+``
 
 will continue to function correctly. `hb_uuid` is set to locally assigned blob UUID. If the bid wins the GAM auction and it's `videoCacheKey` (`hb_uuid`) is included in a GAM wrapper VAST XML, Prebid will update the VAST ad tag URL with the locally cached blob URL after receiving a response from Google Ad Manager.
 
