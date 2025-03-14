@@ -14,6 +14,9 @@ coppa_supported: true
 ortb_blocking_supported: partial
 sidebarType: 1
 gpp_supported: true
+pbs: true
+pbs_app_supported: false
+floors_supported: true
 ---
 
 ### Note
@@ -21,7 +24,7 @@ gpp_supported: true
 Please reach out to your seedtag account team before using this plugin.  
 The publisher id 0000-0000-01 returns demo responses.
 
-### Bid Params
+### Bid Params (pbjs)
 
 {: .table .table-bordered .table-striped }
 
@@ -30,6 +33,14 @@ The publisher id 0000-0000-01 returns demo responses.
 | `publisherId`     | required            | The publisher id.                                                              | 0000-0000-01          | `string` |
 | `adUnitId`        | required            | The adunit id.                                                                 | 00000                 | `string` |
 | `placement`       | required            | Adunit placement, posibles values: inScreen, inArticle                         | inScreen              | `string` |
+
+### Bid Params (pbs)
+
+{: .table .table-bordered .table-striped }
+
+| Name              | Scope               | Description                                                                    | Example               | Type     |
+|-------------------|---------------------|--------------------------------------------------------------------------------|-----------------------|----------|
+| `adUnitId`        | required            | The adunit id.                                                                 | 00000                 | `string` |
 
 ### InScreen example
 
