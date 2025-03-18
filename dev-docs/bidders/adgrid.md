@@ -34,7 +34,7 @@ The AdGrid Bidding Adapter requires setup and approval before beginning. Please 
 | Name       | Scope    | Description  | Example | Type      |
 |------------|----------|--------------|---------|-----------|
 | `domainId` | required | Publisher Id | `30164` | `integer` |
-| `placement`| optional | Placement    | `leaderboard` | `string` |
+| `placement`| optional | Placement    | `test`  | `string`  |
 
 ### Test Parameters
 
