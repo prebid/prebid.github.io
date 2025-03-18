@@ -92,4 +92,4 @@ ortb2: {
 | ortb2.ext.prebid.previousauctioninfo[].bidderCurrency | string | The bidder currency submitted by the bidder receiving the previous auction info payload | null |
 | ortb2.ext.prebid.previousauctioninfo[].bidderOriginalCurrency | string | The original bidder currency submitted by the bidder receiving the previous auction info payload | null |
 | ortb2.ext.prebid.previousauctioninfo[].bidderErrorCode | integer | Whether an error was present or not | null |
-| ortb2.ext.prebid.previousauctioninfo[].timestamp | integer | Time that the previous auction info payload was collected |
+| ortb2.ext.prebid.previousauctioninfo[].timestamp | integer | Time that the previous auction info payload was collected |  |
