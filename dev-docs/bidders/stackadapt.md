@@ -42,7 +42,6 @@ The following banner parameters are supported:
 |----------|----------|-----------------------------------|----------|------------------|
 | `expdir` | optional | Directions the banner may expand. | `[1, 3]` | `Array[integer]` |
 
-
 ### Banner
 
 #### `mediaTypes.banner` Parameters
