@@ -61,7 +61,7 @@ ortb2: {
           rendered: 1, // default is 0
           source: "pbjs",
           adUnitCode: "div-gpt-ad-123-0",
-          highestBidCpm: 0.052275935, // default is 0
+          highestBidCpm: 0.052275935, // default is null
           bidderCpm: 0.04, // default is null
           bidderOriginalCpm: 0.04, // default is null
           bidderCurrency: "USD", // default is null
@@ -74,3 +74,22 @@ ortb2: {
   }
 }
 ```
+
+## Description of Previous Auction Info Payload
+
+{: .table .table-bordered .table-striped }
+| Field | Type | Description | Default |
+|---|---|---|---|
+| ortb2.ext.prebid.previousauctioninfo | array |  |  |
+| ortb2.ext.prebid.previousauctioninfo[].bidderRequestId | string | ID of a previous bidder request |  |
+| ortb2.ext.prebid.previousauctioninfo[].bidId | string | ID of a previous bid request |  |
+| ortb2.ext.prebid.previousauctioninfo[].rendered | integer | Signifies if the relevant adunit bid on was rendered or not | 0 |
+| ortb2.ext.prebid.previousauctioninfo[].source | string | Where the previous auction info was collected |  |
+| ortb2.ext.prebid.previousauctioninfo[].adUnitCode | string | Ad unit code of the ad slot that was bid on |  |
+| ortb2.ext.prebid.previousauctioninfo[].highestBidCpm | float | The highest Prebid bid cpm observed for the relative ad slot of a previous auction | null |
+| ortb2.ext.prebid.previousauctioninfo[].bidderCpm | float | The bid cpm submitted by the bidder receiving the previous auction info payload | null |
+| ortb2.ext.prebid.previousauctioninfo[].bidderOriginalCpm | float | The original bid cpm submitted by the bidder receiving the previous auction info payload | null |
+| ortb2.ext.prebid.previousauctioninfo[].bidderCurrency | string | The bidder currency submitted by the bidder receiving the previous auction info payload | null |
+| ortb2.ext.prebid.previousauctioninfo[].bidderOriginalCurrency | string | The original bidder currency submitted by the bidder receiving the previous auction info payload | null |
+| ortb2.ext.prebid.previousauctioninfo[].bidderErrorCode | integer | Whether an error was present or not | null |
+| ortb2.ext.prebid.previousauctioninfo[].timestamp | integer | Time that the previous auction info payload was collected |
