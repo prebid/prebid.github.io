@@ -451,6 +451,14 @@
   subgroup: 4
 
 - sbSecId: 1
+  title: How to Add A User ID submodule
+  link: /dev-docs/userId-module.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 1
   title: How to Add a Prebid.js Video submodule
   link: /dev-docs/add-video-submodule.html
   isHeader: 0
