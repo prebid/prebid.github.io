@@ -320,27 +320,27 @@ The process of displaying the rewarded ad is the same as for displaying an Inter
 
 To be notified when a user earns a reward follow the [AdMob intructions](https://developers.google.com/admob/ios/rewarded#show_the_ad).
 
-##### Step 1: Create Request
+#### Step 1: Create Request
 {:.no_toc}
 
 This step is the same as for the original [AdMob integration](https://developers.google.com/admob/ios/rewarded). You don't have to make any modifications here.
 
-##### Step 2: Create MediationRewardedAdUnit
+#### Step 2: Create MediationRewardedAdUnit
 {:.no_toc}
 
 The `AdMobMediationRewardedUtils` is a helper class, which performs certain utilty work for the `MediationRewardedAdUnit`, like passing the targeting keywords to the adapters.
 
-##### Step 3: Create MediationInterstitialAdUnit
+#### Step 3: Create MediationInterstitialAdUnit
 {:.no_toc}
 
 The `MediationRewardedAdUnit` is part of the Prebid mediation API. This class is responsible for making a bid request and providing a winning bid and targeting keywords to the adapters.  
 
-##### Step 4: Make bid request
+#### Step 4: Make bid request
 {:.no_toc}
 
 The `fetchDemand` method makes a bid request to the a Prebid server and provides a result in a completion handler.
 
-##### Step 5: Make an Ad Request
+#### Step 5: Make an Ad Request
 {:.no_toc}
 
 Make a regular AdMob's ad request. Everything else will be handled by GMA SDK and prebid adapters.
