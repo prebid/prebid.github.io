@@ -1891,8 +1891,9 @@ ext.prebid.biddercontrols: {
 
 Here's how this works:
 
-1. If the bid adapter YAML declares support of multiformat, then `prefmtype` is ignored in the request. The default value of multiformat supported is `true`.
+1. If the bid adapter YAML declares support of multiformat as `true`, then `prefmtype` is ignored in the request. The default value of multiformat supported is `false`.
 1. If the bidder declares that they don't support multiformat and the incoming request contains multiple formats, then one of the formats is chosen by either `$.ext.prebid.biddercontrols.BIDDER.prefmtype` or config `auction.preferredmediatype.BIDDER`
+1. If multiformat-supported is false, and if the specified prefmtype is not part of the request, then the imp doesn't go out to the bidder.
 
 #### OpenRTB Response Extensions
 
