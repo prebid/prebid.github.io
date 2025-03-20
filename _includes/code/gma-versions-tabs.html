@@ -1,0 +1,61 @@
+<ul class="nav nav-tabs" role="tablist">
+  <!-- GMA SDK v12 Tab -->
+  <li class="nav-item ui-tab" role="presentation">
+    <button
+      class="nav-link active"
+      id="{{ include.id }}-gma12-tab"
+      data-toggle="tab"
+      data-target="#{{ include.id }}-gma12"
+      type="button"
+      role="tab"
+      aria-controls="gma12"
+      aria-selected="true"
+    >
+      GMA SDK v12
+    </button>
+  </li>
+  <!-- GMA SDK v11 Tab -->
+  <li class="nav-item ui-tab" role="presentation">
+    <button
+      class="nav-link"
+      id="{{ include.id }}-gma11-tab"
+      data-toggle="tab"
+      data-target="#{{ include.id }}-gma11"
+      type="button"
+      role="tab"
+      aria-controls="gma11"
+      aria-selected="false"
+    >
+      GMA SDK v11
+    </button>
+  </li>
+</ul>
+
+<div class="tab-content" id="gma-sdk-tab-content">
+  <!-- GMA SDK v12 Content -->
+  <div
+    class="tab-pane fade show active"
+    id="{{ include.id }}-gma12"
+    role="tabpanel"
+    aria-labelledby="{{ include.id }}-gma12-tab"
+  >
+    <div class="highlight">
+      <pre
+        class="highlight language-swift"
+      ><code class="language-swift">{{ include.gma12 | xml_escape }}</code></pre>
+    </div>
+  </div>
+  <!-- GMA SDK v11 Content -->
+  <div
+    class="tab-pane fade"
+    id="{{ include.id }}-gma11"
+    role="tabpanel"
+    aria-labelledby="{{ include.id }}-gma11-tab"
+  >
+    <div class="highlight">
+      <pre
+        class="highlight language-swift"
+      ><code class="language-swift">{{ include.gma11 | xml_escape }}</code></pre>
+    </div>
+  </div>
+</div>

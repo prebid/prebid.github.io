@@ -1,10 +1,10 @@
 ---
 layout: bidder
-title: Easybid
-description: Prebid Easybid Bidder Adapter
+title: Prismassp
+description: Prebid Prismassp Bidder Adapter
 pbjs: true
-biddercode: easybid
-gvl_id: 1068
+biddercode: prismassp
+gvl_id: 965
 tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
@@ -27,7 +27,7 @@ multiformat_supported: will-bid-on-any
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                | Example                                   | Type      |
 |---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | required | tag ID                     | `"testeasy"`                              | `string`  |
+| `tagId`       | required | tag ID                     | `"testpris"`                              | `string`  |
 
 ### First Party Data
 
@@ -52,9 +52,9 @@ var adUnits = [
         }
       },
       bids: [{
-         bidder: 'easybid',
+         bidder: 'prismassp',
          params: {
-            tagId: 'testeasy'
+            tagId: 'testpris'
          }
        }]
    },
@@ -68,9 +68,9 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'easybid',
+            bidder: 'prismassp',
             params: {
-               tagId: 'testeasy'
+               tagId: 'testpris'
             }
         }]
     },
@@ -91,9 +91,9 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'easybid',
+            bidder: 'prismassp',
             params: {
-               tagId: 'testeasy'
+               tagId: 'testpris'
             }
         }]
     },
@@ -110,10 +110,10 @@ var adUnits = [
             }
         },
         bids: [{
-            bidder: 'easybid',
+            bidder: 'prismassp',
             params: {
-               tagId: 'testeasy',
-               videoTagId: 'testeasy'
+               tagId: 'testpris',
+               videoTagId: 'testpris'
             }
         }]
     };

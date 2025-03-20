@@ -8,6 +8,8 @@ nav_section: prebid-mobile-ios
 sidebarType: 2
 ---
 
+<!-- markdownlint-disable-file MD046 -->
+
 # Prebid SDK Integration for iOS
 {:.no_toc}
 
@@ -123,8 +125,24 @@ Once you set the account ID and the Prebid Server host, you should initialize th
 
 If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10.7.0, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app:
 
-```swift
-Prebid.initializeSDK(gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
+{% capture gma12 %}Prebid.initializeSDK(gadMobileAdsVersion: string(for: MobileAds.shared.versionNumber)) { status, error in
+    switch status {
+    case .succeeded:
+        print("Prebid SDK successfully initialized")
+    case .failed:
+        if let error = error {
+            print("An error occurred during Prebid SDK initialization: \(error.localizedDescription)")
+        }
+    case .serverStatusWarning:
+        if let error = error {
+            print("Prebid Server status checking failed: \(error.localizedDescription)")
+        }
+    default:
+        break
+    }            
+}   
+{% endcapture %}
+{% capture gma11 %}Prebid.initializeSDK(gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
     switch status {
     case .succeeded:
         print("Prebid SDK successfully initialized")
@@ -140,7 +158,9 @@ Prebid.initializeSDK(gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobil
         break
     }            
 }            
-```
+{% endcapture %}
+
+{% include code/gma-versions-tabs.html id="pbm-init" gma11=gma11 gma12=gma12 %}
 
 If you integrate Prebid Mobile with GMA SDK with version lower than 10.7.0, use the following initializer:
 
