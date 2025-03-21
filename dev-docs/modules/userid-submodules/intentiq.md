@@ -48,6 +48,7 @@ Please find below list of parameters that could be used in configuring Intent IQ
 | params.domainName              | Optional | String   | Specifies the domain of the page in which the IntentIQ object is currently running and serving the impression. This domain will be used later in the revenue reporting breakdown by domain. For example, cnn.com. It identifies the primary source of requests to the IntentIQ servers, even within nested web pages.                     | `"currentDomain.com"`                         |
 | params.gamObjectReference      | Optional | Object   | This is a reference to the Google Ad Manager (GAM) object, which will be used to set targeting. If this parameter is not provided, the group reporting will not be configured.                                                                                                                                                                  | `googletag`                           |
 | params.gamParameterName        | Optional | String   | The name of the targeting parameter that will be used to pass the group. If not specified, the default value is `intent_iq_group`.                                                                                                                                                                                                        | `"intent_iq_group"`                           |
+| params.adUnitConfig             | Optional | Number   | Determines how the `placementId` parameter is extracted in the report (default is 1). Possible values: 1 – adUnitCode first, 2 – placementId first, 3 – only adUnitCode, 4 – only placementId                                                                                                                                               | `1`                                           |
 
 ### Configuration example
 
@@ -60,11 +61,12 @@ pbjs.setConfig({
                 partner: 123456,     // valid partner id
                 timeoutInMillis: 500,
                 browserBlackList: "chrome",
-                callback: (data, group) => window.pbjs.requestBids(),
+                callback: (data, group) => {...}, // your logic here
                 manualWinReportEnabled: true,
                 domainName: "currentDomain.com",
                 gamObjectReference: googletag,
-                gamParameterName: "intent_iq_group"
+                gamParameterName: "intent_iq_group",
+                adUnitConfig: 1 // Extracting placementId strategy (adUnitCode or placementId order of priorities)
             },
             storage: {
                 type: "html5",
