@@ -708,6 +708,7 @@ The `targetingControls` object passed to `pbjs.setConfig` provides some options 
 | allowTargetingKeys | Array of Strings | Selects supported default targeting keys. |
 | addTargetingKeys   | Array of Strings | Selects targeting keys to be supported in addition to the default ones |
 | allowSendAllBidsTargetingKeys | Array of Strings | Selects supported default targeting keys. |
+| allBidsCustomTargeting | boolean | Set to true to prevent custom targeting values from being set for non-winning bids |
 
 {: .alert.alert-info :}
 Note that this feature overlaps and can be used in conjunction with [sendBidsControl.bidLimit](#setConfig-Send-Bids-Control).
@@ -903,6 +904,11 @@ config.setConfig({
   },
 });
 ```
+
+#### Details on the allBidsCustomTargeting setting
+{: .no_toc}
+
+By default, non winning bids will have custom tageting values concatenated to the winning bid's custom targeting for the same key.  The `allBidsCustomTargeting` setting is a boolean that, when set to `false`, prevents custom targeting values from being set for non-winning bids. This can be useful if you want to ensure that only the winning bid has custom targeting values set.  
 
 <a name="setConfig-Configure-Responsive-Ads"></a>
 
