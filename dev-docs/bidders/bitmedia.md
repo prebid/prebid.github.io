@@ -93,6 +93,8 @@ The HTML file below can be used to test the integration of the Bitmedia Bid Adap
 
 ### Simple Test HTML
 
+{% include dev-docs/storageAllowed.md %}
+
 ```html
 <!--
   This page runs an auction for 2 adunits, simply displaying the results

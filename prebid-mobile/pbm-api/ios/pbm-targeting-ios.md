@@ -63,6 +63,7 @@ Prebid.shared.customStatusEndpoint="https://pbs.example.com/v2/status"
 | impClickbrowserType | optional | enum | ORTB | Indicates the type of browser opened upon clicking the creative in an app. This corresponds to the OpenRTB imp.clickbrowser field. Values are "embedded" and "native". Default is "native". | "native". |
 | includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 | includeBidderKeys | optional | boolean | ORTB | If `true`, Prebid sdk will add `includebidderkeys` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
+| eventDelegate | optional | PrebidEventDelegate | init | Sets an event delegate to handle all auction requests and responses. It allows to collect some statistical data. Note that the SDK stores this callback as a weak reference so you need to store a reference to it. | `class PrebidEventDelegateTestsMockDelegate: PrebidEventDelegate { func prebidBidRequestDidFinish(requestData: Data?, responseData: Data?) { ... } }` |
 
 ### Prebid Class Global Methods
 
@@ -131,6 +132,77 @@ func clearCustomHeaders()
 Parameters: none
 
 ---
+
+## SDK Console Logging
+
+The `Log` class is designed to handle logging functionality for the SDK. It allows for categorized logging based on severity levels (e.g., error, warning, debug) and offers options for both console and file-based logging. It also provides the ability to set third-party logger.
+
+### `Log` Class Properties
+
+| Property     | Type      | Description                                                                                               |
+|--------------|-----------|-----------------------------------------------------------------------------------------------------------|
+| `logLevel`   | `LogLevel`| The current logging level. Only messages at this level or higher will be logged. Default: `.debug`         |
+| `logToFile`  | `Bool`    | Indicates whether logs should also be saved to a file. Default: `false`                                   |
+
+### `Log` Class Methods
+
+#### `setCustomLogger(_:)`
+Sets a custom logger to handle log messages.
+
+- **Parameters**: 
+  - `logger`: A custom object conforming to the `PrebidLogger` protocol.
+
+#### `serialWriteToLog(_:)`
+Writes a log message asynchronously to the log file.
+
+- **Parameters**: 
+  - `message`: The log message to be written to the file.
+
+#### `getLogFileAsString()`
+Reads the contents of the log file as a single string.
+
+- **Returns**: The contents of the log file, or `nil` if an error occurs.
+
+#### `clearLogFile()`
+Clears the contents of the log file.
+
+### `PrebidLogger` Protocol
+
+The `PrebidLogger` protocol defines the required methods for logging messages at various levels, such as error, info, debug, etc. This protocol allows for custom logging implementations.
+
+#### Methods
+
+- **`error(_:)`**
+  Logs an error message.
+  - **Parameters**: 
+    - `object`: The object or message to log.
+    - `filename`: The name of the file where the log was generated.
+    - `line`: The line number where the log was generated.
+    - `function`: The function name where the log was generated.
+
+- **`info(_:)`**
+  Logs an informational message.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`debug(_:)`**
+  Logs a debug message.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`verbose(_:)`**
+  Logs a verbose message for detailed or low-level information.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`warn(_:)`**
+  Logs a warning message.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`severe(_:)`**
+  Logs a severe error message, indicating a critical issue.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`whereAmI(_:)`**
+  Logs the current location in the code, useful for debugging.
+  - **Parameters**: Same as `error(_:)`.
 
 ## Consent Management Parameters
 
@@ -392,69 +464,47 @@ Any identity vendor's details in local storage will be sent to Prebid Server una
 {: .alert.alert-info :}
 Note that the phrase "EID" stands for "Extended IDs" in [OpenRTB 2.6](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md), but for historic reasons, Prebid SDK methods use the word "external" rather than "extended". Please consider the phrase "external ID" a synonym for "extended ID".
 
-### Storing IDs in a Property
+{% capture warning_note %}  
+Note that starting from `2.4.0`, the Prebid SDK no longer saves EIDs to permanent storage. As a result, all EIDs will be cleared after the application restarts.
 
-Prebid SDK supports passing an array of EIDs at auction time in the Prebid global field `externalUserIdArray`. Setting the `externalUserIdArray` object once per user session is sufficient unless one of the values changes.
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
+### Storing IDs 
+
+Prebid SDK supports passing an array of EIDs at auction time in the Prebid global field `externalUserIds`. Setting the `externalUserIds` object once per user session is sufficient unless one of the values changes.
 
 ```swift
-public var externalUserIdArray = [ExternalUserId]()
+Targeting.shared.setExternalUserIds()
 ```
 
 **Examples**
 
 ```swift
-// User Id from External Third Party Sources
-var externalUserIdArray = [ExternalUserId]()
-
-externalUserIdArray.append(ExternalUserId(source: "adserver.org", identifier: "111111111111", ext: ["rtiPartner" : "TDID"]))
-externalUserIdArray.append(ExternalUserId(source: "netid.de", identifier: "999888777"))
-externalUserIdArray.append(ExternalUserId(source: "criteo.com", identifier: "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N"))
-externalUserIdArray.append(ExternalUserId(source: "liveramp.com", identifier: "AjfowMv4ZHZQJFM8TpiUnYEyA81Vdgg"))
-externalUserIdArray.append(ExternalUserId(source: "sharedid.org", identifier: "111111111111", atype: 1))
-
-Prebid.shared.externalUserIdArray = externalUserIdArray
+let uniqueId1 = UserUniqueID(id: "111111111111", aType: 20, ext: ["rtiPartner": "TDID"])
+let uniqueId2 = UserUniqueID(id: "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", aType: 777)
+let fullUserId = ExternalUserId(source: "adserver.org", uids: [uniqueId1, uniqueId2])
+        
+Targeting.shared.setExternalUserIds([fullUserId])
 ```
 
-```kotlin
-setExternalUserIds(List<ExternalUserId> externalUserIds)
-```
+### Shared ID
 
-### Storing IDs in Local Storage
+The Shared ID is a randomly generated first-party identifier managed by Prebid. It remains the same throughout the current app session unless reset. If local storage access is permitted, the same ID may persist across multiple app sessions indefinitely. However, Shared ID values do not remain consistent across different apps on the same device.
 
-Prebid SDK provides a local storage interface to set, retrieve, or update an array of user IDs with associated identity vendor details. It will then retrieve and pass these User IDs to Prebid Server on each auction, even on the next user session.
-
-Prebid SDK Provides several functions to handle User ID details within the local storage:
+The SDK will include it in the `user.ext.eids` array during auction request if the publisher explicitly permits it:
 
 ```swift
-public func storeExternalUserId(_ externalUserId: ExternalUserId)
-
-public func fetchStoredExternalUserIds() -> [ExternalUserId]?
-
-public func fetchStoredExternalUserId(_ source : String) -> ExternalUserId?
-
-public func removeStoredExternalUserId(_ source : String)
-
-public func removeStoredExternalUserIds()
+Targeting.shared.sendSharedId = true
 ```
 
-**Examples**
+To remove the existing Shared ID value from local storage, the SDK offers the following method: 
 
 ```swift
-//Set External User ID
-Targeting.shared.storeExternalUserId(ExternalUserId(source: "sharedid.org", identifier: "111111111111", atype: 1))
-
-//Get External User ID
-let externalUserIdSharedId = Targeting.shared.fetchStoredExternalUserId("sharedid.org")
-
-//Get All External User IDs
-let externalUserIdsArray = Targeting.shared.fetchStoredExternalUserIds()
-
-//Remove External UserID
-Targeting.shared.removeStoredExternalUserId("sharedid.org")
-
-//Remove All External UserID
-Targeting.shared.removeStoredExternalUserIds()
+Targeting.shared.resetSharedId()
 ```
+
+Once cleared, the next time `Targeting.shared.sharedId` is accessed, a new, randomly generated Shared ID value will be created and returned.
 
 ### IDs that Require Additional SDKs
 
@@ -522,7 +572,7 @@ let globalORTB = """
         }
     },
     "displaymanager": "Google",
-    "displaymanagerver": "\(GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber))"
+    "displaymanagerver": "\(string(for: MobileAds.shared.versionNumber))"
 }
 """
 

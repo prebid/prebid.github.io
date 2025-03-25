@@ -303,6 +303,24 @@ Parameters:
 | --- | --- | --- | --- | --- |
 | logger | required | object | The PrebidLogger interface enables the app developer to define where the Prebid SDK should send log-level details about the header bidding transaction. | |
 
+#### setEventDelegate()
+
+Sets an event delegate to handle all auction requests and responses. It allows to collect some statistical data. 
+Note that the SDK stores this callback as a weak reference so you need to store a reference to it. 
+
+Signature:
+
+```java
+public static void setEventDelegate(@Nullable PrebidEventDelegate eventDelegate)
+```
+
+Parameters:
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| eventDelegate | required | PrebidEventDelegate | The callback for handling all requests and responses. This interface takes request and response as the JSONObject types. | `{ request, response -> ... }` |
+
 ---
 
 ## Consent Management Parameters
@@ -547,42 +565,53 @@ Any identity vendor's details in local storage will be sent to Prebid Server una
 {: .alert.alert-info :}
 Note that the phrase "EID" stands for "Extended IDs" in [OpenRTB 2.6](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md), but for historic reasons, Prebid SDK methods use the word "external" rather than "extended". Please consider the phrase "external ID" a synonym for "extended ID".
 
+{% capture warning_note %}  
+Note that starting from `2.4.0`, the Prebid SDK no longer saves EIDs to permanent storage. As a result, all EIDs will be cleared after the application restarts.
+
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
 ### Prebid SDK API Access
 
-Prebid SDK supports passing an array of EIDs at auction time with the function storeExternalUserId, which is globably scoped. It is sufficient to set the externalUserIdArray object once per user session, as these values would be used in all consecutive ad auctions in the same session.
+Prebid SDK supports passing an array of EIDs at auction time with the function `TargetingParams.setExternalUserIds()`, which is globally scoped. It is sufficient to set the `userIds` object once per user session, as these values would be used in all consecutive ad auctions in the same session.
 
-```kotlin
-void storeExternalUserId(<ExternalUserId> externalUserIds)
-
-List<ExternalUserId> fetchStoredExternalUserIds()
-
-ExternalUserId fetchStoredExternalUserId(@NonNull String source) 
-
-void removeStoredExternalUserId(@NonNull String source) {
-
-void clearStoredExternalUserIds() {
+```java
+public static void setExternalUserIds(@Nullable List<ExternalUserId> userIds)
 ```
 
 Example:
 
-```kotlin
-  // User Id from External Third Party Sources
-  ArrayList<ExternalUserId> externalUserIdArray = new ArrayList<>();
-  externalUserIdArray.add(new ExternalUserId("adserver.org", "111111111111", null, new HashMap() {
-    {
-        put ("rtiPartner", "TDID");
-    }
-}));
+```java
+ArrayList<ExternalUserId> userIds = new ArrayList<>();
 
-  externalUserIdArray.add(new ExternalUserId("netid.de", "999888777", null, null));
-  externalUserIdArray.add(new ExternalUserId("criteo.com", "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", null, null));
-  externalUserIdArray.add(new ExternalUserId("liveramp.com", "AjfowMv4ZHZQJFM8TpiUnYEyA81Vdgg", null, null));
-  externalUserIdArray.add(new ExternalUserId("sharedid.org", "111111111111", 1, null));
-}));
+ExternalUserId.UniqueId uniqueId1 = new ExternalUserId.UniqueId("111111111111", 20);
+uniqueId1.setExt(new HashMap<String, Object>() {% raw %}{{
+    put("rtiPartner", "TDID");
+}});{% endraw %}
+ExternalUserId.UniqueId uniqueId2 = new ExternalUserId.UniqueId("_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", 777);
+ExternalUserId fullUserId = new ExternalUserId("adserver.org", List.of(uniqueId1, uniqueId2));
+userIds.add(fullUserId);
 
-//Set External User IDs
-PrebidMobile.storeExternalUserId(externalUserIdArray);
+TargetingParams.setExternalUserIds(userIds);
 ```
+
+### Shared ID
+
+The Shared ID is a randomly generated first-party identifier managed by Prebid. It remains the same throughout the current app session unless reset. If local storage access is permitted, the same ID may persist across multiple app sessions indefinitely. However, Shared ID values do not remain consistent across different apps on the same device.
+
+The SDK will include it in the `user.ext.eids` array during auction request if the publisher explicitly permits it:
+
+```kotlin
+TargetingParams.setSendSharedId(true);
+```
+
+To remove the existing Shared ID value from local storage, the SDK offers the following method: 
+
+```kotlin
+TargetingParams.resetSharedId()
+```
+
+Once cleared, the next time `TargetingParams.getSharedId()` is called, a new, randomly generated Shared ID value will be created and returned.
 
 ### IDs that Require Additional SDKs
 
