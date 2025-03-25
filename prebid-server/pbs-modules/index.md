@@ -225,9 +225,9 @@ PBS-Java 3.16 introduced a new A/B testing framework that applies to any module.
                     ...
                  }
             }
-        ]
-     ]
-]
+        }
+     }
+}
 ```
 
 These are the parameters accepted within the `abtests` object:
