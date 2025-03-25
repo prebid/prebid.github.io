@@ -8,19 +8,19 @@ dsa_supported: true
 gvl_id: 45
 usp_supported: true
 coppa_supported: true
-gpp_sids: tcfeu, usp
+gpp_sids: tcfca, tcfeu, usnat, usstate_all, usp
 schain_supported: true
 dchain_support: false
 userIds: all
-media_types: banner
+media_types: banner, video, native
 safeframes_ok: true
 deals_supported: false
 floors_supported: true
-fpd_supported: false
+fpd_supported: true
 pbjs: true
-pbs: true
+pbs: false
 prebid_member: false
-multiformat_supported: will-bid-on-one
+multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
 privacy_sandbox: no
 sidebarType: 1
