@@ -91,3 +91,61 @@ adUnit.activatePrebidAdViewImpressionTracker(adView: gamBanner)
 ```
 
 **NOTE**: The SDK support only `seatbid[].bid[].burl` as impression tracking URL for now.
+
+### SKAdNetwork 
+
+The SDK supports two SKAdNetwork methods for ad networks to deliver ads in a bidding-only scenario, specifically for **banner** and **native** ad formats:
+
+- view-through ads;
+- StoreKit-rendered ads.
+
+Both methods are automatically enabled for **native** ads, with no additional configuration required. The support of view-through ads is also automatically enabled for **banner** ad format. However, in order to activate StoreKit-rendered ads flow, it is required to call a respective method: 
+
+`BannerAdUnit`:
+
+```swift
+let gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(AD_SIZE))
+adUnit.activatePrebidSKAdNetworkStoreKitAdsFlow(adView: gamBanner)
+```
+
+`InterstitialAdUnit`:
+
+```swift
+adUnit.activatePrebidSKAdNetworkStoreKitAdsFlow()
+```
+
+`PrebidAdUnit`:
+
+```swift
+let adUnit = PrebidAdUnit(configId: CONFIG_ID)
+
+// Use this method for intersitials
+adUnit.activatePrebidInterstitialSKAdNetworkStoreKitAdsFlow()
+
+// Use this method for banners
+let gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(AD_SIZE))
+adUnit.activatePrebidBannerSKAdNetworkStoreKitAdsFlow(adView: gamBanner)
+```
+
+#### SKOverlay
+
+The SDK also provides support of SKOverlay for intestitials. In order to activate it, set `supportSKOverlay` to `true`:
+
+```swift
+adUnit.supportSKOverlay = true
+```
+
+You should also call the method below when you are about to show the ad: 
+
+```swift
+// Present SKOverlay if available
+adUnit.activateSKOverlayIfAvailable()
+// Present the interstitial
+gamInterstitial.present(from: controller)
+```
+
+In order to dismiss SKOverlay, use the method below:
+
+```swift
+adUnit.dismissSKOverlayIfAvailable()
+```
