@@ -96,10 +96,10 @@ adUnit.activatePrebidAdViewImpressionTracker(adView: gamBanner)
 
 The SDK supports two SKAdNetwork methods for ad networks to deliver ads in a bidding-only scenario, specifically for **banner** and **native** ad formats:
 
-- view-through ads;
+- View-through ads;
 - StoreKit-rendered ads.
 
-Both methods are automatically enabled for **native** ads, with no additional configuration required. The support of view-through ads is also automatically enabled for **banner** ad format. However, in order to activate StoreKit-rendered ads flow, it is required to call a respective method: 
+Both methods are automatically enabled for **native** ad format, with no additional configuration required. The support of view-through ads is also automatically enabled for **banner** ad format. However, in order to activate StoreKit-rendered ads flow, it is required to call a respective method: 
 
 `BannerAdUnit`:
 
