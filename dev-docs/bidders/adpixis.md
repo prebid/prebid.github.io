@@ -3,7 +3,7 @@ layout: bidder
 title: AdPixis
 description: Prebid AdPixis Bidder Adaptor
 biddercode: adpixis
-pbjs: false
+pbjs: true
 pbs: true
 media_types: video, banner
 userIds: all
