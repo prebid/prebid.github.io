@@ -38,7 +38,7 @@ This requires setup on the NewsPassID provider's end before beginning. Don't hes
 
 ### Integration
 
-1. (Recommended) Add your NewsPassID accountId to the Prebid.js bidder config before users syncs and initial ads are requested:
+#### Step 1: Add your NewsPassID accountId to the Prebid.js bidder config before users syncs and initial ads are requested (Recommended)
 
 ```javascript
 window.pbjs = window.pbjs || { que: [] };
@@ -52,7 +52,7 @@ window.pbjs.que.push(function() {
 });
 ```
 
-2. Add the `newspassid` bidder and params to your ad unit(s)
+#### Step 2: Add the `newspassid` bidder and params to your ad unit(s)
 
 ```javascript
 const adUnits = [
