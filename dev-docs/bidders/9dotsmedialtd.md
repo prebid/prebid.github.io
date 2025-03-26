@@ -3,7 +3,7 @@ layout: bidder
 title: 9dots media LTD
 description: Prebid 9dots media LTD Bidder Adaptor
 biddercode: 9dotsmedialtd
-pbjs: false
+pbjs: true
 pbs: true
 media_types: video, banner
 userIds: all
