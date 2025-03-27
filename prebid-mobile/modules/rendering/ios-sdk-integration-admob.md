@@ -235,7 +235,9 @@ Make a regular AdMob's ad request. Everything else will be handled by GMA SDK an
 
 Once you receive the ad it will be ready for display. Follow the [AdMob instructions](https://developers.google.com/admob/ios/interstitial#swift) for displaying an ad.
 
-### Rewarded Video
+### Rewarded
+
+{% include mobile/rewarded-server-side-configuration.md %}
 
 **Integration example(Swift)**:
 
