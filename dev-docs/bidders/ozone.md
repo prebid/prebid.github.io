@@ -81,6 +81,29 @@ Cloudflare’s __cf_bm cookie is used to identify and mitigate automated traffic
 AWSALBG & AWSALBGTCORS:
 When Amazon Web Services' load balancer receives a request, it routes the request to a target server based on a predetermined algorithm. The AWSALBG cookie encodes and encrypts information about the selected target server and is set with a fixed expiry of 7 days. For browsers that require cookies with SameSite=None; Secure attributes to support CORS, the AWSALBGTCORS cookie is generated alongside AWSALBG, containing the same target information with the necessary security attributes.
 ```
+To require purpose one consent for Ozone, one could include the following
+
+```javascript
+pbjs.setConfig({
+    allowActivities: {
+        fetchBids: {
+            rules: [
+                {
+                    condition({componentType, adapterCode, gdprConsent}) {
+                        return (
+                            componentType === 'bidder' &&
+                            adapterCode === 'ozone' &&
+                            gdprConsent?.gdprApplies &&
+                            !gdprConsent?.vendorData?.purpose?.consents?.[1]
+                        )
+                    },
+                    allow: false
+                }
+            ]
+        }
+    }
+})
+```
 
 ### Test Parameters
 
