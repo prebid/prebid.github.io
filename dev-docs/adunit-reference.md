@@ -337,17 +337,17 @@ Here are commonly used properties from the bid object that can be accessed in th
 
 ## Examples
 
-- [Banner](#adUnit-banner-example)
-- [Video](#adUnit-video-example)
-  - [With the Video Module](#adUnit-video-module-example)
-  - [Instream Sound-On](#adUnit-video-example-instream)
-  - [Accompanying Content](#adUnit-video-example-accompanying)
-  - [No Content/Standalone](#adUnit-video-example-outstream)
-  - [Adpod (Long-Form)](#adUnit-video-example-adpod)
-- [Native](#adUnit-native-example)
-- [Multi-Format](#adUnit-multi-format-example)
-- [Twin Codes](#adUnit-twin-codes-example)
-- [First Party Data](#adUnit-fpd-example)
+* [Banner](#adUnit-banner-example)
+* [Video](#adUnit-video-example)
+  * [With the Video Module](#adUnit-video-module-example)
+  * [Instream Sound-On](#adUnit-video-example-instream)
+  * [Accompanying Content](#adUnit-video-example-accompanying)
+  * [No Content/Standalone](#adUnit-video-example-outstream)
+  * [Adpod (Long-Form)](#adUnit-video-example-adpod)
+* [Native](#adUnit-native-example)
+* [Multi-Format](#adUnit-multi-format-example)
+* [Twin Codes](#adUnit-twin-codes-example)
+* [First Party Data](#adUnit-fpd-example)
 
 <a name="adUnit-banner-example"></a>
 
@@ -736,8 +736,8 @@ pbjs.addAdUnits([
 It's ok to have multiple AdUnits with the same `code`. This can be useful in scenarios
 where bidders have different capabilities for the same spot on the page. e.g.
 
-- BidderA should receive both media types, while BidderB gets only one
-- BidderA gets one size while BidderB gets another
+* BidderA should receive both media types, while BidderB gets only one
+* BidderA gets one size while BidderB gets another
 
 In this example, bidderA gets both banner and outstream, while bidderB gets only banner.
 
@@ -800,17 +800,6 @@ pbjs.addAdUnits({
     banner: {
       sizes: [[300, 250]],
     },
-<<<<<<< Updated upstream
-    ortb2Imp: {
-        bidfloor: 1.00,
-        bidfloorcur: "EUR",
-        ext: {
-            data: {
-                    pbadslot: "homepage-top-rect",
-                    adUnitSpecificContextAttribute: "123"
-            }
-        }
-=======
   },
   ortb2Imp: {
     ext: {
@@ -818,7 +807,6 @@ pbjs.addAdUnits({
         pbadslot: "homepage-top-rect",
         adUnitSpecificContextAttribute: "123",
       },
->>>>>>> Stashed changes
     },
   },
   // ...
@@ -920,14 +908,14 @@ pbjs.addAdUnits({
 
 ## Related Topics
 
-- [Publisher API Reference](/dev-docs/publisher-api-reference)
-- [Conditional Ad Units][conditionalAds]
-- [Show Native Ads](/prebid/native-implementation.html)
-- [Show Video Ads](/dev-docs/show-video-with-a-dfp-video-tag.html)
-- [Show Outstream Video Ads](/dev-docs/show-outstream-video-ads.html)
-- [Show Long-Form Video Ads](/prebid-video/video-long-form.html)
-- [Prebid.org Video Examples](/examples/video/)
-- [Prebid.org Native Examples](/dev-docs//examples/native-ad-example.html)
+* [Publisher API Reference](/dev-docs/publisher-api-reference)
+* [Conditional Ad Units][conditionalAds]
+* [Show Native Ads](/prebid/native-implementation.html)
+* [Show Video Ads](/dev-docs/show-video-with-a-dfp-video-tag.html)
+* [Show Outstream Video Ads](/dev-docs/show-outstream-video-ads.html)
+* [Show Long-Form Video Ads](/prebid-video/video-long-form.html)
+* [Prebid.org Video Examples](/examples/video/)
+* [Prebid.org Native Examples](/dev-docs//examples/native-ad-example.html)
 
 <!-- Reference Links -->
 
