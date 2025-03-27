@@ -33,8 +33,8 @@ This requires setup on the NewsPassID provider's end before beginning. Don't hes
 
 | Name      | Scope    | Description               | Example    | Type     |
 |-----------|----------|---------------------------|------------|----------|
-| `groupId`    | required | The ad placement group ID.             | `"test-group1"` | `string` |
-| `accountId`    | optional | The NPID provided account ID.  | `"123456"` | `string` |
+| `publisherId`    | required | The publisher ID in the NewsPassID backend.  | `"test-publisher"` | `string` |
+| `placementId`    | required | The placement ID in the NewsPassID backend.             | `"test-group1"` | `string` |
 
 ### Integration
 
@@ -43,10 +43,9 @@ This requires setup on the NewsPassID provider's end before beginning. Don't hes
 ```javascript
 window.pbjs = window.pbjs || { que: [] };
 window.pbjs.que.push(function() {
-  window.pbjs.setBidderConfig({
-    bidders: ['newspassid'],
-    config: {
-      accountId: 'YOUR_ACCOUNT_ID_GOES_HERE',
+  window.pbjs.setConfig({
+    newspassid: {
+      publisherId: 'test-publisher'
     }
   });
 });
@@ -67,8 +66,8 @@ const adUnits = [
       {
         bidder: 'newspassid',
         params: {
-            accountId: '123456', /* an ID to identify the publisher account  - required if you skip step 1 */
-            groupId: 'test-group1', /* An ID used to identify the ad placement configuration within a publisher account - required */                          
+            publisherId: 'test-publisher', /* an ID to identify the publisher account  - required if you skip step 1 */
+            placementId: 'test-group1' /* An ID used to identify the ad placement configuration within a publisher account - required */                          
         }
       }
     ]
@@ -76,4 +75,4 @@ const adUnits = [
 ];
 ```
 
-The `accountId` and `groupId` are the only params needed for all media types we support. These values are setup by the LMC partnership before you begin.
+The `publisherId` and `placementId` are the only params needed for all media types we support. These values are setup by the LMC partnership before you begin.
