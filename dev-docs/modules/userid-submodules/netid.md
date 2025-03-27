@@ -3,6 +3,9 @@ layout: userid
 title: netID
 description: netID User ID sub-module
 useridmodule: netIdSystem
+bidRequestUserId: netId
+eidsource: netid.de
+example: '"fH5A..."'
 ---
 
 

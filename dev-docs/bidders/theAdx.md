@@ -5,7 +5,8 @@ description: Prebid TheAdx Bidder Adapter
 pbs: true
 pbs_app_supported: true
 pbjs: true
-biddercode: theAdx
+biddercode: theadx
+filename: theAdxBidAdapter
 tcfeu_supported: true
 usp_supported: true
 schain_supported: true
@@ -28,7 +29,7 @@ sidebarType: 1
 {: .table .table-bordered .table-striped }
 | Name        | Scope    | Description                                                           | Example    | Type  |
 |-------------|----------|-----------------------------------------------------------------------|------------|-------|
-| `pid`     | required | Publisher  GUID from TheAdx.com                                         | `'1000'`   | `int` |
-| `wid`     | required | Web Site ID from TheAdx.com                                             | `'2000'`   | `int` |
-| `tagId`   | required | Tag ID from TheAdx.com                                                  | `'3000'`   | `int` |
+| `pid`     | required | Publisher  GUID from theadx.com                                         | `'1000'`   | `int` |
+| `wid`     | required | Web Site ID from theadx.com                                             | `'2000'`   | `int` |
+| `tagId`   | required | Tag ID from theadx.com                                                  | `'3000'`   | `int` |
 |           |          |                                                                          |          |        |
