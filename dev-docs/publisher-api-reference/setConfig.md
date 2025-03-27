@@ -1047,20 +1047,23 @@ pbjs.setConfig({
 
 ### Client-side Caching of VAST XML
 
-When serving video ads, VAST XML creatives must be cached on the network so the
+When serving video ads, VAST XML creatives must be cached so the
 video player can retrieve them when it's ready. Players don't obtain the VAST XML from
 the JavaScript DOM in Prebid.js, but rather expect to be given a URL where it can
-be retrieved. There are two different flows possible with Prebid.js around VAST XML caching:
+be retrieved. There are three different flows possible with Prebid.js around VAST XML caching:
 
 * Server-side caching:  
   Some video bidders (e.g. Rubicon Project) always cache the VAST XML on their servers as part of the bid. They provide a 'videoCacheKey', which is used in conjunction with the VAST URL in the ad server to retrieve the correct VAST XML when needed. In this case, Prebid.js has nothing else to do. As of Prebid.js 4.28, a publisher may specify the `ignoreBidderCacheKey` flag to re-cache these bids somewhere else using a VAST wrapper.
 * Client-side caching:  
   Video bidders that don't cache on their servers return the entire VAST XML body. In this scenario, Prebid.js needs to copy the VAST XML to a publisher-defined cache location on the network. Prebid.js POSTs the VAST XML to the named Prebid Cache URL. It then sets the 'videoCacheKey' to the key that's returned in the response.
+* Local client-side caching (Blob URL):
+  To reduce network traffic to the publisher-defined remote cache location, Prebid allows publishers to locally store the VAST XML of a bid as a blob in the browser's memory. When the `cache.useLocal` option is enabled, Prebid sets the bid’s `videoCacheKey` to the key assigned to the locally stored blob. In this scenario, `bid.vastUrl` becomes a blob URL.
 
 {: .table .table-bordered .table-striped }
 | Cache Attribute | Required? | Type | Description |
 |----+--------+-----+-------|
 | cache.url | yes | string | The URL of the Prebid Cache server endpoint where VAST creatives will be sent. |
+| cache.useLocal | no | boolean | Flag determining whether to locally save VAST XML as a blob |
 | cache.timeout | no | number | Timeout (in milliseconds) for network requests to the cache |
 | cache.vasttrack | no | boolean | Passes additional data to the url, used for additional event tracking data. Defaults to `false`. |
 | cache.ignoreBidderCacheKey | no | boolean | If the bidder supplied their own cache key, setting this value to true adds a VAST wrapper around that URL, stores it in the cache defined by the `url` parameter, and replaces the original video cache key with the new one. This can dramatically simplify ad server setup because it means all VAST creatives reside behind a single URL. The tradeoff: this approach requires the video player to unwrap one extra level of VAST. Defaults to `false`. |
@@ -1133,6 +1136,27 @@ If a batchSize is set to 2 and 5 video responses arrive (within the timeframe sp
 3. Batch 3 will contain cache requests for 1 video
 
 <a name="setConfig-instream-tracking"></a>
+
+As of Prebid.js 10, you can save VAST XML as blob in browser's memory. Here's how to leverage local caching to reduce network traffic while working with an ad server. Using Google Ad Manager (GAM) as an example, no additional configuration of VAST creatives is required within GAM. The existing process of building the GAM VAST ad tag URL and retrieving the VAST wrapper from GAM remains unchanged - except for one key difference.
+
+Consider the following Prebid configuration:
+
+```javascript
+pbjs.setConfig({
+        cache: {
+            url: 'https://prebid.adnxs.com/pbc/v1/cache',
+            useLocal: true
+        }
+});
+```
+
+When `useLocal` is set to true, the remote cache URL endpoint is never called. However, existing GAM creatives configured with a VAST ad tag URL, such as:
+
+``
+https://prebid.adnxs.com/pbc/v1/cache?uuid=%%PATTERN:hb_uuid%%
+``
+
+will continue to function correctly. `hb_uuid` is set to locally assigned blob UUID. If the bid wins the GAM auction and it's `videoCacheKey` (`hb_uuid`) is included in a GAM wrapper VAST XML, Prebid will update the VAST ad tag URL with the locally cached blob URL after receiving a response from Google Ad Manager.
 
 ### Instream tracking
 
