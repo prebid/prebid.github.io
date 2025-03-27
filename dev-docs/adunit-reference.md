@@ -815,8 +815,8 @@ pbjs.addAdUnits({
 
 Notes:
 
-- Only contextual data should be added on the AdUnit; user-related data goes in the [global first party data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) config.
-- For additional help with analytics and reporting you can use the [Prebid Ad Slot](/features/pbAdSlot.html), a special type of first party data.
+* Only contextual data should be added on the AdUnit; user-related data goes in the [global first party data](/dev-docs/publisher-api-reference/setConfig.html#setConfig-fpd) config.
+* For additional help with analytics and reporting you can use the [Prebid Ad Slot](/features/pbAdSlot.html), a special type of first party data.
 
 <a name="adUnit-interstitial-example"></a>
 
