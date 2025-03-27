@@ -5,7 +5,7 @@ description: Epsilon Prebid Bidder Adaptor (formerly Conversant)
 pbjs: true
 pbs: true
 biddercode: conversant
-media_types: banner, video, audio
+media_types: banner, video, audio, native
 tcfeu_supported: true
 userIds: criteo, id5Id, identityLink, liveIntentId, parrableId, pubCommonId, unifiedId, publinkId
 prebid_member: true
