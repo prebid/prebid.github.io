@@ -29,9 +29,9 @@ sidebarType: 1
 | `placementId`    | required | The placement ID.  | `"0420420421"` | `string` |
 | `customData`     | optional | publisher key-values used for targeting | `[{"settings":{},"targeting":{"key1": "value1", "key2": "value2"}}],` | `array` |
 
-### Disclosure:
+### Disclosure
 
-```
+```legal
 Ozone Bid Adapter sets cookies without purpose one consent. They support essential technical functions such as load balancing traffic and identifying bot activity. These cookies are not set by Ozone's application but by our cloud providers – Cloudflare for security and performance, and Amazon Web Services for load balancing.
 
 Our immediate recommendation is to include information about these cookies in your CMP and privacy policy. This ensures transparency regarding the essential technical cookies that support site functionality and security. Given the nature and purpose of these cookies, they are typically categorised as strictly necessary and do not require user consent under regulations like GDPR or the ePrivacy Directive.Below is an example entry for your privacy policy:
