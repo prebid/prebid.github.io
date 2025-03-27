@@ -3,7 +3,7 @@ layout: bidder
 title: Performist
 description: Prebid Performist Bidder Adaptor
 biddercode: performist
-pbjs: true
+pbjs: false
 pbs: true
 media_types: video, banner
 userIds: all
