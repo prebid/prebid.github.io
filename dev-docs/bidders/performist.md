@@ -26,7 +26,7 @@ sidebarType: 1
 
 | Name          | Scope    | Description                                                   | Example                | Type      |
 |:--------------|:---------|:--------------------------------------------------------------|:-----------------------|:----------|
-| `host`        | required | Ad network's RTB host                                         | `ads-pbs.performserv.com` | `string`  |
+| `host`        | required | Ad network's RTB host                                         | `'performserv.com'`      | `string`  |
 | `publisherId` | required | Publisher ID                                                  | `'12345'`              | `string`  |
 | `custom1`     | optional | Custom targeting field 1                                      | `'custom1'`            | `string`  |
 | `custom2`     | optional | Custom targeting field 2                                      | `'custom2'`            | `string`  |
