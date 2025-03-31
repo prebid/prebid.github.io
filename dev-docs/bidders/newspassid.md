@@ -11,9 +11,9 @@ coppa_supported: true
 schain_supported: true
 userIds: all
 safeframes_ok: true
-deals_supported: true
+deals_supported: false
 floors_supported: true
-fpd_supported: true
+fpd_supported: false
 pbjs: true
 pbs: false
 prebid_member: false
