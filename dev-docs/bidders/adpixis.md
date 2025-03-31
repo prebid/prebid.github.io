@@ -26,9 +26,7 @@ sidebarType: 1
 
 | Name          | Scope    | Description                                                   | Example                | Type      |
 |:--------------|:---------|:--------------------------------------------------------------|:-----------------------|:----------|
-| `host`        | required | Ad network's RTB host                                         | `'<adserving domain>'` | `string`  |
-| `adUnitId`    | required | Ad Unit Id will be generated on <Public title name> Platform. | `42`                   | `integer` |
-| `adUnitType`  | required | Type of Ad Unit (`'video'`, `'banner'`)                       | `'banner'`             | `string`  |
+| `host`        | required | Ad network's RTB host                                         | `'adpixis-rtb.com'`    | `string`  |
 | `publisherId` | required | Publisher ID                                                  | `'12345'`              | `string`  |
 | `custom1`     | optional | Custom targeting field 1                                      | `'custom1'`            | `string`  |
 | `custom2`     | optional | Custom targeting field 2                                      | `'custom2'`            | `string`  |
@@ -36,6 +34,5 @@ sidebarType: 1
 | `custom4`     | optional | Custom targeting field 4                                      | `'custom4'`            | `string`  |
 | `custom5`     | optional | Custom targeting field 5                                      | `'custom5'`            | `string`  |
 
-AdPixis server-side Prebid Server adapter requires only `publisherId` and `host` parameters. But AdPixis client-side Prebid.js adapter requires only `host`, `adUnitId`, `adUnitType`.
-
-AdPixis server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types. But AdPixis client-side Prebid.js adapter supports only `banner` and `video` media types, doesn't support `audio` and `native`.
+AdPixis server-side Prebid Server adapter requires only `publisherId` and `host` parameters. 
+AdPixis server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types.
