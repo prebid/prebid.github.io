@@ -36,6 +36,6 @@ sidebarType: 1
 | `custom4`     | optional | Custom targeting field 4                                      | `'custom4'`            | `string`  |
 | `custom5`     | optional | Custom targeting field 5                                      | `'custom5'`            | `string`  |
 
-<Public title name> server-side Prebid Server adapter requires only `publisherId` and `host` parameters. But <Public title name> client-side Prebid.js adapter requires only `host`, `adUnitId`, `adUnitType`.
+Performist server-side Prebid Server adapter requires only `publisherId` and `host` parameters. But Performist client-side Prebid.js adapter requires only `host`, `adUnitId`, `adUnitType`.
 
-<Public title name> server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types. But <Public title name> client-side Prebid.js adapter supports only `banner` and `video` media types, doesn't support `audio` and `native`.
+Performist server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types. But Performist client-side Prebid.js adapter supports only `banner` and `video` media types, doesn't support `audio` and `native`.
