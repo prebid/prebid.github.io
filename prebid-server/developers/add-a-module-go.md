@@ -268,6 +268,10 @@ In the `BidderRequest` or `RawBidderResponse` stage:
 {:start="5"}
 5. More test implementations for each hook can be found in unit-tests at [github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking](https://github.com/prebid/prebid-server/tree/master/modules/prebid/ortb2blocking) folder.
 
+### Optional Code Update Notification
+
+The core Prebid engineering team sometimes makes changes to module files for various reasons: general refactoring, internal API changes, bug fixes, etc. If you want to receive an email alert about any changes made to your codebase, you can update the [codepath notification file](https://github.com/prebid/prebid-server/blob/master/.github/workflows/scripts/codepath-notification). Please read the instructions in the file. In many cases, the regex will just be your modulecode, but if you have a short modulecode, you might need to be more precise or you'll get false notifications.
+
 ### Configuration
 
 It's possible to define default module configuration which can be read by the module at PBS startup. An example configuration for hooks might look like this:
