@@ -348,6 +348,10 @@ pbjs.que.push(function () {
 {: .alert.alert-warning :}
 **Note**: If a demand partner of Equativ is not capable of reading an audio object, the audio object will be converted into a video object with audio mime types. There is, as of this writing, no built-in/default support for serving audio assets in Prebid, so publishers that wish to do so will need to ensure their ad server setups can process whatever hand-offs are necessary.
 
+### First Party Data
+
+Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
+
 ### Additional Resources
 
 Information about how Equativ supports the oRTB specification, along with additional examples, can be found [on our OpenRTB API support site](https://help.smartadserver.com/s/article/OpenRTB-API-for-suppliers-Bid-request-specification-Part-1).
