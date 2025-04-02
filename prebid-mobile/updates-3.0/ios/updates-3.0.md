@@ -23,6 +23,8 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 ### Targeting
 
+{: .table .table-bordered .table-striped }
+
 | Removed                                | Alternative                       |
 | -------------------------------------- | --------------------------------- |
 | buyerUID                               | Arbitrary ORTB API                |
@@ -67,6 +69,8 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 ### Prebid
 
+{: .table .table-bordered .table-striped }
+
 | Removed                                | Alternative                                      |
 | -------------------------------------- | ------------------------------------------------ |
 | bidderNameAppNexus                     | None, removed                                    |
@@ -81,6 +85,8 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 | initializeSDK(\_:)                     | initializeSDK(serverURL:\_:)                     |
 
 ### AdUnit
+
+{: .table .table-bordered .table-striped }
 
 | Removed                       | Alternative                     |
 | ----------------------------- | ------------------------------- |
@@ -116,6 +122,8 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 ### PrebidRequest
 
+{: .table .table-bordered .table-striped }
+
 | Removed                         | Alternative        |
 | ------------------------------- | ------------------ |
 | addExtData(key:value:)          | Arbitrary ORTB API |
@@ -137,19 +145,17 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 ### ExternalUserId
 
+{: .table .table-bordered .table-striped }
+
 | Removed                            | Alternative            |
 | ---------------------------------- | ---------------------- |
 | identifier                         | uids[].id              |
 | atype                              | uids[].atype           |
 | init(source:identifier:atype:ext:) | init(source:uids:ext:) |
 
-### BannerAdUnit
+### BannerAdUnit, InterstitialAdUnit
 
-| Removed    | Alternative      |
-| ---------- | ---------------- |
-| parameters | bannerParameters |
-
-### InterstitialAdUnit
+{: .table .table-bordered .table-striped }
 
 | Removed    | Alternative      |
 | ---------- | ---------------- |
@@ -157,11 +163,15 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 ### RewardedVideoAdUnit
 
+{: .table .table-bordered .table-striped }
+
 | Removed    | Alternative     |
 | ---------- | --------------- |
 | parameters | videoParameters |
 
 ### BannerView, InterstitialRenderingAdUnit, RewardedAdUnit, MediationBannerAdUnit, MediationBaseInterstitialAdUnit, MediationNativeAdUnit
+
+{: .table .table-bordered .table-striped }
 
 | Removed                         | Alternative               |
 | ------------------------------- | ------------------------- |
@@ -193,17 +203,23 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 ### AdFormat
 
+{: .table .table-bordered .table-striped }
+
 | Removed | Alternative |
 | ------- | ----------- |
 | display | banner      |
 
 ### Utils
 
+{: .table .table-bordered .table-striped }
+
 | Removed                           | Alternative    |
 | --------------------------------- | -------------- |
 | convertDictToMoPubKeywords(dict:) | None, removed |
 
 ### Host
+
+{: .table .table-bordered .table-striped }
 
 | Removed               | Alternative                          |
 | --------------------- | ------------------------------------ |
