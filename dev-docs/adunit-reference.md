@@ -599,9 +599,9 @@ time to set targeting.
 
 <a name="adUnit-fpd-example"></a>
 
-### First Party Data
+### First Party Data and Floors
 
-Example of an adunit-specific block of first party data:
+Example of an adunit-specific block of first party data and a static floor:
 
 ```javascript
 pbjs.addAdUnits({
@@ -612,6 +612,8 @@ pbjs.addAdUnits({
         }
     },
     ortb2Imp: {
+        bidfloor: 1.00,
+        bidfloorcur: "EUR",
         ext: {
             data: {
                     pbadslot: "homepage-top-rect",

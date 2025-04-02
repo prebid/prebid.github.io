@@ -142,7 +142,7 @@ Prebid Server accepts all OpenRTB 2.x fields and passes them in the request to a
 | user.consent | 2.6 | Bidders supporting 2.5 only: downgraded to user.ext.consent |
 | imp.rwdd | 2.6 | Bidders supporting 2.5 only: downgraded to imp[].ext.prebid.is_rewarded_inventory |
 | user.eids | 2.6 | Bidders supporting 2.5 only: downgraded to user.ext.eids |
-| source.schain | 2.6 | Bidders supporting 2.5 only: downgraded to source.ext.schain |
+| source.schain | 2.6 | Bidders supporting 2.5 only: downgraded to source.ext.schain, Bidders supporting 2.4 only: downgraded to ext.schain |
 | wlangb, {content, device}.langb, cattax, {site, app, publisher, content, producer}.cattax, ssai, {app, site}.content.{network, channel}, {app, content, site, user}.kwarray, device.sua | 2.6 | Bidders supporting 2.5 only: these fields are removed |
 | {video, audio}.{rqddurs, maxseq, poddur, podid, podseq, mincpmpersec, slotinpod} | 2.6 | Bidders supporting 2.5 only: these fields are removed |
 | regs.gpp | 2.6-202211 | Bidders supporting 2.5 only: this field is removed |
@@ -998,7 +998,13 @@ An additional option is `usepbsrates`. When `true`, this flag indicates that dyn
 
 ##### Supply Chain Support
 
-Basic supply chains are passed to Prebid Server on `source.ext.schain` and passed through to bid adapters. Prebid Server does not currently offer the ability to add a node to the supply chain.
+Basic supply chains are passed to Prebid Server on `source.schain` and passed through to bid adapters. Prebid Server does not currently offer the ability to add a node to the supply chain.
+
+See
+[OpenRTB 2.6, Section 3.2.2 - Object: Source](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/2.6-202501/2.6.md#322---object-source-)
+and
+[OpenRTB 2.6, Section 3.2.25 - Object: SupplyChain](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/2.6-202501/2.6.md#3225---object-supplychain-)
+.
 
 Bidder-specific schains:
 
@@ -1011,7 +1017,7 @@ Bidder-specific schains:
 
 In this scenario, Prebid Server sends the first schain object to `bidderA` and the second schain object to everyone else.
 
-If there's already an source.ext.schain and a bidder is named in ext.prebid.schains (or covered by the wildcard condition), ext.prebid.schains takes precedent.
+If there's already an source.schain and a bidder is named in ext.prebid.schains (or covered by the wildcard condition), ext.prebid.schains takes precedent.
 
 ##### User IDs
 
@@ -1891,8 +1897,9 @@ ext.prebid.biddercontrols: {
 
 Here's how this works:
 
-1. If the bid adapter YAML declares support of multiformat, then `prefmtype` is ignored in the request. The default value of multiformat supported is `true`.
+1. If the bid adapter YAML declares support of multiformat as `true`, then `prefmtype` is ignored in the request. The default value of multiformat supported is `false`.
 1. If the bidder declares that they don't support multiformat and the incoming request contains multiple formats, then one of the formats is chosen by either `$.ext.prebid.biddercontrols.BIDDER.prefmtype` or config `auction.preferredmediatype.BIDDER`
+1. If multiformat-supported is false, and if the specified prefmtype is not part of the request, then the imp doesn't go out to the bidder.
 
 #### OpenRTB Response Extensions
 

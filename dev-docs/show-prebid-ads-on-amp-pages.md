@@ -65,10 +65,8 @@ that doesn't come from /amp parameters:
     "id": "some-request-id",
     "cur": ["USD"],
     "source": {
-        "ext": {
-            "schain": {
-                ...
-            }
+        "schain": {
+            ...
         }
     },
     "site": {
