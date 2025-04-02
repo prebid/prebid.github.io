@@ -19,7 +19,7 @@ This page provides a detailed list of removed APIs in PrebidMobile SDK 3.0, alon
 
 ## Elimination of Deprecated Functionality
 
-PrebidMobile 3.0 introduces significant changes and removes several deprecated features. Below is a detailed breakdown of these removals, and how users should migrate to the new alternatives.
+PrebidMobile 3.0 introduces significant changes and removes several deprecated features. Below is a detailed breakdown of these removals, and how publishers should migrate to the new alternatives.
 
 ### Targeting
 
@@ -201,7 +201,7 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 | Removed                           | Alternative    |
 | --------------------------------- | -------------- |
-| convertDictToMoPubKeywords(dict:) | None, removed. |
+| convertDictToMoPubKeywords(dict:) | None, removed |
 
 ### Host
 
@@ -216,4 +216,4 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 - Removed `VideoAdUnit`, alternative - `BannerAdUnit` with video ad format;
 - Removed `VideoInterstitialAdUnit`, alternative - `InterstitialAdUnit` with video ad format;
 - Removed `PrebidHost` without replacement;
-- Removed `PrebidAdMobRewardedVideoAdapter`, alternative - `PrebidAdMobRewardedAdapter`;
+- Removed `PrebidAdMobRewardedVideoAdapter`, alternative - `PrebidAdMobRewardedAdapter`.
