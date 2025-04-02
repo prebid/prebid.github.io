@@ -174,8 +174,8 @@ The class was removed. Alternative - InterstitialAdUnit with video ad format.
 
 | Removed  | Alternative                                                 |
 |----------|-------------------------------------------------------------|
-| APPNEXUS | "https://ib.adnxs.com/openrtb2/prebid"                      |
-| RUBICON  | "https://prebid-server.rubiconproject.com/openrtb2/auction" |
+| APPNEXUS | "<https://ib.adnxs.com/openrtb2/prebid>"                      |
+| RUBICON  | "<https://prebid-server.rubiconproject.com/openrtb2/auction>" |
 
 ### NativeImageAsset
 
