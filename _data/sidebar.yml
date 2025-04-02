@@ -937,6 +937,14 @@
   subgroup: 3
 
 - sbSecId: 2
+  title: Prebid Mobile 3.0
+  link: /prebid-mobile/updates-3.0/android/updates-3.0.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
   title: API Reference
   link: /prebid-mobile-android/index.html
   isHeader: 0
