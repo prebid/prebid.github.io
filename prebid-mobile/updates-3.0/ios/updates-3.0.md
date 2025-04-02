@@ -9,13 +9,12 @@ sidebarType: 2
 ---
 
 # Prebid Mobile 3.0
-
 {:.no_toc}
 
 This page provides a detailed list of removed APIs in PrebidMobile SDK 3.0, along with their corresponding recommended replacements.
 
 - TOC
-  {:toc}
+{:toc}
 
 ## Elimination of Deprecated Functionality
 
