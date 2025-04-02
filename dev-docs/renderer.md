@@ -106,7 +106,7 @@ window.BannerRenderer = function (config) {
       // Get the container element
       const container = document.getElementById(config.adUnitCode);
       if (!container) return;
-      
+
       // Create iframe to provide a secure environment
       const iframe = document.createElement("iframe");
       iframe.width = `${config.width}px`;
@@ -116,10 +116,10 @@ window.BannerRenderer = function (config) {
       iframe.style.opacity = "0";
       iframe.title = "Advertisement";
       iframe.setAttribute("scrolling", "no");
-      
+
       // Add iframe to container
       container.appendChild(iframe);
-      
+
       // Set iframe content
       const iframeDoc = iframe.contentWindow.document;
       iframeDoc.open();
@@ -140,12 +140,12 @@ window.BannerRenderer = function (config) {
           </style>
         </head>
         <body>
-          <div class="ad-container">${bid.ad || ''}</div>
+          <div class="ad-container">${bid.ad || ""}</div>
         </body>
         </html>
       `);
       iframeDoc.close();
-      
+
       if (config.effects.onViewable) {
         // Set up IntersectionObserver for viewability-triggered effects
         const observer = new IntersectionObserver(
@@ -160,7 +160,7 @@ window.BannerRenderer = function (config) {
           },
           { threshold: 0.5 }
         );
-        
+
         observer.observe(container);
       } else {
         // Immediate fade-in
@@ -168,7 +168,7 @@ window.BannerRenderer = function (config) {
           iframe.style.opacity = "1";
         }, 10);
       }
-      
+
       // Cleanup function
       return {
         destroy: function () {
