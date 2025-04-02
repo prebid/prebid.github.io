@@ -15,9 +15,6 @@ sidebarType: 2
 This page provides a detailed list of removed APIs in PrebidMobile SDK 3.0, along with their corresponding recommended
 replacements.
 
-- TOC
-  {:toc}
-
 ## Elimination of Deprecated Functionality
 
 PrebidMobile 3.0 introduces significant changes and removes several deprecated features. Below is a detailed breakdown
