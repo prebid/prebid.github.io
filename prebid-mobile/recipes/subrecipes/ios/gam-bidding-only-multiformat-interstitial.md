@@ -9,12 +9,45 @@ sidebarType: 2
 
 Back to [Bidding-Only Integration](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#adunit-specific-instructions)
 
-Integration example:
+**Integration example(Swift):**
 
-``` swift
-// 1. Create an InterstitialAdUnit
-adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: 60, minHeightPerc: 70)
-adUnit.adUnitConfig.adSize = CGSize(width: 1, height: 1)
+{% capture gma12 %}// 1. Create an InterstitialAdUnit
+adUnit = InterstitialAdUnit(
+    configId: CONFIG_ID,
+    minWidthPerc: MIN_WIDTH_PERC,
+    minHeightPerc: MIN_HEIGHT_PERC
+)
+
+// 2. Set adFormats
+adUnit.adFormats = [.banner, .video]
+
+// 3. Configure video parameters
+let parameters = VideoParameters(mimes: ["video/mp4"])
+parameters.protocols = [Signals.Protocols.VAST_2_0]
+parameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOff]
+adUnit.videoParameters = parameters
+
+// 4. Make a bid request to Prebid Server
+let gamRequest = AdManagerRequest()
+adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
+    PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
+    
+    // 5. Load a GAM interstitial ad
+    InterstitialAd.load(with: AD_UNIT_ID, request: gamRequest) { ad, error in
+        guard let self = self else { return }
+        
+        if let error = error {
+            PrebidDemoLogger.shared.error("Failed to load interstitial ad with error: \(error.localizedDescription)")
+        } else if let ad = ad {
+            // 5. Present the interstitial ad
+            ad.fullScreenContentDelegate = self
+            ad.present(from: self)
+        }
+    }
+}
+{% endcapture %}
+{% capture gma11 %} // 1. Create an InterstitialAdUnit
+adUnit = InterstitialAdUnit(configId: CONFIG_ID, minWidthPerc: MIN_WIDTH_PERC, minHeightPerc: MIN_HEIGHT_PERC)
 
 // 2. Set adFormats
 adUnit.adFormats = [.banner, .video]
@@ -31,7 +64,7 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     PrebidDemoLogger.shared.info("Prebid demand fetch for GAM \(resultCode.name())")
 
     // 5. Load a GAM interstitial ad
-    GAMInterstitialAd.load(withAdManagerAdUnitID: gamAdUnitMultiformatInterstitialOriginal, request: gamRequest) { ad, error in
+    GAMInterstitialAd.load(withAdManagerAdUnitID: AD_UNIT_ID, request: gamRequest) { ad, error in
         guard let self = self else { return }
 
         if let error = error {
@@ -43,12 +76,14 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
         }
     }
 }
-```
+{% endcapture %}
+
+{% include code/gma-versions-tabs.html id="multiformat-interstitial" gma11=gma11 gma12=gma12 %}
 
 ## Step 1: Create an InterstitialAdUnit
 {:.no_toc}
 
-Initialize the InterstitialAdUnit with the following properties:
+Initialize the `InterstitialAdUnit` with the following properties:
 
 - `configId` - an ID of Stored Impression on the Prebid Server
 - `minWidthPerc`: Optional parameter to specify the minimum width percent an ad may occupy of a device's real estate. Support in SDK version 1.2+
@@ -77,14 +112,14 @@ For multiformat ad unit, you must set both banner and video ad formats.
 ## Step 4: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `GAMRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
+The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `AdManagerRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
 
 ## Step 5: Load a GAM interstitial ad
 {:.no_toc}
 
-You should now request the ad from GAM. If the `GAMRequest` contains targeting keywords. The respective Prebid line item will be returned from GAM and GMA SDK will render its creative.
+You should now request the ad from GAM. If the `AdManagerRequest` contains targeting keywords. The respective Prebid line item will be returned from GAM and GMA SDK will render its creative.
 
-Be sure that you make the ad request with the same `GAMRequest` object that you passed to the `fetchDemand` method. Otherwise the ad request won't contain targeting keywords and Prebid's ad won't ever be displayed.
+Be sure that you make the ad request with the same `AdManagerRequest` object that you passed to the `fetchDemand` method. Otherwise the ad request won't contain targeting keywords and Prebid's ad won't ever be displayed.
 
 ## Step 6: Present the interstitial ad
 {:.no_toc}
