@@ -49,7 +49,7 @@ MediationBaseInterstitialAdUnit, MediationNativeAdUnit, PrebidRequest, Targeting
 | addContextData()           | None, removed. Can be replaced with OpenRTB config.         |
 | updateContextData()        | None, removed. Can be replaced with OpenRTB config.         |
 | removeContextData()        | None, removed. Can be replaced with OpenRTB config.         |
-| clearContextData()         | None, removed.                                              |
+| clearContextData()         | None, removed. Can be replaced with OpenRTB config.         |
 | getContextDataDictionary() | None, removed. Can be replaced with OpenRTB config.         |
 | addContextKeyword()        | None, removed. Can be replaced with OpenRTB config.         |
 | addContextKeywords()       | None, removed. Can be replaced with OpenRTB config.         |
@@ -61,6 +61,11 @@ MediationBaseInterstitialAdUnit, MediationNativeAdUnit, PrebidRequest, Targeting
 | removeExtKeyword()         | None, removed. Can be replaced with OpenRTB config.         |
 | clearExtKeywords()         | None, removed. Can be replaced with OpenRTB config.         |
 | getExtKeywordsSet()        | None, removed. Can be replaced with OpenRTB config.         |
+| addExtData()               | None, removed. Can be replaced with OpenRTB config.         |
+| updateExtData()            | None, removed. Can be replaced with OpenRTB config.         |
+| removeExtData(String key)  | None, removed. Can be replaced with OpenRTB config.         |
+| clearExtData()             | None, removed. Can be replaced with OpenRTB config.         |
+| getExtDataDictionary()     | None, removed. Can be replaced with OpenRTB config.         |
 | setAppContent()            | None, removed. Can be replaced with OpenRTB config.         |
 | getAppContent()            | None, removed. Can be replaced with OpenRTB config.         |
 | addUserData()              | None, removed. Can be replaced with OpenRTB config.         |
@@ -169,8 +174,8 @@ The class was removed. Alternative - InterstitialAdUnit with video ad format.
 
 {: .table .table-bordered .table-striped }
 
-| Removed  | Alternative                                                 |
-|----------|-------------------------------------------------------------|
+| Removed  | Alternative                                                   |
+|----------|---------------------------------------------------------------|
 | APPNEXUS | "<https://ib.adnxs.com/openrtb2/prebid>"                      |
 | RUBICON  | "<https://prebid-server.rubiconproject.com/openrtb2/auction>" |
 
