@@ -400,6 +400,14 @@
   subgroup: 3
 
 - sbSecId: 1
+  title: Renderer
+  link: /dev-docs/renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 1
   title: Bidder Params
   link: /dev-docs/bidders.html
   isHeader: 0
