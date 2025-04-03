@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: Prebid Mobile 3.0 Updates
-description: Prebid Mobile 3.0 Updates
+title: Prebid Mobile 3.0 API Changes
+description: Prebid Mobile 3.0 API Changes
 pid: 1
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-ios
@@ -17,7 +17,7 @@ table th:nth-of-type(2) {
 }
 </style>
 
-# Prebid Mobile 3.0
+# Prebid Mobile 3.0 API Changes
 {:.no_toc}
 
 This page provides a detailed list of removed APIs in PrebidMobile SDK 3.0, along with their corresponding recommended replacements.
@@ -237,7 +237,7 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 ### Other SDK Changes
 
 - `imp[].ext.data.adslot` is no longer sent in the request;
-- Removed `VideoAdUnit`, alternative - `BannerAdUnit` with video ad format;
-- Removed `VideoInterstitialAdUnit`, alternative - `InterstitialAdUnit` with video ad format;
+- Removed `VideoAdUnit`, alternative - [BannerAdUnit](https://docs.prebid.org/prebid-mobile-ios/Classes/BannerAdUnit.html) with video ad format;
+- Removed `VideoInterstitialAdUnit`, alternative - [InterstitialAdUnit](https://docs.prebid.org/prebid-mobile-ios/Classes/InterstitialAdUnit.html) with video ad format;
 - Removed `PrebidHost` without replacement;
 - Removed `PrebidAdMobRewardedVideoAdapter`, alternative - `PrebidAdMobRewardedAdapter`.
