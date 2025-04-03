@@ -35,40 +35,40 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 | Removed                                | Alternative                       |
 | -------------------------------------- | --------------------------------- |
-| buyerUID                               | Arbitrary ORTB API                |
-| userCustomData                         | Arbitrary ORTB API                |
+| buyerUID                               | [setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)                |
+| userCustomData                         | [setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)                |
 | locationPrecision                      | None, removed                     |
 | setLocationPrecision(\_:)              | None, removed                     |
 | getLocationPrecision()                 | None, removed                     |
 | setCustomParams(\_:)                   | None, removed                     |
 | addCustomParam(\_:withName:)           | None, removed                     |
-| addUserData(key:value:)                | userExt, Arbitrary ORTB API       |
+| addUserData(key:value:)                | [userExt](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(py)userExt), [setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)      |
 | updateUserData(key:value:)             | None, removed                     |
 | removeUserData(for:)                   | None, removed                     |
 | clearUserData()                        | None, removed                     |
 | getUserData()                          | None, removed                     |
 | userDataDictionary                     | None, removed                     |
-| userKeywords                           | getUserKeywords()                 |
-| addContextData(key:value:)             | addAppExtData(key:value:)         |
-| updateContextData(key:value:)          | updateAppExtData(key:value:)      |
-| removeContextData(for:)                | removeAppExtData(for:)            |
-| clearContextData()                     | clearAppExtData()                 |
-| getContextData()                       | getAppExtData()                   |
-| contextDataDictionary                  | getAppExtData()                   |
-| addContextKeyword(\_:)                 | addAppKeyword(\_:)                |
-| addContextKeywords(\_:)                | addAppKeywords(\_:)               |
-| removeContextKeyword(\_:)              | removeAppKeyword(\_:)             |
-| clearContextKeywords()                 | clearAppKeywords()                |
-| getContextKeywords()                   | getAppKeywords()                  |
-| contextKeywords                        | getAppKeywords()                  |
+| userKeywords                           | [getUserKeywords()](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)getUserKeywords)                 |
+| addContextData(key:value:)             | [addAppExtData(key:value:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)addAppExtDataWithKey:value:)         |
+| updateContextData(key:value:)          | [updateAppExtData(key:value:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)updateAppExtDataWithKey:value:)      |
+| removeContextData(for:)                | [removeAppExtData(for:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)removeAppExtDataFor:)            |
+| clearContextData()                     | [clearAppExtData()](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)clearAppExtData)                |
+| getContextData()                       | [getAppExtData()](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)getAppExtData)                   |
+| contextDataDictionary                  | [getAppExtData()](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)getAppExtData)                     |
+| addContextKeyword(\_:)                 | [addAppKeyword(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)addAppKeyword:)                |
+| addContextKeywords(\_:)                | [addAppKeywords(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)addAppKeywords:)               |
+| removeContextKeyword(\_:)              | [removeAppKeyword(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)removeAppKeyword:)             |
+| clearContextKeywords()                 | [clearAppKeywords()](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)clearAppKeywords)                |
+| getContextKeywords()                   | [getAppKeywords()](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)getAppKeywords)                  |
+| contextKeywords                        | [getAppKeywords()](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)getAppKeywords)                  |
 | yearOfBirth                            | None, deprecated by ORTB.         |
 | setYearOfBirth(yob:)                   | None, deprecated by ORTB.         |
 | getYearOfBirth()                       | None, deprecated by ORTB.         |
 | clearYearOfBirth()                     | None, deprecated by ORTB.         |
 | userGender                             | None, deprecated by ORTB.         |
 | userGenderDescription()                | None, deprecated by ORTB.         |
-| userID                                 | Arbitrary ORTB API                |
-| eids                                   | Targeting.setExternalUserIds(\_:) |
+| userID                                 | [setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)                |
+| eids                                   | [Targeting.shared.setExternalUserIds(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setExternalUserIds:) |
 | storeExternalUserId(\_:)               | None, removed                     |
 | fetchStoredExternalUserIds()           | None, removed                     |
 | fetchStoredExternalUserId(\_ source:)  | None, removed                     |
@@ -83,14 +83,14 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 | -------------------------------------- | ------------------------------------------------ |
 | bidderNameAppNexus                     | None, removed                                    |
 | bidderNameRubiconProject               | None, removed                                    |
-| externalUserIdArray                    | Targeting.setExternalUserIds(\_:)                |
-| prebidServerHost                       | initializeSDK(serverURL:)                        |
+| externalUserIdArray                    | [Targeting.shared.setExternalUserIds(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setExternalUserIds:)               |
+| prebidServerHost                       | [initializeSDK(serverURL:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Prebid.html#/c:@M@PrebidMobile@objc(cs)Prebid(cm)initializeSDKWithServerURL:error::)                        |
 | useExternalClickthroughBrowser         | None, removed                                    |
 | impClickbrowserType                    | None, removed                                    |
-| setCustomPrebidServer(url:)            | initializeSDK(serverURL:)                        |
-| initializeSDK(_:_:)                    | initializeSDK(serverURL:_:_)                     |
-| initializeSDK(gadMobileAdsVersion:\_:) | initializeSDK(serverURL:gadMobileAdsVersion:\_:) |
-| initializeSDK(\_:)                     | initializeSDK(serverURL:\_:)                     |
+| setCustomPrebidServer(url:)            | [initializeSDK(serverURL:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Prebid.html#/c:@M@PrebidMobile@objc(cs)Prebid(cm)initializeSDKWithServerURL:error::)                        |
+| initializeSDK(_:_:)                    | [initializeSDK(serverURL:_:_)](https://docs.prebid.org/prebid-mobile-ios/Classes/Prebid.html#/c:@M@PrebidMobile@objc(cs)Prebid(cm)initializeSDKWithServerURL::error::)                     |
+| initializeSDK(gadMobileAdsVersion:\_:) | [initializeSDK(serverURL:gadMobileAdsVersion:\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Prebid.html#/c:@M@PrebidMobile@objc(cs)Prebid(cm)initializeSDKWithServerURL:gadMobileAdsVersion:error::) |
+| initializeSDK(\_:)                     | [initializeSDK(serverURL:\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Prebid.html#/c:@M@PrebidMobile@objc(cs)Prebid(cm)initializeSDK::)                     |
 
 ### AdUnit
 
@@ -98,35 +98,35 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 | Removed                       | Alternative                     |
 | ----------------------------- | ------------------------------- |
-| addContextData(key:value:)    | Arbitrary ORTB API              |
+| addContextData(key:value:)    | [setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/AdUnit.html#/c:@M@PrebidMobile@objc(cs)AdUnit(im)setImpORTBConfig:)              |
 | updateContextData(key:value:) | None, removed                   |
 | removeContextData(forKey:)    | None, removed                   |
 | clearContextData()            | None, removed                   |
-| addContextKeyword(\_:)        | Arbitrary ORTB API              |
-| addContextKeywords(\_:)       | Arbitrary ORTB API              |
+| addContextKeyword(\_:)        | [setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/AdUnit.html#/c:@M@PrebidMobile@objc(cs)AdUnit(im)setImpORTBConfig:)              |
+| addContextKeywords(\_:)       | [setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/AdUnit.html#/c:@M@PrebidMobile@objc(cs)AdUnit(im)setImpORTBConfig:)              |
 | removeContextKeyword(\_:)     | None, removed                   |
 | clearContextKeywords()        | None, removed                   |
-| addExtKeyword(\_:)            | Arbitrary ORTB API              |
-| addExtKeywords(\_:)           | Arbitrary ORTB API              |
+| addExtKeyword(\_:)            | [setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/AdUnit.html#/c:@M@PrebidMobile@objc(cs)AdUnit(im)setImpORTBConfig:)              |
+| addExtKeywords(\_:)           | [setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/AdUnit.html#/c:@M@PrebidMobile@objc(cs)AdUnit(im)setImpORTBConfig:)              |
 | removeExtKeyword(\_:)         | None, removed                   |
 | clearExtKeywords()            | None, removed                   |
-| addExtData(key:value:)        | Arbitrary ORTB API              |
+| addExtData(key:value:)        | [setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/AdUnit.html#/c:@M@PrebidMobile@objc(cs)AdUnit(im)setImpORTBConfig:)             |
 | updateExtData(key:value:)     | None, removed                   |
 | removeExtData(forKey:)        | None, removed                   |
 | clearExtData()                | None, removed                   |
-| setAppContent(\_:)            | Arbitrary ORTB API              |
+| setAppContent(\_:)            | [Targeting.shared.setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)              |
 | getAppContent()               | None, removed                   |
 | clearAppContent()             | None, removed                   |
-| addAppContentData(\_:)        | Arbitrary ORTB API              |
+| addAppContentData(\_:)        | [Targeting.shared.setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)              |
 | removeAppContentData(\_:)     | None, removed                   |
 | clearAppContentData()         | None, removed                   |
 | getUserData()                 | None, removed                   |
-| addUserData(\_:)              | Arbitrary ORTB API              |
+| addUserData(\_:)              | [Targeting.shared.setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)              |
 | removeUserData(\_:)           | None, removed                   |
 | clearUserData()               | None, removed                   |
-| setOrtbConfig(\_:)            | setImpORTBConfig(\_:)           |
-| getOrtbConfig()               | getImpORTBConfig()              |
-| fetchDemand(completion:, \_:) | fetchDemand(completionBidInfo:) |
+| setOrtbConfig(\_:)            | [setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/AdUnit.html#/c:@M@PrebidMobile@objc(cs)AdUnit(im)setImpORTBConfig:)           |
+| getOrtbConfig()               | [getImpORTBConfig()](https://docs.prebid.org/prebid-mobile-ios/Classes/AdUnit.html#/c:@M@PrebidMobile@objc(cs)AdUnit(im)getImpORTBConfig)              |
+| fetchDemand(completion:, \_:) | [fetchDemand(completionBidInfo:)](https://docs.prebid.org/prebid-mobile-ios/Classes/AdUnit.html#/c:@M@PrebidMobile@objc(cs)AdUnit(im)fetchDemandWithCompletionBidInfo:) |
 
 ### PrebidRequest
 
@@ -134,20 +134,20 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 | Removed                         | Alternative        |
 | ------------------------------- | ------------------ |
-| addExtData(key:value:)          | Arbitrary ORTB API |
+| addExtData(key:value:)          | [setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/PrebidRequest.html#/c:@M@PrebidMobile@objc(cs)PrebidRequest(im)setImpORTBConfig:) |
 | updateExtData(key:value:)       | None, removed      |
 | removeExtData(forKey:)          | None, removed      |
 | clearExtData()                  | None, removed      |
-| addExtKeyword(\_:)              | Arbitrary ORTB API |
-| addExtKeywords(\_:)             | Arbitrary ORTB API |
+| addExtKeyword(\_:)              | [setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/PrebidRequest.html#/c:@M@PrebidMobile@objc(cs)PrebidRequest(im)setImpORTBConfig:) |
+| addExtKeywords(\_:)             | [setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/PrebidRequest.html#/c:@M@PrebidMobile@objc(cs)PrebidRequest(im)setImpORTBConfig:) |
 | removeExtKeyword(\_:)           | None, removed      |
 | clearExtKeywords()              | None, removed      |
-| setAppContent(\_:)              | Arbitrary ORTB API |
+| setAppContent(\_:)              | [setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/PrebidRequest.html#/c:@M@PrebidMobile@objc(cs)PrebidRequest(im)setImpORTBConfig:) |
 | clearAppContent()               | None, removed      |
-| addAppContentData(\_:)          | Arbitrary ORTB API |
+| addAppContentData(\_:)          | [setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/PrebidRequest.html#/c:@M@PrebidMobile@objc(cs)PrebidRequest(im)setImpORTBConfig:) |
 | removeAppContentDataObject(\_:) | None, removed      |
 | clearAppContentDataObjects()    | None, removed      |
-| addUserData(\_:)                | Arbitrary ORTB API |
+| addUserData(\_:)                | [setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/PrebidRequest.html#/c:@M@PrebidMobile@objc(cs)PrebidRequest(im)setImpORTBConfig:) |
 | removeUserData(\_:)             | None, removed      |
 | clearUserData()                 | None, removed      |
 
@@ -157,9 +157,9 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 | Removed                            | Alternative            |
 | ---------------------------------- | ---------------------- |
-| identifier                         | uids[].id              |
-| atype                              | uids[].atype           |
-| init(source:identifier:atype:ext:) | init(source:uids:ext:) |
+| identifier                         | [uids[].id](https://docs.prebid.org/prebid-mobile-ios/Classes/ExternalUserId.html#/c:@M@PrebidMobile@objc(cs)ExternalUserId(py)uids)              |
+| atype                              | [uids[].atype](https://docs.prebid.org/prebid-mobile-ios/Classes/ExternalUserId.html#/c:@M@PrebidMobile@objc(cs)ExternalUserId(py)uids)           |
+| init(source:identifier:atype:ext:) | [init(source:uids:ext:)](https://docs.prebid.org/prebid-mobile-ios/Classes/ExternalUserId.html#/c:@M@PrebidMobile@objc(cs)ExternalUserId(im)initWithSource:uids:ext:) |
 
 ### BannerAdUnit, InterstitialAdUnit
 
@@ -167,7 +167,7 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 | Removed    | Alternative      |
 | ---------- | ---------------- |
-| parameters | bannerParameters |
+| parameters | [BannerAdUnit.bannerParamters](https://docs.prebid.org/prebid-mobile-ios/Classes/BannerAdUnit.html#/c:@M@PrebidMobile@objc(cs)BannerAdUnit(py)bannerParameters), [InterstitialAdUnit.bannerParamters](https://docs.prebid.org/prebid-mobile-ios/Classes/InterstitialAdUnit.html#/c:@M@PrebidMobile@objc(cs)InterstitialAdUnit(py)bannerParameters) |
 
 ### RewardedVideoAdUnit
 
@@ -175,7 +175,7 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 | Removed    | Alternative     |
 | ---------- | --------------- |
-| parameters | videoParameters |
+| parameters | [videoParameters](https://docs.prebid.org/prebid-mobile-ios/Classes/RewardedVideoAdUnit.html#/c:@M@PrebidMobile@objc(cs)RewardedVideoAdUnit(py)videoParameters) |
 
 ### BannerView, InterstitialRenderingAdUnit, RewardedAdUnit, MediationBannerAdUnit, MediationBaseInterstitialAdUnit, MediationNativeAdUnit
 
@@ -183,29 +183,29 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 | Removed                         | Alternative               |
 | ------------------------------- | ------------------------- |
-| ortbConfig                      | setImpORTBConfig(\_:)     |
-| addExtKeyword(\_:)              | Arbitrary ORTB API        |
-| addExtKeywords(\_:)             | Arbitrary ORTB API        |
+| ortbConfig                      | [BannerView.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/BannerView.html#/c:@M@PrebidMobile@objc(cs)BannerView(im)setImpORTBConfig:), [InterstitialRenderingAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/InterstitialRenderingAdUnit.html#/c:@M@PrebidMobile@objc(cs)InterstitialRenderingAdUnit(im)setImpORTBConfig:), [RewardedAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/RewardedAdUnit.html#/c:@M@PrebidMobile@objc(cs)RewardedAdUnit(im)setImpORTBConfig:), [MediationBannerAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBannerAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBannerAdUnit(im)setImpORTBConfig:), [MediationBaseInterstitialAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBaseInterstitialAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBaseInterstitialAdUnit(im)setImpORTBConfig:), [MediationNativeAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationNativeAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationNativeAdUnit(im)setImpORTBConfig:)     |
+| addExtKeyword(\_:)              | [BannerView.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/BannerView.html#/c:@M@PrebidMobile@objc(cs)BannerView(im)setImpORTBConfig:), [InterstitialRenderingAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/InterstitialRenderingAdUnit.html#/c:@M@PrebidMobile@objc(cs)InterstitialRenderingAdUnit(im)setImpORTBConfig:), [RewardedAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/RewardedAdUnit.html#/c:@M@PrebidMobile@objc(cs)RewardedAdUnit(im)setImpORTBConfig:), [MediationBannerAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBannerAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBannerAdUnit(im)setImpORTBConfig:), [MediationBaseInterstitialAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBaseInterstitialAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBaseInterstitialAdUnit(im)setImpORTBConfig:), [MediationNativeAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationNativeAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationNativeAdUnit(im)setImpORTBConfig:)         |
+| addExtKeywords(\_:)             | [BannerView.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/BannerView.html#/c:@M@PrebidMobile@objc(cs)BannerView(im)setImpORTBConfig:), [InterstitialRenderingAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/InterstitialRenderingAdUnit.html#/c:@M@PrebidMobile@objc(cs)InterstitialRenderingAdUnit(im)setImpORTBConfig:), [RewardedAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/RewardedAdUnit.html#/c:@M@PrebidMobile@objc(cs)RewardedAdUnit(im)setImpORTBConfig:), [MediationBannerAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBannerAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBannerAdUnit(im)setImpORTBConfig:), [MediationBaseInterstitialAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBaseInterstitialAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBaseInterstitialAdUnit(im)setImpORTBConfig:), [MediationNativeAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationNativeAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationNativeAdUnit(im)setImpORTBConfig:)         |
 | removeExtKeyword(\_:)           | None, removed             |
 | clearExtKeywords()              | None, removed             |
-| addContextData(\_:forKey:)      | addExtData(\_:forKey:)    |
-| updateContextData(\_:forKey:)   | updateExtData(\_:forKey:) |
-| removeContextDate(forKey:)      | removeExtDate(forKey:)    |
-| clearContextData()              | clearExtData()            |
-| addContextKeyword(\_:)          | addExtKeyword(\_:)        |
-| addContextKeywords(\_:)         | addExtKeywords(\_:)       |
-| removeContextKeyword(\_:)       | removeExtKeyword(\_:)     |
-| clearContextKeywords()          | clearExtKeywords()        |
-| addExtData(key:value:)          | Arbitrary ORTB API        |
+| addContextData(\_:forKey:)      | [BannerView.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/BannerView.html#/c:@M@PrebidMobile@objc(cs)BannerView(im)setImpORTBConfig:), [InterstitialRenderingAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/InterstitialRenderingAdUnit.html#/c:@M@PrebidMobile@objc(cs)InterstitialRenderingAdUnit(im)setImpORTBConfig:), [RewardedAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/RewardedAdUnit.html#/c:@M@PrebidMobile@objc(cs)RewardedAdUnit(im)setImpORTBConfig:), [MediationBannerAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBannerAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBannerAdUnit(im)setImpORTBConfig:), [MediationBaseInterstitialAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBaseInterstitialAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBaseInterstitialAdUnit(im)setImpORTBConfig:), [MediationNativeAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationNativeAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationNativeAdUnit(im)setImpORTBConfig:)    |
+| updateContextData(\_:forKey:)   | None, removed |
+| removeContextDate(forKey:)      | None, removed    |
+| clearContextData()              | None, removed            |
+| addContextKeyword(\_:)          | [BannerView.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/BannerView.html#/c:@M@PrebidMobile@objc(cs)BannerView(im)setImpORTBConfig:), [InterstitialRenderingAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/InterstitialRenderingAdUnit.html#/c:@M@PrebidMobile@objc(cs)InterstitialRenderingAdUnit(im)setImpORTBConfig:), [RewardedAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/RewardedAdUnit.html#/c:@M@PrebidMobile@objc(cs)RewardedAdUnit(im)setImpORTBConfig:), [MediationBannerAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBannerAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBannerAdUnit(im)setImpORTBConfig:), [MediationBaseInterstitialAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBaseInterstitialAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBaseInterstitialAdUnit(im)setImpORTBConfig:), [MediationNativeAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationNativeAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationNativeAdUnit(im)setImpORTBConfig:)        |
+| addContextKeywords(\_:)         | [BannerView.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/BannerView.html#/c:@M@PrebidMobile@objc(cs)BannerView(im)setImpORTBConfig:), [InterstitialRenderingAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/InterstitialRenderingAdUnit.html#/c:@M@PrebidMobile@objc(cs)InterstitialRenderingAdUnit(im)setImpORTBConfig:), [RewardedAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/RewardedAdUnit.html#/c:@M@PrebidMobile@objc(cs)RewardedAdUnit(im)setImpORTBConfig:), [MediationBannerAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBannerAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBannerAdUnit(im)setImpORTBConfig:), [MediationBaseInterstitialAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBaseInterstitialAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBaseInterstitialAdUnit(im)setImpORTBConfig:), [MediationNativeAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationNativeAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationNativeAdUnit(im)setImpORTBConfig:)       |
+| removeContextKeyword(\_:)       | None, removed     |
+| clearContextKeywords()          | None, removed        |
+| addExtData(key:value:)          | [BannerView.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/BannerView.html#/c:@M@PrebidMobile@objc(cs)BannerView(im)setImpORTBConfig:), [InterstitialRenderingAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/InterstitialRenderingAdUnit.html#/c:@M@PrebidMobile@objc(cs)InterstitialRenderingAdUnit(im)setImpORTBConfig:), [RewardedAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/RewardedAdUnit.html#/c:@M@PrebidMobile@objc(cs)RewardedAdUnit(im)setImpORTBConfig:), [MediationBannerAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBannerAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBannerAdUnit(im)setImpORTBConfig:), [MediationBaseInterstitialAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationBaseInterstitialAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationBaseInterstitialAdUnit(im)setImpORTBConfig:), [MediationNativeAdUnit.setImpORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/MediationNativeAdUnit.html#/c:@M@PrebidMobile@objc(cs)MediationNativeAdUnit(im)setImpORTBConfig:),        |
 | updateExtData(key:value:)       | None, removed             |
 | removeExtData(forKey:)          | None, removed             |
 | clearExtData()                  | None, removed             |
-| setAppContent(\_:)              | Arbitrary ORTB API        |
+| setAppContent(\_:)              | [Targeting.shared.setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)       |
 | clearAppContent()               | None, removed             |
-| addAppContentData(\_:)          | Arbitrary ORTB API        |
+| addAppContentData(\_:)          | [Targeting.shared.setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)        |
 | removeAppContentDataObject(\_:) | None, removed             |
 | clearAppContentDataObjects()    | None, removed             |
-| addUserData(\_:)                | Arbitrary ORTB API        |
+| addUserData(\_:)                | [Targeting.shared.setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)        |
 | removeUserData(\_:)             | None, removed             |
 | clearUserData()                 | None, removed             |
 
@@ -215,7 +215,7 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 | Removed | Alternative |
 | ------- | ----------- |
-| display | banner      |
+| display | [banner](https://docs.prebid.org/prebid-mobile-ios/Classes/AdFormat.html#/c:@M@PrebidMobile@objc(cs)AdFormat(cpy)banner)      |
 
 ### Utils
 
@@ -231,8 +231,8 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 
 | Removed               | Alternative                          |
 | --------------------- | ------------------------------------ |
-| setCustomHostURL(\_:) | setHostURL(\_:nonTrackingURLString:) |
-| getHostURL(host:)     | getHostURL()                         |
+| setCustomHostURL(\_:) | [setHostURL(\_:nonTrackingURLString:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Host.html#/c:@M@PrebidMobile@objc(cs)Host(im)setHostURL:nonTrackingURLString:error:) |
+| getHostURL(host:)     | [getHostURL()](https://docs.prebid.org/prebid-mobile-ios/Classes/Host.html#/c:@M@PrebidMobile@objc(cs)Host(im)getHostURLAndReturnError:)                         |
 
 ### Other SDK Changes
 
