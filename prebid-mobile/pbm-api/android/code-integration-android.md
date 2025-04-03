@@ -64,7 +64,7 @@ If you see errors while building the Prebid Mobile SDK or Demo Applications, mak
 
 ## Add the Prebid SDK
 
-### Point to a Prebid Server
+### Prebid Server Account ID
 
 {% capture warning_note %}
 All integration examples for Android are written in `Kotlin`.
@@ -74,17 +74,10 @@ The corresponding Java code can be found in the [Demo Java](https://github.com/p
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add the 'account' info to Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
+Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add the 'account' info to Prebid Mobile.
 
 ```kotlin
 PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
-PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
-```
-
-If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
-
-```kotlin
-PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebidserver.example.com/openrtb2/auction"))
 ```
 
 #### Account Settings ID
@@ -96,15 +89,17 @@ If you want to define a different Account Settings ID as determined in conjuncti
 your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#arbitrary-openrtb) method like this:
 
 ```kotlin
-adUnitConfiguration?.ortbConfig = "{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}"
+adUnitConfiguration?.impOrtbConfig = "{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}"
 ```
 
 ### Initialize SDK
 
-Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. Use the following initialization for Prebid SDK:
+If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+
+Once you set the account ID, you should initialize the Prebid SDK. Use the following initialization for Prebid SDK:
 
 ```kotlin
-PrebidMobile.initializeSdk(applicationContext) { status ->
+PrebidMobile.initializeSdk(applicationContext, "https://prebidserver.example.com/openrtb2/auction") { status ->
     if (status == InitializationStatus.SUCCEEDED) {
         Log.d(TAG, "SDK initialized successfully!")
     } else if (status == InitializationStatus.SERVER_STATUS_WARNING) {
@@ -218,19 +213,6 @@ String containing the Prebid Server account ID.
 ```kotlin
 PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 var pbsAccountId = PrebidMobile.getPrebidServerAccountId()
-```
-
-### Host
-{:.no_toc}
-
-Object containing configuration for your Prebid Server host with which the Prebid SDK will communicate. Choose from the system-defined Prebid Server hosts or define your own custom Prebid Server host.
-
-```kotlin
-PrebidMobile.setPrebidServerHost(Host.RUBICON);
-
-//or set a custom host
-Host.CUSTOM.setHostUrl("https://prebid-server.bidder.com/");
-PrebidMobile.setPrebidServerHost(Host.CUSTOM);
 ```
 
 ### Timeout

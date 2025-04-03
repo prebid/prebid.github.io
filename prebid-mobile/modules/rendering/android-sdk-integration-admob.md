@@ -160,7 +160,7 @@ The `AdMobInterstitialMediationUtils` is a helper class, which performs certain 
 
 The `MediationInterstitialAdUnit` is part of the prebid mediation API. This class is responsible for making a bid request and providing the winning bid and targeting keywords to mediating SDKs.  
 
-The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
+In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ```kotlin
 adUnit = MediationInterstitialAdUnit(
@@ -338,17 +338,13 @@ private fun configureNativeAdUnit(nativeAdUnit: NativeAdUnit) {
     title.isRequired = true
     nativeAdUnit.addAsset(title)
 
-    val icon = NativeImageAsset()
+    val icon = NativeImageAsset(20, 20, 20, 20)
     icon.imageType = NativeImageAsset.IMAGE_TYPE.ICON
-    icon.wMin = 20
-    icon.hMin = 20
     icon.isRequired = true
     nativeAdUnit.addAsset(icon)
 
-    val image = NativeImageAsset()
+    val image = NativeImageAsset(200, 200, 200, 200)
     image.imageType = NativeImageAsset.IMAGE_TYPE.MAIN
-    image.hMin = 200
-    image.wMin = 200
     image.isRequired = true
     nativeAdUnit.addAsset(image)
 

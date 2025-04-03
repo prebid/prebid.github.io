@@ -37,9 +37,6 @@ private fun createAd() {
 }
 ```
 
-{: .alert.alert-warning :}
-Starting from PrebidMobile `2.1.0` the `VideoInterstitialAdUnit` class is deprecated. Use `InterstitialAdUnit` class with video ad format instead.
-
 Configuration function:
 
 ```kotlin
