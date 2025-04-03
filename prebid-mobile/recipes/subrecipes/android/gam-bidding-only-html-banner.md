@@ -20,9 +20,9 @@ private fun createAd() {
     adUnit?.setAutoRefreshInterval(refreshTimeSeconds)
 
     // 2. Configure banner parameters
-    val parameters = BannerBaseAdUnit.Parameters()
+    val parameters = BannerParameters()
     parameters.api = listOf(Signals.Api.MRAID_3, Signals.Api.OMID_1)
-    adUnit?.parameters = parameters
+    adUnit?.bannerParameters = parameters
 
    // For multi-size request
    adUnit?.addAdditionalSize(728, 90)

@@ -27,14 +27,14 @@ adUnit.setImpOrtbConfig("")
 
 ### Auto Refresh
 
-#### setAutoRefreshPeriodMillis
+#### setAutoRefreshInterval
 {:.no_toc}
 
 If set on a given Prebid Mobile ad unit, the `fetchDemand` function will be called every `periodMillis` until `stopAutoRefresh` is called. Each call to `fetchDemand` will invoke the `onComplete` function. This refresh only pertains to Prebid Mobile and not to any ad server refresh processes. It is suggested that the adServers refresh be turned off.
 
 **Parameters**
 
-- `periodMillis`: Integer defining the refresh time in milliseconds.
+- `seconds`: Integer defining the refresh time in seconds.
 
 #### startAutoRefresh
 {:.no_toc}

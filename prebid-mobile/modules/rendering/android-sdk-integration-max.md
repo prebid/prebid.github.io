@@ -120,7 +120,7 @@ adUnit?.fetchDemand {
 
 ```
 
-The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
+In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ```kotlin
 adUnit = MediationInterstitialAdUnit(
