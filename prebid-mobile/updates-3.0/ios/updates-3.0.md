@@ -17,7 +17,6 @@ table th:nth-of-type(2) {
 }
 </style>
 
-
 # Prebid Mobile 3.0
 {:.no_toc}
 
