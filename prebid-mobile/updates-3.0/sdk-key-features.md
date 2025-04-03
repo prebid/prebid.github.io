@@ -76,7 +76,7 @@ Refer to this article for more information: [SKAdNetwork](/prebid-mobile/pbm-api
 
 The SDK also provides support of SKOverlay for interstitials. SKOverlay enables developers to present additional content or calls to action as an overlay on top of interstitial ads, without interrupting the overall flow of the ad experience.
 
-Refer to this article for more information: [SKAdNetwork](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#skoverlay).
+Refer to this article for more information: [SKOverlay](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#skoverlay).
 
 ## Shared ID
 
