@@ -33,16 +33,16 @@ of these removals, and how publishers should migrate to the new alternatives.
 
 {: .table .table-bordered .table-striped }
 
-| Removed                          | Alternative                            |
-|----------------------------------|----------------------------------------|
-| isCoppaEnabled                   | None, removed.                         |
-| useExternalBrowser               | None, removed.                         |
-| sendMraidSupportParams           | None, by default true.                 |
-| logLevel                         | setLogLevel()                          |
-| setPrebidServerHost()            | initializeSdk() with host parameter    |
-| setExternalUserIds()             | TargetingParams.setExternalUserIds()   |
-| initializeSdk(context, listener) | initializeSdk(context, host, listener) |
-| getApplicationContext()          | None, removed.                         |
+| Removed                          | Alternative                                                                                                                                                                                                |
+|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| isCoppaEnabled                   | None, removed.                                                                                                                                                                                             |
+| useExternalBrowser               | None, removed.                                                                                                                                                                                             |
+| sendMraidSupportParams           | None, by default true.                                                                                                                                                                                     |
+| logLevel                         | [setLogLevel()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/LogUtil.html#setLogLevel(int))                                                                                             |
+| setPrebidServerHost()            | [initializeSdk()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/PrebidMobile.html#initializeSdk(android.content.Context,java.lang.String,SdkInitializationListener)) with host parameter |
+| setExternalUserIds()             | [TargetingParams.setExternalUserIds()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/TargetingParams.html#setExternalUserIds(java.util.List))                                            |
+| initializeSdk(context, listener) | [initializeSdk()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/PrebidMobile.html#initializeSdk(android.content.Context,java.lang.String,SdkInitializationListener)) with host parameter |
+| getApplicationContext()          | None, removed.                                                                                                                                                                                             |
 
 ---
 
@@ -53,54 +53,53 @@ MediationBaseInterstitialAdUnit, MediationNativeAdUnit, PrebidRequest, Targeting
 
 {: .table .table-bordered .table-striped }
 
-| Removed                    | Alternative                                                 |
-|----------------------------|-------------------------------------------------------------|
-| addContextData()           | None, removed. Can be replaced with OpenRTB config.         |
-| updateContextData()        | None, removed. Can be replaced with OpenRTB config.         |
-| removeContextData()        | None, removed. Can be replaced with OpenRTB config.         |
-| clearContextData()         | None, removed. Can be replaced with OpenRTB config.         |
-| getContextDataDictionary() | None, removed. Can be replaced with OpenRTB config.         |
-| addContextKeyword()        | None, removed. Can be replaced with OpenRTB config.         |
-| addContextKeywords()       | None, removed. Can be replaced with OpenRTB config.         |
-| removeContextKeyword()     | None, removed. Can be replaced with OpenRTB config.         |
-| clearContextKeywords()     | None, removed. Can be replaced with OpenRTB config.         |
-| getContextKeywordsSet()    | None, removed. Can be replaced with OpenRTB config.         |
-| addExtKeyword()            | None, removed. Can be replaced with OpenRTB config.         |
-| addExtKeywords()           | None, removed. Can be replaced with OpenRTB config.         |
-| removeExtKeyword()         | None, removed. Can be replaced with OpenRTB config.         |
-| clearExtKeywords()         | None, removed. Can be replaced with OpenRTB config.         |
-| getExtKeywordsSet()        | None, removed. Can be replaced with OpenRTB config.         |
-| addExtData()               | None, removed. Can be replaced with OpenRTB config.         |
-| updateExtData()            | None, removed. Can be replaced with OpenRTB config.         |
-| removeExtData(String key)  | None, removed. Can be replaced with OpenRTB config.         |
-| clearExtData()             | None, removed. Can be replaced with OpenRTB config.         |
-| getExtDataDictionary()     | None, removed. Can be replaced with OpenRTB config.         |
-| setAppContent()            | None, removed. Can be replaced with OpenRTB config.         |
-| getAppContent()            | None, removed. Can be replaced with OpenRTB config.         |
-| addUserData()              | None, removed. Can be replaced with OpenRTB config.         |
-| getUserData()              | None, removed. Can be replaced with OpenRTB config.         |
-| clearUserData()            | None, removed. Can be replaced with OpenRTB config.         |
-| setOrtbConfig()            | setImpOrtbConfig() or TargetingParams.setGlobalOrtbConfig() |
+| Removed                    | Alternative                                                                                                                                                                                                                                                                                                 |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| addContextData()           | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| updateContextData()        | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| removeContextData()        | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| clearContextData()         | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| getContextDataDictionary() | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| addContextKeyword()        | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| addContextKeywords()       | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| removeContextKeyword()     | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| clearContextKeywords()     | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| getContextKeywordsSet()    | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| addExtKeyword()            | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| addExtKeywords()           | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| removeExtKeyword()         | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| clearExtKeywords()         | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| getExtKeywordsSet()        | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| addExtData()               | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| updateExtData()            | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| removeExtData(String key)  | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| clearExtData()             | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| getExtDataDictionary()     | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| setAppContent()            | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| getAppContent()            | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| addUserData()              | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| getUserData()              | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| clearUserData()            | None, removed. Can be replaced with [OpenRTB config](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)).                                                                                                                                       |
+| setOrtbConfig()            | [setImpOrtbConfig()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setImpOrtbConfig(java.lang.String)) or [TargetingParams.setGlobalOrtbConfig()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/TargetingParams.html#setGlobalOrtbConfig(java.lang.String)) |
 
 ### AdUnit
 
 {: .table .table-bordered .table-striped }
 
-| Removed                          | Alternative                      |
-|----------------------------------|----------------------------------|
-| setAutoRefreshPeriodMillis()     | setAutoRefreshInterval()         |
-| fetchDemand(OnCompleteListener2) | fetchDemand(OnFetchDemandResult) |
+| Removed                          | Alternative                                                                                                                                                                     |
+|----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| setAutoRefreshPeriodMillis()     | [setAutoRefreshInterval()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#setAutoRefreshInterval(int))                                             |
+| fetchDemand(OnCompleteListener2) | [fetchDemand(OnFetchDemandResult)](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/AdUnit.html#fetchDemand(org.prebid.mobile.api.original.OnFetchDemandResult)) |
 
 ### BannerAdUnit
 
 {: .table .table-bordered .table-striped }
 
-| Removed               | Alternative      |
-|-----------------------|------------------|
-| setParameters()       | Parameters class |
-| getParameters()       | Parameters class |
-| setBannerParameters() | BannerParameters |
-| getBannerParameters() | BannerParameters |
+| Removed                   | Alternative                                                                                                                                                            |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| setParameters()           | [setBannerParameters()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/BannerBaseAdUnit.html#setBannerParameters(org.prebid.mobile.BannerParameters)) |
+| getParameters()           | [getBannerParameters()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/BannerBaseAdUnit.html#getBannerParameters())                                   |
+| Internal Parameters class | [BannerParameters](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/BannerParameters.html)                                                              |
 
 ---
 
@@ -108,47 +107,50 @@ MediationBaseInterstitialAdUnit, MediationNativeAdUnit, PrebidRequest, Targeting
 
 {: .table .table-bordered .table-striped }
 
-| Removed              | Alternative      |
-|----------------------|------------------|
-| setParameters()      | Parameters class |
-| getParameters()      | Parameters class |
-| setVideoParameters() | VideoParameters  |
-| getVideoParameters() | VideoParameters  |
+| Removed                   | Alternative                                                                                                                                                            |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| setParameters()           | [setBannerParameters()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/BannerBaseAdUnit.html#setBannerParameters(org.prebid.mobile.BannerParameters)) |
+| getParameters()           | [getBannerParameters()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/BannerBaseAdUnit.html#getBannerParameters())                                   |
+| Internal Parameters class | [VideoParameters](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/VideoParameters.html)                                                                |
 
 ---
 
 ### VideoAdUnit
 
-The class was removed. Alternative - BannerAdUnit with video ad format.
+The class was removed.
+Alternative - [BannerAdUnit](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/BannerAdUnit.html) with
+video ad format.
 
 ### VideoInterstitialAdUnit
 
-The class was removed. Alternative - InterstitialAdUnit with video ad format.
+The class was removed.
+Alternative - [InterstitialAdUnit](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/InterstitialAdUnit.html)
+with video ad format.
 
 ### Support Classes - TargetingParams
 
 {: .table .table-bordered .table-striped }
 
-| Removed                      | Alternative                                   |
-|------------------------------|-----------------------------------------------|
-| setUserAge()                 | None, removed.                                |
-| getUserAge()                 | None, removed.                                |
-| getYearOfBirth()             | Deprecated in OpenRTB. Removed.               |
-| setYearOfBirth()             | Deprecated in OpenRTB. Removed.               |
-| GENDER                       | Deprecated in OpenRTB. Removed.               |
-| getGender()                  | Deprecated in OpenRTB. Removed.               |
-| setGender()                  | Deprecated in OpenRTB. Removed.               |
-| setUserId()                  | None, removed.                                |
-| getUserId()                  | None, removed.                                |
-| setBuyerId()                 | None, removed.                                |
-| getBuyerId()                 | None, removed.                                |
-| getUserCustomData()          | None, removed.                                |
-| setUserCustomData()          | None, removed.                                |
-| storeExternalUserId()        | None, removed.                                |
-| fetchStoredExternalUserId()  | None, removed.                                |
-| fetchStoredExternalUserIds() | None, removed.                                |
-| removeStoredExternalUserId() | None, removed.                                |
-| clearStoredExternalUserIds() | setExternalUserIds() and getExternalUserIds() |
+| Removed                      | Alternative                                                                                                                                                                                                                                                                           |
+|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| setUserAge()                 | None, removed.                                                                                                                                                                                                                                                                        |
+| getUserAge()                 | None, removed.                                                                                                                                                                                                                                                                        |
+| getYearOfBirth()             | Deprecated in OpenRTB. Removed.                                                                                                                                                                                                                                                       |
+| setYearOfBirth()             | Deprecated in OpenRTB. Removed.                                                                                                                                                                                                                                                       |
+| GENDER                       | Deprecated in OpenRTB. Removed.                                                                                                                                                                                                                                                       |
+| getGender()                  | Deprecated in OpenRTB. Removed.                                                                                                                                                                                                                                                       |
+| setGender()                  | Deprecated in OpenRTB. Removed.                                                                                                                                                                                                                                                       |
+| setUserId()                  | None, removed.                                                                                                                                                                                                                                                                        |
+| getUserId()                  | None, removed.                                                                                                                                                                                                                                                                        |
+| setBuyerId()                 | None, removed.                                                                                                                                                                                                                                                                        |
+| getBuyerId()                 | None, removed.                                                                                                                                                                                                                                                                        |
+| getUserCustomData()          | None, removed.                                                                                                                                                                                                                                                                        |
+| setUserCustomData()          | None, removed.                                                                                                                                                                                                                                                                        |
+| storeExternalUserId()        | [setExternalUserIds()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/TargetingParams.html#setExternalUserIds(java.util.List)) and [getExternalUserIds()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/TargetingParams.html#getExternalUserIds()) |
+| fetchStoredExternalUserId()  | [setExternalUserIds()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/TargetingParams.html#setExternalUserIds(java.util.List)) and [getExternalUserIds()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/TargetingParams.html#getExternalUserIds()) |
+| fetchStoredExternalUserIds() | [setExternalUserIds()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/TargetingParams.html#setExternalUserIds(java.util.List)) and [getExternalUserIds()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/TargetingParams.html#getExternalUserIds()) |
+| removeStoredExternalUserId() | [setExternalUserIds()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/TargetingParams.html#setExternalUserIds(java.util.List)) and [getExternalUserIds()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/TargetingParams.html#getExternalUserIds()) |
+| clearStoredExternalUserIds() | [setExternalUserIds()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/TargetingParams.html#setExternalUserIds(java.util.List)) and [getExternalUserIds()](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/TargetingParams.html#getExternalUserIds()) |
 
 ### ExternalUserId
 
@@ -156,11 +158,11 @@ The class was removed. Alternative - InterstitialAdUnit with video ad format.
 
 | Removed                                        | Alternative                  |
 |------------------------------------------------|------------------------------|
-| ExternalUserId(source, identifier, atype, ext) | ExternalUserId(source, uids) |
-| getAtype()                                     | Use UniqueId class.          |
-| setAtype()                                     | Use UniqueId class.          |
-| getIdentifier()                                | Use UniqueId class.          |
-| setIdentifier()                                | Use UniqueId class.          |
+| ExternalUserId(source, identifier, atype, ext) | [ExternalUserId(source, uids)](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/ExternalUserId.html#%3Cinit%3E(java.lang.String,java.util.List)) |
+| getAtype()                                     | Use [UniqueId](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/ExternalUserId.UniqueId.html) class.          |
+| setAtype()                                     | Use [UniqueId](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/ExternalUserId.UniqueId.html) class.          |
+| getIdentifier()                                | Use [UniqueId](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/ExternalUserId.UniqueId.html) class.          |
+| setIdentifier()                                | Use [UniqueId](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/ExternalUserId.UniqueId.html) class.          |
 
 ### PrebidNativeAd
 
@@ -168,8 +170,8 @@ The class was removed. Alternative - InterstitialAdUnit with video ad format.
 
 | Removed                                         | Alternative                        |
 |-------------------------------------------------|------------------------------------|
-| registerView(view, listener)                    | registerView(view, list, listener) |
-| registerViewList(container, viewList, listener) | registerView(view, list, listener) |
+| registerView(view, listener)                    | [registerView(view, list, listener)](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/PrebidNativeAd.html#registerView(android.view.View,java.util.List,org.prebid.mobile.PrebidNativeAdEventListener)) |
+| registerViewList(container, viewList, listener) | [registerView(view, list, listener)](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/PrebidNativeAd.html#registerView(android.view.View,java.util.List,org.prebid.mobile.PrebidNativeAdEventListener)) |
 
 ### AdFormat
 
@@ -177,7 +179,7 @@ The class was removed. Alternative - InterstitialAdUnit with video ad format.
 
 | Removed | Alternative |
 |---------|-------------|
-| DISPLAY | BANNER      |
+| DISPLAY | [BANNER](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/api/data/AdUnitFormat.html#BANNER)      |
 
 ### Host
 
@@ -194,7 +196,7 @@ The class was removed. Alternative - InterstitialAdUnit with video ad format.
 
 | Removed            | Alternative                        |
 |--------------------|------------------------------------|
-| NativeImageAsset() | NativeImageAsset(w, h, minw, minh) |
+| NativeImageAsset() | [NativeImageAsset(w, h, minw, minh)](https://docs.prebid.org/prebid-mobile-android/org/prebid/mobile/NativeImageAsset.html#%3Cinit%3E(int,int,int,int)) |
 
 ### Other Changes
 
