@@ -37,7 +37,7 @@ In this mode, the developer is responsible for the following actions:
 This approach is available for the following ad formats:
 
 - Display Banner via `BannerAdUnit`
-- Video Banner and Instream Video via `VideoAdUnit`
+- Video Banner and Instream Video via `InStreamVideoAdUnit`
 - Display Interstitial via `InterstitialAdUnit`
 - Video Interstitial via `InterstitialAdUnit` with video ad format
 - Rewarded Video via `RewardedVideoAdUnit`
