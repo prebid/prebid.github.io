@@ -676,6 +676,14 @@
   subgroup: 0
 
 - sbSecId: 2
+  title: Prebid Mobile 3.0
+  link: /prebid-mobile/updates-3.0/sdk-key-features.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 2
   title: Prebid AMP
   link: /dev-docs/show-prebid-ads-on-amp-pages.html
   isHeader: 0
@@ -832,8 +840,8 @@
   subgroup: 2
 
 - sbSecId: 2
-  title: SDK 3.0
-  link: /prebid-mobile/updates-3.0/ios/updates-3.0.html
+  title: SDK 3.0 API changes
+  link: /prebid-mobile/updates-3.0/ios/api-changes.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -937,8 +945,8 @@
   subgroup: 3
 
 - sbSecId: 2
-  title: SDK 3.0
-  link: /prebid-mobile/updates-3.0/android/updates-3.0.html
+  title: SDK 3.0 API changes
+  link: /prebid-mobile/updates-3.0/android/api-changes.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
