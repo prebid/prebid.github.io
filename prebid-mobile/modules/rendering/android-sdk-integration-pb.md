@@ -192,9 +192,11 @@ override fun onAdLoaded(interstitialAdUnit: InterstitialAdUnit) {
 }
 ```
 
-#### Rewarded Video
+#### Rewarded
 
-Integration example:
+{% include mobile/rewarded-server-side-configuration.md %}
+
+##### Integration example
 
 ``` kotlin
 // 1. Create an Ad Unit
@@ -215,19 +217,19 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-##### Step 1: Create a Rewarded Ad Unit
+###### Step 1: Create a Rewarded Ad Unit
 {:.no_toc}
 
 Create the `RewardedAdUnit` object with parameters:
 
 - `adUnitId` - an ID of Stored Impression on the Prebid server.
 
-##### Step 2: Load the Ad
+###### Step 2: Load the Ad
 {:.no_toc}
 
 Call the `loadAd()` to make a bid request.
 
-##### Step 3: Show the Ad when it is ready
+###### Step 3: Show the Ad when it is ready
 {:.no_toc}
 
 Wait until the ad is loaded and present it to the user in any suitable time.
@@ -235,6 +237,22 @@ Wait until the ad is loaded and present it to the user in any suitable time.
 ``` kotlin
 override fun onAdLoaded(rewardedAdUnit: RewardedAdUnit) {
 //Ad is ready for display
+}
+```
+
+##### Step 4: Handle a reward
+{:.no_toc}
+
+Handle earning a reward in the appropriate method. Important: a reward can be null.
+
+```kotlin
+override fun onUserEarnedReward(rewardedAdUnit: RewardedAdUnit?, reward: Reward?) {
+    if (reward != null) {
+        val rewardType = reward.type
+        val rewardCount = reward.count
+        val rewardExt = reward.ext
+        // Process the reward
+    }
 }
 ```
 
