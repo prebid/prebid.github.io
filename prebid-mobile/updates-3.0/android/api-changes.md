@@ -1,7 +1,7 @@
 ---
 layout: page_v2
-title: Prebid Mobile 3.0 Updates
-description: Prebid Mobile 3.0 Updates
+title: Prebid Mobile 3.0 API Changes
+description: Prebid Mobile 3.0 API Changes
 pid: 1
 top_nav_section: prebid-mobile
 nav_section: prebid-mobile-android
@@ -17,7 +17,7 @@ table th:nth-of-type(2) {
 }
 </style>
 
-# Prebid Mobile 3.0
+# Prebid Mobile 3.0 API Changes
 
 {:.no_toc}
 
