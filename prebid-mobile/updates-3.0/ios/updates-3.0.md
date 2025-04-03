@@ -8,6 +8,16 @@ nav_section: prebid-mobile-ios
 sidebarType: 2
 ---
 
+<style>
+table th:first-of-type {
+    width: 50%;
+}
+table th:nth-of-type(2) {
+    width: 50%;
+}
+</style>
+
+
 # Prebid Mobile 3.0
 {:.no_toc}
 
