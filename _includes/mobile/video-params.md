@@ -15,7 +15,7 @@ The [OpenRTB 2.6](https://iabtechlab.com/wp-content/uploads/2022/04/OpenRTB-2-6_
 - `5` or `Slider`, `Floating` or `Interstitial` : Open RTB supports one of three values for option 5 as either Slider, Floating or Interstitial. If an enum value is supplied in placement, bidders will receive value 5 for placement type and assume to be interstitial with the instl flag set to 1.
 
 Notes:
-- `PrebidAdUnit`, `VideoInterstitialAdUnit` and `RewardedVideoAdUnit` will default to placement=5 if no placement value is supplied.
+- `PrebidAdUnit` and `RewardedVideoAdUnit` will default to placement=5 if no placement value is supplied.
 
 {: .alert.alert-warning :}
 Starting from PrebidMobile `3.0.0` the class `VideoInterstitialAdUnit` is removed.
@@ -31,7 +31,7 @@ The [OpenRTB v2.6-202303](https://github.com/InteractiveAdvertisingBureau/AdCOM/
 - `4` or `NoContent` or `Standalone` : Video ads that are played without streaming video content. This can be in placements like slideshows, native feeds, in-content or sticky/floating.
 
 Notes:
-- `PrebidAdUnit`, `VideoInterstitialAdUnit` and `RewardedVideoAdUnit` will default to plcmnt=3 if no placement value is supplied.
+- `PrebidAdUnit` and `RewardedVideoAdUnit` will default to plcmnt=3 if no placement value is supplied.
 
 {: .alert.alert-warning :}
 Starting from PrebidMobile `3.0.0` the class `VideoInterstitialAdUnit` is removed.
@@ -99,3 +99,31 @@ Array of OpenRTB 2.6 playback methods. If none are specified, any method may be 
 - `6` or `Signals.Protocols.VAST_3_0_Wrapper` : VAST 3.0 Wrapper
 - `7` or `Signals.Protocols.VAST_4_0` : VAST 4.0
 - `8` or `Signals.Protocols.VAST_4_0_Wrapper` : VAST 4.0 Wrapper
+
+#### battr
+{:.no_toc}
+
+  Array or enum of OpenRTB 2.6 blocked creative attributes. Values can be one of:
+
+- `1` or `Signals.CreativeAttribute.AudioAd_Autoplay` : Audio Ad (Autoplay)
+- `2` or `Signals.CreativeAttribute.AudioAd_UserInitiated` : Audio Ad (User Initiated)
+- `3` or `Signals.CreativeAttribute.Expandable_Automatic` : Expandable (Automatic)
+- `4` or `Signals.CreativeAttribute.Expandable_Click` : Expandable (User Initiated - Click)
+- `5` or `Signals.CreativeAttribute.Expandable_Rollover` : Expandable (User Initiated - Rollover)
+- `6` or `Signals.CreativeAttribute.InBanner_Autoplay` : In-Banner Video Ad (Autoplay)
+- `7` or `Signals.CreativeAttribute.InBanner_UserInitiated` : In-Banner Video Ad (User Initiated)
+- `8` or `Signals.CreativeAttribute.Pop` : Pop (e.g., Over, Under, or Upon Exit)
+- `9` or `Signals.CreativeAttribute.Provocative` or `Signals.CreativeAttribute.SuggestiveImagery` : Provocative or Suggestive Imagery
+- `10` or `Signals.CreativeAttribute.Shaky`, `Signals.CreativeAttribute.Flashing`, `Signals.CreativeAttribute.Flickering`, `Signals.CreativeAttribute.ExtremeAnimation` or `Signals.CreativeAttribute.Smileys` : Shaky, Flashing, Flickering, Extreme Animation, Smileys
+- `11` or `Signals.CreativeAttribute.Surveys` : Surveys
+- `12` or `Signals.CreativeAttribute.TextOnly` : Text Only
+- `13` or `Signals.CreativeAttribute.UserInteractive` : User Interactive (e.g., Embedded Games)
+- `14` or `Signals.CreativeAttribute.WindowsDialog` or `Signals.CreativeAttribute.AlertStyle` : Windows Dialog or Alert Style
+- `15` or `Signals.CreativeAttribute.AudioButton` : Has Audio On/Off Button
+- `16` or `Signals.CreativeAttribute.SkipButton` : Ad Provides Skip Button (e.g. VPAID-rendered skip button on pre-roll video)
+- `17` or `Signals.CreativeAttribute.AdobeFlash` : Adobe Flash
+
+#### isSkippable
+{:.no_toc}
+
+Boolean representing the OpenRTB 2.6 video ad skippability.
