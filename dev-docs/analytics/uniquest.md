@@ -3,7 +3,6 @@ layout: analytics
 title: UNIQUEST
 description: UNIQUEST Prebid Analytics Adapter
 modulecode: uniquest
-enable_download: false
 ---
 
 #### Analytics Options
