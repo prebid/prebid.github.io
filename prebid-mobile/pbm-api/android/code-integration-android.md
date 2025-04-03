@@ -323,6 +323,16 @@ To stop sending stored bid response signals use the following method:
 void clearStoredBidResponses()
 ```
 
+### AuctionSettingsId
+{:.no_toc}
+
+String to separate out account from "auction settings". There is used to set `ext.prebid.storedrequest.id`, otherwise prebidServerAccountId is taken by default.
+
+```kotlin
+PrebidMobile.setAuctionSettingsId(YOUR_AUCTION_SETTINGS_ID)
+var auctionSettingsId = PrebidMobile.getAuctionSettingsId()
+```
+
 ### Debug
 {:.no_toc}
 
