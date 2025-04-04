@@ -16,6 +16,33 @@ PrebidMobile 3.0 offers a robust and versatile set of features tailored to help 
 - TOC
 {:toc}
 
+## Rendering Delegation
+
+The SDK offers a standardized way for developers to implement custom ad rendering solutions, enabling publishers to integrate their own custom rendering SDK. This layer provides the flexibility to move away from default solutions like Prebid Universal Creative, Google Ad Manager (GAM), or other rendering options, allowing publishers to take full control of the rendering process with their preferred solution.
+
+For the implementation details, refer to these articles:
+
+- iOS: [Create your implementation of the `PrebidMobilePluginRenderer`](/prebid-mobile/pbm-api/ios/pbm-plugin-renderer.html#create-your-implementation-of-the-prebidmobilepluginrenderer);
+- Android: [Create your implementation of the `PrebidMobilePluginRenderer`](/prebid-mobile/pbm-api/android/pbm-plugin-renderer.md#create-your-implementation-of-the-prebidmobilepluginrenderer). 
+
+## Rewarded Ad Unit 
+
+The SDK provides an enhanced and more publisher-oriented `RewardedAdUnit`, allowing for greater customization, flexibility, and control over the rewarded ad experience, tailored to the specific needs of the publisher. The `RewardedAdUnit` assumes special behavior that should be configurable by the platform or publisher according to the application or ad experience guides.
+
+Refer to these pages for the implementation details:
+
+- iOS: [Rewarded](/prebid-mobile/modules/rendering/ios-sdk-integration-pb.html);
+- Android: [Rewarded](/prebid-mobile/modules/rendering/android-sdk-integration-pb.html). 
+
+## Shared ID
+
+The SDK provides a way for publishers to opt into having the Prebid SDK generate a Shared ID. Shared ID is a randomly generated first-party identifier managed by Prebid. It remains the same throughout the current app session unless reset. If local storage access is permitted, the same ID may persist across multiple app sessions indefinitely. However, Shared ID values do not remain consistent across different apps on the same device.
+
+For further information, read these articles:
+
+- iOS: [Shared ID](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#shared-id);
+- Android: [Shared ID](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#shared-id). 
+
 ## Arbitrary OpenRTB
 
 The SDK enables publishers to customize the OpenRTB request according to their specific requirements. This customization can be done at two levels: the global and the impression level.
@@ -48,24 +75,6 @@ Refer to these articles for more information:
 - iOS: [Native Impression Tracking](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#native-impression-tracking);
 - Android: [Native Impression Tracking](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#native-impression-tracking). 
 
-## Rendering Delegation
-
-The SDK offers a standardized way for developers to implement custom ad rendering solutions, enabling publishers to integrate their own custom rendering SDK. This layer provides the flexibility to move away from default solutions like Prebid Universal Creative, Google Ad Manager (GAM), or other rendering options, allowing publishers to take full control of the rendering process with their preferred solution.
-
-For the implementation details, refer to these articles:
-
-- iOS: [Create your implementation of the `PrebidMobilePluginRenderer`](/prebid-mobile/pbm-api/ios/pbm-plugin-renderer.html#create-your-implementation-of-the-prebidmobilepluginrenderer);
-- Android: [Create your implementation of the `PrebidMobilePluginRenderer`](/prebid-mobile/pbm-api/android/pbm-plugin-renderer.md#create-your-implementation-of-the-prebidmobilepluginrenderer). 
-
-## Rewarded Ad Unit 
-
-The SDK provides an enhanced and more publisher-oriented `RewardedAdUnit`, allowing for greater customization, flexibility, and control over the rewarded ad experience, tailored to the specific needs of the publisher. The `RewardedAdUnit` assumes special behavior that should be configurable by the platform or publisher according to the application or ad experience guides.
-
-Refer to these pages for the implementation details:
-
-- iOS: [Rewarded](/prebid-mobile/modules/rendering/ios-sdk-integration-pb.html);
-- Android: [Rewarded](/prebid-mobile/modules/rendering/android-sdk-integration-pb.html). 
-
 ## SKAdNetwork in Bidding-only scenario
 
 Apple offers SKAdNetwork as a privacy-focused solution that allows ad networks to track app installs while protecting user data. In line with this, the SDK supports two SKAdNetwork methods that enable ad networks to deliver ads in a bidding-only context, specifically for **banner** and **native** ad formats. These methods include view-through and StoreKit-rendered ads.
@@ -78,14 +87,6 @@ The SDK also provides support of SKOverlay for interstitials. SKOverlay enables 
 
 Refer to this article for more information: [SKOverlay](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#skoverlay).
 
-## Shared ID
-
-The SDK provides a way for publishers to opt into having the Prebid SDK generate a Shared ID. Shared ID is a randomly generated first-party identifier managed by Prebid. It remains the same throughout the current app session unless reset. If local storage access is permitted, the same ID may persist across multiple app sessions indefinitely. However, Shared ID values do not remain consistent across different apps on the same device.
-
-For further information, read these articles:
-
-- iOS: [Shared ID](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#shared-id);
-- Android: [Shared ID](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#shared-id). 
 
 ## Video UX
 
