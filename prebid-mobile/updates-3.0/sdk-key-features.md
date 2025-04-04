@@ -8,10 +8,12 @@ nav_section: prebid-mobile-ios
 sidebarType: 2
 ---
 
-# Prebid Mobile 3.0 Key Features
+# Prebid Mobile 3.0 
 {:.no_toc}
 
-PrebidMobile 3.0 offers a robust and versatile set of features tailored to help publishers improve their ad delivery efficiency. Below, you will find a concise overview of each feature and its capabilities.
+Prebid Mobile 3.0 accumulates the results of about 500 closed PRs for both platforms, aiming to extend supported inventory and enhance bidding transparency for In-App publishers and advertisers. 
+
+The current doc summarizes the key product features for the 3.0 milestone.
 
 - TOC
 {:toc}
@@ -66,7 +68,7 @@ Further details could be found on the pages below:
 - iOS: [Prebid Mobile - GAM Bidding-only Multiformat](/prebid-mobile/recipes/subrecipes/ios/gam-bidding-only-multiformat.html);
 - Android: [Prebid Mobile - GAM Bidding-only Multiformat](/prebid-mobile/recipes/subrecipes/android/gam-bidding-only-multiformat.html). 
 
-## Native Impression Tracking
+## Impression Tracking Enchancents
 
 The SDK offers a native impression tracking API that enables publishers to track and record ad impressions by firing a billing notice URL (burl) whenever an impression is served.
 
@@ -75,7 +77,15 @@ Refer to these articles for more information:
 - iOS: [Native Impression Tracking](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#native-impression-tracking);
 - Android: [Native Impression Tracking](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#native-impression-tracking). 
 
-## SKAdNetwork in Bidding-only scenario
+## Documentation Updates
+
+
+
+## Support Apple's ATT framework
+
+
+
+## SKAdNetwork 
 
 Apple offers SKAdNetwork as a privacy-focused solution that allows ad networks to track app installs while protecting user data. In line with this, the SDK supports two SKAdNetwork methods that enable ad networks to deliver ads in a bidding-only context, specifically for **banner** and **native** ad formats. These methods include view-through and StoreKit-rendered ads.
 
