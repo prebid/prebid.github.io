@@ -16,35 +16,64 @@ sidebarType: 1
 
 ### Disclosure
 
-The BeOp bidder adaptor needs an account id that you can find as a publisher, a reseller or a media group directly in your BeOp platform access. We also need to approve your account to be available for BeOp demand, so don't hesitate to reach your account manager or <publishers@beop.io> for more information.
+The BeOp bidder adapter requires an `accountId` or `networkId`, which you can retrieve from your BeOp platform dashboard (as a publisher, reseller, or media group). To activate BeOp demand on your account, please contact your account manager or reach out to <publishers@beop.io>.
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
 | Name | Scope | Description | Example | Type |
 |---------------|----------|-------------|---------|----------|
-| `accountId` or `networkId` | required | Your BeOp account ID | `'5a8af500c9e77c00017e4cad'` | `string` |
-| `networkPartnerId` | optional | Your own partner ID if you are a network | `'MY-WEBSITE-123'` | `string` |
-| `currency` | optional | Your currency | `'EUR'` (default) or `'USD'` | `string` |
+| `accountId` or `networkId` | required | Your BeOp account ID (24-character hex string) | `'5a8af500c9e77c00017e4cad'` | `string` |
+| `networkPartnerId` | optional | Your internal network partner ID (used for advanced partner tracking) | `'MY-WEBSITE-123'` | `string` |
+| `currency` | optional | Preferred bidding currency (defaults to `'EUR'`) | `'EUR'` or `'USD'` | `string` |
+| `keywords` | optional | Contextual keywords string or array to help target your campaign | `'cars, racing'` or `['cars', 'racing']` | `string/array` |
 
-## Why BeOp Requires Storage Access in Prebid.js
+### User Syncs
 
-At BeOp, we prioritize transparency and respect for user privacy. Here’s why we request storage access:
+BeOp supports iframe and pixel-based user syncs using the `getUserSyncs` method.
 
-### 1. Usage of First-Party Cookies
+{: .table .table-bordered .table-striped }
+| Type | Supported | Description |
+|------|-----------|-------------|
+| iframe | yes | A sync iframe may be returned by the bidder response via `syncFrame`. |
+| pixel | yes | Additional sync pixels can be returned via `syncPixels` array in the bid response body. |
 
-We use the first-party cookie beopid exclusively. This allows us to manage session and user preferences without relying on third-party cookies, ensuring compliance with privacy standards like GDPR.
+> Syncs are GDPR-aware and only triggered when appropriate consent is provided.
 
-### 2. Capping Features for Publishers
+### GDPR Compliance
 
-Storage access helps us enforce capping mechanisms directly on the publisher’s domain, ensuring a better user experience by limiting the frequency of ad displays.
+- Vendor ID: `666`
+- BeOp supports TCFv2 and relies on the `gdprApplies` and `consentString` fields in the bid request.
+- If no valid consent is found, external user syncs will be disabled.
 
-### 3. Enhanced User Interaction
+### Cookie Usage
 
-We provide engaging voting experiences on BeOp formats. By using storage, we enable features such as resuming a voting session where the user last left off, making the interaction seamless and user-friendly.
+BeOp sets a first-party cookie `beopid` for frequency capping and user session purposes. This ID is anonymized and used to improve campaign performance, capping logic, and personalization within publisher domains.
 
-### 4. Revenue Optimization in Compliance with GDPR
+### Test Parameters
 
-Storage access helps us improve bidding performance by aligning with GDPR consents. This ensures that external bidders can leverage compliant data to drive better revenue outcomes for publishers.
-
-By granting storage access, publishers empower us to provide these features while respecting user privacy and enhancing the overall experience.
+```js
+var adUnits = [
+  {
+    code: "div-id",
+    mediaTypes: {
+      banner: {
+        sizes: [
+          [300, 250],
+          [1, 1],
+        ],
+      },
+    },
+    bids: [
+      {
+        bidder: "beop",
+        params: {
+          accountId: "5a8af500c9e77c00017e4cad",
+          currency: "EUR",
+          keywords: ["sports", "elections"],
+        },
+      },
+    ],
+  },
+];
+```
