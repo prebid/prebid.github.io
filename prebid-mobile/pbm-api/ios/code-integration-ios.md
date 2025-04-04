@@ -196,6 +196,26 @@ Prebid.shared.customStatusEndpoint = PREBID_SERVER_STATUS_ENDPOINT
 
 If something goes wrong with the request, the status of the initialization callback will be `.serverStatusWarning`. It doesn't affect an SDK flow and just informs you about the health check result.
 
+#### Handling Tracking Domains
+
+As part of Apple's evolving privacy policies, SDKs that access user data in a way that could be used for tracking may be required to register tracking domains in the `PrivacyInfo.xcprivacy` file. 
+
+Currently, the Prebid Mobile SDK is not classified as one of these SDKs. But future changes from Apple or internal app review policies may prompt publishers to proactively register the Prebid Server (PBS) endpoint in the privacy manifest. To support this, the Prebid SDK is designed to accommodate both tracking and non-tracking PBS domains. Follow next recommendations during development:
+
+1. Include the relevant `NSPrivacyCollectedDataTypes` and define your primary Prebid Server domain in the `NSPrivacyTrackingDomains` array in your the `PrivacyInfo.xcprivacy` file to cover a potential "worst case" scenario. Read more about the `PrivacyInfo.xcprivacy` data [here](https://docs.prebid.org/faq/prebid-mobile-faq.html#privacysecurity).
+2. You may choose to provide a secondary, privacy-mode PBS URL to the SDK. This secondary domain can be used when tracking is disallowed. Every initialization method contains optional parameter to define the privacy-safe PBS domain.
+You’re not required to use a secondary PBS domain. You can simply allow iOS to block PBS requests when the user opts out of tracking.
+```swift
+let trackingURL = "https://prebidserver.example.com/openrtb2/auction"
+let nonTrackingURL = "https://prebidserver.example.nontracking.com/openrtb2/auction"
+Prebid.initializeSDK(trackingURL, nonTrackingURL) { status, error in
+    // ....
+}
+```
+
+{: .alert.alert-warning :}
+Depending on Apple’s domain monitoring mechanisms, even the privacy-mode domain could potentially be blocked. In such cases, the PBS provider may need to engage with Apple for resolution.
+
 ## Set Global Parameters
 
 There are several types of parameters app developers should consider providing to Prebid SDK:
