@@ -3,7 +3,7 @@ layout: bidder
 title: MadSense
 description: Prebid MadSense Bidder Adapter
 pbjs: true
-pbs: false
+pbs: true
 biddercode: madsense
 tcfeu_supported: false
 gdpr_supported: true
