@@ -68,10 +68,19 @@ Prebid Mobile introduces a native impression-tracking method that analyzes the a
 
 ## Documentation Updates
 
+SDK API: [iOS](https://docs.prebid.org/prebid-mobile-ios/index.html), [Android](https://docs.prebid.org/prebid-mobile-android/index.html). 
+
+Prebid reworked completely reworked documentation for Mobile in two ways:
+ 
+- Focusing on recipes about how publishers can integrate header bidding demand in their app. What is available, and how does it work under the hood? So, publishers can make a conscious decision on which integration to use, considering all the pros and cons. 
+- Introducing the auto-generated SDK API documentation so publishers can always see the actual and full description of the SDKs' classes, methods, and properties.  
 
 
 ## Support Apple's ATT framework
 
+Documentation: [iOS]()
+
+Prebid Mobile introduces support for tracking domain in the initialization method of the SDK. Now, publishers can follow Apple's ATT requirements and specify both - tracking and non-tracking URLs of the Prebid Server. 
 
 
 ## Support of SKAdNetwork
