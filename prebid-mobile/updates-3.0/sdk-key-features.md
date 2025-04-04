@@ -28,12 +28,10 @@ For publishers, rendering delegation enhances ad quality and ensures a premium a
 
 ## Rewarded Ad Unit 
 
-The SDK provides an enhanced and more publisher-oriented `RewardedAdUnit`, allowing for greater customization, flexibility, and control over the rewarded ad experience, tailored to the specific needs of the publisher. The `RewardedAdUnit` assumes special behavior that should be configurable by the platform or publisher according to the application or ad experience guides.
+Feature documentation: [iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-pb.html#rewarded), [Android](/prebid-mobile/modules/rendering/android-sdk-integration-pb.html#rewarded).
 
-Refer to these pages for the implementation details:
+Prebid Mobile introduces an enhanced and more publisher-oriented `RewardedAdUnit`, allowing for greater customization, flexibility, and control over the rewarded ad experience, tailored to the specific needs of the publisher. The `RewardedAdUnit` implements special In-App behavior that should be configurable by the platform or publisher according to the application or ad experience guides.
 
-- iOS: [Rewarded](/prebid-mobile/modules/rendering/ios-sdk-integration-pb.html);
-- Android: [Rewarded](/prebid-mobile/modules/rendering/android-sdk-integration-pb.html). 
 
 ## Shared ID
 
