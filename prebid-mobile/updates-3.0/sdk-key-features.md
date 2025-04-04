@@ -20,12 +20,11 @@ The current doc summarizes the key product features for the 3.0 milestone.
 
 ## Rendering Delegation
 
-The SDK offers a standardized way for developers to implement custom ad rendering solutions, enabling publishers to integrate their own custom rendering SDK. This layer provides the flexibility to move away from default solutions like Prebid Universal Creative, Google Ad Manager (GAM), or other rendering options, allowing publishers to take full control of the rendering process with their preferred solution.
+Feature documentation: [iOS] (/prebid-mobile/pbm-api/ios/pbm-plugin-renderer.html), [Android](/prebid-mobile/pbm-api/android/pbm-plugin-renderer.html). 
 
-For the implementation details, refer to these articles:
+Prebid Mobile introduces a standardized protocol for SDK developers to implement custom ad rendering solutions within In-App Prebid integration. This flexibility allows demand partners to move beyond default options like Prebid Universal Creative, Google Ad Manager (GAM), or other built-in rendering solutions, giving them full control over the ad rendering process with their preferred technology. 
 
-- iOS: [Create your implementation of the `PrebidMobilePluginRenderer`](/prebid-mobile/pbm-api/ios/pbm-plugin-renderer.html#create-your-implementation-of-the-prebidmobilepluginrenderer);
-- Android: [Create your implementation of the `PrebidMobilePluginRenderer`](/prebid-mobile/pbm-api/android/pbm-plugin-renderer.md#create-your-implementation-of-the-prebidmobilepluginrenderer). 
+For publishers, rendering delegation enhances ad quality and ensures a premium ad experience from trusted partners.
 
 ## Rewarded Ad Unit 
 
