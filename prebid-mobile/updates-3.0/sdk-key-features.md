@@ -20,7 +20,7 @@ The current doc summarizes the key product features for the 3.0 milestone.
 
 ## Rendering Delegation
 
-Feature documentation: [iOS] (/prebid-mobile/pbm-api/ios/pbm-plugin-renderer.html), [Android](/prebid-mobile/pbm-api/android/pbm-plugin-renderer.html). 
+Documentation: [iOS] (/prebid-mobile/pbm-api/ios/pbm-plugin-renderer.html), [Android](/prebid-mobile/pbm-api/android/pbm-plugin-renderer.html). 
 
 Prebid Mobile introduces a standardized protocol for SDK developers to implement custom ad rendering solutions within In-App Prebid integration. This flexibility allows demand partners to move beyond default options like Prebid Universal Creative, Google Ad Manager (GAM), or other built-in rendering solutions, giving them full control over the ad rendering process with their preferred technology. 
 
@@ -28,51 +28,43 @@ For publishers, rendering delegation enhances ad quality and ensures a premium a
 
 ## Rewarded Ad Unit 
 
-Feature documentation: [iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-pb.html#rewarded), [Android](/prebid-mobile/modules/rendering/android-sdk-integration-pb.html#rewarded).
+Documentation: [iOS](/prebid-mobile/modules/rendering/ios-sdk-integration-pb.html#rewarded), [Android](/prebid-mobile/modules/rendering/android-sdk-integration-pb.html#rewarded).
 
 Prebid Mobile introduces an enhanced and more publisher-oriented `RewardedAdUnit`, allowing for greater customization, flexibility, and control over the rewarded ad experience, tailored to the specific needs of the publisher. The `RewardedAdUnit` implements special In-App behavior that should be configurable by the platform or publisher according to the application or ad experience guides.
 
 
 ## Shared ID
 
-The SDK provides a way for publishers to opt into having the Prebid SDK generate a Shared ID. Shared ID is a randomly generated first-party identifier managed by Prebid. It remains the same throughout the current app session unless reset. If local storage access is permitted, the same ID may persist across multiple app sessions indefinitely. However, Shared ID values do not remain consistent across different apps on the same device.
+Documentation: [iOS](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#shared-id),[Android](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#shared-id). 
 
-For further information, read these articles:
+Prebid Mobile introduces a way for publishers to add convenient [Prebid-owned first-party identifier](https://docs.prebid.org/identity/sharedid.html) to the bid requests. SharedID is a randomly generated first-party identifier that remains the same throughout the app sessions until reset. However, Shared ID values do not remain consistent across different apps on the same device.
 
-- iOS: [Shared ID](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#shared-id);
-- Android: [Shared ID](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#shared-id). 
 
 ## Arbitrary OpenRTB
 
-The SDK enables publishers to customize the OpenRTB request according to their specific requirements. This customization can be done at two levels: the global and the impression level.
+Documentation:
 
-For more information about global configuration, check out these pages: 
+- [iOS Global Arbitrary OpenRTB](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#arbitrary-openrtb), 
+- [iOS Impression-level Arbitrary OpenRTB](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.md#arbitrary-openrtb)
+- [Android Global Arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#arbitrary-openrtb)
+- [Android Impression-level Arbitrary OpenRTB](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#arbitrary-openrtb).
 
-- iOS: [Global Arbitrary OpenRTB](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#arbitrary-openrtb);
-- Android: [Global Arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#arbitrary-openrtb).
+Prebid Mobile introduces an API that enables publishers to customize the bid request according to their specific requirements. This customization can be done at two levels: the global and the impression level. 
 
-The information about impression-level configuration is available here: 
-
-- iOS: [Impression-level Arbitrary OpenRTB](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.md#arbitrary-openrtb);
-- Android: [Impression-level Arbitrary OpenRTB](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#arbitrary-openrtb).
 
 ## Multiformat Ad Unit in Bidding-only Scenario
 
-This feature enables publishers to generate multiformat bid requests, specifically within a bidding-only setup. By leveraging this functionality, publishers can request bids that support any combination of ad formats, including banner, video, and native ads, within a single unified request. The Original API was extended with `PrebidAdUnit` and `PrebidRequest` classes that are responsible for managing the bid-requesting process by incapsulating the existing `AdUnit` class to perform all needed work.
+Documentation: [iOS](/prebid-mobile/recipes/subrecipes/ios/gam-bidding-only-multiformat.html), [Android](/prebid-mobile/recipes/subrecipes/android/gam-bidding-only-multiformat.html).
 
-Further details could be found on the pages below:
+Prebid Mobile introduces a way to make multiformat bid requests for a single ad unit, specifically within a bidding-only setup. By leveraging this functionality, publishers can request bids that support any combination of ad formats, including banner, video, and native ads, within a single unified request. The SDK's API was extended with the `PrebidAdUnit` and `PrebidRequest` classes responsible for managing multiformat bid requests.
 
-- iOS: [Prebid Mobile - GAM Bidding-only Multiformat](/prebid-mobile/recipes/subrecipes/ios/gam-bidding-only-multiformat.html);
-- Android: [Prebid Mobile - GAM Bidding-only Multiformat](/prebid-mobile/recipes/subrecipes/android/gam-bidding-only-multiformat.html). 
 
-## Impression Tracking Enchancents
+## Impression Tracking Enhancements
 
-The SDK offers a native impression tracking API that enables publishers to track and record ad impressions by firing a billing notice URL (burl) whenever an impression is served.
+Documentation: [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#native-impression-tracking), [Android](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#native-impression-tracking). 
 
-Refer to these articles for more information:
+Prebid Mobile introduces a native impression-tracking method that analyzes the application's view hierarchy in runtime and tracks billing URL(s) only when the ad view is present on the screen. Using this approach, publishers can report more accurate figures for the impression count. 
 
-- iOS: [Native Impression Tracking](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#native-impression-tracking);
-- Android: [Native Impression Tracking](/prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html#native-impression-tracking). 
 
 ## Documentation Updates
 
@@ -82,21 +74,24 @@ Refer to these articles for more information:
 
 
 
-## SKAdNetwork 
+## Support of SKAdNetwork
 
-Apple offers SKAdNetwork as a privacy-focused solution that allows ad networks to track app installs while protecting user data. In line with this, the SDK supports two SKAdNetwork methods that enable ad networks to deliver ads in a bidding-only context, specifically for **banner** and **native** ad formats. These methods include view-through and StoreKit-rendered ads.
+Documentation: [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#skadnetwork)
 
-Refer to this article for more information: [SKAdNetwork](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#skadnetwork).
+Prebid Mobile introduces support of SKAdNetwork for all integrations API including Bidding Only and Rendering API.SKAdNetwork is a privacy-focused solution that allows ad networks to track app installs while protecting user data. These methods include view-through and StoreKit-rendered ads.
+
 
 ## SKOverlay
 
-The SDK also provides support of SKOverlay for interstitials. SKOverlay enables developers to present additional content or calls to action as an overlay on top of interstitial ads, without interrupting the overall flow of the ad experience.
+Documentation: [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#skoverlay).
 
-Refer to this article for more information: [SKOverlay](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#skoverlay).
+Prebid Mobile introduces support for SKOverlay for interstitials. SKOverlay enables developers to present additional content or calls to action as an overlay on top of interstitial ads without interrupting the overall flow of the ad experience.
 
 
 ## Video UX
 
+Documentation: [Ad Experience Controls](/prebid-mobile/modules/rendering/combined-ad-experience-controls.html#ad-experience-controls).
+
 When utilizing the Prebid SDK to render the winning bid, you have the ability to customize its behavior. The configuration values can either be initialized based on the bid response or explicitly defined by the publisher, providing flexibility in managing the user experience.
 
-Refer to this page for the implementation details: [Ad Experience Controls](/prebid-mobile/modules/rendering/combined-ad-experience-controls.html#ad-experience-controls).
+
