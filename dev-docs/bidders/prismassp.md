@@ -3,13 +3,14 @@ layout: bidder
 title: Prismassp
 description: Prebid Prismassp Bidder Adapter
 pbjs: true
+pbs: false
 biddercode: prismassp
 gvl_id: 965
 tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
 schain_supported: true
-dchain_supported: false
+dchain_supported: true
 floors_supported: true
 userIds: all
 tcfeu_supported: true
@@ -27,7 +28,8 @@ multiformat_supported: will-bid-on-any
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                | Example                                   | Type      |
 |---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | required | tag ID                     | `"testpris"`                              | `string`  |
+| `tagId`       | optional | tag ID                     | `"testnexx"`                              | `string`  |
+| `placement`   | optional | Placement                  | `"test"`                                  | `string`  |
 
 ### First Party Data
 
