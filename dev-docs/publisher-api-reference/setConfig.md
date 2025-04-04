@@ -1137,7 +1137,7 @@ If a batchSize is set to 2 and 5 video responses arrive (within the timeframe sp
 
 <a name="setConfig-instream-tracking"></a>
 
-As of Prebid.js 10, you can save VAST XML as blob in browser's memory. Here's how to leverage local caching to reduce network traffic while working with an ad server. Using Google Ad Manager (GAM) as an example, no additional configuration of VAST creatives is required within GAM. The existing process of building the GAM VAST ad tag URL and retrieving the VAST wrapper from GAM remains unchanged - except for one key difference.
+As of Prebid.js 9.37.0, you can save VAST XML as blob in browser's memory. Here's how to leverage local caching to reduce network traffic while working with an ad server. Using Google Ad Manager (GAM) as an example, no additional configuration of VAST creatives is required within GAM. The existing process of building the GAM VAST ad tag URL and retrieving the VAST wrapper from GAM remains unchanged - except for one key difference.
 
 Consider the following Prebid configuration:
 

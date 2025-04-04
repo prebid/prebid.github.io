@@ -384,7 +384,8 @@ In the table below, you can find Prebid's test IDs that are used in the Demo App
 |`prebid-demo-video-interstitial-320-480-original-api`|**Video Interstitial** (Original API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
 |`prebid-demo-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
 |`prebid-demo-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
-|`prebid-demo-video-rewarded-320-480`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
+|`prebid-demo-banner-rewarded-time`|**Rewarded HTML** Returns a stored response that contains a Rewarded HTML 320x480 winning bid with rewarded configuration.||
+|`prebid-demo-video-rewarded-endcard-time`|**Rewarded Video** Returns a stored response that contains a Rewarded Video 320x480 winning bid with rewarded configuration.||
 |`prebid-demo-video-interstitial-320-480`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid.|
 |`prebid-demo-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
 |`prebid-demo-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|
