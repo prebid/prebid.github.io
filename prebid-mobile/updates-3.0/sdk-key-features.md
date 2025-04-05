@@ -78,7 +78,7 @@ Prebid reworked completely reworked documentation for Mobile in two ways:
 
 ## Support Apple's ATT framework
 
-Documentation: [iOS]()
+Documentation: [iOS](/prebid-mobile/pbm-api/ios/code-integration-ios.html#handling-tracking-domains)
 
 Prebid Mobile introduces support for tracking domain in the initialization method of the SDK. Now, publishers can follow Apple's ATT requirements and specify both - tracking and non-tracking URLs of the Prebid Server. 
 
@@ -87,7 +87,7 @@ Prebid Mobile introduces support for tracking domain in the initialization metho
 
 Documentation: [iOS](/prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html#skadnetwork)
 
-Prebid Mobile introduces support of SKAdNetwork for all integrations API including Bidding Only and Rendering API.SKAdNetwork is a privacy-focused solution that allows ad networks to track app installs while protecting user data. These methods include view-through and StoreKit-rendered ads.
+Prebid Mobile introduces support of SKAdNetwork for all integrations API including Bidding Only and Rendering API. SKAdNetwork is a privacy-focused solution that allows ad networks to track app installs while protecting user data. These methods include view-through and StoreKit-rendered ads.
 
 
 ## SKOverlay
@@ -103,4 +103,9 @@ Documentation: [Ad Experience Controls](/prebid-mobile/modules/rendering/combine
 
 When utilizing the Prebid SDK to render the winning bid, you have the ability to customize its behavior. The configuration values can either be initialized based on the bid response or explicitly defined by the publisher, providing flexibility in managing the user experience.
 
+## API Cleanup
 
+Documentation: [iOS](/prebid-mobile/updates-3.0/ios/updates-3.0.html). [Android](/prebid-mobile/updates-3.0/android/updates-3.0.html).
+
+
+In the 3.0 release, Prebid Mobile SDK gets read of all previously deprecated methods in order to keep API clean and minimalistic. Instead of using Ad Unit and configuration properties, Prebid SDK encourages publishers to use methods to set [Arbitrary OpenRTB] (#arbitrary-openrtb) parameters. 
