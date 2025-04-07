@@ -104,10 +104,10 @@ Each mobile app may have its own "account settings ID". This is used to look up 
 
 By default the Account Settings ID is set to be the same as the Account ID. i.e. the Prebid.shared.prebidServerAccountId property will set both values.
 If you want to define a different Account Settings ID as determined in conjunction with
-your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#arbitrary-openrtb) method like this:
+your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#arbitrary-openrtb) method like this:
 
 ```swift
-adUnitConfig.impORTBConfig = "{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}"
+adUnit.setImpORTBConfig("{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}")
 ```
 
 ### Initialize SDK
@@ -118,10 +118,7 @@ Once you set the account ID, you should initialize the Prebid SDK. There are sev
 
 If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10.7.0, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app:
 
-{% capture gma12 %}
-
-``` swift
-Prebid.initializeSDK("https://prebidserver.example.com/openrtb2/auction", gadMobileAdsVersion: string(for: MobileAds.shared.versionNumber)) { status, error in
+{% capture gma12 %}Prebid.initializeSDK("https://prebidserver.example.com/openrtb2/auction", gadMobileAdsVersion: string(for: MobileAds.shared.versionNumber)) { status, error in
     switch status {
     case .succeeded:
         print("Prebid SDK successfully initialized")
@@ -136,14 +133,9 @@ Prebid.initializeSDK("https://prebidserver.example.com/openrtb2/auction", gadMob
     default:
         break
     }            
-}   
-```
-
+}
 {% endcapture %}
-{% capture gma11 %}
-
-``` swift
-Prebid.initializeSDK("https://prebidserver.example.com/openrtb2/auction", gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
+{% capture gma11 %}Prebid.initializeSDK("https://prebidserver.example.com/openrtb2/auction", gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
     switch status {
     case .succeeded:
         print("Prebid SDK successfully initialized")
@@ -158,9 +150,7 @@ Prebid.initializeSDK("https://prebidserver.example.com/openrtb2/auction", gadMob
     default:
         break
     }            
-}      
-```  
-
+}
 {% endcapture %}
 
 {% include code/gma-versions-tabs.html id="pbm-init" gma11=gma11 gma12=gma12 %}

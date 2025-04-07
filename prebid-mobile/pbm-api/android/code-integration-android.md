@@ -89,7 +89,7 @@ If you want to define a different Account Settings ID as determined in conjuncti
 your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#arbitrary-openrtb) method like this:
 
 ```kotlin
-adUnitConfiguration?.impOrtbConfig = "{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}"
+adUnit?.impOrtbConfig = "{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}"
 ```
 
 ### Initialize SDK
