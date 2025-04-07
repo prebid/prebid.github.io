@@ -212,9 +212,11 @@ As part of Apple's evolving privacy policies, SDKs that access user data in a wa
 
 Currently, the Prebid Mobile SDK is not classified as one of these SDKs. But future changes from Apple or internal app review policies may prompt publishers to proactively register the Prebid Server (PBS) endpoint in the privacy manifest. To support this, the Prebid SDK is designed to accommodate both tracking and non-tracking PBS domains. Follow next recommendations during development:
 
-1. Include the relevant `NSPrivacyCollectedDataTypes` and define your primary Prebid Server domain in the `NSPrivacyTrackingDomains` array in your the `PrivacyInfo.xcprivacy` file to cover a potential "worst case" scenario. Read more about the `PrivacyInfo.xcprivacy` data [here](https://docs.prebid.org/faq/prebid-mobile-faq.html#privacysecurity).
-2. You may choose to provide a secondary, privacy-mode PBS URL to the SDK. This secondary domain can be used when tracking is disallowed. Every initialization method contains optional parameter to define the privacy-safe PBS domain.
+- Include the relevant `NSPrivacyCollectedDataTypes` and define your primary Prebid Server domain in the `NSPrivacyTrackingDomains` array in your the `PrivacyInfo.xcprivacy` file to cover a potential "worst case" scenario. Read more about the `PrivacyInfo.xcprivacy` data [here](https://docs.prebid.org/faq/prebid-mobile-faq.html#privacysecurity).
+- You may choose to provide a secondary, privacy-mode PBS URL to the SDK. This secondary domain can be used when tracking is disallowed. Every initialization method contains optional parameter to define the privacy-safe PBS domain.
+
 You’re not required to use a secondary PBS domain. You can simply allow iOS to block PBS requests when the user opts out of tracking.
+
 ```swift
 let trackingURL = "https://prebidserver.example.com/openrtb2/auction"
 let nonTrackingURL = "https://prebidserver.example.nontracking.com/openrtb2/auction"
