@@ -79,7 +79,6 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 
 {% include code/gma-versions-tabs.html id="non-instream-video" gma11=gma11 gma12=gma12 %}
 
-
 ## Step 1: Create a BannerAdUnit
 {:.no_toc}
 

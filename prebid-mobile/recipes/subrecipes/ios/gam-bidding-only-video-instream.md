@@ -93,7 +93,6 @@ func adsManagerDidRequestContentResume(_ adsManager: IMAAdsManager) {
 }
 ```
 
-
 ## Step 1: Create an InstreamVideoAdUnit
 {:.no_toc}
 
