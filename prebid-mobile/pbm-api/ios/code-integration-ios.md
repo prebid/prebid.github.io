@@ -118,7 +118,7 @@ Once you set the account ID, you should initialize the Prebid SDK. There are sev
 
 If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10.7.0, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app:
 
-{% capture gma12 %}Prebid.initializeSDK(<"https://prebidserver.example.com/openrtb2/auction">, gadMobileAdsVersion: string(for: MobileAds.shared.versionNumber)) { status, error in
+{% capture gma12 %}Prebid.initializeSDK(PREBID_SERVER_URL, gadMobileAdsVersion: string(for: MobileAds.shared.versionNumber)) { status, error in
     switch status {
     case .succeeded:
         print("Prebid SDK successfully initialized")
@@ -135,7 +135,7 @@ If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10
     }            
 }
 {% endcapture %}
-{% capture gma11 %}Prebid.initializeSDK(<"https://prebidserver.example.com/openrtb2/auction">, gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
+{% capture gma11 %}Prebid.initializeSDK(PREBID_SERVER_URL, gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
     switch status {
     case .succeeded:
         print("Prebid SDK successfully initialized")
@@ -158,7 +158,7 @@ If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10
 If you integrate Prebid Mobile with GMA SDK with version lower than 10.7.0, use the following initializer:
 
 ```swift
-Prebid.initializeSDK("https://prebidserver.example.com/openrtb2/auction", GADMobileAds.sharedInstance()) { status, error in
+Prebid.initializeSDK(PREBID_SERVER_URL, GADMobileAds.sharedInstance()) { status, error in
     switch status {
     case .succeeded:
         print("Prebid SDK successfully initialized")
@@ -181,7 +181,7 @@ Check the log messages of the app. If the provided GMA SDK version is not verifi
 For the No Ad Server scenario, use the following initialization:
 
 ```swift
-Prebid.initializeSDK("https://prebidserver.example.com/openrtb2/auction") { status, error in
+Prebid.initializeSDK(PREBID_SERVER_URL) { status, error in
     // ....
 }
 ```
