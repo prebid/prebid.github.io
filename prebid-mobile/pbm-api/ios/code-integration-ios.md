@@ -119,6 +119,7 @@ Once you set the account ID, you should initialize the Prebid SDK. There are sev
 If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10.7.0, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app:
 
 {% capture gma12 %}
+
 ``` swift
 Prebid.initializeSDK("https://prebidserver.example.com/openrtb2/auction", gadMobileAdsVersion: string(for: MobileAds.shared.versionNumber)) { status, error in
     switch status {
@@ -137,8 +138,10 @@ Prebid.initializeSDK("https://prebidserver.example.com/openrtb2/auction", gadMob
     }            
 }   
 ```
+
 {% endcapture %}
 {% capture gma11 %}
+
 ``` swift
 Prebid.initializeSDK("https://prebidserver.example.com/openrtb2/auction", gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
     switch status {
@@ -156,7 +159,8 @@ Prebid.initializeSDK("https://prebidserver.example.com/openrtb2/auction", gadMob
         break
     }            
 }      
-```      
+```  
+
 {% endcapture %}
 
 {% include code/gma-versions-tabs.html id="pbm-init" gma11=gma11 gma12=gma12 %}
