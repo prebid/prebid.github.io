@@ -269,6 +269,11 @@ We request that you do not duplicate information that is already present in the 
 {: .alert.alert-warning :}
 You may not try to set the full endpoint domain from a publisher-specified bidder parameter. Prebid Server is not an open proxy. If absolutely necessary, you may specify a *portion* of the domain as a parameter to support geo regions or account specific servers. However, this is discouraged and may degrade the performance of your adapter since the server needs to maintain more outgoing connections. Host companies may choose to disable your adapter if it uses a dynamically configured domain.
 
+{: .alert.alert-info :}
+Prebid publishers and managed services often require test responses from bid adapters. Please plan to provide a method for obtaining test bids for each mediatype you support. This can be done in response to the OpenRTB `test:1` flag, or with a documented set of bidder parameters.
+
+#### Defining the Parameters
+
 Create a file with the path `static/bidder-params/{bidder}.json` using [JSON Schema](https://json-schema.org/understanding-json-schema/) to define your bidder parameters. Prebid Server requires this file for every adapter, even if yours doesn't require bidder parameters (see the 'no parameters' example at the end of this section).
 
 Let's start with this example which defines one required `placementId` string parameter:
