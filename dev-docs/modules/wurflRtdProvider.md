@@ -95,3 +95,68 @@ To test how the WURFL RTD module works, run the following command:
 Then, point your browser to:
 
 `http://localhost:9999/integrationExamples/gpt/wurflRtdProvider_example.html`
+
+## Expected Behavior
+
+WURFL RTD adds device information to the bidderRequest's `ortb2.device.ext.wurfl` object (enabled SSPs have access to an extended capability set).
+
+```json
+{
+  "id": "1edd88d3-12c6-40b2-a80b-138e276b4553",
+  "at": 1,
+  "site": {...},
+  "device": {
+    "w": 375,
+    "h": 667,
+    "dnt": 0,
+    "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Mobile/15E148 Safari/604.1",
+    "language": "it",
+    "make": "Apple",
+    "model": "iPhone",
+    "devicetype": 1,
+    "os": "iOS",
+    "osv": "18.3.1",
+    "hwv": "iPhone",
+    "ppi": 324,
+    "pxratio": 2,
+    "js": 1,
+    "ext": {
+      "vpw": 980,
+      "vph": 1429,
+      "wurfl": {
+        "wurfl_id": "apple_iphone_ver18_3",
+        "advertised_browser": "Mobile Safari",
+        "advertised_browser_version": "18.3",
+        "advertised_device_os": "iOS",
+        "advertised_device_os_version": "18.3.1",
+        "ajax_support_javascript": true,
+        "brand_name": "Apple",
+        "complete_device_name": "Apple iPhone",
+        "density_class": "2.0",
+        "form_factor": "Smartphone",
+        "is_app_webview": false,
+        "is_connected_tv": false,
+        "is_full_desktop": false,
+        "is_mobile": true,
+        "is_ott": false,
+        "is_phone": true,
+        "is_robot": false,
+        "is_smartphone": true,
+        "is_smarttv": false,
+        "is_tablet": false,
+        "manufacturer_name": "",
+        "marketing_name": "",
+        "max_image_height": 568,
+        "max_image_width": 320,
+        "model_name": "iPhone",
+        "physical_screen_height": 89,
+        "physical_screen_width": 50,
+        "pixel_density": 324,
+        "pointing_method": "touchscreen",
+        "resolution_height": 1136,
+        "resolution_width": 640
+      }
+    }
+  }
+}
+```
