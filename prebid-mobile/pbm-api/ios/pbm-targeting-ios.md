@@ -598,7 +598,6 @@ adUnit.setOrtbConfig("{\"ext\":{\"gpid\":\"abc123"}}\")
 
 This method has implementation issues and was deprecated in v2.4.0. If you use this method, we strongly recommend migrating to the new `setImpORTBConfig()` method since this one will be removed entirely in SDK version 3.0.0.
 
-
 ## Further Reading
 
 - [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
