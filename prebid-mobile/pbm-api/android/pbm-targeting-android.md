@@ -33,11 +33,55 @@ bid targeting.
 
 The `Prebid` class is a singleton that enables you to apply certain global settings.
 
+### Prebid Class Global Properties
+
+{: .alert.alert-warning :}
+The global properties exist only for PrebidMobile `2.5.0`. Starting from PrebidMobile `3.0.0` the global properties below are removed.
+
+All of these properties of the Prebid class can be set on the `shared` object like this:
+
+```kotlin
+Prebid.shared.sendMraidSupportParams=true
+```
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Purpose | Description | Example |
+| --- | --- | --- | --- | --- |
+| isCoppaEnabled | optional | boolean | ORTB | Starting from PrebidMobile `3.0.0` the property is removed<wbr>Set this to true if this app is aimed at children. It sets the ORTB `regs.coppa` flag. Default is false. | `true` |
+| useExternalBrowser | optional | boolean | behavior | Starting from PrebidMobile `3.0.0` the property is removed<wbr>If true, clicking on the ad will open your default browser instead of showing within the app's webview. Defaults to `false`. | `true` |
+| sendMraidSupportParams | optional | boolean | ORTB | Starting from PrebidMobile `3.0.0` the property is removed<wbr>If `true`, the SDK sends imp[].banner.api=[3,5], indicating support for MRAID. Defaults to `true`. | `false` |
+
 ### Prebid Class Global Methods
 
 #### setPrebidServerAccountId()
 
 Your Prebid Server team will tell you whether this is required or not and if so, the value. See the initialization page for [Android](/prebid-mobile/pbm-api/android/code-integration-android.html).
+
+#### setPrebidServerHost()
+
+This is where the Prebid SDK will send the auction information.
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the `setPrebidServerHost` method is removed. Use the `initializeSdk` method instead.
+
+Signature:
+
+```kotlin
+func setPrebidServerHost(host: String)
+```
+
+Parameters: 
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| host | required | object | Host.APPNEXUS, Host.RUBICON, Host.createCustomHost<wbr>(PREBID_SERVER<wbr>_AUCTION_ENDPOINT) | Host.createCustomHost<wbr>(`https://prebidserver`<wbr>`.example.com`<wbr>`/openrtb2/auction`) |
+
+Examples:
+
+```kotlin
+PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebidserver.example.com/openrtb2/auction"))
+```
 
 #### setCustomStatusEndpoint()
 

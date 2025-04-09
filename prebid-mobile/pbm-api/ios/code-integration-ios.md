@@ -98,6 +98,17 @@ Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.htm
 Prebid.shared.prebidServerAccountId = YOUR_ACCOUNT_ID
 ```
 
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the `setCustomPrebidServer` method is removed. Use `Prebid.initializeSDK` instead.
+
+If you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+
+```swift
+try! Prebid.shared.setCustomPrebidServer(url: "https://prebidserver.example.com/openrtb2/auction")
+```
+
+This method throws an exception if the provided URL is invalid.
+
 #### Account Settings ID
 
 Each mobile app may have its own "account settings ID". This is used to look up data in Prebid Server like timeout, targeting, and price granularity.
@@ -340,7 +351,21 @@ All values received in the `passthrough` of the bid response will be applied to 
 ### Examples
 {:.no_toc}
 
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the `prebidServerHost` property and the `setCustomPrebidServer` method are removed. Use `Prebid.initializeSDK` instead.
+
 ```swift
+
+// Host
+Prebid.shared.prebidServerHost = .Rubicon
+// or set a custom host
+Prebid.shared.prebidServerHost = PrebidHost.Custom
+do {
+    try Prebid.shared.setCustomPrebidServer(url: "https://prebid-server.customhost.com")
+} catch {
+    print(error)
+}
+
 // Account Id
 Prebid.shared.prebidServerAccountId = "1234"
 

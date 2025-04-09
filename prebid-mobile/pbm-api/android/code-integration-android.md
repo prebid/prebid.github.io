@@ -215,6 +215,22 @@ PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 var pbsAccountId = PrebidMobile.getPrebidServerAccountId()
 ```
 
+### Host
+{:.no_toc}
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the `Host` class is removed. Use the `initializeSdk` method to provide the your Prebid Server host instead.
+
+Object containing configuration for your Prebid Server host with which the Prebid SDK will communicate. Choose from the system-defined Prebid Server hosts or define your own custom Prebid Server host.
+
+```kotlin
+PrebidMobile.setPrebidServerHost(Host.RUBICON);
+
+//or set a custom host
+Host.CUSTOM.setHostUrl("https://prebid-server.bidder.com/");
+PrebidMobile.setPrebidServerHost(Host.CUSTOM);
+```
+
 ### Timeout
 {:.no_toc}
 

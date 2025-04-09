@@ -39,12 +39,14 @@ All of these properties of the Prebid class can be set on the `shared` object li
 
 ```swift
 Prebid.shared.prebidServerAccountId="12345"
+Prebid.shared.customStatusEndpoint="https://pbs.example.com/v2/status"
 ```
 
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Purpose | Description | Example |
 | --- | --- | --- | --- | --- | --- |
 | prebidServerAccountId | either | string | init | Your Prebid Server team will tell you whether this is required or not and if so, the value. | "abc123" |
+| prebidServerHost | optional | enum | init | Starting from PrebidMobile `3.0.0` the property is removed<wbr>This can take the values "Appnexus", "Rubicon", or "Custom". If "Custom", you need to use the setCustomPrebidServerUrl() method to set a URL. This is where the Prebid SDK will send the auction information. Your Prebid Server team will tell you which value to use. The default is "Custom". | "Custom" |
 | customStatusEndpoint | optional | string | init | Use this URL to check the status of Prebid Server. The default status endpoint is the PBS URL appended with '/status'. | `https://prebidserver`<wbr>`.example`<wbr>`.com/custom`<wbr>`/status` |
 | shareGeoLocation | optional | boolean | ORTB | If this flag is true AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s lat/long geographical location data to the Prebid Server. The default is false. | `true` |
 | locationUpdatesEnabled | optional | boolean | ORTB | If true, the SDK will periodically try to listen for location updates. Default is `false`. | `true` |
@@ -57,11 +59,20 @@ Prebid.shared.prebidServerAccountId="12345"
 | pbsDebug | optional | boolean | ORTB | Adds the debug flag (`test`:1) on the outbound http call to the Prebid Server. The `test` flag signals to the Prebid Server to emit the full resolved request and the full Bid Request and Bid Response to and from each bidder. | true |
 | shouldAssign<wbr>NativeAssetID | optional | boolean | ORTB | Whether to automatically assign an assetID for a Native ad. Default is `false`. | true |
 | useCacheForReporting<wbr>WithRenderingAPI | optional | boolean | ORTB | Indicates whether PBS should cache the bid on the server side. If the value is `true` the Prebid SDK will make the cache request to retrieve the cached asset. Default is `false`. | true |
+| useExternal<wbr>ClickthroughBrowser | optional | boolean | SDK control | Starting from PrebidMobile `3.0.0` the property is removed<wbr>Controls whether to use PrebidMobile's in-app browser or the Safari App for displaying ad clickthrough content. Default is false. | true |
+| impClickbrowserType | optional | enum | ORTB | Starting from PrebidMobile `3.0.0` the property is removed<wbr>Indicates the type of browser opened upon clicking the creative in an app. This corresponds to the OpenRTB imp.clickbrowser field. Values are "embedded" and "native". Default is "native". | "native". |
 | includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 | includeBidderKeys | optional | boolean | ORTB | If `true`, Prebid sdk will add `includebidderkeys` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 | eventDelegate | optional | PrebidEventDelegate | init | Sets an event delegate to handle all auction requests and responses. It allows to collect some statistical data. Note that the SDK stores this callback as a weak reference so you need to store a reference to it. | `class PrebidEventDelegateTestsMockDelegate: PrebidEventDelegate { func prebidBidRequestDidFinish(requestData: Data?, responseData: Data?) { ... } }` |
 
 ### Prebid Class Global Methods
+
+#### setCustomPrebidServerUrl()
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the method is removed. Use `Prebid.initializeSDK` instead.
+
+Defines which Prebid Server to connect to. See the initialization page for [iOS](/prebid-mobile/pbm-api/ios/code-integration-ios.html).
 
 #### addStoredBidResponse()
 
@@ -571,6 +582,22 @@ Pay attention that there are certain protected fields such as `regs`, `device`, 
 
 - App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)
 - See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
+
+### Deprecated 
+{:.no_toc}
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the method is removed. Use `Targeting.shared.setImpORTBConfig` instead.
+
+The PrebidMobile 2.5.0 contains the deprecated method to set the impression level RTB config: 
+
+``` swift
+//ad unit / impression-level
+adUnit.setOrtbConfig("{\"ext\":{\"gpid\":\"abc123"}}\")
+```
+
+This method has implementation issues and was deprecated in v2.4.0. If you use this method, we strongly recommend migrating to the new `setImpORTBConfig()` method since this one will be removed entirely in SDK version 3.0.0.
+
 
 ## Further Reading
 
