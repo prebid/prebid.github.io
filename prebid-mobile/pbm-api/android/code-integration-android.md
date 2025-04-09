@@ -89,7 +89,7 @@ If you want to define a different Account Settings ID as determined in conjuncti
 your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#arbitrary-openrtb) method like this:
 
 ```kotlin
-adUnit?.impOrtbConfig = "{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}"
+TargetingParams.setGlobalOrtbConfig("{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}})"
 ```
 
 ### Initialize SDK
@@ -99,7 +99,7 @@ If you have opted to host your own Prebid Server solution you will need to store
 Once you set the account ID, you should initialize the Prebid SDK. Use the following initialization for Prebid SDK:
 
 ```kotlin
-PrebidMobile.initializeSdk(applicationContext, "https://prebidserver.example.com/openrtb2/auction") { status ->
+PrebidMobile.initializeSdk(applicationContext, PREBID_SERVER_URL) { status ->
     if (status == InitializationStatus.SUCCEEDED) {
         Log.d(TAG, "SDK initialized successfully!")
     } else if (status == InitializationStatus.SERVER_STATUS_WARNING) {

@@ -107,7 +107,7 @@ If you want to define a different Account Settings ID as determined in conjuncti
 your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#arbitrary-openrtb) method like this:
 
 ```swift
-adUnit.setImpORTBConfig("{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}")
+Targeting.shared.setGlobalORTBConfig("{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}")
 ```
 
 ### Initialize SDK
