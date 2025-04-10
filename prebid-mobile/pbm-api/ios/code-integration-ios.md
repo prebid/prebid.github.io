@@ -98,6 +98,17 @@ Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.htm
 Prebid.shared.prebidServerAccountId = YOUR_ACCOUNT_ID
 ```
 
+### Point to a Prebid Server
+
+{: .alert.alert-warning :}
+If you used `Host.Appnexus` or `Host.Rubicon` to set your host, you should check the server URL in [API changes](/prebid-mobile/updates-3.0/ios/api-changes#host) and use `Prebid.initializeSDK` to set the Prebid Server URL.
+
+For example, if you're using the AppNexus Prebid Server:
+
+```swift
+Prebid.shared.prebidServerHost = .Appnexus
+```
+
 {: .alert.alert-warning :}
 Starting from PrebidMobile `3.0.0` the `setCustomPrebidServer` method is removed. Use `Prebid.initializeSDK` instead.
 
@@ -352,15 +363,16 @@ All values received in the `passthrough` of the bid response will be applied to 
 {:.no_toc}
 
 {: .alert.alert-warning :}
-Starting from PrebidMobile `3.0.0` the `prebidServerHost` property and the `setCustomPrebidServer` method are removed. Use `Prebid.initializeSDK` instead.
+Starting from PrebidMobile `3.0.0` the `prebidServerHost` property and the `setCustomPrebidServer` method are removed. Use `Prebid.initializeSDK` instead. If you used `Host.Appnexus` or `Host.Rubicon` to set your host, you should check the server URL in [API changes](/prebid-mobile/updates-3.0/ios/api-changes#host).
 
 ```swift
 
-// Host
+// Host (Removed in 3.0.0. Use `Prebid.initializeSDK` instead.)
 Prebid.shared.prebidServerHost = .Rubicon
-// or set a custom host
+// or set a custom host (Removed in 3.0.0. Use `Prebid.initializeSDK` instead.)
 Prebid.shared.prebidServerHost = PrebidHost.Custom
 do {
+    // Removed in 3.0.0. Use `Prebid.initializeSDK` instead.
     try Prebid.shared.setCustomPrebidServer(url: "https://prebid-server.customhost.com")
 } catch {
     print(error)

@@ -80,6 +80,26 @@ Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.htm
 PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 ```
 
+### Point to a Prebid Server
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the `Host.APPNEXUS` and `Host.RUBICON` are remove. If you use `Host.APPNEXUS` or `Host.RUBICON` to set your host, you should check the server URL in [API changes](/prebid-mobile/updates-3.0/android/api-changes#host) and use `PrebidMobile.initializeSdk` to set the Prebid Server URL.
+
+For example, if you're using the AppNexus Prebid Server:
+
+```kotlin
+PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
+```
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the `setPrebidServerHost` method is removed. Use the `PrebidMobile.initializeSdk` method to provide  your Prebid Server host instead.
+
+If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+
+```kotlin
+PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebidserver.example.com/openrtb2/auction"))
+```
+
 #### Account Settings ID
 
 Each mobile app may have its own "account settings ID". This is used to look up data in Prebid Server like timeout, targeting, and price granularity.
@@ -219,7 +239,7 @@ var pbsAccountId = PrebidMobile.getPrebidServerAccountId()
 {:.no_toc}
 
 {: .alert.alert-warning :}
-Starting from PrebidMobile `3.0.0` the `Host` class is removed. Use the `initializeSdk` method to provide the your Prebid Server host instead.
+Starting from PrebidMobile `3.0.0` the `Host` class is removed. Use the `PrebidMobile.initializeSdk` method to provide the your Prebid Server host instead.
 
 Object containing configuration for your Prebid Server host with which the Prebid SDK will communicate. Choose from the system-defined Prebid Server hosts or define your own custom Prebid Server host.
 
