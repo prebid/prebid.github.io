@@ -8,7 +8,7 @@ sidebarType: 2
 # Prebid Mobile Overview
 {:.no_toc}
 
-Prebid Mobile is an open-source library fir iOS and Android that provides an end-to-end header bidding solution for mobile app publishers.
+Prebid Mobile is an open-source library for iOS and Android that provides an end-to-end header bidding solution for mobile app publishers.
 
 ---- 
 
