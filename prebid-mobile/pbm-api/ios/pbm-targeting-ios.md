@@ -439,7 +439,7 @@ func clearAccessControlList()
 Example:
 
 ```swift
-Targeting.shared.addBidderToAccessControlList("rubicon")
+Targeting.shared.addBidderToAccessControlList("bidderA")
 ```
 
 ---
