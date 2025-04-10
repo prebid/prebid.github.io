@@ -47,7 +47,7 @@ Prebid.shared.sendMraidSupportParams=true
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Purpose | Description | Example |
 | --- | --- | --- | --- | --- |
-| isCoppaEnabled | optional | boolean | ORTB | Starting from PrebidMobile `3.0.0` the property is removed<wbr>Set this to true if this app is aimed at children. It sets the ORTB `regs.coppa` flag. Default is false. | `true` |
+| isCoppaEnabled | optional | boolean | ORTB | Starting from PrebidMobile `3.0.0` the property is removed. Can be replaces with `TargetingParams.setSubjectToCOPPA()`<wbr>Set this to true if this app is aimed at children. It sets the ORTB `regs.coppa` flag. Default is false. | `true` |
 | useExternalBrowser | optional | boolean | behavior | Starting from PrebidMobile `3.0.0` the property is removed<wbr>If true, clicking on the ad will open your default browser instead of showing within the app's webview. Defaults to `false`. | `true` |
 | sendMraidSupportParams | optional | boolean | ORTB | Starting from PrebidMobile `3.0.0` the property is removed<wbr>If `true`, the SDK sends imp[].banner.api=[3,5], indicating support for MRAID. Defaults to `true`. | `false` |
 

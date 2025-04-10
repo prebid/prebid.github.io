@@ -40,7 +40,7 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 | locationPrecision                      | None, removed                     |
 | setLocationPrecision(\_:)              | None, removed                     |
 | getLocationPrecision()                 | None, removed                     |
-| setCustomParams(\_:)                   | None, removed                     |
+| setCustomParams(\_:)                   | [setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)                   |
 | addCustomParam(\_:withName:)           | None, removed                     |
 | addUserData(key:value:)                | [userExt](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(py)userExt), [setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)      |
 | updateUserData(key:value:)             | None, removed                     |
@@ -62,10 +62,10 @@ PrebidMobile 3.0 introduces significant changes and removes several deprecated f
 | getContextKeywords()                   | [getAppKeywords()](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)getAppKeywords)                  |
 | contextKeywords                        | [getAppKeywords()](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)getAppKeywords)                  |
 | yearOfBirth                            | None, deprecated by ORTB.         |
-| setYearOfBirth(yob:)                   | None, deprecated by ORTB.         |
+| setYearOfBirth(yob:)                   | [setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)       |
 | getYearOfBirth()                       | None, deprecated by ORTB.         |
 | clearYearOfBirth()                     | None, deprecated by ORTB.         |
-| userGender                             | None, deprecated by ORTB.         |
+| userGender                             | [setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)        |
 | userGenderDescription()                | None, deprecated by ORTB.         |
 | userID                                 | [setGlobalORTBConfig(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setGlobalORTBConfig:)                |
 | eids                                   | [Targeting.shared.setExternalUserIds(\_:)](https://docs.prebid.org/prebid-mobile-ios/Classes/Targeting.html#/c:@M@PrebidMobile@objc(cs)Targeting(im)setExternalUserIds:) |
