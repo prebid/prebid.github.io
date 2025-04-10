@@ -101,18 +101,15 @@ Prebid.shared.prebidServerAccountId = YOUR_ACCOUNT_ID
 ### Point to a Prebid Server
 
 {: .alert.alert-warning :}
-If you used `Host.Appnexus` or `Host.Rubicon` to set your host, you should check the server URL in [API changes](/prebid-mobile/updates-3.0/ios/api-changes#host) and use `Prebid.initializeSDK` to set the Prebid Server URL.
+Starting from PrebidMobile `3.0.0` the setCustomPrebidServer() method and the `Host.Appnexus` and `Host.Rubicon` enums have been removed. Please check the server URL in [API changes](/prebid-mobile/updates-3.0/ios/api-changes#host) and use `PrebidMobile.initializeSdk` (below) to set the Prebid Server URL.
 
-For example, if you're using the AppNexus Prebid Server:
+In SDK 2.5 and before, if you're using the AppNexus Prebid Server, you would do this:
 
 ```swift
 Prebid.shared.prebidServerHost = .Appnexus
 ```
 
-{: .alert.alert-warning :}
-Starting from PrebidMobile `3.0.0` the `setCustomPrebidServer` method is removed. Use `Prebid.initializeSDK` instead.
-
-If you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+In SDK 2.5 and before, if you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
 
 ```swift
 try! Prebid.shared.setCustomPrebidServer(url: "https://prebidserver.example.com/openrtb2/auction")
