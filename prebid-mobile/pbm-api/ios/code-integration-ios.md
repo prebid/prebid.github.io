@@ -131,9 +131,9 @@ Targeting.shared.setGlobalORTBConfig("{\"ext\":{\"prebid\":{\"storedrequest\": {
 
 ### Initialize SDK
 
-If you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+Once you set the account ID, you should initialize the Prebid SDK. 
 
-Once you set the account ID, you should initialize the Prebid SDK. There are several options for how to do it.
+In SDK 3.0 and later, you need to enter a URL to your Prebid Server's auction endpoint in your app. Get this URL from your Prebid Server provider. e.g. `https://prebid-server.example.com/openrtb2/auction`.
 
 If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10.7.0, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app:
 
@@ -207,7 +207,7 @@ Prebid.initializeSDK(PREBID_SERVER_URL) { status, error in
 
 All initialization methods may throw an exception if the provided server URL is invalid.
 
-During the initialization, SDK creates internal classes and performs the health check request to the [/status](https://docs.prebid.org/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If you use a custom PBS host you should provide a custom status endpoint as well:
+During the initialization, SDK creates internal classes and performs the health check request to the [/status](/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If your Prebid Server provider has a non-standard path (anything other than `/status`), you should provide a the alternate status endpoint:
 
 ```swift
 Prebid.shared.customStatusEndpoint = PREBID_SERVER_STATUS_ENDPOINT
