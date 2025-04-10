@@ -111,9 +111,11 @@ TargetingParams.setGlobalOrtbConfig("{\"ext\":{\"prebid\":{\"storedrequest\": {\
 
 ### Initialize SDK
 
-If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+Once you set the account ID, you should initialize the Prebid SDK. 
 
-Once you set the account ID, you should initialize the Prebid SDK. Use the following initialization for Prebid SDK:
+In SDK 3.0 and later, you need to enter a URL to your Prebid Server's auction endpoint in your app. Get this URL from your Prebid Server provider. e.g. `https://prebid-server.example.com/openrtb2/auction`.
+
+Use the following initialization for Prebid SDK:
 
 ```kotlin
 PrebidMobile.initializeSdk(applicationContext, PREBID_SERVER_URL) { status ->
@@ -133,7 +135,7 @@ Pay attention that SDK should be initialized on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-During the initialization, SDK creates internal classes and performs the health check request to the [/status](https://docs.prebid.org/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If you use a custom PBS host you should provide a custom status endpoint as well:
+During the initialization, SDK creates internal classes and performs the health check request to the [/status](/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If your Prebid Server provider has a non-standard path (anything other than `/status`), you should provide a the alternate status endpoint:
 
 ```kotlin
 PrebidMobile.setCustomStatusEndpoint(PREBID_SERVER_STATUS_ENDPOINT)
