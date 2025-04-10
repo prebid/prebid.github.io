@@ -203,7 +203,7 @@ Parameters:
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
-| settingsId | optional | string | Use the settingsId to separate out account from "auction settings". If specified, the settingsId is used to set `ext.prebid.storedrequest.id`, otherwise prebidServerAccountId is taken by default. | "abc321" |
+| settingsId | optional | string | Use the settingsId to separate account from "auction settings", allowing each app to have different global parameters defined on the server side. If specified, the settingsId is used to set `ext.prebid.storedrequest.id`, otherwise prebidServerAccountId is taken by default. | "abc321" |
 
 Examples:
 
