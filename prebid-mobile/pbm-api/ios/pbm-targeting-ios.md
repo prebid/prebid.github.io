@@ -583,21 +583,6 @@ Pay attention that there are certain protected fields such as `regs`, `device`, 
 - App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)
 - See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
 
-### Deprecated 
-{:.no_toc}
-
-{: .alert.alert-warning :}
-Starting from PrebidMobile `3.0.0` the method is removed. Use `Targeting.shared.setImpORTBConfig` instead.
-
-The PrebidMobile 2.5.0 contains the deprecated method to set the impression level RTB config: 
-
-``` swift
-//ad unit / impression-level
-adUnit.setOrtbConfig("{\"ext\":{\"gpid\":\"abc123"}}\")
-```
-
-This method has implementation issues and was deprecated in v2.4.0. If you use this method, we strongly recommend migrating to the new `setImpORTBConfig()` method since this one will be removed entirely in SDK version 3.0.0.
-
 ## Further Reading
 
 - [Prebid Mobile Overview](/prebid-mobile/prebid-mobile.html)
