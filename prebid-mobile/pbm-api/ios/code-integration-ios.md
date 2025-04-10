@@ -257,7 +257,7 @@ The `Prebid` class is a singleton that enables the user to apply global settings
 
 `prebidServerHost`: String containing configuration your Prebid Server host with which Prebid SDK will communicate. Choose from the system-defined Prebid Server hosts or define your own custom Prebid Server host.
 
-`auctionSettingsId`: String to separate out account from "auction settings". There is used to set `ext.prebid.storedrequest.id`, otherwise prebidServerAccountId is taken by default.
+`auctionSettingsId`: Allows you to separate account from "auction settings". This is used to set `ext.prebid.storedrequest.id`, otherwise prebidServerAccountId is taken by default. This allows each app to have different global parameters like timeout, price granularity, etc. Please work with your Prebid Server provider to determine what to enter here. 
 
 `shareGeoLocation`: Optional Bool, if this flag is True AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s geographical location data to Prebid Server. If this flag is False OR the app does not collect the user’s geographical location data, Prebid Mobile will not populate any user geographical location information in the call to Prebid Server. The default setting is false.
 
