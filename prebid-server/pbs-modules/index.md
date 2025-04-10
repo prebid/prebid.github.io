@@ -221,14 +221,17 @@ PBS-Java 3.16 introduced a new A/B testing framework that applies to any module.
                ... abtest config for other modules ...
             }],
             "endpoints": {
-                "/openrtb2/auction": {
-                    ...
-                 }
+              ...
             }
-        ]
-     ]
-]
+        }
+     }
+}
 ```
+
+{: .alert.alert-info :}
+If the execution plans defined at the default account level are acceptable, but a specific account wants to test a module,
+just add the `hooks.execution-plan.abtests` object and then `hooks.execution-plan.endpoints: {}`. The empty `endpoints` object will be merged
+at runtime with the account default. Leaving the account-specific endpoints completely empty will result in an error.
 
 These are the parameters accepted within the `abtests` object:
 

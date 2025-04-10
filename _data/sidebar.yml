@@ -400,6 +400,14 @@
   subgroup: 3
 
 - sbSecId: 1
+  title: Renderer
+  link: /dev-docs/renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 1
   title: Bidder Params
   link: /dev-docs/bidders.html
   isHeader: 0
@@ -445,6 +453,14 @@
 - sbSecId: 1
   title: How to Add A Real Time Data submodule
   link: /dev-docs/add-rtd-submodule.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 1
+  title: How to Add A User ID submodule
+  link: /dev-docs/userId-module.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:

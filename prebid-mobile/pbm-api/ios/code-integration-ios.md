@@ -8,6 +8,8 @@ nav_section: prebid-mobile-ios
 sidebarType: 2
 ---
 
+<!-- markdownlint-disable-file MD046 -->
+
 # Prebid SDK Integration for iOS
 {:.no_toc}
 
@@ -123,8 +125,24 @@ Once you set the account ID and the Prebid Server host, you should initialize th
 
 If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10.7.0, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app:
 
-```swift
-Prebid.initializeSDK(gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
+{% capture gma12 %}Prebid.initializeSDK(gadMobileAdsVersion: string(for: MobileAds.shared.versionNumber)) { status, error in
+    switch status {
+    case .succeeded:
+        print("Prebid SDK successfully initialized")
+    case .failed:
+        if let error = error {
+            print("An error occurred during Prebid SDK initialization: \(error.localizedDescription)")
+        }
+    case .serverStatusWarning:
+        if let error = error {
+            print("Prebid Server status checking failed: \(error.localizedDescription)")
+        }
+    default:
+        break
+    }            
+}   
+{% endcapture %}
+{% capture gma11 %}Prebid.initializeSDK(gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
     switch status {
     case .succeeded:
         print("Prebid SDK successfully initialized")
@@ -140,7 +158,9 @@ Prebid.initializeSDK(gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobil
         break
     }            
 }            
-```
+{% endcapture %}
+
+{% include code/gma-versions-tabs.html id="pbm-init" gma11=gma11 gma12=gma12 %}
 
 If you integrate Prebid Mobile with GMA SDK with version lower than 10.7.0, use the following initializer:
 
@@ -364,7 +384,8 @@ In the table below, you can find Prebid's test IDs that are used in the Demo App
 |`prebid-demo-video-interstitial-320-480-original-api`|**Video Interstitial** (Original API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
 |`prebid-demo-video-interstitial-320-480`|**Video Interstitial** (Rendering API)|Returns a stored response that contains a Video Interstitial 320x480 winning bid.|
 |`prebid-demo-video-rewarded-320-480-original-api`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
-|`prebid-demo-video-rewarded-320-480`|**Rewarded Video** (Original API)|Returns a stored response that contains a Rewarded Video 320x480 winning bid.|
+|`prebid-demo-banner-rewarded-time`|**Rewarded HTML** Returns a stored response that contains a Rewarded HTML 320x480 winning bid with rewarded configuration.||
+|`prebid-demo-video-rewarded-endcard-time`|**Rewarded Video** Returns a stored response that contains a Rewarded Video 320x480 winning bid with rewarded configuration.||
 |`prebid-demo-video-interstitial-320-480`|**Instream Video**|Returns a stored response that contains a Video 320x480 winning bid.|
 |`prebid-demo-banner-native-styles`|**Native Styles**|Returns a stored response that contains a Native winning bid.|
 |`prebid-demo-banner-native-styles`|**In-App Native**|Returns a stored response that contains a Native winning bid.|
