@@ -83,18 +83,15 @@ PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
 ### Point to a Prebid Server
 
 {: .alert.alert-warning :}
-Starting from PrebidMobile `3.0.0` the `Host.APPNEXUS` and `Host.RUBICON` are remove. If you use `Host.APPNEXUS` or `Host.RUBICON` to set your host, you should check the server URL in [API changes](/prebid-mobile/updates-3.0/android/api-changes#host) and use `PrebidMobile.initializeSdk` to set the Prebid Server URL.
+Starting from PrebidMobile `3.0.0` the setPrebidServerHost() method and the `Host.APPNEXUS` and `Host.RUBICON` enums have been removed. Please check the server URL in [API changes](/prebid-mobile/updates-3.0/android/api-changes#host) and use `PrebidMobile.initializeSdk` (below) to set the Prebid Server URL.
 
-For example, if you're using the AppNexus Prebid Server:
+In SDK 2.5 and before, if you're using the AppNexus Prebid Server you would do this:
 
 ```kotlin
 PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
 ```
 
-{: .alert.alert-warning :}
-Starting from PrebidMobile `3.0.0` the `setPrebidServerHost` method is removed. Use the `PrebidMobile.initializeSdk` method to provide  your Prebid Server host instead.
-
-If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+In SDK 2.5 and before, if you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
 
 ```kotlin
 PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebidserver.example.com/openrtb2/auction"))
