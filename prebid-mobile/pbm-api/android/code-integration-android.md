@@ -326,7 +326,7 @@ void clearStoredBidResponses()
 ### AuctionSettingsId
 {:.no_toc}
 
-String to separate out account from "auction settings". There is used to set `ext.prebid.storedrequest.id`, otherwise prebidServerAccountId is taken by default.
+String to separate out account from "auction settings". This is used to set `ext.prebid.storedrequest.id`, otherwise prebidServerAccountId is taken by default.
 
 ```kotlin
 PrebidMobile.setAuctionSettingsId(YOUR_AUCTION_SETTINGS_ID)
