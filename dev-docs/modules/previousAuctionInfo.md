@@ -67,7 +67,7 @@ ortb2: {
           bidderOriginalCpm: 0.04, // default is null
           bidderCurrency: "USD", // default is null
           bidderOriginalCurrency: "USD", // default is null
-          bidderErrorCode: -1, // default is null
+          rejectionReason: "Invalid request ID", // default is null
           timestamp: 1739400860310
         }
       ]
@@ -93,5 +93,5 @@ ortb2: {
 | ortb2.ext.prebid.previousauctioninfo[].bidderOriginalCpm | float | The original bid cpm submitted by the bidder receiving the previous auction info payload | null |
 | ortb2.ext.prebid.previousauctioninfo[].bidderCurrency | string | The bidder currency submitted by the bidder receiving the previous auction info payload | null |
 | ortb2.ext.prebid.previousauctioninfo[].bidderOriginalCurrency | string | The original bidder currency submitted by the bidder receiving the previous auction info payload | null |
-| ortb2.ext.prebid.previousauctioninfo[].bidderErrorCode | integer | Whether an error was present or not | null |
+| ortb2.ext.prebid.previousauctioninfo[].rejectionReason | string | The error reason, if one was present | null |
 | ortb2.ext.prebid.previousauctioninfo[].timestamp | integer | Time that the previous auction info payload was collected |  |
