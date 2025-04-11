@@ -1,8 +1,8 @@
 ---
 layout: page_v2
 title: Dynamic Ad Boost Real Time Data Provider
-display_name: Dynamic Ad Boost Real-time Segmentation Module
-description: Dynamic Ad Boost Real-time Segmentation Module
+display_name: Dynamic Ad Boost Real Time Data Provider
+description: Dynamic Ad Boost Real Time Data Provider
 page_type: module
 module_type: rtd
 module_code: dynamicAdBoostRtd
