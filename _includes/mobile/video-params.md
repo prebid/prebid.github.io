@@ -17,6 +17,9 @@ The [OpenRTB 2.6](https://iabtechlab.com/wp-content/uploads/2022/04/OpenRTB-2-6_
 Notes:
 - `PrebidAdUnit`, `VideoInterstitialAdUnit` and `RewardedVideoAdUnit` will default to placement=5 if no placement value is supplied.
 
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the class `VideoInterstitialAdUnit` is removed.
+
 #### plcmnt
 {:.no_toc}
 
@@ -29,6 +32,9 @@ The [OpenRTB v2.6-202303](https://github.com/InteractiveAdvertisingBureau/AdCOM/
 
 Notes:
 - `PrebidAdUnit`, `VideoInterstitialAdUnit` and `RewardedVideoAdUnit` will default to plcmnt=3 if no placement value is supplied.
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the class `VideoInterstitialAdUnit` is removed.
 
 #### api
 {:.no_toc}

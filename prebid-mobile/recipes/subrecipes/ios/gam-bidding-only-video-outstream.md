@@ -80,7 +80,7 @@ adUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 {% include code/gma-versions-tabs.html id="non-instream-video" gma11=gma11 gma12=gma12 %}
 
 {: .alert.alert-warning :}
-Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated. Use `BannerAdUnit` class with video ad format instead.
+Starting from PrebidMobile `2.1.0` the `VideoAdUnit` class is deprecated and from PrebidMobile `3.0.0` - removed. Use `BannerAdUnit` class with video ad format instead.
 
 ## Step 1: Create a BannerAdUnit
 {:.no_toc}
