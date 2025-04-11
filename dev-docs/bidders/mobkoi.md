@@ -18,7 +18,7 @@ deals_supported: false
 floors_supported: false
 fpd_supported: true
 pbjs: true
-pbs: false
+pbs: true
 prebid_member: false
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: partial
@@ -34,9 +34,10 @@ more details.
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Path                                        | Scope    | Description                  | Example                   | Type      |
-|---------------------------------------------|----------|------------------------------|---------------------------|-----------|
-| `placementId`                               | required | Mobkoi Provided Placement ID | `'DF2FFFFF'`              | `string`  |
+| Path                                        | Scope    | Description                    | Example                               | Type     |
+|---------------------------------------------|----------|--------------------------------|---------------------------------------|----------|
+| `placementId`                               | required | Mobkoi Provided Placement ID   | `'DF2FFFFF'`                          | `string` |
+| `adServerBaseUrl`                           | optional | Mobkoi adserver url (PBS only) | `https://adserver.maximus.mobkoi.com` | `string` |
 
 #### Example Configuration
 
