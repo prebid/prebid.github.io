@@ -58,9 +58,9 @@ Notes:
 * [Prebid Floor Service Providers](/dev-docs/modules/floors.html#floors-providers)
 * [Transcript of this video](/dev-docs/floors-video-overview.html)
 
-### Simple Static Floors
+### Simple Static Floor Signaling
 
-Some publishers just want to set a simple static floor. Please don't use this module for that. This module should only be used when you need to vary the floor by mediatype, size, etc. Here's how you can set static floors on each Prebid adunit:
+Some publishers just want to set a simple static floor and don't need enforcement. Please don't use this module for that. This module should only be used when you need to vary the floor by mediatype, size, etc. Here's how you can signal static floors on each Prebid adunit:
 
 ```javascript
 pbjs.addAdUnits({
@@ -77,6 +77,37 @@ pbjs.addAdUnits({
     // ...
 });
 ```
+
+### Simple Static Floor Enforcement
+
+If you need a static floor signal and also want to enforce that static floor, here's the quick start:
+
+```javascript
+ var adUnits = [
+         {
+             code: 'test-div',
+             mediaTypes: {
+                 banner: { sizes: [[300,250],[300,600]] }
+             },
+             floors: {
+                 currency: 'USD',
+                 schema: {
+                     delimiter: '|',
+                     fields: [ 'mediaType' ]
+                 },
+                 values: {
+                     '*': 1.00      // enter your static floor here
+                 }
+             },
+             bids: [
+                 ...
+             ]
+         }
+     ];
+```
+
+{: .alert.alert-warning :}
+Prebid does not recommend setting static floors. They are blunt tools and you'll forget to update them.
 
 ## How it Works
 
