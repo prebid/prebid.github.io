@@ -188,6 +188,29 @@ void clearStoredBidResponses()
 
 Parameters: none.
 
+#### setAuctionSettingsId()
+
+For the SDK to separate out account from "auction settings".
+
+Signature:
+
+```kotlin
+func setAuctionSettingsId(settingsId: String)
+```
+
+Parameters: 
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| settingsId | optional | string | Use the settingsId to separate account from "auction settings", allowing each app to have different global parameters defined on the server side. If specified, the settingsId is used to set `ext.prebid.storedrequest.id`, otherwise prebidServerAccountId is taken by default. | "abc321" |
+
+Examples:
+
+```kotlin
+PrebidMobile.setAuctionSettingsId("abc321")
+```
+
 #### setLogLevel
 
 Controls the level of logging output to the console.
