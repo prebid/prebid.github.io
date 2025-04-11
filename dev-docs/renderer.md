@@ -30,7 +30,7 @@ In simple terms, a renderer offers publishers:
 
 Renderers can be specified at multiple levels:
 
-1. MediaType Level (adUnit.mediaTypes.video|banner|native.renderer): If a renderer is associated with a specific mediaType (video, banner, or native), it will be used to display any demand associated with that mediaType. This is the preferred method for all ad types.
+1. MediaType Level (adUnit.mediaTypes.video\|banner\|native.renderer): If a renderer is associated with a specific mediaType (video, banner, or native), it will be used to display any demand associated with that mediaType. This is the preferred method for all ad types.
 2. AdUnit Level (adUnit.renderer): Applied to all bids for this ad unit that don't override it. This is a legacy approach; using the mediaType-level renderer is preferred.
 3. Bidder Level (adUnit.bids[].renderer): Applied only to this bidder, overriding adUnit renderer if both exist.
 4. Default: If no renderer is specified at any level, Prebid will use the default renderer for the media type, if one exists. For banner and native ads, Prebid.js has built-in default rendering capabilities.
