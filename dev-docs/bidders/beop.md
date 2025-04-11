@@ -12,6 +12,18 @@ usp_supported: false
 floors_supported: true
 schain_supported: true
 sidebarType: 1
+dsa_supported: false
+coppa_supported: false
+gpp_sids: tcfeu
+dchain_supported: false
+userIds: none
+safeframes_ok: false
+deals_supported: false
+fpd_supported: true
+prebid_member: false
+multiformat_supported: will-bid-on-one
+ortb_blocking_supported: false
+privacy_sandbox: no
 ---
 
 ### Disclosure
@@ -49,6 +61,17 @@ BeOp supports iframe and pixel-based user syncs using the `getUserSyncs` method.
 ### Cookie Usage
 
 BeOp sets a first-party cookie `beopid` for frequency capping and user session purposes. This ID is anonymized and used to improve campaign performance, capping logic, and personalization within publisher domains.
+
+### First-Party Data Support
+
+BeOp fully supports First-Party Data (FPD) and leverages it to enhance both targeting and audience intelligence for publishers.
+
+- Audience Enrichment: BeOp campaigns often include interactive formats (polls, quizzes, votes) that collect high-quality declarative data. This data can be matched against publisher segments to enrich their DMPs (Data Management Platforms).
+- Publisher-Centric Segments: Collected FPD (such as quiz responses, poll preferences, etc.) can be made available to the publisher under consent, allowing creation of custom audience segments usable across future campaigns.
+- Ortb2 Integration: BeOp reads ortb2.user.ext.data, ortb2.user.ext.bpsegs, and similar fields in the bid request to enhance match rates and ensure contextually relevant responses.
+- Respect for Privacy: All data is handled in accordance with GDPR, with processing based on user consent and transparent storage mechanisms.
+
+Thanks to BeOp’s unique interactive formats, publishers benefit not only from monetization, but also from deeper understanding and activation of their audiences through real-time feedback.
 
 ### Test Parameters
 
