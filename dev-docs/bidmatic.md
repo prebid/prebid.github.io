@@ -13,12 +13,14 @@ schain_supported: true
 dchain_supported: false
 userId: all (with commercial activation)
 media_types: banner, video
+userIds: all
 safeframes_ok: true
 deals_supported: false
 floors_supported: true
 fpd_supported: true
 pbjs: true
 pbs: true
+pbs_app_supported: true
 prebid_member: false
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true

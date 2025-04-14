@@ -34,6 +34,7 @@ The AdGrid Bidding Adapter requires setup and approval before beginning. Please 
 | Name       | Scope    | Description  | Example | Type      |
 |------------|----------|--------------|---------|-----------|
 | `domainId` | required | Publisher Id | `30164` | `integer` |
+| `placement`| required | Placement    | `test`  | `string`  |
 
 ### Test Parameters
 
@@ -50,7 +51,8 @@ var adUnits = [
     bids: [{
       bidder: 'adgrid',
       params: {
-        domainId: 12345
+        domainId: 12345,
+        placement: 'leaderboard'
       }
     }]
   },
@@ -64,7 +66,8 @@ var adUnits = [
     bids: [{
       bidder: 'adgrid',
       params: {
-        domainId: 67890
+        domainId: 67890,
+        placement: 'adhesion'
       }
     }]
   },
