@@ -27,7 +27,7 @@ privacy_sandbox: no
 
 ### Registration
 
-Blis adapter requires setup before beginning. Please contact us at supply@blis.com.
+Blis adapter requires setup before beginning. Please contact us at <supply@blis.com>.
 
 ### ORTB Blocking
 
@@ -39,4 +39,3 @@ Blis bidder supports bcat, badv and battr.
 | Name          | Scope    | Description                               | Example   | Type     |
 |---------------|----------|-------------------------------------------|-----------|----------|
 | `spid`        | required | Unique supply partner ID provided by Blis | `'999'` | `string` |
-
