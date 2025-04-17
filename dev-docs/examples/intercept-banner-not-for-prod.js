@@ -1,3 +1,4 @@
+window.pbjs = window.pbjs || { que: [] };
 pbjs.que.push(() => {
     pbjs.setConfig({
        debugging: {
