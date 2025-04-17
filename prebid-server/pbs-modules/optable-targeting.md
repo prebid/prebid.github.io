@@ -38,7 +38,19 @@ below for an example.
 
 ### Global Config
 
-There is no host-company level config for this module.
+In the host-level config you need to specify the regional endpoint that would be closest to the host:
+```yaml
+hooks:
+  optable-targeting:
+    enabled: true
+  modules:
+    optable-targeting:
+      api-endpoint: https://na.edge.optable.co/v2/targeting?t={TENANT}&o={ORIGIN}
+```
+
+To obtain the endpoints for your regions - please contact [prebid@optable.co](mailto:prebid@optable.co).
+
+Note the endpoint contains 2 macros: {TENANT} and {ORIGIN} - the values for which are provided in the account-level config as `tenant` and `origin` parameters correspondingly.
 
 ### Account-Level Config
 
@@ -50,7 +62,14 @@ Here's a general template for the account config used in PBS-Java:
 ```yaml
 hooks:
   optable-targeting:
-    enabled: true
+    api-key: key
+    tenant: optable
+    origin: web-sdk-demo
+    ppid-mapping: { "pubcid.org": "c" }
+    adserver-targeting: true
+    cache:
+      enabled: false
+      ttlseconds: 86400
   host-execution-plan: >
     {
       "endpoints": {
@@ -88,38 +107,6 @@ hooks:
     }
 ```
 
-Sample module enablement configuration in JSON and YAML formats:
-
-```json
-{
-  "modules":
-  {
-    "optable-targeting":
-    {
-      "api-endpoint": "endpoint",
-      "api-key": "key",
-      "timeout": 50,
-      "ppid-mapping": {
-        "pubcid.org": "c"
-      },
-      "adserver-targeting": false
-    }
-  }
-}
-```
-
-```yaml
-  modules:
-    optable-targeting:
-      api-endpoint: endpoint
-      api-key: key
-      timeout: 50
-      ppid-mapping: {
-        "pubcid.org": "c"
-      }
-      adserver-targeting: false
-```
-
 ### Timeout considerations
 
 The timeout value specified in the execution plan for the `processed-auction-request` hook is very important to be
@@ -132,6 +119,10 @@ will need to be verified experimentally upon deployment.
 The timeout value for the `auction-response` can be set to 10 ms - usually it will be sub-millisecond time as there are
 no HTTP calls made in this hook - Optable-specific keywords are cached on the `processed-auction-request` stage and
 retrieved from the module invocation context later.
+
+### Caching
+
+The module uses [Prebid Cache Storage](https://docs.prebid.org/prebid-server/features/pbs-pbc-storage.html) feature that relies on the existing Prebid Cache Server. By default it is disabled, but if enabled it caches Targeting API responses for ttlseconds (24 hours by default) which reduces the module processing time to milliseconds, rather than hundreds of milliseconds, for the cached Targeting API responses. 
 
 ## Module Configuration Parameters for PBS-Java
 
@@ -152,12 +143,16 @@ would result in this nesting in the JSON configuration:
 
 | Param Name         | Required | Type    | Default  value | Description                                                                                                                                                                                                                                                                                                                                                                                                                |
 |:-------------------|:---------|:--------|:---------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| api-endpoint       | yes      | string  | none           | Optable Targeting Edge API endpoint URL, required                                                                                                                                                                                                                                                                                                                                                                          |
-| api-key            | no       | string  | none           | If the API is protected with a key - this param needs to be specified to be sent in the auth header                                                                                                                                                                                                                                                                                                                        |
-| ppid-mapping       | no       | map     | none           | This specifies PPID source (`user.ext.eids[].source`) to a custom identifier prefix mapping, f.e. `{"example.com" : "c"}`. See the section on ID Mapping below for more detail.                                                                                                                                                                                                                                            |
-| adserver-targeting | no       | boolean | false          | If set to true - will add the Optable-specific adserver targeting keywords into the PBS response for every `seatbid[].bid[].ext.prebid.targeting`                                                                                                                                                                                                                                                                          |
-| timeout            | no       | integer | false          | A soft timeout (in ms) sent as a hint to the Targeting API endpoint to  limit the request times to Optable's external tokenizer services                                                                                                                                                                                                                                                                                   |
-| id-prefix-order    | no       | string  | none           | An optional string of comma separated id prefixes that prioritizes and specifies the order in which ids are provided to Targeting API in a query string. F.e. "c,c1,id5" will guarantee that Targeting API will see id=c:...,c1:...,id5:... if these ids are provided.  id-prefixes not mentioned in this list will be added in arbitrary order after the priority prefix ids. This affects Targeting API processing logic |
+| api-endpoint       | yes      | string  | none           | Host-Level. Optable Targeting Edge API endpoint URL. Note it must: include {TENANT} and {ORIGIN} macros that are substituted from account-level config values |
+| tenant            | yes       | string  | none           | Account-Level. Your Optable tenant aka account ID. |
+| origin            | yes       | string  | none           | Account-Level. Optable data `origin` aka `source`. |
+| api-key            | no       | string  | none           | Account-Level. If the API is protected with a key - this param needs to be specified to be sent in the auth header |
+| ppid-mapping       | no       | map     | none           | Account-Level. This specifies PPID source (`user.ext.eids[].source`) to a custom identifier prefix mapping, f.e. `{"example.com" : "c"}`. See the section on ID Mapping below for more detail. |
+| adserver-targeting | no       | boolean | false          | Account-Level. If set to true - will add the Optable-specific adserver targeting keywords into the PBS response for every `seatbid[].bid[].ext.prebid.targeting` |
+| timeout            | no       | integer | false          | Account-Level. A soft timeout (in ms) sent as a hint to the Targeting API endpoint to  limit the request times to Optable's external tokenizer services |
+| id-prefix-order    | no       | string  | none           | Account-Level. An optional string of comma separated id prefixes that prioritizes and specifies the order in which ids are provided to Targeting API in a query string. F.e. "c,c1,id5" will guarantee that Targeting API will see id=c:...,c1:...,id5:... if these ids are provided.  id-prefixes not mentioned in this list will be added in arbitrary order after the priority prefix ids. This affects Targeting API processing logic |
+| cache.enabled    | no       | string  | false           | Account-Level. Optionally use [Prebid Cache Storage](https://docs.prebid.org/prebid-server/features/pbs-pbc-storage.html) feature - this significantly reduces the processing time when the Targeting API response has been cached |
+| cache.ttlseconds    | no       | int  | 86400           | Account-Level. The TTL in seconds for the Targeting API response to live in cache - by default is equal to 24 hours |
 
 ## ID Mapping
 
@@ -270,36 +265,27 @@ If `adserver-targeting` was set to `false` in the config `optable-enrich-respons
 ## Running the demo (PBS-Java)
 
 {:start="1"}
-
 1. Build the server bundle JAR as described in [Build Project](https://github.com/prebid/prebid-server-java/blob/master/docs/build.md#build-project), e.g.
 
 ```bash
 mvn clean package --file extra/pom.xml
 ```
-
 {:start="2"}
-2. In the `sample/configs/prebid-config-optable.yaml` file specify the `api-endpoint` URL of your DCN, f.e.: 
+2. Start server bundle JAR as described in [Running project](https://github.com/prebid/prebid-server-java/blob/master/docs/run.md#running-project), e.g.
 
-```yaml
-api-endpoint: https://example.com/v2/targeting
+```bash
+java -jar target/prebid-server-bundle.jar --spring.config.additional-location=sample/configs/prebid-config-with-optable.yaml
 ```
 
 {:start="3"}
-3. Start server bundle JAR as described in [Running project](https://github.com/prebid/prebid-server-java/blob/master/docs/run.md#running-project), e.g.
-
-```bash
-java -jar target/prebid-server-bundle.jar --spring.config.additional-location=sample/configs/prebid-config-optable.yaml
-```
-
-{:start="4"}
-4. Run sample request against the server as described in [the sample directory](https://github.com/prebid/prebid-server-java/tree/master/sample), e.g.
+3. Run sample request against the server as described in [the sample directory](https://github.com/prebid/prebid-server-java/tree/master/sample), e.g.
 
 ```bash
 curl http://localhost:8080/openrtb2/auction --data @extra/modules/optable-targeting/sample-requests/data.json
 ```
 
-{:start="5"}
-5. Observe the `user.eids` and `user.data` objects enriched.
+{:start="4"}
+4. Observe the `user.eids` and `user.data` objects enriched.
 
 ## Maintainer contacts
 
