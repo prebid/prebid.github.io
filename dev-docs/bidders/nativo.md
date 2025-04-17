@@ -22,8 +22,17 @@ The Nativo Bidder adapter requires setup before beginning. Please contact us at 
 
 ### Bid Params
 
+### Prebid Server
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description                                                                     | Example      | Type      |
-|---------------|----------|---------------------------------------------------------------------------------|--------------|-----------|
-| `placementId` | optional | Publication placement ID value from the Nativo Platform                         |  `13144370`  | `integer` |
-| `url`         | optional | Publication url value associated with placement ID value in the Nativo Platform |  `https://test-sites.internal.nativo.net/testing/prebid_adpater.html`  | `string` |
+| Name          | Scope    | Description                                                                             | Example      | Type      |
+|---------------|----------|-----------------------------------------------------------------------------------------|--------------|-----------|
+| `tagId`       | required if no other ID is provided | Publication tag ID is the primary value associated with placement ID value in the Nativo Platform |  `placement_tagid_example`  | `string` |
+| `placementId` | required if no other ID is provided | Publication placement ID value from the Nativo Platform |  `13144370`  | `integer` |
+| `gpId`        | required if no other ID is provided | Publication gp ID value associated with placement ID value in the Nativo Platform |  `/22888152279/publication/placement/gpid_example`  | `string` |
+| `url`         | optional | Publication url value associated with placement ID value in the Nativo Platform  |  `https://publication.com/prebid_adpater.html`  | `string` |
+
+### Prebid JS
+{: .table .table-bordered .table-striped }
+| Name          | Scope    | Description                                                                       | Example      | Type      |
+|---------------|----------|-----------------------------------------------------------------------------------|--------------|-----------|
+| `url`         | required | Publication url value associated with placement ID value in the Nativo Platform   |  `https://publication.com/prebid_adpater.html`  | `string` |
