@@ -39,6 +39,7 @@ below for an example.
 ### Global Config
 
 In the host-level config you need to specify the regional endpoint that would be closest to the host:
+
 ```yaml
 hooks:
   optable-targeting:
@@ -265,11 +266,13 @@ If `adserver-targeting` was set to `false` in the config `optable-enrich-respons
 ## Running the demo (PBS-Java)
 
 {:start="1"}
+
 1. Build the server bundle JAR as described in [Build Project](https://github.com/prebid/prebid-server-java/blob/master/docs/build.md#build-project), e.g.
 
 ```bash
 mvn clean package --file extra/pom.xml
 ```
+
 {:start="2"}
 2. Start server bundle JAR as described in [Running project](https://github.com/prebid/prebid-server-java/blob/master/docs/run.md#running-project), e.g.
 
