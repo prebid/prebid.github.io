@@ -18,7 +18,7 @@ pid: 10
 
 {% capture htmlCodePrebid %}
 <!-- DO NOT add this script in prod -->
-<script async src="intercept-banner-not-for-prod.js" ></script>
+<script src="intercept-banner-not-for-prod.js" ></script>
 <!-- END -->
 
 <h5>Div-1</h5>
