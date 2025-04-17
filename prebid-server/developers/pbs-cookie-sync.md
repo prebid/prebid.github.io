@@ -33,7 +33,7 @@ Here's how these IDs get placed in the cookie from Prebid.js:
 
 ![Prebid Server Cookie Sync](/assets/images/prebid-server/pbs-cookie-sync.png){:class="pb-lg-img"}
 
-1. When the [s2sConfig](/dev-docs/modules/prebidServer.html) is set, Prebid.js initiates a call to the Prebid Server [`/cookie_sync`](/prebid-server/endpoints/pbs-endpoint-cookieSync.html), letting it know which server-side bidders will be participating in the header bidding auction.
+1. When the [s2sConfig](/dev-docs/modules/prebidServer.html) is set, Prebid.js initiates a call to the Prebid Server [`/cookie_sync`](../endpoints/pbs-endpoint-cookieSync.html), letting it know which server-side bidders will be participating in the header bidding auction.
 
 ```text
     POST https://prebid-server.example.com/cookie_sync
@@ -78,10 +78,10 @@ This is how to control the coop syncing behavior from Prebid.js:
 
 ### Manually initiating a sync
 
-Where Prebid.js isn't present, like on [AMP](/prebid-server/use-cases/pbs-amp.html) pages, the call to [/cookie_sync](/endpoints/pbs-endpoint-cookieSync.html) doesn't happen automatically.
+Where Prebid.js isn't present, like on [AMP](/prebid-server/use-cases/pbs-amp.html) pages, the call to [/cookie_sync](../endpoints/pbs-endpoint-cookieSync.html) doesn't happen automatically.
 If there are scenarios where Prebid.js isn't around to initiate the /cookie_sync call, publishers can choose to put an iframe on their page.
 
-This approach works in a way quite similar to Prebid.js except that the [/cookie_sync endpoint](/endpoints/pbs-endpoint-cookieSync.html) is initiated by a separate script that's part of `load-cookie.html'. This file must be placed on a CDN by the publisher's Prebid Server host company. Up until July 2024, the script existed in the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative) repository, but has since been moved to the [user-sync](https://github.com/prebid/user-sync) repo.
+This approach works in a way quite similar to Prebid.js except that the [/cookie_sync endpoint](../endpoints/pbs-endpoint-cookieSync.html) is initiated by a separate script that's part of `load-cookie.html'. This file must be placed on a CDN by the publisher's Prebid Server host company. Up until July 2024, the script existed in the [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative) repository, but has since been moved to the [user-sync](https://github.com/prebid/user-sync) repo.
 
 1. The Prebid Server hosting company places the [load-cookie.html](#manually-initiating-a-sync) file onto a CDN.
 
@@ -116,7 +116,7 @@ Where:
 * PBSHOST is the (encoded) main URL for your Prebid Server, e.g. https%3A%2F%2Fprebid-server.example.com%2Fcookie_sync
 
 {:start="3"}
-3. At runtime, the `load-cookie` script calls the Prebid Server [/cookie_sync endpoint](/endpoints/pbs-endpoint-cookieSync.html). The rest works similar to what's described for Prebid.js above. One difference is that the bidders must be manually added to the call. Another difference is that AMP doesn't support iframe syncs, so load-cookie passes instructions to PBS so only pixel syncs are returned.
+3. At runtime, the `load-cookie` script calls the Prebid Server [/cookie_sync endpoint](/prebid-server/endpoints/pbs-endpoint-cookieSync.html). The rest works similar to what's described for Prebid.js above. One difference is that the bidders must be manually added to the call. Another difference is that AMP doesn't support iframe syncs, so load-cookie passes instructions to PBS so only pixel syncs are returned.
 
 Here are all the arguments supported:
 

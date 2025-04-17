@@ -46,8 +46,9 @@ Prebid.shared.customStatusEndpoint="https://pbs.example.com/v2/status"
 | Parameter | Scope | Type | Purpose | Description | Example |
 | --- | --- | --- | --- | --- | --- |
 | prebidServerAccountId | either | string | init | Your Prebid Server team will tell you whether this is required or not and if so, the value. | "abc123" |
-| prebidServerHost | optional | enum | init | This can take the values "Appnexus", "Rubicon", or "Custom". If "Custom", you need to use the setCustomPrebidServerUrl() method to set a URL. This is where the Prebid SDK will send the auction information. Your Prebid Server team will tell you which value to use. The default is "Custom". | "Custom" |
+| prebidServerHost | optional | enum | init | Starting from PrebidMobile `3.0.0` the property is removed<wbr>This can take the values "Appnexus", "Rubicon", or "Custom". If "Custom", you need to use the setCustomPrebidServerUrl() method to set a URL. This is where the Prebid SDK will send the auction information. Your Prebid Server team will tell you which value to use. The default is "Custom". | "Custom" |
 | customStatusEndpoint | optional | string | init | Use this URL to check the status of Prebid Server. The default status endpoint is the PBS URL appended with '/status'. | `https://prebidserver`<wbr>`.example`<wbr>`.com/custom`<wbr>`/status` |
+| auctionSettingsId | optional | string | init | For the SDK to separate account from "auction settings", allowing each app to have different global parameters defined on the server side. If specified, the auctionSettingsId is used to set `ext.prebid.storedrequest.id`, otherwise prebidServerAccountId is populated by default. | "abc321" |
 | shareGeoLocation | optional | boolean | ORTB | If this flag is true AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s lat/long geographical location data to the Prebid Server. The default is false. | `true` |
 | locationUpdatesEnabled | optional | boolean | ORTB | If true, the SDK will periodically try to listen for location updates. Default is `false`. | `true` |
 | logLevel | optional | enum | SDK control | This property controls the level of logging output to the console. The value can be .error, .info, .debug, .verbose, .warn, .severe, and .info. The default is `.debug`. | `.error` |
@@ -59,14 +60,18 @@ Prebid.shared.customStatusEndpoint="https://pbs.example.com/v2/status"
 | pbsDebug | optional | boolean | ORTB | Adds the debug flag (`test`:1) on the outbound http call to the Prebid Server. The `test` flag signals to the Prebid Server to emit the full resolved request and the full Bid Request and Bid Response to and from each bidder. | true |
 | shouldAssign<wbr>NativeAssetID | optional | boolean | ORTB | Whether to automatically assign an assetID for a Native ad. Default is `false`. | true |
 | useCacheForReporting<wbr>WithRenderingAPI | optional | boolean | ORTB | Indicates whether PBS should cache the bid on the server side. If the value is `true` the Prebid SDK will make the cache request to retrieve the cached asset. Default is `false`. | true |
-| useExternal<wbr>ClickthroughBrowser | optional | boolean | SDK control | Controls whether to use PrebidMobile's in-app browser or the Safari App for displaying ad clickthrough content. Default is false. | true |
-| impClickbrowserType | optional | enum | ORTB | Indicates the type of browser opened upon clicking the creative in an app. This corresponds to the OpenRTB imp.clickbrowser field. Values are "embedded" and "native". Default is "native". | "native". |
-| includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
+| useExternal<wbr>ClickthroughBrowser | optional | boolean | SDK control | Starting from PrebidMobile `3.0.0` the property is removed<wbr>Controls whether to use PrebidMobile's in-app browser or the Safari App for displaying ad clickthrough content. Default is false. | true |
+| impClickbrowserType | optional | enum | ORTB | Starting from PrebidMobile `3.0.0` the property is removed<wbr>Indicates the type of browser opened upon clicking the creative in an app. This corresponds to the OpenRTB imp.clickbrowser field. Values are "embedded" and "native". Default is "native". | "native". |
+| includeWinners | optional | boolean | ORTB | If `true`, Prebid sdk will add `includewinners` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
 | includeBidderKeys | optional | boolean | ORTB | If `true`, Prebid sdk will add `includebidderkeys` flag inside the targeting object described in [PBS Documentation](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#targeting) . Default is `false`. | `true` |
+| eventDelegate | optional | PrebidEventDelegate | init | Sets an event delegate to handle all auction requests and responses. It allows to collect some statistical data. Note that the SDK stores this callback as a weak reference so you need to store a reference to it. | `class PrebidEventDelegateTestsMockDelegate: PrebidEventDelegate { func prebidBidRequestDidFinish(requestData: Data?, responseData: Data?) { ... } }` |
 
 ### Prebid Class Global Methods
 
 #### setCustomPrebidServerUrl()
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the method is removed. Use `Prebid.initializeSDK` instead.
 
 Defines which Prebid Server to connect to. See the initialization page for [iOS](/prebid-mobile/pbm-api/ios/code-integration-ios.html).
 
@@ -131,6 +136,77 @@ func clearCustomHeaders()
 Parameters: none
 
 ---
+
+## SDK Console Logging
+
+The `Log` class is designed to handle logging functionality for the SDK. It allows for categorized logging based on severity levels (e.g., error, warning, debug) and offers options for both console and file-based logging. It also provides the ability to set third-party logger.
+
+### `Log` Class Properties
+
+| Property     | Type      | Description                                                                                               |
+|--------------|-----------|-----------------------------------------------------------------------------------------------------------|
+| `logLevel`   | `LogLevel`| The current logging level. Only messages at this level or higher will be logged. Default: `.debug`         |
+| `logToFile`  | `Bool`    | Indicates whether logs should also be saved to a file. Default: `false`                                   |
+
+### `Log` Class Methods
+
+#### `setCustomLogger(_:)`
+Sets a custom logger to handle log messages.
+
+- **Parameters**: 
+  - `logger`: A custom object conforming to the `PrebidLogger` protocol.
+
+#### `serialWriteToLog(_:)`
+Writes a log message asynchronously to the log file.
+
+- **Parameters**: 
+  - `message`: The log message to be written to the file.
+
+#### `getLogFileAsString()`
+Reads the contents of the log file as a single string.
+
+- **Returns**: The contents of the log file, or `nil` if an error occurs.
+
+#### `clearLogFile()`
+Clears the contents of the log file.
+
+### `PrebidLogger` Protocol
+
+The `PrebidLogger` protocol defines the required methods for logging messages at various levels, such as error, info, debug, etc. This protocol allows for custom logging implementations.
+
+#### Methods
+
+- **`error(_:)`**
+  Logs an error message.
+  - **Parameters**: 
+    - `object`: The object or message to log.
+    - `filename`: The name of the file where the log was generated.
+    - `line`: The line number where the log was generated.
+    - `function`: The function name where the log was generated.
+
+- **`info(_:)`**
+  Logs an informational message.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`debug(_:)`**
+  Logs a debug message.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`verbose(_:)`**
+  Logs a verbose message for detailed or low-level information.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`warn(_:)`**
+  Logs a warning message.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`severe(_:)`**
+  Logs a severe error message, indicating a critical issue.
+  - **Parameters**: Same as `error(_:)`.
+
+- **`whereAmI(_:)`**
+  Logs the current location in the code, useful for debugging.
+  - **Parameters**: Same as `error(_:)`.
 
 ## Consent Management Parameters
 
@@ -297,14 +373,6 @@ Prebid SDK provides a number of properties in the [Targeting class](/prebid-mobi
 ```swift
 func setLatitude(latitude: Double, longitude: Double)
 
-func addUserData(key: String, value: String)
-
-func updateUserData(key: String, value: Set<String>)
-
-func removeUserData(forKey: String)
-
-func clearUserData()
-
 func addUserKeyword(_ newElement: String)
 
 func addUserKeywords(_ newElements: Set<String>)
@@ -319,14 +387,11 @@ func getUserKeywords()
 Example:
 
 ```swift
-Targeting.shared.addUserData(key: "globalUserDataKey1", value: "globalUserDataValue1")
+Targeting.shared.addUserKeyword(key: "globalUserKeyword")
 ```
 
 {: .alert.alert-info :}
-Note: The 'UserData' functions end up putting data into the OpenRTB user.ext.data object while the 'UserKeywords' functions
-put data into user.keywords.
-
-Related functions: setYearOfBirth(), getYearOfBirth() and clearYearOfBirth().
+Note: The 'UserKeywords' functions put data into user.keywords.
 
 ### Inventory FPD
 
@@ -375,7 +440,7 @@ func clearAccessControlList()
 Example:
 
 ```swift
-Targeting.shared.addBidderToAccessControlList(Prebid.bidderNameRubiconProject)
+Targeting.shared.addBidderToAccessControlList("bidderA")
 ```
 
 ---
@@ -392,71 +457,62 @@ Any identity vendor's details in local storage will be sent to Prebid Server una
 {: .alert.alert-info :}
 Note that the phrase "EID" stands for "Extended IDs" in [OpenRTB 2.6](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md), but for historic reasons, Prebid SDK methods use the word "external" rather than "extended". Please consider the phrase "external ID" a synonym for "extended ID".
 
-### Storing IDs in a Property
+{% capture warning_note %}  
+Note that starting from `2.4.0`, the Prebid SDK no longer saves EIDs to permanent storage. As a result, all EIDs will be cleared after the application restarts.
 
-Prebid SDK supports passing an array of EIDs at auction time in the Prebid global field `externalUserIdArray`. Setting the `externalUserIdArray` object once per user session is sufficient unless one of the values changes.
+{% endcapture %}
+{% include /alerts/alert_warning.html content=warning_note %}
+
+### Storing IDs 
+
+Prebid SDK supports passing an array of EIDs at auction time in the Prebid global field `externalUserIds`. Setting the `externalUserIds` object once per user session is sufficient unless one of the values changes.
 
 ```swift
-public var externalUserIdArray = [ExternalUserId]()
+Targeting.shared.setExternalUserIds()
 ```
 
 **Examples**
 
 ```swift
-// User Id from External Third Party Sources
-var externalUserIdArray = [ExternalUserId]()
-
-externalUserIdArray.append(ExternalUserId(source: "adserver.org", identifier: "111111111111", ext: ["rtiPartner" : "TDID"]))
-externalUserIdArray.append(ExternalUserId(source: "netid.de", identifier: "999888777"))
-externalUserIdArray.append(ExternalUserId(source: "criteo.com", identifier: "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N"))
-externalUserIdArray.append(ExternalUserId(source: "liveramp.com", identifier: "AjfowMv4ZHZQJFM8TpiUnYEyA81Vdgg"))
-externalUserIdArray.append(ExternalUserId(source: "sharedid.org", identifier: "111111111111", atype: 1))
-
-Prebid.shared.externalUserIdArray = externalUserIdArray
+let uniqueId1 = UserUniqueID(id: "111111111111", aType: 20, ext: ["rtiPartner": "TDID"])
+let uniqueId2 = UserUniqueID(id: "_fl7bV96WjZsbiUyQnJlQ3g4ckh5a1N", aType: 777)
+let fullUserId = ExternalUserId(source: "adserver.org", uids: [uniqueId1, uniqueId2])
+        
+Targeting.shared.setExternalUserIds([fullUserId])
 ```
 
-```kotlin
-setExternalUserIds(List<ExternalUserId> externalUserIds)
-```
+### Shared ID
 
-### Storing IDs in Local Storage
+The Shared ID is a randomly generated first-party identifier managed by Prebid. It remains the same throughout the current app session unless reset. If local storage access is permitted, the same ID may persist across multiple app sessions indefinitely. However, Shared ID values do not remain consistent across different apps on the same device.
 
-Prebid SDK provides a local storage interface to set, retrieve, or update an array of user IDs with associated identity vendor details. It will then retrieve and pass these User IDs to Prebid Server on each auction, even on the next user session.
-
-Prebid SDK Provides several functions to handle User ID details within the local storage:
+The SDK will include it in the `user.ext.eids` array during auction request if the publisher explicitly permits it:
 
 ```swift
-public func storeExternalUserId(_ externalUserId: ExternalUserId)
-
-public func fetchStoredExternalUserIds() -> [ExternalUserId]?
-
-public func fetchStoredExternalUserId(_ source : String) -> ExternalUserId?
-
-public func removeStoredExternalUserId(_ source : String)
-
-public func removeStoredExternalUserIds()
+Targeting.shared.sendSharedId = true
 ```
 
-**Examples**
+To remove the existing Shared ID value from local storage, the SDK offers the following method: 
 
 ```swift
-//Set External User ID
-Targeting.shared.storeExternalUserId(ExternalUserId(source: "sharedid.org", identifier: "111111111111", atype: 1))
-
-//Get External User ID
-let externalUserIdSharedId = Targeting.shared.fetchStoredExternalUserId("sharedid.org")
-
-//Get All External User IDs
-let externalUserIdsArray = Targeting.shared.fetchStoredExternalUserIds()
-
-//Remove External UserID
-Targeting.shared.removeStoredExternalUserId("sharedid.org")
-
-//Remove All External UserID
-Targeting.shared.removeStoredExternalUserIds()
+Targeting.shared.resetSharedId()
 ```
 
----
+Once cleared, the next time `Targeting.shared.sharedId` is accessed, a new, randomly generated Shared ID value will be created and returned.
+
+### IDs that Require Additional SDKs
+
+Certain identity vendors require an external dependency to generate user identity and then to pass it via Prebid SDK. Please note that these are references to a 3rd party code and Prebid has not inspected it. Links to the documentations of those references will be listed in this section.
+
+#### Unified ID 2.0 (UID2)
+
+UID2 provides a [native library](https://unifiedid.com/docs/guides/integration-mobile-client-side#optional-uid2-prebid-mobile-sdk-integration) for automatically updating latest UID2
+token stored inside [UID2 SDK for iOS](https://unifiedid.com/docs/sdks/sdk-ref-ios) into Prebid's external user's ID list.
+
+Note:
+
+- [Github repo](https://github.com/IABTechLab/uid2-ios-sdk)
+- [UID2 iOS Integration Documentation](https://unifiedid.com/docs/guides/integration-mobile-overview)
+- [UID2+Prebid Integration Instruction](https://unifiedid.com/docs/guides/integration-mobile-client-side#optional-uid2-prebid-mobile-sdk-integration)
 
 ## Targeting Class Properties and Methods
 
@@ -493,23 +549,40 @@ All of the targeting class methods have been mentioned above in the context of F
 
 ## Arbitrary OpenRTB
 
-(requires SDK v2.2.1)
+(requires SDK v2.3.1)
 
-While there are many specific methods for adding data to the request detailed in
-this document, OpenRTB is big and it moves quickly. To cover scenarios not already covered by an existing method,
-Prebid SDK Provides a way for app publishers to customize most ORTB fields in the partial bid request that Prebid Mobile sends to the Prebid Server. The customization comes in the form of the ortbConfig parameter that takes a JSON String as input. The JSON string must follow the [OpenRTB structure](https://github.com/InteractiveAdvertisingBureau/openrtb2.x/blob/main/2.6.md) -- it will be merged with the current JSON of the bid request. If you choose to input extra data using the ortbConfig parameter, please extensively test your requests sent to Prebid Server.
+Prebid SDK allows the customization of the OpenRTB request on the global level using `setGlobalORTBConfig()` function: 
 
-There are certain protected fields such as regs, device, geo, ext.gdpr, ext.us_privacy, and ext.consent which cannot be changed.
+``` swift
+let globalORTB = """
+{
+    "ext": {
+        "myext": {
+            "test": 1
+        }
+    },
+    "displaymanager": "Google",
+    "displaymanagerver": "\(string(for: MobileAds.shared.versionNumber))"
+}
+"""
 
-```swift
-//global invocation
-adUnitConfig.setOrtbConfig("{\"ext\":{\"prebid\":{\"debug\":1,\"trace\":\"verbose\"}}}")
+Targeting.shared.setGlobalORTBConfig(globalORTB)
+```
+ 
+The parameter passed to `Targeting.shared.setGlobalORTBConfig()` will be merged into all SDK's bid requests on the global level. For instance, the above example will add the `$.ext.myext.test` parameter and change the `displaymanager` and `displaymanagerver` parameters in each request. 
+
+To invalidate the global config, just set the empty string: 
+
+``` swift
+Targeting.shared.setGlobalORTBConfig("")
 ```
 
-```swift
-//ad unit / impression-level
-adUnit.setOrtbConfig("{\"ext\":{\"gpid\":\"abc123"}}\")
-```
+The `Targeting.shared.setGlobalORTBConfig()` also allows to **add** impression objects to the request. All objects in the `$.imp[]` array will be added to the request. Note that Ad Unit's `imp` object won't be changed using Global Config. To change the `imp` config, use the `setImpORTBConfig()` method of a particular Ad Unit. See the Ad Unit documentation for the details. 
+
+Pay attention that there are certain protected fields such as `regs`, `device`, `geo`, `ext.gdpr`, `ext.us_privacy`, and `ext.consent` which cannot be changed using the `setGlobalORTBConfig()` method.
+
+- App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)
+- See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
 
 ## Further Reading
 

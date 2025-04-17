@@ -44,6 +44,14 @@
   subgroup: 0
 
 - sbSecId: 0
+  title: Statement on Sustainability
+  link: /overview/statement-on-sustainability.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 0
   title: Developers
   link: /developers.html
   isHeader: 0
@@ -227,7 +235,7 @@
 
 - sbSecId: 1
   title: Native Ads
-  link: /formats/native.html
+  link: /dev-docs/examples/native-ad-example.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -309,6 +317,15 @@
   subgroup: 1
 
 - sbSecId: 1
+  title: In-renderer Integration
+  link: /dev-docs/examples/in-renderer-integration.html
+  Item: 1
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 1
   title: Troubleshooting
   link:
   isHeader: 1
@@ -383,6 +400,14 @@
   subgroup: 3
 
 - sbSecId: 1
+  title: Renderer
+  link: /dev-docs/renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 1
   title: Bidder Params
   link: /dev-docs/bidders.html
   isHeader: 0
@@ -428,6 +453,14 @@
 - sbSecId: 1
   title: How to Add A Real Time Data submodule
   link: /dev-docs/add-rtd-submodule.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 1
+  title: How to Add A User ID submodule
+  link: /dev-docs/userId-module.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -485,6 +518,14 @@
 - sbSecId: 1
   title: Vendor-Specific Modules
   link: /dev-docs/modules/index.html#vendor-specific-modules
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 5
+
+- sbSecId: 1
+  title: User ID Modules
+  link: /dev-docs/modules/index.html#user-id-modules
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -635,6 +676,14 @@
   subgroup: 0
 
 - sbSecId: 2
+  title: Prebid Mobile 3.0
+  link: /prebid-mobile/updates-3.0/sdk-key-features.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 2
   title: Prebid AMP
   link: /dev-docs/show-prebid-ads-on-amp-pages.html
   isHeader: 0
@@ -727,7 +776,7 @@
   subgroup: 2
   
 - sbSecId: 2
-  title: GAM Original Integration
+  title: GAM Bidding-Only Integration
   link: /prebid-mobile/pbm-api/ios/ios-sdk-integration-gam-original-api.html
   isHeader: 0
   isSectionHeader: 0
@@ -735,8 +784,8 @@
   subgroup: 2
   
 - sbSecId: 2
-  title: Custom or No mediation
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
+  title: GAM Prebid-Rendered Integration
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-gam.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -759,8 +808,8 @@
   subgroup: 2
   
 - sbSecId: 2
-  title: GAM Rendering Integration
-  link: /prebid-mobile/modules/rendering/ios-sdk-integration-gam.html
+  title: Custom Integration
+  link: /prebid-mobile/modules/rendering/ios-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -777,6 +826,30 @@
 - sbSecId: 2
   title: Prebid Utility Functions
   link: /prebid-mobile/pbm-api/ios/pbm-util-ios.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: Prebid Plugin Renderer
+  link: /prebid-mobile/pbm-api/ios/pbm-plugin-renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: Prebid Mobile 3.0 API Changes
+  link: /prebid-mobile/updates-3.0/ios/api-changes.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
+  title: API Reference
+  link: /prebid-mobile-ios/index.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -801,14 +874,14 @@
 
 - sbSecId: 2
   title: Global Parameters
-  link: /prebid-mobile/pbm-api/android/pbm-targeting-params-android.html
+  link: /prebid-mobile/pbm-api/android/pbm-targeting-android.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
   subgroup: 3
   
 - sbSecId: 2
-  title: GAM Original Integration
+  title: GAM Bidding-Only Integration
   link: /prebid-mobile/pbm-api/android/android-sdk-integration-gam-original-api.html
   isHeader: 0
   isSectionHeader: 0
@@ -816,8 +889,8 @@
   subgroup: 3
   
 - sbSecId: 2
-  title: Custom or No mediation
-  link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
+  title: GAM Prebid-Rendered Integration
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-gam.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -840,8 +913,8 @@
   subgroup: 3
   
 - sbSecId: 2
-  title: GAM Rendering Integration
-  link: /prebid-mobile/modules/rendering/android-sdk-integration-gam.html
+  title: Custom Integration
+  link: /prebid-mobile/modules/rendering/android-sdk-integration-pb.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -866,6 +939,22 @@
 - sbSecId: 2
   title: Prebid Plugin Renderer
   link: /prebid-mobile/pbm-api/android/pbm-plugin-renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
+  title: Prebid Mobile 3.0 API Changes
+  link: /prebid-mobile/updates-3.0/android/api-changes.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
+  title: API Reference
+  link: /prebid-mobile-android/index.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -967,6 +1056,14 @@
   subgroup: 1
 
 - sbSecId: 3
+  title: 'Prebid Mobile AdOps'
+  link: /adops/mobile-adops.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 1
+
+- sbSecId: 3
   title: "Ad Ops Information"
   link:
   isHeader: 0
@@ -1034,7 +1131,7 @@
   subgroup: 2
 
 - sbSecId: 3
-  title: 'Creative Setup: Banner/Outstream/AMP'
+  title: 'Creative Setup: Banner/In-Renderer/AMP'
   link: /adops/gam-creative-banner-sbs.html
   isHeader: 0
   isSectionHeader: 0
@@ -1058,7 +1155,7 @@
   subgroup: 2
 
 - sbSecId: 3
-  title: "Setting up Order for Mobile Rendering API"
+  title: "Mobile: Setting up GAM for Prebid-Rendered"
   link: /adops/mobile-rendering-gam-line-item-setup.html
   isHeader: 0
   isSectionHeader: 0
@@ -1715,6 +1812,14 @@
   subgroup: 0
 
 - sbSecId: 6
+  title: Connected TV
+  link: /formats/ctv.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 6
   title: Native
   link: /prebid/native-implementation.html
   isHeader: 0
@@ -1777,6 +1882,22 @@
   subgroup: 0
 
 - sbSecId: 7
+  title: FAQs
+  link: /faq/faq.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 7
+  title: Blog
+  link: https://prebid.org/blog/
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 7
   title: Privacy Resources
   link:
   isHeader: 1
@@ -1807,20 +1928,22 @@
   subgroup: 1
 
 - sbSecId: 7
-  title: FAQs
-  link: /faq/faq.html
-  isHeader: 0
+  title: Sustainability Resources
+  link:
+  isHeader: 1
+  headerId: sustainability
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
 
 - sbSecId: 7
-  title: Blog
-  link: https://prebid.org/blog/
+  title: Sustainability Portal
+  link: /support/sustainability-portal.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
-  subgroup: 0
+  subgroup: 2
+
 
  #-------------- Tools --------------|
 

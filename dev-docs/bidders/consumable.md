@@ -33,6 +33,7 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name        | Scope    | Description                    | Example | Type      |
 |-------------|----------|--------------------------------|---------|-----------|
 | `siteId`    | required | The site ID from Consumable.    | `12345` | `integer` |
@@ -40,7 +41,7 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
 | `unitId` | required | The unit ID from Consumable. | `987654`  | `integer` |
 | `unitName` | required | The unit name from Consumable. | `cnsmbl-unit`  | `string` |
 
-## Table of contents
+### Table of contents
 
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
@@ -56,7 +57,7 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
   * [Video](#video)
 * [Examples](#examples)
 
-## Introduction
+### Introduction
 
 Publishers can use Prebid.js to call Consumable Exchange (Consumable) in any of the following ways:
 
@@ -66,6 +67,8 @@ Publishers can use Prebid.js to call Consumable Exchange (Consumable) in any of 
 **Notes:**
 
 * **Recommended Global Bidder settings:** For our adapter, Consumable recommends enabling local storage. As of Prebid.js 7.x, local storage access must be explicitly specified. By leveraging local storage, Consumable is able to take advantage of the latest features our exchange has to offer. For instructions on enabling local storage, see Prebid’s [pbjs.bidderSettings](/dev-docs/publisher-api-reference/bidderSettings.html) documentation.
+
+{% include dev-docs/storageAllowed.md %}
 
 ### Example
 
@@ -77,7 +80,7 @@ pbjs.bidderSettings = {
 };
 ```
 
-## Supported media types
+### Supported media types
 
 The following table lists the media types that Consumable supports. 
 
@@ -88,11 +91,11 @@ The following table lists the media types that Consumable supports.
 | banner | Supported       |
 | video  | Supported      |
 
-## Set up Prebid.js to call Consumable directly from the browser (client-side adapter)
+### Set up Prebid.js to call Consumable directly from the browser (client-side adapter)
 
 To call Consumable from a web browser environment using a Prebid Server integration, see the Consumable-specific configuration steps in [Setup instructions to call Consumable through Prebid Server](/dev-docs/bidders/consumable-server.html#setup-instructions-to-call-consumable-through-prebid-server) in our Prebid Server documentation on the Prebid site.
 
-## Set up Prebid.js to call Consumable through Prebid Server (server-side adapter)
+### Set up Prebid.js to call Consumable through Prebid Server (server-side adapter)
 
 In this configuration, Prebid.js makes a call to Prebid Server and then Prebid Server uses our server-side adapter to call Consumable. Complete the following steps to configure Consumable as a demand source:
 
@@ -127,7 +130,7 @@ In this configuration, Prebid.js makes a call to Prebid Server and then Prebid S
     });
     ```
 
-## Set up First Party Data (FPD)
+### Set up First Party Data (FPD)
 
 You can set up the Prebid.js FPD module using Global data, Consumable bidder-specific site data, or ad unit-specific data. Consumable supports deal targeting in all the three FPD types.
 
@@ -183,13 +186,14 @@ ortb2Imp: {
 }
 ```
 
-## Bid request parameters
+### Bid request parameters
 
 ### Banner
 
 You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
+
 | Name        | Scope    | Description                    | Example | Type      |
 |-------------|----------|--------------------------------|---------|-----------|
 | `siteId`    | required | The site ID from Consumable.    | `12345` | `integer` |
@@ -202,6 +206,7 @@ You must include these parameters at the bidder level.
 You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
+
 | Name        | Scope    | Description                    | Example | Type      |
 |-------------|----------|--------------------------------|---------|-----------|
 | `siteId`    | required | The site ID from Consumable.    | `12345` | `integer` |
@@ -209,7 +214,7 @@ You must include these parameters at the bidder level.
 | `unitId` | required | The unit ID from Consumable. | `987654`  | `integer` |
 | `unitName` | required | The unit name from Consumable. | `cnsmbl-unit`  | `string` |
 
-## Examples
+### Examples
 
 **Banner**
 

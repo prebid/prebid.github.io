@@ -20,12 +20,13 @@ For more information about [Browsi](https://www.browsi.com), please contact [sup
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name             | Scope    | Description      | Example                      | Type     |
 |------------------|----------|------------------|------------------------------|----------|
 | `pubId` | required | Publisher ID  | `'117a476f-9791-4a82-80db-4c01c1683db0'` | `string` |
 | `tagId`   | required | Tag ID       | `'1'` | `string` |
 
-# Sample Ad Unit: For Publishers
+### Sample Ad Unit: For Publishers
 
 ```javascript
 let videoAdUnit = [

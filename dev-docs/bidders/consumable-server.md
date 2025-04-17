@@ -33,6 +33,7 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name        | Scope    | Description                    | Example | Type      |
 |-------------|----------|--------------------------------|---------|-----------|
 | `siteId`    | required | The site ID from Consumable.    | `12345` | `integer` |
@@ -41,7 +42,7 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
 | `unitName` | required | The unit name from Consumable. | `cnsmbl-unit`  | `string` |
 | `placementId` | required | the placementid from Consumable. | `0421008445828ceb46f496700a5fa65e` | `string` |
 
-## Table of contents
+### Table of contents
 
 * [Table of contents](#table-of-contents)
 * [Introduction](#introduction)
@@ -55,7 +56,7 @@ The Consumable bid adapter may cycle the ad initially shown with a new one at va
   * [App](#app-or-ctv-banner-video-audio)
 * [Examples](#examples)
 
-## Introduction
+### Introduction
 
 Publishers can use Prebid Server in any of the following ways with Consumable. Consumable's adapter supports all of the following methods:
 
@@ -63,18 +64,19 @@ Publishers can use Prebid Server in any of the following ways with Consumable. C
 * In mobile apps, you can use the Prebid Mobile SDK to call Prebid Server and then Prebid Server uses our server-side adapter to call Consumable. For set up instructions, see [Call Consumable from Prebid Mobile SDK](#call-consumable-from-prebid-mobile-sdk) section on this page.
 * In CTV apps and other long-form video environments, you (or the SSAI vendor) can make a call to Prebid Server using OpenRTB, and then Prebid Server uses our server-side adapter to call Consumable. For set up instructions, see [Call Consumable from CTV/long-form video environment](#call-consumable-from-ctvlong-form-video-environment) section on this page.
 
-## Supported media types
+### Supported media types
 
-The following table lists the media types that Consumable supports. For information about the the Time-To-Live (TTL) for each media type, see [How Consumable counts impressions](https://kb.Consumableexchange.com/publishers/billing/how_Consumable_counts_impressions.htm) in our Knowledge Base.
+The following table lists the media types that Consumable supports.
 
 {: .table .table-bordered .table-striped }
+
 | Type      | Prebid Server support |
 | ----------- | ----------- |
 | banner      | Supported       |
 | video   | Supported, including ad pods for OTT    |
 | audio      | Supported       |
 
-## Setup instructions to call Consumable through Prebid Server
+### Setup instructions to call Consumable through Prebid Server
 
 **Note:** If you are hosting your own Prebid Server instance, you must contact your Consumable Exchange Representative to get an endpoint and setup instructions.
 
@@ -152,14 +154,15 @@ To add Consumable as a bidder:
 2. Define the Consumable-specific parameters at the bidder level. For information about these parameters, see the [Bid request parameters](#bid-request-parameters) section below.
 3. Include any ad unit level required or optional parameters provided in Prebid's [/openrtb2/video](/prebid-server/endpoints/openrtb2/pbs-endpoint-video.html) documentation.
 
-## Bid request parameters
+### Bid request parameters
 
-For a list of the OpenRTB fields that Consumable supports in bid requests, see [List of supported OpenRTB bid request fields for sellers](https://kb.Consumableexchange.com/publishers/openrtb_integration/list_of_supported_openrtb_bid_request_fields_for_sellers.htm#List_of_supported_OpenRTB_bid_request_fields_for_sellers). The following are the required fields for the various supported media types.
+For a list of the OpenRTB fields that Consumable supports in bid requests, see [List of supported OpenRTB bid request fields for sellers](https://iabtechlab.com/wp-content/uploads/2022/04/OpenRTB-2-6_FINAL.pdf). The following are the required fields for the various supported media types.
 ### Site (Banner, Video, Audio)
 
 You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
+
 | Name        | Scope    | Description                    | Example | Type      |
 |-------------|----------|--------------------------------|---------|-----------|
 | `siteId`    | required | The site ID from Consumable.    | `12345` | `integer` |
@@ -172,11 +175,12 @@ You must include these parameters at the bidder level.
 You must include these parameters at the bidder level.
 
 {: .table .table-bordered .table-striped }
+
 | Key | Scope | Type | Description |
 |---|---|---|---|
 | `placementId` | Required | String | An Consumable-specific identifier that is associated with this ad unit. It will be associated with the single size, if the size is provided. This is similar to a placement ID or an ad unit ID that some other modules have. For example, `'0421008445828ceb46f496700a5fa65e'`|
 
-## Examples
+### Examples
 
 **Banner**
 

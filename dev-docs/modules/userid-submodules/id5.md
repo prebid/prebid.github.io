@@ -3,6 +3,9 @@ layout: userid
 title: ID5 ID
 description: ID5 ID User ID sub-module
 useridmodule: id5IdSystem
+bidRequestUserId: id5id
+eidsource: id5-sync.com
+example: {uid: "1111", ext: { linkType: 2, abTestingControlGroup: false } }
 ---
 
 
@@ -18,12 +21,14 @@ The ID5 privacy policy is at [id5.io/platform-privacy-policy](https://id5.io/pla
 
 First, make sure to add the ID5 submodule to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=id5IdSystem,userId
+```
 
 The following configuration parameters are available:
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | The name of this module: `"id5Id"` | `"id5Id"` |
@@ -35,6 +40,7 @@ The following configuration parameters are available:
 | params.abTesting.enabled | Optional | Boolean | Set this to `true` to turn on this feature | `true` or `false` |
 | params.abTesting.controlGroupPct | Optional | Number | Must be a number between `0.0` and `1.0` (inclusive) and is used to determine the percentage of requests that fall into the control group (and thus not exposing the ID5 ID). For example, a value of `0.20` will result in 20% of requests without an ID5 ID and 80% with an ID. | `0.1` |
 | params.disableExtensions | Optional | Boolean | Set this to `true` to force turn off extensions call. Default `false` | `true` or `false` |
+| params.canCookieSync | Optional | Boolean | Set this to `true` to enable cookie syncing with other ID5 partners. See [our documentation](https://wiki.id5.io/docs/initiate-cookie-sync-to-id5) for details. Default `false` | `true` or `false` |
 | params.provider | Optional | String | An identifier provided by ID5 to technology partners who manage API deployments on behalf of their clients. Reach out to ID5 if you have questions about this parameter. | `"providerName"` |
 
 {: .alert.alert-info :}
@@ -65,7 +71,8 @@ pbjs.setConfig({
         abTesting: {             // optional
           enabled: true,         // false by default
           controlGroupPct: 0.1   // valid values are 0.0 - 1.0 (inclusive)
-        }
+        },
+        canCookieSync: true      // optional, has effect only when externalModuleUrl is used 
       },
       storage: {
         type: 'html5',           // "html5" is the recommended storage type
