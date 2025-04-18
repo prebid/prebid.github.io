@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: adipolo
-description: adipolo Bidder Adapter
+title: Adipolo
+description: Adipolo Bidder Adapter
 biddercode: adipolo
 media_types: banner, video
 coppa_supported: true
