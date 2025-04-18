@@ -400,6 +400,14 @@
   subgroup: 3
 
 - sbSecId: 1
+  title: Renderer
+  link: /dev-docs/renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 1
   title: Bidder Params
   link: /dev-docs/bidders.html
   isHeader: 0
@@ -445,6 +453,14 @@
 - sbSecId: 1
   title: How to Add A Real Time Data submodule
   link: /dev-docs/add-rtd-submodule.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 4
+
+- sbSecId: 1
+  title: How to Add A User ID submodule
+  link: /dev-docs/userId-module.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
@@ -660,6 +676,14 @@
   subgroup: 0
 
 - sbSecId: 2
+  title: Prebid Mobile 3.0
+  link: /prebid-mobile/updates-3.0/sdk-key-features.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 0
+
+- sbSecId: 2
   title: Prebid AMP
   link: /dev-docs/show-prebid-ads-on-amp-pages.html
   isHeader: 0
@@ -816,6 +840,14 @@
   subgroup: 2
 
 - sbSecId: 2
+  title: Prebid Mobile 3.0 API Changes
+  link: /prebid-mobile/updates-3.0/ios/api-changes.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 2
+
+- sbSecId: 2
   title: API Reference
   link: /prebid-mobile-ios/index.html
   isHeader: 0
@@ -907,6 +939,14 @@
 - sbSecId: 2
   title: Prebid Plugin Renderer
   link: /prebid-mobile/pbm-api/android/pbm-plugin-renderer.html
+  isHeader: 0
+  isSectionHeader: 0
+  sectionTitle:
+  subgroup: 3
+
+- sbSecId: 2
+  title: Prebid Mobile 3.0 API Changes
+  link: /prebid-mobile/updates-3.0/android/api-changes.html
   isHeader: 0
   isSectionHeader: 0
   sectionTitle:
