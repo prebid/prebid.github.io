@@ -39,6 +39,7 @@ While the WURFL RTD module enriches the OpenRTB 2.0 payload, it is the responsib
 The following scenarios are possible:
 
 {: .table .table-bordered .table-striped }
+
 |                           | SSP Adapter   | SSP Server Side End-Point                                        |
 | :------------------------ | :------------ | :--------------------------------------------------------------- |
 | SSP adapter is already passing the ORTB2 device to the server (auction endpoint). | No changes required. | Update backend logic to utilize the device data. |
@@ -57,13 +58,14 @@ gulp build --modules="wurflRtdProvider,appnexusBidAdapter,..."
 
 ### Configuration
 
-To initialize the WURFL RTD module in Prebid.js, use the `setConfig` function as shown below. The module is configured as part of `realTimeData.dataProviders`
+To initialize the WURFL RTD module in Prebid.js, use the `setConfig` function as shown below. The module is configured
+as part of `realTimeData.dataProviders`. We recommend setting `auctionDelay` to at least `500 ms` and make sure
+`waitForIt` is set to `true`.
 
 ```javascript
-var TIMEOUT = 1000;
 pbjs.setConfig({
     realTimeData: {
-        auctionDelay: TIMEOUT,
+        auctionDelay: 500,
         dataProviders: [{
             name: 'wurfl',
             waitForIt: true,
@@ -78,10 +80,11 @@ pbjs.setConfig({
 ### Parameters
 
 {: .table .table-bordered .table-striped }
+
 | Name                      | Type          | Description                                                      | Default               |
 | :------------------------ | :------------ | :--------------------------------------------------------------- |:----------------------|
 | name                      | String        | Real time data module name                                       | Always set to 'wurfl' |
-| waitForIt                 | Boolean       | Set to `true` if an `auctionDelay` is defined (optional)         | `false`               |
+| waitForIt                 | Boolean       | Set to `true` if an `auctionDelay` is defined (required)         | `false`               |
 | params                    | Object        | Configuration parameters for the WURFL RTD module.               |                       |
 | params.altHost            | String        | Alternate host for connecting to WURFL.js                        |                       |
 | params.debug              | Boolean       | Enable debug mode.                                               | `false`               |
