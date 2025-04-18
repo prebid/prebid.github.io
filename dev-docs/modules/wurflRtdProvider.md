@@ -58,9 +58,10 @@ gulp build --modules="wurflRtdProvider,appnexusBidAdapter,..."
 
 ### Configuration
 
-To initialize the WURFL RTD module in Prebid.js, use the `setConfig` function as shown below. The module is configured
-as part of `realTimeData.dataProviders`. We recommend setting `auctionDelay` to at least `500 ms` and make sure
-`waitForIt` is set to `true`.
+To initialize the WURFL RTD module in Prebid.js, use the `setConfig` function as shown below. 
+The module is configured within `realTimeData.dataProviders`. 
+Ensure `waitForIt` is set to `true`. We recommend setting `auctionDelay` to `500 ms` initially, 
+though lower values may be suitable with fine-tuning.
 
 ```javascript
 pbjs.setConfig({
