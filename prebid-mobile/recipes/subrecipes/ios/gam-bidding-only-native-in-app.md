@@ -4,6 +4,7 @@ title: iOS GAM Bidding-Only Integration - Native In-App
 description: iOS GAM Bidding-Only Integration - Native In-App
 sidebarType: 2
 ---
+<!-- markdownlint-disable-file MD046 -->
 
 # iOS GAM Bidding-Only Integration - Native In-App
 
@@ -23,7 +24,7 @@ At a high level, the in-app workflow follows this sequence:
 The cached assets might expire. If this occurs the publisher will receive a notification and they will have to fetch the assets again.
 {% endcapture %}
 
-Integration Example:
+**Integration example(Swift):**
 
 ``` swift
 private var nativeRequestAssets: [NativeAsset] {
@@ -42,11 +43,90 @@ private var nativeRequestAssets: [NativeAsset] {
 }
 ```
 
-Then integrate the native style ad using GADAdLoader
+Then integrate the native style ad using `GoogleMobileAds.AdLoader`:
 
-``` swift
-// 1. Setup NativeRequest
-nativeUnit = NativeRequest(configId: storedPrebidImpression, assets: nativeRequestAssets)
+{% capture gma12 %}// 1. Setup a NativeRequest
+nativeUnit = NativeRequest(configId: CONFIG_ID, assets: nativeRequestAssets)
+
+// 2. Configure the NativeRequest
+nativeUnit.context = ContextType.Social
+nativeUnit.placementType = PlacementType.FeedContent
+nativeUnit.contextSubType = ContextSubType.Social
+nativeUnit.eventtrackers = eventTrackers
+
+// 3. Make a bid request
+nativeUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
+    guard let self = self else { return }
+    
+    //4. Configure and make a GAM ad request
+    self.adLoader = AdLoader(
+        adUnitID: AD_UNIT_ID,
+        rootViewController: self,
+        adTypes: [AdLoaderAdType.customNative],
+        options: []
+    )
+    self.adLoader.delegate = self
+    self.adLoader.load(self.gamRequest)
+}
+
+.....
+
+// Step 4
+// MARK: GoogleMobileAds.CustomNativeAdLoaderDelegate
+    
+func customNativeAdFormatIDs(for adLoader: AdLoader) -> [String] {
+    [AD_FORMAT_ID]
+}
+
+func adLoader(_ adLoader: AdLoader, didReceive customNativeAd: CustomNativeAd) {
+    Utils.shared.delegate = self
+    Utils.shared.findNative(adObject: customNativeAd)
+}
+
+// Step 5
+// MARK: - NativeAdDelegate
+
+func nativeAdLoaded(ad: NativeAd) {
+    nativeAd = ad
+    titleLabel.text = ad.title
+    bodyLabel.text = ad.text
+
+    if let iconString = ad.iconUrl {
+        ImageHelper.downloadImageAsync(iconString) { result in
+            if case let .success(icon) = result {
+                DispatchQueue.main.async {
+                    self.iconView.image = icon
+                }
+            }
+        }
+    }
+
+    if let imageString = ad.imageUrl {
+        ImageHelper.downloadImageAsync(imageString) { result in
+            if case let .success(image) = result {
+                DispatchQueue.main.async {
+                    self.mainImageView.image = image
+                }
+            }
+        }
+    }
+
+    callToActionButton.setTitle(ad.callToAction, for: .normal)
+    sponsoredLabel.text = ad.sponsoredBy
+
+    nativeAd.registerView(view: view, clickableViews: [callToActionButton])
+}
+
+func nativeAdNotFound() {
+    PrebidDemoLogger.shared.error("Native ad not found")
+}
+
+func nativeAdNotValid() {
+    PrebidDemoLogger.shared.error("Native ad not valid")
+}
+{% endcapture %}
+{% capture gma11 %}// 1. Setup NativeRequest
+nativeUnit = NativeRequest(configId: CONFIG_ID, assets: nativeRequestAssets)
 nativeUnit.context = ContextType.Social
 nativeUnit.placementType = PlacementType.FeedContent
 nativeUnit.contextSubType = ContextSubType.Social
@@ -57,7 +137,7 @@ nativeUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
     guard let self = self else { return }
 
     //3. Configure and make a GAM ad request
-    self.adLoader = GADAdLoader(adUnitID: gamRenderingNativeAdUnitId,rootViewController: self,
+    self.adLoader = GADAdLoader(adUnitID: AD_UNIT_ID, rootViewController: self,
                                 adTypes: [GADAdLoaderAdType.customNative], options: [])
     self.adLoader.delegate = self
     self.adLoader.load(self.gamRequest)
@@ -69,7 +149,7 @@ nativeUnit.fetchDemand(adObject: gamRequest) { [weak self] resultCode in
 // MARK: GADCustomNativeAdLoaderDelegate
 
 func customNativeAdFormatIDs(for adLoader: GADAdLoader) -> [String] {
-    ["11934135"]
+    [AD_FORMAT_ID]
 }
 
 func adLoader(_ adLoader: GADAdLoader, didReceive customNativeAd: GADCustomNativeAd) {
@@ -118,7 +198,9 @@ func nativeAdNotFound() {
 func nativeAdNotValid() {
     PrebidDemoLogger.shared.error("Native ad not valid")
 }
-```
+{% endcapture %}
+
+{% include code/gma-versions-tabs.html id="native-in-app" gma11=gma11 gma12=gma12 %}
 
 ## Step 1: Create a NativeRequest
 {:.no_toc}
@@ -165,21 +247,21 @@ Initialize the `NativeRequest` with properties:
 ## Step 2: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `GAMRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
+The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `AdManagerRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
 
 ## Step 3: Configure and make a GAM ad request
 {:.no_toc}
 
-Prepare the `GADAdLoader` and run ad request as described in the GMA SDK docs for the [native ads](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/native/start).
+Prepare the `AdLoader` and run ad request as described in the GMA SDK docs for the [native ads](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/native/start).
 
-If the `GAMRequest` contains targeting keywords the respective Prebid line item will be returned from GAM and GMA SDK will render its creative.
+If the `AdManagerRequest` contains targeting keywords the respective Prebid line item will be returned from GAM and GMA SDK will render its creative.
 
-Be sure that you make the ad request with the same `GAMRequest` object that you passed to the `fetchDemand` method. Otherwise the ad request won't contain targeting keywords and Prebid's ad won't ever be displayed.
+Be sure that you make the ad request with the same `AdManagerRequest` object that you passed to the `fetchDemand` method. Otherwise the ad request won't contain targeting keywords and Prebid's ad won't ever be displayed.
 
-## Step 4: Implement GADCustomNativeAdLoaderDelegate protocol
+## Step 4: Implement CustomNativeAdLoaderDelegate protocol
 {:.no_toc}
 
-In order to capture the native ad response you need to implement the GADCustomNativeAdLoaderDelegate protocol.
+In order to capture the native ad response you need to implement the `CustomNativeAdLoaderDelegate` protocol.
 
 In the method `-adLoader:didReceiveCustomNativeAd:` you should pass the following Prebid functions:
 
