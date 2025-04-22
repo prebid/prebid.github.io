@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: Exco
-description: Prebid Exco Bidder Adaptor
+title: EX.CO
+description: Prebid EX.CO Bidder Adaptor
 biddercode: exco
 filename: excoBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
