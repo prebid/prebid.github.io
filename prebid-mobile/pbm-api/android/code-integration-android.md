@@ -64,7 +64,7 @@ If you see errors while building the Prebid Mobile SDK or Demo Applications, mak
 
 ## Add the Prebid SDK
 
-### Point to a Prebid Server
+### Prebid Server Account ID
 
 {% capture warning_note %}
 All integration examples for Android are written in `Kotlin`.
@@ -74,14 +74,24 @@ The corresponding Java code can be found in the [Demo Java](https://github.com/p
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add the 'account' info to Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
+Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add the 'account' info to Prebid Mobile.
 
 ```kotlin
 PrebidMobile.setPrebidServerAccountId(YOUR_ACCOUNT_ID)
+```
+
+### Point to a Prebid Server
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the setPrebidServerHost() method and the `Host.APPNEXUS` and `Host.RUBICON` enums have been removed. Please check the server URL in [API changes](/prebid-mobile/updates-3.0/android/api-changes#host) and use `PrebidMobile.initializeSdk` (below) to set the Prebid Server URL.
+
+In SDK 2.5 and before, if you're using the AppNexus Prebid Server you would do this:
+
+```kotlin
 PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
 ```
 
-If you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+In SDK 2.5 and before, if you have opted to host your own Prebid Server solution you will need to store the url to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
 
 ```kotlin
 PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebidserver.example.com/openrtb2/auction"))
@@ -96,15 +106,19 @@ If you want to define a different Account Settings ID as determined in conjuncti
 your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#arbitrary-openrtb) method like this:
 
 ```kotlin
-adUnitConfiguration?.ortbConfig = "{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}"
+TargetingParams.setGlobalOrtbConfig("{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}})"
 ```
 
 ### Initialize SDK
 
-Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. Use the following initialization for Prebid SDK:
+Once you set the account ID, you should initialize the Prebid SDK. 
+
+In SDK 3.0 and later, you need to enter a URL to your Prebid Server's auction endpoint in your app. Get this URL from your Prebid Server provider. e.g. `https://prebid-server.example.com/openrtb2/auction`.
+
+Use the following initialization for Prebid SDK:
 
 ```kotlin
-PrebidMobile.initializeSdk(applicationContext) { status ->
+PrebidMobile.initializeSdk(applicationContext, PREBID_SERVER_URL) { status ->
     if (status == InitializationStatus.SUCCEEDED) {
         Log.d(TAG, "SDK initialized successfully!")
     } else if (status == InitializationStatus.SERVER_STATUS_WARNING) {
@@ -121,7 +135,7 @@ Pay attention that SDK should be initialized on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-During the initialization, SDK creates internal classes and performs the health check request to the [/status](https://docs.prebid.org/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If you use a custom PBS host you should provide a custom status endpoint as well:
+During the initialization, SDK creates internal classes and performs the health check request to the [/status](/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If your Prebid Server provider has a non-standard path (anything other than `/status`), you should provide a the alternate status endpoint:
 
 ```kotlin
 PrebidMobile.setCustomStatusEndpoint(PREBID_SERVER_STATUS_ENDPOINT)
@@ -223,6 +237,9 @@ var pbsAccountId = PrebidMobile.getPrebidServerAccountId()
 ### Host
 {:.no_toc}
 
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the `Host` class is removed. Use the `PrebidMobile.initializeSdk` method to provide the your Prebid Server host instead.
+
 Object containing configuration for your Prebid Server host with which the Prebid SDK will communicate. Choose from the system-defined Prebid Server hosts or define your own custom Prebid Server host.
 
 ```kotlin
@@ -304,6 +321,16 @@ To stop sending stored bid response signals use the following method:
 
 ```kotlin
 void clearStoredBidResponses()
+```
+
+### AuctionSettingsId
+{:.no_toc}
+
+Allows you to separate account from "auction settings". This is used to set `ext.prebid.storedrequest.id`, otherwise prebidServerAccountId is taken by default. This allows each app to have different global parameters like timeout, price granularity, etc. Please work with your Prebid Server provider to determine what to enter here. 
+
+```kotlin
+PrebidMobile.setAuctionSettingsId(YOUR_AUCTION_SETTINGS_ID)
+var auctionSettingsId = PrebidMobile.getAuctionSettingsId()
 ```
 
 ### Debug

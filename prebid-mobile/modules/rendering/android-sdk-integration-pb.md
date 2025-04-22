@@ -28,7 +28,7 @@ While the default ad server for Prebid's Mobile SDK is GAM, it can be expanded t
 
 In this mode, the developer is responsible for the following actions:
 
-- Call `fetchDemand()` with extended targetingDict callback
+- Call `fetchDemand()` with extended targetingDict callback (The method has been removed in the PrebidMobile `3.0.0`. Use the `fetchDemand()` with extended BidInfo callback instead)
 - Retrieve targeting keys from the extended fetchDemand function
 - Convert targeting keys into the format for your ad server
 - Pass converted keys to your ad server
@@ -37,9 +37,9 @@ In this mode, the developer is responsible for the following actions:
 This approach is available for the following ad formats:
 
 - Display Banner via `BannerAdUnit`
-- Video Banner and Instream Video via `VideoAdUnit`
+- Video Banner and Instream Video via `VideoAdUnit` (The class has been removed in the PrebidMobile `3.0.0`. Use the `InStreamVideoAdUnit` instead)
 - Display Interstitial via `InterstitialAdUnit`
-- Video Interstitial via `VideoInterstitialAdUnit`
+- Video Interstitial via `VideoInterstitialAdUnit` (The class has been removed in the PrebidMobile `3.0.0`. Use the `InterstitialAdUnit` with video ad format instead)
 - Rewarded Video via `RewardedVideoAdUnit`
 - Native Styles via `NativeRequest`
 
@@ -155,7 +155,7 @@ Pay attention that the `loadAd()` should be called on the main thread.
 {% endcapture %}
 {% include /alerts/alert_warning.html content=warning_note %}
 
-The **default** ad format for interstitial is **DISPLAY**. In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
+In order to make a `multiformat bid request`, set the respective values into the `adUnitFormats` parameter.
 
 ``` kotlin
 interstitialAdUnit = InterstitialAdUnit(

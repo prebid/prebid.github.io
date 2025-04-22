@@ -90,16 +90,26 @@ This will output the PrebidMobile.framework.
 
 ## Add the Prebid SDK
 
-### Point to a Prebid Server
+### Prebid Server Account ID
 
-Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add 'account' info to the Prebid Mobile. For example, if you're using the AppNexus Prebid Server:
+Once you have a [Prebid Server](/prebid-mobile/prebid-mobile-getting-started.html), you will add 'account' info to the Prebid Mobile.
 
 ```swift
 Prebid.shared.prebidServerAccountId = YOUR_ACCOUNT_ID
+```
+
+### Point to a Prebid Server
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the setCustomPrebidServer() method and the `Host.Appnexus` and `Host.Rubicon` enums have been removed. Please check the server URL in [API changes](/prebid-mobile/updates-3.0/ios/api-changes#host) and use `PrebidMobile.initializeSdk` (below) to set the Prebid Server URL.
+
+In SDK 2.5 and before, if you're using the AppNexus Prebid Server, you would do this:
+
+```swift
 Prebid.shared.prebidServerHost = .Appnexus
 ```
 
-If you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
+In SDK 2.5 and before, if you have opted to host your own Prebid Server solution, you will need to store the URL to the server in your app. Make sure that your URL points to the [/openrtb2/auction](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html) endpoint.
 
 ```swift
 try! Prebid.shared.setCustomPrebidServer(url: "https://prebidserver.example.com/openrtb2/auction")
@@ -113,19 +123,21 @@ Each mobile app may have its own "account settings ID". This is used to look up 
 
 By default the Account Settings ID is set to be the same as the Account ID. i.e. the Prebid.shared.prebidServerAccountId property will set both values.
 If you want to define a different Account Settings ID as determined in conjunction with
-your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/android/pbm-targeting-android.html#arbitrary-openrtb) method like this:
+your Prebid Server team, use the [arbitrary OpenRTB](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#arbitrary-openrtb) method like this:
 
 ```swift
-adUnitConfig.setOrtbConfig = "{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}"
+Targeting.shared.setGlobalORTBConfig("{\"ext\":{\"prebid\":{\"storedrequest\": {\"id\":\"account-settings-id\"}}}}")
 ```
 
 ### Initialize SDK
 
-Once you set the account ID and the Prebid Server host, you should initialize the Prebid SDK. There are several options for how to do it.
+Once you set the account ID, you should initialize the Prebid SDK. 
+
+In SDK 3.0 and later, you need to enter a URL to your Prebid Server's auction endpoint in your app. Get this URL from your Prebid Server provider. e.g. `https://prebid-server.example.com/openrtb2/auction`.
 
 If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10.7.0, use the following initializer, which checks the compatibility of Prebid SDK with GMA SDK used in the app:
 
-{% capture gma12 %}Prebid.initializeSDK(gadMobileAdsVersion: string(for: MobileAds.shared.versionNumber)) { status, error in
+{% capture gma12 %}Prebid.initializeSDK(PREBID_SERVER_URL, gadMobileAdsVersion: string(for: MobileAds.shared.versionNumber)) { status, error in
     switch status {
     case .succeeded:
         print("Prebid SDK successfully initialized")
@@ -140,9 +152,9 @@ If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10
     default:
         break
     }            
-}   
+}
 {% endcapture %}
-{% capture gma11 %}Prebid.initializeSDK(gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
+{% capture gma11 %}Prebid.initializeSDK(PREBID_SERVER_URL, gadMobileAdsVersion: GADGetStringFromVersionNumber(GADMobileAds.sharedInstance().versionNumber) { status, error in
     switch status {
     case .succeeded:
         print("Prebid SDK successfully initialized")
@@ -157,7 +169,7 @@ If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10
     default:
         break
     }            
-}            
+}
 {% endcapture %}
 
 {% include code/gma-versions-tabs.html id="pbm-init" gma11=gma11 gma12=gma12 %}
@@ -165,7 +177,7 @@ If you integrate Prebid Mobile with GMA SDK with version equal or higher than 10
 If you integrate Prebid Mobile with GMA SDK with version lower than 10.7.0, use the following initializer:
 
 ```swift
-Prebid.initializeSDK(GADMobileAds.sharedInstance()) { status, error in
+Prebid.initializeSDK(PREBID_SERVER_URL, GADMobileAds.sharedInstance()) { status, error in
     switch status {
     case .succeeded:
         print("Prebid SDK successfully initialized")
@@ -188,18 +200,42 @@ Check the log messages of the app. If the provided GMA SDK version is not verifi
 For the No Ad Server scenario, use the following initialization:
 
 ```swift
-Prebid.initializeSDK { status, error in
+Prebid.initializeSDK(PREBID_SERVER_URL) { status, error in
     // ....
 }
 ```
 
-During the initialization, SDK creates internal classes and performs the health check request to the [/status](https://docs.prebid.org/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If you use a custom PBS host you should provide a custom status endpoint as well:
+All initialization methods may throw an exception if the provided server URL is invalid.
+
+During the initialization, SDK creates internal classes and performs the health check request to the [/status](/prebid-server/endpoints/pbs-endpoint-status.html)  endpoint. If your Prebid Server provider has a non-standard path (anything other than `/status`), you should provide a the alternate status endpoint:
 
 ```swift
 Prebid.shared.customStatusEndpoint = PREBID_SERVER_STATUS_ENDPOINT
 ```
 
 If something goes wrong with the request, the status of the initialization callback will be `.serverStatusWarning`. It doesn't affect an SDK flow and just informs you about the health check result.
+
+#### Handling Tracking Domains
+
+As part of Apple's evolving privacy policies, SDKs that access user data in a way that could be used for tracking may be required to register tracking domains in the `PrivacyInfo.xcprivacy` file. 
+
+Currently, the Prebid Mobile SDK is not classified as one of these SDKs. But future changes from Apple or internal app review policies may prompt publishers to proactively register the Prebid Server (PBS) endpoint in the privacy manifest. To support this, the Prebid SDK is designed to accommodate both tracking and non-tracking PBS domains. Here are the Prebid recommendations:
+
+- Include the relevant `NSPrivacyCollectedDataTypes` and define your primary Prebid Server domain in the `NSPrivacyTrackingDomains` array in your the `PrivacyInfo.xcprivacy` file to cover a potential "worst case" scenario. Read more about the `PrivacyInfo.xcprivacy` data [here](https://docs.prebid.org/faq/prebid-mobile-faq.html#privacysecurity).
+- You may choose to provide a secondary, privacy-mode PBS URL to the SDK. This secondary domain can be used when tracking is disallowed. Get this additional hostname from your Prebid Server host provider. Every initialization method contains optional parameter to define this privacy-safe PBS domain. Since these requests will have the `limit ad tracking` flag defined, Prebid Server will anonymize the requests.
+
+You’re not required to use a secondary PBS domain -- you can simply allow iOS to block PBS requests when the user opts out of tracking.
+
+```swift
+let trackingURL = "https://prebidserver.example.com/openrtb2/auction"
+let nonTrackingURL = "https://prebidserver.example.nontracking.com/openrtb2/auction"
+Prebid.initializeSDK(trackingURL, nonTrackingURL) { status, error in
+    // ....
+}
+```
+
+{: .alert.alert-warning :}
+Depending on Apple’s domain monitoring mechanisms, even the privacy-mode domain could potentially be blocked. In such cases, the PBS provider may need to engage with Apple for resolution.
 
 ## Set Global Parameters
 
@@ -220,6 +256,8 @@ The `Prebid` class is a singleton that enables the user to apply global settings
 `prebidServerAccountId`: String containing the Prebid Server account ID.
 
 `prebidServerHost`: String containing configuration your Prebid Server host with which Prebid SDK will communicate. Choose from the system-defined Prebid Server hosts or define your own custom Prebid Server host.
+
+`auctionSettingsId`: Allows you to separate account from "auction settings". This is used to set `ext.prebid.storedrequest.id`, otherwise prebidServerAccountId is taken by default. This allows each app to have different global parameters like timeout, price granularity, etc. Please work with your Prebid Server provider to determine what to enter here. 
 
 `shareGeoLocation`: Optional Bool, if this flag is True AND the app collects the user’s geographical location data, Prebid Mobile will send the user’s geographical location data to Prebid Server. If this flag is False OR the app does not collect the user’s geographical location data, Prebid Mobile will not populate any user geographical location information in the call to Prebid Server. The default setting is false.
 
@@ -323,12 +361,17 @@ All values received in the `passthrough` of the bid response will be applied to 
 ### Examples
 {:.no_toc}
 
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the `prebidServerHost` property and the `setCustomPrebidServer` method are removed. Use `Prebid.initializeSDK` instead. If you used `Host.Appnexus` or `Host.Rubicon` to set your host, you should check the server URL in [API changes](/prebid-mobile/updates-3.0/ios/api-changes#host).
+
 ```swift
-// Host
+
+// Host (Removed in 3.0.0. Use `Prebid.initializeSDK` instead.)
 Prebid.shared.prebidServerHost = .Rubicon
-// or set a custom host
+// or set a custom host (Removed in 3.0.0. Use `Prebid.initializeSDK` instead.)
 Prebid.shared.prebidServerHost = PrebidHost.Custom
 do {
+    // Removed in 3.0.0. Use `Prebid.initializeSDK` instead.
     try Prebid.shared.setCustomPrebidServer(url: "https://prebid-server.customhost.com")
 } catch {
     print(error)
@@ -336,6 +379,9 @@ do {
 
 // Account Id
 Prebid.shared.prebidServerAccountId = "1234"
+
+// Auction Settings Id (Optional)
+Prebid.shared.auctionSettingsId = "7890"
 
 // Geolocation
 Prebid.shared.shareGeoLocation = true

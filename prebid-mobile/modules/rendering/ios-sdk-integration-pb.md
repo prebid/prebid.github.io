@@ -37,9 +37,9 @@ In this mode, the developer is responsible for the following actions:
 This approach is available for the following ad formats:
 
 - Display Banner via `BannerAdUnit`
-- Video Banner and Instream Video via `VideoAdUnit`
+- Video Banner and Instream Video via `VideoAdUnit` (The class has been removed in the PrebidMobile `3.0.0`. Use the `InStreamVideoAdUnit` instead)
 - Display Interstitial via `InterstitialAdUnit`
-- Video Interstitial via `VideoInterstitialAdUnit`
+- Video Interstitial via `VideoInterstitialAdUnit` (The class has been removed in the PrebidMobile `3.0.0`. Use the `InterstitialAdUnit` with video ad format instead)
 - Rewarded Video via `RewardedVideoAdUnit`
 - Native Styles via `NativeRequest`
 - Multiformat ad unit via `PrebidAdUnit`

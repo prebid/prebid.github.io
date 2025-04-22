@@ -22,7 +22,7 @@ To integrate HTML banner ads into the app you should use the `BannerAdUnit` clas
     // 2. Configure banner parameters using Prebid Mobile SDK
     let parameters = BannerParameters()
     parameters.api = [Signals.Api.MRAID_2, Signals.Api.OMID_1]
-    adUnit.parameters = parameters
+    adUnit.bannerParameters = parameters
     
     // 3. Create an AdManagerBannerView using Google Mobile Ads SDK
     gamBanner = AdManagerBannerView(adSize: adSizeFor(cgSize: AD_SIZE))
@@ -52,7 +52,7 @@ To integrate HTML banner ads into the app you should use the `BannerAdUnit` clas
     // 2. Configure banner parameters using Prebid Mobile SDK
     let parameters = BannerParameters()
     parameters.api = [Signals.Api.MRAID_2, Signals.Api.OMID_1]
-    adUnit.parameters = parameters
+    adUnit.bannerParameters = parameters
     
     // 3. Create a GAMBannerView using Google Mobile Ads SDK
     gamBanner = GAMBannerView(adSize: GADAdSizeFromCGSize(AD_SIZE))

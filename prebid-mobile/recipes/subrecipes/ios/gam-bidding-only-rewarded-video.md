@@ -52,7 +52,7 @@ To integrate Rewarded Video ads into the app you should use the Prebid SDK `Rewa
     parameters.mimes = ["video/mp4"]
     parameters.protocols = [Signals.Protocols.VAST_2_0]
     parameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOn]
-    adUnit.parameters = parameters
+    adUnit.videoParameters = parameters
     
     // 3. Make a bid request to Prebid Server using Prebid Mobile SDK
     let gamRequest = GAMRequest()
