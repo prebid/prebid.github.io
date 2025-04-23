@@ -32,3 +32,4 @@ sidebarType: 1
 | Name         | Scope    | Description                                                | Example | Type    |
 | ------------ | -------- | ---------------------------------------------------------- | ------- | ------- |
 | placement_id | required | An ID which identifies this specific inventory placement   | 1111    | integer |
+| bidfloor     | optional | Static floor price (in USD) for the impression, pbjs only  | 1.5     | float   |
