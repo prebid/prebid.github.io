@@ -51,6 +51,17 @@ pbjs.setConfig({
     ],
     storeSplits: 'memory', // Configuration is not stored; recalculated on each page load
     suppression: 'submodules',
-    testRun: 'July performance testing'
+    testRun: 'JulyTest'
   }
 });
+```
+
+The following object will be attached to analytics labels based on the configuration above:
+
+```javascript
+{
+  JulyTest: [
+    { name: 'idSharedSystem', percentage: 1.0, enabled: true },
+    { name: '33acrossIdSystem', percentage: 0.5, enabled: false } // May be true or false depending on random selection
+  ]
+}
