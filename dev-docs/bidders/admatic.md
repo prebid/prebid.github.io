@@ -14,9 +14,12 @@ gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
 userIds: all
+prebid_member: true
+pbs_app_supported: true
 safeframes_ok: true
 floors_supported: true
 multiformat_supported: will-bid-on-any
+ortb_blocking_supported: partial
 sidebarType: 1
 ---
 

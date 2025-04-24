@@ -35,6 +35,9 @@ The `Prebid` class is a singleton that enables you to apply certain global setti
 
 ### Prebid Class Global Properties
 
+{: .alert.alert-warning :}
+The global properties exist only for PrebidMobile `2.5.0`. Starting from PrebidMobile `3.0.0` the global properties below are removed.
+
 All of these properties of the Prebid class can be set on the `shared` object like this:
 
 ```kotlin
@@ -44,9 +47,9 @@ Prebid.shared.sendMraidSupportParams=true
 {: .table .table-bordered .table-striped }
 | Parameter | Scope | Type | Purpose | Description | Example |
 | --- | --- | --- | --- | --- |
-| isCoppaEnabled | optional | boolean | ORTB | Set this to true if this app is aimed at children. It sets the ORTB `regs.coppa` flag. Default is false. | `true` |
-| useExternalBrowser | optional | boolean | behavior | If true, clicking on the ad will open your default browser instead of showing within the app's webview. Defaults to `false`. | `true` |
-| sendMraidSupportParams | optional | boolean | ORTB | If `true`, the SDK sends imp[].banner.api=[3,5], indicating support for MRAID. Defaults to `true`. | `false` |
+| isCoppaEnabled | optional | boolean | ORTB | Starting from PrebidMobile `3.0.0` the property is removed. Can be replaces with `TargetingParams.setSubjectToCOPPA()`<wbr>Set this to true if this app is aimed at children. It sets the ORTB `regs.coppa` flag. Default is false. | `true` |
+| useExternalBrowser | optional | boolean | behavior | Starting from PrebidMobile `3.0.0` the property is removed<wbr>If true, clicking on the ad will open your default browser instead of showing within the app's webview. Defaults to `false`. | `true` |
+| sendMraidSupportParams | optional | boolean | ORTB | Starting from PrebidMobile `3.0.0` the property is removed<wbr>If `true`, the SDK sends imp[].banner.api=[3,5], indicating support for MRAID. Defaults to `true`. | `false` |
 
 ### Prebid Class Global Methods
 
@@ -57,6 +60,9 @@ Your Prebid Server team will tell you whether this is required or not and if so,
 #### setPrebidServerHost()
 
 This is where the Prebid SDK will send the auction information.
+
+{: .alert.alert-warning :}
+Starting from PrebidMobile `3.0.0` the `setPrebidServerHost` method is removed. Use the `initializeSdk` method instead.
 
 Signature:
 
@@ -74,8 +80,6 @@ Parameters:
 Examples:
 
 ```kotlin
-PrebidMobile.setPrebidServerHost(Host.APPNEXUS)
-PrebidMobile.setPrebidServerHost(Host.RUBICON)
 PrebidMobile.setPrebidServerHost(Host.createCustomHost("https://prebidserver.example.com/openrtb2/auction"))
 ```
 
@@ -183,6 +187,29 @@ void clearStoredBidResponses()
 ```
 
 Parameters: none.
+
+#### setAuctionSettingsId()
+
+For the SDK to separate out account from "auction settings".
+
+Signature:
+
+```kotlin
+func setAuctionSettingsId(settingsId: String)
+```
+
+Parameters: 
+
+{: .table .table-bordered .table-striped }
+| Parameter | Scope | Type | Description | Example |
+| --- | --- | --- | --- | --- |
+| settingsId | optional | string | Use the settingsId to separate account from "auction settings", allowing each app to have different global parameters defined on the server side. If specified, the settingsId is used to set `ext.prebid.storedrequest.id`, otherwise prebidServerAccountId is taken by default. | "abc321" |
+
+Examples:
+
+```kotlin
+PrebidMobile.setAuctionSettingsId("abc321")
+```
 
 #### setLogLevel
 
@@ -470,36 +497,27 @@ Prebid SDK provides a number of properties in the [Targeting class](/prebid-mobi
 methods) for setting user-oriented First Party Data.
 
 ```kotlin
-void addUserData(String key, String value)
+void addUserKeyword(String keyword)
 
-void updateUserData( String key, Set<String> value)
+void addUserKeywords(Set<String> keywords)
 
-void removeUserData(String key)
+void removeUserKeyword(String keyword)
 
-void clearUserData()
+void clearUserKeywords()
 
-Map<String, Set<String>> getUserDataDictionary() {
+String getUserKeywords()
 
-void addUserKeywords(Set<String> keywords) {
-
-void removeUserKeyword(String keyword) {
-
-void clearUserKeywords() {
-
-String getUserKeywords() {
-
-Set<String> getUserKeywordsSet() {
+Set<String> getUserKeywordsSet()
 ```
 
 Example:
 
 ```kotlin
-TargetingParams.addUserData("globalUserDataKey1", "globalUserDataValue1")
+TargetingParams.addUserKeyword("globalUserKeyword")
 ```
 
 {: .alert.alert-info :}
-Note: The 'UserData' functions end up putting data into the OpenRTB user.ext.data object while the 'UserKeywords' functions
-put data into user.keywords.
+Note: The 'UserKeywords' functions put data into user.keywords.
 
 ### Inventory FPD
 
@@ -513,16 +531,6 @@ void updateExtData(String key, Set<String> value)
 void removeExtData(String key)
 
 Map<String, Set<String>> getExtDataDictionary()
-
-void addExtKeyword(String keyword)
-
-void addExtKeywords(Set<String> keywords)
-
-void removeExtKeyword(String keyword)
-
-void clearExtKeywords()
-
-Set<String> getExtKeywordsSet()
 ```
 
 Example:
@@ -806,18 +814,6 @@ Pay attention that there are certain protected fields such as `regs`, `device`, 
 
 - App and User first party data should use the [functions defined for those purposes](/prebid-mobile/pbm-api/ios/pbm-targeting-ios.html#first-party-data)
 - See the [Prebid Server auction endpoint](/prebid-server/endpoints/openrtb2/pbs-endpoint-auction.html#prebid-server-ortb2-extension-summary) reference for more information about how it will process incoming fields.
-
-### Deprecated 
-{:.no_toc}
-
-The Prebid Mobile SDK v2.2.1 contains the deprecated method to set the impression level RTB config: 
-
-``` swift
-//ad unit / impression-level
-adUnit.setOrtbConfig("{\"ext\":{\"gpid\":\"abc123"}}\")
-```
-
-This method has implementation issues and was deprecated in v2.4.0. If you use this method, we strongly recommend migrating to the new `setImpORTBConfig()` method since this one will be removed entirely in SDK version 3.0.
 
 ## Further Reading
 
