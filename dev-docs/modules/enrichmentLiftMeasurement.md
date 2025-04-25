@@ -12,9 +12,9 @@ sidebarType: 1
 
 # Enrichment Lift Measurement
 
-The **Enrichment Lift Measurement Module** allows publishers to evaluate the performance of various User ID systems by configuring and executing A/B tests. It offers several configuration options that enable publishers to:
+The **Enrichment Lift Measurement Module** allows publishers to evaluate the performance of User ID submodules by configuring and executing A/B tests. It offers several configuration options that enable publishers to:
 
-- Route traffic to selected User ID system providers.
+- Route traffic to selected User ID submodules.
 - Control where the A/B test configuration is stored.
 - Specify how User ID submodules should be disabled.
 
