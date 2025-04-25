@@ -356,8 +356,8 @@ Compression is performed client-side using the browser's [CompressionStream](htt
 
 This setting can be enabled either:
 
-- globally for all bidders (under the `standard` section), or
-- specifically for one or more bidders.
+* globally for all bidders (under the `standard` section), or
+* specifically for one or more bidders.
 
 The default value is `false`, meaning requests are not compressed unless explicitly configured by the publisher.
 
