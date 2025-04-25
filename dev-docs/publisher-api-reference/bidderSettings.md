@@ -48,6 +48,7 @@ Some sample scenarios where publishers may wish to alter the default settings:
 | allowAlternateBidderCodes | standard or adapter-specific | 6.23.0 | true in v6.x <br /> false from v7.0| Allow adapters to bid with alternate bidder codes. |  
 | allowedAlternateBidderCodes | standard or adapter-specific | 6.23.0 | n/a | Array of bidder codes for which an adapter can bid. <br />`undefined` or `['*']` will allow adapter to bid with any bidder code. |
 | adjustAlternateBids | standard or adapter-specific | 7.48.0 | false | Optionally allow alternate bidder codes to use an adapter's bidCpmAdjustment function by default instead of the standard bidCpmAdjustment function if present (note: if a bidCpmAdjustment function exists for the alternate bidder code within bidderSettings, then this will be used instead of falling back to the adapter's bidCpmAdjustment function). |
+| endpointCompression | standard or adapter-specific | 9.42.0 | false | Compresses bid requests sent to bidder endpoints using gzip if browser supports it (`note: bidder endpoints must support gzip compressed bid requests`). |
 
 ##### 2.1. adserverTargeting
 
@@ -343,5 +344,31 @@ pbjs.bidderSettings = {
 ```
 
 In the above example, if PubMatic were to return the "groupm" bidder code then the bidCpmAdjustment function under `pubmatic` would be used instead of what is available under `standard`.
+
+##### 2.11. endpointCompression
+
+{: .alert.alert-warning :}
+Note: The bidder's endpoint must already support receiving gzip compressed bid requests (otherwise this feature will not work and most likely throw an error with the bidder's endpoint).
+
+If this setting is enabled (`true`), Prebid.js will attempt to gzip-compress bid requests sent to bidder endpoints when possible.
+
+Compression is performed client-side using the browser's [CompressionStream](https://developer.mozilla.org/en-US/docs/Web/API/CompressionStream) API, if available. If CompressionStream is not supported by the user's browser, the bid request will be sent uncompressed.
+
+This setting can be enabled either:
+
+- globally for all bidders (under the `standard` section), or
+- specifically for one or more bidders.
+
+The default value is `false`, meaning requests are not compressed unless explicitly configured by the publisher.
+
+**Example enabling endpoint compression for a specific bidder (PubMatic):**
+
+```javascript
+pbjs.bidderSettings = {
+  pubmatic: {
+    endpointCompression: true
+  }
+};
+```
 
 <hr class="full-rule" />
