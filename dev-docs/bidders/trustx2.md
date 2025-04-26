@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: TRUSTX
-description: Prebid TRUSTX Bidder Adapter
+title: TrustX 2.0
+description: Prebid TrustX 2.0 Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: trustx2
@@ -22,7 +22,7 @@ sidebarType: 1
 
 ### Integration
 
-Approval from the TRUSTX team is required for the TRUSTX 2 Header Bidding adapter.
+Approval from the TRUSTX team is required for the TrustX 2.0 Header Bidding adapter.
 For additional information, please reach out to <prebid@trustx.org>.
 
 ### Bid Params
