@@ -42,8 +42,7 @@ If you use the Prebid.js [TCF Control Module](/dev-docs/modules/tcfControl.html)
 
 To do that, you can use below configuration:
 
-{: .alert.alert-warning :}
-Prebid.org recommends working with a privacy lawyer before making enforcement exceptions for any vendor.
+{% include dev-docs/vendor-exception.md %}
 
 ```javascript
 pbjs.setConfig({

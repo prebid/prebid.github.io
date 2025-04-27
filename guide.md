@@ -326,6 +326,22 @@ The docs offer a set of predefined disclosures that should be used where appropr
 {%raw%}{% include legal-warning.html %}{%endraw%}
 ```
 
+#### Vendor exception disclosure
+
+{% include dev-docs/vendor-exception.md %}
+
+```liquid
+{%raw%}{% include dev-docs/vendor-exception.md %}{%endraw%}
+```
+
+You can also add a `gvlId` parameter if the vendor has in fact an ID.
+
+{% include dev-docs/vendor-exception.md gvlId="123" %}
+
+```liquid
+{%raw%}{% include dev-docs/vendor-exception.md gvlId="123" %}{%endraw%}
+```
+
 ## Partners
 
 TBD
