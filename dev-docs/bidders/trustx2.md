@@ -51,7 +51,7 @@ pbjs.setBidderConfig({
 })
 ```
 
-This allows the TrustX 2.0 Bid Adapter to write userId in first party localStorage, which facilitates user identification and ensures data privacy management.
+This allows the TrustX Bid Adapter to write userId in first party localStorage, which facilitates user identification and ensures data privacy management.
 
 <a name="trustx2-first-party"></a>
 
@@ -59,22 +59,151 @@ This allows the TrustX 2.0 Bid Adapter to write userId in first party localStora
 
 Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
 
-Global site or user data using `setConfig()`, or Bidder-specific using `setBidderConfig()` supports the following fields:
+Global site or user data using `setConfig()`, or Bidder-specific using `setBidderConfig()` is supported.
 
-- `ortb2.user.data[]`: Standard IAB segment taxonomy user data
-- `ortb2.user.ext.device`: Non-standard arbitrary user device data
-- `ortb2.user.ext.eids`: External identifiers for the user
-- `ortb2.site.keywords`: Standard IAB OpenRTB 2.5 site.keywords field
-- `ortb2.site.cat[]`: Standard IAB OpenRTB 2.5 site.cat field
-- `ortb2.site.pagecat[]`: Standard IAB OpenRTB 2.5 site.pagecat field
-- `ortb2.site.content.genre`: Standard IAB OpenRTB 2.5 site.content.genre field
-- `ortb2.site.content.data`: Content data segments
+<a name="trustx2-site-data"></a>
+
+#### Site Data Fields
+
+TrustX adapter supports the following standard OpenRTB 2.5 site fields:
+
+{: .table .table-bordered .table-striped }
+| Field       | Description                                                              | Example                                     | Type             |
+|-------------|--------------------------------------------------------------------------|---------------------------------------------|------------------|
+| `name`      | Site name                                                                | `'Publisher Site'`                          | `string`         |
+| `domain`    | Domain of the site (e.g., "example.com")                                 | `'example.com'`                             | `string`         |
+| `page`      | URL of the page where the impression will be shown                       | `'https://example.com/article'`             | `string`         |
+| `ref`       | Referrer URL that caused navigation to the current page                  | `'https://google.com'`                      | `string`         |
+| `search`    | Search string that caused navigation to the current page                 | `'news article example'`                    | `string`         |
+| `keywords`  | Comma-separated list of keywords relevant to the current page            | `'news,politics,current events'`            | `string`         |
+| `cat`       | Array of IAB content categories for the current site                     | `['IAB1', 'IAB2-1']`                        | `string array`   |
+| `pagecat`   | Array of IAB content categories for the current page                     | `['IAB1-2', 'IAB3-1']`                      | `string array`   |
+
+Example configuration:
+
+```javascript
+pbjs.setConfig({
+  ortb2: {
+    site: {
+      name: "Publisher Site",
+      domain: "example.com",
+      page: "https://example.com/article",
+      cat: ["IAB1", "IAB2"],
+      keywords: "news,politics,current events"
+    }
+  }
+});
+```
+
+<a name="trustx2-content-data"></a>
+
+#### Content Data Fields
+
+The adapter supports these content-specific fields:
+
+{: .table .table-bordered .table-striped }
+| Field      | Description                                                   | Example                      | Type           |
+|------------|---------------------------------------------------------------|-----------------------------|----------------|
+| `id`       | Content identifier                                            | `'article-12345'`           | `string`       |
+| `title`    | Content title                                                 | `'Breaking News Article'`   | `string`       |
+| `series`   | Content series                                                | `'World News'`              | `string`       |
+| `season`   | Content season                                                | `'2023'`                    | `string`       |
+| `episode`  | Content episode                                               | `'15'`                      | `string`       |
+| `genre`    | Genre of the content                                          | `'news'`                    | `string`       |
+| `data`     | Array of content segment objects following the data object format | See example below        | `object array` |
+
+Example configuration with content:
+
+```javascript
+pbjs.setConfig({
+  ortb2: {
+    site: {
+      content: {
+        id: "article-12345",
+        title: "Breaking News Article",
+        series: "World News",
+        season: "2023",
+        episode: "15",
+        genre: "news",
+        data: [{
+          name: "content-classification",
+          segment: [
+            { id: "segment1", value: "news" },
+            { id: "segment2", value: "politics" }
+          ]
+        }]
+      }
+    }
+  }
+});
+```
+
+<a name="trustx2-user-data"></a>
+
+#### User Data
+
+The adapter supports user data fields:
+
+{: .table .table-bordered .table-striped }
+| Field      | Description                                                       | Example                            | Type           |
+|------------|-------------------------------------------------------------------|-----------------------------------|----------------|
+| `data`     | Array of user data segment objects with name and segment fields   | See example below                  | `object array` |
+| `ext.eids` | External user identifiers (from Prebid.js User ID modules)        | Automatically included when available | `object array` |
+| `ext.device` | Device-specific information                                     | `{ type: "mobile", os: "iOS" }`    | `object`       |
+
+Example configuration with user data:
+
+```javascript
+pbjs.setConfig({
+  ortb2: {
+    user: {
+      data: [{
+        name: "demographic",
+        segment: [
+          { id: "segment1", value: "age_group_25-34" }
+        ]
+      }],
+      ext: {
+        device: {
+          type: "mobile",
+          os: "iOS"
+        }
+      }
+    }
+  }
+});
+```
+
+<a name="trustx2-extensions"></a>
+
+#### Site and User Extensions
+
+The adapter also supports site.ext and user.ext for custom extensions:
+
+```javascript
+pbjs.setConfig({
+  ortb2: {
+    site: {
+      ext: {
+        custom_site_field: "custom_value",
+        amp: 1,
+        premium: true
+      }
+    },
+    user: {
+      ext: {
+        custom_user_field: "custom_value"
+      }
+    }
+  }
+});
+```
 
 <a name="trustx2-gdpr-usp-gpp"></a>
 
 ### GDPR, USP and GPP Support
 
-The TrustX 2.0 adapter supports GDPR, US Privacy (CCPA), and Global Privacy Platform (GPP) consent signals.
+The TrustX adapter supports GDPR, US Privacy (CCPA), and Global Privacy Platform (GPP) consent signals.
 
 The adapter will:
 - Pass GDPR consent information to bid requests when available
