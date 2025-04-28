@@ -27,7 +27,7 @@ privacy_sandbox: no
 
 ### Registration
 
-The Nativery Bidding adapter requires setup before beginning. Please contact us at developer@nativery.com
+The Nativery Bidding adapter requires setup before beginning. Please contact us at <developer@nativery.com>
 
 ### Bid Params
 
