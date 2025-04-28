@@ -5,7 +5,7 @@ description: Prebid OpenX Bidder Adaptor
 pbjs: true
 pbs: true
 biddercode: openx
-media_types: banner, video
+media_types: banner, video, native
 schain_supported: true
 tcfeu_supported: true
 usp_supported: true
@@ -38,6 +38,7 @@ IMPORTANT: only include either openxBidAdapter or openxOrtbBidAdapter in your bu
 #### Banner
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `delDomain` ~~or `platform`~~** | required | OpenX delivery domain provided by your OpenX representative. | "PUBLISHER-d.openx.net" | String |
@@ -87,6 +88,7 @@ var adUnits = [
 #### Video
 
 {: .table .table-bordered .table-striped }
+
 | Name | Scope | Description | Example | Type |
 | ---- | ----- | ----------- | ------- | ---- |
 | `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String |
@@ -99,6 +101,7 @@ var adUnits = [
 The following video parameters are supported here so publishers may fully declare their video inventory:
 
 {: .table .table-bordered .table-striped }
+
 | Name           | Scope              | Description                                                                                                                                                                                              | Example | Type      |
 |----------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------|
 | context | required | instream or outstream |"outstream" | string |
@@ -151,7 +154,64 @@ var videoAdUnits = [
 }]
 ```
 
-## Example
+#### Native
+
+{: .table .table-bordered .table-striped }
+
+| Name | Scope | Description | Example | Type |
+| ---- | ----- | ----------- | ------- | ---- |
+| `delDomain` ~~or `platform`~~** | required | OpenX delivery domain provided by your OpenX representative. | "PUBLISHER-d.openx.net" | String |
+| `unit` | required | OpenX ad unit ID provided by your OpenX representative. | "1611023122" | String |
+| `customParams` | optional | User-defined targeting key-value pairs. customParams applies to a specific unit. | `{key1: "v1", key2: ["v2","v3"]}` | Object |
+| `customFloor` | optional | Minimum price in USD. customFloor applies to a specific unit. For example, use the following value to set a $1.50 floor: 1.50 <br/><br/> **WARNING:**<br/> Misuse of this parameter can impact revenue.<br/><br/>Note:<br/> OpenX suggests using the [Price Floor Module](/dev-docs/modules/floors.html) instead of customFloor. The Price Floor Module is prioritized over customFloor if both are present. | 1.50 | Number |
+| `doNotTrack` | optional | Prevents advertiser from using data for this user. <br/><br/> **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean |
+| `coppa` | optional | Enables Child's Online Privacy Protection Act (COPPA) regulations. **WARNING:**<br/> Impacts all bids in the request.  May impact revenue. | true | Boolean |
+
+** platform is deprecated. Please use delDomain instead. If you have any questions please contact your representative.
+
+### AdUnit Format for Native
+
+```javascript
+var adUnits = [
+  {
+    code: 'test-div-native',
+    mediaTypes: {
+      native: {
+        ortb: {
+          assets: [
+            {
+              id: 1,
+              required: 1,
+              img: {
+                type: 3, 
+                w: 150,
+                h: 50,
+              }
+            }, {
+              id: 2,
+              required: 1,
+              title: {
+                len: 80
+              }
+            }
+          ]
+        }
+      }
+    },
+    bids: [
+      {
+        bidder: 'openx',
+        params: {
+          unit: '539439964',
+          delDomain: 'se-demo-d.openx.net'
+        }
+      }
+    ]
+  }
+];
+```
+
+### Example
 
 ```javascript
 var adUnits = [
@@ -197,6 +257,33 @@ var adUnits = [
       params: {
         unit: '1611023124',
         delDomain: 'PUBLISHER-d.openx.net'
+      }
+    }]
+  },
+  {
+    code: 'native1',
+    mediaTypes: {
+      native: {
+        ortb: {
+          assets: [
+            {
+              id: 1,
+              required: 1,
+              img: {
+                type: 3,
+                w: 150, 
+                h: 50,
+              }
+            }
+          ]
+        }
+      }
+    }, 
+    bids: [{
+      bidder: 'openx',
+      params: {
+        unit: '539439964',
+        delDomain: 'se-demo-d.openx.net'
       }
     }]
   }
@@ -254,7 +341,7 @@ pbjs.setConfig({
 });
 ```
 
-## Additional Details
+### Additional Details
 
 * [Banner Ads](https://docs.openx.com/publishers/prebid-adapter-web/) (Customer login required.)
 * [Video Ads](https://docs.openx.com/publishers/prebid-adapter-video/) (Customer login required.)

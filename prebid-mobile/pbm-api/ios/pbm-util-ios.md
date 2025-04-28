@@ -23,8 +23,19 @@ It is recommended all Google Ad Manager integrations resize all ads served based
 
 Usage example:
 
-```swift
-func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+{% capture gma12 %}
+func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.BannerView) {
+    AdViewUtils.findPrebidCreativeSize(bannerView, success: { size in
+        guard let bannerView = bannerView as? AdManagerBannerView else { return }
+
+        // In the case of Prebid's line item - resize te ad view
+        bannerView.resize(adSizeFor(cgSize: size))
+    }, failure: { (error) in
+        PrebidDemoLogger.shared.error("Error occuring during searching for Prebid creative size: \(error)")
+    })
+}
+{% endcapture %}
+{% capture gma11 %}func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
 
     // Determine the kind of winning line item
     AdViewUtils.findPrebidCreativeSize(bannerView, success: { size in
@@ -36,7 +47,6 @@ func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
         PrebidDemoLogger.shared.error("Error occuring during searching for Prebid creative size: \(error)")
     })
 }
-```
+{% endcapture %}
 
-
-
+{% include code/gma-versions-tabs.html id="pbm-utils" gma11=gma11 gma12=gma12 %}
