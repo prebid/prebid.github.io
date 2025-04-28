@@ -22,7 +22,7 @@ The Nativo Bidder adapter requires setup before beginning. Please contact us at 
 
 ### Bid Params
 
-### Prebid Server
+#### Prebid Server
 
 Prebid Server primarily relies on the OpenRTB specification for its field definitions, along with widely recognized extensions that have become semi-standard within the industry.
 
@@ -33,9 +33,10 @@ Prebid Server primarily relies on the OpenRTB specification for its field defini
 | `imp.ext.nativo.placementid` | required if no tagID                | Refers to the unique Placement ID assigned by the Nativo platform.                                                         |  `12345678`                                         | `integer` |
 | `imp.ext.gpid`               | required if no other ID is provided | Represents the Ad Slot GP ID. It is another layer of identification tied to a placement ID within the Nativo platform. Read more about [gpid in the prebid docs](/features/pbAdSlot.html#the-gpid)       |  `/22888152279/publication/placement/gpid_example`  | `string`  |
 
-### Prebid JS
+#### Prebid JS
+
 {: .table .table-bordered .table-striped }
 | Name       | Scope    | Description                                                                            | Example                                         | Type      |
 |------------|----------|----------------------------------------------------------------------------------------|-------------------------------------------------|-----------|
 | `ntv_url`  | required | Publication url associated with placement IDs within the Nativo platform. |  `https://publication.com/prebid_adpater.html`  | `string`  |
-| `ntv_ptd`  | optional | Refers to a list of Placement IDs assigned by the Nativo platform for the publication. |  `12345678,12345699`                            | `array of integer` |
+| `ntv_ptd`  | optional | Refers to a list of Placement IDs assigned by the Nativo platform for the publication. |  `12345678,12345699`   | `array of integer` |
