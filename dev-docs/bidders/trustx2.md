@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: TrustX 2.0
-description: Prebid TrustX 2.0 Bidder Adapter
+title: TRUSTX 2.0
+description: Prebid TRUSTX 2.0 Bidder Adapter
 pbjs: true
 pbs: true
 biddercode: trustx2
@@ -22,7 +22,7 @@ sidebarType: 1
 
 ### Integration
 
-Approval from the TRUSTX team is required for the TrustX 2.0 Header Bidding adapter.
+Approval from the TRUSTX team is required for the TRUSTX 2.0 Header Bidding adapter.
 For additional information, please reach out to <prebid@trustx.org>.
 
 ### Bid Params
@@ -51,7 +51,7 @@ pbjs.setBidderConfig({
 })
 ```
 
-This allows the TrustX Bid Adapter to write userId in first party localStorage, which facilitates user identification and ensures data privacy management.
+This allows the TRUSTX 2.0 Bid Adapter to write userId in first party localStorage, which facilitates user identification and ensures data privacy management.
 
 <a name="trustx2-first-party"></a>
 
@@ -65,7 +65,7 @@ Global site or user data using `setConfig()`, or Bidder-specific using `setBidde
 
 #### Site Data Fields
 
-TrustX adapter supports the following standard OpenRTB 2.5 site fields:
+TRUSTX 2.0 adapter supports the following standard OpenRTB 2.5 site fields:
 
 {: .table .table-bordered .table-striped }
 | Field       | Description                                                              | Example                                     | Type             |
@@ -95,7 +95,7 @@ pbjs.setConfig({
 });
 ```
 
-<a name="trustx2-content-data"></a>
+<a name="x2-content-data"></a>
 
 #### Content Data Fields
 
@@ -138,7 +138,7 @@ pbjs.setConfig({
 });
 ```
 
-<a name="trustx2-user-data"></a>
+<a name="x2-user-data"></a>
 
 #### User Data
 
@@ -174,7 +174,7 @@ pbjs.setConfig({
 });
 ```
 
-<a name="trustx2-extensions"></a>
+<a name="x2-extensions"></a>
 
 #### Site and User Extensions
 
@@ -199,11 +199,11 @@ pbjs.setConfig({
 });
 ```
 
-<a name="trustx2-gdpr-usp-gpp"></a>
+<a name="x2-gdpr-usp-gpp"></a>
 
 ### GDPR, USP and GPP Support
 
-The TrustX adapter supports GDPR, US Privacy (CCPA), and Global Privacy Platform (GPP) consent signals.
+The TRUSTX 2.0 adapter supports GDPR, US Privacy (CCPA), and Global Privacy Platform (GPP) consent signals.
 
 The adapter will:
 - Pass GDPR consent information to bid requests when available
