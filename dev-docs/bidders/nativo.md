@@ -36,7 +36,7 @@ Prebid Server primarily relies on the OpenRTB specification for its field defini
 #### Prebid JS
 
 {: .table .table-bordered .table-striped }
-| Name       | Scope    | Description                                                                            | Example                                         | Type      |
-|------------|----------|----------------------------------------------------------------------------------------|-------------------------------------------------|-----------|
-| `ntv_url`  | required | Publication url associated with placement IDs within the Nativo platform. |  `https://publication.com/prebid_adpater.html`  | `string`  |
-| `ntv_ptd`  | optional | Refers to a list of Placement IDs assigned by the Nativo platform for the publication. |  `12345678,12345699`   | `array of integer` |
+ | Name          | Scope    | Description                                                                     | Example      | Type      |
+ |---------------|----------|---------------------------------------------------------------------------------|--------------|-----------|
+ | `placementId` | required | Publication placement ID value from the Nativo Platform                         |  `13144370`  | `integer` |
+ | `url`         | optional | Publication url value associated with placement ID value in the Nativo Platform |  `https://test-sites.internal.nativo.net/testing/prebid_adpater.html`  | `string` |
