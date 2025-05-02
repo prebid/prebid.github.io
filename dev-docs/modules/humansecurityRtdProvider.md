@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # HUMAN Security Real-time Data Submodule
-
 {:.no_toc}
 
 * TOC
@@ -54,7 +53,7 @@ gulp build --modules="rtdModule,humansecurityRtdProvider,..."
 ## Configuration
 
 This module is configured as part of the `realTimeData.dataProviders` object.
-Please refer to [Prebid Documentation](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData)
+Please refer to [Prebid Documentation](/dev-docs/publisher-api-reference/setConfig.html#setConfig-realTimeData)
 on RTD module configuration for details on required and optional parameters of `realTimeData`.
 
 By default, using this submodule *does not require any prior communication with HUMAN, nor any special configuration*,
@@ -105,7 +104,7 @@ of type `ERROR`. With `verbose` parameter set to `true`, it may additionally:
 * Call `logWarning`, resulting in `auctionDebug` events of type `WARNING`,
 * Call `logInfo` with latency information.
   * To observe these messages in console, Prebid.js must be run in
-    [debug mode](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html#debugging) -
+    [debug mode](/dev-docs/publisher-api-reference/setConfig.html#debugging) -
     either by adding `?pbjs_debug=true` to your page's URL, or by configuring with `pbjs.setConfig({ debug: true });`
 
 Example output of the latency information:

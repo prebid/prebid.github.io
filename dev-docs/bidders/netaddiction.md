@@ -13,7 +13,7 @@ coppa_supported: true
 gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
 schain_supported: true
 dchain_supported: false
-userIds: criteo, id5Id, sharedId, unifiedId
+userIds: all
 safeframes_ok: true
 floors_supported: true
 aliasCode: admatic
@@ -28,6 +28,7 @@ NetAddiction header bidding adapter connects with NetAddiction demand sources to
 ### Bid params
 
 {: .table .table-bordered .table-striped }
+
 | Name        | Scope    | Description                         | Example  | Type     |
 |-------------|----------|-------------------------------------|----------|----------|
 | `networkId` | required | The network ID from NetAddiction | `12345` | `number` |
@@ -77,7 +78,7 @@ var adUnits = [{
 }];
 ```
 
-## UserSync example
+### UserSync example
 
 ```javascript
 pbjs.setConfig({

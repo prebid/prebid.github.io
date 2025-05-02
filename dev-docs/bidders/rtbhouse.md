@@ -4,18 +4,24 @@ title: RTBHouse
 description: Prebid RTB House Bidder Adapter
 gvl_id: 16
 tcfeu_supported: true
+usp_supported: false
+coppa_supported: false
+gpp_sids: none
 dsa_supported: true
 pbjs: true
 pbs: true
 biddercode: rtbhouse
 prebid_member: true
 floors_supported: true
+fpd_supported: true
 safeframes_ok: true
 media_types: banner, native
 schain_supported: true
 userIds: id5Id, identityLink, pubProvidedId
 pbs_app_supported: true
 ortb_blocking_supported: partial
+multiformat_supported: will-bid-on-any
+privacy_sandbox: paapi, topics
 sidebarType: 1
 ---
 

@@ -24,5 +24,5 @@ sidebarType: 1
 | Name          | Scope    | Description                                 | Example        | Type      |
 |---------------|----------|---------------------------------------------|----------------|-----------|
 | `publisherId` | required | A ID which identifies Loopme partner.       | `'45qkf5s9zf'` | `string`  |
-| `bundleId`    | required | A ID which identifies app/site in Loopme.   | `'v5qvf9fx4f'` | `string`  |
-| `placementId` | required | A placement ID in Loopme.                   | `'x6fnvfd7ty'` | `string`  |
+| `bundleId`    | optional | A ID which identifies app/site in Loopme.   | `'v5qvf9fx4f'` | `string`  |
+| `placementId` | optional | A placement ID in Loopme.                   | `'x6fnvfd7ty'` | `string`  |

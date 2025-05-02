@@ -74,7 +74,7 @@ pbjs.addAdUnits({
     ortb2Imp: {
         ext: {
             gpid: "/1111/homepage-leftnav",
-        data: {
+            data: {
                 pbadslot: "/1111/homepage-leftnav"
             }
         }
@@ -95,7 +95,7 @@ pbjs.addAdUnits({
     ortb2Imp: {
         ext: {
             gpid: "/1111/homepage#div-leftnav",
-        data: {
+            data: {
                 pbadslot: "/1111/homepage#div-leftnav"
             }
         }
@@ -118,7 +118,7 @@ pbjs.addAdUnits({
     ortb2Imp: {
         ext: {
             gpid: "/1111/homepage#300x250",
-        data: {
+            data: {
                 pbadslot: "/1111/homepage#300x250"
             }
         }
@@ -130,7 +130,7 @@ pbjs.addAdUnits({
     ortb2Imp: {
         ext: {
             gpid: "/1111/homepage#728x90",
-        data: {
+            data: {
                 pbadslot: "/1111/homepage#728x90"
             }
         }

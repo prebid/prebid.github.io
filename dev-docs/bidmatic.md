@@ -1,6 +1,6 @@
 ---
 layout: bidder
-title: Bidmatic Bid Adapter
+title: Bidmatic
 description: Prebid example Bidder Adapter
 biddercode: bidmatic
 tcfeu_supported: true
@@ -11,14 +11,16 @@ coppa_supported: true
 gpp_sids: tcfeu, usp
 schain_supported: true
 dchain_supported: false
-userId: all
+userId: all (with commercial activation)
 media_types: banner, video
+userIds: all
 safeframes_ok: true
 deals_supported: false
 floors_supported: true
 fpd_supported: true
 pbjs: true
 pbs: true
+pbs_app_supported: true
 prebid_member: false
 multiformat_supported: will-bid-on-one
 ortb_blocking_supported: true
@@ -35,7 +37,7 @@ Contact us at [advertising@bidmatic.io](mailto:advertising@bidmatic.io).
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
-| `source`      | required | Traffic source origin id      | `'11111'`    | `int` |
+| `source`      | required | Traffic source origin id      | `11111`    | `int` |
 
 ### Test Parameters
 
