@@ -7,7 +7,7 @@ tcfeu_supported: true
 gvl_id: 1133
 usp_supported: false
 coppa_supported: false
-gpp_sids: []
+gpp_sids: false
 schain_supported: true
 dchain_supported: false
 userId:
