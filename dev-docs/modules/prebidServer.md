@@ -219,7 +219,9 @@ Bids:
     pbsHost: 'foobar-2'
 }]
 ```
+
 s2sConfig:
+
 ```javascript
 [{
     accountId: 1234,
@@ -241,6 +243,7 @@ s2sConfig:
      }
 }]
 ```
+
 The above would distribute `bid[0]` to s2s endpoint `https://pbs.auction/openrtb2/auction`, whereas `bid[1]` will be distributed to `https://pbs.alt.auction/openrtb2/auction`. The syncBidders is used to sync both with the original biddercode to as well as applying bidder specific FPD for pbs calls via bidderconfig.
 
 ### Video via s2sConfig
