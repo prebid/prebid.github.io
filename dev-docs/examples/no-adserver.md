@@ -1,6 +1,6 @@
 ---
 layout: example
-title: No Adserver Example
+title: Prebid as Adserver Example
 left_nav_override: Examples
 description: Running Prebid.js as an ad server
 sidebarType: 1
