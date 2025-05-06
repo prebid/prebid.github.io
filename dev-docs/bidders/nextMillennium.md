@@ -5,8 +5,8 @@ description: NextMillennium bid adapter
 gvl_id: dev-docs/bidders/nextMillennium.md
 tcfeu_supported: true
 usp_supported: true
-coppa_supported: false
-schain_supported: false
+coppa_supported: true
+schain_supported: true
 dchain_supported: false
 safeframes_ok: false
 deals_supported: false
@@ -72,10 +72,14 @@ The adapter for Prebid.js supports the following options:
 * `site.pagecat`
 * `site.content.cat`
 * `site.content.language`
-* `device.sua'`
-* `site.keywords'`
-* `site.content.keywords'`
-* `user.keywords'`
+* `device.sua`
+* `site.keywords`
+* `site.content.keywords`
+* `user.keywords`
+* `bcat`
+* `badv`
+* `wlang`
+* `wlangb`
 
 You can set these parameters through the Prebid.js configuration setup functions: [pbjs.setConfig](https://docs.prebid.org/dev-docs/publisher-api-reference/setConfig.html) or [pbjs.setBidderConfig](https://docs.prebid.org/dev-docs/publisher-api-reference/setBidderConfig.html).
 An example of setting openrtb parameters for the entire prebid.js script.

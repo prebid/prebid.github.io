@@ -11,15 +11,17 @@ UID2 relies on user consent before an ID can be added to the bid stream. Consent
 
 To add UID2 to your Prebid.js package, run the following:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=uid2IdSystem
+```
 
 ## Unified ID 2.0 Registration
 
 You can set up Unified ID 2.0 in one of these ways:
 
-- Include the module to your pb.js wrapper. You will need to apply for publisher access [on the UID2 website](https://unifiedid.com/request-access). Using this option, you must generate UID2 tokens server-side. There is currently no flow for client-side only, unless you use an SSO provider. You provide these tokens to Prebid.js either by using a cookie or directly in the configuration.
+- Include the module to your Prebid.js wrapper. You will need to apply for publisher access [on the UID2 website](https://unifiedid.com/request-access). Using this option, you must generate UID2 tokens server-side.  You provide these tokens to Prebid.js either by using a cookie or directly in the configuration.
 - Use a [managed services](https://prebid.org/product-suite/managed-services/) company that can do this for you.
+- Use UID2 Client Side Integration with Prebid.js
 
 Each publisher’s privacy policy should take UnifiedID 2.0 into account.
 
@@ -61,11 +63,16 @@ For a server-side integration, you can create a smaller Prebid.js build by disab
     gulp build --modules=uid2IdSystem --disable UID2_CSTG
 ```
 
+## Unified ID 2.0 Client Side Integration for Prebid.js
+
+Prebid.js supports fully client side integration for UID2.  See the [official UID2 documentation](https://unifiedid.com/docs/guides/integration-prebid-client-side) for the most up-to-date integration instructions.
+
 ## Unified ID 2.0 Configuration
 
 The following parameters apply only to the Unified ID 2.0 module integration.
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | ID value for the Unified ID 2.0 module - `"uid2"` | `"uid2"` |

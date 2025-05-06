@@ -12,14 +12,13 @@ sidebarType : 1
 ---
 
 # AirGrid RTD Provider
+{:.no_toc}
 
 AirGrid is a privacy-first, cookie-less audience platform. Designed to help publishers increase inventory yield,
 whilst providing audience signal to buyers in the bid request, without exposing raw user level data to any party.
 
 This real-time data module provides quality first-party data, contextual data, site-level data and more that is
 injected into bid request objects destined for different bidders in order to optimize targeting.
-
-{:.no_toc}
 
 * TOC
 {:toc}
@@ -62,7 +61,7 @@ pbjs.setConfig(
 | :------------ | :------------ | :------------ |:------------ |
 | name | `String` | RTD sub module name | Always 'airgrid' |
 | waitForIt | `Boolean` | Wether to delay auction for module response | Optional. Defaults to false |
-| params.apiKey | `Boolean` | Publisher partner specific API key | Required |
+| params.apiKey | `String` | Publisher partner specific API key | Required |
 | params.accountId | `String` | Publisher partner specific account ID | Required |
 | params.publisherId | `String` | Publisher partner specific publisher ID | Required |
 | params.bidders | `Array` | Bidders with which to share segment information | Optional |

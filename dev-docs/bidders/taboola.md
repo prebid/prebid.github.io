@@ -19,20 +19,38 @@ safeframes_ok: true
 fpd_supported: true
 ortb_blocking_supported: partial
 deals_supported: false
-pbs_app_supported: false
+pbs_app_supported: true
 multiformat_supported: will-not-bid
 sidebarType: 1
 ---
 
 ### Note
 
-- Supports `display` format.
-- Supports `native` format only in the Prebid Sever.
+- Prebid.js Supports `display` format only.
+- Prebid Server Supports `native+display` formats.
 - Uses `OpenRTB` standard.
+
+### Bidder Config
+We recommend allowing us access to localStorage.
+You can allow writing in localStorage `pbjs.bidderSettings` for the bidder `taboola`
+
+{% include dev-docs/storageAllowed.md %}
+
+```javascript
+pbjs.bidderSettings = {
+    taboola: {
+        storageAllowed : true
+    }
+}
+```
 
 ### Registration
 
 The Taboola Adapter requires setup before beginning. Please contact us at <prebid@taboola.com>.
+
+### Prebid Server
+
+Please provide to your relevant Taboola contact person the prebid server host domain, so we enable it before the integration starts.
 
 ### First Party Data
 
@@ -113,7 +131,3 @@ Notes:
   }]
 }];
 ```
-
-### Native - Prebid Server Adapter
-
-Currently, supporting native and multi-format (banner and native mixed) requests in the prebid server adapter only.
