@@ -3,6 +3,7 @@ layout: bidder
 title: 1Accord
 description: Prebid 1Accord Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: 1accord
 aliasCode : nexx360
 gvl_id: 965 (nexx360)
@@ -10,7 +11,7 @@ tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
 schain_supported: true
-dchain_supported: false
+dchain_supported: true
 floors_supported: true
 userIds: all
 tcf2_supported: true
@@ -28,7 +29,10 @@ multiformat_supported: will-bid-on-any
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                | Example                                   | Type      |
 |---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | required | tag ID                     | `"testnexx"`                              | `string`  |
+| `tagId`       | optional | tag ID                     | `"testnexx"`                              | `string`  |
+| `placement`   | optional | Placement                  | `"test"`                                  | `string`  |
+
+For the prebid.js you only need to use one parameter: either tagId or placement
 
 ### First Party Data
 
@@ -94,7 +98,7 @@ var adUnits = [
         bids: [{
             bidder: '1accord',
             params: {
-               tagId: 'testnexx'
+               placement: 'test'
             }
         }]
     },
