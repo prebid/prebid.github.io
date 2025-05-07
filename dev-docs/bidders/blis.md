@@ -7,7 +7,7 @@ tcfeu_supported: true
 gvl_id: 94
 usp_supported: true
 coppa_supported: true
-gpp_sids: tcfeu, tcfca, usnat, usstate_all, usp
+gpp_sids: tcfeu, usnat, usp
 schain_supported: true
 dchain_supported: false
 userId: 
