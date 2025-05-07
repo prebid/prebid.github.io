@@ -21,9 +21,10 @@ sidebarType : 1
 
 Browsi’s RTD module for Prebid.js provides real-time insights and predictive signals to optimize bid requests and ad delivery.
 This module leverages Browsi's AI models to give publishers access to:
--**Real-time predictions for GAM:** Enhance ad placements and maximize revenue by leveraging viewability and revenue predictions as key values in GAM ad requests.
--**Enhanced bid request signals**: Augment bid requests with additional contextual, behavioral, and engagement signals to improve demand partner performance.
--**Dynamic ad serving optimization**: Enable smarter ad delivery strategies based on predicted user behavior and page context.
+
+* **Real-time predictions for GAM**: Enhance ad placements and maximize revenue by leveraging viewability and revenue predictions as key values in GAM ad requests.
+* **Enhanced bid request signals**: Augment bid requests with additional contextual, behavioral, and engagement signals to improve demand partner performance.
+* **Dynamic ad serving optimization**: Enable smarter ad delivery strategies based on predicted user behavior and page context.
 
 ## Integration
 
