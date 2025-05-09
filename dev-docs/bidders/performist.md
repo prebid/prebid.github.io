@@ -27,7 +27,6 @@ sidebarType: 1
 | Name          | Scope    | Description                                                   | Example                | Type      |
 |:--------------|:---------|:--------------------------------------------------------------|:-----------------------|:----------|
 | `publisherId` | required | Publisher ID                                                  | `'12345'`              | `string`  |
-| `host`        | optional | Ad network's RTB host                                         | `'performserv.com'`    | `string`  |
 | `custom1`     | optional | Custom targeting field 1                                      | `'custom1'`            | `string`  |
 | `custom2`     | optional | Custom targeting field 2                                      | `'custom2'`            | `string`  |
 | `custom3`     | optional | Custom targeting field 3                                      | `'custom3'`            | `string`  |
