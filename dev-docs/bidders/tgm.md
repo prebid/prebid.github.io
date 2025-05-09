@@ -36,6 +36,6 @@ sidebarType: 1
 | `custom4`     | optional | Custom targeting field 4                      | `'custom4'`          | `string`  |
 | `custom5`     | optional | Custom targeting field 5                      | `'custom5'`          | `string`  |
 
-TGM server-side Prebid Server adapter requires only `publisherId` and `host` parameters. But TGM client-side Prebid.js adapter requires only `host`, `adUnitId`, `adUnitType`.
+TGM server-side Prebid Server adapter requires only `publisherId` parameter. But TGM client-side Prebid.js adapter requires only `host`, `adUnitId`, `adUnitType`.
 
 TGM server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types. But TGM client-side Prebid.js adapter supports only `banner` and `video` media types, doesn't support `audio` and `native`.

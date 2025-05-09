@@ -30,5 +30,4 @@ The Appstock Bidding adapter requires setup before beginning. Please contact us 
 
 | Name          | Scope    | Description           | Example           | Type      |
 |:--------------|:---------|:----------------------|:------------------|:----------|
-| `host`        | required | Ad network's RTB host | `'pre.vr-tb.com'` | `string`  |
 | `publisherId` | required | Publisher ID          | `12345`           | `integer` |
