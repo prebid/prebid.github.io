@@ -5,7 +5,7 @@ description: Prebid 9dots media LTD Bidder Adaptor
 biddercode: 9dotsmedialtd
 pbjs: false
 pbs: true
-media_types: video, banner
+media_types: video, banner, native
 userIds: all
 fpd_supported: false
 tcfeu_supported: false
