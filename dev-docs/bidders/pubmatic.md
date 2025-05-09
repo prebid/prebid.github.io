@@ -226,4 +226,10 @@ Publishers should use the `ortb2` method of setting [First Party Data](https://d
 - `ortb2.user.*`
 
 AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
+
+### Endpoint Compression
+
+If the browser a Prebid auction is running in supports gzip compression, the PubMatic bid adapter will automatically compress all outgoing bid requests to the PubMatic server-side endpoint (which provides support for receiving gzip compressed requests). If gzip compression is not supported by the browser, bid requests will be sent uncompressed.
+
+Note: If the Prebid.js debugging query param, `?pbjs_debug=true`, is present in the URL, the feature will be disabled and all bid requests will be sent uncompressed.
 <!-- workaround bug where code blocks at end of a file are incorrectly formatted-->
