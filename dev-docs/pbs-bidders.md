@@ -1,11 +1,11 @@
 ---
 layout: page_v2
-title: Prebid.js Bidder Params
+title: Prebid Server Bidder Params
 description: Documentation on bidders' params
-sidebarType: 1
+sidebarType: 5
 ---
 
-# Prebid.js Bidder Params
+# Prebid Server Bidder Params
 
 This page contains documentation on the specific parameters required by each supported bidder.
 These docs only apply to Prebid Server-based bidders. For Prebid.js, see the
@@ -15,7 +15,7 @@ For each bidder listed below, you'll find the following information:
 
 {: .table .table-bordered .table-striped }
 | **Features**                     | A table of features supported by the adapter.  |
-| **"Send All Bids" Ad Server Keys**  | Used for sending all bids to the ad server, as described in [Send All Bids vs Send Top Price]({{site.baseurl}}/adops/send-all-vs-top-price.html) |
+| **"Send All Bids" Ad Server Keys**  | Used for sending all bids to the ad server, as described in [Send All Bids vs Send Top Price](/adops/send-all-vs-top-price.html) |
 | **Bid Params**                      | Ad request parameters required by a given bidder, such as the tag ID, site ID, or query string parameters                                     |
 
 You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV data file</a>.
@@ -25,7 +25,7 @@ You can also download the full <a href="/dev-docs/bidder-data.csv" download>CSV 
 {: .alert.alert-warning :}
 Publishers are advised to check with legal counsel before doing business with any particular bidder.
 
-## Search a bidder
+## Search a Prebid Server bidder
 
 <input type="text" id="autocomplete-filter" class="autocomplete-filter">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.min.js" integrity="sha512-HcBl0GSJvt4Qecm4srHapirUx0HJDi2zYXm6KUKNNUGdTIN9cBwakVZHWmRVj4MKgy1AChqhWGYcMDbRKgO0zg==" crossorigin="anonymous"></script>
