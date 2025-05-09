@@ -27,12 +27,11 @@ sidebarType: 1
 | Name          | Scope    | Description                                                   | Example                | Type      |
 |:--------------|:---------|:--------------------------------------------------------------|:-----------------------|:----------|
 | `publisherId` | required | Publisher ID                                                  | `'12345'`              | `string`  |
-| `host`        | optional | Ad network's RTB host                                         | `'adpixis-rtb.com'`    | `string`  |
 | `custom1`     | optional | Custom targeting field 1                                      | `'custom1'`            | `string`  |
 | `custom2`     | optional | Custom targeting field 2                                      | `'custom2'`            | `string`  |
 | `custom3`     | optional | Custom targeting field 3                                      | `'custom3'`            | `string`  |
 | `custom4`     | optional | Custom targeting field 4                                      | `'custom4'`            | `string`  |
 | `custom5`     | optional | Custom targeting field 5                                      | `'custom5'`            | `string`  |
 
-AdPixis server-side Prebid Server adapter requires only `publisherId` and `host` parameters. 
+AdPixis server-side Prebid Server adapter requires only `publisherId` parameters. 
 AdPixis server-side Prebid Server adapter supports only `banner`, `video`, `audio`, `native` media types.
