@@ -26,11 +26,11 @@ While most of the configuration options apply only to the ad break for which the
 
 Therefore, for the following configuration options, the plugin will use the value of the first definition of the option that it finds.  If the option is also defined in a subsequent ad break configuration, the subsequent value(s) will be ignored.  The set of options having global scope include:
 
-- `prebidPath`: url used to load `prebid.js`
-- `scriptLoadTimeout`: used to specify the maximum time in milliseconds that the plugin will wait for a script file to load
-- `frequencyRules`: used to express control of ad frequency in a playlist
-- `adRenderer`: used to override the default behavior of selecting the plugin used to render the ad
-- `loggerLevel`: used to control the amount of information that is emitted by the plugin into the browser’s console.log
+* `prebidPath`: url used to load `prebid.js`
+* `scriptLoadTimeout`: used to specify the maximum time in milliseconds that the plugin will wait for a script file to load
+* `frequencyRules`: used to express control of ad frequency in a playlist
+* `adRenderer`: used to override the default behavior of selecting the plugin used to render the ad
+* `loggerLevel`: used to control the amount of information that is emitted by the plugin into the browser’s console.log
 
 ## Sample Code
 
@@ -38,18 +38,18 @@ Therefore, for the following configuration options, the plugin will use the valu
 
 The following is a sample JSON definition of the plugin configuration defining configuration for a preroll ad (with `timeOffset = 'start'`) and a postroll ad (with `timeOffset = 'end'`).
 
-```
+```javascript
 [
 {
-	"label" : "preroll-ad",
+    "label" : "preroll-ad",
     "prebidPath" : "//files.prebid.org/prebid-org.js",  // not for production use
     "scriptLoadTimeout": 3000,
-	"biddersSpec" : {
+    "biddersSpec" : {
         "code" : "my-video-tag",
         "mediaTypes": {
-        	"video": {
+            "video": {
                   "context": "instream",
-		  "playerSize": [640,480],
+          "playerSize": [640,480],
                   "mimes": ["video/mp4", "application/javascript"],
                   "protocols" : [1,2,3,4,5,6,7,8],
                   "playbackmethod" : [1, 2],
@@ -63,8 +63,8 @@ The following is a sample JSON definition of the plugin configuration defining c
                     "placementId": 12527596
                 }
             }
-		]
-	},
+        ]
+    },
     "bidderSettings": {
         "standard": {
             "adserverTargeting": [
@@ -107,44 +107,44 @@ The following is a sample JSON definition of the plugin configuration defining c
             ]
         }
     },
-	"prebidConfigOptions" : {
-		"cache": {
-			"url": "https://prebid.adnxs.com/pbc/v1/cache"
-		},
-		"enableSendAllBids" : true
-	},
-	"dfpParameters" : {
-		"params" : {
-			"iu" : "/19968336/encino_prebid_demo_adunit",
-			"output" : "vast"
-		},
-		"url" : "",
-		"bid" : {}
-	},
-	"prebidTimeout": 700,
-	"enablePrebidCache": true,
-	"skippable": {
-		"enabled": true,
-      	"videoThreshold": 15,
-      	"videoOffset": 5,
-      	"skipText": "Video can be skipped in %%TIME%% seconds",
-      	"skipButtonText": "SKIP"
-	},
-	"wrapperLimit": 5,
-  	"adStartTimeout" : 3000,
-  	"adServerTimeout" : 1000,
-  	"timeOffset": "start",
-  	"adText": "Ad"
+    "prebidConfigOptions" : {
+        "cache": {
+            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+        },
+        "enableSendAllBids" : true
+    },
+    "dfpParameters" : {
+        "params" : {
+            "iu" : "/19968336/encino_prebid_demo_adunit",
+            "output" : "vast"
+        },
+        "url" : "",
+        "bid" : {}
+    },
+    "prebidTimeout": 700,
+    "enablePrebidCache": true,
+    "skippable": {
+        "enabled": true,
+          "videoThreshold": 15,
+          "videoOffset": 5,
+          "skipText": "Video can be skipped in %%TIME%% seconds",
+          "skipButtonText": "SKIP"
+    },
+    "wrapperLimit": 5,
+      "adStartTimeout" : 3000,
+      "adServerTimeout" : 1000,
+      "timeOffset": "start",
+      "adText": "Ad"
 },
 {
-	"label" : "postroll-ad",
-	"prebidPath" : "//files.prebid.org/prebid-org.js",  // not for production use
-	"biddersSpec" : {
+    "label" : "postroll-ad",
+    "prebidPath" : "//files.prebid.org/prebid-org.js",  // not for production use
+    "biddersSpec" : {
         "code" : "my-video-tag",
         "mediaTypes": {
-        	"video": {
+            "video": {
                   "context": "instream",
-		  "playerSize": [640,480],
+          "playerSize": [640,480],
                   "mimes": ["video/mp4", "application/javascript"],
                   "protocols" : [1,2,3,4,5,6,7,8],
                   "playbackmethod" : [1, 2],
@@ -158,8 +158,8 @@ The following is a sample JSON definition of the plugin configuration defining c
                     "placementId": 12531984
                 }
             }
-		]
-	},
+        ]
+    },
     "bidderSettings": {
         "standard": {
             "adserverTargeting": [
@@ -202,34 +202,34 @@ The following is a sample JSON definition of the plugin configuration defining c
             ]
         }
     },
-	"prebidConfigOptions" : {
-		"cache": {
-			"url": "https://prebid.adnxs.com/pbc/v1/cache"
-		},
-		"enableSendAllBids" : true
-	},
-	"dfpParameters" : {
-		"params" : {
-			"iu" : "/19968336/encino_prebid_demo_adunit",
-			"output" : "vast"
-		},
-		"url" : "",
-		"bid" : {}
-	},
-	"prebidTimeout": 700,
-	"enablePrebidCache": true,
-	"skippable": {
-		"enabled": true,
-      	"videoThreshold": 15,
-      	"videoOffset": 5,
-      	"skipText": "Video can be skipped in %%TIME%% seconds",
-      	"skipButtonText": "SKIP ME"
-	},
-	"wrapperLimit": 5,
-  	"adStartTimeout" : 3000,
-  	"adServerTimeout" : 1000,
-  	"timeOffset": "end",
-  	"adText": "Advertising"
+    "prebidConfigOptions" : {
+        "cache": {
+            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+        },
+        "enableSendAllBids" : true
+    },
+    "dfpParameters" : {
+        "params" : {
+            "iu" : "/19968336/encino_prebid_demo_adunit",
+            "output" : "vast"
+        },
+        "url" : "",
+        "bid" : {}
+    },
+    "prebidTimeout": 700,
+    "enablePrebidCache": true,
+    "skippable": {
+        "enabled": true,
+          "videoThreshold": 15,
+          "videoOffset": 5,
+          "skipText": "Video can be skipped in %%TIME%% seconds",
+          "skipButtonText": "SKIP ME"
+    },
+    "wrapperLimit": 5,
+      "adStartTimeout" : 3000,
+      "adServerTimeout" : 1000,
+      "timeOffset": "end",
+      "adText": "Advertising"
 }
 ]
 ```
@@ -238,23 +238,23 @@ The following is a sample JSON definition of the plugin configuration defining c
 
 The following is a sample JSON definition of the plugin configuration defining configuration for a preroll ad (with `timeOffset = 'start'`) and two midroll ads, one with `timeOffset = '00:05:00'` and another with `timeOffset = '00:15:00'`.
 
-```
+```javascript
 [
 {
-	"label" : "preroll-ad",
+    "label" : "preroll-ad",
     "prebidPath" : "//files.prebid.org/prebid-org.js",  // not for production use
     "scriptLoadTimeout": 3000,
-	"biddersSpec" : {
+    "biddersSpec" : {
         "code" : "my-video-tag",
         "mediaTypes": {
-        	"video": {
+            "video": {
                   "context": "instream",
-		  "playerSize": [640,480],
+          "playerSize": [640,480],
                   "mimes": ["video/mp4", "application/javascript"],
                   "protocols" : [1,2,3,4,5,6,7,8],
                   "playbackmethod" : [1, 2],
                   "api":[1,2],
-		  "skip": 1
+          "skip": 1
             }
         },
         "bids": [
@@ -264,8 +264,8 @@ The following is a sample JSON definition of the plugin configuration defining c
                     "placementId": 12527596
                 }
             }
-		]
-	},
+        ]
+    },
     "bidderSettings": {
         "standard": {
             "adserverTargeting": [
@@ -308,49 +308,49 @@ The following is a sample JSON definition of the plugin configuration defining c
             ]
         }
     },
-	"prebidConfigOptions" : {
-		"cache": {
-			"url": "https://prebid.adnxs.com/pbc/v1/cache"
-		},
-		"enableSendAllBids" : true
-	},
-	"dfpParameters" : {
-		"params" : {
-			"iu" : "/19968336/encino_prebid_demo_adunit",
-			"output" : "vast"
-		},
-		"url" : "",
-		"bid" : {}
-	},
-	"prebidTimeout": 700,
-	"enablePrebidCache": true,
-	"skippable": {
-		"enabled": true,
-      	"videoThreshold": 15,
-      	"videoOffset": 5,
-      	"skipText": "Video can be skipped in %%TIME%% seconds",
-      	"skipButtonText": "SKIP"
-	},
-	"wrapperLimit": 5,
-  	"adStartTimeout" : 3000,
-  	"adServerTimeout" : 1000,
-  	"timeOffset": "start",
-  	"adText": "Ad"
+    "prebidConfigOptions" : {
+        "cache": {
+            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+        },
+        "enableSendAllBids" : true
+    },
+    "dfpParameters" : {
+        "params" : {
+            "iu" : "/19968336/encino_prebid_demo_adunit",
+            "output" : "vast"
+        },
+        "url" : "",
+        "bid" : {}
+    },
+    "prebidTimeout": 700,
+    "enablePrebidCache": true,
+    "skippable": {
+        "enabled": true,
+          "videoThreshold": 15,
+          "videoOffset": 5,
+          "skipText": "Video can be skipped in %%TIME%% seconds",
+          "skipButtonText": "SKIP"
+    },
+    "wrapperLimit": 5,
+      "adStartTimeout" : 3000,
+      "adServerTimeout" : 1000,
+      "timeOffset": "start",
+      "adText": "Ad"
 },
 {
-	"label" : "midroll-5",
-	"prebidPath" : "//files.prebid.org/prebid-org.js",  // not for production use
-	"biddersSpec" : {
+    "label" : "midroll-5",
+    "prebidPath" : "//files.prebid.org/prebid-org.js",  // not for production use
+    "biddersSpec" : {
         "code" : "my-video-tag",
         "mediaTypes": {
-        	"video": {
+            "video": {
                   "context": "instream",
-		  "playerSize": [640,480],
+          "playerSize": [640,480],
                   "mimes": ["video/mp4", "application/javascript"],
                   "protocols" : [1,2,3,4,5,6,7,8],
                   "playbackmethod" : [1, 2],
                   "api":[1,2],
-		  "skip": 1
+          "skip": 1
             }
         },
         "bids": [
@@ -360,8 +360,8 @@ The following is a sample JSON definition of the plugin configuration defining c
                     "placementId": 12531984
                 }
             }
-		]
-	},
+        ]
+    },
     "bidderSettings": {
         "standard": {
             "adserverTargeting": [
@@ -404,49 +404,49 @@ The following is a sample JSON definition of the plugin configuration defining c
             ]
         }
     },
-	"prebidConfigOptions" : {
-		"cache": {
-			"url": "https://prebid.adnxs.com/pbc/v1/cache"
-		},
-		"enableSendAllBids" : true
-	},
-	"dfpParameters" : {
-		"params" : {
-			"iu" : "/19968336/encino_prebid_demo_adunit",
-			"output" : "vast"
-		},
-		"url" : "",
-		"bid" : {}
-	},
-	"prebidTimeout": 700,
-	"enablePrebidCache": true,
-	"skippable": {
-		"enabled": true,
-      	"videoThreshold": 15,
-      	"videoOffset": 5,
-      	"skipText": "Video can be skipped in %%TIME%% seconds",
-      	"skipButtonText": "SKIP ME"
-	},
-	"wrapperLimit": 5,
-  	"adStartTimeout" : 3000,
-  	"adServerTimeout" : 1000,
-  	"timeOffset": "00:05:00",
-  	"adText": "Advertising"
+    "prebidConfigOptions" : {
+        "cache": {
+            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+        },
+        "enableSendAllBids" : true
+    },
+    "dfpParameters" : {
+        "params" : {
+            "iu" : "/19968336/encino_prebid_demo_adunit",
+            "output" : "vast"
+        },
+        "url" : "",
+        "bid" : {}
+    },
+    "prebidTimeout": 700,
+    "enablePrebidCache": true,
+    "skippable": {
+        "enabled": true,
+          "videoThreshold": 15,
+          "videoOffset": 5,
+          "skipText": "Video can be skipped in %%TIME%% seconds",
+          "skipButtonText": "SKIP ME"
+    },
+    "wrapperLimit": 5,
+      "adStartTimeout" : 3000,
+      "adServerTimeout" : 1000,
+      "timeOffset": "00:05:00",
+      "adText": "Advertising"
 },
 {
-	"label" : "midroll-15",
-	"prebidPath" : "//files.prebid.org/prebid-org.js",  // not for production use
-	"biddersSpec" : {
+    "label" : "midroll-15",
+    "prebidPath" : "//files.prebid.org/prebid-org.js",  // not for production use
+    "biddersSpec" : {
         "code" : "my-video-tag",
         "mediaTypes": {
-        	"video": {
+            "video": {
                   "context": "instream",
-		  "playerSize": [640,480],
+          "playerSize": [640,480],
                   "mimes": ["video/mp4", "application/javascript"],
                   "protocols" : [1,2,3,4,5,6,7,8],
                   "playbackmethod" : [1, 2],
                   "api":[1,2],
-		  "skip": 1
+          "skip": 1
             }
         },
         "bids": [
@@ -456,8 +456,8 @@ The following is a sample JSON definition of the plugin configuration defining c
                     "placementId": 12531977
                 }
             }
-		]
-	},
+        ]
+    },
     "bidderSettings": {
         "standard": {
             "adserverTargeting": [
@@ -500,34 +500,34 @@ The following is a sample JSON definition of the plugin configuration defining c
             ]
         }
     },
-	"prebidConfigOptions" : {
-		"cache": {
-			"url": "https://prebid.adnxs.com/pbc/v1/cache"
-		},
-		"enableSendAllBids" : true
-	},
-	"dfpParameters" : {
-		"params" : {
-			"iu" : "/19968336/encino_prebid_demo_adunit",
-			"output" : "vast"
-		},
-		"url" : "",
-		"bid" : {}
-	},
-	"prebidTimeout": 700,
-	"enablePrebidCache": true,
-	"skippable": {
-		"enabled": true,
-      	"videoThreshold": 15,
-      	"videoOffset": 5,
-      	"skipText": "Video can be skipped in %%TIME%% seconds",
-      	"skipButtonText": "SKIP ME"
-	},
-	"wrapperLimit": 5,
-  	"adStartTimeout" : 3000,
-  	"adServerTimeout" : 1000,
-  	"timeOffset": "00:15:00",
-  	"adText": "Advertising"
+    "prebidConfigOptions" : {
+        "cache": {
+            "url": "https://prebid.adnxs.com/pbc/v1/cache"
+        },
+        "enableSendAllBids" : true
+    },
+    "dfpParameters" : {
+        "params" : {
+            "iu" : "/19968336/encino_prebid_demo_adunit",
+            "output" : "vast"
+        },
+        "url" : "",
+        "bid" : {}
+    },
+    "prebidTimeout": 700,
+    "enablePrebidCache": true,
+    "skippable": {
+        "enabled": true,
+          "videoThreshold": 15,
+          "videoOffset": 5,
+          "skipText": "Video can be skipped in %%TIME%% seconds",
+          "skipButtonText": "SKIP ME"
+    },
+    "wrapperLimit": 5,
+      "adStartTimeout" : 3000,
+      "adServerTimeout" : 1000,
+      "timeOffset": "00:15:00",
+      "adText": "Advertising"
 }
 ]
 ```

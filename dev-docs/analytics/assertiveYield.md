@@ -8,5 +8,4 @@ enable_download: false
 
 #### Registration
 
-Please visit [https://assertiveyield.com/](https://assertiveyield.com/) for more information.
-
+Please visit [assertiveyield.com](https://assertiveyield.com/) for more information.

@@ -6,30 +6,38 @@ description: ID Ward Real Time Data Provider Module
 page_type: module
 module_type: rtd
 module_code : idWardRtdProvider
-enable_download : true
+enable_download : false
 vendor_specific: true
+pbjs_version_notes: removed in 9.0
 sidebarType : 1
 ---
 
+> **Warning!**
+>
+> The **idWardRtdProvider** module has been renamed to [anonymisedRtdProvider](/dev-docs/modules/anonymisedRtdProvider.html) in light of the company's rebranding.
+> **idWardRtdProvider** module is maintained for backward compatibility until the next major Prebid release.
+>
+> Please use anonymisedRtdProvider instead of idWardRtdProvider in your Prebid integration.
+>
+
 # ID Ward Real Time Data Provider Module
 
-ID Ward is a data anonymization technology for privacy-preserving advertising. Publishers and advertisers are able to target and retarget custom audience segments covering 100% of consented audiences. 
+ID Ward is a data anonymization technology for privacy-preserving advertising. Publishers and advertisers are able to target and retarget custom audience segments covering 100% of consented audiences.
 ID Ward’s Real-time Data Provider automatically obtains segment IDs from the ID Ward on-domain script (via `localStorage`) and passes them to the bid-stream.
-
 
 ## Publisher Usage
 
-1) Build the idWardRtd module into the Prebid.js package with:
+1. Build the idWardRtd module into the Prebid.js package with:
 
-```
-gulp build --modules=idWardRtdProvider,...
-```
+    ```bash
+    gulp build --modules=idWardRtdProvider,...
+    ```
 
-2) Use `setConfig` to instruct Prebid.js to initilaize the idWardRtdProvider module, as specified below.
+2. Use `setConfig` to instruct Prebid.js to initilaize the idWardRtdProvider module, as specified below.
 
 ### Configuration
 
-```
+```javascript
  pbjs.setConfig({
    realTimeData: {
      dataProviders: [
@@ -47,8 +55,7 @@ gulp build --modules=idWardRtdProvider,...
 ```
 
 Please note that idWardRtdProvider should be integrated into the publisher website along with the [ID Ward Pixel](https://publishers-web.id-ward.com/pixel-integration).
-Please reach out to Id Ward representative(support@id-ward.com) if you have any questions or need further help to integrate Prebid, idWardRtdProvider, and Id Ward Pixel
-
+Please reach out to Id Ward representative(<support@id-ward.com>) if you have any questions or need further help to integrate Prebid, idWardRtdProvider, and Id Ward Pixel
 
 **Config Syntax details:**
 

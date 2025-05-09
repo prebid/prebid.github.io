@@ -6,12 +6,21 @@ pbjs: true
 pbs: true
 biddercode: 33across
 media_types: banner, video
-gdpr_supported: true
+tcfeu_supported: true
 floors_supported: true
 schain_supported: true
+dchain_supported: false
 usp_supported: true
+gpp_supported: true
+coppa_supported: true
+fpd_supported: true
+multiformat_supported: will-bid-on-any
+safeframes_ok: true
+deals_supported: true
+prebid_member: true
 userIds: all
 gvl_id: 58
+sidebarType: 1
 ---
 
 ### Bid Params
@@ -23,6 +32,7 @@ gvl_id: 58
 | `productId` | required | 33Across Product ID that the Publisher has registered for (use `'siab'` for Banner or Outstream Video , `'inview'` for Adhesion, `'instream'` for Instream Video) | `'siab'`   | `string` |
 
 ### Ad Unit Setup for Banner
+
 ```javascript
 var adUnits = [
 {
@@ -43,9 +53,10 @@ var adUnits = [
     }
   }]
 }
-``` 
+```
 
 ### Ad Unit Setup for Outstream Video
+
 ```javascript
 var adUnits = [
 {
@@ -57,7 +68,7 @@ var adUnits = [
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
       protocols: [ 2, 3 ],                  // required, set at least 1 value in array
-      placement: 2,                         // optional, defaults to 2 when context = outstream
+      plcmt: 2,                             // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
       skip: 0,                              // optional
       minduration: 5,                       // optional
@@ -81,6 +92,7 @@ var adUnits = [
 ```
 
 ### Ad Unit Setup for Instream Video
+
 ```javascript
 var adUnits = [
 {
@@ -92,7 +104,7 @@ var adUnits = [
       context: 'instream',                  // required
       mimes: ['video/mp4','video/x-flv'],   // required
       protocols: [ 2, 3 ],                  // required, set at least 1 value in array
-      placement: 1,                         // optional, defaults to 1 when context = instream
+      plcmt: 1,                             // optional, defaults to 1 when context = instream
       startdelay: 0,                        // optional, defaults to 0 when context = instream
       api: [ 1, 2 ],                        // optional
       skip: 0,                              // optional
@@ -117,6 +129,7 @@ var adUnits = [
 ```
 
 ### Ad Unit Setup for Multi-format: Banner, Video (Outstream)
+
 ```javascript
 var adUnits = [
 {
@@ -134,7 +147,7 @@ var adUnits = [
       context: 'outstream',                 // required
       mimes: ['video/mp4','video/x-flv'],   // required
       protocols: [ 2, 3 ],                  // required, set at least 1 value in array
-      placement: 2,                         // optional, defaults to 2 when context = outstream
+      plcmt: 2,                             // optional, defaults to 2 when context = outstream
       api: [ 1, 2 ],                        // optional
       skip: 0,                              // optional
       minduration: 5,                       // optional
@@ -156,9 +169,12 @@ var adUnits = [
   ...
 }
 ```
+
 ### SRA Mode
+
 We recommend using SRA mode to optimize the bidding process as this allows our adapter to group together bid requests for Ad Units pertaining to the same product and site ID thereby minimizing the number of http requests made to our endpoint. To enable SRA set the following bidder specific config under 33Across
-```
+
+```javascript
 pbjs.setBidderConfig({
    bidders: ['33across'],
    config: {

@@ -9,4 +9,4 @@ sidebarType: 5
 # Hosted Prebid Servers
 {:.no_toc}
 
-See [https://prebid.org/product-suite/managed-services/](https://prebid.org/product-suite/managed-services/)
+See [prebid.org/product-suite/managed-services](https://prebid.org/product-suite/managed-services/)

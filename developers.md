@@ -6,8 +6,7 @@ description: Developers Landing Page
 sidebarType: 0
 ---
 
-<a name="publisher_developers"/>
-
+<a name="publisher_developers"></a>
 
 # Developers
 
@@ -31,7 +30,7 @@ Key links for publisher developers.
 
 **Prebid Mobile** - integrating display, video, and native ads into iOS and Android apps:
 
-+ [Getting started with Prebid Mobile](/prebid-mobile/prebid-mobile-pbs.html)
++ [Getting started with Prebid Mobile](/prebid-mobile/prebid-mobile-getting-started.html)
 + [Android code integration](/prebid-mobile/pbm-api/android/code-integration-android.html)
 + [iOS code integration](/prebid-mobile/pbm-api//ios/code-integration-ios.html)
 

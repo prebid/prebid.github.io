@@ -6,7 +6,7 @@ biddercode: distroscale
 media_types: banner
 pbjs: true
 pbs: false
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 coppa_supported: true
 schain_supported: true
@@ -16,7 +16,14 @@ floors_supported: true
 safeframes_ok: false
 prebid_member: true
 gvl_id: 754
+sidebarType: 1
 ---
+
+### Registration
+
+To use the DistroScale bidder you will need a pubid (Publisher ID) from an account on DistroScale.
+
+For further information, please contact <support@distroscale.com>.
 
 ### Bid Params
 
@@ -26,17 +33,16 @@ gvl_id: 754
 | `pubid`       | required | Publisher ID       | `'12345'`       | `string` |
 | `zoneid`      | optional | Zone ID            | `'67890'`       | `string` |
 
-
 ### Prebid Test Request
 
-```
+```javascript
 var adUnits = [{
   code: 'banner-1',
-	mediaTypes: {
-		banner: {
-			sizes: [[300, 250]],
-		}
-	},
+    mediaTypes: {
+        banner: {
+            sizes: [[300, 250]],
+        }
+    },
   bids: [{
     bidder: 'distroscale',
     params: {

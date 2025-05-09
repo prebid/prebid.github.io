@@ -6,39 +6,45 @@ pbjs: true
 biddercode: audiencerun
 media_types: banner
 gvl_id: 944
-gdpr_supported: true
+tcfeu_supported: true
 usp_supported: true
 schain_supported: true
 safeframes_ok: false
 prebid_member: false
-userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, pubProvidedId, sharedId, unifiedId
+userIds: all
+floors_supported: true
+sidebarType: 1
 ---
 
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description | Example | Type     |
-|---------------|----------|-------------|---------|----------|
-| `zoneId`      | required |             |         | `string` |
+| Name       | Scope    | Description                                                                 | Example        | Type     |
+| ---------- | -------- | --------------------------------------------------------------------------- | -------------- | -------- |
+| `zoneId`   | required | The zone id provided by AudienceRun                                         | `'xtov2mgij0'` | `string` |
+| `bidfloor` | optional | The bid floor for the zone id provided by AudienceRun in USD (default: 0.0) | `0.5`          | `float`  |
 
-### Description
+### Registration
 
-Module that connects to AudienceRun demand sources.
+The AudienceRun Header Bidding adaptor requires setup and approval from the AudienceRun team. Please reach out to our team on <https://www.audiencerun.com/> for more details.
 
-Use `audiencerun` as bidder.
+### Example
 
-`zoneId` is required and must be 10 alphanumeric characters.
+Use `audiencerun` as bidder. Note that `zoneId` is required and must be 10 alphanumeric characters.
 
-### AdUnits configuration example
-```
-    var adUnits = [{
-      code: 'test-div',
-      sizes: [[300, 600]],
-      bids: [{
-          bidder: 'audiencerun',
-          params: { 
-              zoneId: 'xtov2mgij0'
-          }
-      }]
-    }];
+```js
+var adUnits = [
+  {
+    code: "test-div",
+    sizes: [[300, 600]],
+    bids: [
+      {
+        bidder: "audiencerun",
+        params: {
+          zoneId: "xtov2mgij0",
+        },
+      },
+    ],
+  },
+];
 ```

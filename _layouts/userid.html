@@ -1,0 +1,75 @@
+{% include head.html %}
+
+{% include nav.html %}
+
+
+<div class="container pb-docs-container">
+
+  <div class="row ">
+
+            <div class="col-lg-3 sidebar" id="sidebar">
+
+        <div>
+          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#sidebarContent" aria-controls="sidebarContent" aria-expanded="false" aria-label="Toggle Sidebar navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse d-lg-block" id="sidebarContent">
+                    {% include left_nav.html %}
+          </div>
+        </div>
+
+            </div>
+
+    <div class="col-lg-9">
+      <div class="pb-content" markdown="1">
+
+          <div class="row">
+
+            <div class="col-md-12" role="main">
+              <div class="bs-docs-section">
+                <p><a href="/dev-docs/modules/userId.html#user-id-sub-modules">Back to User ID Module</a></p>
+
+                <h2>{{ page.title }}</h2>
+                <table class="table table-bordered table-striped">
+                  <tr>
+                    <th class="pbTh">Module</th>
+                    <td class="pbTd">{{ page.useridmodule }}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">EID Source</th>
+                    <td class="pbTd">{{ page.eidsource }}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">bidRequest.userId</th>
+                    <td class="pbTd">{{ page.bidRequestUserId }}</td>
+                  </tr>
+                  <tr>
+                    <th class="pbTh">Example</th>
+                    <td class="pbTd"><code>{{ page.example }}</code></td>
+                  </tr>
+                </table>
+
+                {{content}}
+
+                <p><a href="/dev-docs/modules/userId.html#user-id-sub-modules">Back to User ID Module</a></p>
+              </div>
+
+            </div>
+
+          </div>
+
+      </div>
+
+
+    </div>
+  </div>
+  <!--end row-->
+</div>
+  {% if page.title != "Credits" %}
+    {% if page.layout != "home" %}
+      {% include footer.html %}
+    {% endif %}
+  {% endif %}
+
+</body>
+</html>

@@ -5,7 +5,6 @@ description: PubMatic Analytics Adapter
 modulecode: pubmatic
 prebid_member: true
 gvl_id: 76
-enable_download: false
 ---
 
 #### Registration
