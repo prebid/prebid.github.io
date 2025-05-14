@@ -21,5 +21,6 @@ sidebarType: 1
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
-| Name          | Scope    | Description   | Example     | Type     |
-|---------------|----------|---------------|-------------|----------|
+| Name          | Scope    | Description   | Example      | Type     |
+|---------------|----------|---------------|--------------|----------|
+| `sspId`       | required | ssp id        | `'prebidssp'`| `string` |
