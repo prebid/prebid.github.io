@@ -39,6 +39,7 @@ While the WURFL RTD module enriches the OpenRTB 2.0 payload, it is the responsib
 The following scenarios are possible:
 
 {: .table .table-bordered .table-striped }
+
 |                           | SSP Adapter   | SSP Server Side End-Point                                        |
 | :------------------------ | :------------ | :--------------------------------------------------------------- |
 | SSP adapter is already passing the ORTB2 device to the server (auction endpoint). | No changes required. | Update backend logic to utilize the device data. |
@@ -57,13 +58,15 @@ gulp build --modules="wurflRtdProvider,appnexusBidAdapter,..."
 
 ### Configuration
 
-To initialize the WURFL RTD module in Prebid.js, use the `setConfig` function as shown below. The module is configured as part of `realTimeData.dataProviders`
+To initialize the WURFL RTD module in Prebid.js, use the `setConfig` function as shown below. 
+The module is configured within `realTimeData.dataProviders`. 
+Ensure `waitForIt` is set to `true`. We recommend setting `auctionDelay` to `500 ms` initially, 
+though lower values may be suitable with fine-tuning.
 
 ```javascript
-var TIMEOUT = 1000;
 pbjs.setConfig({
     realTimeData: {
-        auctionDelay: TIMEOUT,
+        auctionDelay: 500,
         dataProviders: [{
             name: 'wurfl',
             waitForIt: true,
@@ -78,10 +81,11 @@ pbjs.setConfig({
 ### Parameters
 
 {: .table .table-bordered .table-striped }
+
 | Name                      | Type          | Description                                                      | Default               |
 | :------------------------ | :------------ | :--------------------------------------------------------------- |:----------------------|
 | name                      | String        | Real time data module name                                       | Always set to 'wurfl' |
-| waitForIt                 | Boolean       | Set to `true` if an `auctionDelay` is defined (optional)         | `false`               |
+| waitForIt                 | Boolean       | Set to `true` if an `auctionDelay` is defined (required)         | `false`               |
 | params                    | Object        | Configuration parameters for the WURFL RTD module.               |                       |
 | params.altHost            | String        | Alternate host for connecting to WURFL.js                        |                       |
 | params.debug              | Boolean       | Enable debug mode.                                               | `false`               |
@@ -106,33 +110,33 @@ WURFL RTD adds device information to the bidderRequest's `ortb2.device.ext.wurfl
   "at": 1,
   "site": {...},
   "device": {
-    "w": 375,
-    "h": 667,
+    "w": 1170,
+    "h": 2532,
     "dnt": 0,
-    "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Mobile/15E148 Safari/604.1",
+    "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Mobile/15E148 Safari/604.1",
     "language": "it",
     "make": "Apple",
-    "model": "iPhone",
+    "model": "iPhone 16e",
     "devicetype": 1,
     "os": "iOS",
-    "osv": "18.3.1",
-    "hwv": "iPhone",
-    "ppi": 324,
-    "pxratio": 2,
+    "osv": "18.3",
+    "hwv": "iPhone 16e",
+    "ppi": 456,
+    "pxratio": 3.0,
     "js": 1,
     "ext": {
       "vpw": 980,
       "vph": 1429,
       "wurfl": {
-        "wurfl_id": "apple_iphone_ver18_3",
+        "wurfl_id": "apple_iphone_ver18_3_subhw16e",
         "advertised_browser": "Mobile Safari",
         "advertised_browser_version": "18.3",
         "advertised_device_os": "iOS",
-        "advertised_device_os_version": "18.3.1",
+        "advertised_device_os_version": "18.3",
         "ajax_support_javascript": true,
         "brand_name": "Apple",
-        "complete_device_name": "Apple iPhone",
-        "density_class": "2.0",
+        "complete_device_name": "Apple iPhone 16e",
+        "density_class": "3.0",
         "form_factor": "Smartphone",
         "is_app_webview": false,
         "is_connected_tv": false,
@@ -148,13 +152,13 @@ WURFL RTD adds device information to the bidderRequest's `ortb2.device.ext.wurfl
         "marketing_name": "",
         "max_image_height": 568,
         "max_image_width": 320,
-        "model_name": "iPhone",
-        "physical_screen_height": 89,
-        "physical_screen_width": 50,
-        "pixel_density": 324,
+        "model_name": "iPhone 16e",
+        "physical_screen_height": 141,
+        "physical_screen_width": 65,
+        "pixel_density": 456,
         "pointing_method": "touchscreen",
-        "resolution_height": 1136,
-        "resolution_width": 640
+        "resolution_height": 2532,
+        "resolution_width": 1170
       }
     }
   }
