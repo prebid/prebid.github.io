@@ -27,7 +27,7 @@ multiformat_supported: will-bid-on-any
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                | Example                                   | Type      |
 |---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | required | tag ID                     | `"testscore"`                             | `string`  |
+| `tagId`       | required | tag ID                     | `"795dtj21"`                             | `string`  |
 
 ### First Party Data
 
@@ -54,7 +54,7 @@ var adUnits = [
       bids: [{
          bidder: 'scoremedia',
          params: {
-            tagId: 'testscore'
+            tagId: '795dtj21'
          }
        }]
    },
@@ -70,7 +70,7 @@ var adUnits = [
         bids: [{
             bidder: 'scoremedia',
             params: {
-               tagId: 'testscore'
+               tagId: '795dtj21'
             }
         }]
     },
@@ -93,7 +93,7 @@ var adUnits = [
         bids: [{
             bidder: 'scoremedia',
             params: {
-               tagId: 'testscore'
+               tagId: '795dtj21'
             }
         }]
     },
@@ -112,7 +112,7 @@ var adUnits = [
         bids: [{
             bidder: 'scoremedia',
             params: {
-               tagId: 'testscore',
+               tagId: '795dtj21',
                videoTagId: 'testscore'
             }
         }]
