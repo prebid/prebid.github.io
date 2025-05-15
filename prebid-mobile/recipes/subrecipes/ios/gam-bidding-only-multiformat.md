@@ -4,6 +4,7 @@ title: iOS GAM Bidding-Only Integration - Multiformat Banner+Video+InAppNative
 description: iOS GAM Bidding-Only Integration - Multiformat Banner+Video+InAppNative
 sidebarType: 2
 ---
+<!-- markdownlint-disable-file MD046 -->
 
 # iOS GAM Bidding-Only Integration - Multiformat Banner+Video+InAppNative
 
@@ -13,10 +14,57 @@ Starting with version `2.1.5` Prebid SDK supports the fully multiformat ad unit.
 
 The following code demonstrates the integration of multiformat ad unit.
 
-``` swift
-func createAd() {
+{% capture gma12 %}func createAd() {
     // 1. Setup a PrebidAdUnit
-    adUnit = PrebidAdUnit(configId: configId)
+    adUnit = PrebidAdUnit(configId: CONFIG_ID)
+    adUnit.setAutoRefreshMillis(time: 30_000)
+    
+    // 2. Setup the parameters
+    let bannerParameters = BannerParameters()
+    bannerParameters.api = [Signals.Api.MRAID_2]
+    bannerParameters.adSizes = [adSize]
+    
+    let videoParameters = VideoParameters(mimes: ["video/mp4"])
+    videoParameters.protocols = [Signals.Protocols.VAST_2_0]
+    videoParameters.playbackMethod = [Signals.PlaybackMethod.AutoPlaySoundOff]
+    videoParameters.placement = Signals.Placement.InBanner
+    videoParameters.adSize = adSize
+    
+    let nativeParameters = NativeParameters()
+    nativeParameters.assets = nativeAssets
+    nativeParameters.context = ContextType.Social
+    nativeParameters.placementType = PlacementType.FeedContent
+    nativeParameters.contextSubType = ContextSubType.Social
+    nativeParameters.eventtrackers = eventTrackers
+    
+    // 3. Configure the PrebidRequest
+    let prebidRequest = PrebidRequest(
+        bannerParameters: bannerParameters,
+        videoParameters: videoParameters,
+        nativeParameters: nativeParameters
+    )
+    
+    // 4. Make a bid request
+    let gamRequest = AdManagerRequest()
+    adUnit.fetchDemand(adObject: gamRequest, request: prebidRequest) { [weak self] _ in
+        guard let self = self else { return }
+        
+        // 5. Configure and make a GAM ad request
+        self.adLoader = AdLoader(
+            adUnitID: AD_UNIT_ID,
+            rootViewController: self,
+            adTypes: [AdLoaderAdType.customNative, AdLoaderAdType.adManagerBanner],
+            options: []
+        )
+        
+        self.adLoader.delegate = self
+        self.adLoader.load(gamRequest)
+    }
+}
+{% endcapture %}
+{% capture gma11 %}func createAd() {
+    // 1. Setup a PrebidAdUnit
+    adUnit = PrebidAdUnit(configId: CONFIG_ID)
     adUnit.setAutoRefreshMillis(time: 30_000)
 
     // 2. Setup the parameters
@@ -46,18 +94,35 @@ func createAd() {
         guard let self = self else { return }
 
         // 5. Configure and make a GAM ad request
-        self.adLoader = GADAdLoader(adUnitID: gamRenderingMultiformatAdUnitId, rootViewController: self,
+        self.adLoader = GADAdLoader(adUnitID: AD_UNIT_ID, rootViewController: self,
                                     adTypes: [GADAdLoaderAdType.customNative, GADAdLoaderAdType.gamBanner], options: [])
         self.adLoader.delegate = self
         self.adLoader.load(gamRequest)
     }
 }
-```
+{% endcapture %}
+
+{% include code/gma-versions-tabs.html id="multiformat-2" gma11=gma11 gma12=gma12 %}
 
 To handle the banner, video and in-banner native (Native Styles) ads:
 
-``` swift
-func adLoader(_ adLoader: GADAdLoader, didReceive bannerView: GAMBannerView) {
+{% capture gma12 %}func adLoader(_ adLoader: AdLoader, didReceive bannerView: AdManagerBannerView) {
+    self.bannerView.isHidden = false
+    self.nativeView.isHidden = true
+    self.bannerView.backgroundColor = .clear
+    self.bannerView.addSubview(bannerView)
+    
+    AdViewUtils.findPrebidCreativeSize(bannerView, success: { [weak self] size in
+        bannerView.resize(adSizeFor(cgSize: size))
+        
+        self?.bannerView.constraints.first { $0.firstAttribute == .width }?.constant = size.width
+        self?.bannerView.constraints.first { $0.firstAttribute == .height }?.constant = size.height
+    }, failure: { (error) in
+        PrebidDemoLogger.shared.error("Error occuring during searching for Prebid creative size: \(error)")
+    })
+}
+{% endcapture %}
+{% capture gma11 %}func adLoader(_ adLoader: GADAdLoader, didReceive bannerView: GAMBannerView) {
     self.bannerView.isHidden = false
     self.nativeView.isHidden = true
     self.bannerView.backgroundColor = .clear
@@ -72,7 +137,9 @@ func adLoader(_ adLoader: GADAdLoader, didReceive bannerView: GAMBannerView) {
         PrebidDemoLogger.shared.error("Error occuring during searching for Prebid creative size: \(error)")
     })
 }
-```
+{% endcapture %}
+
+{% include code/gma-versions-tabs.html id="multiformat" gma11=gma11 gma12=gma12 %}
 
 If you use Custom Native Ads follow the [guide](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/native-banner) on how to implement processing of the ad response of the respective type. To handle the wining native ad:
 
@@ -151,9 +218,9 @@ In addition you can set the following properties of the `PrebidRequest`.
 ## Step 4: Make a bid request
 {:.no_toc}
 
-The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `GAMRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
+The `fetchDemand` method makes a bid request to the Prebid Server. You should provide a `AdManagerRequest` object to this method so Prebid SDK sets the targeting keywords of the winning bid for future ad requests.
 
-## Step 5: Create a GAMBannerView
+## Step 5: Create a BannerView
 {:.no_toc}
 
 Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobile-ads-sdk/ios/banner) to integrate a banner ad unit.
@@ -161,9 +228,9 @@ Follow the [GMA SDK documentation](https://developers.google.com/ad-manager/mobi
 ## Step 6: Load an Ad
 {:.no_toc}
 
-Now you should request the ad from GAM. If the `GAMRequest` contains targeting keywords, the respective Prebid line item will be returned from GAM and GMA SDK will render its creative.
+Now you should request the ad from GAM. If the `AdManagerRequest` contains targeting keywords, the respective Prebid line item will be returned from GAM and GMA SDK will render its creative.
 
-Be sure that you make the ad request with the same `GAMRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
+Be sure that you make the ad request with the same `AdManagerRequest` object that you passed to the `fetchDemand` method. Otherwise, the ad request won't contain targeting keywords, and Prebid's ad won't ever be displayed.
 
 ## Step 7: Process the Ad Response
 {:.no_toc}

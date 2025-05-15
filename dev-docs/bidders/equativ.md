@@ -8,19 +8,19 @@ dsa_supported: true
 gvl_id: 45
 usp_supported: true
 coppa_supported: true
-gpp_sids: tcfeu, usp
+gpp_sids: tcfca, tcfeu, usnat, usstate_all, usp
 schain_supported: true
 dchain_support: false
 userIds: all
-media_types: banner
+media_types: banner, video, native
 safeframes_ok: true
 deals_supported: false
 floors_supported: true
-fpd_supported: false
+fpd_supported: true
 pbjs: true
-pbs: true
+pbs: false
 prebid_member: false
-multiformat_supported: will-bid-on-one
+multiformat_supported: will-bid-on-any
 ortb_blocking_supported: true
 privacy_sandbox: no
 sidebarType: 1
@@ -347,6 +347,10 @@ pbjs.que.push(function () {
 
 {: .alert.alert-warning :}
 **Note**: If a demand partner of Equativ is not capable of reading an audio object, the audio object will be converted into a video object with audio mime types. There is, as of this writing, no built-in/default support for serving audio assets in Prebid, so publishers that wish to do so will need to ensure their ad server setups can process whatever hand-offs are necessary.
+
+### First Party Data
+
+Publishers should use the `ortb2` method of setting [First Party Data](https://docs.prebid.org/features/firstPartyData.html).
 
 ### Additional Resources
 

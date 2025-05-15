@@ -17,7 +17,6 @@ Starting with `1.14.0-beta1` Prebid mobile supports integration with **AdMob**.
 
 Starting with `2.0.0` Prebid mobile supports integration with **AppLovin MAX**. 
 
-
 ## Supported Ad Formats
 
 Prebid Mobile rendering supports the following ad formats:
@@ -26,7 +25,5 @@ Prebid Mobile rendering supports the following ad formats:
 * Video Banner 
 * Display Interstitial
 * Video Interstitial
-* Rewarded Video
-
-
-
+* Display Rewarded
+* Video Rewarded

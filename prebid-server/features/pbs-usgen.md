@@ -74,6 +74,7 @@ Here's an example:
 | Parameter | Type | Scope | Description |
 |------|------|-------------|
 | skipSids | array of integer | Optional | Do not process the named section IDs. |
+| allowPersonalDataConsent2 | boolean | Optional | Defaults to 'false'. [Prebid's logic](/features/mspa-usnat.html) for personal data consents considers a value of 2 as non-sensical. But it turns out that several CMPs didn't get that message and are reporting this value. We will deprecate this option once the CMPs are all on the same page. |
 
 By default the module will process GPP SIDs 7-12. The `skipSids`
 parameter allows the publisher to define a different processing flow for different GPP SIDs.
@@ -177,4 +178,4 @@ Additional information about the outcoming of privacy module processing can be o
 * [Prebid US Compliance Support](/features/mspa-usnat.html)
 * [US Custom Logic Privacy Module](/prebid-server/features/pbs-uscustomlogic.html)
 * [Activity Control system](/prebid-server/features/pbs-activitycontrols.html)
-* [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20National%20Privacy%20Technical%20Specification.md)
+* [IAB US National Privacy Specification](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform/blob/main/Sections/US-National/IAB%20Privacy%E2%80%99s%20Multi-State%20Privacy%20Agreement%20(MSPA)%20US%20National%20Technical%20Specification.md)
