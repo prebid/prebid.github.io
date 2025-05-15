@@ -47,6 +47,8 @@ pbjs.setConfig({
 
 The Adagio bid adapter uses browser local storage. Since Prebid.js 7.x, the access to it must be explicitly set.
 
+{% include dev-docs/storageAllowed.md %}
+
 ```js
 // https://docs.prebid.org/dev-docs/publisher-api-reference/bidderSettings.html
 pbjs.bidderSettings = {

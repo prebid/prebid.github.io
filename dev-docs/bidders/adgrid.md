@@ -1,9 +1,9 @@
 ---
 layout: bidder
 title: AdGrid
-description: Prebid AdGrid Bidder Adaptor
+description: Prebid AdGrid Bidder Adapter
 biddercode: adgrid
-media_types: banner
+media_types: banner, video
 pbjs: true
 tcfeu_supported: false
 dsa_supported: false
@@ -34,6 +34,7 @@ The AdGrid Bidding Adapter requires setup and approval before beginning. Please 
 | Name       | Scope    | Description  | Example | Type      |
 |------------|----------|--------------|---------|-----------|
 | `domainId` | required | Publisher Id | `30164` | `integer` |
+| `placement`| required | Placement    | `global`| `string`  |
 
 ### Test Parameters
 
@@ -50,7 +51,8 @@ var adUnits = [
     bids: [{
       bidder: 'adgrid',
       params: {
-        domainId: 12345
+        domainId: 12345,
+        placement: 'global'
       }
     }]
   },
@@ -64,7 +66,27 @@ var adUnits = [
     bids: [{
       bidder: 'adgrid',
       params: {
-        domainId: 67890
+        domainId: 12345,
+        placement: 'global'
+      }
+    }]
+  },
+  // Video adUnit
+  {
+    code: 'test-video-div',
+    mediaTypes: {
+      video: {
+        playerSize: [
+          [640, 480]
+        ],
+        context: 'instream'
+      }
+    },
+    bids: [{
+      bidder: 'adgrid',
+      params: {
+        domainId: 12345,
+        placement: 'global'
       }
     }]
   }

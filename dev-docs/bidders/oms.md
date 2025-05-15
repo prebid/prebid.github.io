@@ -11,7 +11,7 @@ biddercode: oms
 prebid_member: false
 floors_supported: true
 safeframes_ok: true
-media_types: banner
+media_types: banner, video
 schain_supported: true
 userIds: id5Id, identityLink, pubProvidedId
 pbs_app_supported: true
@@ -40,4 +40,5 @@ The bidder requires setup before usage. Please get in touch with our team at <pr
 
 | Name | Scope | Description | Example | Type |
 |---------------|----------|---------------------|---------------|----------|
-| `pid` | required | Unique publisher ID | `'12345'` | `string` |
+| `pid` | optional | Deprecated: Unique publisher ID | `'12345'` | `string` |
+| `publisherId` | required | Unique publisher ID | `12345` | `integer` |

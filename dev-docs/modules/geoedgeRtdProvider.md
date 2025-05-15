@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Geoedge Realtime Module
-
 {:.no_toc}
 
 * TOC

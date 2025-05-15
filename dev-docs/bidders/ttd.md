@@ -92,7 +92,7 @@ var bannerAdUnit = {
 #### `mediaTypes.video` Parameters
 
 The TTD adapter for video requires certain parameters in the AdUnit's
-[mediaTypes.video](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit.mediaTypes.video) definition. Specifically, `maxduration`, `api`, `mimes`, `placement`, and `protocols` are all required for video ad units. `playerSize`, `startdelay`, `playbackmethod`, and `pos` are recommended. `minduration`, `minbitrate`, `maxbitrate`, `skip`, `skipmin`, and `skipafter` are optional.
+[mediaTypes.video](https://docs.prebid.org/dev-docs/adunit-reference.html#adUnit.mediaTypes.video) definition. Specifically, `maxduration`, `api`, `mimes`, `plcmt`, and `protocols` are all required for video ad units. `playerSize`, `startdelay`, `playbackmethod`, and `pos` are recommended. `minduration`, `minbitrate`, `maxbitrate`, `skip`, `skipmin`, and `skipafter` are optional.
 
 Note: TTD does not currently support `adpod` video contexts.
 
@@ -108,7 +108,7 @@ var videoAdUnit = {
             playerSize: [640, 480],
             api: [1, 3],
             mimes: ['video/mp4'],
-            placement: 3,
+            plcmt: 3,
             protocols: [2, 3, 5, 6],
             startdelay: -1,
             playbackmethod: [1],

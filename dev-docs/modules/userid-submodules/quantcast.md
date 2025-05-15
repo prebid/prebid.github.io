@@ -3,14 +3,18 @@ layout: userid
 title: Quantcast ID
 description: Quantcast ID User ID sub-module
 useridmodule: quantcastIdSystem
+bidRequestUserId: quantcastId
+eidsource: quantcast.com
+example: '"1111"'
 ---
 
 The Prebid Quantcast ID module stores a Quantcast ID in a first party cookie. The ID is then made available in the bid request. The ID from the cookie added in the bidstream allows Quantcast to more accurately bid on publisher inventories without third party cookies, which can result in better monetization across publisher sites from Quantcast. And, it’s free to use! For easier integration, you can work with one of our SSP partners, like PubMatic, who can facilitate the legal process as well as the software integration for you.
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=userId,quantcastIdSystem
+```
 
 Quantcast’s privacy policies for the services rendered can be found at
          <https://www.quantcast.com/privacy/>
@@ -26,6 +30,7 @@ The Quantcast ID module will only perform any action and return an ID in situati
 ## Quantcast ID Configuration
 
 {: .table .table-bordered .table-striped }
+
 | Param under userSync.userIds[] | Scope | Type | Description | Example |
 | --- | --- | --- | --- | --- |
 | name | Required | String | `"quantcastId"` | `"quantcastId"` |

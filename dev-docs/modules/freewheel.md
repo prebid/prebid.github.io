@@ -12,8 +12,6 @@ sidebarType : 1
 
 # Freewheel Module
 
-{:.no_toc}
-
 This module returns the targeting key value pairs for the FreeWheel ad server.
 
 ## How to use the module

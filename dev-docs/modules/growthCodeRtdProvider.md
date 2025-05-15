@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # GrowthCode Real-time Data Submodule
-
 {:.no_toc}
 
 * TOC

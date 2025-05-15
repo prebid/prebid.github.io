@@ -6,14 +6,16 @@ description: Captify Real Time Data Module
 page_type: module
 module_type: rtd
 module_code : captifyRtdProvider
-enable_download : true
+enable_download : false
 vendor_specific: true
 sidebarType : 1
 ---
 
 # Captify RTD Module
-
 {:.no_toc}
+
+{: .alert.alert-warning :}
+Captify RTD was removed in Prebid.js 8.0
 
 * TOC
 {:toc}
@@ -73,4 +75,4 @@ pbjs.setConfig({
 | `params`         | Object        | |  | |
 | `params.pubId`   | Integer       | Partner ID, required to get results and provided by Captify         | yes      | Use `123456` for tests, speak to your Captify account manager to receive your pubId |
 | `params.bidders` | Array<String> | List of bidders for which you would like data to be set             | yes      | Currently only 'appnexus' supported |
-| `params.url`     | String        | Captify live-classification service url                             | no       | Defaults to `https://live-classification.cpx.to/prebid-segments`
+| `params.url`     | String        | Captify live-classification service url                             | no       | Defaults to `https://live-classification.cpx.to/prebid-segments` |

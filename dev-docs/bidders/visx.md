@@ -96,13 +96,15 @@ pbjs.setConfig({
 
 - In Prebid's `bidderSettings`, the `storageAllowed` parameter must be set to **true**. In Prebid v7.0 and later, `storageAllowed` defaults to false, so you will need to explicitly set this value to true.
 
-    ```javascript
+{% include dev-docs/storageAllowed.md %}
+
+```javascript
         pbjs.bidderSettings = {
             visx: {
                 storageAllowed: true
             }
         }
-    ```
+```
 
 ### Bid params
 

@@ -153,6 +153,9 @@ completely backwards-compatible -- PBS will accept and process any Prebid.js flo
 
 ### Defining Floor data
 
+{: .alert.alert-warning :}
+You **cannot** set the `floorMin` parameter without specifying a `data` object. See the [simple static floor](/dev-docs/modules/floors.html#simple-static-floors) section for more info.
+
 As described in the [Signaling](#floor-signaling) section above, floor data may be defined in several ways. Here's the order of priority:
 
 1. Dynamic data - if PBS finds recent (non-expired) floors data from a dynamic floors vendor, that takes precedence.
@@ -272,17 +275,20 @@ Here are the configurable items:
 | Config | Type | Default | Description |
 |---+---+---+---|
 | enabled | boolean | true | Master switch for turning off the floors feature for this account. |
-| enforce-floors-rate | integer | 100 | Default value for the enforceRate attribute. |
-| adjust-for-bid-adjustment | boolean | true | Default value for the enforcement.bidAdjustment attribute. |
-| enforce-deal-floors | boolean | false | Default value for the enforcement.floorDeals attribute. |
+| enforce-floors-rate (PBS-Java)<br/>enforce_floors_rate (PBS_Go) | integer | 100 | Default value for the enforceRate attribute. |
+| adjust-for-bid-adjustment (PBS-Java)<br/>adjust_for_bid_adjustment (PBS_Go) | boolean | true | Default value for the enforcement.bidAdjustment attribute. |
+| enforce-deal-floors (PBS-Java)<br/>enforce_deal_floors (PBS_Go) | boolean | false | Default value for the enforcement.floorDeals attribute. |
 | fetch.enabled | boolean | false | Turns on the polling of an external dynamic floor data source. |
 | fetch.url | string | - | URL for the external dynamic floor data source. |
-| fetch.timeout-ms | integer | 3000 | How long to wait for the dynamic floor data source. |
-| fetch.max-file-size-kb | integer | 100 | How big can the rule data get before being rejected. Helps protect memory problems. |
-| fetch.max-rules | integer | 1000 | How many rules is too many. Helps protect processing time. |
-| fetch.max-age-sec | integer | 86400 | How long is dynamically fetched data considered usable? |
-| fetch.period-sec | integer | 3600 | How often between attempts to poll for updated data? |
-| use-dynamic-data | boolean | true | Can be used as an emergency override to start ignoring dynamic floors data if something goes wrong. |
+| fetch.timeout-ms (PBS-Java)<br/>fetch.timeout_ms (PBS_Go) | integer | 3000 | How long to wait for the dynamic floor data source. |
+| fetch.max-file-size-kb (PBS-Java)<br/>fetch.max_file_size_kb (PBS_Go) | integer | 100 | How big can the rule data get before being rejected. Helps protect memory problems. |
+| fetch.max-rules (PBS-Java)<br/>fetch.max_rules (PBS_Go) | integer | 1000 | How many rules is too many. Helps protect processing time. |
+| fetch.max-age-sec (PBS-Java)<br/>fetch.max_age_sec (PBS_Go) | integer | 86400 | How long is dynamically fetched data considered usable? |
+| fetch.period-sec (PBS-Java)<br/>fetch.period_sec (PBS_Go) | integer | 3600 | How often between attempts to poll for updated data? |
+| fetch.max-schema-dims (PBS-Java)<br/>fetch.max_schema_dims (PBS_Go) | integer | 0 | Limit the number of concurrent schema dimensions a floor provider can include in a given set of floor rules. A value of 0 means no maximum. Valid values are 0-19. |
+| use-dynamic-data (PBS-Java)<br/>use_dynamic_data (PBS_Go) | boolean | true | Can be used as an emergency override to start ignoring dynamic floors data if something goes wrong. |
+| max-schema-dims (PBS-Java)<br/>max_schema_dims (PBS_Go) | integer | 0 | Limit the number of concurrent schema dimensions a floor provider can include in a given set of floor rules. A value of 0 means no maximum. Valid values are 0-19. |
+| max-rules (PBS-Java)<br/>max_rules (PBS_Go) | integer | 100 | Limits the number of rules processed when they come in on the request (or in stored requests). A value of 0 means no maximum. |
 
 The precise details of configuration may differ for PBS-Java vs PBS-Go. See the configuration document for your platform.
 

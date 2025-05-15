@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # OneKey Data Provider
-
 {:.no_toc}
 
 * TOC

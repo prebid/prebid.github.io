@@ -34,6 +34,8 @@ sidebarType: 1
 We recommend allowing us access to localStorage.
 You can allow writing in localStorage `pbjs.bidderSettings` for the bidder `taboola`
 
+{% include dev-docs/storageAllowed.md %}
+
 ```javascript
 pbjs.bidderSettings = {
     taboola: {

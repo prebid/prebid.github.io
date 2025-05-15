@@ -19,6 +19,7 @@ safeframes_ok: true
 deals_supported: true
 sidebarType: 1
 fpd_supported: true
+multiformat_supported: will-bid-on-any
 
 ---
 

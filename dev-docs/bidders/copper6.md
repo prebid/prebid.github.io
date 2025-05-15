@@ -29,6 +29,8 @@ sidebarType: 1
 
 ### Description
 
+Please don't use this adapter. To connect with Copper6 demand, please use the Copper6SSP. You can find details here: <https://docs.prebid.org/dev-docs/bidders/copper6ssp.html>
+___
 Copper6 Media header bidding adapter connects with Copper6 Media demand sources in order to fetch bids.
 This adapter provides a solution for accessing Video demand and display demand.
 

@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # GPT Pre-Auction Module
-
 {:.no_toc}
 
 * TOC

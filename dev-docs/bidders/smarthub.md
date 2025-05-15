@@ -1,7 +1,7 @@
 ---
 layout: bidder
-title: SmartHub
-description: SmartHub Bidder Adapter
+title: Attekmi
+description: Attekmi Bidder Adapter
 biddercode: smarthub
 usp_supported: true
 schain_supported: true
@@ -12,6 +12,10 @@ pbs: true
 pbs_app_supported: true
 sidebarType: 1
 ---
+
+### Note
+
+Please note that SmartHub has been renamed to Attekmi.
 
 ### Prebid.js Bid Params
 

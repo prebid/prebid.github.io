@@ -11,7 +11,6 @@ sidebarType : 1
 ---
 
 # Intersection Module
-
 {:.no_toc}
 
 * TOC

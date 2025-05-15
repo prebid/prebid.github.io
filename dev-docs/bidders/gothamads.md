@@ -3,7 +3,7 @@ layout: bidder
 title: gothamads
 description: Prebid gothamads Bidder Adaptor
 biddercode: gothamads
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: true
 ccpa_supported: true

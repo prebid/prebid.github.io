@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # 1plusX RTD Module
-
 {:.no_toc}
 
 * TOC

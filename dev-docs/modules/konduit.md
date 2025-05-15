@@ -5,16 +5,17 @@ title: Module - Konduit Accelerate
 description: Applies Konduit video ad acceleration optimization to wining video bid.
 module_code : konduitWrapper
 display_name : Konduit Accelerate
-enable_download : true
+enable_download : false
 vendor_specific: true
 sidebarType : 1
 ---
 
 # Konduit Accelerate Module
 
-{:.no_toc}
+{: .alert.alert-warning :}
+Prebid believes this module may no longer be maintained.
 
-The Konduit Accelerate module applies the [Konduit](https://konduitvideo.com/) video acceleration optimization to a publisher’s existing Prebid setup. This optimization provides publishers with tools to monetize previously lost revenue and drive higher fill rates on their video inventory.
+The Konduit Accelerate module applies the Konduit video acceleration optimization to a publisher’s existing Prebid setup. This optimization provides publishers with tools to monetize previously lost revenue and drive higher fill rates on their video inventory.
 
 To install the module, follow these instructions:
 

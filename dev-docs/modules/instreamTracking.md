@@ -10,7 +10,6 @@ sidebarType : 1
 ---
 
 # Instream Video Ads Tracking
-
 {:.no_toc}
 
 * TOC

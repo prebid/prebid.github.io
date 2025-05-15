@@ -3,6 +3,9 @@ layout: userid
 title: Criteo ID for Exchanges
 description: Criteo ID for Exchanges User ID sub-module
 useridmodule: criteoIdSystem
+bidRequestUserId: criteoId
+eidsource: criteo.com
+example: '"1111"'
 ---
 
 
@@ -13,8 +16,9 @@ The Criteo privacy policy is at [www.criteo.com/privacy/](https://www.criteo.com
 
 Add it to your Prebid.js package with:
 
-{: .alert.alert-info :}
+```bash
 gulp build --modules=criteoIdSystem
+```
 
 ## Criteo ID Configuration
 

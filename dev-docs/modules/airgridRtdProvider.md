@@ -12,14 +12,13 @@ sidebarType : 1
 ---
 
 # AirGrid RTD Provider
+{:.no_toc}
 
 AirGrid is a privacy-first, cookie-less audience platform. Designed to help publishers increase inventory yield,
 whilst providing audience signal to buyers in the bid request, without exposing raw user level data to any party.
 
 This real-time data module provides quality first-party data, contextual data, site-level data and more that is
 injected into bid request objects destined for different bidders in order to optimize targeting.
-
-{:.no_toc}
 
 * TOC
 {:toc}

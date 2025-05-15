@@ -13,7 +13,6 @@ sidebarType : 1
 ---
 
 # BlueConic Real-time Data Submodule
-
 {:.no_toc}
 
 * TOC

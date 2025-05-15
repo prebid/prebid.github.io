@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Weborama RTD Segmentation Module
-
 {:.no_toc}
 
 * TOC

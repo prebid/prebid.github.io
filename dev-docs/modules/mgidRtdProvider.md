@@ -12,7 +12,6 @@ sidebarType : 1
 ---
 
 # Mgid Realtime Module
-
 {:.no_toc}
 
 * TOC
