@@ -3,13 +3,14 @@ layout: bidder
 title: Nexx360
 description: Prebid Nexx360 Bidder Adapter
 pbjs: true
+pbs: true
 biddercode: nexx360
 gvl_id: 965
 tcfeu_supported: true
 usp_supported: true
 gpp_supported: true
 schain_supported: true
-dchain_supported: false
+dchain_supported: true
 floors_supported: true
 userIds: all
 tcfeu_supported: true
@@ -27,13 +28,16 @@ multiformat_supported: will-bid-on-any
 {: .table .table-bordered .table-striped }
 | Name          | Scope    | Description                | Example                                   | Type      |
 |---------------|----------|----------------------------|--------------------------------------     |-----------|
-| `tagId`       | required | Nexx360 tag ID             | `"testnexx"`                              | `string`  |
+| `tagId`       | optional | Nexx360 tag ID             | `"testnexx"`                              | `string`  |
 | `videoTagId`  | optional | Nexx360 Video tag ID       | `"testnexx"`                              | `string`  |
 | `nativeTagId` | optional | Nexx360 Native tag ID      | `"testnexx"`                              | `string`  |
 | `allBids`     | optional | Return all bids            | `true`                                    | `boolean` |
 | `divId`       | optional | divId linked to adUnit     | `"div-1"`                                 | `string`  |
 | `adUnitName`  | optional | A code to identify adUnit  | `"header-ad"`                             | `string`  |
 | `adUnitPath`  | optional | A reference to adUnit Path | `"/12345/nexx360/Homepage/HP/Header-Ad"`  | `string`  |
+| `placement`   | optional | Placement                  | `"test"`                                  | `string`  |
+
+For the prebid.js you only need to use one parameter: either tagId or placement
 
 ### Bidder Config
 
