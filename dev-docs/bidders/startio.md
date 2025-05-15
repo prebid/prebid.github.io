@@ -3,11 +3,12 @@ layout: bidder
 title: Start.io
 biddercode: startio
 description: Prebid Start.io Adapter
-tcfeu_supported: false
+tcfeu_supported: true
 coppa_supported: false
 gpp_supported: false
 floors_supported: false
 media_types: banner, video, native
+multiformat_supported: will-bid-on-any
 safeframes_ok: false
 schain_supported: false
 gvl_id: 1216
@@ -37,30 +38,28 @@ The Start.io bidder adapter requires additional setup and approval from the Star
 Sample banner setup:
 
 ```js
-<script>
-  var adUnits = [
-    {
-      code: "div-gpt-ad-12345-0",
-      mediaTypes: {
-        banner: {
-          sizes: [[300, 250]]
+var adUnits = [
+  {
+    code: "div-gpt-ad-12345-0",
+    mediaTypes: {
+      banner: {
+        sizes: [[300, 250]]
+      }
+    },
+    bids: [
+      {
+        bidder: "startio",
+        params: {
+          publisherId: "publisher-12345"
         }
-      },
-      bids: [
-        {
-          bidder: "startio",
-          params: {
-            publisherId: "publisher-12345"
-          }
-        }
-      ]
-    }
-  ]
+      }
+    ]
+  }
+]
 
-  pbjs.que.push(function() {
-    pbjs.addAdUnits(adUnits);
-  });
-</script>
+pbjs.que.push(function() {
+  pbjs.addAdUnits(adUnits);
+});
 ```
 
 ### Additional Notes
@@ -68,13 +67,3 @@ Sample banner setup:
 #### Request and Response Attributes
 
 - Bids are returned in **net** - that is, the bids returned reflect the bid amount with revenue sharing already taken into account. No adjustment is necessary.
-
-#### Supported Media Types
-
-- Banner
-- Native
-- Video (instream and outstream)
-
-#### Default Ad Server Key Value
-
-- `startio`
