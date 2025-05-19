@@ -5,7 +5,7 @@ description: Prebid Omnidex Bidder Adaptor
 biddercode: omnidex
 filename: omnidexBidAdapter
 userIds: britepoolId, criteo, id5Id, identityLink, liveIntentId, netId, parrableId, pubCommonId, unifiedId
-tcfeu_supported: true
+tcfeu_supported: false
 usp_supported: true
 coppa_supported: false
 schain_supported: true
