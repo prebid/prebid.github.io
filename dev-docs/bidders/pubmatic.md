@@ -229,7 +229,5 @@ AdUnit-specific data is supported using `AdUnit.ortb2Imp.ext.*`
 
 ### Endpoint Compression
 
-If the browser a Prebid auction is running in supports gzip compression, the PubMatic bid adapter will automatically compress all outgoing bid requests to the PubMatic server-side endpoint (which provides support for receiving gzip compressed requests). If gzip compression is not supported by the browser, bid requests will be sent uncompressed.
-
-Note: If the Prebid.js debugging query param, `?pbjs_debug=true`, is present in the URL, the feature will be disabled and all bid requests will be sent uncompressed.
+This adapter utilizes gzip compression support built into Prebid.js core. For more information, see [Compression Support for Outgoing Requests](https://docs.prebid.org/dev-docs/bidder-adaptor.html#compression-support-for-outgoing-requests)
 <!-- workaround bug where code blocks at end of a file are incorrectly formatted-->
