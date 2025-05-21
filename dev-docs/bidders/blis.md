@@ -10,7 +10,7 @@ coppa_supported: true
 gpp_sids: tcfeu, usnat, usp
 schain_supported: true
 dchain_supported: false
-userId: 
+userId: adserver, liveramp, sharedid, pubcid, id5-sync, criteo, quantcast
 media_types: banner, video, native
 safeframes_ok: false
 deals_supported: true
