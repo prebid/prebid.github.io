@@ -277,9 +277,9 @@ Prebid.js core now includes support for gzip compression of bidder request paylo
 
 Prebid will pass compressed payloads if the following criteria are met:
 
-* `request.options.endpointCompression = true` is set by a bidder with outgoing requests (An example of this can be viewed [here](https://github.com/prebid/Prebid.js/blob/master/modules/pubmaticBidAdapter.js#L730))
-* The browser supports gzip compression (Prebid core has a built-in utility function to check this)
-* Participating bidders have implemented compression support on their server-side endpoint
+* Participating bidders must implement compression support on their server-side endpoint before making a change in their bid adapter in Prebid.js
+* Once server-side support is present, `request.options.endpointCompression = true` needs to be set for a bidder's outgoing requests within their Prebid.js bid adapter (An example of this can be viewed [here](https://github.com/prebid/Prebid.js/blob/master/modules/pubmaticBidAdapter.js#L730))
+* The browser must support gzip compression (Prebid core has a built-in utility function to check this)
 
 If the above criteria is met, the new Gzip compression can be utilized.
 
