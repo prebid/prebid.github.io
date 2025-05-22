@@ -281,7 +281,11 @@ Prebid will pass compressed payloads if the following criteria are met:
 * Once server-side support is present, `request.options.endpointCompression = true` needs to be set for a bidder's outgoing requests within their Prebid.js bid adapter (An example of this can be viewed [here](https://github.com/prebid/Prebid.js/blob/master/modules/pubmaticBidAdapter.js#L730))
 * The browser must support gzip compression (Prebid core has a built-in utility function to check this)
 
-If the above criteria is met, the new Gzip compression can be utilized.
+If the above criteria is met, Prebid.js core will do the following:
+
+* Gzip compress the request payload
+* Set the `Content-Type` header to `plain/text` (to avoid a preflight request)
+* Append the `gzip=1` query param to the bidder request (to signal to a bidder's server-side endpoint that the request is compressed)
 
 Note: If the Prebid.js debugging query param `?pbjs_debug=true` is present in the URL or `debug: true` has been configured in `pbjs.setConfig()`, the gzip compression feature will be disabled and all bidder requests will be sent uncompressed.
 
