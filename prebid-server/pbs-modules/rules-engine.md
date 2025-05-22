@@ -144,7 +144,7 @@ We envision a time when, like the floors sytem, there are multiple vendors provi
 
 Configuration is covered in several sections:
 
-1. [Module configuration syntax](#module-configuration) - the JSON used to express which bidders should run when. This is basically a kind of a Domain-Specific Language (DSL) where the 
+1. [Module configuration syntax](#module-account-level-configuration) - the JSON used to express which bidders should run when. This is basically a kind of a Domain-Specific Language (DSL) where the 
 1. [Rule Trees](#rule-trees) - groups of rules should be thought of as 'trees' split along dimensions like 'datacenter' and 'channel'. These trees are processed in a particular way.
 1. [Schema Functions](#schema-functions) - which dimensions and comparisons can be used in the configuration. 
 1. [Results Functions](#results-functions) - the specific outcomes once a specific rule is chosen.
@@ -177,7 +177,7 @@ These are the full set of attributes that can be present in the account-level co
 | ruleSets[]<wbr>.modelGroups[]<wbr>.rules[]<wbr>.conditions[] | optional | array of strings | Defines a node on the rule tree. The order of the entries in this array must match the order defined in the schema. | ["true", "false", "app"] |
 | ruleSets[]<wbr>.modelGroups[]<wbr>.rules[]<wbr>.results[] | optional | array of objects | One or more results functions to run when this leaf of the tree is chosen. | |
 | ruleSets[]<wbr>.modelGroups[]<wbr>.rules[]<wbr>.results[]<wbr>.function | optional | string | Which results function to call. | "logAtag" |
-| ruleSets[]<wbr>.modelGroups[]<wbr>.rules[]<wbr>.results[]<wbr>.args | optional object or array of objects | Which arguments to pass to the function. | |
+| ruleSets[]<wbr>.modelGroups[]<wbr>.rules[]<wbr>.results[]<wbr>.args | optional | object or array of objects | Which arguments to pass to the function. | |
 
 ### Rule Trees
 
@@ -343,13 +343,13 @@ Here's an example invocation that means:
 - tell analytics that this request is a control
 
 ```json5
-	"default": [{
-	    "function": "logAtag",
-	    "args": {
-	      "analyticsValue": "control"
-	    }
-	  }
-	]
+"default": [{
+    "function": "logAtag",
+    "args": {
+      "analyticsValue": "control"
+    }
+  }
+]
 ```
 
 There's only one argument to this results function:
