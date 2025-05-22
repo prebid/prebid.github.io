@@ -271,6 +271,20 @@ Building the request will use data from several places:
 * **BidRequest Params**: Several important parameters such as first-party data, userId, GDPR, USP, and supply chain values are on the `bidderRequest` object.
 * **Prebid Config**: Publishers can set a number of config values that bid adapters should consider reading.
 
+#### Compression Support for Outgoing Requests
+
+Prebid.js core now includes support for gzip compression of bidder request payloads (This helps reduce payload size and improve performance).
+
+Prebid will pass compressed payloads if the following criteria are met:
+
+* `request.options.endpointCompression = true` is set by a bidder with outgoing requests (An example of this can be viewed [here](https://github.com/prebid/Prebid.js/blob/master/modules/pubmaticBidAdapter.js#L730))
+* The browser supports gzip compression (Prebid core has a built-in utility function to check this)
+* Participating bidders have implemented compression support on their server-side endpoint
+
+If the above criteria is met, the new Gzip compression can be utilized.
+
+Note: If the Prebid.js debugging query param `?pbjs_debug=true` is present in the URL or `debug: true` has been configured in `pbjs.setConfig()`, the gzip compression feature will be disabled and all bidder requests will be sent uncompressed.
+
 #### Ad Unit Params in the validBidRequests Array
 
 Here is a sample array entry for `validBidRequests[]`:
