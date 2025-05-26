@@ -1191,7 +1191,7 @@ pbjs.setConfig({
 });
 ```
 
-More examples [here](/dev-docs/modules/instreamTracking.html#example-with-urlpattern).
+More examples can be found in [the instream tracking module documentation](/dev-docs/modules/instreamTracking.html#example-with-urlpattern).
 
 <a name="setConfig-site"></a>
 
