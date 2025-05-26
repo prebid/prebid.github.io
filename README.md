@@ -118,9 +118,10 @@ To get started with Codex with Ruby 3.4.4 preinstalled on this repo, you can set
 
 ```bash
 echo "3.4.4" > .ruby-version
+export NOKOGIRI_USE_SYSTEM_LIBRARIES=1
 gem install jekyll bundler
 npm install boostrap
-gem -y install github-pages
+gem install github-pages --no-document --force
 npm install -g markdownlint-cli
 ```
 
