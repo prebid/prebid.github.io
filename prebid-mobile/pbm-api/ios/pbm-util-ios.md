@@ -31,7 +31,7 @@ func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.BannerView) {
         // In the case of Prebid's line item - resize te ad view
         bannerView.resize(adSizeFor(cgSize: size))
     }, failure: { (error) in
-        PrebidDemoLogger.shared.error("Error occuring during searching for Prebid creative size: \(error)")
+        PrebidDemoLogger.shared.error("Error occurring during searching for Prebid creative size: \(error)")
     })
 }
 {% endcapture %}
@@ -44,7 +44,7 @@ func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.BannerView) {
         // In the case of Prebid's line item - resize te ad view
         bannerView.resize(GADAdSizeFromCGSize(size))
     }, failure: { (error) in
-        PrebidDemoLogger.shared.error("Error occuring during searching for Prebid creative size: \(error)")
+        PrebidDemoLogger.shared.error("Error occurring during searching for Prebid creative size: \(error)")
     })
 }
 {% endcapture %}
