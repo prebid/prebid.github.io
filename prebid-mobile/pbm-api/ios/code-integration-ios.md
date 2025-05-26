@@ -392,7 +392,7 @@ Prebid.shared.logLevel = .verbose
 // Set Prebid timeout in milliseconds
 Prebid.shared.timeoutMillis = 3000
 
-// Enable Prebid Server debug respones
+// Enable Prebid Server debug responses
 Prebid.shared.pbsDebug = true
 
 // Stored responses  can be one of storedAuction response or storedBidResponse

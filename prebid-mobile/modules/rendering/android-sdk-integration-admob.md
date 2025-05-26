@@ -315,7 +315,7 @@ Prepare the `AdLoader` and `AdRequest` objects before you make the bid request. 
 #### Step 2: Create NativeAdUnit
 {:.no_toc}
 
-The `NativeAdUnit` is responsible for making bid requests. Once the bid responce is received you can load an ad from AdMob.
+The `NativeAdUnit` is responsible for making bid requests. Once the bid response is received you can load an ad from AdMob.
 
 #### Step 3: Configure NativeAdUnit
 {:.no_toc}
