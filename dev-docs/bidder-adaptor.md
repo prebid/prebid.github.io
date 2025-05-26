@@ -1166,7 +1166,7 @@ export const spec = {
          * Determines whether or not the given bid request is valid.
          *
          * @param {BidRequest} bid The bid params to validate.
-         * @return boolean True if this is a valid bid, and false otherwise.
+         * @return {boolean} True if this is a valid bid, and false otherwise.
          */
         isBidRequestValid: function(bid) {
             return !!(bid.params.placementId || (bid.params.member && bid.params.invCode));
@@ -1174,8 +1174,8 @@ export const spec = {
         /**
          * Make a server request from the list of BidRequests.
          *
-         * @param {validBidRequests[]} - an array of bids
-         * @return ServerRequest Info describing the request to the server.
+         * @param {BidRequest[]} validBidRequests - an array of bids
+         * @return {ServerRequest} Info describing the request to the server.
          */
         buildRequests: function(validBidRequests) {
             const payload = {
@@ -1260,7 +1260,7 @@ export const spec = {
 
     /**
      * Register bidder specific code, which will execute if bidder timed out after an auction
-     * @param {data} Containing timeout specific data
+     * @param {Object} data Containing timeout specific data
      */
     onTimeout: function(data) {
         // Bidder specifc code
@@ -1268,7 +1268,7 @@ export const spec = {
 
     /**
      * Register bidder specific code, which will execute if a bid from this bidder won the auction
-     * @param {Bid} The bid that won the auction
+     * @param {Bid} bid The bid that won the auction
      */
     onBidWon: function(bid) {
         // Bidder specific code
@@ -1276,7 +1276,7 @@ export const spec = {
 
     /**
      * Register bidder specific code, which will execute when the adserver targeting has been set for a bid from this bidder
-     * @param {Bid} The bid of which the targeting has been set
+     * @param {Bid} bid The bid of which the targeting has been set
      */
     onSetTargeting: function(bid) {
         // Bidder specific code
@@ -1284,7 +1284,7 @@ export const spec = {
 
     /**
      * Register bidder specific code, which will execute if the bidder responded with an error
-     * @param {error, bidderRequest} An object with the XMLHttpRequest error and the bid request object
+     * @param {Object} params An object with the XMLHttpRequest error and the bid request object
      */
     onBidderError: function({ error, bidderRequest }) {
         // Bidder specific code
@@ -1293,7 +1293,7 @@ export const spec = {
     /**
      * Register bidder specific code, which will execute if the ad
      * has been rendered successfully
-     * @param {bid} bid request object
+     * @param {Bid} bid Bid request object
      */
     onAdRenderSucceeded: function(bid) {
         // Bidder specific code
