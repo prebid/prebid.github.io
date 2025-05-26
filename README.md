@@ -123,6 +123,7 @@ gem install jekyll bundler
 npm install boostrap
 gem install github-pages --no-document --force
 npm install -g markdownlint-cli
+bundle install
 ```
 
 Codex can then check for linting success with
