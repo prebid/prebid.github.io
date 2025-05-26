@@ -112,6 +112,24 @@ This means an adaptor is not available to download from Prebid.org as soon as th
 
 * [jekyll - check for non empty](https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/jekyll/liquid/conditionals/non-empty.html)
 
+## Codex
+
+To get started with Codex with Ruby 3.4.4 preinstalled on this repo, you can set up your environment like this
+
+```bash
+echo "3.4.4" > .ruby-version
+gem install jekyll bundler
+npm install boostrap
+gem -y install github-pages
+npm install -g markdownlint-cli
+```
+
+Codex can then check for linting success with
+
+```bash
+markdownlint --config .markdownlint.json "**/*.md"
+```
+
 ## Thanks
 
 Many thanks to the following people who have submitted content to Prebid.org.  We really appreciate the help!
