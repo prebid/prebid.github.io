@@ -650,7 +650,7 @@ Sample data received by this function:
 
 The `onBidBillable` function will be called when it deems a bid to be billable. When a bid wins, it is by default also billable. That is, by default, onBidWon and onBidBillable will be called one after the other. However, a publisher can flag adUnits as being separately billable: `pbjs.addAdUnits({deferBilling: true, ...})`. Winning bids for adUnits with `deferBilling` set to true, trigger the onBidWon function but not the onBidBillable function. When appropriate (e.g. an interstitial is displayed), the publisher may then call the public API method, `pbjs.triggerBilling(winningBidObjectToBill)` passing the winning bid to be billed, which will trigger onBidBillable.
 
-Sample data received by this function (same as what is recieved for onBidWon):
+Sample data received by this function (same as what is received for onBidWon):
 
 ```javascript
 {
@@ -814,7 +814,7 @@ If your adapter supports banner and video media types, make sure to include `'ba
 
 ### Step 2: Accept video parameters and pass them to your server
 
-Video parameters are often passed in from the ad unit in a `video` object. As of Prebid 4.0 the following paramters should be read from the ad unit when available; bidders can accept overrides of the ad unit on their bidder configuration parameters but should read from the ad unit configuration when their bidder parameters are not set. Parameters one should expect on the ad unit include:
+Video parameters are often passed in from the ad unit in a `video` object. As of Prebid 4.0 the following parameters should be read from the ad unit when available; bidders can accept overrides of the ad unit on their bidder configuration parameters but should read from the ad unit configuration when their bidder parameters are not set. Parameters one should expect on the ad unit include:
 
 * mimes
 * minduration
