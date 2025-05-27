@@ -33,6 +33,7 @@ a.tip:hover span {
 </style>
 
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
 <script src="/assets/js/download.js"></script>
 
 <style>
@@ -64,6 +65,9 @@ Prebid.js is open source software that is offered for free as a convenience. Whi
 <h4>Select Prebid Version</h4>
 <select id="version_selector" class="selectpicker">
 </select>
+<br/>
+<label for="configFileInput"><strong>Upload Configuration</strong></label>
+<input type="file" id="configFileInput" accept="application/json" />
 <br>
 <h4>Select Bidder Adapters</h4>
 <div class="row adapters">
