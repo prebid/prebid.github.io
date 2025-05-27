@@ -5,6 +5,7 @@ description: Prebid iMedia Digital Services Bidder (iMDS) Adapter (replaced by "
 pbjs: true
 pbs: true
 biddercode: imds
+aliasCode: advertising
 tcfeu_supported: false
 usp_supported: true
 userIds: all
@@ -23,6 +24,7 @@ multiformat_supported: will-bid-on-any
 prebid_member: false
 gvl_id: none
 sidebarType: 1
+pbjs_version_notes: use advertising after 10.0
 ---
 
 ### Note

@@ -5,6 +5,7 @@ description: Prebid Synacor Media Bidder Adapter (replaced by "Advertising.com")
 pbjs: true
 pbs: true
 biddercode: synacormedia
+aliasCode: advertising
 tcfeu_supported: false
 usp_supported: true
 userIds: all
@@ -22,7 +23,7 @@ multiformat_supported: will-bid-on-any
 prebid_member: false
 gvl_id: none
 sidebarType: 1
-pbjs_version_notes: use imds after 8.0 and advertising after 9.0
+pbjs_version_notes: use imds after 8.0 and advertising after 10.0
 ---
 
 ### Note
