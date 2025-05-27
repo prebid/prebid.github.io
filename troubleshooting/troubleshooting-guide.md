@@ -41,6 +41,7 @@ This will add two types of messages to your browser’s developer console:
  "Prebid.js message log"){: height="50%"  width="50%" :}
 
  {: .table .table-bordered .table-striped }
+
 | Message |  Description   |
 | :----  |:--------|
 | Calling bidder |  When Prebid.js sends out bid requests, this message is logged |

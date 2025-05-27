@@ -204,6 +204,48 @@ Here's how it works:
 1. The s2sConfig.bidders array contains 'tripleliftVideo' telling Prebid.js to direct bids for that code to the server
 1. Finally, the extPrebid.aliases line tells Prebid Server to route the 'tripleliftVideo' biddercode to the 'triplelift' server-side adapter.
 
+### Routing for Multiple PBS instances
+
+Bids:
+
+```javascript
+[{
+    bidder: 'foobar',
+    params: {...},
+},
+{
+    bidder: 'foobar',
+    params: {...},
+    pbsHost: 'foobar-2'
+}]
+```
+
+s2sConfig:
+
+```javascript
+[{
+    accountId: 1234,
+    bidders: ['foobar'],
+    enabled: true,
+    endpoint: {
+        noP1Consent : 'https://pbs.auction/openrtb2/auction',
+        p1Consent : 'https://pbs.auction/openrtb2/auction'
+    }
+},
+{
+     accountId: 5678,
+     bidders: ['foobar-2'],
+     syncBidders: ['foobar'],
+     enabled: true,
+     endpoint: {
+        noP1Consent : 'https://pbs.alt.auction/openrtb2/auction',
+        p1Consent : 'https://pbs.alt.auction/openrtb2/auction'
+     }
+}]
+```
+
+The above would distribute `bid[0]` to s2s endpoint `https://pbs.auction/openrtb2/auction`, whereas `bid[1]` will be distributed to `https://pbs.alt.auction/openrtb2/auction`. The syncBidders is used to sync both with the original biddercode to as well as applying bidder specific FPD for pbs calls via bidderconfig.
+
 ### Video via s2sConfig
 
 Supporting video through the Server-to-Server route can be done by providing a couple of extra arguments on the `extPrebid` object. e.g.
