@@ -278,7 +278,7 @@ Prebid.js core now includes support for gzip compression of bidder request paylo
 Prebid will pass compressed payloads if the following criteria are met:
 
 * Participating bidders must implement compression support on their server-side endpoint before making a change in their bid adapter in Prebid.js
-* Once server-side support is present, `request.options.endpointCompression = true` needs to be set for a bidder's outgoing requests within their Prebid.js bid adapter (An example of this can be viewed [here](https://github.com/prebid/Prebid.js/blob/master/modules/pubmaticBidAdapter.js#L730))
+* Once server-side support is present, `request.options.endpointCompression = true` needs to be set for a bidder's outgoing requests within their Prebid.js bid adapter (see the [PubMatic adapter example](https://github.com/prebid/Prebid.js/blob/master/modules/pubmaticBidAdapter.js#L730))
 * The browser must support gzip compression (Prebid core has a built-in utility function to check this)
 
 If the above criteria is met, Prebid.js core will do the following:
@@ -389,6 +389,7 @@ When disabled, `auctionId`/`transactionId` are set to `null`; `ortb2.source.tid`
 There are a number of important values that a publisher expects to be handled in a standard way across all Prebid.js adapters:
 
 {: .table .table-bordered .table-striped }
+
 | Parameter | Description                                   | Example               |
 | ----- | ------------ | ---------- |
 | Ad Server Currency | If your endpoint supports responding in different currencies, read this value. | config.getConfig('currency.adServerCurrency') |
@@ -423,6 +424,7 @@ You shouldn't call your bid endpoint directly. Rather, the end result of your bu
 ServerRequest objects. These objects have this structure:
 
 {: .table .table-bordered .table-striped }
+
 | Attribute | Type             | Description                                                        | Example Value               |
 |-----------+------------------+--------------------------------------------------------------------+-----------------------------|
 | `method`  | String           | Which HTTP method should be used.                                  | `POST`                      |
@@ -504,6 +506,7 @@ particularly useful. Publishers may have analytics or security vendors with the 
 The parameters of the `bidResponse` object are:
 
 {: .table .table-bordered .table-striped }
+
 | Key          | Scope                                       | Description                                                                                                                                   | Example                              |
 |--------------+---------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------|
 | `requestId`  | Required                                    | The bid ID that was sent to `spec.buildRequests` as `bidRequests[].bidId`. Used to tie this bid back to the request.                          | 12345                                |
@@ -760,6 +763,7 @@ spec.aliases can be an array of strings or objects.
 If the alias entry is an object, the following attributes are supported:
 
 {: .table .table-bordered .table-striped }
+
 | Name  | Scope | Description   | Type      |
 |-------|-------|---------------|-----------|
 | `code` | required | shortcode/partner name | `string` |
@@ -962,7 +966,7 @@ Adapter must add following new properties to bid response
 }
 ```
 
-Appnexus Adapter uses above explained approach. You can refer [here](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
+Appnexus Adapter uses the approach explained above. You can see an example in the [AppNexus adapter](https://github.com/prebid/Prebid.js/blob/master/modules/appnexusBidAdapter.js)
 
 Adapter must return one [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file) if they want to support competitive separation. These IAB sub categories will be converted to Ad server industry/group. If adapter is returning their own proprietary categroy, it is the responsibility of the adapter to convert their categories into [IAB accepted subcategories](https://iabtechlab.com/wp-content/uploads/2017/11/IAB_Tech_Lab_Content_Taxonomy_V2_Final_2017-11.xlsx) (links to MS Excel file).
 
@@ -971,6 +975,7 @@ If the demand partner is going to use Prebid API for this process, their adapter
 **Params**  
 
 {: .table .table-bordered .table-striped }
+
 | Key             | Scope    | Description                                                                                        | Example                    |
 |-----------------|----------|----------------------------------------------------------------------------------------------------|----------------------------|
 | `url`             | Required | The URL to the mapping file.                                                                       | `"//example.com/mapping.json"` |
@@ -1000,6 +1005,7 @@ getIabSubCategory(bidderCode, pCategory)
 **Params**
 
 {: .table .table-bordered .table-striped }
+
 | Key          | Scope    | Description                                   | Example               |
 |--------------|----------|-----------------------------------------------|-----------------------|
 | `bidderCode` | Required | BIDDER_CODE defined in spec.                  | `"sample-biddercode"` |
@@ -1370,6 +1376,7 @@ The Example Bidding adapter requires setup before beginning. Please contact us a
 ### Bid Params
 
 {: .table .table-bordered .table-striped }
+
 | Name          | Scope    | Description           | Example   | Type      |
 |---------------|----------|-----------------------|-----------|-----------|
 | `placement`      | required | Placement id         | `'11111'`    | `string` |
